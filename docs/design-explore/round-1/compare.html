@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Split round 1 compare</title>
+<style>
+  :root {
+    --bg: #eceef1; --panel: #ffffff; --ink: #16181d; --muted: #545b66; --line: #d5d9df; --pick: #1f5fd1;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1320px; margin: 0 auto; padding: 32px 16px 56px; }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .lede { color: var(--muted); margin: 0 0 24px; max-width: 70ch; }
+  .rec { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--pick);
+    padding: 16px 20px; margin: 0 0 28px; border-radius: 6px; max-width: 90ch; }
+  .rec h2 { font-size: 16px; margin: 0 0 6px; }
+  .rec p { margin: 0; }
+  .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+  .dir { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-width: 0; }
+  .dir[data-pick] { border-color: var(--pick); box-shadow: 0 0 0 1px var(--pick); }
+  .tag { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0; }
+  .dir[data-pick] .tag { color: var(--pick); font-weight: 600; }
+  .dir h2 { font-size: 18px; margin: 2px 0 4px; }
+  .thesis { margin: 0 0 12px; color: var(--muted); }
+  .frame { width: 100%; aspect-ratio: 390 / 844; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: #fff; position: relative; }
+  .frame iframe { position: absolute; top: 0; left: 0; width: 390px; height: 844px; border: 0;
+    transform-origin: 0 0; }
+  dl { margin: 12px 0 0; }
+  dt { font-weight: 600; font-size: 13px; }
+  dd { margin: 0 0 8px; color: var(--muted); }
+  .open a { color: var(--pick); }
+  a:focus-visible { outline: 2px solid var(--pick); outline-offset: 2px; }
+  @media (max-width: 1000px) { .row { grid-template-columns: minmax(0, 1fr); max-width: 440px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Split, design round 1</h1>
+  <p class="lede">Three directions for the key screen, drawn independently from the same brief. Each frame is the phone view at 390 x 844 and scrolls. Open one full size to see the desktop layout.</p>
+  <section class="rec" aria-label="Recommendation">
+    <h2>Recommendation</h2>
+    <p>C, Working shown. The screen has one job, which is to make the shares believable without anyone doing maths. C is the only direction where the proof is on the screen: each charge shows its base (6% of RM 65.34, so SST on subtotal plus service is visible), and the shares table adds across (Items + Charges = Share) and down to a check row that lands on the receipt total. A is the most charming but its monospace receipt makes a long page longer and its proof is two matching frames, not a sum. B is friendly and its stacked bar is a nice touch, but colour per person stops scaling past six people and the bar shows proportions, not cents. One change before locking C: the amounts printed inside the item toggles (Aisyah RM 9.00) are not in the brainstorm, so they come out and go to the suggestions note.</p>
+  </section>
+  <div class="row">
+    <article class="dir">
+      <header>
+        <p class="tag">Direction A</p>
+        <h2>Receipt tape</h2>
+        <p class="thesis">The receipt you already hold, made to add up.</p>
+      </header>
+      <div class="frame"><iframe src="a.html" title="Direction A, Receipt tape" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Bets on</dt><dd>Matching the paper in their hand. Total and the Adds up to line share one frame and one column, so the match is visible.</dd>
+        <dt>Costs</dt><dd>Monospace density makes the page about 1680 px long on a phone. One-letter stamps clash when two names share an initial.</dd>
+      </dl>
+      <p class="open"><a href="a.html">Open full size</a></p>
+    </article>
+    <article class="dir">
+      <header>
+        <p class="tag">Direction B</p>
+        <h2>Colour per person</h2>
+        <p class="thesis">Who had what, visible at a glance.</p>
+      </header>
+      <div class="frame"><iframe src="b.html" title="Direction B, Colour per person" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Bets on</dt><dd>One colour per person across toggles, a stacked bar of the total, and coloured share rows.</dd>
+        <dt>Costs</dt><dd>Six colours repeat for people 7 to 12. Teal and blue look alike to colour-blind users, so names carry the meaning anyway. The bar shows proportions, not cents.</dd>
+      </dl>
+      <p class="open"><a href="b.html">Open full size</a></p>
+    </article>
+    <article class="dir" data-pick="true">
+      <header>
+        <p class="tag">Direction C · recommended</p>
+        <h2>Working shown</h2>
+        <p class="thesis">A calculator that shows its working.</p>
+      </header>
+      <div class="frame"><iframe src="c.html" title="Direction C, Working shown" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Bets on</dt><dd>Trust from visible arithmetic. Plus and equals signs in a fixed column, each charge shows its base, the shares table sums across and down to the total.</dd>
+        <dt>Costs</dt><dd>Leans toward accounting software. The shares table is tight at 360 px. Charge rates are edited inside the summary, which mixes inputs into the output.</dd>
+      </dl>
+      <p class="open"><a href="c.html">Open full size</a></p>
+    </article>
+  </div>
+</main>
+<script>
+  // Scale each 390 px phone frame to the card width so the whole phone view fits.
+  function fit() {
+    document.querySelectorAll('.frame').forEach(function (f) {
+      f.querySelector('iframe').style.transform = 'scale(' + (f.clientWidth / 390) + ')';
+    });
+  }
+  window.addEventListener('resize', fit);
+  fit();
+</script>
+</body>
+</html>

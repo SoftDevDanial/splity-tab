@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Split</title>
+<style>
+/*
+  Direction A: Receipt tape.
+  The screen is one printed receipt strip lying on a cool grey counter.
+
+  Colour rule: graphite is what the app prints. Blue ink is what you typed or stamped.
+  Shape rule:  paper and controls are square. People are round rubber stamps.
+  Line rule:   dotted leader = a printed line. Dashed outline = an empty slot you can fill.
+               Solid rule over a double rule = a total.
+
+  Design mock of state S1 (by item, with shares). Stamps toggle their pressed state only.
+  The printed figures are fixed to S1 and do not recompute.
+*/
+:root {
+  --counter: #cdd3da;
+  --shadow-rgb: 32 40 52;
+  --paper: #fbfcfd;
+  --print: #1c2128;
+  --print-hover: #353d48;
+  --print-muted: #4d5663;
+  --rule: #9ba4af;
+  --slot: #5a6370;
+  --ink: #1e4fb5;
+  --ink-hover: #173f92;
+  --ink-wash: #e8eef9;
+  --on-ink: #fbfcfd;
+  --stamp-off: #5a6370;
+  --field: #7486ad;
+  --focus: #1e4fb5;
+
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --fs: 16px;
+  --fs-small: 13px;
+  --fs-sum: 19px;
+  --gutter: 8px;
+  --pad: 16px;
+  --tooth: 8px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--counter);
+  color: var(--print);
+  font: 400 var(--fs)/1.5 var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+h1, h2, p, ul, fieldset { margin: 0; padding: 0; }
+ul { list-style: none; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+.vh {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* Counter: app bar */
+.app-bar {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 12px var(--gutter) 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.app-bar h1 { font: 800 24px/1 var(--mono); letter-spacing: -0.03em; }
+.btn-outline {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 2px solid var(--print);
+  border-radius: 0;
+  background: transparent;
+  font-weight: 700;
+  font-size: 15px;
+}
+@media (hover: hover) { .btn-outline:hover { background: var(--print); color: var(--counter); } }
+.btn-outline:active { transform: translateY(1px); }
+
+/* The strip */
+.desk {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--tooth) var(--gutter) 56px;
+  filter:
+    drop-shadow(0 1px 1px rgb(var(--shadow-rgb) / 0.16))
+    drop-shadow(0 10px 18px rgb(var(--shadow-rgb) / 0.14));
+}
+.tape { position: relative; background: var(--paper); padding: 20px var(--pad); }
+
+/* Torn edges: teeth drawn in paper colour, overlapping the paper by 1px to hide seams */
+.tape--bill::before,
+.tape--stub::after,
+.tape--bill::after,
+.tape--stub::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: var(--tooth);
+  background-size: 16px var(--tooth);
+  background-repeat: round;
+  pointer-events: none;
+}
+.tape--bill::before {
+  top: calc(1px - var(--tooth));
+  background-image: conic-gradient(from 135deg at 50% 0, var(--paper) 90deg, transparent 0);
+}
+.tape--stub::after {
+  bottom: calc(1px - var(--tooth));
+  background-image: conic-gradient(from -45deg at 50% 100%, var(--paper) 90deg, transparent 0);
+}
+.tape--bill::after, .tape--stub::before { display: none; }
+.tape--bill { padding-bottom: 12px; }
+.tape--stub { padding-top: 0; padding-bottom: 24px; }
+
+/* Perforation between the bill and the shares stub */
+.perf {
+  height: 22px;
+  margin: 0 calc(-1 * var(--pad)) 14px;
+  background-image: radial-gradient(circle, var(--counter) 0 2.5px, transparent 3px);
+  background-size: 11px 22px;
+  background-repeat: round no-repeat;
+}
+
+/* Printed separators */
+.rule {
+  border: 0;
+  height: 2px;
+  margin: 20px 0;
+  background-image: repeating-linear-gradient(90deg, var(--rule) 0 6px, transparent 6px 10px);
+}
+
+h2 { font: 700 var(--fs)/1.5 var(--mono); margin-bottom: 8px; }
+
+/* A printed line with a dotted leader */
+.line { display: flex; align-items: baseline; min-width: 0; }
+.leader {
+  flex: 1 1 2ch;
+  min-width: 2ch;
+  height: 0;
+  margin: 0 6px;
+  border-bottom: 2px dotted var(--rule);
+  position: relative;
+  top: -0.3em;
+}
+.amt { flex: none; white-space: nowrap; }
+
+/* Fields: blue ink on a ruled line */
+.field {
+  height: 44px;
+  min-width: 44px;
+  padding: 0 4px;
+  border: 0;
+  border-radius: 0;
+  /* the writing line sits just under the text, inside the 44px target */
+  background: linear-gradient(var(--field), var(--field)) left calc(100% - 6px) / 100% 2px no-repeat;
+  color: var(--ink);
+  font-size: 16px;
+  font-family: var(--mono);
+}
+.field:focus-visible { background-color: var(--ink-wash); outline-offset: 2px; }
+@media (hover: hover) { .field:hover { background-image: linear-gradient(var(--ink), var(--ink)); } }
+.fit { width: calc(var(--len) * 1ch + 10px); max-width: 100%; flex: 0 1 auto; }
+.fit.num, .fit.rate { text-align: right; }
+.fit.rate { padding-right: 2px; }
+.cur { flex: none; margin-right: 0.5ch; }
+
+/* Text buttons and empty slots */
+.text-btn {
+  flex: none;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 10px;
+  margin-right: -10px;
+  border: 0;
+  background: transparent;
+  color: var(--print-muted);
+  font-size: 14px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+@media (hover: hover) { .text-btn:hover { color: var(--print); } }
+.slot {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 12px;
+  border: 2px dashed var(--slot);
+  border-radius: 0;
+  background: transparent;
+  font-weight: 700;
+  font-size: 15px;
+}
+@media (hover: hover) { .slot:hover { border-style: solid; background: var(--ink-wash); } }
+.slot:active, .btn-primary:active { transform: translateY(1px); }
+
+/* Rubber stamps */
+.stamp, .mark {
+  --tilt: 0deg;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border-radius: 50%;
+  font-family: var(--sans);
+  font-weight: 800;
+  line-height: 1;
+}
+.stamp {
+  width: 44px; height: 44px;
+  padding: 0;
+  font-size: 19px;
+  border: 2px dashed var(--stamp-off);
+  background: transparent;
+  color: var(--stamp-off);
+}
+.stamp[aria-pressed="true"], .mark {
+  border: 2px solid var(--ink);
+  color: var(--on-ink);
+  background:
+    radial-gradient(circle at 32% 26%, rgb(255 255 255 / 0.14), transparent 58%),
+    var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink), inset 0 0 0 3px rgb(251 252 253 / 0.75);
+  transform: rotate(var(--tilt));
+}
+.stamp:focus-visible { outline-offset: 3px; }
+@media (hover: hover) {
+  .stamp[aria-pressed="false"]:hover { border-color: var(--ink); color: var(--ink); background: var(--ink-wash); }
+  .stamp[aria-pressed="true"]:hover { background: var(--ink-hover); border-color: var(--ink-hover); }
+}
+.mark { width: 32px; height: 32px; font-size: 14px; }
+.t1 { --tilt: -6deg; }
+.t2 { --tilt: 5deg; }
+.t3 { --tilt: -2deg; }
+@media (prefers-reduced-motion: no-preference) {
+  .stamp.pressed { animation: stamp-down 160ms cubic-bezier(0.2, 0.9, 0.3, 1); }
+  @keyframes stamp-down {
+    from { transform: rotate(var(--tilt)) scale(1.22); }
+    to   { transform: rotate(var(--tilt)) scale(1); }
+  }
+}
+
+/* People */
+.person { display: flex; align-items: center; gap: 10px; }
+.person + .person { margin-top: 2px; }
+.person .field { flex: 1 1 auto; width: auto; min-width: 0; }
+
+/* Mode switch */
+.mode {
+  border: 2px solid var(--print);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 16px;
+}
+.mode label { position: relative; display: block; }
+.mode input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.mode span {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  font-weight: 700;
+  font-size: 15px;
+}
+.mode label + label span { border-left: 2px solid var(--print); }
+.mode input:checked + span { background: var(--print); color: var(--paper); }
+.mode input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 3px; }
+@media (hover: hover) { .mode input:not(:checked):hover + span { background: var(--ink-wash); } }
+
+/* Items */
+.item + .item { margin-top: 14px; }
+.who { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px; }
+.stamps { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Bill lines */
+.bill .line { min-height: 32px; }
+.bill .line.has-field { min-height: 44px; }
+.bill label { flex: none; margin-right: 1ch; }
+.pct { flex: none; margin-left: 1px; }
+.note { font-size: var(--fs-small); line-height: 1.45; color: var(--print-muted); margin-top: 6px; }
+
+/* Totals: the same frame on the bill and on the stub, so the two figures echo */
+.sumline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 10px 0 8px;
+  border-top: 2px solid var(--print);
+  border-bottom: 6px double var(--print);
+  font-size: var(--fs-sum);
+  font-weight: 800;
+}
+
+/* Shares */
+.share + .share { margin-top: 10px; }
+.share .line { gap: 10px; min-height: 32px; }
+.share .leader { margin: 0; }
+.share .amt { font-weight: 700; }
+.breakdown {
+  margin-left: 42px;
+  font-size: var(--fs-small);
+  color: var(--print-muted);
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 20px;
+  border: 0;
+  border-radius: 0;
+  background: var(--print);
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 16px;
+}
+@media (hover: hover) { .btn-primary:hover { background: var(--print-hover); } }
+.status { min-height: 20px; margin-top: 8px; font-size: var(--fs-small); color: var(--print-muted); text-align: center; }
+
+/* Desktop: the stub is torn off along the perforation and laid beside the bill */
+@media (min-width: 1024px) {
+  .app-bar { max-width: 892px; padding-top: 28px; padding-bottom: 24px; }
+  .desk {
+    max-width: none;
+    display: grid;
+    grid-template-columns: 460px 360px;
+    justify-content: center;
+    align-items: start;
+    column-gap: 56px;
+    padding-top: calc(var(--tooth) + 4px);
+  }
+  :root { --pad: 24px; }
+  .tape--bill { padding-bottom: 24px; }
+  .tape--bill::after {
+    display: block;
+    bottom: calc(1px - var(--tooth));
+    background-image: conic-gradient(from -45deg at 50% 100%, var(--paper) 90deg, transparent 0);
+  }
+  .tape--stub { position: sticky; top: 24px; padding-top: 22px; }
+  .tape--stub::before {
+    display: block;
+    top: calc(1px - var(--tooth));
+    background-image: conic-gradient(from 135deg at 50% 0, var(--paper) 90deg, transparent 0);
+  }
+  .perf { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="app-bar">
+  <h1>Split</h1>
+  <button type="button" class="btn-outline">New bill</button>
+</header>
+
+<main class="desk">
+
+  <div class="tape tape--bill">
+
+    <section aria-labelledby="people-h">
+      <h2 id="people-h">People</h2>
+      <ul>
+        <li class="person">
+          <span class="mark t1" aria-hidden="true">A</span>
+          <input class="field" type="text" value="Aisyah" maxlength="20" autocomplete="off" aria-label="Person 1 name">
+          <button type="button" class="text-btn" aria-label="Remove Aisyah">Remove</button>
+        </li>
+        <li class="person">
+          <span class="mark t2" aria-hidden="true">B</span>
+          <input class="field" type="text" value="Ben" maxlength="20" autocomplete="off" aria-label="Person 2 name">
+          <button type="button" class="text-btn" aria-label="Remove Ben">Remove</button>
+        </li>
+        <li class="person">
+          <span class="mark t3" aria-hidden="true">C</span>
+          <input class="field" type="text" value="Chen" maxlength="20" autocomplete="off" aria-label="Person 3 name">
+          <button type="button" class="text-btn" aria-label="Remove Chen">Remove</button>
+        </li>
+      </ul>
+      <button type="button" class="slot">Add person</button>
+    </section>
+
+    <hr class="rule">
+
+    <section aria-label="Items">
+      <fieldset class="mode">
+        <legend class="vh">Split mode</legend>
+        <label><input type="radio" name="mode" value="even"><span>Even</span></label>
+        <label><input type="radio" name="mode" value="item" checked><span>By item</span></label>
+      </fieldset>
+
+      <ul>
+        <li class="item">
+          <div class="line">
+            <input class="field fit" style="--len:15" type="text" value="Nasi lemak ayam" maxlength="40" autocomplete="off" aria-label="Item 1 name">
+            <span class="leader" aria-hidden="true"></span>
+            <span class="cur" aria-hidden="true">RM</span>
+            <input class="field fit num" style="--len:5" type="text" inputmode="decimal" value="15.90" autocomplete="off" aria-label="Item 1 price in RM">
+          </div>
+          <div class="who">
+            <div class="stamps" role="group" aria-label="Who had Nasi lemak ayam">
+              <button type="button" class="stamp t1" aria-pressed="true" aria-label="Aisyah">A</button>
+              <button type="button" class="stamp t2" aria-pressed="false" aria-label="Ben">B</button>
+              <button type="button" class="stamp t3" aria-pressed="false" aria-label="Chen">C</button>
+            </div>
+            <button type="button" class="text-btn" aria-label="Remove Nasi lemak ayam">Remove</button>
+          </div>
+        </li>
+        <li class="item">
+          <div class="line">
+            <input class="field fit" style="--len:14" type="text" value="Char kuey teow" maxlength="40" autocomplete="off" aria-label="Item 2 name">
+            <span class="leader" aria-hidden="true"></span>
+            <span class="cur" aria-hidden="true">RM</span>
+            <input class="field fit num" style="--len:5" type="text" inputmode="decimal" value="13.50" autocomplete="off" aria-label="Item 2 price in RM">
+          </div>
+          <div class="who">
+            <div class="stamps" role="group" aria-label="Who had Char kuey teow">
+              <button type="button" class="stamp t1" aria-pressed="false" aria-label="Aisyah">A</button>
+              <button type="button" class="stamp t2" aria-pressed="true" aria-label="Ben">B</button>
+              <button type="button" class="stamp t3" aria-pressed="false" aria-label="Chen">C</button>
+            </div>
+            <button type="button" class="text-btn" aria-label="Remove Char kuey teow">Remove</button>
+          </div>
+        </li>
+        <li class="item">
+          <div class="line">
+            <input class="field fit" style="--len:16" type="text" value="Mee goreng mamak" maxlength="40" autocomplete="off" aria-label="Item 3 name">
+            <span class="leader" aria-hidden="true"></span>
+            <span class="cur" aria-hidden="true">RM</span>
+            <input class="field fit num" style="--len:5" type="text" inputmode="decimal" value="12.00" autocomplete="off" aria-label="Item 3 price in RM">
+          </div>
+          <div class="who">
+            <div class="stamps" role="group" aria-label="Who had Mee goreng mamak">
+              <button type="button" class="stamp t1" aria-pressed="false" aria-label="Aisyah">A</button>
+              <button type="button" class="stamp t2" aria-pressed="false" aria-label="Ben">B</button>
+              <button type="button" class="stamp t3" aria-pressed="true" aria-label="Chen">C</button>
+            </div>
+            <button type="button" class="text-btn" aria-label="Remove Mee goreng mamak">Remove</button>
+          </div>
+        </li>
+        <li class="item">
+          <div class="line">
+            <input class="field fit" style="--len:16" type="text" value="Satay, 10 sticks" maxlength="40" autocomplete="off" aria-label="Item 4 name">
+            <span class="leader" aria-hidden="true"></span>
+            <span class="cur" aria-hidden="true">RM</span>
+            <input class="field fit num" style="--len:5" type="text" inputmode="decimal" value="18.00" autocomplete="off" aria-label="Item 4 price in RM">
+          </div>
+          <div class="who">
+            <div class="stamps" role="group" aria-label="Who had Satay, 10 sticks">
+              <button type="button" class="stamp t1" aria-pressed="true" aria-label="Aisyah">A</button>
+              <button type="button" class="stamp t2" aria-pressed="false" aria-label="Ben">B</button>
+              <button type="button" class="stamp t3" aria-pressed="true" aria-label="Chen">C</button>
+            </div>
+            <button type="button" class="text-btn" aria-label="Remove Satay, 10 sticks">Remove</button>
+          </div>
+        </li>
+      </ul>
+      <button type="button" class="slot">Add item</button>
+    </section>
+
+    <hr class="rule">
+
+    <section class="bill" aria-labelledby="bill-h">
+      <h2 id="bill-h" class="vh">Bill summary</h2>
+      <div class="line">
+        <span>Subtotal</span>
+        <span class="leader" aria-hidden="true"></span>
+        <span class="amt">RM 59.40</span>
+      </div>
+      <div class="line has-field">
+        <label for="rate-service">Service charge</label>
+        <input id="rate-service" class="field fit rate" style="--len:2" type="text" inputmode="decimal" value="10" autocomplete="off" aria-describedby="charge-hint">
+        <span class="pct">%</span>
+        <span class="leader" aria-hidden="true"></span>
+        <span class="amt">RM 5.94</span>
+      </div>
+      <div class="line has-field">
+        <label for="rate-sst">SST</label>
+        <input id="rate-sst" class="field fit rate" style="--len:1" type="text" inputmode="decimal" value="6" autocomplete="off" aria-describedby="charge-hint">
+        <span class="pct">%</span>
+        <span class="leader" aria-hidden="true"></span>
+        <span class="amt">RM 3.92</span>
+      </div>
+      <p id="charge-hint" class="note">Set a charge to 0 if your bill already includes it.</p>
+      <p class="sumline"><span>Total</span><span class="amt">RM 69.26</span></p>
+    </section>
+
+  </div>
+
+  <section class="tape tape--stub" aria-labelledby="shares-h">
+    <div class="perf" aria-hidden="true"></div>
+    <h2 id="shares-h">Shares</h2>
+    <ul>
+      <li class="share">
+        <div class="line">
+          <span class="mark t1" aria-hidden="true">A</span>
+          <span>Aisyah</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="amt">RM 29.04</span>
+        </div>
+        <p class="breakdown">Items RM 24.90, charges RM 4.14</p>
+      </li>
+      <li class="share">
+        <div class="line">
+          <span class="mark t2" aria-hidden="true">B</span>
+          <span>Ben</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="amt">RM 15.74</span>
+        </div>
+        <p class="breakdown">Items RM 13.50, charges RM 2.24</p>
+      </li>
+      <li class="share">
+        <div class="line">
+          <span class="mark t3" aria-hidden="true">C</span>
+          <span>Chen</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="amt">RM 24.48</span>
+        </div>
+        <p class="breakdown">Items RM 21.00, charges RM 3.48</p>
+      </li>
+    </ul>
+    <p class="sumline"><span>Adds up to</span><span class="amt">RM 69.26</span></p>
+    <button type="button" class="btn-primary">Copy summary</button>
+    <p class="status" role="status" aria-live="polite"></p>
+  </section>
+
+</main>
+
+<script>
+  // Stamps: toggle the pressed state and play the stamp-down press.
+  document.querySelectorAll('.stamp').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var on = b.getAttribute('aria-pressed') !== 'true';
+      b.setAttribute('aria-pressed', String(on));
+      b.classList.remove('pressed');
+      if (on) { void b.offsetWidth; b.classList.add('pressed'); }
+    });
+    b.addEventListener('animationend', function () { b.classList.remove('pressed'); });
+  });
+  // Fields that print to their own length: monospace makes 1ch exact.
+  document.querySelectorAll('.fit').forEach(function (f) {
+    f.addEventListener('input', function () {
+      f.style.setProperty('--len', Math.max(f.value.length, 1));
+    });
+  });
+</script>
+</body>
+</html>

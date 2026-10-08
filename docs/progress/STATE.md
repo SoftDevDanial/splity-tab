@@ -1,11 +1,11 @@
 # STATE: split
 
 - **project:** Split, a bill splitter for one shared restaurant bill
-- **track:** sdlc
+- **design-phase:** sdlc:design
 - **version:** 0.1.0
 - **mode:** greenfield
-- **phase:** init (done)
-- **next:** brainstorm
+- **phase:** design (in progress, steps 5 to 9)
+- **next:** plan
 
 ## Modules
 (none yet)
@@ -14,4 +14,4 @@
 none
 
 ## Next action
-Run `sdlc:brainstorm`. Greenfield, so the repo summary is written at the end of `sdlc:review`.
+Composer agent writes design-explore/final/ (system, 5 screens, states sheet, self-critique). Then flow check, review, promote to docs/design/.
