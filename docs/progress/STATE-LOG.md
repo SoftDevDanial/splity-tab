@@ -28,3 +28,9 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Three direction agents wrote round-1/a.html (Receipt tape), b.html (Colour per person), c.html (Working shown). Each verified at 390, 360 and 1280 px, PROCESSES none.
 - Wrote round-1/compare.html with the recommendation. Picked C under delegation (ORCH), see round-1/DECISION.md. Two changes folded into the system lock, so no round 2.
 - Spawned the composer agent for steps 5, 6 and 8.
+
+## 2026-10-08 15:52 design finalized
+- Composer agent wrote design-explore/final/ (system, 5 screens, states sheet, 6 docs, self-critique). Cut off once by the usage limit at 11:31, resumed at 15:35 with its context.
+- Flow check: 12 of 12 links pass, zero console errors (design-explore/FLOW-CHECK.md).
+- Ruled four open questions and approved the added copy under delegation (ORCH), design-explore/RULINGS.md.
+- Promoted final/ to docs/design/ under delegation (ORCH). Phase skills loaded throughout: taste-skill, frontend-design.

@@ -4,7 +4,7 @@
 - **design-phase:** sdlc:design
 - **version:** 0.1.0
 - **mode:** greenfield
-- **phase:** design (in progress, steps 5 to 9)
+- **phase:** design (done)
 - **next:** plan
 
 ## Modules
@@ -14,4 +14,7 @@
 none
 
 ## Next action
-Composer agent writes design-explore/final/ (system, 5 screens, states sheet, self-critique). Then flow check, review, promote to docs/design/.
+Run sdlc:plan. Planner reads docs/design/ including RULINGS.md. No research unknowns expected.
+
+## Notes
+Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.
