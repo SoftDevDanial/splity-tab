@@ -1,0 +1,14 @@
+# sdlc: secrets, scratch, local tooling
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.credentials.json
+credentials.json
+harness/_scratch/
+.venv/
+__pycache__/
+node_modules/
+dist/
+build/
