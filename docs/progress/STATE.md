@@ -4,20 +4,20 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** execute (split-app: security finder)
+- **phase:** execute (split-app: security solver)
 - **next:** execute
 
 ## Modules
 | module | nature | depends on | status | last green |
 |---|---|---|---|---|
 | split-core | logic | none | CLOSED 2026-10-09 | `329679e` |
-| split-app | FE + live composition | split-core | built, QA PASS, code review solved (244 browser + 275 unit tests, fidelity 0 px on 10 pairs, `61c3cd3`); security finder next, then fidelity re-check, official live gate, README, module close | |
+| split-app | FE + live composition | split-core | built, QA PASS, code review solved (244 browser + 275 unit, fidelity 0 px, `61c3cd3`); security audit 1 MEDIUM 2 LOW, solver running; then one scoped re-check, fidelity re-check, official live gate, README, module close | |
 
 ## Blockers
 none
 
 ## Next action
-Security finder (sonnet, includes the ghost-click class on every control). Then fidelity re-check, official live gate into docs/modules/split-app/qa/live-e2e/<ts>/, README (WR-08) and qa.md scenarios for the double click, backdrop press and right click, ROADMAP PD-14 fix, module close.
+Security solver (SEC-01 repeat press on the last Remove, I-1, SEC-02 Publish section, spec gaps). Then one scoped security re-check (stop rule), fidelity re-check, official live gate into docs/modules/split-app/qa/live-e2e/<ts>/, README (WR-08) and qa.md scenarios, ROADMAP PD-14, module close.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

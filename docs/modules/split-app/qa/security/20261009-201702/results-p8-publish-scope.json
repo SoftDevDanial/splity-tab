@@ -1,0 +1,227 @@
+{
+ "probe": "p8-publish-scope",
+ "server_pid": 52132,
+ "port": 54184,
+ "started": "2026-10-09 20:37:47",
+ "cases": [
+  {
+   "case": "tracked files by area",
+   "tracked_files": 3108,
+   "served_by_design": 22,
+   "outside_the_two_served_areas": 3086,
+   "areas": {
+    "docs/modules/split-core": {
+     "files": 2728,
+     "bytes": 16424439
+    },
+    "docs/modules/split-app": {
+     "files": 275,
+     "bytes": 15004298
+    },
+    "docs/design-explore": {
+     "files": 28,
+     "bytes": 453508
+    },
+    "tests": {
+     "files": 27,
+     "bytes": 238322
+    },
+    "src": {
+     "files": 21,
+     "bytes": 79273
+    },
+    "docs/design": {
+     "files": 15,
+     "bytes": 224181
+    },
+    "(root file)": {
+     "files": 3,
+     "bytes": 2700
+    },
+    "docs/(file)": {
+     "files": 3,
+     "bytes": 30804
+    },
+    "docs/progress": {
+     "files": 3,
+     "bytes": 12698
+    },
+    "docs/modules": {
+     "files": 2,
+     "bytes": 47662
+    },
+    ".claude": {
+     "files": 1,
+     "bytes": 1154
+    },
+    "docs/brainstorm": {
+     "files": 1,
+     "bytes": 8665
+    },
+    "docs/v1.0.0": {
+     "files": 1,
+     "bytes": 27896
+    }
+   },
+   "types": {
+    ".js": 2485,
+    ".txt": 221,
+    ".png": 142,
+    ".json": 97,
+    ".mjs": 51,
+    ".md": 44,
+    ".py": 27,
+    ".html": 22,
+    ".log": 9,
+    ".xml": 4,
+    ".css": 3,
+    "(none)": 2
+   },
+   "copies_of_src_files_outside_src": 875,
+   "copy_roots": 178,
+   "copy_root_samples": [
+    "docs/modules/split-core/qa/code-review/20261009-114916/commits/27458ba",
+    "docs/modules/split-core/qa/code-review/20261009-114916/commits/025e232",
+    "docs/modules/split-core/qa/code-review/20261009-114916/commits/3399736"
+   ],
+   "files_with_a_local_path": 143,
+   "local_path_by_area": {
+    "docs/modules": 142,
+    "tests/browser": 1
+   },
+   "local_path_samples": [
+    "docs/modules/ROADMAP.md",
+    "docs/modules/split-app/findings/code-review.md",
+    "docs/modules/split-app/qa.md",
+    "docs/modules/split-app/qa/code-review/20261009-181036/scripts/cr.py",
+    "docs/modules/split-app/qa/code-review/20261009-181036/scripts/fuzz.py"
+   ]
+  },
+  {
+   "case": "sample URLs on a root-served copy",
+   "rows": [
+    {
+     "path": "/",
+     "status": 200,
+     "content_type": "text/html",
+     "length": 1154
+    },
+    {
+     "path": "/index.html",
+     "status": 200,
+     "content_type": "text/html",
+     "length": 1154
+    },
+    {
+     "path": "/src/main.js",
+     "status": 200,
+     "content_type": "text/javascript",
+     "length": 5626
+    },
+    {
+     "path": "/CLAUDE.md",
+     "status": 200,
+     "content_type": "text/markdown",
+     "length": 1354
+    },
+    {
+     "path": "/docs/constitution.md",
+     "status": 200,
+     "content_type": "text/markdown",
+     "length": 28757
+    },
+    {
+     "path": "/docs/modules/split-app/spec.md",
+     "status": 200,
+     "content_type": "text/markdown",
+     "length": 55872
+    },
+    {
+     "path": "/docs/progress/STATE.md",
+     "status": 200,
+     "content_type": "text/markdown",
+     "length": 1734
+    },
+    {
+     "path": "/tests/browser/seeds.py",
+     "status": 200,
+     "content_type": "text/x-python",
+     "length": 4476
+    },
+    {
+     "path": "/tests/browser/rig.py",
+     "status": 200,
+     "content_type": "text/x-python",
+     "length": 4041
+    },
+    {
+     "path": "/.claude/settings.json",
+     "status": 200,
+     "content_type": "application/json",
+     "length": 1154
+    },
+    {
+     "path": "/.gitignore",
+     "status": 200,
+     "content_type": "application/octet-stream",
+     "length": 192
+    },
+    {
+     "path": "/harness/",
+     "status": 200,
+     "content_type": "text/html; charset=utf-8",
+     "length": 315
+    },
+    {
+     "path": "/docs/",
+     "status": 200,
+     "content_type": "text/html; charset=utf-8",
+     "length": 845
+    },
+    {
+     "path": "/docs/modules/split-app/qa/security/",
+     "status": 200,
+     "content_type": "text/html; charset=utf-8",
+     "length": 383
+    },
+    {
+     "path": "/.git/HEAD",
+     "status": 200,
+     "content_type": "application/octet-stream",
+     "length": 21
+    },
+    {
+     "path": "/.git/config",
+     "status": 200,
+     "content_type": "application/octet-stream",
+     "length": 130
+    },
+    {
+     "path": "/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M01/src/core/money.js",
+     "status": 200,
+     "content_type": "text/javascript",
+     "length": 3322
+    },
+    {
+     "path": "/docs/modules/split-app/qa/fidelity/20261009-172737/bill-empty-1280x800/candidate.png",
+     "status": 200,
+     "content_type": "image/png",
+     "length": 25018
+    },
+    {
+     "path": "/docs/modules/split-app/qa/fidelity/20261009-172737/run.log",
+     "status": 200,
+     "content_type": "application/octet-stream",
+     "length": 8924
+    },
+    {
+     "path": "/docs/modules/split-app/qa/code-review/20261009-181036/scripts/probe_double.py",
+     "status": 200,
+     "content_type": "text/x-python",
+     "length": 2617
+    }
+   ]
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

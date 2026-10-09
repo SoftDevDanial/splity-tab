@@ -1,0 +1,320 @@
+{
+ "probe": "p2-clipboard-text",
+ "server_pid": 39392,
+ "port": 4723,
+ "started": "2026-10-09 20:31:26",
+ "cases": [
+  {
+   "case": "A insert_text LF",
+   "ok": true,
+   "field_value": "Ai syah",
+   "saved_name": "Ai syah",
+   "clip_lines": 6
+  },
+  {
+   "case": "A insert_text CRLF",
+   "ok": true,
+   "field_value": "Ai syah",
+   "saved_name": "Ai syah",
+   "clip_lines": 6
+  },
+  {
+   "case": "A insert_text LF at the end",
+   "ok": true,
+   "field_value": "Ai",
+   "saved_name": "Ai",
+   "clip_lines": 6
+  },
+  {
+   "case": "A execCommand insertText LF",
+   "ok": true,
+   "field_value": "Ai syah",
+   "saved_name": "Ai syah",
+   "clip_lines": 6
+  },
+  {
+   "case": "A typed Enter key",
+   "ok": true,
+   "field_value": "Aisyah",
+   "saved_name": "Aisyah",
+   "clip_lines": 6
+  },
+  {
+   "case": "A item name and price",
+   "ok": true,
+   "name": "Tea One",
+   "priceText": "1 2.50"
+  },
+  {
+   "case": "B typed LS U+2028",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed PS U+2029",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed NEL U+0085",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed VT U+000B",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed FF U+000C",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed NUL U+0000",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed US U+001F",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed DEL U+007F",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed RLO U+202E",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed LRI U+2066",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed LRM U+200E",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed ALM U+061C",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B typed ZWSP U+200B",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A\u200bB RM 38.87"
+  },
+  {
+   "case": "B typed BOM U+FEFF",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A\ufeffB RM 38.87"
+  },
+  {
+   "case": "B typed NBSP U+00A0",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A\u00a0B RM 38.87"
+  },
+  {
+   "case": "B restored LS U+2028",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored PS U+2029",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored NEL U+0085",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored VT U+000B",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored FF U+000C",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored NUL U+0000",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored US U+001F",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored DEL U+007F",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored RLO U+202E",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored LRI U+2066",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored LRM U+200E",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored ALM U+061C",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A B RM 38.87"
+  },
+  {
+   "case": "B restored ZWSP U+200B",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A\u200bB RM 38.87"
+  },
+  {
+   "case": "B restored BOM U+FEFF",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A\ufeffB RM 38.87"
+  },
+  {
+   "case": "B restored NBSP U+00A0",
+   "ok": true,
+   "field_keeps_char": true,
+   "lines": 6,
+   "adds_up_to_lines": 1,
+   "bad_chars": [],
+   "row3": "A\u00a0B RM 38.87"
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

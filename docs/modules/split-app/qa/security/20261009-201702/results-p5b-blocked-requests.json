@@ -1,0 +1,169 @@
+{
+ "probe": "p5b-blocked-requests",
+ "server_pid": 19064,
+ "port": 3806,
+ "started": "2026-10-09 20:37:04",
+ "cases": [
+  {
+   "case": "inline script element is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "inline event handler on an inserted image is blocked",
+   "outside_requests": [
+    "http://127.0.0.1:9/x.png"
+   ],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {
+    "http://127.0.0.1:9/x.png": "csp"
+   },
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "cross-origin image is blocked",
+   "outside_requests": [
+    "http://127.0.0.1:9/x.png"
+   ],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {
+    "http://127.0.0.1:9/x.png": "csp"
+   },
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "same-origin fetch is blocked (connect-src none)",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "cross-origin fetch is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "XMLHttpRequest is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {
+    "/": "csp"
+   },
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "WebSocket is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "EventSource is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {
+    "/": "csp"
+   },
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "sendBeacon is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "iframe is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "form submission is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "base element is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "style element is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "style attribute (setAttribute) is blocked",
+   "outside_requests": [],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {},
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "cross-origin stylesheet link is blocked",
+   "outside_requests": [
+    "http://127.0.0.1:9/x.css"
+   ],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {
+    "http://127.0.0.1:9/x.css": "csp"
+   },
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "cross-origin script element is blocked",
+   "outside_requests": [
+    "http://127.0.0.1:9/x.js"
+   ],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {
+    "http://127.0.0.1:9/x.js": "csp"
+   },
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  },
+  {
+   "case": "dynamic import of a cross-origin module is blocked",
+   "outside_requests": [
+    "http://127.0.0.1:9/x.js"
+   ],
+   "own_origin_requests_beyond_the_app_files": [],
+   "failures": {
+    "http://127.0.0.1:9/x.js": "csp"
+   },
+   "requests_not_stopped_by_csp": [],
+   "ok": true
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

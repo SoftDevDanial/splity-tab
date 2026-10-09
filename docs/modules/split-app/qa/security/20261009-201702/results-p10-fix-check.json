@@ -1,0 +1,363 @@
+{
+ "probe": "p10-fix-check",
+ "server_pid": 7012,
+ "port": 37026,
+ "started": "2026-10-09 20:42:47",
+ "cases": [
+  {
+   "case": "fix none: S2 remove Chen 360x640 dbl",
+   "ok": false,
+   "people_before": 3,
+   "people_after": 3
+  },
+  {
+   "case": "fix none: S2 remove Chen 360x640 triple",
+   "ok": false,
+   "people_before": 3,
+   "people_after": 3
+  },
+  {
+   "case": "fix none: S2 remove Chen 360x640 tap2",
+   "ok": false,
+   "people_before": 3,
+   "people_after": 3
+  },
+  {
+   "case": "fix none: S2 remove Chen 390x844 dbl",
+   "ok": false,
+   "people_before": 3,
+   "people_after": 3
+  },
+  {
+   "case": "fix none: S2 remove Chen 390x844 triple",
+   "ok": false,
+   "people_before": 3,
+   "people_after": 3
+  },
+  {
+   "case": "fix none: S2 remove Chen 390x844 tap2",
+   "ok": false,
+   "people_before": 3,
+   "people_after": 3
+  },
+  {
+   "case": "fix none: S2 remove Chen 1280x800 dbl",
+   "ok": false,
+   "people_before": 3,
+   "people_after": 3
+  },
+  {
+   "case": "fix none: S2 remove Chen 1280x800 triple",
+   "ok": false,
+   "people_before": 3,
+   "people_after": 3
+  },
+  {
+   "case": "fix none: S8 remove Mei Ling 360x640 dbl",
+   "ok": false,
+   "people_before": 12,
+   "people_after": 12
+  },
+  {
+   "case": "fix none: S8 remove Mei Ling 360x640 triple",
+   "ok": false,
+   "people_before": 12,
+   "people_after": 12
+  },
+  {
+   "case": "fix none: S8 remove Mei Ling 360x640 tap2",
+   "ok": false,
+   "people_before": 12,
+   "people_after": 12
+  },
+  {
+   "case": "fix none: S8 remove Mei Ling 390x844 dbl",
+   "ok": false,
+   "people_before": 12,
+   "people_after": 12
+  },
+  {
+   "case": "fix none: S8 remove Mei Ling 390x844 triple",
+   "ok": false,
+   "people_before": 12,
+   "people_after": 12
+  },
+  {
+   "case": "fix none: S8 remove Mei Ling 390x844 tap2",
+   "ok": false,
+   "people_before": 12,
+   "people_after": 12
+  },
+  {
+   "case": "fix none: S8 remove Mei Ling 1280x800 dbl",
+   "ok": false,
+   "people_before": 12,
+   "people_after": 12
+  },
+  {
+   "case": "fix none: S8 remove Mei Ling 1280x800 triple",
+   "ok": false,
+   "people_before": 12,
+   "people_after": 12
+  },
+  {
+   "case": "fix B: S2 remove Chen 360x640 dbl",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix B: S2 remove Chen 360x640 triple",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix B: S2 remove Chen 360x640 tap2",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix B: S2 remove Chen 390x844 dbl",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix B: S2 remove Chen 390x844 triple",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix B: S2 remove Chen 390x844 tap2",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix B: S2 remove Chen 1280x800 dbl",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix B: S2 remove Chen 1280x800 triple",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix B: S8 remove Mei Ling 360x640 dbl",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix B: S8 remove Mei Ling 360x640 triple",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix B: S8 remove Mei Ling 360x640 tap2",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix B: S8 remove Mei Ling 390x844 dbl",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix B: S8 remove Mei Ling 390x844 triple",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix B: S8 remove Mei Ling 390x844 tap2",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix B: S8 remove Mei Ling 1280x800 dbl",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix B: S8 remove Mei Ling 1280x800 triple",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix B: double click on a middle Remove removes one row",
+   "ok": true
+  },
+  {
+   "case": "fix B: two separate clicks on a Remove remove two rows",
+   "ok": true,
+   "people": [
+    "P1",
+    "P5"
+   ]
+  },
+  {
+   "case": "fix B: Enter on a Remove button removes one row",
+   "ok": true
+  },
+  {
+   "case": "fix B: a single click on Add person adds one",
+   "ok": true
+  },
+  {
+   "case": "fix B: a double click on Add person adds one (the second click lands on the new field, as before)",
+   "ok": true
+  },
+  {
+   "case": "fix B: a double click on Cancel still changes nothing",
+   "ok": true
+  },
+  {
+   "case": "fix B: double click on a middle item Remove removes one item",
+   "ok": true,
+   "focus_after": "Remove Mee goreng mamak"
+  },
+  {
+   "case": "fix A: S2 remove Chen 360x640 dbl",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix A: S2 remove Chen 360x640 triple",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix A: S2 remove Chen 360x640 tap2",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix A: S2 remove Chen 390x844 dbl",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix A: S2 remove Chen 390x844 triple",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix A: S2 remove Chen 390x844 tap2",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix A: S2 remove Chen 1280x800 dbl",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix A: S2 remove Chen 1280x800 triple",
+   "ok": true,
+   "people_before": 3,
+   "people_after": 2
+  },
+  {
+   "case": "fix A: S8 remove Mei Ling 360x640 dbl",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix A: S8 remove Mei Ling 360x640 triple",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix A: S8 remove Mei Ling 360x640 tap2",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix A: S8 remove Mei Ling 390x844 dbl",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix A: S8 remove Mei Ling 390x844 triple",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix A: S8 remove Mei Ling 390x844 tap2",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix A: S8 remove Mei Ling 1280x800 dbl",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix A: S8 remove Mei Ling 1280x800 triple",
+   "ok": true,
+   "people_before": 12,
+   "people_after": 11
+  },
+  {
+   "case": "fix A: double click on a middle Remove removes one row",
+   "ok": true
+  },
+  {
+   "case": "fix A: two separate clicks on a Remove remove two rows",
+   "ok": true,
+   "people": [
+    "P1",
+    "P5"
+   ]
+  },
+  {
+   "case": "fix A: Enter on a Remove button removes one row",
+   "ok": true
+  },
+  {
+   "case": "fix A: a single click on Add person adds one",
+   "ok": true
+  },
+  {
+   "case": "fix A: a double click on Add person adds one (the second click lands on the new field, as before)",
+   "ok": true
+  },
+  {
+   "case": "fix A: a double click on Cancel still changes nothing",
+   "ok": true
+  },
+  {
+   "case": "fix A: double click on a middle item Remove removes one item",
+   "ok": true,
+   "focus_after": "Item 2 name"
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

@@ -1,0 +1,47 @@
+{
+ "probe": "p11-boundaries",
+ "server_pid": 47220,
+ "port": 17065,
+ "started": "2026-10-09 20:45:17",
+ "cases": [
+  {
+   "case": "B1 nextId at the decoder maximum, then Add person, then reload",
+   "loaded_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "saved_nextId": 1000000001,
+   "after_reload": {
+    "note": true,
+    "people": [
+     "Person 1",
+     "Person 2"
+    ]
+   },
+   "problems": []
+  },
+  {
+   "case": "B2 a second page writes a hostile draft while the app is open",
+   "page_a_unchanged": {
+    "note": false,
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ]
+   },
+   "stored_person1_after_a_types": "AisyahZ",
+   "page_b_reload": {
+    "note": false,
+    "people": [
+     "AisyahZ",
+     "Ben",
+     "Chen"
+    ]
+   },
+   "problems": []
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

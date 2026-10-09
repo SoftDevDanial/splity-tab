@@ -1,0 +1,579 @@
+{
+ "probe": "p1-injection",
+ "server_pid": 32680,
+ "port": 31472,
+ "started": "2026-10-09 20:30:36",
+ "cases": [
+  {
+   "case": "typed: person='<svg onload=f()>' item='<img src=x onerror=alert(1)>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "<svg onload=f()> RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "<svg onload=f()>",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='<svg onload=f()>' item='<img src=x onerror=alert(1)>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "<svg onload=f()> RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "<svg onload=f()>",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "typed: person='<script>f()</script>' item='\"><script>alert(2)</script>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "<script>f()</script> RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "<script>f()</script>",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='<script>f()</script>' item='\"><script>alert(2)</script>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "<script>f()</script> RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "<script>f()</script>",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "typed: person='</li><li>x' item='<iframe srcdoc=\"<script>f()</script>\">'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "</li><li>x RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "</li><li>x",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='</li><li>x' item='<iframe srcdoc=\"<script>f()</script>\">'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "</li><li>x RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "</li><li>x",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "typed: person='</button><button>' item='</li></ol><h1>owned</h1>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "</button><button> RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "</button><button>",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='</button><button>' item='</li></ol><h1>owned</h1>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "</button><button> RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "</button><button>",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "typed: person='<b onmouseover=f()>' item='<style>*{display:none}</style>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "<b onmouseover=f()> RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "<b onmouseover=f()>",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='<b onmouseover=f()>' item='<style>*{display:none}</style>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "<b onmouseover=f()> RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "<b onmouseover=f()>",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "typed: person='&lt;b&gt;&amp;x' item='<a href=\"javascript:f()\">x</a>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "&lt;b&gt;&amp;x RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "&lt;b&gt;&amp;x",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='&lt;b&gt;&amp;x' item='<a href=\"javascript:f()\">x</a>'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "&lt;b&gt;&amp;x RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "&lt;b&gt;&amp;x",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "typed: person='__proto__' item='__proto__'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "__proto__ RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "__proto__",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='__proto__' item='__proto__'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "__proto__ RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "__proto__",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "typed: person='constructor' item='constructor'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "constructor RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "constructor",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='constructor' item='constructor'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "constructor RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "constructor",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "typed: person='toString' item='hasOwnProperty'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "toString RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "toString",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='toString' item='hasOwnProperty'",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "toString RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "toString",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "typed: person='{{7*7}} ${f()}' item=\"{{constructor.constructor('f()')()}}\"",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "{{7*7}} ${f()} RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "{{7*7}} ${f()}",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "restored: person='{{7*7}} ${f()}' item=\"{{constructor.constructor('f()')()}}\"",
+   "ok": true,
+   "signature_equals_benign": true,
+   "checks": {
+    "personField": true,
+    "removeLabel": true,
+    "itemField": true,
+    "itemRemove": true,
+    "whoLabel": true,
+    "toggle": true,
+    "sharesFirstRow": true
+   },
+   "pwned": 0,
+   "csp": [],
+   "dialogs": 0,
+   "clip_lines": 6,
+   "clip_first_row": "{{7*7}} ${f()} RM 29.04",
+   "proto": {
+    "objectKeys": "__defineGetter__,__defineSetter__,__lookupGetter__,__lookupSetter__,__proto__,constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf",
+    "arrayExtra": "",
+    "stray": 0
+   },
+   "saved_names": "{{7*7}} ${f()}",
+   "problems": [],
+   "unsafe_nodes": 0
+  },
+  {
+   "case": "money fields with markup (price, service, SST, subtotal)",
+   "ok": true,
+   "price-markup": {
+    "signature": "[[\"BODY\",1],[\"BUTTON\",24],[\"DIALOG\",1],[\"DIV\",16],[\"FIELDSET\",1],[\"H1\",1],[\"H2\",6],[\"HEAD\",1],[\"HEADER\",1],[\"HTML\",1],[\"INPUT\",16],[\"LABEL\",5],[\"LEGEND\",1],[\"LI\",8],[\"LINK\",1],[\"MAIN\",1],[\"META\",3],[\"OL\",1],[\"P\",4],[\"SCRIPT\",1],[\"SECTION\",5],[\"SPAN\",21],[\"TITLE\",1],[\"UL\",1],[\"path\",9],[\"svg\",9]]",
+    "errors": [
+     "Enter an amount like 12.50"
+    ],
+    "value": "<img src=x onerror=f()>"
+   },
+   "price-plain": {
+    "signature": "[[\"BODY\",1],[\"BUTTON\",24],[\"DIALOG\",1],[\"DIV\",16],[\"FIELDSET\",1],[\"H1\",1],[\"H2\",6],[\"HEAD\",1],[\"HEADER\",1],[\"HTML\",1],[\"INPUT\",16],[\"LABEL\",5],[\"LEGEND\",1],[\"LI\",8],[\"LINK\",1],[\"MAIN\",1],[\"META\",3],[\"OL\",1],[\"P\",4],[\"SCRIPT\",1],[\"SECTION\",5],[\"SPAN\",21],[\"TITLE\",1],[\"UL\",1],[\"path\",9],[\"svg\",9]]",
+    "errors": [
+     "Enter an amount like 12.50"
+    ],
+    "value": "abc"
+   },
+   "all_errors_after_all_four_fields": [
+    "Enter an amount like 12.50",
+    "Enter an amount like 12.50",
+    "Enter a rate from 0 to 30",
+    "Enter a rate from 0 to 20"
+   ],
+   "only_fixed_error_texts": true,
+   "unsafe_nodes_in_body": 0,
+   "pwned": 0,
+   "csp": [],
+   "problems": [],
+   "same_signature_markup_vs_plain_price": true
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

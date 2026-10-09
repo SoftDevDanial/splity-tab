@@ -1,0 +1,1577 @@
+{
+ "probe": "p5-csp-network",
+ "server_pid": 40052,
+ "port": 49180,
+ "started": "2026-10-09 20:36:29",
+ "cases": [
+  {
+   "case": "A1 cold boot, type, add person, copy, By item, price error",
+   "ok": true,
+   "csp_violations": [],
+   "console_problem_messages": [],
+   "page_errors": [],
+   "extras": [],
+   "requests": [
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/src/core/allocate.js"
+    ],
+    [
+     "GET",
+     "/src/core/bill.js"
+    ],
+    [
+     "GET",
+     "/src/core/money.js"
+    ],
+    [
+     "GET",
+     "/src/core/result.js"
+    ],
+    [
+     "GET",
+     "/src/core/summary.js"
+    ],
+    [
+     "GET",
+     "/src/draft.js"
+    ],
+    [
+     "GET",
+     "/src/errors.js"
+    ],
+    [
+     "GET",
+     "/src/main.js"
+    ],
+    [
+     "GET",
+     "/src/system.css"
+    ],
+    [
+     "GET",
+     "/src/ui/charges.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dialog.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dom.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-error.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-leave.js"
+    ],
+    [
+     "GET",
+     "/src/ui/icons.js"
+    ],
+    [
+     "GET",
+     "/src/ui/items.js"
+    ],
+    [
+     "GET",
+     "/src/ui/mode.js"
+    ],
+    [
+     "GET",
+     "/src/ui/note.js"
+    ],
+    [
+     "GET",
+     "/src/ui/panel.js"
+    ],
+    [
+     "GET",
+     "/src/ui/people.js"
+    ],
+    [
+     "GET",
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "responses": [
+    [
+     200,
+     "/"
+    ],
+    [
+     200,
+     "/src/core/allocate.js"
+    ],
+    [
+     200,
+     "/src/core/bill.js"
+    ],
+    [
+     200,
+     "/src/core/money.js"
+    ],
+    [
+     200,
+     "/src/core/result.js"
+    ],
+    [
+     200,
+     "/src/core/summary.js"
+    ],
+    [
+     200,
+     "/src/draft.js"
+    ],
+    [
+     200,
+     "/src/errors.js"
+    ],
+    [
+     200,
+     "/src/main.js"
+    ],
+    [
+     200,
+     "/src/system.css"
+    ],
+    [
+     200,
+     "/src/ui/charges.js"
+    ],
+    [
+     200,
+     "/src/ui/dialog.js"
+    ],
+    [
+     200,
+     "/src/ui/dom.js"
+    ],
+    [
+     200,
+     "/src/ui/field-error.js"
+    ],
+    [
+     200,
+     "/src/ui/field-leave.js"
+    ],
+    [
+     200,
+     "/src/ui/icons.js"
+    ],
+    [
+     200,
+     "/src/ui/items.js"
+    ],
+    [
+     200,
+     "/src/ui/mode.js"
+    ],
+    [
+     200,
+     "/src/ui/note.js"
+    ],
+    [
+     200,
+     "/src/ui/panel.js"
+    ],
+    [
+     200,
+     "/src/ui/people.js"
+    ],
+    [
+     200,
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "footprint": {
+    "localStorageKeys": [
+     "split.draft"
+    ],
+    "sessionStorageKeys": [],
+    "cookie": "",
+    "indexedDB": [],
+    "caches": [],
+    "serviceWorkers": 0,
+    "resources": [
+     "/src/system.css",
+     "/src/main.js",
+     "/src/core/bill.js",
+     "/src/core/result.js",
+     "/src/errors.js",
+     "/src/core/summary.js",
+     "/src/draft.js",
+     "/src/ui/dialog.js",
+     "/src/ui/note.js",
+     "/src/ui/people.js",
+     "/src/ui/mode.js",
+     "/src/ui/subtotal.js",
+     "/src/ui/items.js",
+     "/src/ui/charges.js",
+     "/src/ui/panel.js",
+     "/src/core/money.js",
+     "/src/core/allocate.js",
+     "/src/ui/dom.js",
+     "/src/ui/icons.js",
+     "/src/ui/field-error.js",
+     "/src/ui/field-leave.js"
+    ],
+    "bodyLinksFormsFrames": 0
+   },
+   "pwned": 0,
+   "all_console": []
+  },
+  {
+   "case": "A2 S1 restored, dialog: Cancel, backdrop, Start new bill",
+   "ok": true,
+   "csp_violations": [],
+   "console_problem_messages": [],
+   "page_errors": [],
+   "extras": [],
+   "requests": [
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/src/core/allocate.js"
+    ],
+    [
+     "GET",
+     "/src/core/bill.js"
+    ],
+    [
+     "GET",
+     "/src/core/money.js"
+    ],
+    [
+     "GET",
+     "/src/core/result.js"
+    ],
+    [
+     "GET",
+     "/src/core/summary.js"
+    ],
+    [
+     "GET",
+     "/src/draft.js"
+    ],
+    [
+     "GET",
+     "/src/errors.js"
+    ],
+    [
+     "GET",
+     "/src/main.js"
+    ],
+    [
+     "GET",
+     "/src/system.css"
+    ],
+    [
+     "GET",
+     "/src/ui/charges.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dialog.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dom.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-error.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-leave.js"
+    ],
+    [
+     "GET",
+     "/src/ui/icons.js"
+    ],
+    [
+     "GET",
+     "/src/ui/items.js"
+    ],
+    [
+     "GET",
+     "/src/ui/mode.js"
+    ],
+    [
+     "GET",
+     "/src/ui/note.js"
+    ],
+    [
+     "GET",
+     "/src/ui/panel.js"
+    ],
+    [
+     "GET",
+     "/src/ui/people.js"
+    ],
+    [
+     "GET",
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "responses": [
+    [
+     200,
+     "/"
+    ],
+    [
+     200,
+     "/src/core/allocate.js"
+    ],
+    [
+     200,
+     "/src/core/bill.js"
+    ],
+    [
+     200,
+     "/src/core/money.js"
+    ],
+    [
+     200,
+     "/src/core/result.js"
+    ],
+    [
+     200,
+     "/src/core/summary.js"
+    ],
+    [
+     200,
+     "/src/draft.js"
+    ],
+    [
+     200,
+     "/src/errors.js"
+    ],
+    [
+     200,
+     "/src/main.js"
+    ],
+    [
+     200,
+     "/src/system.css"
+    ],
+    [
+     200,
+     "/src/ui/charges.js"
+    ],
+    [
+     200,
+     "/src/ui/dialog.js"
+    ],
+    [
+     200,
+     "/src/ui/dom.js"
+    ],
+    [
+     200,
+     "/src/ui/field-error.js"
+    ],
+    [
+     200,
+     "/src/ui/field-leave.js"
+    ],
+    [
+     200,
+     "/src/ui/icons.js"
+    ],
+    [
+     200,
+     "/src/ui/items.js"
+    ],
+    [
+     200,
+     "/src/ui/mode.js"
+    ],
+    [
+     200,
+     "/src/ui/note.js"
+    ],
+    [
+     200,
+     "/src/ui/panel.js"
+    ],
+    [
+     200,
+     "/src/ui/people.js"
+    ],
+    [
+     200,
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "footprint": {
+    "localStorageKeys": [
+     "split.draft"
+    ],
+    "sessionStorageKeys": [],
+    "cookie": "",
+    "indexedDB": [],
+    "caches": [],
+    "serviceWorkers": 0,
+    "resources": [
+     "/src/system.css",
+     "/src/main.js",
+     "/src/core/bill.js",
+     "/src/core/result.js",
+     "/src/core/summary.js",
+     "/src/errors.js",
+     "/src/ui/dialog.js",
+     "/src/draft.js",
+     "/src/ui/people.js",
+     "/src/ui/note.js",
+     "/src/ui/mode.js",
+     "/src/ui/subtotal.js",
+     "/src/ui/items.js",
+     "/src/ui/charges.js",
+     "/src/ui/panel.js",
+     "/src/core/money.js",
+     "/src/core/allocate.js",
+     "/src/ui/dom.js",
+     "/src/ui/icons.js",
+     "/src/ui/field-leave.js",
+     "/src/ui/field-error.js"
+    ],
+    "bodyLinksFormsFrames": 0
+   },
+   "pwned": 0,
+   "all_console": []
+  },
+  {
+   "case": "A3 copy refused by the browser (reject.js)",
+   "ok": true,
+   "csp_violations": [],
+   "console_problem_messages": [],
+   "page_errors": [],
+   "extras": [],
+   "requests": [
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/src/core/allocate.js"
+    ],
+    [
+     "GET",
+     "/src/core/bill.js"
+    ],
+    [
+     "GET",
+     "/src/core/money.js"
+    ],
+    [
+     "GET",
+     "/src/core/result.js"
+    ],
+    [
+     "GET",
+     "/src/core/summary.js"
+    ],
+    [
+     "GET",
+     "/src/draft.js"
+    ],
+    [
+     "GET",
+     "/src/errors.js"
+    ],
+    [
+     "GET",
+     "/src/main.js"
+    ],
+    [
+     "GET",
+     "/src/system.css"
+    ],
+    [
+     "GET",
+     "/src/ui/charges.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dialog.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dom.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-error.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-leave.js"
+    ],
+    [
+     "GET",
+     "/src/ui/icons.js"
+    ],
+    [
+     "GET",
+     "/src/ui/items.js"
+    ],
+    [
+     "GET",
+     "/src/ui/mode.js"
+    ],
+    [
+     "GET",
+     "/src/ui/note.js"
+    ],
+    [
+     "GET",
+     "/src/ui/panel.js"
+    ],
+    [
+     "GET",
+     "/src/ui/people.js"
+    ],
+    [
+     "GET",
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "responses": [
+    [
+     200,
+     "/"
+    ],
+    [
+     200,
+     "/src/core/allocate.js"
+    ],
+    [
+     200,
+     "/src/core/bill.js"
+    ],
+    [
+     200,
+     "/src/core/money.js"
+    ],
+    [
+     200,
+     "/src/core/result.js"
+    ],
+    [
+     200,
+     "/src/core/summary.js"
+    ],
+    [
+     200,
+     "/src/draft.js"
+    ],
+    [
+     200,
+     "/src/errors.js"
+    ],
+    [
+     200,
+     "/src/main.js"
+    ],
+    [
+     200,
+     "/src/system.css"
+    ],
+    [
+     200,
+     "/src/ui/charges.js"
+    ],
+    [
+     200,
+     "/src/ui/dialog.js"
+    ],
+    [
+     200,
+     "/src/ui/dom.js"
+    ],
+    [
+     200,
+     "/src/ui/field-error.js"
+    ],
+    [
+     200,
+     "/src/ui/field-leave.js"
+    ],
+    [
+     200,
+     "/src/ui/icons.js"
+    ],
+    [
+     200,
+     "/src/ui/items.js"
+    ],
+    [
+     200,
+     "/src/ui/mode.js"
+    ],
+    [
+     200,
+     "/src/ui/note.js"
+    ],
+    [
+     200,
+     "/src/ui/panel.js"
+    ],
+    [
+     200,
+     "/src/ui/people.js"
+    ],
+    [
+     200,
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "footprint": {
+    "localStorageKeys": [
+     "split.draft"
+    ],
+    "sessionStorageKeys": [],
+    "cookie": "",
+    "indexedDB": [],
+    "caches": [],
+    "serviceWorkers": 0,
+    "resources": [
+     "/src/system.css",
+     "/src/main.js",
+     "/src/core/bill.js",
+     "/src/core/result.js",
+     "/src/core/summary.js",
+     "/src/draft.js",
+     "/src/errors.js",
+     "/src/ui/note.js",
+     "/src/ui/dialog.js",
+     "/src/ui/mode.js",
+     "/src/ui/subtotal.js",
+     "/src/ui/people.js",
+     "/src/ui/items.js",
+     "/src/ui/charges.js",
+     "/src/ui/panel.js",
+     "/src/core/money.js",
+     "/src/core/allocate.js",
+     "/src/ui/icons.js",
+     "/src/ui/dom.js",
+     "/src/ui/field-error.js",
+     "/src/ui/field-leave.js"
+    ],
+    "bodyLinksFormsFrames": 0
+   },
+   "pwned": 0,
+   "all_console": []
+  },
+  {
+   "case": "A4 clipboard API missing (missing.js)",
+   "ok": true,
+   "csp_violations": [],
+   "console_problem_messages": [],
+   "page_errors": [],
+   "extras": [],
+   "requests": [
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/src/core/allocate.js"
+    ],
+    [
+     "GET",
+     "/src/core/bill.js"
+    ],
+    [
+     "GET",
+     "/src/core/money.js"
+    ],
+    [
+     "GET",
+     "/src/core/result.js"
+    ],
+    [
+     "GET",
+     "/src/core/summary.js"
+    ],
+    [
+     "GET",
+     "/src/draft.js"
+    ],
+    [
+     "GET",
+     "/src/errors.js"
+    ],
+    [
+     "GET",
+     "/src/main.js"
+    ],
+    [
+     "GET",
+     "/src/system.css"
+    ],
+    [
+     "GET",
+     "/src/ui/charges.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dialog.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dom.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-error.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-leave.js"
+    ],
+    [
+     "GET",
+     "/src/ui/icons.js"
+    ],
+    [
+     "GET",
+     "/src/ui/items.js"
+    ],
+    [
+     "GET",
+     "/src/ui/mode.js"
+    ],
+    [
+     "GET",
+     "/src/ui/note.js"
+    ],
+    [
+     "GET",
+     "/src/ui/panel.js"
+    ],
+    [
+     "GET",
+     "/src/ui/people.js"
+    ],
+    [
+     "GET",
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "responses": [
+    [
+     200,
+     "/"
+    ],
+    [
+     200,
+     "/src/core/allocate.js"
+    ],
+    [
+     200,
+     "/src/core/bill.js"
+    ],
+    [
+     200,
+     "/src/core/money.js"
+    ],
+    [
+     200,
+     "/src/core/result.js"
+    ],
+    [
+     200,
+     "/src/core/summary.js"
+    ],
+    [
+     200,
+     "/src/draft.js"
+    ],
+    [
+     200,
+     "/src/errors.js"
+    ],
+    [
+     200,
+     "/src/main.js"
+    ],
+    [
+     200,
+     "/src/system.css"
+    ],
+    [
+     200,
+     "/src/ui/charges.js"
+    ],
+    [
+     200,
+     "/src/ui/dialog.js"
+    ],
+    [
+     200,
+     "/src/ui/dom.js"
+    ],
+    [
+     200,
+     "/src/ui/field-error.js"
+    ],
+    [
+     200,
+     "/src/ui/field-leave.js"
+    ],
+    [
+     200,
+     "/src/ui/icons.js"
+    ],
+    [
+     200,
+     "/src/ui/items.js"
+    ],
+    [
+     200,
+     "/src/ui/mode.js"
+    ],
+    [
+     200,
+     "/src/ui/note.js"
+    ],
+    [
+     200,
+     "/src/ui/panel.js"
+    ],
+    [
+     200,
+     "/src/ui/people.js"
+    ],
+    [
+     200,
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "footprint": {
+    "localStorageKeys": [
+     "split.draft"
+    ],
+    "sessionStorageKeys": [],
+    "cookie": "",
+    "indexedDB": [],
+    "caches": [],
+    "serviceWorkers": 0,
+    "resources": [
+     "/src/system.css",
+     "/src/main.js",
+     "/src/core/bill.js",
+     "/src/core/result.js",
+     "/src/core/summary.js",
+     "/src/draft.js",
+     "/src/errors.js",
+     "/src/ui/dialog.js",
+     "/src/ui/note.js",
+     "/src/ui/people.js",
+     "/src/ui/mode.js",
+     "/src/ui/items.js",
+     "/src/ui/subtotal.js",
+     "/src/ui/charges.js",
+     "/src/ui/panel.js",
+     "/src/core/money.js",
+     "/src/core/allocate.js",
+     "/src/ui/dom.js",
+     "/src/ui/icons.js",
+     "/src/ui/field-error.js",
+     "/src/ui/field-leave.js"
+    ],
+    "bodyLinksFormsFrames": 0
+   },
+   "pwned": 0,
+   "all_console": []
+  },
+  {
+   "case": "A5 unreadable draft, note dismissed",
+   "ok": true,
+   "csp_violations": [],
+   "console_problem_messages": [],
+   "page_errors": [],
+   "extras": [],
+   "requests": [
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/src/core/allocate.js"
+    ],
+    [
+     "GET",
+     "/src/core/bill.js"
+    ],
+    [
+     "GET",
+     "/src/core/money.js"
+    ],
+    [
+     "GET",
+     "/src/core/result.js"
+    ],
+    [
+     "GET",
+     "/src/core/summary.js"
+    ],
+    [
+     "GET",
+     "/src/draft.js"
+    ],
+    [
+     "GET",
+     "/src/errors.js"
+    ],
+    [
+     "GET",
+     "/src/main.js"
+    ],
+    [
+     "GET",
+     "/src/system.css"
+    ],
+    [
+     "GET",
+     "/src/ui/charges.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dialog.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dom.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-error.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-leave.js"
+    ],
+    [
+     "GET",
+     "/src/ui/icons.js"
+    ],
+    [
+     "GET",
+     "/src/ui/items.js"
+    ],
+    [
+     "GET",
+     "/src/ui/mode.js"
+    ],
+    [
+     "GET",
+     "/src/ui/note.js"
+    ],
+    [
+     "GET",
+     "/src/ui/panel.js"
+    ],
+    [
+     "GET",
+     "/src/ui/people.js"
+    ],
+    [
+     "GET",
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "responses": [
+    [
+     200,
+     "/"
+    ],
+    [
+     200,
+     "/src/core/allocate.js"
+    ],
+    [
+     200,
+     "/src/core/bill.js"
+    ],
+    [
+     200,
+     "/src/core/money.js"
+    ],
+    [
+     200,
+     "/src/core/result.js"
+    ],
+    [
+     200,
+     "/src/core/summary.js"
+    ],
+    [
+     200,
+     "/src/draft.js"
+    ],
+    [
+     200,
+     "/src/errors.js"
+    ],
+    [
+     200,
+     "/src/main.js"
+    ],
+    [
+     200,
+     "/src/system.css"
+    ],
+    [
+     200,
+     "/src/ui/charges.js"
+    ],
+    [
+     200,
+     "/src/ui/dialog.js"
+    ],
+    [
+     200,
+     "/src/ui/dom.js"
+    ],
+    [
+     200,
+     "/src/ui/field-error.js"
+    ],
+    [
+     200,
+     "/src/ui/field-leave.js"
+    ],
+    [
+     200,
+     "/src/ui/icons.js"
+    ],
+    [
+     200,
+     "/src/ui/items.js"
+    ],
+    [
+     200,
+     "/src/ui/mode.js"
+    ],
+    [
+     200,
+     "/src/ui/note.js"
+    ],
+    [
+     200,
+     "/src/ui/panel.js"
+    ],
+    [
+     200,
+     "/src/ui/people.js"
+    ],
+    [
+     200,
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "footprint": {
+    "localStorageKeys": [
+     "split.draft"
+    ],
+    "sessionStorageKeys": [],
+    "cookie": "",
+    "indexedDB": [],
+    "caches": [],
+    "serviceWorkers": 0,
+    "resources": [
+     "/src/system.css",
+     "/src/main.js",
+     "/src/core/bill.js",
+     "/src/core/result.js",
+     "/src/draft.js",
+     "/src/core/summary.js",
+     "/src/ui/dialog.js",
+     "/src/errors.js",
+     "/src/ui/note.js",
+     "/src/ui/people.js",
+     "/src/ui/mode.js",
+     "/src/ui/subtotal.js",
+     "/src/ui/charges.js",
+     "/src/ui/items.js",
+     "/src/ui/panel.js",
+     "/src/ui/dom.js",
+     "/src/core/allocate.js",
+     "/src/core/money.js",
+     "/src/ui/icons.js",
+     "/src/ui/field-error.js",
+     "/src/ui/field-leave.js"
+    ],
+    "bodyLinksFormsFrames": 0
+   },
+   "pwned": 0,
+   "all_console": []
+  },
+  {
+   "case": "A6 hostile names restored, copy",
+   "ok": true,
+   "csp_violations": [],
+   "console_problem_messages": [],
+   "page_errors": [],
+   "extras": [],
+   "requests": [
+    [
+     "GET",
+     "/"
+    ],
+    [
+     "GET",
+     "/src/core/allocate.js"
+    ],
+    [
+     "GET",
+     "/src/core/bill.js"
+    ],
+    [
+     "GET",
+     "/src/core/money.js"
+    ],
+    [
+     "GET",
+     "/src/core/result.js"
+    ],
+    [
+     "GET",
+     "/src/core/summary.js"
+    ],
+    [
+     "GET",
+     "/src/draft.js"
+    ],
+    [
+     "GET",
+     "/src/errors.js"
+    ],
+    [
+     "GET",
+     "/src/main.js"
+    ],
+    [
+     "GET",
+     "/src/system.css"
+    ],
+    [
+     "GET",
+     "/src/ui/charges.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dialog.js"
+    ],
+    [
+     "GET",
+     "/src/ui/dom.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-error.js"
+    ],
+    [
+     "GET",
+     "/src/ui/field-leave.js"
+    ],
+    [
+     "GET",
+     "/src/ui/icons.js"
+    ],
+    [
+     "GET",
+     "/src/ui/items.js"
+    ],
+    [
+     "GET",
+     "/src/ui/mode.js"
+    ],
+    [
+     "GET",
+     "/src/ui/note.js"
+    ],
+    [
+     "GET",
+     "/src/ui/panel.js"
+    ],
+    [
+     "GET",
+     "/src/ui/people.js"
+    ],
+    [
+     "GET",
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "responses": [
+    [
+     200,
+     "/"
+    ],
+    [
+     200,
+     "/src/core/allocate.js"
+    ],
+    [
+     200,
+     "/src/core/bill.js"
+    ],
+    [
+     200,
+     "/src/core/money.js"
+    ],
+    [
+     200,
+     "/src/core/result.js"
+    ],
+    [
+     200,
+     "/src/core/summary.js"
+    ],
+    [
+     200,
+     "/src/draft.js"
+    ],
+    [
+     200,
+     "/src/errors.js"
+    ],
+    [
+     200,
+     "/src/main.js"
+    ],
+    [
+     200,
+     "/src/system.css"
+    ],
+    [
+     200,
+     "/src/ui/charges.js"
+    ],
+    [
+     200,
+     "/src/ui/dialog.js"
+    ],
+    [
+     200,
+     "/src/ui/dom.js"
+    ],
+    [
+     200,
+     "/src/ui/field-error.js"
+    ],
+    [
+     200,
+     "/src/ui/field-leave.js"
+    ],
+    [
+     200,
+     "/src/ui/icons.js"
+    ],
+    [
+     200,
+     "/src/ui/items.js"
+    ],
+    [
+     200,
+     "/src/ui/mode.js"
+    ],
+    [
+     200,
+     "/src/ui/note.js"
+    ],
+    [
+     200,
+     "/src/ui/panel.js"
+    ],
+    [
+     200,
+     "/src/ui/people.js"
+    ],
+    [
+     200,
+     "/src/ui/subtotal.js"
+    ]
+   ],
+   "footprint": {
+    "localStorageKeys": [
+     "split.draft"
+    ],
+    "sessionStorageKeys": [],
+    "cookie": "",
+    "indexedDB": [],
+    "caches": [],
+    "serviceWorkers": 0,
+    "resources": [
+     "/src/system.css",
+     "/src/main.js",
+     "/src/core/bill.js",
+     "/src/core/result.js",
+     "/src/core/summary.js",
+     "/src/draft.js",
+     "/src/errors.js",
+     "/src/ui/dialog.js",
+     "/src/ui/note.js",
+     "/src/ui/people.js",
+     "/src/ui/mode.js",
+     "/src/ui/subtotal.js",
+     "/src/ui/items.js",
+     "/src/ui/charges.js",
+     "/src/ui/panel.js",
+     "/src/core/money.js",
+     "/src/core/allocate.js",
+     "/src/ui/dom.js",
+     "/src/ui/icons.js",
+     "/src/ui/field-error.js",
+     "/src/ui/field-leave.js"
+    ],
+    "bodyLinksFormsFrames": 0
+   },
+   "pwned": 0,
+   "all_console": []
+  },
+  {
+   "case": "B new Function (eval) is blocked",
+   "ok": true,
+   "outcome": "blocked:EvalError",
+   "csp": [
+    "script-src | eval"
+   ],
+   "pwned": 0,
+   "expected_directive": "script-src (no unsafe-eval)"
+  },
+  {
+   "case": "B eval() is blocked",
+   "ok": true,
+   "outcome": "blocked:EvalError",
+   "csp": [
+    "script-src | eval"
+   ],
+   "pwned": 0,
+   "expected_directive": "script-src (no unsafe-eval)"
+  },
+  {
+   "case": "B setTimeout with a string is blocked",
+   "ok": true,
+   "outcome": "queued",
+   "csp": [
+    "script-src | eval"
+   ],
+   "pwned": 0,
+   "expected_directive": "script-src (no unsafe-eval)"
+  },
+  {
+   "case": "B inline script element is blocked",
+   "ok": true,
+   "outcome": "pwned=0",
+   "csp": [
+    "script-src-elem | inline"
+   ],
+   "pwned": 0,
+   "expected_directive": "script-src"
+  },
+  {
+   "case": "B inline event handler on an inserted image is blocked",
+   "ok": true,
+   "outcome": "inserted",
+   "csp": [
+    "img-src | http://127.0.0.1:9/x.png",
+    "script-src-attr | inline"
+   ],
+   "pwned": 0,
+   "expected_directive": "img-src and script-src-attr"
+  },
+  {
+   "case": "B cross-origin image is blocked",
+   "ok": true,
+   "outcome": "set",
+   "csp": [
+    "img-src | http://127.0.0.1:9/x.png"
+   ],
+   "pwned": 0,
+   "expected_directive": "img-src"
+  },
+  {
+   "case": "B same-origin fetch is blocked (connect-src none)",
+   "ok": true,
+   "outcome": "blocked:TypeError",
+   "csp": [
+    "connect-src | http://127.0.0.1:49180/src/main.js"
+   ],
+   "pwned": 0,
+   "expected_directive": "connect-src"
+  },
+  {
+   "case": "B cross-origin fetch is blocked",
+   "ok": true,
+   "outcome": "blocked:TypeError",
+   "csp": [
+    "connect-src | http://127.0.0.1:9/"
+   ],
+   "pwned": 0,
+   "expected_directive": "connect-src"
+  },
+  {
+   "case": "B XMLHttpRequest is blocked",
+   "ok": true,
+   "outcome": "sent",
+   "csp": [
+    "connect-src | http://127.0.0.1:49180/"
+   ],
+   "pwned": 0,
+   "expected_directive": "connect-src"
+  },
+  {
+   "case": "B WebSocket is blocked",
+   "ok": true,
+   "outcome": "opened",
+   "csp": [
+    "connect-src | ws://127.0.0.1:9/"
+   ],
+   "pwned": 0,
+   "expected_directive": "connect-src"
+  },
+  {
+   "case": "B EventSource is blocked",
+   "ok": true,
+   "outcome": "opened",
+   "csp": [
+    "connect-src | http://127.0.0.1:49180/"
+   ],
+   "pwned": 0,
+   "expected_directive": "connect-src"
+  },
+  {
+   "case": "B sendBeacon is blocked",
+   "ok": true,
+   "outcome": "queued:true",
+   "csp": [
+    "connect-src | http://127.0.0.1:49180/"
+   ],
+   "pwned": 0,
+   "expected_directive": "connect-src"
+  },
+  {
+   "case": "B iframe is blocked",
+   "ok": true,
+   "outcome": "appended",
+   "csp": [
+    "frame-src | http://127.0.0.1:49180/"
+   ],
+   "pwned": 0,
+   "expected_directive": "frame-src or child-src"
+  },
+  {
+   "case": "B form submission is blocked",
+   "ok": true,
+   "outcome": "submitted",
+   "csp": [
+    "form-action | http://127.0.0.1:9/"
+   ],
+   "pwned": 0,
+   "expected_directive": "form-action"
+  },
+  {
+   "case": "B base element is blocked",
+   "ok": true,
+   "outcome": "base=http://127.0.0.1:49180/",
+   "csp": [
+    "base-uri | http://127.0.0.1:9/"
+   ],
+   "pwned": 0,
+   "expected_directive": "base-uri"
+  },
+  {
+   "case": "B style element is blocked",
+   "ok": true,
+   "outcome": "display=block",
+   "csp": [
+    "style-src-elem | inline"
+   ],
+   "pwned": 0,
+   "expected_directive": "style-src"
+  },
+  {
+   "case": "B style attribute (setAttribute) is blocked",
+   "ok": true,
+   "outcome": "display=block",
+   "csp": [
+    "style-src-attr | inline"
+   ],
+   "pwned": 0,
+   "expected_directive": "style-src"
+  },
+  {
+   "case": "B cross-origin stylesheet link is blocked",
+   "ok": true,
+   "outcome": "appended",
+   "csp": [
+    "style-src-elem | http://127.0.0.1:9/x.css"
+   ],
+   "pwned": 0,
+   "expected_directive": "style-src"
+  },
+  {
+   "case": "B cross-origin script element is blocked",
+   "ok": true,
+   "outcome": "appended",
+   "csp": [
+    "script-src-elem | http://127.0.0.1:9/x.js"
+   ],
+   "pwned": 0,
+   "expected_directive": "script-src"
+  },
+  {
+   "case": "B dynamic import of a cross-origin module is blocked",
+   "ok": true,
+   "outcome": "blocked:TypeError",
+   "csp": [
+    "script-src-elem | http://127.0.0.1:9/x.js"
+   ],
+   "pwned": 0,
+   "expected_directive": "script-src"
+  },
+  {
+   "case": "B negative control: a node that reached the DOM changes the element count",
+   "elements_before": 129,
+   "elements_after": 130,
+   "ok": true
+  },
+  {
+   "case": "B the rig refuses bypass_csp",
+   "ok": true
+  },
+  {
+   "case": "B the rig refuses permissions",
+   "ok": true
+  },
+  {
+   "case": "B requests outside the page's own origin during part B (all blocked before they were made, see violations)",
+   "external": [
+    "http://127.0.0.1:9/x.css",
+    "http://127.0.0.1:9/x.js",
+    "http://127.0.0.1:9/x.png"
+   ],
+   "extras": []
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

@@ -1,0 +1,1120 @@
+{
+ "probe": "p3-hostile-draft",
+ "server_pid": 43660,
+ "port": 59446,
+ "started": "2026-10-09 20:32:30",
+ "cases": [
+  {
+   "case": "H01 empty string",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "getItem returns '' (not null)",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 32,
+   "key_ms": 52,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H02 whitespace",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 26,
+   "key_ms": 56,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H03 truncated JSON",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 25,
+   "key_ms": 56,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H04 null",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 26,
+   "key_ms": 57,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H05 array",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 26,
+   "key_ms": 59,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H06 number",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 25,
+   "key_ms": 61,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H07 string",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 31,
+   "key_ms": 61,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H08 true",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 26,
+   "key_ms": 59,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H09 empty object",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 27,
+   "key_ms": 54,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H10 BOM before valid JSON",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "JSON.parse refuses a BOM",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 38,
+   "key_ms": 52,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H11 valid JSON then garbage",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 33,
+   "key_ms": 56,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H12 __proto__ at the top, valid bill",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "D11: unknown key ignored",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 6,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 42,
+   "key_ms": 54,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H13 __proto__ and constructor inside bill",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 6,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 39,
+   "key_ms": 53,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H14 __proto__ and constructor inside a person",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 6,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 55,
+   "key_ms": 114,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H15 who holds __proto__",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 47,
+   "key_ms": 59,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H16 who holds constructor",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 36,
+   "key_ms": 58,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H17 who holds toString",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 37,
+   "key_ms": 55,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H18 who holds a stale id p9",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 73,
+   "key_ms": 62,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H19 person id __proto__",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 38,
+   "key_ms": 59,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H20 people as an object with length",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 70,
+   "key_ms": 60,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H21 version 1.0 and 1e0 (same number)",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "JSON.parse('1.0') is 1",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 6,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 84,
+   "key_ms": 71,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H22 version string",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 38,
+   "key_ms": 62,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H23 mode toString",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 39,
+   "key_ms": 56,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H24 mode array",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 32,
+   "key_ms": 57,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H25 nextId string",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 54,
+   "key_ms": 62,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H26 nextId 1e300",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 49,
+   "key_ms": 53,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H27 nextId 1000000000 (the maximum)",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 6,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 37,
+   "key_ms": 54,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H28 nextId 1000000001",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 35,
+   "key_ms": 68,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H29 name null",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 28,
+   "key_ms": 64,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H30 name array",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 30,
+   "key_ms": 63,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H31 name with U+2028 (accepted residual)",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "A\u2028B",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 6,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 38,
+   "key_ms": 56,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H32 name with a lone surrogate",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "\ufffd",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 6,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 42,
+   "key_ms": 52,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H33 name with CR",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 48,
+   "key_ms": 66,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H34 unknown keys at every level",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "D11",
+   "state": {
+    "note": false,
+    "mode": "item",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 4,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 41,
+   "key_ms": 61,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H35 ids with leading zeros p01 and p1",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "distinct strings, both accepted",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "A",
+     "B"
+    ],
+    "items": 0,
+    "subtotalLen": 6,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 44,
+   "key_ms": 60,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H36 priceText with a line feed",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "D9 checks only the type",
+   "state": {
+    "note": false,
+    "mode": "item",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 4,
+    "subtotalLen": 0,
+    "errors": [
+     "Enter an amount like 12.50"
+    ]
+   },
+   "proto_ok": true,
+   "boot_ms": 48,
+   "key_ms": 57,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H37 subtotalText holding markup",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "shows the amount error",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 23,
+    "errors": [
+     "Enter an amount like 12.50"
+    ]
+   },
+   "proto_ok": true,
+   "boot_ms": 29,
+   "key_ms": 55,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H38 nesting 200000 deep in an unknown key",
+   "expect": "any",
+   "ok": true,
+   "note_shown": false,
+   "note": "JSON.parse may throw RangeError, which is caught",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 6,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 53,
+   "key_ms": 65,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H39 4.5 MB subtotalText",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "self-DoS size",
+   "state": {
+    "note": false,
+    "mode": "even",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 0,
+    "subtotalLen": 4500000,
+    "errors": [
+     "Enter an amount like 12.50"
+    ]
+   },
+   "proto_ok": true,
+   "boot_ms": 410,
+   "key_ms": 78,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H40 3 MB person name",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "D8",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 374,
+   "key_ms": 52,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H41 50 items, each tapped by 3",
+   "expect": "ok",
+   "ok": true,
+   "note_shown": false,
+   "note": "the maximum",
+   "state": {
+    "note": false,
+    "mode": "item",
+    "people": [
+     "Aisyah",
+     "Ben",
+     "Chen"
+    ],
+    "items": 50,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 37,
+   "key_ms": 51,
+   "draft_untouched_at_boot": true,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  },
+  {
+   "case": "H42 51 items",
+   "expect": "note",
+   "ok": true,
+   "note_shown": true,
+   "note": "",
+   "state": {
+    "note": true,
+    "mode": "even",
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "items": 0,
+    "subtotalLen": 0,
+    "errors": []
+   },
+   "proto_ok": true,
+   "boot_ms": 37,
+   "key_ms": 59,
+   "draft_untouched_at_boot": false,
+   "key_problems_after_edit": [],
+   "problems": [],
+   "pwned": 0,
+   "csp": []
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

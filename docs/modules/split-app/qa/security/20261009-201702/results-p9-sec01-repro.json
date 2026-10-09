@@ -1,0 +1,1490 @@
+{
+ "probe": "p9-sec01-repro",
+ "server_pid": 41396,
+ "port": 50261,
+ "started": "2026-10-09 20:39:24",
+ "cases": [
+  {
+   "case": "S2 remove Chen (last of 3) 360x640 dbl",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'"
+    ],
+    "items_after": 0,
+    "nextId_after": 4,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]"
+    ],
+    "shares": [
+     "Aisyah RM 58.30",
+     "Ben RM 58.30"
+    ],
+    "problems": [],
+    "focus": "Person 2 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p4=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 5,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "Person 3 RM 38.86"
+    ],
+    "problems": [],
+    "focus": "Person 3 name"
+   }
+  },
+  {
+   "case": "S2 remove Chen (last of 3) 360x640 triple",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'"
+    ],
+    "items_after": 0,
+    "nextId_after": 4,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]"
+    ],
+    "shares": [
+     "Aisyah RM 58.30",
+     "Ben RM 58.30"
+    ],
+    "problems": [],
+    "focus": "Person 2 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p4=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 5,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]",
+     "click:2:button.btn.btn-outline",
+     "click:3:button.icon-btn [Remove Person 3]"
+    ],
+    "shares": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "Person 3 RM 38.86"
+    ],
+    "problems": [],
+    "focus": "Remove Person 3"
+   }
+  },
+  {
+   "case": "S2 remove Chen (last of 3) 360x640 tap2",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'"
+    ],
+    "items_after": 0,
+    "nextId_after": 4,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]"
+    ],
+    "shares": [
+     "Aisyah RM 58.30",
+     "Ben RM 58.30"
+    ],
+    "problems": [],
+    "focus": "Person 2 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p4=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 5,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "Person 3 RM 38.86"
+    ],
+    "problems": [],
+    "focus": "Person 3 name"
+   }
+  },
+  {
+   "case": "S2 remove Chen (last of 3) 390x844 dbl",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'"
+    ],
+    "items_after": 0,
+    "nextId_after": 4,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]"
+    ],
+    "shares": [
+     "Aisyah RM 58.30",
+     "Ben RM 58.30"
+    ],
+    "problems": [],
+    "focus": "Person 2 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p4=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 5,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "Person 3 RM 38.86"
+    ],
+    "problems": [],
+    "focus": "Person 3 name"
+   }
+  },
+  {
+   "case": "S2 remove Chen (last of 3) 390x844 triple",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'"
+    ],
+    "items_after": 0,
+    "nextId_after": 4,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]"
+    ],
+    "shares": [
+     "Aisyah RM 58.30",
+     "Ben RM 58.30"
+    ],
+    "problems": [],
+    "focus": "Person 2 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p4=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 5,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]",
+     "click:2:button.btn.btn-outline",
+     "click:3:button.icon-btn [Remove Person 3]"
+    ],
+    "shares": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "Person 3 RM 38.86"
+    ],
+    "problems": [],
+    "focus": "Remove Person 3"
+   }
+  },
+  {
+   "case": "S2 remove Chen (last of 3) 390x844 tap2",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'"
+    ],
+    "items_after": 0,
+    "nextId_after": 4,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]"
+    ],
+    "shares": [
+     "Aisyah RM 58.30",
+     "Ben RM 58.30"
+    ],
+    "problems": [],
+    "focus": "Person 2 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p4=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 5,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "Person 3 RM 38.86"
+    ],
+    "problems": [],
+    "focus": "Person 3 name"
+   }
+  },
+  {
+   "case": "S2 remove Chen (last of 3) 1280x800 dbl",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'"
+    ],
+    "items_after": 0,
+    "nextId_after": 4,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]"
+    ],
+    "shares": [
+     "Aisyah RM 58.30",
+     "Ben RM 58.30"
+    ],
+    "problems": [],
+    "focus": "Person 2 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p4=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 5,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "Person 3 RM 38.86"
+    ],
+    "problems": [],
+    "focus": "Person 3 name"
+   }
+  },
+  {
+   "case": "S2 remove Chen (last of 3) 1280x800 triple",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'"
+    ],
+    "items_after": 0,
+    "nextId_after": 4,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]"
+    ],
+    "shares": [
+     "Aisyah RM 58.30",
+     "Ben RM 58.30"
+    ],
+    "problems": [],
+    "focus": "Person 2 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p4=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 5,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Chen]",
+     "click:2:button.btn.btn-outline",
+     "click:3:button.icon-btn [Remove Person 3]"
+    ],
+    "shares": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "Person 3 RM 38.86"
+    ],
+    "problems": [],
+    "focus": "Remove Person 3"
+   }
+  },
+  {
+   "case": "S8 remove Mei Ling (last of 12) 360x640 dbl",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'"
+    ],
+    "items_after": 0,
+    "nextId_after": 13,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 11 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p13=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 14,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 12 name"
+   }
+  },
+  {
+   "case": "S8 remove Mei Ling (last of 12) 360x640 triple",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'"
+    ],
+    "items_after": 0,
+    "nextId_after": 13,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 11 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p13=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 14,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]",
+     "click:2:button.btn.btn-outline",
+     "click:3:button.icon-btn [Remove Person 12]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Remove Person 12"
+   }
+  },
+  {
+   "case": "S8 remove Mei Ling (last of 12) 360x640 tap2",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'"
+    ],
+    "items_after": 0,
+    "nextId_after": 13,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 11 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p13=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 14,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 12 name"
+   }
+  },
+  {
+   "case": "S8 remove Mei Ling (last of 12) 390x844 dbl",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'"
+    ],
+    "items_after": 0,
+    "nextId_after": 13,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 11 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p13=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 14,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 12 name"
+   }
+  },
+  {
+   "case": "S8 remove Mei Ling (last of 12) 390x844 triple",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'"
+    ],
+    "items_after": 0,
+    "nextId_after": 13,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 11 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p13=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 14,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]",
+     "click:2:button.btn.btn-outline",
+     "click:3:button.icon-btn [Remove Person 12]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Remove Person 12"
+   }
+  },
+  {
+   "case": "S8 remove Mei Ling (last of 12) 390x844 tap2",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'"
+    ],
+    "items_after": 0,
+    "nextId_after": 13,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 11 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p13=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 14,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 12 name"
+   }
+  },
+  {
+   "case": "S8 remove Mei Ling (last of 12) 1280x800 dbl",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'"
+    ],
+    "items_after": 0,
+    "nextId_after": 13,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 11 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p13=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 14,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]",
+     "click:2:button.btn.btn-outline"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 12 name"
+   }
+  },
+  {
+   "case": "S8 remove Mei Ling (last of 12) 1280x800 triple",
+   "added_unrequested_row": true,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'"
+    ],
+    "items_after": 0,
+    "nextId_after": 13,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Person 11 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p12='Mei Ling'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'",
+     "p4='Devi'",
+     "p5='Farid'",
+     "p6='Grace'",
+     "p7='Hafiz'",
+     "p8='Indra'",
+     "p9='Jia Hui'",
+     "p10='Kumar'",
+     "p11='Lina'",
+     "p13=''"
+    ],
+    "items_after": 0,
+    "nextId_after": 14,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Mei Ling]",
+     "click:2:button.btn.btn-outline",
+     "click:3:button.icon-btn [Remove Person 12]"
+    ],
+    "shares": [],
+    "problems": [],
+    "focus": "Remove Person 12"
+   }
+  },
+  {
+   "case": "S1 remove the last item (control: Add item is not hit) 360x640 dbl",
+   "added_unrequested_row": false,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Item 3 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]",
+     "click:2:section.block"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Split\n    New bill\n  \n  \n    P"
+   }
+  },
+  {
+   "case": "S1 remove the last item (control: Add item is not hit) 360x640 triple",
+   "added_unrequested_row": false,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Item 3 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]",
+     "click:2:section.block",
+     "click:3:section.block"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Split\n    New bill\n  \n  \n    P"
+   }
+  },
+  {
+   "case": "S1 remove the last item (control: Add item is not hit) 360x640 tap2",
+   "added_unrequested_row": false,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Item 3 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]",
+     "click:2:section.block"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Split\n    New bill\n  \n  \n    P"
+   }
+  },
+  {
+   "case": "S1 remove the last item (control: Add item is not hit) 390x844 dbl",
+   "added_unrequested_row": false,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Item 3 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]",
+     "click:2:section.block"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Split\n    New bill\n  \n  \n    P"
+   }
+  },
+  {
+   "case": "S1 remove the last item (control: Add item is not hit) 390x844 triple",
+   "added_unrequested_row": false,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Item 3 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]",
+     "click:2:section.block",
+     "click:3:section.block"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Split\n    New bill\n  \n  \n    P"
+   }
+  },
+  {
+   "case": "S1 remove the last item (control: Add item is not hit) 390x844 tap2",
+   "added_unrequested_row": false,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Item 3 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]",
+     "click:2:section.block"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Split\n    New bill\n  \n  \n    P"
+   }
+  },
+  {
+   "case": "S1 remove the last item (control: Add item is not hit) 1280x800 dbl",
+   "added_unrequested_row": false,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Item 3 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]",
+     "click:2:section.block"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Split\n    New bill\n  \n  \n    P"
+   }
+  },
+  {
+   "case": "S1 remove the last item (control: Add item is not hit) 1280x800 triple",
+   "added_unrequested_row": false,
+   "single": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Item 3 name"
+   },
+   "gesture_result": {
+    "people_before": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "people_after": [
+     "p1='Aisyah'",
+     "p2='Ben'",
+     "p3='Chen'"
+    ],
+    "items_after": 3,
+    "nextId_after": 8,
+    "clicks": [
+     "click:1:button.icon-btn [Remove Satay, 10 sticks]",
+     "click:2:section.block",
+     "click:3:section.block"
+    ],
+    "shares": [
+     "Aisyah RM 18.54",
+     "Ben RM 15.74",
+     "Chen RM 13.99"
+    ],
+    "problems": [],
+    "focus": "Split\n    New bill\n  \n  \n    P"
+   }
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

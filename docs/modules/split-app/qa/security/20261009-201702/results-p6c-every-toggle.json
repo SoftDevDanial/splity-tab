@@ -1,0 +1,261 @@
+{
+ "probe": "p6c-every-toggle",
+ "server_pid": 48728,
+ "port": 56750,
+ "started": "2026-10-09 20:43:55",
+ "cases": [
+  {
+   "case": "dbl on Aisyah of Nasi lemak ayam",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "dbl on Ben of Nasi lemak ayam",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "dbl on Chen of Nasi lemak ayam",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "dbl on Aisyah of Char kuey teow",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "dbl on Ben of Char kuey teow",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "dbl on Chen of Char kuey teow",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "dbl on Aisyah of Mee goreng mamak",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "dbl on Ben of Mee goreng mamak",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "dbl on Chen of Mee goreng mamak",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "dbl on Aisyah of Satay, 10 sticks",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "dbl on Ben of Satay, 10 sticks",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "dbl on Chen of Satay, 10 sticks",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "triple on Aisyah of Nasi lemak ayam",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "triple on Ben of Nasi lemak ayam",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "triple on Chen of Nasi lemak ayam",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "triple on Aisyah of Char kuey teow",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "triple on Ben of Char kuey teow",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "triple on Chen of Char kuey teow",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "triple on Aisyah of Mee goreng mamak",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "triple on Ben of Mee goreng mamak",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "triple on Chen of Mee goreng mamak",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "triple on Aisyah of Satay, 10 sticks",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "triple on Ben of Satay, 10 sticks",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "triple on Chen of Satay, 10 sticks",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "tap2 on Aisyah of Nasi lemak ayam",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "tap2 on Ben of Nasi lemak ayam",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "tap2 on Chen of Nasi lemak ayam",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "tap2 on Aisyah of Char kuey teow",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "tap2 on Ben of Char kuey teow",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "tap2 on Chen of Char kuey teow",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "tap2 on Aisyah of Mee goreng mamak",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "tap2 on Ben of Mee goreng mamak",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "tap2 on Chen of Mee goreng mamak",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  },
+  {
+   "case": "tap2 on Aisyah of Satay, 10 sticks",
+   "ok": true,
+   "targets": [
+    "button.tap \"Aisyah\""
+   ]
+  },
+  {
+   "case": "tap2 on Ben of Satay, 10 sticks",
+   "ok": true,
+   "targets": [
+    "button.tap \"Ben\""
+   ]
+  },
+  {
+   "case": "tap2 on Chen of Satay, 10 sticks",
+   "ok": true,
+   "targets": [
+    "button.tap \"Chen\""
+   ]
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

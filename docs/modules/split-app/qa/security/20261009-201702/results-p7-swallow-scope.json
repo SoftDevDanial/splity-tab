@@ -1,0 +1,309 @@
+{
+ "probe": "p7-swallow-scope",
+ "server_pid": 27440,
+ "port": 18570,
+ "started": "2026-10-09 20:28:05",
+ "cases": [
+  {
+   "case": "T1 Enter: open, close with Cancel, reopen",
+   "opened": true,
+   "focus_on_open": "Cancel",
+   "closed": true,
+   "focus_after_close": "New bill",
+   "reopened_at_once": true,
+   "draft_unchanged": true
+  },
+  {
+   "case": "T1 Space: open, close with Cancel, reopen",
+   "opened": true,
+   "focus_on_open": "Cancel",
+   "closed": true,
+   "focus_after_close": "New bill",
+   "reopened_at_once": true,
+   "draft_unchanged": true
+  },
+  {
+   "case": "T1 Enter on Start new bill, then Enter on New bill",
+   "focus_before": "Start new bill",
+   "bill_reset": true,
+   "reopened_at_once": true,
+   "focus_now": "Cancel"
+  },
+  {
+   "case": "T1 held Enter x12 on New bill (auto-repeat)",
+   "trail": [
+    "open/Cancel",
+    "closed/New bill",
+    "open/Cancel",
+    "closed/New bill",
+    "open/Cancel",
+    "closed/New bill",
+    "open/Cancel",
+    "closed/New bill",
+    "open/Cancel",
+    "closed/New bill",
+    "open/Cancel",
+    "closed/New bill"
+   ],
+   "draft_unchanged": true,
+   "problems": []
+  },
+  {
+   "case": "T2 right click on Cancel and on the backdrop",
+   "on_cancel_open_and_draft_same": [
+    true,
+    true
+   ],
+   "on_backdrop_open_and_draft_same": [
+    true,
+    true
+   ]
+  },
+  {
+   "case": "T2 middle click on Cancel and on the backdrop",
+   "on_cancel_open_and_draft_same": [
+    true,
+    true
+   ],
+   "on_backdrop_open_and_draft_same": [
+    true,
+    true
+   ]
+  },
+  {
+   "case": "T2 right press on backdrop then a left click on the dialog padding",
+   "dialog_still_open": true
+  },
+  {
+   "case": "T2 a left click on Cancel afterwards still closes",
+   "closed": true,
+   "focus": "New bill"
+  },
+  {
+   "case": "T3 press in the dialog, release on the backdrop",
+   "dialog_open": true
+  },
+  {
+   "case": "T3 press on the backdrop, release in the dialog",
+   "dialog_open": true
+  },
+  {
+   "case": "T3 press on Cancel, release on the backdrop",
+   "dialog_open": true,
+   "draft_same": true
+  },
+  {
+   "case": "T3 press on the backdrop, release elsewhere on the backdrop",
+   "dialog_open": false,
+   "draft_same": true
+  },
+  {
+   "case": "T4 Cancel, 0 ms, then one press with click count 1 on Add person (a different control)",
+   "people_after": [
+    "Aisyah",
+    "Ben",
+    "Chen",
+    ""
+   ],
+   "events": [
+    "mousedown:1:button.btn.btn-outline:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "case": "T4 ... and the next press with count 1 on the same spot",
+   "people_after": [
+    "Aisyah",
+    "Ben",
+    "Chen",
+    ""
+   ],
+   "events": [
+    "mousedown:1:input [Person 4 name]:reached",
+    "click:1:input [Person 4 name]:reached"
+   ]
+  },
+  {
+   "case": "T4 Cancel, 0 ms, then one press with click count 2 on Add person (a different control)",
+   "people_after": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "events": [
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ]
+  },
+  {
+   "case": "T4 ... and the next press with count 1 on the same spot",
+   "people_after": [
+    "Aisyah",
+    "Ben",
+    "Chen",
+    ""
+   ],
+   "events": [
+    "mousedown:1:button.btn.btn-outline:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "case": "T4 Cancel, 3000 ms, then one press with click count 2 on Add person (a different control)",
+   "people_after": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "events": [
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ]
+  },
+  {
+   "case": "T4 ... and the next press with count 1 on the same spot",
+   "people_after": [
+    "Aisyah",
+    "Ben",
+    "Chen",
+    ""
+   ],
+   "events": [
+    "mousedown:1:button.btn.btn-outline:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "case": "T4 Cancel, 0 ms, then one press with click count 3 on Add person (a different control)",
+   "people_after": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "events": [
+    "mousedown:3:button.btn.btn-outline:SWALLOWED",
+    "click:3:button.btn.btn-outline:SWALLOWED"
+   ]
+  },
+  {
+   "case": "T4 ... and the next press with count 1 on the same spot",
+   "people_after": [
+    "Aisyah",
+    "Ben",
+    "Chen",
+    ""
+   ],
+   "events": [
+    "mousedown:1:button.btn.btn-outline:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "case": "T5 tap Cancel, wait 60 ms, tap 0 px higher",
+   "second_press": "mousedown:2:input#rate-sst:SWALLOWED",
+   "second_click": "click:2:input#rate-sst:SWALLOWED",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 450 ms, tap 0 px higher",
+   "second_press": "mousedown:1:input#rate-sst:reached",
+   "second_click": "click:1:input#rate-sst:reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 60 ms, tap 8 px higher",
+   "second_press": "mousedown:2:input#rate-sst:SWALLOWED",
+   "second_click": "click:2:input#rate-sst:SWALLOWED",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 450 ms, tap 8 px higher",
+   "second_press": "mousedown:1:input#rate-sst:reached",
+   "second_click": "click:1:input#rate-sst:reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 60 ms, tap 16 px higher",
+   "second_press": "mousedown:2:input#rate-sst:SWALLOWED",
+   "second_click": "click:2:input#rate-sst:SWALLOWED",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 450 ms, tap 16 px higher",
+   "second_press": "mousedown:1:input#rate-sst:reached",
+   "second_click": "click:1:input#rate-sst:reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 60 ms, tap 24 px higher",
+   "second_press": "mousedown:1:label.label:reached",
+   "second_click": "click:1:label.label:reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 450 ms, tap 24 px higher",
+   "second_press": "mousedown:1:label.label:reached",
+   "second_click": "click:1:label.label:reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 60 ms, tap 30 px higher",
+   "second_press": "mousedown:1:label.label:reached",
+   "second_click": "click:1:label.label:reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 450 ms, tap 30 px higher",
+   "second_press": "mousedown:1:label.label:reached",
+   "second_click": "click:1:label.label:reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 60 ms, tap 80 px higher",
+   "second_press": "mousedown:1:h2#h-charges.block-title \"Charges\":reached",
+   "second_click": "click:1:h2#h-charges.block-title \"Charges\":reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 450 ms, tap 80 px higher",
+   "second_press": "mousedown:1:h2#h-charges.block-title \"Charges\":reached",
+   "second_click": "click:1:h2#h-charges.block-title \"Charges\":reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 60 ms, tap 220 px higher",
+   "second_press": "mousedown:1:label \"By item\":reached",
+   "second_click": "click:1:label \"By item\":reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T5 tap Cancel, wait 450 ms, tap 220 px higher",
+   "second_press": "mousedown:1:label \"By item\":reached",
+   "second_click": "click:1:label \"By item\":reached",
+   "dialog_open": false
+  },
+  {
+   "case": "T6 keyboard-close, then a real double click on a toggle",
+   "toggle_after": "false",
+   "expected": "false (two flips)",
+   "events": [
+    "mousedown:1:button.tap \"Ben\":reached",
+    "click:1:button.tap \"Ben\":reached",
+    "mousedown:2:button.tap \"Ben\":reached",
+    "click:2:button.tap \"Ben\":reached"
+   ]
+  },
+  {
+   "case": "T6 escape-close, then a real double click on a toggle",
+   "toggle_after": "false",
+   "expected": "false (two flips)",
+   "events": [
+    "mousedown:1:button.tap \"Ben\":reached",
+    "click:1:button.tap \"Ben\":reached",
+    "mousedown:2:button.tap \"Ben\":reached",
+    "click:2:button.tap \"Ben\":reached"
+   ]
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

@@ -121,3 +121,7 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Accepted the solver's wider repeat-press guard (mousedown too), reversible.
 - Dismiss note double click moves focus to the body, no data effect: accepted residual, listed for the owner's UAT.
 - Next: security finder, fidelity re-check, official live gate, README, module close.
+
+## 2026-10-09 20:54 split-app security audit collected
+- Audit: SEC-01 MEDIUM (double click on the last Remove adds a blank person), SEC-02 LOW publish scope, SEC-03 LOW nextId ceiling.
+- ORCH: SEC-01 and I-1 fixed with swallowRepeatClicks in dom.js, SEC-02 Publish section, SEC-03 accepted residual, spec gaps in the doc pass.

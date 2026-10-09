@@ -1,0 +1,163 @@
+{
+ "probe": "p4-storage",
+ "server_pid": 52424,
+ "port": 8099,
+ "started": "2026-10-09 20:33:32",
+ "cases": [
+  {
+   "case": "E1 window.localStorage getter throws SecurityError",
+   "ok": true,
+   "usable": true,
+   "clean": true,
+   "shares": {
+    "Person 1": "RM 38.87",
+    "Person 2": "RM 38.87",
+    "Dina": "RM 38.86"
+   },
+   "status": "Summary copied",
+   "note_before_reload": false,
+   "after_reload": {
+    "note": false,
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "subtotal": ""
+   },
+   "problems": []
+  },
+  {
+   "case": "E2 localStorage is null",
+   "ok": true,
+   "usable": true,
+   "clean": true,
+   "shares": {
+    "Person 1": "RM 38.87",
+    "Person 2": "RM 38.87",
+    "Dina": "RM 38.86"
+   },
+   "status": "Summary copied",
+   "note_before_reload": false,
+   "after_reload": {
+    "note": false,
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "subtotal": ""
+   },
+   "problems": []
+  },
+  {
+   "case": "E3 getItem throws",
+   "ok": true,
+   "usable": true,
+   "clean": true,
+   "shares": {
+    "Person 1": "RM 38.87",
+    "Person 2": "RM 38.87",
+    "Dina": "RM 38.86"
+   },
+   "status": "Summary copied",
+   "note_before_reload": false,
+   "after_reload": {
+    "note": false,
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "subtotal": ""
+   },
+   "problems": []
+  },
+  {
+   "case": "E4 setItem throws QuotaExceededError every time",
+   "ok": true,
+   "usable": true,
+   "clean": true,
+   "shares": {
+    "Person 1": "RM 38.87",
+    "Person 2": "RM 38.87",
+    "Dina": "RM 38.86"
+   },
+   "status": "Summary copied",
+   "note_before_reload": false,
+   "after_reload": {
+    "note": false,
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "subtotal": ""
+   },
+   "problems": []
+  },
+  {
+   "case": "E5 setItem works twice, then throws",
+   "ok": true,
+   "usable": true,
+   "clean": true,
+   "shares": {
+    "Person 1": "RM 38.87",
+    "Person 2": "RM 38.87",
+    "Dina": "RM 38.86"
+   },
+   "status": "Summary copied",
+   "note_before_reload": false,
+   "after_reload": {
+    "note": false,
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "subtotal": "10"
+   },
+   "problems": []
+  },
+  {
+   "case": "E6 getItem returns undefined",
+   "ok": false,
+   "usable": true,
+   "clean": false,
+   "shares": {
+    "Person 1": "RM 38.87",
+    "Person 2": "RM 38.87",
+    "Dina": "RM 38.86"
+   },
+   "status": "Summary copied",
+   "note_before_reload": true,
+   "after_reload": {
+    "note": true,
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "subtotal": ""
+   },
+   "problems": []
+  },
+  {
+   "case": "E7 the real quota is used up before the app boots",
+   "ok": true,
+   "usable": true,
+   "clean": true,
+   "shares": {
+    "Person 1": "RM 38.87",
+    "Person 2": "RM 38.87",
+    "Dina": "RM 38.86"
+   },
+   "status": "Summary copied",
+   "note_before_reload": false,
+   "after_reload": {
+    "note": false,
+    "people": [
+     "Person 1",
+     "Person 2"
+    ],
+    "subtotal": ""
+   },
+   "problems": []
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}
