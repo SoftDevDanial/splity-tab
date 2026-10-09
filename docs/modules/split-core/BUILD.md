@@ -15,9 +15,12 @@ dependencies, no DOM, no I/O. Money is integer cents, rates are integer basis po
 | 7. Summary text | R24, R26 | `27458ba` | `src/core/summary.js`, `tests/summary.test.js` |
 | 8. Hygiene scan | R25 | `025e232` | `tests/hygiene.test.js` |
 
-8 of 8 tasks done. Last run of `node --test "tests/**/*.test.js"`: tests 185, pass 185, fail 0.
-[Changed 2026-10-09, solver, code-review WR-01 to WR-10: after the fix batch, tests 212, pass 212, fail 0.
+8 of 8 tasks done. ~~Last run of `node --test "tests/**/*.test.js"`: tests 185, pass 185, fail 0.~~
+[Changed 2026-10-09, solver, code-review WR-01 to WR-10: ~~after the fix batch, tests 212, pass 212, fail 0.~~
 The fix commits and their evidence are listed once, in `findings/code-review.md`, section "Solver (2026-10-09)".]
+[Changed 2026-10-09, solver, code-review WR-14: the two counts above were true when written and have rotted
+with every test added since. The stable effect is `fail 0` on `node --test "tests/**/*.test.js"`. The count is
+in the run's own output (`tests`, `pass`), and the count at each round is in the findings files.]
 
 ## How to run the tests
 From the project root (Node 24): `node --test "tests/**/*.test.js"`. The quotes matter, and a bare

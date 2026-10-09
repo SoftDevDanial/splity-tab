@@ -230,7 +230,7 @@ Each task is one commit, adds its `node --test` cases (named `@R<n> ...`) and le
 5. [ ] `src/core/result.js` (`billCharges`, `computeResult`) with `tests/result.test.js`: the charges table, the blocking-order table, S1, S2, S5, I2, I3, I4, E1, E3, D1, D2 and the two MAX bills. -> R6, R18, R19, R20, R21, R23, R26
 6. [ ] `tests/invariants.test.js`, a seeded sweep over generated bills checking R22 (no new source). -> R22
 7. [ ] `src/core/summary.js` with `tests/summary.test.js` (S1, S2, E2 zero rates, E3 decimal rates, I2 zero share, D1 and D2 equal names, blank-name fallback, the TypeError). -> R24, R26
-8. [ ] `tests/hygiene.test.js`, a static scan of `src/core/` for the banned names and foreign imports. -> R25
+8. [ ] `tests/hygiene.test.js`, a static scan of `src/core/` for the banned names and foreign imports. -> R25 [Changed 2026-10-09, ORCH, code-review WR-14: since security SEC-05 the file also holds the runtime trap, and the trap is the primary guard. "A static scan" is now the runtime trap plus the scan, see R25.]
 
 ## Threat model
 | Asset | Trust boundary | Threat | Required mitigation |
