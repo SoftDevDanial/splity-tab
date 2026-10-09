@@ -111,3 +111,13 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-09 18:06 split-app QA PASS
 - QA (sonnet): PASS 145/145, R1-R42 covered. F-1 MEDIUM double click on Cancel changes the bill (ruled a defect, batched for the solver). O-1 overflow at 360 px on big bills goes to Needs the human H-02. New bill double click is safe
 - Code review (sonnet) started
+
+## 2026-10-09 19:00 split-app code review
+- Code review (sonnet): 1 BLOCKER (double click on Cancel, same as QA F-1), 12 warnings incl. double click on Remove. Commit 044800e
+- Routed to a sonnet dev solver with rulings. Stop rule set
+
+## 2026-10-09 20:11 split-app review solver collected
+- Solver resolved CR-01 and F-1, WR-01 to WR-11 in 15 commits, final `61c3cd3`. Browser 244, unit 275, fidelity 10 of 10 at 0 px.
+- Accepted the solver's wider repeat-press guard (mousedown too), reversible.
+- Dismiss note double click moves focus to the body, no data effect: accepted residual, listed for the owner's UAT.
+- Next: security finder, fidelity re-check, official live gate, README, module close.
