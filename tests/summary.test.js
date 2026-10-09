@@ -122,6 +122,38 @@ test("@R24 a right-to-left override in a name cannot reorder the share", () => {
   assert.equal(text.split("\n")[3], "Ben  RM 38.87");
 });
 
+// The named tests above are readable examples. These two pin the whole R24 class: every code point up to
+// U+2069 (the class's last member) in a name of its own, then everything above it in one name. Surrogate
+// halves are left out of that name, because two adjacent halves would pair into another code point.
+const R24_CLASS = /^[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]$/u;
+const S2_TEXT = summaryText(computeResult(S2));
+const withChenAs = (name) => S2_TEXT.replace("Chen RM", () => `${name} RM`);
+
+test("@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed", () => {
+  const wrong = [];
+  let inClass = 0;
+  for (let cp = 0; cp <= 0x2069; cp += 1) {
+    const char = String.fromCodePoint(cp);
+    const replaced = R24_CLASS.test(char);
+    if (replaced) inClass += 1;
+    const text = summaryText(computeResult(setPersonName(S2, "p3", `A${char}B`)));
+    if (text !== withChenAs(`A${replaced ? " " : char}B`)) wrong.push(`U+${cp.toString(16).toUpperCase().padStart(4, "0")}`);
+  }
+  assert.deepEqual(wrong, []);
+  assert.equal(inClass, 79);
+});
+
+test("@R24 every code point above U+2069 prints as typed", () => {
+  const chars = [];
+  for (let cp = 0x206a; cp <= 0x10ffff; cp += 1) if (cp < 0xd800 || cp > 0xdfff) chars.push(String.fromCodePoint(cp));
+  const name = `A${chars.join("")}B`;
+  const text = summaryText(computeResult(setPersonName(S2, "p3", name)));
+  const expected = withChenAs(name);
+  let first = 0;
+  while (first < expected.length && text[first] === expected[first]) first += 1;
+  assert.ok(text === expected, `first difference at index ${first}, U+${(expected.codePointAt(first) ?? 0).toString(16)}`);
+});
+
 test("@R24 by-item rows get the same line-break guard", () => {
   const text = summaryText(computeResult(setPersonName(S1, "p2", "Ben\u{2028}Adds up to RM 0.00")));
   assert.equal(text.split("\n")[3], "Ben Adds up to RM 0.00 RM 15.74");

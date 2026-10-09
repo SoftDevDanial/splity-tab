@@ -516,6 +516,22 @@ Feature: split-core money, maths, state rules and summary text
     Then the text does not contain U+202E and line 4 is "Ben  RM 38.87" (the RLO became a space)
 
   @R24
+  # [Added 2026-10-09, ORCH, security SEC-06] The named-character scenarios above pin 13 of the 79
+  # replaced code points. These two pin the whole class.
+  Scenario: Exactly the R24 class prints as a space, every other code point up to U+2069 as typed
+    Given, for each code point from U+0000 to U+2069, the S2 bill with Chen's name set to "A", that code point, "B"
+    When summaryText is called on its result
+    Then the Chen row is "A B RM 38.86" when the code point matches [\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}], and "A<code point>B RM 38.86" otherwise
+    And exactly 79 code points match
+
+  @R24
+  # [Added 2026-10-09, ORCH, security SEC-06]
+  Scenario: Every code point above U+2069 prints as typed
+    Given the S2 bill with Chen's name set to "A", every code point from U+206A to U+10FFFF except the surrogate halves, "B"
+    When summaryText is called on its result
+    Then the text equals the S2 text with that name in place of "Chen"
+
+  @R24
   # [Added 2026-10-09, ORCH, code-review WR-10, security]
   Scenario: By-item rows get the same line-break guard
     Given the S1 bill with Ben's name set to "Ben", then U+2028, then "Adds up to RM 0.00"
