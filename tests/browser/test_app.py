@@ -6,7 +6,9 @@ never through a hook in the app (there is none).
 """
 import json
 import re
+import sys
 import urllib.request
+from pathlib import Path
 
 import pytest
 
@@ -1632,6 +1634,80 @@ def test_R39_a_whole_session_makes_only_same_origin_gets(open_app):
     assert {"/", "/src/system.css", "/src/main.js"} <= paths
     assert all(session.request_is_allowed(method, url) for method, url in session.requests)
     assert session.problems() == []
+
+
+# ---------------------------------------------------------------- Task 12: the fidelity setup and runner (R40)
+# The gate itself is `python tests/browser/fidelity/run.py` (it takes about a minute and writes its evidence). These tests keep
+# its inputs honest: the seed scripts equal the seeds, they boot the app through its own load path, and the runner follows CG-11.
+FIDELITY_DIR = ROOT / "tests" / "browser" / "fidelity"
+SEED_SCRIPT = re.compile(r"""\AlocalStorage\.setItem\("split\.draft", '([^'\\]*)'\);\n\Z""")
+
+
+def load_runner():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("fidelity_run", FIDELITY_DIR / "run.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+@pytest.mark.parametrize("name, seed", [("seed-s1.js", seeds.S1), ("seed-s2.js", seeds.S2), ("seed-s5.js", seeds.S5)])
+def test_R40_fidelity_seeds_match(name, seed):
+    match = SEED_SCRIPT.match((FIDELITY_DIR / name).read_text(encoding="utf-8"))
+    assert match, f"{name} must be exactly one localStorage.setItem statement"
+    assert match.group(1) == seed  # the very text of seeds.py, byte for byte
+
+
+@pytest.mark.parametrize("name, seed", [("seed-s1.js", seeds.S1), ("seed-s2.js", seeds.S2), ("seed-s5.js", seeds.S5)])
+def test_R40_a_seed_script_boots_the_app_through_its_own_load_path(open_app, name, seed):
+    session = open_app(init_scripts=[(FIDELITY_DIR / name).read_text(encoding="utf-8")], allow_problems=True)
+    scripted = session.page
+    assert snapshot(scripted) == snapshot(open_app(seed=seed).page)
+    assert page_has_no_note(scripted) and stored_text(scripted) == seed  # read as it is, never rewritten
+    # An init script also runs in the blank first document, where storage is denied. The harness never shows that
+    # error, the suite does, so it is the one problem this test accepts.
+    assert [p for p in session.problems() if "Failed to read the 'localStorage' property" not in p] == []
+
+
+def page_has_no_note(page):
+    return page.locator("div.note").count() == 0
+
+
+def test_R40_the_open_new_bill_script_leaves_the_dialog_open_without_a_ring(open_app):
+    page = open_app(seed=seeds.S2).page
+    page.evaluate(f"async () => {{ {(FIDELITY_DIR / 'open-new-bill.js').read_text(encoding='utf-8')}\n }}")  # as the harness runs it
+    assert page.locator("dialog.dialog").evaluate("(d) => d.open && d.matches(':modal')")
+    assert page.evaluate("document.activeElement === document.body && document.querySelectorAll(':focus-visible').length === 0")
+    assert stored_text(page) == seeds.S2  # opening the dialog changes nothing
+
+
+def test_R40_the_runner_uses_the_python_that_runs_pytest():
+    source = (FIDELITY_DIR / "run.py").read_text(encoding="utf-8")
+    assert "[sys.executable, str(HARNESS)" in source
+    assert not re.search(r"\bpip\b|ensurepip|\bvenv\b|\.sdlc-harness|virtualenv", source)  # no environment, no installer
+    import importlib
+    for module in ("playwright", "PIL", "numpy"):  # the harness needs these, and the Python that runs this test has them
+        importlib.import_module(module)
+
+
+@pytest.mark.parametrize("screen, seed, after_load", [
+    ("bill-empty", None, None), ("bill-even", "seed-s2.js", None), ("bill-items", "seed-s1.js", None),
+    ("bill-unassigned", "seed-s5.js", None), ("new-bill-dialog", "seed-s2.js", "open-new-bill.js")])
+def test_R40_the_runner_builds_the_documented_command(screen, seed, after_load):
+    runner = load_runner()
+    assert runner.HARNESS == Path("{sdlc}/harness/fidelity.py")
+    cmd = runner.command("http://127.0.0.1:1", screen, seed, after_load, "390x844", Path("out"))
+    assert cmd[:2] == [sys.executable, str(runner.HARNESS)]
+    assert cmd[cmd.index("--golden") + 1] == f"./docs/design/{screen}.html" and cmd[cmd.index("--candidate") + 1] == "http://127.0.0.1:1/"
+    for flag, value in (("--viewport", "390x844"), ("--dpr", "1"), ("--color-scheme", "light"),
+                        ("--fixed-time", "2026-10-08T09:00:00"), ("--threshold", "0.01")):
+        assert cmd[cmd.index(flag) + 1] == value, flag
+    assert "--browser-arg=--disable-lcd-text" in cmd
+    assert ("--candidate-init-script" in cmd) == bool(seed) and ("--candidate-after-load" in cmd) == bool(after_load)
+    if seed:
+        assert cmd[cmd.index("--candidate-init-script") + 1] == f"./tests/browser/fidelity/{seed}"
+    assert "--no-full-page" not in cmd
+    assert len(runner.SCREENS) * len(runner.VIEWPORTS) == 10 and runner.VIEWPORTS == ("390x844", "1280x800")
 
 
 # ===== END OF TESTS (new tests go above this line) =====
