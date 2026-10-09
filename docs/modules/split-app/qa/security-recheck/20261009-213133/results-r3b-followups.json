@@ -1,0 +1,148 @@
+{
+ "probe": "r3b-followups",
+ "server_pid": 48220,
+ "port": 33761,
+ "started": "2026-10-09 21:41:58",
+ "cases": [
+  {
+   "section": "M",
+   "case": "middle press on Remove P2, then two left clicks on a heading: does the page see the first one?",
+   "pass": null,
+   "middle_events": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "mouseup:0:button.icon-btn [Remove P2]:reached"
+   ],
+   "first_left_click_events": [
+    "mouseup:0:h2#h-people.block-title \"People\":reached"
+   ],
+   "second_left_click_events": [
+    "mousedown:1:h2#h-people.block-title \"People\":reached",
+    "mouseup:1:h2#h-people.block-title \"People\":reached",
+    "click:1:h2#h-people.block-title \"People\":reached"
+   ],
+   "people": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "note": "no page event for the first left click means the browser used it to end middle-button autoscroll"
+  },
+  {
+   "section": "K",
+   "case": "fixed tree: Enter held ~700 ms (first repeat at 520 ms) on Remove of the ONLY item",
+   "pass": false,
+   "items": [
+    "i8"
+   ],
+   "nextId": 9,
+   "blank_items": [
+    "i8"
+   ],
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "clicks": [
+    "click:0:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:0:button.btn.btn-outline:reached"
+   ],
+   "focus": "Item 1 name"
+  },
+  {
+   "section": "K",
+   "case": "fixed tree: an ordinary Enter press (90 ms) on Remove of the ONLY item",
+   "pass": true,
+   "items": [],
+   "nextId": 8,
+   "keys": [
+    "Enter:first"
+   ],
+   "focus": "Add item"
+  },
+  {
+   "section": "K",
+   "case": "CONTROL, tree before the fixes (06fa151): the same held Enter (expected to show the same blank item: older than the fix)",
+   "pass": true,
+   "items": [
+    "i8"
+   ],
+   "nextId": 9,
+   "blank_items": [
+    "i8"
+   ],
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ]
+  },
+  {
+   "section": "K",
+   "case": "CANDIDATE fix from memory: the same held Enter",
+   "pass": true,
+   "items": [],
+   "nextId": 8,
+   "blank_items": [],
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "focus": "Add item"
+  },
+  {
+   "section": "K",
+   "case": "CANDIDATE fix from memory: Enter on Remove P2, Tab, Enter on the next Remove, no pause (separate presses still work)",
+   "pass": true,
+   "people": [
+    "p1",
+    "p4",
+    "p5"
+   ]
+  },
+  {
+   "section": "K",
+   "case": "CANDIDATE fix from memory: mouse Remove, then a held letter key in the name field is not eaten",
+   "pass": true,
+   "before": "P3",
+   "after": "P3aaaaaa"
+  },
+  {
+   "section": "K",
+   "case": "CANDIDATE fix from memory: Enter held on New bill leaves the dialog open on Cancel (it alternates open and shut today)",
+   "pass": true,
+   "dialog_open": true,
+   "focus": "Cancel",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ]
+  },
+  {
+   "section": "K",
+   "case": "fixed tree, for comparison: Enter held on New bill (audit T1 saw it alternate)",
+   "pass": null,
+   "dialog_open": false,
+   "focus": "New bill",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "draft_unchanged": true
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

@@ -1,0 +1,555 @@
+{
+ "probe": "r3-overswallow",
+ "server_pid": 47788,
+ "port": 14053,
+ "started": "2026-10-09 21:43:03",
+ "cases": [
+  {
+   "section": "A",
+   "case": "Remove P2 then Add person at once, 360x640",
+   "pass": true,
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5",
+    "p6"
+   ],
+   "nextId": 7,
+   "gap_ms": 51,
+   "distance_px": 249,
+   "clicks": [
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "section": "A",
+   "case": "Remove P2 then Add person at once, 390x844",
+   "pass": true,
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5",
+    "p6"
+   ],
+   "nextId": 7,
+   "gap_ms": 51,
+   "distance_px": 269,
+   "clicks": [
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "section": "A",
+   "case": "Remove P2 then Add person at once, 1280x800",
+   "pass": true,
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5",
+    "p6"
+   ],
+   "nextId": 7,
+   "gap_ms": 49,
+   "distance_px": 86,
+   "clicks": [
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "section": "A",
+   "case": "Remove P2 then Remove P4 at once, 390x844",
+   "pass": true,
+   "people": [
+    "p1",
+    "p3",
+    "p5"
+   ],
+   "distance_px": 190,
+   "clicks": [
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P4]:reached"
+   ]
+  },
+  {
+   "section": "A",
+   "case": "Remove item 2 then Add item at once, 390x844",
+   "pass": true,
+   "items": [
+    "i4",
+    "i6",
+    "i7",
+    "i8"
+   ],
+   "nextId": 9,
+   "distance_px": 365,
+   "clicks": [
+    "click:1:button.icon-btn [Remove Char kuey teow]:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "section": "B",
+   "case": "tap Remove P2, 60 ms, tap Add person, 360x640",
+   "pass": true,
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5",
+    "p6"
+   ],
+   "distance_px": 249,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "mousedown:1:button.btn.btn-outline:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "section": "B",
+   "case": "tap Remove P2, 60 ms, tap Add person, 390x844",
+   "pass": true,
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5",
+    "p6"
+   ],
+   "distance_px": 269,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "mousedown:1:button.btn.btn-outline:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "section": "B",
+   "case": "tap Remove P2, 450 ms, tap the same spot (next row's Remove), 390x844",
+   "pass": true,
+   "people": [
+    "p1",
+    "p4",
+    "p5"
+   ],
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "mousedown:1:button.icon-btn [Remove P3]:reached",
+    "click:1:button.icon-btn [Remove P3]:reached"
+   ]
+  },
+  {
+   "section": "B",
+   "case": "tap Remove P2, 60 ms, tap the same spot (design: held back as a double tap), 390x844",
+   "pass": null,
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "held_back": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "mousedown:2:button.icon-btn [Remove P3]:SWALLOWED",
+    "click:2:button.icon-btn [Remove P3]:SWALLOWED"
+   ]
+  },
+  {
+   "section": "C",
+   "case": "Enter on Remove P2, Tab, Enter on the next Remove, no pause",
+   "pass": true,
+   "people": [
+    "p1",
+    "p4",
+    "p5"
+   ],
+   "focus_after_first": "Person 2 name",
+   "focus_after_tab": "Remove P3",
+   "focus_end": "Person 2 name"
+  },
+  {
+   "section": "C",
+   "case": "Space on Remove P2, Tab, Space on the next Remove, no pause",
+   "pass": true,
+   "people": [
+    "p1",
+    "p4",
+    "p5"
+   ],
+   "focus_after_first": "Person 2 name",
+   "focus_after_tab": "Remove P3",
+   "focus_end": "Person 2 name"
+  },
+  {
+   "section": "C",
+   "case": "held Enter on Remove of a middle person (P2 of 5), 8 key repeats over ~320 ms",
+   "pass": true,
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "items": [],
+   "nextId": 6,
+   "blank_items": [],
+   "trail": [
+    "p4/i0/Person 2 name",
+    "p4/i0/Person 2 name",
+    "p4/i0/Person 2 name",
+    "p4/i0/Person 2 name",
+    "p4/i0/Person 2 name",
+    "p4/i0/Person 2 name",
+    "p4/i0/Person 2 name",
+    "p4/i0/Person 2 name"
+   ],
+   "clicks": [
+    "click:0:button.icon-btn [Remove P2]:reached"
+   ]
+  },
+  {
+   "section": "C",
+   "case": "held Enter on Remove of the last person (P5 of 5), 8 key repeats over ~320 ms",
+   "pass": true,
+   "people": [
+    "p1",
+    "p2",
+    "p3",
+    "p4"
+   ],
+   "items": [],
+   "nextId": 6,
+   "blank_items": [],
+   "trail": [
+    "p4/i0/Person 4 name",
+    "p4/i0/Person 4 name",
+    "p4/i0/Person 4 name",
+    "p4/i0/Person 4 name",
+    "p4/i0/Person 4 name",
+    "p4/i0/Person 4 name",
+    "p4/i0/Person 4 name",
+    "p4/i0/Person 4 name"
+   ],
+   "clicks": [
+    "click:0:button.icon-btn [Remove P5]:reached"
+   ]
+  },
+  {
+   "section": "C",
+   "case": "held Enter on Remove of a middle item (item 2 of 4), 8 key repeats over ~320 ms",
+   "pass": true,
+   "people": [
+    "p1",
+    "p2",
+    "p3"
+   ],
+   "items": [
+    "i4",
+    "i6",
+    "i7"
+   ],
+   "nextId": 8,
+   "blank_items": [],
+   "trail": [
+    "p3/i3/Item 2 name",
+    "p3/i3/Item 2 name",
+    "p3/i3/Item 2 name",
+    "p3/i3/Item 2 name",
+    "p3/i3/Item 2 name",
+    "p3/i3/Item 2 name",
+    "p3/i3/Item 2 name",
+    "p3/i3/Item 2 name"
+   ],
+   "clicks": [
+    "click:0:button.icon-btn [Remove Char kuey teow]:reached"
+   ]
+  },
+  {
+   "section": "C",
+   "case": "held Enter on Remove of the last item (item 4 of 4), 8 key repeats over ~320 ms",
+   "pass": true,
+   "people": [
+    "p1",
+    "p2",
+    "p3"
+   ],
+   "items": [
+    "i4",
+    "i5",
+    "i6"
+   ],
+   "nextId": 8,
+   "blank_items": [],
+   "trail": [
+    "p3/i3/Item 3 name",
+    "p3/i3/Item 3 name",
+    "p3/i3/Item 3 name",
+    "p3/i3/Item 3 name",
+    "p3/i3/Item 3 name",
+    "p3/i3/Item 3 name",
+    "p3/i3/Item 3 name",
+    "p3/i3/Item 3 name"
+   ],
+   "clicks": [
+    "click:0:button.icon-btn [Remove Satay, 10 sticks]:reached"
+   ]
+  },
+  {
+   "section": "C",
+   "case": "held Enter on Remove of the ONLY item, 8 key repeats over ~320 ms",
+   "pass": false,
+   "people": [
+    "p1",
+    "p2",
+    "p3"
+   ],
+   "items": [
+    "i8"
+   ],
+   "nextId": 9,
+   "blank_items": [
+    "i8"
+   ],
+   "trail": [
+    "p3/i0/Add item",
+    "p3/i1/Item 1 name",
+    "p3/i1/Item 1 name",
+    "p3/i1/Item 1 name",
+    "p3/i1/Item 1 name",
+    "p3/i1/Item 1 name",
+    "p3/i1/Item 1 name",
+    "p3/i1/Item 1 name"
+   ],
+   "clicks": [
+    "click:0:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:0:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "section": "C",
+   "case": "held Space on Remove of the ONLY item, 8 key repeats over ~320 ms",
+   "pass": true,
+   "people": [
+    "p1",
+    "p2",
+    "p3"
+   ],
+   "items": [],
+   "nextId": 8,
+   "blank_items": [],
+   "trail": [
+    "p3/i1/Remove Nasi lemak ayam",
+    "p3/i1/Remove Nasi lemak ayam",
+    "p3/i1/Remove Nasi lemak ayam",
+    "p3/i1/Remove Nasi lemak ayam",
+    "p3/i1/Remove Nasi lemak ayam",
+    "p3/i1/Remove Nasi lemak ayam",
+    "p3/i1/Remove Nasi lemak ayam",
+    "p3/i1/Remove Nasi lemak ayam"
+   ],
+   "clicks": [
+    "click:0:button.icon-btn [Remove Nasi lemak ayam]:reached"
+   ]
+  },
+  {
+   "section": "D",
+   "case": "right click on Remove (nothing), left Remove, right click on Add person (nothing), left Add person (works)",
+   "pass": true,
+   "after_special": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "after_special_2": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "final": [
+    "p1",
+    "p3",
+    "p4",
+    "p5",
+    "p6"
+   ],
+   "clicks": [
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "section": "D",
+   "case": "middle click on Remove (nothing), left Remove, middle click on Add person (nothing), left Add person (works)",
+   "pass": true,
+   "after_special": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "after_special_2": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "final": [
+    "p1",
+    "p3",
+    "p4",
+    "p5",
+    "p6"
+   ],
+   "clicks": [
+    "click:1:button.btn.btn-outline:reached"
+   ]
+  },
+  {
+   "section": "E",
+   "case": "mouse: New bill, Cancel, then Remove P2 at once, 390x844",
+   "pass": true,
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached"
+   ]
+  },
+  {
+   "section": "E",
+   "case": "touch: tap New bill, tap Cancel, 60 ms, tap Remove P2, 390x844",
+   "pass": true,
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "cancel_to_remove_px": 385,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached"
+   ]
+  },
+  {
+   "section": "F",
+   "case": "Remove (single), type 'Zed', then a real double click on a name field selects the word, 390x844",
+   "pass": true,
+   "typed": [
+    "P1",
+    "P3Zed",
+    "P4",
+    "P5"
+   ],
+   "selection": {
+    "label": "Person 3 name",
+    "value": "P4",
+    "start": 0,
+    "end": 2
+   },
+   "events": [
+    "mousedown:1:input [Person 3 name]:reached",
+    "click:1:input [Person 3 name]:reached",
+    "mousedown:2:input [Person 3 name]:reached",
+    "click:2:input [Person 3 name]:reached"
+   ]
+  },
+  {
+   "section": "F",
+   "case": "state probe after Remove + typing: lone count-2 press, then count 1, then count 2 (390x844)",
+   "pass": true,
+   "count2_while_armed": [
+    "mousedown:2:h2#h-people.block-title \"People\":SWALLOWED",
+    "click:2:h2#h-people.block-title \"People\":SWALLOWED"
+   ],
+   "then_count1": [
+    "mousedown:1:h2#h-people.block-title \"People\":reached",
+    "click:1:h2#h-people.block-title \"People\":reached"
+   ],
+   "then_count2": [
+    "mousedown:2:h2#h-people.block-title \"People\":reached",
+    "click:2:h2#h-people.block-title \"People\":reached"
+   ],
+   "note": "the first list says whether the guard is still armed after typing (a repeat press with no first press is not a real gesture)"
+  },
+  {
+   "section": "F",
+   "case": "three separate Remove clicks, then count 1 and count 2 on a heading: nothing is left armed (accumulation), 390x844",
+   "pass": true,
+   "events": [
+    "mousedown:1:h2#h-people.block-title \"People\":reached",
+    "click:1:h2#h-people.block-title \"People\":reached",
+    "mousedown:2:h2#h-people.block-title \"People\":reached",
+    "click:2:h2#h-people.block-title \"People\":reached"
+   ],
+   "people": [
+    "p1",
+    "p5"
+   ]
+  },
+  {
+   "section": "F",
+   "case": "Remove, 3 s, a press with count 2 on Add person (no timer: held back), then count 1 (delivered), 390x844",
+   "pass": null,
+   "count2_after_3s": [
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "count1_after": [
+    "mousedown:1:button.btn.btn-outline:reached",
+    "click:1:button.btn.btn-outline:reached"
+   ],
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5",
+    "p6"
+   ]
+  },
+  {
+   "section": "F",
+   "case": "Remove Chen (3 to 2 people, Removes now disabled), count-1 press on a disabled Remove, then a count-2 press on a heading",
+   "pass": null,
+   "disabled": [
+    true,
+    true
+   ],
+   "press_on_disabled_reached_document": [],
+   "count2_after": [
+    "mousedown:2:h2#h-people.block-title \"People\":SWALLOWED",
+    "click:2:h2#h-people.block-title \"People\":SWALLOWED"
+   ]
+  },
+  {
+   "section": "F",
+   "case": "touch: tap New bill, Esc, tap New bill again ~100 ms after the first tap (390x844)",
+   "pass": null,
+   "dialog_open": false,
+   "clicks": [
+    "mousedown:2:button.btn.btn-outline \"New bill\":SWALLOWED",
+    "click:2:button.btn.btn-outline \"New bill\":SWALLOWED"
+   ],
+   "note": "reachable only with a keyboard next to a touch screen, or a mouse user who presses Esc and clicks the same spot inside the double-click time"
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

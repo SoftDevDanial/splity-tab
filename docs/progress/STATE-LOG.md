@@ -129,3 +129,7 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-09 21:28 split-app security solver collected
 - Solver: SEC-01 and I-1 fixed with swallowRepeatClicks on every Remove and the New bill opener, SEC-02 Publish section, SEC-03 and two-tab last writer wins accepted. Browser 312, unit 275, fidelity 10 of 10 at 0 px.
 - Scoped re-check launched (sonnet). Stop rule after it.
+
+## 2026-10-09 21:54 split-app security re-check collected, security clean
+- Re-check: SEC-01 and I-1 closed, no over-swallow. New LOW SEC-04 (held Enter on the only item's Remove adds a blank item) accepted for v1.0 and scoped to v1.1.0. Stop rule reached.
+- Owner's versioning decision recorded: after the v1.0.0 seal, v1.1.0 fixes H-02 and SEC-04.

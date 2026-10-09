@@ -1,0 +1,754 @@
+{
+ "probe": "r2-i1-new-bill",
+ "server_pid": 39908,
+ "port": 36578,
+ "started": "2026-10-09 21:36:58",
+ "cases": [
+  {
+   "viewport": "360x640",
+   "gesture": "dbl",
+   "follow": "cancel",
+   "opener_point": [
+    299,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    180,
+    400
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-outline.btn-large \"Cancel\":reached",
+    "click:1:button.btn.btn-outline.btn-large \"Cancel\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "360x640",
+   "gesture": "dbl",
+   "follow": "start",
+   "opener_point": [
+    299,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    180,
+    344
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-primary.btn-large \"Start new bill\":reached",
+    "click:1:button.btn.btn-primary.btn-large \"Start new bill\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": false,
+   "draft_reset": true,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "360x640",
+   "gesture": "dbl",
+   "follow": "backdrop",
+   "opener_point": [
+    299,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    10,
+    10
+   ],
+   "follow_clicks": [
+    "mousedown:1:dialog.dialog:reached",
+    "click:1:dialog.dialog:reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "360x640",
+   "gesture": "tap2",
+   "follow": "cancel",
+   "opener_point": [
+    299,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    180,
+    400
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-outline.btn-large \"Cancel\":reached",
+    "click:1:button.btn.btn-outline.btn-large \"Cancel\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "360x640",
+   "gesture": "tap2",
+   "follow": "start",
+   "opener_point": [
+    299,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    180,
+    344
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-primary.btn-large \"Start new bill\":reached",
+    "click:1:button.btn.btn-primary.btn-large \"Start new bill\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": false,
+   "draft_reset": true,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "360x640",
+   "gesture": "tap2",
+   "follow": "backdrop",
+   "opener_point": [
+    299,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    10,
+    10
+   ],
+   "follow_clicks": [
+    "mousedown:1:dialog.dialog:reached",
+    "click:1:dialog.dialog:reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "follow": "cancel",
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    195,
+    490
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-outline.btn-large \"Cancel\":reached",
+    "click:1:button.btn.btn-outline.btn-large \"Cancel\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "follow": "start",
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    195,
+    434
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-primary.btn-large \"Start new bill\":reached",
+    "click:1:button.btn.btn-primary.btn-large \"Start new bill\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": false,
+   "draft_reset": true,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "follow": "backdrop",
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    10,
+    10
+   ],
+   "follow_clicks": [
+    "mousedown:1:dialog.dialog:reached",
+    "click:1:dialog.dialog:reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "tap2",
+   "follow": "cancel",
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    195,
+    490
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-outline.btn-large \"Cancel\":reached",
+    "click:1:button.btn.btn-outline.btn-large \"Cancel\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "tap2",
+   "follow": "start",
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    195,
+    434
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-primary.btn-large \"Start new bill\":reached",
+    "click:1:button.btn.btn-primary.btn-large \"Start new bill\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": false,
+   "draft_reset": true,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "tap2",
+   "follow": "backdrop",
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    10,
+    10
+   ],
+   "follow_clicks": [
+    "mousedown:1:dialog.dialog:reached",
+    "click:1:dialog.dialog:reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "1280x800",
+   "gesture": "dbl",
+   "follow": "cancel",
+   "opener_point": [
+    1115,
+    54
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    774,
+    440
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-outline.btn-large \"Cancel\":reached",
+    "click:1:button.btn.btn-outline.btn-large \"Cancel\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "1280x800",
+   "gesture": "dbl",
+   "follow": "start",
+   "opener_point": [
+    1115,
+    54
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    660,
+    440
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-primary.btn-large \"Start new bill\":reached",
+    "click:1:button.btn.btn-primary.btn-large \"Start new bill\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": false,
+   "draft_reset": true,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "1280x800",
+   "gesture": "dbl",
+   "follow": "backdrop",
+   "opener_point": [
+    1115,
+    54
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    10,
+    10
+   ],
+   "follow_clicks": [
+    "mousedown:1:dialog.dialog:reached",
+    "click:1:dialog.dialog:reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "1280x800",
+   "gesture": "tap2",
+   "follow": "cancel",
+   "opener_point": [
+    1115,
+    54
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    774,
+    440
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-outline.btn-large \"Cancel\":reached",
+    "click:1:button.btn.btn-outline.btn-large \"Cancel\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "1280x800",
+   "gesture": "tap2",
+   "follow": "start",
+   "opener_point": [
+    1115,
+    54
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    660,
+    440
+   ],
+   "follow_clicks": [
+    "mousedown:1:button.btn.btn-primary.btn-large \"Start new bill\":reached",
+    "click:1:button.btn.btn-primary.btn-large \"Start new bill\":reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": false,
+   "draft_reset": true,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "1280x800",
+   "gesture": "tap2",
+   "follow": "backdrop",
+   "opener_point": [
+    1115,
+    54
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_point": [
+    10,
+    10
+   ],
+   "follow_clicks": [
+    "mousedown:1:dialog.dialog:reached",
+    "click:1:dialog.dialog:reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "draft_reset": false,
+   "pass": true,
+   "problems": [],
+   "section": "dbl/tap2 then deliberate click"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "triple",
+   "follow": null,
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED",
+    "mousedown:3:dialog.dialog:SWALLOWED",
+    "click:3:dialog.dialog:SWALLOWED"
+   ],
+   "pass": true,
+   "problems": [],
+   "section": "triple click leaves it open"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "follow": null,
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "after_esc_open": false,
+   "after_esc_focus": "New bill",
+   "draft_unchanged": true,
+   "pass": true,
+   "problems": [],
+   "section": "dbl then Esc"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "tap2",
+   "follow": null,
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "after_esc_open": false,
+   "after_esc_focus": "New bill",
+   "draft_unchanged": true,
+   "pass": true,
+   "problems": [],
+   "section": "double tap then Esc"
+  },
+  {
+   "viewport": "360x640",
+   "gesture": "dbl",
+   "follow": null,
+   "opener_point": [
+    299,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_clicks": [
+    "mousedown:1:dialog.dialog:reached",
+    "click:1:dialog.dialog:reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "pass": true,
+   "problems": [],
+   "section": "backdrop over New bill at 600 ms"
+  },
+  {
+   "viewport": "1280x800",
+   "gesture": "dbl",
+   "follow": null,
+   "opener_point": [
+    1115,
+    54
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_clicks": [
+    "mousedown:1:dialog.dialog:reached",
+    "click:1:dialog.dialog:reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "pass": true,
+   "problems": [],
+   "section": "backdrop over New bill at 600 ms"
+  },
+  {
+   "viewport": "360x640",
+   "gesture": "tap2",
+   "follow": null,
+   "opener_point": [
+    299,
+    34
+   ],
+   "after_gesture_open": true,
+   "after_gesture_focus": "Cancel",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:SWALLOWED",
+    "click:2:dialog.dialog:SWALLOWED"
+   ],
+   "follow_clicks": [
+    "mousedown:1:dialog.dialog:reached",
+    "click:1:dialog.dialog:reached"
+   ],
+   "after_follow_open": false,
+   "after_follow_focus": "New bill",
+   "draft_unchanged": true,
+   "pass": true,
+   "problems": [],
+   "section": "backdrop over New bill at 600 ms"
+  },
+  {
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "follow": null,
+   "opener_point": [
+    329,
+    34
+   ],
+   "after_gesture_open": false,
+   "after_gesture_focus": "New bill",
+   "gesture_clicks": [
+    "mousedown:1:button.btn.btn-outline \"New bill\":reached",
+    "click:1:button.btn.btn-outline \"New bill\":reached",
+    "mousedown:2:dialog.dialog:reached",
+    "click:2:dialog.dialog:reached"
+   ],
+   "pass": false,
+   "problems": [],
+   "section": "control: tree before the fixes"
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

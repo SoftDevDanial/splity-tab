@@ -1,0 +1,63 @@
+{
+ "probe": "r3c-sec04-impact",
+ "server_pid": 53632,
+ "port": 63464,
+ "started": "2026-10-09 21:43:42",
+ "cases": [
+  {
+   "case": "ordinary 90 ms Enter press",
+   "before": {
+    "tape": "Bill summary Subtotal RM 15.90 + Service charge RM 1.59 10% of RM 15.90 + SST RM 1.05 6% of RM 17.49 = Total RM 18.54 Shares Person Items +Charges =Share Aisyah RM 15.90 RM 2.64 RM 18.54 Ben RM 0.00 RM 0.00 RM 0.00 Chen RM 0.00 RM 0.00 RM 0.00 Adds up to RM 15.90 RM 2.64 RM 18.54 Copy summary",
+    "items": [
+     [
+      "Nasi lemak ayam",
+      "15.90",
+      "RM Aisyah Ben Chen"
+     ]
+    ]
+   },
+   "after": {
+    "tape": "Shares Add an item to see the shares.",
+    "items": []
+   },
+   "saved_items": [],
+   "nextId": 8,
+   "problems": []
+  },
+  {
+   "case": "Enter held ~700 ms",
+   "before": {
+    "tape": "Bill summary Subtotal RM 15.90 + Service charge RM 1.59 10% of RM 15.90 + SST RM 1.05 6% of RM 17.49 = Total RM 18.54 Shares Person Items +Charges =Share Aisyah RM 15.90 RM 2.64 RM 18.54 Ben RM 0.00 RM 0.00 RM 0.00 Chen RM 0.00 RM 0.00 RM 0.00 Adds up to RM 15.90 RM 2.64 RM 18.54 Copy summary",
+    "items": [
+     [
+      "Nasi lemak ayam",
+      "15.90",
+      "RM Aisyah Ben Chen"
+     ]
+    ]
+   },
+   "after": {
+    "tape": "Shares Give every item a price to see the shares.",
+    "items": [
+     [
+      "",
+      "",
+      "RM Aisyah Ben Chen"
+     ]
+    ]
+   },
+   "saved_items": [
+    {
+     "id": "i8",
+     "name": "",
+     "priceText": "",
+     "who": []
+    }
+   ],
+   "nextId": 9,
+   "problems": [],
+   "after_one_click_on_blank_row_remove": []
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

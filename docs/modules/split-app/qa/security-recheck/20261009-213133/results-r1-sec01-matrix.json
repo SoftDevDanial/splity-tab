@@ -1,0 +1,1133 @@
+{
+ "probe": "r1-sec01-matrix",
+ "server_pid": 42440,
+ "port": 18591,
+ "started": "2026-10-09 21:35:56",
+ "cases": [
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "360x640",
+   "gesture": "dbl",
+   "point": [
+    154,
+    190
+   ],
+   "people_before": 3,
+   "people_after": 2,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 4,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "360x640",
+   "gesture": "triple",
+   "point": [
+    154,
+    190
+   ],
+   "people_before": 3,
+   "people_after": 2,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 4,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED",
+    "mousedown:3:button.btn.btn-outline:SWALLOWED",
+    "click:3:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "360x640",
+   "gesture": "tap2",
+   "point": [
+    154,
+    190
+   ],
+   "people_before": 3,
+   "people_after": 2,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 4,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "point": [
+    169,
+    190
+   ],
+   "people_before": 3,
+   "people_after": 2,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 4,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "390x844",
+   "gesture": "triple",
+   "point": [
+    169,
+    190
+   ],
+   "people_before": 3,
+   "people_after": 2,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 4,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED",
+    "mousedown:3:button.btn.btn-outline:SWALLOWED",
+    "click:3:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "390x844",
+   "gesture": "tap2",
+   "point": [
+    169,
+    190
+   ],
+   "people_before": 3,
+   "people_after": 2,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 4,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "1280x800",
+   "gesture": "dbl",
+   "point": [
+    654,
+    158
+   ],
+   "people_before": 3,
+   "people_after": 2,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 4,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "1280x800",
+   "gesture": "triple",
+   "point": [
+    654,
+    158
+   ],
+   "people_before": 3,
+   "people_after": 2,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 4,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED",
+    "mousedown:3:button.btn.btn-outline:SWALLOWED",
+    "click:3:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "1280x800",
+   "gesture": "tap2",
+   "point": [
+    654,
+    158
+   ],
+   "people_before": 3,
+   "people_after": 2,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 4,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "360x640",
+   "gesture": "dbl",
+   "point": [
+    322,
+    398
+   ],
+   "people_before": 12,
+   "people_after": 11,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 13,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 11 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "360x640",
+   "gesture": "triple",
+   "point": [
+    322,
+    398
+   ],
+   "people_before": 12,
+   "people_after": 11,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 13,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED",
+    "mousedown:3:button.btn.btn-outline:SWALLOWED",
+    "click:3:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 11 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "360x640",
+   "gesture": "tap2",
+   "point": [
+    322,
+    398
+   ],
+   "people_before": 12,
+   "people_after": 11,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 13,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 11 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "point": [
+    352,
+    398
+   ],
+   "people_before": 12,
+   "people_after": 11,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 13,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 11 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "390x844",
+   "gesture": "triple",
+   "point": [
+    352,
+    398
+   ],
+   "people_before": 12,
+   "people_after": 11,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 13,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED",
+    "mousedown:3:button.btn.btn-outline:SWALLOWED",
+    "click:3:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 11 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "390x844",
+   "gesture": "tap2",
+   "point": [
+    352,
+    398
+   ],
+   "people_before": 12,
+   "people_after": 11,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 13,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 11 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "1280x800",
+   "gesture": "dbl",
+   "point": [
+    654,
+    314
+   ],
+   "people_before": 12,
+   "people_after": 11,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 13,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 11 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "1280x800",
+   "gesture": "triple",
+   "point": [
+    654,
+    314
+   ],
+   "people_before": 12,
+   "people_after": 11,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 13,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED",
+    "mousedown:3:button.btn.btn-outline:SWALLOWED",
+    "click:3:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 11 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "1280x800",
+   "gesture": "tap2",
+   "point": [
+    654,
+    314
+   ],
+   "people_before": 12,
+   "people_after": 11,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 13,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "focus": "Person 11 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 last item (Remove Satay, 10 sticks)",
+   "viewport": "360x640",
+   "gesture": "dbl",
+   "point": [
+    322,
+    320
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 4,
+   "items_after": 3,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "click:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Item 3 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 last item (Remove Satay, 10 sticks)",
+   "viewport": "360x640",
+   "gesture": "triple",
+   "point": [
+    322,
+    320
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 4,
+   "items_after": 3,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "click:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED",
+    "mousedown:3:section.block:SWALLOWED",
+    "click:3:section.block:SWALLOWED"
+   ],
+   "focus": "Item 3 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 last item (Remove Satay, 10 sticks)",
+   "viewport": "360x640",
+   "gesture": "tap2",
+   "point": [
+    322,
+    320
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 4,
+   "items_after": 3,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "click:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Item 3 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 last item (Remove Satay, 10 sticks)",
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "point": [
+    352,
+    751
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 4,
+   "items_after": 3,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "click:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Item 3 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 last item (Remove Satay, 10 sticks)",
+   "viewport": "390x844",
+   "gesture": "triple",
+   "point": [
+    352,
+    751
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 4,
+   "items_after": 3,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "click:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED",
+    "mousedown:3:section.block:SWALLOWED",
+    "click:3:section.block:SWALLOWED"
+   ],
+   "focus": "Item 3 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 last item (Remove Satay, 10 sticks)",
+   "viewport": "390x844",
+   "gesture": "tap2",
+   "point": [
+    352,
+    751
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 4,
+   "items_after": 3,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "click:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Item 3 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 last item (Remove Satay, 10 sticks)",
+   "viewport": "1280x800",
+   "gesture": "dbl",
+   "point": [
+    654,
+    771
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 4,
+   "items_after": 3,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "click:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Item 3 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 last item (Remove Satay, 10 sticks)",
+   "viewport": "1280x800",
+   "gesture": "triple",
+   "point": [
+    654,
+    771
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 4,
+   "items_after": 3,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "click:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED",
+    "mousedown:3:section.block:SWALLOWED",
+    "click:3:section.block:SWALLOWED"
+   ],
+   "focus": "Item 3 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 last item (Remove Satay, 10 sticks)",
+   "viewport": "1280x800",
+   "gesture": "tap2",
+   "point": [
+    654,
+    771
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 4,
+   "items_after": 3,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "click:1:button.icon-btn [Remove Satay, 10 sticks]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Item 3 name",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 only item (Remove Nasi lemak ayam)",
+   "viewport": "360x640",
+   "gesture": "dbl",
+   "point": [
+    322,
+    364
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 1,
+   "items_after": 0,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Add item",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 only item (Remove Nasi lemak ayam)",
+   "viewport": "360x640",
+   "gesture": "triple",
+   "point": [
+    322,
+    364
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 1,
+   "items_after": 0,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED",
+    "mousedown:3:section.block:SWALLOWED",
+    "click:3:section.block:SWALLOWED"
+   ],
+   "focus": "Add item",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 only item (Remove Nasi lemak ayam)",
+   "viewport": "360x640",
+   "gesture": "tap2",
+   "point": [
+    322,
+    364
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 1,
+   "items_after": 0,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Add item",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 only item (Remove Nasi lemak ayam)",
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "point": [
+    352,
+    364
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 1,
+   "items_after": 0,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Add item",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 only item (Remove Nasi lemak ayam)",
+   "viewport": "390x844",
+   "gesture": "triple",
+   "point": [
+    352,
+    364
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 1,
+   "items_after": 0,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED",
+    "mousedown:3:section.block:SWALLOWED",
+    "click:3:section.block:SWALLOWED"
+   ],
+   "focus": "Add item",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 only item (Remove Nasi lemak ayam)",
+   "viewport": "390x844",
+   "gesture": "tap2",
+   "point": [
+    352,
+    364
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 1,
+   "items_after": 0,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Add item",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 only item (Remove Nasi lemak ayam)",
+   "viewport": "1280x800",
+   "gesture": "dbl",
+   "point": [
+    654,
+    384
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 1,
+   "items_after": 0,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Add item",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 only item (Remove Nasi lemak ayam)",
+   "viewport": "1280x800",
+   "gesture": "triple",
+   "point": [
+    654,
+    384
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 1,
+   "items_after": 0,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED",
+    "mousedown:3:section.block:SWALLOWED",
+    "click:3:section.block:SWALLOWED"
+   ],
+   "focus": "Add item",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S1 only item (Remove Nasi lemak ayam)",
+   "viewport": "1280x800",
+   "gesture": "tap2",
+   "point": [
+    654,
+    384
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 1,
+   "items_after": 0,
+   "nextId_before": 8,
+   "nextId_after": 8,
+   "blank_people": [],
+   "blank_items": [],
+   "bill_equals_expected": true,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "click:1:button.icon-btn [Remove Nasi lemak ayam]:reached",
+    "mousedown:2:section.block:SWALLOWED",
+    "click:2:section.block:SWALLOWED"
+   ],
+   "focus": "Add item",
+   "problems": [],
+   "section": "fixed tree",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "390x844",
+   "gesture": "dbl",
+   "point": [
+    169,
+    190
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 5,
+   "blank_people": [
+    "p4"
+   ],
+   "blank_items": [],
+   "bill_equals_expected": false,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:reached",
+    "click:2:button.btn.btn-outline:reached"
+   ],
+   "focus": "Person 3 name",
+   "problems": [],
+   "section": "control: tree before the fixes (06fa151) from memory",
+   "pass": true
+  },
+  {
+   "case": "S2 last person (Remove Chen)",
+   "viewport": "360x640",
+   "gesture": "tap2",
+   "point": [
+    154,
+    190
+   ],
+   "people_before": 3,
+   "people_after": 3,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 4,
+   "nextId_after": 5,
+   "blank_people": [
+    "p4"
+   ],
+   "blank_items": [],
+   "bill_equals_expected": false,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:reached",
+    "click:2:button.btn.btn-outline:reached"
+   ],
+   "focus": "Person 3 name",
+   "problems": [],
+   "section": "control: tree before the fixes (06fa151) from memory",
+   "pass": true
+  },
+  {
+   "case": "S8 last of 12 (Remove Mei Ling)",
+   "viewport": "1280x800",
+   "gesture": "triple",
+   "point": [
+    654,
+    314
+   ],
+   "people_before": 12,
+   "people_after": 12,
+   "items_before": 0,
+   "items_after": 0,
+   "nextId_before": 13,
+   "nextId_after": 14,
+   "blank_people": [
+    "p13"
+   ],
+   "blank_items": [],
+   "bill_equals_expected": false,
+   "clicks": [
+    "mousedown:1:button.icon-btn [Remove Mei Ling]:reached",
+    "click:1:button.icon-btn [Remove Mei Ling]:reached",
+    "mousedown:2:button.btn.btn-outline:reached",
+    "click:2:button.btn.btn-outline:reached",
+    "mousedown:3:button.icon-btn [Remove Person 12]:reached",
+    "click:3:button.icon-btn [Remove Person 12]:reached"
+   ],
+   "focus": "Remove Person 12",
+   "problems": [],
+   "section": "control: tree before the fixes (06fa151) from memory",
+   "pass": true
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

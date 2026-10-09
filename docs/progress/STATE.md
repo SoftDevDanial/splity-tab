@@ -4,20 +4,20 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** execute (split-app: security re-check)
+- **phase:** execute (split-app: official live gate, README, module close)
 - **next:** execute
 
 ## Modules
 | module | nature | depends on | status | last green |
 |---|---|---|---|---|
 | split-core | logic | none | CLOSED 2026-10-09 | `329679e` |
-| split-app | FE + live composition | split-core | built, QA PASS, code review solved, security solved (312 browser + 275 unit, fidelity 0 px, `b02386b`); scoped security re-check running (stop rule after it), then official live gate, README, module close | |
+| split-app | FE + live composition | split-core | built, QA PASS, code review solved, security clean (SEC-04 accepted for v1.0, to v1.1.0), 312 browser + 275 unit, fidelity 0 px (`b02386b`); official live gate, README, module close next | |
 
 ## Blockers
 none
 
 ## Next action
-Scoped security re-check of 071577a and 68ab318 (stop rule). Then official live gate into docs/modules/split-app/qa/live-e2e/<ts>/, README (WR-08) from BUILD.md, ROADMAP PD-14, module close. The fidelity re-check is covered by the solver's 10 of 10 at 0 px on the final code.
+Official live gate into docs/modules/split-app/qa/live-e2e/<ts>/ on the final code. README (WR-08) from BUILD.md, noting the v1.0 limits (H-02, SEC-04, Dismiss note focus). ROADMAP PD-14 fix. Module close. Then regression --full, review, UAT pre-run.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

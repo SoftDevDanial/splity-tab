@@ -1,0 +1,148 @@
+{
+ "probe": "r5-csp-live",
+ "server_pid": 52924,
+ "port": 3195,
+ "started": "2026-10-09 21:46:28",
+ "cases": [
+  {
+   "case": "F1 390x844 mouse and keyboard flow over people.js, items.js, dialog.js",
+   "csp_violations": [],
+   "console": [],
+   "page_errors": [],
+   "request_count": 22,
+   "distinct_requests": [
+    "GET /",
+    "GET /src/core/allocate.js",
+    "GET /src/core/bill.js",
+    "GET /src/core/money.js",
+    "GET /src/core/result.js",
+    "GET /src/core/summary.js",
+    "GET /src/draft.js",
+    "GET /src/errors.js",
+    "GET /src/main.js",
+    "GET /src/system.css",
+    "GET /src/ui/charges.js",
+    "GET /src/ui/dialog.js",
+    "GET /src/ui/dom.js",
+    "GET /src/ui/field-error.js",
+    "GET /src/ui/field-leave.js",
+    "GET /src/ui/icons.js",
+    "GET /src/ui/items.js",
+    "GET /src/ui/mode.js",
+    "GET /src/ui/note.js",
+    "GET /src/ui/panel.js",
+    "GET /src/ui/people.js",
+    "GET /src/ui/subtotal.js"
+   ],
+   "statuses": [
+    200
+   ],
+   "failed": [],
+   "localStorage_keys": [
+    "split.draft"
+   ],
+   "cookie": "",
+   "problems": [],
+   "pass": true
+  },
+  {
+   "case": "F2 360x640 touch flow",
+   "csp_violations": [],
+   "console": [],
+   "page_errors": [],
+   "request_count": 22,
+   "distinct_requests": [
+    "GET /",
+    "GET /src/core/allocate.js",
+    "GET /src/core/bill.js",
+    "GET /src/core/money.js",
+    "GET /src/core/result.js",
+    "GET /src/core/summary.js",
+    "GET /src/draft.js",
+    "GET /src/errors.js",
+    "GET /src/main.js",
+    "GET /src/system.css",
+    "GET /src/ui/charges.js",
+    "GET /src/ui/dialog.js",
+    "GET /src/ui/dom.js",
+    "GET /src/ui/field-error.js",
+    "GET /src/ui/field-leave.js",
+    "GET /src/ui/icons.js",
+    "GET /src/ui/items.js",
+    "GET /src/ui/mode.js",
+    "GET /src/ui/note.js",
+    "GET /src/ui/panel.js",
+    "GET /src/ui/people.js",
+    "GET /src/ui/subtotal.js"
+   ],
+   "statuses": [
+    200
+   ],
+   "failed": [],
+   "localStorage_keys": [
+    "split.draft"
+   ],
+   "cookie": "",
+   "problems": [],
+   "pass": true
+  },
+  {
+   "case": "F3 cold boot and reload (no draft)",
+   "csp_violations": [],
+   "console": [],
+   "page_errors": [],
+   "request_count": 44,
+   "distinct_requests": [
+    "GET /",
+    "GET /src/core/allocate.js",
+    "GET /src/core/bill.js",
+    "GET /src/core/money.js",
+    "GET /src/core/result.js",
+    "GET /src/core/summary.js",
+    "GET /src/draft.js",
+    "GET /src/errors.js",
+    "GET /src/main.js",
+    "GET /src/system.css",
+    "GET /src/ui/charges.js",
+    "GET /src/ui/dialog.js",
+    "GET /src/ui/dom.js",
+    "GET /src/ui/field-error.js",
+    "GET /src/ui/field-leave.js",
+    "GET /src/ui/icons.js",
+    "GET /src/ui/items.js",
+    "GET /src/ui/mode.js",
+    "GET /src/ui/note.js",
+    "GET /src/ui/panel.js",
+    "GET /src/ui/people.js",
+    "GET /src/ui/subtotal.js"
+   ],
+   "statuses": [
+    200
+   ],
+   "failed": [],
+   "localStorage_keys": [],
+   "cookie": "",
+   "problems": [],
+   "pass": true
+  },
+  {
+   "case": "positive control: inline script and same-origin fetch from the page",
+   "inline_script_ran": false,
+   "fetch_result": "blocked",
+   "violations": [
+    "script-src-elem | inline",
+    "connect-src | http://127.0.0.1:3195/"
+   ],
+   "pass": true
+  },
+  {
+   "case": "rig.new_context refuses bypass_csp and permissions",
+   "refused": {
+    "bypass_csp": "bypass_csp is never set on a test context",
+    "permissions": "permissions is never set on a test context"
+   },
+   "pass": true
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}

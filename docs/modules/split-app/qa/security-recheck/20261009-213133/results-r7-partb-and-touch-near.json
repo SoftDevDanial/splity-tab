@@ -1,0 +1,768 @@
+{
+ "probe": "r7-partb-and-touch-near",
+ "server_pid": 27160,
+ "port": 29353,
+ "started": "2026-10-09 21:48:55",
+ "cases": [
+  {
+   "part": "B",
+   "control": "toggle-ben-item1",
+   "gesture": "dbl",
+   "data_equal_single": true,
+   "events": [
+    "mousedown:1:button.tap \"Ben\":reached",
+    "click:1:button.tap \"Ben\":reached",
+    "mousedown:2:li.item:reached",
+    "click:2:li.item:reached"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:true",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:true",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "section": "part B",
+   "remove_clicks": []
+  },
+  {
+   "part": "B",
+   "control": "toggle-ben-item1",
+   "gesture": "tap2",
+   "data_equal_single": false,
+   "events": [
+    "mousedown:1:button.tap \"Ben\":reached",
+    "click:1:button.tap \"Ben\":reached",
+    "mousedown:2:button.tap \"Ben\":reached",
+    "click:2:button.tap \"Ben\":reached"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:true",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "section": "part B",
+   "remove_clicks": []
+  },
+  {
+   "part": "B",
+   "control": "toggle-aisyah-item1",
+   "gesture": "dbl",
+   "data_equal_single": true,
+   "events": [
+    "mousedown:1:button.tap \"Aisyah\":reached",
+    "click:1:button.tap \"Aisyah\":reached",
+    "mousedown:2:li.item:reached",
+    "click:2:li.item:reached"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "section": "part B",
+   "remove_clicks": []
+  },
+  {
+   "part": "B",
+   "control": "toggle-aisyah-item1",
+   "gesture": "tap2",
+   "data_equal_single": false,
+   "events": [
+    "mousedown:1:button.tap \"Aisyah\":reached",
+    "click:1:button.tap \"Aisyah\":reached",
+    "mousedown:2:button.tap \"Aisyah\":reached",
+    "click:2:button.tap \"Aisyah\":reached"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "section": "part B",
+   "remove_clicks": []
+  },
+  {
+   "part": "B",
+   "control": "remove-item2",
+   "gesture": "dbl",
+   "data_equal_single": true,
+   "events": [
+    "mousedown:1:button.icon-btn [Remove Char kuey teow]:reached",
+    "click:1:button.icon-btn [Remove Char kuey teow]:reached",
+    "mousedown:2:li.item:SWALLOWED",
+    "click:2:li.item:SWALLOWED"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "section": "part B",
+   "remove_clicks": [
+    "click:1:button.icon-btn [Remove Char kuey teow]:reached"
+   ]
+  },
+  {
+   "part": "B",
+   "control": "remove-item2",
+   "gesture": "tap2",
+   "data_equal_single": true,
+   "events": [
+    "mousedown:1:button.icon-btn [Remove Char kuey teow]:reached",
+    "click:1:button.icon-btn [Remove Char kuey teow]:reached",
+    "mousedown:2:button.icon-btn [Remove Mee goreng mamak]:SWALLOWED",
+    "click:2:button.icon-btn [Remove Mee goreng mamak]:SWALLOWED"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "section": "part B",
+   "remove_clicks": [
+    "click:1:button.icon-btn [Remove Char kuey teow]:reached",
+    "click:2:button.icon-btn [Remove Mee goreng mamak]:SWALLOWED"
+   ]
+  },
+  {
+   "part": "B",
+   "control": "add-item",
+   "gesture": "dbl",
+   "data_equal_single": true,
+   "events": [
+    "mousedown:1:button.btn.btn-outline:reached",
+    "click:1:button.btn.btn-outline:reached",
+    "mousedown:2:p.result-msg \"Give every item a price \":reached",
+    "click:2:p.result-msg \"Give every item a price \":reached"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:false"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:false"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "section": "part B",
+   "remove_clicks": []
+  },
+  {
+   "part": "B",
+   "control": "add-item",
+   "gesture": "tap2",
+   "data_equal_single": true,
+   "events": [
+    "mousedown:1:button.btn.btn-outline:reached",
+    "click:1:button.btn.btn-outline:reached",
+    "mousedown:2:p.result-msg \"Give every item a price \":reached",
+    "click:2:p.result-msg \"Give every item a price \":reached"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:false"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true",
+     "Chen:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false",
+     "Chen:true"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false",
+     "Chen:false"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "section": "part B",
+   "remove_clicks": []
+  },
+  {
+   "part": "B",
+   "control": "remove-person-3",
+   "gesture": "dbl",
+   "data_equal_single": true,
+   "events": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:true",
+     "Ben:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:true",
+     "Ben:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben"
+   ],
+   "section": "part B",
+   "remove_clicks": [
+    "click:1:button.icon-btn [Remove Chen]:reached"
+   ]
+  },
+  {
+   "part": "B",
+   "control": "remove-person-3",
+   "gesture": "tap2",
+   "data_equal_single": true,
+   "events": [
+    "mousedown:1:button.icon-btn [Remove Chen]:reached",
+    "click:1:button.icon-btn [Remove Chen]:reached",
+    "mousedown:2:button.btn.btn-outline:SWALLOWED",
+    "click:2:button.btn.btn-outline:SWALLOWED"
+   ],
+   "problems": [],
+   "single_items": [
+    [
+     "Aisyah:true",
+     "Ben:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false"
+    ]
+   ],
+   "after_items": [
+    [
+     "Aisyah:true",
+     "Ben:false"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:true"
+    ],
+    [
+     "Aisyah:false",
+     "Ben:false"
+    ],
+    [
+     "Aisyah:true",
+     "Ben:false"
+    ]
+   ],
+   "single_people": [
+    "Aisyah",
+    "Ben"
+   ],
+   "after_people": [
+    "Aisyah",
+    "Ben"
+   ],
+   "section": "part B",
+   "remove_clicks": [
+    "click:1:button.icon-btn [Remove Chen]:reached"
+   ]
+  },
+  {
+   "section": "touch near",
+   "viewport": "390x844",
+   "offset_px": 30,
+   "events": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "mousedown:1:input [Person 2 name]:reached",
+    "click:1:input [Person 2 name]:reached"
+   ],
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "pass": true
+  },
+  {
+   "section": "touch near",
+   "viewport": "390x844",
+   "offset_px": 40,
+   "events": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "mousedown:1:input [Person 2 name]:reached",
+    "click:1:input [Person 2 name]:reached"
+   ],
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "pass": true
+  },
+  {
+   "section": "touch near",
+   "viewport": "390x844",
+   "offset_px": 60,
+   "events": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "mousedown:1:input [Person 2 name]:reached",
+    "click:1:input [Person 2 name]:reached"
+   ],
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "pass": true
+  },
+  {
+   "section": "touch near",
+   "viewport": "360x640",
+   "offset_px": 30,
+   "events": [
+    "mousedown:1:button.icon-btn [Remove P2]:reached",
+    "click:1:button.icon-btn [Remove P2]:reached",
+    "mousedown:1:input [Person 2 name]:reached",
+    "click:1:input [Person 2 name]:reached"
+   ],
+   "people": [
+    "p1",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "focus": "Person 2 name",
+   "problems": [],
+   "pass": true
+  }
+ ],
+ "chromium": "149.0.7827.55"
+}
