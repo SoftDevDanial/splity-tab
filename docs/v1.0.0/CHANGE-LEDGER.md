@@ -195,6 +195,7 @@ Clears everything after a confirmation.
 | 43 | Rulings on the split-app security audit | 2026-10-09 execute | SEC-01 fixed the general way: `swallowRepeatClicks` moves to dom.js and guards the Remove handlers of people and items in place of `isRepeatClick`. I-1 (a double click on New bill flashes the dialog open then shut) fixed with the same helper if it needs no other change. SEC-02 fixed with a Publish section in CLAUDE.md (serve only index.html, src/ and .nojekyll), same as Streaks SEC-04. SEC-03 accepted residual: only a hand-edited draft or a same-origin page reaches it, and such a page can already overwrite the draft outright, so it adds no capability. Spec gaps closed in the solver's doc pass: threat rows for a repeated press and for the publish scope, the stale U+2028 residual, the CR and LF wording. Stop rule: one scoped re-check, then no further security round | ORCH | Ruled, reversible |
 | 44 | split-app security solver: SEC-01 `071577a` (swallowRepeatClicks moved to dom.js and guards every Remove: 40 of 40 defect rows red before, 54 of 54 green, 5 mutants red), I-1 `68ab318` (the New bill opener arms the guard, the dialog stays open after a double click or tap: 12 of 14 red before, 14 of 14 green), SEC-02 `314b827` (Publish section in CLAUDE.md), SEC-03 accepted residual in spec.md, doc pass `314b827` and `12bc878` (threat rows for a repeated press and the publish scope, U+2028 and CR LF wording measured). Browser 244 to 312, unit 275, fidelity 10 of 10 at 0 px, live gate 7 of 7 (solver's own run). The audit's 123-row ghost sweep re-run: data differences only on the toggles that flip twice by design | 2026-10-09 execute | Solver section in findings/security.md, evidence `qa/security-solver/20261009-205629/` and `qa/fidelity/20261009-212142/`, final `b02386b` | LANE (sdlc-security-solver, sonnet) | Solved, scoped re-check pending |
 | 45 | Two tabs of one browser editing the bill: last writer wins (audit spec gap 6, not modelled) | 2026-10-09 execute | Accepted as known behaviour for v1.0. The brainstorm keeps one draft in one browser on purpose, and each tab only overwrites the user's own draft | ORCH | Accepted residual |
+| 46 | Versioning is part of the showcase: the owner said "Part of the showcase is to show the versioning as well" and chose "Second version per app" and "Fix the v1.0 limits" | 2026-10-09 execute | After the owner seals v1.0.0, Split runs v1.1.0 with one scope item: H-02, the by-item table fits a 360 px phone (small design pass on the table, then plan, execute, finders, regression, review, UAT). H-02 ruled: shipped in v1.0.0 as an accepted limit | USER | Ruled |
 
 ---
 
@@ -219,7 +220,10 @@ Clears everything after a confirmation.
   design for the table (for example a smaller amount column or wrapping names).
 - **Recommendation:** accept for v1.0 and note it in the README. A restaurant bill that large on a 360 px
   phone is uncommon.
-- **Ruling:** (pending)
+- **Ruling:** 2026-10-09 21:35, USER. Asked what the next version holds, the owner chose "Fix the v1.0
+  limits", with H-02 named in the choice. So v1.0.0 ships with the overflow (accepted for v1.0, noted in
+  the README), and v1.1.0 fixes it through a small design pass on the table, since the golden CSS can
+  only change in the design phase.
 
 ---
 
