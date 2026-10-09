@@ -125,3 +125,7 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-09 20:54 split-app security audit collected
 - Audit: SEC-01 MEDIUM (double click on the last Remove adds a blank person), SEC-02 LOW publish scope, SEC-03 LOW nextId ceiling.
 - ORCH: SEC-01 and I-1 fixed with swallowRepeatClicks in dom.js, SEC-02 Publish section, SEC-03 accepted residual, spec gaps in the doc pass.
+
+## 2026-10-09 21:28 split-app security solver collected
+- Solver: SEC-01 and I-1 fixed with swallowRepeatClicks on every Remove and the New bill opener, SEC-02 Publish section, SEC-03 and two-tab last writer wins accepted. Browser 312, unit 275, fidelity 10 of 10 at 0 px.
+- Scoped re-check launched (sonnet). Stop rule after it.

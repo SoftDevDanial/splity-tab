@@ -4,20 +4,20 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** execute (split-app: security solver)
+- **phase:** execute (split-app: security re-check)
 - **next:** execute
 
 ## Modules
 | module | nature | depends on | status | last green |
 |---|---|---|---|---|
 | split-core | logic | none | CLOSED 2026-10-09 | `329679e` |
-| split-app | FE + live composition | split-core | built, QA PASS, code review solved (244 browser + 275 unit, fidelity 0 px, `61c3cd3`); security audit 1 MEDIUM 2 LOW, solver running; then one scoped re-check, fidelity re-check, official live gate, README, module close | |
+| split-app | FE + live composition | split-core | built, QA PASS, code review solved, security solved (312 browser + 275 unit, fidelity 0 px, `b02386b`); scoped security re-check running (stop rule after it), then official live gate, README, module close | |
 
 ## Blockers
 none
 
 ## Next action
-Security solver (SEC-01 repeat press on the last Remove, I-1, SEC-02 Publish section, spec gaps). Then one scoped security re-check (stop rule), fidelity re-check, official live gate into docs/modules/split-app/qa/live-e2e/<ts>/, README (WR-08) and qa.md scenarios, ROADMAP PD-14, module close.
+Scoped security re-check of 071577a and 68ab318 (stop rule). Then official live gate into docs/modules/split-app/qa/live-e2e/<ts>/, README (WR-08) from BUILD.md, ROADMAP PD-14, module close. The fidelity re-check is covered by the solver's 10 of 10 at 0 px on the final code.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.
