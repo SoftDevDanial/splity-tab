@@ -62,6 +62,12 @@ test("@R8 a zero weight always gets 0 and a single weight gets everything", () =
   assert.deepEqual(allocateByWeight(7, [4]), [7]);
 });
 
+test("@R16 allocateByWeight leaves frozen weights alone", () => {
+  const weights = Object.freeze([1, 2]);
+  assert.deepEqual(allocateByWeight(10, weights), [4, 6]);
+  assert.deepEqual(weights, [1, 2]);
+});
+
 test("@R7 @R8 results are plain numbers, not BigInt", () => {
   for (const value of [...allocateEvenly(10, 3), ...allocateByWeight(10, [1, 2])]) {
     assert.equal(typeof value, "number");

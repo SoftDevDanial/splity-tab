@@ -1,5 +1,7 @@
 // The named example bills of qa.md. Built through the real actions, like the app builds them,
 // so ids and nextId match what a person would get by tapping (S1 ends at nextId 8, D2 at 5).
+// Every fixture is deep-frozen, so a function that writes to its input throws in each test that uses
+// one (R16), instead of silently changing the fixture for the tests after it.
 import {
   newBill, addPerson, addItem, setPersonName, setItemName, setItemPriceText,
   toggleItemPerson, setMode, setSubtotalText, setServiceText, setSstText,
@@ -40,6 +42,8 @@ export function deepFreeze(value) {
   return value;
 }
 
+const fixture = (spec) => deepFreeze(buildBill(spec));
+
 const TRIO = ["Aisyah", "Ben", "Chen"];
 const s1Items = () => [
   { name: "Nasi lemak ayam", price: "15.90", who: ["p1"] },
@@ -48,17 +52,17 @@ const s1Items = () => [
   { name: "Satay, 10 sticks", price: "18.00", who: ["p1", "p3"] },
 ];
 
-export const S2 = buildBill({ names: TRIO, subtotal: "100.00" });
-export const S1 = buildBill({ mode: "item", names: TRIO, items: s1Items() });
-export const S5 = buildBill({
+export const S2 = fixture({ names: TRIO, subtotal: "100.00" });
+export const S1 = fixture({ mode: "item", names: TRIO, items: s1Items() });
+export const S5 = fixture({
   mode: "item",
   names: TRIO,
   items: s1Items().map((item) => (item.name === "Mee goreng mamak" ? { ...item, who: [] } : item)),
 });
-export const E1 = buildBill({ names: ["A", "B", "C", "D"], subtotal: "87.65" });
-export const E2 = buildBill({ names: TRIO, subtotal: "10.00", service: "0", sst: "0" });
-export const E3 = buildBill({ subtotal: "50.00", service: "12.5", sst: "6.25" });
-export const I2 = buildBill({
+export const E1 = fixture({ names: ["A", "B", "C", "D"], subtotal: "87.65" });
+export const E2 = fixture({ names: TRIO, subtotal: "10.00", service: "0", sst: "0" });
+export const E3 = fixture({ subtotal: "50.00", service: "12.5", sst: "6.25" });
+export const I2 = fixture({
   mode: "item",
   names: TRIO,
   items: [
@@ -66,8 +70,8 @@ export const I2 = buildBill({
     { name: "Y", price: "5.01", who: ["p2", "p3"] },
   ],
 });
-export const I3 = buildBill({ mode: "item", names: TRIO, items: [{ price: "10.01", who: ["p3", "p1"] }] });
-export const I4 = buildBill({
+export const I3 = fixture({ mode: "item", names: TRIO, items: [{ price: "10.01", who: ["p3", "p1"] }] });
+export const I4 = fixture({
   mode: "item",
   names: TRIO,
   service: "0",
@@ -76,8 +80,8 @@ export const I4 = buildBill({
 });
 
 const TWELVE = Array.from({ length: 12 }, (_, index) => `Person ${index + 1}`);
-export const MAX_E = buildBill({ names: TWELVE, subtotal: "99999.99", service: "30", sst: "20" });
-export const MAX_I = buildBill({
+export const MAX_E = fixture({ names: TWELVE, subtotal: "99999.99", service: "30", sst: "20" });
+export const MAX_I = fixture({
   mode: "item",
   names: TWELVE,
   service: "30",
@@ -85,8 +89,8 @@ export const MAX_I = buildBill({
   items: Array.from({ length: 50 }, (_, k) => ({ price: "99999.99", who: [`p${(k % 12) + 1}`] })),
 });
 
-export const D1 = buildBill({ names: ["Ben", "Ben", "Chen"], subtotal: "100.00" });
-export const D2 = buildBill({
+export const D1 = fixture({ names: ["Ben", "Ben", "Chen"], subtotal: "100.00" });
+export const D2 = fixture({
   mode: "item",
   names: ["Ben", "Ben", "Chen"],
   items: [{ name: "Tea", price: "10.00", who: ["p2"] }],

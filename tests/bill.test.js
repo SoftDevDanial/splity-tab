@@ -223,6 +223,11 @@ for (const [kind, entry, index, label] of labels) {
   });
 }
 
+test("@R16 @R17 the labels leave a frozen person or item alone", () => {
+  assert.equal(personLabel(Object.freeze({ id: "p1", name: " A " }), 0), "A");
+  assert.equal(itemLabel(Object.freeze({ id: "i3", name: " Satay ", priceText: "", who: Object.freeze([]) }), 0), "Satay");
+});
+
 test("@R17 the fallback follows the position after a removal", () => {
   let bill = setPersonName(setPersonName(addPerson(newBill()), "p1", ""), "p2", "Ben");
   assert.deepEqual(bill.people.map(personLabel), ["Person 1", "Ben", "Person 3"]);

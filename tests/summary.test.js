@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { summaryText } from "../src/core/summary.js";
 import { computeResult } from "../src/core/result.js";
 import { setPersonName } from "../src/core/bill.js";
-import { S1, S2, S5, E2, E3, I2, D1, D2 } from "./support/bills.js";
+import { S1, S2, S5, E2, E3, I2, D1, D2, deepFreeze } from "./support/bills.js";
 
 const block = (...lines) => lines.join("\n");
 
@@ -82,6 +82,13 @@ test("@R26 equal names print one line each", () => {
 test("@R24 a blank name prints as its position", () => {
   const text = summaryText(computeResult(setPersonName(S2, "p2", "   ")));
   assert.equal(text.split("\n")[3], "Person 2 RM 38.87");
+});
+
+test("@R16 summaryText leaves a deep-frozen result alone", () => {
+  for (const bill of [S1, S2]) {
+    const frozen = deepFreeze(computeResult(bill));
+    assert.equal(summaryText(frozen), summaryText(computeResult(bill)));
+  }
 });
 
 test("@R24 results without shares are refused with TypeError", () => {

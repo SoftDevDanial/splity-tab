@@ -335,6 +335,16 @@ Feature: split-core money, maths, state rules and summary text
     Then none throws
     And each action that changed something returned a new object
 
+  @R16
+  # [Added 2026-10-09, ORCH, code-review WR-05] R16 covers every exported function, not only the
+  # actions. The named example bills are also deep-frozen in tests/support/bills.js, so every test
+  # that passes one to computeResult checks R16 as well.
+  Scenario: The other functions that take objects leave them alone
+    When personLabel and itemLabel get a frozen person and item
+    And allocateByWeight gets frozen weights
+    And summaryText gets a deep-frozen result for S1 and for S2
+    Then none throws and each returns what it returns for an unfrozen input
+
   @R17
   Scenario Outline: Display names fall back to their position
     Given a <kind> named "<name>" at index <index>
