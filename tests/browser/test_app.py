@@ -639,4 +639,196 @@ def test_R10_an_empty_rate_never_shows_an_error(open_app):
     assert panel_text(page) == "Shares\nCheck the charges to see the shares."
 
 
+# ---------------------------------------------------------------- Task 7: the bill panel (R3, R16 to R21)
+S1_SUMMARY = [["Subtotal", "RM 59.40", ""], ["+Service charge", "RM 5.94", "10% of RM 59.40"],
+              ["+SST", "RM 3.92", "6% of RM 65.34"], ["=Total", "RM 69.26", ""]]
+S2_SUMMARY = [["Subtotal", "RM 100.00", ""], ["+Service charge", "RM 10.00", "10% of RM 100.00"],
+              ["+SST", "RM 6.60", "6% of RM 110.00"], ["=Total", "RM 116.60", ""]]
+S1_ROWS = [["Aisyah", "RM 24.90", "RM 4.14", "RM 29.04"], ["Ben", "RM 13.50", "RM 2.24", "RM 15.74"],
+           ["Chen", "RM 21.00", "RM 3.48", "RM 24.48"]]
+S1_CHECK = [["Adds up to", "RM 59.40", "RM 9.86", "RM 69.26"]]
+S2_ROWS = [["Aisyah", "RM 38.87"], ["Ben", "RM 38.87"], ["Chen", "RM 38.86"]]
+S2_CHECK = [["Adds up to", "RM 116.60"]]
+COPY_BUTTON = "button.copy"
+
+
+def table_cells(page, part):
+    """Cell texts of table.shares thead, tbody or tfoot, one list per row."""
+    return page.evaluate(
+        "(part) => [...document.querySelectorAll(`table.shares ${part} tr`)].map((tr) => [...tr.children].map((c) => c.textContent.trim()))",
+        part)
+
+
+def summary_rows(page):
+    return page.evaluate(
+        "() => [...document.querySelectorAll('dl.sum .row')].map((r) => [r.querySelector('dt').textContent.trim(),"
+        " r.querySelector('.amt').textContent.trim(), (r.querySelector('.work') || { textContent: '' }).textContent.trim()])")
+
+
+def build_s2(page):
+    """The S2 bill by gestures: Aisyah, Ben, Chen, Even, Subtotal 100.00."""
+    three_people(page)
+    subtotal_field(page).fill("100.00")
+
+
+def build_s5(page):
+    build_s1(page)
+    toggle(page, "Mee goreng mamak", "Chen").click()
+
+
+@pytest.mark.parametrize("state, build, golden", [
+    ("S2", build_s2, "bill-even"), ("S1", build_s1, "bill-items"), ("S5", build_s5, "bill-unassigned")])
+def test_R3_rendered_markup_matches_its_golden_by_gestures(open_app, plain_context, state, build, golden):
+    page = open_app().page
+    build(page)
+    assert first_diff(dom_walk(page), golden_walk(plain_context, golden)) is None, state
+
+
+def test_R9_a_subtotal_drives_the_even_split(open_app):
+    page = open_app().page
+    subtotal_field(page).fill("100.00")
+    assert summary_rows(page) == S2_SUMMARY
+    assert table_cells(page, "tbody") == [["Person 1", "RM 58.30"], ["Person 2", "RM 58.30"]]
+
+
+def test_R16_the_panel_follows_every_keystroke_and_stays_quiet(open_app):
+    page = open_app().page
+    build_s2(page)
+    support.replace_text(page, subtotal_field(page), "5")
+    assert summary_rows(page)[3][1] == "RM 5.83" and [r[1] for r in table_cells(page, "tbody")] == ["RM 1.95", "RM 1.94", "RM 1.94"]
+    page.keyboard.type("0")
+    assert summary_rows(page)[3][1] == "RM 58.30" and [r[1] for r in table_cells(page, "tbody")] == ["RM 19.44", "RM 19.43", "RM 19.43"]
+    live = page.evaluate("() => [...document.querySelectorAll(\"div.tape, div.tape *\")].filter((e) => e.hasAttribute('aria-live') "
+                         "|| ['status', 'alert', 'log'].includes(e.getAttribute('role'))).map((e) => e.className)")
+    assert live == ["status"]  # the copy status is the one live region (R24); the panel and its sections have none
+
+
+BLOCKED_CASES = [
+    pytest.param(lambda page: (build_s2(page), support.replace_text(page, rate_field(page, "Service charge"), "")),
+                 "Check the charges to see the shares.", id="rate-empty"),
+    pytest.param(lambda page: (build_s1(page), support.replace_text(page, rate_field(page, "SST"), "25")),
+                 "Check the charges to see the shares.", id="rate-too-high"),
+    pytest.param(lambda page: (build_s2(page), support.replace_text(page, subtotal_field(page), "")),
+                 "Enter the subtotal to see the shares.", id="subtotal-empty"),
+    pytest.param(lambda page: switch_to(page, "By item"), "Add an item to see the shares.", id="no-items"),
+    pytest.param(lambda page: (switch_to(page, "By item"), page.get_by_role("button", name="Add item").click()),
+                 "Give every item a price to see the shares.", id="item-unpriced"),
+    pytest.param(lambda page: (build_s1(page), support.replace_text(page, item_price(page, 1), "abc")),
+                 "Give every item a price to see the shares.", id="item-bad-price"),
+]
+
+
+@pytest.mark.parametrize("setup, message", BLOCKED_CASES)
+def test_R17_when_the_shares_cannot_be_worked_out(open_app, setup, message):
+    page = open_app().page
+    setup(page)
+    assert panel_text(page) == f"Shares\n{message}"
+    assert page.locator("div.tape section").count() == 1 and page.locator("div.tape table, h2#h-summary, p.status").count() == 0
+    assert page.locator(COPY_BUTTON).count() == 0
+
+
+def test_R18_items_that_still_need_a_person(open_app):
+    page = open_app().page
+    build_s1(page)
+    toggle(page, "Mee goreng mamak", "Chen").click()
+    assert [row[1] for row in summary_rows(page)] == ["RM 59.40", "RM 5.94", "RM 3.92", "RM 69.26"]
+    assert panel_text(page).splitlines()[-2:] == ["Shares", "1 item still needs a person. Tap who had it to see the shares."]
+    assert page.locator("div.tape table, p.status").count() == 0 and page.locator(COPY_BUTTON).count() == 0
+    toggle(page, "Char kuey teow", "Ben").click()
+    assert panel_text(page).splitlines()[-1] == "2 items still need a person. Tap who had each one to see the shares."
+    toggle(page, "Mee goreng mamak", "Chen").click()
+    toggle(page, "Char kuey teow", "Ben").click()
+    assert table_cells(page, "tbody") == S1_ROWS and table_cells(page, "tfoot") == S1_CHECK
+    assert page.locator(COPY_BUTTON).count() == 1
+
+
+def test_R7_removing_a_person_can_leave_an_item_without_anyone(open_app):
+    page = open_app().page
+    build_s1(page)
+    remove_button(page, "Chen").click()
+    assert panel_text(page).splitlines()[-1] == "1 item still needs a person. Tap who had it to see the shares."
+
+
+@pytest.mark.parametrize("build, expected", [(build_s2, S2_SUMMARY), (build_s1, S1_SUMMARY)], ids=["S2", "S1"])
+def test_R19_the_bill_summary_shows_its_working(open_app, build, expected):
+    page = open_app().page
+    build(page)
+    assert summary_rows(page) == expected
+    assert page.locator("dl.sum .row.total .amt > span.final").inner_text() == expected[3][1]
+
+
+def test_R19_a_charge_of_zero_is_allowed_and_still_shown(open_app):
+    page = open_app().page
+    build_s2(page)
+    support.replace_text(page, rate_field(page, "Service charge"), "0")
+    assert page.locator("p.error").count() == 0
+    rows = summary_rows(page)
+    assert rows[1] == ["+Service charge", "RM 0.00", "0% of RM 100.00"] and rows[2] == ["+SST", "RM 6.00", "6% of RM 100.00"]
+    assert [row[1] for row in table_cells(page, "tbody")] == ["RM 35.34", "RM 35.33", "RM 35.33"]
+
+
+def test_R20_the_even_split_from_a_cold_boot(open_app):
+    page = open_app().page
+    three_people(page)
+    support.replace_text(page, subtotal_field(page), "100.00")
+    assert [cell for row in table_cells(page, "thead") for cell in row] == ["Person", "Share"]
+    assert page.locator("table.shares thead").get_attribute("class") == "sr-only"
+    assert table_cells(page, "tbody") == S2_ROWS and table_cells(page, "tfoot") == S2_CHECK
+
+
+def test_R21_the_by_item_split_from_gestures(open_app):
+    page = open_app().page
+    build_s2(page)
+    build_items_after_switch(page)
+    assert table_cells(page, "thead") == [["Person", "Items", "+Charges", "=Share"]]
+    assert table_cells(page, "tbody") == S1_ROWS and table_cells(page, "tfoot") == S1_CHECK
+
+
+def build_items_after_switch(page):
+    switch_to(page, "By item")
+    for name, price, people in S1_ITEMS:
+        add_item_named(page, name, price, people)
+
+
+def test_R21_someone_who_had_nothing_is_still_listed(open_app):
+    page = open_app().page
+    three_people(page)
+    switch_to(page, "By item")
+    add_item_named(page, "Tea", "10.00", ["Ben"])
+    add_item_named(page, "Cake", "5.01", ["Ben", "Chen"])
+    assert table_cells(page, "tbody") == [["Aisyah", "RM 0.00", "RM 0.00", "RM 0.00"],
+                                          ["Ben", "RM 12.51", "RM 2.08", "RM 14.59"],
+                                          ["Chen", "RM 2.50", "RM 0.41", "RM 2.91"]]
+    assert table_cells(page, "tfoot") == [["Adds up to", "RM 15.01", "RM 2.49", "RM 17.50"]]
+
+
+def test_R13_tapping_a_person_changes_the_shares(open_app):
+    page = open_app().page
+    build_s1(page)
+    toggle(page, "Satay, 10 sticks", "Ben").click()
+    assert table_cells(page, "tbody") == [["Aisyah", "RM 21.90", "RM 3.64", "RM 25.54"],
+                                          ["Ben", "RM 19.50", "RM 3.24", "RM 22.74"],
+                                          ["Chen", "RM 18.00", "RM 2.98", "RM 20.98"]]
+    assert table_cells(page, "tfoot") == S1_CHECK
+    toggle(page, "Satay, 10 sticks", "Ben").click()
+    assert table_cells(page, "tbody") == S1_ROWS
+
+
+def test_R5_a_blank_name_reads_as_its_position_in_the_shares_row(open_app):
+    page = open_app().page
+    build_s1(page)
+    support.replace_text(page, person_field(page, 2), "")
+    assert table_cells(page, "tbody")[1][0] == "Person 2"
+
+
+def test_R8_the_panel_follows_each_mode(open_app):
+    page = open_app().page
+    support.replace_text(page, subtotal_field(page), "100.00")
+    switch_to(page, "By item")
+    add_item_named(page, "Tea", "5.00", ["Person 1"])
+    assert summary_rows(page)[3][1] == "RM 5.83"
+    switch_to(page, "Even")
+    assert summary_rows(page)[3][1] == "RM 116.60"
+
+
 # ===== END OF TESTS (new tests go above this line) =====

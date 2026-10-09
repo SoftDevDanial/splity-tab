@@ -80,7 +80,7 @@ const charges = createCharges({
     render();
   },
 });
-const panel = createPanel(document.querySelector(".tape"));
+const panel = createPanel(document.querySelector(".tape"), { onCopy() {} });
 document.querySelector(".inputs").append(people.el, mode.el, subtotal.el, items.el, charges.el);
 
 function render() {

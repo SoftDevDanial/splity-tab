@@ -4,13 +4,17 @@
 // The setters skip a write when nothing changed. That is what keeps a block from touching the input the
 // user is typing in (R33): its value already equals the bill, so it is never written.
 
-/** Creates an element. `attrs` maps names to strings (`true` writes an empty value, `null`/`false` skip). */
+/**
+ * Creates an element. `attrs` maps names to strings (`true` writes an empty value, `null`/`false` skip).
+ * Children are nodes or strings (a string becomes a text node). `null`, `false` and "" are skipped, so a
+ * conditional child needs no branch at the call site.
+ */
 export function el(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
   for (const [name, value] of Object.entries(attrs)) {
     if (value !== null && value !== false && value !== undefined) node.setAttribute(name, value === true ? "" : value);
   }
-  node.append(...children);
+  node.append(...children.filter((child) => child !== null && child !== false && child !== undefined && child !== ""));
   return node;
 }
 
