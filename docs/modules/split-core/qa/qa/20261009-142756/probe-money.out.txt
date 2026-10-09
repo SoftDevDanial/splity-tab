@@ -1,0 +1,137 @@
+# command: timeout 120 node docs/modules/split-core/qa/qa/20261009-142756/probe-money.mjs (cwd: project root, Node v24.11.1)
+== A. Money text read on the way in (R1, R3) ==
+PASS parseAmount 15.90 (Nasi lemak)
+PASS parseAmount 13.50 (Char kuey teow)
+PASS parseAmount 12.00 (Mee goreng)
+PASS parseAmount 18.00 (Satay)
+PASS parseAmount 10.01 (I3)
+PASS parseAmount 0.10 (I4)
+PASS parseAmount 100.00 (S2 subtotal)
+PASS parseAmount 87.65 (E1 subtotal)
+PASS parseAmount 5.01 (I2 Y)
+PASS parseAmount 50.00 (E3 subtotal)
+PASS parseAmount 99999.99 (MAX)
+PASS parseAmount 1.15 (float trap, naive gives 114)
+PASS parseAmount 4.35 (float trap, naive gives 434)
+PASS parseRate 12.5 max 30 (E3 service)
+PASS parseRate 6.25 max 20 (E3 SST)
+PASS parseRate 30 max 30 (MAX service)
+PASS parseRate 20 max 20 (MAX SST)
+PASS parseRate 0 max 30 (zero is valid)
+== B. Money and rate text written out (R4, R5) ==
+PASS formatMoney 0
+PASS formatMoney 1
+PASS formatMoney 10
+PASS formatMoney 100
+PASS formatMoney 3887
+PASS formatMoney 11660
+PASS formatMoney 15599999
+PASS formatMoney 779999922
+PASS formatRate 0
+PASS formatRate 600
+PASS formatRate 1000
+PASS formatRate 650
+PASS formatRate 625
+PASS formatRate 605
+PASS formatRate 3000
+PASS formatRate 1250 (E3 service shows 12.5%)
+== C. Cent allocation (R7, R8) ==
+PASS allocateEvenly 11660 / 3 (S2)
+PASS allocateEvenly 1800 / 2 (S1 satay)
+PASS allocateEvenly 1001 / 3
+PASS allocateEvenly 1 / 3
+PASS allocateEvenly 0 / 2
+PASS allocateEvenly 10221 / 4 (E1)
+PASS allocateEvenly 15599999 / 12 (MAX-E)
+PASS allocateByWeight 986 S1 charges
+PASS allocateByWeight 10 leftover skips zero
+PASS allocateByWeight 249 (I2 example)
+PASS allocateByWeight 236419679 BigInt trap
+PASS allocateByWeight 61846725 BigInt trap
+PASS allocateByWeight 178450942 BigInt trap
+PASS allocateByWeight MAX-I charges 279999972
+== D. Charges (R6) ==
+PASS billCharges S2 (10000, 10%, 6%)
+PASS billCharges S1 (5940, 10%, 6%) SST 392.04 rounds down
+PASS billCharges E1 (8765, 10%, 6%) service 876.5 rounds up
+PASS billCharges (5, 10%, 0%) half a sen
+PASS billCharges (25, 10%, 0%) 2.5 rounds up
+PASS billCharges (4, 10%, 0%) 0.4 rounds down
+PASS billCharges (1000, 0%, 0%) both off
+PASS billCharges E3 (5000, 12.5%, 6.25%) SST 351.5625 rounds up
+PASS billCharges MAX-E (9999999, 30%, 20%)
+PASS billCharges MAX-I (499999950, 30%, 20%)
+PASS billCharges I2 (1501, 10%, 6%) I2 row
+PASS billCharges I3 (1001, 10%, 6%) I3 row, derived from R6
+PASS billCharges I4 (10, 0%, 0%) I4 row
+PASS billCharges D2 (1000, 10%, 6%) D2 row
+== E. Even split (R20, R22, R26) ==
+PASS even S2 full result
+PASS even S2 typed table adds up
+PASS even S2 core shares add up (R22)
+PASS even E1 full result
+PASS even E1 typed table adds up
+PASS even E1 core shares add up (R22)
+PASS even E2 full result
+PASS even E2 typed table adds up
+PASS even E2 core shares add up (R22)
+PASS even E3 full result
+PASS even E3 typed table adds up
+PASS even E3 core shares add up (R22)
+PASS even MAX-E full result
+PASS even MAX-E typed table adds up
+PASS even MAX-E core shares add up (R22)
+PASS even D1 full result
+PASS even D1 typed table adds up
+PASS even D1 core shares add up (R22)
+== F. By-item split (R19, R21, R22, R26) ==
+PASS item S1 full result
+PASS item S1 typed table adds up
+PASS item S1 core shares add up (R22)
+PASS item I2 full result
+PASS item I2 typed table adds up
+PASS item I2 core shares add up (R22)
+PASS item I3 full result
+PASS item I3 typed table adds up
+PASS item I3 core shares add up (R22)
+PASS item I4 full result
+PASS item I4 typed table adds up
+PASS item I4 core shares add up (R22)
+PASS item D2 full result
+PASS item D2 typed table adds up
+PASS item D2 core shares add up (R22)
+PASS item MAX-I full result
+PASS item MAX-I typed table adds up
+PASS item MAX-I core shares add up (R22)
+PASS item S5 one unassigned item (R19) full result
+PASS item I3 leftover follows list order (Aisyah 501, Chen 500)
+== G. Blocking order (R18) ==
+PASS blocked row 1 blank service -> rates
+PASS blocked row 2 service 31 -> rates
+PASS blocked row 3 SST 20.01 beats the item rule -> rates
+PASS blocked row 4 blank subtotal -> subtotal
+PASS blocked row 5 subtotal 0 -> subtotal
+PASS blocked row 6 subtotal 12.505 -> subtotal
+PASS blocked row 7 item mode, no items -> no-items
+PASS blocked row 8 one blank-priced item -> prices
+PASS blocked row 9 one valid and one abc -> prices
+== H. Summary text (R24, R26) ==
+PASS summary S2 exact text
+PASS summary S2 no trailing newline
+PASS summary S1 exact text
+PASS summary S1 no trailing newline
+PASS summary E2 exact text
+PASS summary E2 no trailing newline
+PASS summary E3 exact text
+PASS summary E3 no trailing newline
+PASS summary I2 exact text
+PASS summary I2 no trailing newline
+PASS summary D1 exact text
+PASS summary D1 no trailing newline
+PASS summary D2 exact text
+PASS summary D2 no trailing newline
+PASS summary blank name prints as position (line 4)
+== I. BigInt reference sweep, 400 generated bills ==
+PASS sweep: 400 generated bills (even 200, item 200) agree with the BigInt reference
+SUMMARY pass=125 fail=0
+EXIT=0
