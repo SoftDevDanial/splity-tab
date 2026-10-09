@@ -5,14 +5,15 @@ Real gestures only. State that is not under test is set up with fill() and click
 never through a hook in the app (there is none).
 """
 import json
+import re
 import urllib.request
 
 import pytest
 
 import rig
 import seeds
-
-ROOT = rig.ROOT
+import support
+from support import CSP, ROOT, dom_walk, first_diff, golden_walk, panel_text, person_field
 
 
 # ---------------------------------------------------------------- Task 1: the rig (R1, R39)
@@ -105,6 +106,104 @@ def test_R39_the_request_log_flags_anything_but_same_origin_gets(open_app):
     found = session.problems()
     assert any(entry.startswith("request: POST") for entry in found)
     assert any(entry.startswith("console error") for entry in found)  # the server answers a POST with 501
+
+
+# ---------------------------------------------------------------- Task 2: shell and boot (R1, R2, R3, R38)
+HEAD_SUMMARY_JS = """() => [...document.head.children].map((e) => [e.tagName.toLowerCase(),
+  Object.fromEntries([...e.attributes].map((a) => [a.name, a.value])), e.tagName === 'TITLE' ? e.textContent : ''])"""
+SOURCE_URL = re.compile(r"""(?:\b(?:src|href)\s*=\s*["']\s*(/|[A-Za-z][A-Za-z0-9+.-]*:)|\bfrom\s*["'](?![.]{1,2}/)|\bimport\s*\(\s*["'](?![.]{1,2}/))""")
+NAMESPACE_CALL = 'createElementNS("http://www.w3.org/2000/svg"'
+SAMPLE_NAMES = ["Aisyah", "Ben", "Chen", "Devi", "Farid", "Grace", "Hafiz", "Indra", "Jia Hui", "Kumar", "Lina",
+                "Mei Ling", "Nasi lemak", "Char kuey teow", "Mee goreng", "Satay"]
+
+
+def test_R1_entry_point_loads_only_its_own_files(open_app):
+    session = open_app()
+    assert session.page.evaluate(HEAD_SUMMARY_JS) == [
+        ["meta", {"charset": "utf-8"}, ""],
+        ["meta", {"name": "viewport", "content": "width=device-width, initial-scale=1"}, ""],
+        ["meta", {"http-equiv": "Content-Security-Policy", "content": CSP}, ""],
+        ["title", {}, "Split"],
+        ["link", {"rel": "stylesheet", "href": "src/system.css"}, ""],
+        ["script", {"type": "module", "src": "src/main.js"}, ""],
+    ]
+    assert session.page.evaluate("document.documentElement.lang") == "en"
+    golden = (ROOT / "docs" / "design" / "system.css").read_bytes()
+    # RC-5: the shipped stylesheet is the golden's bytes plus one trailing rule, so hidden elements stay hidden.
+    assert (ROOT / "src" / "system.css").read_bytes() == golden + b"\n[hidden] { display: none !important; }\n"
+    assert session.problems() == []
+    assert ("GET", session.base + "/src/system.css") in session.requests
+
+
+def test_R1_page_works_from_a_sub_path(open_app):
+    parent = rig.StaticServer(ROOT.parent).start()
+    try:
+        folder = f"/{ROOT.name}"
+        session = open_app(base_server=parent, path=folder + "/", prefix=folder)
+        assert panel_text(session.page) == "Shares\nEnter the subtotal to see the shares."
+        assert session.page.locator("li.person").count() == 2
+        assert session.problems() == []
+    finally:
+        parent.stop()
+    for name, text in support.shipped_text().items():
+        assert not SOURCE_URL.search(text.replace(NAMESPACE_CALL, "")), name
+        if name == "index.html":
+            assert "://" not in text
+
+
+def test_R2_cold_boot_is_a_new_bill_with_no_seed(open_app):
+    page = open_app().page
+    assert [field.input_value() for field in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
+    assert all(button.is_disabled() for button in page.locator("li.person button").all())
+    assert page.locator("#mode-even").is_checked() and not page.locator("#mode-item").is_checked()
+    assert page.locator("#subtotal").input_value() == ""
+    assert (page.locator("#rate-service").input_value(), page.locator("#rate-sst").input_value()) == ("10", "6")
+    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
+    assert panel_text(page) == "Shares\nEnter the subtotal to see the shares."
+    assert page.evaluate("localStorage.getItem('split.draft')") is None
+    assert page.evaluate("Object.getOwnPropertyNames(window).filter((n) => n.startsWith('__'))") == []
+
+
+def test_R2_no_sample_data_ships():
+    for name, text in support.shipped_text().items():
+        for sample in SAMPLE_NAMES:
+            assert not re.search(rf"\b{re.escape(sample)}\b", text, re.IGNORECASE), f"{sample} in {name}"
+
+
+@pytest.mark.parametrize("state, seed, golden", [("S3", None, "bill-empty")])
+def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, state, seed, golden):
+    app = dom_walk(open_app(seed=seed).page)
+    assert first_diff(app, golden_walk(plain_context, golden)) is None, state
+
+
+def test_R3_the_walk_sees_every_rendered_element_and_flags_a_change(open_app):
+    app = dom_walk(open_app().page)
+
+    def count(entry):
+        return 1 + sum(count(child) for child in entry["children"])
+
+    assert count(app) > 40
+    changed = json.loads(json.dumps(app))
+    changed["children"][0]["children"][0]["children"][0]["text"] = "Different"  # the wordmark
+    assert "app='Split' golden='Different'" in first_diff(app, changed)
+
+
+def test_R38_policy_is_exact_and_nothing_inline():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert re.findall(r'<meta http-equiv="Content-Security-Policy" content="([^"]*)">', html) == [CSP]
+    assert html.count("Content-Security-Policy") == 1
+    assert "<style" not in html and not re.search(r"\sstyle\s*=", html)
+    assert not re.search(r"<script(?![^>]*\ssrc=)", html) and not re.search(r"\son[a-z]+\s*=", html)
+
+
+def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app):
+    session = open_app()
+    page = session.page
+    assert page.evaluate("getComputedStyle(document.body).backgroundColor") == "rgb(238, 240, 238)"
+    assert page.locator("li.person").count() == 2 and page.locator("#rate-service").count() == 1
+    assert panel_text(page) == "Shares\nEnter the subtotal to see the shares."
+    assert page.locator("body [style]").count() == 0
+    assert session.problems() == []
 
 
 # ===== END OF TESTS (new tests go above this line) =====
