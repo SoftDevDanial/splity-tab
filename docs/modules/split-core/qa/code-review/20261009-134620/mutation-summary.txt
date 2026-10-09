@@ -1,0 +1,119 @@
+Mutation run, split-core code-review re-check, 2026-10-09, HEAD c655a94, Node v24.11.1.
+Command (from the project root):
+  node docs/modules/split-core/qa/code-review/20261009-134620/scripts/run-mutants.mjs
+Every mutant changes source text in memory only (preload.mjs: a module load hook plus a patched
+fs.readFileSync for the hygiene scan). No file under src/ or tests/ was written. Each mutant ran in a child
+`node --import preload.mjs <test file>` under spawnSync with a 120 s SIGKILL timeout. The child exited every time.
+Verdicts: KILLED = at least one test failed. SURVIVES = every test of that file stayed green. The identity
+controls (H00, P00, W00, X00 on real code, Y1) are SUPPOSED to read SURVIVES.
+"tests" is the number of tests in the file(s) run, "fail" the failures. pid is the child process id (all exited).
+Totals: 94 mutants, 40 KILLED, 54 SURVIVES, 0 NOT-APPLIED, 0 TIMEOUT-OR-ERROR.
+NOT-APPLIED would mean the edit never reached the code under test. None did: each row was checked for its
+MUT-APPLIED marker on stderr.
+
+H00    SURVIVES  tests=39  fail=0   pid=37632 identity control, no edit
+H01    KILLED    tests=39  fail=13  pid=16096 control: plain Date.now() executed at module top level of money.js (scan and trap should both go red)
+H02    SURVIVES  tests=39  fail=0   pid=45704 F1-style postfix division plus process, inside a branch the workload never takes (formatRate, bp > 1e12)
+H03    KILLED    tests=39  fail=12  pid=32836 plain Date.now() inside a branch the workload never takes (scan should catch it, trap cannot)
+H04a   SURVIVES  tests=39  fail=0   pid=46028 globalThis reference written with a unicode escape, executed at top level (R25 bans globalThis)
+H04b   KILLED    tests=39  fail=12  pid=19396 globalThis reference written plainly, executed at top level (scan should catch it)
+H05a   KILLED    tests=39  fail=13  pid=45632 sourceURL magic comment, then an escaped process access at top level
+H05b   KILLED    tests=39  fail=1   pid=29048 control for H05a: the same escaped process access without the sourceURL comment
+H06    KILLED    tests=39  fail=1   pid=46076 a new export the workload never calls, body uses an escaped Date
+N-G01  SURVIVES  tests=39  fail=0   pid=25864 narrowing: trap for global eval removed from TRAPPED_GLOBALS
+N-G02  KILLED    tests=39  fail=1   pid=45404 narrowing: trap for global Function removed from TRAPPED_GLOBALS
+N-G03  SURVIVES  tests=39  fail=0   pid=21172 narrowing: trap for global setTimeout removed from TRAPPED_GLOBALS
+N-G04  SURVIVES  tests=39  fail=0   pid=36072 narrowing: trap for global setInterval removed from TRAPPED_GLOBALS
+N-G05  SURVIVES  tests=39  fail=0   pid=38324 narrowing: trap for global requestAnimationFrame removed from TRAPPED_GLOBALS
+N-G06  SURVIVES  tests=39  fail=0   pid=45920 narrowing: trap for global queueMicrotask removed from TRAPPED_GLOBALS
+N-G07  SURVIVES  tests=39  fail=0   pid=44340 narrowing: trap for global setImmediate removed from TRAPPED_GLOBALS
+N-G08  KILLED    tests=39  fail=3   pid=1444 narrowing: trap for global performance removed from TRAPPED_GLOBALS
+N-G09  SURVIVES  tests=39  fail=0   pid=42308 narrowing: trap for global crypto removed from TRAPPED_GLOBALS
+N-G10  SURVIVES  tests=39  fail=0   pid=35220 narrowing: trap for global WebSocket removed from TRAPPED_GLOBALS
+N-G11  KILLED    tests=39  fail=6   pid=34884 narrowing: trap for global process removed from TRAPPED_GLOBALS
+N-G12  SURVIVES  tests=39  fail=0   pid=42916 narrowing: trap for global require removed from TRAPPED_GLOBALS
+N-G13  SURVIVES  tests=39  fail=0   pid=8756 narrowing: trap for global fetch removed from TRAPPED_GLOBALS
+N-G14  SURVIVES  tests=39  fail=0   pid=22512 narrowing: trap for global XMLHttpRequest removed from TRAPPED_GLOBALS
+N-G15  SURVIVES  tests=39  fail=0   pid=30332 narrowing: trap for global EventSource removed from TRAPPED_GLOBALS
+N-G16  SURVIVES  tests=39  fail=0   pid=30952 narrowing: trap for global localStorage removed from TRAPPED_GLOBALS
+N-G17  SURVIVES  tests=39  fail=0   pid=36720 narrowing: trap for global sessionStorage removed from TRAPPED_GLOBALS
+N-G18  SURVIVES  tests=39  fail=0   pid=26036 narrowing: trap for global indexedDB removed from TRAPPED_GLOBALS
+N-G19  KILLED    tests=39  fail=1   pid=42824 narrowing: trap for global Date removed from TRAPPED_GLOBALS
+N-G20  SURVIVES  tests=39  fail=0   pid=42972 narrowing: trap for global Intl removed from TRAPPED_GLOBALS
+N-G21  SURVIVES  tests=39  fail=0   pid=34984 narrowing: trap for global window removed from TRAPPED_GLOBALS
+N-G22  SURVIVES  tests=39  fail=0   pid=29188 narrowing: trap for global document removed from TRAPPED_GLOBALS
+N-G23  SURVIVES  tests=39  fail=0   pid=39916 narrowing: trap for global navigator removed from TRAPPED_GLOBALS
+N-G24  SURVIVES  tests=39  fail=0   pid=36376 narrowing: trap for global parseFloat removed from TRAPPED_GLOBALS
+N-M01  SURVIVES  tests=39  fail=0   pid=44620 narrowing: trap for method Date.now removed from TRAPPED_METHODS
+N-M02  SURVIVES  tests=39  fail=0   pid=36640 narrowing: trap for method Math.random removed from TRAPPED_METHODS
+N-M03  SURVIVES  tests=39  fail=0   pid=11788 narrowing: trap for method Number.parseFloat removed from TRAPPED_METHODS
+N-M04  SURVIVES  tests=39  fail=0   pid=11136 narrowing: trap for method toFixed removed from TRAPPED_METHODS
+N-M05  SURVIVES  tests=39  fail=0   pid=2992 narrowing: trap for method Number toLocaleString removed from TRAPPED_METHODS
+N-M06  SURVIVES  tests=39  fail=0   pid=43576 narrowing: trap for method BigInt toLocaleString removed from TRAPPED_METHODS
+N-M07  SURVIVES  tests=39  fail=0   pid=43136 narrowing: trap for method Array toLocaleString removed from TRAPPED_METHODS
+N-M08  SURVIVES  tests=39  fail=0   pid=45608 narrowing: trap for method Object toLocaleString removed from TRAPPED_METHODS
+N-M09  SURVIVES  tests=39  fail=0   pid=30012 narrowing: trap for method Date toLocaleString removed from TRAPPED_METHODS
+N-M10  SURVIVES  tests=39  fail=0   pid=44884 narrowing: trap for method toLocaleDateString removed from TRAPPED_METHODS
+N-M11  SURVIVES  tests=39  fail=0   pid=35196 narrowing: trap for method toLocaleTimeString removed from TRAPPED_METHODS
+N-M12  SURVIVES  tests=39  fail=0   pid=45884 narrowing: trap for method localeCompare removed from TRAPPED_METHODS
+N-M13  SURVIVES  tests=39  fail=0   pid=21576 narrowing: trap for method toLocaleUpperCase removed from TRAPPED_METHODS
+N-M14  SURVIVES  tests=39  fail=0   pid=45760 narrowing: trap for method toLocaleLowerCase removed from TRAPPED_METHODS
+N-R1   KILLED    tests=39  fail=1   pid=43096 narrowing: Function constructor route removed from CONSTRUCTOR_ROUTES
+N-R2   SURVIVES  tests=39  fail=0   pid=29964 narrowing: AsyncFunction constructor route removed from CONSTRUCTOR_ROUTES
+N-R3   SURVIVES  tests=39  fail=0   pid=8288 narrowing: GeneratorFunction constructor route removed from CONSTRUCTOR_ROUTES
+N-R4   SURVIVES  tests=39  fail=0   pid=29048 narrowing: AsyncGeneratorFunction constructor route removed from CONSTRUCTOR_ROUTES
+H08a   SURVIVES  tests=39  fail=0   pid=43100 eval trap removed AND an escaped eval executed at top level of money.js
+H08b   KILLED    tests=39  fail=1   pid=18536 control: the escaped eval alone, trap intact
+H08c   SURVIVES  tests=39  fail=0   pid=45320 fetch trap removed AND an escaped fetch reference executed at top level of money.js
+H08d   KILLED    tests=39  fail=1   pid=41500 control: the escaped fetch reference alone, trap intact
+B1     KILLED    tests=39  fail=1   pid=28752 global getter for crypto stops recording
+B2     KILLED    tests=39  fail=1   pid=26780 method wrapper for toFixed stops recording
+B3     KILLED    tests=39  fail=13  pid=26044 stack attribution never finds a core frame
+B4     KILLED    tests=39  fail=1   pid=17632 stack attribution counts every access (test code too)
+B5     KILLED    tests=39  fail=13  pid=35036 traps never armed
+B6     SURVIVES  tests=39  fail=0   pid=43344 traps are never restored after a run
+B7     SURVIVES  tests=39  fail=0   pid=42032 resolve hook stops carrying the run id onto core-to-core imports
+B8     KILLED    tests=39  fail=1   pid=41360 hits are not cleared between runs
+B9     SURVIVES  tests=39  fail=0   pid=41808 the run id is the same for every import (core copies are shared across runs)
+P00    SURVIVES  tests=27  fail=0   pid=39036 identity control, no edit
+P01    SURVIVES  tests=27  fail=0   pid=41656 g flag dropped: only the first control character in a name is replaced
+P02    SURVIVES  tests=27  fail=0   pid=37304 class takes + : a run of adjacent controls collapses to one space
+P03    SURVIVES  tests=27  fail=0   pid=35148 class also takes \p{Cs}: a lone surrogate becomes a space
+P04    KILLED    tests=27  fail=2   pid=41840 control: \p{Bidi_Control} dropped
+P05    KILLED    tests=27  fail=2   pid=22744 \p{Cc} narrowed to C0 and DEL (the C1 range passes through)
+P06    KILLED    tests=27  fail=2   pid=24272 class also takes \p{Zs} (NBSP, U+3000 and the like)
+P07    KILLED    tests=27  fail=1   pid=42920 class also takes the astral code point U+1F600
+P08    KILLED    tests=27  fail=15  pid=23876 replacement is the empty string
+P09    KILLED    tests=27  fail=2   pid=44544 class also takes \p{Cn} (unassigned code points)
+P10    KILLED    tests=27  fail=1   pid=29736 class also takes \p{Co} (private use, above U+2069)
+P11    KILLED    tests=27  fail=2   pid=45080 class also takes \p{Cf} (format characters such as U+00AD and U+FEFF)
+P12    KILLED    tests=27  fail=15  pid=44900 replacement is two spaces
+P13    KILLED    tests=27  fail=25  pid=29144 u flag dropped (\p{..} turns into literal text)
+P14    KILLED    tests=27  fail=8   pid=40044 a control that is also white space (TAB, LF, CR, VT, FF, LS, PS) is kept, the rest become a space
+W00    SURVIVES  tests=68  fail=0   pid=44680 identity control, no edit
+W01    KILLED    tests=68  fail=1   pid=41084 digit cap one digit looser
+W02    KILLED    tests=68  fail=1   pid=38008 digit cap taken from the cents text of the ceiling instead of its whole part
+W03    SURVIVES  tests=68  fail=0   pid=28092 wholePart uses Math.floor (equivalent output, float divide)
+R1     KILLED    tests=42  fail=1   pid=36620 toggleItemPerson no longer checks that the person exists
+X00    SURVIVES  tests=29  fail=0   pid=27740 suggested R24 tests on the real code (must stay green)
+X01    KILLED    tests=29  fail=1   pid=28044 suggested R24 tests against P01 (g flag dropped)
+X02    KILLED    tests=29  fail=1   pid=42048 suggested R24 tests against P02 (+ quantifier)
+X03    KILLED    tests=29  fail=1   pid=25456 suggested R24 tests against P03 (\p{Cs} added)
+Y0     KILLED    tests=40  fail=1   pid=23144 suggested pin on the trap lists, current code (must go red on the missing globalThis trap)
+Y1     SURVIVES  tests=40  fail=0   pid=36012 pin plus globalThis added to TRAPPED_GLOBALS (must be green)
+Y2     KILLED    tests=40  fail=1   pid=43176 Y1 plus the escaped globalThis plant H04a (the trap must now catch it)
+Y3     KILLED    tests=40  fail=1   pid=29188 Y1 plus the eval trap dropped (the pin must go red)
+Y4     KILLED    tests=40  fail=1   pid=29660 Y1 plus the Date.now trap dropped (the pin must go red)
+Y5     SURVIVES  tests=40  fail=0   pid=41360 Y1 plus the AsyncFunction route dropped (the pin does not list it, so it stays green: shows the pin is only as wide as its list)
+
+Reading the groups
+- H (what the R25 guards see). H00 green. H01 red as designed. H02 is the false pass (the F1 form, in a branch no export call takes).
+  H03 shows the scan catches the plain-name twin, the trap cannot. H04a is the false pass for globalThis. H05a: the sourceURL
+  comment fools the clean run but the negative control and F1..F10 (12 plants into each core file) go red, so the attribution
+  cannot be silently defeated. H06: a new unexercised export goes red by name.
+- N (narrowing). 37 of 42 single trap removals stay green. The 5 that go red are the traps an F plant happens to use.
+- H08. With the eval (or fetch) trap removed, an executed escaped use passes. With the trap intact it fails (H08b, H08d).
+- B (does the trap fail when broken). B1 to B5 and B8 are caught. B6 (no restore), B7 and B9 (run id) are not pinned by any test.
+- P (R24 property tests). P01, P02, P03 survive ALL 246 tests (checked with the whole suite, see INDEX.txt). P04 to P14 are killed.
+- W. The digit-cap tests kill W01, W02. W03 is an equivalent mutant (same output), nothing can pin it.
+- X, Y. The suggested fixes behave as the findings claim.

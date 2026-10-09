@@ -1,0 +1,51 @@
+Evidence index, split-core code-review re-check (scoped), 2026-10-09. Role: code-review finder (read-only).
+Scope: git diff 67e4b6e..HEAD -- src tests (HEAD c655a94), judged against spec.md, qa.md, BUILD.md, constitution.md.
+Verdict and findings: docs/modules/split-core/findings/code-review.md, section "Re-check (2026-10-09)".
+
+Files
+  node-test.txt            baseline run, 246 of 246, with the timings of the trap and property tests
+  per-commit-summary.txt   19 commits rebuilt from git archive and run, all green, counts equal the solver's
+  flake-runs.txt           the runtime trap run 10 times alone plus 10 variants (isolation none, coverage, jitless, ...)
+  probe-output.txt         old-versus-new differential (WR-06, WR-08, WR-09), BigInt trap rows, multi-control probe,
+                           the hit-leak probe (Z1, Z2), raw scan, docs word-diff
+  mutation-summary.txt     94 in-memory mutants: 40 killed, 54 survive (identity controls and the findings), 0 not applied.
+                           Z1 (killed) and Z2 (survives) were run afterwards and are in probe-output.txt: 96 in all.
+  scripts/                 everything needed to rerun the above; nothing in here is under src/ or the tests glob
+    preload.mjs            module load hook and patched fs.readFileSync that serve one mutant (MUT_ID) in memory
+    mutants.mjs            base mutants: H (R25 guards), N (trap narrowing), B (trap machinery), P (R24), W (digit cap), R (bill)
+    mutants-fix.mjs        suggested fixes served in memory: X (extra R24 tests), Y (pin on the trap lists), Z (hit leak)
+    run-mutants.mjs        driver: spawnSync with a SIGKILL timeout per mutant, prints one JSON line each
+    diff-old-new.mjs       differential of money.js and bill.js against 67e4b6e from in-memory data: URLs
+    probe-multi-control.mjs  names with more than one replaceable character, run under P00 to P03
+    rawscan.mjs, unused.mjs  raw character scan and a crude dead-name check
+
+Rerun (project root, Node 24)
+  node docs/modules/split-core/qa/code-review/20261009-134620/scripts/run-mutants.mjs [id-or-prefix ...]
+  FULL=1 lists every failing test name. A mutant only counts when its MUT-APPLIED marker was seen.
+  All 7 test files under one mutant: MUT_ID=P01 node --test --import <file URL of scripts/preload.mjs> tests/*.test.js
+
+How the mutants stay out of the tree: the preload changes source text only while it is loaded or read. No file under
+src/ or tests/ was written, copied or renamed. The commit rebuilds used a scratch directory in the session
+scratchpad, outside the project. The only new files in the project are in this folder, plus the appended section in
+findings/code-review.md (git status shows exactly these two entries, and git diff of that file shows additions only).
+
+Transport note: the Write tool turned the text \uXXXX (no braces) into the raw character in two of the first
+scripts (rawscan.mjs, diff-old-new.mjs). Both were rewritten with the brace form \u{XXXX} and rerun with the same
+results. The only non-ASCII characters left in this folder are the reporter glyphs in run-mutants.mjs lines 23 and 24.
+
+PROCESSES (constitution, process and resource accounting)
+  Started: only foreground children, each waited for and exited.
+    - 96 mutant runs: `node --import preload.mjs <tests>` via spawnSync, SIGKILL timeout 120 s. PIDs for 94 of them are in
+      mutation-summary.txt. Z1 and Z2 were run the same way.
+    - Runs of P00 to P03 over all 7 test files (`node --test`), and the probe-multi-control runs.
+    - 19 per-commit suite runs (node --test), 10 + 10 flake runs, the diff-old-new runs, the baseline runs.
+    - git archive piped into tar for 19 commits (exited).
+  Not started: no dev server, no browser, no watcher, no background shell, no poll loop, no run_in_background.
+  Final sweep at 14:07:43 by image name (node.exe, python.exe, chrome.exe, msedge.exe, cmd.exe, sh.exe): 0 alive each.
+  An earlier sweep at 14:02:56 read the same.
+  bash.exe: 3 present at the end (PIDs 44620, 42644, 45604). They are tool shells of running sessions and changed
+  between the two sweeps; none was started by a background command of this run. Windows reuses PIDs (38008 was
+  both a finished mutant child and, later, a shell).
+  Listening sockets seen at 14:02 (5040, 4096, 4709, 4961, 6463) belong to other applications; no port was opened by this run.
+  Kill command for anything found later: taskkill /PID <pid> /F  (confirm the command line first).
+  The OS clipboard was never touched.

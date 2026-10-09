@@ -1,0 +1,24 @@
+Baseline, split-core code-review re-check, 2026-10-09, HEAD c655a94 (working tree clean), Node v24.11.1, Windows 11.
+Command (project root): node --test "tests/**/*.test.js"      exit code 0
+Excerpt of the runner output (the full spec-reporter listing is 254 lines and is reproduced by the command above):
+
+  tests 246
+  suites 0
+  pass 246
+  fail 0
+  cancelled 0
+  skipped 0
+  todo 0
+  duration_ms 261.3494
+
+R25 runtime trap and the R24 property tests, timings from the same run:
+  runtime trap: the core touches no banned global or method while it loads and runs ........ 21.8082 ms
+  runtime trap: every trap fires for core code and not for test code (negative control) .... 45.0315 ms
+  runtime trap catches the security re-check's F1 .. F10 plant in every core file (12 tests, F4b and F6b included) .... 4.6 to 5.5 ms each
+  R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed .. 26.3949 ms
+  R24 every code point above U+2069 prints as typed ........................................ 104.8806 ms
+  So the two property tests cost about 131 ms of the 261 ms run, and the whole trap block about 130 ms.
+
+Test files and counts (each file run alone with the same command shape):
+  tests/hygiene.test.js 39 tests, tests/summary.test.js 27, tests/money.test.js 68, tests/bill.test.js 42.
+  The other files make up the rest of the 246.

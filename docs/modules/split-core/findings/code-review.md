@@ -142,3 +142,130 @@ Evidence is in `docs/modules/split-core/qa/solver/20261009-121000/`. The reviewe
 - The draft decoder must reject an unknown `mode`, because `computeResult` treats any mode other than "even" as by-item.
 - The draft decoder must rebuild or reject people and items that carry unknown or `__proto__` keys (WR-03 scope).
 - Consider rejecting VT, FF, NEL, LS and PS in names, so the screen matches the summary text.
+
+## Re-check (2026-10-09)
+Role: code-review finder (read-only). The finder verdict, WR-01 to WR-10 and the solver section above are kept as written. The front matter is unchanged on purpose (additive only), so its counts are the round 1 counts. The counts for this re-check are in this section.
+Scope: `git diff 67e4b6e..HEAD -- src tests` at HEAD `c655a94`. That is the WR-01 to WR-10 solver round (`170a293` to `46f5670`), security round 1 (`b3b43fe`, `a09ce03`, `b5b448d`, `e56b396`) and security round 2 (`fedaa7a`, `5d5d02a`, `4e2740b`). By the ORCH stop rule this is also the verification of security round 2. There is no third security round.
+Judged against spec.md (R1 to R26, Contracts, Non-goals, threat model), qa.md, BUILD.md, constitution.md and CLAUDE.md.
+
+**Verdict: PASS. 0 BLOCKER, 5 WARNING (WR-11 to WR-15).**
+- All ten WR items are resolved, with no spec-less code and no new defect. The three refactors that touch behaviour (WR-06, WR-08, WR-09) are identical to the old code over 1.77M parse and format comparisons and 120,000 action steps.
+- Security round 1 (SEC-01 to SEC-04) and the SEC-06 and wording items of round 2 are correct and minimal. SEC-05 (the runtime trap) is correct for every access that runs, flake free, and it catches all 12 of the auditor's plants. Its limits are in WR-12 and WR-13.
+- The warnings are about how firmly the new guards and docs hold the line, not about a wrong result. Three mutants of the SEC-01 regex pass all 246 tests (WR-11). Thirty-seven of 42 traps can be deleted with the suite staying green, and `globalThis` was never trapped (WR-12). Two spec claims go further than the code (WR-13, WR-14).
+- No wrong money result, no hallucinated code, no non-goal built, no contract drift. The 26 exports equal the Contracts table, core imports only core, `docs/design/` is untouched, no commit carries a vendor watermark, and no source or test file holds a control character, bidi control, separator or long dash.
+
+Evidence: `docs/modules/split-core/qa/code-review/20261009-134620/` (`INDEX.txt` lists the files and the process accounting).
+- Baseline `node --test "tests/**/*.test.js"` on Node v24.11.1: **tests 246, pass 246, fail 0**, exit 0 (`node-test.txt`).
+- The 19 commits from `170a293` to HEAD (17 of them change `src/` or `tests/`), rebuilt from `git archive` and run, are green with the solver's own counts (`per-commit-summary.txt`).
+- 96 in-memory mutants: no file under `src/` or `tests/` was written (`mutation-summary.txt`, `probe-output.txt`, `scripts/`). The surviving ones that matter are named in the findings below.
+
+### 1. Do the WR fixes resolve their warnings?
+| WR | Result | Checked how |
+|---|---|---|
+| WR-01 | Resolved | The three trap rows were recomputed with BigInt and with a float allocator. The float result misses every row (236419679, 61846725, 178450942), and every product passes 2^53. The two new subtotals (372570630, 318662395) are below 499,999,950, so they are real bills. No false MAX-I claim is left in src, tests, spec or qa (grep). Old wording is struck and dated. |
+| WR-02 | Resolved | 499,999,950 x 3000 = 1,499,999,850,000 is above 649,999,935 x 2000 = 1,299,999,870,000. 279,999,972 x 499,999,950 is about 1.4e17. BUILD.md points to the comments. |
+| WR-03 | Resolved | The `bill.js` header is true (Bill, changed person and item rebuilt, the rest shared). The 13 per-action tests run each action on the parsed bill itself. A spread would add an own `__proto__` key and fail `Object.keys`. |
+| WR-04 | Resolved | The new test fails when the id comes from the list length. |
+| WR-05 | Resolved | `fixture` deep-freezes every named bill. R16 tests cover `summaryText`, both labels and `allocateByWeight`. |
+| WR-06 | Resolved | W01 (cap one digit looser) and W02 (cap from the cents text) are killed by the `Number` spy test. The old and new parsers agree on 171,416 strings at 7 ceilings. No magic 9 is left. |
+| WR-07 | Resolved, then widened | `BANNED` has the six names with a negative control. SEC-04 later added the code-only list. |
+| WR-08 | Resolved | `wholePart` matches the old output on 0 to 200000 and six large values up to 2^53 - 1. W03 (back to `Math.floor`) is an equivalent mutant, so nothing can pin it. No `Math.floor` is left in `src/core/`. |
+| WR-09 | Resolved | R1 (drop the person check) is killed by the R14 test. The old and new `bill.js` agree over 120,000 steps, values and same-reference returns. The JSDoc names all three callers. |
+| WR-10 | Resolved, superseded | `summaryText` now replaces the whole class (SEC-01, SEC-02). Rows carry person labels only, which is true. |
+
+Rows WR-03, WR-04, WR-05 and WR-10 also rest on the solver's mutants S03 to S11 and S21 to S28, which I read but did not re-run. Everything else in the table I re-ran or recomputed here.
+
+### 2. Security rounds 1 and 2
+- **SEC-01, SEC-02.** `CONTROLS` (`src/core/summary.js:8`) is exactly `[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]` and is applied at :28. The class matches 79 code points. P04 (no `Bidi_Control`), P05 (C1 range let through), P06 (`\p{Zs}`), P07 (U+1F600), P09 (`\p{Cn}`), P10 (`\p{Co}`), P11 (`\p{Cf}`), P08 and P12 (wrong replacement) are all killed. The `u` flag is needed (P13 killed).
+- **SEC-03.** The two accepted residuals in spec.md match `personLabel`, which keeps NEL, U+200B, U+2800 and U+3164 as a non-blank name. Doc only.
+- **SEC-04.** The code-only scan is a secondary guard. It has no false hit on the five real files, and its plants (`CODE_PLANTS`) go red in every file.
+- **SEC-05, the runtime trap in `tests/hygiene.test.js`.**
+  - Attribution is sound for what it claims. A hit counts when a stack line holds the core URL (`CORE_URL`, `record` at :261). The module URL is what V8 prints for a frame, so a plant in any of the 5 files is attributed (12 plant tests x 5 files). Core never receives a test callback and never calls back into test code, so a core frame cannot sit above a test-code access. The third negative-control assertion shows test code is not counted (B4, which counts everything, is killed).
+  - The trap machinery fails when broken: B1 (no recorder for crypto), B2 (none for `toFixed`), B3 (no core frame ever found), B4, B5 (never armed) and B8 (hits not cleared) are all killed.
+  - `//# sourceURL=` cannot hide an access silently. H05a: the clean run is fooled, but the negative control and all 12 F tests plant into the same file, see nothing, and go red.
+  - A new export the workload never calls goes red by name (H06, the `unexercised` check at :394).
+  - Flake: none found. The test has no timers and no order dependence beyond its own file. Ten runs alone and ten variants were green (`--test-isolation=none`, `--test-concurrency=1`, coverage, `--enable-source-maps`, `--jitless`, `--always-turbofan`, `--no-opt`, `--stack-trace-limit=2`, run directly, run from another directory). It needs `module.registerHooks` (Node 22.15, 23.5 and later), so on an older Node it fails loudly at import, never passes by accident. Only Node 24.11.1 is installed here, so no other 24.x or newer line was run.
+  - False pass paths that exist are WR-12 and WR-13.
+  - `codeOnly` is labelled best-effort at file level (`tests/hygiene.test.js:10-12`), and spec R25 lists its known limits. The label cites a finding id and `codeOnly` itself is silent, see WR-15.
+- **SEC-06, the property tests.** They pin which code points are replaced exactly (79, up to U+2069, and "as typed" above it, surrogate halves excluded). They run in 26 ms and 105 ms, which is acceptable. They do not pin how many occurrences are replaced, see WR-11. The oracle (`R24_CLASS`, `tests/summary.test.js:128`) is the same class expression as the code, so it is not independent of a wrong class. The count 79 and the spec text are what pin it, and that is adequate.
+- **Wording item.** spec.md:19 and the `summaryText` JSDoc give the exact class and say NBSP and U+3000 are kept. True.
+
+### 3. Docs against code
+- Dated notes everywhere. A word-diff of spec.md, qa.md and BUILD.md against `67e4b6e` shows removed words only where they come back inside `~~ ~~`, plus one qa.md scenario title whose old wording is quoted in the new dated comment. Nothing was rewritten silently.
+- spec R24, line 19, the Clipboard threat row, the two residuals and the R8 and R23 notes match the code.
+- Mismatches: R25 and qa.md over-claim (WR-12, WR-13). BUILD.md and spec Task 8 are stale (WR-14). No README exists for the module, so there is nothing to reconcile there.
+
+## BLOCKER (re-check)
+None.
+
+## WARNING (re-check)
+
+### WR-11: The SEC-06 property tests pin which code points are replaced, not that every one in a name is   (test gap on the SEC-01 guard)
+- **File:** tests/summary.test.js:132-144 (one character per name, built at :139) and :146-155 (a name with no class member). Code under test: src/core/summary.js:8 (`CONTROLS`, flags `gu`) and :28.
+- **Issue:** Three mutants of `CONTROLS`, served in memory, pass all 246 tests (the whole suite, with the mutation seen applied):
+  - P01 drops the `g` flag. `A` NUL `B` NUL `C` keeps its second NUL (`probe-output.txt`). A NUL ends a C-string clipboard, which is the SEC-01 threat itself.
+  - P02 adds `+`. Two adjacent NULs print as one space, against R24 "each ... one space".
+  - P03 adds `\p{Cs}`. A lone surrogate becomes a space, which is outside the class.
+  - Cause: no test has two replaceable characters in one name, and the second property test leaves surrogate halves out. The solver's mutants S21 to S28 and the auditor's three narrowing mutants did not try these shapes. "Pin the whole class" holds for membership only.
+- **Fix:** Add two tests (written as `X00` in `scripts/mutants-fix.mjs`, served in memory):
+  ```js
+  test("@R24 every replaceable character in one name is replaced, one space each", () => {
+    const members = [];
+    for (let cp = 0; cp <= 0x2069; cp += 1) if (R24_CLASS.test(String.fromCodePoint(cp))) members.push(String.fromCodePoint(cp));
+    const rowOf = (name) => summaryText(computeResult(setPersonName(S2, "p3", name))).split("\n")[4];
+    assert.equal(rowOf("A" + members.join("") + "B"), "A" + " ".repeat(members.length) + "B RM 38.86");
+    assert.equal(rowOf("A" + members.join("x") + "B"), "A" + members.map(() => " ").join("x") + "B RM 38.86");
+  });
+  test("@R24 a lone surrogate prints as typed", () => {
+    const lone = [];
+    for (let unit = 0xd800; unit <= 0xdfff; unit += 1) lone.push(String.fromCharCode(unit));
+    const name = "A" + lone.join("x") + "B";
+    assert.equal(summaryText(computeResult(setPersonName(S2, "p3", name))).split("\n")[4], name + " RM 38.86");
+  });
+  ```
+  Proven: green on the real code (X00, 29 of 29 in the file), and red on P01, P02 and P03 (X01 to X03). Add a qa.md scenario with a dated note.
+
+### WR-12: The runtime trap's own lists are not pinned, so a trap can be removed silently, and `globalThis` was never trapped   (control that cannot fail, spec claim false for one name)
+- **File:** tests/hygiene.test.js:227-256 (`TRAPPED_GLOBALS`, `TRAPPED_METHODS`, `CONSTRUCTOR_ROUTES`), :398-409 (the negative control builds its cases from those same arrays), :16-21 and :26-37 (`BANNED`, `BANNED_IN_CODE`). spec.md:144 (SEC-05 note) and qa.md:570.
+- **Issue:**
+  - **(a) Silent narrowing.** Deleting one entry from the three trap lists keeps the suite green in 37 of 42 cases. The 5 that go red (`Function`, `performance`, `process`, `Date`, the Function constructor route) are the ones an F plant happens to use. The negative control iterates the same arrays, so a deleted trap takes its control with it. It matters: with the `eval` trap removed, an executed `(0, \u{65}val)("1")` passes everything (H08a), and with the trap in place the same line fails (H08b). The same holds for `fetch` (H08c, H08d).
+  - **(b) `globalThis` is not trapped.** R25 bans `globalThis` and `BANNED` has it, but `TRAPPED_GLOBALS` does not. H04a: `const g = \u{67}lobalThis;` at module top level passes all 39 hygiene tests (the scan misses the escape and nothing traps it). So "It replaces every banned global" (spec.md:144) and "recorders on every banned global" (qa.md:570) are false for that name.
+  - **(c) Plumbing is unpinned.** With the restore loop off (B6, :297-300), with the run id not carried onto core-to-core imports (B7, :313-318) or with one run id for every import (B9, :334-337), the suite stays green. "A fresh copy of the whole core whatever loaded it before" is claimed and never tested, because nothing loads the core earlier or twice.
+  - **(d) Four copies of one list.** `BANNED`, `BANNED_IN_CODE`, the three trap lists and spec R25 describe the same set with nothing tying them together. They have already drifted (`globalThis`; `EventSource` and `indexedDB` are trapped but not banned).
+- **Fix:** Add `"globalThis"` to `TRAPPED_GLOBALS`. Add a pin test that lists the names R25 bans and checks each is in a trap list (written as `Y0` in `scripts/mutants-fix.mjs`):
+  ```js
+  test("@R25 the runtime trap lists cover every name R25 bans", () => {
+    const have = new Set([...TRAPPED_GLOBALS, ...TRAPPED_METHODS.map(([label]) => label), ...CONSTRUCTOR_ROUTES.map(([label]) => label)]);
+    assert.deepEqual([...MUST_TRAP, ...MUST_TRAP_OTHER].filter((name) => !have.has(name)), []);
+  });
+  ```
+  Proven in memory: red on the current code (the missing `globalThis`, Y0), green once `globalThis` is added (Y1), the escaped `globalThis` plant then fails (Y2), and the `eval` and `Date.now` removals fail (Y3, Y4). The pin is only as wide as its list (Y5), so list all four constructor routes and the whole `toLocale*` family. Better, keep one table of banned names that feeds `BANNED`, `BANNED_IN_CODE` and the trap lists. For (c), call `importCore()` twice and assert `notEqual(first.money, second.money)`, or delete the propagation line in the resolve hook if no test needs it (KISS).
+
+### WR-13: The docs say the trap catches all of the scan's blind spots. It only sees code that runs   (claim in spec and qa goes further than the code)
+- **File:** spec.md:144 (last sentence of the SEC-05 note, "The trap catches all of these."). qa.md:567-575. tests/hygiene.test.js:10-12 ("whatever the syntax") and :385 (the title).
+- **Issue:** H02 puts the scan's first blind spot, postfix `++` then `/ process.uptime()`, inside a branch no export call takes (`formatRate`, `bp > 1e12`). The scan misreads the slash and the trap never runs the line, so all 39 tests pass. The plain-name twin (H03, `Date.now()` in the same branch) is caught by the scan only. `runEveryExport` proves each export is called (`unexercised`, :394), not each branch. So the guards complement each other: the trap sees any syntax on a path the workload runs, the scan sees every path but only plain names.
+- **Fix:** Reword the last sentence of the spec.md R25 note to "The trap catches all of these on any path the workload runs. A branch the workload never takes is covered only by the name scan." Make the same change in qa.md and in the hygiene comment ("whatever the syntax, on the paths the workload runs"). No new code is needed.
+
+### WR-14: Stale numbers and a stale task line in the docs   (doc rot)
+- **File:** BUILD.md:18-20. spec.md:233.
+- **Issue:** BUILD.md says "tests 185" and then, in a dated note, "tests 212". HEAD runs 246, and the rounds between ran 217, 218, 230 and 244. An absolute count rots with every added test and reads as current. spec.md:233, Task 8, still says "a static scan of `src/core/` for the banned names and foreign imports", but since SEC-05 the primary guard in that file is the runtime trap. R25 carries the dated note and the task line does not.
+- **Fix:** In BUILD.md state the stable effect ("`fail 0` on `node --test "tests/**/*.test.js"`, the count is in the run output") and leave the history to the findings files. Add a dated note on the Task 8 line, without rewriting it: "[Changed date, role: the file also holds the runtime trap, the primary guard, see R25.]"
+
+### WR-15: Small maintainability items in the new test code and the summary comments   (doc ownership, DRY, robustness)
+- **File and issue:**
+  - **(a) The best-effort label.** tests/hygiene.test.js:10-12 calls the scan "best-effort and secondary" (good) but cites "(security SEC-05)", a finding id, and `codeOnly` (:61-65) says nothing about its limits. Point both at "spec R25", which lists them.
+  - **(b) Two file lists.** `CORE_FILES` (:225) repeats the literal at :144. A sixth core file fails :144 and then needs a second edit. Derive `CORE_FILES` from `files` (:140).
+  - **(c) One class, stated three times.** src/core/summary.js:4-7 (prose), :8 (the regex) and :10-14 (the JSDoc) all give the class. When it changes, three places move. Keep the regex and one prose sentence, and let the JSDoc say "see `CONTROLS`".
+  - **(d) A bare 79.** tests/summary.test.js:143 has no derivation. Write the sum beside it: 65 `Cc`, LS, PS and 12 `Bidi_Control`.
+  - **(e) Hits leak after a failure.** tests/hygiene.test.js:272-303 (`trapped`): when `body` throws, `hits.splice(0)` at :302 is skipped, so the next trapped run returns the earlier run's hits and a negative control could pass on leaked evidence. Probe Z1 shows it. The same applies to :261-270, where `recording` stays true if reading `.stack` ever threw. Take the hits in the `finally` block (Z2 is green with that change) and reset `recording` there too.
+- **Fix:** As listed in each bullet. All are small and none changes behaviour.
+
+## Checked and clean (re-check)
+- **Reverse audit.** Each changed function maps to an R#. `wholePart` serves R1, R3, R4, R5 (WR-06, WR-08). `CONTROLS` serves R24. The trap, the scan and the plants serve R25 (SEC-04, SEC-05). `fixture`, `floatAllocate` and `conversionsDuring` serve R16, R8 and R1/R3. No unused import, helper or constant (`scripts/unused.mjs`). No export outside the Contracts table. No non-goal built.
+- **Hostile bits that were tried and held.** The `//# sourceURL=` trick is caught indirectly (above). A new unexercised export goes red. Breaking the attribution, a recorder, the arming or the clearing goes red. The commit-by-commit suite is green, so each commit leaves the tree working.
+- **Process.** The sweep after the run found no `node`, `python` or `chrome` process. See `INDEX.txt`.
+
+## Notes for other owners (re-check)
+- **Routing.** WR-11 to WR-15 are test and doc changes for the Dev Solver. They touch the guards that security round 2 added, but they are code-review items, so the stop rule on a third security round is not engaged.
+- **split-app.** Nothing new. The routed items from the first round and from the security audit stand (unknown `mode`, unknown or `__proto__` keys on people and items, reject controls and bidi controls in names so the screen matches the summary).
+- **Process disclosure.** All evidence was written with the Write tool. No shell redirect or heredoc was used. Mutants were served in memory and the commit rebuilds ran in the session scratchpad, outside the project.

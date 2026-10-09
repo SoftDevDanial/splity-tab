@@ -1,0 +1,20 @@
+Flake check on the R25 runtime trap (tests/hygiene.test.js), Node v24.11.1. Every run is a foreground child
+under timeout -s KILL 120. No ExperimentalWarning or other warning text appeared in any run.
+
+label                                          rc  tests  pass  fail
+hygiene alone, run 1 to 10                     0   39     39    0      (ten identical results)
+full suite, --test-concurrency=1               0   246    246   0
+full suite, --test-isolation=none              0   246    246   0      (one process: trap, hooks and all other files together)
+full suite, --experimental-test-coverage       0   246    246   0
+hygiene, --enable-source-maps                  0   39     39    0
+hygiene, --jitless                             0   39     39    0
+hygiene, --always-turbofan                     0   39     39    0
+hygiene, --no-opt                              0   39     39    0
+hygiene, --stack-trace-limit=2                 0   39     39    0      (record() raises the limit itself)
+hygiene, run directly: node tests/hygiene.test.js          0   39  39  0
+hygiene, run from another working directory (/d)           0   39  39  0
+
+Findings from this: no timing, order or optimizer dependence. Order matters only inside the file, where tests
+run in declaration order. Only one Node version (24.11.1) is installed here, so another 24.x or a newer line
+was not run. The test needs module.registerHooks (Node 22.15 and 23.5 and later), so on an older Node it fails
+loudly at import, it cannot pass by accident.

@@ -1,0 +1,29 @@
+The 19 commits from 170a293 to HEAD, rebuilt from `git archive <sha> src tests` into a scratch directory
+outside the project (session scratchpad) and run with: node --test "tests/**/*.test.js".
+17 of them change src/ or tests/ (git log 170a293^..HEAD -- src tests). The other two (b5b448d and HEAD c655a94)
+are docs only and were run too. The range also holds 5 commits that touch neither (e034951, 476c182, c7f9640,
+a47bcb7 and 74ab714), which were not run.
+Each run was a foreground child under timeout -s KILL 120 and exited. Result, tests then failures:
+
+  170a293  WR-01  rc=0  tests 187  fail 0
+  16ca008  WR-02  rc=0  tests 187  fail 0
+  0a998f0  WR-03  rc=0  tests 199  fail 0
+  64388f8  WR-04  rc=0  tests 200  fail 0
+  ded51ae  WR-05  rc=0  tests 203  fail 0
+  75cca79  WR-08  rc=0  tests 203  fail 0
+  858dfca  WR-06  rc=0  tests 204  fail 0
+  d8cf735  WR-07  rc=0  tests 204  fail 0
+  34797ce  WR-09  rc=0  tests 204  fail 0
+  db3bd35  WR-10  rc=0  tests 212  fail 0
+  46f5670  WR-10 (naming)  rc=0  tests 212  fail 0
+  b3b43fe  SEC-01 rc=0  tests 217  fail 0
+  a09ce03  SEC-02 rc=0  tests 218  fail 0
+  b5b448d  SEC-03 (docs)  rc=0  tests 218  fail 0
+  e56b396  SEC-04 rc=0  tests 230  fail 0
+  fedaa7a  SEC-05 rc=0  tests 244  fail 0
+  5d5d02a  SEC-06 rc=0  tests 246  fail 0
+  4e2740b  wording rc=0  tests 246  fail 0
+  c655a94  HEAD   rc=0  tests 246  fail 0
+
+The counts equal the solver's own per-commit records (187, 187, 199, 200, 203, 203, 204, 204, 204, 212, 212 and
+217, 218, 218, 230 and 244, 246, 246). No commit message carries a vendor watermark or co-author line.

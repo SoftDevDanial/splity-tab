@@ -1,0 +1,41 @@
+Probe outputs, split-core code-review re-check, 2026-10-09. Scripts are in scripts/.
+
+== scripts/diff-old-new.mjs  (old sources from `git show 67e4b6e:<file>`, imported from in-memory data: URLs)
+money.js: 171416 strings, 1771342 comparisons, 0 differences
+bill.js: 120000 action steps, 0 value differences, 0 same-reference differences
+Covers WR-06 (parseAmount, parseRate at ceilings 0, 1, 20, 30, 99, 100, 1000, including 400-digit and 5000-digit
+inputs), WR-08 (formatMoney and formatRate over 0 to 200000 and six large values up to 2^53 - 1) and WR-09
+(a 400-walk random action sequence, old against new, values and same-reference returns).
+
+== BigInt trap rows (spec R8), recomputed here with BigInt and with a float allocator (inline node, plus the core allocator)
+236419679 W= 472839358 core [157481505,78938174] bigint-ref [157481505,78938174] float [157481506,78938173] a*w max > 2^53: true
+61846725 W= 372570630 core [8246230,53600495] bigint-ref [8246230,53600495] float [8246231,53600494] a*w max > 2^53: true
+178450942 W= 318662395 core [62457829,115993113] bigint-ref [62457829,115993113] float [62457830,115993112] a*w max > 2^53: true
+Reachable: a 372570630 subtotal at 10% and 6% gives charges 61846725. A 318662395 subtotal at 30% and 20% gives 178450942.
+Both subtotals are below 50 x 9,999,999 = 499,999,950, so the two new rows are real bills, not only valid allocator input.
+
+== scripts/probe-multi-control.mjs  (names with more than one replaceable character; P00 is the unmutated code)
+P00  two NULs apart  "A B C RM 58.30" | NULs left: 0   adjacent NULs  "A  B RM 58.30" | 0    lone surrogate  "A\ud800B RM 58.30" kept
+P01  two NULs apart  "A B\u0000C RM 58.30" | NULs left: 1   adjacent NULs  "A \u0000B RM 58.30" | 1   lone surrogate kept
+P02  two NULs apart  "A B C RM 58.30" | 0   adjacent NULs  "A B RM 58.30" (collapsed to one space)   lone surrogate kept
+P03  two NULs apart  "A B C RM 58.30" | 0   adjacent NULs  "A  B RM 58.30"   lone surrogate  "A B RM 58.30" (replaced)
+P01 leaves a NUL in the copied text, which is the SEC-01 threat (a NUL ends a C-string clipboard).
+All three of P01, P02 and P03 pass the whole suite: 246 of 246 (node --test with the preload forwarded to all 7 files;
+MUT-APPLIED was seen for summary.js via the load hook in 2 processes and via fs in the hygiene scan).
+
+== trap hit leak (mutants Z1 and Z2, run after the 94-mutant table, so they are not in mutation-summary.txt)
+Z1  KILLED     a trapped run whose body throws after a recorded hit leaves the hit in `hits`; the next trapped run returns it
+               (the probe test "zz probe: a trapped run whose body throws must not leak its hits into the next run" goes red).
+Z2  SURVIVES   the same probe with the hits taken in the `finally` block: green. So the leak is real and the fix works.
+With the totals of mutation-summary.txt this makes 96 mutants: 41 killed, 55 survive.
+
+== raw character scan (scripts/rawscan.mjs) over src/, tests/, spec.md, qa.md, BUILD.md, findings/ (before this re-check section was appended)
+scanned 19 files, 0 suspect characters (controls, line and paragraph separators, bidi controls, BOM, en and em dashes; LF, CR, TAB ignored)
+
+== dead names (scripts/unused.mjs)
+Only exported names and names that occur inside plant strings appear once. No unused import and no unused helper.
+
+== docs/design/ : git diff --stat 67e4b6e..HEAD -- docs/design is empty. Working tree before this run: clean.
+== docs word-diff : git diff --word-diff 67e4b6e..HEAD on spec.md, qa.md and BUILD.md shows removed words only where the same words
+   come back wrapped in ~~ ~~ (a strike), plus one qa.md scenario title whose old wording is quoted in the new dated comment.
+   Nothing was rewritten silently.
