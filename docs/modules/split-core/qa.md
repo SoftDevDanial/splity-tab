@@ -97,6 +97,16 @@ Feature: split-core money, maths, state rules and summary text
     When parseAmount is called
     Then it returns { ok: false, empty: false } and does not throw
 
+  @R1 @R3
+  # [Added 2026-10-09, ORCH, code-review WR-06] The scenario above passes with or without the digit
+  # cap, so it cannot prove "no overflow". This one can: it watches the global Number while parsing.
+  Scenario: A whole part longer than the ceiling's is refused before any numeric conversion
+    Given a spy on every call of the global Number
+    When parseAmount gets "1" followed by 400 "0" characters, and "100000"
+    And parseRate gets "100" with max 30
+    Then each returns { ok: false, empty: false } and Number was never called
+    And parseAmount "99999.99" and parseRate "30" with max 30 do call Number (the spy is not blind)
+
   @R2
   Scenario Outline: Empty or white-space text is reported as empty
     Given the text "<text>"

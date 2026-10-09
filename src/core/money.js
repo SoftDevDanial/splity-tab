@@ -10,27 +10,33 @@ export const AMOUNT_MAX_CENTS = 9999999;
 const EMPTY = Object.freeze({ ok: false, empty: true });
 const INVALID = Object.freeze({ ok: false, empty: false });
 
-// One linear pattern with no nested quantifier, so hostile long input cannot make it backtrack.
+// No nested quantifier, so matching stays linear in the input length (no catastrophic backtracking).
 const DECIMAL_TEXT = /^([0-9]+)(?:\.([0-9]{0,2}))?$/;
 
-// Whole-part digits (leading zeros dropped) beyond this are out of range for every caller. Checking the
-// length first keeps a 400-digit string away from numeric conversion and keeps hundredths below 2^53.
-const MAX_WHOLE_DIGITS = 9;
+/** Whole ringgit of cents, or whole percent of basis points. Remainder first, so the division is exact. */
+function wholePart(hundredths) {
+  return (hundredths - (hundredths % 100)) / 100;
+}
 
 /**
- * Shared reader for R1 and R3, so amounts and rates cannot drift apart on the grammar.
+ * Shared reader for R1 and R3, so amounts and rates cannot drift apart on the grammar or the ceiling.
  * @param {string} text
- * @returns {{ ok: true, hundredths: number } | { ok: false, empty: boolean }}
+ * @param {number} maxHundredths the caller's inclusive ceiling: AMOUNT_MAX_CENTS, or maxPercent x 100
+ * @returns {{ ok: true, hundredths: number } | { ok: false, empty: boolean }} INVALID above the ceiling
  */
-function readHundredths(text) {
+function readHundredths(text, maxHundredths) {
   const trimmed = text.trim();
   if (trimmed === "") return EMPTY;
   const match = DECIMAL_TEXT.exec(trimmed);
   if (match === null) return INVALID;
   const whole = match[1].replace(/^0+/, "");
-  if (whole.length > MAX_WHOLE_DIGITS) return INVALID;
+  // The digit cap is the digit count of the ceiling's whole part. A longer whole part (leading zeros
+  // dropped) is above the ceiling, so it is refused before Number() sees it, and a 400-digit string is
+  // never converted. The range check below decides the rest.
+  if (whole.length > String(wholePart(maxHundredths)).length) return INVALID;
   const fraction = (match[2] ?? "").padEnd(2, "0");
-  return { ok: true, hundredths: Number(whole === "" ? "0" : whole) * 100 + Number(fraction) };
+  const hundredths = Number(whole === "" ? "0" : whole) * 100 + Number(fraction);
+  return hundredths <= maxHundredths ? { ok: true, hundredths } : INVALID;
 }
 
 /**
@@ -39,10 +45,9 @@ function readHundredths(text) {
  * @returns {AmountResult} cents when 0.01 to 99999.99, else `empty` tells blank from bad.
  */
 export function parseAmount(text) {
-  const read = readHundredths(text);
+  const read = readHundredths(text, AMOUNT_MAX_CENTS);
   if (!read.ok) return read;
-  const inRange = read.hundredths >= AMOUNT_MIN_CENTS && read.hundredths <= AMOUNT_MAX_CENTS;
-  return inRange ? { ok: true, cents: read.hundredths } : INVALID;
+  return read.hundredths >= AMOUNT_MIN_CENTS ? { ok: true, cents: read.hundredths } : INVALID;
 }
 
 /**
@@ -52,14 +57,8 @@ export function parseAmount(text) {
  * @returns {RateResult} basis points, or `empty` for blank text
  */
 export function parseRate(text, maxPercent) {
-  const read = readHundredths(text);
-  if (!read.ok) return read;
-  return read.hundredths <= maxPercent * 100 ? { ok: true, bp: read.hundredths } : INVALID;
-}
-
-/** Whole ringgit of cents, or whole percent of basis points. Remainder first, so the division is exact. */
-function wholePart(hundredths) {
-  return (hundredths - (hundredths % 100)) / 100;
+  const read = readHundredths(text, maxPercent * 100);
+  return read.ok ? { ok: true, bp: read.hundredths } : read;
 }
 
 /**

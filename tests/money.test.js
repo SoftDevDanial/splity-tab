@@ -43,10 +43,44 @@ for (const text of invalidAmounts) {
   });
 }
 
-test("@R1 @R2 a 401-character amount is rejected without overflow or exception", () => {
+test("@R1 @R2 a 401-character amount is invalid and does not throw", () => {
   const text = "1" + "0".repeat(400);
   assert.deepEqual(parseAmount(text), INVALID);
   assert.deepEqual(parseRate(text, 30), INVALID);
+});
+
+/** Runs `read` with a spy on the global Number, so a test can see which strings were converted. */
+function conversionsDuring(read) {
+  const converted = [];
+  const realNumber = globalThis.Number;
+  globalThis.Number = new Proxy(realNumber, {
+    apply(target, self, args) {
+      converted.push(args[0]);
+      return Reflect.apply(target, self, args);
+    },
+  });
+  try {
+    return { result: read(), converted };
+  } finally {
+    globalThis.Number = realNumber;
+  }
+}
+
+// The cap never changes a result (a longer whole part is above the ceiling anyway), so only a spy on
+// the conversion can tell whether it ran first. The positive controls prove the spy is not blind.
+test("@R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion", () => {
+  const tooLong = [
+    () => parseAmount("1" + "0".repeat(400)),
+    () => parseAmount("100000"),
+    () => parseRate("100", 30),
+  ];
+  for (const read of tooLong) {
+    const { result, converted } = conversionsDuring(read);
+    assert.deepEqual(result, INVALID);
+    assert.deepEqual(converted, []);
+  }
+  assert.ok(conversionsDuring(() => parseAmount("99999.99")).converted.includes("99999"));
+  assert.ok(conversionsDuring(() => parseRate("30", 30)).converted.includes("30"));
 });
 
 for (const text of ["", "   "]) {

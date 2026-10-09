@@ -59,7 +59,7 @@ enforces the purity part mechanically.
 ## Internal helpers (module-private, by symbol)
 | File | Symbols | Why they exist |
 |---|---|---|
-| `money.js` | `readHundredths`, `DECIMAL_TEXT`, `MAX_WHOLE_DIGITS`, `EMPTY`, `INVALID`. [Added 2026-10-09, solver, WR-08: `wholePart`.] | One reader for the amount and rate grammar. The digit-count cap runs before any numeric conversion, so a 400-digit string is never converted. [Added 2026-10-09, WR-08: `wholePart` is the exact integer division shared by `formatMoney` and `formatRate`.] |
+| `money.js` | `readHundredths`, `DECIMAL_TEXT`, ~~`MAX_WHOLE_DIGITS`~~ [removed 2026-10-09, solver, WR-06], `EMPTY`, `INVALID`. [Added 2026-10-09, solver, WR-08: `wholePart`.] | One reader for the amount and rate grammar. ~~The digit-count cap runs before any numeric conversion, so a 400-digit string is never converted.~~ [Changed 2026-10-09, WR-06: `readHundredths` takes the caller's ceiling and derives the digit cap from it. The reasoning is its comment.] [Added 2026-10-09, WR-08: `wholePart` is the exact integer division shared by `formatMoney`, `formatRate` and the digit cap.] |
 | `allocate.js` | `assertAmount` | The shared amount precondition of both allocators (R9). |
 | `bill.js` | `billWith`, `personWith`, `itemWith`, `changeItem`, `labelOf` | Rebuild a bill, person or item from known fields only (no spread of a parsed object), the shared item setter, and the shared label fallback. |
 | `result.js` | `applyRate`, `BASIS_POINTS`, `sum`, `blocked`, `evenResult`, `itemResult`, `holderIndexes`, `itemTotals` | Half-up rate application with remainder arithmetic, and the two result builders split by mode. |
@@ -73,8 +73,10 @@ enforces the purity part mechanically.
   `allocateByWeight` (the only `BigInt` site), with the bounds in spec Invariants.]
 - ~~`allocateEvenly` subtracts the remainder before dividing, so the division is exact for any safe integer.~~
   [Changed 2026-10-09, solver, WR-02: see the comment in `allocateEvenly`.]
-- Parsing caps the whole part at 9 digits after dropping leading zeros. This is an internal safety cap, not
-  a rule: the range checks (99,999.99 for amounts, 30 and 20 percent for rates) decide validity.
+- ~~Parsing caps the whole part at 9 digits after dropping leading zeros. This is an internal safety cap, not
+  a rule: the range checks (99,999.99 for amounts, 30 and 20 percent for rates) decide validity.~~
+  [Changed 2026-10-09, solver, code-review WR-06: the 9 was a magic number. The cap is now derived from
+  the caller's ceiling, and the derivation is stated once, in the comment in `readHundredths`.]
 - ~~Actions rebuild every object from known fields, so a `Bill` parsed from JSON loses stray keys and a
   `__proto__` key on its first action (threat model, object integrity). `tests/bill.test.js` covers it.~~
   [Changed 2026-10-09, solver, code-review WR-03: false. Untouched people and items keep their stray keys.
