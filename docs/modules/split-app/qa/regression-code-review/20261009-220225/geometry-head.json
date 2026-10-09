@@ -1,0 +1,3404 @@
+{
+ "label": "head",
+ "root": "{workspace}\\examples\\split",
+ "rows": 72,
+ "with_overlap": 45,
+ "errors": [],
+ "hits": [
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 112,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     112,
+     156
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     134.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 3,
+   "add_button": {
+    "x": 164,
+    "y": 168,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 260,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     260,
+     304
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     282.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 112,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     112,
+     156
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     134.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 5,
+   "add_button": {
+    "x": 164,
+    "y": 220,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 260,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     260,
+     304
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     282.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 11,
+   "add_button": {
+    "x": 164,
+    "y": 376,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 260,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     260,
+     304
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     282.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 132,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     132,
+     176
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     154.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 3,
+   "add_button": {
+    "x": 184,
+    "y": 168,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 300,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     300,
+     344
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     322.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 132,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     132,
+     176
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     154.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 5,
+   "add_button": {
+    "x": 184,
+    "y": 220,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 300,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     300,
+     344
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     322.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 11,
+   "add_button": {
+    "x": 184,
+    "y": 376,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 300,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     300,
+     344
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     322.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 139.5,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     139.5,
+     183.5
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     161.5,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 3,
+   "add_button": {
+    "x": 191.5,
+    "y": 168,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 315,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     315,
+     359.0
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     337.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 139.5,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     139.5,
+     183.5
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     161.5,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 5,
+   "add_button": {
+    "x": 191.5,
+    "y": 220,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 315,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     315,
+     359.0
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     337.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 11,
+   "add_button": {
+    "x": 191.5,
+    "y": 376,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 315,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     315,
+     359.0
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     337.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 147,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     147,
+     191
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     169.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 3,
+   "add_button": {
+    "x": 199,
+    "y": 168,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 330,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     330,
+     374
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     352.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 147,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     147,
+     191
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     169.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 5,
+   "add_button": {
+    "x": 199,
+    "y": 220,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 330,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     330,
+     374
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     352.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 11,
+   "add_button": {
+    "x": 199,
+    "y": 376,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 330,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     330,
+     374
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     352.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 158,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     158,
+     202
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     180.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 3,
+   "add_button": {
+    "x": 210,
+    "y": 168,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 352,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     352,
+     396
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     374.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 158,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     158,
+     202
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     180.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 5,
+   "add_button": {
+    "x": 210,
+    "y": 220,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 352,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     352,
+     396
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     374.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 11,
+   "add_button": {
+    "x": 210,
+    "y": 376,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 352,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     352,
+     396
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     374.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 2,
+   "add_button": {
+    "x": 393.328125,
+    "y": 124,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 520,
+    "y": 124,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     520,
+     564.0
+    ],
+    "y": [
+     124,
+     168
+    ],
+    "point": [
+     542.0,
+     146.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 3,
+   "add_button": {
+    "x": 36,
+    "y": 176,
+    "width": 170.65625,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 162.65625,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     162.65625,
+     206.65625
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     184.65625,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 4,
+   "add_button": {
+    "x": 214.65625,
+    "y": 176,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 341.328125,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     341.328125,
+     385.328125
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     363.328125,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 5,
+   "add_button": {
+    "x": 393.328125,
+    "y": 176,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 520,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     520,
+     564.0
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     542.0,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 11,
+   "add_button": {
+    "x": 393.328125,
+    "y": 280,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 520,
+    "y": 280,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     520,
+     564.0
+    ],
+    "y": [
+     280,
+     324
+    ],
+    "point": [
+     542.0,
+     302.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 2,
+   "add_button": {
+    "x": 477.328125,
+    "y": 124,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 604,
+    "y": 124,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     604,
+     648.0
+    ],
+    "y": [
+     124,
+     168
+    ],
+    "point": [
+     626.0,
+     146.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 3,
+   "add_button": {
+    "x": 120,
+    "y": 176,
+    "width": 170.65625,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 246.65625,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     246.65625,
+     290.65625
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     268.65625,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 4,
+   "add_button": {
+    "x": 298.65625,
+    "y": 176,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 425.328125,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     425.328125,
+     469.328125
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     447.328125,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 5,
+   "add_button": {
+    "x": 477.328125,
+    "y": 176,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 604,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     604,
+     648.0
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     626.0,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 11,
+   "add_button": {
+    "x": 477.328125,
+    "y": 280,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 604,
+    "y": 280,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     604,
+     648.0
+    ],
+    "y": [
+     280,
+     324
+    ],
+    "point": [
+     626.0,
+     302.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 2,
+   "add_button": {
+    "x": 354.65625,
+    "y": 136,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 463.984375,
+    "y": 136,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     463.984375,
+     507.984375
+    ],
+    "y": [
+     136,
+     180
+    ],
+    "point": [
+     485.984375,
+     158.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 3,
+   "add_button": {
+    "x": 32,
+    "y": 188,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 141.328125,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     141.328125,
+     185.328125
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     163.328125,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 4,
+   "add_button": {
+    "x": 193.328125,
+    "y": 188,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 302.65625,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     302.65625,
+     346.65625
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     324.65625,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 5,
+   "add_button": {
+    "x": 354.65625,
+    "y": 188,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 463.984375,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     463.984375,
+     507.984375
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     485.984375,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 11,
+   "add_button": {
+    "x": 354.65625,
+    "y": 292,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 463.984375,
+    "y": 292,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     463.984375,
+     507.984375
+    ],
+    "y": [
+     292,
+     336
+    ],
+    "point": [
+     485.984375,
+     314.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 2,
+   "add_button": {
+    "x": 496,
+    "y": 136,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 632,
+    "y": 136,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     632,
+     676
+    ],
+    "y": [
+     136,
+     180
+    ],
+    "point": [
+     654.0,
+     158.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 3,
+   "add_button": {
+    "x": 120,
+    "y": 188,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 256,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     256,
+     300
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     278.0,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 4,
+   "add_button": {
+    "x": 308,
+    "y": 188,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 444,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     444,
+     488
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     466.0,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 5,
+   "add_button": {
+    "x": 496,
+    "y": 188,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 632,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     632,
+     676
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     654.0,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 11,
+   "add_button": {
+    "x": 496,
+    "y": 292,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 632,
+    "y": 292,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     632,
+     676
+    ],
+    "y": [
+     292,
+     336
+    ],
+    "point": [
+     654.0,
+     314.0
+    ]
+   }
+  }
+ ],
+ "all": [
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 112,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     112,
+     156
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     134.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 3,
+   "add_button": {
+    "x": 164,
+    "y": 168,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 260,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     260,
+     304
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     282.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 112,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     112,
+     156
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     134.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 5,
+   "add_button": {
+    "x": 164,
+    "y": 220,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 260,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     260,
+     304
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     282.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 320,
+   "before": 11,
+   "add_button": {
+    "x": 164,
+    "y": 376,
+    "width": 140,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 260,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     260,
+     304
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     282.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "items",
+   "width": 320,
+   "before": 1,
+   "add_button": {
+    "x": 16,
+    "y": 454,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 260,
+    "y": 471,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 320,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 583,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 260,
+    "y": 600,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 320,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 841,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 260,
+    "y": 858,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 132,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     132,
+     176
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     154.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 3,
+   "add_button": {
+    "x": 184,
+    "y": 168,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 300,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     300,
+     344
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     322.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 132,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     132,
+     176
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     154.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 5,
+   "add_button": {
+    "x": 184,
+    "y": 220,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 300,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     300,
+     344
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     322.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 360,
+   "before": 11,
+   "add_button": {
+    "x": 184,
+    "y": 376,
+    "width": 160,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 300,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     300,
+     344
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     322.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "items",
+   "width": 360,
+   "before": 1,
+   "add_button": {
+    "x": 16,
+    "y": 454,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 300,
+    "y": 471,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 360,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 583,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 300,
+    "y": 600,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 360,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 841,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 300,
+    "y": 858,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 139.5,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     139.5,
+     183.5
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     161.5,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 3,
+   "add_button": {
+    "x": 191.5,
+    "y": 168,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 315,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     315,
+     359.0
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     337.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 139.5,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     139.5,
+     183.5
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     161.5,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 5,
+   "add_button": {
+    "x": 191.5,
+    "y": 220,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 315,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     315,
+     359.0
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     337.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 375,
+   "before": 11,
+   "add_button": {
+    "x": 191.5,
+    "y": 376,
+    "width": 167.5,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 315,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     315,
+     359.0
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     337.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "items",
+   "width": 375,
+   "before": 1,
+   "add_button": {
+    "x": 16,
+    "y": 454,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 315,
+    "y": 471,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 375,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 583,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 315,
+    "y": 600,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 375,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 841,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 315,
+    "y": 858,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 147,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     147,
+     191
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     169.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 3,
+   "add_button": {
+    "x": 199,
+    "y": 168,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 330,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     330,
+     374
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     352.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 147,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     147,
+     191
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     169.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 5,
+   "add_button": {
+    "x": 199,
+    "y": 220,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 330,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     330,
+     374
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     352.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 390,
+   "before": 11,
+   "add_button": {
+    "x": 199,
+    "y": 376,
+    "width": 175,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 330,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     330,
+     374
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     352.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "items",
+   "width": 390,
+   "before": 1,
+   "add_button": {
+    "x": 16,
+    "y": 454,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 330,
+    "y": 471,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 390,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 583,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 330,
+    "y": 600,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 390,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 841,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 330,
+    "y": 858,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 168,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 158,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     158,
+     202
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     180.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 3,
+   "add_button": {
+    "x": 210,
+    "y": 168,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 352,
+    "y": 168,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     352,
+     396
+    ],
+    "y": [
+     168,
+     212
+    ],
+    "point": [
+     374.0,
+     190.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 220,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 158,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     158,
+     202
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     180.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 5,
+   "add_button": {
+    "x": 210,
+    "y": 220,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 352,
+    "y": 220,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     352,
+     396
+    ],
+    "y": [
+     220,
+     264
+    ],
+    "point": [
+     374.0,
+     242.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 412,
+   "before": 11,
+   "add_button": {
+    "x": 210,
+    "y": 376,
+    "width": 186,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 352,
+    "y": 376,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     352,
+     396
+    ],
+    "y": [
+     376,
+     420
+    ],
+    "point": [
+     374.0,
+     398.0
+    ]
+   }
+  },
+  {
+   "kind": "items",
+   "width": 412,
+   "before": 1,
+   "add_button": {
+    "x": 16,
+    "y": 454,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 352,
+    "y": 471,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 412,
+   "before": 2,
+   "add_button": {
+    "x": 16,
+    "y": 583,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 352,
+    "y": 600,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 412,
+   "before": 4,
+   "add_button": {
+    "x": 16,
+    "y": 841,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 352,
+    "y": 858,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 2,
+   "add_button": {
+    "x": 393.328125,
+    "y": 124,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 520,
+    "y": 124,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     520,
+     564.0
+    ],
+    "y": [
+     124,
+     168
+    ],
+    "point": [
+     542.0,
+     146.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 3,
+   "add_button": {
+    "x": 36,
+    "y": 176,
+    "width": 170.65625,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 162.65625,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     162.65625,
+     206.65625
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     184.65625,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 4,
+   "add_button": {
+    "x": 214.65625,
+    "y": 176,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 341.328125,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     341.328125,
+     385.328125
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     363.328125,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 5,
+   "add_button": {
+    "x": 393.328125,
+    "y": 176,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 520,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     520,
+     564.0
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     542.0,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 600,
+   "before": 11,
+   "add_button": {
+    "x": 393.328125,
+    "y": 280,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 520,
+    "y": 280,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     520,
+     564.0
+    ],
+    "y": [
+     280,
+     324
+    ],
+    "point": [
+     542.0,
+     302.0
+    ]
+   }
+  },
+  {
+   "kind": "items",
+   "width": 600,
+   "before": 1,
+   "add_button": {
+    "x": 36,
+    "y": 462,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 520,
+    "y": 479,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 600,
+   "before": 2,
+   "add_button": {
+    "x": 36,
+    "y": 591,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 520,
+    "y": 608,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 600,
+   "before": 4,
+   "add_button": {
+    "x": 36,
+    "y": 849,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 520,
+    "y": 866,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 2,
+   "add_button": {
+    "x": 477.328125,
+    "y": 124,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 604,
+    "y": 124,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     604,
+     648.0
+    ],
+    "y": [
+     124,
+     168
+    ],
+    "point": [
+     626.0,
+     146.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 3,
+   "add_button": {
+    "x": 120,
+    "y": 176,
+    "width": 170.65625,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 246.65625,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     246.65625,
+     290.65625
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     268.65625,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 4,
+   "add_button": {
+    "x": 298.65625,
+    "y": 176,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 425.328125,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     425.328125,
+     469.328125
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     447.328125,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 5,
+   "add_button": {
+    "x": 477.328125,
+    "y": 176,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 604,
+    "y": 176,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     604,
+     648.0
+    ],
+    "y": [
+     176,
+     220
+    ],
+    "point": [
+     626.0,
+     198.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 768,
+   "before": 11,
+   "add_button": {
+    "x": 477.328125,
+    "y": 280,
+    "width": 170.671875,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 604,
+    "y": 280,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     604,
+     648.0
+    ],
+    "y": [
+     280,
+     324
+    ],
+    "point": [
+     626.0,
+     302.0
+    ]
+   }
+  },
+  {
+   "kind": "items",
+   "width": 768,
+   "before": 1,
+   "add_button": {
+    "x": 120,
+    "y": 462,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 604,
+    "y": 479,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 768,
+   "before": 2,
+   "add_button": {
+    "x": 120,
+    "y": 591,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 604,
+    "y": 608,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 768,
+   "before": 4,
+   "add_button": {
+    "x": 120,
+    "y": 849,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 604,
+    "y": 866,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 2,
+   "add_button": {
+    "x": 354.65625,
+    "y": 136,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 463.984375,
+    "y": 136,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     463.984375,
+     507.984375
+    ],
+    "y": [
+     136,
+     180
+    ],
+    "point": [
+     485.984375,
+     158.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 3,
+   "add_button": {
+    "x": 32,
+    "y": 188,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 141.328125,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     141.328125,
+     185.328125
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     163.328125,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 4,
+   "add_button": {
+    "x": 193.328125,
+    "y": 188,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 302.65625,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     302.65625,
+     346.65625
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     324.65625,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 5,
+   "add_button": {
+    "x": 354.65625,
+    "y": 188,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 463.984375,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     463.984375,
+     507.984375
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     485.984375,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1024,
+   "before": 11,
+   "add_button": {
+    "x": 354.65625,
+    "y": 292,
+    "width": 153.328125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 463.984375,
+    "y": 292,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     463.984375,
+     507.984375
+    ],
+    "y": [
+     292,
+     336
+    ],
+    "point": [
+     485.984375,
+     314.0
+    ]
+   }
+  },
+  {
+   "kind": "items",
+   "width": 1024,
+   "before": 1,
+   "add_button": {
+    "x": 32,
+    "y": 474,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 464,
+    "y": 491,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 1024,
+   "before": 2,
+   "add_button": {
+    "x": 32,
+    "y": 603,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 464,
+    "y": 620,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 1024,
+   "before": 4,
+   "add_button": {
+    "x": 32,
+    "y": 861,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 464,
+    "y": 878,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 2,
+   "add_button": {
+    "x": 496,
+    "y": 136,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 632,
+    "y": 136,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     632,
+     676
+    ],
+    "y": [
+     136,
+     180
+    ],
+    "point": [
+     654.0,
+     158.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 3,
+   "add_button": {
+    "x": 120,
+    "y": 188,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 256,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     256,
+     300
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     278.0,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 4,
+   "add_button": {
+    "x": 308,
+    "y": 188,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 444,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     444,
+     488
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     466.0,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 5,
+   "add_button": {
+    "x": 496,
+    "y": 188,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 632,
+    "y": 188,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     632,
+     676
+    ],
+    "y": [
+     188,
+     232
+    ],
+    "point": [
+     654.0,
+     210.0
+    ]
+   }
+  },
+  {
+   "kind": "people",
+   "width": 1280,
+   "before": 11,
+   "add_button": {
+    "x": 496,
+    "y": 292,
+    "width": 180,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 632,
+    "y": 292,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": {
+    "x": [
+     632,
+     676
+    ],
+    "y": [
+     292,
+     336
+    ],
+    "point": [
+     654.0,
+     314.0
+    ]
+   }
+  },
+  {
+   "kind": "items",
+   "width": 1280,
+   "before": 1,
+   "add_button": {
+    "x": 120,
+    "y": 474,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 632,
+    "y": 491,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 1280,
+   "before": 2,
+   "add_button": {
+    "x": 120,
+    "y": 603,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 632,
+    "y": 620,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  },
+  {
+   "kind": "items",
+   "width": 1280,
+   "before": 4,
+   "add_button": {
+    "x": 120,
+    "y": 861,
+    "width": 122.78125,
+    "height": 44
+   },
+   "new_remove": {
+    "x": 632,
+    "y": 878,
+    "width": 44,
+    "height": 44
+   },
+   "scroll_moved": 0,
+   "overlap": null
+  }
+ ]
+}

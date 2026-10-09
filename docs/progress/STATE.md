@@ -4,7 +4,7 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** regression (--full, ORCH economy)
+- **phase:** regression (code-review delta: 1 BLOCKER, dev solver)
 - **next:** regression
 
 ## Modules
@@ -17,7 +17,7 @@
 none
 
 ## Next action
-Regression: code-review delta finder running (sonnet), then QA finder (haiku) on both modules, cold-boot gate into docs/regression/<ts>/, REGRESSION.md, process ledger reconciled. Then sdlc:review, then the UAT pre-run.
+Dev solver on RG-CR-01 (double click on Add person adds then removes), RG-CR-02, RG-CR-04. Orchestrator reconciles README (RG-CR-03, RG-CR-06) after. One scoped code-review re-check (stop rule). Then QA finder (haiku) both modules, cold boot into docs/regression/<ts>/, REGRESSION.md, process ledger. Then review, UAT pre-run.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

@@ -141,3 +141,6 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 
 ## 2026-10-09 21:57 regression started
 - ORCH economy ruling recorded: security and fidelity verdicts stand on identical code; code-review delta and QA re-run; cold boot by the orchestrator.
+
+## 2026-10-09 22:26 regression code review collected
+- RG-CR-01 BLOCKER: 071577a regressed a double click on the right edge of Add person (adds then removes). Routed to the dev solver with RG-CR-02 and RG-CR-04.

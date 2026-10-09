@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Split</title>
+<link rel="stylesheet" href="src/system.css">
+<script type="module" src="src/main.js"></script>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <h1 class="wordmark">Split</h1>
+    <button class="btn btn-outline" type="button">New bill</button>
+  </header>
+  <main class="layout">
+    <div class="inputs"></div>
+    <div class="tape"></div>
+  </main>
+</div>
+<dialog class="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-text">
+  <h2 class="dialog-title" id="dialog-title">Start a new bill?</h2>
+  <p class="dialog-text" id="dialog-text">This clears the people, items and amounts.</p>
+  <div class="dialog-actions">
+    <button class="btn btn-primary btn-large" type="button">Start new bill</button>
+    <button class="btn btn-outline btn-large" type="button">Cancel</button>
+  </div>
+</dialog>
+</body>
+</html>

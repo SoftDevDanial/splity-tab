@@ -1,0 +1,1590 @@
+{
+ "label": "fix",
+ "root": "{workspace}\\examples\\split\\docs\\modules\\split-app\\qa\\regression-code-review\\20261009-220225\\scratch-mutants",
+ "rows": [
+  {
+   "people_before": 2,
+   "size": "360x640",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "360x640",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "360x640",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "360x640",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "360x640",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "360x640",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "360x640",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "360x640",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 3,
+   "size": "360x640",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "360x640",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "360x640",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "360x640",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "360x640",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "360x640",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "360x640",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "360x640",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 4,
+   "size": "360x640",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "360x640",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "360x640",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "360x640",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "360x640",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "360x640",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "360x640",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "360x640",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 5,
+   "size": "360x640",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "360x640",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "360x640",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "360x640",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "360x640",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "360x640",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "360x640",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "360x640",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 2,
+   "size": "390x844",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "390x844",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "390x844",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "390x844",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "390x844",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "390x844",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "390x844",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "390x844",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 3,
+   "size": "390x844",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "390x844",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "390x844",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "390x844",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "390x844",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "390x844",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "390x844",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "390x844",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 4,
+   "size": "390x844",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "390x844",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "390x844",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "390x844",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "390x844",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "390x844",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "390x844",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "390x844",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 5,
+   "size": "390x844",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "390x844",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "390x844",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "390x844",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "390x844",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "390x844",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "390x844",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "390x844",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 2,
+   "size": "1280x800",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "1280x800",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "1280x800",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "1280x800",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "1280x800",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "1280x800",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "1280x800",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 2,
+   "size": "1280x800",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 3,
+   "nextId": 4,
+   "names": [
+    "P1",
+    "P2",
+    ""
+   ],
+   "focus": "Person 3 name",
+   "dom_rows": 3
+  },
+  {
+   "people_before": 3,
+   "size": "1280x800",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "1280x800",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "1280x800",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "1280x800",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "1280x800",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "1280x800",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "1280x800",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 3,
+   "size": "1280x800",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 4,
+   "nextId": 5,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    ""
+   ],
+   "focus": "Person 4 name",
+   "dom_rows": 4
+  },
+  {
+   "people_before": 4,
+   "size": "1280x800",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "1280x800",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "1280x800",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "1280x800",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "1280x800",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "1280x800",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "1280x800",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 4,
+   "size": "1280x800",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 5,
+   "nextId": 6,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    ""
+   ],
+   "focus": "Person 5 name",
+   "dom_rows": 5
+  },
+  {
+   "people_before": 5,
+   "size": "1280x800",
+   "gesture": "single",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "1280x800",
+   "gesture": "single",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "1280x800",
+   "gesture": "mouse-double",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "1280x800",
+   "gesture": "mouse-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "1280x800",
+   "gesture": "mouse-triple",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "1280x800",
+   "gesture": "mouse-triple",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "1280x800",
+   "gesture": "touch-double",
+   "where": "centre",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  },
+  {
+   "people_before": 5,
+   "size": "1280x800",
+   "gesture": "touch-double",
+   "where": "right edge (under new Remove)",
+   "people_after": 6,
+   "nextId": 7,
+   "names": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    ""
+   ],
+   "focus": "Person 6 name",
+   "dom_rows": 6
+  }
+ ]
+}

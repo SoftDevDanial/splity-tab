@@ -1,0 +1,144 @@
+// Boot and wiring for the page. Holds the one `bill` value, calls split-core for every change, and asks
+// each block under src/ui/ to show it. No money is computed here (split-core owns that).
+import {
+  newBill, addPerson, removePerson, setPersonName, setMode, setSubtotalText,
+  addItem, removeItem, setItemName, setItemPriceText, toggleItemPerson, setServiceText, setSstText,
+} from "./core/bill.js";
+import { computeResult } from "./core/result.js";
+import { summaryText } from "./core/summary.js";
+import { getStorage, loadDraft, saveDraft } from "./draft.js";
+import { flagsFor, newErrorFlags, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
+import { createDialog } from "./ui/dialog.js";
+import { createNote } from "./ui/note.js";
+import { createPeople } from "./ui/people.js";
+import { createMode } from "./ui/mode.js";
+import { createSubtotal } from "./ui/subtotal.js";
+import { createItems } from "./ui/items.js";
+import { createCharges } from "./ui/charges.js";
+import { createPanel, hasShares } from "./ui/panel.js";
+
+// Boot (R2, R26 to R28). A cold boot is a new bill and writes nothing. A readable draft is shown as it was.
+// An unreadable one starts a new bill, saves it at once so a reload does not show the note again, and shows the note.
+const storage = getStorage();
+const loaded = loadDraft(storage);
+let bill = loaded.state === "ok" ? loaded.bill : newBill();
+const view = { errorShown: flagsFor(bill), status: null, noteShown: loaded.state === "unreadable" };
+if (view.noteShown) saveDraft(storage, bill);
+
+/**
+ * R24: the copy status lives only while the shares table does. This is the one place that writes
+ * `view.status`, so the three ways it can go stale (a bill change that removes the table, a clipboard answer
+ * that arrives after that, Start new bill) cannot bring it back with the table.
+ */
+function setStatus(next) {
+  view.status = hasShares(computeResult(bill)) ? next : null;
+}
+
+/** R22, R23: copy the summary of the bill as it is now. Any refusal is shown as a failure, nothing else changes. */
+async function copySummary() {
+  const result = computeResult(bill);
+  if (!hasShares(result)) return;
+  let outcome = "ok";
+  try {
+    await navigator.clipboard.writeText(summaryText(result));
+  } catch {
+    outcome = "fail";
+  }
+  setStatus(outcome);
+  render();
+}
+
+function commit(next) {
+  if (next === bill) return;
+  bill = next;
+  saveDraft(storage, bill);
+  setStatus(view.status);
+  render();
+}
+
+const people = createPeople({
+  onName: (id, text) => commit(setPersonName(bill, id, text)),
+  onAdd() {
+    commit(addPerson(bill));
+    people.focusName(bill.people.length - 1);
+  },
+  onRemove(id) {
+    const position = bill.people.findIndex((person) => person.id === id);
+    commit(removePerson(bill, id));
+    // The row now at the same position, or the one above when the last row went (R34).
+    people.focusName(Math.min(position, bill.people.length - 1));
+  },
+});
+const mode = createMode({ onMode: (value) => commit(setMode(bill, value)) });
+
+// R10 for the subtotal, every item price and both rates. `kind` picks the parser and the bill setter, `id` is
+// the item id for a price. Typing may clear the field's error flag, leaving the field may set it.
+const AMOUNT_SETTERS = {
+  subtotal: (current, text) => setSubtotalText(current, text),
+  price: (current, text, id) => setItemPriceText(current, id, text),
+  service: (current, text) => setServiceText(current, text),
+  sst: (current, text) => setSstText(current, text),
+};
+
+function amountTyped(kind, text, id) {
+  typedInto(view.errorShown, kind, text, id);
+  commit(AMOUNT_SETTERS[kind](bill, text, id));
+}
+
+function amountLeft(kind, text, id) {
+  leftField(view.errorShown, kind, text, id);
+  render();
+}
+
+const subtotal = createSubtotal({
+  onInput: (text) => amountTyped("subtotal", text),
+  onLeave: (text) => amountLeft("subtotal", text),
+});
+const items = createItems({
+  onName: (id, text) => commit(setItemName(bill, id, text)),
+  onPrice: (id, text) => amountTyped("price", text, id),
+  onPriceLeave: (id, text) => amountLeft("price", text, id),
+  onToggle: (itemId, personId) => commit(toggleItemPerson(bill, itemId, personId)),
+  onAdd() {
+    commit(addItem(bill));
+    items.focusName(bill.items.length - 1);
+  },
+  onRemove(id) {
+    const position = bill.items.findIndex((item) => item.id === id);
+    forgetPrice(view.errorShown, id);
+    commit(removeItem(bill, id));
+    if (bill.items.length === 0) items.focusAdd();
+    else items.focusName(Math.min(position, bill.items.length - 1));
+  },
+});
+const charges = createCharges({ onInput: (kind, text) => amountTyped(kind, text), onLeave: (kind, text) => amountLeft(kind, text) });
+const panel = createPanel(document.querySelector(".tape"), { onCopy: copySummary });
+createDialog(document.querySelector("dialog"), document.querySelector(".bar .btn"), {
+  onConfirm() {
+    // The view state is reset with the bill (R31): a stale error flag or copy status must not outlive it.
+    view.errorShown = newErrorFlags();
+    setStatus(null);
+    commit(newBill());
+  },
+});
+const note = createNote(document.querySelector(".bar"), {
+  onDismiss() {
+    view.noteShown = false;
+    render();
+    people.focusName(0);
+  },
+});
+document.querySelector(".inputs").append(people.el, mode.el, subtotal.el, items.el, charges.el);
+
+function render() {
+  const errors = visibleErrors(view.errorShown, bill);
+  people.update(bill);
+  mode.update(bill);
+  subtotal.update(bill, errors);
+  items.update(bill, errors);
+  charges.update(bill, errors);
+  panel.update(computeResult(bill), view.status);
+  note.update(view.noteShown);
+}
+
+render();
