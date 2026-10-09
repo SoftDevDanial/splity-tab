@@ -16,6 +16,11 @@ export function el(tag, attrs = {}, ...children) {
   return node;
 }
 
+/** A `section.block` named by its heading `h2.block-title#id`. `title` is text or a node (the Subtotal label). */
+export function block(id, title, ...children) {
+  return el("section", { class: "block", "aria-labelledby": id }, el("h2", { class: "block-title", id }, title), ...children);
+}
+
 /** Sets an attribute to a string, or removes it for `null`. Writes only when the value differs. */
 export function setAttr(node, name, value) {
   if (value === null) {

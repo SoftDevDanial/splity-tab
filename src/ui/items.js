@@ -3,7 +3,7 @@
 // createItems({ onName, onPrice, onPriceLeave, onToggle, onAdd, onRemove }) returns
 // { el, update(bill, errors), focusName(index), focusAdd() }. It writes DOM and reports gestures.
 import { LIMITS, itemLabel, personLabel } from "../core/bill.js";
-import { el, isRepeatClick, setAttr, setText, setValue, rowsFor, reconcileChildren } from "./dom.js";
+import { block, el, isRepeatClick, setAttr, setText, setValue, rowsFor, reconcileChildren } from "./dom.js";
 import { AMOUNT_ERROR, createErrorSlot } from "./field-error.js";
 import { onFieldLeave } from "./field-leave.js";
 import { icon } from "./icons.js";
@@ -39,8 +39,7 @@ export function createItems({ onName, onPrice, onPriceLeave, onToggle, onAdd, on
   const add = el("button", { class: "btn btn-outline", type: "button" }, icon("plus"), "Add item");
   add.addEventListener("click", onAdd);
   const list = el("ol", { class: "items" });
-  const section = el("section", { class: "block", "aria-labelledby": "h-items" },
-    el("h2", { class: "block-title", id: "h-items" }, "Items"), list, add);
+  const section = block("h-items", "Items", list, add);
 
   function updateToggles(row, item, people) {
     const toggles = rowsFor(row.toggles, people.map((person) => person.id), row.makeToggle);

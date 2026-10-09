@@ -2,7 +2,7 @@
 // createCharges({ onInput(kind, text), onLeave(kind, text) }) returns { el, update(bill, errors) };
 // `kind` is "service" or "sst".
 import { LIMITS } from "../core/bill.js";
-import { el, setValue } from "./dom.js";
+import { block, el, setValue } from "./dom.js";
 import { createErrorSlot } from "./field-error.js";
 import { onFieldLeave } from "./field-leave.js";
 
@@ -22,8 +22,7 @@ export function createCharges({ onInput, onLeave }) {
 
   const service = percentCell("service", "rate-service", "Service charge", LIMITS.serviceMaxPercent);
   const sst = percentCell("sst", "rate-sst", "SST", LIMITS.sstMaxPercent);
-  const section = el("section", { class: "block", "aria-labelledby": "h-charges" },
-    el("h2", { class: "block-title", id: "h-charges" }, "Charges"),
+  const section = block("h-charges", "Charges",
     el("div", { class: "cells" }, service.cell, sst.cell),
     el("p", { class: "hint", id: "charges-hint" }, "Set a charge to 0 if your bill already includes it."));
 
