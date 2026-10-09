@@ -5,27 +5,24 @@
 // user is typing in (R33): its value already equals the bill, so it is never written.
 
 /**
- * Creates an element. `attrs` maps names to strings (`true` writes an empty value, `null`/`false` skip).
- * Children are nodes or strings (a string becomes a text node). `null`, `false` and "" are skipped, so a
- * conditional child needs no branch at the call site.
+ * Creates an element. `attrs` maps names to strings.
+ * Children are nodes or strings (a string becomes a text node). `null`, `false`, `undefined` and "" are
+ * skipped, so a conditional child needs no branch at the call site.
  */
 export function el(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
-  for (const [name, value] of Object.entries(attrs)) {
-    if (value !== null && value !== false && value !== undefined) node.setAttribute(name, value === true ? "" : value);
-  }
+  for (const [name, value] of Object.entries(attrs)) node.setAttribute(name, value);
   node.append(...children.filter((child) => child !== null && child !== false && child !== undefined && child !== ""));
   return node;
 }
 
-/** Sets an attribute, or removes it for `null`/`false`. Writes only when the value differs. */
+/** Sets an attribute to a string, or removes it for `null`. Writes only when the value differs. */
 export function setAttr(node, name, value) {
-  if (value === null || value === false) {
+  if (value === null) {
     if (node.hasAttribute(name)) node.removeAttribute(name);
-    return;
+  } else if (node.getAttribute(name) !== value) {
+    node.setAttribute(name, value);
   }
-  const text = value === true ? "" : String(value);
-  if (node.getAttribute(name) !== text) node.setAttribute(name, text);
 }
 
 /**

@@ -37,9 +37,7 @@ async function copySummary() {
   } catch {
     outcome = "fail";
   }
-  // The panel may have turned into a message while the browser decided (R24): then there is no status to set.
-  if (!hasShares(computeResult(bill))) return;
-  view.status = outcome;
+  view.status = outcome; // render() drops it again if the panel became a message while the browser decided (R24)
   render();
 }
 

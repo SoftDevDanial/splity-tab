@@ -279,6 +279,23 @@ def test_R6_add_person_until_the_limit(open_app, plain_context):
     assert page.locator("li.person").count() == 12
 
 
+def test_R6_a_restored_twelve_person_bill_shows_the_limit_state(open_app, plain_context):
+    # qa.md ST-08 boots the S8 seed: the limit state as a restored bill, not only as the end of nine clicks.
+    page = open_app(seed=seeds.S8).page
+    add = page.get_by_role("button", name="Add person")
+    assert page.locator("li.person").count() == 12 and add.is_disabled()
+    assert person_field(page, 12).input_value() == "Mei Ling" and stored_text(page) == seeds.S8  # a restore writes nothing
+    specimen = support.open_golden(plain_context, "states").locator('section[aria-labelledby="spec-s8a"] button[disabled]')
+    assert support.specimen_props(add, ["cursor"]) == support.specimen_props(specimen, ["cursor"])
+    cells = page.eval_on_selector_all(
+        "section[aria-labelledby=h-people] ul.cells > li",
+        "(els) => els.map((el) => { const box = el.getBoundingClientRect(); return [Math.round(box.left), Math.round(box.top)]; })")
+    assert len(cells) == 13
+    assert len({top for _, top in cells[:12]}) == 6 and len({left for left, _ in cells[:12]}) == 2  # six rows of two at 390
+    assert cells[12][0] == cells[0][0] and cells[12][1] > cells[11][1]  # Add person is the next cell
+    assert panel_text(page) == EVEN_MESSAGE
+
+
 def test_R7_remove_a_person(open_app):
     page = open_app().page
     three_people(page)
@@ -938,6 +955,23 @@ def test_R22_a_failed_copy_is_replaced_by_the_next_attempt(open_app):
     page.evaluate("Clipboard.prototype.writeText = () => Promise.resolve()")
     copy_summary(page)
     assert status_of(page) == ("Summary copied", "status")
+
+
+def test_R24_a_copy_that_finishes_after_the_table_left_sets_no_status(open_app):
+    # The browser may take a while to decide (a permission prompt). If the panel turns into a message meanwhile, the
+    # late answer must not leave a status behind for the table that comes back.
+    page = open_app().page
+    build_s2(page)
+    # The function form: Playwright calls a function that a string expression evaluates to, and would wait for this one.
+    page.evaluate("() => { Clipboard.prototype.writeText = () => new Promise((resolve) => { window.finishCopy = resolve; }); }")
+    copy_summary(page)
+    support.replace_text(page, subtotal_field(page), "")
+    assert page.locator("p.status").count() == 0 and panel_text(page) == EVEN_MESSAGE
+    page.evaluate("window.finishCopy()")
+    settle(page)
+    assert page.locator("p.status").count() == 0
+    subtotal_field(page).fill("100.00")
+    assert status_of(page) == ("", "status")
 
 
 def test_R5_a_new_name_reaches_the_copied_text(open_app):
