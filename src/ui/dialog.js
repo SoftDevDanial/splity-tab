@@ -15,7 +15,10 @@ export function createDialog(dialog, opener, { onConfirm }) {
     dialog.close();
   };
 
+  // Opening arms the same guard: the backdrop is drawn under the pointer now, so the second click of a double click
+  // on New bill would land on it and shut the dialog again (I-1).
   opener.addEventListener("click", () => {
+    swallowRepeatClicks();
     dialog.showModal();
     cancel.focus();
   });

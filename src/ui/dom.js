@@ -38,13 +38,14 @@ export function setAttr(node, name, value) {
 const isRepeatClick = (event) => event.detail > 1;
 
 /**
- * A click that moves the layout under the pointer (a row removed, the dialog closed) arms this guard, because
- * the rest of its double click, triple click or double tap would land on whatever is drawn there next: the
- * control that took the removed row's place (for the last person that is "Add person", and a blank person was
- * saved), or whatever was under the dialog. The guard cancels the repeat presses and clicks at the document, in
- * the capture phase, before any control sees them, so it does not matter what slid under the pointer. A
- * cancelled press also keeps focus where the app put it. It is gone at the first press that is not a repeat,
- * so a click or key press of its own (count 1 or 0) is never held back. No timer.
+ * A click that moves the layout under the pointer (a row removed, the dialog opened or closed) arms this guard,
+ * because the rest of its double click, triple click or double tap would land on whatever is drawn there next:
+ * the control that took the removed row's place (for the last person that is "Add person", and a blank person
+ * was saved), the backdrop of the dialog that had just opened (it shut again), or whatever was under a dialog
+ * that has closed. The guard cancels the repeat presses and clicks at the document, in the capture phase,
+ * before any control sees them, so it does not matter what slid under the pointer. A cancelled press also keeps
+ * focus where the app put it. It is gone at the first press that is not a repeat, so a click or key press of
+ * its own (count 1 or 0) is never held back. No timer.
  */
 export function swallowRepeatClicks() {
   const guard = (event) => {

@@ -1726,6 +1726,58 @@ def test_R7_the_guard_of_a_remove_click_ends_at_the_next_press(open_app):
     assert aisyah.get_attribute("aria-pressed") == "false" and stored(page)["bill"]["items"][0]["who"] == ["p2"]
 
 
+# ---------------------------------------------------------------- Security I-1: the repeat press on New bill (R29, R30)
+# Opening the dialog puts its backdrop under the pointer, so the second click of a double click, triple click or double tap
+# on "New bill" closed it again: the dialog flashed open and shut. Opening arms the same guard as closing does.
+@pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+@pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+    page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    gesture_at(page, gesture, centre_of(new_bill_button(page)))
+    assert dialog_is_open(page) is True and focused(page) == "Cancel"
+    assert page.evaluate("window.testBodyClicks") == [1] and stored_text(page) == seeds.S1
+
+
+@pytest.mark.parametrize("close", ["cancel", "backdrop", "escape"])
+def test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it(open_app, close):
+    page = open_app(seed=seeds.S1).page
+    gesture_at(page, "mouse-double", centre_of(new_bill_button(page)))
+    assert dialog_is_open(page) is True
+    if close == "cancel":
+        page.get_by_role("button", name="Cancel", exact=True).click()
+    elif close == "backdrop":
+        page.mouse.click(10, 10)
+    else:
+        page.keyboard.press("Escape")
+    assert dialog_is_open(page) is False and focused(page) == "New bill" and stored_text(page) == seeds.S1
+
+
+def test_R29_opening_by_keyboard_and_opening_again_straight_away_is_not_held_back(open_app):
+    page = open_app(seed=seeds.S2).page
+    new_bill_button(page).focus()
+    page.keyboard.press("Enter")  # a key press activates with click count 0, which the guard lets through
+    assert dialog_is_open(page) is True and focused(page) == "Cancel"
+    page.keyboard.press("Enter")
+    assert dialog_is_open(page) is False and focused(page) == "New bill"
+    page.keyboard.press("Enter")
+    assert dialog_is_open(page) is True and focused(page) == "Cancel"
+
+
+def test_R29_the_guard_of_opening_ends_at_the_next_press(open_app):
+    page = open_app(seed=seeds.S1, viewport=PHONES[0]).page
+    open_dialog(page)
+    page.keyboard.press("Escape")
+    ben = toggle(page, "Nasi lemak ayam", "Ben")
+    assert ben.get_attribute("aria-pressed") == "false"
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    ben.dblclick()  # two real clicks on a toggle flip it twice: nothing is left of the guard
+    settle(page)
+    # Both clicks reached the page. The toggle alone cannot show it: swallowing both would leave it unpressed too.
+    assert page.evaluate("window.testBodyClicks") == [1, 2]
+    assert ben.get_attribute("aria-pressed") == "false" and stored_text(page) == seeds.S1
+
+
 # ---------------------------------------------------------------- Task 11: cross-cutting checks (R32, R33, R35, R36, R37, R39)
 INK = "rgb(20, 25, 23)"  # --ink, the colour of the focus ring
 RING = ["solid", "2px", INK, "2px"]
