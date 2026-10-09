@@ -256,6 +256,39 @@ Feature: Split app, served and driven like a person would
     When I click "By item" and then "Even"
     Then the Subtotal error still shows
 
+  # Added 2026-10-09, ORCH, RD-3. A press that ends the edit of an invalid field must still land on the control it started on.
+  # The tests use a mouse and a touch tap (a context with has_touch, page.touchscreen.tap) and were shown red without the fix.
+  @R10 @R13
+  Scenario Outline: A press below an invalid field lands on the control it started on
+    Given <setup>
+    When I replace the text of <field> with "<bad>" and the error is not showing yet
+    And I press once, with the mouse and again with a touch tap, on <target> (the middle of the control, found before the press)
+    Then the click event reached <target> exactly once
+    And the error "<error id>" shows after the press and the input has aria-invalid "true"
+    Examples:
+      | setup       | field                | bad    | target                                   | error id           |
+      | a cold boot | Subtotal             | 0      | the "Service charge" input               | subtotal-error     |
+      | the S1 seed | "Item 2 price in RM" | 13.505 | the "Aisyah" toggle in "Who had Char kuey teow" | price-error-i5 |
+      | a cold boot | "Service charge"     | 31     | p.hint#charges-hint                      | rate-service-error |
+      | a cold boot | "SST"                | 25     | p.hint#charges-hint                      | rate-sst-error     |
+
+  @R13
+  Scenario: A tap on a person below an invalid, unflagged price toggles them and then shows the error
+    Given the S1 seed
+    When I replace the text of "Item 2 price in RM" with "13.505"
+    And I press the "Aisyah" toggle of "Who had Char kuey teow" (mouse, then touch)
+    Then that toggle has aria-pressed "true", the item holds p1 and p2 in the stored draft, and p.error#price-error-i5 shows
+
+  @R10
+  Scenario: The error waits for the release, and only a press holds it back
+    Given the S1 seed and "13.505" typed in "Item 2 price in RM"
+    When the mouse button goes down on a toggle
+    Then the field has lost focus and still no p.error exists
+    When the button comes up
+    Then p.error#price-error-i5 exists
+    And pressing empty space beside the wordmark behaves the same for "SST" with "25"
+    And a Tab from the field shows its error at once, even after an earlier press
+
   # ---------- Items ----------
   @R11
   Scenario: Item rows carry their names and labels

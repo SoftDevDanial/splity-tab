@@ -108,16 +108,18 @@ def browser():
 @pytest.fixture
 def open_app(server, browser, request):
     """open_app(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion=None, init_scripts=(),
-    path="/", goto=True, base_server=None, prefix="", allow_problems=False) -> Session"""
+    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False) -> Session"""
     sessions = []
 
     def factory(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion=None, init_scripts=(),
-                path="/", goto=True, base_server=None, prefix="", allow_problems=False):
+                path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False):
         target = base_server or server
         options = {"viewport": {"width": viewport[0], "height": viewport[1]},
                    "device_scale_factor": 1, "color_scheme": "light"}
         if reduced_motion:
             options["reduced_motion"] = reduced_motion
+        if touch:  # page.touchscreen.tap needs a context that has touch (RD-3)
+            options["has_touch"] = True
         if seed is not None:
             options["storage_state"] = rig.storage_state(target.base, seed)
         context = rig.new_context(browser, clipboard=clipboard, init_scripts=init_scripts, **options)

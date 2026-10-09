@@ -1265,4 +1265,100 @@ def test_R27_the_note_is_not_touched_by_start_over(open_app):
     assert page.locator("div.note").count() == 0
 
 
+# ---------------------------------------------------------------- RD-3: a press below a field that is being left (R10, CG-3)
+# Leaving a bad amount or rate shows its error, which pushes everything under it down by one line. When the
+# field is left by a press on a control under it, the press must still land on that control (RD-3, 2026-10-09).
+RECORD_CLICKS_JS = """() => {
+  window.testClicks = [];
+  document.addEventListener('click', (event) => window.testClicks.push(event.target.id || event.target.tagName.toLowerCase()), true);
+}"""
+PRESS_CASES = [
+    pytest.param(None, lambda page: page.locator("#subtotal"), "0", lambda page: page.locator("#rate-service"),
+                 "subtotal-error", "rate-service", id="subtotal"),
+    pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", lambda page: toggle(page, "Char kuey teow", "Aisyah"),
+                 "price-error-i5", "button", id="item-price"),
+    pytest.param(None, lambda page: rate_field(page, "Service charge"), "31", lambda page: page.locator("#charges-hint"),
+                 "rate-service-error", "charges-hint", id="service"),
+    pytest.param(None, lambda page: rate_field(page, "SST"), "25", lambda page: page.locator("#charges-hint"),
+                 "rate-sst-error", "charges-hint", id="sst"),
+]
+
+
+def centre_of(locator):
+    """Where the middle of `locator` is now, after scrolling it into view (scrolling does not move focus)."""
+    locator.scroll_into_view_if_needed()
+    box = locator.bounding_box()
+    return box["x"] + box["width"] / 2, box["y"] + box["height"] / 2
+
+
+def press(page, how, point):
+    """One press and release at a point, by mouse or by a touch tap."""
+    if how == "touch":
+        page.touchscreen.tap(*point)
+    else:
+        page.mouse.click(*point)
+
+
+@pytest.mark.parametrize("how", ["mouse", "touch"])
+@pytest.mark.parametrize("seed, field_of, bad, below_of, error_id, lands_on", PRESS_CASES)
+def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
+        open_app, how, seed, field_of, bad, below_of, error_id, lands_on):
+    page = open_app(seed=seed, touch=how == "touch").page
+    support.replace_text(page, field_of(page), bad)
+    assert page.locator(f"#{error_id}").count() == 0  # CG-3: no error while the field still has focus
+    page.evaluate(RECORD_CLICKS_JS)
+    press(page, how, centre_of(below_of(page)))
+    assert page.evaluate("window.testClicks") == [lands_on]
+    assert page.locator(f"p.error#{error_id}").inner_text() in ("Enter an amount like 12.50", "Enter a rate from 0 to 30", "Enter a rate from 0 to 20")
+    assert field_of(page).get_attribute("aria-invalid") == "true"
+
+
+@pytest.mark.parametrize("how", ["mouse", "touch"])
+def test_R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error(open_app, how):
+    page = open_app(seed=seeds.S1, touch=how == "touch").page
+    support.replace_text(page, item_price(page, 2), "13.505")  # invalid, and its error is not flagged yet
+    aisyah = toggle(page, "Char kuey teow", "Aisyah")
+    assert aisyah.get_attribute("aria-pressed") == "false" and page.locator("p.error").count() == 0
+    press(page, how, centre_of(aisyah))
+    assert aisyah.get_attribute("aria-pressed") == "true"
+    assert sorted(stored(page)["bill"]["items"][1]["who"]) == ["p1", "p2"]
+    assert page.locator("p.error#price-error-i5").inner_text() == "Enter an amount like 12.50"
+    assert item_price(page, 2).get_attribute("aria-describedby") == "price-error-i5"
+
+
+def test_R10_the_error_waits_for_the_mouse_button_to_come_up(open_app):
+    page = open_app(seed=seeds.S1).page
+    support.replace_text(page, item_price(page, 2), "13.505")
+    x, y = centre_of(toggle(page, "Char kuey teow", "Aisyah"))
+    page.mouse.move(x, y)
+    page.mouse.down()
+    assert support.active_label(page) != "Item 2 price in RM"  # the field has been left ...
+    assert page.locator("p.error").count() == 0  # ... and its error waits for the release
+    page.mouse.up()
+    assert page.locator("p.error#price-error-i5").count() == 1
+    assert toggle(page, "Char kuey teow", "Aisyah").get_attribute("aria-pressed") == "true"
+
+
+@pytest.mark.parametrize("how", ["mouse", "touch"])
+def test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press(open_app, how):
+    page = open_app(seed=seeds.S1, touch=how == "touch").page
+    press(page, how, centre_of(item_price(page, 2)))  # a finished press must not hold the next blur back
+    assert support.active_label(page) == "Item 2 price in RM"
+    page.keyboard.press("Control+A")
+    page.keyboard.type("13.505")
+    page.keyboard.press("Tab")
+    assert page.locator("p.error#price-error-i5").count() == 1
+
+
+def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
+    page = open_app().page
+    support.replace_text(page, rate_field(page, "SST"), "25")
+    box = page.locator("h1.wordmark").bounding_box()
+    page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)  # blank header space
+    page.mouse.down()
+    assert page.locator("p.error").count() == 0
+    page.mouse.up()
+    assert page.locator("p.error#rate-sst-error").count() == 1
+
+
 # ===== END OF TESTS (new tests go above this line) =====

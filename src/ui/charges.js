@@ -4,12 +4,13 @@
 import { LIMITS } from "../core/bill.js";
 import { el, setValue } from "./dom.js";
 import { createErrorSlot } from "./field-error.js";
+import { onFieldLeave } from "./field-leave.js";
 
 export function createCharges({ onInput, onLeave }) {
   function percentCell(kind, id, label, maxPercent) {
     const input = el("input", { id, type: "text", inputmode: "decimal", autocomplete: "off", "aria-describedby": "charges-hint" });
     input.addEventListener("input", () => onInput(kind, input.value));
-    input.addEventListener("blur", () => onLeave(kind, input.value));
+    onFieldLeave(input, (text) => onLeave(kind, text));
     const cell = el("div", {},
       el("label", { class: "label", for: id }, label, el("span", { class: "sr-only" }, " in percent")),
       el("span", { class: "field percent" }, input, el("span", { class: "unit", "aria-hidden": "true" }, "%")));

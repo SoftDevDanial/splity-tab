@@ -2,11 +2,12 @@
 // createSubtotal({ onInput(text), onLeave(text) }) returns { el, update(bill, errors) }.
 import { el, setValue } from "./dom.js";
 import { AMOUNT_ERROR, createErrorSlot } from "./field-error.js";
+import { onFieldLeave } from "./field-leave.js";
 
 export function createSubtotal({ onInput, onLeave }) {
   const input = el("input", { id: "subtotal", type: "text", inputmode: "decimal", autocomplete: "off" });
   input.addEventListener("input", () => onInput(input.value));
-  input.addEventListener("blur", () => onLeave(input.value));
+  onFieldLeave(input, onLeave);
   const field = el("span", { class: "field money" }, el("span", { class: "unit", "aria-hidden": "true" }, "RM"), input);
   const section = el("section", { class: "block", "aria-labelledby": "h-subtotal" },
     el("h2", { class: "block-title", id: "h-subtotal" },

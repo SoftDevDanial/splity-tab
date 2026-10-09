@@ -5,6 +5,7 @@
 import { LIMITS, itemLabel, personLabel } from "../core/bill.js";
 import { el, setAttr, setText, setValue, rowsFor, reconcileChildren } from "./dom.js";
 import { AMOUNT_ERROR, createErrorSlot } from "./field-error.js";
+import { onFieldLeave } from "./field-leave.js";
 import { icon } from "./icons.js";
 
 export function createItems({ onName, onPrice, onPriceLeave, onToggle, onAdd, onRemove }) {
@@ -22,7 +23,7 @@ export function createItems({ onName, onPrice, onPriceLeave, onToggle, onAdd, on
     const who = el("div", { class: "who", role: "group" });
     name.addEventListener("input", () => onName(id, name.value));
     price.addEventListener("input", () => onPrice(id, price.value));
-    price.addEventListener("blur", () => onPriceLeave(id, price.value));
+    onFieldLeave(price, (text) => onPriceLeave(id, text));
     remove.addEventListener("click", () => onRemove(id));
     const makeToggle = (personId) => {
       const tap = el("button", { class: "tap", type: "button" });
