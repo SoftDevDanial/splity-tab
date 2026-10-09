@@ -22,23 +22,23 @@ documents written before that date still say v0.1.0. · **Sealed:** not yet (see
 
 | scope | title | status | tag | open items |
 |---|---|---|---|---|
-| C1 | People | NOT SHIPPED | IN SCOPE | 0 |
-| C2 | Even split | NOT SHIPPED | IN SCOPE | 0 |
-| C3 | Split by item | NOT SHIPPED | IN SCOPE | 0 |
-| C4 | Charges | NOT SHIPPED | IN SCOPE | 0 |
-| C5 | Shares that add up | NOT SHIPPED | IN SCOPE | 0 |
-| C6 | Copy summary | NOT SHIPPED | IN SCOPE | 0 |
-| C7 | Draft kept | NOT SHIPPED | IN SCOPE | 0 |
-| C8 | New bill | NOT SHIPPED | IN SCOPE | 0 |
+| C1 | People | SHIPPED | IN SCOPE | 0 |
+| C2 | Even split | SHIPPED | IN SCOPE | 0 |
+| C3 | Split by item | SHIPPED | IN SCOPE | 0 |
+| C4 | Charges | SHIPPED | IN SCOPE | 0 |
+| C5 | Shares that add up | SHIPPED | IN SCOPE | 0 |
+| C6 | Copy summary | SHIPPED | IN SCOPE | 0 |
+| C7 | Draft kept | SHIPPED | IN SCOPE | 0 |
+| C8 | New bill | SHIPPED | IN SCOPE | 0 |
 
 ---
 
 ## Scope sections
 
 ### C1 - People
-**Status:** NOT SHIPPED · **Opened:** 2026-10-08 · **Closed:** not yet · **Tag:** IN SCOPE
+**Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
 **Implemented by:** core R10, R11, R12, R17 · app R4, R5, R6, R7, R34, core R26, app R42 (duplicate names allowed, added 2026-10-09 after the plan check)
-**Proof:** not yet (set at the module's live gate and at regression)
+**Proof:** split-app live gate `docs/modules/split-app/qa/live-e2e/20261009-215416/` 7 of 7, 312 browser and 275 unit tests, fidelity 10 of 10 at 0 px. Regression --full to follow
 
 A list of 2 to 12 people they can add, remove and rename.
 
@@ -47,9 +47,9 @@ A list of 2 to 12 people they can add, remove and rename.
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
 
 ### C2 - Even split
-**Status:** NOT SHIPPED · **Opened:** 2026-10-08 · **Closed:** not yet · **Tag:** IN SCOPE
+**Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
 **Implemented by:** core R1, R7, R18, R20 · app R8, R9, R20
-**Proof:** not yet (set at the module's live gate and at regression)
+**Proof:** split-app live gate `docs/modules/split-app/qa/live-e2e/20261009-215416/` 7 of 7, 312 browser and 275 unit tests, fidelity 10 of 10 at 0 px. Regression --full to follow
 
 Type the subtotal once and everyone pays the same share, to the cent.
 
@@ -58,9 +58,9 @@ Type the subtotal once and everyone pays the same share, to the cent.
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
 
 ### C3 - Split by item
-**Status:** NOT SHIPPED · **Opened:** 2026-10-08 · **Closed:** not yet · **Tag:** IN SCOPE
+**Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
 **Implemented by:** core R13, R14, R19, R21 · app R11, R12, R13, R14, R18, R21
-**Proof:** not yet (set at the module's live gate and at regression)
+**Proof:** split-app live gate `docs/modules/split-app/qa/live-e2e/20261009-215416/` 7 of 7, 312 browser and 275 unit tests, fidelity 10 of 10 at 0 px. Accepted v1.0 limit H-02 (360 px overflow on big bills), fixed in v1.1.0. Regression --full to follow
 
 List each item, tap who had it, and shared items are split between those people.
 
@@ -69,9 +69,9 @@ List each item, tap who had it, and shared items are split between those people.
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
 
 ### C4 - Charges
-**Status:** NOT SHIPPED · **Opened:** 2026-10-08 · **Closed:** not yet · **Tag:** IN SCOPE
+**Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
 **Implemented by:** core R3, R5, R6 · app R15, R19
-**Proof:** not yet (set at the module's live gate and at regression)
+**Proof:** split-app live gate `docs/modules/split-app/qa/live-e2e/20261009-215416/` 7 of 7, 312 browser and 275 unit tests, fidelity 10 of 10 at 0 px. Regression --full to follow
 
 10% service and 6% SST by default, both editable, with SST on subtotal plus service.
 
@@ -80,9 +80,9 @@ List each item, tap who had it, and shared items are split between those people.
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
 
 ### C5 - Shares that add up
-**Status:** NOT SHIPPED · **Opened:** 2026-10-08 · **Closed:** not yet · **Tag:** IN SCOPE
+**Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
 **Implemented by:** core R7, R8, R9, R22, R23 · app R20, R21
-**Proof:** not yet (set at the module's live gate and at regression)
+**Proof:** split-app live gate `docs/modules/split-app/qa/live-e2e/20261009-215416/` 7 of 7, 312 browser and 275 unit tests, fidelity 10 of 10 at 0 px. Regression --full to follow
 
 Every share is in whole cents and the shares always add up to the total, with the sum shown.
 
@@ -91,9 +91,9 @@ Every share is in whole cents and the shares always add up to the total, with th
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
 
 ### C6 - Copy summary
-**Status:** NOT SHIPPED · **Opened:** 2026-10-08 · **Closed:** not yet · **Tag:** IN SCOPE
+**Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
 **Implemented by:** core R24 · app R22, R23, R24
-**Proof:** not yet (set at the module's live gate and at regression)
+**Proof:** split-app live gate `docs/modules/split-app/qa/live-e2e/20261009-215416/` 7 of 7, 312 browser and 275 unit tests, fidelity 10 of 10 at 0 px. Regression --full to follow
 
 One tap copies a plain-text summary for the group chat.
 
@@ -103,9 +103,9 @@ One tap copies a plain-text summary for the group chat.
 | 2 | Line-break characters in a name could fake an extra line in the copied summary (WR-10) | 2026-10-09 execute | R24 amended, dated: the seven Unicode mandatory line breaks print as one space. Commits `db3bd35`, `46f5670` | LANE (sdlc-dev-solver), ruled ORCH | Solved, security re-check pending |
 
 ### C7 - Draft kept
-**Status:** NOT SHIPPED · **Opened:** 2026-10-08 · **Closed:** not yet · **Tag:** IN SCOPE
+**Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
 **Implemented by:** app R2, R25, R26, R27, R28
-**Proof:** not yet (set at the module's live gate and at regression)
+**Proof:** split-app live gate `docs/modules/split-app/qa/live-e2e/20261009-215416/` 7 of 7, 312 browser and 275 unit tests, fidelity 10 of 10 at 0 px. Regression --full to follow
 
 The bill survives a reload or a closed tab on the same device.
 
@@ -114,9 +114,9 @@ The bill survives a reload or a closed tab on the same device.
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
 
 ### C8 - New bill
-**Status:** NOT SHIPPED · **Opened:** 2026-10-08 · **Closed:** not yet · **Tag:** IN SCOPE
+**Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
 **Implemented by:** core R10 · app R29, R30, R31
-**Proof:** not yet (set at the module's live gate and at regression)
+**Proof:** split-app live gate `docs/modules/split-app/qa/live-e2e/20261009-215416/` 7 of 7, 312 browser and 275 unit tests, fidelity 10 of 10 at 0 px. Regression --full to follow
 
 Clears everything after a confirmation.
 
@@ -198,6 +198,8 @@ Clears everything after a confirmation.
 | 46 | Versioning is part of the showcase: the owner said "Part of the showcase is to show the versioning as well" and chose "Second version per app" and "Fix the v1.0 limits" | 2026-10-09 execute | After the owner seals v1.0.0, Split runs v1.1.0 with one scope item: H-02, the by-item table fits a 360 px phone (small design pass on the table, then plan, execute, finders, regression, review, UAT). H-02 ruled: shipped in v1.0.0 as an accepted limit | USER | Ruled |
 | 47 | split-app security re-check (scoped): SEC-01 closed (36 of 36 rows one removal, no blank row, nextId unchanged, 3 of 3 control rows show the old defect), I-1 closed (24 of 24), no over-swallow found, the 123-row ghost sweep differs from a single click only on the 5 toggles that flip twice by design, CSP live 0 violations. New LOW SEC-04: a held Enter on Remove of the only item adds a blank item (auto-repeat presses Add item after focus moves there), keyboard only, also on the pre-fix tree. Suites 312 browser, 275 unit | 2026-10-09 execute | Re-check section and ORCH ruling in findings/security.md, evidence `qa/security-recheck/20261009-213133/` | LANE (sdlc-security-auditor, sonnet) | Closed with one accepted limit |
 | 48 | Ruling on SEC-04 | 2026-10-09 execute | Accepted v1.0 limit under the stop rule (one click undoes it, keyboard held only). Goes into v1.1.0 with H-02, per the owner's choice that v1.1.0 fixes the v1.0 limits. Fix in hand from the re-check: a capture keydown listener in swallowRepeatClicks that cancels event.repeat | ORCH | Accepted for v1.0, scoped to v1.1.0 |
+| 49 | split-app official cold-boot live gate on the final code: 7 of 7 steps PASS (empty storage, even split, copy, by item, come back, start over, logs clean: 0 console errors, 0 CSP violations, only same-origin GETs) | 2026-10-09 execute | Evidence `qa/live-e2e/20261009-215416/`, commit `341d990` | ORCH | PASS |
+| 50 | split-app module close: QA PASS (F-1 fixed), code review solved (CR-01, WR-01 to WR-11) with WR-08 closed by the project README, security clean after audit, solver and one re-check (stop rule, SEC-04 accepted for v1.0 and scoped to v1.1.0), fidelity 10 of 10 at 0 px on the final code, live gate 7 of 7. README reconciled from BUILD.md and verified by symbol. ROADMAP PD-14 fixed. Credential gate CLEAN over the whole tree (3,448 files, controls pass). Browser 312, unit 275. Last green `22ac9af` | 2026-10-09 execute | README.md, ROADMAP.md, findings/*.md | ORCH | Module closed |
 
 ---
 

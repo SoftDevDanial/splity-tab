@@ -4,20 +4,20 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** execute (split-app: official live gate, README, module close)
-- **next:** execute
+- **phase:** execute (all modules closed; regression --full next)
+- **next:** regression
 
 ## Modules
 | module | nature | depends on | status | last green |
 |---|---|---|---|---|
-| split-core | logic | none | CLOSED 2026-10-09 | `329679e` |
-| split-app | FE + live composition | split-core | built, QA PASS, code review solved, security clean (SEC-04 accepted for v1.0, to v1.1.0), 312 browser + 275 unit, fidelity 0 px (`b02386b`); official live gate, README, module close next | |
+| split-core | logic | none | CLOSED 2026-10-09: code review PASS, security PASS, QA PASS (54 scenarios), 254 tests, credential gate clean | `329679e` |
+| split-app | FE + live composition | split-core | CLOSED 2026-10-09: QA PASS, code review solved, security clean (SEC-04 accepted for v1.0), fidelity 10 of 10 at 0 px, live gate 7 of 7, 312 browser + 275 unit, README, credential gate clean | `22ac9af` |
 
 ## Blockers
 none
 
 ## Next action
-Official live gate into docs/modules/split-app/qa/live-e2e/<ts>/ on the final code. README (WR-08) from BUILD.md, noting the v1.0 limits (H-02, SEC-04, Dismiss note focus). ROADMAP PD-14 fix. Module close. Then regression --full, review, UAT pre-run.
+sdlc:regression --full (one finder per kind, ORCH economy). Then sdlc:review (lifecycle.md, repo summary), then the UAT pre-run by sdlc-uat-tester with the human column empty. The owner tests and seals v1.0.0. Then v1.1.0: H-02 (small design pass on the table) and SEC-04.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

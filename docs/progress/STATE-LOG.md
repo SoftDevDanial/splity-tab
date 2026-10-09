@@ -133,3 +133,8 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-09 21:54 split-app security re-check collected, security clean
 - Re-check: SEC-01 and I-1 closed, no over-swallow. New LOW SEC-04 (held Enter on the only item's Remove adds a blank item) accepted for v1.0 and scoped to v1.1.0. Stop rule reached.
 - Owner's versioning decision recorded: after the v1.0.0 seal, v1.1.0 fixes H-02 and SEC-04.
+
+## 2026-10-09 21:56 split-app closed, all modules closed
+- Official live gate 7 of 7 on the final code (`341d990`).
+- README written from BUILD.md, verified by symbol, ROADMAP PD-14 fixed (`22ac9af`).
+- Full credential gate CLEAN (3,448 files). split-app CLOSED, last green `22ac9af`. Scopes C1 to C8 SHIPPED pending regression.
