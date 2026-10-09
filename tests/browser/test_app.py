@@ -1361,4 +1361,277 @@ def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
     assert page.locator("p.error#rate-sst-error").count() == 1
 
 
+# ---------------------------------------------------------------- Task 11: cross-cutting checks (R32, R33, R35, R36, R37, R39)
+INK = "rgb(20, 25, 23)"  # --ink, the colour of the focus ring
+RING = ["solid", "2px", INK, "2px"]
+MODE_DOUBLE_RING = "rgb(253, 254, 253) 0px 0px 0px 3px inset, rgb(20, 25, 23) 0px 0px 0px 5px inset"
+FOCUS_JS = """() => {
+  const el = document.activeElement;
+  const ring = (node) => { const s = getComputedStyle(node); return [s.outlineStyle, s.outlineWidth, s.outlineColor, s.outlineOffset]; };
+  const field = el.closest('.field'), mode = el.closest('fieldset.mode');  // li.field.person or span.field
+  return {
+    name: el.getAttribute('aria-label') || (el.labels && el.labels.length ? el.labels[0].textContent.trim() : '') || el.textContent.trim(),
+    visible: el.matches(':focus-visible'), kind: el.type || el.tagName.toLowerCase(), self: ring(el),
+    field: field && ring(field), mode: mode && ring(mode),
+    labelRing: mode ? getComputedStyle(el.labels[0]).boxShadow : null,
+    personRemove: el.tagName === 'BUTTON' && !!el.closest('li.person'),
+  };
+}"""
+TABBABLE_JS = """() => [...document.querySelectorAll('button, input')].filter((el) =>
+  !el.disabled && el.getClientRects().length > 0 && (el.type !== 'radio' || el.checked)).length"""
+S1_TAB_ORDER = ["New bill", "Person 1 name", "Remove Aisyah", "Person 2 name", "Remove Ben", "Person 3 name", "Remove Chen",
+                "Add person", "By item"]
+for _number, (_name, _price, _people) in enumerate(S1_ITEMS, start=1):
+    S1_TAB_ORDER += [f"Item {_number} name", f"Item {_number} price in RM", f"Remove {_name}", "Aisyah", "Ben", "Chen"]
+S1_TAB_ORDER += ["Add item", "Service charge in percent", "SST in percent", "Copy summary"]
+TAB_CASES = [
+    pytest.param(None, ["New bill", "Person 1 name", "Person 2 name", "Add person", "Even", "Subtotal in RM",
+                        "Service charge in percent", "SST in percent"], id="S3"),
+    pytest.param(seeds.S1, S1_TAB_ORDER, id="S1"),
+    pytest.param(seeds.UNREADABLE["B1"], ["New bill", "Dismiss note", "Person 1 name", "Person 2 name", "Add person", "Even",
+                                          "Subtotal in RM", "Service charge in percent", "SST in percent"], id="S7"),
+]
+
+
+def ring_problem(stop):
+    """What is wrong with the ring of one Tab stop, or None (qa.md R32)."""
+    if not stop["visible"]:
+        return "not :focus-visible"
+    if stop["kind"] == "radio":  # drawn on fieldset.mode, plus the double ring inside the label
+        return None if stop["mode"] == RING and stop["labelRing"] == MODE_DOUBLE_RING else f"mode {stop['mode']} {stop['labelRing']}"
+    if stop["kind"] == "text":  # drawn on span.field, never on the input
+        return None if stop["field"] == RING and stop["self"][0] == "none" else f"field {stop['field']} input {stop['self']}"
+    expected = ["solid", "2px", INK, "-3px"] if stop["personRemove"] else RING  # inset on the person remove button
+    return None if stop["self"] == expected else f"control {stop['self']}"
+
+
+@pytest.mark.parametrize("seed, order", TAB_CASES)
+def test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring(open_app, seed, order):
+    page = open_app(seed=seed).page
+    assert page.evaluate(TABBABLE_JS) == len(order)  # nothing reachable is left out of the list, disabled ones are not in it
+    stops = []
+    for _ in order:
+        page.keyboard.press("Tab")
+        stops.append(page.evaluate(FOCUS_JS))
+    assert [stop["name"] for stop in stops] == order
+    assert [(stop["name"], ring_problem(stop)) for stop in stops if ring_problem(stop)] == []
+
+
+def test_R32_the_ring_check_has_teeth():
+    good = {"visible": True, "kind": "text", "self": ["none", "0px", INK, "0px"], "field": RING, "mode": None, "labelRing": None, "personRemove": False}
+    assert ring_problem(good) is None
+    assert ring_problem(dict(good, visible=False)) and ring_problem(dict(good, field=["none", "0px", INK, "0px"]))
+    assert ring_problem(dict(good, kind="button", self=RING, personRemove=True))  # needs -3px
+    assert ring_problem(dict(good, kind="radio", mode=RING, labelRing="none"))
+
+
+@pytest.mark.parametrize("seed, field_of, text", [
+    (seeds.S2, subtotal_field, "100.00"),
+    (seeds.S1, lambda page: rate_field(page, "Service charge"), "12.5"),
+], ids=["subtotal", "service-charge"])
+def test_R33_typing_in_an_amount_or_a_rate_keeps_focus_and_caret(open_app, seed, field_of, text):
+    page = open_app(seed=seed).page
+    type_and_watch(page, field_of(page), text)
+
+
+LAYOUT_JS = """() => {
+  const tape = document.querySelector('div.tape'), inputs = document.querySelector('div.inputs');
+  return {
+    overflow: document.documentElement.scrollWidth - window.innerWidth,
+    columns: getComputedStyle(document.querySelector('section[aria-labelledby=h-people] ul.cells')).gridTemplateColumns.split(' ').length,
+    tapeTop: tape.getBoundingClientRect().top, tapeLeft: tape.getBoundingClientRect().left, position: getComputedStyle(tape).position,
+    chargesBottom: document.querySelector('section[aria-labelledby=h-charges]').getBoundingClientRect().bottom,
+    inputsRight: inputs.getBoundingClientRect().right,
+  };
+}"""
+LAYOUT_CASES = [
+    pytest.param("S1", seeds.S1, (360, 780), 2, "after", id="S1-360"),
+    pytest.param("S2", seeds.S2, (360, 780), 2, "after", id="S2-360"),
+    pytest.param("S3", None, (360, 780), 2, "after", id="S3-360"),
+    pytest.param("S5", seeds.S5, (360, 780), 2, "after", id="S5-360"),
+    pytest.param("S1", seeds.S1, (390, 844), 2, "after", id="S1-390"),
+    pytest.param("S1", seeds.S1, (1280, 800), 3, "right", id="S1-1280"),
+    pytest.param("S3", None, (1280, 800), 3, "right", id="S3-1280"),
+    pytest.param("M1", seeds.S2, (360, 780), 2, "after", id="M1-360"),
+]
+
+
+@pytest.mark.parametrize("state, seed, viewport, columns, panel", LAYOUT_CASES)
+def test_R35_no_horizontal_overflow_and_the_layout_of_each_size(open_app, state, seed, viewport, columns, panel):
+    page = open_app(seed=seed, viewport=viewport).page
+    if state == "M1":
+        open_dialog(page)
+    found = page.evaluate(LAYOUT_JS)
+    assert found["overflow"] <= 0, found
+    assert found["columns"] == columns
+    if panel == "after":  # under 1024 px the panel sits after the Charges block
+        assert found["tapeTop"] >= found["chargesBottom"] - 0.5 and found["tapeLeft"] < found["inputsRight"]
+    else:  # from 1024 px it is in the right column and sticky
+        assert found["tapeLeft"] >= found["inputsRight"] - 0.5 and found["position"] == "sticky"
+
+
+def test_R35_sizes_the_design_gives_at_360_by_780(open_app):
+    page = open_app(seed=seeds.S2, clipboard="reject", viewport=(360, 780)).page
+    assert page.locator("span.field.money:has(#subtotal)").bounding_box()["width"] == 160  # S2-28, bill-even.md
+    copy_summary(page)
+    status = page.locator("p.status.status-failure")
+    box = status.bounding_box()
+    assert status.inner_text() == FAILED_COPY and status.evaluate("(e) => getComputedStyle(e).textAlign") == "center"
+    assert box["height"] == 40  # two 20 px lines (ST-14)
+    assert status.evaluate("(e) => e.scrollWidth <= e.clientWidth") and box["x"] + box["width"] <= 360
+    assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+    dialog = open_dialog(page)
+    assert dialog.bounding_box()["width"] == 328 and page.locator("p.dialog-text").bounding_box()["height"] == 48  # M1-09
+    assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+
+
+def test_R35_content_width_of_the_header_and_the_note_at_1280_by_800(open_app):
+    page = open_app(seed=seeds.UNREADABLE["B1"], viewport=(1280, 800)).page
+    assert page.locator("div.note").bounding_box()["width"] == 1040  # ST-15
+    bar = page.locator("header.bar")
+    assert bar.bounding_box()["width"] == 1104
+    assert bar.evaluate("(e) => [getComputedStyle(e).paddingLeft, getComputedStyle(e).paddingRight]") == ["32px", "32px"]
+
+
+WATCH_TRANSITIONS_JS = """() => { window.testTransitions = [];
+  document.addEventListener('transitionrun', (event) => window.testTransitions.push(event.propertyName), true); }"""
+
+
+@pytest.mark.parametrize("setting, duration", [("reduce", "0s"), ("no-preference", "0.12s, 0.12s")])
+def test_R36_motion_follows_the_users_setting(open_app, setting, duration):
+    page = open_app(seed=seeds.S1, reduced_motion=setting).page
+    for selector in (".btn", ".tap", ".icon-btn", ".mode label"):
+        found = page.eval_on_selector_all(selector, "(els) => els.map((e) => getComputedStyle(e).transitionDuration)")
+        assert found and set(found) == {duration}, selector
+    assert page.evaluate("document.getAnimations().length") == 0  # nothing animates by itself
+    page.evaluate(WATCH_TRANSITIONS_JS)
+    toggle(page, "Mee goreng mamak", "Ben").click()
+    right_after = page.evaluate("() => document.getAnimations().map((a) => [a.constructor.name, a.transitionProperty])")
+    # The transitionrun events are sent with the next frame, so the list is read after two of them.
+    page.evaluate("() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)))")
+    started = page.evaluate("window.testTransitions")
+    if setting == "reduce":
+        assert right_after == [] and started == []
+    else:  # the colour change of the toggle runs, and it is the only thing that does
+        assert right_after and all(kind == "CSSTransition" and prop in ("background-color", "color") for kind, prop in right_after)
+        assert started and set(started) <= {"background-color", "color"}
+    page.wait_for_timeout(500)
+    assert page.evaluate("document.getAnimations().length") == 0
+
+
+PERSON_PAYLOAD, ITEM_PAYLOAD, SCRIPT_PAYLOAD = "<svg onload=f()>", "<img src=x onerror=alert(1)>", '"><script>alert(2)</script>'
+
+
+def test_R37_names_are_shown_as_text_and_never_as_markup(open_app):
+    page = open_app(seed=seeds.S1).page
+    dialogs = []
+    page.on("dialog", lambda dialog: (dialogs.append(dialog.message), dialog.dismiss()))
+    svgs_before = page.locator("body svg").count()
+    support.replace_text(page, person_field(page, 1), PERSON_PAYLOAD)
+    support.replace_text(page, item_name(page, 1), ITEM_PAYLOAD)
+    support.replace_text(page, item_name(page, 2), SCRIPT_PAYLOAD)
+    assert person_field(page, 1).input_value() == PERSON_PAYLOAD and len(PERSON_PAYLOAD) == 16  # nothing cut by maxlength 20
+    assert item_name(page, 1).input_value() == ITEM_PAYLOAD and len(ITEM_PAYLOAD) == 28
+    assert item_name(page, 2).input_value() == SCRIPT_PAYLOAD
+    assert page.get_by_role("button", name=PERSON_PAYLOAD, exact=True).count() == 4  # that person's toggle in every item
+    assert table_cells(page, "tbody")[0][0] == PERSON_PAYLOAD
+    assert remove_button(page, PERSON_PAYLOAD).count() == 1
+    assert page.get_by_role("button", name=f"Remove {ITEM_PAYLOAD}", exact=True).count() == 1
+    assert who_group(page, ITEM_PAYLOAD).count() == 1 and who_group(page, SCRIPT_PAYLOAD).count() == 1
+    found = page.evaluate("""() => ({
+      markup: document.body.querySelectorAll('img, script').length,
+      handlers: document.querySelectorAll('[onload], [onerror], [onclick]').length,
+      svgClasses: [...document.querySelectorAll('body svg')].map((svg) => svg.getAttribute('class')),
+    })""")
+    assert found["markup"] == 0 and found["handlers"] == 0
+    assert len(found["svgClasses"]) == svgs_before and set(found["svgClasses"]) == {"ph"}  # every svg is still an icon
+    copy_summary(page)
+    assert page.evaluate("window.testClipboardText").split("\n")[2] == f"{PERSON_PAYLOAD} RM 29.04"
+    assert dialogs == []  # no alert ran
+
+
+BANNED_APIS = ["innerHTML", "outerHTML", "insertAdjacentHTML", "document.write", "eval(", "new Function(", "createContextualFragment", "DOMParser"]
+SET_ATTRIBUTE_ON = re.compile(r"""setAttribute\(\s*["'`]on""")
+NETWORK_APIS = ["fetch(", "XMLHttpRequest", "WebSocket", "EventSource", "sendBeacon", "serviceWorker"]
+SCHEME = re.compile(r"[A-Za-z][A-Za-z0-9+.-]*://")
+SVG_NAMESPACE = "http://www.w3.org/2000/svg"
+NAMESPACE_CALLS = re.compile(r"""createElementNS\(\s*(["'`])""" + re.escape(SVG_NAMESPACE) + r"\1")
+
+
+def banned_api_problems(name, text):
+    found = [f"{token} in {name}" for token in BANNED_APIS if token in text]
+    found += [f"setAttribute(on...) in {name}"] if SET_ATTRIBUTE_ON.search(text) else []
+    return found + ([f"<template in {name}"] if "<template" in text else [])
+
+
+def network_problems(name, text):
+    found = [f"{token} in {name}" for token in NETWORK_APIS if token in text]
+    without_icons = NAMESPACE_CALLS.sub("", text)  # the one allowed use of a scheme string (CG-10)
+    found += [f"scheme string {match.group(0)} in {name}" for match in SCHEME.finditer(without_icons)]
+    return found + ([f"namespace outside createElementNS in {name}"] if SVG_NAMESPACE in without_icons else [])
+
+
+def test_R37_no_banned_api_in_the_shipped_files():
+    scanned = {name: text for name, text in support.shipped_text().items() if name == "index.html" or name.startswith("src/")}
+    assert len(scanned) > 15
+    problems = []
+    for name, text in scanned.items():
+        problems += banned_api_problems(name, text)
+    assert problems == []
+
+
+def test_R37_the_banned_api_scan_has_teeth():
+    for bad in ["el.innerHTML = x", "a.outerHTML", "insertAdjacentHTML('x')", "document.write(1)", "eval(x)", "new Function('a')",
+                "el.setAttribute('onclick', f)", 'el.setAttribute("onload", f)', "range.createContextualFragment(x)", "new DOMParser()", "<template id=t>"]:
+        assert banned_api_problems("x.js", bad), bad
+    assert banned_api_problems("x.js", "el.setAttribute('aria-label', x); el.textContent = y") == []
+
+
+def test_R39_nothing_leaves_the_device_by_the_static_scan():
+    problems = []
+    for name, text in support.shipped_text().items():
+        problems += network_problems(name, text)
+    assert problems == []
+    assert "://" not in (ROOT / "index.html").read_text(encoding="utf-8")
+
+
+def test_R39_the_network_scan_has_teeth():
+    ok = f'const node = document.createElementNS("{SVG_NAMESPACE}", tag);'
+    assert network_problems("icons.js", ok) == []
+    assert network_problems("icons.js", ok.replace('"', "'")) == [] and network_problems("icons.js", ok.replace('"', "`")) == []
+    for bad in ["fetch('/x')", "new XMLHttpRequest()", "new WebSocket(u)", "new EventSource(u)", "navigator.sendBeacon(u)",
+                "navigator.serviceWorker", "const u = 'https://example.com/a'", "import x from 'http://a.b/c.js'",
+                f'document.createElementNS("urn:other", "svg"); // {SVG_NAMESPACE}', f'const ns = "{SVG_NAMESPACE}";',
+                f'document.createElementNS(tag, "{SVG_NAMESPACE}")', f"// the icons use createElementNS and {SVG_NAMESPACE}"]:
+        assert network_problems("x.js", bad), bad
+
+
+def test_R39_icons_come_from_createElementNS_and_the_page_holds_eleven(open_app):
+    sources = {name: text for name, text in support.shipped_text().items() if name.startswith("src/")}
+    calls = sum(text.count("createElementNS(") for text in sources.values())
+    assert calls >= 1 and calls == sum(len(NAMESPACE_CALLS.findall(text)) for text in sources.values())  # every call names the namespace
+    page = open_app(seed=seeds.S1).page
+    icons = page.evaluate("""() => [...document.querySelectorAll('svg.ph')].map((svg) => ({
+      place: svg.closest('button.copy') ? 'copy' : svg.closest('tfoot') ? 'check' : svg.closest('.btn-outline') ? 'plus' : svg.closest('.icon-btn') ? 'x' : '?',
+      viewBox: svg.getAttribute('viewBox'), hidden: svg.getAttribute('aria-hidden'), focusable: svg.getAttribute('focusable'),
+      paths: svg.children.length, namespace: svg.namespaceURI }))""")
+    assert len(icons) == 11 and sorted(icon["place"] for icon in icons) == ["check"] + ["copy"] + ["plus"] * 2 + ["x"] * 7
+    assert all(icon["viewBox"] == "0 0 256 256" and icon["hidden"] == "true" and icon["focusable"] == "false" and icon["paths"] == 1
+               and icon["namespace"] == SVG_NAMESPACE for icon in icons)
+
+
+def test_R39_a_whole_session_makes_only_same_origin_gets(open_app):
+    session = open_app()
+    page = session.page
+    build_s1(page)
+    copy_summary(page)
+    open_dialog(page)
+    page.get_by_role("button", name="Cancel").click()
+    page.reload()
+    paths = {url[len(session.base):] for method, url in session.requests if method == "GET" and url.startswith(session.base)}
+    assert {"/", "/src/system.css", "/src/main.js"} <= paths
+    assert all(session.request_is_allowed(method, url) for method, url in session.requests)
+    assert session.problems() == []
+
+
 # ===== END OF TESTS (new tests go above this line) =====
