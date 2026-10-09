@@ -7,7 +7,8 @@ import {
 import { computeResult } from "./core/result.js";
 import { summaryText } from "./core/summary.js";
 import { getStorage, loadDraft, saveDraft } from "./draft.js";
-import { flagsFor, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
+import { flagsFor, newErrorFlags, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
+import { createDialog } from "./ui/dialog.js";
 import { createNote } from "./ui/note.js";
 import { createPeople } from "./ui/people.js";
 import { createMode } from "./ui/mode.js";
@@ -108,6 +109,14 @@ const charges = createCharges({
   },
 });
 const panel = createPanel(document.querySelector(".tape"), { onCopy: copySummary });
+createDialog(document.querySelector("dialog"), document.querySelector(".bar .btn"), {
+  onConfirm() {
+    // The view state is reset with the bill (R31): a stale error flag or copy status must not outlive it.
+    view.errorShown = newErrorFlags();
+    view.status = null;
+    commit(newBill());
+  },
+});
 const note = createNote(document.querySelector(".bar"), {
   onDismiss() {
     view.noteShown = false;

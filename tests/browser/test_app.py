@@ -1126,4 +1126,123 @@ def test_R42_the_draft_keeps_both_people_with_the_same_name(open_app):
     assert [(p["id"], p["name"]) for p in stored(page)["bill"]["people"]] == [("p1", "Ben"), ("p3", "Chen")]
 
 
+# ---------------------------------------------------------------- Task 10: the New bill dialog (R29 to R31, R27)
+def new_bill_button(page):
+    return page.get_by_role("button", name="New bill", exact=True)
+
+
+def open_dialog(page):
+    new_bill_button(page).click()
+    return page.get_by_role("dialog", name="Start a new bill?")
+
+
+def focused(page):
+    return page.evaluate("document.activeElement.textContent.trim() || document.activeElement.id")
+
+
+def test_R29_the_dialog_opens_with_the_safe_choice_focused(open_app):
+    page = open_app(seed=seeds.S2).page
+    dialog = open_dialog(page)
+    assert dialog.evaluate("(d) => d.matches(':modal')") and dialog.get_attribute("aria-describedby") == "dialog-text"
+    assert page.locator("#dialog-text").inner_text() == "This clears the people, items and amounts."
+    assert [b.get_attribute("class") for b in dialog.get_by_role("button").all()] == ["btn btn-primary btn-large", "btn btn-outline btn-large"]
+    assert focused(page) == "Cancel"
+    page.keyboard.press("Tab")
+    assert focused(page) == "Start new bill"
+    page.keyboard.press("Tab")
+    assert focused(page) == "Cancel"
+    page.keyboard.press("Shift+Tab")
+    page.keyboard.press("Shift+Tab")
+    assert focused(page) == "Cancel"
+    assert page.locator(".app").evaluate("(e) => e.getBoundingClientRect().height") == 844
+    page.mouse.move(195, 100)
+    page.mouse.wheel(0, 600)
+    assert page.evaluate("window.scrollY") == 0
+
+
+@pytest.mark.parametrize("close", ["cancel", "escape", "backdrop-corner", "backdrop-over-a-field"])
+def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+    page = open_app(seed=seeds.S2).page
+    first_name = person_field(page, 1).bounding_box()
+    open_dialog(page)
+    if close == "cancel":
+        page.get_by_role("button", name="Cancel").click()
+    elif close == "escape":
+        page.keyboard.press("Escape")
+    elif close == "backdrop-corner":
+        page.mouse.click(10, 10)
+    else:
+        page.mouse.click(first_name["x"] + first_name["width"] / 2, first_name["y"] + first_name["height"] / 2)
+    assert page.locator("dialog.dialog").evaluate("(d) => d.open") is False
+    assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+    assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page) and summary_rows(page) == S2_SUMMARY
+
+
+def test_R31_start_over(open_app):
+    page = open_app(seed=seeds.S1).page
+    open_dialog(page)
+    page.get_by_role("button", name="Start new bill").click()
+    assert page.locator("dialog.dialog").evaluate("(d) => d.open") is False and focused(page) == "New bill"
+    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
+    assert page.locator("#mode-even").is_checked() and subtotal_field(page).input_value() == ""
+    assert (rate_field(page, "Service charge").input_value(), rate_field(page, "SST").input_value()) == ("10", "6")
+    assert panel_text(page) == EVEN_MESSAGE and stored_text(page) == NEW_BILL_DRAFT
+    page.reload()
+    assert panel_text(page) == EVEN_MESSAGE and page.locator("li.person").count() == 2
+
+
+def test_R31_start_over_clears_the_copy_status(open_app):
+    page = open_app(seed=seeds.S2).page
+    copy_summary(page)
+    assert status_of(page)[0] == "Summary copied"
+    open_dialog(page)
+    page.get_by_role("button", name="Start new bill").click()
+    assert page.locator("p.status").count() == 0 and panel_text(page) == EVEN_MESSAGE
+    subtotal_field(page).fill("100.00")
+    assert status_of(page) == ("", "status")
+
+
+def changed_price(seed, item_id, text):
+    return seeds.changed(seed, lambda d: [i.update(priceText=text) for i in d["bill"]["items"] if i["id"] == item_id])
+
+
+START_OVER_CASES = [
+    pytest.param(seeds.with_bill(seeds.S2, subtotalText="0"), None, lambda page: subtotal_field(page), id="subtotal"),
+    # Item i5 of S1 gets a bad price. After the start over, three new items get the ids i3, i4 and i5 again.
+    pytest.param(changed_price(seeds.S1, "i5", "13.505"), "three-items", lambda page: item_price(page, 3), id="item-price"),
+    pytest.param(seeds.with_bill(seeds.S2, serviceText="31"), None, lambda page: rate_field(page, "Service charge"), id="service"),
+    pytest.param(seeds.with_bill(seeds.S2, sstText="25"), None, lambda page: rate_field(page, "SST"), id="sst"),
+]
+
+
+@pytest.mark.parametrize("seed, prepare, field_of", START_OVER_CASES)
+def test_R31_start_over_clears_the_error_flags(open_app, seed, prepare, field_of):
+    # The restored bad text shows its error at once (R10 b), so each case starts with the error on screen.
+    page = open_app(seed=seed).page
+    assert page.locator("p.error").count() == 1
+    open_dialog(page)
+    page.get_by_role("button", name="Start new bill").click()
+    if prepare == "three-items":  # the new items get the ids i3, i4 and i5 again
+        switch_to(page, "By item")
+        for _ in range(3):
+            page.get_by_role("button", name="Add item").click()
+    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
+    field = field_of(page)
+    support.replace_text(page, field, "abc")
+    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
+    page.keyboard.press("Tab")
+    assert page.locator("p.error").count() == 1 and field.get_attribute("aria-invalid") == "true"
+
+
+def test_R27_the_note_is_not_touched_by_start_over(open_app):
+    page = open_app(seed=seeds.UNREADABLE["B1"]).page
+    open_dialog(page)
+    page.get_by_role("button", name="Start new bill").click()
+    assert page.locator("div.note").count() == 1
+    page.get_by_role("button", name="Dismiss note").click()
+    open_dialog(page)
+    page.get_by_role("button", name="Start new bill").click()
+    assert page.locator("div.note").count() == 0
+
+
 # ===== END OF TESTS (new tests go above this line) =====
