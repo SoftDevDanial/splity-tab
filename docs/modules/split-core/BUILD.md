@@ -49,7 +49,9 @@ rounding, no tips or discounts or other charges, no history or second bill, no D
 network or timer code, and no generic helpers beyond what the requirements call. `tests/hygiene.test.js`
 ~~enforces the purity part mechanically.~~ [Changed 2026-10-09, solver, code-review WR-07: enforces the
 spec R25 list, which now also covers the locale-format and timer non-goals. `queueMicrotask` is not on
-the list, since the ruling did not add it.]
+the list, since the ruling did not add it.] [Changed 2026-10-09, solver, security SEC-04: superseded.
+`queueMicrotask` and nine more names (dynamic code and other ambient sources) are now banned in code
+only, see spec R25. The code-only reading is `codeOnly` in `tests/hygiene.test.js`.]
 
 ## Exports (the contract, nothing more)
 | File | Exports |

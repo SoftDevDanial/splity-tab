@@ -541,6 +541,10 @@ Feature: split-core money, maths, state rules and summary text
     # [Added 2026-10-09, ORCH, code-review WR-07]
     And none of these names appears either: Intl, toLocaleString, toLocaleDateString, setTimeout, setInterval, requestAnimationFrame
     And the negative control shows the scanner flags each of those six in a planted line
+    # [Added 2026-10-09, ORCH, security SEC-04]
+    And no code (comments, string text, template text and regex bodies left out) uses eval, Function( or new Function, a dynamic import(, queueMicrotask, setImmediate, performance, crypto, WebSocket, process or require
+    And each of those, planted as a line of code into every real core file in memory, goes red as exactly that name
+    And the same line in a comment or a string does not go red, and code inside a template's ${...} is still scanned
 
   @R26
   Scenario: Equal names are stored as typed
