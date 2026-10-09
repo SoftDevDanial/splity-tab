@@ -1,0 +1,104 @@
+✔ @R25 the scan sees the core files (0.9669ms)
+✔ @R25 the scanner catches what it should (negative control) (0.9583ms)
+✔ @R25 the code-only scan reads code, and skips comments, strings, template text and regex bodies (0.3525ms)
+✔ @R25 const run = (text) => eval(text); served into each core file goes red as eval (2.2364ms)
+✔ @R25 const make = (body) => Function(body); served into each core file goes red as Function (2.0201ms)
+✔ @R25 const build = (body) => new Function(body); served into each core file goes red as Function (1.9206ms)
+✔ @R25 const load = (name) => import(name); served into each core file goes red as import( (1.5443ms)
+✔ @R25 const soon = (fn) => queueMicrotask(fn); served into each core file goes red as queueMicrotask (1.4353ms)
+✔ @R25 const later = (fn) => setImmediate(fn); served into each core file goes red as setImmediate (1.5359ms)
+✔ @R25 const now = () => performance.now(); served into each core file goes red as performance (1.3969ms)
+✔ @R25 const pick = () => crypto.getRandomValues(new Uint32Array(1))[0]; served into each core file goes red as crypto (1.2504ms)
+✔ @R25 const open = (url) => new WebSocket(url); served into each core file goes red as WebSocket (1.0733ms)
+✔ @R25 const env = () => process.env.SPLIT; served into each core file goes red as process (1.1556ms)
+✔ @R25 const load = (name) => require(name); served into each core file goes red as require (1.1155ms)
+✔ @R25 allocate.js uses no banned name (0.1313ms)
+✔ @R25 allocate.js imports only from src/core/ (0.0676ms)
+✔ @R25 bill.js uses no banned name (0.1698ms)
+✔ @R25 bill.js imports only from src/core/ (0.0384ms)
+✔ @R25 money.js uses no banned name (0.1038ms)
+✔ @R25 money.js imports only from src/core/ (0.0282ms)
+✔ @R25 result.js uses no banned name (0.131ms)
+✔ @R25 result.js imports only from src/core/ (0.1354ms)
+✔ @R25 summary.js uses no banned name (0.07ms)
+✔ @R25 summary.js imports only from src/core/ (0.0461ms)
+✔ @R25 the core files do import each other (the import scan is not blind) (0.1046ms)
+✔ @R25 runtime trap: the core touches no banned global or method while it loads and while every export runs (18.0444ms)
+✔ @R25 runtime trap: every trap fires for core code and not for test code (negative control) (42.0719ms)
+✔ @R25 runtime trap: the trap lists are exactly the pinned ones, so no trap is dropped unseen (0.1316ms)
+✔ @R25 runtime trap: every name the source scan bans has a trap (0.1465ms)
+✔ @R25 runtime trap: every trap is put back after a run, also after a body that throws (1.5015ms)
+✔ @R25 runtime trap: every run loads its own copy of the core (6.1459ms)
+✖ @R25 runtime trap: a run whose body throws leaves no hits for the next run (1.4771ms)
+✖ @R25 runtime trap: a stack that cannot be read does not leave the recorder stuck (0.2309ms)
+✔ @R25 runtime trap catches the security re-check's F1 plant in every core file (4.6706ms)
+✔ @R25 runtime trap catches the security re-check's F2 plant in every core file (4.6183ms)
+✔ @R25 runtime trap catches the security re-check's F3 plant in every core file (5.055ms)
+✔ @R25 runtime trap catches the security re-check's F4 plant in every core file (4.7777ms)
+✔ @R25 runtime trap catches the security re-check's F4b plant in every core file (5.5376ms)
+✔ @R25 runtime trap catches the security re-check's F5 plant in every core file (4.7354ms)
+✔ @R25 runtime trap catches the security re-check's F6 plant in every core file (4.8199ms)
+✔ @R25 runtime trap catches the security re-check's F6b plant in every core file (4.9209ms)
+✔ @R25 runtime trap catches the security re-check's F7 plant in every core file (5.1812ms)
+✔ @R25 runtime trap catches the security re-check's F8 plant in every core file (4.9842ms)
+✔ @R25 runtime trap catches the security re-check's F9 plant in every core file (4.6843ms)
+✔ @R25 runtime trap catches the security re-check's F10 plant in every core file (4.9005ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 43
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 220.4314
+
+✖ failing tests:
+
+test at tests\hygiene.test.js:475:1
+✖ @R25 runtime trap: a run whose body throws leaves no hits for the next run (1.4771ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'Date',
+  +   'Date.now'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/hygiene.test.js:477:10)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'Date', 'Date.now' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\hygiene.test.js:480:1
+✖ @R25 runtime trap: a stack that cannot be read does not leave the recorder stuck (0.2309ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   true,
+  +   50
+  -   false,
+  -   10
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/hygiene.test.js:495:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ true, 50 ],
+    expected: [ false, 10 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

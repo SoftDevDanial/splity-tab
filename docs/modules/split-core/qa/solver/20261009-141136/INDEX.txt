@@ -1,0 +1,55 @@
+Evidence index, split-core solver round for the code-review re-check warnings WR-11 to WR-15, 2026-10-09.
+Role: dev solver. Findings and the table of results: docs/modules/split-core/findings/code-review.md, section
+"Solver (re-check, 2026-10-09)". Starting HEAD bd7282c, final HEAD 6edc1b6.
+
+Commits: WR-11 28c67ed, WR-12 6ec63fb, WR-13 7c4e896, WR-14 93b9c48, WR-15 6edc1b6.
+
+Files
+  node-test.txt             final full suite at HEAD 6edc1b6 (spec reporter), pass and fail counts at the end
+  node-test-wr11.txt, node-test-wr12.txt, node-test-wr13.txt, node-test-wr15.txt
+                            the full suite after each commit's change, before the commit
+  per-commit-summary.txt    6 trees (the start HEAD and the 5 fix commits) rebuilt from git archive in a scratch directory
+                            outside the project, the full suite run in each: every one green
+  wr11-before.txt           mutants P00 to P03 against the OLD tests: all four survive (the reviewer's finding)
+  wr11-after.txt            mutants P00 to P14 against the NEW tests: P01, P02, P03 killed by exactly the two new tests,
+                            P00 is the identity control and stays green
+  wr12-before.txt           the reviewer's 42 trap-narrowing mutants, the escaped globalThis plant (H04a), the dropped-trap
+                            plants (H08a, H08c), B6, B7, B9 against the OLD hygiene test: 37 of the 42 narrowing mutants
+                            survive
+  wr12-after.txt            the same set plus N-G25 (globalThis dropped), D1, D2, RS1 against the pinned test: every one
+                            killed except B7
+  wr13-demo.txt             H02 (survives, the documented limit) and H03 (caught by the scan only)
+  wr15e-red-before-fix.txt  the two new WR-15(e) tests run against the unfixed trapped and record: both red
+  wr15-after-machinery.txt  trap machinery mutants B1 to B9, L1 (old leak), L2 (old record), RS1 against the fixed code
+  mutation-final.txt        every mutant above against the final code (85 mutants, 81 killed). The 4 that survive are
+                            H00 and P00 (identity controls), H02 (the documented WR-13 limit) and B7 (see the findings)
+  flake-runs.txt            the hygiene file 10 times alone, the full suite under 7 runner variants, and the hygiene
+                            file run directly: all green
+  scripts/                  mutants.mjs (the reviewer's base mutants plus the ones added here), preload.mjs,
+                            run-mutants.mjs, per-commit.mjs, flake.mjs. Nothing in here is under src/ or the tests glob.
+
+Rerun (project root, Node 24)
+  OUT=<file relative to the project root> FULL=1 node docs/modules/split-core/qa/solver/20261009-141136/scripts/run-mutants.mjs [id-or-prefix ...]
+  A mutant only counts when its MUT-APPLIED marker was seen. The mutants import the reviewer's mutants.mjs from
+  docs/modules/split-core/qa/code-review/20261009-134620/scripts/, which must stay in place.
+
+How the mutants stay out of the tree: preload.mjs changes source text only while it is loaded or read. No file under
+src/ or tests/ was written, copied or renamed for a mutant. Files were written with the Write and Edit tools, and the
+evidence files by Node fs or the Node test reporter's own destination option, with paths relative to the project root.
+No shell redirect and no heredoc was used.
+
+PROCESSES (constitution, process and resource accounting)
+  Started: only foreground children, each waited for and exited. No dev server, no browser, no watcher, no background
+  shell, no poll loop, no run_in_background.
+    - node --test suite runs, single-file runs, and the in-memory mutant runs (node --import preload.mjs ... via
+      spawnSync, SIGKILL timeout 120 s). The child PID of every mutant run is in the "pid" field of its line in the
+      wr*.txt and mutation-final.txt files. The per-commit PIDs are in per-commit-summary.txt and the flake run PIDs
+      in flake-runs.txt.
+    - git archive and tar for the 6 trees (exited), and the credential gate (python, once before each commit, exited).
+  Final sweep at 14:25 by image name (node.exe, python.exe, chrome.exe, msedge.exe, cmd.exe, sh.exe, bash.exe) and by
+  command line (this folder's name, preload.mjs, --test, run-mutants, per-commit, flake.mjs, credential_sweep): 0 alive for
+  every one of them. bash.exe showed 3, which are the Bash tool's own shell chain for the sweep call itself (parents
+  28092 > 26108 > 34720, with the PowerShell sweep as the child), started by the harness and not by this run.
+  Windows reuses PIDs, so the PIDs in the logs prove nothing about what is alive now. The sweep above does.
+  Kill command for anything found later: taskkill /PID <pid> /F  (confirm the command line first).
+  The OS clipboard was never touched.

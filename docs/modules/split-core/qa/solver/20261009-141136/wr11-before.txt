@@ -1,0 +1,5 @@
+{"id":"P00","desc":"identity control, no edit","verdict":"SURVIVES","applied":true,"status":0,"pid":9820,"ms":189,"tests":27,"pass":27,"fail":0,"failed":[],"failedCount":0}
+{"id":"P01","desc":"g flag dropped: only the first control character in a name is replaced","verdict":"SURVIVES","applied":true,"status":0,"pid":34860,"ms":186,"tests":27,"pass":27,"fail":0,"failed":[],"failedCount":0}
+{"id":"P02","desc":"class takes + : a run of adjacent controls collapses to one space","verdict":"SURVIVES","applied":true,"status":0,"pid":45644,"ms":188,"tests":27,"pass":27,"fail":0,"failed":[],"failedCount":0}
+{"id":"P03","desc":"class also takes \\p{Cs}: a lone surrogate becomes a space","verdict":"SURVIVES","applied":true,"status":0,"pid":35040,"ms":198,"tests":27,"pass":27,"fail":0,"failed":[],"failedCount":0}
+SUMMARY mutants=4 killed=0 survives=4 not-applied=0 error=0

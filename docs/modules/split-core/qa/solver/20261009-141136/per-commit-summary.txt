@@ -1,0 +1,6 @@
+bd7282c tests=246 pass=246 fail=0 exit=0 pid=29424 docs(split-core): code-review re-check (PASS, 5 warnings) and evidence
+28c67ed tests=248 pass=248 fail=0 exit=0 pid=44796 test(split-core): WR-11 pin that every class member in one name is replaced
+6ec63fb tests=252 pass=252 fail=0 exit=0 pid=32696 test(split-core): WR-12 trap globalThis and pin the runtime trap lists
+7c4e896 tests=252 pass=252 fail=0 exit=0 pid=38828 docs(split-core): WR-13 the runtime trap sees code that runs, the scan covers the rest best-effort
+93b9c48 tests=252 pass=252 fail=0 exit=0 pid=44912 docs(split-core): WR-14 state the stable test effect and date the Task 8 line
+6edc1b6 tests=254 pass=254 fail=0 exit=0 pid=45744 refactor(split-core): WR-15 clear the trap hits in finally and trim the duplicated lists and claims

@@ -1,0 +1,18 @@
+hygiene alone #1 tests=45 pass=45 fail=0 exit=0 pid=39468
+hygiene alone #2 tests=45 pass=45 fail=0 exit=0 pid=38240
+hygiene alone #3 tests=45 pass=45 fail=0 exit=0 pid=38688
+hygiene alone #4 tests=45 pass=45 fail=0 exit=0 pid=26112
+hygiene alone #5 tests=45 pass=45 fail=0 exit=0 pid=20324
+hygiene alone #6 tests=45 pass=45 fail=0 exit=0 pid=4024
+hygiene alone #7 tests=45 pass=45 fail=0 exit=0 pid=22748
+hygiene alone #8 tests=45 pass=45 fail=0 exit=0 pid=43836
+hygiene alone #9 tests=45 pass=45 fail=0 exit=0 pid=23792
+hygiene alone #10 tests=45 pass=45 fail=0 exit=0 pid=13580
+suite default tests=254 pass=254 fail=0 exit=0 pid=17712
+suite --test-isolation=none tests=254 pass=254 fail=0 exit=0 pid=22084
+suite --test-concurrency=1 tests=254 pass=254 fail=0 exit=0 pid=2992
+suite --experimental-test-coverage tests=254 pass=254 fail=0 exit=0 pid=44140
+suite --enable-source-maps tests=254 pass=254 fail=0 exit=0 pid=44792
+suite --stack-trace-limit=2 tests=254 pass=254 fail=0 exit=0 pid=42824
+suite --jitless tests=254 pass=254 fail=0 exit=0 pid=24256
+hygiene run directly (no --test) tests=45 pass=45 fail=0 exit=0 pid=27468

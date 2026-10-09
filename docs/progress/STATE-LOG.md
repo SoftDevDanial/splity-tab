@@ -77,3 +77,11 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-09 13:42 split-core security round 2 fixes
 - Solver: SEC-05 fedaa7a (runtime trap test is the primary R25 guard), SEC-06 5d5d02a (property tests over every code point), wording 4e2740b. 246 of 246 tests pass
 - Next: scoped code-review re-check of every change since 67e4b6e, then QA finder
+
+## 2026-10-09 14:10 split-core code-review re-check
+- Code-review re-check: PASS, 5 low warnings WR-11 to WR-15, all test or doc. Commit bd7282c
+- Routed to a sonnet dev solver. Stop rule: QA finder next, then module close
+
+## 2026-10-09 14:27 split-core re-check warnings solved
+- Solver (sonnet): WR-11 to WR-15 resolved, 254 of 254 tests, HEAD 6edc1b6
+- Per the stop rule: QA finder next, then module close
