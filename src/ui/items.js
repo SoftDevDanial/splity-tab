@@ -3,7 +3,7 @@
 // createItems({ onName, onPrice, onPriceLeave, onToggle, onAdd, onRemove }) returns
 // { el, update(bill, errors), focusName(index), focusAdd() }. It writes DOM and reports gestures.
 import { LIMITS, itemLabel, personLabel } from "../core/bill.js";
-import { el, setAttr, setText, setValue, rowsFor, reconcileChildren } from "./dom.js";
+import { el, isRepeatClick, setAttr, setText, setValue, rowsFor, reconcileChildren } from "./dom.js";
 import { AMOUNT_ERROR, createErrorSlot } from "./field-error.js";
 import { onFieldLeave } from "./field-leave.js";
 import { icon } from "./icons.js";
@@ -24,7 +24,7 @@ export function createItems({ onName, onPrice, onPriceLeave, onToggle, onAdd, on
     name.addEventListener("input", () => onName(id, name.value));
     price.addEventListener("input", () => onPrice(id, price.value));
     onFieldLeave(price, (text) => onPriceLeave(id, text));
-    remove.addEventListener("click", () => onRemove(id));
+    remove.addEventListener("click", (event) => { if (!isRepeatClick(event)) onRemove(id); }); // as in people.js
     const makeToggle = (personId) => {
       const tap = el("button", { class: "tap", type: "button" });
       tap.addEventListener("click", () => onToggle(id, personId));

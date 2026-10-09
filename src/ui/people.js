@@ -2,7 +2,7 @@
 // createPeople({ onName(id, text), onAdd(), onRemove(id) }) returns { el, update(bill), focusName(index) }.
 // It writes DOM and reports gestures; the bill is changed by the caller.
 import { LIMITS, personLabel } from "../core/bill.js";
-import { el, setAttr, setValue, rowsFor, reconcileChildren } from "./dom.js";
+import { el, isRepeatClick, setAttr, setValue, rowsFor, reconcileChildren } from "./dom.js";
 import { icon } from "./icons.js";
 
 export function createPeople({ onName, onAdd, onRemove }) {
@@ -13,7 +13,8 @@ export function createPeople({ onName, onAdd, onRemove }) {
     const input = el("input", { type: "text", maxlength: String(LIMITS.personNameMax), autocomplete: "off" });
     const remove = el("button", { class: "icon-btn", type: "button" }, icon("x"));
     input.addEventListener("input", () => onName(id, input.value));
-    remove.addEventListener("click", () => onRemove(id));
+    // The second click of a double click would remove the row that slid under the pointer (isRepeatClick).
+    remove.addEventListener("click", (event) => { if (!isRepeatClick(event)) onRemove(id); });
     return { el: el("li", { class: "field person" }, input, remove), input, remove };
   }
 

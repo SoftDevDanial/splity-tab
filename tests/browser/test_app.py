@@ -1441,6 +1441,36 @@ def test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_he
     assert aisyah.get_attribute("aria-pressed") == "false" and stored_text(page) == seeds.S1
 
 
+FIVE_PEOPLE = seeds.changed(seeds.S2, lambda d: d["bill"].update(
+    people=[{"id": f"p{n}", "name": f"P{n}"} for n in range(1, 6)], nextId=6))
+REMOVE_CASES = [  # (seed, the remove button, the row selector, rows before)
+    pytest.param(seeds.S1, "Remove Char kuey teow", "li.item", 4, id="item-2-of-4"),
+    pytest.param(FIVE_PEOPLE, "Remove P2", "li.person", 5, id="person-2-of-5"),
+]
+
+
+@pytest.mark.parametrize("how", ["mouse", "touch"])
+@pytest.mark.parametrize("seed, button, rows, before", REMOVE_CASES)
+def test_R7_a_double_click_or_double_tap_on_remove_removes_one_row(open_app, seed, button, rows, before, how):
+    # WR-01: the row below slides under the pointer after the first click, and the second click removed that one too.
+    page = open_app(seed=seed, touch=how == "touch").page
+    assert page.locator(rows).count() == before
+    activate_twice(page, how, centre_of(page.get_by_role("button", name=button, exact=True)))
+    assert page.locator(rows).count() == before - 1
+
+
+@pytest.mark.parametrize("seed, button, rows, before", REMOVE_CASES)
+def test_R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each(open_app, seed, button, rows, before):
+    page = open_app(seed=seed).page
+    x, y = centre_of(page.get_by_role("button", name=button, exact=True))
+    page.mouse.click(x, y)
+    page.mouse.click(x, y)  # a click of its own (count 1), not the tail of a double click
+    assert page.locator(rows).count() == before - 2
+    page.locator(rows).first.locator("button.icon-btn").focus()
+    page.keyboard.press("Enter")  # a key press activates with count 0
+    assert page.locator(rows).count() == before - 3
+
+
 # ---------------------------------------------------------------- Task 11: cross-cutting checks (R32, R33, R35, R36, R37, R39)
 INK = "rgb(20, 25, 23)"  # --ink, the colour of the focus ring
 RING = ["solid", "2px", INK, "2px"]
