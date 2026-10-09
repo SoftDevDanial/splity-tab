@@ -602,6 +602,9 @@ Feature: split-core money, maths, state rules and summary text
     And every name the source scan bans has a trap (import( is syntax, so no recorder can watch it)
     And every trap is put back after a run, also after a body that throws
     And every run loads its own copy of the core
+    # [Added 2026-10-09, ORCH, code-review WR-15]
+    And a run whose body throws leaves no hits for the next run
+    And a stack that cannot be read does not leave the recorder stuck
 
   @R26
   Scenario: Equal names are stored as typed

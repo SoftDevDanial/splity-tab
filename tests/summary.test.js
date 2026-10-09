@@ -126,6 +126,9 @@ test("@R24 a right-to-left override in a name cannot reorder the share", () => {
 // code point up to U+2069 (the class's last member) in a name of its own, then everything above it in one name.
 // Surrogate halves are left out of that name, because two adjacent halves would pair into another code point.
 const R24_CLASS = /^[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]$/u;
+// The oracle above is the same class expression as the code, so only a count written by hand can tell a
+// wrong class from a right one: 65 in Cc (C0, DEL, C1), LS and PS, and 12 in Bidi_Control.
+const R24_CLASS_SIZE = 65 + 2 + 12;
 const R24_MEMBERS = Array.from({ length: 0x206a }, (_, cp) => String.fromCodePoint(cp)).filter((char) => R24_CLASS.test(char));
 const S2_TEXT = summaryText(computeResult(S2));
 const withChenAs = (name) => S2_TEXT.replace("Chen RM", () => `${name} RM`);
@@ -141,7 +144,7 @@ test("@R24 exactly the R24 class prints as a space, every other code point up to
     if (text !== withChenAs(`A${replaced ? " " : char}B`)) wrong.push(`U+${cp.toString(16).toUpperCase().padStart(4, "0")}`);
   }
   assert.deepEqual(wrong, []);
-  assert.equal(inClass, 79);
+  assert.equal(inClass, R24_CLASS_SIZE);
 });
 
 test("@R24 every code point above U+2069 prints as typed", () => {

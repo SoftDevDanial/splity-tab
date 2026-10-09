@@ -9,9 +9,10 @@ import { isDeepStrictEqual } from "node:util";
 const CORE_DIR = resolve(import.meta.dirname, "../src/core");
 
 // Two R25 guards that cover for each other. The source scan below reads every path, including a branch the
-// workload never takes, but it is best-effort and secondary: no name scan sees through every slash, escape or
-// constructor route (security SEC-05). The runtime trap at the end of this file is the primary guard, because
-// it watches what the core really touches whatever the syntax, but only on a path the workload runs.
+// workload never takes, but it is best-effort and secondary: no name scan sees through every slash, escape
+// or constructor route (its known limits are listed in spec R25). The runtime trap at the end of this file
+// is the primary guard, because it watches what the core really touches whatever the syntax, but only on a
+// path the workload runs.
 
 // Whole-word match, so "Datestamp" would pass but "Date" would not. Comments are scanned too:
 // a banned name in a comment is a sign the code was meant to use it.
@@ -63,6 +64,7 @@ function literalEnd(source, open, delimiter) {
 /**
  * The source with comments, string text, template text and regex bodies blanked to spaces, delimiters
  * kept, so a scan sees code only. Code inside a template's ${...} is kept, nested templates included.
+ * Best-effort like the whole scan: spec R25 lists the syntax it misreads.
  */
 function codeOnly(source) {
   let code = "";
@@ -139,11 +141,13 @@ function staysInCore(specifier) {
   return target === CORE_DIR || target.startsWith(join(CORE_DIR, "/"));
 }
 
-const files = readdirSync(CORE_DIR, { recursive: true }).filter((name) => name.endsWith(".js"));
-const sources = files.map((name) => [name, readFileSync(join(CORE_DIR, name), "utf8")]);
+// The one list of core files: the scan and the runtime trap both walk it, so a sixth file is picked up by
+// both and fails the test below until its name is added there on purpose.
+const CORE_FILES = readdirSync(CORE_DIR, { recursive: true }).filter((name) => name.endsWith(".js"));
+const sources = CORE_FILES.map((name) => [name, readFileSync(join(CORE_DIR, name), "utf8")]);
 
 test("@R25 the scan sees the core files", () => {
-  assert.deepEqual([...files].sort(), ["allocate.js", "bill.js", "money.js", "result.js", "summary.js"]);
+  assert.deepEqual([...CORE_FILES].sort(), ["allocate.js", "bill.js", "money.js", "result.js", "summary.js"]);
 });
 
 test("@R25 the scanner catches what it should (negative control)", () => {
@@ -224,7 +228,6 @@ test("@R25 the core files do import each other (the import scan is not blind)", 
 // src/core/ frame is on the stack, so the test runner's own use of a global never counts.
 
 const CORE_URL = pathToFileURL(join(CORE_DIR, "/")).href;
-const CORE_FILES = ["money.js", "allocate.js", "bill.js", "result.js", "summary.js"];
 
 const TRAPPED_GLOBALS = [
   "eval", "Function", "setTimeout", "setInterval", "requestAnimationFrame", "queueMicrotask", "setImmediate",
@@ -265,10 +268,14 @@ function record(label) {
   if (!armed || recording) return;
   recording = true;
   const limit = Error.stackTraceLimit;
-  Error.stackTraceLimit = 50;
-  const fromCore = (new Error().stack ?? "").split("\n").some((line) => line.includes(CORE_URL));
-  Error.stackTraceLimit = limit;
-  recording = false;
+  let fromCore = false;
+  try {
+    Error.stackTraceLimit = 50;
+    fromCore = (new Error().stack ?? "").split("\n").some((line) => line.includes(CORE_URL));
+  } finally {
+    Error.stackTraceLimit = limit;
+    recording = false;
+  }
   if (fromCore) hits.push(label);
 }
 
@@ -292,17 +299,20 @@ async function trapped(body) {
     const real = prototype.constructor;
     replace(prototype, "constructor", { get() { record(label); return real; } });
   }
+  let found;
   armed = true;
   try {
     await body();
   } finally {
     armed = false;
+    // Taken here, not after the try: a body that throws would leave its hits for the next run to return.
+    found = hits.splice(0);
     for (const [owner, key, descriptor] of saved.reverse()) {
       if (descriptor === undefined) delete owner[key];
       else Object.defineProperty(owner, key, descriptor);
     }
   }
-  return hits.splice(0);
+  return found;
 }
 
 // Each trapped run loads its own copy of the core: a run id rides on every core URL and on every import
@@ -468,6 +478,31 @@ test("@R25 runtime trap: every run loads its own copy of the core", async () => 
   const first = await importCore();
   const second = await importCore();
   assert.notEqual(first.money, second.money);
+});
+
+// A negative control passes when its run records the trap it plants, so a failed run must not leave its hits
+// behind for the next one, and a recorder that failed once must not stay switched off.
+test("@R25 runtime trap: a run whose body throws leaves no hits for the next run", async () => {
+  await assert.rejects(trapped(() => importPlanted("money.js", "void Date.now(); throw new Error('boom');")), /boom/);
+  assert.deepEqual(await trapped(async () => {}), []);
+});
+
+test("@R25 runtime trap: a stack that cannot be read does not leave the recorder stuck", () => {
+  const prepare = Error.prepareStackTrace;
+  const limit = Error.stackTraceLimit;
+  let after;
+  armed = true;
+  Error.prepareStackTrace = () => { throw new RangeError("no stack"); };
+  try {
+    assert.throws(() => record("probe"), RangeError);
+  } finally {
+    Error.prepareStackTrace = prepare;
+    armed = false;
+    after = [recording, Error.stackTraceLimit];
+    recording = false;
+    Error.stackTraceLimit = limit;
+  }
+  assert.deepEqual(after, [false, limit]);
 });
 
 // The security re-check's plants (SEC-05, F1 to F10): live code that the source scan above lets through.
