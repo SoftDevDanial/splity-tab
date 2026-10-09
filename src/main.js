@@ -2,7 +2,7 @@
 // each block under src/ui/ to show it. No money is computed here (split-core owns that).
 import {
   newBill, addPerson, removePerson, setPersonName, setMode, setSubtotalText,
-  addItem, removeItem, setItemName, setItemPriceText, toggleItemPerson,
+  addItem, removeItem, setItemName, setItemPriceText, toggleItemPerson, setServiceText, setSstText,
 } from "./core/bill.js";
 import { computeResult } from "./core/result.js";
 import { newErrorFlags, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
@@ -69,7 +69,17 @@ const items = createItems({
     else items.focusName(Math.min(position, bill.items.length - 1));
   },
 });
-const charges = createCharges();
+const chargeSetters = { service: setServiceText, sst: setSstText };
+const charges = createCharges({
+  onInput(kind, text) {
+    typedInto(view.errorShown, kind, text);
+    commit(chargeSetters[kind](bill, text));
+  },
+  onLeave(kind, text) {
+    leftField(view.errorShown, kind, text);
+    render();
+  },
+});
 const panel = createPanel(document.querySelector(".tape"));
 document.querySelector(".inputs").append(people.el, mode.el, subtotal.el, items.el, charges.el);
 
@@ -79,7 +89,7 @@ function render() {
   mode.update(bill);
   subtotal.update(bill, errors);
   items.update(bill, errors);
-  charges.update(bill);
+  charges.update(bill, errors);
   panel.update(computeResult(bill));
 }
 

@@ -388,6 +388,8 @@ def test_R9_subtotal_field_has_its_unit_label_and_input_mode(open_app):
 ERROR_CASES = [
     pytest.param(lambda page: None, lambda page: page.locator("#subtotal"), "0", "Enter an amount like 12.50", "subtotal-error", "12.50", id="subtotal"),
     pytest.param(lambda page: build_s1(page), lambda page: item_price(page, 2), "13.505", "Enter an amount like 12.50", "price-error-i5", "13.50", id="item-price"),
+    pytest.param(lambda page: None, lambda page: rate_field(page, "Service charge"), "31", "Enter a rate from 0 to 30", "rate-service-error", "10", id="service"),
+    pytest.param(lambda page: None, lambda page: rate_field(page, "SST"), "20.01", "Enter a rate from 0 to 20", "rate-sst-error", "6", id="sst"),
 ]
 
 
@@ -599,6 +601,42 @@ def test_R33_typing_in_an_item_field_keeps_focus_and_caret(open_app, field_of, t
     page = open_app().page
     build_s1(page)
     type_and_watch(page, field_of(page), text)
+
+
+# ---------------------------------------------------------------- Task 6: charges (R15, R10)
+def rate_field(page, label):
+    return page.get_by_role("textbox", name=f"{label} in percent", exact=True)
+
+
+def test_R15_charges_block_and_its_defaults(open_app):
+    page = open_app().page
+    for label, value in (("Service charge", "10"), ("SST", "6")):
+        field = rate_field(page, label)
+        assert field.input_value() == value and field.get_attribute("aria-describedby") == "charges-hint"
+        assert [field.get_attribute(a) for a in ("inputmode", "autocomplete", "type")] == ["decimal", "off", "text"]
+        wrapper = page.locator(f"span.field.percent:has(#{field.get_attribute('id')})")
+        assert wrapper.locator("input + .unit").inner_text() == "%"
+    assert page.locator("p.hint#charges-hint").inner_text() == "Set a charge to 0 if your bill already includes it."
+
+
+def test_R15_a_rate_error_names_both_ids_and_its_range(open_app, plain_context):
+    page = open_app().page
+    support.replace_text(page, rate_field(page, "Service charge"), "31")
+    page.keyboard.press("Tab")
+    error = page.locator("p.error#rate-service-error")
+    assert error.inner_text() == "Enter a rate from 0 to 30"
+    assert error.evaluate("(e) => e === e.parentElement.lastElementChild && e.parentElement.querySelector('label').textContent") == "Service charge in percent"
+    assert rate_field(page, "Service charge").get_attribute("aria-describedby") == "rate-service-error charges-hint"
+    specimen = support.open_golden(plain_context, "states").locator("#s4-subtotal-error")  # ST-10: styled as ST-01
+    assert support.specimen_props(error, ["marginTop"]) == support.specimen_props(specimen, ["marginTop"])
+
+
+def test_R10_an_empty_rate_never_shows_an_error(open_app):
+    page = open_app().page
+    support.replace_text(page, rate_field(page, "Service charge"), "")
+    page.keyboard.press("Tab")
+    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
+    assert panel_text(page) == "Shares\nCheck the charges to see the shares."
 
 
 # ===== END OF TESTS (new tests go above this line) =====
