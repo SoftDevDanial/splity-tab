@@ -1,17 +1,23 @@
-// The Subtotal block (C2, R9), shown in even mode only. createSubtotal() returns { el, update(bill) }.
+// The Subtotal block (C2, R9, R10), shown in even mode only.
+// createSubtotal({ onInput(text), onLeave(text) }) returns { el, update(bill, errors) }.
 import { el, setValue } from "./dom.js";
+import { AMOUNT_ERROR, createErrorSlot } from "./field-error.js";
 
-export function createSubtotal() {
+export function createSubtotal({ onInput, onLeave }) {
   const input = el("input", { id: "subtotal", type: "text", inputmode: "decimal", autocomplete: "off" });
+  input.addEventListener("input", () => onInput(input.value));
+  input.addEventListener("blur", () => onLeave(input.value));
   const field = el("span", { class: "field money" }, el("span", { class: "unit", "aria-hidden": "true" }, "RM"), input);
   const section = el("section", { class: "block", "aria-labelledby": "h-subtotal" },
     el("h2", { class: "block-title", id: "h-subtotal" },
       el("label", { for: "subtotal" }, "Subtotal", el("span", { class: "sr-only" }, " in RM"))),
     el("div", { class: "cells" }, field));
+  const error = createErrorSlot(section, input, { id: "subtotal-error", message: AMOUNT_ERROR });
 
-  function update(bill) {
+  function update(bill, errors) {
     section.hidden = bill.mode !== "even";
     setValue(input, bill.subtotalText);
+    error.set(errors.subtotal);
   }
 
   return { el: section, update };

@@ -15,7 +15,7 @@ export function createPanel(tape) {
   const shares = el("section", { class: "tape-section", "aria-labelledby": "h-shares" }, title);
 
   function update(result) {
-    setText(message, BLOCKED_MESSAGE[result.reason]);
+    setText(message, BLOCKED_MESSAGE[result.reason] ?? "");
     reconcileChildren(shares, [title, message]);
     reconcileChildren(tape, [shares]);
   }

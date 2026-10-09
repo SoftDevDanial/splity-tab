@@ -330,7 +330,7 @@ Each task is one commit and adds the browser tests for the R#s it cites (see `qa
 1. [x] `tests/browser/conftest.py` harness (free port, `python -m http.server <port> --bind 127.0.0.1` from the project root, bounded readiness wait, teardown with kill and port re-check, evidence folders, console and network capture, the clipboard init scripts `tests/browser/clipboard/recorder.js`, `reject.js` and `missing.js` with the recorder on every context by default) and `tests/browser/seeds.py` (the seed drafts). -> R1, R39
 2. [x] `index.html` with the CSP meta, `src/system.css` byte copy, `src/main.js` boot that renders header, People, mode switch, Subtotal, Charges and the blocked panel from `newBill()`. -> R1, R2, R3, R38
 3. [x] People block. Rows, live names, add, remove, limits, focus after add and remove, duplicate names, and the icons module (the four SVGs through `createElementNS`, CG-10). -> R4, R5, R6, R7, R33, R34, R42
-4. [ ] Mode switch and Subtotal block with the inline error rule. -> R8, R9, R10
+4. [x] Mode switch and Subtotal block with the inline error rule. -> R8, R9, R10
 5. [ ] Items block. Rows, toggles, add, remove, 50 limit, price errors, focus. -> R11, R12, R13, R14, R10, R34
 6. [ ] Charges block with rate errors. -> R15, R10
 7. [ ] Bill panel. Blocked messages, unassigned message, Bill summary, both shares tables, quiet panel. -> R16, R17, R18, R19, R20, R21

@@ -1,7 +1,8 @@
 // Boot and wiring for the page. Holds the one `bill` value, calls split-core for every change, and asks
 // each block under src/ui/ to show it. No money is computed here (split-core owns that).
-import { newBill, addPerson, removePerson, setPersonName } from "./core/bill.js";
+import { newBill, addPerson, removePerson, setPersonName, setMode, setSubtotalText } from "./core/bill.js";
 import { computeResult } from "./core/result.js";
+import { newErrorFlags, typedInto, leftField, visibleErrors } from "./errors.js";
 import { createPeople } from "./ui/people.js";
 import { createMode } from "./ui/mode.js";
 import { createSubtotal } from "./ui/subtotal.js";
@@ -9,6 +10,7 @@ import { createCharges } from "./ui/charges.js";
 import { createPanel } from "./ui/panel.js";
 
 let bill = newBill();
+const view = { errorShown: newErrorFlags() };
 
 function commit(next) {
   if (next === bill) return;
@@ -29,16 +31,26 @@ const people = createPeople({
     people.focusName(Math.min(position, bill.people.length - 1));
   },
 });
-const mode = createMode();
-const subtotal = createSubtotal();
+const mode = createMode({ onMode: (value) => commit(setMode(bill, value)) });
+const subtotal = createSubtotal({
+  onInput(text) {
+    typedInto(view.errorShown, "subtotal", text);
+    commit(setSubtotalText(bill, text));
+  },
+  onLeave(text) {
+    leftField(view.errorShown, "subtotal", text);
+    render();
+  },
+});
 const charges = createCharges();
 const panel = createPanel(document.querySelector(".tape"));
 document.querySelector(".inputs").append(people.el, mode.el, subtotal.el, charges.el);
 
 function render() {
+  const errors = visibleErrors(view.errorShown, bill);
   people.update(bill);
   mode.update(bill);
-  subtotal.update(bill);
+  subtotal.update(bill, errors);
   charges.update(bill);
   panel.update(computeResult(bill));
 }

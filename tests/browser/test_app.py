@@ -340,4 +340,95 @@ def test_R42_duplicate_names_are_accepted_and_act_on_their_own_row(open_app):
     assert [f.input_value() for f in page.locator("li.person input").all()] == ["Ben", "Chen"]
 
 
+# ---------------------------------------------------------------- Task 4: mode and subtotal (R8, R9, R10)
+EVEN_MESSAGE = "Shares\nEnter the subtotal to see the shares."
+
+
+def subtotal_field(page):
+    return page.get_by_role("textbox", name="Subtotal in RM", exact=True)
+
+
+def switch_to(page, label):
+    page.get_by_text(label, exact=True).click()
+
+
+def test_R8_switching_modes_keeps_the_subtotal(open_app):
+    page = open_app().page
+    support.replace_text(page, subtotal_field(page), "100.00")
+    switch_to(page, "By item")
+    assert page.locator("#mode-item").is_checked() and not page.locator("#subtotal").is_visible()
+    assert panel_text(page) == "Shares\nAdd an item to see the shares."
+    switch_to(page, "Even")
+    assert page.locator("#mode-even").is_checked() and subtotal_field(page).input_value() == "100.00"
+
+
+def test_R8_arrow_keys_move_between_the_modes(open_app):
+    page = open_app().page
+    for _ in range(12):
+        page.keyboard.press("Tab")
+        if page.evaluate("document.activeElement.id") == "mode-even":
+            break
+    assert page.evaluate("document.activeElement.id") == "mode-even"
+    page.keyboard.press("ArrowRight")
+    assert page.locator("#mode-item").is_checked() and page.evaluate("document.activeElement.id") == "mode-item"
+
+
+def test_R9_subtotal_field_has_its_unit_label_and_input_mode(open_app):
+    page = open_app().page
+    field = subtotal_field(page)
+    assert field.get_attribute("id") == "subtotal"
+    assert [field.get_attribute(a) for a in ("type", "inputmode", "autocomplete")] == ["text", "decimal", "off"]
+    wrapper = page.locator("span.field.money:has(#subtotal)")
+    assert wrapper.locator(".unit").inner_text() == "RM" and wrapper.locator("input").count() == 1
+    support.replace_text(page, field, "100.00")
+    assert field.input_value() == "100.00"
+
+
+# Rows are added with the field's own task: item prices (task 5), Service charge and SST (task 6).
+ERROR_CASES = [
+    pytest.param(lambda page: page.locator("#subtotal"), "0", "Enter an amount like 12.50", "subtotal-error", "12.50", id="subtotal"),
+]
+
+
+@pytest.mark.parametrize("field_of, bad, message, error_id, good", ERROR_CASES)
+def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, field_of, bad, message, error_id, good):
+    page = open_app().page
+    field = field_of(page)
+    support.replace_text(page, field, bad)
+    assert page.locator(f"#{error_id}").count() == 0
+    page.keyboard.press("Tab")
+    assert page.locator(f"p.error#{error_id}").inner_text() == message
+    assert field.get_attribute("aria-invalid") == "true"
+    assert field.get_attribute("aria-describedby").split()[0] == error_id
+    support.replace_text(page, field, "")
+    page.keyboard.type(good[0])
+    assert page.locator(f"#{error_id}").count() == 0 and field.get_attribute("aria-invalid") is None
+    page.keyboard.type(good[1:])
+    assert field.input_value() == good
+
+
+def test_R10_an_empty_field_never_shows_an_error(open_app):
+    page = open_app().page
+    subtotal_field(page).click()
+    page.keyboard.press("Tab")
+    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
+    assert panel_text(page) == EVEN_MESSAGE
+
+
+def test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early(open_app):
+    page = open_app().page
+    subtotal_field(page).click()
+    page.keyboard.type("abc")
+    assert page.locator("p.error").count() == 0 and panel_text(page) == EVEN_MESSAGE
+
+
+def test_R10_an_error_survives_a_mode_switch(open_app):
+    page = open_app().page
+    support.replace_text(page, subtotal_field(page), "0")
+    page.keyboard.press("Tab")
+    switch_to(page, "By item")
+    switch_to(page, "Even")
+    assert page.locator("p.error#subtotal-error").inner_text() == "Enter an amount like 12.50"
+
+
 # ===== END OF TESTS (new tests go above this line) =====
