@@ -16,6 +16,8 @@ import pytest
 import rig
 import seeds
 import support
+from expected import (EVEN_MESSAGE, S1_CHECK, S1_COPY, S1_ITEMS, S1_ROWS, S1_SUMMARY, S2_CHECK, S2_COPY, S2_ROWS,
+                      S2_SUMMARY)
 from support import CSP, ROOT, dom_walk, first_diff, golden_walk, open_golden, panel_text, person_field
 
 
@@ -361,8 +363,6 @@ def test_R42_duplicate_names_are_accepted_and_act_on_their_own_row(open_app):
 
 
 # ---------------------------------------------------------------- Task 4: mode and subtotal (R8, R9, R10)
-EVEN_MESSAGE = "Shares\nEnter the subtotal to see the shares."
-
 
 def subtotal_field(page):
     return page.get_by_role("textbox", name="Subtotal in RM", exact=True)
@@ -474,9 +474,6 @@ def test_R10_an_error_survives_a_mode_switch(open_app):
 
 
 # ---------------------------------------------------------------- Task 5: items (R7, R11 to R14, R10, R34)
-S1_ITEMS = [("Nasi lemak ayam", "15.90", ["Aisyah"]), ("Char kuey teow", "13.50", ["Ben"]),
-            ("Mee goreng mamak", "12.00", ["Chen"]), ("Satay, 10 sticks", "18.00", ["Aisyah", "Chen"])]
-
 
 def item_name(page, number):
     return page.get_by_label(f"Item {number} name", exact=True)
@@ -678,15 +675,6 @@ def test_R10_an_empty_rate_never_shows_an_error(open_app):
 
 
 # ---------------------------------------------------------------- Task 7: the bill panel (R3, R16 to R21)
-S1_SUMMARY = [["Subtotal", "RM 59.40", ""], ["+Service charge", "RM 5.94", "10% of RM 59.40"],
-              ["+SST", "RM 3.92", "6% of RM 65.34"], ["=Total", "RM 69.26", ""]]
-S2_SUMMARY = [["Subtotal", "RM 100.00", ""], ["+Service charge", "RM 10.00", "10% of RM 100.00"],
-              ["+SST", "RM 6.60", "6% of RM 110.00"], ["=Total", "RM 116.60", ""]]
-S1_ROWS = [["Aisyah", "RM 24.90", "RM 4.14", "RM 29.04"], ["Ben", "RM 13.50", "RM 2.24", "RM 15.74"],
-           ["Chen", "RM 21.00", "RM 3.48", "RM 24.48"]]
-S1_CHECK = [["Adds up to", "RM 59.40", "RM 9.86", "RM 69.26"]]
-S2_ROWS = [["Aisyah", "RM 38.87"], ["Ben", "RM 38.87"], ["Chen", "RM 38.86"]]
-S2_CHECK = [["Adds up to", "RM 116.60"]]
 COPY_BUTTON = "button.copy"
 
 
@@ -890,10 +878,6 @@ def test_R8_the_panel_follows_each_mode(open_app):
 
 
 # ---------------------------------------------------------------- Task 8: copy summary (R22 to R24, R5, R42)
-S2_COPY = ("Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\n"
-           "Aisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60")
-S1_COPY = ("Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\n"
-           "Aisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26")
 FAILED_COPY = "Could not copy. Your browser blocked the clipboard."
 
 
@@ -2024,12 +2008,8 @@ def test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields():
         assert assertion.split()[0] not in ACTION_WORDS, f"step {call.args[0].value}: the assertion field holds {assertion!r}"
 
 
-def test_R41_the_gate_expects_what_the_suite_expects():
+def test_R41_the_gate_installs_the_clipboard_recorder_and_nothing_else():
     import live_e2e
-    assert (live_e2e.S2_COPY, live_e2e.S1_COPY) == (S2_COPY, S1_COPY)
-    assert (live_e2e.S2_SUMMARY, live_e2e.S1_SUMMARY) == (S2_SUMMARY, S1_SUMMARY)
-    assert (live_e2e.S2_ROWS, live_e2e.S2_CHECK, live_e2e.S1_ROWS, live_e2e.S1_CHECK) == (S2_ROWS, S2_CHECK, S1_ROWS, S1_CHECK)
-    assert live_e2e.S1_ITEMS == S1_ITEMS and live_e2e.S3_PANEL == EVEN_MESSAGE
     assert live_e2e.INIT_SCRIPTS == ["tests/browser/clipboard/recorder.js"]  # the recorder is the one init script (CG-7)
 
 

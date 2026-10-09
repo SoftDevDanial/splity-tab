@@ -20,32 +20,19 @@ from playwright.sync_api import sync_playwright
 
 import rig
 import support
+from expected import (EVEN_MESSAGE, S1_CHECK, S1_COPY, S1_ITEMS, S1_ROWS, S1_SUMMARY, S2_CHECK, S2_COPY, S2_ROWS,
+                      S2_SUMMARY)
 
 EVIDENCE_ROOT = rig.ROOT / "docs" / "modules" / "split-app" / "qa" / "live-e2e"
 INIT_SCRIPTS = ["tests/browser/clipboard/recorder.js"]  # the only one (CG-7)
 VIEWPORT = {"width": 390, "height": 844}
 
-# Expected screens. The copy blocks are the S2 and S1 blocks of split-core spec R24, joined with "\n".
+# Expected screens. The figures and the copy blocks are shared with the functional suite (expected.py). Only what
+# the gate reads in its own way stays here: the S3 fields, and the S1 item rows as the gate's ITEMS_JS reads them.
 S3_STATE = {"people": ["Person 1", "Person 2"], "removeDisabled": [True, True], "mode": "even", "subtotal": "",
             "rates": ["10", "6"], "notes": 0, "errors": 0}
-S3_PANEL = "Shares\nEnter the subtotal to see the shares."
-S2_SUMMARY = [["Subtotal", "RM 100.00", ""], ["+Service charge", "RM 10.00", "10% of RM 100.00"],
-              ["+SST", "RM 6.60", "6% of RM 110.00"], ["=Total", "RM 116.60", ""]]
-S2_ROWS = [["Aisyah", "RM 38.87"], ["Ben", "RM 38.87"], ["Chen", "RM 38.86"]]
-S2_CHECK = [["Adds up to", "RM 116.60"]]
-S2_COPY = ("Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\n"
-           "Aisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60")
-S1_ITEMS = [("Nasi lemak ayam", "15.90", ["Aisyah"]), ("Char kuey teow", "13.50", ["Ben"]),
-            ("Mee goreng mamak", "12.00", ["Chen"]), ("Satay, 10 sticks", "18.00", ["Aisyah", "Chen"])]
 S1_ITEM_STATE = [["Nasi lemak ayam", "15.90", "true", "false", "false"], ["Char kuey teow", "13.50", "false", "true", "false"],
                  ["Mee goreng mamak", "12.00", "false", "false", "true"], ["Satay, 10 sticks", "18.00", "true", "false", "true"]]
-S1_SUMMARY = [["Subtotal", "RM 59.40", ""], ["+Service charge", "RM 5.94", "10% of RM 59.40"],
-              ["+SST", "RM 3.92", "6% of RM 65.34"], ["=Total", "RM 69.26", ""]]
-S1_ROWS = [["Aisyah", "RM 24.90", "RM 4.14", "RM 29.04"], ["Ben", "RM 13.50", "RM 2.24", "RM 15.74"],
-           ["Chen", "RM 21.00", "RM 3.48", "RM 24.48"]]
-S1_CHECK = [["Adds up to", "RM 59.40", "RM 9.86", "RM 69.26"]]
-S1_COPY = ("Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\n"
-           "Aisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26")
 
 # Reads only.
 STATE_JS = """() => ({
@@ -121,7 +108,7 @@ class Gate:
 
     def expect_s3(self, what):
         expect(self.page.evaluate(STATE_JS), S3_STATE, f"{what}: the fields")
-        expect(self.panel(), S3_PANEL, f"{what}: the panel")
+        expect(self.panel(), EVEN_MESSAGE, f"{what}: the panel")
 
     def expect_status(self, text, writes, copied):
         expect(self.page.locator("p.status").inner_text(), "Summary copied", "the copy status")
