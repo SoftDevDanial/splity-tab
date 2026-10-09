@@ -1,0 +1,427 @@
+Security audit probes, split-core, 2026-10-09, HEAD 476c182, Node v24.11.1, Python 3.14.0, Chromium 149.0.7827.55.
+Role: security auditor (finder, read-only on src/, tests/ and docs/design/).
+Scripts are in scripts/. Every command ran from scripts/ (except P09, from the project root) under
+`timeout -s KILL <s>`. P05 and P07 also run each heavy case in a child process with a hard kill.
+Output below is the terminal output, saved with the Write tool. One row in P02a is abbreviated and marked.
+Lines starting "Note:" or "Reading of" and text in parentheses after a probe block are the auditor's annotations.
+
+Index
+  U0   Unicode reference sets (Python unicodedata, Unicode 16.0)
+  P01  parsers never throw, digit cap before Number            -> PASS
+  P02  WR-10 line breaks, fuzz, lookalikes, NUL, residuals       -> PASS for the seven, lookalikes reported
+  P03  prototype pollution, stray keys, input mutation           -> PASS
+  P04  exhaustive parse/format, allocation near 2^53             -> PASS
+  P04e applyRate exactness bound vs reachable maximum             -> exact in reach
+  P05  hostile-string time (linear check)                        -> linear, see note on the 16M summary case
+  P06  ambient access trap (network, storage, clock, random, timer, locale, float, dynamic code) -> PASS
+  P07  core behaviour when the split-app decoder fails           -> contract notes
+  P08  computeResult vs independent BigInt reference (600,000 bills) -> PASS
+  P09  headless Chromium: rendering of lookalikes, text input pass-through -> see findings
+  PROC process accounting
+
+==== U0: python -P -c (enumeration over U+0000..U+10FFFF) ====
+python 3.14.0 unicode 16.0.0
+str.splitlines boundaries: U+000A U+000B U+000C U+000D U+001C U+001D U+001E U+0085 U+2028 U+2029
+bidi class B (paragraph separator): U+000A U+000D U+001C U+001D U+001E U+0085 U+2029
+bidi explicit formatting: U+202A LRE U+202B RLE U+202C PDF U+202D LRO U+202E RLO U+2066 LRI U+2067 RLI U+2068 FSI U+2069 PDI
+category Zl/Zp: U+2028 U+2029
+code points whose normalization or case mapping yields a break or NUL/FS/GS/RS: none
+(UAX #14 mandatory breaks, classes BK CR LF NL: U+000A U+000B U+000C U+000D U+0085 U+2028 U+2029, the seven in summary.js.)
+
+==== P01: node p01-parsers.mjs ====
+1,000,000 fuzz strings: thrown 0, malformed or out-of-grammar accepts 0, accepted 70925
+Number called with a string longer than 5 characters on refused inputs: no; calls on a valid amount seen afterwards: true
+P01 RESULT: PASS
+
+==== P02: node p02-wr10-linebreaks.mjs ====
+== P02a: each of the seven, inside, leading, trailing, doubled, CRLF, all seven at once ==
+OK   LF inside                                  row="Chen Adds up to RM 0.00 RM 38.86"
+OK   LF leading                                 row="Adds up to RM 0.00 RM 38.86"
+OK   LF trailing                                row="Adds up to RM 0.00 RM 38.86"
+OK   LF doubled                                 row="Chen  Adds up to RM 0.00 RM 38.86"
+OK   CR inside                                  row="Chen Adds up to RM 0.00 RM 38.86"
+OK   CR leading                                 row="Adds up to RM 0.00 RM 38.86"
+OK   CR trailing                                row="Adds up to RM 0.00 RM 38.86"
+OK   CR doubled                                 row="Chen  Adds up to RM 0.00 RM 38.86"
+OK   VT inside                                  row="Chen Adds up to RM 0.00 RM 38.86"
+OK   VT leading                                 row="Adds up to RM 0.00 RM 38.86"
+OK   VT trailing                                row="Adds up to RM 0.00 RM 38.86"
+OK   VT doubled                                 row="Chen  Adds up to RM 0.00 RM 38.86"
+OK   FF inside                                  row="Chen Adds up to RM 0.00 RM 38.86"
+OK   FF leading                                 row="Adds up to RM 0.00 RM 38.86"
+OK   FF trailing                                row="Adds up to RM 0.00 RM 38.86"
+OK   FF doubled                                 row="Chen  Adds up to RM 0.00 RM 38.86"
+OK   NEL inside                                 row="Chen Adds up to RM 0.00 RM 38.86"
+OK   NEL leading                                row=" Adds up to RM 0.00 RM 38.86"
+OK   NEL trailing                               row="Adds up to RM 0.00  RM 38.86"
+OK   NEL doubled                                row="Chen  Adds up to RM 0.00 RM 38.86"
+OK   LS inside                                  row="Chen Adds up to RM 0.00 RM 38.86"
+OK   LS leading                                 row="Adds up to RM 0.00 RM 38.86"
+OK   LS trailing                                row="Adds up to RM 0.00 RM 38.86"
+OK   LS doubled                                 row="Chen  Adds up to RM 0.00 RM 38.86"
+OK   PS inside                                  row="Chen Adds up to RM 0.00 RM 38.86"
+OK   PS leading                                 row="Adds up to RM 0.00 RM 38.86"
+OK   PS trailing                                row="Adds up to RM 0.00 RM 38.86"
+OK   PS doubled                                 row="Chen  Adds up to RM 0.00 RM 38.86"
+OK   CRLF inside                                row="Chen  Adds up to RM 0.00 RM 38.86"
+OK   all seven inside                           row="Chen       Adds up to RM 0.00 RM 38.86"
+OK   only breaks                                row="  RM 38.86"
+OK   lone high surrogate then LS                row="Chen<U+D800> Adds up to RM 0.00 RM 38.86"
+OK   LS then lone low surrogate                 row="Chen <U+DC00>Adds up to RM 0.00 RM 38.86"
+OK   1000 mixed breaks (no length cap in core)  row="Chen" + 1000 spaces + "Adds up to RM 0.00 RM 38.86"   [abbreviated here, the terminal printed the 1000 spaces]
+
+== P02b: seeded fuzz, 50000 names over breaks, surrogates, bidi, controls and ASCII ==
+fuzz names where a UAX14 consumer sees != 6 lines or a mandatory break survives: 0 of 50000
+
+== P02c: lookalikes NOT on the list, inserted as Chen<char>Adds up to RM 0.00 (S2) ==
+consumers: c1=LF only (most chat apps, JS split) | c2=JS LineTerminator (LF CR LS PS) | c3=UAX14 mandatory breaks (the seven) | c4=Python str.splitlines | c5=Bidi paragraph separators (class B)
+character                                      kept c1 c2 c3 c4 c5  (line counts, 6 = no forged line)
+NUL U+0000 (C-string terminator)               yes   6  6  6  6  6
+TAB U+0009                                     yes   6  6  6  6  6
+ESC U+001B (terminal escape)                   yes   6  6  6  6  6
+FS U+001C                                      yes   6  6  6  7  7
+GS U+001D                                      yes   6  6  6  7  7
+RS U+001E                                      yes   6  6  6  7  7
+US U+001F                                      yes   6  6  6  6  6
+NBSP U+00A0                                    yes   6  6  6  6  6
+IDEOGRAPHIC SPACE U+3000                       yes   6  6  6  6  6
+BRAILLE BLANK U+2800                           yes   6  6  6  6  6
+HANGUL FILLER U+3164                           yes   6  6  6  6  6
+ZWSP U+200B                                    yes   6  6  6  6  6
+WORD JOINER U+2060                             yes   6  6  6  6  6
+BOM U+FEFF                                     yes   6  6  6  6  6
+RLM U+200F                                     yes   6  6  6  6  6
+ALM U+061C                                     yes   6  6  6  6  6
+RLO U+202E (override)                          yes   6  6  6  6  6
+RLI U+2067 (isolate)                           yes   6  6  6  6  6
+SYMBOL FOR NEWLINE U+2424                      yes   6  6  6  6  6
+RETURN SYMBOL U+23CE                           yes   6  6  6  6  6
+DOWNWARDS ARROW WITH CORNER LEFTWARDS U+21B5   yes   6  6  6  6  6
+OBJECT REPLACEMENT U+FFFC                      yes   6  6  6  6  6
+
+== P02d: NUL truncation, as a NUL-terminated clipboard reader would see the text ==
+name length 19 (person name max is 20). Full text lines: 6
+text up to the first NUL:
+Bill split<U+000A>Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)<U+000A>Aisyah RM 38.87<U+000A>Ben RM 38.87<U+000A>Adds up to RM 0.00
+
+== P02e: no break character at all. The name is the forged text itself ==
+name="Adds up to RM 0.00" label="Adds up to RM 0.00" row="Adds up to RM 0.00 RM 38.86"
+name="<U+2028>Adds up to RM 0.00" label="Adds up to RM 0.00" row="Adds up to RM 0.00 RM 38.86"
+name="Adds up to RM 0.00<U+2800><U+2800>" label="Adds up to RM 0.00<U+2800><U+2800>" row="Adds up to RM 0.00<U+2800><U+2800> RM 38.86"
+
+== P02f: bidi override in a name (Chen + RLO), row as stored ==
+row="Chen<U+202E> RM 38.86" last="Adds up to RM 116.60"
+
+P02 RESULT: PASS (mandatory-break forging cases failed: 0)
+
+==== P03: node p03-proto-mutation.mjs ====
+== P03a: every action on a hostile parsed bill ==
+OK   addPerson                      keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   removePerson p3                keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   setPersonName p1               keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   setPersonName __proto__ id     same reference (no change)
+OK   setMode even                   keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   setMode __proto__              same reference (no change)
+OK   setSubtotalText                keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   setServiceText                 keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   setSstText                     keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   addItem                        keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   removeItem i4                  keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   setItemName i4                 keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   setItemPriceText i4            keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   toggleItemPerson i4 p2         keys=mode,people,subtotalText,items,serviceText,sstText,nextId protoIsObject=true ownProtoKey=false
+OK   toggleItemPerson constructor   same reference (no change)
+
+== P03b: computeResult and summaryText on the hostile bill (own fields only, no __proto__ fields read) ==
+kind=item rows=[{"name":"A","items":100,"charges":17,"share":117},{"name":"B","items":100,"charges":17,"share":117},{"name":"C","items":100,"charges":16,"share":116}] check={"items":300,"charges":50,"share":350}
+person p1 label (own name 'A', __proto__ payload name 'HIJACK'): A
+item i4 holders come from own who [p1], not __proto__ who [p2]: [100,100,100]
+Bill split | Total RM 3.50 (subtotal RM 3.00, service 10% RM 0.30, SST 6% RM 0.20) | A RM 1.17 | B RM 1.17 | C RM 1.16 | Adds up to RM 3.50
+even on hostile: kind=even shares=389,389,388
+
+== P03c: global prototypes after all of the above ==
+OK   object.prototype own names unchanged
+OK   array.prototype own names unchanged
+OK   string.prototype own names unchanged
+OK   fn.prototype own names unchanged
+OK   object.polluted/isAdmin/x is undefined
+OK   [].polluted/isAdmin/x is undefined
+OK   string.polluted/isAdmin/x is undefined
+OK   function.polluted/isAdmin/x is undefined
+
+== P03d: what still carries stray keys after an action (shared by reference, documented) ==
+people[0] keys=id,name,__proto__,constructor
+people[1] keys=id,name
+people[2] keys=id,name,hasOwnProperty
+items[0] keys=id,name,priceText,who,__proto__,stray
+items[1] keys=id,name,priceText,who,constructor
+
+== P03e: mutation, every exported function on deep-frozen and on write-trapping proxies ==
+throws on frozen or proxied input: 0; write attempts seen by proxies: 0
+
+== P03f: shared frozen constants and fresh outputs ==
+parse EMPTY results are the same frozen object: true frozen=true
+LIMITS frozen=true; newBill() fresh each call: true
+computeResult output shares nothing mutable with a second call: true
+
+P03 RESULT: PASS (problems: 0)
+
+==== P04: node p04-precision.mjs ====
+OK   parseAmount exact on all 9,999,999 amounts in every spelling (mismatches 0)
+OK   parseAmount(formatMoney(c)) === c for every valid c (mismatches 0)
+OK   just past each amount bound is invalid
+OK   parseRate and formatRate exact over 0..3000 and 0..2000 bp, and max+0.01 refused (mismatches 0)
+OK   allocateByWeight equals BigInt on 200000 inputs with amounts and weights up to 2^53 - 1 (mismatches 0)
+OK   weights summing past 2^53 (12 x MAX) still add up: [750599937895083,750599937895083]...
+OK   allocateEvenly exact on 200000 inputs up to 2^53 - 1 (mismatches 0)
+OK   allocateEvenly(2^53, 2) throws RangeError
+OK   allocateByWeight(2^53, [1]) throws RangeError
+OK   allocateByWeight(1, [2^53]) throws RangeError
+OK   allocateByWeight(1, [NaN]) throws RangeError
+OK   allocateEvenly(1, Infinity) throws RangeError
+OK   allocateByWeight(1, [1n]) throws RangeError
+INFO allocateByWeight(10, [1, <hole>, 2]) gives [4,null,6] with length 3 (holes skip every()/map(); not reachable from computeResult, whose weights come from Array.map)
+INFO billCharges(499999950, 3000, 2000) exact=true total=779999922
+INFO billCharges(1000000000000, 3000, 2000) exact=true total=1560000000000
+INFO billCharges(3000000000000, 3000, 2000) exact=true total=4680000000000
+INFO billCharges(3002400000000, 3000, 2000) exact=true total=4683744000000
+INFO billCharges(3100000000000, 3000, 2000) exact=true total=4836000000000
+INFO billCharges(10000000000000, 3000, 2000) exact=true total=15600000000000
+INFO billCharges(100000000000000, 3000, 2000) exact=true total=156000000000000
+INFO reachable subtotal maximum is 50 x 9999999 = 499999950. First inexact subtotal tried: null (needs about 0 max-price items)
+
+P04 RESULT: PASS (failures 0)
+Note: the billCharges rows above use round subtotals, whose products stay exact past 2^53 because of
+their trailing zeros. That part of P04 was too weak, so P04e measures the bound with non-round subtotals.
+
+==== P04e: node p04e-applyrate-bound.mjs ====
+reachable range (1..499999950), 1,000,000 random subtotals and rates: not exact 0
+subtotal 499999950 at 3000/2000: exact
+subtotal 499999949 at 3000/2000: exact
+subtotals in [1e9, 1e10) (about 1.0e+2+ max-price items): {"exact":20000,"inexact":0,"non-integer":0}
+subtotals in [1e10, 1e11) (about 1.0e+3+ max-price items): {"exact":20000,"inexact":0,"non-integer":0}
+subtotals in [1e11, 1e12) (about 1.0e+4+ max-price items): {"exact":20000,"inexact":0,"non-integer":0}
+subtotals in [1e12, 1e13) (about 1.0e+5+ max-price items): {"exact":20000,"inexact":0,"non-integer":0}
+subtotals in [1e13, 1e14) (about 1.0e+6+ max-price items): {"exact":16738,"inexact":782,"non-integer":2480}; e.g. 49212955501862 gives service 14763886650559.002, total 76772210582905
+subtotals in [1e14, 1e15) (about 1.0e+7+ max-price items): {"exact":14593,"inexact":302,"non-integer":5105}; e.g. 406715523616877 gives service 122014657085062.98, total 634476216842328
+subtotals in [1e15, 1e16) (about 1.0e+8+ max-price items): {"exact":10125,"inexact":5518,"non-integer":4357}; e.g. 4225076418207028 gives service 1267522925462108, total 6591119212402963
+Note: applyRate stays exact only below about 1e13 cents of subtotal, that is about a million max-price
+items. The reachable maximum is 50 items (499,999,950). Not reachable through addItem (cap 50), the D7
+decoder rule (cap 50) or the localStorage quota.
+
+==== P05: node p05-redos.mjs (each case in a child, SIGKILL after 20 s) ====
+digits then x                  1M:2.31ms  2M:4.3ms  4M:8.15ms  8M:16.18ms  16M:32.39ms  result={"ok":false,"empty":false}  max step ratio=2.00
+digits dot then x              1M:2.32ms  2M:4.25ms  4M:8.22ms  8M:16.53ms  16M:32.62ms  result={"ok":false,"empty":false}  max step ratio=2.01
+digits dot 3 digits            1M:2.32ms  2M:4.16ms  4M:8.05ms  8M:16.4ms  16M:32.59ms  result={"ok":false,"empty":false}  max step ratio=2.04
+zeros then 1 (valid)           1M:0.85ms  2M:1.36ms  4M:2.58ms  8M:4.94ms  16M:9.01ms  result={"ok":true,"cents":100}  max step ratio=1.91
+all digits (too long)          1M:0.6ms  2M:0.96ms  4M:1.62ms  8M:2.99ms  16M:5.63ms  result={"ok":false,"empty":false}  max step ratio=1.88
+1 dot then zeros               1M:0.38ms  2M:0.74ms  4M:1.09ms  8M:1.49ms  16M:3.06ms  result={"ok":false,"empty":false}  max step ratio=2.05
+dots                           1M:0.4ms  2M:0.53ms  4M:0.85ms  8M:1.49ms  16M:2.94ms  result={"ok":false,"empty":false}  max step ratio=1.97
+spaces only                    1M:0.68ms  2M:1.14ms  4M:2.11ms  8M:3.98ms  16M:7.53ms  result={"ok":false,"empty":true}  max step ratio=1.89
+LS only                        1M:1.72ms  2M:3.23ms  4M:6.02ms  8M:11.72ms  16M:23.29ms  result={"ok":false,"empty":true}  max step ratio=1.99
+rate digits then x             1M:2.47ms  2M:5.19ms  4M:8.34ms  8M:17.07ms  16M:32.31ms  result={"ok":false,"empty":false}  max step ratio=2.10
+label with breaks              1M:0.58ms  2M:0.94ms  4M:1.58ms  8M:2.92ms  16M:5.12ms  result="string(1000002)"  max step ratio=1.85
+summary name all breaks        1M:14.3ms  2M:84.64ms  4M:192.68ms  8M:498.27ms  16M:790.83ms  result="string(1000140)"  max step ratio=5.92
+computeResult long subtotal    1M:2.36ms  2M:4.14ms  4M:8.41ms  8M:16.93ms  16M:32.6ms  result={"kind":"blocked","reason":"subtotal"}  max step ratio=2.03
+
+child PIDs (all exited, spawnSync waits for each): 21480,41184,3972,17900,24592,37784,33440,29552,45564,29976,27608,8276,13580,43728,44912,1748,8532,44048,46044,44536,36084,10520,36980,19256,18696,3808,17460,17712,39856,42656,41196,45880,45944,45328,45448,44356,44804,42804,32064,39348,42960,30300,44564,41096,41180,41672,12060,45552,9076,28092,44256,15196,6360,41424,3124,33440,40440,18244,25300,21376,36620,28452,43136,22560,22512
+worst time ratio per doubling of the input: 5.92 (about 2 means linear, about 4 means quadratic)
+P05 RESULT: CHECK (timeouts or crashes 0)
+
+P05 follow-up, "summary name all breaks" repeated 3 times per size (node p05-child.mjs, timeout -s KILL 30):
+  1M: 25.51, 24.77, 26.55 ms | 2M: 84.95, 75.11, 85.34 ms | 4M: 196.86, 196.72, 194.73 ms
+  8M: 455.55, 503.21, 475.58 ms | 16M: 761.26, 793.47, 878.97 ms
+Note: 16x input gives about 32x time (quadratic would be 256x, about 6.4 s). Mildly superlinear from one
+replacement per character on a 16M string. A decoded name holds at most 20 grapheme clusters (D8), and
+every break character is its own cluster, so a real name carries at most about 20 breaks. Not a finding.
+
+==== P06: node p06-ambient.mjs ====
+core exports: AMOUNT_MAX_CENTS,AMOUNT_MIN_CENTS,formatMoney,formatRate,parseAmount,parseRate | allocateByWeight,allocateEvenly | LIMITS,addItem,addPerson,itemLabel,newBill,personLabel,removeItem,removePerson,setItemName,setItemPriceText,setMode,setPersonName,setServiceText,setSstText,setSubtotalText,toggleItemPerson | billCharges,computeResult | summaryText
+even total 11659999, item total 582999942
+imports resolved from inside src/core/:
+  result.js -> money.js
+  result.js -> allocate.js
+  result.js -> bill.js
+  summary.js -> money.js
+imports leaving src/core/: 0
+ambient accesses while the core loaded and ran: 0
+negative control (probe code touching Date, fetch, Math.random, localeCompare, sort, toFixed, parseFloat, Number.parseFloat): 8 hits: global Date, global fetch, Math.random, localeCompare, sort, toFixed, global parseFloat, Number.parseFloat
+P06 RESULT: PASS
+
+==== P07: node p07-decoder-failure.mjs ====
+D5 mode 'EVEN' (unknown)                         returns item adds up=true rows=[["A",1166],["B",0],["L",0]]
+D5 mode missing                                  returns item adds up=true rows=[["A",1166],["B",0],["L",0]]
+D5 mode '__proto__'                              returns item adds up=true rows=[["A",1166],["B",0],["L",0]]
+D6 people [] in even mode                        THROWS RangeError: count must be an integer of at least 1
+D6 people [] in item mode                        returns unassigned count=1
+D6 one person, even                              returns even adds up=true rows=[["A",11660]]
+D6 13 people, even                               returns even adds up=true rows=[["Person 1",897],["Person 2",897],["Person 3",897],["Person 4",897],["Person 5",897],["Person 6",897],["Person 7",897],["Person 8",897],["Person 9",897],["Person 10",897],["Person 11",897],["Person 12",897],["Person 13",896]]
+D6 duplicate person id p1 x2, item on p1         returns item adds up=true rows=[["A",583],["A2",583],["B",0]]
+D6 name is a number                              THROWS TypeError: name.trim is not a function
+D6 name is null                                  THROWS TypeError: Cannot read properties of null (reading 'trim')
+D6 people is an object                           THROWS TypeError: bill.people.forEach is not a function
+D7 who has an unknown id only                    returns unassigned count=1
+D7 who has p1 twice                              returns item adds up=true rows=[["A",1166],["B",0],["L",0]]
+D7 who is the STRING 'p12'                       returns item adds up=true rows=[["A",583],["B",0],["L",583]]
+D7 who missing                                   THROWS TypeError: Cannot read properties of undefined (reading 'includes')
+D7 priceText is a number                         THROWS TypeError: text.trim is not a function
+D7 60 items (above 50)                           returns item adds up=true rows=[["A",699599930],["B",0],["L",0]]
+D9 serviceText null                              THROWS TypeError: Cannot read properties of null (reading 'trim')
+D9 subtotalText number, even                     THROWS TypeError: text.trim is not a function
+D10 nextId '5' (string), addPerson twice         returns ["p1","p2","p12","p5","p51"]
+D10 nextId 1 (stale), addPerson                  returns ["p1","p2","p12","p1"]
+D10 nextId 1, addItem then tap p1                returns [["i4",["p1","p2"]],["i4",["p2"]]]
+D10 nextId NaN, addPerson                        returns ["p1","p2","p12","pNaN"]
+duplicate ids: setPersonName p1 renames both     returns [{"id":"p1","name":"Z"},{"id":"p1","name":"Z"}]
+summaryText of a forged result with a non-string name THROWS TypeError: row.name.replace is not a function
+
+holderIndexes cost with P people and one item tapped by all P (child process, hard kill at 30 s):
+  P=1000: 1.9 ms, kind item, adds up true, draft JSON about 30943 chars
+  P=2000: 4.4 ms, kind item, adds up true, draft JSON about 63943 chars
+  P=4000: 13.2 ms, kind item, adds up true, draft JSON about 129943 chars
+  P=8000: 52.5 ms, kind item, adds up true, draft JSON about 261943 chars
+  P=16000: 154.0 ms, kind item, adds up true, draft JSON about 537947 chars
+child PIDs (exited): 44832,10848,44540,40016,45704
+Note: the "D10 nextId 1, addItem then tap p1" title is loose. The probe used nextId 4 and tapped p2. The
+output shows two items with id i4 and a tap that lands on both.
+
+==== P08: node p08-reference-diff.mjs 300000 mixed 4242 ; node p08-reference-diff.mjs 300000 valid 20261009 ====
+pass: mixed  seed: 4242  bills: 300000  kinds: {"blocked":212090,"even":73909,"item":13746,"unassigned":255}
+by-item bills with some charges x weight above 2^53: 24
+by-item bills where a float allocator would have given a different split: 0
+differences from the independent BigInt reference: 0
+R22 invariant violations: 0
+
+reachable trap bill: 38 items, subtotal 372570630, charges 61846725
+core charges split [8246230,53600495]; float allocator would give [8246231,53600494]; reference [8246230,53600495]
+
+P08 RESULT: PASS
+pass: valid  seed: 20261009  bills: 300000  kinds: {"item":239894,"even":60106}
+by-item bills with some charges x weight above 2^53: 36969
+by-item bills where a float allocator would have given a different split: 0
+differences from the independent BigInt reference: 0
+R22 invariant violations: 0
+
+reachable trap bill: 38 items, subtotal 372570630, charges 61846725
+core charges split [8246230,53600495]; float allocator would give [8246231,53600494]; reference [8246230,53600495]
+
+P08 RESULT: PASS
+
+==== P09: python -P -B scripts/p09_bidi_render.py <scripts dir> (headless Chromium, no clipboard) ====
+python pid 45148; chromium 149.0.7827.55; chromium processes [('browser', 6232), ('GPU', 46036), ('network.mojom.NetworkService', 41292)]
+
+== rendering: visual lines (6 = no forged line) and bidi reordering ==
+core: S2 as is                             pre      visual lines 6  reordered lines []
+core: S2 as is                             pre-wrap visual lines 6  reordered lines []
+core: S2 as is                             br       visual lines 6  reordered lines []
+core: Chen + RLO U+202E                    pre      visual lines 6  reordered lines [5]
+      line 1: Bill split
+      line 2: Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)
+      line 3: Aisyah RM 38.87
+      line 4: Ben RM 38.87
+      line 5: Chen68.83 MR <U+202E>
+      line 6: Adds up to RM 116.60
+core: Chen + RLO U+202E                    pre-wrap visual lines 6  reordered lines [5]
+core: Chen + RLO U+202E                    br       visual lines 6  reordered lines [5]
+core: Ben + RLO U+202E (middle row)        pre      visual lines 6  reordered lines [4]
+      line 1: Bill split
+      line 2: Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)
+      line 3: Aisyah RM 38.87
+      line 4: Ben78.83 MR <U+202E>
+      line 5: Chen RM 38.86
+      line 6: Adds up to RM 116.60
+core: Ben + RLO U+202E (middle row)        pre-wrap visual lines 6  reordered lines [4]
+core: Ben + RLO U+202E (middle row)        br       visual lines 6  reordered lines [4]
+core: Ben + RLI U+2067 (middle row)        pre      visual lines 6  reordered lines [4]
+      line 1: Bill split
+      line 2: Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)
+      line 3: Aisyah RM 38.87
+      line 4: Ben<U+2067>RM 38.87
+      line 5: Chen RM 38.86
+      line 6: Adds up to RM 116.60
+core: Ben + RLI U+2067 (middle row)        pre-wrap visual lines 6  reordered lines [4]
+core: Ben + RLI U+2067 (middle row)        br       visual lines 6  reordered lines [4]
+core: Ben + RLE U+202B (middle row)        pre      visual lines 6  reordered lines [4]
+      line 1: Bill split
+      line 2: Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)
+      line 3: Aisyah RM 38.87
+      line 4: BenRM 38.87 <U+202B>
+      line 5: Chen RM 38.86
+      line 6: Adds up to RM 116.60
+core: Ben + RLE U+202B (middle row)        pre-wrap visual lines 6  reordered lines [4]
+core: Ben + RLE U+202B (middle row)        br       visual lines 6  reordered lines [4]
+core: Chen FS U+001C forge                 pre      visual lines 6  reordered lines []
+core: Chen FS U+001C forge                 pre-wrap visual lines 6  reordered lines []
+core: Chen FS U+001C forge                 br       visual lines 6  reordered lines []
+core: Chen RS U+001E forge                 pre      visual lines 6  reordered lines []
+core: Chen RS U+001E forge                 pre-wrap visual lines 6  reordered lines []
+core: Chen RS U+001E forge                 br       visual lines 6  reordered lines []
+core: Chen NUL U+0000 forge                pre      visual lines 6  reordered lines []
+core: Chen NUL U+0000 forge                pre-wrap visual lines 6  reordered lines []
+core: Chen NUL U+0000 forge                br       visual lines 6  reordered lines []
+core: Chen LS U+2028 forge (guarded)       pre      visual lines 6  reordered lines []
+core: Chen LS U+2028 forge (guarded)       pre-wrap visual lines 6  reordered lines []
+core: Chen LS U+2028 forge (guarded)       br       visual lines 6  reordered lines []
+unguarded: Chen LS U+2028 forge            pre      visual lines 6  reordered lines []
+unguarded: Chen LS U+2028 forge            pre-wrap visual lines 6  reordered lines []
+unguarded: Chen LS U+2028 forge            br       visual lines 6  reordered lines []
+unguarded: Chen PS U+2029 forge            pre      visual lines 6  reordered lines []
+unguarded: Chen PS U+2029 forge            pre-wrap visual lines 6  reordered lines []
+unguarded: Chen PS U+2029 forge            br       visual lines 6  reordered lines []
+unguarded: Chen NEL U+0085 forge           pre      visual lines 6  reordered lines []
+unguarded: Chen NEL U+0085 forge           pre-wrap visual lines 6  reordered lines []
+unguarded: Chen NEL U+0085 forge           br       visual lines 6  reordered lines []
+unguarded: Chen VT U+000B forge            pre      visual lines 6  reordered lines []
+unguarded: Chen VT U+000B forge            pre-wrap visual lines 6  reordered lines []
+unguarded: Chen VT U+000B forge            br       visual lines 6  reordered lines []
+unguarded: Chen FF U+000C forge            pre      visual lines 6  reordered lines []
+unguarded: Chen FF U+000C forge            pre-wrap visual lines 6  reordered lines []
+unguarded: Chen FF U+000C forge            br       visual lines 6  reordered lines []
+
+== <input type=text maxlength=20>: what survives keyboard.insert_text and a script .value set ==
+LF    U+000A  insert_text kept=False value=[65, 32, 66]  script .value kept=False
+CR    U+000D  insert_text kept=False value=[65, 32, 66]  script .value kept=False
+VT    U+000B  insert_text kept=True  value=[65, 11, 66]  script .value kept=True
+FF    U+000C  insert_text kept=True  value=[65, 12, 66]  script .value kept=True
+NEL   U+0085  insert_text kept=True  value=[65, 133, 66]  script .value kept=True
+LS    U+2028  insert_text kept=True  value=[65, 8232, 66]  script .value kept=True
+PS    U+2029  insert_text kept=True  value=[65, 8233, 66]  script .value kept=True
+NUL   U+0000  insert_text kept=True  value=[65, 0, 66]  script .value kept=True
+FS    U+001C  insert_text kept=True  value=[65, 28, 66]  script .value kept=True
+GS    U+001D  insert_text kept=True  value=[65, 29, 66]  script .value kept=True
+RS    U+001E  insert_text kept=True  value=[65, 30, 66]  script .value kept=True
+ESC   U+001B  insert_text kept=True  value=[65, 27, 66]  script .value kept=True
+TAB   U+0009  insert_text kept=True  value=[65, 9, 66]  script .value kept=True
+RLO   U+202E  insert_text kept=True  value=[65, 8238, 66]  script .value kept=True
+RLI   U+2067  insert_text kept=True  value=[65, 8295, 66]  script .value kept=True
+RLM   U+200F  insert_text kept=True  value=[65, 8207, 66]  script .value kept=True
+ZWSP  U+200B  insert_text kept=True  value=[65, 8203, 66]  script .value kept=True
+
+browser closed
+
+Reading of P09: Chromium HTML text layout broke lines only at LF here. None of LS, PS, NEL, VT, FF,
+FS, RS or NUL started a visual line in pre, pre-wrap or br layouts. A bidi override in a name reorders
+that row only (the next row and the "Adds up to" row stay in logical order), and it turns the row's
+share "RM 38.87" into the visual "78.83 MR". insert_text is the CDP text-insertion path (IME commit,
+close to paste). It keeps every control and bidi character tested except LF and CR, which become a space.
+Native text stacks (Android, iOS, Windows) were not tested. The OS clipboard was never touched.
+
+==== Supporting check (node --input-type=module -e, not saved as a script) ====
+proposed class size 79
+covers the seven: true
+covers NUL FS GS RS ESC TAB: true
+non-Cc members: U+061C U+200E U+200F U+2028 U+2029 U+202A U+202B U+202C U+202D U+202E U+2066 U+2067 U+2068 U+2069
+parseRate API misuse (not reachable from core or the split-app contract): [{"ok":true,"bp":99900},{"ok":false,"empty":false},{"ok":false,"empty":false},{"ok":true,"bp":9007199254740994000}]
+(The class tested was /[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/gu. The parseRate calls were parseRate('999', Infinity),
+parseRate('5', NaN), parseRate('5', -1) and parseRate('90071992547409930', 1e18).)
+
+==== PROC: process accounting ====
+Before P09, processes whose command line held "ms-playwright" or "p09_bidi_render": only the sweep's own
+bash.exe, timeout.exe and powershell.exe.
+After P09 (Get-Process by PID): python 45148 gone, chromium browser 6232 gone, GPU 46036 gone,
+network service 41292 gone. Sweep by command line ("ms-playwright", "headless", the evidence folder name)
+excluding the sweep's own shells matched only conhost.exe 27132, 21704, 32228 (ConPTY hosts, parent 41972,
+created 2026-10-08 11:49, 2026-10-09 11:22 and 12:19, all before this audit started at 12:34) and
+copilot-runtime.exe 39668 (VS Code, 12:25). None of them was started by this audit. No node.exe or
+python.exe created in the last 2 hours was alive.
+P05 and P07 children were run by spawnSync, which waits for each child to exit (PIDs listed above).
