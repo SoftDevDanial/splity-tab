@@ -122,10 +122,11 @@ test("@R24 a right-to-left override in a name cannot reorder the share", () => {
   assert.equal(text.split("\n")[3], "Ben  RM 38.87");
 });
 
-// The named tests above are readable examples. These two pin the whole R24 class: every code point up to
-// U+2069 (the class's last member) in a name of its own, then everything above it in one name. Surrogate
-// halves are left out of that name, because two adjacent halves would pair into another code point.
+// The named tests above are readable examples. The next two pin which code points are in the R24 class: every
+// code point up to U+2069 (the class's last member) in a name of its own, then everything above it in one name.
+// Surrogate halves are left out of that name, because two adjacent halves would pair into another code point.
 const R24_CLASS = /^[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]$/u;
+const R24_MEMBERS = Array.from({ length: 0x206a }, (_, cp) => String.fromCodePoint(cp)).filter((char) => R24_CLASS.test(char));
 const S2_TEXT = summaryText(computeResult(S2));
 const withChenAs = (name) => S2_TEXT.replace("Chen RM", () => `${name} RM`);
 
@@ -152,6 +153,24 @@ test("@R24 every code point above U+2069 prints as typed", () => {
   let first = 0;
   while (first < expected.length && text[first] === expected[first]) first += 1;
   assert.ok(text === expected, `first difference at index ${first}, U+${(expected.codePointAt(first) ?? 0).toString(16)}`);
+});
+
+// The tests above give each code point a name of its own. These two put many in one name, which is what
+// a name typed or pasted by a person looks like: every member must print as one space each (a dropped `g`
+// flag or a `+` on the class breaks that), and a lone surrogate, which is not a member, must print as typed.
+const summaryFor = (name) => summaryText(computeResult(setPersonName(S2, "p3", name)));
+
+test("@R24 every member of the class in one name is replaced, one space each", () => {
+  const spaces = R24_MEMBERS.map(() => " ");
+  assert.equal(summaryFor(`A${R24_MEMBERS.join("")}B`), withChenAs(`A${spaces.join("")}B`));
+  assert.equal(summaryFor(`A${R24_MEMBERS.join("x")}B`), withChenAs(`A${spaces.join("x")}B`));
+});
+
+test("@R24 a lone surrogate is not in the class, so it prints as typed", () => {
+  const lone = [];
+  for (let unit = 0xd800; unit <= 0xdfff; unit += 1) lone.push(String.fromCharCode(unit));
+  const name = `A${lone.join("x")}B`;
+  assert.equal(summaryFor(name), withChenAs(name));
 });
 
 test("@R24 by-item rows get the same line-break guard", () => {

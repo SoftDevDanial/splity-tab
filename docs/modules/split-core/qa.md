@@ -532,6 +532,23 @@ Feature: split-core money, maths, state rules and summary text
     Then the text equals the S2 text with that name in place of "Chen"
 
   @R24
+  # [Added 2026-10-09, ORCH, code-review WR-11] The scenarios above pin which code points are replaced. This
+  # one and the next pin that every one of them in a single name is replaced, one space each, which is what
+  # a dropped `g` flag or a `+` on the class would break.
+  Scenario: Every member of the class in one name is replaced, one space each
+    Given the S2 bill with Chen's name set to "A", every member of the class in code point order, then "B"
+    And the same name with an "x" between each pair of members
+    When summaryText is called on its result
+    Then the text equals the S2 text with one space per member in place of "Chen" (in the second case with the "x" kept between the spaces)
+
+  @R24
+  # [Added 2026-10-09, ORCH, code-review WR-11] A lone surrogate is not in the class, and a `\p{Cs}` in the class would turn it into a space.
+  Scenario: A lone surrogate prints as typed
+    Given the S2 bill with Chen's name set to "A", every UTF-16 surrogate unit U+D800 to U+DFFF with an "x" between each, then "B"
+    When summaryText is called on its result
+    Then the text equals the S2 text with that name in place of "Chen"
+
+  @R24
   # [Added 2026-10-09, ORCH, code-review WR-10, security]
   Scenario: By-item rows get the same line-break guard
     Given the S1 bill with Ben's name set to "Ben", then U+2028, then "Adds up to RM 0.00"
