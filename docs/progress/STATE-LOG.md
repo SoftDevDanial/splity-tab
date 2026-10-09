@@ -144,3 +144,7 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 
 ## 2026-10-09 22:26 regression code review collected
 - RG-CR-01 BLOCKER: 071577a regressed a double click on the right edge of Add person (adds then removes). Routed to the dev solver with RG-CR-02 and RG-CR-04.
+
+## 2026-10-09 23:04 regression solver collected, README reconciled
+- RG-CR-01 fixed (Add buttons arm the guard), RG-CR-02 and RG-CR-04 fixed, 421 browser, 275 unit, fidelity 0 px.
+- README reconciled (RG-CR-03, RG-CR-06).

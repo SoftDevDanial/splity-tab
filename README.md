@@ -12,9 +12,9 @@ finding and fix of this version is in `docs/v1.0.0/CHANGE-LEDGER.md`.
 | Module | What it is | State |
 |---|---|---|
 | `split-core` | the money rules, pure functions, no DOM | closed 2026-10-09 |
-| `split-app` | the page, the saved draft, the copy summary | gates green, closing |
+| `split-app` | the page, the saved draft, the copy summary | closed 2026-10-09 |
 
-- 312 browser tests and 275 unit tests pass.
+- At v1.0.0, 421 browser tests and 275 unit tests pass.
 - The page matches its five approved design screens to the pixel at 390 x 844 and 1280 x 800 (10 of 10 pairs, 0 mismatched pixels).
 - The cold-boot live gate passes 7 of 7 steps with real gestures on the shipped page.
 - QA, code review and security reviews are done, with their findings fixed or accepted below.
@@ -41,8 +41,9 @@ Node 24, Python with pytest and Playwright, headless Chromium. Each browser comm
 local server and prints its PID and port. A bare `node --test tests/` fails on Node 24, so keep the quoted
 glob. The fidelity gate uses the sdlc harness. `SDLC_HARNESS` points it at another copy.
 
-The tests never touch the system clipboard. Every browser context gets a recorder in place of
-`navigator.clipboard.writeText`, and no clipboard permission is ever granted.
+The tests never touch the system clipboard. Every browser context gets a stand-in for
+`navigator.clipboard.writeText` (a recorder by default, a rejecting or missing one for the failure tests),
+and no clipboard permission is ever granted.
 
 ## How it is built
 
@@ -51,19 +52,19 @@ Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no
 **`split-core`** (`src/core/`) holds every money rule. Amounts are integer sen.
 - `parseAmount`, `parseRate`, `formatMoney`, `formatRate` read and write ringgit text.
 - `allocateEvenly` and `allocateByWeight` share an amount so the parts always add up to the whole. `allocateByWeight` is the one place that uses `BigInt`.
-- `applyRate` applies service charge and SST with half-up rounding. `computeResult` builds the even split or the by-item split.
+- `billCharges` applies service charge and then SST on top, each with half-up rounding. `computeResult` builds the even split or the by-item split from the typed bill.
 - `newBill`, `addPerson`, `removePerson`, `addItem`, `toggleItemPerson` and the other actions return a new bill and never change the old one.
 - `summaryText` writes the copy summary, one line per row, with control and direction characters in names turned into spaces.
 
 **`split-app`** (`src/main.js`, `src/draft.js`, `src/errors.js`, `src/ui/`) is the page.
-- `src/main.js` boots the page, keeps the one bill, and routes every change to the bill through `commit`, which runs a core action, saves the draft and calls `render`. `render` reads the view state and never writes it. `setStatus` is the only writer of the copy status.
+- `src/main.js` boots the page, keeps the one bill, and routes every change to the bill through `commit`. The caller runs a core action (for example `commit(addPerson(bill))`), and `commit` takes the bill it returned, saves the draft and calls `render`. `render` reads the view state and never writes it. `setStatus` is the only writer of the copy status.
 - `src/draft.js` saves and loads the draft (`getStorage`, `loadDraft`, `saveDraft`, `encodeDraft`, `decodeDraft`).
-- `src/errors.js` holds the rules for when a field error shows, as pure functions with their own unit tests.
+- `src/errors.js` holds the rules for when a field error shows, with their own unit tests. `newErrorFlags`, `flagsFor` and `visibleErrors` build or read the flags, and `typedInto`, `leftField` and `forgetPrice` update the flags they are given.
 - `src/ui/` builds one block per section (`createX(handlers)` returns `{ el, update }`). Blocks write the DOM and report gestures. They never change the bill.
 - `reconcileChildren` updates lists without re-inserting a node that is already in place, so typing never loses focus.
 - `onFieldLeave` holds a field's error back until a press ends, so a tap on the button below an invalid field is never lost.
-- `swallowRepeatClicks` cancels the repeat press of a double click, triple click or double tap, so it never lands on the control that moved under the pointer. The New bill dialog arms it on open and close, and every Remove button arms it.
-- `createDialog` runs the New bill dialog. Only a press that starts and ends on the backdrop closes it.
+- `swallowRepeatClicks` cancels the repeat press of a double click, triple click or double tap, so it never lands on a control that moved under the pointer. It protects only the controls that arm it. Every Remove button, Add person, Add item, and the New bill dialog on open and close arm it.
+- `createDialog` runs the New bill dialog. Cancel, Esc and Start new bill close it. A click on the backdrop closes it only if the press began on the backdrop too.
 
 **The look.** `src/system.css` is a byte copy of the approved design's `system.css` plus one rule at the end,
 `[hidden] { display: none !important; }`. No other CSS is added or changed.
@@ -91,7 +92,8 @@ storage is blocked or full, the page keeps working in memory.
 
 ## Known limits in v1.0.0
 
-Each was found during this version and accepted on purpose. The ledger has the reasoning.
+Each was found during this version and accepted on purpose. The reasoning is in the ledger,
+`docs/modules/split-app/spec.md` (Residual risks) and `docs/modules/split-app/findings/security.md`.
 
 | Limit | Planned |
 |---|---|
