@@ -4,7 +4,7 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** execute (all modules closed; regression --full next)
+- **phase:** regression (--full, ORCH economy)
 - **next:** regression
 
 ## Modules
@@ -17,7 +17,7 @@
 none
 
 ## Next action
-sdlc:regression --full (one finder per kind, ORCH economy). Then sdlc:review (lifecycle.md, repo summary), then the UAT pre-run by sdlc-uat-tester with the human column empty. The owner tests and seals v1.0.0. Then v1.1.0: H-02 (small design pass on the table) and SEC-04.
+Regression: code-review delta finder running (sonnet), then QA finder (haiku) on both modules, cold-boot gate into docs/regression/<ts>/, REGRESSION.md, process ledger reconciled. Then sdlc:review, then the UAT pre-run.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

@@ -138,3 +138,6 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Official live gate 7 of 7 on the final code (`341d990`).
 - README written from BUILD.md, verified by symbol, ROADMAP PD-14 fixed (`22ac9af`).
 - Full credential gate CLEAN (3,448 files). split-app CLOSED, last green `22ac9af`. Scopes C1 to C8 SHIPPED pending regression.
+
+## 2026-10-09 21:57 regression started
+- ORCH economy ruling recorded: security and fidelity verdicts stand on identical code; code-review delta and QA re-run; cold boot by the orchestrator.
