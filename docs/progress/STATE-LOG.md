@@ -107,3 +107,7 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-09 17:41 split-app built
 - Builder part 2: RD-1 to RD-3 and Tasks 11-13, 4a544c3..c40140e. 205 browser, 265 unit. Fidelity 0 px on all 10 pairs, live gate 7/7
 - mouseup instead of pointerup for RD-3 accepted (measured touch behaviour)
+
+## 2026-10-09 18:06 split-app QA PASS
+- QA (sonnet): PASS 145/145, R1-R42 covered. F-1 MEDIUM double click on Cancel changes the bill (ruled a defect, batched for the solver). O-1 overflow at 360 px on big bills goes to Needs the human H-02. New bill double click is safe
+- Code review (sonnet) started

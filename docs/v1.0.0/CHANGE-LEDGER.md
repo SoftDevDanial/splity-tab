@@ -183,6 +183,8 @@ Clears everything after a confirmation.
 | 31 | The split-app builder used a Python heredoc to patch four calls in a test file, against the Write and Edit rule (reported by the builder) | 2026-10-09 execute | Verified by grep, inside the project | LANE (sdlc-frontend-dev) | No damage. Recorded as a process breach |
 | 32 | split-app builder part 2 (resumed after the owner's stop): reviewed the stopped run's uncommitted work, kept it, finished RD-1 to RD-3 and Tasks 11 to 13. Commits `4a544c3` (RD-1, RD-2), `fceae5f` (RD-3), `84f6422`, `c55f9a4`, `dbab928`, `c40140e`. 205 browser and 265 unit tests pass. Fidelity 10 of 10 pairs at 0 mismatching pixels (5 screens, 390x844 and 1280x800). Live gate 7 of 7 | 2026-10-09 execute | BUILD.md, evidence `qa/fidelity/20261009-172737/`, `qa/live-e2e/20261009-173415/` | LANE (sdlc-frontend-dev, sonnet) | Built, finders next |
 | 33 | RD-3 waits for `mouseup` instead of the ruled `pointerup`: a touch tap sends `pointerup` before the focus change, so `pointerup` left every touch case broken (measured) | 2026-10-09 execute | Accepted. Noted in spec R10 | LANE (sdlc-frontend-dev) proposed, ORCH accepted | Ruled, reversible |
+| 34 | split-app QA finder: PASS, 145 of 145 qa.md cases, R1 to R42 covered, 515 independent driver checks, 90-bill differential against split-core with 0 mismatches, fidelity re-run 10 of 10 at 0 px. Outside the contract: F-1 MEDIUM a double click or double tap on the dialog's Cancel lands its second click on a toggle beneath and changes the bill (10 of 64 by-item cases on phones). A double click on New bill never wipes the bill. O-1 LOW the by-item table overflows 360 px once a bill is bigger than the sample | 2026-10-09 execute | findings/qa.md, evidence `qa/qa/20261009-174214/`, commit `fcd5a78` | LANE (sdlc-qa-tester, sonnet) | F-1 batched for the solver after code review and security |
+| 35 | F-1 and O-1 | 2026-10-09 execute | F-1 ruled a defect: after the dialog closes from a pointer press, the page swallows clicks for about 500 ms (one shared helper). O-1 is a design call on the immutable golden CSS, so it goes to Needs the human (H-02) and is accepted for v1.0 until he rules | ORCH | Ruled, reversible |
 
 ---
 
@@ -195,6 +197,18 @@ Clears everything after a confirmation.
   (`docs/design-explore/round-1/DECISION.md`), the design rulings (`docs/design/RULINGS.md`), the
   clarify-gate rulings above, and the planner decisions in `docs/modules/ROADMAP.md`.
 - **Recommendation:** read the two compare pages and the rulings first. They carry the most taste.
+- **Ruling:** (pending)
+
+### H-02 - The by-item table is wider than a 360 px phone on a big bill (added 2026-10-09)
+- **What:** the split-app QA finder (O-1) measured the by-item shares table overflowing a 360 px screen
+  once the item total passes RM 653.40 (365 px wide), up to 466 px for a 12-person, 50-item bill. The four
+  sample states in the spec all fit.
+- **Why an agent cannot decide it:** the cause is the approved golden CSS, which is immutable outside the
+  design phase. Changing it is a design decision.
+- **Options:** accept for v1.0 (the page scrolls sideways on big bills on small phones), or reopen the
+  design for the table (for example a smaller amount column or wrapping names).
+- **Recommendation:** accept for v1.0 and note it in the README. A restaurant bill that large on a 360 px
+  phone is uncommon.
 - **Ruling:** (pending)
 
 ---
