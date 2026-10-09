@@ -13,7 +13,7 @@ CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self';
 # for, scope, maxlength, inputmode, autocomplete, the svg attributes, and the input value and checked
 # properties. It skips every element whose computed display is none (a closed dialog, p.status when empty)
 # and, on the name inputs, the placeholder (allowed difference 2; R4 and R11 test it on its own).
-DOM_WALK_JS = """() => {
+DOM_WALK_JS = """(selector) => {
   const KEEP = new Set(["id", "role", "disabled", "type", "name", "for", "scope", "maxlength", "inputmode",
     "autocomplete", "viewBox", "focusable", "d", "placeholder"]);
   const NAME_INPUT = /^(Person|Item) \\d+ name$/;
@@ -32,12 +32,13 @@ DOM_WALK_JS = """() => {
     entry.children = [...node.children].map(walk).filter(Boolean);
     return entry;
   }
-  return walk(document.body);
+  return walk(selector ? document.querySelector(selector) : document.body);
 }"""
 
 
-def dom_walk(page):
-    return page.evaluate(DOM_WALK_JS)
+def dom_walk(page, selector=None):
+    """The walk of `document.body`, or of the first element matching `selector` (a part of the page)."""
+    return page.evaluate(DOM_WALK_JS, selector)
 
 
 def first_diff(app, golden, path="body"):
@@ -64,8 +65,8 @@ def open_golden(plain_context, name, viewport=(390, 844)):
     return page
 
 
-def golden_walk(plain_context, name, viewport=(390, 844)):
-    return dom_walk(open_golden(plain_context, name, viewport))
+def golden_walk(plain_context, name, viewport=(390, 844), selector=None):
+    return dom_walk(open_golden(plain_context, name, viewport), selector)
 
 
 # "Equal to the specimen" (qa.md, phrases): these computed properties, never width, height or position.

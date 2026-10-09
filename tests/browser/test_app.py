@@ -16,7 +16,7 @@ import pytest
 import rig
 import seeds
 import support
-from support import CSP, ROOT, dom_walk, first_diff, golden_walk, panel_text, person_field
+from support import CSP, ROOT, dom_walk, first_diff, golden_walk, open_golden, panel_text, person_field
 
 
 # ---------------------------------------------------------------- Task 1: the rig (R1, R39)
@@ -1008,7 +1008,13 @@ def snapshot(page):
     (lambda page: (switch_to(page, "By item"), page.get_by_role("button", name="Add item").click()),
      lambda bill: bill["items"] == [{"id": "i3", "name": "", "priceText": "", "who": []}]),
     (lambda page: rate_field(page, "SST").fill("8"), lambda bill: bill["sstText"] == "8"),
-], ids=["name", "add-person", "subtotal", "mode", "add-item", "sst"])
+    # A removal is a change too (WR-05, mutant RM: it updated the screen and forgot to save). The id counter never goes back.
+    (lambda page: (page.get_by_role("button", name="Add person").click(), remove_button(page, "Person 3").click()),
+     lambda bill: [p["id"] for p in bill["people"]] == ["p1", "p2"] and bill["nextId"] == 4),
+    (lambda page: (switch_to(page, "By item"), page.get_by_role("button", name="Add item").click(),
+                   page.get_by_role("button", name="Remove Item 1").click()),
+     lambda bill: bill["items"] == [] and bill["nextId"] == 4),
+], ids=["name", "add-person", "subtotal", "mode", "add-item", "sst", "remove-person", "remove-item"])
 def test_R25_every_change_is_saved(open_app, change, check):
     page = open_app().page
     assert stored(page) is None
@@ -1057,6 +1063,24 @@ def test_R26_a_restored_bill_looks_like_the_one_built_by_gestures(open_app, seed
                          ids=["S2", "S1", "S5"])
 def test_R3_a_restored_bill_matches_its_golden(open_app, plain_context, seed, golden):
     assert first_diff(dom_walk(open_app(seed=seed).page), golden_walk(plain_context, golden)) is None
+
+
+def test_R3_the_note_matches_its_specimen(open_app, plain_context):
+    # WR-05 (mutant LIVE2: a stray aria-live on the wrapper and aria-pressed on the button). S7 is walked as a part of
+    # the page, because the specimen frame in states.html carries specimen-only markup around it (allowed difference 6).
+    app = dom_walk(open_app(seed=seeds.UNREADABLE["B1"]).page, "div.note-wrap")
+    golden = golden_walk(plain_context, "states", selector='section[aria-labelledby="spec-s7"] div.note-wrap')
+    assert first_diff(app, golden) is None
+
+
+def test_R3_the_open_dialog_and_the_page_behind_it_match_their_golden(open_app, plain_context):
+    # The golden draws the scrim as div.backdrop and marks .app inert (allowed difference 4), so the walk compares the
+    # dialog and the page behind it, the two parts that are the same markup in both.
+    page = open_app(seed=seeds.S2).page
+    open_dialog(page)
+    golden = open_golden(plain_context, "new-bill-dialog")
+    for part in ("dialog.dialog", "div.app"):
+        assert first_diff(dom_walk(page, part), dom_walk(golden, part)) is None, part
 
 
 def test_R26_come_back_later(open_app):
@@ -1199,6 +1223,19 @@ def test_R29_the_dialog_opens_with_the_safe_choice_focused(open_app):
     page.mouse.move(195, 100)
     page.mouse.wheel(0, 600)
     assert page.evaluate("window.scrollY") == 0
+
+
+def test_R30_a_click_inside_the_dialog_box_keeps_it_open(open_app):
+    # WR-05 (mutant J: every click that targets the dialog element closes it). The padding belongs to the element itself.
+    page = open_app(seed=seeds.S2).page
+    open_dialog(page)
+    box = page.locator("dialog.dialog").bounding_box()
+    inside = [(box["x"] + 3, box["y"] + 3), (box["x"] + box["width"] - 3, box["y"] + box["height"] - 3),
+              centre_of(page.locator("#dialog-title")), centre_of(page.locator("#dialog-text"))]
+    for point in inside:
+        page.mouse.click(*point)
+        assert dialog_is_open(page) is True, point
+    assert stored_text(page) == seeds.S2
 
 
 @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop-corner", "backdrop-over-a-field"])
