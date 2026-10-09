@@ -229,3 +229,47 @@ The suite is **tests 230, pass 230, fail 0**, exit 0, at the start and at the en
 - Headless Chromium (R03): python 44640, browser 13212, GPU 46028. All three were gone afterwards (checked by PID).
 - R04 and R05 children were `spawnSync` with SIGKILL timeouts, each waited for and exited. Their PIDs are in `probe-output.txt`.
 - Final sweep by name (node, python, chrome) at 13:25: none alive. The OS clipboard was never touched.
+
+## Solver (security round 2, 2026-10-09)
+Role: dev solver for split-core, resumed again for this round, working to the orchestrator rulings of 2026-10-09 (ORCH, reversible). This section is appended. The auditor's re-check above is unchanged. By ORCH's stop rule there is no third security round. The split-core code-review re-check verifies these commits.
+
+**Result: SEC-05 RESOLVED, SEC-06 RESOLVED, and the wording item RESOLVED. 0 STILL-OPEN.** The suite was 230 of 230 at `a47bcb7` and is now **tests 246, pass 246, fail 0** at `4e2740b` (Node v24.11.1).
+
+Evidence is in `docs/modules/split-core/qa/security-solver/20261009T133744/`. The auditor's folders were not touched.
+- `node-test.txt` holds the full suite at HEAD.
+- `per-commit-summary.txt` rebuilds each commit from `git show` and runs it: 244, 246 and 246 tests, 0 failures each, with child PIDs.
+- `sec-05/`, `sec-05-run/` and `sec-06/` were run before each commit. `final/` reruns every mutant at HEAD.
+- `scripts/mutate.mjs` reads the F1 to F10 plants from `tests/hygiene.test.js` at run time, so the evidence cannot drift from the suite. "RED" controls put back the test file from `a47bcb7`.
+- The first `S05-RUN` and `S05-RUN-RED` rows in `sec-05/` are superseded by `sec-05-run/`. That first mutant spelled `fetch` inside a string, which the old whole-source list also catches, so it was not a run-time-only access.
+
+| Item | Status | Commit | What changed | Red then green |
+|---|---|---|---|---|
+| SEC-05 LOW | RESOLVED | `fedaa7a` | Per the ruling, the lexer is not hardened. A runtime trap at the end of `tests/hygiene.test.js` is now the primary R25 guard, and the scan stays as a secondary guard. See "How the SEC-05 trap works" below. | Each of the 12 plants (F1, F2, F3, F4, F4b, F5, F6, F6b, F7, F8, F9, F10), written on disk into a core file, is KILLED by the clean-run test. The one extra failure in each is that plant's own served test, which collides with the same declarations already on disk. F4 and F6 also hide the rest of the file from the scan. Every RED control (the 10 plants the scan missed, with the `a47bcb7` hygiene test) stays green, which is the gap. S05-RUN is KILLED-ONLY: `formatRate` reaches the constructor route with the name split as `"f" + "etch"`, which only the trap sees, and its RED control stays green. S05-EXPORT (an export the workload never calls) is KILLED-ONLY. |
+| SEC-06 LOW | RESOLVED | `5d5d02a` | Two property tests were added to `tests/summary.test.js`. (1) Every code point U+0000 to U+2069, each in a name of its own: exactly the members of `[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]` print as one space, every other code point prints as typed, and exactly 79 code points match. (2) Every code point U+206A to U+10FFFF (surrogate halves left out, as adjacent halves would pair) in one name prints unchanged. The runs take 27 ms and 102 ms. A dated qa.md scenario was added. | KILLED-ONLY: RLO only, the 12 named controls, both together, over-replacing `\p{Zs}` (NBSP, U+3000), and an astral addition (U+1F600). RED controls: RLO only and the 12 controls with the `a47bcb7` summary tests stay green, reproducing the auditor's R05. |
+| Wording | RESOLVED | `4e2740b` | spec.md line 19 (the name invariant note) and the `summaryText` JSDoc now give the exact class `[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]` and say that space separators such as NBSP are kept. The spec's loose phrase is struck through, with a dated note. | No code change. The SEC-06 property tests pin exactly this class, and NBSP and U+3000 are kept. |
+
+**How the SEC-05 trap works.**
+- **What it traps.** Every banned global gets a recorder that still returns the real value: `eval`, `Function`, the timers, `queueMicrotask`, `setImmediate`, `performance`, `crypto`, `WebSocket`, `process`, `require`, `fetch`, `XMLHttpRequest`, `EventSource`, storage, `Date`, `Intl`, `window`, `document`, `navigator` and `parseFloat`. So do `Date.now`, `Math.random`, `Number.parseFloat`, `toFixed`, the locale methods, and the function-constructor route on the Function, AsyncFunction, GeneratorFunction and AsyncGeneratorFunction prototypes.
+- **What counts.** An access counts only when a `src/core/` frame is on the stack, so the test runner's own use of a global never counts.
+- **A fresh core each run.** A `module.registerHooks` resolve hook carries a run id onto every core import, so each trapped run evaluates a fresh copy of the whole core whatever loaded it before. A load hook serves plants appended in memory, so no file is written.
+- **Three test groups:**
+  - The clean run loads the core, calls every export (both modes, every blocking path, both throws), requires zero accesses, and requires every export to have run.
+  - A negative control shows each trap fires for one served line of core code, and that test-code access is not counted.
+  - 12 tests serve the auditor's F1 to F10 plants into every core file. The plant texts were checked byte-identical to the auditor's `r04-codeonly.mjs`.
+- **Docs.** Spec R25 has a dated note naming the scan's known limits and the trap as primary. qa.md and BUILD.md are updated.
+
+**Process notes.**
+- All writes used the Write and Edit tools, or Node `fs` with `D:/` forward-slash paths.
+- `\u` escapes were written as `\u{...}` or `\x..`, and every touched file was byte-scanned for raw controls, separators and bidi controls. None were found.
+- The credential gate ran unpiped before each of the 3 commits, with the exit code echoed (0, 0, 0). Its built-in positive and negative controls passed each time.
+- No redirect or heredoc was used. Nothing was written to `docs/design/`, `docs/progress/` or the ledger.
+- This section (an uncommitted change to this tracked file) and the untracked evidence folder are left for the orchestrator to commit.
+
+**Process accounting.**
+- Every child process was a foreground `spawnSync` with a SIGKILL timeout, waited for and exited.
+  - Per-commit runs: 25820, 22608, 11284.
+  - Final suite: 45428.
+  - Final mutation run: 37164, 39152, 45428, 508, 29988, 45104, 44160, 31824, 28488, 43800, 43996, 44692, 1444, 41360, 37736, 25456, 32552, 44508, 35040, 33532, 22608, 43848, 33440, 18028, 13288, 23748, 42612, 37804, 44556, 36780, 26416, 43220.
+  - Earlier staged runs: the PIDs are in `sec-05/`, `sec-05-run/` and `sec-06/mutation-summary.json`.
+- Windows reuses PIDs, so a few numbers repeat across runs.
+- No background process was started.

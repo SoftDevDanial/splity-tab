@@ -1,0 +1,136 @@
+[
+  {
+    "id": "S06-RLO",
+    "finding": "SEC-06",
+    "what": "bidi part narrowed to RLO only",
+    "childPid": 11612,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 exactly the R24 class prints as a space"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed"
+    ]
+  },
+  {
+    "id": "S06-12",
+    "finding": "SEC-06",
+    "what": "control part narrowed to the 12 named controls",
+    "childPid": 45128,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 exactly the R24 class prints as a space"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed"
+    ]
+  },
+  {
+    "id": "S06-BOTH",
+    "finding": "SEC-06",
+    "what": "the 12 named controls plus RLO only",
+    "childPid": 39300,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 exactly the R24 class prints as a space"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed"
+    ]
+  },
+  {
+    "id": "S06-OVER",
+    "finding": "SEC-06",
+    "what": "space separators replaced too (NBSP, U+3000 and the rest of Zs)",
+    "childPid": 39348,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 exactly the R24 class prints as a space",
+      "@R24 every code point above U+2069 prints as typed"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed",
+      "@R24 every code point above U+2069 prints as typed"
+    ]
+  },
+  {
+    "id": "S06-ASTRAL",
+    "finding": "SEC-06",
+    "what": "one astral code point (U+1F600) replaced too",
+    "childPid": 44316,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 every code point above U+2069 prints as typed"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 every code point above U+2069 prints as typed"
+    ]
+  },
+  {
+    "id": "S06-RLO-RED",
+    "finding": "SEC-06",
+    "what": "CONTROL: S06-RLO with summary tests as they were before this round. Expected to stay green (the gap)",
+    "childPid": 43256,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 244,
+    "pass": 244,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S06-12-RED",
+    "finding": "SEC-06",
+    "what": "CONTROL: S06-12 with summary tests as they were before this round. Expected to stay green (the gap)",
+    "childPid": 36404,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 244,
+    "pass": 244,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  }
+]

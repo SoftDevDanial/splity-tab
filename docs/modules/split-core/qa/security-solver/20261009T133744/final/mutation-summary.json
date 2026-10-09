@@ -1,0 +1,684 @@
+[
+  {
+    "id": "S05-F1",
+    "finding": "SEC-05",
+    "what": "the re-check's F1 plant written into src/core/money.js",
+    "childPid": 37164,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F1 plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F1 plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F1-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F1 in src/core/money.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 39152,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-F2",
+    "finding": "SEC-05",
+    "what": "the re-check's F2 plant written into src/core/allocate.js",
+    "childPid": 45428,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F2 plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F2 plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F2-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F2 in src/core/allocate.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 508,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-F3",
+    "finding": "SEC-05",
+    "what": "the re-check's F3 plant written into src/core/bill.js",
+    "childPid": 29988,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F3 plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F3 plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F3-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F3 in src/core/bill.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 45104,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-F4",
+    "finding": "SEC-05",
+    "what": "the re-check's F4 plant written into src/core/result.js",
+    "childPid": 44160,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 232,
+    "fail": 14,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 const run = (text) => eval(text); served into each core file goes red as eval",
+      "@R25 const make = (body) => Function(body); served into each core file goes red as Function",
+      "@R25 const build = (body) => new Function(body); served into each core file goes red as Function",
+      "@R25 const load = (name) => import(name); served into each core file goes red as import(",
+      "@R25 const soon = (fn) => queueMicrotask(fn); served into each core file goes red as queueMicrotask",
+      "@R25 const later = (fn) => setImmediate(fn); served into each core file goes red as setImmediate",
+      "@R25 const now = () => performance.now(); served into each core file goes red as performance",
+      "@R25 const pick = () => crypto.getRandomValues(new Uint32Array(1))[0]; served into each core file goes red as crypto",
+      "@R25 const open = (url) => new WebSocket(url); served into each core file goes red as WebSocket",
+      "@R25 const env = () => process.env.SPLIT; served into each core file goes red as process",
+      "@R25 const load = (name) => require(name); served into each core file goes red as require",
+      "@R25 runtime trap catches the security re-check's F4 plant in every core file",
+      "@R25 runtime trap catches the security re-check's F4b plant in every core file"
+    ],
+    "failed": [
+      "@R25 const run = (text) => eval(text); served into each core file goes red as eval",
+      "@R25 const make = (body) => Function(body); served into each core file goes red as Function",
+      "@R25 const build = (body) => new Function(body); served into each core file goes red as Function",
+      "@R25 const load = (name) => import(name); served into each core file goes red as import(",
+      "@R25 const soon = (fn) => queueMicrotask(fn); served into each core file goes red as queueMicrotask",
+      "@R25 const later = (fn) => setImmediate(fn); served into each core file goes red as setImmediate",
+      "@R25 const now = () => performance.now(); served into each core file goes red as performance",
+      "@R25 const pick = () => crypto.getRandomValues(new Uint32Array(1))[0]; served into each core file goes red as crypto",
+      "@R25 const open = (url) => new WebSocket(url); served into each core file goes red as WebSocket",
+      "@R25 const env = () => process.env.SPLIT; served into each core file goes red as process",
+      "@R25 const load = (name) => require(name); served into each core file goes red as require",
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F4 plant in every core file",
+      "@R25 runtime trap catches the security re-check's F4b plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F4b",
+    "finding": "SEC-05",
+    "what": "the re-check's F4b plant written into src/core/summary.js",
+    "childPid": 31824,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 242,
+    "fail": 4,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F4 plant in every core file",
+      "@R25 runtime trap catches the security re-check's F4b plant in every core file",
+      "@R25 runtime trap catches the security re-check's F6b plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F4 plant in every core file",
+      "@R25 runtime trap catches the security re-check's F4b plant in every core file",
+      "@R25 runtime trap catches the security re-check's F6b plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F4b-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F4b in src/core/summary.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 28488,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-F5",
+    "finding": "SEC-05",
+    "what": "the re-check's F5 plant written into src/core/money.js",
+    "childPid": 43800,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F5 plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F5 plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F5-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F5 in src/core/money.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 43996,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-F6",
+    "finding": "SEC-05",
+    "what": "the re-check's F6 plant written into src/core/allocate.js",
+    "childPid": 44692,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 232,
+    "fail": 14,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 const run = (text) => eval(text); served into each core file goes red as eval",
+      "@R25 const make = (body) => Function(body); served into each core file goes red as Function",
+      "@R25 const build = (body) => new Function(body); served into each core file goes red as Function",
+      "@R25 const load = (name) => import(name); served into each core file goes red as import(",
+      "@R25 const soon = (fn) => queueMicrotask(fn); served into each core file goes red as queueMicrotask",
+      "@R25 const later = (fn) => setImmediate(fn); served into each core file goes red as setImmediate",
+      "@R25 const now = () => performance.now(); served into each core file goes red as performance",
+      "@R25 const pick = () => crypto.getRandomValues(new Uint32Array(1))[0]; served into each core file goes red as crypto",
+      "@R25 const open = (url) => new WebSocket(url); served into each core file goes red as WebSocket",
+      "@R25 const env = () => process.env.SPLIT; served into each core file goes red as process",
+      "@R25 const load = (name) => require(name); served into each core file goes red as require",
+      "@R25 runtime trap catches the security re-check's F6 plant in every core file",
+      "@R25 runtime trap catches the security re-check's F6b plant in every core file"
+    ],
+    "failed": [
+      "@R25 const run = (text) => eval(text); served into each core file goes red as eval",
+      "@R25 const make = (body) => Function(body); served into each core file goes red as Function",
+      "@R25 const build = (body) => new Function(body); served into each core file goes red as Function",
+      "@R25 const load = (name) => import(name); served into each core file goes red as import(",
+      "@R25 const soon = (fn) => queueMicrotask(fn); served into each core file goes red as queueMicrotask",
+      "@R25 const later = (fn) => setImmediate(fn); served into each core file goes red as setImmediate",
+      "@R25 const now = () => performance.now(); served into each core file goes red as performance",
+      "@R25 const pick = () => crypto.getRandomValues(new Uint32Array(1))[0]; served into each core file goes red as crypto",
+      "@R25 const open = (url) => new WebSocket(url); served into each core file goes red as WebSocket",
+      "@R25 const env = () => process.env.SPLIT; served into each core file goes red as process",
+      "@R25 const load = (name) => require(name); served into each core file goes red as require",
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F6 plant in every core file",
+      "@R25 runtime trap catches the security re-check's F6b plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F6b",
+    "finding": "SEC-05",
+    "what": "the re-check's F6b plant written into src/core/bill.js",
+    "childPid": 1444,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 242,
+    "fail": 4,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F4b plant in every core file",
+      "@R25 runtime trap catches the security re-check's F6 plant in every core file",
+      "@R25 runtime trap catches the security re-check's F6b plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F4b plant in every core file",
+      "@R25 runtime trap catches the security re-check's F6 plant in every core file",
+      "@R25 runtime trap catches the security re-check's F6b plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F6b-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F6b in src/core/bill.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 41360,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-F7",
+    "finding": "SEC-05",
+    "what": "the re-check's F7 plant written into src/core/result.js",
+    "childPid": 37736,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F7 plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F7 plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F7-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F7 in src/core/result.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 25456,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-F8",
+    "finding": "SEC-05",
+    "what": "the re-check's F8 plant written into src/core/summary.js",
+    "childPid": 32552,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F8 plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F8 plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F8-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F8 in src/core/summary.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 44508,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-F9",
+    "finding": "SEC-05",
+    "what": "the re-check's F9 plant written into src/core/money.js",
+    "childPid": 35040,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F9 plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F9 plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F9-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F9 in src/core/money.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 33532,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-F10",
+    "finding": "SEC-05",
+    "what": "the re-check's F10 plant written into src/core/allocate.js",
+    "childPid": 22608,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [
+      "@R25 runtime trap catches the security re-check's F10 plant in every core file"
+    ],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs",
+      "@R25 runtime trap catches the security re-check's F10 plant in every core file"
+    ]
+  },
+  {
+    "id": "S05-F10-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: F10 in src/core/allocate.js with the hygiene test as it was before this round. Expected to stay green (the gap)",
+    "childPid": 43848,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-RUN",
+    "finding": "SEC-05",
+    "what": "formatRate reaches fetch through the constructor route, only when it runs",
+    "childPid": 33440,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ]
+  },
+  {
+    "id": "S05-RUN-RED",
+    "finding": "SEC-05",
+    "what": "CONTROL: S05-RUN with the hygiene test as it was before this round. Expected to stay green",
+    "childPid": 18028,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 232,
+    "pass": 232,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S05-EXPORT",
+    "finding": "SEC-05",
+    "what": "a new export that the trap workload never calls",
+    "childPid": 13288,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R25 runtime trap: the core touches no banned global or method while it loads and runs"
+    ]
+  },
+  {
+    "id": "S06-RLO",
+    "finding": "SEC-06",
+    "what": "bidi part narrowed to RLO only",
+    "childPid": 23748,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 exactly the R24 class prints as a space"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed"
+    ]
+  },
+  {
+    "id": "S06-12",
+    "finding": "SEC-06",
+    "what": "control part narrowed to the 12 named controls",
+    "childPid": 42612,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 exactly the R24 class prints as a space"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed"
+    ]
+  },
+  {
+    "id": "S06-BOTH",
+    "finding": "SEC-06",
+    "what": "the 12 named controls plus RLO only",
+    "childPid": 37804,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 exactly the R24 class prints as a space"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed"
+    ]
+  },
+  {
+    "id": "S06-OVER",
+    "finding": "SEC-06",
+    "what": "space separators replaced too (NBSP, U+3000 and the rest of Zs)",
+    "childPid": 44556,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 244,
+    "fail": 2,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 exactly the R24 class prints as a space",
+      "@R24 every code point above U+2069 prints as typed"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed",
+      "@R24 every code point above U+2069 prints as typed"
+    ]
+  },
+  {
+    "id": "S06-ASTRAL",
+    "finding": "SEC-06",
+    "what": "one astral code point (U+1F600) replaced too",
+    "childPid": 36780,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 246,
+    "pass": 245,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 every code point above U+2069 prints as typed"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 every code point above U+2069 prints as typed"
+    ]
+  },
+  {
+    "id": "S06-RLO-RED",
+    "finding": "SEC-06",
+    "what": "CONTROL: S06-RLO with summary tests as they were before this round. Expected to stay green (the gap)",
+    "childPid": 26416,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 244,
+    "pass": 244,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  },
+  {
+    "id": "S06-12-RED",
+    "finding": "SEC-06",
+    "what": "CONTROL: S06-12 with summary tests as they were before this round. Expected to stay green (the gap)",
+    "childPid": 43220,
+    "exitStatus": 0,
+    "signal": null,
+    "tests": 244,
+    "pass": 244,
+    "fail": 0,
+    "verdict": "CONTROL-HELD",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": []
+  }
+]

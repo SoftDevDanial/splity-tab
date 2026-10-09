@@ -1,0 +1,3 @@
+fedaa7a files=14 tests=244 pass=244 fail=0 exit=0 pid=25820 test(split-core): SEC-05 a runtime trap is the primary R25 guard
+5d5d02a files=14 tests=246 pass=246 fail=0 exit=0 pid=22608 test(split-core): SEC-06 pin the whole R24 class with two property tests
+4e2740b files=14 tests=246 pass=246 fail=0 exit=0 pid=11284 docs(split-core): state the exact R24 class in the name invariant and the summaryText JSDoc

@@ -4,7 +4,7 @@
 - **design-phase:** sdlc:design
 - **version:** 0.1.0
 - **mode:** greenfield
-- **phase:** execute (split-core: security re-check)
+- **phase:** execute (split-core: code-review re-check)
 - **next:** execute
 
 ## Modules

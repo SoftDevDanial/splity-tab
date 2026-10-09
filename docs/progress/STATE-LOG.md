@@ -69,3 +69,11 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-09 13:12 split-core security fix batch
 - Solver: SEC-01 b3b43fe, SEC-02 a09ce03, SEC-03 b5b448d, SEC-04 e56b396. 230 of 230 tests pass, each commit green on its own
 - Next: security re-check (resume the auditor), then QA finder and code-review re-check
+
+## 2026-10-09 13:31 split-core security re-check
+- Re-check: SEC-01 to SEC-04 closed. New LOW SEC-05 (codeOnly lexer false negatives) and SEC-06 (R24 tests pin 13 of 79 code points). Commit a47bcb7
+- Ruled ORCH: runtime trap test as primary R25 guard, property test for R24, exact wording in spec and JSDoc. No third security round; the code-review re-check verifies
+
+## 2026-10-09 13:42 split-core security round 2 fixes
+- Solver: SEC-05 fedaa7a (runtime trap test is the primary R25 guard), SEC-06 5d5d02a (property tests over every code point), wording 4e2740b. 246 of 246 tests pass
+- Next: scoped code-review re-check of every change since 67e4b6e, then QA finder
