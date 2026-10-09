@@ -216,9 +216,17 @@ Feature: split-core money, maths, state rules and summary text
       | 0         | [5, 7]                   | [0, 0]                 |
       | 249       | [0, 1251, 250]           | [0, 208, 41]           |
       | 236419679 | [314963010, 157876348]   | [157481505, 78938174]  |
+      | 61846725  | [49676084, 322894546]    | [8246230, 53600495]    |
+      | 178450942 | [111531837, 207130558]   | [62457829, 115993113]  |
+    # [Changed 2026-10-09, ORCH, code-review WR-01] The last three rows are the BigInt trap rows (spec R8).
+    # Their test titles start "@R8 BigInt trap:", and each test also checks that a float allocator
+    # (Math.floor of a x w / W, then the leftover rule) gives a different result. The 61846725 and
+    # 178450942 rows were added 2026-10-09.
 
   @R8 @R23
-  Scenario: allocateByWeight stays exact when amount times weight passes 2^53
+  # [Changed 2026-10-09, ORCH, code-review WR-01] Old title "allocateByWeight stays exact when amount
+  # times weight passes 2^53" implied this case guards BigInt. A float allocator also passes it.
+  Scenario: allocateByWeight gives the MAX-I charges split exactly, with products past 2^53
     Given an amount of 279999972 cents and the weights [49999995, 49999995, 39999996 x10]
     When allocateByWeight is called
     Then the result is [27999998, 27999998, 22399998 x6, 22399997 x4]

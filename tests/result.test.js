@@ -160,8 +160,7 @@ test("@R21 a person on no item gets a row of zeros", () => {
   assert.deepEqual(row, { name: "Aisyah", items: 0, charges: 0, share: 0 });
 });
 
-test("@R23 the MAX-I charges split needs BigInt (a float product is off)", () => {
-  // 279999972 x 49999995 is above 2^53, so a float implementation drifts on exactly these weights.
+test("@R23 MAX-I charges are exact at the bound", () => {
   assert.ok(279999972 * 49999995 > Number.MAX_SAFE_INTEGER);
   const rows = computeResult(MAX_I).rows;
   assert.equal(rows[0].charges, 27999998);

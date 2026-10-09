@@ -40,7 +40,8 @@ export function allocateByWeight(amount, weights) {
   if (weights.length === 0 || !weights.every((w) => Number.isSafeInteger(w) && w >= 0)) {
     throw new RangeError("weights must be a non-empty list of non-negative safe integers");
   }
-  // BigInt because amount x weight can pass 2^53; a float product silently loses the last cents.
+  // BigInt because amount x weight can pass 2^53. A float product is then rounded, and on specific
+  // inputs a floor lands one sen off (the R8 rows tagged "BigInt trap" in tests/allocate.test.js).
   const total = weights.reduce((sum, w) => sum + BigInt(w), 0n);
   if (total === 0n) throw new RangeError("weights must not all be zero");
   const bigAmount = BigInt(amount);
