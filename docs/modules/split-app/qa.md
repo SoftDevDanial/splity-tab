@@ -172,7 +172,7 @@ Feature: Split app, served and driven like a person would
   # Added 2026-10-09, ORCH, security audit SEC-01. A double click, a triple click and a double tap are two or three presses, and the
   # first one moves a different control under the pointer. Removing the last person slides "Add person" into the cell the row filled,
   # so the second click used to add a blank person. The tests are `test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing`
-  # and the four after it in `test_app.py`. The code-review rows for a middle Remove (WR-01) are `test_R7_a_double_click_or_double_tap_on_remove_removes_one_row`
+  # and the tests after it in the same section of `test_app.py`, up to the RG-CR-01 header. The code-review rows for a middle Remove (WR-01) are `test_R7_a_double_click_or_double_tap_on_remove_removes_one_row`
   # and `test_R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each`.
   @R7
   Scenario Outline: A repeat press on the last Remove removes that row and adds nothing
@@ -205,7 +205,41 @@ Feature: Split app, served and driven like a person would
     When I click the centre of "Remove Chen" and then, as a separate click, the same point
     Then "Add person" was under the pointer for the second click, and it adds one person (the guard goes by click count 2 or more, not by time or place)
     When I click "Remove Nasi lemak ayam" in the S1 bill and then double click a toggle
-    Then both clicks reach the toggle, so it ends where it began (the guard is gone at the first press that is not a repeat)
+    Then both presses and both clicks reach the page, so the toggle ends where it began (the guard is gone at the first press that is not a repeat; watching the clicks alone cannot see a guard that kept its press listener, RG-CR-02)
+    When I click "Remove Chen" in the S2 bill and then double click "Person 1 name"
+    Then the word "Aisyah" is selected (the user-visible side of the same lifetime)
+
+  # Added 2026-10-09, ORCH, regression RG-CR-01. The new person's row takes the grid cell of the button that was pressed, so its Remove
+  # button sits under the right 44 px of "Add person". Since SEC-01 a Remove acts on every click that reaches it, so the repeat press of a
+  # double click used to remove the blank row it had just added (nothing added, one id spent, focus on the previous name). "Add person"
+  # and "Add item" arm the guard now. The tests are `test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it` and
+  # `test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page` in `test_app.py`, one row for each combination below.
+  @R6
+  Scenario Outline: A repeat press on Add person adds one person and keeps it
+    Given the S2 bill with <people> people, P1 to P<people>, is the stored draft
+    And the viewport is <size>
+    When I <gesture> at <place> of "Add person"
+    Then one person row more shows and the stored draft is that bill with one blank person added (the id counter moved once)
+    And focus is on the name field of the new person
+    Examples:
+      | people     | place                                                         |
+      | 2, 3, 4, 5 | the middle of the button (the control: it misses the new Remove) |
+      | 2, 3, 4, 5 | 22 px in from its right edge (the middle of the new Remove)   |
+    # Sizes: 360 x 640, 390 x 844, 1280 x 800. Gestures: mouse double click, mouse triple click, touch double tap.
+
+  @R12
+  Scenario Outline: A repeat press on Add item adds one item and never reaches the page
+    Given the S1 bill cut to its first <items> items is the stored draft
+    And a recorder on the page body for the mouse presses and clicks that reach it
+    When I <gesture> at <place> of "Add item"
+    Then one item row more shows and the stored draft is that bill with one blank item added
+    And focus is on the name field of the new item
+    And the body saw press 1 and click 1 only (the guard cancelled the rest; no Remove button is under "Add item", so the bill alone cannot show it)
+    Examples:
+      | items | place                                |
+      | 1, 4  | the middle of the button             |
+      | 1, 4  | 22 px in from its right edge         |
+    # Sizes and gestures as above.
 
   @R42
   Scenario: Two people may have the same name (added 2026-10-08)
@@ -651,7 +685,7 @@ Feature: Split app, served and driven like a person would
     When I focus "New bill", press Enter, Enter on "Cancel" and Enter on "New bill" again
     Then the dialog opens, closes and opens again, with "Cancel" focused each time it is open (a key press has click count 0)
     When I open the dialog by click, press Escape and double click a toggle on the S1 bill
-    Then both clicks reach the toggle (the guard of the opening click is gone at the first press that is not a repeat)
+    Then both presses and both clicks reach the page (the guard of the opening click is gone at the first press that is not a repeat)
 
   # Changed 2026-10-08, plan check FLAG. The scenario was: Given the S1 seed with a copy already made (status "Summary copied") and an error showing
   # on "Item 2 price in RM", When I click "New bill" and then "Start new bill", Then ... no error and no status shows.
