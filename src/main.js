@@ -15,7 +15,7 @@ import { createMode } from "./ui/mode.js";
 import { createSubtotal } from "./ui/subtotal.js";
 import { createItems } from "./ui/items.js";
 import { createCharges } from "./ui/charges.js";
-import { createPanel } from "./ui/panel.js";
+import { createPanel, hasShares } from "./ui/panel.js";
 
 // Boot (R2, R26 to R28). A cold boot is a new bill and writes nothing. A readable draft is shown as it was.
 // An unreadable one starts a new bill, saves it at once so a reload does not show the note again, and shows the note.
@@ -25,7 +25,14 @@ let bill = loaded.state === "ok" ? loaded.bill : newBill();
 const view = { errorShown: flagsFor(bill), status: null, noteShown: loaded.state === "unreadable" };
 if (view.noteShown) saveDraft(storage, bill);
 
-const hasShares = (result) => result.kind === "even" || result.kind === "item";
+/**
+ * R24: the copy status lives only while the shares table does. This is the one place that writes
+ * `view.status`, so the three ways it can go stale (a bill change that removes the table, a clipboard answer
+ * that arrives after that, Start new bill) cannot bring it back with the table.
+ */
+function setStatus(next) {
+  view.status = hasShares(computeResult(bill)) ? next : null;
+}
 
 /** R22, R23: copy the summary of the bill as it is now. Any refusal is shown as a failure, nothing else changes. */
 async function copySummary() {
@@ -37,7 +44,7 @@ async function copySummary() {
   } catch {
     outcome = "fail";
   }
-  view.status = outcome; // render() drops it again if the panel became a message while the browser decided (R24)
+  setStatus(outcome);
   render();
 }
 
@@ -45,6 +52,7 @@ function commit(next) {
   if (next === bill) return;
   bill = next;
   saveDraft(storage, bill);
+  setStatus(view.status);
   render();
 }
 
@@ -109,7 +117,7 @@ createDialog(document.querySelector("dialog"), document.querySelector(".bar .btn
   onConfirm() {
     // The view state is reset with the bill (R31): a stale error flag or copy status must not outlive it.
     view.errorShown = newErrorFlags();
-    view.status = null;
+    setStatus(null);
     commit(newBill());
   },
 });
@@ -129,9 +137,7 @@ function render() {
   subtotal.update(bill, errors);
   items.update(bill, errors);
   charges.update(bill, errors);
-  const result = computeResult(bill);
-  if (!hasShares(result)) view.status = null;
-  panel.update(result, view.status);
+  panel.update(computeResult(bill), view.status);
   note.update(view.noteShown);
 }
 

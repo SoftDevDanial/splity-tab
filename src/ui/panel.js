@@ -17,6 +17,9 @@ const COPY_STATUS = {
   fail: { text: "Could not copy. Your browser blocked the clipboard.", className: "status status-failure" },
 };
 
+/** True when the Shares section holds a table (an even or by-item result), so the Copy button and its status exist. */
+export const hasShares = (result) => result.kind === "even" || result.kind === "item";
+
 function unassignedMessage(count) {
   return count === 1
     ? "1 item still needs a person. Tap who had it to see the shares."
@@ -84,9 +87,8 @@ export function createPanel(tape, { onCopy }) {
   const status = el("p", { class: "status", role: "status" });
 
   function update(result, copyStatus) {
-    const hasTable = result.kind === "even" || result.kind === "item";
     if (result.kind !== "blocked") reconcileChildren(summary, [summaryTitle, summaryList(result.charges)]);
-    if (hasTable) {
+    if (hasShares(result)) {
       const shown = COPY_STATUS[copyStatus] ?? { text: "", className: "status" };
       setText(status, shown.text);
       setAttr(status, "class", shown.className);
