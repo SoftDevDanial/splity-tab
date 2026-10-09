@@ -97,3 +97,13 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 
 ## 2026-10-09 15:47 split-app builder stopped by the owner
 - Fresh builder (Tasks 11-13 plus RD-1 to RD-3) stopped by the owner at 15:46 before any commit. Work in progress left uncommitted in the tree, listed under Blockers. HEAD a3e7d04
+
+## 2026-10-09 17:11 split-app resumed on the owner word
+- Owner chose: resume as planned (2026-10-09 15:50). Fresh builder started 17:12 after the usage reset; it reviews the uncommitted work in progress before committing
+
+## 2026-10-09 17:29 cross-project note
+- Streaks security found a double-click delete through an overlapping dialog button (SEC-01 HIGH). The Split security audit must test the same on New bill and Start new bill, which wipes the bill
+
+## 2026-10-09 17:41 split-app built
+- Builder part 2: RD-1 to RD-3 and Tasks 11-13, 4a544c3..c40140e. 205 browser, 265 unit. Fidelity 0 px on all 10 pairs, live gate 7/7
+- mouseup instead of pointerup for RD-3 accepted (measured touch behaviour)
