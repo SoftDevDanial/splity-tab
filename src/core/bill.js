@@ -98,30 +98,31 @@ export function removeItem(bill, itemId) {
   return billWith(bill, { items: bill.items.filter((item) => item.id !== itemId) });
 }
 
-/** Shared by the two item setters so unknown-id handling lives in one place. */
-function changeItem(bill, itemId, changes) {
+/**
+ * Shared by the item actions: an unknown item id returns the same bill.
+ * @param {(item: Item) => Partial<Item>} changesFor the new field values, given the current item
+ */
+function changeItem(bill, itemId, changesFor) {
   if (!bill.items.some((item) => item.id === itemId)) return bill;
   return billWith(bill, {
-    items: bill.items.map((item) => (item.id === itemId ? itemWith(item, changes) : item)),
+    items: bill.items.map((item) => (item.id === itemId ? itemWith(item, changesFor(item)) : item)),
   });
 }
 
 export function setItemName(bill, itemId, name) {
-  return changeItem(bill, itemId, { name });
+  return changeItem(bill, itemId, () => ({ name }));
 }
 
 export function setItemPriceText(bill, itemId, text) {
-  return changeItem(bill, itemId, { priceText: text });
+  return changeItem(bill, itemId, () => ({ priceText: text }));
 }
 
 /** Taps a person on or off an item (R14). Ids are addressed, never names (R26). */
 export function toggleItemPerson(bill, itemId, personId) {
-  const item = bill.items.find((candidate) => candidate.id === itemId);
-  if (item === undefined || !bill.people.some((person) => person.id === personId)) return bill;
-  const who = item.who.includes(personId)
-    ? item.who.filter((id) => id !== personId)
-    : [...item.who, personId];
-  return changeItem(bill, itemId, { who });
+  if (!bill.people.some((person) => person.id === personId)) return bill;
+  return changeItem(bill, itemId, (item) => ({
+    who: item.who.includes(personId) ? item.who.filter((id) => id !== personId) : [...item.who, personId],
+  }));
 }
 
 export function setSubtotalText(bill, text) {
