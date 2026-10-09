@@ -90,3 +90,10 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - QA finder PASS: 54 scenarios, R1 to R26 covered. Commit 329679e
 - Module close: credential gate CLEAN (2,991 files), 254 of 254. Last green 329679e. README deferred to the split-app close
 - Version relabelled 0.1.0 to 1.0.0 on the owner's word: docs/v0.1.0 moved to docs/v1.0.0, ledger header carries the dated relabel
+
+## 2026-10-09 15:10 split-app part 1 built
+- Builder part 1 (sonnet): Tasks 1-10, 17a95c2..4b11bfb, handoff a3e7d04 at 40% context
+- Ruled RD-1 (system.css hash vs RC-5), RD-2 (status is the only live element), RD-3 (lost tap below an invalid price is a defect, fix by rendering the blur error after the pointer release). Fresh builder started on Tasks 11-13
+
+## 2026-10-09 15:47 split-app builder stopped by the owner
+- Fresh builder (Tasks 11-13 plus RD-1 to RD-3) stopped by the owner at 15:46 before any commit. Work in progress left uncommitted in the tree, listed under Blockers. HEAD a3e7d04
