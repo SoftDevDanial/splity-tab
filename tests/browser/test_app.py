@@ -206,4 +206,138 @@ def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app):
     assert session.problems() == []
 
 
+# ---------------------------------------------------------------- Task 3: people (R4 to R7, R33, R34, R42)
+def add_person_named(page, name):
+    page.get_by_role("button", name="Add person").click()
+    person_field(page, page.locator("li.person").count()).fill(name)
+
+
+def three_people(page):
+    """Aisyah, Ben and Chen, set up with fill() and the Add person button."""
+    person_field(page, 1).fill("Aisyah")
+    person_field(page, 2).fill("Ben")
+    add_person_named(page, "Chen")
+
+
+def remove_button(page, label):
+    return page.get_by_role("button", name=f"Remove {label}", exact=True)
+
+
+def test_R4_person_rows_carry_their_names_and_labels(open_app):
+    page = open_app().page
+    three_people(page)
+    for number, name in enumerate(["Aisyah", "Ben", "Chen"], start=1):
+        field = person_field(page, number)
+        assert field.input_value() == name
+        assert [field.get_attribute(a) for a in ("placeholder", "maxlength", "autocomplete", "type")] == [
+            f"Person {number}", "20", "off", "text"]
+        assert remove_button(page, name).is_enabled()
+
+
+def test_R4_a_blank_name_falls_back_to_its_position_but_not_in_the_field(open_app):
+    page = open_app().page
+    three_people(page)
+    support.replace_text(page, person_field(page, 2), "")
+    assert person_field(page, 2).input_value() == ""
+    assert person_field(page, 2).get_attribute("placeholder") == "Person 2"
+    assert remove_button(page, "Person 2").count() == 1
+    support.replace_text(page, person_field(page, 2), "   ")  # spaces only count as blank (PD-2)
+    assert person_field(page, 2).input_value() == "   " and remove_button(page, "Person 2").count() == 1
+
+
+def test_R5_renaming_a_person_updates_the_remove_name_on_each_keystroke(open_app):
+    page = open_app().page
+    three_people(page)
+    person_field(page, 3).click()
+    page.keyboard.press("End")
+    typed = "Chen"
+    for key in " Wei":
+        page.keyboard.type(key)
+        typed += key
+        assert remove_button(page, typed.strip()).count() == 1
+    assert person_field(page, 3).input_value() == "Chen Wei"
+
+
+def test_R6_add_person_until_the_limit(open_app, plain_context):
+    page = open_app().page
+    add = page.get_by_role("button", name="Add person")
+    add.click()
+    assert page.locator("li.person").count() == 3
+    assert person_field(page, 3).input_value() == "" and person_field(page, 3).get_attribute("placeholder") == "Person 3"
+    assert all(button.is_enabled() for button in page.locator("li.person button").all())
+    for _ in range(9):
+        add.click()
+    assert page.locator("li.person").count() == 12 and add.is_disabled()
+    specimen = support.open_golden(plain_context, "states").locator('section[aria-labelledby="spec-s8a"] button[disabled]')
+    assert support.specimen_props(add, ["cursor"]) == support.specimen_props(specimen, ["cursor"])
+    assert add.evaluate("(el) => getComputedStyle(el).cursor") == "not-allowed"
+    box = add.bounding_box()
+    page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
+    assert page.locator("li.person").count() == 12
+
+
+def test_R7_remove_a_person(open_app):
+    page = open_app().page
+    three_people(page)
+    remove_button(page, "Chen").click()
+    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Aisyah", "Ben"]
+    assert all(button.is_disabled() for button in page.locator("li.person button").all())
+
+
+@pytest.mark.parametrize("remove, now_at_two", [("Ben", "Chen"), ("Chen", "Ben")])
+def test_R34_focus_moves_to_the_name_field_at_the_removed_position(open_app, remove, now_at_two):
+    page = open_app().page
+    page.get_by_role("button", name="Add person").click()
+    assert support.active_label(page) == "Person 3 name"
+    three_people_again = ["Aisyah", "Ben", "Chen"]
+    for number, name in enumerate(three_people_again, start=1):
+        person_field(page, number).fill(name)
+    remove_button(page, remove).click()
+    assert support.active_label(page) == "Person 2 name" and person_field(page, 2).input_value() == now_at_two
+
+
+def type_and_watch(page, field, text):
+    """R33: after every key the same element has focus and the caret sits after what was typed."""
+    handle = field.element_handle()
+    field.click()
+    page.keyboard.press("Control+A")
+    for count, key in enumerate(text, start=1):
+        page.keyboard.type(key)
+        assert page.evaluate("(el) => [el === document.activeElement, el.selectionStart]", handle) == [True, count]
+    page.keyboard.press("Home")
+    page.keyboard.type("X")
+    assert page.evaluate("(el) => [el.value.startsWith('X'), el.selectionStart, el === document.activeElement]", handle) == [True, 1, True]
+
+
+def test_R33_typing_in_a_person_name_keeps_focus_and_caret(open_app):
+    page = open_app().page
+    type_and_watch(page, person_field(page, 1), "Aisyah")
+
+
+def test_R33_ime_composition_survives_a_render(open_app):
+    page = open_app().page
+    field = person_field(page, 1)
+    handle = field.element_handle()
+    field.click()
+    page.keyboard.press("End")
+    cdp = page.context.new_cdp_session(page)
+    cdp.send("Input.imeSetComposition", {"text": "jia", "selectionStart": 3, "selectionEnd": 3})
+    assert field.input_value().endswith("jia")
+    cdp.send("Input.insertText", {"text": "家"})
+    assert field.input_value().endswith("家") and "jia" not in field.input_value()
+    assert page.evaluate("(el) => el === document.activeElement", handle)
+
+
+def test_R42_duplicate_names_are_accepted_and_act_on_their_own_row(open_app):
+    page = open_app().page
+    person_field(page, 1).fill("Ben")
+    person_field(page, 2).fill("Ben")
+    add_person_named(page, "Chen")
+    assert page.locator("p.error, div.note").count() == 0
+    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Ben", "Ben", "Chen"]
+    assert remove_button(page, "Ben").count() == 2
+    remove_button(page, "Ben").nth(1).click()
+    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Ben", "Chen"]
+
+
 # ===== END OF TESTS (new tests go above this line) =====

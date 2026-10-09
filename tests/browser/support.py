@@ -56,11 +56,51 @@ def first_diff(app, golden, path="body"):
     return None
 
 
-def golden_walk(plain_context, name, viewport=(390, 844)):
+def open_golden(plain_context, name, viewport=(390, 844)):
+    """A page on one golden, opened read-only as a file."""
     context = plain_context(viewport={"width": viewport[0], "height": viewport[1]}, color_scheme="light")
     page = context.new_page()
     page.goto((GOLDEN_DIR / f"{name}.html").as_uri())
-    return dom_walk(page)
+    return page
+
+
+def golden_walk(plain_context, name, viewport=(390, 844)):
+    return dom_walk(open_golden(plain_context, name, viewport))
+
+
+# "Equal to the specimen" (qa.md, phrases): these computed properties, never width, height or position.
+SPECIMEN_PROPS = ["color", "backgroundColor", "fontSize", "fontWeight", "boxShadow",
+                  *(f"border{side}{kind}" for side in ("Top", "Right", "Bottom", "Left") for kind in ("Width", "Style", "Color")),
+                  *(f"padding{side}" for side in ("Top", "Right", "Bottom", "Left")),
+                  *(f"border{corner}Radius" for corner in ("TopLeft", "TopRight", "BottomRight", "BottomLeft"))]
+
+
+def specimen_props(locator, extra=()):
+    """The computed properties that qa.md compares between the app and a specimen of states.html.
+
+    Waits for the 120 ms colour transitions to end first: a control that has just changed state is
+    mid-transition otherwise, and a mid-transition colour equals no specimen (R36).
+    """
+    locator.page.wait_for_function("() => document.getAnimations().length === 0")
+    return locator.evaluate(
+        "(el, names) => { const s = getComputedStyle(el); return Object.fromEntries(names.map((n) => [n, s[n]])); }",
+        [*SPECIMEN_PROPS, *extra])
+
+
+def replace_text(page, locator, text):
+    """Click the field, select its text and type the new text key by key (qa.md, phrases)."""
+    locator.click()
+    page.keyboard.press("Control+A")
+    if text:
+        page.keyboard.type(text)
+    else:
+        page.keyboard.press("Backspace")
+
+
+def active_label(page):
+    """The aria-label (or id) of the focused element, to say where focus is."""
+    return page.evaluate("document.activeElement.getAttribute('aria-label') || document.activeElement.id "
+                         "|| document.activeElement.textContent.trim()")
 
 
 def shipped_files():
