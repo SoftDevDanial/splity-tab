@@ -62,26 +62,34 @@ const people = createPeople({
   },
 });
 const mode = createMode({ onMode: (value) => commit(setMode(bill, value)) });
+
+// R10 for the subtotal, every item price and both rates. `kind` picks the parser and the bill setter, `id` is
+// the item id for a price. Typing may clear the field's error flag, leaving the field may set it.
+const AMOUNT_SETTERS = {
+  subtotal: (current, text) => setSubtotalText(current, text),
+  price: (current, text, id) => setItemPriceText(current, id, text),
+  service: (current, text) => setServiceText(current, text),
+  sst: (current, text) => setSstText(current, text),
+};
+
+function amountTyped(kind, text, id) {
+  typedInto(view.errorShown, kind, text, id);
+  commit(AMOUNT_SETTERS[kind](bill, text, id));
+}
+
+function amountLeft(kind, text, id) {
+  leftField(view.errorShown, kind, text, id);
+  render();
+}
+
 const subtotal = createSubtotal({
-  onInput(text) {
-    typedInto(view.errorShown, "subtotal", text);
-    commit(setSubtotalText(bill, text));
-  },
-  onLeave(text) {
-    leftField(view.errorShown, "subtotal", text);
-    render();
-  },
+  onInput: (text) => amountTyped("subtotal", text),
+  onLeave: (text) => amountLeft("subtotal", text),
 });
 const items = createItems({
   onName: (id, text) => commit(setItemName(bill, id, text)),
-  onPrice(id, text) {
-    typedInto(view.errorShown, "price", text, id);
-    commit(setItemPriceText(bill, id, text));
-  },
-  onPriceLeave(id, text) {
-    leftField(view.errorShown, "price", text, id);
-    render();
-  },
+  onPrice: (id, text) => amountTyped("price", text, id),
+  onPriceLeave: (id, text) => amountLeft("price", text, id),
   onToggle: (itemId, personId) => commit(toggleItemPerson(bill, itemId, personId)),
   onAdd() {
     commit(addItem(bill));
@@ -95,17 +103,7 @@ const items = createItems({
     else items.focusName(Math.min(position, bill.items.length - 1));
   },
 });
-const chargeSetters = { service: setServiceText, sst: setSstText };
-const charges = createCharges({
-  onInput(kind, text) {
-    typedInto(view.errorShown, kind, text);
-    commit(chargeSetters[kind](bill, text));
-  },
-  onLeave(kind, text) {
-    leftField(view.errorShown, kind, text);
-    render();
-  },
-});
+const charges = createCharges({ onInput: (kind, text) => amountTyped(kind, text), onLeave: (kind, text) => amountLeft(kind, text) });
 const panel = createPanel(document.querySelector(".tape"), { onCopy: copySummary });
 createDialog(document.querySelector("dialog"), document.querySelector(".bar .btn"), {
   onConfirm() {
