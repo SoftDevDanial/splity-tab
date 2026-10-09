@@ -1,4 +1,4 @@
-# CHANGE LEDGER - v0.1.0
+# CHANGE LEDGER - v1.0.0
 
 > The version's ONE attribution record and the human's only complete view of what happened.
 > `STATE.md` is *situation*, handoffs are *resume points*, `findings/` are *evidence*. **None of them is
@@ -10,7 +10,9 @@
 > rewrite · **staleness check** at every phase boundary: newest dated entry here vs newest file in
 > `./docs/progress/handoff/`. Handoff newer means this file is stale.
 
-**Version:** v0.1.0 · **Opened:** 2026-10-08 by `sdlc:plan` · **Sealed:** not yet (see `SEAL.md` once sealed)
+**Version:** v1.0.0 · **Opened:** 2026-10-08 by `sdlc:plan` as ~~v0.1.0~~ · **Relabelled:** 2026-10-09 to
+v1.0.0 on the owner's word (see Off-scope, the USER row of that date). Same version, same scope. Plan-phase
+documents written before that date still say v0.1.0. · **Sealed:** not yet (see `SEAL.md` once sealed)
 
 > **This run was delegated.** The owner asked for the whole lifecycle to be created ("Auto create with
 > lifecycles for 2 projects", 2026-10-08). Every decision an agent or the orchestrator took in his place is
@@ -172,6 +174,9 @@ Clears everything after a confirmation.
 | 22 | Rulings on the re-check warnings | 2026-10-09 execute | All five fixed as the reviewer suggests. Stop rule: no further code-review round, the QA finder runs next | ORCH | Ruled, reversible |
 | 23 | split-core re-check warnings solved: WR-11 `28c67ed`, WR-12 `6ec63fb` (`globalThis` trapped, trap lists pinned), WR-13 `7c4e896`, WR-14 `93b9c48`, WR-15 `6edc1b6` (hit leak fixed). Suite 254 of 254, 81 of 85 mutants killed (survivors: 2 identity controls, the documented untaken-branch limit, one equivalent mutant) | 2026-10-09 execute | Solver section in findings/code-review.md, evidence `qa/solver/20261009-141136/` | LANE (sdlc-dev-solver, sonnet) | Solved |
 | 24 | B7 equivalent mutant (run id not carried on core-to-core imports) and the unbuilt single banned-names table | 2026-10-09 execute | Both left as is: no input tells B7 apart, and the pin plus the derived test already stop the lists drifting | ORCH | Ruled, reversible |
+| 25 | split-core QA finder: PASS. 54 scenarios (179 cases) pass, 0 fail, 0 untested; every R1 to R26 covered; 125 independent money checks and a 400-bill BigInt reference sweep agree. Four assertions noted as weaker than their Then line in form, none failing | 2026-10-09 execute | findings/qa.md, evidence `qa/qa/20261009-142756/`, commit `329679e` | LANE (sdlc-qa-tester, haiku) | Solved |
+| 26 | split-core module close: code review PASS (round 1 plus re-check, stop rule), security PASS (audit plus two fix rounds and a re-check, stop rule), QA PASS. Credential gate CLEAN over 2,991 files (controls pass). Suite 254 of 254. Last green `329679e` | 2026-10-09 execute | README reconcile deferred to the split-app close, where the project README is written | ORCH | Module closed |
+| 27 | Version label for this run | 2026-10-09 execute | Relabelled v0.1.0 to v1.0.0. Owner's words: "Make sure both app reach a stable 1.0 version. Then i will test it out." Folder moved to `docs/v1.0.0/`, STATE `version: 1.0.0`, plan documents keep their historical label | USER | Done |
 
 ---
 

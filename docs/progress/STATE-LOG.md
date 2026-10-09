@@ -85,3 +85,8 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-09 14:27 split-core re-check warnings solved
 - Solver (sonnet): WR-11 to WR-15 resolved, 254 of 254 tests, HEAD 6edc1b6
 - Per the stop rule: QA finder next, then module close
+
+## 2026-10-09 14:38 split-core closed, version relabelled 1.0.0
+- QA finder PASS: 54 scenarios, R1 to R26 covered. Commit 329679e
+- Module close: credential gate CLEAN (2,991 files), 254 of 254. Last green 329679e. README deferred to the split-app close
+- Version relabelled 0.1.0 to 1.0.0 on the owner's word: docs/v0.1.0 moved to docs/v1.0.0, ledger header carries the dated relabel
