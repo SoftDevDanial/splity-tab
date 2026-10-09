@@ -414,6 +414,24 @@ def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, setup, fie
     assert field.input_value() == good
 
 
+@pytest.mark.parametrize("setup, field_of, bad, message, error_id, good", ERROR_CASES)
+def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again(
+        open_app, setup, field_of, bad, message, error_id, good):
+    # WR-03 / K1: (c) says the error goes at valid text and "does not come back until the field next loses focus".
+    page = open_app().page
+    setup(page)
+    field = field_of(page)
+    support.replace_text(page, field, bad)
+    page.keyboard.press("Tab")
+    assert page.locator(f"p.error#{error_id}").count() == 1
+    support.replace_text(page, field, good[0])  # one valid character over the whole text, typed in the field
+    assert page.locator(f"#{error_id}").count() == 0
+    page.keyboard.type("x")  # bad again, and the field still has focus
+    assert page.locator(f"#{error_id}").count() == 0 and field.get_attribute("aria-invalid") is None
+    page.keyboard.press("Tab")
+    assert page.locator(f"p.error#{error_id}").inner_text() == message and field.get_attribute("aria-invalid") == "true"
+
+
 def test_R10_an_empty_field_never_shows_an_error(open_app):
     page = open_app().page
     subtotal_field(page).click()
