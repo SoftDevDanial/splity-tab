@@ -57,6 +57,11 @@ export function parseRate(text, maxPercent) {
   return read.hundredths <= maxPercent * 100 ? { ok: true, bp: read.hundredths } : INVALID;
 }
 
+/** Whole ringgit of cents, or whole percent of basis points. Remainder first, so the division is exact. */
+function wholePart(hundredths) {
+  return (hundredths - (hundredths % 100)) / 100;
+}
+
 /**
  * Writes cents the way the brief shows money. No group separator (ruled CG-5), so the largest
  * bill reads "RM 7799999.22" and stays locale-independent.
@@ -64,7 +69,7 @@ export function parseRate(text, maxPercent) {
  * @returns {string} e.g. "RM 38.87"
  */
 export function formatMoney(cents) {
-  return `RM ${Math.floor(cents / 100)}.${String(cents % 100).padStart(2, "0")}`;
+  return `RM ${wholePart(cents)}.${String(cents % 100).padStart(2, "0")}`;
 }
 
 /**
@@ -73,7 +78,7 @@ export function formatMoney(cents) {
  * @returns {string} e.g. "6.25%"
  */
 export function formatRate(bp) {
-  const whole = Math.floor(bp / 100);
+  const whole = wholePart(bp);
   const fraction = String(bp % 100).padStart(2, "0").replace(/0+$/, "");
   return fraction === "" ? `${whole}%` : `${whole}.${fraction}%`;
 }

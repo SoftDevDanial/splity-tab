@@ -59,7 +59,7 @@ enforces the purity part mechanically.
 ## Internal helpers (module-private, by symbol)
 | File | Symbols | Why they exist |
 |---|---|---|
-| `money.js` | `readHundredths`, `DECIMAL_TEXT`, `MAX_WHOLE_DIGITS`, `EMPTY`, `INVALID` | One reader for the amount and rate grammar. The digit-count cap runs before any numeric conversion, so a 400-digit string is never converted. |
+| `money.js` | `readHundredths`, `DECIMAL_TEXT`, `MAX_WHOLE_DIGITS`, `EMPTY`, `INVALID`. [Added 2026-10-09, solver, WR-08: `wholePart`.] | One reader for the amount and rate grammar. The digit-count cap runs before any numeric conversion, so a 400-digit string is never converted. [Added 2026-10-09, WR-08: `wholePart` is the exact integer division shared by `formatMoney` and `formatRate`.] |
 | `allocate.js` | `assertAmount` | The shared amount precondition of both allocators (R9). |
 | `bill.js` | `billWith`, `personWith`, `itemWith`, `changeItem`, `labelOf` | Rebuild a bill, person or item from known fields only (no spread of a parsed object), the shared item setter, and the shared label fallback. |
 | `result.js` | `applyRate`, `BASIS_POINTS`, `sum`, `blocked`, `evenResult`, `itemResult`, `holderIndexes`, `itemTotals` | Half-up rate application with remainder arithmetic, and the two result builders split by mode. |
