@@ -7,7 +7,10 @@ untouched).
 **Status (2026-10-09): tasks 1 to 13 done and committed, with rulings RD-1 to RD-4 applied.** The first run stopped after
 Task 10 at about 40% of the context, as the role rules require. A resumed run reviewed the work in progress that the
 owner had stopped (kept with edits, see judgment call 12), then built Tasks 11, 12 and 13. The functional suite, the
-fidelity gate and the live gate are green. The finders, solvers and the official gate runs come next.
+fidelity gate and the live gate were green at that point. The finders (QA, code review, security), their solvers, the
+fidelity gate and the official live gate have all run since, and the module closed at `22ac9af` (see `docs/progress/STATE.md`).
+A regression pass over the security round's delta followed: its findings and its solver are in
+`findings/regression-code-review.md`, and it added judgment call 20.
 
 ## Phase skills (docs/phase-skills.md, design row)
 `taste-skill` (entry skill `taste-skill`) and `frontend-design` were read from the plugin cache and applied.
@@ -39,7 +42,13 @@ arithmetic), plain verbs in copy. What did not apply: palette, type, layout, mot
 
 Each task's box in `spec.md` is ticked in its own commit.
 
-## Test counts (last run, after Task 13)
+## Test counts
+Current, after the regression solver (2026-10-09, RG-CR-01 and RG-CR-02): browser 421 passed (about 120 s), unit 275 passed,
+fidelity 10 of 10 pairs at 0 mismatching pixels (`qa/fidelity/20261009-225850/`), live gate 7 of 7 (run into the scratch folder
+`qa/regression-solver/20261009-222856/live-gate-check/`). The browser count is the 312 of the security round, plus 108 Add
+person and Add item rows (RG-CR-01) and 1 word-select test (RG-CR-02). The runs below are history, each one the run it names.
+
+After Task 13:
 - `python -m pytest tests/browser -q`: 205 passed, 0 failed (about 80 s). 149 after Task 10, plus 14 for RD-3, 1 for RD-2,
   25 for Task 11, 13 for Task 12 and 3 for Task 13.
 - `node --test "tests/**/*.test.js"`: 265 passed (the 254 split-core tests plus 11 in `tests/draft.test.js`).
@@ -65,12 +74,14 @@ prints the PID and port.
 
 ## Code map (for the README reconcile; cite symbols, not lines)
 - `src/main.js`: boot (`getStorage`, `loadDraft`), the one `bill`, the `view` state `{ errorShown, status, noteShown }`,
-  `commit` (core action, `saveDraft`, `setStatus`, `render`), `copySummary`, `render` (reads the view, never writes it).
+  `commit` (takes the bill a core action returned, the caller runs the action as in `commit(addPerson(bill))`, then saves the
+  draft with `saveDraft`, restates the copy status with `setStatus` and calls `render`), `copySummary`, `render` (reads the view, never writes it).
   `setStatus` is the only writer of `view.status` (R24). `amountTyped` and `amountLeft` are the R10 wiring of the subtotal,
   every price and both rates (`AMOUNT_SETTERS` maps the kind to its split-core setter). Wires every block.
 - `src/draft.js`: `DRAFT_KEY`, `encodeDraft`, `decodeDraft` (D1 to D12), `getStorage`, `loadDraft`, `saveDraft`.
-- `src/errors.js`: the R10 timing rules as pure functions: `newErrorFlags`, `flagsFor`, `typedInto`, `leftField`,
-  `forgetPrice`, `visibleErrors`. Node unit tests in `tests/errors.test.js`.
+- `src/errors.js`: the R10 timing rules as small functions. `newErrorFlags`, `flagsFor` and `visibleErrors` are pure (they
+  build or read the flags). `typedInto`, `leftField` and `forgetPrice` update the flags object they are given and return
+  nothing. Node unit tests in `tests/errors.test.js`.
 - `src/ui/dom.js`: `el`, `block` (the section and heading scaffold of the four input blocks), `setAttr`, `setText`,
   `setValue`, `swallowRepeatClicks`, `rowsFor`, `reconcileChildren`. R33 rests on `reconcileChildren`, which never
   re-inserts a node that is already in place (re-inserting a focused input drops its focus). The setters skip equal
@@ -79,7 +90,8 @@ prints the PID and port.
   every press with a click count above 1 (a double click, triple click or double tap) and remove themselves at the first
   press that is not a repeat, so a click or key press of its own is never held back. No timer. The count test is the
   file-private `isRepeatClick`. Armed by the Remove click of a person or an item (SEC-01, R7, R12), by the click that
-  closes the dialog (CR-01, R30) and by the click that opens it (I-1, R29).
+  closes the dialog (CR-01, R30), by the click that opens it (I-1, R29) and by the Add person and Add item clicks
+  (RG-CR-01, R6, R12). It protects only what arms it, so a new control that moves rows under the pointer must arm it.
 - `src/ui/icons.js`: `icon(name)`, the only `createElementNS` call site (CG-10).
 - `src/ui/field-leave.js`: `onFieldLeave(input, handler)`, the one blur gesture of every field whose error shows on blur
   (Subtotal, prices, both rates; RD-3). A blur caused by a press runs the handler when the press ends (`mouseup`,
@@ -91,7 +103,7 @@ prints the PID and port.
   returns `{ el, update(...) }` (plus `focusName`, `focusAdd`). They write DOM and report gestures, they never change the bill.
   `createDialog` (`dialog.js`) calls `swallowRepeatClicks` (from `dom.js`) when a click closes the dialog (CR-01) and when the
   click on New bill opens it (I-1), and remembers where a press began, so only a press that began and ended on the backdrop
-  is a backdrop click (WR-06). The Remove handlers of `people.js` and `items.js` call it too (SEC-01). `panel.js` exports
+  is a backdrop click (WR-06). The Remove handlers and the Add handlers of `people.js` and `items.js` call it too (SEC-01, RG-CR-01). `panel.js` exports
   `hasShares`.
 - `index.html` holds the static shell (header, `.inputs`, `.tape`, the closed `dialog`). Blocks are built by JS.
 - `tests/browser/rig.py`: `StaticServer`, `new_context` (the only place a context is made, refuses `permissions`
@@ -169,10 +181,27 @@ Added by the security solver of 2026-10-09 (SEC-01, I-1):
     because the note leaves the layout and the rows move up. Measured by the solver (probes `p1_dismiss_note.py` and
     `p2_dismiss_scan.py` in `qa/security-solver/20261009-205629/probes/`): over 291 viewports (widths 320 to 1280, three heights)
     and the three standard sizes with mouse double click, triple click and touch double tap, what is under the pointer afterwards
-    is a heading or a `div`, never a control. So no path is left open. `isRepeatClick` is private to `dom.js` now.
+    is a heading or a `div`, never a control. That measured the Dismiss note only. **Corrected 2026-10-09 (regression RG-CR-01):
+    "no path is left open" was wrong.** A repeat press on "Add person" lands on the Remove button of the row it has just added
+    (the new row takes the button's grid cell, so that button sits under the right 44 px of "Add person", at every width the
+    finder tried, 320 to 1280), and it removed the blank row again. Add person and Add item arm the guard now (Add item has no
+    such overlap and arms it for the sake of one rule). So the guard is armed by Remove, Add person, Add item and the dialog,
+    and "Dismiss note" is the measured exception. The guard protects only what arms it: a new control that moves rows under the
+    pointer must arm it. `isRepeatClick` is private to `dom.js` now.
 19. **I-1 changes one behaviour on purpose.** A double click, triple click or double tap on "New bill" leaves the dialog open
     (it used to flash open and shut). Opening arms the same guard as closing does. Reversible: delete the `swallowRepeatClicks()`
     call in the opener handler of `createDialog`; 12 of the 14 I-1 tests then go red.
+
+Added by the regression solver of 2026-10-09 (RG-CR-01, RG-CR-02):
+20. **Add item arms the guard although nothing slides under it, and its tests watch the page body.** ORCH ruled one rule for
+    every control that adds a row. For Add item the bill cannot tell a guard from none, so
+    `test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page` records the presses and clicks that reach
+    `document.body` and expects press 1 and click 1 only. Reversible: take the `swallowRepeatClicks()` call out of the Add item
+    handler and every row of that test goes red on the recorder check, its data and focus checks stay green. Taking it out of the
+    Add person handler reds the right-edge rows of `test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it`, and the
+    centre rows are its control. The guard-lifetime tests now record the presses as well as the clicks (a guard that kept its
+    `mousedown` listener changes no click, RG-CR-02), and `test_R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word`
+    pins the same lifetime by a real gesture.
 
 ## Deviations
 None architectural: no new dependency, no new state library, no contract change. Items 1 to 17 above are the named deviations.

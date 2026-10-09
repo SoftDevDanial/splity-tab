@@ -1660,7 +1660,8 @@ def test_R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each(open_app
 # A double click, a triple click or a double tap is two or three presses, and the first can move the layout under the
 # pointer. Removing the last person moves "Add person" into the cell that row filled, so the second click pressed it and a
 # blank person was saved (SEC-01). One guard, swallowRepeatClicks, cancels the repeat presses at the document whatever is
-# under them. These rows name the gesture, the size and the bill, and check the rows, the draft and the focus.
+# under them, once the click that moved the layout has armed it. These rows name the gesture, the size and the bill, and
+# check the rows, the draft and the focus.
 SIZES = [(360, 640), (390, 844), (1280, 800)]
 SIZE_IDS = [f"{w}x{h}" for w, h in SIZES]
 GESTURES = ["single", "mouse-double", "mouse-triple", "touch-double"]  # "single" is the control: what one click does
@@ -1674,7 +1675,8 @@ LAST_ROW_CASES = [  # (seed, the remove button, the row selector, where focus go
 
 
 def gesture_at(page, gesture, point):
-    """One of GESTURES at one point. A triple click is one press with click count 3, as the operating system sends it."""
+    """One of GESTURES at one point. A triple click is three presses with click counts 1, 2 and 3, as Playwright's
+    `click(click_count=3)` sends them (one press with count 3 never happens)."""
     if gesture == "single":
         page.mouse.click(*point)
     elif gesture == "mouse-triple":

@@ -1,4 +1,5 @@
-// When an inline error shows (R10, CG-3). Pure view-state rules, never saved.
+// When an inline error shows (R10, CG-3). View-state rules, never saved. `newErrorFlags`, `flagsFor` and `visibleErrors`
+// are pure. `typedInto`, `leftField` and `forgetPrice` update the flags object they are given and return nothing.
 // Only text that is not empty and fails its parser may show an error (ruling 1). The error appears when
 // the field is left, a restored field shows it at once, and while typing it goes as soon as the text is
 // valid or empty and stays gone until the field is next left. The bill panel does not use these flags: it
