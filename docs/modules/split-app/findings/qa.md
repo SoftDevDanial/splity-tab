@@ -176,3 +176,16 @@ Route: Dev Solver, if the owner wants Cancel to ignore the tail of a double clic
 - **Process note.** I broke the "no heredoc" rule once: a throwaway `python - <<'EOF'` with `print("noop")` while looking for an edit tool. It read and wrote no file. Every source file in the evidence folder and this verdict were written with the Write tool. The junit XML, screenshots, `driver-results-all.json`, `scan-ghost-results.json` and the fidelity folder were written by pytest, node, Playwright and my scripts themselves.
 
 PROCESSES (all started by me, all stopped, none alive): pytest server pid 1808 port 39773, pytest sub-path server pid 32412 port 18163, driver servers pid 28524, 15348, 25844 and 40268, `probe_360.py` server 44548, `scan_ghost.py` server 49712, fidelity runner server 46876 (the harness and its Chromium exited with it), `shot_overflow.py` server 49900. Each script printed STOPPED with the port free again, and `tasklist` showed none of these PIDs afterwards.
+
+---
+
+## Solver update (2026-10-09), additive: the QA finder's text above is unchanged
+Dev Solver. Detail and proof: `findings/code-review.md`, section "Solver (2026-10-09)", and `qa/solver/20261009-190119/red-green.md`.
+- **F-1: RESOLVED** in `d09d8d6`. A double click or double tap on Cancel, on Start new bill or on the backdrop no longer lets the second
+  press or click reach the page under the closed dialog. Measured on the fixed code with a 384-case scan (4 bills x 16 viewports x mouse
+  and touch x 3 targets): 0 fail; the same scan on the sources of `044800e` fails 202 (the draft changed or focus left "New bill"). The
+  tests are `test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing` and its neighbours in `tests/browser/test_app.py`.
+- **W2** (R10 c, typing a valid value then an invalid one): pinned by `tests/errors.test.js` and the K1 scenario (`2408d40`).
+- **W5 and W7** (the S7 note and the open dialog had no markup walk): pinned by two R3 walks (`7bdc368`).
+- **W6** (no scenario for a double click on a dialog button): same fix as F-1.
+- **O-1** (overflow at 360 px for bills above about RM 760): not a code finding, with the owner as H-02.
