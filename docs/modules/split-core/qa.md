@@ -583,10 +583,16 @@ Feature: split-core money, maths, state rules and summary text
 
   @R25
   # [Added 2026-10-09, ORCH, security SEC-05]
-  Scenario: The core touches no banned global or method at load or at run time (runtime trap)
+  # [Changed 2026-10-09, ORCH, code-review WR-13] Old title "The core touches no banned global or method at
+  # load or at run time (runtime trap)" read as if every branch ran. The workload calls every export on
+  # representative input, so it proves each export runs and not each branch.
+  Scenario: The core touches no banned global or method at load or while every export runs (runtime trap)
     Given recorders on every banned global, on Date.now, Math.random, Number.parseFloat, toFixed and the locale methods, and on the function-constructor route
     When a fresh copy of every core file is imported and every export runs on representative input
     Then no recorder saw an access from a src/core/ frame, and every export was called
+    # [Added 2026-10-09, ORCH, code-review WR-13] The trap sees a banned access whatever the syntax, on any
+    # path the workload runs. A branch the workload never takes is covered only by the name scan above,
+    # which is best-effort (spec R25).
     And each recorder fires when one line of code that reaches it is served into a core file (negative control)
     And the same accesses made from test code are not counted
     And each of the security re-check's plants F1 to F10, served in memory into every core file, is caught

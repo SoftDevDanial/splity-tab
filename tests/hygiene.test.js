@@ -8,9 +8,10 @@ import { isDeepStrictEqual } from "node:util";
 
 const CORE_DIR = resolve(import.meta.dirname, "../src/core");
 
-// Two R25 guards. The source scan below is best-effort and secondary: no name scan sees through every
-// slash, escape or constructor route (security SEC-05). The runtime trap at the end of this file is the
-// primary guard, because it watches what the core really touches whatever the syntax.
+// Two R25 guards that cover for each other. The source scan below reads every path, including a branch the
+// workload never takes, but it is best-effort and secondary: no name scan sees through every slash, escape or
+// constructor route (security SEC-05). The runtime trap at the end of this file is the primary guard, because
+// it watches what the core really touches whatever the syntax, but only on a path the workload runs.
 
 // Whole-word match, so "Datestamp" would pass but "Date" would not. Comments are scanned too:
 // a banned name in a comment is a sign the code was meant to use it.
@@ -384,7 +385,7 @@ function runEveryExport({ money, allocate, bill, result, summary }) {
   assert.throws(() => allocate.allocateByWeight(10, []), RangeError);
 }
 
-test("@R25 runtime trap: the core touches no banned global or method while it loads and runs", async () => {
+test("@R25 runtime trap: the core touches no banned global or method while it loads and while every export runs", async () => {
   const used = new Set();
   const watch = (namespace) => new Proxy(namespace, { get: (target, key) => (used.add(key), target[key]) });
   let modules = {};
