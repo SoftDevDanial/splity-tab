@@ -34,3 +34,20 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Flow check: 12 of 12 links pass, zero console errors (design-explore/FLOW-CHECK.md).
 - Ruled four open questions and approved the added copy under delegation (ORCH), design-explore/RULINGS.md.
 - Promoted final/ to docs/design/ under delegation (ORCH). Phase skills loaded throughout: taste-skill, frontend-design.
+
+## 2026-10-08 15:53 plan started
+- Step 1 research: no unknown blocks a confident plan (Playwright 1.61 with page.clock and Node v24.11.1 confirmed installed). 0 researchers spawned.
+- Step 1b compliance: personal direction, skipped by rule.
+- Step 2: spawned sdlc-planner (Opus, effort high).
+
+## 2026-10-08 23:01 plan, architect and gates
+- sdlc-planner wrote split-core (25 R#) and split-app (41 R#), ROADMAP. Cut off once by the usage limit, resumed.
+- Clarify gate CG-1 to CG-8 ruled under delegation (ORCH). CG-7: tests never touch the OS clipboard, after a planning probe overwrote the owner clipboard. CG-8 supersedes one line of new-bill-dialog.md.
+- Found three plugin harness gaps while planning, fixed in sdlc 2.1.0, 2.1.1, 2.1.2 (state setup flags, freeze that never ran, CSP bypass). Strict CSP restored in R38.
+- Opened docs/v0.1.0/CHANGE-LEDGER.md (8 scopes).
+- sdlc-plan-checker: BLOCK, 3 block, 9 flag. Fixes ruled (ORCH) and routed to a fresh planner.
+
+## 2026-10-09 11:41 plan gate cleared
+- Fresh planner fixed 3 BLOCK and 9 FLAG. Re-check PASS (0 block, 1 flag). Flag ruled RC-5 (hidden attribute) and written into split-app spec as a dated correction.
+- Ledger: CG-9 to CG-11, RC-5, plan gate rows, C1 now names core R26 and app R42.
+- Plan phase done. Next: execute, split-core then split-app.
