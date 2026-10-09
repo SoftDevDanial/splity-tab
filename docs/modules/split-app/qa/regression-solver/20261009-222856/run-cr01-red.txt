@@ -1,0 +1,547 @@
+server STARTED pid 47168 port 56747 root {workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch
+F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F.F. [ 66%]
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFserver STOPPED pid 47168 port 56747, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 2 == (2 + 1)
+E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 2 == (2 + 1)
+E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 2 == (2 + 1)
+E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 2 == (2 + 1)
+E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 2 == (2 + 1)
+E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 2 == (2 + 1)
+E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 2 == (2 + 1)
+E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 2 == (2 + 1)
+E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 2 == (2 + 1)
+E   AssertionError: assert 3 == (3 + 1)
+     +  where 3 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 3 == (3 + 1)
+E   AssertionError: assert 3 == (3 + 1)
+     +  where 3 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 3 == (3 + 1)
+E   AssertionError: assert 3 == (3 + 1)
+     +  where 3 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 3 == (3 + 1)
+E   AssertionError: assert 3 == (3 + 1)
+     +  where 3 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 3 == (3 + 1)
+E   AssertionError: assert 3 == (3 + 1)
+     +  where 3 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 3 == (3 + 1)
+E   AssertionError: assert 3 == (3 + 1)
+     +  where 3 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 3 == (3 + 1)
+E   AssertionError: assert 3 == (3 + 1)
+     +  where 3 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 3 == (3 + 1)
+E   AssertionError: assert 3 == (3 + 1)
+     +  where 3 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 3 == (3 + 1)
+E   AssertionError: assert 3 == (3 + 1)
+     +  where 3 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 3 == (3 + 1)
+E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 4 == (4 + 1)
+E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 4 == (4 + 1)
+E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 4 == (4 + 1)
+E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 4 == (4 + 1)
+E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 4 == (4 + 1)
+E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 4 == (4 + 1)
+E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 4 == (4 + 1)
+E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 4 == (4 + 1)
+E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 4 == (4 + 1)
+E   AssertionError: assert 5 == (5 + 1)
+     +  where 5 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 5 == (5 + 1)
+E   AssertionError: assert 5 == (5 + 1)
+     +  where 5 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 5 == (5 + 1)
+E   AssertionError: assert 5 == (5 + 1)
+     +  where 5 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 5 == (5 + 1)
+E   AssertionError: assert 5 == (5 + 1)
+     +  where 5 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 5 == (5 + 1)
+E   AssertionError: assert 5 == (5 + 1)
+     +  where 5 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 5 == (5 + 1)
+E   AssertionError: assert 5 == (5 + 1)
+     +  where 5 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 5 == (5 + 1)
+E   AssertionError: assert 5 == (5 + 1)
+     +  where 5 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 5 == (5 + 1)
+E   AssertionError: assert 5 == (5 + 1)
+     +  where 5 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 5 == (5 + 1)
+E   AssertionError: assert 5 == (5 + 1)
+     +  where 5 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'>.count
+     +      where <Locator frame=<Frame name= url='http://127.0.0.1:56747/'> selector='li.person'> = locator('li.person')
+     +        where locator = <Page url='http://127.0.0.1:56747/'>.locator
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1805: AssertionError: assert 5 == (5 + 1)
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-360x640-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-360x640-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-360x640-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-390x844-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-390x844-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-390x844-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-1280x800-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-1280x800-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-1280x800-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-360x640-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-360x640-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-360x640-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-390x844-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-390x844-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-390x844-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-1280x800-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-1280x800-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-1280x800-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-360x640-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-360x640-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-360x640-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-390x844-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-390x844-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-390x844-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-1280x800-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-1280x800-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-1280x800-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-360x640-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-360x640-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-360x640-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-390x844-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-390x844-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-390x844-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-1280x800-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-1280x800-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-1280x800-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-touch-double-centre]
+72 failed, 36 passed, 313 deselected in 34.09s

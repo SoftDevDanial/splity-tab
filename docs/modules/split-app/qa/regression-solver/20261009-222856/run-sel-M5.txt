@@ -1,0 +1,57 @@
+server STARTED pid 53560 port 59910 root {workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch
+........................................................................ [ 33%]
+........................................................................ [ 66%]
+............................................................FFFFFFFFFFFF [ 99%]
+..server STOPPED pid 53560 port 59910, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1836: AssertionError: assert (False is True)
+E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1836: AssertionError: assert (False is True)
+E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1836: AssertionError: assert (False is True)
+E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1836: AssertionError: assert (False is True)
+E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1836: AssertionError: assert (False is True)
+E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1836: AssertionError: assert (False is True)
+E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1836: AssertionError: assert (False is True)
+E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1836: AssertionError: assert (False is True)
+E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1836: AssertionError: assert (False is True)
+E   AssertionError: assert False is True
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1844: AssertionError: assert False is True
+E   AssertionError: assert False is True
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1844: AssertionError: assert False is True
+E   AssertionError: assert False is True
+     +  where False = dialog_is_open(<Page url='http://127.0.0.1:59910/'>)
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1844: AssertionError: assert False is True
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x640-mouse-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x640-mouse-triple]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x640-touch-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-triple]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-touch-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-triple]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-touch-double]
+FAILED tests\browser\test_app.py::test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[cancel]
+FAILED tests\browser\test_app.py::test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[backdrop]
+FAILED tests\browser\test_app.py::test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]
+12 failed, 206 passed, 203 deselected in 66.07s (0:01:06)

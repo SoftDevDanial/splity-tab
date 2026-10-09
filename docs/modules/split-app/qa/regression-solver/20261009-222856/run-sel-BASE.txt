@@ -1,0 +1,7 @@
+server STARTED pid 46136 port 26159 root {workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch
+........................................................................ [ 33%]
+........................................................................ [ 66%]
+........................................................................ [ 99%]
+..server STOPPED pid 46136 port 26159, exited True, port free again True
+                                                                         [100%]
+218 passed, 203 deselected in 66.28s (0:01:06)

@@ -1,0 +1,40 @@
+server STARTED pid 40488 port 40910 root {workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch
+........................................................................ [ 17%]
+........................................................................ [ 34%]
+................................................F....................... [ 51%]
+.......................................FF............................... [ 68%]
+........................................................................ [ 85%]
+..................F..........................................server STOPPED pid 40488 port 40910, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...icks': [1, 2]}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'presses': [1]} != {'presses': [1, 2]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1593: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...icks': [1, 2]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...icks': [1, 2]}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'presses': [1]} != {'presses': [1, 2]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1741: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...icks': [1, 2]}
+E   AssertionError: assert '' == 'Aisyah'
+      
+      - Aisyah
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1752: AssertionError: assert '' == 'Aisyah'
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...icks': [1, 2]}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'presses': [1]} != {'presses': [1, 2]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1876: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...icks': [1, 2]}
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_held_back
+FAILED tests\browser\test_app.py::test_R7_the_guard_of_a_remove_click_ends_at_the_next_press
+FAILED tests\browser\test_app.py::test_R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word
+FAILED tests\browser\test_app.py::test_R29_the_guard_of_opening_ends_at_the_next_press
+4 failed, 417 passed in 122.26s (0:02:02)

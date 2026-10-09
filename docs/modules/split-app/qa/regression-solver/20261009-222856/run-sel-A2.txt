@@ -1,0 +1,297 @@
+server STARTED pid 18888 port 21683 root {workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch
+........................................................................ [ 33%]
+........................................................................ [ 66%]
+........................FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF............ [ 99%]
+..server STOPPED pid 18888 port 21683, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2, 3]} != {'clicks': [1]}
+      {'presses': [1, 2, 3]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...s': [1, 2, 3]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+E   AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+      
+      Differing items:
+      {'clicks': [1, 2]} != {'clicks': [1]}
+      {'presses': [1, 2]} != {'presses': [1]}
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch\tests\browser\test_app.py:1824: AssertionError: assert {'presses': [...icks': [1, 2]} == {'presses': [...'clicks': [1]}
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x640-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x640-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-touch-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-double-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-triple-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-triple-centre]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-touch-double-right-edge]
+FAILED tests\browser\test_app.py::test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-touch-double-centre]
+36 failed, 182 passed, 203 deselected in 67.84s (0:01:07)

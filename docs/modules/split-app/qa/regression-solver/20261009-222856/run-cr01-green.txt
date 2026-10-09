@@ -1,0 +1,5 @@
+server STARTED pid 53732 port 55139 root {workspace}\examples\split\docs\modules\split-app\qa\regression-solver\20261009-222856\scratch
+........................................................................ [ 66%]
+....................................server STOPPED pid 53732 port 55139, exited True, port free again True
+                                                                         [100%]
+108 passed, 313 deselected in 31.17s
