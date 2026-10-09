@@ -5,6 +5,7 @@ import {
   addItem, removeItem, setItemName, setItemPriceText, toggleItemPerson, setServiceText, setSstText,
 } from "./core/bill.js";
 import { computeResult } from "./core/result.js";
+import { summaryText } from "./core/summary.js";
 import { newErrorFlags, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
 import { createPeople } from "./ui/people.js";
 import { createMode } from "./ui/mode.js";
@@ -14,7 +15,25 @@ import { createCharges } from "./ui/charges.js";
 import { createPanel } from "./ui/panel.js";
 
 let bill = newBill();
-const view = { errorShown: newErrorFlags() };
+const view = { errorShown: newErrorFlags(), status: null };
+
+const hasShares = (result) => result.kind === "even" || result.kind === "item";
+
+/** R22, R23: copy the summary of the bill as it is now. Any refusal is shown as a failure, nothing else changes. */
+async function copySummary() {
+  const result = computeResult(bill);
+  if (!hasShares(result)) return;
+  let outcome = "ok";
+  try {
+    await navigator.clipboard.writeText(summaryText(result));
+  } catch {
+    outcome = "fail";
+  }
+  // The panel may have turned into a message while the browser decided (R24): then there is no status to set.
+  if (!hasShares(computeResult(bill))) return;
+  view.status = outcome;
+  render();
+}
 
 function commit(next) {
   if (next === bill) return;
@@ -80,7 +99,7 @@ const charges = createCharges({
     render();
   },
 });
-const panel = createPanel(document.querySelector(".tape"), { onCopy() {} });
+const panel = createPanel(document.querySelector(".tape"), { onCopy: copySummary });
 document.querySelector(".inputs").append(people.el, mode.el, subtotal.el, items.el, charges.el);
 
 function render() {
@@ -90,7 +109,9 @@ function render() {
   subtotal.update(bill, errors);
   items.update(bill, errors);
   charges.update(bill, errors);
-  panel.update(computeResult(bill));
+  const result = computeResult(bill);
+  if (!hasShares(result)) view.status = null;
+  panel.update(result, view.status);
 }
 
 render();

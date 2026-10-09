@@ -334,7 +334,7 @@ Each task is one commit and adds the browser tests for the R#s it cites (see `qa
 5. [x] Items block. Rows, toggles, add, remove, 50 limit, price errors, focus. -> R11, R12, R13, R14, R10, R34
 6. [x] Charges block with rate errors. -> R15, R10
 7. [x] Bill panel. Blocked messages, unassigned message, Bill summary, both shares tables, quiet panel. -> R16, R17, R18, R19, R20, R21
-8. [ ] Copy summary and status. -> R22, R23, R24
+8. [x] Copy summary and status. -> R22, R23, R24
 9. [ ] `src/draft.js` and boot wiring. Save, restore, unreadable note with dismiss, storage failures. -> R25, R26, R27, R28
 10. [ ] New bill dialog. -> R29, R30, R31
 11. [ ] Cross-cutting browser checks. Keyboard order and rings, typing keeps focus, layout at three viewports and the measured 360 and 1280 sizes, reduced motion, injection, static source scans, network log. -> R32, R33, R35, R36, R37, R39

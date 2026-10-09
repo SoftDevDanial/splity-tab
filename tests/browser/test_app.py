@@ -831,4 +831,106 @@ def test_R8_the_panel_follows_each_mode(open_app):
     assert summary_rows(page)[3][1] == "RM 116.60"
 
 
+# ---------------------------------------------------------------- Task 8: copy summary (R22 to R24, R5, R42)
+S2_COPY = ("Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\n"
+           "Aisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60")
+S1_COPY = ("Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\n"
+           "Aisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26")
+FAILED_COPY = "Could not copy. Your browser blocked the clipboard."
+
+
+def copy_summary(page):
+    page.get_by_role("button", name="Copy summary").click()
+
+
+def status_of(page):
+    status = page.locator("p.status")
+    return status.inner_text() if status.count() else None, status.get_attribute("class") if status.count() else None
+
+
+@pytest.mark.parametrize("build, expected", [(build_s2, S2_COPY), (build_s1, S1_COPY)], ids=["S2", "S1"])
+def test_R22_copy_summary_puts_the_exact_text_on_the_clipboard(open_app, build, expected):
+    page = open_app().page
+    build(page)
+    copy_summary(page)
+    assert status_of(page) == ("Summary copied", "status")
+    assert page.evaluate("window.testClipboardText") == expected and page.evaluate("window.testClipboardWrites") == 1
+
+
+def test_R23_the_browser_blocks_the_clipboard(open_app):
+    page = open_app(clipboard="reject").page
+    build_s2(page)
+    before = panel_text(page)
+    copy_summary(page)
+    assert status_of(page) == (FAILED_COPY, "status status-failure")
+    assert panel_text(page).replace(FAILED_COPY, "").strip() == before.strip()
+
+
+def test_R23_the_clipboard_api_is_missing(open_app):
+    page = open_app(clipboard="missing").page
+    build_s2(page)
+    copy_summary(page)
+    assert status_of(page) == (FAILED_COPY, "status status-failure")
+
+
+def test_R24_the_status_lives_as_long_as_the_table(open_app):
+    page = open_app().page
+    build_s2(page)
+    status = page.locator("p.status")
+    assert status.count() == 1 and status.inner_text() == "" and not status.is_visible()
+    copy_summary(page)
+    assert status.inner_text() == "Summary copied"
+    person_field(page, 1).click()
+    page.keyboard.press("End")
+    page.keyboard.type("x")
+    assert status_of(page)[0] == "Summary copied"
+    support.replace_text(page, subtotal_field(page), "")
+    assert page.locator("p.status").count() == 0
+    subtotal_field(page).fill("100.00")
+    assert status_of(page) == ("", "status")
+
+
+def test_R22_a_failed_copy_is_replaced_by_the_next_attempt(open_app):
+    page = open_app(clipboard="reject").page
+    build_s2(page)
+    copy_summary(page)
+    page.evaluate("Clipboard.prototype.writeText = () => Promise.resolve()")
+    copy_summary(page)
+    assert status_of(page) == ("Summary copied", "status")
+
+
+def test_R5_a_new_name_reaches_the_copied_text(open_app):
+    page = open_app().page
+    build_s1(page)
+    person_field(page, 3).click()
+    page.keyboard.press("End")
+    page.keyboard.type(" Wei")
+    copy_summary(page)
+    assert page.evaluate("window.testClipboardText").splitlines()[4] == "Chen Wei RM 24.48"
+
+
+def test_R42_duplicate_names_through_the_whole_flow(open_app):
+    page = open_app().page
+    person_field(page, 1).fill("Ben")
+    person_field(page, 2).fill("Ben")
+    add_person_named(page, "Chen")
+    subtotal_field(page).fill("100.00")
+    assert page.locator("p.error, div.note").count() == 0
+    assert table_cells(page, "tbody") == [["Ben", "RM 38.87"], ["Ben", "RM 38.87"], ["Chen", "RM 38.86"]]
+    assert table_cells(page, "tfoot") == S2_CHECK and remove_button(page, "Ben").count() == 2
+    copy_summary(page)
+    assert page.evaluate("window.testClipboardText").splitlines()[2:4] == ["Ben RM 38.87", "Ben RM 38.87"]
+    switch_to(page, "By item")
+    add_item_named(page, "Tea", "10.00")
+    who_group(page, "Tea").get_by_role("button", name="Ben", exact=True).nth(1).click()
+    assert [b.get_attribute("aria-pressed") for b in who_group(page, "Tea").get_by_role("button").all()] == ["false", "true", "false"]
+    assert table_cells(page, "tbody") == [["Ben", "RM 0.00", "RM 0.00", "RM 0.00"],
+                                          ["Ben", "RM 10.00", "RM 1.66", "RM 11.66"],
+                                          ["Chen", "RM 0.00", "RM 0.00", "RM 0.00"]]
+    assert table_cells(page, "tfoot") == [["Adds up to", "RM 10.00", "RM 1.66", "RM 11.66"]]
+    remove_button(page, "Ben").nth(1).click()
+    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Ben", "Chen"]
+    assert panel_text(page).splitlines()[-1] == "1 item still needs a person. Tap who had it to see the shares."
+
+
 # ===== END OF TESTS (new tests go above this line) =====
