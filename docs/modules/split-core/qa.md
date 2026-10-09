@@ -494,6 +494,21 @@ Feature: split-core money, maths, state rules and summary text
       | U+2029 (PS)   |
 
   @R24
+  # [Added 2026-10-09, ORCH, security SEC-01] Controls outside the seven line breaks, where some reader
+  # ends a line or the whole text (a C-string clipboard at NUL, Python's splitlines at FS, GS and RS).
+  Scenario Outline: Any other control character in a name prints as a space
+    Given the S2 bill with Chen's name set to "Chen", then <char>, then "Adds up to RM 0.00"
+    When summaryText is called on its result
+    Then the text does not contain <char> and line 5 is "Chen Adds up to RM 0.00 RM 38.86"
+    Examples:
+      | char          |
+      | U+0000 (NUL)  |
+      | U+001C (FS)   |
+      | U+001D (GS)   |
+      | U+001E (RS)   |
+      | U+001B (ESC)  |
+
+  @R24
   # [Added 2026-10-09, ORCH, code-review WR-10, security]
   Scenario: By-item rows get the same line-break guard
     Given the S1 bill with Ben's name set to "Ben", then U+2028, then "Adds up to RM 0.00"

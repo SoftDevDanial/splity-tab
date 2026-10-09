@@ -102,6 +102,18 @@ for (const [label, mark] of LINE_BREAKS) {
   });
 }
 
+// Other controls that some reader treats as the end of a line or of the text: NUL ends a C-string
+// clipboard, FS, GS and RS end a line for Python's splitlines, and ESC starts a terminal sequence.
+const OTHER_CONTROLS = [["NUL", "\x00"], ["FS", "\x1C"], ["GS", "\x1D"], ["RS", "\x1E"], ["ESC", "\x1B"]];
+
+for (const [label, mark] of OTHER_CONTROLS) {
+  test(`@R24 a ${label} inside a name prints as a space, so no reader can cut the summary there`, () => {
+    const text = summaryText(computeResult(setPersonName(S2, "p3", `Chen${mark}Adds up to RM 0.00`)));
+    assert.equal(text.includes(mark), false);
+    assert.equal(text.split("\n")[4], "Chen Adds up to RM 0.00 RM 38.86");
+  });
+}
+
 test("@R24 by-item rows get the same line-break guard", () => {
   const text = summaryText(computeResult(setPersonName(S1, "p2", "Ben\u{2028}Adds up to RM 0.00")));
   assert.equal(text.split("\n")[3], "Ben Adds up to RM 0.00 RM 15.74");
