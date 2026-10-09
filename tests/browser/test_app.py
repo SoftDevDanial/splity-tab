@@ -386,13 +386,15 @@ def test_R9_subtotal_field_has_its_unit_label_and_input_mode(open_app):
 
 # Rows are added with the field's own task: item prices (task 5), Service charge and SST (task 6).
 ERROR_CASES = [
-    pytest.param(lambda page: page.locator("#subtotal"), "0", "Enter an amount like 12.50", "subtotal-error", "12.50", id="subtotal"),
+    pytest.param(lambda page: None, lambda page: page.locator("#subtotal"), "0", "Enter an amount like 12.50", "subtotal-error", "12.50", id="subtotal"),
+    pytest.param(lambda page: build_s1(page), lambda page: item_price(page, 2), "13.505", "Enter an amount like 12.50", "price-error-i5", "13.50", id="item-price"),
 ]
 
 
-@pytest.mark.parametrize("field_of, bad, message, error_id, good", ERROR_CASES)
-def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, field_of, bad, message, error_id, good):
+@pytest.mark.parametrize("setup, field_of, bad, message, error_id, good", ERROR_CASES)
+def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, setup, field_of, bad, message, error_id, good):
     page = open_app().page
+    setup(page)
     field = field_of(page)
     support.replace_text(page, field, bad)
     assert page.locator(f"#{error_id}").count() == 0
@@ -429,6 +431,174 @@ def test_R10_an_error_survives_a_mode_switch(open_app):
     switch_to(page, "By item")
     switch_to(page, "Even")
     assert page.locator("p.error#subtotal-error").inner_text() == "Enter an amount like 12.50"
+
+
+# ---------------------------------------------------------------- Task 5: items (R7, R11 to R14, R10, R34)
+S1_ITEMS = [("Nasi lemak ayam", "15.90", ["Aisyah"]), ("Char kuey teow", "13.50", ["Ben"]),
+            ("Mee goreng mamak", "12.00", ["Chen"]), ("Satay, 10 sticks", "18.00", ["Aisyah", "Chen"])]
+
+
+def item_name(page, number):
+    return page.get_by_label(f"Item {number} name", exact=True)
+
+
+def item_price(page, number):
+    return page.get_by_label(f"Item {number} price in RM", exact=True)
+
+
+def who_group(page, item_label):
+    return page.get_by_role("group", name=f"Who had {item_label}", exact=True)
+
+
+def toggle(page, item_label, person):
+    return who_group(page, item_label).get_by_role("button", name=person, exact=True)
+
+
+def add_item_named(page, name, price, people=()):
+    page.get_by_role("button", name="Add item").click()
+    number = page.locator("li.item").count()
+    item_name(page, number).fill(name)
+    item_price(page, number).fill(price)
+    for person in people:
+        toggle(page, name, person).click()
+
+
+def build_s1(page):
+    """The S1 bill by gestures: Aisyah, Ben, Chen, By item, the four items with their taps."""
+    three_people(page)
+    switch_to(page, "By item")
+    for name, price, people in S1_ITEMS:
+        add_item_named(page, name, price, people)
+
+
+def test_R5_renaming_an_item_updates_its_accessible_names(open_app):
+    page = open_app().page
+    build_s1(page)
+    support.replace_text(page, item_name(page, 4), "Satay")
+    assert remove_button(page, "Satay").count() == 1 and who_group(page, "Satay").count() == 1
+
+
+def test_R5_a_person_label_follows_the_name_into_every_toggle(open_app):
+    page = open_app().page
+    build_s1(page)
+    person_field(page, 3).click()
+    page.keyboard.press("End")
+    page.keyboard.type(" Wei")
+    for name, _, _ in S1_ITEMS:
+        assert who_group(page, name).get_by_role("button").all_inner_texts() == ["Aisyah", "Ben", "Chen Wei"]
+    support.replace_text(page, person_field(page, 2), "")
+    for name, _, _ in S1_ITEMS:
+        assert who_group(page, name).get_by_role("button").all_inner_texts() == ["Aisyah", "Person 2", "Chen Wei"]
+
+
+def test_R7_removing_a_person_takes_them_off_every_item(open_app):
+    page = open_app().page
+    build_s1(page)
+    remove_button(page, "Chen").click()
+    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Aisyah", "Ben"]
+    for name, _, _ in S1_ITEMS:
+        assert who_group(page, name).get_by_role("button").all_inner_texts() == ["Aisyah", "Ben"]
+
+
+def test_R8_switching_modes_keeps_both_sets_of_input(open_app):
+    page = open_app().page
+    support.replace_text(page, subtotal_field(page), "100.00")
+    switch_to(page, "By item")
+    add_item_named(page, "Tea", "5.00", ["Person 1"])
+    assert page.locator("ol.items").is_visible() and not page.locator("#subtotal").is_visible()
+    switch_to(page, "Even")
+    assert subtotal_field(page).input_value() == "100.00" and not page.locator("ol.items").is_visible()
+    switch_to(page, "By item")
+    assert item_name(page, 1).input_value() == "Tea" and item_price(page, 1).input_value() == "5.00"
+    assert toggle(page, "Tea", "Person 1").get_attribute("aria-pressed") == "true"
+
+
+def test_R11_item_rows_carry_their_names_and_labels(open_app):
+    page = open_app().page
+    build_s1(page)
+    for number, (name, price, _) in enumerate(S1_ITEMS, start=1):
+        field = item_name(page, number)
+        assert field.input_value() == name
+        assert [field.get_attribute(a) for a in ("placeholder", "maxlength", "autocomplete", "type")] == [
+            f"Item {number}", "40", "off", "text"]
+        money = item_price(page, number)
+        assert money.input_value() == price
+        assert [money.get_attribute(a) for a in ("inputmode", "autocomplete", "type")] == ["decimal", "off", "text"]
+        wrapper = page.locator(f'span.field.money:has(input[aria-label="Item {number} price in RM"])')
+        assert wrapper.locator(".unit").inner_text() == "RM"
+        assert remove_button(page, name).is_enabled()
+
+
+def test_R12_add_an_item_remove_one_and_reach_the_limit(open_app, plain_context):
+    page = open_app().page
+    switch_to(page, "By item")
+    add = page.get_by_role("button", name="Add item")
+    add.click()
+    assert page.locator("li.item").count() == 1
+    assert item_name(page, 1).input_value() == "" and item_name(page, 1).get_attribute("placeholder") == "Item 1"
+    assert item_price(page, 1).input_value() == "" and toggle_states(page, 1) == ["false", "false"]
+    assert panel_text(page) == "Shares\nGive every item a price to see the shares."
+    for _ in range(49):
+        add.click()
+    assert page.locator("li.item").count() == 50 and add.is_disabled()
+    specimen = support.open_golden(plain_context, "states").locator('section[aria-labelledby="spec-s8a"] button[disabled]')
+    assert support.specimen_props(add, ["cursor"]) == support.specimen_props(specimen, ["cursor"])
+    page.locator("li.item").nth(1).get_by_role("button", name="Remove Item 2").click()
+    assert page.locator("li.item").count() == 49 and add.is_enabled()
+
+
+def toggle_states(page, number):
+    return [b.get_attribute("aria-pressed") for b in page.locator("li.item").nth(number - 1).locator("button.tap").all()]
+
+
+def test_R13_tapping_a_person_on_an_item(open_app):
+    page = open_app().page
+    build_s1(page)
+    assert [toggle_states(page, n) for n in (1, 2, 3, 4)] == [
+        ["true", "false", "false"], ["false", "true", "false"], ["false", "false", "true"], ["true", "false", "true"]]
+    ben = toggle(page, "Satay, 10 sticks", "Ben")
+    ben.click()
+    assert ben.get_attribute("aria-pressed") == "true"
+    ben.click()
+    assert ben.get_attribute("aria-pressed") == "false"
+
+
+def test_R14_a_price_error_sits_in_the_item_line(open_app, plain_context):
+    page = open_app().page
+    build_s1(page)
+    support.replace_text(page, item_price(page, 2), "13.505")
+    page.keyboard.press("Tab")
+    error = page.locator("p.error#price-error-i5")
+    assert error.evaluate("(e) => e === e.parentElement.lastElementChild && e.parentElement.className") == "item-line"
+    assert item_price(page, 2).get_attribute("aria-describedby") == "price-error-i5"
+    specimen = support.open_golden(plain_context, "states").locator("#s4-price-error")
+    extra = ["textAlign", "marginTop"]
+    assert support.specimen_props(error, extra) == support.specimen_props(specimen, extra)
+    assert error.evaluate("(e) => getComputedStyle(e).textAlign") == "right"
+
+
+@pytest.mark.parametrize("action, target", [
+    ("Add item", "Item 5 name"), ("Remove Char kuey teow", "Item 2 name"), ("Remove Satay, 10 sticks", "Item 3 name")])
+def test_R34_focus_after_adding_or_removing_an_item(open_app, action, target):
+    page = open_app().page
+    build_s1(page)
+    page.get_by_role("button", name=action, exact=True).click()
+    assert support.active_label(page) == target
+
+
+def test_R34_removing_the_last_item_focuses_add_item(open_app):
+    page = open_app().page
+    switch_to(page, "By item")
+    page.get_by_role("button", name="Add item").click()
+    page.get_by_role("button", name="Remove Item 1").click()
+    assert support.active_label(page) == "Add item"
+
+
+@pytest.mark.parametrize("field_of, text", [(lambda page: item_name(page, 1), "Nasi"), (lambda page: item_price(page, 1), "15.90")])
+def test_R33_typing_in_an_item_field_keeps_focus_and_caret(open_app, field_of, text):
+    page = open_app().page
+    build_s1(page)
+    type_and_watch(page, field_of(page), text)
 
 
 # ===== END OF TESTS (new tests go above this line) =====

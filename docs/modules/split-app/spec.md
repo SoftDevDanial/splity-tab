@@ -331,7 +331,7 @@ Each task is one commit and adds the browser tests for the R#s it cites (see `qa
 2. [x] `index.html` with the CSP meta, `src/system.css` byte copy, `src/main.js` boot that renders header, People, mode switch, Subtotal, Charges and the blocked panel from `newBill()`. -> R1, R2, R3, R38
 3. [x] People block. Rows, live names, add, remove, limits, focus after add and remove, duplicate names, and the icons module (the four SVGs through `createElementNS`, CG-10). -> R4, R5, R6, R7, R33, R34, R42
 4. [x] Mode switch and Subtotal block with the inline error rule. -> R8, R9, R10
-5. [ ] Items block. Rows, toggles, add, remove, 50 limit, price errors, focus. -> R11, R12, R13, R14, R10, R34
+5. [x] Items block. Rows, toggles, add, remove, 50 limit, price errors, focus. -> R11, R12, R13, R14, R10, R34
 6. [ ] Charges block with rate errors. -> R15, R10
 7. [ ] Bill panel. Blocked messages, unassigned message, Bill summary, both shares tables, quiet panel. -> R16, R17, R18, R19, R20, R21
 8. [ ] Copy summary and status. -> R22, R23, R24
