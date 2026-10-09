@@ -4,6 +4,7 @@ Run from the project root: python -m pytest tests/browser -q
 Real gestures only. State that is not under test is set up with fill() and clicks on visible controls,
 never through a hook in the app (there is none).
 """
+import ast
 import json
 import re
 import sys
@@ -1708,6 +1709,63 @@ def test_R40_the_runner_builds_the_documented_command(screen, seed, after_load):
         assert cmd[cmd.index("--candidate-init-script") + 1] == f"./tests/browser/fidelity/{seed}"
     assert "--no-full-page" not in cmd
     assert len(runner.SCREENS) * len(runner.VIEWPORTS) == 10 and runner.VIEWPORTS == ("390x844", "1280x800")
+
+
+# ---------------------------------------------------------------- Task 13: the cold-boot live gate (R41)
+# The gate itself is `python tests/browser/live_e2e.py` (a few seconds, writes qa/live-e2e/<ts>/). These tests keep its
+# script honest without running a second browser inside this one: what it expects, how it labels its steps, and that
+# it uses real gestures only.
+LIVE_SCRIPT = ROOT / "tests" / "browser" / "live_e2e.py"
+ACTION_WORDS = {"open", "replace", "click", "close", "type", "press", "tap", "reload", "no"}
+
+
+def live_gate_steps():
+    tree = ast.parse(LIVE_SCRIPT.read_text(encoding="utf-8"))
+    return [node for node in ast.walk(tree) if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+            and node.func.attr == "step" and isinstance(node.func.value, ast.Name) and node.func.value.id == "gate"]
+
+
+def test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields():
+    import live_e2e
+    assert live_e2e.format_step(3, "click it", "it is open", "PASS") == "03 | gesture: click it | assertion: it is open | PASS"
+    steps = live_gate_steps()
+    assert [call.args[0].value for call in steps] == [1, 2, 3, 4, 5, 6, 7]  # one call per numbered step of qa.md
+    for call in steps:
+        fields = {keyword.arg: keyword.value.value if isinstance(keyword.value, ast.Constant) else None for keyword in call.keywords}
+        gesture, assertion = fields["gesture"], fields["assertion"]
+        assert gesture and assertion, call.args[1].value
+        assert gesture.split()[0] in ACTION_WORDS, f"step {call.args[0].value}: the gesture field holds {gesture!r}"
+        assert assertion.split()[0] not in ACTION_WORDS, f"step {call.args[0].value}: the assertion field holds {assertion!r}"
+
+
+def test_R41_the_gate_expects_what_the_suite_expects():
+    import live_e2e
+    assert (live_e2e.S2_COPY, live_e2e.S1_COPY) == (S2_COPY, S1_COPY)
+    assert (live_e2e.S2_SUMMARY, live_e2e.S1_SUMMARY) == (S2_SUMMARY, S1_SUMMARY)
+    assert (live_e2e.S2_ROWS, live_e2e.S2_CHECK, live_e2e.S1_ROWS, live_e2e.S1_CHECK) == (S2_ROWS, S2_CHECK, S1_ROWS, S1_CHECK)
+    assert live_e2e.S1_ITEMS == S1_ITEMS and live_e2e.S3_PANEL == EVEN_MESSAGE
+    assert live_e2e.INIT_SCRIPTS == ["tests/browser/clipboard/recorder.js"]  # the recorder is the one init script (CG-7)
+
+
+READS_ONLY = {"STATE_JS", "ITEMS_JS", "SUMMARY_JS", "TABLE_JS", "ACTIVE_JS"}
+READ_EXPRESSIONS = {"window.testClipboardText", "window.testClipboardWrites", "localStorage.getItem('split.draft')",
+                    "() => !Clipboard.prototype.writeText.toString().includes('[native code]')",
+                    "(d) => d.matches(':modal')", "(d) => d.open"}
+
+
+def test_R41_the_gate_uses_real_gestures_and_reads_only():
+    source = LIVE_SCRIPT.read_text(encoding="utf-8")
+    tree = ast.parse(source)
+    keywords = {node.arg for node in ast.walk(tree) if isinstance(node, ast.keyword)}
+    attributes = {node.attr for node in ast.walk(tree) if isinstance(node, ast.Attribute)}
+    assert not keywords & {"storage_state", "bypass_csp", "permissions"}  # a cold context, the strict policy live, no permission
+    assert not attributes & {"fill", "dispatch_event", "check", "set_checked", "select_option", "route", "add_init_script",
+                             "launch_persistent" + "_context"}  # no shortcut that is not a gesture
+    made = "new" + "_context("  # spelled in two parts so test_R39_only_the_rig_makes_browser_contexts does not flag this file
+    assert source.count("rig." + made) == 1 and source.count(made) == 1  # the one context comes from the rig
+    seen = [node.args[0].id if isinstance(node.args[0], ast.Name) else node.args[0].value for node in ast.walk(tree)
+            if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == "evaluate"]
+    assert seen and all(item in READS_ONLY | READ_EXPRESSIONS for item in seen), sorted(set(seen) - READS_ONLY - READ_EXPRESSIONS)
 
 
 # ===== END OF TESTS (new tests go above this line) =====

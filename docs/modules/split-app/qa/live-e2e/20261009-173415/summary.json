@@ -1,0 +1,23 @@
+{
+  "started": "2026-10-09T17:34:15",
+  "ended": "2026-10-09T17:34:19",
+  "chromium": "149.0.7827.55",
+  "port": 41304,
+  "server_pid": 45392,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "init_scripts": [
+    "tests/browser/clipboard/recorder.js"
+  ],
+  "storage_state": null,
+  "bypass_csp": false,
+  "steps": 7,
+  "failure": null,
+  "server_log": [
+    "server STARTED pid 45392 port 41304 root {workspace}\\examples\\split",
+    "server STOPPED pid 45392 port 41304, exited True, port free again True"
+  ],
+  "result": "PASS"
+}

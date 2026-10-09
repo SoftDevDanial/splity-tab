@@ -338,7 +338,7 @@ Each task is one commit and adds the browser tests for the R#s it cites (see `qa
 10. [x] New bill dialog. -> R29, R30, R31
 11. [x] Cross-cutting browser checks. Keyboard order and rings, typing keeps focus, layout at three viewports and the measured 360 and 1280 sizes, reduced motion, injection, static source scans, network log. -> R32, R33, R35, R36, R37, R39
 12. [x] `tests/browser/fidelity/` setup scripts (`seed-s1.js`, `seed-s2.js`, `seed-s5.js`, `open-new-bill.js`) and `run.py` (server lifecycle around the unmodified sdlc harness `fidelity.py`, started with `sys.executable`, CG-11), and a passing run with evidence. -> R40
-13. [ ] `tests/browser/live_e2e.py` cold-boot gate and a passing run with evidence. -> R41
+13. [x] `tests/browser/live_e2e.py` cold-boot gate and a passing run with evidence. -> R41
 
 ## Threat model
 | Asset | Trust boundary | Threat | Required mitigation |
