@@ -1506,15 +1506,27 @@ def test_R10_a_cancelled_press_releases_the_waiting_error(open_app):
 # A double click or a double tap is two clicks. The first can close the dialog or remove a row, so the second lands on
 # whatever is drawn under the pointer afterwards. `event.detail` is the click count: 1 for the first, 2 for the second.
 PHONES = [(375, 667), (360, 640), (412, 732)]  # the sizes where QA and the code review reproduced it, with the S1 bill
+# The click counts of the clicks and of the mouse presses that reach the page. The guard cancels both kinds (RG-CR-02), so a
+# test of how long it lasts has to watch both: a guard that kept only its press listener changes no click.
 RECORD_BODY_CLICKS_JS = """() => {
   window.testBodyClicks = [];
+  window.testBodyPresses = [];
   document.body.addEventListener('click', (event) => window.testBodyClicks.push(event.detail), false);
+  document.body.addEventListener('mousedown', (event) => window.testBodyPresses.push(event.detail), false);
 }"""
 
 
 def settle(page):
     """Two animation frames, so every click the browser still had queued from a gesture has been delivered."""
     page.evaluate("() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)))")
+
+
+WHOLE_DOUBLE_CLICK = {"presses": [1, 2], "clicks": [1, 2]}  # what the page sees of a real double click nobody holds back
+
+
+def seen_by_the_page(page):
+    """The click counts of the presses and clicks that reached the body since RECORD_BODY_CLICKS_JS. A cancelled one is missing."""
+    return page.evaluate("({ presses: window.testBodyPresses, clicks: window.testBodyClicks })")
 
 
 def activate_twice(page, how, point):
@@ -1574,8 +1586,11 @@ def test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_he
     assert dialog_is_open(page) is False and focused(page) == "New bill"
     aisyah = toggle(page, "Char kuey teow", "Aisyah")
     assert aisyah.get_attribute("aria-pressed") == "false"
+    page.evaluate(RECORD_BODY_CLICKS_JS)
     aisyah.dblclick()  # two real clicks on a toggle flip it twice: the guard of the closed dialog is gone
     settle(page)
+    # The toggle alone cannot show it: swallowing both would leave it unpressed too. The presses and the clicks can.
+    assert seen_by_the_page(page) == WHOLE_DOUBLE_CLICK
     assert aisyah.get_attribute("aria-pressed") == "false" and stored_text(page) == seeds.S1
 
 
@@ -1721,9 +1736,20 @@ def test_R7_the_guard_of_a_remove_click_ends_at_the_next_press(open_app):
     page.evaluate(RECORD_BODY_CLICKS_JS)
     aisyah.dblclick()  # two real clicks on a toggle flip it twice: the guard of the Remove click is gone
     settle(page)
-    # Both clicks reached the page. The toggle alone cannot show it: swallowing both would leave it unpressed too.
-    assert page.evaluate("window.testBodyClicks") == [1, 2]
+    # Both presses and both clicks reached the page. The toggle alone cannot show it: swallowing both would leave it
+    # unpressed too, and a guard that kept its press listener (RG-CR-02) cancels a press and changes no click.
+    assert seen_by_the_page(page) == WHOLE_DOUBLE_CLICK
     assert aisyah.get_attribute("aria-pressed") == "false" and stored(page)["bill"]["items"][0]["who"] == ["p2"]
+
+
+def test_R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word(open_app):
+    # The user-visible side of the same lifetime (RG-CR-02). The first press of this double click has count 1 and ends the
+    # guard; a guard that kept its press listener would cancel the second press, and the word would not be selected.
+    page = open_app(seed=seeds.S2).page
+    page.get_by_role("button", name="Remove Chen", exact=True).click()
+    person_field(page, 1).dblclick()
+    selected = page.evaluate("() => { const i = document.activeElement; return i.value.slice(i.selectionStart, i.selectionEnd); }")
+    assert selected == "Aisyah"
 
 
 # ---------------------------------------------------------------- Security I-1: the repeat press on New bill (R29, R30)
@@ -1773,8 +1799,9 @@ def test_R29_the_guard_of_opening_ends_at_the_next_press(open_app):
     page.evaluate(RECORD_BODY_CLICKS_JS)
     ben.dblclick()  # two real clicks on a toggle flip it twice: nothing is left of the guard
     settle(page)
-    # Both clicks reached the page. The toggle alone cannot show it: swallowing both would leave it unpressed too.
-    assert page.evaluate("window.testBodyClicks") == [1, 2]
+    # Both presses and both clicks reached the page. The toggle alone cannot show it: swallowing both would leave it
+    # unpressed too.
+    assert seen_by_the_page(page) == WHOLE_DOUBLE_CLICK
     assert ben.get_attribute("aria-pressed") == "false" and stored_text(page) == seeds.S1
 
 
