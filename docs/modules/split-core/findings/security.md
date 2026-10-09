@@ -2,7 +2,7 @@
 module: split-core
 kind: security
 status: issues_found
-counts: { critical: 0, high: 0, medium: 1, low: 3 }
+counts: { critical: 0, high: 0, medium: 0, low: 2 }
 ---
 # Security audit: split-core
 
@@ -145,3 +145,87 @@ Evidence is in `docs/modules/split-core/qa/security-solver/20261009T130259/`. Th
 **Routed, not fixed here (split-app owners).**
 - Rule D8 rejects only LF and CR. Consider rejecting every `\p{Cc}` and `\p{Bidi_Control}` in names there too, so the screen label matches the summary text.
 - The P07 decoder-failure table above stands as the auditor wrote it.
+
+## Re-check (2026-10-09)
+Role: security auditor (finder, read-only on `src/`, `tests/` and `docs/design/`). HEAD `c7f9640`, after the
+solver commits `b3b43fe` (SEC-01), `a09ce03` (SEC-02), `b5b448d` (SEC-03) and `e56b396` (SEC-04). The verdict
+and findings above are the first audit and are kept as written. [Changed 2026-10-09, re-check: the front
+matter now counts the findings open after this re-check. It read `medium: 1, low: 3` before.]
+
+**Verdict: PASS. SEC-01 CLOSED, SEC-02 CLOSED, SEC-03 CLOSED, SEC-04 CLOSED. 2 new LOW (SEC-05, SEC-06).
+0 CRITICAL, 0 HIGH, 0 MEDIUM open.**
+- The forging fixes hold everywhere I could test. All 1,114,112 code points were tried inside a forging name. Exactly the 79 code points of `[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]` are replaced, and not one case gave a forged line, a NUL or a bidi control to any of six consumers. Real Python `splitlines`, a NUL-terminated read and Chromium layout agree.
+- Both new findings are about regression guards, not about today's behaviour. The new `codeOnly` lexer lets 10 live snippets through the real hygiene test (SEC-05). The new R24 tests pin only 13 of the 79 replaced code points (SEC-06).
+
+Evidence: `docs/modules/split-core/qa/security/20261009T131232/` (`node-test.txt`, `probe-output.txt`, `scripts/`).
+The suite is **tests 230, pass 230, fail 0**, exit 0, at the start and at the end of the re-check.
+
+### Per finding
+| SEC | Status | What was checked | Evidence |
+|---|---|---|---|
+| SEC-01 MEDIUM | CLOSED | `CONTROLS` at src/core/summary.js:8, applied at :27. NUL, FS, GS, RS, US, ESC, TAB, DEL, C1, each inside, leading, trailing and tripled, in both modes. The SEC-01 NUL name now gives a text with no NUL, 6 lines and the real last line `Adds up to RM 116.60`. Exhaustive pass over every code point: 0 failures for the LF-only, JS line terminator, UAX #14, Python `splitlines`, Bidi class B and "NUL ends text" consumers. Fuzz: 0 of 100,000 names. Real Python `splitlines` and a NUL read on 89 HEAD texts: 0 of 89 cut or split | R01a, R01b, R01d, R01e, R03 |
+| SEC-02 LOW | CLOSED | All 12 bidi controls are replaced. In headless Chromium, RLO, RLE, RLI and LRO, alone or mixed, leave the share `RM 38.87` in reading order, and no other row moves (`pre`, `pre-wrap`, `<br>`). Nothing is over-replaced: Hebrew and Arabic names, a ZWJ emoji family, ZWNJ, a combining accent and NBSP print unchanged, and the share next to a right-to-left name stays in reading order | R01a, R01c, R01f, R03 |
+| SEC-03 LOW | CLOSED | spec.md:244-248 strikes "None" and records both residuals. Both behave as written: `Adds up to RM 0.00` gives the row `Adds up to RM 0.00 RM 38.86`. NEL, U+200B, U+2800 and U+3164 alone skip the `Person N` fallback and print no visible name. LRM alone and U+180E behave the same and fall under the note's own wording | R01g |
+| SEC-04 LOW | CLOSED (as specified) | The ten names are banned in code. Ordinary call forms go red in the real `tests/hygiene.test.js` in every core file (3 controls). `codeOnly` blanks only string text, template text and regex bodies in the 5 real files (all 42 affected code lines reviewed), so there are no false hits. The lexer has false negatives, filed as SEC-05 | R04 controls and review |
+
+### Threat model and residuals against the code
+- The threat row for "Clipboard text integrity" (spec.md:241) matches the code. It names the widened class, the tests for NUL, FS, GS, RS and ESC, and the bidi controls with an RLO test.
+- The R24 note lists exactly the replaced set, and the exhaustive pass in R01d reproduces it code point for code point.
+- The two accepted residuals at spec.md:247-248 are true as written (R01g).
+- Doc precision, routed to code review, not a security finding:
+  - The name invariant note (spec.md:19) and the `summaryText` JSDoc (summary.js:11-12) say "every control character and/or separator". That is looser than the code. Space separators such as NBSP and U+3000 are kept (R01f), and the bidi controls are not named.
+  - The comment above `CONTROLS` (summary.js:4-7) and R24 are exact.
+
+## LOW (re-check)
+
+### SEC-05: `codeOnly` misreads some slashes and escapes, so live banned code passes the R25 gate
+- **File:** tests/hygiene.test.js:33-39 (`REGEX_AFTER`, `REGEX_AFTER_WORD`, `regexMayStart`), :43-55 (`literalEnd`), :59-106 (`codeOnly`), :22 (the `Function` pattern). **Boundary:** future edits to `src/core/` -> dynamic code or ambient access from the pure core.
+- **Threat:** I appended each snippet in memory to all 5 core files. Each one reaches a banned global when its module is imported (proved with trapped globals). The real, unchanged `tests/hygiene.test.js` still passes 25 of 25 on all 10:
+  1. **Postfix `++` or `--` before `/`.** The slash is read as the start of a regex, so the rest of the line is blanked (F1: `let r04Hits = 0; const r04Rate = r04Hits++ / process.uptime();`).
+  2. **A member named like a keyword before `/`.** `.in`, `.of`, `.delete` and the like match `REGEX_AFTER_WORD` (F2: `r04Range.in / performance.now()`).
+  3. **A regex literal right after `if (...)`, read as division.** Its body is then lexed as code. A quote in it opens a fake string (F3). A `//` opens a fake comment (F5). A backtick opens a fake template that runs to the next backtick (F4b).
+  4. **Template desync.** `${n++ / 2}` swallows the template's `}`. The function's closing brace then closes the template, and the code after it is blanked up to the next backtick (F6b).
+  5. **Pattern limits outside the lexer.** A bare `Function` reference with no call (F7). An identifier written with a unicode escape, `\u{70}rocess`, which also hides names from the original list, such as `\u{44}ate` (F8, F9). The constructor route, which uses no name at all (F10).
+  - F4 and F6 do turn the run red, but only because their hidden region reaches the end of the file and swallows the suite's own in-memory plant lines. The 5 per-file banned-name scans stay green.
+  - **Impact:** this is a regression guard only. The core has no ambient access today (P06 re-run: 0 hits).
+  - Forms 1 to 4 are valid code an honest edit could write, though uncommon. Form 5 is deliberate obfuscation, which a name scan cannot be expected to stop. The first audit's SEC-04 fix already pointed to a runtime test for that case.
+- **Maps to spec threat:** R25, through the SEC-04 fix. Not a threat-model row.
+- **Reproduction:** `node docs/modules/split-core/qa/security/20261009T131232/scripts/r04-codeonly.mjs`. It runs the real test through a preload that patches only in-memory reads, so no file is copied or changed. Or add the F1 line above to any core file and run `node --test tests/hygiene.test.js`: it stays green.
+- **Fix:**
+  - (a) The robust layer: add a runtime test like `scripts/r04-exec-child.mjs` and the first audit's `p06-ambient.mjs`. Install traps on the banned globals and on `Function.prototype.constructor` before a dynamic import of each core module, run the exports, and assert zero hits, with a negative control. That catches all 10 snippets whatever their syntax.
+  - (b) If the scan stays, harden it:
+    - Read `/` after `++`, `--` or a `.keyword` member as division.
+    - For `/` after `)`, scan both readings and keep every hit (fail safe).
+    - Decode `\u{...}` and `\uXXXX` escapes in code before matching, for both lists.
+    - Match `\bFunction\b` in code, not only the call and `new` forms.
+    - Add F1 to F10 as in-memory plant tests.
+
+### SEC-06: The new R24 tests pin 13 of the 79 replaced code points
+- **File:** tests/summary.test.js:89-103 (the seven), :107-117 (`OTHER_CONTROLS`), :119-123 (the RLO test). The class is at src/core/summary.js:8. **Boundary:** a future edit to `CONTROLS` -> the SEC-01 and SEC-02 guards.
+- **Threat:** I narrowed `CONTROLS` in memory with a load hook and ran the real `tests/summary.test.js` (R05):
+  - Narrowing the bidi part to RLO only stays green (25 of 25). It lets 11 bidi controls through again, including RLE and RLI, which the first audit measured moving a row's text (P09).
+  - Narrowing the control part to the 12 tested characters stays green. It lets 55 C0 and C1 controls through, BS, BEL, US, DEL and CSI U+009B among them.
+  - Narrowing both stays green, with 66 code points through.
+  - Dropping the bidi part goes red (the control). Today's code is correct (R01d).
+  - My own SEC-01 and SEC-02 fix advice asked for one test per named character, and that is what produced this shape.
+- **Maps to spec threat:** "Clipboard text integrity". This is a regression guard for the SEC-01 and SEC-02 mitigations.
+- **Reproduction:** `node docs/modules/split-core/qa/security/20261009T131232/scripts/r05-class-mutants.mjs`.
+- **Fix:** Add one property test that walks U+0000 to U+2069 (no class member lies above it). It asserts that every member of `[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]` in a name prints as one space and every other code point prints unchanged. It kills all three narrowing mutants and keeps the named-character tests as readable examples.
+
+### Re-check: what still holds
+- The first audit's probes, re-run unchanged at HEAD, all pass:
+  - P01: 1,000,000 strings, 0 throws.
+  - P02: 0 of 50,000 forging names, and every lookalike line count is now 6.
+  - P03: no pollution, no mutation.
+  - P04: exhaustive exactness.
+  - P06: 0 ambient accesses, and the negative control fired 8 of 8.
+  - P08: 600,000 bills, 0 differences.
+- `src/` changed only in `summary.js` between `e034951` and `c7f9640`, so T1, T2, T3 and T5 are unaffected.
+- P02's NUL line now prints the text minus one character. That is a probe artifact (`indexOf` returns -1), not a truncation.
+
+### Re-check: process accounting
+- Every write used the Write tool. Scripts and output are only in the new evidence folder. Nothing was written to `src/`, `tests/`, `docs/design/`, the ledger or `docs/progress/`. The mutation and plant runs patch in-memory module loads and file reads only, and no source or test file was copied or changed.
+- One command sent a probe's output to `/dev/null` to read its exit code. It wrote no file.
+- Headless Chromium (R03): python 44640, browser 13212, GPU 46028. All three were gone afterwards (checked by PID).
+- R04 and R05 children were `spawnSync` with SIGKILL timeouts, each waited for and exited. Their PIDs are in `probe-output.txt`.
+- Final sweep by name (node, python, chrome) at 13:25: none alive. The OS clipboard was never touched.

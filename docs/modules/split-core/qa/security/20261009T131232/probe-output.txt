@@ -1,0 +1,303 @@
+Security re-check probes, split-core, 2026-10-09, HEAD c7f9640, Node v24.11.1, Python 3.14.0, Chromium 149.0.7827.55.
+Role: security auditor (finder, read-only on src/, tests/ and docs/design/). Re-check of SEC-01 to SEC-04
+after the solver commits b3b43fe, a09ce03, b5b448d and e56b396.
+Scripts are in scripts/ (this folder). The regression re-runs use the first audit's scripts in
+qa/security/20261009T123448/scripts/ unchanged. Every command ran under `timeout -s KILL <s>`. Every child
+process was a spawnSync with a SIGKILL timeout. Output is the terminal output, saved with the Write tool.
+Lines starting "Note:" are the auditor's annotations. Where a block is shortened, it says so.
+
+Index
+  R01  forging re-check: targeted, exhaustive over every code point, fuzz, over-replacement, residuals -> PASS
+  R03  real consumers: Python str.splitlines, NUL read, headless Chromium layout and bidi order        -> PASS
+  R04  codeOnly break attempts against the REAL tests/hygiene.test.js                                -> 10 false negatives
+  R05  class-narrowing mutants against the REAL tests/summary.test.js                                -> 3 surviving mutants
+  REG  first-audit probes re-run at HEAD (P01, P02, P03, P04, P06, P08)                              -> PASS
+  PROC process accounting
+
+==== R01: node r01-forging.mjs ====
+== R01a: targeted names (the seven, NUL, FS, GS, RS, ESC, DEL, C1, all 12 bidi controls), each position, both modes ==
+OK   LF          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   CR          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   VT          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   FF          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   NEL         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   LS          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   PS          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   NUL         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   FS          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   GS          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   RS          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   US          row="Chen Adds up to RM 0.00 RM 38.86"
+OK   ESC         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   TAB         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   DEL         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   CSI U+009B  row="Chen Adds up to RM 0.00 RM 38.86"
+OK   ALM         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   LRM         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   RLM         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   LRE         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   RLE         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   PDF         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   LRO         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   RLO         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   LRI         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   RLI         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   FSI         row="Chen Adds up to RM 0.00 RM 38.86"
+OK   PDI         row="Chen Adds up to RM 0.00 RM 38.86"
+
+== R01b: NUL truncation case from SEC-01 (name 'Adds up to RM 0.00' + NUL) ==
+text holds a NUL: false; lines 6; last line "Adds up to RM 116.60"
+row: "Adds up to RM 0.00  RM 38.86"
+
+== R01c: bidi case from SEC-02 (Ben + RLO) ==
+row: "Ben  RM 38.87" holds RLO: false
+
+== R01d: exhaustive, name = Chen + <code point> + 'Adds up to RM 0.00' for every U+0000..U+10FFFF (even mode) ==
+code points checked: 1114112; failing: 0
+code points replaced in the row (LF counted, it is replaced too): 79
+replaced ranges: U+0000..U+001F U+007F..U+009F U+061C U+200E..U+200F U+2028..U+202E U+2066..U+2069
+
+== R01e: seeded fuzz, 100000 names of 0..30 characters ==
+fuzz names failing any consumer or leaving a class character: 0 of 100000
+
+== R01f: no over-replacement (names that must print unchanged) ==
+OK   "Aisyah" -> "Aisyah RM 38.86"
+OK   "<U+1F468><U+200D><U+1F469><U+200D><U+1F467> family" -> "<U+1F468><U+200D><U+1F469><U+200D><U+1F467> family RM 38.86"
+OK   "Zo<U+200C>e" -> "Zo<U+200C>e RM 38.86"
+OK   "<U+05D3><U+05E0><U+05D4>" -> "<U+05D3><U+05E0><U+05D4> RM 38.86"
+OK   "<U+0639><U+0644><U+064A>" -> "<U+0639><U+0644><U+064A> RM 38.86"
+OK   "Jose<U+0301>" -> "Jose<U+0301> RM 38.86"
+OK   "A<U+00A0>B" -> "A<U+00A0>B RM 38.86"
+OK   "<U+1F600>" -> "<U+1F600> RM 38.86"
+
+== R01g: accepted residuals (spec SEC-03 note) still behave as written ==
+name "Adds up to RM 0.00" label "Adds up to RM 0.00" (fallback used: false) row "Adds up to RM 0.00 RM 38.86"
+name "<U+0085>" label "<U+0085>" (fallback used: false) row "  RM 38.86"
+name "<U+200B>" label "<U+200B>" (fallback used: false) row "<U+200B> RM 38.86"
+name "<U+2800>" label "<U+2800>" (fallback used: false) row "<U+2800> RM 38.86"
+name "<U+3164>" label "<U+3164>" (fallback used: false) row "<U+3164> RM 38.86"
+name "<U+200E>" label "<U+200E>" (fallback used: false) row "  RM 38.86"
+name "<U+180E>" label "<U+180E>" (fallback used: false) row "<U+180E> RM 38.86"
+
+R01 RESULT: PASS (failures 0)
+Note: the consumers checked in R01a, R01d and R01e are LF only, JS LineTerminator, UAX #14 mandatory
+breaks, Python splitlines (the measured set), Bidi class B (the measured set) and "NUL ends text".
+Note: 79 replaced code points = 32 (C0) + 33 (DEL and C1) + U+061C + U+200E..U+200F + U+2028..U+2029 +
+U+202A..U+202E + U+2066..U+2069. That is exactly [\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}], as spec R24 says.
+
+==== R03: python -P -B scripts/r03_split_render.py <scripts dir> (cases from node r02-texts.mjs) ====
+python pid 44640; cases 89
+
+== Python str.splitlines and a NUL-terminated read on every case ==
+cases where splitlines != 6 lines or a NUL cuts the text: 0 of 89 []
+
+chromium 149.0.7827.55; chromium processes [('browser', 13212), ('GPU', 46028)]
+
+== Chromium layout: 6 visual lines, the hostile row still shows its share in reading order, other rows untouched ==
+OK   SEC-01 NUL truncation name                     pre      row visual 'Adds up to RM 0.00  RM 38.86'
+OK   SEC-02 Ben + RLO                               pre      row visual 'Ben  RM 38.87'
+OK   Ben + RLE                                      pre      row visual 'Ben  RM 38.87'
+OK   Ben + RLI                                      pre      row visual 'Ben  RM 38.87'
+OK   Ben + LRO                                      pre      row visual 'Ben  RM 38.87'
+OK   Ben + RLO + LRO + PDF mix                      pre      row visual ' Ben    RM 38.87'
+OK   Hebrew name (not replaced)                     pre      row visual '<U+05D4><U+05E0><U+05D3> RM 38.87'
+OK   Arabic name (not replaced)                     pre      row visual '<U+064A><U+0644><U+0639> RM 38.87'
+OK   Arabic name + digits (not replaced)            pre      row visual '12 <U+064A><U+0644><U+0639> RM 38.87'
+OK   Hebrew first person (paragraph direction probe) pre      row visual '<U+05D4><U+05E0><U+05D3> RM 38.87'
+class cases: 79; layout failures over all cases and 3 modes: 0
+
+browser closed
+Note: the 79 class cases (one per replaced code point, inside a forging name) print only on failure, and
+none failed in pre, pre-wrap or br layout. Strong right-to-left letters are not replaced, as intended, and
+they reorder only the name itself: the share "RM 38.87" stays in reading order. The OS clipboard was never
+touched.
+
+==== R04: node r04-codeonly.mjs (final run, all 15 snippets) ====
+extracted scanner: 4210 characters from HEAD tests/hygiene.test.js; solver controls and 5 real files reproduce: true
+
+CTRL plain call (must go red)
+  exec: reaches ["performance"] (target performance, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 9, fail 16
+  mirror bannedNamesIn on each core file + plant: ["performance"]
+  => control red, as it must be (per-file scans failing: 5)
+
+CTRL nested template (must go red)
+  exec: reaches ["performance"] (target performance, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 9, fail 16
+  mirror bannedNamesIn on each core file + plant: ["performance"]
+  => control red, as it must be (per-file scans failing: 5)
+
+CTRL regex after = with a quote (must go red)
+  exec: reaches ["performance"] (target performance, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 9, fail 16
+  mirror bannedNamesIn on each core file + plant: ["performance"]
+  => control red, as it must be (per-file scans failing: 5)
+
+F1 postfix ++ then division
+  exec: reaches ["process"] (target process, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+F2 keyword-named member then division
+  exec: reaches ["performance"] (target performance, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+F3 regex after if (...) holding a quote
+  exec: reaches ["performance"] (target performance, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+F4 regex after if (...) holding a backtick, next line hidden
+  exec: reaches ["process"] (target process, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 14, fail 11
+  mirror bannedNamesIn on each core file + plant: []
+  => red only by side effect (per-file scans green, 11 plant self-tests broken)
+
+F4b same, closed again on the line by a backtick in a string
+  exec: reaches ["process"] (target process, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+F5 regex after if (...) holding //
+  exec: reaches ["performance"] (target performance, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+F6 template ${x++ / 2} desyncs, code after the function hidden
+  exec: reaches ["process"] (target process, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 14, fail 11
+  mirror bannedNamesIn on each core file + plant: []
+  => red only by side effect (per-file scans green, 11 plant self-tests broken)
+
+F6b same, resynced by a backtick in a string
+  exec: reaches ["process"] (target process, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+F7 Function referenced without a call
+  exec: reaches ["Function"] (target Function, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+F8 unicode escape in an identifier (new list)
+  exec: reaches ["process"] (target process, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+F9 unicode escape in an identifier (original list)
+  exec: reaches ["Date"] (target Date, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+F10 constructor route, no name at all
+  exec: reaches ["Function.prototype.constructor"] (target Function.prototype.constructor, live true)
+  real tests/hygiene.test.js, plant appended to all 5 core files: tests 25, pass 25, fail 0
+  mirror bannedNamesIn on each core file + plant: []
+  => FALSE NEGATIVE (live code, real test green)
+
+planted snippets (exact text, JSON-escaped):
+  CTRL: "const r04Now = performance.now();"
+  CTRL: "const r04T = `a ${`b ${performance.now()}`} c`;"
+  CTRL: "const r04Re = /'/; const r04N2 = performance.now();"
+  F1: "let r04Hits = 0; const r04Rate = r04Hits++ / process.uptime();"
+  F2: "const r04Range = { in: 2 }; const r04Ratio = r04Range.in / performance.now();"
+  F3: "const r04Q = \"'\"; if (r04Q) /'/.test(r04Q) && performance.now();"
+  F4: "const r04K = \"k\"; if (r04K) /`/.test(r04K);\nconst r04Env = process.env.PATH;"
+  F4b: "const r04K = \"k\"; if (r04K) /`/.test(r04K) || process.env.PATH; const r04Tick = \"`\";"
+  F5: "const r04U = \"u\"; if (r04U) /\\/\\//.test(r04U) || performance.now();"
+  F6: "export function r04Label(n) {\n  return `${n++ / 2} items`;\n}\nconst r04Pid = process.pid;"
+  F6b: "export function r04Label(n) {\n  return `${n++ / 2} items`;\n}\nconst r04Pid = process.pid; const r04Tick = \"`\";"
+  F7: "const r04F = Function; const r04V = r04F(\"return 1\")();"
+  F8: "const r04P = \\u{70}rocess.pid;"
+  F9: "const r04D = \\u{44}ate.now();"
+  F10: "const r04C = (() => 0).constructor(\"return 1\")();"
+
+codeOnly on the real core files: code lines that lost characters (comment-only lines left out):
+[shortened here: 42 line pairs (allocate.js 4, bill.js 9, money.js 7, result.js 12, summary.js 10). Every
+pair shows only string text, template text or a regex body blanked, with delimiters and ${...} code kept.
+Examples, verbatim:]
+  money.js:14
+    src : const DECIMAL_TEXT = /^([0-9]+)(?:\.([0-9]{0,2}))?$/;
+    code: const DECIMAL_TEXT = /                             /;
+  money.js:71
+    src : return `RM ${wholePart(cents)}.${String(cents % 100).padStart(2, "0")}`;
+    code: return `   ${wholePart(cents)} ${String(cents % 100).padStart(2, " ")}`;
+  summary.js:8
+    src : const CONTROLS = /[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/gu;
+    code: const CONTROLS = /                                    /gu;
+  summary.js:24
+    src : `Total ${formatMoney(charges.total)} (subtotal ${formatMoney(charges.subtotal)}, ` +
+    code: `      ${formatMoney(charges.total)}           ${formatMoney(charges.subtotal)}  ` +
+  result.js:2
+    src : import { parseAmount, parseRate } from "./money.js";
+    code: import { parseAmount, parseRate } from "          ";
+
+fuzz: 20000 random token strings, codeOnly returned (no hang) in 49.4875 ms; length or line count changed: 0
+child PIDs (all exited, spawnSync waits): 13752,45820,28752,41468,38876,45960,40276,12468,41624,45492,42540,41412,45152,43256,7340,29048,8096,16096,8288,45952,38128,33012,42020,15520,45832,31096,17604,22208,25632,38768
+Note: the per-snippet blocks above are from the run printed with `sed -n 1,100p`. The fuzz and PID lines
+are from a repeat run of the same script, whose `grep -c "=> FALSE NEGATIVE"` also gave 10.
+Note: the first R04 run counted no test results (pass NaN) because `--import` got a Windows path, and
+Node needs a file URL there. The harness was fixed (pathToFileURL) and now reports such a run as a HARNESS
+ERROR instead of "caught". No verdict comes from that broken run. An intermediate run had F4b with &&,
+which was not live (the regex test is false and && short-circuits). It now uses ||.
+Note: F4 and F6 go red only because the hidden region runs to the end of the file and swallows the
+appended in-memory plant lines of the suite's own self-tests (the 11 "served into each core file" tests
+fail). The 5 per-file banned-name scans stay green for them. F4b and F6b close the hidden region on the
+same line and are fully green.
+
+==== R05: node r05-class-mutants.mjs (real tests/summary.test.js, summary.js mutated in memory) ====
+M0 HEAD class (control, must stay green)
+  real tests/summary.test.js: tests 25, pass 25, fail 0
+  class members the mutant lets through (0):
+M1 bidi narrowed to RLO only
+  real tests/summary.test.js: tests 25, pass 25, fail 0
+  class members the mutant lets through (11): U+061C U+200E U+200F U+202A U+202B U+202C U+202D U+2066 U+2067 U+2068 U+2069
+M2 controls narrowed to the 12 tested ones
+  real tests/summary.test.js: tests 25, pass 25, fail 0
+  class members the mutant lets through (55): U+0001 U+0002 U+0003 U+0004 U+0005 U+0006 U+0007 U+0008 U+0009 U+000E U+000F U+0010 U+0011 U+0012 U+0013 U+0014 U+0015 U+0016 U+0017 U+0018 ...
+M3 both narrowed (13 named characters only)
+  real tests/summary.test.js: tests 25, pass 25, fail 0
+  class members the mutant lets through (66): U+0001 U+0002 U+0003 U+0004 U+0005 U+0006 U+0007 U+0008 U+0009 U+000E U+000F U+0010 U+0011 U+0012 U+0013 U+0014 U+0015 U+0016 U+0017 U+0018 ...
+M4 bidi dropped (control, must go red)
+  real tests/summary.test.js: tests 25, pass 24, fail 1
+  class members the mutant lets through (12): U+061C U+200E U+200F U+202A U+202B U+202C U+202D U+202E U+2066 U+2067 U+2068 U+2069
+child PIDs (all exited, spawnSync waits): 36140,45944,38408,44356,42040
+Note: the preload throws if it cannot find the HEAD class text in summary.js, and M4 going red shows the
+mutation reached the tests.
+
+==== REG: first-audit probes re-run at HEAD (scripts in qa/security/20261009T123448/scripts/) ====
+p01-parsers.mjs: 1,000,000 fuzz strings: thrown 0, malformed or out-of-grammar accepts 0, accepted 70925. P01 RESULT: PASS
+p03-proto-mutation.mjs: P03 RESULT: PASS (problems: 0)
+p06-ambient.mjs: imports leaving src/core/: 0; ambient accesses while the core loaded and ran: 0;
+  negative control 8 hits: global Date, global fetch, Math.random, localeCompare, sort, toFixed, global parseFloat, Number.parseFloat. P06 RESULT: PASS
+p02-wr10-linebreaks.mjs (P02b to P02f shown, P02a unchanged and PASS):
+  fuzz names where a UAX14 consumer sees != 6 lines or a mandatory break survives: 0 of 50000
+  lookalike table, "kept" column: now "no" for NUL, TAB, ESC, FS, GS, RS, US, RLM, ALM, RLO, RLI; still
+  "yes" for NBSP, U+3000, U+2800, U+3164, ZWSP, WORD JOINER, BOM, U+2424, U+23CE, U+21B5, U+FFFC; every
+  line count 6 in all five consumer columns (before the fix FS, GS, RS gave 7 for Python and Bidi B).
+  P02d printed the whole text minus its last character ("...Adds up to RM 116.6").
+  Note: that is a probe artifact. The text has no NUL any more, indexOf returns -1 and slice(0, -1)
+  drops one character. Nothing is truncated.
+  P02 RESULT: PASS (mandatory-break forging cases failed: 0)
+p08-reference-diff.mjs 300000 mixed 4242: differences 0, R22 violations 0. P08 RESULT: PASS
+p08-reference-diff.mjs 300000 valid 20261009: differences 0, R22 violations 0. P08 RESULT: PASS
+p04-precision.mjs: all 13 OK lines as in the first audit. P04 RESULT: PASS (failures 0)
+
+==== PROC: process accounting ====
+Before R03: no node.exe, python.exe or chrome process alive (Get-CimInstance by name).
+R03: python 44640, Chromium browser 13212, GPU 46028. After the run, Get-Process by PID: all three gone.
+R04 and R05 children: spawnSync with SIGKILL timeouts, each waited for and exited (PIDs above, plus the
+uncaptured PIDs of the broken first R04 run and the intermediate F4b run, which spawnSync also waited for).
+Final sweep at 13:25 by name (node.exe, python.exe, chrome.exe, chrome-headless-shell.exe,
+headless_shell.exe): none alive. No background process was started in this round.
+One command in this round sent a probe's output to /dev/null to check its exit code. It wrote no file.

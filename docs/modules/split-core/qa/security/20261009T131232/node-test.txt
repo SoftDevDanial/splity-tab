@@ -1,0 +1,33 @@
+Command: node --test "tests/**/*.test.js"   (cwd: project root, Node v24.11.1, HEAD c7f9640, 2026-10-09)
+Run by: security auditor (finder, read-only), re-check round. Saved with the Write tool. Only the closing
+summary lines of each run are recorded here (the per-test lines are the same 230 titles the solver lists).
+
+START of the re-check (about 13:13), under timeout -s KILL 120, last lines of the output:
+✔ @R24 results without shares are refused with TypeError (0.4508ms)
+ℹ tests 230
+ℹ suites 0
+ℹ pass 230
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 155.0761
+exit=0
+
+END of the re-check (13:24:58), same command, last lines of the output:
+✔ @R24 results without shares are refused with TypeError (0.3363ms)
+ℹ tests 230
+ℹ suites 0
+ℹ pass 230
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.8938
+exit=0
+
+After the END run: `git status` lists nothing outside this evidence folder except the verdict file
+(which is appended after this run). `git diff --stat e034951..c7f9640 -- src tests docs/design` shows only
+src/core/summary.js, tests/hygiene.test.js and tests/summary.test.js changed by the solver. Files changed
+after 13:12 outside this folder: docs/progress/STATE.md and STATE-LOG.md at 13:12:18, both from the
+orchestrator's commit c7f9640, before this round's first write (13:15:50). No D:/c or D:/d stray exists.
