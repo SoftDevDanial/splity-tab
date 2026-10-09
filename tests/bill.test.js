@@ -162,18 +162,44 @@ test("@R16 no action mutates a deep-frozen bill and changes return new objects",
   assert.deepEqual(frozen, S1);
 });
 
-test("@R16 actions rebuild from known fields, so stray and __proto__ keys are dropped", () => {
-  const parsed = JSON.parse(
-    '{"mode":"even","people":[{"id":"p1","name":"A","x":1},{"id":"p2","name":"B"}],"subtotalText":"",' +
-    '"items":[],"serviceText":"10","sstText":"6","nextId":3,"extra":1,"__proto__":{"polluted":true}}',
-  );
-  const next = setPersonName(setMode(parsed, "item"), "p1", "Z");
-  assert.deepEqual(Object.keys(next), BILL_KEYS);
-  assert.deepEqual(Object.keys(next.people[0]), ["id", "name"]);
-  assert.equal(Object.hasOwn(next, "__proto__"), false);
-  assert.equal(next.polluted, undefined);
-  assert.equal({}.polluted, undefined);
-});
+// A bill as JSON.parse returns it: stray keys on the bill, on a person and on an item, and own
+// __proto__ keys on the bill and on a person.
+const parsedBill = () => JSON.parse(
+  '{"mode":"even","people":[{"id":"p1","name":"A","x":1},{"id":"p2","name":"B","__proto__":{"polluted":true}},' +
+  '{"id":"p3","name":"C"}],"subtotalText":"","items":[{"id":"i4","name":"T","priceText":"1","who":["p1"],' +
+  '"stray":1}],"serviceText":"10","sstText":"6","nextId":5,"extra":1,"__proto__":{"polluted":true}}',
+);
+const PERSON_KEYS = ["id", "name"];
+const ITEM_KEYS = ["id", "name", "priceText", "who"];
+
+// Each action runs on the parsed bill itself, never after another action, so no rebuild elsewhere can
+// hide a spread. `rebuilt` picks the person or item the action changed.
+const rebuilds = [
+  ["setMode", (b) => setMode(b, "item")],
+  ["setSubtotalText", (b) => setSubtotalText(b, "1")],
+  ["setServiceText", (b) => setServiceText(b, "1")],
+  ["setSstText", (b) => setSstText(b, "1")],
+  ["addPerson", (b) => addPerson(b)],
+  ["addItem", (b) => addItem(b)],
+  ["removeItem", (b) => removeItem(b, "i4")],
+  ["setPersonName", (b) => setPersonName(b, "p1", "Z"), (next) => next.people[0], PERSON_KEYS],
+  ["setPersonName (person with a __proto__ key)", (b) => setPersonName(b, "p2", "Z"), (next) => next.people[1], PERSON_KEYS],
+  ["removePerson", (b) => removePerson(b, "p3"), (next) => next.items[0], ITEM_KEYS],
+  ["setItemName", (b) => setItemName(b, "i4", "Z"), (next) => next.items[0], ITEM_KEYS],
+  ["setItemPriceText", (b) => setItemPriceText(b, "i4", "2"), (next) => next.items[0], ITEM_KEYS],
+  ["toggleItemPerson", (b) => toggleItemPerson(b, "i4", "p2"), (next) => next.items[0], ITEM_KEYS],
+];
+for (const [title, act, rebuilt, keys] of rebuilds) {
+  test(`@R16 ${title} on a parsed bill builds only known fields`, () => {
+    const parsed = parsedBill();
+    const next = act(parsed);
+    assert.notEqual(next, parsed);
+    assert.deepEqual(Object.keys(next), BILL_KEYS);
+    assert.equal(Object.hasOwn(next, "__proto__"), false);
+    if (rebuilt) assert.deepEqual(Object.keys(rebuilt(next)), keys);
+    assert.equal({}.polluted, undefined);
+  });
+}
 
 const labels = [
   ["person", { name: "Aisyah" }, 0, "Aisyah"],

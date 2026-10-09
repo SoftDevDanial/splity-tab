@@ -2,8 +2,9 @@
 // so the browser shell can keep the previous bill as is and never edits state itself.
 // Text fields are stored exactly as typed. Parsing happens on read (see result.js).
 // An unknown id, or a move past a limit, returns the same bill object so callers can skip a re-render.
-// Objects are rebuilt from known fields only, so a bill parsed from JSON cannot carry stray keys
-// (or a __proto__ key) into a new one.
+// The Bill and any person or item an action changes are rebuilt from known fields, never spread, so no
+// stray or __proto__ key is copied into what an action builds. Untouched people and items are shared by
+// reference, so cleaning a bill parsed from JSON is split-app's draft decoder's job.
 
 /** @typedef {"even" | "item"} Mode */
 /** @typedef {{ id: string, name: string }} Person */

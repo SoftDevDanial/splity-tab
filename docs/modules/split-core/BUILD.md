@@ -75,8 +75,11 @@ enforces the purity part mechanically.
   [Changed 2026-10-09, solver, WR-02: see the comment in `allocateEvenly`.]
 - Parsing caps the whole part at 9 digits after dropping leading zeros. This is an internal safety cap, not
   a rule: the range checks (99,999.99 for amounts, 30 and 20 percent for rates) decide validity.
-- Actions rebuild every object from known fields, so a `Bill` parsed from JSON loses stray keys and a
-  `__proto__` key on its first action (threat model, object integrity). `tests/bill.test.js` covers it.
+- ~~Actions rebuild every object from known fields, so a `Bill` parsed from JSON loses stray keys and a
+  `__proto__` key on its first action (threat model, object integrity). `tests/bill.test.js` covers it.~~
+  [Changed 2026-10-09, solver, code-review WR-03: false. Untouched people and items keep their stray keys.
+  What is rebuilt and what is shared is stated once, in the `bill.js` module header. The tests titled
+  `@R16 <action> on a parsed bill builds only known fields` check each action on a parsed bill directly.]
 
 ## Boot
 Nothing to boot. This module has no server or UI. `split-app` imports it with relative ES module paths such
