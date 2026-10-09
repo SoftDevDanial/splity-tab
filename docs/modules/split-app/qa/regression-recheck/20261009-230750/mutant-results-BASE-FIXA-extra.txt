@@ -1,0 +1,9 @@
+BASE (+candidate test): 6 failed, 218 passed, 203 deselected in 69.04s (0:01:09)
+    FAILED tests\browser\test_rg_cr_08_candidate.py::test_R12_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-double]
+    FAILED tests\browser\test_rg_cr_08_candidate.py::test_R12_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-triple]
+    FAILED tests\browser\test_rg_cr_08_candidate.py::test_R12_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-touch-double]
+    FAILED tests\browser\test_rg_cr_08_candidate.py::test_R12_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-double]
+    FAILED tests\browser\test_rg_cr_08_candidate.py::test_R12_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-triple]
+    FAILED tests\browser\test_rg_cr_08_candidate.py::test_R12_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-touch-double]
+FIXA (+candidate test): 224 passed, 203 deselected in 67.91s (0:01:07)
+project src/ and tests/browser unchanged (SHA-256 of every file equal before and after)

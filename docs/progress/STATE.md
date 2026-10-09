@@ -4,7 +4,7 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** regression (scoped code-review re-check)
+- **phase:** regression (RG-CR-08 BLOCKER, dev solver next)
 - **next:** regression
 
 ## Modules
@@ -17,7 +17,7 @@
 none
 
 ## Next action
-Scoped code-review re-check of 9030ce7..HEAD (stop rule). Then QA finder (haiku) both modules, cold boot into docs/regression/<ts>/, REGRESSION.md, process ledger. Then review, UAT pre-run.
+Dev solver on RG-CR-08 (double press on a who-had-it chip removes the item while a price error is pending): Remove handlers ignore count above 1 again plus arm swallowRepeatClicks, candidate test rows from qa/regression-recheck/20261009-230750/, doc corrections. Then README swallowRepeatClicks bullet, QA finder (haiku) both modules, cold boot into docs/regression/<ts>/, REGRESSION.md, process ledger, credential gate. Then review, UAT pre-run.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

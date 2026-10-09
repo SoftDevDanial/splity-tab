@@ -1,0 +1,68 @@
+{
+ "triple_click_counts": {
+  "mousedown": [
+   1,
+   2,
+   3
+  ],
+  "click": [
+   1,
+   2,
+   3
+  ]
+ },
+ "Dismiss note 360x640": {
+  "same_bill_as_single_click": true,
+  "focus_single": "INPUT [Person 1 name]",
+  "focus_double": "BODY",
+  "under_after": "h2.block-title"
+ },
+ "By item 360x640": {
+  "same_bill_as_single_click": true,
+  "focus_single": "INPUT",
+  "focus_double": "BODY",
+  "under_after": "label."
+ },
+ "Even 360x640": {
+  "same_bill_as_single_click": true,
+  "focus_single": "INPUT",
+  "focus_double": "BODY",
+  "under_after": "label."
+ },
+ "Dismiss note 390x844": {
+  "same_bill_as_single_click": true,
+  "focus_single": "INPUT [Person 1 name]",
+  "focus_double": "BODY",
+  "under_after": "h2.block-title"
+ },
+ "By item 390x844": {
+  "same_bill_as_single_click": true,
+  "focus_single": "INPUT",
+  "focus_double": "BODY",
+  "under_after": "label."
+ },
+ "Even 390x844": {
+  "same_bill_as_single_click": true,
+  "focus_single": "INPUT",
+  "focus_double": "BODY",
+  "under_after": "label."
+ },
+ "Dismiss note 1280x800": {
+  "same_bill_as_single_click": true,
+  "focus_single": "INPUT [Person 1 name]",
+  "focus_double": "BODY",
+  "under_after": "div.tape"
+ },
+ "By item 1280x800": {
+  "same_bill_as_single_click": true,
+  "focus_single": "INPUT",
+  "focus_double": "BODY",
+  "under_after": "label."
+ },
+ "Even 1280x800": {
+  "same_bill_as_single_click": true,
+  "focus_single": "INPUT",
+  "focus_double": "BODY",
+  "under_after": "label."
+ }
+}

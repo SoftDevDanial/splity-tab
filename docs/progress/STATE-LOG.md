@@ -148,3 +148,6 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-09 23:04 regression solver collected, README reconciled
 - RG-CR-01 fixed (Add buttons arm the guard), RG-CR-02 and RG-CR-04 fixed, 421 browser, 275 unit, fidelity 0 px.
 - README reconciled (RG-CR-03, RG-CR-06).
+
+## 2026-10-09 23:50 regression re-check collected, RG-CR-08 blocker
+- Re-check: RG-CR-01 to 04 hold. New RG-CR-08 BLOCKER, second regression of 071577a (chip double press removes the item). Fix verified by the re-check in a scratch copy. Queued for next session.

@@ -1,0 +1,272 @@
+{
+ "landings": [
+  {
+   "band": "<360",
+   "from": "input:text",
+   "to": "mode-label:Service charge in percent",
+   "count": 1960
+  },
+  {
+   "band": "<360",
+   "from": "input:text",
+   "to": "mode-label:SST in percent",
+   "count": 1960
+  },
+  {
+   "band": "<360",
+   "from": "toggle",
+   "to": "REMOVE",
+   "count": 150
+  },
+  {
+   "band": ">=360",
+   "from": "input:text",
+   "to": "mode-label:Service charge in percent",
+   "count": 119560
+  },
+  {
+   "band": ">=360",
+   "from": "input:text",
+   "to": "mode-label:SST in percent",
+   "count": 119560
+  },
+  {
+   "band": ">=360",
+   "from": "toggle",
+   "to": "REMOVE",
+   "count": 8100
+  }
+ ],
+ "examples": {
+  "<360|input:text|mode-label:Service charge in percent": {
+   "width": 320,
+   "case": "S1 3 people, Item 1 price in RM",
+   "field": "Item 1 price in RM",
+   "from": "input:text",
+   "name": "",
+   "to": "mode-label:Service charge in percent",
+   "x": 19,
+   "y": 976
+  },
+  "<360|input:text|mode-label:SST in percent": {
+   "width": 320,
+   "case": "S1 3 people, Item 1 price in RM",
+   "field": "Item 1 price in RM",
+   "from": "input:text",
+   "name": "",
+   "to": "mode-label:SST in percent",
+   "x": 167,
+   "y": 976
+  },
+  "<360|toggle|REMOVE": {
+   "width": 320,
+   "case": "S1 5 people, Item 1 price in RM",
+   "field": "Item 1 price in RM",
+   "from": "toggle",
+   "name": "P5",
+   "to": "REMOVE",
+   "x": 262,
+   "y": 577
+  },
+  ">=360|input:text|mode-label:Service charge in percent": {
+   "width": 360,
+   "case": "S1 3 people, Item 1 price in RM",
+   "field": "Item 1 price in RM",
+   "from": "input:text",
+   "name": "",
+   "to": "mode-label:Service charge in percent",
+   "x": 19,
+   "y": 976
+  },
+  ">=360|input:text|mode-label:SST in percent": {
+   "width": 360,
+   "case": "S1 3 people, Item 1 price in RM",
+   "field": "Item 1 price in RM",
+   "from": "input:text",
+   "name": "",
+   "to": "mode-label:SST in percent",
+   "x": 187,
+   "y": 976
+  },
+  ">=360|toggle|REMOVE": {
+   "width": 360,
+   "case": "S1 8 people, Item 1 price in RM",
+   "field": "Item 1 price in RM",
+   "from": "toggle",
+   "name": "P6",
+   "to": "REMOVE",
+   "x": 302,
+   "y": 733
+  }
+ },
+ "real": [
+  {
+   "key": [
+    "<360",
+    "input:text",
+    "mode-label:Service charge in percent"
+   ],
+   "width": 320,
+   "case": "S1 3 people, Item 1 price in RM",
+   "point": [
+    19,
+    976
+   ],
+   "pressed": "",
+   "lands_on": "mode-label:Service charge in percent",
+   "mode": [
+    "item",
+    "item"
+   ],
+   "items": [
+    4,
+    4
+   ],
+   "people": [
+    3,
+    3
+   ],
+   "who_changed": false
+  },
+  {
+   "key": [
+    "<360",
+    "input:text",
+    "mode-label:SST in percent"
+   ],
+   "width": 320,
+   "case": "S1 3 people, Item 1 price in RM",
+   "point": [
+    167,
+    976
+   ],
+   "pressed": "",
+   "lands_on": "mode-label:SST in percent",
+   "mode": [
+    "item",
+    "item"
+   ],
+   "items": [
+    4,
+    4
+   ],
+   "people": [
+    3,
+    3
+   ],
+   "who_changed": false
+  },
+  {
+   "key": [
+    "<360",
+    "toggle",
+    "REMOVE"
+   ],
+   "width": 320,
+   "case": "S1 5 people, Item 1 price in RM",
+   "point": [
+    262,
+    577
+   ],
+   "pressed": "P5",
+   "lands_on": "REMOVE",
+   "mode": [
+    "item",
+    "item"
+   ],
+   "items": [
+    4,
+    3
+   ],
+   "people": [
+    5,
+    5
+   ],
+   "who_changed": true
+  },
+  {
+   "key": [
+    ">=360",
+    "input:text",
+    "mode-label:Service charge in percent"
+   ],
+   "width": 360,
+   "case": "S1 3 people, Item 1 price in RM",
+   "point": [
+    19,
+    976
+   ],
+   "pressed": "",
+   "lands_on": "mode-label:Service charge in percent",
+   "mode": [
+    "item",
+    "item"
+   ],
+   "items": [
+    4,
+    4
+   ],
+   "people": [
+    3,
+    3
+   ],
+   "who_changed": false
+  },
+  {
+   "key": [
+    ">=360",
+    "input:text",
+    "mode-label:SST in percent"
+   ],
+   "width": 360,
+   "case": "S1 3 people, Item 1 price in RM",
+   "point": [
+    187,
+    976
+   ],
+   "pressed": "",
+   "lands_on": "mode-label:SST in percent",
+   "mode": [
+    "item",
+    "item"
+   ],
+   "items": [
+    4,
+    4
+   ],
+   "people": [
+    3,
+    3
+   ],
+   "who_changed": false
+  },
+  {
+   "key": [
+    ">=360",
+    "toggle",
+    "REMOVE"
+   ],
+   "width": 360,
+   "case": "S1 8 people, Item 1 price in RM",
+   "point": [
+    302,
+    733
+   ],
+   "pressed": "P6",
+   "lands_on": "REMOVE",
+   "mode": [
+    "item",
+    "item"
+   ],
+   "items": [
+    4,
+    3
+   ],
+   "people": [
+    8,
+    8
+   ],
+   "who_changed": true
+  }
+ ]
+}

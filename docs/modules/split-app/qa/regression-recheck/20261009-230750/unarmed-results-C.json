@@ -1,0 +1,87 @@
+{
+ "A": {},
+ "B": {},
+ "C": {
+  "points": 22896,
+  "ended_under_a_different_element": 5736,
+  "landings": [
+   {
+    "from": "input:text",
+    "to": "mode-label",
+    "count": 288
+   },
+   {
+    "from": "toggle",
+    "to": "REMOVE",
+    "count": 5
+   }
+  ],
+  "destructive_candidates": [
+   {
+    "width": 320,
+    "case": "S1+5 people item 1 price",
+    "field": "Item 1 price in RM",
+    "move": {
+     "from": "toggle",
+     "name": "P5",
+     "to": "REMOVE",
+     "x": 263.6,
+     "y": 579.4
+    },
+    "errors": []
+   },
+   {
+    "width": 320,
+    "case": "S1+5 people item 1 price",
+    "field": "Item 1 price in RM",
+    "move": {
+     "from": "toggle",
+     "name": "P5",
+     "to": "REMOVE",
+     "x": 263.6,
+     "y": 708.4
+    },
+    "errors": []
+   },
+   {
+    "width": 320,
+    "case": "S1+5 people item 1 price",
+    "field": "Item 1 price in RM",
+    "move": {
+     "from": "toggle",
+     "name": "P5",
+     "to": "REMOVE",
+     "x": 263.6,
+     "y": 837.4
+    },
+    "errors": []
+   },
+   {
+    "width": 320,
+    "case": "S1+5 people item 2 price",
+    "field": "Item 2 price in RM",
+    "move": {
+     "from": "toggle",
+     "name": "P5",
+     "to": "REMOVE",
+     "x": 263.6,
+     "y": 708.4
+    },
+    "errors": []
+   },
+   {
+    "width": 320,
+    "case": "S1+5 people item 2 price",
+    "field": "Item 2 price in RM",
+    "move": {
+     "from": "toggle",
+     "name": "P5",
+     "to": "REMOVE",
+     "x": 263.6,
+     "y": 837.4
+    },
+    "errors": []
+   }
+  ]
+ }
+}

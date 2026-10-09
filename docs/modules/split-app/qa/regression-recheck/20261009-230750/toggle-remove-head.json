@@ -1,0 +1,12042 @@
+{
+ "label": "head",
+ "root": "{workspace}\\examples\\split",
+ "rows": [
+  {
+   "names": "short",
+   "people": 3,
+   "width": 360,
+   "chip_points": 1452,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 3,
+   "width": 375,
+   "chip_points": 1452,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 3,
+   "width": 390,
+   "chip_points": 1452,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 3,
+   "width": 412,
+   "chip_points": 1452,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 3,
+   "width": 600,
+   "chip_points": 1452,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 3,
+   "width": 768,
+   "chip_points": 1452,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 3,
+   "width": 1024,
+   "chip_points": 1452,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 3,
+   "width": 1280,
+   "chip_points": 1452,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 4,
+   "width": 360,
+   "chip_points": 1936,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 4,
+   "width": 375,
+   "chip_points": 1936,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 4,
+   "width": 390,
+   "chip_points": 1936,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 4,
+   "width": 412,
+   "chip_points": 1936,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 4,
+   "width": 600,
+   "chip_points": 1936,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 4,
+   "width": 768,
+   "chip_points": 1936,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 4,
+   "width": 1024,
+   "chip_points": 1936,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 4,
+   "width": 1280,
+   "chip_points": 1936,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 5,
+   "width": 360,
+   "chip_points": 2420,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 5,
+   "width": 375,
+   "chip_points": 2420,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 5,
+   "width": 390,
+   "chip_points": 2420,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 5,
+   "width": 412,
+   "chip_points": 2420,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 5,
+   "width": 600,
+   "chip_points": 2420,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 5,
+   "width": 768,
+   "chip_points": 2420,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 5,
+   "width": 1024,
+   "chip_points": 2420,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 5,
+   "width": 1280,
+   "chip_points": 2420,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 6,
+   "width": 360,
+   "chip_points": 2904,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P6",
+    "x": 302,
+    "y": 629,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 6,
+   "width": 375,
+   "chip_points": 2904,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "P6",
+    "x": 318,
+    "y": 629,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 6,
+   "width": 390,
+   "chip_points": 2904,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 6,
+   "width": 412,
+   "chip_points": 2904,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 6,
+   "width": 600,
+   "chip_points": 2904,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 6,
+   "width": 768,
+   "chip_points": 2904,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 6,
+   "width": 1024,
+   "chip_points": 2904,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 6,
+   "width": 1280,
+   "chip_points": 2904,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 7,
+   "width": 360,
+   "chip_points": 3388,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P6",
+    "x": 302,
+    "y": 681,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 7,
+   "width": 375,
+   "chip_points": 3388,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "P6",
+    "x": 318,
+    "y": 681,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 7,
+   "width": 390,
+   "chip_points": 3388,
+   "points_onto_a_remove": 162,
+   "same_item": 162,
+   "example": {
+    "chip": "P7",
+    "x": 330,
+    "y": 629,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 7,
+   "width": 412,
+   "chip_points": 3388,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P7",
+    "x": 354,
+    "y": 629,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 7,
+   "width": 600,
+   "chip_points": 3388,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 7,
+   "width": 768,
+   "chip_points": 3388,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 7,
+   "width": 1024,
+   "chip_points": 3388,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 7,
+   "width": 1280,
+   "chip_points": 3388,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 8,
+   "width": 360,
+   "chip_points": 3872,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P6",
+    "x": 302,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 8,
+   "width": 375,
+   "chip_points": 3872,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "P6",
+    "x": 318,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 8,
+   "width": 390,
+   "chip_points": 3872,
+   "points_onto_a_remove": 162,
+   "same_item": 162,
+   "example": {
+    "chip": "P7",
+    "x": 330,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 8,
+   "width": 412,
+   "chip_points": 3872,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P7",
+    "x": 354,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 8,
+   "width": 600,
+   "chip_points": 3872,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 8,
+   "width": 768,
+   "chip_points": 3872,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 8,
+   "width": 1024,
+   "chip_points": 3872,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 8,
+   "width": 1280,
+   "chip_points": 3872,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 9,
+   "width": 360,
+   "chip_points": 4356,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P6",
+    "x": 302,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 9,
+   "width": 375,
+   "chip_points": 4356,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "P6",
+    "x": 318,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 9,
+   "width": 390,
+   "chip_points": 4356,
+   "points_onto_a_remove": 162,
+   "same_item": 162,
+   "example": {
+    "chip": "P7",
+    "x": 330,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 9,
+   "width": 412,
+   "chip_points": 4356,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P7",
+    "x": 354,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 9,
+   "width": 600,
+   "chip_points": 4356,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 9,
+   "width": 768,
+   "chip_points": 4356,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 9,
+   "width": 1024,
+   "chip_points": 4356,
+   "points_onto_a_remove": 105,
+   "same_item": 105,
+   "example": {
+    "chip": "P9",
+    "x": 466,
+    "y": 649,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p9"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 9,
+   "width": 1280,
+   "chip_points": 4356,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "short",
+   "people": 10,
+   "width": 360,
+   "chip_points": 4928,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P6",
+    "x": 302,
+    "y": 785,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 10,
+   "width": 375,
+   "chip_points": 4928,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "P6",
+    "x": 318,
+    "y": 785,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 10,
+   "width": 390,
+   "chip_points": 4928,
+   "points_onto_a_remove": 162,
+   "same_item": 162,
+   "example": {
+    "chip": "P7",
+    "x": 330,
+    "y": 785,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 10,
+   "width": 412,
+   "chip_points": 4928,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P7",
+    "x": 354,
+    "y": 785,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 10,
+   "width": 600,
+   "chip_points": 4928,
+   "points_onto_a_remove": 135,
+   "same_item": 135,
+   "example": {
+    "chip": "P10",
+    "x": 522,
+    "y": 637,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p10"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 10,
+   "width": 768,
+   "chip_points": 4928,
+   "points_onto_a_remove": 135,
+   "same_item": 135,
+   "example": {
+    "chip": "P10",
+    "x": 606,
+    "y": 637,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p10"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 10,
+   "width": 1024,
+   "chip_points": 4928,
+   "points_onto_a_remove": 105,
+   "same_item": 105,
+   "example": {
+    "chip": "P9",
+    "x": 466,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p9"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 10,
+   "width": 1280,
+   "chip_points": 4928,
+   "points_onto_a_remove": 30,
+   "same_item": 30,
+   "example": {
+    "chip": "P10",
+    "x": 634,
+    "y": 649,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p10"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 11,
+   "width": 360,
+   "chip_points": 5500,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P6",
+    "x": 302,
+    "y": 785,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 11,
+   "width": 375,
+   "chip_points": 5500,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "P6",
+    "x": 318,
+    "y": 785,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 11,
+   "width": 390,
+   "chip_points": 5500,
+   "points_onto_a_remove": 162,
+   "same_item": 162,
+   "example": {
+    "chip": "P7",
+    "x": 330,
+    "y": 785,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 11,
+   "width": 412,
+   "chip_points": 5500,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P7",
+    "x": 354,
+    "y": 785,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 11,
+   "width": 600,
+   "chip_points": 5500,
+   "points_onto_a_remove": 135,
+   "same_item": 135,
+   "example": {
+    "chip": "P10",
+    "x": 522,
+    "y": 689,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p10"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 11,
+   "width": 768,
+   "chip_points": 5500,
+   "points_onto_a_remove": 135,
+   "same_item": 135,
+   "example": {
+    "chip": "P10",
+    "x": 606,
+    "y": 689,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p10"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 11,
+   "width": 1024,
+   "chip_points": 5500,
+   "points_onto_a_remove": 105,
+   "same_item": 105,
+   "example": {
+    "chip": "P9",
+    "x": 466,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p9"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 11,
+   "width": 1280,
+   "chip_points": 5500,
+   "points_onto_a_remove": 30,
+   "same_item": 30,
+   "example": {
+    "chip": "P10",
+    "x": 634,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p10"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 12,
+   "width": 360,
+   "chip_points": 6072,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P6",
+    "x": 302,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 12,
+   "width": 375,
+   "chip_points": 6072,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "P6",
+    "x": 318,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p6"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 12,
+   "width": 390,
+   "chip_points": 6072,
+   "points_onto_a_remove": 162,
+   "same_item": 162,
+   "example": {
+    "chip": "P7",
+    "x": 330,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 12,
+   "width": 412,
+   "chip_points": 6072,
+   "points_onto_a_remove": 75,
+   "same_item": 75,
+   "example": {
+    "chip": "P7",
+    "x": 354,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 12,
+   "width": 600,
+   "chip_points": 6072,
+   "points_onto_a_remove": 135,
+   "same_item": 135,
+   "example": {
+    "chip": "P10",
+    "x": 522,
+    "y": 741,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p10"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 12,
+   "width": 768,
+   "chip_points": 6072,
+   "points_onto_a_remove": 135,
+   "same_item": 135,
+   "example": {
+    "chip": "P10",
+    "x": 606,
+    "y": 741,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p10"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 12,
+   "width": 1024,
+   "chip_points": 6072,
+   "points_onto_a_remove": 105,
+   "same_item": 105,
+   "example": {
+    "chip": "P9",
+    "x": 466,
+    "y": 753,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p9"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "short",
+   "people": 12,
+   "width": 1280,
+   "chip_points": 6072,
+   "points_onto_a_remove": 30,
+   "same_item": 30,
+   "example": {
+    "chip": "P10",
+    "x": 634,
+    "y": 753,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p10"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 3,
+   "width": 360,
+   "chip_points": 1980,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 3,
+   "width": 375,
+   "chip_points": 1980,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 3,
+   "width": 390,
+   "chip_points": 1980,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 3,
+   "width": 412,
+   "chip_points": 1980,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 3,
+   "width": 600,
+   "chip_points": 1980,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 3,
+   "width": 768,
+   "chip_points": 1980,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 3,
+   "width": 1024,
+   "chip_points": 1980,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 3,
+   "width": 1280,
+   "chip_points": 1980,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 4,
+   "width": 360,
+   "chip_points": 2596,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 4,
+   "width": 375,
+   "chip_points": 2596,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 4,
+   "width": 390,
+   "chip_points": 2596,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 4,
+   "width": 412,
+   "chip_points": 2596,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 4,
+   "width": 600,
+   "chip_points": 2596,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 4,
+   "width": 768,
+   "chip_points": 2596,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 4,
+   "width": 1024,
+   "chip_points": 2596,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 4,
+   "width": 1280,
+   "chip_points": 2596,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 5,
+   "width": 360,
+   "chip_points": 3256,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 5,
+   "width": 375,
+   "chip_points": 3256,
+   "points_onto_a_remove": 120,
+   "same_item": 120,
+   "example": {
+    "chip": "Farid",
+    "x": 317.484375,
+    "y": 577,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 5,
+   "width": 390,
+   "chip_points": 3256,
+   "points_onto_a_remove": 72,
+   "same_item": 72,
+   "example": {
+    "chip": "Farid",
+    "x": 329.484375,
+    "y": 577,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 5,
+   "width": 412,
+   "chip_points": 3256,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 5,
+   "width": 600,
+   "chip_points": 3256,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 5,
+   "width": 768,
+   "chip_points": 3256,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 5,
+   "width": 1024,
+   "chip_points": 3256,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 5,
+   "width": 1280,
+   "chip_points": 3256,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 6,
+   "width": 360,
+   "chip_points": 3960,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 6,
+   "width": 375,
+   "chip_points": 3960,
+   "points_onto_a_remove": 120,
+   "same_item": 120,
+   "example": {
+    "chip": "Farid",
+    "x": 317.484375,
+    "y": 681,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 6,
+   "width": 390,
+   "chip_points": 3960,
+   "points_onto_a_remove": 72,
+   "same_item": 72,
+   "example": {
+    "chip": "Farid",
+    "x": 329.484375,
+    "y": 681,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 6,
+   "width": 412,
+   "chip_points": 3960,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 6,
+   "width": 600,
+   "chip_points": 3960,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 6,
+   "width": 768,
+   "chip_points": 3960,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 6,
+   "width": 1024,
+   "chip_points": 3960,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 6,
+   "width": 1280,
+   "chip_points": 3960,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 7,
+   "width": 360,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 7,
+   "width": 375,
+   "chip_points": 4620,
+   "points_onto_a_remove": 120,
+   "same_item": 120,
+   "example": {
+    "chip": "Farid",
+    "x": 317.484375,
+    "y": 681,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 7,
+   "width": 390,
+   "chip_points": 4620,
+   "points_onto_a_remove": 72,
+   "same_item": 72,
+   "example": {
+    "chip": "Farid",
+    "x": 329.484375,
+    "y": 681,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 7,
+   "width": 412,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 7,
+   "width": 600,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 7,
+   "width": 768,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 7,
+   "width": 1024,
+   "chip_points": 4620,
+   "points_onto_a_remove": 150,
+   "same_item": 150,
+   "example": {
+    "chip": "Hafiz",
+    "x": 465.734375,
+    "y": 597,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 7,
+   "width": 1280,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 8,
+   "width": 360,
+   "chip_points": 5280,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 8,
+   "width": 375,
+   "chip_points": 5280,
+   "points_onto_a_remove": 120,
+   "same_item": 120,
+   "example": {
+    "chip": "Farid",
+    "x": 317.484375,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 8,
+   "width": 390,
+   "chip_points": 5280,
+   "points_onto_a_remove": 72,
+   "same_item": 72,
+   "example": {
+    "chip": "Farid",
+    "x": 329.484375,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 8,
+   "width": 412,
+   "chip_points": 5280,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 8,
+   "width": 600,
+   "chip_points": 5280,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 8,
+   "width": 768,
+   "chip_points": 5280,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 8,
+   "width": 1024,
+   "chip_points": 5280,
+   "points_onto_a_remove": 150,
+   "same_item": 150,
+   "example": {
+    "chip": "Hafiz",
+    "x": 465.734375,
+    "y": 649,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 8,
+   "width": 1280,
+   "chip_points": 5280,
+   "points_onto_a_remove": 105,
+   "same_item": 105,
+   "example": {
+    "chip": "Indra",
+    "x": 634.65625,
+    "y": 597,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p8"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 9,
+   "width": 360,
+   "chip_points": 6072,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 9,
+   "width": 375,
+   "chip_points": 6072,
+   "points_onto_a_remove": 120,
+   "same_item": 120,
+   "example": {
+    "chip": "Farid",
+    "x": 317.484375,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 9,
+   "width": 390,
+   "chip_points": 6072,
+   "points_onto_a_remove": 72,
+   "same_item": 72,
+   "example": {
+    "chip": "Farid",
+    "x": 329.484375,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 9,
+   "width": 412,
+   "chip_points": 6072,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 9,
+   "width": 600,
+   "chip_points": 6072,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 9,
+   "width": 768,
+   "chip_points": 6072,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 9,
+   "width": 1024,
+   "chip_points": 6072,
+   "points_onto_a_remove": 150,
+   "same_item": 150,
+   "example": {
+    "chip": "Hafiz",
+    "x": 465.734375,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 9,
+   "width": 1280,
+   "chip_points": 6072,
+   "points_onto_a_remove": 105,
+   "same_item": 105,
+   "example": {
+    "chip": "Indra",
+    "x": 634.65625,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p8"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 10,
+   "width": 360,
+   "chip_points": 6820,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 10,
+   "width": 375,
+   "chip_points": 6820,
+   "points_onto_a_remove": 120,
+   "same_item": 120,
+   "example": {
+    "chip": "Farid",
+    "x": 317.484375,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 10,
+   "width": 390,
+   "chip_points": 6820,
+   "points_onto_a_remove": 72,
+   "same_item": 72,
+   "example": {
+    "chip": "Farid",
+    "x": 329.484375,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 10,
+   "width": 412,
+   "chip_points": 6820,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 10,
+   "width": 600,
+   "chip_points": 6820,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 10,
+   "width": 768,
+   "chip_points": 6820,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 10,
+   "width": 1024,
+   "chip_points": 6820,
+   "points_onto_a_remove": 150,
+   "same_item": 150,
+   "example": {
+    "chip": "Hafiz",
+    "x": 465.734375,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 10,
+   "width": 1280,
+   "chip_points": 6820,
+   "points_onto_a_remove": 105,
+   "same_item": 105,
+   "example": {
+    "chip": "Indra",
+    "x": 634.65625,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p8"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 11,
+   "width": 360,
+   "chip_points": 7392,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 11,
+   "width": 375,
+   "chip_points": 7392,
+   "points_onto_a_remove": 120,
+   "same_item": 120,
+   "example": {
+    "chip": "Farid",
+    "x": 317.484375,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 11,
+   "width": 390,
+   "chip_points": 7392,
+   "points_onto_a_remove": 72,
+   "same_item": 72,
+   "example": {
+    "chip": "Farid",
+    "x": 329.484375,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 11,
+   "width": 412,
+   "chip_points": 7392,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 11,
+   "width": 600,
+   "chip_points": 7392,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 11,
+   "width": 768,
+   "chip_points": 7392,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 11,
+   "width": 1024,
+   "chip_points": 7392,
+   "points_onto_a_remove": 150,
+   "same_item": 150,
+   "example": {
+    "chip": "Hafiz",
+    "x": 465.734375,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 11,
+   "width": 1280,
+   "chip_points": 7392,
+   "points_onto_a_remove": 105,
+   "same_item": 105,
+   "example": {
+    "chip": "Indra",
+    "x": 634.65625,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p8"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 12,
+   "width": 360,
+   "chip_points": 8316,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 12,
+   "width": 375,
+   "chip_points": 8316,
+   "points_onto_a_remove": 120,
+   "same_item": 120,
+   "example": {
+    "chip": "Farid",
+    "x": 317.484375,
+    "y": 889,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 12,
+   "width": 390,
+   "chip_points": 8316,
+   "points_onto_a_remove": 72,
+   "same_item": 72,
+   "example": {
+    "chip": "Farid",
+    "x": 329.484375,
+    "y": 889,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p5"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 12,
+   "width": 412,
+   "chip_points": 8316,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 12,
+   "width": 600,
+   "chip_points": 8316,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 12,
+   "width": 768,
+   "chip_points": 8316,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "typical",
+   "people": 12,
+   "width": 1024,
+   "chip_points": 8316,
+   "points_onto_a_remove": 150,
+   "same_item": 150,
+   "example": {
+    "chip": "Hafiz",
+    "x": 465.734375,
+    "y": 753,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p7"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "typical",
+   "people": 12,
+   "width": 1280,
+   "chip_points": 8316,
+   "points_onto_a_remove": 105,
+   "same_item": 105,
+   "example": {
+    "chip": "Indra",
+    "x": 634.65625,
+    "y": 753,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p8"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 3,
+   "width": 360,
+   "chip_points": 4620,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 577,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 3,
+   "width": 375,
+   "chip_points": 4620,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 577,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 3,
+   "width": 390,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 3,
+   "width": 412,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 3,
+   "width": 600,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 3,
+   "width": 768,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 3,
+   "width": 1024,
+   "chip_points": 4620,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 545,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 3,
+   "width": 1280,
+   "chip_points": 4620,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 4,
+   "width": 360,
+   "chip_points": 5896,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 629,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 4,
+   "width": 375,
+   "chip_points": 5896,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 629,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 4,
+   "width": 390,
+   "chip_points": 5896,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 4,
+   "width": 412,
+   "chip_points": 5896,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 4,
+   "width": 600,
+   "chip_points": 5896,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 4,
+   "width": 768,
+   "chip_points": 5896,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 4,
+   "width": 1024,
+   "chip_points": 5896,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 597,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 4,
+   "width": 1280,
+   "chip_points": 5896,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 5,
+   "width": 360,
+   "chip_points": 7260,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 681,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 5,
+   "width": 375,
+   "chip_points": 7260,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 681,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 5,
+   "width": 390,
+   "chip_points": 7260,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 5,
+   "width": 412,
+   "chip_points": 7260,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 5,
+   "width": 600,
+   "chip_points": 7260,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 5,
+   "width": 768,
+   "chip_points": 7260,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 5,
+   "width": 1024,
+   "chip_points": 7260,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 597,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 5,
+   "width": 1280,
+   "chip_points": 7260,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 6,
+   "width": 360,
+   "chip_points": 8360,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 6,
+   "width": 375,
+   "chip_points": 8360,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 6,
+   "width": 390,
+   "chip_points": 8360,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 6,
+   "width": 412,
+   "chip_points": 8360,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 6,
+   "width": 600,
+   "chip_points": 8360,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 6,
+   "width": 768,
+   "chip_points": 8360,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 6,
+   "width": 1024,
+   "chip_points": 8360,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 649,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 6,
+   "width": 1280,
+   "chip_points": 8360,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 7,
+   "width": 360,
+   "chip_points": 9460,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 785,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 7,
+   "width": 375,
+   "chip_points": 9460,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 733,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 7,
+   "width": 390,
+   "chip_points": 9460,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 7,
+   "width": 412,
+   "chip_points": 9460,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 7,
+   "width": 600,
+   "chip_points": 9460,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 7,
+   "width": 768,
+   "chip_points": 9460,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 7,
+   "width": 1024,
+   "chip_points": 9460,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 649,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 7,
+   "width": 1280,
+   "chip_points": 9460,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 8,
+   "width": 360,
+   "chip_points": 10516,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 8,
+   "width": 375,
+   "chip_points": 10516,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 8,
+   "width": 390,
+   "chip_points": 10516,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 8,
+   "width": 412,
+   "chip_points": 10516,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 8,
+   "width": 600,
+   "chip_points": 10516,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 8,
+   "width": 768,
+   "chip_points": 10516,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 8,
+   "width": 1024,
+   "chip_points": 10516,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 701,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 8,
+   "width": 1280,
+   "chip_points": 10516,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 9,
+   "width": 360,
+   "chip_points": 11660,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 9,
+   "width": 375,
+   "chip_points": 11660,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 837,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 9,
+   "width": 390,
+   "chip_points": 11660,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 9,
+   "width": 412,
+   "chip_points": 11660,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 9,
+   "width": 600,
+   "chip_points": 11660,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 9,
+   "width": 768,
+   "chip_points": 11660,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 9,
+   "width": 1024,
+   "chip_points": 11660,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 753,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 9,
+   "width": 1280,
+   "chip_points": 11660,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 10,
+   "width": 360,
+   "chip_points": 13068,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 941,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 10,
+   "width": 375,
+   "chip_points": 13068,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 941,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 10,
+   "width": 390,
+   "chip_points": 13068,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 10,
+   "width": 412,
+   "chip_points": 13068,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 10,
+   "width": 600,
+   "chip_points": 13068,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 10,
+   "width": 768,
+   "chip_points": 13068,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 10,
+   "width": 1024,
+   "chip_points": 13068,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 753,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 10,
+   "width": 1280,
+   "chip_points": 13068,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 11,
+   "width": 360,
+   "chip_points": 14168,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 941,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 11,
+   "width": 375,
+   "chip_points": 14168,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 941,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 11,
+   "width": 390,
+   "chip_points": 14168,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 11,
+   "width": 412,
+   "chip_points": 14168,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 11,
+   "width": 600,
+   "chip_points": 14168,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 11,
+   "width": 768,
+   "chip_points": 14168,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 11,
+   "width": 1024,
+   "chip_points": 14168,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 753,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 11,
+   "width": 1280,
+   "chip_points": 14168,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 12,
+   "width": 360,
+   "chip_points": 15356,
+   "points_onto_a_remove": 60,
+   "same_item": 60,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 302.609375,
+    "y": 1045,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 12,
+   "width": 375,
+   "chip_points": 15356,
+   "points_onto_a_remove": 12,
+   "same_item": 12,
+   "example": {
+    "chip": "Nur Aisyah Binti",
+    "x": 314.609375,
+    "y": 1045,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 12,
+   "width": 390,
+   "chip_points": 15356,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 12,
+   "width": 412,
+   "chip_points": 15356,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 12,
+   "width": 600,
+   "chip_points": 15356,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 12,
+   "width": 768,
+   "chip_points": 15356,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  },
+  {
+   "names": "long",
+   "people": 12,
+   "width": 1024,
+   "chip_points": 15356,
+   "points_onto_a_remove": 15,
+   "same_item": 15,
+   "example": {
+    "chip": "Wong Mei Ling",
+    "x": 466.390625,
+    "y": 857,
+    "remove": "Remove Char kuey teow",
+    "sameItem": true
+   },
+   "dbl": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 3
+   },
+   "single": {
+    "before": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "after": {
+     "items": [
+      "Nasi lemak ayam",
+      "Char kuey teow",
+      "Mee goreng mamak",
+      "Satay, 10 sticks"
+     ],
+     "who": [
+      [
+       "p1"
+      ],
+      [
+       "p2",
+       "p3"
+      ],
+      [
+       "p3"
+      ],
+      [
+       "p1",
+       "p3"
+      ]
+     ]
+    },
+    "page_errors": [],
+    "items_before": 4,
+    "items_after": 4
+   }
+  },
+  {
+   "names": "long",
+   "people": 12,
+   "width": 1280,
+   "chip_points": 15356,
+   "points_onto_a_remove": 0,
+   "same_item": 0
+  }
+ ]
+}

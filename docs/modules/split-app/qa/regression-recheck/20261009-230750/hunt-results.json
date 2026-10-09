@@ -1,0 +1,284 @@
+[
+ {
+  "case": "K1 keyboard Enter and Space on Add person x9 each add exactly one, focus on the new name",
+  "ok": true,
+  "detail": [
+   [
+    10,
+    "Person 10 name"
+   ],
+   [
+    11,
+    "Person 11 name"
+   ],
+   [
+    12,
+    "Person 12 name"
+   ]
+  ]
+ },
+ {
+  "case": "K2 Tab + Enter on a Remove with guards outstanding removes one person",
+  "ok": true,
+  "detail": 11
+ },
+ {
+  "case": "K2b a mouse click on a Remove after the keyboard adds removes one person",
+  "ok": true,
+  "detail": 10
+ },
+ {
+  "case": "S1 after the guards of 9 keyboard Adds, a Remove click and a double click on a name still selects the word",
+  "ok": true,
+  "detail": "'Siti '"
+ },
+ {
+  "case": "K3 keyboard Enter and Space on Add item x6 each add exactly one, focus on the new name",
+  "ok": true,
+  "detail": [
+   [
+    6,
+    "Item 6 name"
+   ],
+   [
+    7,
+    "Item 7 name"
+   ]
+  ]
+ },
+ {
+  "case": "D1 Add person (right-edge) then a click on the new name and typing keeps the text",
+  "ok": true,
+  "detail": "'Ali'"
+ },
+ {
+  "case": "D2 Add person (right-edge) then a click of its own on the new Remove removes that row",
+  "ok": true,
+  "detail": 3
+ },
+ {
+  "case": "D3 Add person (right-edge) no console or page error",
+  "ok": true,
+  "detail": []
+ },
+ {
+  "case": "D1 Add person (centre) then a click on the new name and typing keeps the text",
+  "ok": true,
+  "detail": "'Ali'"
+ },
+ {
+  "case": "D2 Add person (centre) then a click of its own on the new Remove removes that row",
+  "ok": true,
+  "detail": 3
+ },
+ {
+  "case": "D3 Add person (centre) no console or page error",
+  "ok": true,
+  "detail": []
+ },
+ {
+  "case": "D1 Add item (right-edge) then a click on the new name and typing keeps the text",
+  "ok": true,
+  "detail": "'Ali'"
+ },
+ {
+  "case": "D2 Add item (right-edge) then a click of its own on the new Remove removes that row",
+  "ok": true,
+  "detail": 2
+ },
+ {
+  "case": "D3 Add item (right-edge) no console or page error",
+  "ok": true,
+  "detail": []
+ },
+ {
+  "case": "D1 Add item (centre) then a click on the new name and typing keeps the text",
+  "ok": true,
+  "detail": "'Ali'"
+ },
+ {
+  "case": "D2 Add item (centre) then a click of its own on the new Remove removes that row",
+  "ok": true,
+  "detail": 2
+ },
+ {
+  "case": "D3 Add item (centre) no console or page error",
+  "ok": true,
+  "detail": []
+ },
+ {
+  "case": "D4 Add person then a click of its own on the mode label By item switches the mode",
+  "ok": true,
+  "detail": "item"
+ },
+ {
+  "case": "W Add person by mouse, type, double click the first word selects a word",
+  "ok": true,
+  "detail": "'Siti '"
+ },
+ {
+  "case": "W Add person by mouse, type, double click the second word selects a word",
+  "ok": true,
+  "detail": "'Nur'"
+ },
+ {
+  "case": "W Add person by keyboard, type, double click the first word selects a word",
+  "ok": true,
+  "detail": "'Siti '"
+ },
+ {
+  "case": "W Add person by keyboard, type, double click the second word selects a word",
+  "ok": true,
+  "detail": "'Nur'"
+ },
+ {
+  "case": "W Add item by mouse, type, double click the first word selects a word",
+  "ok": true,
+  "detail": "'Teh '"
+ },
+ {
+  "case": "W Add item by mouse, type, double click the second word selects a word",
+  "ok": true,
+  "detail": "'tarik'"
+ },
+ {
+  "case": "W Add item by keyboard, type, double click the first word selects a word",
+  "ok": true,
+  "detail": "'Teh '"
+ },
+ {
+  "case": "W Add item by keyboard, type, double click the second word selects a word",
+  "ok": true,
+  "detail": "'tarik'"
+ },
+ {
+  "case": "C Add person at the cap, mouse-double, right-edge",
+  "ok": true,
+  "detail": [
+   12,
+   13,
+   "Person 12 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add person at the cap, mouse-double, centre",
+  "ok": true,
+  "detail": [
+   12,
+   13,
+   "Person 12 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add person at the cap, mouse-triple, right-edge",
+  "ok": true,
+  "detail": [
+   12,
+   13,
+   "Person 12 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add person at the cap, mouse-triple, centre",
+  "ok": true,
+  "detail": [
+   12,
+   13,
+   "Person 12 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add person at the cap, touch-double, right-edge",
+  "ok": true,
+  "detail": [
+   12,
+   13,
+   "Person 12 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add person at the cap, touch-double, centre",
+  "ok": true,
+  "detail": [
+   12,
+   13,
+   "Person 12 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add item at the cap, mouse-double, right-edge",
+  "ok": true,
+  "detail": [
+   50,
+   54,
+   "Item 50 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add item at the cap, mouse-double, centre",
+  "ok": true,
+  "detail": [
+   50,
+   54,
+   "Item 50 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add item at the cap, mouse-triple, right-edge",
+  "ok": true,
+  "detail": [
+   50,
+   54,
+   "Item 50 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add item at the cap, mouse-triple, centre",
+  "ok": true,
+  "detail": [
+   50,
+   54,
+   "Item 50 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add item at the cap, touch-double, right-edge",
+  "ok": true,
+  "detail": [
+   50,
+   54,
+   "Item 50 name",
+   []
+  ]
+ },
+ {
+  "case": "C Add item at the cap, touch-double, centre",
+  "ok": true,
+  "detail": [
+   50,
+   54,
+   "Item 50 name",
+   []
+  ]
+ },
+ {
+  "case": "S2 Remove click then Add click (count 1 each) = 4 people",
+  "ok": true,
+  "detail": 4
+ },
+ {
+  "case": "S3 then a double click on Add person adds exactly one",
+  "ok": true,
+  "detail": 5
+ }
+]
