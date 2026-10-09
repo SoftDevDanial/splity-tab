@@ -45,7 +45,9 @@ the QA run, and the filesystem rules forbid writing it through a shell redirect.
 No payments or QR, no other currency or locale formatting (no `Intl`, no group separator), no 5-sen
 rounding, no tips or discounts or other charges, no history or second bill, no DOM, storage, clipboard,
 network or timer code, and no generic helpers beyond what the requirements call. `tests/hygiene.test.js`
-enforces the purity part mechanically.
+~~enforces the purity part mechanically.~~ [Changed 2026-10-09, solver, code-review WR-07: enforces the
+spec R25 list, which now also covers the locale-format and timer non-goals. `queueMicrotask` is not on
+the list, since the ruling did not add it.]
 
 ## Exports (the contract, nothing more)
 | File | Exports |

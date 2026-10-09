@@ -10,6 +10,8 @@ const CORE_DIR = resolve(import.meta.dirname, "../src/core");
 const BANNED = [
   "window", "document", "globalThis", "localStorage", "sessionStorage", "navigator", "fetch",
   "XMLHttpRequest", "Date", "Math\\.random", "parseFloat", "Number\\.parseFloat", "toFixed",
+  // The locale-format and timer non-goals.
+  "Intl", "toLocaleString", "toLocaleDateString", "setTimeout", "setInterval", "requestAnimationFrame",
 ];
 const BANNED_PATTERNS = BANNED.map((name) => [name, new RegExp(`\\b${name}\\b`)]);
 
@@ -48,7 +50,13 @@ test("@R25 the scanner catches what it should (negative control)", () => {
     bannedNamesIn("Math.random() + Number.parseFloat(s) + window.document"),
     ["window", "document", "Math\\.random", "parseFloat", "Number\\.parseFloat"],
   );
+  assert.deepEqual(
+    bannedNamesIn("new Intl.NumberFormat(); n.toLocaleString(); d.toLocaleDateString(); " +
+      "setTimeout(f, 0); setInterval(f, 9); requestAnimationFrame(f)"),
+    ["Intl", "toLocaleString", "toLocaleDateString", "setTimeout", "setInterval", "requestAnimationFrame"],
+  );
   assert.deepEqual(bannedNamesIn("const dateText = 1; const myFetch = 2"), []);
+  assert.deepEqual(bannedNamesIn("const localeName = 1; const setTimeoutMs = 2; // locale-independent"), []);
   assert.deepEqual(specifiersIn('import a from "./x.js"; export { b } from "../y.js"; import "z"; import("w")'),
     ["./x.js", "../y.js", "z", "w"]);
   assert.equal(staysInCore("../ui/x.js"), false);

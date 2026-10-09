@@ -492,6 +492,9 @@ Feature: split-core money, maths, state rules and summary text
     When the hygiene test scans their source text
     Then no import points outside src/core/
     And none of these names appears: window, document, globalThis, localStorage, sessionStorage, navigator, fetch, XMLHttpRequest, Date, Math.random, parseFloat, toFixed
+    # [Added 2026-10-09, ORCH, code-review WR-07]
+    And none of these names appears either: Intl, toLocaleString, toLocaleDateString, setTimeout, setInterval, requestAnimationFrame
+    And the negative control shows the scanner flags each of those six in a planted line
 
   @R26
   Scenario: Equal names are stored as typed
