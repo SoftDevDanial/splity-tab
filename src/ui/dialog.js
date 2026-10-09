@@ -3,16 +3,40 @@
 // The dialog opens with showModal() (the page behind goes inert), focus starts on Cancel, and every way
 // out (Cancel, Esc, a click on the backdrop, Start new bill) ends with focus back on `opener`.
 
+import { isRepeatClick } from "./dom.js";
+
+// Closing with a click arms a guard, because the rest of a double click or double tap would land on whatever is
+// drawn under the pointer once the dialog is gone (R30: Cancel changes nothing). It cancels the repeat presses and
+// clicks at the document, before any control sees them (a cancelled press also keeps focus on New bill), and it is
+// gone at the first press that is not a repeat. No timer.
+function swallowRepeatClicks() {
+  const guard = (event) => {
+    if (!isRepeatClick(event)) {
+      document.removeEventListener("mousedown", guard, true);
+      document.removeEventListener("click", guard, true);
+      return;
+    }
+    event.stopPropagation();
+    event.preventDefault();
+  };
+  document.addEventListener("mousedown", guard, true);
+  document.addEventListener("click", guard, true);
+}
+
 export function createDialog(dialog, opener, { onConfirm }) {
   const [start, cancel] = dialog.querySelectorAll(".dialog-actions .btn");
+  const closeByClick = () => {
+    swallowRepeatClicks();
+    dialog.close();
+  };
 
   opener.addEventListener("click", () => {
     dialog.showModal();
     cancel.focus();
   });
-  cancel.addEventListener("click", () => dialog.close());
+  cancel.addEventListener("click", closeByClick);
   start.addEventListener("click", () => {
-    dialog.close();
+    closeByClick();
     onConfirm();
   });
   // Esc, Cancel, Start and the backdrop all end in "close", so the focus rule lives here once. It is not
@@ -38,6 +62,6 @@ export function createDialog(dialog, opener, { onConfirm }) {
     if (event.target !== dialog) return;
     const box = dialog.getBoundingClientRect();
     const outside = event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom;
-    if (outside) dialog.close();
+    if (outside) closeByClick();
   });
 }

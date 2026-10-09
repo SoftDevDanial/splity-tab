@@ -28,6 +28,13 @@ export function setAttr(node, name, value) {
   if (node.getAttribute(name) !== text) node.setAttribute(name, text);
 }
 
+/**
+ * True for the second and later click of a double click or double tap. `detail` is the click count (0 for a
+ * key press). The first click can close the dialog or remove a row, so the next one lands on whatever slid
+ * under the pointer: the handlers that do either ignore it. No timer, so a slow second click is an ordinary one.
+ */
+export const isRepeatClick = (event) => event.detail > 1;
+
 export function setText(node, text) {
   if (node.textContent !== text) node.textContent = text;
 }

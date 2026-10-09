@@ -1364,6 +1364,83 @@ def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
     assert page.locator("p.error#rate-sst-error").count() == 1
 
 
+# ---------------------------------------------------------------- Code review CR-01, WR-01, WR-06: ghost clicks and the backdrop
+# A double click or a double tap is two clicks. The first can close the dialog or remove a row, so the second lands on
+# whatever is drawn under the pointer afterwards. `event.detail` is the click count: 1 for the first, 2 for the second.
+PHONES = [(375, 667), (360, 640), (412, 732)]  # the sizes where QA and the code review reproduced it, with the S1 bill
+RECORD_BODY_CLICKS_JS = """() => {
+  window.testBodyClicks = [];
+  document.body.addEventListener('click', (event) => window.testBodyClicks.push(event.detail), false);
+}"""
+
+
+def settle(page):
+    """Two animation frames, so every click the browser still had queued from a gesture has been delivered."""
+    page.evaluate("() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)))")
+
+
+def activate_twice(page, how, point):
+    """A double click (mouse) or a double tap (touch) at one point."""
+    if how == "touch":
+        page.touchscreen.tap(*point)
+        page.touchscreen.tap(*point)
+    else:
+        page.mouse.dblclick(*point)
+    settle(page)
+
+
+def dialog_is_open(page):
+    return page.locator("dialog.dialog").evaluate("(d) => d.open")
+
+
+@pytest.mark.parametrize("how", ["mouse", "touch"])
+@pytest.mark.parametrize("viewport", PHONES, ids=[f"{w}x{h}" for w, h in PHONES])
+def test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing(open_app, viewport, how):
+    # CR-01 (QA F-1). On a by-item bill the control under Cancel is often a person's toggle.
+    page = open_app(seed=seeds.S1, viewport=viewport, touch=how == "touch").page
+    before = snapshot(page)
+    open_dialog(page)
+    activate_twice(page, how, centre_of(page.get_by_role("button", name="Cancel", exact=True)))
+    assert dialog_is_open(page) is False and focused(page) == "New bill"
+    assert stored_text(page) == seeds.S1 and snapshot(page) == before
+
+
+@pytest.mark.parametrize("how", ["mouse", "touch"])
+@pytest.mark.parametrize("target", ["Cancel", "Start new bill", "backdrop"])
+def test_R30_the_second_click_of_a_double_activation_never_reaches_the_page(open_app, target, how):
+    # The same close path serves all three clicks, and what sits under each depends on the bill and the size, so this
+    # asks the question directly: of the two clicks, only the one that closed the dialog may reach the page.
+    page = open_app(seed=seeds.S1, touch=how == "touch").page
+    open_dialog(page)
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    point = (12, 12) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+    activate_twice(page, how, point)
+    assert dialog_is_open(page) is False
+    assert page.evaluate("window.testBodyClicks") == [1]
+
+
+def test_R30_a_triple_click_on_cancel_changes_nothing_either(open_app):
+    page = open_app(seed=seeds.S1, viewport=PHONES[0]).page
+    open_dialog(page)
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    x, y = centre_of(page.get_by_role("button", name="Cancel", exact=True))
+    page.mouse.click(x, y, click_count=3)
+    settle(page)
+    assert page.evaluate("window.testBodyClicks") == [1] and stored_text(page) == seeds.S1
+
+
+def test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_held_back(open_app):
+    page = open_app(seed=seeds.S1, viewport=PHONES[0]).page
+    open_dialog(page)
+    page.get_by_role("button", name="Cancel", exact=True).click()
+    assert dialog_is_open(page) is False and focused(page) == "New bill"
+    aisyah = toggle(page, "Char kuey teow", "Aisyah")
+    assert aisyah.get_attribute("aria-pressed") == "false"
+    aisyah.dblclick()  # two real clicks on a toggle flip it twice: the guard of the closed dialog is gone
+    settle(page)
+    assert aisyah.get_attribute("aria-pressed") == "false" and stored_text(page) == seeds.S1
+
+
 # ---------------------------------------------------------------- Task 11: cross-cutting checks (R32, R33, R35, R36, R37, R39)
 INK = "rgb(20, 25, 23)"  # --ink, the colour of the focus ring
 RING = ["solid", "2px", INK, "2px"]
