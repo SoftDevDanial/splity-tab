@@ -1,0 +1,22 @@
+[
+  {
+    "id": "S02-RED",
+    "finding": "SEC-02",
+    "what": "RED: the class without \\p{Bidi_Control}",
+    "childPid": 44932,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 218,
+    "pass": 217,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 a right-to-left override in a name cannot reorder the share"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 a right-to-left override in a name cannot reorder the share"
+    ]
+  }
+]

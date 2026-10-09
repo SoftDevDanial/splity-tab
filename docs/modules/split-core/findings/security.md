@@ -108,3 +108,40 @@ Also for split-app: D8 counts grapheme clusters, and one base letter with thousa
 - Every write used the Write tool. Probes, the mirror helper and output live only in the evidence folder (outside `src/` and the `tests/**/*.test.js` glob). Nothing was written to `src/`, `tests/`, `docs/design/`, the ledger or `docs/progress/`.
 - Every command ran under `timeout -s KILL`. P05 and P07 ran each heavy case in a `spawnSync` child with a SIGKILL timeout. Their PIDs are listed in `probe-output.txt`, and all of them exited.
 - Headless Chromium (P09): python 45148, browser 6232, GPU 46036, network service 41292. All were gone after the run (checked by PID and by a command-line sweep, see PROC in `probe-output.txt`). The OS clipboard was never touched.
+
+## Solver (security, 2026-10-09)
+Role: dev solver for split-core, resumed from the code-review round (ORCH economy decision), working to the orchestrator rulings of 2026-10-09 (ORCH, reversible). This section is appended. The auditor's verdict above is unchanged. Spec and qa corrections are dated, additive notes, with false wording struck through but visible.
+
+**Result: 4 of 4 RESOLVED, 0 STILL-OPEN.** The suite was 212 of 212 at `e034951` and is now **tests 230, pass 230, fail 0** at `e56b396` (Node v24.11.1).
+
+Evidence is in `docs/modules/split-core/qa/security-solver/20261009T130259/`. The auditor's folder was not touched.
+- `node-test.txt` holds the full suite at HEAD.
+- `per-commit-summary.txt` rebuilds each of the 4 commits from `git show` and runs it: 217, 218, 218 and 230 tests, 0 failures each, with child PIDs.
+- `sec-01/`, `sec-02/` and `sec-04/` are the mutation runs made before each commit. `final/` reruns every mutant at HEAD.
+- Each mutation summary records the verdict, the tests that failed and the child PID. Test copies are renamed `*.mutcase.js`. The scripts are in `scripts/`.
+- "RED" mutants restore the pre-batch code from `e034951` to show the new tests fail on it.
+
+| SEC | Status | Commit | What changed | Red then green |
+|---|---|---|---|---|
+| SEC-01 MEDIUM | RESOLVED | `b3b43fe` | The `summaryText` class (now `CONTROLS`) is widened from the seven mandatory breaks to `[\p{Cc}\p{Zl}\p{Zp}]` with the `u` flag, each character printed as one space. The seven are inside `\p{Cc}`, `\p{Zl}` and `\p{Zp}`, and their 8 tests stay green. New R24 tests cover NUL, FS, GS, RS and ESC. Dated notes on R24, the name invariant and the threat row, plus a qa.md scenario outline. | RED: the pre-batch `summary.js` fails exactly the 5 new tests (6 at HEAD, where the RLO test also exists). Each of S01-NUL, FS, GS, RS and ESC lets one character through with a lookahead, and each is KILLED-ONLY: it fails only that character's test. |
+| SEC-02 LOW | RESOLVED | `a09ce03` | `\p{Bidi_Control}` was added to the same class, so it is `[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]`. New test: `@R24 a right-to-left override in a name cannot reorder the share` (`Ben` + U+202E gives the row `Ben  RM 38.87` with no RLO left). Dated notes on R24 and the threat row (a new threat under the same asset), plus a qa.md scenario. | RED: the class without `\p{Bidi_Control}` is KILLED-ONLY, failing only the RLO test. |
+| SEC-03 LOW | RESOLVED | `b5b448d` | "Residual risk accepted. None" is struck through and kept. A dated note records the two residuals accepted for v1.0 by ruling: a plain-text name that reads like a summary line, and a name made only of characters `trim` keeps but that draw nothing (NEL alone, U+200B, U+2800, U+3164), which skips the R17 fallback. R17 is unchanged. | Doc only, so there is no test. The claim was checked: `personLabel` returns each of those four characters as is, with no `Person 1` fallback. |
+| SEC-04 LOW | RESOLVED | `e56b396` | `tests/hygiene.test.js` adds `BANNED_IN_CODE`: `eval`, `Function(` or `new Function`, `import(`, `queueMicrotask` (superseding the WR-07 omission), `setImmediate`, `performance`, `crypto`, `WebSocket`, `process` and `require`. These are whole-word matches against `codeOnly(source)`, which blanks comments, string text, template text and regex bodies (delimiters kept, length kept) and keeps code inside `${...}`, nested templates included. New tests: a code-only control (template expressions scanned, prose and literals skipped, look-alikes such as `processed` and `myFunction(` green) and 11 in-memory plant tests. Each plant is served into every real core file and must go red as exactly its name, and the same text in a comment or a string must stay green. Dated notes on spec R25, qa.md R25 and BUILD.md. | No false hits on the real source: the 5 per-file scans are green, and the JSDoc `import("./x.js")` types are skipped. On-disk plants S04-01 to S04-11 are each KILLED. Each fails its own file's scan plus the 11 in-memory exactness tests that read that file, and no other file's scan. RED control S04-RED (every plant, with the pre-batch hygiene test) stays green, which is the gap closed. Control S04-PROSE (every word only in a comment and a string) stays green. `codeOnly` output on all five core files was checked line by line: only string text, template text and regex bodies are blanked. |
+
+**Process notes.**
+- All writes used the Write and Edit tools or Node `fs` with `D:/` forward-slash paths.
+- `\u` escapes were written as `\u{...}` (or `\x..`), because this transport turns some `\uXXXX` text into raw characters. Every touched file was scanned for raw controls, separators and bidi controls, and none were found.
+- The credential gate ran unpiped before the SEC-01, SEC-03 and SEC-04 commits, with exit 0 each time. Its built-in positive and negative controls passed each time. Before the SEC-02 commit its output was piped through `tail`, which hid the exit code. It printed `CLEAN`, so the commit was not blocked in fact, but that one run does not show an exit code.
+- Nothing was written to `docs/design/`, `docs/progress/` or the ledger. This section (an uncommitted change to this tracked file) and the new, untracked evidence folder are left for the orchestrator to commit, as with the code-review round.
+
+**Process accounting.**
+- Every child process was a foreground `spawnSync` with a 120 s SIGKILL timeout, waited for and exited. The PIDs are in the summaries.
+  - Per-commit runs: 8288, 32900, 42156, 44660.
+  - Final suite: 44044.
+  - Final mutation run: 45896, 41932, 40688, 28872, 25648, 43236, 25820, 22588, 22520, 24284, 35988, 44356, 13568, 20712, 39152, 35808, 10848, 43800, 44572, 35644.
+  - Earlier staged runs: the PIDs are in `sec-01/`, `sec-02/` and `sec-04/mutation-summary.json`.
+- No background process was started.
+
+**Routed, not fixed here (split-app owners).**
+- Rule D8 rejects only LF and CR. Consider rejecting every `\p{Cc}` and `\p{Bidi_Control}` in names there too, so the screen label matches the summary text.
+- The P07 decoder-failure table above stands as the auditor wrote it.

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "S01-RED",
+    "finding": "SEC-01",
+    "what": "RED: summary.js as it was before the batch (the seven line breaks only)",
+    "childPid": 43832,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 217,
+    "pass": 212,
+    "fail": 5,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R24 a NUL inside a name prints as a space, so no reader can cut the summary there",
+      "@R24 a FS inside a name prints as a space, so no reader can cut the summary there",
+      "@R24 a GS inside a name prints as a space, so no reader can cut the summary there",
+      "@R24 a RS inside a name prints as a space, so no reader can cut the summary there",
+      "@R24 a ESC inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 a NUL inside a name prints as a space, so no reader can cut the summary there",
+      "@R24 a FS inside a name prints as a space, so no reader can cut the summary there",
+      "@R24 a GS inside a name prints as a space, so no reader can cut the summary there",
+      "@R24 a RS inside a name prints as a space, so no reader can cut the summary there",
+      "@R24 a ESC inside a name prints as a space, so no reader can cut the summary there"
+    ]
+  },
+  {
+    "id": "S01-NUL",
+    "finding": "SEC-01",
+    "what": "the class lets NUL through",
+    "childPid": 39476,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 217,
+    "pass": 216,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 a NUL inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 a NUL inside a name prints as a space, so no reader can cut the summary there"
+    ]
+  },
+  {
+    "id": "S01-FS",
+    "finding": "SEC-01",
+    "what": "the class lets FS through",
+    "childPid": 26044,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 217,
+    "pass": 216,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 a FS inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 a FS inside a name prints as a space, so no reader can cut the summary there"
+    ]
+  },
+  {
+    "id": "S01-GS",
+    "finding": "SEC-01",
+    "what": "the class lets GS through",
+    "childPid": 27468,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 217,
+    "pass": 216,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 a GS inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 a GS inside a name prints as a space, so no reader can cut the summary there"
+    ]
+  },
+  {
+    "id": "S01-RS",
+    "finding": "SEC-01",
+    "what": "the class lets RS through",
+    "childPid": 44972,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 217,
+    "pass": 216,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 a RS inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 a RS inside a name prints as a space, so no reader can cut the summary there"
+    ]
+  },
+  {
+    "id": "S01-ESC",
+    "finding": "SEC-01",
+    "what": "the class lets ESC through",
+    "childPid": 8532,
+    "exitStatus": 1,
+    "signal": null,
+    "tests": 217,
+    "pass": 216,
+    "fail": 1,
+    "verdict": "KILLED-ONLY",
+    "expectedToFail": [
+      "@R24 a ESC inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "expectedButPassed": [],
+    "alsoFailed": [],
+    "failed": [
+      "@R24 a ESC inside a name prints as a space, so no reader can cut the summary there"
+    ]
+  }
+]

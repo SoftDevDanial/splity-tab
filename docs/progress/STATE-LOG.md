@@ -61,3 +61,11 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Behaviour change: `summaryText` prints the seven Unicode mandatory line breaks in names as a space (R24 amended, dated)
 - Owner's words 2026-10-09: "Make sure both app reach a stable 1.0 version. Then i will test it out." The run's version label moves from 0.1.0 to 1.0.0
 - Next: security auditor (WR-10 plus threat model), then QA and code-review re-check
+
+## 2026-10-09 13:01 split-core security audit
+- Security auditor: PASS, 1 MEDIUM (control characters other than the 7 breaks), 3 LOW (bidi controls, spec residual wording, purity list). Commit e034951
+- Ruled ORCH: widen the guard to Cc, Zl, Zp and Bidi_Control; accept two residuals for v1.0; extend the purity list incl. queueMicrotask. Resumed the split-core dev solver for the fixes (economy)
+
+## 2026-10-09 13:12 split-core security fix batch
+- Solver: SEC-01 b3b43fe, SEC-02 a09ce03, SEC-03 b5b448d, SEC-04 e56b396. 230 of 230 tests pass, each commit green on its own
+- Next: security re-check (resume the auditor), then QA finder and code-review re-check
