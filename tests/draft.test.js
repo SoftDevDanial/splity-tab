@@ -62,6 +62,10 @@ test("@R26 D8 counts grapheme clusters and refuses line breaks", () => {
   const long = { id: "i3", name: "x".repeat(41), priceText: "1", who: [] };
   rejects(draft({ items: [long], nextId: 4 }));
   assert.equal(decodeDraft(draft({ items: [{ ...long, name: "x".repeat(40) }], nextId: 4 })).ok, true);
+  // An item name is one line in the clipboard text too, so it gets the same line break rule as a person name.
+  const tea = { id: "i3", name: "Tea", priceText: "5", who: [] };
+  assert.equal(decodeDraft(draft({ items: [tea], nextId: 4 })).ok, true);
+  for (const name of ["Te\na", "Te\ra"]) rejects(draft({ items: [{ ...tea, name }], nextId: 4 }));
 });
 
 test("@R26 D9 wants the three text fields as strings", () => {
@@ -74,6 +78,10 @@ test("@R26 D10 wants nextId an integer above every id and at most 1,000,000,000"
   assert.equal(decodeDraft(draft({ nextId: 3 })).ok, true);
   assert.equal(decodeDraft(draft({ people: [person(999999998), person(2)], nextId: 1_000_000_000 })).ok, true);
   for (const nextId of [2, 1, 0, -1, 1.5, 1_000_000_001, 2_000_000_000, "3", null, undefined, NaN]) rejects(draft({ nextId }));
+  // The highest id may sit on an item: people p1 and p2, item i3, so 3 is stale (the next item would be i3 again).
+  const tea = { id: "i3", name: "Tea", priceText: "5", who: [] };
+  rejects(draft({ items: [tea], nextId: 3 }));
+  assert.equal(decodeDraft(draft({ items: [tea], nextId: 4 })).ok, true);
 });
 
 test("@R26 D11 and D12 drop unknown keys and build new objects from known fields", () => {

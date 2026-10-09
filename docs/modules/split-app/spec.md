@@ -356,6 +356,7 @@ Residual risks accepted, with the reason.
 - Another project page under the same `github.io` origin can **read** the draft (names and restaurant prices). The data is low in sensitivity, there is no way to isolate it on that host without a custom domain, and the brainstorm keeps one draft in this browser on purpose.
 - The page can be framed (`frame-ancestors` cannot be set from a meta tag on a static host). The page has no action worth clickjacking beyond starting a new bill, which itself asks for confirmation.
 - A name may hold U+2028 or other invisible characters pasted by the user. Only the user can type them, and they affect only the user's own clipboard text.
+- [Added 2026-10-09, ORCH, code-review WR-04.] D8 counts grapheme clusters and sets no UTF-16 ceiling. A name of one letter followed by a million combining marks is one cluster, so the decoder accepts it, and the page still loads in 0.37 s (measured by the review). Chromium's `maxlength` never lets a user type it, so only a hand-edited draft in their own storage can hold it, and the only page it can slow is theirs. A ceiling such as `name.length <= 200` would cost nothing and can be added if the owner asks.
 
 ## Non-goals
 Do NOT build any of the following. Building one is a defect.
