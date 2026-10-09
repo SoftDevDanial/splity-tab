@@ -169,6 +169,44 @@ Feature: Split app, served and driven like a person would
     And every "Who had" group holds exactly the toggles "Aisyah" and "Ben"
     And the panel shows "1 item still needs a person. Tap who had it to see the shares."
 
+  # Added 2026-10-09, ORCH, security audit SEC-01. A double click, a triple click and a double tap are two or three presses, and the
+  # first one moves a different control under the pointer. Removing the last person slides "Add person" into the cell the row filled,
+  # so the second click used to add a blank person. The tests are `test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing`
+  # and the four after it in `test_app.py`. The code-review rows for a middle Remove (WR-01) are `test_R7_a_double_click_or_double_tap_on_remove_removes_one_row`
+  # and `test_R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each`.
+  @R7
+  Scenario Outline: A repeat press on the last Remove removes that row and adds nothing
+    Given <bill> is the stored draft
+    And the viewport is <size>
+    When I <gesture> at the centre of <button>
+    Then one row fewer shows and the stored draft is the bill that one click on <button> leaves (the last person or item gone, no blank row, "nextId" unchanged)
+    And focus is on <focus>
+    Examples:
+      | bill                          | button                    | focus         |
+      | S2                            | Remove Chen               | Person 2 name |
+      | S8                            | Remove Mei Ling           | Person 11 name |
+      | S1                            | Remove Satay, 10 sticks   | Item 3 name   |
+      | S1 with only its last item    | Remove Satay, 10 sticks   | Add item      |
+    # Sizes: 360 x 640, 390 x 844, 1280 x 800. Gestures: single click (the control), mouse double click, mouse triple click, touch double tap.
+
+  @R34
+  Scenario Outline: After a double click or double tap on a middle Remove, focus is where one click puts it
+    Given <bill> is the stored draft
+    When I double click, or double tap, <button>
+    Then one row is gone and focus is on <focus>, not on the next Remove button or the page body
+    Examples:
+      | bill                        | button                | focus         |
+      | the S1 bill                 | Remove Char kuey teow | Item 2 name   |
+      | S2 with five people P1 to P5 | Remove P2             | Person 2 name |
+
+  @R7
+  Scenario: A press of its own is never held back
+    Given the S2 seed
+    When I click the centre of "Remove Chen" and then, as a separate click, the same point
+    Then "Add person" was under the pointer for the second click, and it adds one person (the guard goes by click count 2 or more, not by time or place)
+    When I click "Remove Nasi lemak ayam" in the S1 bill and then double click a toggle
+    Then both clicks reach the toggle, so it ends where it began (the guard is gone at the first press that is not a repeat)
+
   @R42
   Scenario: Two people may have the same name (added 2026-10-08)
     Given a cold boot with the clipboard recorder
@@ -583,6 +621,37 @@ Feature: Split app, served and driven like a person would
       | press Escape                                 | the dialog is closed                                           |
       | click the backdrop at (10, 10)               | the dialog is closed                                           |
       | click the backdrop over "Person 1 name"      | the dialog is closed and "Person 1 name" does not have focus   |
+
+  # Added 2026-10-09, ORCH, security audit I-1. A double click on "New bill" used to flash the dialog open and shut: the second
+  # click landed on the backdrop of the dialog the first had opened. Opening now arms the guard that closing already armed (R30, CR-01).
+  # The tests are `test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open` (9 rows) and the three after it in `test_app.py`.
+  @R29
+  Scenario Outline: A repeat press on New bill leaves the dialog open
+    Given the S1 seed at <size>
+    When I <gesture> at the centre of "New bill"
+    Then the dialog is open, "Cancel" has focus, only the first click reached the page and the stored draft is unchanged
+    Examples:
+      | size                              | gesture                                   |
+      | 360 x 640, 390 x 844, 1280 x 800  | mouse double click, mouse triple click, touch double tap |
+
+  @R30
+  Scenario Outline: After a double click on New bill one deliberate click still closes it
+    Given the S1 seed and a double click on "New bill" has opened the dialog
+    When I <close>
+    Then the dialog is closed, "New bill" has focus and the stored draft is unchanged
+    Examples:
+      | close                  |
+      | click "Cancel"         |
+      | click the backdrop at (10, 10) |
+      | press Escape           |
+
+  @R29
+  Scenario: The keyboard and the next press are not held back
+    Given the S2 seed
+    When I focus "New bill", press Enter, Enter on "Cancel" and Enter on "New bill" again
+    Then the dialog opens, closes and opens again, with "Cancel" focused each time it is open (a key press has click count 0)
+    When I open the dialog by click, press Escape and double click a toggle on the S1 bill
+    Then both clicks reach the toggle (the guard of the opening click is gone at the first press that is not a repeat)
 
   # Changed 2026-10-08, plan check FLAG. The scenario was: Given the S1 seed with a copy already made (status "Summary copied") and an error showing
   # on "Item 2 price in RM", When I click "New bill" and then "Start new bill", Then ... no error and no status shows.

@@ -49,6 +49,9 @@ Each task's box in `spec.md` is ticked in its own commit.
 - Live gate (`python tests/browser/live_e2e.py`), evidence `docs/modules/split-app/qa/live-e2e/20261009-173415/`: 7 of 7 steps
   pass, console.log empty (no CSP line), network.log only same-origin GETs, both clipboard texts equal the split-core R24 blocks.
 - Credential gate (`credential_sweep.py --staged`, unpiped) was clean, exit 0, before every commit.
+- After the security solver (2026-10-09, SEC-01 and I-1, `071577a` and `68ab318`): browser 312 passed (the 244 of the code-review
+  solver plus 54 for SEC-01 and 14 for I-1), unit 275 passed, fidelity 10 of 10 pairs at 0 mismatching pixels
+  (`qa/fidelity/20261009-212142/`), live gate 7 of 7 (run into the scratch folder `qa/security-solver/20261009-205629/live-gate-check/`).
 
 ## How to view and run
 `python -m http.server <free port> --bind 127.0.0.1` from the project root, then `http://127.0.0.1:<port>/`.
@@ -69,10 +72,14 @@ prints the PID and port.
 - `src/errors.js`: the R10 timing rules as pure functions: `newErrorFlags`, `flagsFor`, `typedInto`, `leftField`,
   `forgetPrice`, `visibleErrors`. Node unit tests in `tests/errors.test.js`.
 - `src/ui/dom.js`: `el`, `block` (the section and heading scaffold of the four input blocks), `setAttr`, `setText`,
-  `setValue`, `isRepeatClick`, `rowsFor`, `reconcileChildren`. R33 rests on `reconcileChildren`, which never re-inserts a
-  node that is already in place (re-inserting a focused input drops its focus). The setters skip equal writes, which is
-  belt and braces. `isRepeatClick` marks the second click of a double click or double tap: the remove buttons ignore it
-  and `createDialog` cancels it after a click that closes the dialog.
+  `setValue`, `swallowRepeatClicks`, `rowsFor`, `reconcileChildren`. R33 rests on `reconcileChildren`, which never
+  re-inserts a node that is already in place (re-inserting a focused input drops its focus). The setters skip equal
+  writes, which is belt and braces. `swallowRepeatClicks()` is the one guard against a repeat press (it moved here from
+  `dialog.js` for SEC-01, 2026-10-09). It adds capture listeners for `mousedown` and `click` on the document that cancel
+  every press with a click count above 1 (a double click, triple click or double tap) and remove themselves at the first
+  press that is not a repeat, so a click or key press of its own is never held back. No timer. The count test is the
+  file-private `isRepeatClick`. Armed by the Remove click of a person or an item (SEC-01, R7, R12), by the click that
+  closes the dialog (CR-01, R30) and by the click that opens it (I-1, R29).
 - `src/ui/icons.js`: `icon(name)`, the only `createElementNS` call site (CG-10).
 - `src/ui/field-leave.js`: `onFieldLeave(input, handler)`, the one blur gesture of every field whose error shows on blur
   (Subtotal, prices, both rates; RD-3). A blur caused by a press runs the handler when the press ends (`mouseup`,
@@ -82,8 +89,10 @@ prints the PID and port.
   `tests/browser/live_e2e.py`: the live gate (`Gate`, `run_steps`, `format_step`).
 - `src/ui/{people,items,subtotal,charges,mode,panel,note,dialog,field-error}.js`: one block each. `createX(handlers)`
   returns `{ el, update(...) }` (plus `focusName`, `focusAdd`). They write DOM and report gestures, they never change the bill.
-  `createDialog` (`dialog.js`) also arms a guard after a click that closes the dialog (CR-01) and remembers where a press
-  began, so only a press that began and ended on the backdrop is a backdrop click (WR-06). `panel.js` exports `hasShares`.
+  `createDialog` (`dialog.js`) calls `swallowRepeatClicks` (from `dom.js`) when a click closes the dialog (CR-01) and when the
+  click on New bill opens it (I-1), and remembers where a press began, so only a press that began and ended on the backdrop
+  is a backdrop click (WR-06). The Remove handlers of `people.js` and `items.js` call it too (SEC-01). `panel.js` exports
+  `hasShares`.
 - `index.html` holds the static shell (header, `.inputs`, `.tape`, the closed `dialog`). Blocks are built by JS.
 - `tests/browser/rig.py`: `StaticServer`, `new_context` (the only place a context is made, refuses `permissions`
   and `bypass_csp`), `storage_state`. `support.py`: the R3 DOM walk (`dom_walk`, whole page or a selector, `first_diff`),
@@ -151,6 +160,19 @@ Added by the resumed run of 2026-10-09:
     to 6 and has no gesture (its screenshot is the final S3 screen). The gate's run folder was proven to fail correctly
     with a scratch driver outside the repo (a wrong S1 block turned step 4 into FAIL, exit 1, `failure` in `summary.json`).
     `clipboard-s*.txt` are written without a final line end; git may show LF to CRLF warnings on them (`core.autocrlf`).
+
+Added by the security solver of 2026-10-09 (SEC-01, I-1):
+18. **`swallowRepeatClicks` moved to `src/ui/dom.js` and the Remove handlers use it in place of their own count test (SEC-01,
+    ruled by ORCH).** `people.js` and `items.js` used to ignore a click whose count was above 1 (WR-01). They now arm the shared
+    guard and act on every click that reaches them. What the old test covered and the guard does not is a repeat press that lands
+    on a Remove button although no Remove click armed the guard first. The one candidate is a double click on "Dismiss note",
+    because the note leaves the layout and the rows move up. Measured by the solver (probes `p1_dismiss_note.py` and
+    `p2_dismiss_scan.py` in `qa/security-solver/20261009-205629/probes/`): over 291 viewports (widths 320 to 1280, three heights)
+    and the three standard sizes with mouse double click, triple click and touch double tap, what is under the pointer afterwards
+    is a heading or a `div`, never a control. So no path is left open. `isRepeatClick` is private to `dom.js` now.
+19. **I-1 changes one behaviour on purpose.** A double click, triple click or double tap on "New bill" leaves the dialog open
+    (it used to flash open and shut). Opening arms the same guard as closing does. Reversible: delete the `swallowRepeatClicks()`
+    call in the opener handler of `createDialog`; 12 of the 14 I-1 tests then go red.
 
 ## Deviations
 None architectural: no new dependency, no new state library, no contract change. Items 1 to 17 above are the named deviations.
