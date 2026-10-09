@@ -87,7 +87,7 @@ class Gate:
         """Run body (the gestures, then the reads and checks), take the screenshot, log the line. A failure stops the run.
 
         gesture is what a person does in this step, assertion is what must be true afterwards. Both are keyword-only
-        so a swap shows in the call (test_R41_every_step_has_its_gesture_and_its_assertion_in_the_right_field).
+        so a swap shows in the call (test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields).
         """
         verdict = "PASS"
         try:

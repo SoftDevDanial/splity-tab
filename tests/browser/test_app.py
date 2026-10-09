@@ -1886,7 +1886,7 @@ def test_R39_the_network_scan_has_teeth():
         assert network_problems("x.js", bad), bad
 
 
-def test_R39_icons_come_from_createElementNS_and_the_page_holds_eleven(open_app):
+def test_R39_icons_come_from_createElementNS_and_the_page_holds_its_icons(open_app):
     sources = {name: text for name, text in support.shipped_text().items() if name.startswith("src/")}
     calls = sum(text.count("createElementNS(") for text in sources.values())
     assert calls >= 1 and calls == sum(len(NAMESPACE_CALLS.findall(text)) for text in sources.values())  # every call names the namespace

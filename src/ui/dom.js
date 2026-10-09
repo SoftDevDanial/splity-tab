@@ -1,8 +1,9 @@
 // Small DOM helpers shared by every block under src/ui/.
 // User text reaches the page only through textContent, the value property, or the aria-label and
 // placeholder attributes (R37). Nothing here parses markup.
-// The setters skip a write when nothing changed. That is what keeps a block from touching the input the
-// user is typing in (R33): its value already equals the bill, so it is never written.
+// R33 (typing never loses its place) rests on reconcileChildren: it never re-inserts a node that is already
+// in place, and re-inserting a focused input drops its focus and its IME state. The setters also skip a write
+// of an equal value, which is belt and braces (measured in Chromium: writing an equal value moves nothing).
 
 /**
  * Creates an element. `attrs` maps names to strings.

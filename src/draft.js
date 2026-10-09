@@ -3,7 +3,7 @@
 // all-or-nothing gate. split-core shares untouched people and items by reference and treats any mode that
 // is not "even" as by-item, so everything split-core relies on is checked here (D1 to D12), and the Bill is
 // rebuilt as new objects from known fields only (D12), never copied from the parsed value.
-// Only the storage object passed in is touched, and no function here throws.
+// Only the storage object passed in is touched, except getStorage, which reads window.localStorage. No function here throws.
 import { LIMITS } from "./core/bill.js";
 
 export const DRAFT_KEY = "split.draft";

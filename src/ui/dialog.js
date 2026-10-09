@@ -43,8 +43,8 @@ export function createDialog(dialog, opener, { onConfirm }) {
   // left to the browser, which returns focus only to a control that took focus on the opening click.
   dialog.addEventListener("close", () => opener.focus());
 
-  // Native showModal() lets Tab leave the two buttons for the document (measured: Cancel, body, Start), so
-  // the app wraps Tab itself (PD-14).
+  // Native showModal() lets Tab leave the two buttons for the document (measured in headless Chromium: Cancel,
+  // body, Start new bill), so the app wraps Tab itself (PD-14). This comment is the one home of the measurement.
   dialog.addEventListener("keydown", (event) => {
     if (event.key !== "Tab") return;
     if (event.shiftKey && document.activeElement === start) {

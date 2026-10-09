@@ -1,14 +1,14 @@
 """Fidelity gate runner (qa.md, "Fidelity gate"). Run from the project root: python tests/browser/fidelity/run.py
 
-Serves the app, then runs the unmodified sdlc harness (fidelity.py) once per golden screen and width, ten runs,
-each into its own folder under docs/modules/split-app/qa/fidelity/<YYYYMMDD-HHMMSS>/<screen>-<viewport>/.
+Serves the app, then runs the unmodified sdlc harness (fidelity.py) once per golden screen and width (SCREENS and
+VIEWPORTS below), each into its own folder under docs/modules/split-app/qa/fidelity/<YYYYMMDD-HHMMSS>/<screen>-<viewport>/.
 The harness is started with sys.executable (CG-11): the Python that runs this script must hold Playwright,
 Pillow and numpy. No virtual environment is made and nothing is installed. This file adds no rendering or diff
 logic. It only manages the server, builds the command lines and reads each report.json for the verdict.
 
 A pair passes only when report.json has "dimensions_match": true and "mismatch_pixels": 0. A non-zero count is a
 finding for the human, never something to hide with a higher --threshold.
-Exit status: 0 when all ten pairs pass, 1 otherwise.
+Exit status: 0 when every pair passes, 1 otherwise. Set SDLC_HARNESS to run a harness other than the default.
 """
 import datetime
 import json

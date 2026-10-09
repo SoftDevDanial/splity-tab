@@ -7,11 +7,14 @@
 // there, and the click that belongs to the control it started on would be lost. So a blur caused by a
 // press waits until that press ends. Keyboard and every other blur run at once.
 //
-// The press starts at mousedown and ends at mouseup or pointercancel, not at pointerup: for a touch tap
-// the browser sends pointerup first and the mouse events after it, and the focus change comes with
-// those, so waiting for pointerup never waits (measured: the tap is still lost with touch). A drag
-// (pointercancel) sends no mouseup. A key press also ends a press that never reported its end, so a
-// keyboard blur can never be held back by a lost mouseup.
+// A press starts at a primary-button mousedown and ends at the first of:
+//  - mouseup, not pointerup: for a touch tap the browser sends pointerup first and the mouse events after it,
+//    and the focus change comes with those, so waiting for pointerup never waits (measured: the tap is still
+//    lost with touch);
+//  - pointercancel, because a drag the browser takes over sends no mouseup;
+//  - a keydown, because a press that never reported its end must not hold a keyboard blur back.
+// Only the primary button counts: a right click opens the context menu and the page may never get its mouseup.
+// This comment is the one home of this reasoning; spec R10 and BUILD.md point here.
 let pressed = false;
 const waiting = [];
 
@@ -21,8 +24,6 @@ function endPress() {
 }
 
 // Capture phase, so no handler of the page can stop these.
-// Only the primary button can produce a click. A right click opens the context menu, and where the page then
-// gets no mouseup, `pressed` would stay true and hold a blurred field's error back until the next release or key.
 document.addEventListener("mousedown", (event) => { if (event.button === 0) pressed = true; }, true);
 document.addEventListener("mouseup", endPress, true);
 document.addEventListener("pointercancel", endPress, true);

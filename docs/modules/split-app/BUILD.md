@@ -55,32 +55,40 @@ Each task's box in `spec.md` is ticked in its own commit.
 Tests: `python -m pytest tests/browser -q` (starts and stops its own server, prints PID and port).
 `SPLIT_EVIDENCE=1` also writes `pytest.txt` and `junit.xml` to `docs/modules/split-app/qa/functional/<ts>/`.
 A failed test leaves a screenshot in that same folder. Delete dev-run folders before a commit (I did).
-Gates, from the project root: `python tests/browser/fidelity/run.py` (ten harness runs, about 1.5 minutes, evidence in
-`docs/modules/split-app/qa/fidelity/<ts>/`, exit 1 on any mismatch) and `python tests/browser/live_e2e.py` (about 5 seconds,
+Gates, from the project root: `python tests/browser/fidelity/run.py` (one harness run per golden screen and width, about 1.5 minutes, evidence in
+`docs/modules/split-app/qa/fidelity/<ts>/`, exit 1 on any mismatch; `SDLC_HARNESS` names another harness, the default is the plugin copy) and `python tests/browser/live_e2e.py` (about 5 seconds,
 evidence in `docs/modules/split-app/qa/live-e2e/<ts>/`, exit 1 on any failed step). Each starts and stops its own server and
 prints the PID and port.
 
 ## Code map (for the README reconcile; cite symbols, not lines)
 - `src/main.js`: boot (`getStorage`, `loadDraft`), the one `bill`, the `view` state `{ errorShown, status, noteShown }`,
-  `commit` (core action, `saveDraft`, `render`), `copySummary`, `render`. Wires every block.
+  `commit` (core action, `saveDraft`, `setStatus`, `render`), `copySummary`, `render` (reads the view, never writes it).
+  `setStatus` is the only writer of `view.status` (R24). `amountTyped` and `amountLeft` are the R10 wiring of the subtotal,
+  every price and both rates (`AMOUNT_SETTERS` maps the kind to its split-core setter). Wires every block.
 - `src/draft.js`: `DRAFT_KEY`, `encodeDraft`, `decodeDraft` (D1 to D12), `getStorage`, `loadDraft`, `saveDraft`.
 - `src/errors.js`: the R10 timing rules as pure functions: `newErrorFlags`, `flagsFor`, `typedInto`, `leftField`,
-  `forgetPrice`, `visibleErrors`.
-- `src/ui/dom.js`: `el`, `setAttr`, `setText`, `setValue`, `rowsFor`, `reconcileChildren`. The setters skip a write
-  when nothing changed, and `reconcileChildren` never re-inserts a node that is already in place. That pair is how
-  R33 holds: a focused input is never moved, re-created or written.
+  `forgetPrice`, `visibleErrors`. Node unit tests in `tests/errors.test.js`.
+- `src/ui/dom.js`: `el`, `block` (the section and heading scaffold of the four input blocks), `setAttr`, `setText`,
+  `setValue`, `isRepeatClick`, `rowsFor`, `reconcileChildren`. R33 rests on `reconcileChildren`, which never re-inserts a
+  node that is already in place (re-inserting a focused input drops its focus). The setters skip equal writes, which is
+  belt and braces. `isRepeatClick` marks the second click of a double click or double tap: the remove buttons ignore it
+  and `createDialog` cancels it after a click that closes the dialog.
 - `src/ui/icons.js`: `icon(name)`, the only `createElementNS` call site (CG-10).
 - `src/ui/field-leave.js`: `onFieldLeave(input, handler)`, the one blur gesture of every field whose error shows on blur
-  (Subtotal, prices, both rates; RD-3). A blur caused by a press runs the handler after `mouseup` or `pointercancel`
-  (capture listeners on `document`), every other blur runs it at once.
+  (Subtotal, prices, both rates; RD-3). A blur caused by a press runs the handler when the press ends (`mouseup`,
+  `pointercancel` or a `keydown`; capture listeners on `document`), every other blur runs it at once. The reason for each
+  end is in the comment at the top of the file.
 - `tests/browser/fidelity/`: `run.py` (the gate runner), `seed-s1.js`, `seed-s2.js`, `seed-s5.js`, `open-new-bill.js`.
   `tests/browser/live_e2e.py`: the live gate (`Gate`, `run_steps`, `format_step`).
 - `src/ui/{people,items,subtotal,charges,mode,panel,note,dialog,field-error}.js`: one block each. `createX(handlers)`
   returns `{ el, update(...) }` (plus `focusName`, `focusAdd`). They write DOM and report gestures, they never change the bill.
+  `createDialog` (`dialog.js`) also arms a guard after a click that closes the dialog (CR-01) and remembers where a press
+  began, so only a press that began and ended on the backdrop is a backdrop click (WR-06). `panel.js` exports `hasShares`.
 - `index.html` holds the static shell (header, `.inputs`, `.tape`, the closed `dialog`). Blocks are built by JS.
 - `tests/browser/rig.py`: `StaticServer`, `new_context` (the only place a context is made, refuses `permissions`
-  and `bypass_csp`), `storage_state`. `support.py`: the R3 DOM walk (`dom_walk`, `first_diff`), `specimen_props`,
-  `replace_text`, `open_golden`. `test_app.py` ends with the marker `# ===== END OF TESTS (new tests go above this line) =====`.
+  and `bypass_csp`), `storage_state`. `support.py`: the R3 DOM walk (`dom_walk`, whole page or a selector, `first_diff`),
+  `specimen_props`, `replace_text`, `open_golden`. `expected.py`: the figures and copy texts that `test_app.py` and
+  `live_e2e.py` both expect (one source). `test_app.py` ends with the marker `# ===== END OF TESTS (new tests go above this line) =====`.
 
 ## Judgment calls where the spec is silent or contradicts itself
 1. **`src/system.css` is the golden's bytes plus one trailing rule (RC-5).** R1 and the qa scenario said the SHA-256
@@ -106,20 +114,20 @@ prints the PID and port.
 7. **The R42 scenario is split** over Tasks 3 (duplicates accepted, own-row removal), 8 (shares, copy, by item) and 9 (draft).
 8. **Test-only extras that are not in the spec's file list:** `tests/browser/rig.py` (shared by `conftest.py`,
    `live_e2e.py` and `fidelity/run.py`, so all three start the server the same way), `support.py`, `pytest.ini`
-   (`-p no:cacheprovider`, so no cache folder lands in the tree) and `tests/draft.test.js` (decoder edges, no browser).
+   (`-p no:cacheprovider`, so no cache folder lands in the tree), `tests/draft.test.js` (decoder edges, no browser; listed
+   in the spec Files table since 2026-10-09 with `tests/errors.test.js`) and `tests/browser/expected.py` (the figures and
+   copy texts shared by `test_app.py` and `live_e2e.py`, added by the code-review batch of 2026-10-09).
 9. **A test replaces `Clipboard.prototype.writeText` inside the page** (`test_R22_a_failed_copy_is_replaced_by_the_next_attempt`)
    to make the second attempt succeed. It is the same platform stub as `recorder.js`, never the system clipboard.
 10. **`Start new bill` closes the dialog, then resets the view state and commits `newBill()`; focus returns to New bill in
     the dialog's `close` event** (one place for Cancel, Esc, backdrop and Start), not through the browser's own restore.
 
 Added by the resumed run of 2026-10-09:
-11. **RD-3 ends the press at `mouseup`, not `pointerup` (the ruling's wording).** Measured in headless Chromium by swapping
-    the two listeners in `field-leave.js` and running the press tests: with `pointerup` the four mouse cases pass and the
-    four touch cases (and the toggle tap) still fail, because a touch tap sends `pointerup` first and the focus change comes
-    with the compatibility mouse events after it, so there is nothing left to wait for. `mouseup` passes both. `pointercancel`
-    is kept for a drag, and a `keydown` ends a press that never reported its end, so a keyboard blur is never held back.
-    Noted in `spec.md` under R10. Red proof: with the wait disabled (`if (false && pressed)`), the 12 mouse and touch press tests of the 14 new ones
-    fail (the 8 field cases, the 2 toggle taps, the release test and the empty-space test) and the 2 keyboard tests pass.
+11. **RD-3 ends the press at `mouseup`, not `pointerup` (the ruling's wording), and also at `pointercancel` and at a
+    `keydown`.** The measurement and the reason for each end are in the comment at the top of `src/ui/field-leave.js`
+    (`onFieldLeave`), their one home. Noted in `spec.md` under R10. Red proof: with the wait disabled (`if (false && pressed)`),
+    the mouse and touch press tests of the RD-3 set fail (the field cases, the toggle taps, the release test and the
+    empty-space test) and the keyboard tests pass.
 12. **Work in progress of the stopped run: kept, with edits.** `field-leave.js`, the three call sites, `open_app(touch=...)`
     and the 14 press tests were right and are committed as they were (`fceae5f`), plus a comment in `field-leave.js` that
     states the measured reason for `mouseup`. Added: the RD-3 note in `spec.md` R10 and the three qa scenarios, which the work
