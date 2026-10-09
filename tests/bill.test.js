@@ -43,6 +43,13 @@ test("@R11 adding a person appends an empty-named person with the next id", () =
   assert.deepEqual(addPerson(S1).items, S1.items);
 });
 
+test("@R11 a new person's id comes from nextId, so it never reuses a removed id", () => {
+  let bill = addPerson(addPerson(newBill()));
+  bill = addPerson(removePerson(bill, "p3"));
+  assert.deepEqual(bill.people.map((p) => p.id), ["p1", "p2", "p4", "p5"]);
+  assert.equal(bill.nextId, 6);
+});
+
 test("@R11 the twelfth person is accepted and the thirteenth does nothing", () => {
   let bill = newBill();
   for (let n = 0; n < 10; n += 1) bill = addPerson(bill);

@@ -260,6 +260,14 @@ Feature: split-core money, maths, state rules and summary text
     And no item's who changed
 
   @R11
+  # [Added 2026-10-09, ORCH, code-review WR-04] Every other R11 case starts where nextId equals the
+  # list length plus 1, so none of them could tell "p" + nextId from "p" + list length.
+  Scenario: A new person's id never reuses a removed id
+    Given a new bill with two people added (p1, p2, p3, p4)
+    When removePerson is called with "p3" and then addPerson is called
+    Then the people ids are p1, p2, p4, p5 and nextId is 6
+
+  @R11
   Scenario: Adding a 13th person does nothing
     Given a bill with 12 people
     When addPerson is called
