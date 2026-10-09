@@ -1,8 +1,8 @@
 ---
 module: split-app
 kind: security
-status: issues_found
-counts: { critical: 0, high: 0, medium: 1, low: 2 }
+status: clean
+counts: { critical: 0, high: 0, medium: 0, low: 0 }
 ---
 # Security audit: split-app
 
@@ -125,3 +125,63 @@ Static checks were made with the Grep tool on `src/`, `index.html` and `src/syst
 20 loopback static servers (`python -m http.server <port> --bind 127.0.0.1`, the baseline pytest run's included), pids and ports in `evidence.md`, each started and stopped by its script with `STOPPED ... exited True, port free again True`; each script's headless Chromium and Playwright driver were closed by the script. No background shell, no watcher, no poll loop.
 
 PROCESSES: none alive. Final sweep at 20:51:15, after the last probe, by Win32_Process on name (python, node, chrome, headless, playwright, sh, cmd) and on command line (`http.server`, `playwright`, `ms-playwright`, the evidence folder name, the probe file names), and by netstat on the 20 server ports: the only matches were the `bash.exe` and `powershell.exe` of this session's own shell and of the sweep command, and no port was listening. Windows reuses pids: pid 52132 (the `p8` server, stopped) was later seen as a `bash.exe` of this session.
+
+---
+
+# Solver (2026-10-09)
+
+Role: Security Solver. Start HEAD `06fa151`. Orders: the five ORCH rulings of 2026-10-09 (reversible). Evidence: `docs/modules/split-app/qa/security-solver/20261009-205629/`
+(`evidence.md` has the red and green runs, the mutants, the measurements behind the doc pass and the process notes; `junit-*.xml`; `probes/`; `live-gate-check/`) and the fidelity run
+`docs/modules/split-app/qa/fidelity/20261009-212142/`. Only the frontmatter was changed above this line (to `clean`, because SEC-01 and SEC-02 are resolved and SEC-03 is an accepted
+residual). The finder's sections are as the finder left them, and the finder re-run decides the verdict.
+
+## Status per finding
+| Id | Status | Commit | Red | Green | Mutants |
+|---|---|---|---|---|---|
+| SEC-01 MEDIUM, a repeat press on the last Remove adds a blank person | RESOLVED | `071577a` | 54 new tests on the unfixed sources: the 40 that carry the defect fail (18 people rows: row count `3 == (3 - 1)` for S2 and `12 == (12 - 1)` for S8, a blank person came back; 18 item rows: focus on the page body; 4 R34 rows: focus on the next Remove), the 14 controls pass | 54 of 54; the existing WR-01 and CR-01 tests unchanged and green; the audit's own 123-row sweep re-run: no row differs from a single click in data except the 5 toggles that flip twice by design | M1 people handler without the guard: 20 red. M2 items handler without the guard: 20 red. M3 guard on `click` only: 43 red. M4 guard never disarms: 2 to 3 red. M5 guard swallows everything: 4 red |
+| I-1 (observation, ruling 2) | RESOLVED | `68ab318` | 12 of 14 new tests fail on the unfixed opener (the other 2 are controls) | 14 of 14, plus the existing R29, R30, R31 tests, 43 of 43 | I1-M1 opener without the call: 12 red. M4: the new lifetime test red |
+| SEC-02 LOW, publish scope | RESOLVED | `314b827` | none (documents) | `CLAUDE.md` has "## Publish" and the Stack line points to it; `spec.md` Invariants carries the dated note | |
+| SEC-03 LOW, D10 at its maximum | ACCEPTED residual (ruling 4) | `314b827` | none (no code) | dated bullet under "Residual risks accepted" in `spec.md` | |
+| Spec gaps 1 to 5 (ruling 5) | DONE | `314b827`, `12bc878` | none (documents) | threat-model rows for a repeated press and for what is published, the U+2028 residual and the CR and LF row rewritten from measurements, dated notes on R7, R29, R30, `qa.md` rows, `BUILD.md` code map and judgment calls | |
+| Spec gap 6 (two tabs of one browser) | NOT DONE, outside the rulings | | | see Observations | |
+
+## What changed in `src/` (for the README reconcile; symbols, not lines)
+- `src/ui/dom.js`: `swallowRepeatClicks()` is exported here (moved from `dialog.js`). `isRepeatClick` stays as a file-private count test (the guard is its only user now). The doc comments were rewritten.
+- `src/ui/people.js` and `src/ui/items.js`: the Remove click handler is `swallowRepeatClicks(); onRemove(id)` in place of `if (!isRepeatClick(event)) onRemove(id)`.
+- `src/ui/dialog.js`: imports `swallowRepeatClicks` from `dom.js`, calls it when a click closes the dialog (as before) and when the click on New bill opens it (I-1).
+- Tests: `tests/browser/test_app.py` gained 68 tests (SEC-01 54, I-1 14). No other file under `tests/` changed, `src/system.css`, `docs/design/` and `split-core` were not touched.
+
+## Proof
+- Suites: browser 244 to 312 passed, unit 275 to 275 passed (`junit-browser-final.xml`, `junit-node-final.xml`). Each commit was green on its own (298 after SEC-01, 312 after I-1).
+- Fidelity: `python tests/browser/fidelity/run.py`, 10 of 10 pairs at 0 mismatching pixels, dimensions equal, evidence `docs/modules/split-app/qa/fidelity/20261009-212142/` (server pid 40216 port 12414, stopped).
+- Live gate: `tests/browser/live_e2e.py` unchanged, run through `probes/p5_live_gate_scratch.py` into `live-gate-check/20261009-212227/` here: 7 of 7 steps PASS, exit 0, console.log empty (server pid 47116 port 48889, stopped). The official `qa/live-e2e/` folder was not written.
+- Credential gate (`credential_sweep.py --staged`, unpiped) exit 0 before each commit.
+
+## What the user will notice
+- A double click, triple click or double tap on a Remove button removes exactly one row, at any position. Removing the last person no longer leaves a blank "Person N" row, and the shares no longer run over one more person. After a double click on a middle Remove, focus is on the name field where a single click puts it (it used to land on the next Remove button or on the page).
+- A double click or double tap on New bill opens the dialog and keeps it open (it used to flash open and shut), with focus on Cancel. One click on Cancel or the backdrop, Esc, and the keyboard still close and open it as before.
+- Nothing else on screen changed: the fidelity gate is at 0 pixels. The Publish section and the spec notes are documentation.
+
+## What went beyond the letter of a ruling (reversible, for the orchestrator)
+1. **`isRepeatClick` is kept, private.** Ruling 1 says to remove it if nothing else needs it. The guard needs it, so it stays as a one-line private constant in `dom.js`, no longer exported.
+2. **The Remove handlers lost their own count test, and I checked that this opens no path.** The old test also ignored a repeat press that reaches a Remove button when no Remove click armed the guard first. The one way in is "Dismiss note" moving the rows. Measured: 291 viewports and the three standard sizes, three gestures, the second press lands on a heading or a `div`, never on a control (`probes/p1_dismiss_note.py`, `p2_dismiss_scan.py`). Recorded as BUILD.md judgment call 18. Revert: restore the `if (!isRepeatClick(event))` test in the two handlers (it would have to be exported again).
+3. **Dated notes on R7, R29 and R30**, not named in ruling 5. R30's note said the guard serves the dialog only, and R7 and R29 describe behaviour that changed, so leaving them would have left a spec sentence the code now contradicts.
+4. **The tests also assert focus (R34).** That is what makes the item rows red on the old code (their data was already safe) and the Remove-then-Remove focus drift a regression guard.
+
+## Observations (not in the rulings, not fixed)
+- The 17 UI-only differences left in the re-run sweep are a double click on the two mode labels (10 rows) and on Dismiss note (7 rows): focus ends on the page body. Known and accepted since the audit, no data effect. The same guard could cover them if the owner wants.
+- Spec gap 6 (two tabs of the same browser: last writer wins, no `storage` listener) is still not in the threat model, because no ruling named it.
+- CLAUDE.md's dev command (`python -m http.server` from the project root) lists directories and serves `.git/` on loopback. Loopback only, not changed.
+- The guard goes by the click count the platform reports. Playwright sets it by hand for a mouse, so a real mouse's operating-system count was reasoned about and not measured (as in the audit).
+- The publish copy and its `.nojekyll` do not exist yet: making them at release is the orchestrator's (the Publish section says so), and the repository holds no deploy file.
+
+## Left for the orchestrator
+- Re-run the security finder (SEC-01 and SEC-02 resolved, SEC-03 an accepted residual, I-1 resolved).
+- README reconcile (WR-08): `BUILD.md` code map and judgment calls 18 and 19 are current.
+- `docs/progress/`, `docs/v1.0.0/` and `docs/modules/ROADMAP.md` were not touched.
+
+## Process note
+The Write tool turned the backslash-u escapes in my first `p4_crlf_and_separators.py` into raw characters. I found it by counting them, rewrote the file with `chr()`, and wrote no escape text into any doc line. I
+saw processes that are not mine during the final sweep (a `python -B -m pytest` run with its Playwright node and `chrome-headless-shell` children, and two `http.server` processes started with `--directory`) and left them alone.
+
+PROCESSES: none alive that I started. Started and stopped by me: the pytest static servers of the baseline (pid 40612 port 47711), the I-1 green run (pid 30076 port 55164), the I-1 full suite (pid 51112 port 63662) and the final suite (pid 50360 port 47850), the probe servers (`p1` pid 35232 port 3919, `p2` pid 44504 port 8872, `p3` pid 25336 port 47292, `p4` pid 36116 port 11087), the fidelity runner (pid 40216 port 12414) and the live gate (pid 47116 port 48889), each with `STOPPED ... exited True, port free again True`; the red and mutant runs started and stopped their own servers the same way (pids not kept, output was filtered). Headless Chromium instances were closed by each script or fixture. Final sweep at 21:27 by Win32_Process (name and command line) and by netstat on the known ports found nothing of mine.

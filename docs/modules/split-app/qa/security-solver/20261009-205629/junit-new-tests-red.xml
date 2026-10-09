@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="52" skipped="0" tests="68" time="24.999" timestamp="2026-10-09T21:03:06.637234+08:00" hostname="{host}"><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x640-single]" time="1.930" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x640-mouse-double]" time="0.484"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x640-mouse-triple]" time="0.293"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x640-touch-double]" time="0.364"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-single]" time="0.289" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-mouse-double]" time="0.346"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-mouse-triple]" time="0.311"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-touch-double]" time="0.364"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-single]" time="0.306" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-mouse-double]" time="0.352"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-mouse-triple]" time="0.315"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-touch-double]" time="0.381"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x640-single]" time="0.289" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x640-mouse-double]" time="0.329"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 12 == (12 - 1)
+     +  where 12 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x640-mouse-triple]" time="0.297"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 12 == (12 - 1)
+     +  where 12 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x640-touch-double]" time="0.350"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 12 == (12 - 1)
+     +  where 12 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-single]" time="0.301" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-mouse-double]" time="0.329"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 12 == (12 - 1)
+     +  where 12 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-mouse-triple]" time="0.300"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 12 == (12 - 1)
+     +  where 12 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-touch-double]" time="0.362"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 12 == (12 - 1)
+     +  where 12 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-single]" time="0.285" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-mouse-double]" time="0.355"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 12 == (12 - 1)
+     +  where 12 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-mouse-triple]" time="0.319"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 12 == (12 - 1)
+     +  where 12 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-touch-double]" time="0.360"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator">E   AssertionError: assert 12 == (12 - 1)
+     +  where 12 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:54974/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:54974/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-360x640-single]" time="0.293" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-360x640-mouse-double]" time="0.347"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-360x640-mouse-triple]" time="0.328"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-360x640-touch-double]" time="0.363"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-390x844-single]" time="0.285" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-390x844-mouse-double]" time="0.362"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-390x844-mouse-triple]" time="0.315"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-390x844-touch-double]" time="0.380"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-1280x800-single]" time="0.305" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-1280x800-mouse-double]" time="0.369"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-1280x800-mouse-triple]" time="0.332"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-1280x800-touch-double]" time="0.401"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x640-single]" time="0.303" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x640-mouse-double]" time="0.344"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'&#10;  &#10;  - Add item&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x640-mouse-triple]" time="0.313"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'&#10;  &#10;  - Add item&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x640-touch-double]" time="0.362"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'&#10;  &#10;  - Add item&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-single]" time="0.288" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-mouse-double]" time="0.363"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'&#10;  &#10;  - Add item&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-mouse-triple]" time="0.335"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'&#10;  &#10;  - Add item&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-touch-double]" time="0.393"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'&#10;  &#10;  - Add item&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-single]" time="0.318" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-mouse-double]" time="0.371"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'&#10;  &#10;  - Add item&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-mouse-triple]" time="0.347"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'&#10;  &#10;  - Add item&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-touch-double]" time="0.383"><failure message="AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'&#10;  &#10;  - Add item&#10;  + Split&#10;  +     New bill&#10;  +   &#10;  +   &#10;  +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....&#10;  &#10;  ...Full output truncated (9 lines hidden), use '-vv' to show">E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[item-2-of-4-mouse]" time="0.306"><failure message="AssertionError: assert 'Remove Mee goreng mamak' == 'Item 2 name'&#10;  &#10;  - Item 2 name&#10;  + Remove Mee goreng mamak">E   AssertionError: assert 'Remove Mee goreng mamak' == 'Item 2 name'
+      
+      - Item 2 name
+      + Remove Mee goreng mamak</failure></testcase><testcase classname="test_app" name="test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[item-2-of-4-touch]" time="0.332"><failure message="AssertionError: assert 'Remove Mee goreng mamak' == 'Item 2 name'&#10;  &#10;  - Item 2 name&#10;  + Remove Mee goreng mamak">E   AssertionError: assert 'Remove Mee goreng mamak' == 'Item 2 name'
+      
+      - Item 2 name
+      + Remove Mee goreng mamak</failure></testcase><testcase classname="test_app" name="test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[person-2-of-5-mouse]" time="0.295"><failure message="AssertionError: assert 'Remove P3' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Remove P3">E   AssertionError: assert 'Remove P3' == 'Person 2 name'
+      
+      - Person 2 name
+      + Remove P3</failure></testcase><testcase classname="test_app" name="test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[person-2-of-5-touch]" time="0.314"><failure message="AssertionError: assert 'Remove P3' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Remove P3">E   AssertionError: assert 'Remove P3' == 'Person 2 name'
+      
+      - Person 2 name
+      + Remove P3</failure></testcase><testcase classname="test_app" name="test_R7_a_separate_click_on_what_slid_under_the_pointer_is_not_held_back" time="0.252" /><testcase classname="test_app" name="test_R7_the_guard_of_a_remove_click_ends_at_the_next_press" time="0.345" /><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x640-mouse-double]" time="0.347"><failure message="AssertionError: assert (False is True)&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x640-mouse-triple]" time="0.333"><failure message="AssertionError: assert (False is True)&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x640-touch-double]" time="0.389"><failure message="AssertionError: assert (False is True)&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-double]" time="0.342"><failure message="AssertionError: assert (False is True)&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-triple]" time="0.316"><failure message="AssertionError: assert (False is True)&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-touch-double]" time="0.361"><failure message="AssertionError: assert (False is True)&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-double]" time="0.375"><failure message="AssertionError: assert (False is True)&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-triple]" time="0.347"><failure message="AssertionError: assert (False is True)&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-touch-double]" time="0.385"><failure message="AssertionError: assert (False is True)&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert (False is True)
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[cancel]" time="0.368"><failure message="AssertionError: assert False is True&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert False is True
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[backdrop]" time="0.348"><failure message="AssertionError: assert False is True&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert False is True
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]" time="0.365"><failure message="AssertionError: assert False is True&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)">E   AssertionError: assert False is True
+     +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:54974/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R29_opening_by_keyboard_and_opening_again_straight_away_is_not_held_back" time="0.266" /><testcase classname="test_app" name="test_R29_the_guard_of_opening_ends_at_the_next_press" time="0.375" /></testsuite></testsuites>
