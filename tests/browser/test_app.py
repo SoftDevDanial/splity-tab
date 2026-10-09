@@ -1641,6 +1641,91 @@ def test_R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each(open_app
     assert page.locator(rows).count() == before - 3
 
 
+# ---------------------------------------------------------------- Security SEC-01: the repeat press on Remove (R7, R12, R34)
+# A double click, a triple click or a double tap is two or three presses, and the first can move the layout under the
+# pointer. Removing the last person moves "Add person" into the cell that row filled, so the second click pressed it and a
+# blank person was saved (SEC-01). One guard, swallowRepeatClicks, cancels the repeat presses at the document whatever is
+# under them. These rows name the gesture, the size and the bill, and check the rows, the draft and the focus.
+SIZES = [(360, 640), (390, 844), (1280, 800)]
+SIZE_IDS = [f"{w}x{h}" for w, h in SIZES]
+GESTURES = ["single", "mouse-double", "mouse-triple", "touch-double"]  # "single" is the control: what one click does
+ONE_ITEM = seeds.changed(seeds.S1, lambda d: d["bill"].update(items=d["bill"]["items"][3:]))
+LAST_ROW_CASES = [  # (seed, the remove button, the row selector, where focus goes by R34 afterwards)
+    pytest.param(seeds.S2, "Remove Chen", "li.person", "Person 2 name", id="S2-person-3-of-3"),
+    pytest.param(seeds.S8, "Remove Mei Ling", "li.person", "Person 11 name", id="S8-person-12-of-12"),
+    pytest.param(seeds.S1, "Remove Satay, 10 sticks", "li.item", "Item 3 name", id="S1-item-4-of-4"),
+    pytest.param(ONE_ITEM, "Remove Satay, 10 sticks", "li.item", "Add item", id="S1-only-item"),
+]
+
+
+def gesture_at(page, gesture, point):
+    """One of GESTURES at one point. A triple click is one press with click count 3, as the operating system sends it."""
+    if gesture == "single":
+        page.mouse.click(*point)
+    elif gesture == "mouse-triple":
+        page.mouse.click(*point, click_count=3)
+    else:
+        activate_twice(page, "touch" if gesture == "touch-double" else "mouse", point)
+    settle(page)
+
+
+def bill_without_last(seed, rows):
+    """The bill that one click on the last row's Remove leaves: that person (or item) gone and nothing else changed."""
+    bill = json.loads(seed)["bill"]
+    gone = bill["people" if rows == "li.person" else "items"].pop()
+    for item in bill["items"]:
+        item["who"] = [person for person in item["who"] if person != gone["id"]]
+    return bill
+
+
+@pytest.mark.parametrize("gesture", GESTURES)
+@pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+@pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+        open_app, seed, button, rows, focus_after, viewport, gesture):
+    # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+    # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+    page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+    before = page.locator(rows).count()
+    gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+    assert page.locator(rows).count() == before - 1
+    assert stored(page)["bill"] == bill_without_last(seed, rows)  # no blank row, and the id counter did not move
+    assert support.active_label(page) == focus_after
+
+
+@pytest.mark.parametrize("how", ["mouse", "touch"])
+@pytest.mark.parametrize("seed, button, rows, before", REMOVE_CASES)
+def test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it(open_app, seed, button, rows, before, how):
+    # The repeat press used to land on the next row's Remove button and move focus there (or to the body). Cancelled, it moves nothing.
+    page = open_app(seed=seed, touch=how == "touch").page
+    activate_twice(page, how, centre_of(page.get_by_role("button", name=button, exact=True)))
+    assert support.active_label(page) == ("Item 2 name" if rows == "li.item" else "Person 2 name")
+
+
+def test_R7_a_separate_click_on_what_slid_under_the_pointer_is_not_held_back(open_app):
+    # The guard goes by click count, not by time or place: a click of its own (count 1) on the same spot is a new press.
+    page = open_app(seed=seeds.S2).page
+    point = centre_of(page.get_by_role("button", name="Remove Chen", exact=True))
+    page.mouse.click(*point)
+    under = page.evaluate("([x, y]) => document.elementFromPoint(x, y).closest('button').textContent.trim()", list(point))
+    assert under == "Add person"  # the removal moved it under the pointer
+    page.mouse.click(*point)
+    assert [p["name"] for p in stored(page)["bill"]["people"]] == ["Aisyah", "Ben", ""]
+
+
+def test_R7_the_guard_of_a_remove_click_ends_at_the_next_press(open_app):
+    page = open_app(seed=seeds.S1, viewport=PHONES[0]).page
+    page.get_by_role("button", name="Remove Nasi lemak ayam", exact=True).click()
+    aisyah = toggle(page, "Char kuey teow", "Aisyah")  # item 1 now
+    assert aisyah.get_attribute("aria-pressed") == "false"
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    aisyah.dblclick()  # two real clicks on a toggle flip it twice: the guard of the Remove click is gone
+    settle(page)
+    # Both clicks reached the page. The toggle alone cannot show it: swallowing both would leave it unpressed too.
+    assert page.evaluate("window.testBodyClicks") == [1, 2]
+    assert aisyah.get_attribute("aria-pressed") == "false" and stored(page)["bill"]["items"][0]["who"] == ["p2"]
+
+
 # ---------------------------------------------------------------- Task 11: cross-cutting checks (R32, R33, R35, R36, R37, R39)
 INK = "rgb(20, 25, 23)"  # --ink, the colour of the focus ring
 RING = ["solid", "2px", INK, "2px"]

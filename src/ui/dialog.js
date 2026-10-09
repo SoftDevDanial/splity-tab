@@ -3,28 +3,13 @@
 // The dialog opens with showModal() (the page behind goes inert), focus starts on Cancel, and every way
 // out (Cancel, Esc, a click on the backdrop, Start new bill) ends with focus back on `opener`.
 
-import { isRepeatClick } from "./dom.js";
-
-// Closing with a click arms a guard, because the rest of a double click or double tap would land on whatever is
-// drawn under the pointer once the dialog is gone (R30: Cancel changes nothing). It cancels the repeat presses and
-// clicks at the document, before any control sees them (a cancelled press also keeps focus on New bill), and it is
-// gone at the first press that is not a repeat. No timer.
-function swallowRepeatClicks() {
-  const guard = (event) => {
-    if (!isRepeatClick(event)) {
-      document.removeEventListener("mousedown", guard, true);
-      document.removeEventListener("click", guard, true);
-      return;
-    }
-    event.stopPropagation();
-    event.preventDefault();
-  };
-  document.addEventListener("mousedown", guard, true);
-  document.addEventListener("click", guard, true);
-}
+import { swallowRepeatClicks } from "./dom.js";
 
 export function createDialog(dialog, opener, { onConfirm }) {
   const [start, cancel] = dialog.querySelectorAll(".dialog-actions .btn");
+  // Closing with a click arms the guard of dom.js, because the rest of a double click or double tap would land on
+  // whatever is drawn under the pointer once the dialog is gone (R30: Cancel changes nothing). A cancelled press
+  // also keeps focus on New bill.
   const closeByClick = () => {
     swallowRepeatClicks();
     dialog.close();

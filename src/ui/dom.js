@@ -32,11 +32,33 @@ export function setAttr(node, name, value) {
 }
 
 /**
- * True for the second and later click of a double click or double tap. `detail` is the click count (0 for a
- * key press). The first click can close the dialog or remove a row, so the next one lands on whatever slid
- * under the pointer: the handlers that do either ignore it. No timer, so a slow second click is an ordinary one.
+ * True for the second and later press of a double click, triple click or double tap. `detail` is the click
+ * count (0 for a key press), so a slow second click is an ordinary one: there is no timer.
  */
-export const isRepeatClick = (event) => event.detail > 1;
+const isRepeatClick = (event) => event.detail > 1;
+
+/**
+ * A click that moves the layout under the pointer (a row removed, the dialog closed) arms this guard, because
+ * the rest of its double click, triple click or double tap would land on whatever is drawn there next: the
+ * control that took the removed row's place (for the last person that is "Add person", and a blank person was
+ * saved), or whatever was under the dialog. The guard cancels the repeat presses and clicks at the document, in
+ * the capture phase, before any control sees them, so it does not matter what slid under the pointer. A
+ * cancelled press also keeps focus where the app put it. It is gone at the first press that is not a repeat,
+ * so a click or key press of its own (count 1 or 0) is never held back. No timer.
+ */
+export function swallowRepeatClicks() {
+  const guard = (event) => {
+    if (!isRepeatClick(event)) {
+      document.removeEventListener("mousedown", guard, true);
+      document.removeEventListener("click", guard, true);
+      return;
+    }
+    event.stopPropagation();
+    event.preventDefault();
+  };
+  document.addEventListener("mousedown", guard, true);
+  document.addEventListener("click", guard, true);
+}
 
 export function setText(node, text) {
   if (node.textContent !== text) node.textContent = text;
