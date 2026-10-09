@@ -6,6 +6,7 @@ never through a hook in the app (there is none).
 """
 import ast
 import json
+import os
 import re
 import sys
 import urllib.request
@@ -141,6 +142,9 @@ def test_R1_entry_point_loads_only_its_own_files(open_app):
 
 
 def test_R1_page_works_from_a_sub_path(open_app):
+    # The target is a GitHub Pages project path (/split/), so the app must work one folder down. The only way to serve
+    # it there is a server rooted at the parent folder, which also serves the sibling projects on 127.0.0.1 while this
+    # test runs. Accepted (ORCH, WR-11): loopback only, test-only, stopped in this test.
     parent = rig.StaticServer(ROOT.parent).start()
     try:
         folder = f"/{ROOT.name}"
@@ -404,12 +408,15 @@ def test_R9_subtotal_field_has_its_unit_label_and_input_mode(open_app):
     assert field.input_value() == "100.00"
 
 
+# The three inline error texts (spec, Copy), each exact. A case that showed another field's text must fail.
+AMOUNT_MESSAGE, SERVICE_MESSAGE, SST_MESSAGE = "Enter an amount like 12.50", "Enter a rate from 0 to 30", "Enter a rate from 0 to 20"
+
 # Rows are added with the field's own task: item prices (task 5), Service charge and SST (task 6).
 ERROR_CASES = [
-    pytest.param(lambda page: None, lambda page: page.locator("#subtotal"), "0", "Enter an amount like 12.50", "subtotal-error", "12.50", id="subtotal"),
-    pytest.param(lambda page: build_s1(page), lambda page: item_price(page, 2), "13.505", "Enter an amount like 12.50", "price-error-i5", "13.50", id="item-price"),
-    pytest.param(lambda page: None, lambda page: rate_field(page, "Service charge"), "31", "Enter a rate from 0 to 30", "rate-service-error", "10", id="service"),
-    pytest.param(lambda page: None, lambda page: rate_field(page, "SST"), "20.01", "Enter a rate from 0 to 20", "rate-sst-error", "6", id="sst"),
+    pytest.param(lambda page: None, lambda page: page.locator("#subtotal"), "0", AMOUNT_MESSAGE, "subtotal-error", "12.50", id="subtotal"),
+    pytest.param(lambda page: build_s1(page), lambda page: item_price(page, 2), "13.505", AMOUNT_MESSAGE, "price-error-i5", "13.50", id="item-price"),
+    pytest.param(lambda page: None, lambda page: rate_field(page, "Service charge"), "31", SERVICE_MESSAGE, "rate-service-error", "10", id="service"),
+    pytest.param(lambda page: None, lambda page: rate_field(page, "SST"), "20.01", SST_MESSAGE, "rate-sst-error", "6", id="sst"),
 ]
 
 
@@ -1348,15 +1355,15 @@ RECORD_CLICKS_JS = """() => {
   window.testClicks = [];
   document.addEventListener('click', (event) => window.testClicks.push(event.target.id || event.target.tagName.toLowerCase()), true);
 }"""
-PRESS_CASES = [
+PRESS_CASES = [  # (seed, field, bad text, the control pressed under it, error id, the click's target, the error's text)
     pytest.param(None, lambda page: page.locator("#subtotal"), "0", lambda page: page.locator("#rate-service"),
-                 "subtotal-error", "rate-service", id="subtotal"),
+                 "subtotal-error", "rate-service", AMOUNT_MESSAGE, id="subtotal"),
     pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", lambda page: toggle(page, "Char kuey teow", "Aisyah"),
-                 "price-error-i5", "button", id="item-price"),
+                 "price-error-i5", "button", AMOUNT_MESSAGE, id="item-price"),
     pytest.param(None, lambda page: rate_field(page, "Service charge"), "31", lambda page: page.locator("#charges-hint"),
-                 "rate-service-error", "charges-hint", id="service"),
+                 "rate-service-error", "charges-hint", SERVICE_MESSAGE, id="service"),
     pytest.param(None, lambda page: rate_field(page, "SST"), "25", lambda page: page.locator("#charges-hint"),
-                 "rate-sst-error", "charges-hint", id="sst"),
+                 "rate-sst-error", "charges-hint", SST_MESSAGE, id="sst"),
 ]
 
 
@@ -1376,16 +1383,16 @@ def press(page, how, point):
 
 
 @pytest.mark.parametrize("how", ["mouse", "touch"])
-@pytest.mark.parametrize("seed, field_of, bad, below_of, error_id, lands_on", PRESS_CASES)
+@pytest.mark.parametrize("seed, field_of, bad, below_of, error_id, lands_on, message", PRESS_CASES)
 def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
-        open_app, how, seed, field_of, bad, below_of, error_id, lands_on):
+        open_app, how, seed, field_of, bad, below_of, error_id, lands_on, message):
     page = open_app(seed=seed, touch=how == "touch").page
     support.replace_text(page, field_of(page), bad)
     assert page.locator(f"#{error_id}").count() == 0  # CG-3: no error while the field still has focus
     page.evaluate(RECORD_CLICKS_JS)
     press(page, how, centre_of(below_of(page)))
     assert page.evaluate("window.testClicks") == [lands_on]
-    assert page.locator(f"p.error#{error_id}").inner_text() in ("Enter an amount like 12.50", "Enter a rate from 0 to 30", "Enter a rate from 0 to 20")
+    assert page.locator(f"p.error#{error_id}").inner_text() == message
     assert field_of(page).get_attribute("aria-invalid") == "true"
 
 
@@ -1961,12 +1968,19 @@ def test_R40_the_runner_uses_the_python_that_runs_pytest():
         importlib.import_module(module)
 
 
+def test_R40_the_runner_takes_the_harness_from_the_environment_and_has_a_default():
+    runner = load_runner()
+    assert runner.harness_path({}) == runner.DEFAULT_HARNESS
+    assert runner.harness_path({"SDLC_HARNESS": ""}) == runner.DEFAULT_HARNESS  # a blank variable is not a path
+    assert runner.harness_path({"SDLC_HARNESS": "elsewhere/fidelity.py"}) == Path("elsewhere/fidelity.py")
+    assert runner.HARNESS == runner.harness_path(os.environ)  # what the module picked at import
+
+
 @pytest.mark.parametrize("screen, seed, after_load", [
     ("bill-empty", None, None), ("bill-even", "seed-s2.js", None), ("bill-items", "seed-s1.js", None),
     ("bill-unassigned", "seed-s5.js", None), ("new-bill-dialog", "seed-s2.js", "open-new-bill.js")])
 def test_R40_the_runner_builds_the_documented_command(screen, seed, after_load):
     runner = load_runner()
-    assert runner.HARNESS == Path("{sdlc}/harness/fidelity.py")
     cmd = runner.command("http://127.0.0.1:1", screen, seed, after_load, "390x844", Path("out"))
     assert cmd[:2] == [sys.executable, str(runner.HARNESS)]
     assert cmd[cmd.index("--golden") + 1] == f"./docs/design/{screen}.html" and cmd[cmd.index("--candidate") + 1] == "http://127.0.0.1:1/"

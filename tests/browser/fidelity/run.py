@@ -12,6 +12,7 @@ Exit status: 0 when all ten pairs pass, 1 otherwise.
 """
 import datetime
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -20,7 +21,15 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))  # rig.py sits next to the browser tests
 import rig  # noqa: E402
 
-HARNESS = Path("{sdlc}/harness/fidelity.py")
+DEFAULT_HARNESS = Path("{sdlc}/harness/fidelity.py")
+
+
+def harness_path(environ=os.environ):
+    """The harness to run: SDLC_HARNESS when it is set and not blank, else the plugin copy on the owner's machine."""
+    return Path(environ.get("SDLC_HARNESS") or DEFAULT_HARNESS)
+
+
+HARNESS = harness_path()
 EVIDENCE_ROOT = rig.ROOT / "docs" / "modules" / "split-app" / "qa" / "fidelity"
 VIEWPORTS = ("390x844", "1280x800")
 # (golden, seed script for --candidate-init-script, after-load script for --candidate-after-load)
@@ -72,7 +81,7 @@ def run_pair(base_url, screen, seed, after_load, viewport, run_folder, log):
 
 def main():
     if not HARNESS.is_file():
-        sys.exit(f"harness not found: {HARNESS}")
+        sys.exit(f"harness not found: {HARNESS} (set SDLC_HARNESS to the path of the sdlc harness fidelity.py)")
     stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     run_folder = EVIDENCE_ROOT / stamp
     run_folder.mkdir(parents=True, exist_ok=True)
