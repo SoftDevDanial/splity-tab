@@ -1,0 +1,3149 @@
+{
+ "chromium": "149.0.7827.55",
+ "passed": 515,
+ "failed": 2,
+ "failures": [
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 375x667 mouse: double click on Cancel changes nothing",
+   "ok": false,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'true'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 375x667 touch: double click on Cancel changes nothing",
+   "ok": false,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'true'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  }
+ ],
+ "observations": [
+  {
+   "flow": "F8 double click and double tap",
+   "note": "after a double click or double tap on New bill the dialog ends up: {\"390x844 mouse dblclick\": \"dialog closed\", \"390x844 mouse 2 clicks 80ms apart\": \"dialog closed\", \"390x844 mouse 2 clicks 250ms apart\": \"dialog closed\", \"390x844 touch 2 taps 60ms apart\": \"dialog closed\", \"390x844 touch 2 taps 200ms apart\": \"dialog closed\", \"360x780 mouse dblclick\": \"dialog closed\", \"360x780 mouse 2 clicks 80ms apart\": \"dialog closed\", \"360x780 mouse 2 clicks 250ms apart\": \"dialog closed\", \"360x780 touch 2 taps 60ms apart\": \"dialog closed\", \"360x780 touch 2 taps 200ms apart\": \"dialog closed\", \"1280x800 mouse dblclick\": \"dialog closed\", \"1280x800 mouse 2 clicks 80ms apart\": \"dialog closed\", \"1280x800 mouse 2 clicks 250ms apart\": \"dialog closed\", \"1280x800 touch 2 taps 60ms apart\": \"dialog closed\", \"1280x800 touch 2 taps 200ms apart\": \"dialog closed\"}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "note": "the second click of a double click on a dialog button reached the page behind: S1 (375, 667) mouse Cancel; S1 (375, 667) touch Cancel"
+  },
+  {
+   "flow": "F10 360 px width",
+   "note": "[outside qa.md] 360 px, S1 bill with prices scaled: first horizontal overflow at (factor, check row, scrollWidth) = (12, ['Adds up to', 'RM 712.80', 'RM 118.32', 'RM 831.12'], 365)"
+  },
+  {
+   "flow": "F10 360 px width",
+   "note": "[outside qa.md] 390 px, S1 bill with prices scaled: first horizontal overflow at (factor, check row, scrollWidth) = (300, ['Adds up to', 'RM 17820.00', 'RM 2958.12', 'RM 20778.12'], 408)"
+  },
+  {
+   "flow": "F10 360 px width",
+   "note": "[outside qa.md] stress bill at 360 px overflows horizontally: {'scrollWidth': 466, 'innerWidth': 360, 'bad': ['table.shares 16..466', 'thead. 16..466', 'tr. 16..466', 'th. 326..466', 'span.op 420..429', 'tbody. 16..466']}"
+  },
+  {
+   "flow": "F10 360 px width",
+   "note": "[outside qa.md, below the 360 px floor] 320 x 640, S1: {'scrollWidth': 342, 'innerWidth': 320, 'bad': ['table.shares 16..342', 'thead. 16..342', 'tr. 16..342', 'th. 253..342', 'tbody. 16..342', 'tr. 16..342']}"
+  }
+ ],
+ "results": [
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "cold boot people",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "cold boot removes disabled",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "cold boot Even checked, subtotal empty, 10 and 6",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "cold boot panel is the Shares heading and the subtotal message",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "cold boot writes nothing to storage",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "cold boot has no __ hook on window",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "Add person focuses the new empty name",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "panel follows keystroke 1 ('1')",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "no error while typing",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "panel follows keystroke 2 ('10')",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "panel follows keystroke 3 ('100')",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "panel follows keystroke 4 ('100.')",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "panel follows keystroke 5 ('100.0')",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "panel follows keystroke 6 ('100.00')",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "hand-typed S2 figures",
+   "ok": true,
+   "detail": "[['Subtotal', 'RM 100.00', ''], ['+Service charge', 'RM 10.00', '10% of RM 100.00'], ['+SST', 'RM 6.60', '6% of RM 110.00'], ['=Total', 'RM 116.60', '']] [['Aisyah', 'RM 38.87'], ['Ben', 'RM 38.87'], ['Chen', 'RM 38.86']] [['Adds up to', 'RM 116.60']]"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "stored draft equals the S2 seed",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":4}}"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '0.01' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '0.01' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown False expected False"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '0.05' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '0.05' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown False expected False"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '1' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '1' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown False expected False"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '99999.99' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '99999.99' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown False expected False"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '100000' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '100000' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown True expected True"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '100000' aria-invalid and describedby",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '12.345' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '12.345' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown True expected True"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '12.345' aria-invalid and describedby",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '1,000' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '1,000' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown True expected True"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '1,000' aria-invalid and describedby",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '7.00' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '7.00' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown False expected False"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '33.33' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '33.33' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown False expected False"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '0' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '0' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown True expected True"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal '0' aria-invalid and describedby",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal 'abc' panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal 'abc' error after leaving iff invalid",
+   "ok": true,
+   "detail": "shown True expected True"
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "subtotal 'abc' aria-invalid and describedby",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "12 people and Add person disabled",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "12-way even split",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F1 even split from a cold boot",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "By item with no items: Add an item message",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "item 'Nasi lemak ayam' typed into the focused new field",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "panel after item 'Nasi lemak ayam'",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "item 'Char kuey teow' typed into the focused new field",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "panel after item 'Char kuey teow'",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "item 'Mee goreng mamak' typed into the focused new field",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "panel after item 'Mee goreng mamak'",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "item 'Satay, 10 sticks' typed into the focused new field",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "panel after item 'Satay, 10 sticks'",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "hand-typed S1 figures",
+   "ok": true,
+   "detail": "[['Subtotal', 'RM 59.40', ''], ['+Service charge', 'RM 5.94', '10% of RM 59.40'], ['+SST', 'RM 3.92', '6% of RM 65.34'], ['=Total', 'RM 69.26', '']] [['Aisyah', 'RM 24.90', 'RM 4.14', 'RM 29.04'], ['Ben', 'RM 13.50', 'RM 2.24', 'RM 15.74'], ['Chen', 'RM 21.00', 'RM 3.48', 'RM 24.48']] [['Adds up to', 'RM 59.40', 'RM 9.86', 'RM 69.26']]"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "heads are Person, Items, +Charges, =Share",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "stored draft equals the S1 bill with the typed 100.00 subtotal",
+   "ok": true,
+   "detail": "{\"mode\": \"item\", \"people\": [{\"id\": \"p1\", \"name\": \"Aisyah\"}, {\"id\": \"p2\", \"name\": \"Ben\"}, {\"id\": \"p3\", \"name\": \"Chen\"}], \"subtotalText\": \"100.00\", \"items\": [{\"id\": \"i4\", \"name\": \"Nasi lemak ayam\", \"priceText\": \"15.90\", \"who\": [\"p1\"]}, {\"id\": \"i5\", \"name\": \"Char kuey teow\", \"priceText\": \"13.50\", \"who\": [\"p2\"]}, {\"id\": \"i6\", \"name\": \"Mee goreng mamak\", \"priceText\": \"12.00\", \"who\": [\"p3\"]}, {\"id\": \"i7\", \"name\": \"Satay, 10 sticks\", \"priceText\": \"18.00\", \"who\": [\"p1\", \"p3\"]}], \"serviceText\": \"10\", \"sstText\": \"6\", \"nextId\": 8}"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "Ben joins Satay: hand-typed figures",
+   "ok": true,
+   "detail": "[['Aisyah', 'RM 21.90', 'RM 3.64', 'RM 25.54'], ['Ben', 'RM 19.50', 'RM 3.24', 'RM 22.74'], ['Chen', 'RM 18.00', 'RM 2.98', 'RM 20.98']]"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "Ben joins Satay vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "Ben leaves Satay: S1 returns",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "S5 unassigned: summary kept, message, no table/copy/status",
+   "ok": true,
+   "detail": "{'message': '1 item still needs a person. Tap who had it to see the shares.', 'summary': [['Subtotal', 'RM 59.40', ''], ['+Service charge', 'RM 5.94', '10% of RM 59.40'], ['+SST', 'RM 3.92', '6% of RM 65.34'], ['=Total', 'RM 69.26', '']], 'table': False, 'heads': [], 'rows': [], 'foot': [], 'hasCopy': False, 'hasStatus': False, 'statusText': None, 'statusClass': None, 'sections': 2}"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "S5 no error styling on items or toggles",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "S5 vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "two items need a person: plural message",
+   "ok": true,
+   "detail": "2 items still need a person. Tap who had each one to see the shares."
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "two unassigned vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "both toggles back: S1 table returns",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "Chen removed (items need a person)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "Chen is off every group",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: rates (empty service) is reason rates",
+   "ok": true,
+   "detail": "{'kind': 'blocked', 'reason': 'rates', 'invalid': {'subtotal': False, 'service': False, 'sst': False, 'prices': {}}, 'labels': {'people': ['Aisyah', 'Ben', 'Chen'], 'items': []}}"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: rates (empty service) panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill blocked",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: rates (SST 25) is reason rates",
+   "ok": true,
+   "detail": "{'kind': 'blocked', 'reason': 'rates', 'invalid': {'subtotal': False, 'service': False, 'sst': True, 'prices': {'i4': False, 'i5': False, 'i6': False, 'i7': False}}, 'labels': {'people': ['Aisyah', 'Ben', 'Chen'], 'items': ['Nasi lemak ayam', 'Char kuey teow', 'Mee goreng mamak', 'Satay, 10 sticks']}}"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: rates (SST 25) panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill blocked",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: subtotal emptied is reason subtotal",
+   "ok": true,
+   "detail": "{'kind': 'blocked', 'reason': 'subtotal', 'invalid': {'subtotal': False, 'service': False, 'sst': False, 'prices': {}}, 'labels': {'people': ['Aisyah', 'Ben', 'Chen'], 'items': []}}"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: subtotal emptied panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill blocked",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: no items is reason no-items",
+   "ok": true,
+   "detail": "{'kind': 'blocked', 'reason': 'no-items', 'invalid': {'subtotal': False, 'service': False, 'sst': False, 'prices': {}}, 'labels': {'people': ['Person 1', 'Person 2'], 'items': []}}"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: no items panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill blocked",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: unpriced item is reason prices",
+   "ok": true,
+   "detail": "{'kind': 'blocked', 'reason': 'prices', 'invalid': {'subtotal': False, 'service': False, 'sst': False, 'prices': {'i3': False}}, 'labels': {'people': ['Person 1', 'Person 2'], 'items': ['Item 1']}}"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: unpriced item panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill blocked",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: price abc is reason prices",
+   "ok": true,
+   "detail": "{'kind': 'blocked', 'reason': 'prices', 'invalid': {'subtotal': False, 'service': False, 'sst': False, 'prices': {'i4': True, 'i5': False, 'i6': False, 'i7': False}}, 'labels': {'people': ['Aisyah', 'Ben', 'Chen'], 'items': ['Nasi lemak ayam', 'Char kuey teow', 'Mee goreng mamak', 'Satay, 10 sticks']}}"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "blocked: price abc panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill blocked",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "I2 hand-typed: Aisyah listed with RM 0.00",
+   "ok": true,
+   "detail": "[['Aisyah', 'RM 0.00', 'RM 0.00', 'RM 0.00'], ['Ben', 'RM 12.51', 'RM 2.08', 'RM 14.59'], ['Chen', 'RM 2.50', 'RM 0.41', 'RM 2.91']]"
+  },
+  {
+   "flow": "F2 by-item S1 bill",
+   "check": "I2 vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F2 by-item S1 bill I2",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 0 / SST 6 panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 0 / SST 6 no error",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 12.5 / SST 8 panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 12.5 / SST 8 no error",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 30 / SST 20 panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 30 / SST 20 no error",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 0 / SST 0 panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 0 / SST 0 no error",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 7.25 / SST 3.5 panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 7.25 / SST 3.5 no error",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 10 / SST 6 panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 10 / SST 6 no error",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "service 0: working line '0% of RM 100.00', RM 0.00, SST RM 6.00 and shares 35.34/35.33/35.33",
+   "ok": true,
+   "detail": "[['Subtotal', 'RM 100.00', ''], ['+Service charge', 'RM 0.00', '0% of RM 100.00'], ['+SST', 'RM 6.00', '6% of RM 100.00'], ['=Total', 'RM 106.00', '']]"
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "31: no error while the field has focus",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "31: panel follows the bad text (Check the charges)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "31: error shows after leaving with text 'Enter a rate from 0 to 30'",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "31: aria-invalid and describedby 'rate-service-error charges-hint'",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "31: error is the last child of its cell",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "31: error gone after the first valid key (Control+A then '10')",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "31: error does not come back after fixing",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "20.01: no error while the field has focus",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "20.01: panel follows the bad text (Check the charges)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "20.01: error shows after leaving with text 'Enter a rate from 0 to 20'",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "20.01: aria-invalid and describedby 'rate-sst-error charges-hint'",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "20.01: error is the last child of its cell",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "20.01: error gone after the first valid key (Control+A then '6')",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "20.01: error does not come back after fixing",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "empty service: no error, Check the charges message",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F3 charges edits",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S2: status exists, empty, not displayed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S2: status 'Summary copied' with class exactly 'status'",
+   "ok": true,
+   "detail": "Summary copied"
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S2: recorder text equals the qa.md block",
+   "ok": true,
+   "detail": "'Bill split\\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\\nAisyah RM 38.87\\nBen RM 38.87\\nChen RM 38.86\\nAdds up to RM 116.60'"
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S2: recorder text equals split-core summaryText",
+   "ok": true,
+   "detail": "'Bill split\\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\\nAisyah RM 38.87\\nBen RM 38.87\\nChen RM 38.86\\nAdds up to RM 116.60'"
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S2: exactly one write",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S2: a second click writes again and the status stays",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S2: status is not saved (empty after reload)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: status exists, empty, not displayed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: status 'Summary copied' with class exactly 'status'",
+   "ok": true,
+   "detail": "Summary copied"
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: recorder text equals the qa.md block",
+   "ok": true,
+   "detail": "'Bill split\\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\\nAisyah RM 29.04\\nBen RM 15.74\\nChen RM 24.48\\nAdds up to RM 69.26'"
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: recorder text equals split-core summaryText",
+   "ok": true,
+   "detail": "'Bill split\\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\\nAisyah RM 29.04\\nBen RM 15.74\\nChen RM 24.48\\nAdds up to RM 69.26'"
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: exactly one write",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: a second click writes again and the status stays",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: status survives a name edit while the table stays",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: next copy uses the new name on line 5",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: status goes when the table goes",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: status is back and empty when the table is back",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "S1: status is not saved (empty after reload)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "reject.js: failure status text and class 'status status-failure'",
+   "ok": true,
+   "detail": "Could not copy. Your browser blocked the clipboard.|status status-failure"
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "reject.js: bill and draft unchanged, table still there",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "missing.js: failure status text and class 'status status-failure'",
+   "ok": true,
+   "detail": "Could not copy. Your browser blocked the clipboard.|status status-failure"
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "missing.js: bill and draft unchanged, table still there",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F4 copy summary",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "same context reload: same screen",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "reload: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "reload: panel equals the one before",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "reload then Even shows the 100.00 typed earlier",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "Even after reload: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "By item again shows the items as left",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "new page in the same context: same screen",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "new page: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "restore does not rewrite the draft",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "restored bad subtotal and service rate show their errors at once",
+   "ok": true,
+   "detail": "{'errors': [['subtotal-error', 'Enter an amount like 12.50'], ['rate-service-error', 'Enter a rate from 0 to 30']], 'invalid': ['subtotal', 'rate-service']}"
+  },
+  {
+   "flow": "F5 reload restore",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B1 not json: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B1 not json: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B1 not json: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B1 not json: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B3 null: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B3 null: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B3 null: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B3 null: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B4 version 2: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B4 version 2: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B4 version 2: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B4 version 2: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B7 mode split: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B7 mode split: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B7 mode split: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B7 mode split: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B9 13 people: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B9 13 people: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B9 13 people: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B9 13 people: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B18 21-char name: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B18 21-char name: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B18 21-char name: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B18 21-char name: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B19 newline in name: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B19 newline in name: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B19 newline in name: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B19 newline in name: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B22 nextId 3: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B22 nextId 3: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B22 nextId 3: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B22 nextId 3: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B24 nextId 2e9: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B24 nextId 2e9: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B24 nextId 2e9: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B24 nextId 2e9: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B21 numeric subtotal: note text, role and dismiss button",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B21 numeric subtotal: S3 shows under the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B21 numeric subtotal: draft now holds the new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "B21 numeric subtotal: reload shows no note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "dismiss removes the note and focuses Person 1 name",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "Start new bill does not hide or move the note",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "G3 __proto__ inside bill: loads as S2 with no note and no pollution",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "G2 twenty flag emoji load in full",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F6 unreadable draft",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "opens modal, named, described, focus on Cancel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "Tab cycles Start new bill / Cancel only",
+   "ok": true,
+   "detail": "['Start new bill', 'Cancel', 'Start new bill', 'Cancel', 'Start new bill', 'Cancel']"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "Shift+Tab cycles Start new bill / Cancel only",
+   "ok": true,
+   "detail": "['Start new bill', 'Cancel', 'Start new bill', 'Cancel', 'Start new bill']"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "page behind is clipped to the viewport",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "wheel over the page leaves scrollY at 0",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "a click inside the dialog box (padding, title) keeps it open",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "cancel: dialog closed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "cancel: focus is on New bill",
+   "ok": true,
+   "detail": "New bill"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "cancel: draft and screen unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "cancel: panel still S1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "escape: dialog closed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "escape: focus is on New bill",
+   "ok": true,
+   "detail": "New bill"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "escape: draft and screen unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "escape: panel still S1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop corner (10,10): dialog closed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop corner (10,10): focus is on New bill",
+   "ok": true,
+   "detail": "New bill"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop corner (10,10): draft and screen unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop corner (10,10): panel still S1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over Person 1 name: dialog closed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over Person 1 name: focus is on New bill",
+   "ok": true,
+   "detail": "New bill"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over Person 1 name: draft and screen unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over Person 1 name: panel still S1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over a toggle: dialog closed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over a toggle: focus is on New bill",
+   "ok": true,
+   "detail": "New bill"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over a toggle: draft and screen unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over a toggle: panel still S1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over Add person: dialog closed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over Add person: focus is on New bill",
+   "ok": true,
+   "detail": "New bill"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over Add person: draft and screen unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over Add person: panel still S1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop bottom-right: dialog closed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop bottom-right: focus is on New bill",
+   "ok": true,
+   "detail": "New bill"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop bottom-right: draft and screen unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop bottom-right: panel still S1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over New bill itself: dialog closed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over New bill itself: focus is on New bill",
+   "ok": true,
+   "detail": "New bill"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over New bill itself: draft and screen unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "backdrop over New bill itself: panel still S1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "Start: dialog closed, focus on New bill",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "Start: S3 screen",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "Start: draft equals split-core newBill()",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "Start: reload still S3",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "Start clears the copy status",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "status is empty again when the table returns",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "setup: two errors showing",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "Start clears all inline errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "typing bad text after a start-over shows no early error",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "the error rule still works after a start-over",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F7 New bill dialog",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "390x844 mouse dblclick: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "390x844 mouse 2 clicks 80ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "390x844 mouse 2 clicks 250ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "390x844 touch 2 taps 60ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "390x844 touch 2 taps 200ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "360x780 mouse dblclick: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "360x780 mouse 2 clicks 80ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "360x780 mouse 2 clicks 250ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "360x780 touch 2 taps 60ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "360x780 touch 2 taps 200ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "1280x800 mouse dblclick: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "1280x800 mouse 2 clicks 80ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "1280x800 mouse 2 clicks 250ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "1280x800 touch 2 taps 60ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "1280x800 touch 2 taps 200ms apart: the bill is NOT wiped",
+   "ok": true,
+   "detail": "stored now {\"version\":1,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "scan of 21 viewports: no dialog button under the New bill button, and the second click never changes the draft",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "flow": "F8 double click and double tap geometry",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 390x844 mouse: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 390x844 mouse: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 390x844 touch: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 390x844 touch: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 360x780 mouse: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 360x780 mouse: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 360x780 touch: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 360x780 touch: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 375x667 mouse: double click on Cancel changes nothing",
+   "ok": false,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'true'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 375x667 mouse: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 375x667 touch: double click on Cancel changes nothing",
+   "ok": false,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'true'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 375x667 touch: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 1280x800 mouse: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 1280x800 mouse: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 1280x800 touch: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'item', 'subtotal': '', 'items': [['Nasi lemak ayam', '15.90', 'true', 'false', 'false'], ['Char kuey teow', '13.50', 'false', 'true', 'false'], ['Mee goreng mamak', '12.00', 'false', 'false', 'true'], ['Satay, 10 sticks', '18.00', 'true', 'false', 'true']], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S1 1280x800 touch: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 390x844 mouse: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 390x844 mouse: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 390x844 touch: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 390x844 touch: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 360x780 mouse: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 360x780 mouse: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 360x780 touch: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 360x780 touch: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 375x667 mouse: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 375x667 mouse: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 375x667 touch: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 375x667 touch: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 1280x800 mouse: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 1280x800 mouse: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 1280x800 touch: double click on Cancel changes nothing",
+   "ok": true,
+   "detail": "before {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']} after {'people': ['Aisyah', 'Ben', 'Chen'], 'mode': 'even', 'subtotal': '100.00', 'items': [], 'rates': ['10', '6']}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "S2 1280x800 touch: double click on Start new bill leaves the fresh new bill",
+   "ok": true,
+   "detail": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":3}}"
+  },
+  {
+   "flow": "F8 double click and double tap",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "first Tab reaches New bill",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Tab from Person 2 skips the disabled remove buttons and reaches Add person",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Enter on Add person focuses the new name field",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "ArrowRight on Even selects By item and focus follows",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Enter on Add item focuses Item 1 name",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "item 1 toggles set by Space and Enter",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Enter on Add item focuses Item 2 name",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "item 2 toggles set by Space and Enter",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Enter on Add item focuses Item 3 name",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "item 3 toggles set by Space and Enter",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Enter on Add item focuses Item 4 name",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "item 4 toggles set by Space and Enter",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "keyboard-built bill: hand-typed S1 rows and check row",
+   "ok": true,
+   "detail": "[['Aisyah', 'RM 24.90', 'RM 4.14', 'RM 29.04'], ['Ben', 'RM 13.50', 'RM 2.24', 'RM 15.74'], ['Chen', 'RM 21.00', 'RM 3.48', 'RM 24.48']]"
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "keyboard-built bill vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "rates 12.5 / 8 by keyboard vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Enter on Copy summary: status and exact clipboard text",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "every one of 22 sampled Tab stops is :focus-visible and shows a ring",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Enter on New bill opens the dialog with Cancel focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Tab goes to Start new bill",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Tab wraps to Cancel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Escape closes and returns focus to New bill",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Shift+Tab from Cancel wraps to Start new bill",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Enter on Start new bill: S3, draft is the new bill, focus on New bill",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Shift+Tab walks back to New bill",
+   "ok": true,
+   "detail": "New bill"
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "Enter twice on New bill does not start a new bill",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F9 keyboard only",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S3: no horizontal overflow",
+   "ok": true,
+   "detail": "{'scrollWidth': 360, 'innerWidth': 360, 'bad': []}"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S3: people grid has 2 columns",
+   "ok": true,
+   "detail": "2"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S3: panel after the Charges block",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S2: no horizontal overflow",
+   "ok": true,
+   "detail": "{'scrollWidth': 360, 'innerWidth': 360, 'bad': []}"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S2: people grid has 2 columns",
+   "ok": true,
+   "detail": "2"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S2: panel after the Charges block",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S2: panel figures at 360",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S1: no horizontal overflow",
+   "ok": true,
+   "detail": "{'scrollWidth': 360, 'innerWidth': 360, 'bad': []}"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S1: people grid has 2 columns",
+   "ok": true,
+   "detail": "2"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S1: panel after the Charges block",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S1: panel figures at 360",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S5: no horizontal overflow",
+   "ok": true,
+   "detail": "{'scrollWidth': 360, 'innerWidth': 360, 'bad': []}"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S5: people grid has 2 columns",
+   "ok": true,
+   "detail": "2"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S5: panel after the Charges block",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S5: panel figures at 360",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "S2 Subtotal field is 160 px wide",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "failure status: 40 px tall, centred, inside 360",
+   "ok": true,
+   "detail": "{'x': 16, 'y': 722.890625, 'width': 328, 'height': 40}"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "dialog 328 px wide, dialog-text 48 px, no overflow",
+   "ok": true,
+   "detail": "{'x': 16, 'y': 261, 'width': 328, 'height': 258}"
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x1: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x2: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x5: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x8: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x10: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x12: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x15: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x20: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x30: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x50: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x100: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x300: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x1000: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "360px amounts x1600: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x1: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x2: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x5: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x8: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x10: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x12: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x15: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x20: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x30: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x50: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x100: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x300: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x1000: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "390px amounts x1600: panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F10 360 px width",
+   "check": "stress (12 people x 20 W, 50 items x 40 W, prices 99999.99) panel vs oracle",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: subtotal 0 -> Service charge input: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: subtotal 0 -> Service charge input: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['rate-service']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: subtotal 0 -> Service charge input: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Aisyah toggle: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Aisyah toggle: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['button:Aisyah']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Aisyah toggle: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Aisyah toggle: toggle flipped once",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Remove (item 3): no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Remove (item 3): exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['svg:']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Remove (item 3): error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Remove (item 3): the item was removed once",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Add item: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Add item: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['button:Add item']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Add item: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: price 13.505 -> Add item: one item added",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: service 31 -> hint: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: service 31 -> hint: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['charges-hint']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: service 31 -> hint: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: SST 25 -> hint: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: SST 25 -> hint: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['charges-hint']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "mouse: SST 25 -> hint: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: subtotal 0 -> Service charge input: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: subtotal 0 -> Service charge input: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['rate-service']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: subtotal 0 -> Service charge input: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Aisyah toggle: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Aisyah toggle: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['button:Aisyah']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Aisyah toggle: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Aisyah toggle: toggle flipped once",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Remove (item 3): no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Remove (item 3): exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['svg:']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Remove (item 3): error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Remove (item 3): the item was removed once",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Add item: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Add item: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['button:Add item']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Add item: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: price 13.505 -> Add item: one item added",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: service 31 -> hint: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: service 31 -> hint: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['charges-hint']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: service 31 -> hint: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: SST 25 -> hint: no error while focused",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: SST 25 -> hint: exactly one click reached the control it started on",
+   "ok": true,
+   "detail": "['charges-hint']"
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "touch: SST 25 -> hint: error shows after the press",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F11 RD-3 press below an invalid field",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F12 text stays text",
+   "check": "names held exactly",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F12 text stays text",
+   "check": "toggles, shares row, remove names show literal text",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F12 text stays text",
+   "check": "no img/script created, no handler attributes, svg count unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F12 text stays text",
+   "check": "clipboard line 3 is literal",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F12 text stays text",
+   "check": "after reload the names are still literal and no alert ran",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F12 text stays text",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F13 differential run against split-core",
+   "check": "90 random bills (seed 20261009, kinds {'even': 31, 'blocked': 38, 'item': 20, 'unassigned': 1}): panel, restored fields and displayed errors equal split-core",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "flow": "F13 differential run against split-core",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F14 storage unavailable",
+   "check": "reading window.localStorage throws: total RM 116.60 with three shares, no message",
+   "ok": true,
+   "detail": "[['Subtotal', 'RM 100.00', ''], ['+Service charge', 'RM 10.00', '10% of RM 100.00'], ['+SST', 'RM 6.60', '6% of RM 110.00'], ['=Total', 'RM 116.60', '']]"
+  },
+  {
+   "flow": "F14 storage unavailable",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F14 storage unavailable",
+   "check": "getItem throws: total RM 116.60 with three shares, no message",
+   "ok": true,
+   "detail": "[['Subtotal', 'RM 100.00', ''], ['+Service charge', 'RM 10.00', '10% of RM 100.00'], ['+SST', 'RM 6.60', '6% of RM 110.00'], ['=Total', 'RM 116.60', '']]"
+  },
+  {
+   "flow": "F14 storage unavailable",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "flow": "F14 storage unavailable",
+   "check": "setItem throws: total RM 116.60 with three shares, no message",
+   "ok": true,
+   "detail": "[['Subtotal', 'RM 100.00', ''], ['+Service charge', 'RM 10.00', '10% of RM 100.00'], ['+SST', 'RM 6.60', '6% of RM 110.00'], ['=Total', 'RM 116.60', '']]"
+  },
+  {
+   "flow": "F14 storage unavailable",
+   "check": "no console error, page error, CSP line or foreign request",
+   "ok": true,
+   "detail": ""
+  }
+ ]
+}

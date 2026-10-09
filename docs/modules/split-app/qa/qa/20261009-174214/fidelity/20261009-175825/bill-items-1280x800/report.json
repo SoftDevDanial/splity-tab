@@ -1,0 +1,34 @@
+{
+  "mismatch_pixels": 0,
+  "total_pixels": 1445120,
+  "mismatch_pct": 0.0,
+  "dimensions_match": true,
+  "golden_size": [
+    1280,
+    1129
+  ],
+  "candidate_size": [
+    1280,
+    1129
+  ],
+  "compared_size": [
+    1280,
+    1129
+  ],
+  "threshold": 0.01,
+  "golden": "./docs/design/bill-items.html",
+  "candidate": "http://127.0.0.1:15033/",
+  "viewport": [
+    1280,
+    800
+  ],
+  "dpr": 1.0,
+  "full_page": true,
+  "color_scheme": "light",
+  "browser_args": [
+    "--disable-lcd-text"
+  ],
+  "fixed_time": "2026-10-08T09:00:00",
+  "candidate_init_script": "./tests/browser/fidelity/seed-s1.js",
+  "candidate_after_load": null
+}
