@@ -77,7 +77,10 @@ Feature: Split app, served and driven like a person would
     When I open "/"
     Then the head holds, in order, charset utf-8, the viewport meta, the CSP meta, title "Split", a stylesheet link "src/system.css" and a module script "src/main.js"
     And html has lang "en"
-    And the SHA-256 of src/system.css equals that of docs/design/system.css
+    ~~And the SHA-256 of src/system.css equals that of docs/design/system.css~~
+    # Changed 2026-10-09, ORCH, RD-1 (RC-5 wins). The file is the golden's bytes plus exactly one trailing rule,
+    # "[hidden] { display: none !important; }" on its own line, so the two SHA-256 values differ by design.
+    And the bytes of src/system.css equal the bytes of docs/design/system.css followed by "\n[hidden] { display: none !important; }\n"
     And no console error and no page error was logged
     And every request was a same-origin GET for "/", "/src/system.css", a file under "/src/" or "/favicon.ico"
 
@@ -320,7 +323,10 @@ Feature: Split app, served and driven like a person would
     Then the panel total is "RM 5.83" and the shares are RM 1.95, RM 1.94, RM 1.94
     When I type "0"
     Then the panel total is "RM 58.30" and the shares are RM 19.44, RM 19.43, RM 19.43
-    And no element inside div.tape has aria-live or role status, alert or log
+    ~~And no element inside div.tape has aria-live or role status, alert or log~~
+    # Changed 2026-10-09, ORCH, RD-2. The old line contradicts the DOM contract, where p.status[role=status] is inside div.tape (R24).
+    # The rule is: p.status[role=status] is the only live element in the tape. The tape and its sections carry no aria-live and no role.
+    And p.status[role=status] is the only element inside div.tape with aria-live or a role of status, alert or log, and div.tape and its sections carry none
 
   @R17
   Scenario Outline: When the shares cannot be worked out

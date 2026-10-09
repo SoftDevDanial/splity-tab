@@ -698,9 +698,29 @@ def test_R16_the_panel_follows_every_keystroke_and_stays_quiet(open_app):
     assert summary_rows(page)[3][1] == "RM 5.83" and [r[1] for r in table_cells(page, "tbody")] == ["RM 1.95", "RM 1.94", "RM 1.94"]
     page.keyboard.type("0")
     assert summary_rows(page)[3][1] == "RM 58.30" and [r[1] for r in table_cells(page, "tbody")] == ["RM 19.44", "RM 19.43", "RM 19.43"]
-    live = page.evaluate("() => [...document.querySelectorAll(\"div.tape, div.tape *\")].filter((e) => e.hasAttribute('aria-live') "
-                         "|| ['status', 'alert', 'log'].includes(e.getAttribute('role'))).map((e) => e.className)")
-    assert live == ["status"]  # the copy status is the one live region (R24); the panel and its sections have none
+    assert live_elements_in_tape(page) == ["p.status[role=status]"]
+
+
+def live_elements_in_tape(page):
+    """Every element of div.tape (itself included) that is live: an aria-live attribute or a status, alert or log role."""
+    return page.evaluate("""() => [...document.querySelectorAll('div.tape, div.tape *')]
+        .filter((e) => e.hasAttribute('aria-live') || ['status', 'alert', 'log'].includes(e.getAttribute('role')))
+        .map((e) => `${e.tagName.toLowerCase()}.${e.className}[role=${e.getAttribute('role')}]`)""")
+
+
+def test_R16_the_status_is_the_only_live_element_and_only_while_the_table_is(open_app):
+    # RD-2 (qa.md, 2026-10-09): p.status[role=status] is the one live element in the tape. The tape and its
+    # sections carry no aria-live and no role, and a blocked or unassigned panel has no live element at all.
+    page = open_app().page
+    assert live_elements_in_tape(page) == []  # S3: only the Shares message
+    build_s2(page)
+    assert live_elements_in_tape(page) == ["p.status[role=status]"]
+    assert page.locator("div.tape [aria-live], div.tape section[role], div.tape[role], div.tape[aria-live]").count() == 0
+    support.replace_text(page, subtotal_field(page), "")
+    assert live_elements_in_tape(page) == []
+    unassigned = open_app().page
+    build_s5(unassigned)
+    assert live_elements_in_tape(unassigned) == []
 
 
 BLOCKED_CASES = [
