@@ -57,11 +57,19 @@ export function createDialog(dialog, opener, { onConfirm }) {
   });
 
   // Native showModal() ignores a click on the backdrop (CG-8 makes it Cancel). The backdrop belongs to the
-  // dialog element, so a click that targets the dialog from a point outside its box is a backdrop click.
-  dialog.addEventListener("click", (event) => {
-    if (event.target !== dialog) return;
+  // dialog element, so a press on the dialog element at a point outside its box is a press on the backdrop.
+  // A click goes to the common ancestor of where the press began and ended, so selecting the dialog text and
+  // letting go over the backdrop also targets the dialog: only a press that began on the backdrop counts.
+  const onBackdrop = (event) => {
     const box = dialog.getBoundingClientRect();
-    const outside = event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom;
-    if (outside) closeByClick();
+    return event.target === dialog
+      && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom);
+  };
+  let pressBeganOnBackdrop = false;
+  dialog.addEventListener("mousedown", (event) => { pressBeganOnBackdrop = onBackdrop(event); });
+  dialog.addEventListener("click", (event) => {
+    const began = pressBeganOnBackdrop;
+    pressBeganOnBackdrop = false;
+    if (began && onBackdrop(event)) closeByClick();
   });
 }

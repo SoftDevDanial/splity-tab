@@ -1441,6 +1441,38 @@ def test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_he
     assert aisyah.get_attribute("aria-pressed") == "false" and stored_text(page) == seeds.S1
 
 
+def drag(page, start, end):
+    """Press at `start`, move to `end` in steps and release there: a drag, such as selecting text."""
+    page.mouse.move(*start)
+    page.mouse.down()
+    page.mouse.move(*end, steps=5)
+    page.mouse.up()
+    settle(page)
+
+
+def test_R30_a_press_that_starts_in_the_dialog_and_ends_on_the_backdrop_keeps_it_open(open_app):
+    # WR-06: the click is sent to the dialog element, which also owns the backdrop, but the user did not click the backdrop.
+    page = open_app(seed=seeds.S2).page
+    open_dialog(page)
+    drag(page, centre_of(page.locator("#dialog-text")), (10, 10))
+    assert dialog_is_open(page) is True
+
+
+def test_R30_a_press_that_starts_on_the_backdrop_and_ends_in_the_dialog_keeps_it_open(open_app):
+    page = open_app(seed=seeds.S2).page
+    open_dialog(page)
+    drag(page, (10, 10), centre_of(page.locator("#dialog-text")))
+    assert dialog_is_open(page) is True
+
+
+def test_R30_a_tap_on_the_backdrop_acts_as_cancel(open_app):
+    page = open_app(seed=seeds.S2, touch=True).page  # a tap sends its mouse events after touchend, the press is still known
+    open_dialog(page)
+    page.touchscreen.tap(10, 10)
+    settle(page)
+    assert dialog_is_open(page) is False and focused(page) == "New bill" and stored_text(page) == seeds.S2
+
+
 FIVE_PEOPLE = seeds.changed(seeds.S2, lambda d: d["bill"].update(
     people=[{"id": f"p{n}", "name": f"P{n}"} for n in range(1, 6)], nextId=6))
 REMOVE_CASES = [  # (seed, the remove button, the row selector, rows before)
