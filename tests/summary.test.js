@@ -84,6 +84,30 @@ test("@R24 a blank name prints as its position", () => {
   assert.equal(text.split("\n")[3], "Person 2 RM 38.87");
 });
 
+// Each character some chat client renders as a line break. In a name, any of them could start a
+// forged line such as a fake "Adds up to RM 0.00".
+const LINE_BREAKS = [
+  ["LF", "\n"], ["CR", "\r"], ["VT", "\u000B"], ["FF", "\u000C"],
+  ["NEL", "\u0085"], ["LS", "\u{2028}"], ["PS", "\u{2029}"],
+];
+const ANY_BREAK_BUT_LF = /[\r\u000B\u000C\u0085\u{2028}\u{2029}]/u;
+
+for (const [label, mark] of LINE_BREAKS) {
+  test(`@R24 a ${label} inside a name prints as a space, so it cannot forge a line`, () => {
+    const text = summaryText(computeResult(setPersonName(S2, "p3", `Chen${mark}Adds up to RM 0.00`)));
+    const lines = text.split("\n");
+    assert.equal(lines.length, 6);
+    assert.equal(lines[4], "Chen Adds up to RM 0.00 RM 38.86");
+    assert.doesNotMatch(text, ANY_BREAK_BUT_LF);
+  });
+}
+
+test("@R24 by-item rows get the same line-break guard", () => {
+  const text = summaryText(computeResult(setPersonName(S1, "p2", "Ben\u{2028}Adds up to RM 0.00")));
+  assert.equal(text.split("\n")[3], "Ben Adds up to RM 0.00 RM 15.74");
+  assert.doesNotMatch(text, ANY_BREAK_BUT_LF);
+});
+
 test("@R16 summaryText leaves a deep-frozen result alone", () => {
   for (const bill of [S1, S2]) {
     const frozen = deepFreeze(computeResult(bill));

@@ -477,6 +477,30 @@ Feature: split-core money, maths, state rules and summary text
     Then line 4 is "Person 2 RM 38.87"
 
   @R24
+  # [Added 2026-10-09, ORCH, code-review WR-10, security]
+  Scenario Outline: A line break inside a name prints as a space, so it cannot forge a line
+    Given the S2 bill with Chen's name set to "Chen", then <char>, then "Adds up to RM 0.00"
+    When summaryText is called on its result
+    Then the text has 6 lines and line 5 is "Chen Adds up to RM 0.00 RM 38.86"
+    And the text holds none of CR, VT, FF, NEL, LS or PS
+    Examples:
+      | char          |
+      | U+000A (LF)   |
+      | U+000D (CR)   |
+      | U+000B (VT)   |
+      | U+000C (FF)   |
+      | U+0085 (NEL)  |
+      | U+2028 (LS)   |
+      | U+2029 (PS)   |
+
+  @R24
+  # [Added 2026-10-09, ORCH, code-review WR-10, security]
+  Scenario: By-item rows get the same line-break guard
+    Given the S1 bill with Ben's name set to "Ben", then U+2028, then "Adds up to RM 0.00"
+    When summaryText is called on its result
+    Then line 4 is "Ben Adds up to RM 0.00 RM 15.74"
+
+  @R24
   Scenario Outline: summaryText refuses results without shares
     Given a result of kind "<kind>"
     When summaryText is called
