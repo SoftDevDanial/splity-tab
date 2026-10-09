@@ -6,7 +6,9 @@ import {
 } from "./core/bill.js";
 import { computeResult } from "./core/result.js";
 import { summaryText } from "./core/summary.js";
-import { newErrorFlags, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
+import { getStorage, loadDraft, saveDraft } from "./draft.js";
+import { flagsFor, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
+import { createNote } from "./ui/note.js";
 import { createPeople } from "./ui/people.js";
 import { createMode } from "./ui/mode.js";
 import { createSubtotal } from "./ui/subtotal.js";
@@ -14,8 +16,13 @@ import { createItems } from "./ui/items.js";
 import { createCharges } from "./ui/charges.js";
 import { createPanel } from "./ui/panel.js";
 
-let bill = newBill();
-const view = { errorShown: newErrorFlags(), status: null };
+// Boot (R2, R26 to R28). A cold boot is a new bill and writes nothing. A readable draft is shown as it was.
+// An unreadable one starts a new bill, saves it at once so a reload does not show the note again, and shows the note.
+const storage = getStorage();
+const loaded = loadDraft(storage);
+let bill = loaded.state === "ok" ? loaded.bill : newBill();
+const view = { errorShown: flagsFor(bill), status: null, noteShown: loaded.state === "unreadable" };
+if (view.noteShown) saveDraft(storage, bill);
 
 const hasShares = (result) => result.kind === "even" || result.kind === "item";
 
@@ -38,6 +45,7 @@ async function copySummary() {
 function commit(next) {
   if (next === bill) return;
   bill = next;
+  saveDraft(storage, bill);
   render();
 }
 
@@ -100,6 +108,13 @@ const charges = createCharges({
   },
 });
 const panel = createPanel(document.querySelector(".tape"), { onCopy: copySummary });
+const note = createNote(document.querySelector(".bar"), {
+  onDismiss() {
+    view.noteShown = false;
+    render();
+    people.focusName(0);
+  },
+});
 document.querySelector(".inputs").append(people.el, mode.el, subtotal.el, items.el, charges.el);
 
 function render() {
@@ -112,6 +127,7 @@ function render() {
   const result = computeResult(bill);
   if (!hasShares(result)) view.status = null;
   panel.update(result, view.status);
+  note.update(view.noteShown);
 }
 
 render();

@@ -933,4 +933,197 @@ def test_R42_duplicate_names_through_the_whole_flow(open_app):
     assert panel_text(page).splitlines()[-1] == "1 item still needs a person. Tap who had it to see the shares."
 
 
+# ---------------------------------------------------------------- Task 9: the draft (R25 to R28, with R3, R8, R10, R24, R26, R42)
+NEW_BILL_DRAFT = ('{"version":1,"bill":{"mode":"even","people":[{"id":"p1","name":"Person 1"},{"id":"p2","name":"Person 2"}],'
+                  '"subtotalText":"","items":[],"serviceText":"10","sstText":"6","nextId":3}}')
+SNAPSHOT_JS = """() => ({
+  people: [...document.querySelectorAll('li.person input')].map((i) => i.value),
+  mode: document.querySelector('input[name=mode]:checked').value,
+  subtotal: document.querySelector('#subtotal').value,
+  items: [...document.querySelectorAll('li.item')].map((li) => [...li.querySelectorAll('input')].map((i) => i.value)
+    .concat([...li.querySelectorAll('.tap')].map((b) => b.getAttribute('aria-pressed')))),
+  rates: [document.querySelector('#rate-service').value, document.querySelector('#rate-sst').value],
+})"""
+
+
+def stored(page):
+    text = page.evaluate("localStorage.getItem('split.draft')")
+    return text if text is None else json.loads(text)
+
+
+def stored_text(page):
+    return page.evaluate("localStorage.getItem('split.draft')")
+
+
+def snapshot(page):
+    return page.evaluate(SNAPSHOT_JS)
+
+
+@pytest.mark.parametrize("change, check", [
+    (lambda page: person_field(page, 1).fill("A"), lambda bill: bill["people"][0]["name"] == "A"),
+    (lambda page: page.get_by_role("button", name="Add person").click(), lambda bill: len(bill["people"]) == 3 and bill["nextId"] == 4),
+    (lambda page: subtotal_field(page).fill("1"), lambda bill: bill["subtotalText"] == "1"),
+    (lambda page: switch_to(page, "By item"), lambda bill: bill["mode"] == "item"),
+    (lambda page: (switch_to(page, "By item"), page.get_by_role("button", name="Add item").click()),
+     lambda bill: bill["items"] == [{"id": "i3", "name": "", "priceText": "", "who": []}]),
+    (lambda page: rate_field(page, "SST").fill("8"), lambda bill: bill["sstText"] == "8"),
+], ids=["name", "add-person", "subtotal", "mode", "add-item", "sst"])
+def test_R25_every_change_is_saved(open_app, change, check):
+    page = open_app().page
+    assert stored(page) is None
+    change(page)
+    draft = stored(page)
+    assert list(draft) == ["version", "bill"] and draft["version"] == 1 and check(draft["bill"])
+
+
+def test_R25_leaving_a_field_or_copying_does_not_save(open_app):
+    page = open_app(seed=seeds.S2).page
+    assert stored_text(page) == seeds.S2
+    subtotal_field(page).click()
+    page.keyboard.press("Tab")
+    copy_summary(page)
+    assert stored_text(page) == seeds.S2
+
+
+def test_R25_a_cold_boot_and_a_reload_write_nothing(open_app):
+    page = open_app().page
+    page.reload()
+    assert stored_text(page) is None
+
+
+@pytest.mark.parametrize("build, seed", [(build_s2, seeds.S2), (lambda page: (build_s2(page), build_items_after_switch(page)), None)],
+                         ids=["S2", "S1-after-a-subtotal"])
+def test_R25_a_bill_built_by_gestures_is_stored_like_its_seed(open_app, build, seed):
+    page = open_app().page
+    build(page)
+    if seed is not None:
+        assert stored_text(page) == seed
+    else:  # the S1 seed has an empty subtotal; here "100.00" was typed first and must survive in the draft
+        assert stored(page)["bill"] == dict(json.loads(seeds.S1)["bill"], subtotalText="100.00")
+
+
+@pytest.mark.parametrize("seed", [seeds.S2, seeds.S1, seeds.S5], ids=["S2", "S1", "S5"])
+def test_R26_a_restored_bill_looks_like_the_one_built_by_gestures(open_app, seed):
+    builders = {seeds.S2: build_s2, seeds.S1: build_s1, seeds.S5: build_s5}
+    built = open_app()
+    builders[seed](built.page)
+    restored = open_app(seed=seed)
+    assert snapshot(restored.page) == snapshot(built.page)
+    assert stored_text(restored.page) == seed  # restoring writes nothing
+
+
+@pytest.mark.parametrize("seed, golden", [(seeds.S2, "bill-even"), (seeds.S1, "bill-items"), (seeds.S5, "bill-unassigned")],
+                         ids=["S2", "S1", "S5"])
+def test_R3_a_restored_bill_matches_its_golden(open_app, plain_context, seed, golden):
+    assert first_diff(dom_walk(open_app(seed=seed).page), golden_walk(plain_context, golden)) is None
+
+
+def test_R26_come_back_later(open_app):
+    session = open_app()
+    page = session.page
+    build_s2(page)
+    build_items_after_switch(page)
+    before = snapshot(page)
+    page.close()
+    again = session.new_page()
+    session.open("/", page=again)
+    assert snapshot(again) == before and again.locator("#mode-item").is_checked()
+    assert table_cells(again, "tbody") == S1_ROWS and table_cells(again, "tfoot") == S1_CHECK
+    switch_to(again, "Even")
+    assert subtotal_field(again).input_value() == "100.00"
+    assert summary_rows(again)[3][1] == "RM 116.60"
+
+
+def test_R8_both_sets_of_input_survive_a_reload(open_app):
+    page = open_app().page
+    subtotal_field(page).fill("100.00")
+    switch_to(page, "By item")
+    add_item_named(page, "Tea", "5.00", ["Person 1"])
+    page.reload()
+    assert page.locator("#mode-item").is_checked() and item_name(page, 1).input_value() == "Tea"
+    assert toggle(page, "Tea", "Person 1").get_attribute("aria-pressed") == "true" and summary_rows(page)[3][1] == "RM 5.83"
+    switch_to(page, "Even")
+    assert subtotal_field(page).input_value() == "100.00" and summary_rows(page)[3][1] == "RM 116.60"
+
+
+@pytest.mark.parametrize("name", ["G1", "G2", "G3"])
+def test_R26_odd_but_readable_drafts_load(open_app, name):
+    seed = seeds.ODD_READABLE[name]
+    page = open_app(seed=seed).page
+    assert page.locator("div.note").count() == 0
+    if name == "G2":
+        assert person_field(page, 1).input_value() == seeds.FLAGS_20
+    else:
+        assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page)
+    if name == "G3":
+        assert page.evaluate("({}).polluted") is None
+    if name == "G1":
+        subtotal_field(page).fill("100.0")
+        text = stored_text(page)
+        assert "extra" not in text and "colour" not in text and json.loads(text)["bill"]["subtotalText"] == "100.0"
+
+
+@pytest.mark.parametrize("name", list(seeds.UNREADABLE))
+def test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note(open_app, name):
+    session = open_app(seed=seeds.UNREADABLE[name])
+    page = session.page
+    note = page.locator("div.note-wrap > div.note[role=status]")
+    assert note.locator("p").inner_text() == "Your saved bill could not be read, so a new one was started."
+    assert note.get_by_role("button", name="Dismiss note").count() == 1
+    assert page.evaluate("document.querySelector('.bar').nextElementSibling.className") == "note-wrap"
+    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
+    assert page.locator("#mode-even").is_checked() and subtotal_field(page).input_value() == ""
+    assert panel_text(page) == EVEN_MESSAGE
+    assert stored_text(page) == NEW_BILL_DRAFT
+    page.reload()
+    assert page.locator("div.note").count() == 0 and stored_text(page) == NEW_BILL_DRAFT
+
+
+def test_R27_dismissing_the_note_moves_focus_to_the_first_name(open_app):
+    page = open_app(seed=seeds.UNREADABLE["B1"]).page
+    page.get_by_role("button", name="Dismiss note").click()
+    assert page.locator("div.note-wrap").count() == 0 and support.active_label(page) == "Person 1 name"
+
+
+STORAGE_BREAKERS = {
+    "read-localStorage": "Object.defineProperty(window, 'localStorage', { get() { throw new DOMException('blocked', 'SecurityError'); } });",
+    "getItem": "Storage.prototype.getItem = function () { throw new Error('read failed'); };",
+    "setItem": "Storage.prototype.setItem = function () { throw new DOMException('full', 'QuotaExceededError'); };",
+}
+
+
+@pytest.mark.parametrize("script", STORAGE_BREAKERS.values(), ids=STORAGE_BREAKERS.keys())
+def test_R28_the_app_works_without_storage(open_app, script):
+    page = open_app(init_scripts=[script]).page
+    subtotal_field(page).fill("100.00")
+    page.get_by_role("button", name="Add person").click()
+    assert summary_rows(page)[3][1] == "RM 116.60" and len(table_cells(page, "tbody")) == 3
+    assert page.locator("div.note, p.error").count() == 0
+
+
+def test_R10_a_restored_bad_field_shows_its_error_at_once(open_app):
+    page = open_app(seed=seeds.with_bill(seeds.S2, subtotalText="0", serviceText="31")).page
+    assert page.locator("p.error#subtotal-error").inner_text() == "Enter an amount like 12.50"
+    assert page.locator("p.error#rate-service-error").inner_text() == "Enter a rate from 0 to 30"
+    assert page.locator("p.error#rate-sst-error").count() == 0
+
+
+def test_R24_the_status_is_not_saved(open_app):
+    page = open_app(seed=seeds.S2).page
+    copy_summary(page)
+    assert status_of(page)[0] == "Summary copied"
+    page.reload()
+    assert status_of(page) == ("", "status")
+
+
+def test_R42_the_draft_keeps_both_people_with_the_same_name(open_app):
+    page = open_app().page
+    person_field(page, 1).fill("Ben")
+    person_field(page, 2).fill("Ben")
+    add_person_named(page, "Chen")
+    assert [p["name"] for p in stored(page)["bill"]["people"]] == ["Ben", "Ben", "Chen"]
+    remove_button(page, "Ben").nth(1).click()
+    assert [(p["id"], p["name"]) for p in stored(page)["bill"]["people"]] == [("p1", "Ben"), ("p3", "Chen")]
+
+
 # ===== END OF TESTS (new tests go above this line) =====
