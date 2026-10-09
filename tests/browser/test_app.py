@@ -1752,6 +1752,78 @@ def test_R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word
     assert selected == "Aisyah"
 
 
+# ---------------------------------------------------------------- Regression RG-CR-01: the repeat press on Add person and Add item (R6, R12, R34)
+# The guard was armed by the Remove buttons only. "Add person" fills its grid cell and the new person's row takes that cell,
+# so the new row's Remove button (44 px wide, at the right end of the cell) sits under the right 44 px of the button that was
+# just pressed. The repeat press of a double click, triple click or double tap then removed the blank row again: nothing was
+# added, one id was spent and focus stayed on the previous name. "Add item" has no such overlap (its Remove button is at the
+# other end of the row) and arms the same guard, so that one rule holds for every control that adds a row. Each row presses
+# the middle of the button, or 22 px in from its right edge, which is the middle of the 44 px that the new Remove covers.
+REPEAT_GESTURES = [gesture for gesture in GESTURES if gesture != "single"]
+PRESS_PLACES = ["right-edge", "centre"]
+
+
+def people_bill(count):
+    """The S2 bill with `count` people, P1 to P{count}."""
+    return seeds.changed(seeds.S2, lambda d: d["bill"].update(
+        people=[{"id": f"p{n}", "name": f"P{n}"} for n in range(1, count + 1)], nextId=count + 1))
+
+
+def items_bill(count):
+    """The S1 bill cut to its first `count` items."""
+    return seeds.changed(seeds.S1, lambda d: d["bill"].update(items=d["bill"]["items"][:count]))
+
+
+def bill_after_one_add(seed, kind):
+    """The bill that one click on Add person ("people") or Add item ("items") leaves: one blank row, the id counter one up."""
+    bill = json.loads(seed)["bill"]
+    number = bill["nextId"]
+    if kind == "people":
+        bill["people"].append({"id": f"p{number}", "name": ""})
+    else:
+        bill["items"].append({"id": f"i{number}", "name": "", "priceText": "", "who": []})
+    bill["nextId"] = number + 1
+    return bill
+
+
+def press_point(button, place):
+    """Where to press `button`: its middle, or 22 px in from its right edge (the middle of a new row's 44 px Remove button)."""
+    button.scroll_into_view_if_needed()
+    box = button.bounding_box()
+    return box["x"] + (box["width"] - 22 if place == "right-edge" else box["width"] / 2), box["y"] + box["height"] / 2
+
+
+@pytest.mark.parametrize("place", PRESS_PLACES)
+@pytest.mark.parametrize("gesture", REPEAT_GESTURES)
+@pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+@pytest.mark.parametrize("people", [2, 3, 4, 5])
+def test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it(open_app, people, viewport, gesture, place):
+    # The "centre" rows are the control: the repeat press misses the new Remove button there, on every tree.
+    seed = people_bill(people)
+    page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+    gesture_at(page, gesture, press_point(page.get_by_role("button", name="Add person", exact=True), place))
+    assert page.locator("li.person").count() == people + 1
+    assert stored(page)["bill"] == bill_after_one_add(seed, "people")  # the blank row stayed, and one id was spent, not two
+    assert support.active_label(page) == f"Person {people + 1} name"  # R34
+
+
+@pytest.mark.parametrize("place", PRESS_PLACES)
+@pytest.mark.parametrize("gesture", REPEAT_GESTURES)
+@pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+@pytest.mark.parametrize("items", [1, 4])
+def test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page(open_app, items, viewport, gesture, place):
+    # No Remove button slides under "Add item", so the bill cannot tell a guard from none. What the guard does is cancel the
+    # repeat press before the page sees it, and the recorder on the body is what pins that.
+    seed = items_bill(items)
+    page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    gesture_at(page, gesture, press_point(page.get_by_role("button", name="Add item", exact=True), place))
+    assert page.locator("li.item").count() == items + 1
+    assert stored(page)["bill"] == bill_after_one_add(seed, "items")
+    assert support.active_label(page) == f"Item {items + 1} name"  # R34
+    assert seen_by_the_page(page) == {"presses": [1], "clicks": [1]}
+
+
 # ---------------------------------------------------------------- Security I-1: the repeat press on New bill (R29, R30)
 # Opening the dialog puts its backdrop under the pointer, so the second click of a double click, triple click or double tap
 # on "New bill" closed it again: the dialog flashed open and shut. Opening arms the same guard as closing does.

@@ -37,7 +37,9 @@ export function createItems({ onName, onPrice, onPriceLeave, onToggle, onAdd, on
   }
 
   const add = el("button", { class: "btn btn-outline", type: "button" }, icon("plus"), "Add item");
-  add.addEventListener("click", onAdd);
+  // No Remove button slides under this button, but it arms the guard like Add person does, so the rule stays one rule
+  // for every control that adds a row (RG-CR-01).
+  add.addEventListener("click", () => { swallowRepeatClicks(); onAdd(); });
   const list = el("ol", { class: "items" });
   const section = block("h-items", "Items", list, add);
 

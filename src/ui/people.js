@@ -20,7 +20,9 @@ export function createPeople({ onName, onAdd, onRemove }) {
   }
 
   const add = el("button", { class: "btn btn-outline", type: "button" }, icon("plus"), "Add person");
-  add.addEventListener("click", onAdd);
+  // The new row's Remove button slides under the right end of this button, so the rest of a double click must not
+  // reach it and take the blank row away again (swallowRepeatClicks, RG-CR-01).
+  add.addEventListener("click", () => { swallowRepeatClicks(); onAdd(); });
   const addCell = el("li", {}, add);
   const list = el("ul", { class: "cells" });
   const section = block("h-people", "People", list);
