@@ -1,0 +1,47 @@
+[
+  {
+    "check": "[A2] K1 error shown on blur, gone at valid text",
+    "ok": true,
+    "detail": "shown=True gone=True"
+  },
+  {
+    "check": "[A2] K1 bad text typed again does NOT bring the error back before blur (R10 c)",
+    "ok": false,
+    "detail": "errors=1"
+  },
+  {
+    "check": "[A2] K1 the error returns when the field is left again",
+    "ok": true,
+    "detail": "errors=1"
+  },
+  {
+    "check": "[A2] K2 the press on blank space waits, then shows the error",
+    "ok": true,
+    "detail": "held=0 after=1"
+  },
+  {
+    "check": "[A2] K2 a click inside the focused field does not show a stale error",
+    "ok": false,
+    "detail": "before=1 after=1"
+  },
+  {
+    "check": "[A2] K3 a keyboard blur during an unfinished press shows the error at once",
+    "ok": true,
+    "detail": "errors_before_release=1"
+  },
+  {
+    "check": "[A2] K4 removing an item is saved",
+    "ok": true,
+    "detail": "stored items=3"
+  },
+  {
+    "check": "[A2] K5 a click inside the dialog box keeps it open",
+    "ok": true,
+    "detail": "open=True"
+  },
+  {
+    "check": "[A2] K6 the note carries no stray aria attribute",
+    "ok": true,
+    "detail": "stray=[]"
+  }
+]

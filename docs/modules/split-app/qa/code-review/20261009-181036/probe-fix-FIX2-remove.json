@@ -1,0 +1,32 @@
+[
+  {
+    "check": "[FIX2-remove] double mouse on Remove (item 2 of 4) removes one row",
+    "ok": true,
+    "detail": "items left=3"
+  },
+  {
+    "check": "[FIX2-remove] double mouse on Remove (person 2 of 5) removes one row",
+    "ok": true,
+    "detail": "people left=4"
+  },
+  {
+    "check": "[FIX2-remove] double touch on Remove (item 2 of 4) removes one row",
+    "ok": true,
+    "detail": "items left=3"
+  },
+  {
+    "check": "[FIX2-remove] double touch on Remove (person 2 of 5) removes one row",
+    "ok": true,
+    "detail": "people left=4"
+  },
+  {
+    "check": "[FIX2-remove] single click on Remove removes one row",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "[FIX2-remove] a second, slow click (700 ms later) removes another row",
+    "ok": true,
+    "detail": "items left=2"
+  }
+]

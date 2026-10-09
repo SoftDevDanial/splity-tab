@@ -1,0 +1,121 @@
+[
+  {
+    "note": "click details, mouse, gap 0 ms (target text, detail)",
+    "value": [
+      [
+        "New bill",
+        1
+      ],
+      [
+        "Cancel",
+        1
+      ],
+      [
+        "Chen",
+        1
+      ]
+    ]
+  },
+  {
+    "note": "click details, mouse, gap 80 ms (target text, detail)",
+    "value": [
+      [
+        "New bill",
+        1
+      ],
+      [
+        "Cancel",
+        1
+      ],
+      [
+        "Chen",
+        1
+      ]
+    ]
+  },
+  {
+    "note": "click details, mouse, gap 250 ms (target text, detail)",
+    "value": [
+      [
+        "New bill",
+        1
+      ],
+      [
+        "Cancel",
+        1
+      ],
+      [
+        "Chen",
+        1
+      ]
+    ]
+  },
+  {
+    "note": "click details, touch, gap 0 ms (target text, detail)",
+    "value": [
+      [
+        "New bill",
+        1
+      ],
+      [
+        "Cancel",
+        1
+      ],
+      [
+        "Chen",
+        2
+      ]
+    ]
+  },
+  {
+    "note": "click details, touch, gap 60 ms (target text, detail)",
+    "value": [
+      [
+        "New bill",
+        1
+      ],
+      [
+        "Cancel",
+        1
+      ],
+      [
+        "Chen",
+        2
+      ]
+    ]
+  },
+  {
+    "note": "click details, touch, gap 200 ms (target text, detail)",
+    "value": [
+      [
+        "New bill",
+        1
+      ],
+      [
+        "Cancel",
+        1
+      ],
+      [
+        "Chen",
+        2
+      ]
+    ]
+  },
+  {
+    "note": "click details, touch, gap 400 ms (target text, detail)",
+    "value": [
+      [
+        "New bill",
+        1
+      ],
+      [
+        "Cancel",
+        1
+      ],
+      [
+        "Chen",
+        1
+      ]
+    ]
+  }
+]

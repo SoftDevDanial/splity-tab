@@ -1,0 +1,29 @@
+[
+  {
+    "note": "20000 combining marks (0.02 MB draft)",
+    "value": {
+      "loaded_seconds": 0.08,
+      "note_shown": 0,
+      "name_units_in_field": 20001,
+      "fill_subtotal_seconds": 0.01
+    }
+  },
+  {
+    "note": "200000 combining marks (0.20 MB draft)",
+    "value": {
+      "loaded_seconds": 0.12,
+      "note_shown": 0,
+      "name_units_in_field": 200001,
+      "fill_subtotal_seconds": 0.04
+    }
+  },
+  {
+    "note": "1000000 combining marks (1.00 MB draft)",
+    "value": {
+      "loaded_seconds": 0.37,
+      "note_shown": 0,
+      "name_units_in_field": 1000001,
+      "fill_subtotal_seconds": 0.16
+    }
+  }
+]

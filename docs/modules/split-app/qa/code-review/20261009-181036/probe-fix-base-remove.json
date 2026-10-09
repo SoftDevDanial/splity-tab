@@ -1,0 +1,32 @@
+[
+  {
+    "check": "[base-remove] double mouse on Remove (item 2 of 4) removes one row",
+    "ok": false,
+    "detail": "items left=2"
+  },
+  {
+    "check": "[base-remove] double mouse on Remove (person 2 of 5) removes one row",
+    "ok": false,
+    "detail": "people left=3"
+  },
+  {
+    "check": "[base-remove] double touch on Remove (item 2 of 4) removes one row",
+    "ok": false,
+    "detail": "items left=2"
+  },
+  {
+    "check": "[base-remove] double touch on Remove (person 2 of 5) removes one row",
+    "ok": false,
+    "detail": "people left=3"
+  },
+  {
+    "check": "[base-remove] single click on Remove removes one row",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "[base-remove] a second, slow click (700 ms later) removes another row",
+    "ok": true,
+    "detail": "items left=2"
+  }
+]

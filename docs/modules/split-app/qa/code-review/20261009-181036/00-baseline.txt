@@ -1,0 +1,8 @@
+Code-review finder, split-app. Run folder 20261009-181036. Read-only on src, tests, index.html, docs/design.
+Baseline at start (processes NOT mine, never touched):
+  python.exe 35864, 49564
+  chrome-headless-shell.exe 28092, 27544, 49324, 38696
+  node.exe 48020
+CG-7: every context installs tests/browser/clipboard/recorder.js (or reject.js / missing.js) plus a guard that
+rejects Clipboard.readText and Clipboard.read. No permission is granted. The OS clipboard is never read or written.
+Mutants live in a throwaway copy under the session scratchpad, never in the repo.

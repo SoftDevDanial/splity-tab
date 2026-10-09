@@ -1,0 +1,26 @@
+CSS check (read-only, run from the project root)
+  golden docs/design/system.css : 18102 bytes, sha256 d001591ab7a82eac76f950bc334da3bbae44a89b3467a8343f63b577c6f4449e
+  shipped src/system.css        : 18142 bytes, sha256 c8e55e357bcfe4e93f1824cbf7ad3848bda0a0169e4cdeb74d9aa63e63236010
+  cmp: "EOF on docs/design/system.css after byte 18102": the first 18102 bytes are equal.
+  src == golden + b"\n[hidden] { display: none !important; }\n" (40 bytes): True
+  The golden holds no [hidden] rule.
+  git log -- docs/design/system.css src/system.css : 236b1c2 (golden, design phase), 4c801fb (the one copy, task 2). No later edit.
+  git diff 329679e..HEAD --stat -- docs/design : empty. The goldens were not touched by this module.
+  Verdict: src/system.css equals the golden plus only the RC-5 rule (RD-1).
+
+Scope (git diff 329679e..HEAD, without src/core, the core unit tests, docs and evidence)
+  index.html, src/main.js, src/draft.js, src/errors.js, src/system.css, src/ui/{charges,dialog,dom,field-error,field-leave,icons,items,mode,note,panel,people,subtotal}.js,
+  tests/browser/{conftest,live_e2e,rig,seeds,support,test_app}.py, tests/browser/pytest.ini, tests/browser/clipboard/*.js,
+  tests/browser/fidelity/{run.py,seed-s1.js,seed-s2.js,seed-s5.js,open-new-bill.js}, tests/draft.test.js.
+  src/errors.js was in the diff but not in the caller's list. It was reviewed too.
+
+Static scans of index.html and src/ (own grep, comments included)
+  innerHTML, outerHTML, insertAdjacentHTML, document.write, eval(, new Function(, setAttribute("on, createContextualFragment,
+  DOMParser, <template, fetch(, XMLHttpRequest, WebSocket, EventSource, sendBeacon, serviceWorker, any scheme://,
+  .style, setTimeout, setInterval, requestAnimationFrame, load/unload/beforeunload/pagehide listeners, window.__*, global assignments:
+  one hit, src/ui/icons.js:14, the allowed createElementNS namespace argument. Nothing else.
+  aria-live: none. role: panel.js (status), note.js (status), items.js (group). All as the spec lists.
+  Money outside split-core (toFixed, parseFloat, Number(, Math., NumberFormat, toLocale, * 100, / 100, cents, bp): none in src outside src/core.
+  Number( and Math.max/min in src: draft.js id numbers, main.js focus indexes. No money.
+
+Baseline suites in the scratch copy (equal to the repo): python -m pytest tests/browser: 205 passed in 59 s. node --test: 265 passed.

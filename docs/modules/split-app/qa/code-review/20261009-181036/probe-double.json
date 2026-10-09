@@ -1,0 +1,26 @@
+[
+  {
+    "note": "mouse: double activation of 'Remove Char kuey teow' (item 2 of 4) leaves items",
+    "value": 2
+  },
+  {
+    "note": "mouse: double activation of 'Remove P2' (person 2 of 5) leaves people",
+    "value": 3
+  },
+  {
+    "note": "mouse: double activation of 'Add person' from 3 people leaves",
+    "value": 4
+  },
+  {
+    "note": "touch: double activation of 'Remove Char kuey teow' (item 2 of 4) leaves items",
+    "value": 2
+  },
+  {
+    "note": "touch: double activation of 'Remove P2' (person 2 of 5) leaves people",
+    "value": 3
+  },
+  {
+    "note": "touch: double activation of 'Add person' from 3 people leaves",
+    "value": 4
+  }
+]

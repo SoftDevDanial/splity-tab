@@ -1,0 +1,102 @@
+[
+  {
+    "check": "[base-dialog] double mouse on Cancel at (375, 667): nothing under the dialog changes",
+    "ok": false,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double mouse on backdrop at (375, 667): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=True"
+  },
+  {
+    "check": "[base-dialog] double mouse on Start new bill at (375, 667): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double touch on Cancel at (375, 667): nothing under the dialog changes",
+    "ok": false,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double touch on backdrop at (375, 667): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=True"
+  },
+  {
+    "check": "[base-dialog] double touch on Start new bill at (375, 667): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double mouse on Cancel at (360, 640): nothing under the dialog changes",
+    "ok": false,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double mouse on backdrop at (360, 640): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=True"
+  },
+  {
+    "check": "[base-dialog] double mouse on Start new bill at (360, 640): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double touch on Cancel at (360, 640): nothing under the dialog changes",
+    "ok": false,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double touch on backdrop at (360, 640): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=True"
+  },
+  {
+    "check": "[base-dialog] double touch on Start new bill at (360, 640): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double mouse on Cancel at (412, 732): nothing under the dialog changes",
+    "ok": false,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double mouse on backdrop at (412, 732): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=True"
+  },
+  {
+    "check": "[base-dialog] double mouse on Start new bill at (412, 732): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double touch on Cancel at (412, 732): nothing under the dialog changes",
+    "ok": false,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] double touch on backdrop at (412, 732): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=True"
+  },
+  {
+    "check": "[base-dialog] double touch on Start new bill at (412, 732): nothing under the dialog changes",
+    "ok": true,
+    "detail": "closed=True draft_same=False"
+  },
+  {
+    "check": "[base-dialog] single click on Cancel still closes with focus on New bill",
+    "ok": true,
+    "detail": "focus=New bill"
+  },
+  {
+    "check": "[base-dialog] a later double click on a toggle still flips it twice",
+    "ok": true,
+    "detail": "before=false after=false"
+  }
+]

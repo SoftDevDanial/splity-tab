@@ -1,0 +1,66 @@
+[
+  {
+    "check": "F-1 mouse (375, 667): a double click/tap on Cancel leaves the draft unchanged",
+    "ok": false,
+    "detail": "draft changed"
+  },
+  {
+    "check": "F-1 touch (375, 667): a double click/tap on Cancel leaves the draft unchanged",
+    "ok": false,
+    "detail": "draft changed"
+  },
+  {
+    "check": "F-1 mouse (360, 640): a double click/tap on Cancel leaves the draft unchanged",
+    "ok": false,
+    "detail": "draft changed"
+  },
+  {
+    "check": "F-1 touch (360, 640): a double click/tap on Cancel leaves the draft unchanged",
+    "ok": false,
+    "detail": "draft changed"
+  },
+  {
+    "check": "F-1 mouse (412, 732): a double click/tap on Cancel leaves the draft unchanged",
+    "ok": false,
+    "detail": "draft changed"
+  },
+  {
+    "check": "F-1 touch (412, 732): a double click/tap on Cancel leaves the draft unchanged",
+    "ok": false,
+    "detail": "draft changed"
+  },
+  {
+    "check": "drag from the dialog text to the backdrop does not close the dialog",
+    "ok": false,
+    "detail": "open=False"
+  },
+  {
+    "check": "a click on the dialog padding (inside the box) keeps it open",
+    "ok": true,
+    "detail": "open=True"
+  },
+  {
+    "note": "active element after a click on the dialog title",
+    "value": "DIALOG:Start a new bill?\n  "
+  },
+  {
+    "note": "focus path after the title click and Tab x3, Shift+Tab x3",
+    "value": [
+      "BUTTON:Start new bill",
+      "BUTTON:Cancel",
+      "BUTTON:Start new bill",
+      "BUTTON:Cancel",
+      "BUTTON:Start new bill",
+      "BUTTON:Cancel"
+    ]
+  },
+  {
+    "check": "after a click on the dialog title, Tab and Shift+Tab stay on the two buttons",
+    "ok": true,
+    "detail": "['BUTTON:Start new bill', 'BUTTON:Cancel', 'BUTTON:Start new bill', 'BUTTON:Cancel', 'BUTTON:Start new bill', 'BUTTON:Cancel']"
+  },
+  {
+    "note": "held Enter on New bill (three keydowns, the 2nd and 3rd are repeats): dialog open afterwards",
+    "value": true
+  }
+]
