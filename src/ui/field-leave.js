@@ -21,7 +21,9 @@ function endPress() {
 }
 
 // Capture phase, so no handler of the page can stop these.
-document.addEventListener("mousedown", () => { pressed = true; }, true);
+// Only the primary button can produce a click. A right click opens the context menu, and where the page then
+// gets no mouseup, `pressed` would stay true and hold a blurred field's error back until the next release or key.
+document.addEventListener("mousedown", (event) => { if (event.button === 0) pressed = true; }, true);
 document.addEventListener("mouseup", endPress, true);
 document.addEventListener("pointercancel", endPress, true);
 document.addEventListener("keydown", endPress, true);

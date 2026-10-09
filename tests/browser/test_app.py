@@ -1342,15 +1342,26 @@ def test_R10_the_error_waits_for_the_mouse_button_to_come_up(open_app):
     assert toggle(page, "Char kuey teow", "Aisyah").get_attribute("aria-pressed") == "true"
 
 
-@pytest.mark.parametrize("how", ["mouse", "touch"])
+@pytest.mark.parametrize("how", ["mouse", "touch", "held"])
 def test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press(open_app, how):
     page = open_app(seed=seeds.S1, touch=how == "touch").page
-    press(page, how, centre_of(item_price(page, 2)))  # a finished press must not hold the next blur back
-    assert support.active_label(page) == "Item 2 price in RM"
-    page.keyboard.press("Control+A")
-    page.keyboard.type("13.505")
+    if how == "held":
+        # A press that has not reported its end (the button is still down, as when its mouseup went to another window).
+        # The key press that moves focus ends it, so the error must not wait for a release that may never come (WR-03).
+        support.replace_text(page, item_price(page, 2), "13.505")
+        x, y = centre_of(item_price(page, 2))
+        page.mouse.move(x, y)
+        page.mouse.down()
+    else:
+        press(page, how, centre_of(item_price(page, 2)))  # a finished press must not hold the next blur back
+        assert support.active_label(page) == "Item 2 price in RM"
+        page.keyboard.press("Control+A")
+        page.keyboard.type("13.505")
     page.keyboard.press("Tab")
-    assert page.locator("p.error#price-error-i5").count() == 1
+    assert page.locator("p.error#price-error-i5").count() == 1  # for "held", before the button comes up
+    if how == "held":
+        page.mouse.up()
+        assert page.locator("p.error#price-error-i5").count() == 1
 
 
 def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
@@ -1362,6 +1373,53 @@ def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
     assert page.locator("p.error").count() == 0
     page.mouse.up()
     assert page.locator("p.error#rate-sst-error").count() == 1
+
+
+def test_R10_a_press_that_ends_runs_each_waiting_handler_once(open_app):
+    # WR-03 (mutant P1: the waiting handlers are never dropped, so every later release re-runs the old ones).
+    page = open_app().page
+    sub = page.locator("#subtotal")
+    sub.click()
+    page.keyboard.type("abc")
+    box = page.locator("h1.wordmark").bounding_box()
+    page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)  # blank header space
+    page.mouse.down()
+    assert page.locator("p.error").count() == 0
+    page.mouse.up()
+    assert page.locator("p.error#subtotal-error").count() == 1  # the held-back blur ran once
+    sub.click()
+    page.keyboard.press("Control+A")
+    page.keyboard.type("5")  # valid: the error goes
+    page.keyboard.type("x")  # bad again, and the field still has focus, so no error until it is left
+    assert page.locator("p.error").count() == 0
+    page.mouse.click(*centre_of(sub))  # a press inside the focused field blurs nothing, so nothing may run
+    assert page.locator("p.error").count() == 0
+
+
+def test_R10_a_secondary_button_press_does_not_hold_the_error_back(open_app):
+    # WR-03: a right click opens the context menu and on macOS and Linux the page gets no mouseup, so only the
+    # primary button, the one that can produce a click, may hold a blur back.
+    page = open_app().page
+    support.replace_text(page, rate_field(page, "SST"), "25")
+    box = page.locator("h1.wordmark").bounding_box()
+    page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
+    page.mouse.down(button="right")
+    assert page.locator("p.error#rate-sst-error").count() == 1  # before any release
+    page.mouse.up(button="right")
+
+
+def test_R10_a_cancelled_press_releases_the_waiting_error(open_app):
+    # A drag that the browser turns into a native drag ends with pointercancel and no mouseup. Playwright cannot start
+    # one, so the event is dispatched on the document as the browser would (a read-only stand-in, no app hook).
+    page = open_app().page
+    support.replace_text(page, rate_field(page, "SST"), "25")
+    box = page.locator("h1.wordmark").bounding_box()
+    page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
+    page.mouse.down()
+    assert page.locator("p.error").count() == 0
+    page.evaluate("() => document.dispatchEvent(new PointerEvent('pointercancel', { bubbles: true }))")
+    assert page.locator("p.error#rate-sst-error").count() == 1  # before the button comes up
+    page.mouse.up()
 
 
 # ---------------------------------------------------------------- Code review CR-01, WR-01, WR-06: ghost clicks and the backdrop
