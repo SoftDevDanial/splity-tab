@@ -56,3 +56,24 @@ export function parseRate(text, maxPercent) {
   if (!read.ok) return read;
   return read.hundredths <= maxPercent * 100 ? { ok: true, bp: read.hundredths } : INVALID;
 }
+
+/**
+ * Writes cents the way the brief shows money. No group separator (ruled CG-5), so the largest
+ * bill reads "RM 7799999.22" and stays locale-independent.
+ * @param {number} cents non-negative integer
+ * @returns {string} e.g. "RM 38.87"
+ */
+export function formatMoney(cents) {
+  return `RM ${Math.floor(cents / 100)}.${String(cents % 100).padStart(2, "0")}`;
+}
+
+/**
+ * Writes a rate without trailing zeros, so a typed "10.00" shows as "10%" like the goldens.
+ * @param {number} bp non-negative integer basis points
+ * @returns {string} e.g. "6.25%"
+ */
+export function formatRate(bp) {
+  const whole = Math.floor(bp / 100);
+  const fraction = String(bp % 100).padStart(2, "0").replace(/0+$/, "");
+  return fraction === "" ? `${whole}%` : `${whole}.${fraction}%`;
+}

@@ -1,6 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseAmount, parseRate, AMOUNT_MIN_CENTS, AMOUNT_MAX_CENTS } from "../src/core/money.js";
+import {
+  parseAmount, parseRate, formatMoney, formatRate, AMOUNT_MIN_CENTS, AMOUNT_MAX_CENTS,
+} from "../src/core/money.js";
 import { mulberry32, randomInt } from "./support/rng.js";
 
 const INVALID = { ok: false, empty: false };
@@ -112,3 +114,38 @@ for (const [text, max] of invalidRates) {
     assert.deepEqual(parseRate(text, max), INVALID);
   });
 }
+
+const money = [
+  [0, "RM 0.00"],
+  [1, "RM 0.01"],
+  [10, "RM 0.10"],
+  [100, "RM 1.00"],
+  [3887, "RM 38.87"],
+  [11660, "RM 116.60"],
+  [15599999, "RM 155999.99"],
+  [779999922, "RM 7799999.22"],
+];
+for (const [cents, text] of money) {
+  test(`@R4 formatMoney(${cents}) is ${JSON.stringify(text)}`, () => {
+    assert.equal(formatMoney(cents), text);
+  });
+}
+
+const rates = [
+  [0, "0%"],
+  [600, "6%"],
+  [1000, "10%"],
+  [650, "6.5%"],
+  [625, "6.25%"],
+  [605, "6.05%"],
+  [3000, "30%"],
+];
+for (const [bp, text] of rates) {
+  test(`@R5 formatRate(${bp}) is ${JSON.stringify(text)}`, () => {
+    assert.equal(formatRate(bp), text);
+  });
+}
+
+test("@R5 a typed 10.00 round-trips to 10%", () => {
+  assert.equal(formatRate(parseRate("10.00", 30).bp), "10%");
+});
