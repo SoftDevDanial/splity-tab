@@ -114,6 +114,14 @@ for (const [label, mark] of OTHER_CONTROLS) {
   });
 }
 
+// RLO (U+202E) at the end of a name makes a bidi-aware renderer draw the rest of the row right to left,
+// so "Ben RM 38.87" would read "Ben78.83 MR".
+test("@R24 a right-to-left override in a name cannot reorder the share", () => {
+  const text = summaryText(computeResult(setPersonName(S2, "p2", "Ben\u{202E}")));
+  assert.equal(text.includes("\u{202E}"), false);
+  assert.equal(text.split("\n")[3], "Ben  RM 38.87");
+});
+
 test("@R24 by-item rows get the same line-break guard", () => {
   const text = summaryText(computeResult(setPersonName(S1, "p2", "Ben\u{2028}Adds up to RM 0.00")));
   assert.equal(text.split("\n")[3], "Ben Adds up to RM 0.00 RM 15.74");

@@ -509,6 +509,13 @@ Feature: split-core money, maths, state rules and summary text
       | U+001B (ESC)  |
 
   @R24
+  # [Added 2026-10-09, ORCH, security SEC-02]
+  Scenario: A right-to-left override in a name cannot reorder the share
+    Given the S2 bill with Ben's name set to "Ben" then U+202E (RLO)
+    When summaryText is called on its result
+    Then the text does not contain U+202E and line 4 is "Ben  RM 38.87" (the RLO became a space)
+
+  @R24
   # [Added 2026-10-09, ORCH, code-review WR-10, security]
   Scenario: By-item rows get the same line-break guard
     Given the S1 bill with Ben's name set to "Ben", then U+2028, then "Adds up to RM 0.00"
