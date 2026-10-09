@@ -65,10 +65,14 @@ enforces the purity part mechanically.
 | `result.js` | `applyRate`, `BASIS_POINTS`, `sum`, `blocked`, `evenResult`, `itemResult`, `holderIndexes`, `itemTotals` | Half-up rate application with remainder arithmetic, and the two result builders split by mode. |
 
 ## Notes for the README reconcile
-- Rounding: `applyRate` stays in `Number` because its products are at most 649,999,935 x 2000 (below 2^53),
+- ~~Rounding: `applyRate` stays in `Number` because its products are at most 649,999,935 x 2000 (below 2^53),
   and it uses remainder arithmetic so the division is exact. `allocateByWeight` is the only `BigInt` site,
-  as the spec requires (charges x weight reaches about 1.4e16).
-- `allocateEvenly` subtracts the remainder before dividing, so the division is exact for any safe integer.
+  as the spec requires (charges x weight reaches about 1.4e16).~~
+  [Changed 2026-10-09, solver, code-review WR-02: both numbers were wrong, and the derivation was a copy of
+  source comments. Rounding and exact division are explained once, in the comments on `applyRate` and
+  `allocateByWeight` (the only `BigInt` site), with the bounds in spec Invariants.]
+- ~~`allocateEvenly` subtracts the remainder before dividing, so the division is exact for any safe integer.~~
+  [Changed 2026-10-09, solver, WR-02: see the comment in `allocateEvenly`.]
 - Parsing caps the whole part at 9 digits after dropping leading zeros. This is an internal safety cap, not
   a rule: the range checks (99,999.99 for amounts, 30 and 20 percent for rates) decide validity.
 - Actions rebuild every object from known fields, so a `Bill` parsed from JSON loses stray keys and a

@@ -22,8 +22,9 @@ import { LIMITS, personLabel } from "./bill.js";
 const BASIS_POINTS = 10000;
 
 /**
- * amount x bp / 10000 rounded half up. Remainder arithmetic keeps the division exact. Within the
- * documented bounds the product stays below 2^53 (at most 649,999,935 x 2000), so Number is enough here.
+ * amount x bp / 10000 rounded half up. Remainder arithmetic keeps the division exact. Within the spec's
+ * bounds the largest product is the service step, 499,999,950 x 3000 (about 1.5e12), far below 2^53,
+ * so Number is exact here.
  */
 function applyRate(amount, bp) {
   const shifted = amount * bp + BASIS_POINTS / 2;
