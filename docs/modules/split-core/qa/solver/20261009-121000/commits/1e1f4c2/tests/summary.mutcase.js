@@ -1,0 +1,97 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { summaryText } from "../src/core/summary.js";
+import { computeResult } from "../src/core/result.js";
+import { setPersonName } from "../src/core/bill.js";
+import { S1, S2, S5, E2, E3, I2, D1, D2, deepFreeze } from "./support/bills.js";
+
+const block = (...lines) => lines.join("\n");
+
+const blocks = [
+  ["S2", S2, block(
+    "Bill split",
+    "Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)",
+    "Aisyah RM 38.87",
+    "Ben RM 38.87",
+    "Chen RM 38.86",
+    "Adds up to RM 116.60",
+  )],
+  ["S1", S1, block(
+    "Bill split",
+    "Total RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)",
+    "Aisyah RM 29.04",
+    "Ben RM 15.74",
+    "Chen RM 24.48",
+    "Adds up to RM 69.26",
+  )],
+  ["E2 zero rates", E2, block(
+    "Bill split",
+    "Total RM 10.00 (subtotal RM 10.00, service 0% RM 0.00, SST 0% RM 0.00)",
+    "Aisyah RM 3.34",
+    "Ben RM 3.33",
+    "Chen RM 3.33",
+    "Adds up to RM 10.00",
+  )],
+  ["E3 decimal rates", E3, block(
+    "Bill split",
+    "Total RM 59.77 (subtotal RM 50.00, service 12.5% RM 6.25, SST 6.25% RM 3.52)",
+    "Person 1 RM 29.89",
+    "Person 2 RM 29.88",
+    "Adds up to RM 59.77",
+  )],
+  ["I2 zero share", I2, block(
+    "Bill split",
+    "Total RM 17.50 (subtotal RM 15.01, service 10% RM 1.50, SST 6% RM 0.99)",
+    "Aisyah RM 0.00",
+    "Ben RM 14.59",
+    "Chen RM 2.91",
+    "Adds up to RM 17.50",
+  )],
+  ["D1 equal names, even", D1, block(
+    "Bill split",
+    "Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)",
+    "Ben RM 38.87",
+    "Ben RM 38.87",
+    "Chen RM 38.86",
+    "Adds up to RM 116.60",
+  )],
+  ["D2 equal names, by item", D2, block(
+    "Bill split",
+    "Total RM 11.66 (subtotal RM 10.00, service 10% RM 1.00, SST 6% RM 0.66)",
+    "Ben RM 0.00",
+    "Ben RM 11.66",
+    "Chen RM 0.00",
+    "Adds up to RM 11.66",
+  )],
+];
+for (const [title, bill, expected] of blocks) {
+  test(`@R24 summary text for ${title} is exact`, () => {
+    const text = summaryText(computeResult(bill));
+    assert.equal(text, expected);
+    assert.equal(text.endsWith("\n"), false);
+  });
+}
+
+test("@R26 equal names print one line each", () => {
+  for (const bill of [D1, D2]) {
+    const lines = summaryText(computeResult(bill)).split("\n");
+    assert.equal(lines.filter((line) => line.startsWith("Ben")).length, 2);
+  }
+});
+
+test("@R24 a blank name prints as its position", () => {
+  const text = summaryText(computeResult(setPersonName(S2, "p2", "   ")));
+  assert.equal(text.split("\n")[3], "Person 2 RM 38.87");
+});
+
+test("@R16 summaryText leaves a deep-frozen result alone", () => {
+  for (const bill of [S1, S2]) {
+    const frozen = deepFreeze(computeResult(bill));
+    assert.equal(summaryText(frozen), summaryText(computeResult(bill)));
+  }
+});
+
+test("@R24 results without shares are refused with TypeError", () => {
+  assert.throws(() => summaryText({ kind: "blocked", reason: "rates" }), TypeError);
+  assert.throws(() => summaryText(computeResult(S5)), TypeError);
+});

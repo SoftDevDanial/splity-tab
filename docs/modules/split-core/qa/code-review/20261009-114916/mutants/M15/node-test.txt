@@ -1,0 +1,939 @@
+✖ @R7 allocateEvenly(11660, 3) (1.6707ms)
+✔ @R7 allocateEvenly(1800, 2) (0.279ms)
+✖ @R7 allocateEvenly(1001, 3) (0.2265ms)
+✖ @R7 allocateEvenly(1, 3) (0.1573ms)
+✔ @R7 allocateEvenly(0, 2) (0.0723ms)
+✖ @R7 allocateEvenly(10221, 4) (0.1262ms)
+✖ @R7 allocateEvenly(15599999, 12) (0.1578ms)
+✔ @R8 allocateByWeight(986, [2490,1350,2100]) (0.1956ms)
+✔ @R8 allocateByWeight(10, [0,1,1,1]) (0.078ms)
+✔ @R8 allocateByWeight(0, [5,7]) (0.1052ms)
+✔ @R8 allocateByWeight(249, [0,1251,250]) (0.5788ms)
+✔ @R8 allocateByWeight(236419679, [314963010,157876348]) (0.1414ms)
+✔ @R8 @R23 allocateByWeight stays exact when amount times weight passes 2^53 (0.1148ms)
+✔ @R8 a zero weight always gets 0 and a single weight gets everything (0.0629ms)
+✔ @R7 @R8 results are plain numbers, not BigInt (0.0786ms)
+✔ @R9 allocateEvenly(10, 0) throws RangeError (0.4457ms)
+✔ @R9 allocateEvenly(10, 1.5) throws RangeError (0.0812ms)
+✔ @R9 allocateEvenly(-1, 2) throws RangeError (0.0463ms)
+✔ @R9 allocateEvenly(0.5, 2) throws RangeError (0.0406ms)
+✔ @R9 allocateEvenly(2 ** 53, 2) throws RangeError (0.0315ms)
+✔ @R9 allocateByWeight(10, []) throws RangeError (0.0416ms)
+✔ @R9 allocateByWeight(10, [0, 0]) throws RangeError (0.0487ms)
+✔ @R9 allocateByWeight(10, [1, -1]) throws RangeError (0.0455ms)
+✔ @R9 allocateByWeight(10, [1.5, 1]) throws RangeError (0.0556ms)
+✔ @R9 allocateByWeight(10, [2 ** 53, 1]) throws RangeError (0.0505ms)
+✔ @R9 allocateByWeight(-1, [1]) throws RangeError (0.0389ms)
+✔ @R10 a new bill has two people, even mode and the default rates (1.538ms)
+✔ @R10 every call returns a fresh bill, never a shared one (0.1033ms)
+✔ @R10 the limits constant matches the contract and is frozen (0.1276ms)
+✔ @R11 adding a person appends an empty-named person with the next id (0.0938ms)
+✔ @R11 the twelfth person is accepted and the thirteenth does nothing (0.1105ms)
+✔ @R12 removing a person removes them from every item (0.1751ms)
+✔ @R12 removing is refused at 2 people or for an unknown id (0.0802ms)
+✔ @R13 adding an item appends an empty, unassigned item (0.1132ms)
+✔ @R13 the 51st item is refused and removing works at any time (0.2075ms)
+✔ @R13 removing an unknown item returns the same bill (0.1375ms)
+✔ @R14 tapping toggles a person on an item (0.1131ms)
+✔ @R14 an unknown item or person id returns the same bill (0.0746ms)
+✔ @R15 switching modes keeps both sets of input (0.0675ms)
+✔ @R15 setters store text exactly as typed (0.1379ms)
+✔ @R15 each setter changes only its own field (0.4073ms)
+✔ @R15 setters with an unknown id return the same bill (0.0433ms)
+✔ @R16 no action mutates a deep-frozen bill and changes return new objects (0.3431ms)
+✔ @R16 actions rebuild from known fields, so stray and __proto__ keys are dropped (0.107ms)
+✔ @R17 person named "Aisyah" at index 0 is "Aisyah" (0.059ms)
+✔ @R17 person named " Ben " at index 1 is "Ben" (0.0299ms)
+✔ @R17 person named "   " at index 2 is "Person 3" (0.0192ms)
+✔ @R17 person named "" at index 0 is "Person 1" (0.0204ms)
+✔ @R17 item named "Satay" at index 3 is "Satay" (0.027ms)
+✔ @R17 item named "" at index 0 is "Item 1" (0.0166ms)
+✔ @R17 the fallback follows the position after a removal (0.0603ms)
+✔ @R26 equal names are stored as typed and nobody is merged (0.0525ms)
+✔ @R26 tapping and removing address a person by id, not by name (0.0688ms)
+✔ @R11 @R12 the twelve-person bill refuses a thirteenth and still removes by id (0.031ms)
+✔ @R25 the scan sees the core files (0.9004ms)
+✔ @R25 the scanner catches what it should (negative control) (0.6192ms)
+✔ @R25 allocate.js uses no banned name (0.1011ms)
+✔ @R25 allocate.js imports only from src/core/ (0.0883ms)
+✔ @R25 bill.js uses no banned name (0.1248ms)
+✔ @R25 bill.js imports only from src/core/ (0.0848ms)
+✔ @R25 money.js uses no banned name (0.0815ms)
+✔ @R25 money.js imports only from src/core/ (0.0591ms)
+✔ @R25 result.js uses no banned name (0.0866ms)
+✔ @R25 result.js imports only from src/core/ (0.2444ms)
+✔ @R25 summary.js uses no banned name (0.083ms)
+✔ @R25 summary.js imports only from src/core/ (0.5409ms)
+✔ @R25 the core files do import each other (the import scan is not blind) (0.155ms)
+✖ @R22 generated bills always add up (2.2856ms)
+✔ @R1 amount bounds are exported as the contract says (0.919ms)
+✔ @R1 parseAmount("12") is 1200 cents (0.5372ms)
+✔ @R1 parseAmount("12.5") is 1250 cents (0.1103ms)
+✔ @R1 parseAmount("12.50") is 1250 cents (0.0841ms)
+✔ @R1 parseAmount("0.01") is 1 cents (0.0817ms)
+✔ @R1 parseAmount("99999.99") is 9999999 cents (0.0635ms)
+✔ @R1 parseAmount("1.15") is 115 cents (0.0523ms)
+✔ @R1 parseAmount("4.35") is 435 cents (0.044ms)
+✔ @R1 parseAmount("0.29") is 29 cents (0.0596ms)
+✔ @R1 parseAmount(" 12.50 ") is 1250 cents (0.0937ms)
+✔ @R1 parseAmount("007") is 700 cents (0.0679ms)
+✔ @R1 parseAmount("12.") is 1200 cents (0.0435ms)
+✔ @R1 parseAmount("0000000012.50") is 1250 cents (0.0292ms)
+✔ @R1 @R2 parseAmount("0") is invalid, not empty (0.0634ms)
+✔ @R1 @R2 parseAmount("0.00") is invalid, not empty (0.0248ms)
+✔ @R1 @R2 parseAmount("100000") is invalid, not empty (0.0197ms)
+✔ @R1 @R2 parseAmount("99999.991") is invalid, not empty (0.0194ms)
+✔ @R1 @R2 parseAmount("12.505") is invalid, not empty (0.0168ms)
+✔ @R1 @R2 parseAmount("13.505") is invalid, not empty (0.0181ms)
+✔ @R1 @R2 parseAmount("-5") is invalid, not empty (0.0178ms)
+✔ @R1 @R2 parseAmount("+5") is invalid, not empty (0.0181ms)
+✔ @R1 @R2 parseAmount("1,000") is invalid, not empty (0.0402ms)
+✔ @R1 @R2 parseAmount(".5") is invalid, not empty (0.0204ms)
+✔ @R1 @R2 parseAmount("1e3") is invalid, not empty (0.0182ms)
+✔ @R1 @R2 parseAmount("0x10") is invalid, not empty (0.0255ms)
+✔ @R1 @R2 parseAmount("Infinity") is invalid, not empty (0.0189ms)
+✔ @R1 @R2 parseAmount("NaN") is invalid, not empty (0.0299ms)
+✔ @R1 @R2 parseAmount("abc") is invalid, not empty (0.0181ms)
+✔ @R1 @R2 parseAmount("12 50") is invalid, not empty (0.017ms)
+✔ @R1 @R2 parseAmount("１２") is invalid, not empty (0.0645ms)
+✔ @R1 @R2 a 401-character amount is rejected without overflow or exception (0.0843ms)
+✔ @R2 "" is reported as empty by both parsers (0.0341ms)
+✔ @R2 "   " is reported as empty by both parsers (0.0212ms)
+✔ @R2 the parsers never throw and always return a well-formed result (1.2873ms)
+✔ @R3 parseRate("0", 30) is 0 bp (0.1343ms)
+✔ @R3 parseRate("10", 30) is 1000 bp (0.0668ms)
+✔ @R3 parseRate("6", 20) is 600 bp (0.0324ms)
+✔ @R3 parseRate("6.5", 20) is 650 bp (0.0414ms)
+✔ @R3 parseRate("6.25", 20) is 625 bp (0.0238ms)
+✔ @R3 parseRate("30", 30) is 3000 bp (0.0301ms)
+✔ @R3 parseRate("30.00", 30) is 3000 bp (0.0688ms)
+✔ @R3 parseRate("20", 20) is 2000 bp (0.0227ms)
+✔ @R3 parseRate("0.01", 30) is 1 bp (0.0223ms)
+✔ @R3 parseRate("6.", 20) is 600 bp (0.0277ms)
+✔ @R3 parseRate("06", 20) is 600 bp (0.0369ms)
+✔ @R3 parseRate("30.01", 30) is invalid (0.0533ms)
+✔ @R3 parseRate("20.01", 20) is invalid (0.0176ms)
+✔ @R3 parseRate("25", 20) is invalid (0.0244ms)
+✔ @R3 parseRate("-1", 30) is invalid (0.0148ms)
+✔ @R3 parseRate("6.255", 20) is invalid (0.0173ms)
+✔ @R3 parseRate("10%", 30) is invalid (0.0148ms)
+✔ @R4 formatMoney(0) is "RM 0.00" (0.0421ms)
+✔ @R4 formatMoney(1) is "RM 0.01" (0.0188ms)
+✔ @R4 formatMoney(10) is "RM 0.10" (0.016ms)
+✔ @R4 formatMoney(100) is "RM 1.00" (0.015ms)
+✔ @R4 formatMoney(3887) is "RM 38.87" (0.015ms)
+✔ @R4 formatMoney(11660) is "RM 116.60" (0.3847ms)
+✔ @R4 formatMoney(15599999) is "RM 155999.99" (0.0225ms)
+✔ @R4 formatMoney(779999922) is "RM 7799999.22" (0.0162ms)
+✔ @R5 formatRate(0) is "0%" (0.0774ms)
+✔ @R5 formatRate(600) is "6%" (0.0332ms)
+✔ @R5 formatRate(1000) is "10%" (0.0301ms)
+✔ @R5 formatRate(650) is "6.5%" (0.0167ms)
+✔ @R5 formatRate(625) is "6.25%" (0.0321ms)
+✔ @R5 formatRate(605) is "6.05%" (0.0175ms)
+✔ @R5 formatRate(3000) is "30%" (0.0141ms)
+✔ @R5 a typed 10.00 round-trips to 10% (0.0315ms)
+✔ @R6 billCharges(10000, 1000, 600) totals 11660 (1.0097ms)
+✔ @R6 billCharges(5940, 1000, 600) totals 6926 (0.0777ms)
+✔ @R6 billCharges(8765, 1000, 600) totals 10221 (0.0538ms)
+✔ @R6 billCharges(5, 1000, 0) totals 6 (0.0582ms)
+✔ @R6 billCharges(25, 1000, 0) totals 28 (0.0894ms)
+✔ @R6 billCharges(4, 1000, 0) totals 4 (0.0555ms)
+✔ @R6 billCharges(1000, 0, 0) totals 1000 (0.0476ms)
+✔ @R6 billCharges(5000, 1250, 625) totals 5977 (0.0663ms)
+✔ @R6 billCharges(9999999, 3000, 2000) totals 15599999 (0.1219ms)
+✔ @R6 billCharges(499999950, 3000, 2000) totals 779999922 (0.0996ms)
+✔ @R18 blocking row 1 is "rates" (0.2476ms)
+✔ @R18 blocking row 2 is "rates" (0.0984ms)
+✔ @R18 blocking row 3 is "rates" (0.065ms)
+✔ @R18 blocking row 4 is "subtotal" (0.1069ms)
+✔ @R18 blocking row 5 is "subtotal" (0.0424ms)
+✔ @R18 blocking row 6 is "subtotal" (0.0245ms)
+✔ @R18 blocking row 7 is "no-items" (0.0817ms)
+✔ @R18 blocking row 8 is "prices" (0.0759ms)
+✔ @R18 blocking row 9 is "prices" (0.0395ms)
+✔ @R18 rates outrank every other rule and a rate of 0 is not a block (0.2698ms)
+✖ @R18 @R20 even mode ignores broken items (0.7366ms)
+✔ @R18 @R21 by-item mode ignores a broken subtotal (0.2394ms)
+✔ @R19 unassigned items are counted and the charges are still known (0.0933ms)
+✔ @R19 two unassigned items give a count of 2 (0.0717ms)
+✖ @R20 @R23 even result for S2 (0.3789ms)
+✖ @R20 @R23 even result for E1 (0.2059ms)
+✖ @R20 @R23 even result for E2 (0.1311ms)
+✖ @R20 @R23 even result for E3 (0.1059ms)
+✖ @R20 @R23 even result for MAX-E (0.1846ms)
+✔ @R21 @R23 by-item result for S1 (0.1481ms)
+✖ @R21 @R23 by-item result for I2 (0.1651ms)
+✖ @R21 @R23 by-item result for I3 (0.165ms)
+✖ @R21 @R23 by-item result for I4 (0.1511ms)
+✔ @R21 @R23 by-item result for MAX-I (0.1413ms)
+✖ @R21 a shared item's leftover sen follow the people list, not the tap order (0.1949ms)
+✔ @R21 a person on no item gets a row of zeros (0.0866ms)
+✔ @R23 the MAX-I charges split needs BigInt (a float product is off) (0.2089ms)
+✖ @R26 D1: two people called Ben give two even rows (0.1896ms)
+✔ @R26 D2: two people called Ben give two by-item rows, only the tapped one pays (0.0933ms)
+✔ @R16 computeResult leaves a deep-frozen bill alone (0.406ms)
+✖ @R24 summary text for S2 is exact (2.0891ms)
+✔ @R24 summary text for S1 is exact (0.3564ms)
+✖ @R24 summary text for E2 zero rates is exact (0.2249ms)
+✖ @R24 summary text for E3 decimal rates is exact (0.1677ms)
+✖ @R24 summary text for I2 zero share is exact (0.1708ms)
+✖ @R24 summary text for D1 equal names, even is exact (0.129ms)
+✔ @R24 summary text for D2 equal names, by item is exact (0.0984ms)
+✔ @R26 equal names print one line each (0.1561ms)
+✔ @R24 a blank name prints as its position (0.1204ms)
+✔ @R24 results without shares are refused with TypeError (0.441ms)
+ℹ tests 185
+ℹ suites 0
+ℹ pass 163
+ℹ fail 22
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.1545
+
+✖ failing tests:
+
+test at tests\allocate.mutcase.js:17:3
+✖ @R7 allocateEvenly(11660, 3) (1.6707ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   3886,
+      3887,
+      3887,
+  -   3886
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/allocate.mutcase.js:19:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 3886, 3887, 3887 ],
+    expected: [ 3887, 3887, 3886 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\allocate.mutcase.js:17:3
+✖ @R7 allocateEvenly(1001, 3) (0.2265ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   333,
+      334,
+      334,
+  -   333
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/allocate.mutcase.js:19:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 333, 334, 334 ],
+    expected: [ 334, 334, 333 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\allocate.mutcase.js:17:3
+✖ @R7 allocateEvenly(1, 3) (0.1573ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   1,
+      0,
+      0,
+  +   1
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/allocate.mutcase.js:19:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 0, 0, 1 ],
+    expected: [ 1, 0, 0 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\allocate.mutcase.js:17:3
+✖ @R7 allocateEvenly(10221, 4) (0.1262ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   2556,
+      2555,
+      2555,
+      2555,
+  +   2556
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/allocate.mutcase.js:19:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 2555, 2555, 2555, 2556 ],
+    expected: [ 2556, 2555, 2555, 2555 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\allocate.mutcase.js:17:3
+✖ @R7 allocateEvenly(15599999, 12) (0.1578ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+  +   1299999,
+      1300000,
+      1300000,
+      1300000,
+      1300000,
+      1300000,
+  ...
+      1300000,
+  -   1299999
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/allocate.mutcase.js:19:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      1299999, 1300000,
+      1300000, 1300000,
+      1300000, 1300000,
+      1300000, 1300000,
+      1300000, 1300000,
+      1300000, 1300000
+    ],
+    expected: [
+      1300000, 1300000,
+      1300000, 1300000,
+      1300000, 1300000,
+      1300000, 1300000,
+      1300000, 1300000,
+      1300000, 1299999
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\invariants.mutcase.js:60:1
+✖ @R22 generated bills always add up (2.2856ms)
+  AssertionError [ERR_ASSERTION]: bill 0 (even, 12 people, 25 items) larger first
+  + actual - expected
+  ... Skipped lines
+  
+    [
+  -   524145,
+      524144,
+      524144,
+      524144,
+      524144,
+      524144,
+  ...
+      524144,
+  +   524145
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/invariants.mutcase.js:78:14)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [
+      524144, 524144,
+      524144, 524144,
+      524144, 524144,
+      524144, 524144,
+      524144, 524144,
+      524144, 524145
+    ],
+    expected: [
+      524145, 524144,
+      524144, 524144,
+      524144, 524144,
+      524144, 524144,
+      524144, 524144,
+      524144, 524144
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:56:1
+✖ @R18 @R20 even mode ignores broken items (0.7366ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   3886,
+      3887,
+      3887,
+  -   3886
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:62:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 3886, 3887, 3887 ],
+    expected: [ 3887, 3887, 3886 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:98:3
+✖ @R20 @R23 even result for S2 (0.3789ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      {
+        name: 'Aisyah',
+  +     share: 3886
+  -     share: 3887
+      },
+      {
+        name: 'Ben',
+        share: 3887
+      },
+      {
+        name: 'Chen',
+  +     share: 3887
+  -     share: 3886
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:102:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'Aisyah', share: 3886 }, { name: 'Ben', share: 3887 }, { name: 'Chen', share: 3887 } ],
+    expected: [ { name: 'Aisyah', share: 3887 }, { name: 'Ben', share: 3887 }, { name: 'Chen', share: 3886 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:98:3
+✖ @R20 @R23 even result for E1 (0.2059ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        name: 'A',
+  +     share: 2555
+  -     share: 2556
+      },
+      {
+        name: 'B',
+        share: 2555
+      },
+  ...
+        name: 'D',
+  +     share: 2556
+  -     share: 2555
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:102:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'A', share: 2555 }, { name: 'B', share: 2555 }, { name: 'C', share: 2555 }, { name: 'D', share: 2556 } ],
+    expected: [ { name: 'A', share: 2556 }, { name: 'B', share: 2555 }, { name: 'C', share: 2555 }, { name: 'D', share: 2555 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:98:3
+✖ @R20 @R23 even result for E2 (0.1311ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      {
+        name: 'Aisyah',
+  +     share: 333
+  -     share: 334
+      },
+      {
+        name: 'Ben',
+        share: 333
+      },
+      {
+        name: 'Chen',
+  +     share: 334
+  -     share: 333
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:102:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'Aisyah', share: 333 }, { name: 'Ben', share: 333 }, { name: 'Chen', share: 334 } ],
+    expected: [ { name: 'Aisyah', share: 334 }, { name: 'Ben', share: 333 }, { name: 'Chen', share: 333 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:98:3
+✖ @R20 @R23 even result for E3 (0.1059ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      {
+        name: 'Person 1',
+  +     share: 2988
+  -     share: 2989
+      },
+      {
+        name: 'Person 2',
+  +     share: 2989
+  -     share: 2988
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:102:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'Person 1', share: 2988 }, { name: 'Person 2', share: 2989 } ],
+    expected: [ { name: 'Person 1', share: 2989 }, { name: 'Person 2', share: 2988 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:98:3
+✖ @R20 @R23 even result for MAX-E (0.1846ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        name: 'Person 1',
+  +     share: 1299999
+  -     share: 1300000
+      },
+      {
+        name: 'Person 2',
+        share: 1300000
+      },
+  ...
+        name: 'Person 12',
+  +     share: 1300000
+  -     share: 1299999
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:102:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'Person 1', share: 1299999 }, { name: 'Person 2', share: 1300000 }, { name: 'Person 3', share: 1300000 }, { name: 'Person 4', share: 1300000 }, { name: 'Person 5', share: 1300000 }, { name: 'Person 6', share: 1300000 }, { name: 'Person 7', share: 1300000 }, { name: 'Person 8', share: 1300000 }, { name: 'Person 9', share: 1300000 }, { name: 'Person 10', share: 1300000 }, { name: 'Person 11', share: 1300000 }, { name: 'Person 12', share: 1300000 } ],
+    expected: [ { name: 'Person 1', share: 1300000 }, { name: 'Person 2', share: 1300000 }, { name: 'Person 3', share: 1300000 }, { name: 'Person 4', share: 1300000 }, { name: 'Person 5', share: 1300000 }, { name: 'Person 6', share: 1300000 }, { name: 'Person 7', share: 1300000 }, { name: 'Person 8', share: 1300000 }, { name: 'Person 9', share: 1300000 }, { name: 'Person 10', share: 1300000 }, { name: 'Person 11', share: 1300000 }, { name: 'Person 12', share: 1299999 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:140:3
+✖ @R21 @R23 by-item result for I2 (0.1651ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        charges: 0,
+        items: 0,
+        name: 'Aisyah',
+  ...
+        charges: 208,
+  +     items: 1250,
+  -     items: 1251,
+        name: 'Ben',
+  +     share: 1458
+  -     share: 1459
+      },
+      {
+        charges: 41,
+  +     items: 251,
+  -     items: 250,
+        name: 'Chen',
+  +     share: 292
+  -     share: 291
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:144:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'Aisyah', items: 0, charges: 0, share: 0 }, { name: 'Ben', items: 1250, charges: 208, share: 1458 }, { name: 'Chen', items: 251, charges: 41, share: 292 } ],
+    expected: [ { name: 'Aisyah', items: 0, charges: 0, share: 0 }, { name: 'Ben', items: 1251, charges: 208, share: 1459 }, { name: 'Chen', items: 250, charges: 41, share: 291 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:140:3
+✖ @R21 @R23 by-item result for I3 (0.165ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+  +     charges: 83,
+  +     items: 500,
+  -     charges: 84,
+  -     items: 501,
+        name: 'Aisyah',
+  +     share: 583
+  -     share: 585
+      },
+      {
+        charges: 0,
+        items: 0,
+        name: 'Ben',
+  ...
+      {
+  +     charges: 83,
+  +     items: 501,
+  -     charges: 82,
+  -     items: 500,
+        name: 'Chen',
+  +     share: 584
+  -     share: 582
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:144:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'Aisyah', items: 500, charges: 83, share: 583 }, { name: 'Ben', items: 0, charges: 0, share: 0 }, { name: 'Chen', items: 501, charges: 83, share: 584 } ],
+    expected: [ { name: 'Aisyah', items: 501, charges: 84, share: 585 }, { name: 'Ben', items: 0, charges: 0, share: 0 }, { name: 'Chen', items: 500, charges: 82, share: 582 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:140:3
+✖ @R21 @R23 by-item result for I4 (0.1511ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        charges: 0,
+  +     items: 3,
+  -     items: 4,
+        name: 'Aisyah',
+  +     share: 3
+  -     share: 4
+      },
+      {
+        charges: 0,
+        items: 3,
+        name: 'Ben',
+  ...
+        charges: 0,
+  +     items: 4,
+  -     items: 3,
+        name: 'Chen',
+  +     share: 4
+  -     share: 3
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:144:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'Aisyah', items: 3, charges: 0, share: 3 }, { name: 'Ben', items: 3, charges: 0, share: 3 }, { name: 'Chen', items: 4, charges: 0, share: 4 } ],
+    expected: [ { name: 'Aisyah', items: 4, charges: 0, share: 4 }, { name: 'Ben', items: 3, charges: 0, share: 3 }, { name: 'Chen', items: 3, charges: 0, share: 3 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:151:1
+✖ @R21 a shared item's leftover sen follow the people list, not the tap order (0.1949ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  500 !== 501
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:154:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 500,
+    expected: 501,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\result.mutcase.js:171:1
+✖ @R26 D1: two people called Ben give two even rows (0.1896ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      {
+        name: 'Ben',
+  +     share: 3886
+  -     share: 3887
+      },
+      {
+        name: 'Ben',
+        share: 3887
+      },
+      {
+        name: 'Chen',
+  +     share: 3887
+  -     share: 3886
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/result.mutcase.js:174:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'Ben', share: 3886 }, { name: 'Ben', share: 3887 }, { name: 'Chen', share: 3887 } ],
+    expected: [ { name: 'Ben', share: 3887 }, { name: 'Ben', share: 3887 }, { name: 'Chen', share: 3886 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\summary.mutcase.js:68:3
+✖ @R24 summary text for S2 is exact (2.0891ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+    'Bill split\n' +
+      'Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\n' +
+  +   'Aisyah RM 38.86\n' +
+  -   'Aisyah RM 38.87\n' +
+      'Ben RM 38.87\n' +
+  +   'Chen RM 38.87\n' +
+  -   'Chen RM 38.86\n' +
+      'Adds up to RM 116.60'
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/summary.mutcase.js:70:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.86\nBen RM 38.87\nChen RM 38.87\nAdds up to RM 116.60',
+    expected: 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\summary.mutcase.js:68:3
+✖ @R24 summary text for E2 zero rates is exact (0.2249ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+    'Bill split\n' +
+      'Total RM 10.00 (subtotal RM 10.00, service 0% RM 0.00, SST 0% RM 0.00)\n' +
+  +   'Aisyah RM 3.33\n' +
+  -   'Aisyah RM 3.34\n' +
+      'Ben RM 3.33\n' +
+  +   'Chen RM 3.34\n' +
+  -   'Chen RM 3.33\n' +
+      'Adds up to RM 10.00'
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/summary.mutcase.js:70:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Bill split\nTotal RM 10.00 (subtotal RM 10.00, service 0% RM 0.00, SST 0% RM 0.00)\nAisyah RM 3.33\nBen RM 3.33\nChen RM 3.34\nAdds up to RM 10.00',
+    expected: 'Bill split\nTotal RM 10.00 (subtotal RM 10.00, service 0% RM 0.00, SST 0% RM 0.00)\nAisyah RM 3.34\nBen RM 3.33\nChen RM 3.33\nAdds up to RM 10.00',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\summary.mutcase.js:68:3
+✖ @R24 summary text for E3 decimal rates is exact (0.1677ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+    'Bill split\n' +
+      'Total RM 59.77 (subtotal RM 50.00, service 12.5% RM 6.25, SST 6.25% RM 3.52)\n' +
+  +   'Person 1 RM 29.88\n' +
+  +   'Person 2 RM 29.89\n' +
+  -   'Person 1 RM 29.89\n' +
+  -   'Person 2 RM 29.88\n' +
+      'Adds up to RM 59.77'
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/summary.mutcase.js:70:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Bill split\nTotal RM 59.77 (subtotal RM 50.00, service 12.5% RM 6.25, SST 6.25% RM 3.52)\nPerson 1 RM 29.88\nPerson 2 RM 29.89\nAdds up to RM 59.77',
+    expected: 'Bill split\nTotal RM 59.77 (subtotal RM 50.00, service 12.5% RM 6.25, SST 6.25% RM 3.52)\nPerson 1 RM 29.89\nPerson 2 RM 29.88\nAdds up to RM 59.77',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\summary.mutcase.js:68:3
+✖ @R24 summary text for I2 zero share is exact (0.1708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+    'Bill split\n' +
+      'Total RM 17.50 (subtotal RM 15.01, service 10% RM 1.50, SST 6% RM 0.99)\n' +
+      'Aisyah RM 0.00\n' +
+  +   'Ben RM 14.58\n' +
+  +   'Chen RM 2.92\n' +
+  -   'Ben RM 14.59\n' +
+  -   'Chen RM 2.91\n' +
+      'Adds up to RM 17.50'
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/summary.mutcase.js:70:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Bill split\nTotal RM 17.50 (subtotal RM 15.01, service 10% RM 1.50, SST 6% RM 0.99)\nAisyah RM 0.00\nBen RM 14.58\nChen RM 2.92\nAdds up to RM 17.50',
+    expected: 'Bill split\nTotal RM 17.50 (subtotal RM 15.01, service 10% RM 1.50, SST 6% RM 0.99)\nAisyah RM 0.00\nBen RM 14.59\nChen RM 2.91\nAdds up to RM 17.50',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\summary.mutcase.js:68:3
+✖ @R24 summary text for D1 equal names, even is exact (0.129ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+    'Bill split\n' +
+      'Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\n' +
+  +   'Ben RM 38.86\n' +
+      'Ben RM 38.87\n' +
+  +   'Chen RM 38.87\n' +
+  -   'Ben RM 38.87\n' +
+  -   'Chen RM 38.86\n' +
+      'Adds up to RM 116.60'
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/docs/modules/split-core/qa/code-review/20261009-114916/mutants/M15/tests/summary.mutcase.js:70:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nBen RM 38.86\nBen RM 38.87\nChen RM 38.87\nAdds up to RM 116.60',
+    expected: 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nBen RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

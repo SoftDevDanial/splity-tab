@@ -1,0 +1,86 @@
+Probe output, code-review finder (read-only), 2026-10-09. Script: scripts/probe.mjs (and scripts/traps.mjs for the last block).
+Run: node scripts/probe.mjs <project root>, Node v24.11.1.
+
+== P1 independent recompute of S1 and S2 (BigInt, no core code) ==
+S2 subtotal/service/sst/total: ["10000","1000","660","11660"]
+S2 shares: ["3887","3887","3886"]
+S1 subtotal/service/sst/total: ["5940","594","392","6926"]
+S1 floors before leftover: ["413","224","348"]
+S1 charge parts: ["414","224","348"]
+S1 shares: ["2904","1574","2448"]
+core S1: [2904,1574,2448]
+core S2: [3887,3887,3886]
+== P2 applyRate largest product claim (result.js comment, BUILD.md) ==
+service product 499999950 x 3000: 1499999850000
+sst product 649999935 x 2000 (the comment's stated max): 1299999870000
+service product is larger: true
+== P3 spec 'charges x weight can reach about 1.4e16' ==
+MAX-I weights product 279999972 x 49999995: 13999997200000140
+one person holds all 50 items: 279999972 x 499999950: 139999972000001400
+== P4 does a float allocator get MAX-I wrong? (R23 claim, result.test.js title) ==
+exact: [27999998,27999998,22399998,22399998,22399998,22399998,22399998,22399998,22399997,22399997,22399997,22399997]
+float: [27999998,27999998,22399998,22399998,22399998,22399998,22399998,22399998,22399997,22399997,22399997,22399997]
+float equals exact on MAX-I: true
+float on R8 trap row 236419679: [157481506,78938173]
+exact on R8 trap row: [157481505,78938174]
+naive floors on R8 trap row (spec says [157481506, 78938173]): [157481505,78938173]
+== P5 stray keys survive on untouched nested objects (bill.js header, BUILD.md) ==
+people[1] keys after two actions: ["id","name","x","__proto__"]
+people[1] has own __proto__: true
+items[0] keys after two actions: ["id","name","priceText","who","stray"]
+people[1] is the parsed object: true
+global prototype polluted: no
+== P6 unknown mode ==
+computeResult mode 'bogus': {"kind":"blocked","reason":"no-items"}
+== P7 parsing edge cases ==
+parseAmount NBSP+12.50: {"ok":true,"cents":1250}
+parseRate NBSP+12.50, 30: {"ok":true,"bp":1250}
+parseAmount 12.50+LF: {"ok":true,"cents":1250}
+parseRate 12.50+LF, 30: {"ok":true,"bp":1250}
+parseAmount 0.: {"ok":false,"empty":false}
+parseRate 0., 30: {"ok":true,"bp":0}
+parseAmount .: {"ok":false,"empty":false}
+parseRate ., 30: {"ok":false,"empty":false}
+parseAmount 00.5: {"ok":true,"cents":50}
+parseRate 00.5, 30: {"ok":true,"bp":50}
+parseAmount 1e6 zeros then 1: {"ok":true,"cents":100}
+parseRate 1e6 zeros then 1, 30: {"ok":true,"bp":100}
+parseAmount arabic-indic 3: {"ok":false,"empty":false}
+parseRate arabic-indic 3, 30: {"ok":false,"empty":false}
+parseAmount 1_000: {"ok":false,"empty":false}
+parseRate 1_000, 30: {"ok":false,"empty":false}
+parseAmount 12.5 0: {"ok":false,"empty":false}
+parseRate 12.5 0, 30: {"ok":false,"empty":false}
+parseAmount 099999.99: {"ok":true,"cents":9999999}
+parseRate 099999.99, 30: {"ok":false,"empty":false}
+parseAmount 9 nines: {"ok":false,"empty":false}
+parseRate 9 nines, 30: {"ok":false,"empty":false}
+parseAmount 10 nines: {"ok":false,"empty":false}
+parseRate 10 nines, 30: {"ok":false,"empty":false}
+parseAmount 6.: {"ok":true,"cents":600}
+parseRate 6., 30: {"ok":true,"bp":600}
+parseAmount TAB: {"ok":false,"empty":true}
+parseRate TAB, 30: {"ok":false,"empty":true}
+parseAmount 1+LS: {"ok":true,"cents":100}
+parseRate 1+LS, 30: {"ok":true,"bp":100}
+parseAmount +0: {"ok":false,"empty":false}
+parseRate +0, 30: {"ok":false,"empty":false}
+parseAmount 0.0: {"ok":false,"empty":false}
+parseRate 0.0, 30: {"ok":true,"bp":0}
+parseAmount 30.: {"ok":true,"cents":3000}
+parseRate 30., 30: {"ok":true,"bp":3000}
+parseAmount 030.00: {"ok":true,"cents":3000}
+parseRate 030.00, 30: {"ok":true,"bp":3000}
+ms for 5e6 digits + x: 10
+== P8 line separators other than CR/LF reach the summary ==
+summary contains U+2028: true
+lines when U+2028 renders as a break: ["Bill split","Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)","Aisyah RM 38.87","Ben RM 38.87","Chen","Adds up to RM 0.00 RM 38.86","Adds up to RM 116.60"]
+== P9 addPerson id after a removal ==
+ids: ["p1","p2","p4","p5"]
+== P10 R22 sweep: item bills past 2^53 and float-floor divergence ==
+item bills: 1000
+item bills with charges x max weight above 2^53: 30
+item bills where a float floor differs from the exact floor: 0
+
+== traps.mjs: random in-bounds two-weight inputs where a float allocator differs from BigInt ==
+{"tries": 2000000, "found": []}

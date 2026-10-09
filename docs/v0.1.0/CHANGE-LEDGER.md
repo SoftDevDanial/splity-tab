@@ -98,6 +98,7 @@ One tap copies a plain-text summary for the group chat.
 | # | Problem found | When | What changed | Who | Outcome |
 |---|---|---|---|---|---|
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
+| 2 | Line-break characters in a name could fake an extra line in the copied summary (WR-10) | 2026-10-09 execute | R24 amended, dated: the seven Unicode mandatory line breaks print as one space. Commits `db3bd35`, `46f5670` | LANE (sdlc-dev-solver), ruled ORCH | Solved, security re-check pending |
 
 ### C7 - Draft kept
 **Status:** NOT SHIPPED · **Opened:** 2026-10-08 · **Closed:** not yet · **Tag:** IN SCOPE
@@ -155,6 +156,13 @@ Clears everything after a confirmation.
 | 6 | Plan coverage gate, first run (sdlc-plan-checker) | 2026-10-08 plan | BLOCK: 3 block (S5 checklist rows, R37 payload longer than the field, R39 scan vs icon building), 9 flag | LANE (sdlc-plan-checker) | Routed to a fresh planner |
 | 7 | All 12 items fixed as ruled | 2026-10-09 plan | PLAN-CHECK.md, Fixes (2026-10-08) | LANE (sdlc-planner, sonnet) | Solved |
 | 8 | Plan coverage gate, re-check | 2026-10-09 plan | PASS, 0 block, 1 flag (hidden attribute, ruled RC-5). 68 R#, 108 scenarios, 21 tasks | LANE (sdlc-plan-checker) | Solved |
+| 9 | split-core builder judgment calls where the spec is silent: unknown-id setters return the same reference; unassigned counted by people present; shared test helpers in tests/support/; no package.json | 2026-10-09 execute | Accepted as written (BUILD.md, Judgment calls) | LANE (sdlc-backend-dev) proposed, ORCH accepted | Ruled, reversible |
+| 10 | split-core code review round 1: PASS, 0 blocker, 10 warning. No wrong money result (S1 and S2 recomputed independently with BigInt). 16 mutants, 5 survived, each tied to a warning | 2026-10-09 execute | Routed to sdlc-dev-solver with rulings. WR-10 ruled (security): the summary replaces every line-breaking character in a label (CR, LF, VT, FF, U+0085, U+2028, U+2029) with a space, so a name cannot fake an Adds up to line in a chat client | LANE (sdlc-code-reviewer) found, ORCH ruled | Open, solver running |
+| 11 | The split-core reviewer wrote its baseline node-test.txt with a shell redirect, against the filesystem rule (reported by the reviewer) | 2026-10-09 execute | File verified at the intended path; no strays in the project root or at D:/c, D:/d | LANE (sdlc-code-reviewer) | No damage. Recorded as a process breach |
+| 12 | Agents fell back to shell writes because their definitions lacked the tool: sdlc-plan-checker had no Write (it must write PLAN-CHECK.md), sdlc-planner had no Edit (it fixes specs after a BLOCK) | 2026-10-09 execute | sdlc 2.1.3 adds Write to the plan-checker and Edit to the planner | ORCH (plugin) | Solved in the plugin, applies to agents spawned in a new session |
+| 13 | split-core code-review solver round: all 10 warnings resolved in 12 commits (`170a293` to `46f5670`). Suite 185 to 212 tests, all pass, each commit green on its own. 28 of 28 planted mutants killed, one control survives as designed. No exported name or signature changed | 2026-10-09 execute | findings/code-review.md, Solver (2026-10-09). Evidence `qa/solver/20261009-121000/` | LANE (sdlc-dev-solver) | Solved, re-check by code-review and security finders pending |
+| 14 | The Edit tool turned the escape text `\u2028` and `\u2029` into raw line-separator characters, which broke one uncommitted test run | 2026-10-09 execute | Rewritten as `\u{2028}` and `\u{2029}`. Every touched file scanned, no raw line terminators remain | LANE (sdlc-dev-solver) | Worked around. Agents writing these escapes check the bytes |
+| 15 | Contracts the split-app decoder must honour, found by the core solver: reject an unknown `mode`; rebuild or reject people and items carrying unknown or `__proto__` keys (core shares untouched ones by reference); `personLabel` shows VT, FF, U+0085, U+2028, U+2029 as typed while the summary prints a space | 2026-10-09 execute | Carried into the split-app builder brief | LANE (sdlc-dev-solver) found, ORCH routed | Open until split-app ships |
 
 ---
 

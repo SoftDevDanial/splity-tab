@@ -1,0 +1,529 @@
+[
+  {
+    "id": "S01",
+    "finding": "WR-01",
+    "what": "allocateByWeight floors with a float product and a float divide (M04)",
+    "tests": 212,
+    "pass": 209,
+    "fail": 3,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "BigInt trap: allocateByWeight(236419679",
+      "BigInt trap: allocateByWeight(61846725",
+      "BigInt trap: allocateByWeight(178450942"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R8 BigInt trap: allocateByWeight(236419679, [314963010,157876348])",
+      "@R8 BigInt trap: allocateByWeight(61846725, [49676084,322894546])",
+      "@R8 BigInt trap: allocateByWeight(178450942, [111531837,207130558])"
+    ]
+  },
+  {
+    "id": "S02",
+    "finding": "WR-01",
+    "what": "allocateByWeight rounds the product in float, then divides exactly",
+    "tests": 212,
+    "pass": 209,
+    "fail": 3,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "BigInt trap: allocateByWeight(236419679",
+      "BigInt trap: allocateByWeight(61846725",
+      "BigInt trap: allocateByWeight(178450942"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R8 BigInt trap: allocateByWeight(236419679, [314963010,157876348])",
+      "@R8 BigInt trap: allocateByWeight(61846725, [49676084,322894546])",
+      "@R8 BigInt trap: allocateByWeight(178450942, [111531837,207130558])"
+    ]
+  },
+  {
+    "id": "S03",
+    "finding": "WR-03",
+    "what": "setMode spreads the whole bill (M12, the threat model forbids it)",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R16 setMode on a parsed bill builds only known fields"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R16 setMode on a parsed bill builds only known fields"
+    ]
+  },
+  {
+    "id": "S04",
+    "finding": "WR-03",
+    "what": "itemWith spreads the item it rebuilds",
+    "tests": 212,
+    "pass": 208,
+    "fail": 4,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R16 removePerson on a parsed bill",
+      "@R16 setItemName on a parsed bill",
+      "@R16 setItemPriceText on a parsed bill",
+      "@R16 toggleItemPerson on a parsed bill"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R16 removePerson on a parsed bill builds only known fields",
+      "@R16 setItemName on a parsed bill builds only known fields",
+      "@R16 setItemPriceText on a parsed bill builds only known fields",
+      "@R16 toggleItemPerson on a parsed bill builds only known fields"
+    ]
+  },
+  {
+    "id": "S05",
+    "finding": "WR-03",
+    "what": "setPersonName spreads the person (M11)",
+    "tests": 212,
+    "pass": 210,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R16 setPersonName on a parsed bill",
+      "@R16 setPersonName (person with a __proto__ key) on a parsed bill"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R16 setPersonName on a parsed bill builds only known fields",
+      "@R16 setPersonName (person with a __proto__ key) on a parsed bill builds only known fields"
+    ]
+  },
+  {
+    "id": "S06",
+    "finding": "WR-04",
+    "what": "addPerson builds the id from the list length, not nextId (M07)",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R11 a new person's id comes from nextId"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R11 a new person's id comes from nextId, so it never reuses a removed id"
+    ]
+  },
+  {
+    "id": "S07",
+    "finding": "WR-05",
+    "what": "summaryText trims row names in place (M08, mutates its input)",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R16 summaryText leaves a deep-frozen result alone"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R16 summaryText leaves a deep-frozen result alone"
+    ]
+  },
+  {
+    "id": "S08",
+    "finding": "WR-05",
+    "what": "allocateByWeight reverses its weights and back (writes, same output)",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R16 allocateByWeight leaves frozen weights alone"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R16 allocateByWeight leaves frozen weights alone"
+    ]
+  },
+  {
+    "id": "S09",
+    "finding": "WR-05",
+    "what": "itemLabel writes the name back onto the item",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R16 @R17 the labels leave a frozen person or item alone"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R16 @R17 the labels leave a frozen person or item alone"
+    ]
+  },
+  {
+    "id": "S10",
+    "finding": "WR-05",
+    "what": "personLabel writes the name back onto the person",
+    "tests": 212,
+    "pass": 177,
+    "fail": 35,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R16 @R17 the labels leave a frozen person or item alone",
+      "@R21 @R23 by-item result for S1"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R16 @R17 the labels leave a frozen person or item alone",
+      "@R20 @R23 even result for S2",
+      "@R20 @R23 even result for E1",
+      "@R20 @R23 even result for E2",
+      "@R20 @R23 even result for E3",
+      "@R20 @R23 even result for MAX-E",
+      "@R21 @R23 by-item result for S1",
+      "@R21 @R23 by-item result for I2",
+      "@R21 @R23 by-item result for I3",
+      "@R21 @R23 by-item result for I4",
+      "@R21 @R23 by-item result for MAX-I",
+      "@R21 a shared item's leftover sen follow the people list, not the tap order",
+      "@R21 a person on no item gets a row of zeros",
+      "@R23 MAX-I charges are exact at the bound",
+      "@R26 D1: two people called Ben give two even rows",
+      "@R26 D2: two people called Ben give two by-item rows, only the tapped one pays",
+      "@R16 computeResult leaves a deep-frozen bill alone",
+      "@R24 summary text for S2 is exact",
+      "@R24 summary text for S1 is exact",
+      "@R24 summary text for E2 zero rates is exact",
+      "@R24 summary text for E3 decimal rates is exact",
+      "@R24 summary text for I2 zero share is exact",
+      "@R24 summary text for D1 equal names, even is exact",
+      "@R24 summary text for D2 equal names, by item is exact",
+      "@R26 equal names print one line each",
+      "@R24 a blank name prints as its position",
+      "@R24 a LF inside a name prints as a space, so it cannot forge a line",
+      "@R24 a CR inside a name prints as a space, so it cannot forge a line",
+      "@R24 a VT inside a name prints as a space, so it cannot forge a line",
+      "@R24 a FF inside a name prints as a space, so it cannot forge a line",
+      "@R24 a NEL inside a name prints as a space, so it cannot forge a line",
+      "@R24 a LS inside a name prints as a space, so it cannot forge a line",
+      "@R24 a PS inside a name prints as a space, so it cannot forge a line",
+      "@R24 by-item rows get the same line-break guard",
+      "@R16 summaryText leaves a deep-frozen result alone"
+    ]
+  },
+  {
+    "id": "S11",
+    "finding": "WR-05",
+    "what": "computeResult writes to a by-item bill only at the price maximum, then restores it",
+    "tests": 212,
+    "pass": 210,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R21 @R23 by-item result for MAX-I"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R21 @R23 by-item result for MAX-I",
+      "@R23 MAX-I charges are exact at the bound"
+    ]
+  },
+  {
+    "id": "S11c",
+    "finding": "WR-05",
+    "what": "CONTROL: S11 with the fixtures left unfrozen. Expected to SURVIVE, which shows the freeze kills S11",
+    "tests": 212,
+    "pass": 212,
+    "fail": 0,
+    "verdict": "SURVIVED",
+    "expectedToFail": [],
+    "expectedButPassed": [],
+    "failed": []
+  },
+  {
+    "id": "S12",
+    "finding": "WR-06",
+    "what": "remove the digit cap (M01)",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion"
+    ]
+  },
+  {
+    "id": "S13",
+    "finding": "WR-06",
+    "what": "digit cap back to the old magic number 9",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion"
+    ]
+  },
+  {
+    "id": "S15",
+    "finding": "WR-07",
+    "what": "formatMoney via a float divide and toLocaleString (M09)",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 money.js uses no banned name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R25 money.js uses no banned name"
+    ]
+  },
+  {
+    "id": "S16",
+    "finding": "WR-07",
+    "what": "formatMoney via Intl.NumberFormat",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 money.js uses no banned name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R25 money.js uses no banned name"
+    ]
+  },
+  {
+    "id": "S17",
+    "finding": "WR-07",
+    "what": "planted toLocaleDateString in summary.js",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 summary.js uses no banned name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R25 summary.js uses no banned name"
+    ]
+  },
+  {
+    "id": "S18",
+    "finding": "WR-07",
+    "what": "planted setTimeout in bill.js",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 bill.js uses no banned name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R25 bill.js uses no banned name"
+    ]
+  },
+  {
+    "id": "S19",
+    "finding": "WR-07",
+    "what": "planted setInterval in result.js",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 result.js uses no banned name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R25 result.js uses no banned name"
+    ]
+  },
+  {
+    "id": "S20",
+    "finding": "WR-07",
+    "what": "planted requestAnimationFrame in allocate.js",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R25 allocate.js uses no banned name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R25 allocate.js uses no banned name"
+    ]
+  },
+  {
+    "id": "S14",
+    "finding": "WR-06",
+    "what": "digit cap from the amount ceiling only, not the caller's",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "@R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion"
+    ]
+  },
+  {
+    "id": "S21",
+    "finding": "WR-10",
+    "what": "summaryText prints row names without replacing line breaks",
+    "tests": 212,
+    "pass": 204,
+    "fail": 8,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "a LF inside a name",
+      "a CR inside a name",
+      "a VT inside a name",
+      "a FF inside a name",
+      "a NEL inside a name",
+      "a LS inside a name",
+      "a PS inside a name",
+      "@R24 by-item rows get the same line-break guard"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R24 a LF inside a name prints as a space, so it cannot forge a line",
+      "@R24 a CR inside a name prints as a space, so it cannot forge a line",
+      "@R24 a VT inside a name prints as a space, so it cannot forge a line",
+      "@R24 a FF inside a name prints as a space, so it cannot forge a line",
+      "@R24 a NEL inside a name prints as a space, so it cannot forge a line",
+      "@R24 a LS inside a name prints as a space, so it cannot forge a line",
+      "@R24 a PS inside a name prints as a space, so it cannot forge a line",
+      "@R24 by-item rows get the same line-break guard"
+    ]
+  },
+  {
+    "id": "S22",
+    "finding": "WR-10",
+    "what": "the line-break class leaves out LF",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "a LF inside a name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R24 a LF inside a name prints as a space, so it cannot forge a line"
+    ]
+  },
+  {
+    "id": "S23",
+    "finding": "WR-10",
+    "what": "the line-break class leaves out CR",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "a CR inside a name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R24 a CR inside a name prints as a space, so it cannot forge a line"
+    ]
+  },
+  {
+    "id": "S24",
+    "finding": "WR-10",
+    "what": "the line-break class leaves out VT",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "a VT inside a name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R24 a VT inside a name prints as a space, so it cannot forge a line"
+    ]
+  },
+  {
+    "id": "S25",
+    "finding": "WR-10",
+    "what": "the line-break class leaves out FF",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "a FF inside a name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R24 a FF inside a name prints as a space, so it cannot forge a line"
+    ]
+  },
+  {
+    "id": "S26",
+    "finding": "WR-10",
+    "what": "the line-break class leaves out NEL",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "a NEL inside a name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R24 a NEL inside a name prints as a space, so it cannot forge a line"
+    ]
+  },
+  {
+    "id": "S27",
+    "finding": "WR-10",
+    "what": "the line-break class leaves out LS",
+    "tests": 212,
+    "pass": 210,
+    "fail": 2,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "a LS inside a name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R24 a LS inside a name prints as a space, so it cannot forge a line",
+      "@R24 by-item rows get the same line-break guard"
+    ]
+  },
+  {
+    "id": "S28",
+    "finding": "WR-10",
+    "what": "the line-break class leaves out PS",
+    "tests": 212,
+    "pass": 211,
+    "fail": 1,
+    "verdict": "KILLED",
+    "expectedToFail": [
+      "a PS inside a name"
+    ],
+    "expectedButPassed": [],
+    "failed": [
+      "@R24 a PS inside a name prints as a space, so it cannot forge a line"
+    ]
+  }
+]

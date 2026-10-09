@@ -51,3 +51,13 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Fresh planner fixed 3 BLOCK and 9 FLAG. Re-check PASS (0 block, 1 flag). Flag ruled RC-5 (hidden attribute) and written into split-app spec as a dated correction.
 - Ledger: CG-9 to CG-11, RC-5, plan gate rows, C1 now names core R26 and app R42.
 - Plan phase done. Next: execute, split-core then split-app.
+
+## 2026-10-09 11:48 split-core built
+- sdlc-backend-dev (sonnet) built split-core: commits bb3fba9, 3399736, 5d98d13, 8228969, e40c171, 50b6a8b, 27458ba, 025e232, BUILD.md 67e4b6e. 185 node tests pass.
+- Five judgment calls accepted under delegation (ORCH, ledger). Spawned code-review finder (Opus).
+
+## 2026-10-09 12:33 split-core solver round closed, owner sets v1.0.0 target
+- Dev solver: WR-01 to WR-10 resolved in 12 commits, 212 of 212 tests pass at `46f5670`, 28 of 28 mutants killed. Findings Solver section and evidence `qa/solver/20261009-121000/` committed by the orchestrator
+- Behaviour change: `summaryText` prints the seven Unicode mandatory line breaks in names as a space (R24 amended, dated)
+- Owner's words 2026-10-09: "Make sure both app reach a stable 1.0 version. Then i will test it out." The run's version label moves from 0.1.0 to 1.0.0
+- Next: security auditor (WR-10 plus threat model), then QA and code-review re-check
