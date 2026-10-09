@@ -84,8 +84,8 @@ test("@R24 a blank name prints as its position", () => {
   assert.equal(text.split("\n")[3], "Person 2 RM 38.87");
 });
 
-// Each character some chat client renders as a line break. In a name, any of them could start a
-// forged line such as a fake "Adds up to RM 0.00".
+// The mandatory breaks of Unicode line breaking (UAX #14). In a name, any of them could start a forged
+// line such as a fake "Adds up to RM 0.00".
 const LINE_BREAKS = [
   ["LF", "\n"], ["CR", "\r"], ["VT", "\u000B"], ["FF", "\u000C"],
   ["NEL", "\u0085"], ["LS", "\u{2028}"], ["PS", "\u{2029}"],

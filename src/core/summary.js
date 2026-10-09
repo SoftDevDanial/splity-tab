@@ -1,8 +1,8 @@
 // The text a person pastes into the group chat.
 import { formatMoney, formatRate } from "./money.js";
 
-// Every character a chat client may render as a line break: LF, CR, VT, FF and the Unicode line
-// terminators NEL, LS and PS. The text input strips only CR and LF, so the others can reach a name.
+// The mandatory breaks of Unicode line breaking (UAX #14): LF, CR, VT, FF, NEL, LS and PS. The text
+// input strips only CR and LF, so the others can reach a name.
 const LINE_BREAKS = /[\n\r\u000B\u000C\u0085\u{2028}\u{2029}]/gu;
 
 /**
