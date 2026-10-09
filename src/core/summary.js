@@ -8,8 +8,9 @@ import { formatMoney, formatRate } from "./money.js";
 const CONTROLS = /[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/gu;
 
 /**
- * One line per person and nothing else. A name cannot forge a line (a fake "Adds up to", say) or cut
- * the text short, because every control character or separator in it prints as one space (R24).
+ * One line per person and nothing else. A name cannot forge a line (a fake "Adds up to", say), cut the
+ * text short or reorder its row, because each character of it in [\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]
+ * (`CONTROLS`) prints as one space (R24). Space separators such as NBSP are kept.
  * @param {import("./result.js").Result} result an `even` or `item` result
  * @returns {string} lines joined with "\n", no trailing newline (R24)
  * @throws {TypeError} for any other kind, since only those carry shares to print
