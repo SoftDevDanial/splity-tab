@@ -4,6 +4,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { resolve, join } from "node:path";
 import module from "node:module";
 import { pathToFileURL } from "node:url";
+import { isDeepStrictEqual } from "node:util";
 
 const CORE_DIR = resolve(import.meta.dirname, "../src/core");
 
@@ -228,6 +229,7 @@ const TRAPPED_GLOBALS = [
   "eval", "Function", "setTimeout", "setInterval", "requestAnimationFrame", "queueMicrotask", "setImmediate",
   "performance", "crypto", "WebSocket", "process", "require", "fetch", "XMLHttpRequest", "EventSource",
   "localStorage", "sessionStorage", "indexedDB", "Date", "Intl", "window", "document", "navigator", "parseFloat",
+  "globalThis",
 ];
 // [label, owner, key, a line of code that reaches it]: banned methods that need no banned global name.
 const TRAPPED_METHODS = [
@@ -406,6 +408,65 @@ test("@R25 runtime trap: every trap fires for core code and not for test code (n
     assert.ok(found.includes(label), `${label}: ${line} gave ${JSON.stringify(found)}`);
   }
   assert.deepEqual(await trapped(async () => { void globalThis.performance; Math.random(); }), []);
+});
+
+// The negative control above builds its cases from the same three arrays, so a trap deleted from an array
+// would take its own control with it and the suite would stay green. This pin names every trap, so deleting
+// one is red. Adding or removing a trap is a deliberate edit of the pin too.
+const sorted = (names) => [...names].sort();
+test("@R25 runtime trap: the trap lists are exactly the pinned ones, so no trap is dropped unseen", () => {
+  assert.deepEqual(sorted(TRAPPED_GLOBALS), sorted([
+    "eval", "Function", "setTimeout", "setInterval", "requestAnimationFrame", "queueMicrotask", "setImmediate",
+    "performance", "crypto", "WebSocket", "process", "require", "fetch", "XMLHttpRequest", "EventSource",
+    "localStorage", "sessionStorage", "indexedDB", "Date", "Intl", "window", "document", "navigator", "parseFloat",
+    "globalThis",
+  ]), "TRAPPED_GLOBALS");
+  assert.deepEqual(sorted(TRAPPED_METHODS.map(([label]) => label)), sorted([
+    "Date.now", "Math.random", "Number.parseFloat", "toFixed", "Number toLocaleString", "BigInt toLocaleString",
+    "Array toLocaleString", "Object toLocaleString", "Date toLocaleString", "toLocaleDateString",
+    "toLocaleTimeString", "localeCompare", "toLocaleUpperCase", "toLocaleLowerCase",
+  ]), "TRAPPED_METHODS");
+  assert.deepEqual(sorted(CONSTRUCTOR_ROUTES.map(([label]) => label)), sorted([
+    "Function constructor route", "AsyncFunction constructor route", "GeneratorFunction constructor route",
+    "AsyncGeneratorFunction constructor route",
+  ]), "CONSTRUCTOR_ROUTES");
+});
+
+// The source scan bans these names too, and a name that is banned but not trapped is guarded by the scan
+// alone (globalThis was, and an identifier written with a unicode escape reached it unseen). `import(` is
+// syntax, not a value, so no recorder can watch it.
+test("@R25 runtime trap: every name the source scan bans has a trap", () => {
+  const watched = new Set([
+    ...TRAPPED_GLOBALS,
+    ...TRAPPED_METHODS.flatMap(([label]) => [label, label.split(" ").at(-1)]),
+  ]);
+  const banned = [...BANNED.map((name) => name.replaceAll("\\", "")), ...BANNED_IN_CODE.map(([name]) => name)];
+  assert.deepEqual(banned.filter((name) => name !== "import(" && !watched.has(name)), []);
+});
+
+const trapSites = () => [
+  ...TRAPPED_GLOBALS.map((name) => [globalThis, name]),
+  ...TRAPPED_METHODS.map(([, owner, key]) => [owner, key]),
+  ...CONSTRUCTOR_ROUTES.map(([, prototype]) => [prototype, "constructor"]),
+];
+const describeSites = () => trapSites().map(([owner, key]) => Object.getOwnPropertyDescriptor(owner, key));
+/** The keys of the trap sites whose property is not what `snapshot` (from `describeSites`) recorded. */
+const changedSince = (snapshot) =>
+  trapSites().filter(([owner, key], i) => !isDeepStrictEqual(Object.getOwnPropertyDescriptor(owner, key), snapshot[i]))
+    .map(([, key]) => key);
+
+test("@R25 runtime trap: every trap is put back after a run, also after a body that throws", async () => {
+  const before = describeSites();
+  await trapped(async () => { assert.equal(changedSince(before).length, trapSites().length, "every site is trapped"); });
+  assert.deepEqual(changedSince(before), []);
+  await assert.rejects(trapped(() => { throw new Error("boom"); }), /boom/);
+  assert.deepEqual(changedSince(before), []);
+});
+
+test("@R25 runtime trap: every run loads its own copy of the core", async () => {
+  const first = await importCore();
+  const second = await importCore();
+  assert.notEqual(first.money, second.money);
 });
 
 // The security re-check's plants (SEC-05, F1 to F10): live code that the source scan above lets through.

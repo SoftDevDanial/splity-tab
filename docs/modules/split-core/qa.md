@@ -590,6 +590,12 @@ Feature: split-core money, maths, state rules and summary text
     And each recorder fires when one line of code that reaches it is served into a core file (negative control)
     And the same accesses made from test code are not counted
     And each of the security re-check's plants F1 to F10, served in memory into every core file, is caught
+    # [Added 2026-10-09, ORCH, code-review WR-12] globalThis was banned and not trapped, so the first Given
+    # line was false for it. It is trapped now, and these four lines keep the machinery honest.
+    And the three trap lists are pinned name for name, so deleting a trap is red
+    And every name the source scan bans has a trap (import( is syntax, so no recorder can watch it)
+    And every trap is put back after a run, also after a body that throws
+    And every run loads its own copy of the core
 
   @R26
   Scenario: Equal names are stored as typed
