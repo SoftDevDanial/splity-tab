@@ -545,6 +545,18 @@ Feature: split-core money, maths, state rules and summary text
     And no code (comments, string text, template text and regex bodies left out) uses eval, Function( or new Function, a dynamic import(, queueMicrotask, setImmediate, performance, crypto, WebSocket, process or require
     And each of those, planted as a line of code into every real core file in memory, goes red as exactly that name
     And the same line in a comment or a string does not go red, and code inside a template's ${...} is still scanned
+    # [Added 2026-10-09, ORCH, security SEC-05] The scan above is best-effort and secondary (its known
+    # limits are in spec R25). The runtime trap below is the primary R25 guard.
+
+  @R25
+  # [Added 2026-10-09, ORCH, security SEC-05]
+  Scenario: The core touches no banned global or method at load or at run time (runtime trap)
+    Given recorders on every banned global, on Date.now, Math.random, Number.parseFloat, toFixed and the locale methods, and on the function-constructor route
+    When a fresh copy of every core file is imported and every export runs on representative input
+    Then no recorder saw an access from a src/core/ frame, and every export was called
+    And each recorder fires when one line of code that reaches it is served into a core file (negative control)
+    And the same accesses made from test code are not counted
+    And each of the security re-check's plants F1 to F10, served in memory into every core file, is caught
 
   @R26
   Scenario: Equal names are stored as typed
