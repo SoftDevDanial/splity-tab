@@ -68,18 +68,66 @@
 <body>
 <main>
   <h1>Splity Tab v1.1.0, design round 2</h1>
+  <p class="lede"><strong>Updated 11 October, 00:50.</strong> You accepted G. G2 is G with your phone note built in. People and Charges now fold into one row each on a phone, so Items gets the room, and "Shares" now reads "Splits". The desktop is unchanged. The rest of this page is as it was, with G2 added on top.</p>
   <p class="lede">G is B Glass Receipt's layout and its one glass card, in A Night Console's slate and indigo, with no glow. It follows your correction at 22:50. The first round 2 page, F, was built on D by my misread, so it is withdrawn and not shown here (the file stays as a record). Round 1 B and A sit beside G so you can see what came from each. Every frame below is the real prototype, so you can type, tap who had an item, open Shares on the phone, and use Prototype states in the left edge for the other states. The desktop view is further down.</p>
 
+  <section class="box rec" aria-label="G2">
+    <h3>G2, my pick now</h3>
+    <p>On a 390 px phone the first item field moves up from 599 px to 335 px, and the Subtotal field from 564 px to 300 px. Three whole items show above the bottom bar where G showed one. Each folded row shows what is inside, "Aisyah, Ben, Chen" and "Service 10%, SST 6%", so you can check them without opening. Changing a name or a rate now takes one extra tap.</p>
+    <p>If G2 is right, the next steps are lock the design system with its contrast ratios, compose every screen and state, wire the flow, then the golden files the build is checked against. The logo is redrawn with the name "Splity Tab" after that.</p>
+  </section>
+
+  <section class="box ask" aria-label="Decisions for you on G2">
+    <h3>What needs your word on G2</h3>
+    <p><strong>1. G2 as the final direction.</strong> Accept it, or give more notes.</p>
+    <p><strong>2. A saved bill that could not be read (S6) starts a fresh bill, like a first open.</strong> On a first open People starts open because the names are still "Person 1" and "Person 2". The designer left S6 folded as my brief said, and asks whether S6 should open People too. I recommend yes.</p>
+    <p><strong>3. The G2 readings</strong>, the first rows of the readings table further down.</p>
+  </section>
+
+  <h2>G2 on a phone</h2>
+  <div class="row">
+    <article class="dir" id="dir-g-was">
+      <header>
+        <p class="tag">Round 2, accepted</p>
+        <h3>G Glass Console</h3>
+        <p class="thesis">People and Charges always open, so Items starts below the fold.</p>
+      </header>
+      <div class="frame"><iframe src="g.html" title="G, Glass Console" loading="lazy"></iframe></div>
+      <p class="open"><a href="g.html">Open full size</a></p>
+    </article>
+    <article class="dir" id="dir-g2" data-pick="true">
+      <header>
+        <p class="tag">Round 2, revised, my pick</p>
+        <h3>G2 Glass Console, revised</h3>
+        <p class="thesis">People and Charges fold into one row each. Items starts near the top. "Splits" on the bottom bar.</p>
+      </header>
+      <div class="frame"><iframe src="g2.html" title="G2, Glass Console revised" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Try</dt><dd>Tap the People or Charges row to open it, change a name and fold it again. Splits at the bottom opens the receipt. Prototype states has "S2 Rate error" to see a folded row holding an error.</dd>
+      </dl>
+      <p class="open"><a href="g2.html">Open full size</a></p>
+    </article>
+    <article class="dir" id="dir-g2-s1">
+      <header>
+        <p class="tag">G2, a new bill</p>
+        <h3>People open on a new bill</h3>
+        <p class="thesis">The names are still placeholders, so People starts open and Charges stays folded.</p>
+      </header>
+      <figure style="margin:0"><img src="checks/g2/s1-390.png" alt="G2 on a phone after Start new bill, People open with Person 1 and Person 2, Charges folded" style="display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px"></figure>
+    </article>
+  </div>
+
+  <h2>G, as reviewed</h2>
   <section class="box rec" aria-label="Recommendation">
     <h3>My recommendation, take G forward</h3>
     <p>G does all five of your points and both clarifications. The phone now opens on the inputs, with the first field at 130 px from the top where B had it at 775 px. The receipt is one tap away in a strip pinned to the bottom that always shows the Total. On a desktop the page never scrolls, even with 12 people or a ten-item bill, because only the item list scrolls inside its own frame.</p>
     <p>If you accept it, the next steps are lock the design system with its contrast ratios, compose every screen and state, wire the flow, then the golden files the build is checked against. The logo is redrawn with the name "Splity Tab" after that.</p>
   </section>
 
-  <section class="box ask" aria-label="Decisions for you">
-    <h3>What needs your word</h3>
-    <p><strong>1. G as the direction.</strong> Accept it, or give more notes for a revision.</p>
-    <p><strong>2. "1 sen left over" on the phone.</strong> On a phone it lives inside the Shares sheet, not on the strip, so it is one tap away. You said you love that line. The designer suggests showing it on the strip as well. I recommend yes, and it can go in at the compose step.</p>
+  <section class="box" aria-label="Decisions on G, answered">
+    <h3>What G asked of you, answered</h3>
+    <p><strong>1. G as the direction.</strong> Answered 00:01, "For Splity, i like it", with the phone note that became G2.</p>
+    <p><strong>2. "1 sen left over" on the phone.</strong> Answered 00:03. It stays inside the sheet as built ("That looks good already"), and "Shares" became "Splits".</p>
     <p><strong>3. The readings below.</strong> Where your words left a detail open, I or the designer chose. Each is easy to change. The highlighted rows are the ones most likely to matter to you.</p>
   </section>
 
@@ -96,6 +144,8 @@
     <table>
       <thead><tr><th scope="col">Your point</th><th scope="col">Round 1 B</th><th scope="col">G now</th><th scope="col">Where to see it</th></tr></thead>
       <tbody>
+        <tr><th scope="row">"For people and charges, it should be collapsed from a section"</th><td>Always open on a phone</td><td>G2 folds each into one row with a summary. Tap to open. Items, the Split switch and the Subtotal never fold. Desktop unchanged</td><td>G2, phone view</td></tr>
+        <tr><th scope="row">"i dont like this, change this to Splits"</th><td>"Shares" on the bar, the sheet and the receipt</td><td>G2 reads "Splits" in all of them, and in "Enter the subtotal to see the splits." The Split switch heading stays "Split"</td><td>G2, the bottom bar</td></tr>
         <tr><th scope="row">"color night console but use glass receipt"</th><td>Deep navy with cyan, one glass card</td><td>B's layout and its one glass card, in A's slate layers and indigo. The card is slate glass with an indigo hairline edge</td><td>Everywhere</td></tr>
         <tr><th scope="row">"remove neon backgrounds", only the glow behind the receipt</th><td>Light pools behind the card</td><td>No light pools and no page gradient. The glass card stays</td><td>Desktop view</td></tr>
         <tr><th scope="row">Copy summary keeps a solid fill, in indigo</th><td>A cyan fill</td><td>A solid indigo fill with near-white text, 5.24 to 1</td><td>The card on a desktop, the strip on a phone</td></tr>
@@ -108,13 +158,20 @@
   </div>
 
   <h2>Readings made for you</h2>
-  <p class="lede">The first column says who chose. <span class="who orch">ORCH</span> is me, from your words. <span class="who">DESIGNER</span> is the designer agent, where the brief left it open.</p>
+  <p class="lede">The first column says who chose. <span class="who orch">ORCH</span> is me, from your words. <span class="who">DESIGNER</span> is the designer agent, where the brief left it open. <span class="who you">YOU</span> is your own answer.</p>
   <div class="scroll">
     <table>
       <thead><tr><th scope="col">Who</th><th scope="col">Reading</th><th scope="col">Why</th></tr></thead>
       <tbody>
+        <tr class="flag"><td class="num"><span class="who orch">ORCH</span></td><td><strong>G2.</strong> The folding is for the phone only. The desktop is exactly G</td><td>You named the phone, and the desktop already fits 1280 x 800 with nothing to scroll</td></tr>
+        <tr class="flag"><td class="num"><span class="who orch">ORCH</span></td><td><strong>G2.</strong> Both rows start folded. On a new bill People starts open. A row with an error opens itself, and a folded one shows "Check service charge" in red</td><td>An error is never hidden, and naming people is the first step of a new bill</td></tr>
+        <tr class="flag"><td class="num"><span class="who orch">ORCH</span></td><td><strong>G2.</strong> "Splits" replaces "Shares" on every width, not only the phone button</td><td>So the button and what it opens say the same word</td></tr>
+        <tr class="flag"><td class="num"><span class="who">DESIGNER</span></td><td><strong>G2.</strong> G had no message for a wrong rate, so G2 adds the 1.0 copy under the field, "Enter a rate from 0 to 30" (Service) and "Enter a rate from 0 to 20" (SST)</td><td>A folded Charges needs an error to show. The wording is 1.0's</td></tr>
+        <tr><td class="num"><span class="who">DESIGNER</span></td><td><strong>G2.</strong> The summary hides while its row is open, since the fields show the same thing right below</td><td>Keeps the open row calm</td></tr>
+        <tr><td class="num"><span class="who">DESIGNER</span></td><td><strong>G2.</strong> With 12 people the summary reads "Aisyah, Ben, Chen, Person 4 and 8 more" (390 px) or "Aisyah, Ben, Chen and 9 more" (360 px)</td><td>Names say who is in, "and N more" gives the count</td></tr>
+        <tr><td class="num"><span class="who">DESIGNER</span></td><td><strong>G2.</strong> On a phone Add person sits under the names inside People. The gaps between the folded rows and Split are a little tighter</td><td>The rows read as one short list above Items</td></tr>
         <tr class="flag"><td class="num"><span class="who orch">ORCH</span></td><td>On a phone the receipt collapses into a strip pinned to the bottom (Total, Shares, Copy summary), and Shares opens it as a sheet</td><td>Your words offered "collapsed", "button press" or "tab change". A pinned strip keeps the Total in sight while you type, which a tab would hide</td></tr>
-        <tr class="flag"><td class="num"><span class="who">DESIGNER</span></td><td>On a phone "1 sen left over" is inside the Shares sheet, not on the strip</td><td>The strip holds the Total and two buttons. Asked of you above</td></tr>
+        <tr><td class="num"><span class="who you">YOU</span></td><td>On a phone "1 sen left over" stays inside the sheet, now named Splits</td><td>Your answer at 00:03, "That looks good already"</td></tr>
         <tr class="flag"><td class="num"><span class="who">DESIGNER</span></td><td>The soft light under the Total and the glow on the Total figure are gone too, inside the card</td><td>They read as glow. The Total is lit by size and colour alone. A faint glow on the figure only could come back if you miss it</td></tr>
         <tr class="flag"><td class="num"><span class="who orch">ORCH</span></td><td>"Split" read as B's own Split section, the Even and By item switch</td><td>So Charges sits between People and the switch</td></tr>
         <tr><td class="num"><span class="who orch">ORCH</span></td><td>No "+1 sen" label beside a share</td><td>That label was D's, not B's. B shows the spare sen once, on its own line</td></tr>
@@ -167,11 +224,12 @@
   <div class="switch" role="group" aria-label="Choose a design for the desktop view">
     <button type="button" data-src="../round-1/b.html" aria-pressed="false">Round 1 B</button>
     <button type="button" data-src="../round-1/a.html" aria-pressed="false">Round 1 A</button>
-    <button type="button" data-src="g.html" aria-pressed="true">G, my pick</button>
+    <button type="button" data-src="g2.html" aria-pressed="true">G2, my pick (desktop same as G)</button>
   </div>
-  <div class="desk"><iframe id="desk" src="g.html" title="Desktop view of the chosen design"></iframe></div>
+  <div class="desk"><iframe id="desk" src="g2.html" title="Desktop view of the chosen design"></iframe></div>
 
   <h2>Checks</h2>
+  <p class="lede">G2 passed the designer's 501 of 501 render checks and my own separate spot check at 1280, 390 and 360 px. Every desktop block sits where G had it, the page never scrolls at 1280 x 800, there is no sideways scroll at 360 with any row open, the rows open and close by tap, Enter and Space, summaries follow edits, the word "Shares" appears nowhere a person reads, "1 sen left over" is still in the Splits sheet, the splits add up to RM 69.26, there are no console errors or network requests, and Copy summary only reached a stand-in clipboard.</p>
   <p class="lede">G passed the designer's render checks with no failures at 1280, 1024, 768, 390 and 360 px, and my own separate spot check at 1280, 390 and 360. No console errors, no network requests, no page scroll at 1280 x 800 in K1, K2, 12 people or the ten-item bill, no sideways scroll at 360, and the shares add up to the Total in whole sen. Copy summary only reached a stand-in clipboard. The one thing my check caught is the phone "1 sen left over" placement, asked of you above. Screenshots are in checks/g.</p>
 </main>
 <script>
