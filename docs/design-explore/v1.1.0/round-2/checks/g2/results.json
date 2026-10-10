@@ -1,0 +1,4010 @@
+{
+  "console_errors": [],
+  "page_errors": [],
+  "network": [],
+  "fails": [],
+  "passes": 501,
+  "figures": {
+    "title": "Danial's Splity Tab",
+    "header": "Splity Tab",
+    "K1 strip 390": "TotalRM 69.26",
+    "K1 rows 390 (sheet content)": [
+      {
+        "name": "Aisyah",
+        "share": "RM 29.04",
+        "wk": "Items 24.90 + charges 4.14"
+      },
+      {
+        "name": "Ben",
+        "share": "RM 15.74",
+        "wk": "Items 13.50 + charges 2.24"
+      },
+      {
+        "name": "Chen",
+        "share": "RM 24.48",
+        "wk": "Items 21.00 + charges 3.48"
+      }
+    ],
+    "K1 receipt 390 (sheet content)": {
+      "total": "RM 69.26",
+      "lines": [
+        "Subtotal = RM 59.40",
+        "Service 10% = RM 5.94",
+        "SST 6% = RM 3.92"
+      ],
+      "proof": "RM 69.26",
+      "proofWork": "59.40 + 9.86",
+      "spare": "1 sen left over",
+      "rule": "Top of the list",
+      "legend": "items + charges",
+      "heading": "Splits"
+    },
+    "K1 rows 390 sheet": [
+      {
+        "name": "Aisyah",
+        "share": "RM 29.04",
+        "wk": "Items 24.90 + charges 4.14"
+      },
+      {
+        "name": "Ben",
+        "share": "RM 15.74",
+        "wk": "Items 13.50 + charges 2.24"
+      },
+      {
+        "name": "Chen",
+        "share": "RM 24.48",
+        "wk": "Items 21.00 + charges 3.48"
+      }
+    ],
+    "K1 receipt 390 sheet": {
+      "total": "RM 69.26",
+      "lines": [
+        "Subtotal = RM 59.40",
+        "Service 10% = RM 5.94",
+        "SST 6% = RM 3.92"
+      ],
+      "proof": "RM 69.26",
+      "proofWork": "59.40 + 9.86",
+      "spare": "1 sen left over",
+      "rule": "Top of the list",
+      "legend": "items + charges",
+      "heading": "Splits"
+    },
+    "sheet spare line 390": "1 sen left over",
+    "P1 vs splits, K1 390 picker open": {
+      "popTop": 535,
+      "popLeft": 0,
+      "sharesTop": 354,
+      "sharesBottom": 504,
+      "sharesRight": 369,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "P1 vs splits, K1 390 one Ben": {
+      "popTop": 535,
+      "popLeft": 0,
+      "sharesTop": 354,
+      "sharesBottom": 504,
+      "sharesRight": 369,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "K1 390 one Ben": [
+      [
+        "Aisyah",
+        "RM 29.03"
+      ],
+      [
+        "Ben",
+        "RM 15.75"
+      ],
+      [
+        "Chen",
+        "RM 24.48"
+      ]
+    ],
+    "P1 vs splits, K1 390 at random": {
+      "popTop": 535,
+      "popLeft": 0,
+      "sharesTop": 354,
+      "sharesBottom": 504,
+      "sharesRight": 369,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "K1 390 random draws": [
+      [
+        2903,
+        1575,
+        2448
+      ],
+      [
+        2903,
+        1574,
+        2449
+      ],
+      [
+        2903,
+        1575,
+        2448
+      ],
+      [
+        2904,
+        1574,
+        2448
+      ],
+      [
+        2903,
+        1574,
+        2449
+      ],
+      [
+        2904,
+        1574,
+        2448
+      ],
+      [
+        2903,
+        1575,
+        2448
+      ],
+      [
+        2904,
+        1574,
+        2448
+      ],
+      [
+        2903,
+        1574,
+        2449
+      ],
+      [
+        2903,
+        1575,
+        2448
+      ],
+      [
+        2903,
+        1574,
+        2449
+      ],
+      [
+        2903,
+        1575,
+        2448
+      ]
+    ],
+    "K1 390 random recipients": [
+      [
+        "Ben"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Aisyah"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Aisyah"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Aisyah"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Ben"
+      ]
+    ],
+    "K2 splits 390 via switch": [
+      [
+        "Aisyah",
+        "RM 38.87"
+      ],
+      [
+        "Ben",
+        "RM 38.87"
+      ],
+      [
+        "Chen",
+        "RM 38.86"
+      ]
+    ],
+    "K2 receipt 390 via switch": {
+      "total": "RM 116.60",
+      "lines": [
+        "Subtotal = RM 100.00",
+        "Service 10% = RM 10.00",
+        "SST 6% = RM 6.60"
+      ],
+      "proof": "RM 116.60",
+      "proofWork": null,
+      "spare": "2 sen left over",
+      "rule": "Top of the list",
+      "legend": null,
+      "heading": "Splits"
+    },
+    "K2 strip 390": "TotalRM 116.60",
+    "P1 vs splits, K2 390 picker open": {
+      "popTop": 535,
+      "popLeft": 0,
+      "sharesTop": 354,
+      "sharesBottom": 450,
+      "sharesRight": 369,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "P1 vs splits, K2 390 one Ben": {
+      "popTop": 535,
+      "popLeft": 0,
+      "sharesTop": 354,
+      "sharesBottom": 450,
+      "sharesRight": 369,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "K2 390 one Ben": [
+      [
+        "Aisyah",
+        "RM 38.86"
+      ],
+      [
+        "Ben",
+        "RM 38.88"
+      ],
+      [
+        "Chen",
+        "RM 38.86"
+      ]
+    ],
+    "P1 vs splits, K2 390 at random": {
+      "popTop": 535,
+      "popLeft": 0,
+      "sharesTop": 354,
+      "sharesBottom": 450,
+      "sharesRight": 369,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "K2 390 random draws": [
+      [
+        3887,
+        3886,
+        3887
+      ],
+      [
+        3887,
+        3887,
+        3886
+      ],
+      [
+        3886,
+        3887,
+        3887
+      ],
+      [
+        3887,
+        3887,
+        3886
+      ],
+      [
+        3886,
+        3887,
+        3887
+      ],
+      [
+        3887,
+        3887,
+        3886
+      ],
+      [
+        3886,
+        3887,
+        3887
+      ],
+      [
+        3887,
+        3887,
+        3886
+      ],
+      [
+        3887,
+        3886,
+        3887
+      ],
+      [
+        3886,
+        3887,
+        3887
+      ],
+      [
+        3887,
+        3887,
+        3886
+      ],
+      [
+        3886,
+        3887,
+        3887
+      ]
+    ],
+    "K2 390 random recipients": [
+      [
+        "Aisyah",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Aisyah",
+        "Chen"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ]
+    ],
+    "M1": "Start a new bill? This clears the people, items and amounts. Start new bill Cancel",
+    "S1 via Start new bill": {
+      "people": [
+        "Person 1",
+        "Person 2"
+      ],
+      "even": true,
+      "subtotal": "",
+      "svc": "10",
+      "sst": "6",
+      "strip": "Enter the subtotal to see the splits.",
+      "receipt": "TotalEnter the subtotal to see the splits.",
+      "copyDisabled": true
+    },
+    "S2": "Subtotal RM Enter an amount like 12.50",
+    "S3 strip": "1 item still needs a person. Tap who had it to see the splits.",
+    "S3 receipt": "1 item still needs a person. Tap who had it to see the splits.",
+    "S4 copied (strip)": "Summary copied",
+    "S4 blocked (strip)": "Could not copy. Your browser blocked the clipboard.",
+    "S5": "This bill is not being saved on this device. It will be lost when you close this tab.",
+    "S6": "Your saved bill could not be read, so a new one was started.",
+    "S7 spare": "8 sen left over",
+    "W1 strip 390": "TotalRM 1,193.87",
+    "W2 (prototype only)": {
+      "rows": [
+        {
+          "name": "Aisyah",
+          "share": "RM 39.11",
+          "wk": "Items 33.54 + charges 5.57"
+        },
+        {
+          "name": "Ben",
+          "share": "RM 31.65",
+          "wk": "Items 27.14 + charges 4.51"
+        },
+        {
+          "name": "Chen",
+          "share": "RM 39.08",
+          "wk": "Items 33.52 + charges 5.56"
+        }
+      ],
+      "receipt": {
+        "total": "RM 109.84",
+        "lines": [
+          "Subtotal = RM 94.20",
+          "Service 10% = RM 9.42",
+          "SST 6% = RM 6.22"
+        ],
+        "proof": "RM 109.84",
+        "proofWork": "94.20 + 15.64",
+        "spare": "6 sen left over",
+        "rule": "Top of the list",
+        "legend": "items + charges",
+        "heading": "Splits"
+      }
+    },
+    "W1 strip 360": "TotalRM 1,193.87",
+    "W1 sheet rows": [
+      {
+        "name": "Aisyah",
+        "share": "RM 1,153.65",
+        "wk": "Items 989.40 + charges 164.25"
+      },
+      {
+        "name": "Ben",
+        "share": "RM 15.74",
+        "wk": "Items 13.50 + charges 2.24"
+      },
+      {
+        "name": "Chen",
+        "share": "RM 24.48",
+        "wk": "Items 21.00 + charges 3.48"
+      }
+    ],
+    "W1 receipt": {
+      "total": "RM 1,193.87",
+      "lines": [
+        "Subtotal = RM 1,023.90",
+        "Service 10% = RM 102.39",
+        "SST 6% = RM 67.58"
+      ],
+      "proof": "RM 1,193.87",
+      "proofWork": "1,023.90 + 169.97",
+      "spare": "1 sen left over",
+      "rule": "Top of the list",
+      "legend": "items + charges",
+      "heading": "Splits"
+    },
+    "W1 360 collisions": [],
+    "sheet spare line 360": "1 sen left over",
+    "P1 vs splits, 360 open": {
+      "popTop": 525,
+      "popLeft": 0,
+      "sharesTop": 345,
+      "sharesBottom": 495,
+      "sharesRight": 324,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "P1 vs splits, 360 picker open": {
+      "popTop": 471,
+      "popLeft": 0,
+      "sharesTop": 309,
+      "sharesBottom": 459,
+      "sharesRight": 324,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "K1 rows 1280": [
+      {
+        "name": "Aisyah",
+        "share": "RM 29.04",
+        "wk": "Items 24.90 + charges 4.14"
+      },
+      {
+        "name": "Ben",
+        "share": "RM 15.74",
+        "wk": "Items 13.50 + charges 2.24"
+      },
+      {
+        "name": "Chen",
+        "share": "RM 24.48",
+        "wk": "Items 21.00 + charges 3.48"
+      }
+    ],
+    "K1 receipt 1280": {
+      "total": "RM 69.26",
+      "lines": [
+        "Subtotal = RM 59.40",
+        "Service 10% = RM 5.94",
+        "SST 6% = RM 3.92"
+      ],
+      "proof": "RM 69.26",
+      "proofWork": "59.40 + 9.86",
+      "spare": "1 sen left over",
+      "rule": "Top of the list",
+      "legend": "items + charges",
+      "heading": "Splits"
+    },
+    "P1 1280 beside the card": {
+      "popLeft": 574,
+      "sharesRight": 533
+    },
+    "P1 vs splits, K1 1280 picker open": {
+      "popTop": 323,
+      "popLeft": 574,
+      "sharesTop": 348,
+      "sharesBottom": 498,
+      "sharesRight": 533,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "P1 vs splits, K1 1280 one Ben": {
+      "popTop": 323,
+      "popLeft": 574,
+      "sharesTop": 348,
+      "sharesBottom": 498,
+      "sharesRight": 533,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "K1 1280 one Ben": [
+      [
+        "Aisyah",
+        "RM 29.03"
+      ],
+      [
+        "Ben",
+        "RM 15.75"
+      ],
+      [
+        "Chen",
+        "RM 24.48"
+      ]
+    ],
+    "P1 vs splits, K1 1280 at random": {
+      "popTop": 323,
+      "popLeft": 574,
+      "sharesTop": 348,
+      "sharesBottom": 498,
+      "sharesRight": 533,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "K1 1280 random draws": [
+      [
+        2903,
+        1575,
+        2448
+      ],
+      [
+        2904,
+        1574,
+        2448
+      ],
+      [
+        2903,
+        1574,
+        2449
+      ],
+      [
+        2903,
+        1575,
+        2448
+      ],
+      [
+        2903,
+        1574,
+        2449
+      ],
+      [
+        2904,
+        1574,
+        2448
+      ],
+      [
+        2903,
+        1574,
+        2449
+      ],
+      [
+        2903,
+        1575,
+        2448
+      ],
+      [
+        2903,
+        1574,
+        2449
+      ],
+      [
+        2903,
+        1575,
+        2448
+      ],
+      [
+        2903,
+        1574,
+        2449
+      ],
+      [
+        2903,
+        1575,
+        2448
+      ]
+    ],
+    "K1 1280 random recipients": [
+      [
+        "Ben"
+      ],
+      [
+        "Aisyah"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Aisyah"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Ben"
+      ]
+    ],
+    "K2 splits 1280": [
+      [
+        "Aisyah",
+        "RM 38.87"
+      ],
+      [
+        "Ben",
+        "RM 38.87"
+      ],
+      [
+        "Chen",
+        "RM 38.86"
+      ]
+    ],
+    "K2 receipt 1280": {
+      "total": "RM 116.60",
+      "lines": [
+        "Subtotal = RM 100.00",
+        "Service 10% = RM 10.00",
+        "SST 6% = RM 6.60"
+      ],
+      "proof": "RM 116.60",
+      "proofWork": null,
+      "spare": "2 sen left over",
+      "rule": "Top of the list",
+      "legend": null,
+      "heading": "Splits"
+    },
+    "P1 vs splits, K2 1280 at random": {
+      "popTop": 251,
+      "popLeft": 574,
+      "sharesTop": 348,
+      "sharesBottom": 444,
+      "sharesRight": 533,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "K2 1280 random draws": [
+      [
+        3887,
+        3887,
+        3886
+      ],
+      [
+        3887,
+        3886,
+        3887
+      ],
+      [
+        3886,
+        3887,
+        3887
+      ],
+      [
+        3887,
+        3886,
+        3887
+      ],
+      [
+        3886,
+        3887,
+        3887
+      ],
+      [
+        3887,
+        3887,
+        3886
+      ],
+      [
+        3887,
+        3886,
+        3887
+      ],
+      [
+        3887,
+        3887,
+        3886
+      ],
+      [
+        3887,
+        3886,
+        3887
+      ],
+      [
+        3887,
+        3887,
+        3886
+      ],
+      [
+        3886,
+        3887,
+        3887
+      ],
+      [
+        3887,
+        3886,
+        3887
+      ]
+    ],
+    "K2 1280 random recipients": [
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Aisyah",
+        "Chen"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Chen"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Aisyah",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Aisyah",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Chen"
+      ]
+    ],
+    "S7 1280 splits": [
+      [
+        "Aisyah",
+        "RM 9.72"
+      ],
+      [
+        "Ben",
+        "RM 9.72"
+      ],
+      [
+        "Chen",
+        "RM 9.72"
+      ],
+      [
+        "Person 4",
+        "RM 9.72"
+      ],
+      [
+        "Person 5",
+        "RM 9.72"
+      ],
+      [
+        "Person 6",
+        "RM 9.72"
+      ],
+      [
+        "Person 7",
+        "RM 9.72"
+      ],
+      [
+        "Person 8",
+        "RM 9.72"
+      ],
+      [
+        "Person 9",
+        "RM 9.71"
+      ],
+      [
+        "Person 10",
+        "RM 9.71"
+      ],
+      [
+        "Person 11",
+        "RM 9.71"
+      ],
+      [
+        "Person 12",
+        "RM 9.71"
+      ]
+    ],
+    "S7 spare 1280": "8 sen left over",
+    "W2 1280 rows (prototype only)": [
+      {
+        "name": "Aisyah",
+        "share": "RM 39.11",
+        "wk": "Items 33.54 + charges 5.57"
+      },
+      {
+        "name": "Ben",
+        "share": "RM 31.65",
+        "wk": "Items 27.14 + charges 4.51"
+      },
+      {
+        "name": "Chen",
+        "share": "RM 39.08",
+        "wk": "Items 33.52 + charges 5.56"
+      }
+    ],
+    "W2 1280 receipt (prototype only)": {
+      "total": "RM 109.84",
+      "lines": [
+        "Subtotal = RM 94.20",
+        "Service 10% = RM 9.42",
+        "SST 6% = RM 6.22"
+      ],
+      "proof": "RM 109.84",
+      "proofWork": "94.20 + 15.64",
+      "spare": "6 sen left over",
+      "rule": "Top of the list",
+      "legend": "items + charges",
+      "heading": "Splits"
+    },
+    "focus after the spare chip": "copyBtn",
+    "focus outline": "solid rgb(163, 170, 255)",
+    "no glow (computed)": {
+      "card": "blur(24px) saturate(1.4)",
+      "bodyBg": "none",
+      "cardBefore": "none",
+      "stageBefore": "none"
+    },
+    "1024 x 768 K1": {
+      "docScrollHeight": 768,
+      "viewport": 768,
+      "bodyScrollHeight": 768,
+      "docScrollWidth": 1024,
+      "stage": {
+        "scrollHeight": 704,
+        "clientHeight": 704
+      },
+      "work": {
+        "scrollHeight": 704,
+        "clientHeight": 704
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 259
+      }
+    },
+    "P1 vs splits, 768 open": {
+      "popTop": 769,
+      "popLeft": 104,
+      "sharesTop": 400,
+      "sharesBottom": 550,
+      "sharesRight": 643,
+      "covered": false,
+      "sharesVisible": true
+    },
+    "P1 vs splits, 768 picker open": {
+      "popTop": 715,
+      "popLeft": 104,
+      "sharesTop": 374,
+      "sharesBottom": 524,
+      "sharesRight": 643,
+      "covered": false,
+      "sharesVisible": true
+    }
+  },
+  "addup": {
+    "K1 390 (sheet content)": {
+      "shares": [
+        2904,
+        1574,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 sheet": {
+      "shares": [
+        2904,
+        1574,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 one Ben": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 1": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 2": {
+      "shares": [
+        2903,
+        1574,
+        2449
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 3": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 4": {
+      "shares": [
+        2904,
+        1574,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 5": {
+      "shares": [
+        2903,
+        1574,
+        2449
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 6": {
+      "shares": [
+        2904,
+        1574,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 7": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 8": {
+      "shares": [
+        2904,
+        1574,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 9": {
+      "shares": [
+        2903,
+        1574,
+        2449
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 10": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 11": {
+      "shares": [
+        2903,
+        1574,
+        2449
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 390 random draw 12": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K2 390 via switch": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 one Ben": {
+      "shares": [
+        3886,
+        3888,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 1": {
+      "shares": [
+        3887,
+        3886,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 2": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 3": {
+      "shares": [
+        3886,
+        3887,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 4": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 5": {
+      "shares": [
+        3886,
+        3887,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 6": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 7": {
+      "shares": [
+        3886,
+        3887,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 8": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 9": {
+      "shares": [
+        3887,
+        3886,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 10": {
+      "shares": [
+        3886,
+        3887,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 11": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 390 random draw 12": {
+      "shares": [
+        3886,
+        3887,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "S7 390": {
+      "shares": [
+        972,
+        972,
+        972,
+        972,
+        972,
+        972,
+        972,
+        972,
+        971,
+        971,
+        971,
+        971
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "W1 390": {
+      "shares": [
+        115365,
+        1574,
+        2448
+      ],
+      "sum": 119387,
+      "total": 119387,
+      "proof": 119387
+    },
+    "W2 390": {
+      "shares": [
+        3911,
+        3165,
+        3908
+      ],
+      "sum": 10984,
+      "total": 10984,
+      "proof": 10984
+    },
+    "K1 1280": {
+      "shares": [
+        2904,
+        1574,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 one Ben": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 1": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 2": {
+      "shares": [
+        2904,
+        1574,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 3": {
+      "shares": [
+        2903,
+        1574,
+        2449
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 4": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 5": {
+      "shares": [
+        2903,
+        1574,
+        2449
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 6": {
+      "shares": [
+        2904,
+        1574,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 7": {
+      "shares": [
+        2903,
+        1574,
+        2449
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 8": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 9": {
+      "shares": [
+        2903,
+        1574,
+        2449
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 10": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 11": {
+      "shares": [
+        2903,
+        1574,
+        2449
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K1 1280 random draw 12": {
+      "shares": [
+        2903,
+        1575,
+        2448
+      ],
+      "sum": 6926,
+      "total": 6926,
+      "proof": 6926
+    },
+    "K2 1280": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 1": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 2": {
+      "shares": [
+        3887,
+        3886,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 3": {
+      "shares": [
+        3886,
+        3887,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 4": {
+      "shares": [
+        3887,
+        3886,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 5": {
+      "shares": [
+        3886,
+        3887,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 6": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 7": {
+      "shares": [
+        3887,
+        3886,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 8": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 9": {
+      "shares": [
+        3887,
+        3886,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 10": {
+      "shares": [
+        3887,
+        3887,
+        3886
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 11": {
+      "shares": [
+        3886,
+        3887,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "K2 1280 random draw 12": {
+      "shares": [
+        3887,
+        3886,
+        3887
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "S7 1280": {
+      "shares": [
+        972,
+        972,
+        972,
+        972,
+        972,
+        972,
+        972,
+        972,
+        971,
+        971,
+        971,
+        971
+      ],
+      "sum": 11660,
+      "total": 11660,
+      "proof": 11660
+    },
+    "W2 1280": {
+      "shares": [
+        3911,
+        3165,
+        3908
+      ],
+      "sum": 10984,
+      "total": 10984,
+      "proof": 10984
+    }
+  },
+  "noscroll_1280": {
+    "K1": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 291
+      }
+    },
+    "K2": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 0,
+        "clientHeight": 0
+      }
+    },
+    "S7": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 0,
+        "clientHeight": 0
+      }
+    },
+    "W2": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 1229,
+        "clientHeight": 291
+      }
+    },
+    "W2 after the frame scrolled": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 1229,
+        "clientHeight": 291
+      }
+    },
+    "S1 (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 0,
+        "clientHeight": 0
+      }
+    },
+    "S2 (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 0,
+        "clientHeight": 0
+      }
+    },
+    "S2RATE (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 243
+      }
+    },
+    "S3 (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 291
+      }
+    },
+    "S4OK (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 291
+      }
+    },
+    "S4FAIL (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 291
+      }
+    },
+    "S5 (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 291
+      }
+    },
+    "S6 (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 0,
+        "clientHeight": 0
+      }
+    },
+    "W1 (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "docScrollWidth": 1280,
+      "stage": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "work": {
+        "scrollHeight": 736,
+        "clientHeight": 736
+      },
+      "frame": {
+        "scrollHeight": 614,
+        "clientHeight": 291
+      }
+    }
+  },
+  "frame": {
+    "W2 390": {
+      "sh": 1229,
+      "ch": 645,
+      "down": true
+    },
+    "W2 390 scrolled": {
+      "top": 360,
+      "up": true,
+      "down": true
+    },
+    "K1 1280": {
+      "sh": 491,
+      "ch": 291,
+      "down": true
+    },
+    "W2 1280": {
+      "sh": 1229,
+      "ch": 291,
+      "down": true,
+      "up": false
+    },
+    "W2 1280 after wheel": {
+      "top": 500,
+      "winY": 0,
+      "up": true
+    }
+  },
+  "overflow_360": {
+    "K1": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "K1OPEN": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "K2": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "K2 people open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "K2 people open, page end": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "K2 charges open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "K2 charges open, page end": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S1": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S1 charges open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S1 charges open, page end": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S2": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S2 people open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S2 people open, page end": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S2 charges open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S2 charges open, page end": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S2RATE": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S2RATE people open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S2RATE people open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S3": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S3 people open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S3 people open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S3 charges open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S3 charges open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4OK": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4OK people open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4OK people open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4OK charges open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4OK charges open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4FAIL": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4FAIL people open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4FAIL people open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4FAIL charges open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4FAIL charges open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S5": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S5 people open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S5 people open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S5 charges open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S5 charges open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S6": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S6 people open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S6 people open, page end": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S6 charges open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S6 charges open, page end": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S7": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S7 people open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S7 people open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S7 charges open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S7 charges open, page end": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "W1": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W1 people open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W1 people open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W1 charges open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W1 charges open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W2": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W2 people open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W2 people open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W2 charges open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W2 charges open, page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W1 page end": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W1 sheet": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "P2": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "P1": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "P1 picker": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "M1": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "proto panel open": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    }
+  },
+  "strip": {
+    "390 K1": {
+      "first_screen": {
+        "stripTop": 733,
+        "people": 117,
+        "charges": 170,
+        "split": 229
+      },
+      "first_screen_asserted": true,
+      "page_end": {
+        "stripTop": 733,
+        "scrollY": 106,
+        "hits": []
+      },
+      "tabbed_controls": 28,
+      "covered_while_focused": []
+    },
+    "390 K1 both open": {
+      "first_screen": {
+        "stripTop": 733,
+        "people": 297,
+        "charges": 480,
+        "split": 539
+      },
+      "first_screen_asserted": true,
+      "page_end": {
+        "stripTop": 733,
+        "scrollY": 416,
+        "hits": []
+      },
+      "tabbed_controls": 37,
+      "covered_while_focused": []
+    },
+    "390 S1": {
+      "first_screen": {
+        "stripTop": 736,
+        "people": 243,
+        "charges": 296,
+        "split": 355
+      },
+      "first_screen_asserted": true,
+      "page_end": {
+        "stripTop": 736,
+        "scrollY": 0,
+        "hits": []
+      },
+      "tabbed_controls": 7,
+      "covered_while_focused": []
+    },
+    "390 S7": {
+      "first_screen": {
+        "stripTop": 733,
+        "people": 117,
+        "charges": 170,
+        "split": 229
+      },
+      "first_screen_asserted": true,
+      "page_end": {
+        "stripTop": 733,
+        "scrollY": 0,
+        "hits": []
+      },
+      "tabbed_controls": 4,
+      "covered_while_focused": []
+    },
+    "390 S7 People open": {
+      "first_screen": {
+        "stripTop": 733,
+        "people": 513,
+        "charges": 566,
+        "split": 625
+      },
+      "first_screen_asserted": false,
+      "page_end": {
+        "stripTop": 733,
+        "scrollY": 33,
+        "hits": []
+      },
+      "tabbed_controls": 28,
+      "covered_while_focused": []
+    },
+    "390 W2": {
+      "first_screen": {
+        "stripTop": 733,
+        "people": 117,
+        "charges": 170,
+        "split": 229
+      },
+      "first_screen_asserted": true,
+      "page_end": {
+        "stripTop": 733,
+        "scrollY": 260,
+        "hits": []
+      },
+      "tabbed_controls": 64,
+      "covered_while_focused": []
+    },
+    "360 K1 both open": {
+      "first_screen": {
+        "stripTop": 669,
+        "people": 297,
+        "charges": 480,
+        "split": 539
+      },
+      "first_screen_asserted": true,
+      "page_end": {
+        "stripTop": 669,
+        "scrollY": 480,
+        "hits": []
+      },
+      "tabbed_controls": 37,
+      "covered_while_focused": []
+    },
+    "360 K1": {
+      "first_screen": {
+        "stripTop": 669,
+        "people": 117,
+        "charges": 170,
+        "split": 229
+      },
+      "first_screen_asserted": true,
+      "page_end": {
+        "stripTop": 669,
+        "scrollY": 170,
+        "hits": []
+      },
+      "tabbed_controls": 28,
+      "covered_while_focused": []
+    },
+    "360 W2": {
+      "first_screen": {
+        "stripTop": 669,
+        "people": 117,
+        "charges": 170,
+        "split": 229
+      },
+      "first_screen_asserted": true,
+      "page_end": {
+        "stripTop": 669,
+        "scrollY": 260,
+        "hits": []
+      },
+      "tabbed_controls": 64,
+      "covered_while_focused": []
+    },
+    "360 S7": {
+      "first_screen": {
+        "stripTop": 669,
+        "people": 117,
+        "charges": 170,
+        "split": 229
+      },
+      "first_screen_asserted": true,
+      "page_end": {
+        "stripTop": 669,
+        "scrollY": 0,
+        "hits": []
+      },
+      "tabbed_controls": 4,
+      "covered_while_focused": []
+    }
+  },
+  "proto_tab": {
+    "390 K1 top": {
+      "tab": [
+        0,
+        352,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "390 K1 scrolled 400": {
+      "tab": [
+        0,
+        352,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "390 K1 both open": {
+      "tab": [
+        0,
+        352,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "390 tab with the sheet closed": {
+      "tab": [
+        0,
+        352,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "390 S5": {
+      "tab": [
+        0,
+        352,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "390 W2 scrolled to items": {
+      "tab": [
+        0,
+        352,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "390 panel vs strip": {
+      "bottom": 668,
+      "stripTop": 733
+    },
+    "390 under backdrop of #newDlg": "newDlg",
+    "390 under backdrop of #splitsDlg": "sheetScroll",
+    "360 K1": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 K1OPEN": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 K2": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 S1": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 S2": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 S2RATE": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 S3": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 S4OK": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 S4FAIL": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 S5": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 S6": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 S7": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 W1": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 W2": {
+      "tab": [
+        0,
+        320,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "360 panel vs strip": {
+      "bottom": 661,
+      "stripTop": 669
+    },
+    "1280 K1": {
+      "tab": [
+        0,
+        330,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    },
+    "1280 S5": {
+      "tab": [
+        0,
+        330,
+        15,
+        140
+      ],
+      "hits": [],
+      "strip": false,
+      "header": false
+    }
+  },
+  "order": {
+    "390": {
+      "people": 65,
+      "charges": 117,
+      "split": 170,
+      "items": 249,
+      "receiptInSheet": true,
+      "receiptInCard": false,
+      "stageShown": false,
+      "stripShown": true
+    },
+    "390 both open": {
+      "people": 65,
+      "charges": 297,
+      "split": 480,
+      "items": 559,
+      "receiptInSheet": true,
+      "receiptInCard": false,
+      "stageShown": false,
+      "stripShown": true
+    },
+    "1280": {
+      "people": 84,
+      "charges": 198,
+      "split": 335,
+      "items": 414,
+      "receiptInSheet": false,
+      "receiptInCard": true,
+      "stageShown": true,
+      "stripShown": false
+    }
+  },
+  "sections": {
+    "K1 390": {
+      "people": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "peopleBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 65,
+        "summary": "Aisyah, Ben, Chen",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      },
+      "charges": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "chargesBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 118,
+        "summary": "Service 10%, SST 6%",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      }
+    },
+    "toggles 390": {
+      "people": [
+        [
+          "tap",
+          "true",
+          true
+        ],
+        [
+          "tap",
+          "false",
+          false
+        ],
+        [
+          "Enter",
+          "true",
+          true
+        ],
+        [
+          "Enter",
+          "false",
+          false
+        ],
+        [
+          "Space",
+          "true",
+          true
+        ],
+        [
+          "Space",
+          "false",
+          false
+        ]
+      ],
+      "charges": [
+        [
+          "tap",
+          "true",
+          true
+        ],
+        [
+          "tap",
+          "false",
+          false
+        ],
+        [
+          "Enter",
+          "true",
+          true
+        ],
+        [
+          "Enter",
+          "false",
+          false
+        ],
+        [
+          "Space",
+          "true",
+          true
+        ],
+        [
+          "Space",
+          "false",
+          false
+        ]
+      ]
+    },
+    "focus ring 390": {
+      "id": "chargesBtn",
+      "focusVisible": true,
+      "style": "solid",
+      "colour": "rgb(163, 170, 255)",
+      "width": "2px",
+      "ringLeft": 8,
+      "textLeft": 16,
+      "ringRight": 382,
+      "viewport": 390
+    },
+    "K1 both open 390": {
+      "people": {
+        "open": "true",
+        "expanded": "true",
+        "controls": "peopleBody",
+        "controlsExists": true,
+        "bodyShown": true,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 65,
+        "summary": "Aisyah, Ben, Chen",
+        "summaryVisible": false,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      },
+      "charges": {
+        "open": "true",
+        "expanded": "true",
+        "controls": "chargesBody",
+        "controlsExists": true,
+        "bodyShown": true,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 298,
+        "summary": "Service 10%, SST 6%",
+        "summaryVisible": false,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      }
+    },
+    "summaries after a name and a rate change 390": {
+      "people": "Aisyah, Benjamin, Chen",
+      "charges": "Service 8%, SST 6%"
+    },
+    "S1 via Start new bill 390": {
+      "people": {
+        "open": "true",
+        "expanded": "true",
+        "controls": "peopleBody",
+        "controlsExists": true,
+        "bodyShown": true,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 65,
+        "summary": "Person 1, Person 2",
+        "summaryVisible": false,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      },
+      "charges": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "chargesBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 244,
+        "summary": "Service 10%, SST 6%",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      }
+    },
+    "S1 390": {
+      "people": {
+        "open": "true",
+        "expanded": "true",
+        "controls": "peopleBody",
+        "controlsExists": true,
+        "bodyShown": true,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 65,
+        "summary": "Person 1, Person 2",
+        "summaryVisible": false,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      },
+      "charges": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "chargesBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 244,
+        "summary": "Service 10%, SST 6%",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      }
+    },
+    "S2 amount 390": {
+      "people": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "peopleBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 65,
+        "summary": "Aisyah, Ben, Chen",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      },
+      "charges": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "chargesBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 118,
+        "summary": "Service 10%, SST 6%",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      }
+    },
+    "S2 rate 390": {
+      "people": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "peopleBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 65,
+        "summary": "Aisyah, Ben, Chen",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      },
+      "charges": {
+        "open": "true",
+        "expanded": "true",
+        "controls": "chargesBody",
+        "controlsExists": true,
+        "bodyShown": true,
+        "headerShown": true,
+        "w": 358,
+        "h": 52,
+        "top": 118,
+        "summary": "Check service charge",
+        "summaryVisible": false,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": true,
+        "sumColour": "rgb(255, 138, 143)",
+        "sumWeight": "600",
+        "hasIcon": true,
+        "headingTag": "H2"
+      }
+    },
+    "S2 rate error lines 390": {
+      "lines": 3,
+      "height": 40
+    },
+    "S2 rate error 390": {
+      "shown": true,
+      "text": "Enter a rate from 0 to 30",
+      "invalid": "true",
+      "described": "chargeHint svcErr",
+      "bad": true,
+      "visible": true,
+      "sstDescribed": "chargeHint"
+    },
+    "S2 rate folded 390": {
+      "open": "false",
+      "expanded": "false",
+      "controls": "chargesBody",
+      "controlsExists": true,
+      "bodyShown": false,
+      "headerShown": true,
+      "w": 358,
+      "h": 52,
+      "top": 118,
+      "summary": "Check service charge",
+      "summaryVisible": true,
+      "summaryFits": true,
+      "summaryLines": 1,
+      "summaryLineH": 19,
+      "bad": true,
+      "sumColour": "rgb(255, 138, 143)",
+      "sumWeight": "600",
+      "hasIcon": true,
+      "headingTag": "H2"
+    },
+    "SST error folded 390": "Check SST",
+    "both rates folded 390": "Check both rates",
+    "S6 390 (brief: folded)": {
+      "people": "false",
+      "charges": "false",
+      "summary": "Person 1, Person 2"
+    },
+    "S7 390": {
+      "open": "false",
+      "expanded": "false",
+      "controls": "peopleBody",
+      "controlsExists": true,
+      "bodyShown": false,
+      "headerShown": true,
+      "w": 358,
+      "h": 52,
+      "top": 65,
+      "summary": "Aisyah, Ben, Chen, Person 4 and 8 more",
+      "summaryVisible": true,
+      "summaryFits": true,
+      "summaryLines": 1,
+      "summaryLineH": 19,
+      "bad": false,
+      "sumColour": "rgb(167, 175, 191)",
+      "sumWeight": "400",
+      "hasIcon": false,
+      "headingTag": "H2"
+    },
+    "K1 360": {
+      "people": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "peopleBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 313,
+        "h": 52,
+        "top": 65,
+        "summary": "Aisyah, Ben, Chen",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      },
+      "charges": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "chargesBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 313,
+        "h": 52,
+        "top": 118,
+        "summary": "Service 10%, SST 6%",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      }
+    },
+    "toggles 360": {
+      "people": [
+        [
+          "tap",
+          "true",
+          true
+        ],
+        [
+          "tap",
+          "false",
+          false
+        ],
+        [
+          "Enter",
+          "true",
+          true
+        ],
+        [
+          "Enter",
+          "false",
+          false
+        ],
+        [
+          "Space",
+          "true",
+          true
+        ],
+        [
+          "Space",
+          "false",
+          false
+        ]
+      ],
+      "charges": [
+        [
+          "tap",
+          "true",
+          true
+        ],
+        [
+          "tap",
+          "false",
+          false
+        ],
+        [
+          "Enter",
+          "true",
+          true
+        ],
+        [
+          "Enter",
+          "false",
+          false
+        ],
+        [
+          "Space",
+          "true",
+          true
+        ],
+        [
+          "Space",
+          "false",
+          false
+        ]
+      ]
+    },
+    "S7 360": {
+      "open": "false",
+      "expanded": "false",
+      "controls": "peopleBody",
+      "controlsExists": true,
+      "bodyShown": false,
+      "headerShown": true,
+      "w": 328,
+      "h": 52,
+      "top": 65,
+      "summary": "Aisyah, Ben, Chen and 9 more",
+      "summaryVisible": true,
+      "summaryFits": true,
+      "summaryLines": 1,
+      "summaryLineH": 19,
+      "bad": false,
+      "sumColour": "rgb(167, 175, 191)",
+      "sumWeight": "400",
+      "hasIcon": false,
+      "headingTag": "H2"
+    },
+    "1280 K1": {
+      "people": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "peopleBody",
+        "controlsExists": true,
+        "bodyShown": true,
+        "headerShown": false,
+        "w": 0,
+        "h": 0,
+        "top": 0,
+        "summary": "Aisyah, Ben, Chen",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 0,
+        "summaryLineH": null,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      },
+      "charges": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "chargesBody",
+        "controlsExists": true,
+        "bodyShown": true,
+        "headerShown": false,
+        "w": 0,
+        "h": 0,
+        "top": 0,
+        "summary": "Service 10%, SST 6%",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 0,
+        "summaryLineH": null,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      }
+    },
+    "1280 visible headings": [
+      "People",
+      "Charges",
+      "Split",
+      "Items"
+    ],
+    "1280 S2 rate": {
+      "shown": true,
+      "svcTop": 274,
+      "sstTop": 274
+    },
+    "768 K1": {
+      "people": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "peopleBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 608,
+        "h": 52,
+        "top": 65,
+        "summary": "Aisyah, Ben, Chen",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      },
+      "charges": {
+        "open": "false",
+        "expanded": "false",
+        "controls": "chargesBody",
+        "controlsExists": true,
+        "bodyShown": false,
+        "headerShown": true,
+        "w": 608,
+        "h": 52,
+        "top": 118,
+        "summary": "Service 10%, SST 6%",
+        "summaryVisible": true,
+        "summaryFits": true,
+        "summaryLines": 1,
+        "summaryLineH": 19,
+        "bad": false,
+        "sumColour": "rgb(167, 175, 191)",
+        "sumWeight": "400",
+        "hasIcon": false,
+        "headingTag": "H2"
+      }
+    }
+  },
+  "rename": {
+    "source strings still saying Shares": [],
+    "bar button 390": "Splits",
+    "no Shares, 390 K1": {
+      "text_hits": [],
+      "name_hits": [],
+      "accessible_names_checked": 120
+    },
+    "no Shares, 390 P2 sheet open": {
+      "text_hits": [],
+      "name_hits": [],
+      "accessible_names_checked": 78
+    },
+    "sheet accessible name": [
+      [
+        "dialog",
+        "Splits"
+      ]
+    ],
+    "no Shares, 390 S1": {
+      "text_hits": [],
+      "name_hits": [],
+      "accessible_names_checked": 52
+    },
+    "no Shares, 390 S3": {
+      "text_hits": [],
+      "name_hits": [],
+      "accessible_names_checked": 117
+    },
+    "no Shares, 390 prototype panel open": {
+      "text_hits": [],
+      "name_hits": [],
+      "accessible_names_checked": 178
+    },
+    "prototype labels": [
+      "K1 By item (key screen)",
+      "K1 People and Charges open (phone)",
+      "K2 Even split",
+      "P1 Spare sen",
+      "P2 Splits sheet (phone)",
+      "M1 New bill",
+      "S1 First open",
+      "S2 Amount error",
+      "S2 Rate error (opens Charges)",
+      "S3 Item needs a person",
+      "S4 Summary copied",
+      "S4 Copy blocked",
+      "S5 Save warning",
+      "S6 Saved bill unreadable",
+      "S7 12 people",
+      "W1 RM 1,193.87",
+      "W2 Long bill, ten items"
+    ],
+    "no Shares, 1280 K1": {
+      "text_hits": [],
+      "name_hits": [],
+      "accessible_names_checked": 203
+    },
+    "no Shares, 1280 S1": {
+      "text_hits": [],
+      "name_hits": [],
+      "accessible_names_checked": 56
+    },
+    "no Shares, 1280 S3": {
+      "text_hits": [],
+      "name_hits": [],
+      "accessible_names_checked": 152
+    }
+  },
+  "vs_g": {
+    "1280 K1 blocks that moved": {},
+    "1280 K1 blocks compared": 30,
+    "1280 K2 blocks that moved": {},
+    "1280 K2 blocks compared": 30,
+    "1280 S7 blocks that moved": {},
+    "1280 S7 blocks compared": 30,
+    "1280 W2 blocks that moved": {},
+    "1280 W2 blocks compared": 30,
+    "positions 390": {
+      "g": {
+        "K1 390": {
+          "scrollY": 0,
+          "firstItemField": 599,
+          "subtotalField": null,
+          "stripTop": 733,
+          "itemsFullyAboveStrip": 1,
+          "itemsStartedAboveStrip": 2,
+          "itemsTotal": 4
+        },
+        "K2 390": {
+          "scrollY": 0,
+          "firstItemField": null,
+          "subtotalField": 564,
+          "stripTop": 733,
+          "itemsFullyAboveStrip": 4,
+          "itemsStartedAboveStrip": 0,
+          "itemsTotal": 4
+        },
+        "W2 390": {
+          "scrollY": 0,
+          "firstItemField": 599,
+          "subtotalField": null,
+          "stripTop": 733,
+          "itemsFullyAboveStrip": 1,
+          "itemsStartedAboveStrip": 2,
+          "itemsTotal": 10
+        }
+      },
+      "g2": {
+        "K1 390": {
+          "scrollY": 0,
+          "firstItemField": 335,
+          "subtotalField": null,
+          "stripTop": 733,
+          "itemsFullyAboveStrip": 3,
+          "itemsStartedAboveStrip": 4,
+          "itemsTotal": 4
+        },
+        "K2 390": {
+          "scrollY": 0,
+          "firstItemField": null,
+          "subtotalField": 300,
+          "stripTop": 733,
+          "itemsFullyAboveStrip": 4,
+          "itemsStartedAboveStrip": 0,
+          "itemsTotal": 4
+        },
+        "S1 390": {
+          "scrollY": 0,
+          "firstItemField": null,
+          "subtotalField": 426,
+          "stripTop": 736,
+          "itemsFullyAboveStrip": 0,
+          "itemsStartedAboveStrip": 0,
+          "itemsTotal": 0
+        },
+        "W2 390": {
+          "scrollY": 0,
+          "firstItemField": 335,
+          "subtotalField": null,
+          "stripTop": 733,
+          "itemsFullyAboveStrip": 3,
+          "itemsStartedAboveStrip": 4,
+          "itemsTotal": 10
+        },
+        "K1 360": {
+          "scrollY": 0,
+          "firstItemField": 335,
+          "subtotalField": null,
+          "stripTop": 669,
+          "itemsFullyAboveStrip": 2,
+          "itemsStartedAboveStrip": 3,
+          "itemsTotal": 4
+        }
+      }
+    },
+    "first Items field, K1 390": {
+      "g": 599,
+      "g2": 335,
+      "lifted_by": 264
+    },
+    "Subtotal field, K2 390": {
+      "g": 564,
+      "g2": 300,
+      "lifted_by": 264
+    },
+    "items above the strip, K1 390": {
+      "g": [
+        1,
+        2
+      ],
+      "g2": [
+        3,
+        4
+      ],
+      "as": "[whole items, items begun]"
+    },
+    "items above the strip, W2 390": {
+      "g": [
+        1,
+        2
+      ],
+      "g2": [
+        3,
+        4
+      ],
+      "as": "[whole items, items begun]"
+    }
+  },
+  "contrast": {
+    "body text on the page (l2)": {
+      "ratio": 14.62,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on a field": {
+      "ratio": 15.72,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text in the item frame (l1)": {
+      "ratio": 15.46,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on a dialog (l3)": {
+      "ratio": 13.55,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on the top bar (l1)": {
+      "ratio": 15.46,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text on the page (labels, hint)": {
+      "ratio": 7.91,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text on a field (placeholder, RM, %)": {
+      "ratio": 8.51,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text in the item frame (untapped person)": {
+      "ratio": 8.37,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text on a dialog": {
+      "ratio": 7.33,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on the indigo tint, tapped person (frame)": {
+      "ratio": 12.72,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on the indigo tint, chosen mode (field)": {
+      "ratio": 12.99,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on the indigo tint, chosen pill (dialog)": {
+      "ratio": 10.97,
+      "need": 4.5,
+      "pass": true
+    },
+    "Copy summary text on its indigo fill": {
+      "ratio": 5.24,
+      "need": 4.5,
+      "pass": true
+    },
+    "Copy summary text on its hover fill": {
+      "ratio": 6.48,
+      "need": 4.5,
+      "pass": true
+    },
+    "Start new bill text on its red fill": {
+      "ratio": 5.1,
+      "need": 4.5,
+      "pass": true
+    },
+    "Start new bill text on its hover fill": {
+      "ratio": 6.45,
+      "need": 4.5,
+      "pass": true
+    },
+    "indigo ink on a dialog (chosen radio dot, pill check)": {
+      "ratio": 7.51,
+      "need": 3.0,
+      "pass": true
+    },
+    "indigo ink on the frame (tapped check)": {
+      "ratio": 7.05,
+      "need": 3.0,
+      "pass": true
+    },
+    "indigo line on the frame (tapped person edge)": {
+      "ratio": 5.76,
+      "need": 3.0,
+      "pass": true
+    },
+    "indigo line on a field (chosen mode edge)": {
+      "ratio": 5.86,
+      "need": 3.0,
+      "pass": true
+    },
+    "indigo line on a dialog (chosen pill edge)": {
+      "ratio": 5.05,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on the page": {
+      "ratio": 3.95,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on a field": {
+      "ratio": 4.25,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border in the frame": {
+      "ratio": 4.18,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on a dialog": {
+      "ratio": 3.66,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on the top bar": {
+      "ratio": 4.18,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring on the page": {
+      "ratio": 8.1,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring in the frame": {
+      "ratio": 8.57,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring on a dialog": {
+      "ratio": 7.51,
+      "need": 3.0,
+      "pass": true
+    },
+    "error text on the page": {
+      "ratio": 7.71,
+      "need": 4.5,
+      "pass": true
+    },
+    "error text in the frame": {
+      "ratio": 8.16,
+      "need": 4.5,
+      "pass": true
+    },
+    "error border on a field": {
+      "ratio": 8.29,
+      "need": 3.0,
+      "pass": true
+    },
+    "S3 marker in the frame": {
+      "ratio": 10.98,
+      "need": 3.0,
+      "pass": true
+    },
+    "S5 text on the warning band": {
+      "ratio": 12.93,
+      "need": 4.5,
+      "pass": true
+    },
+    "S5 icon on the warning band": {
+      "ratio": 9.18,
+      "need": 3.0,
+      "pass": true
+    },
+    "S6 text on the note band": {
+      "ratio": 13.07,
+      "need": 4.5,
+      "pass": true
+    },
+    "S6 icon on the note band": {
+      "ratio": 7.24,
+      "need": 3.0,
+      "pass": true
+    },
+    "G2 section name on the page (same pair as body text on the page)": {
+      "ratio": 14.62,
+      "need": 4.5,
+      "pass": true
+    },
+    "G2 section summary on the page (same pair as muted text on the page)": {
+      "ratio": 7.91,
+      "need": 4.5,
+      "pass": true
+    },
+    "G2 section caret on the page (same pair as muted text, as a graphic)": {
+      "ratio": 7.91,
+      "need": 3.0,
+      "pass": true
+    },
+    "G2 folded error marker, Check text and icon (same pair as error text on the page)": {
+      "ratio": 7.71,
+      "need": 4.5,
+      "pass": true
+    },
+    "G2 rate error under a field (same pair as error text on the page)": {
+      "ratio": 7.71,
+      "need": 4.5,
+      "pass": true
+    },
+    "card: Total figure": {
+      "ratio": 12.31,
+      "need": 4.5,
+      "pass": true
+    },
+    "card: body text (names, Total label, Adds up to)": {
+      "ratio": 11.19,
+      "need": 4.5,
+      "pass": true
+    },
+    "card: muted text (bill lines, working, sen left over)": {
+      "ratio": 6.06,
+      "need": 4.5,
+      "pass": true
+    },
+    "card: indigo Adds up to figure": {
+      "ratio": 6.2,
+      "need": 4.5,
+      "pass": true
+    },
+    "card: S3 warning icon": {
+      "ratio": 7.95,
+      "need": 3.0,
+      "pass": true
+    },
+    "card: S4 failure icon": {
+      "ratio": 5.9,
+      "need": 3.0,
+      "pass": true
+    },
+    "card: chip border (spare sen, Pick again)": {
+      "ratio": 3.58,
+      "need": 3.0,
+      "pass": true
+    },
+    "card: focus ring": {
+      "ratio": 6.2,
+      "need": 3.0,
+      "pass": true
+    },
+    "strip: Total figure": {
+      "ratio": 11.85,
+      "need": 4.5,
+      "pass": true
+    },
+    "strip: body text (Total label, status, messages)": {
+      "ratio": 10.78,
+      "need": 4.5,
+      "pass": true
+    },
+    "strip: body text over a field": {
+      "ratio": 10.87,
+      "need": 4.5,
+      "pass": true
+    },
+    "strip: Splits button border": {
+      "ratio": 3.45,
+      "need": 3.0,
+      "pass": true
+    },
+    "strip: Splits button border over a field": {
+      "ratio": 3.48,
+      "need": 3.0,
+      "pass": true
+    },
+    "strip: focus ring": {
+      "ratio": 5.97,
+      "need": 3.0,
+      "pass": true
+    },
+    "strip, worst case: body text over an unblurred white line": {
+      "ratio": 8.58,
+      "need": 4.5,
+      "pass": true
+    },
+    "sheet: Total figure": {
+      "ratio": 12.03,
+      "need": 4.5,
+      "pass": true
+    },
+    "sheet: body text": {
+      "ratio": 10.94,
+      "need": 4.5,
+      "pass": true
+    },
+    "sheet: muted text": {
+      "ratio": 5.92,
+      "need": 4.5,
+      "pass": true
+    },
+    "sheet: indigo Adds up to figure": {
+      "ratio": 6.06,
+      "need": 4.5,
+      "pass": true
+    },
+    "sheet: chip border": {
+      "ratio": 3.5,
+      "need": 3.0,
+      "pass": true
+    },
+    "sheet, worst case: muted text over an unblurred white line": {
+      "ratio": 5.57,
+      "need": 4.5,
+      "pass": true
+    },
+    "fallback card: muted text": {
+      "ratio": 7.13,
+      "need": 4.5,
+      "pass": true
+    },
+    "fallback card: indigo figure": {
+      "ratio": 7.3,
+      "need": 4.5,
+      "pass": true
+    },
+    "fallback card: chip border": {
+      "ratio": 4.22,
+      "need": 3.0,
+      "pass": true
+    },
+    "prototype tab text": {
+      "ratio": 14.54,
+      "need": 4.5,
+      "pass": true
+    }
+  },
+  "icons": {
+    "x": "match",
+    "plus": "match",
+    "copy": "match",
+    "check": "match",
+    "caret": "match",
+    "shuffle": "match",
+    "warning": "match",
+    "warning-circle": "match",
+    "receipt": "match",
+    "seal-check": "match",
+    "same symbol lines as g.html": true
+  },
+  "dashes": {
+    "g2.html": {
+      "em": 0,
+      "en": 0
+    },
+    "g2.md": {
+      "em": 0,
+      "en": 0
+    }
+  },
+  "targets": {
+    "390 K1": [],
+    "390 K1 both open": [],
+    "390 P2": [],
+    "390 M1": [],
+    "390 S7 People open": [],
+    "360 K1 both open": [],
+    "360 K1": [],
+    "1280 K1": []
+  },
+  "clipboard": {
+    "g.html 390 (read only)": {
+      "stub": true,
+      "execCopy": 0,
+      "standInWrites": 0
+    },
+    "g.html 1280 (read only)": {
+      "stub": true,
+      "execCopy": 0,
+      "standInWrites": 0
+    },
+    "K1 summary text": "Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\nAisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26",
+    "390 run": {
+      "stub": true,
+      "execCopy": 0,
+      "standInWrites": 2
+    },
+    "360 run": {
+      "stub": true,
+      "execCopy": 0,
+      "standInWrites": 0
+    },
+    "1280 run": {
+      "stub": true,
+      "execCopy": 0,
+      "standInWrites": 0
+    },
+    "stand-in writes, all runs": 2,
+    "real clipboard writes": 0
+  },
+  "motion": {
+    "open reveal animations (no-preference)": 1,
+    "reduced: card foil animation": "none",
+    "reduced: card sheen animation": "none",
+    "reduced transparency": {
+      "matches": true,
+      "filter": "none",
+      "bg": "rgb(29, 35, 48)"
+    },
+    "reduced: open reveal animations": 0,
+    "reduced: caret transition": "0s",
+    "reduced: sheet animation": "none"
+  },
+  "shots": [
+    "k1-390.png",
+    "k1-390-full.png",
+    "k1-390-scrolled.png",
+    "focus-charges-header-390.png",
+    "k1-open-390.png",
+    "k1-open-390-full.png",
+    "k1-edited-folded-390.png",
+    "p2-390.png",
+    "p2-390-bottom.png",
+    "s4-copied-in-sheet-390.png",
+    "p1-one-ben-390.png",
+    "p1-picker-390.png",
+    "p1-random-390.png",
+    "k1-random-sheet-390.png",
+    "p1-390.png",
+    "k2-390.png",
+    "p2-k2-390.png",
+    "p1-k2-one-ben-390.png",
+    "p1-k2-random-390.png",
+    "k2-random-sheet-390.png",
+    "m1-390.png",
+    "s1-start-new-390.png",
+    "s1-sheet-390.png",
+    "s1-390.png",
+    "s2-390.png",
+    "s2-rate-390.png",
+    "s2-rate-folded-390.png",
+    "s3-390.png",
+    "s3-sheet-390.png",
+    "s4-copied-390.png",
+    "s4-blocked-390.png",
+    "s5-390.png",
+    "s6-390.png",
+    "s7-390.png",
+    "s7-390-full.png",
+    "s7-people-open-390-full.png",
+    "w1-390.png",
+    "w2-390-top.png",
+    "w2-390.png",
+    "proto-panel-390.png",
+    "k1-360.png",
+    "s7-360.png",
+    "k1-open-360.png",
+    "k1-open-360-full.png",
+    "s5-360.png",
+    "w1-360.png",
+    "w1-360-sheet.png",
+    "p2-360.png",
+    "p1-360.png",
+    "p1-picker-360.png",
+    "m1-360.png",
+    "k1-1280.png",
+    "p1-1280.png",
+    "p1-picker-1280.png",
+    "k1-one-ben-1280.png",
+    "k1-random-1280.png",
+    "m1-1280.png",
+    "k2-1280.png",
+    "p1-k2-random-1280.png",
+    "s7-1280.png",
+    "w2-1280.png",
+    "w2-1280-scrolled.png",
+    "s1-1280.png",
+    "s2-1280.png",
+    "s2rate-1280.png",
+    "s3-1280.png",
+    "s4ok-1280.png",
+    "s4fail-1280.png",
+    "s5-1280.png",
+    "s6-1280.png",
+    "w1-1280.png",
+    "focus-copy-1280.png",
+    "proto-panel-1280.png",
+    "k1-1024.png",
+    "k1-768.png",
+    "p2-768.png",
+    "p1-768.png",
+    "p1-picker-768.png",
+    "k1-1280-reduced-motion-and-transparency.png"
+  ],
+  "tokens": {
+    "l0": "#0B0E13",
+    "l1": "#10141B",
+    "l2": "#151A23",
+    "l3": "#1B212B",
+    "l4": "#232A36",
+    "l5": "#2D3545",
+    "field": "#0E1219",
+    "line-strong": "#6E7891",
+    "line-glass": "#7A84A0",
+    "text": "#E8EBF2",
+    "text-muted": "#A7AFBF",
+    "text-faint": "#5F6878",
+    "accent": "#5059DA",
+    "accent-hover": "#434BC6",
+    "accent-ink": "#A3AAFF",
+    "accent-line": "#7C85F7",
+    "accent-tint": "rgba(110, 120, 255, 0.16)",
+    "on-accent": "#F7F8FF",
+    "danger": "#C4313C",
+    "danger-hover": "#AA2731",
+    "on-danger": "#FFF5F5",
+    "error-ink": "#FF8A8F",
+    "warn-ink": "#F2C063",
+    "warn-bg": "#2A2414",
+    "info-bg": "#1E2140",
+    "focus": "#A3AAFF",
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "scrim-light": "rgba(4, 6, 10, 0.4)",
+    "glass-hi": "rgba(200, 206, 255, 0.10)",
+    "glass-mid": "rgba(150, 158, 235, 0.04)",
+    "glass-lo": "rgba(8, 10, 14, 0.34)",
+    "glass-base": "rgba(27, 33, 43, 0.50)",
+    "glass-dense": "rgba(27, 33, 43, 0.92)",
+    "glass-solid": "#1D2330",
+    "glass-edge": "rgba(163, 170, 255, 0.30)",
+    "hair": "rgba(163, 170, 255, 0.42)",
+    "total-ink": "#F4F5FF"
+  },
+  "asserts": {
+    "passed": 501,
+    "failed": 0,
+    "total": 501
+  }
+}
