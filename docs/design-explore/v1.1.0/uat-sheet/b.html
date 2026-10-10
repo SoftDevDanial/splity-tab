@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UAT sheet B. Test sheet</title>
+<style>
+  :root {
+    --desk: #e6eaef;
+    --paper: #ffffff;
+    --ink: #141c26;
+    --ink-2: #465363;
+    --rule: #d3dae3;
+    --rule-strong: #8f9bab;
+    --tint: #f3f6f9;
+    --pass: #0f7a3c;  --pass-bg: #e5f4ea;
+    --note: #1d4ed8;  --note-bg: #e8eefc;
+    --fail: #b42318;  --fail-bg: #fde9e7;
+    --block: #8a5300; --block-bg: #fdf1d8;
+    --limit: #3d4a5c; --limit-bg: #eef1f5;
+    --about-bg: #0f1419; --about-fg: #e6edf3; --about-muted: #9da7b3;
+    --sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+    --fs-body: 16px;
+    --fs-label: 12px;
+    --fs-title: 26px;
+    --fs-num: 104px;
+    --r: 14px;
+    --r-sm: 6px;
+    --pad: 44px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--desk); color: var(--ink); font: var(--fs-body)/1.55 var(--sans); }
+  :focus-visible { outline: 3px solid var(--note); outline-offset: 2px; border-radius: 4px; }
+  a { color: var(--note); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* About strip. Not part of the layout. */
+  .about { background: var(--about-bg); color: var(--about-fg); font: 13px/1.5 var(--mono); padding: 12px 16px; border-bottom: 3px dashed #3d4752; }
+  .about-in { max-width: 1000px; margin: 0 auto; display: grid; gap: 6px; }
+  .about b { color: #fff; }
+  .about p { margin: 0; color: var(--about-muted); }
+  .about nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .about nav a { color: var(--about-fg); border: 1px solid #3d4752; border-radius: 6px; padding: 6px 10px; text-decoration: none; }
+  .about nav a[aria-current] { background: #e6edf3; color: #0f1419; }
+
+  .sheet { max-width: 1000px; margin: 24px auto; background: var(--paper); border-radius: var(--r); padding: 40px var(--pad); box-shadow: 0 1px 2px rgba(20, 28, 38, .06), 0 10px 28px rgba(20, 28, 38, .07); }
+
+  /* Cover */
+  .kicker { font-size: var(--fs-label); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+  .doc-head h1 { font-size: 44px; line-height: 1.05; letter-spacing: -.02em; margin: 6px 0 8px; font-weight: 780; }
+  .doc-sub { margin: 0 0 24px; color: var(--ink-2); }
+  h2.sec { font-size: 18px; margin: 36px 0 12px; font-weight: 720; }
+
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  .kv th { width: 180px; text-align: left; vertical-align: top; padding: 12px 16px 12px 0; font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); line-height: 1.9; }
+  .kv td { padding: 12px 0; vertical-align: top; }
+  .kv tr + tr { border-top: 1px solid var(--rule); }
+
+  .legend { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .lg { border: 1px solid var(--rule); border-radius: 10px; padding: 14px; display: grid; gap: 8px; align-content: start; }
+  .lg p { margin: 0; font-size: 15px; }
+  .lg .ex { font-size: 14px; color: var(--ink-2); border-top: 1px dashed var(--rule); padding-top: 8px; }
+  .lg .ex b { color: var(--ink); font-weight: 650; }
+
+  .glance th { text-align: left; font-size: var(--fs-label); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); padding: 8px 10px; border-bottom: 2px solid var(--ink); }
+  .glance td { padding: 10px; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+  .glance td.id { font-weight: 800; white-space: nowrap; }
+  .glance a { color: inherit; }
+  .glance .muted { color: var(--ink-2); }
+
+  /* Verdict chips */
+  .vchip { display: inline-flex; align-items: center; gap: 6px; font: 700 12px/1 var(--sans); letter-spacing: .06em; padding: 6px 9px; border-radius: 999px; border: 1.5px solid currentColor; white-space: nowrap; }
+  .vchip svg { width: 13px; height: 13px; fill: currentColor; }
+  .v-pass { color: var(--pass); background: var(--pass-bg); }
+  .v-note { color: var(--note); background: var(--note-bg); }
+  .v-fail { color: var(--fail); background: var(--fail-bg); }
+  .v-block { color: var(--block); background: var(--block-bg); border-style: dashed; }
+
+  /* Case */
+  .case-head { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: end; padding-bottom: 20px; border-bottom: 3px solid var(--ink); }
+  .case-num { display: grid; line-height: .82; }
+  .case-num .kicker { color: var(--ink-2); padding-left: 4px; }
+  .case-num .digits { font-size: var(--fs-num); font-weight: 820; letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+  .case-head h2 { font-size: var(--fs-title); line-height: 1.2; margin: 0 0 12px; font-weight: 700; letter-spacing: -.01em; max-width: 28ch; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--tint); border: 1px solid var(--rule); color: var(--ink); }
+
+  .steps { margin-top: 28px; }
+  .steps thead th { text-align: left; font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); padding: 0 12px 10px; border-bottom: 2px solid var(--ink); }
+  .steps thead th:first-child { width: 56px; padding-left: 0; }
+  .steps thead th.do { width: 42%; }
+  .steps tbody td { padding: 14px 12px; vertical-align: top; border-bottom: 1px solid var(--rule); }
+  .steps tbody td.n { padding-left: 0; }
+  .num { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--ink); font-weight: 750; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .steps td.see { background: linear-gradient(to right, var(--tint), var(--tint)) no-repeat; background-size: 100% 100%; }
+  .see-label { display: none; }
+  .checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .checks label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+  .checks input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--pass); flex: none; }
+  .checks input:checked + span { color: var(--ink-2); text-decoration: line-through; text-decoration-color: var(--pass); text-decoration-thickness: 2px; }
+
+  .fig { font-weight: 680; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .ui { background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; }
+  .ctl { font-weight: 680; border: 1px solid var(--rule-strong); border-radius: 5px; padding: 0 5px; background: #fff; white-space: nowrap; }
+  kbd { font-family: var(--mono); font-size: .88em; }
+  kbd.typed { background: #e9eef5; border-radius: 4px; padding: 1px 6px; }
+  kbd.key { border: 1px solid var(--rule-strong); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: #fff; }
+
+  .mini { margin-top: 8px; width: auto; background: #fff; border: 1px solid var(--rule); border-radius: var(--r-sm); }
+  .mini th, .mini td { padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+  .mini th { font-size: 12px; color: var(--ink-2); font-weight: 650; }
+  .mini td:first-child, .mini th:first-child { text-align: left; font-weight: 650; }
+  .mini tr:last-child td { border-bottom: 0; border-top: 2px solid var(--ink); font-weight: 700; }
+
+  tr.noterow td { padding: 0; border-bottom: 0; }
+  .note { display: grid; grid-template-columns: 132px 1fr; gap: 14px; margin: 12px 0 0; padding: 14px 16px; border-radius: 10px; border-left: 4px solid currentColor; }
+  .note .tag { font: 750 12px/1.6 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+  .note p { margin: 0; color: var(--ink); }
+  .note.k-note { color: var(--note); background: var(--note-bg); }
+  .note.k-ask { color: var(--block); background: var(--block-bg); }
+  .note.k-limit { color: var(--limit); background: var(--limit-bg); }
+
+  .verdicts { margin-top: 28px; border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; }
+  .verdicts table th, .verdicts table td { padding: 14px 16px; vertical-align: top; border-bottom: 1px solid var(--rule); text-align: left; }
+  .verdicts table tr:last-child th, .verdicts table tr:last-child td { border-bottom: 0; }
+  .verdicts thead th { background: var(--ink); color: #fff; font-size: var(--fs-label); letter-spacing: .1em; text-transform: uppercase; padding: 10px 16px; }
+  .verdicts tbody th { width: 150px; font-size: 14px; }
+  .verdicts tbody th small { display: block; font-weight: 500; color: var(--ink-2); }
+  .ballot { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ballot .vchip.off { color: #8a95a3; background: transparent; border-color: #c9d1db; }
+  .ballot .vchip.off svg { display: none; }
+  .words { margin: 0; }
+  .words.quote { font-style: italic; }
+  tr.next td { background: var(--tint); }
+
+  @media (max-width: 860px) {
+    .legend { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 720px) {
+    :root { --pad: 16px; --fs-num: 72px; --fs-title: 21px; }
+    .sheet { margin: 0 0 10px; border-radius: 0; padding: 24px var(--pad); }
+    .doc-head h1 { font-size: 34px; }
+    .legend { grid-template-columns: 1fr; }
+    .kv th, .kv td { display: block; width: auto; padding: 0; }
+    .kv th { padding-top: 12px; }
+    .kv td { padding-bottom: 12px; }
+    .case-head { gap: 16px; }
+    .steps thead { display: none; }
+    .steps tbody tr { display: grid; grid-template-columns: 44px 1fr; border-bottom: 1px solid var(--rule); padding: 12px 0; }
+    .steps tbody td { border: 0; padding: 0; }
+    .steps tbody td.do { padding-bottom: 8px; }
+    .steps tbody td.see { grid-column: 2; padding: 10px 12px; border-radius: 8px; }
+    .see-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 6px; }
+    tr.noterow { display: block !important; padding: 0 !important; border: 0 !important; }
+    tr.noterow td { display: block; }
+    .note { grid-template-columns: 1fr; gap: 4px; }
+    .verdicts table, .verdicts tbody, .verdicts tr, .verdicts th, .verdicts td { display: block; width: auto !important; }
+    .verdicts thead { display: none; }
+    .verdicts tbody th { border-bottom: 0; padding-bottom: 4px; }
+    .verdicts tbody td { border-bottom: 0; padding-top: 6px; }
+    .verdicts tbody tr { border-bottom: 1px solid var(--rule); }
+    .glance thead { display: none; }
+    .glance tr { display: grid; grid-template-columns: 64px auto 1fr; gap: 6px 8px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+    .glance td { border: 0; padding: 0; }
+    .glance td.id { grid-row: 1 / span 2; }
+    .glance td.t { grid-column: 2 / -1; }
+    .glance td.scope { display: none; }
+    .glance td.tv::before, .glance td.yv::before { content: attr(data-who); display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 2px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .about { display: none; }
+    .sheet { box-shadow: none; margin: 0; border-radius: 0; break-after: page; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="about" role="note" aria-label="About this proposal">
+  <div class="about-in">
+    <div><b>About this proposal</b> (not part of the layout) · <b>B of 3 · Test sheet</b></div>
+    <p>Each case is one sheet of paper with a big case number, every part in a table, and the four verdicts drawn like a ballot so the chosen one stands out. The figures you must check have their own tick boxes. It bets on the easiest read and the best look in the public showcase, and it prints one case per page. It costs a second file, because the Markdown file stays the record and this page is generated from it.</p>
+    <nav aria-label="Proposals"><a href="a.html">A · Markdown tables</a><a href="b.html" aria-current="page">B · Test sheet</a><a href="c.html">C · Run console</a></nav>
+  </div>
+</div>
+
+<main id="main">
+  <section class="sheet" aria-labelledby="doc-title">
+    <header class="doc-head">
+      <div class="kicker">User acceptance test · sitting 1 of 1</div>
+      <h1 id="doc-title">Split 1.0.0</h1>
+      <p class="doc-sub">8 cases · about 20 minutes · 10 October 2026 · three cases shown in this sample</p>
+    </header>
+    <table class="kv">
+      <tbody>
+        <tr><th scope="row">App address</th><td><kbd class="typed">http://127.0.0.1:8732/</kbd> started for you. Go to exactly this address in a normal window, not a private one.</td></tr>
+        <tr><th scope="row">Starting state</th><td id="start"></td></tr>
+        <tr><th scope="row">Order</th><td>Work the cases in order. Each one starts where the last one ended.</td></tr>
+        <tr><th scope="row">Clipboard</th><td>UAT-05 puts text on your clipboard, so copy anything you need first.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="sec">How to give a verdict</h2>
+    <div class="legend" id="legend"></div>
+
+    <h2 class="sec">At a glance</h2>
+    <table class="glance">
+      <thead><tr><th>Case</th><th>What it checks</th><th class="scope">Scope</th><th>Tester</th><th>You</th></tr></thead>
+      <tbody id="glance"></tbody>
+    </table>
+  </section>
+
+  <div id="cases"></div>
+</main>
+
+<script>
+  const ICON = {
+    check: "M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z",
+    x: "M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
+  };
+  const svg = (name) => `<svg viewBox='0 0 256 256' aria-hidden='true' focusable='false'><path d='${ICON[name]}'/></svg>`;
+
+  const START = 'A new bill. Two name boxes read "Person 1" and "Person 2", *Even* is chosen, Subtotal is empty, Service charge reads 10% and SST 6%.';
+
+  const LEGEND = [
+    { v: "PASS", mean: "It does what the case says, at every step.", ex: "<b>UAT-02.</b> The shares read RM 38.87, RM 38.87 and RM 38.86, exactly as listed." },
+    { v: "PASS + NOTE", mean: "It works, and you want something changed. The note becomes a finding for a later version. It does not fail the case.", ex: "<b>UAT-03.</b> “Pass but i prefer if it cannot be evenly split, the number in summary should show the extras” became scope S1 of 1.1.0." },
+    { v: "FAIL", mean: "Something on screen differs from the You should see column. Name the step and what you saw.", ex: "<b>Step 10.</b> Ben's charges read RM 2.25, the sheet says RM 2.24." },
+    { v: "BLOCKED", mean: "You could not run it. Say why. The control was not where the sheet said, the start could not be reached, or the result was not something you could see.", ex: "<b>Step 2</b> says click Add item, but there is no button with that name." }
+  ];
+
+  const GLANCE = [
+    ["UAT-01", "I can list the people at the table", "C1 People", "PASS", "PASS"],
+    ["UAT-02", "An even split gives everyone the same share, to the cent", "C2 Even split", "PASS", "PASS"],
+    ["UAT-03", "The shares always add back up to the total", "C5 Shares that add up", "PASS", "PASS + NOTE"],
+    ["UAT-04", "I can change or switch off the charges", "C4 Charges", "PASS", "PASS"],
+    ["UAT-05", "One tap copies a summary I can paste into the group chat", "C6 Copy summary", "PASS + NOTE", "PASS"],
+    ["UAT-06", "I can split by item, and a shared item is split between the people who had it", "C3 Split by item", "PASS", "PASS + NOTE"],
+    ["UAT-07", "My bill is still there when I come back", "C7 Draft kept", "PASS", "PASS"],
+    ["UAT-08", "I can start a new bill, but only on purpose", "C8 New bill", "PASS", "PASS"]
+  ];
+
+  const CASES = [
+    {
+      id: "UAT-02", title: "An even split gives everyone the same share, to the cent", scope: "C2 Even split", status: "Shipped",
+      problem: "You asked to type the bill subtotal once and see what each person owes, with the service charge and SST added the way a Malaysian receipt adds them.",
+      before: "UAT-01 done. Aisyah, Ben and Chen are listed and *Even* is chosen.",
+      steps: [
+        { do: "Click the *Subtotal* box. It has RM at its left.", see: "The cursor is in the Subtotal box." },
+        { do: "Type `100.00`.", see: "100.00 is in the box." },
+        { do: "Read the *Bill summary* on the right (below the inputs on a narrow window).", see: 'Subtotal RM 100.00\nService charge RM 10.00, with "10% of RM 100.00" under it\nSST RM 6.60, with "6% of RM 110.00" under it\nTotal RM 116.60' },
+        { do: "Read the *Shares*.", see: 'Aisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nA green tick and "Adds up to" RM 116.60 under them' }
+      ],
+      notes: [{ k: "note", t: "SST is charged on the subtotal plus the service charge, so it reads 6% of RM 110.00, not of RM 100.00." }],
+      tester: { v: "PASS", w: "Subtotal RM 100.00, Service charge RM 10.00 “10% of RM 100.00”, SST RM 6.60 “6% of RM 110.00”, Total RM 116.60, shares 38.87, 38.87, 38.86" },
+      you: { v: "PASS", w: "Pass", d: "2026-10-10" },
+      next: "None"
+    },
+    {
+      id: "UAT-06", title: "I can split by item, and a shared item is split between the people who had it", scope: "C3 Split by item", status: "Shipped, one accepted limit",
+      problem: "You asked for the case where mental maths fails. People ordered different things. You list each item with its price and tap who had it. The charges are then shared in proportion to what each person ate. The shares only show once every item has someone, because a part split would not add up to the receipt.",
+      before: "UAT-05 done. Aisyah, Ben and Chen.",
+      steps: [
+        { do: "Click *By item*, next to Even.", see: "By item is chosen. There are no items yet, only *Add item*." },
+        { do: "Click *Add item*.", see: "A new item appears with the cursor in its name box." },
+        { do: "Type `Nasi lemak ayam`, press [Tab], type `15.90`.", see: "The item reads Nasi lemak ayam, RM 15.90\nThe names Aisyah, Ben and Chen show under it, none of them dark" },
+        { do: "Read the *Shares* area.", see: '"1 item still needs a person. Tap who had it to see the shares."' },
+        { do: "Under that item, click *Aisyah*.", see: "Aisyah turns dark\nThe shares table appears. Its figures change as you add items, so read them at step 10" },
+        { do: "Click *Add item*, type `Char kuey teow`, press [Tab], type `13.50`, then click *Ben* under it.", see: "Ben turns dark under Char kuey teow." },
+        { do: "Click *Add item*, type `Mee goreng mamak`, press [Tab], type `12.00`, then click *Chen* under it.", see: "Chen turns dark under Mee goreng mamak." },
+        { do: "Click *Add item*, type `Satay, 10 sticks`, press [Tab], type `18.00`, then click *Aisyah* and *Chen* under it.", see: "Aisyah and Chen both turn dark under Satay, 10 sticks." },
+        { do: "Read the *Bill summary*.", see: 'Subtotal RM 59.40\nService charge RM 5.94, with "10% of RM 59.40" under it\nSST RM 3.92, with "6% of RM 65.34" under it\nTotal RM 69.26' },
+        { do: "Read the *shares table*.", see: 'Column heads "Items", "+ Charges" and "= Share". The names column has no head\nEvery figure in this table',
+          table: [["", "Items", "+ Charges", "= Share"], ["Aisyah", "RM 24.90", "RM 4.14", "RM 29.04"], ["Ben", "RM 13.50", "RM 2.24", "RM 15.74"], ["Chen", "RM 21.00", "RM 3.48", "RM 24.48"], ["Adds up to", "RM 59.40", "RM 9.86", "RM 69.26"]] }
+      ],
+      notes: [
+        { k: "note", t: "The satay's split is not printed on its own. Check it from the Items column. Aisyah's RM 24.90 is RM 15.90 + RM 9.00, and Chen's RM 21.00 is RM 12.00 + RM 9.00, half of the satay's RM 18.00 each." },
+        { k: "note", t: "The order of the list decides who gets a spare sen. With Ben above Aisyah the same bill reads Ben RM 2.25 and Aisyah RM 4.13." },
+        { k: "limit", t: "Already ruled by you. On a phone 360 px wide, a by-item bill whose items pass about RM 650 makes the shares table scroll sideways. You chose to fix it in 1.1.0 (2026-10-09). The bill in this case fits." }
+      ],
+      tester: { v: "PASS", w: "The step 4 message exact, tapped names turn dark, the bill summary and every cell of the table as listed. The table fits at 390 and 360 px." },
+      you: { v: "PASS + NOTE", w: "Pass. You did not include what the service charge and sst. Be as accurate and precise as possible when doing test cases. Also the shares number is correct but the charges for ben is 2.25 and aiyah is 4.13 when in test cases ben is 2.24 and aisyah is 4.14 ( check if this is a bug or a simple logic mistake)", d: "2026-10-10" },
+      next: "Script rule taken (findings UAT-F2). The RM 4.13 and RM 2.25 came from Ben being above Aisyah, not a bug (findings UAT-F3, your words)."
+    },
+    {
+      id: "UAT-08", title: "I can start a new bill, but only on purpose", scope: "C8 New bill", status: "Shipped",
+      problem: "You asked for a way to clear everything for the next meal, behind a question so one slip cannot wipe a bill.",
+      before: "UAT-07 done.",
+      steps: [
+        { do: "Click *New bill*, top right.", see: 'A box opens over the dimmed page\n"Start a new bill?"\n"This clears the people, items and amounts." under it\nTwo buttons, *Start new bill* and *Cancel*' },
+        { do: "Click *Cancel*.", see: "The box closes. The bill is unchanged." },
+        { do: "Click *New bill* again.", see: "The same box opens." },
+        { do: "Click the dimmed page outside the box, near the top-left corner.", see: "The box closes. The bill is unchanged." },
+        { do: "Click *New bill* again.", see: "The same box opens." },
+        { do: "Click *Start new bill*.", see: 'The starting state\n"Person 1" and "Person 2", Even chosen\nAn empty Subtotal, Service charge 10, SST 6\nShares reads "Enter the subtotal to see the shares."' },
+        { do: "Click *By item*.", see: 'No items, only *Add item*\nShares reads "Add an item to see the shares."' }
+      ],
+      notes: [{ k: "ask", t: "The approved design said a click outside the box does nothing. While you delegated the run, we made it act like Cancel (step 4), so every way out closes the box and nothing is cleared. Keep it (our recommendation) or make an outside click do nothing." }],
+      tester: { v: "PASS", w: "The question and both buttons as written. Cancel and a click outside the box both closed it with the saved bill unchanged. Start new bill gave the starting state, and By item showed no items with “Add an item to see the shares.”" },
+      you: { v: "PASS", w: "Pass", d: "2026-10-10" },
+      next: "None. The outside click stays like Cancel (your H-01 ruling, “i am happy with the choices made.”)."
+    }
+  ];
+
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  // Mini markup. *Control*, `typed text`, [Key], "on-screen copy". RM figures are picked out on their own.
+  function rich(s) {
+    let h = esc(s);
+    h = h.replace(/`([^`]+)`/g, "<kbd class='typed'>$1</kbd>");
+    h = h.replace(/\[([A-Za-z+]+)\]/g, "<kbd class='key'>$1</kbd>");
+    h = h.replace(/\*([^*]+)\*/g, "<b class='ctl'>$1</b>");
+    h = h.replace(/"([^"]+)"/g, "<span class='ui'>“$1”</span>");
+    h = h.replace(/RM [\d,]+\.\d{2}/g, (m) => "<span class='fig'>" + m + "</span>");
+    return h;
+  }
+  const figs = (s) => esc(s).replace(/RM [\d,]+\.\d{2}/g, (m) => "<span class='fig'>" + m + "</span>");
+
+  const VCLASS = { "PASS": "v-pass", "PASS + NOTE": "v-note", "FAIL": "v-fail", "BLOCKED": "v-block" };
+  const VICON = { "PASS": "check", "PASS + NOTE": "check", "FAIL": "x", "BLOCKED": null };
+  function chip(v, off) {
+    const ic = VICON[v] ? svg(VICON[v]) : "";
+    return `<span class='vchip ${VCLASS[v]}${off ? " off" : ""}'>${ic}${v}</span>`;
+  }
+  function ballot(chosen) {
+    const opts = Object.keys(VCLASS).map((v) => chip(v, v !== chosen)).join("");
+    return `<div class='ballot' role='img' aria-label='Verdict ${chosen}'>${opts}</div>`;
+  }
+
+  document.getElementById("start").innerHTML = rich(START);
+  document.getElementById("legend").innerHTML = LEGEND.map((l) =>
+    `<div class='lg'><div>${chip(l.v)}</div><p>${esc(l.mean)}</p><p class='ex'>${l.ex.replace(/RM [\d,]+\.\d{2}/g, (m) => "<span class='fig'>" + m + "</span>")}</p></div>`).join("");
+
+  const shown = new Set(CASES.map((c) => c.id));
+  document.getElementById("glance").innerHTML = GLANCE.map(([id, t, sc, tv, yv]) => {
+    const label = shown.has(id) ? `<a href='#${id.toLowerCase()}'>${id}</a>` : id;
+    return `<tr><td class='id'>${label}</td><td class='t'>${esc(t)}</td><td class='scope muted'>${esc(sc)}</td><td class='tv' data-who='Tester'>${chip(tv)}</td><td class='yv' data-who='You'>${chip(yv)}</td></tr>`;
+  }).join("");
+
+  function seeCell(st) {
+    const lines = st.see.split("\n").map((l) => `<li><label><input type='checkbox'><span>${rich(l)}</span></label></li>`).join("");
+    let tbl = "";
+    if (st.table) {
+      const [head, ...rows] = st.table;
+      tbl = `<table class='mini'><thead><tr>${head.map((c) => `<th scope='col'>${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
+        rows.map((r) => `<tr>${r.map((c) => `<td>${figs(c)}</td>`).join("")}</tr>`).join("") + "</tbody></table>";
+    }
+    return `<span class='see-label'>You should see</span><ul class='checks'>${lines}</ul>${tbl}`;
+  }
+  const NOTE_TAG = { note: "Note", ask: "Rule on this", limit: "Known limit" };
+
+  document.getElementById("cases").innerHTML = CASES.map((c) => {
+    const digits = c.id.split("-")[1];
+    const steps = c.steps.map((st, i) =>
+      `<tr><td class='n'><span class='num'>${i + 1}</span></td><td class='do'>${rich(st.do)}</td><td class='see'>${seeCell(st)}</td></tr>`).join("");
+    const notes = c.notes.map((n) =>
+      `<tr class='noterow'><td colspan='3'><div class='note k-${n.k}'><span class='tag'>${NOTE_TAG[n.k]}</span><p>${figs(n.t)}</p></div></td></tr>`).join("");
+    return `<article class='sheet case' id='${c.id.toLowerCase()}' aria-labelledby='${c.id}-t'>
+      <header class='case-head'>
+        <div class='case-num' aria-hidden='true'><span class='kicker'>UAT</span><span class='digits'>${digits}</span></div>
+        <div><h2 id='${c.id}-t'><span class='sr'>${c.id}. </span>${esc(c.title)}</h2>
+          <div class='chips'><span class='chip'>${esc(c.scope)}</span><span class='chip'>${esc(c.status)}</span><span class='chip'>${c.steps.length} steps</span></div></div>
+      </header>
+      <table class='kv' style='margin-top:12px'><tbody>
+        <tr><th scope='row'>Scope</th><td>${esc(c.scope)} · ${esc(c.status)}</td></tr>
+        <tr><th scope='row'>The problem</th><td>${rich(c.problem)}</td></tr>
+        <tr><th scope='row'>Before you start</th><td>${rich(c.before)}</td></tr>
+      </tbody></table>
+      <table class='steps'><thead><tr><th scope='col'>Step</th><th scope='col' class='do'>Do this</th><th scope='col'>You should see</th></tr></thead>
+        <tbody>${steps}${notes}</tbody></table>
+      <div class='verdicts'><table>
+        <thead><tr><th scope='col'>Who</th><th scope='col'>Verdict</th><th scope='col'>In their words</th></tr></thead>
+        <tbody>
+          <tr><th scope='row'>Tester<small>pre-run, an agent</small></th><td>${ballot(c.tester.v)}</td><td><p class='words'>${figs(c.tester.w)}</p></td></tr>
+          <tr><th scope='row'>You<small>${c.you.d}</small></th><td>${ballot(c.you.v)}</td><td><p class='words quote'>“${esc(c.you.w)}”</p></td></tr>
+          <tr class='next'><th scope='row'>Next step</th><td colspan='2'>${figs(c.next)}</td></tr>
+        </tbody></table></div>
+    </article>`;
+  }).join("");
+</script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UAT sheet C. Run console</title>
+<style>
+  :root {
+    --rail: #111821;
+    --rail-2: #1b2430;
+    --rail-fg: #e7edf4;
+    --rail-muted: #9aa7b6;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --ink: #121a24;
+    --ink-2: #4a5768;
+    --rule: #d8dee6;
+    --accent: #0b5fc4;
+    --accent-bg: #eaf2fd;
+    --pass: #0f7a3c;  --pass-bg: #e5f4ea;  --pass-dot: #3fb36b;
+    --note: #1d4ed8;  --note-bg: #e8eefc;  --note-dot: #6b8cff;
+    --fail: #b42318;  --fail-bg: #fde9e7;  --fail-dot: #f0645a;
+    --block: #8a5300; --block-bg: #fdf1d8; --block-dot: #e2a93b;
+    --limit: #3d4a5c; --limit-bg: #eef1f5;
+    --about-bg: #0f1419; --about-fg: #e6edf3; --about-muted: #9da7b3;
+    --sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+    --r: 12px;
+    --rail-w: 300px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--sans); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  button { font: inherit; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .about { background: var(--about-bg); color: var(--about-fg); font: 13px/1.5 var(--mono); padding: 12px 16px; border-bottom: 3px dashed #3d4752; }
+  .about-in { display: grid; gap: 6px; max-width: 1200px; margin: 0 auto; }
+  .about b { color: #fff; }
+  .about p { margin: 0; color: var(--about-muted); }
+  .about nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .about nav a { color: var(--about-fg); border: 1px solid #3d4752; border-radius: 6px; padding: 6px 10px; text-decoration: none; }
+  .about nav a[aria-current] { background: #e6edf3; color: #0f1419; }
+
+  .app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); min-height: calc(100dvh - 120px); }
+
+  /* Rail */
+  .rail { background: var(--rail); color: var(--rail-fg); padding: 24px 14px; position: sticky; top: 0; align-self: start; max-height: 100dvh; overflow: auto; }
+  .kicker { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .rail .kicker { color: var(--rail-muted); padding: 0 10px; }
+  .rail-title { font-size: 24px; font-weight: 780; padding: 2px 10px 0; letter-spacing: -.01em; }
+  .rail-meta { color: var(--rail-muted); font-size: 14px; padding: 0 10px 16px; }
+  .caselist { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .ci { position: relative; width: 100%; display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; text-align: left; color: inherit; background: transparent; border: 0; border-radius: 10px; padding: 10px; min-height: 56px; cursor: pointer; }
+  .ci:hover { background: var(--rail-2); }
+  .ci[aria-current="true"] { background: var(--rail-2); box-shadow: inset 3px 0 0 #7fb2ff; }
+  .ci.off { cursor: default; opacity: 1; }
+  .ci.off .ci-title, .ci.off .ci-num { color: #7d8a9a; }
+  .ci-num { font-size: 26px; font-weight: 800; letter-spacing: -.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+  .ci-title { display: block; font-size: 14px; line-height: 1.3; }
+  .ci-v { display: flex; gap: 6px; margin-top: 6px; align-items: center; font-size: 12px; color: var(--rail-muted); }
+  .dot { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font: 800 11px/1 var(--sans); color: #0d1218; }
+  .d-pass { background: var(--pass-dot); }
+  .d-note { background: var(--note-dot); }
+  .d-fail { background: var(--fail-dot); }
+  .d-block { background: var(--block-dot); }
+  .rail-foot { margin-top: 18px; padding: 12px 10px 0; border-top: 1px solid #2a3442; color: var(--rail-muted); font-size: 13px; display: grid; gap: 4px; }
+  .rail-foot kbd { font-family: var(--mono); border: 1px solid #3a4655; border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; color: var(--rail-fg); }
+
+  /* Main */
+  .main { padding: 24px 32px 48px; max-width: 1080px; width: 100%; }
+  .legend { background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 12px 14px; }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+  .legend h2 { margin: 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+  .lg-item { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink-2); }
+  .lg-toggle { margin-left: auto; background: transparent; border: 1px solid var(--rule); border-radius: 8px; padding: 8px 12px; min-height: 40px; cursor: pointer; color: var(--accent); font-weight: 650; }
+  .legend-ex { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
+  .legend-ex[hidden] { display: none; }
+  .lgx { border-top: 3px solid currentColor; padding-top: 8px; font-size: 14px; }
+  .lgx p { margin: 0 0 6px; color: var(--ink); }
+  .lgx .ex { color: var(--ink-2); }
+  .lgx.v-pass { color: var(--pass); } .lgx.v-note { color: var(--note); } .lgx.v-fail { color: var(--fail); } .lgx.v-block { color: var(--block); }
+
+  .vchip { display: inline-flex; align-items: center; gap: 6px; font: 700 12px/1 var(--sans); letter-spacing: .06em; padding: 6px 9px; border-radius: 999px; border: 1.5px solid currentColor; white-space: nowrap; }
+  .vchip svg { width: 13px; height: 13px; fill: currentColor; }
+  .v-pass { color: var(--pass); background: var(--pass-bg); }
+  .v-note { color: var(--note); background: var(--note-bg); }
+  .v-fail { color: var(--fail); background: var(--fail-bg); }
+  .v-block { color: var(--block); background: var(--block-bg); border-style: dashed; }
+  .lgx.vchip, .lgx { background: none; }
+
+  .case { margin-top: 20px; }
+  .c-head { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: end; }
+  .c-num { display: grid; line-height: .85; }
+  .c-num span { font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--ink-2); padding-left: 3px; }
+  .c-num b { font-size: 88px; font-weight: 820; letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+  .c-head h1 { margin: 0 0 10px; font-size: 26px; line-height: 1.2; letter-spacing: -.01em; font-weight: 720; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--rule); }
+  .c-nav { display: flex; gap: 8px; }
+  .navbtn { min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); cursor: pointer; font-weight: 600; }
+  .navbtn:disabled { color: #8b96a5; cursor: default; }
+
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); margin-top: 16px; overflow: hidden; }
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  .kv th { width: 170px; text-align: left; vertical-align: top; padding: 12px 16px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); line-height: 1.9; background: #fafbfc; }
+  .kv td { padding: 12px 16px; vertical-align: top; }
+  .kv tr + tr th, .kv tr + tr td { border-top: 1px solid var(--rule); }
+
+  .progress { position: sticky; top: 0; z-index: 2; display: flex; gap: 12px; align-items: center; margin-top: 16px; padding: 10px 14px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); font-size: 14px; font-weight: 650; }
+  .bar { flex: 1; height: 8px; border-radius: 99px; background: #e3e8ee; overflow: hidden; }
+  .bar span { display: block; height: 100%; background: var(--pass); width: 0; transition: width .2s ease; }
+
+  .steps thead th { text-align: left; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); padding: 10px 12px; border-bottom: 1px solid var(--rule); background: #fafbfc; }
+  .steps th.c-done { width: 64px; text-align: center; }
+  .steps th.c-n { width: 44px; }
+  .steps th.c-do { width: 40%; }
+  .steps td { padding: 14px 12px; vertical-align: top; border-bottom: 1px solid var(--rule); }
+  .steps td.done { text-align: center; }
+  .steps td.n { font-weight: 800; font-size: 18px; font-variant-numeric: tabular-nums; }
+  tr.step { cursor: pointer; }
+  tr.step input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--pass); cursor: pointer; }
+  tr.step.is-current { background: var(--accent-bg); box-shadow: inset 4px 0 0 var(--accent); }
+  tr.step.is-done td.do, tr.step.is-done td.see { color: var(--ink-2); }
+  tr.step.is-done td.n { color: var(--pass); }
+  .see-lines { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+  .see-lines li { padding-left: 14px; position: relative; }
+  .see-lines li::before { content: ""; position: absolute; left: 0; top: .65em; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-2); }
+  .see-label { display: none; }
+
+  .fig { font-weight: 680; white-space: nowrap; }
+  .ui { background: #f1f4f8; border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; }
+  .ctl { font-weight: 680; border: 1px solid #a3adba; border-radius: 5px; padding: 0 5px; background: #fff; white-space: nowrap; }
+  kbd { font-family: var(--mono); font-size: .88em; }
+  kbd.typed { background: #e9eef5; border-radius: 4px; padding: 1px 6px; }
+  kbd.key { border: 1px solid #a3adba; border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: #fff; }
+
+  .mini { margin-top: 8px; width: auto; background: #fff; border: 1px solid var(--rule); border-radius: 8px; }
+  .mini th, .mini td { padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+  .mini th { font-size: 12px; color: var(--ink-2); font-weight: 650; }
+  .mini td:first-child, .mini th:first-child { text-align: left; font-weight: 650; }
+  .mini tr:last-child td { border-bottom: 0; border-top: 2px solid var(--ink); font-weight: 700; }
+
+  tr.noterow td { padding: 12px; }
+  .note { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 12px 14px; border-radius: 10px; border-left: 4px solid currentColor; }
+  .note .tag { font: 750 12px/1.6 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+  .note p { margin: 0; color: var(--ink); }
+  .k-note { color: var(--note); background: var(--note-bg); }
+  .k-ask { color: var(--block); background: var(--block-bg); }
+  .k-limit { color: var(--limit); background: var(--limit-bg); }
+
+  .vp { display: grid; grid-template-columns: 1fr 1.4fr; gap: 0; }
+  .vp > div { padding: 16px; }
+  .vp-tester { border-right: 1px solid var(--rule); background: #fafbfc; }
+  .vp h2 { margin: 0 0 10px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+  .vp-tester p { margin: 10px 0 0; font-size: 15px; }
+  .seg { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
+  .seg label { position: relative; }
+  .seg input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  .seg .opt { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1.5px solid var(--rule); font-weight: 750; font-size: 13px; letter-spacing: .05em; color: var(--ink-2); background: #fff; }
+  .seg .opt svg { width: 14px; height: 14px; fill: currentColor; }
+  .seg input:focus-visible + .opt { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .seg input:checked + .opt.o-pass { color: var(--pass); background: var(--pass-bg); border-color: var(--pass); }
+  .seg input:checked + .opt.o-note { color: var(--note); background: var(--note-bg); border-color: var(--note); }
+  .seg input:checked + .opt.o-fail { color: var(--fail); background: var(--fail-bg); border-color: var(--fail); }
+  .seg input:checked + .opt.o-block { color: var(--block); background: var(--block-bg); border-color: var(--block); border-style: dashed; }
+  .vp-you label.words { display: grid; gap: 6px; margin-top: 14px; font-size: 13px; font-weight: 650; color: var(--ink-2); }
+  .vp-you textarea { font: 15px/1.5 var(--sans); color: var(--ink); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; min-height: 96px; resize: vertical; width: 100%; }
+  .vp-meta { margin-top: 8px; font-size: 13px; color: var(--ink-2); }
+  .vp-next { grid-column: 1 / -1; border-top: 1px solid var(--rule); background: #fafbfc; }
+  .vp-next p { margin: 0; }
+
+  @media (max-width: 980px) {
+    :root { --rail-w: 240px; }
+    .legend-ex { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 760px) {
+    .app { grid-template-columns: minmax(0, 1fr); }
+    .rail { position: static; max-height: none; padding: 14px 0 10px; min-width: 0; }
+    .rail .kicker, .rail-title, .rail-meta { padding-left: 16px; padding-right: 16px; }
+    .rail-meta { padding-bottom: 10px; }
+    .caselist { display: flex; overflow-x: auto; gap: 6px; padding: 0 16px 6px; scrollbar-width: thin; }
+    .caselist li { flex: none; }
+    .ci { grid-template-columns: auto; width: auto; min-width: 64px; gap: 4px; justify-items: center; padding: 8px 10px; }
+    .ci-title { display: none; }
+    .ci-v { margin-top: 0; }
+    .ci-v .ci-off { display: none; }
+    .ci[aria-current="true"] { box-shadow: inset 0 -3px 0 #7fb2ff; }
+    .rail-foot { display: none; }
+    .main { padding: 16px 16px 40px; }
+    .legend-ex { grid-template-columns: 1fr; }
+    .lg-toggle { margin-left: 0; }
+    .c-head { grid-template-columns: auto 1fr; gap: 14px; }
+    .c-num b { font-size: 64px; }
+    .c-head h1 { font-size: 20px; }
+    .c-nav { grid-column: 1 / -1; }
+    .navbtn { flex: 1; }
+    .kv th, .kv td { display: block; width: auto; }
+    .kv th { padding-bottom: 0; background: none; }
+    .kv tr + tr td { border-top: 0; }
+    .steps thead { display: none; }
+    .steps, .steps tbody { display: block; }
+    .steps tbody tr.step { display: grid; grid-template-columns: 40px 28px minmax(0, 1fr); border-bottom: 1px solid var(--rule); padding: 12px 10px 12px 0; }
+    .steps td { border: 0; padding: 0 6px; }
+    .steps td.see { grid-column: 2 / -1; margin-top: 8px; padding: 10px; background: #f6f8fb; border-radius: 8px; }
+    .mini { font-size: 13px; }
+    .mini td:first-child { white-space: normal; }
+    .see-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 4px; }
+    tr.noterow { display: block; }
+    tr.noterow td { display: block; padding: 10px; }
+    .note { grid-template-columns: 1fr; gap: 4px; }
+    .vp { grid-template-columns: 1fr; }
+    .vp-tester { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .mini th, .mini td { padding: 5px 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="about" role="note" aria-label="About this proposal">
+  <div class="about-in">
+    <div><b>About this proposal</b> (not part of the layout) · <b>C of 3 · Run console</b></div>
+    <p>One case fills the screen at a time, like a test tool. You tick each step as you do it, the next step lights up, and the case list on the left shows both verdicts for every case. It bets on focus while you test, with nothing else on screen to lose your place in. It costs the overview. You cannot skim or print the whole sheet at once, and it is an HTML page beside the Markdown record. Try ticking steps, the case list and the verdict buttons. Nothing is saved.</p>
+    <nav aria-label="Proposals"><a href="a.html">A · Markdown tables</a><a href="b.html">B · Test sheet</a><a href="c.html" aria-current="page">C · Run console</a></nav>
+  </div>
+</div>
+
+<div class="app">
+  <aside class="rail" aria-label="Cases">
+    <div class="kicker">UAT · sitting 1 of 1</div>
+    <div class="rail-title">Split 1.0.0</div>
+    <div class="rail-meta">8 cases · about 20 minutes</div>
+    <ol class="caselist" id="caselist"></ol>
+    <div class="rail-foot">
+      <span><kbd>[</kbd> <kbd>]</kbd> previous and next case</span>
+      <span><kbd>Space</kbd> tick the step in focus</span>
+      <span><b style="color:var(--rail-fg)">T</b> tester · <b style="color:var(--rail-fg)">Y</b> you</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <section class="legend" aria-labelledby="lg-h">
+      <div class="legend-row" id="legend-row">
+        <h2 id="lg-h">Verdicts</h2>
+        <button class="lg-toggle" id="lg-toggle" aria-expanded="false" aria-controls="lg-ex">Show what each means</button>
+      </div>
+      <div class="legend-ex" id="lg-ex" hidden></div>
+    </section>
+    <article class="case" id="case" aria-live="polite"></article>
+  </main>
+</div>
+
+<script>
+  const ICON = {
+    check: "M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z",
+    x: "M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
+  };
+  const svg = (name) => `<svg viewBox='0 0 256 256' aria-hidden='true' focusable='false'><path d='${ICON[name]}'/></svg>`;
+
+  const LEGEND = [
+    { v: "PASS", short: "it does what the case says", mean: "It does what the case says, at every step.", ex: "UAT-02. The shares read RM 38.87, RM 38.87 and RM 38.86, exactly as listed." },
+    { v: "PASS + NOTE", short: "works, but change something later", mean: "It works, and you want something changed. The note becomes a finding for a later version. It does not fail the case.", ex: "UAT-03. “Pass but i prefer if it cannot be evenly split, the number in summary should show the extras” became scope S1 of 1.1.0." },
+    { v: "FAIL", short: "the screen differs from the sheet", mean: "Something on screen differs from the You should see column. Name the step and what you saw.", ex: "Step 10. Ben's charges read RM 2.25, the sheet says RM 2.24." },
+    { v: "BLOCKED", short: "you could not run it", mean: "You could not run it. Say why. The control was not where the sheet said, the start could not be reached, or the result was not something you could see.", ex: "Step 2 says click Add item, but there is no button with that name." }
+  ];
+
+  const ALL = [
+    ["UAT-01", "I can list the people at the table", "PASS", "PASS"],
+    ["UAT-02", "An even split gives everyone the same share, to the cent", "PASS", "PASS"],
+    ["UAT-03", "The shares always add back up to the total", "PASS", "PASS + NOTE"],
+    ["UAT-04", "I can change or switch off the charges", "PASS", "PASS"],
+    ["UAT-05", "One tap copies a summary I can paste into the group chat", "PASS + NOTE", "PASS"],
+    ["UAT-06", "I can split by item, and a shared item is split between the people who had it", "PASS", "PASS + NOTE"],
+    ["UAT-07", "My bill is still there when I come back", "PASS", "PASS"],
+    ["UAT-08", "I can start a new bill, but only on purpose", "PASS", "PASS"]
+  ];
+
+  const CASES = [
+    {
+      id: "UAT-02", title: "An even split gives everyone the same share, to the cent", scope: "C2 Even split", status: "Shipped",
+      problem: "You asked to type the bill subtotal once and see what each person owes, with the service charge and SST added the way a Malaysian receipt adds them.",
+      before: "UAT-01 done. Aisyah, Ben and Chen are listed and *Even* is chosen.",
+      steps: [
+        { do: "Click the *Subtotal* box. It has RM at its left.", see: "The cursor is in the Subtotal box." },
+        { do: "Type `100.00`.", see: "100.00 is in the box." },
+        { do: "Read the *Bill summary* on the right (below the inputs on a narrow window).", see: 'Subtotal RM 100.00\nService charge RM 10.00, with "10% of RM 100.00" under it\nSST RM 6.60, with "6% of RM 110.00" under it\nTotal RM 116.60' },
+        { do: "Read the *Shares*.", see: 'Aisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nA green tick and "Adds up to" RM 116.60 under them' }
+      ],
+      notes: [{ k: "note", t: "SST is charged on the subtotal plus the service charge, so it reads 6% of RM 110.00, not of RM 100.00." }],
+      tester: { v: "PASS", w: "Subtotal RM 100.00, Service charge RM 10.00 “10% of RM 100.00”, SST RM 6.60 “6% of RM 110.00”, Total RM 116.60, shares 38.87, 38.87, 38.86" },
+      you: { v: "PASS", w: "Pass", d: "2026-10-10" },
+      next: "None"
+    },
+    {
+      id: "UAT-06", title: "I can split by item, and a shared item is split between the people who had it", scope: "C3 Split by item", status: "Shipped, one accepted limit",
+      problem: "You asked for the case where mental maths fails. People ordered different things. You list each item with its price and tap who had it. The charges are then shared in proportion to what each person ate. The shares only show once every item has someone, because a part split would not add up to the receipt.",
+      before: "UAT-05 done. Aisyah, Ben and Chen.",
+      steps: [
+        { do: "Click *By item*, next to Even.", see: "By item is chosen. There are no items yet, only *Add item*." },
+        { do: "Click *Add item*.", see: "A new item appears with the cursor in its name box." },
+        { do: "Type `Nasi lemak ayam`, press [Tab], type `15.90`.", see: "The item reads Nasi lemak ayam, RM 15.90\nThe names Aisyah, Ben and Chen show under it, none of them dark" },
+        { do: "Read the *Shares* area.", see: '"1 item still needs a person. Tap who had it to see the shares."' },
+        { do: "Under that item, click *Aisyah*.", see: "Aisyah turns dark\nThe shares table appears. Its figures change as you add items, so read them at step 10" },
+        { do: "Click *Add item*, type `Char kuey teow`, press [Tab], type `13.50`, then click *Ben* under it.", see: "Ben turns dark under Char kuey teow." },
+        { do: "Click *Add item*, type `Mee goreng mamak`, press [Tab], type `12.00`, then click *Chen* under it.", see: "Chen turns dark under Mee goreng mamak." },
+        { do: "Click *Add item*, type `Satay, 10 sticks`, press [Tab], type `18.00`, then click *Aisyah* and *Chen* under it.", see: "Aisyah and Chen both turn dark under Satay, 10 sticks." },
+        { do: "Read the *Bill summary*.", see: 'Subtotal RM 59.40\nService charge RM 5.94, with "10% of RM 59.40" under it\nSST RM 3.92, with "6% of RM 65.34" under it\nTotal RM 69.26' },
+        { do: "Read the *shares table*.", see: 'Column heads "Items", "+ Charges" and "= Share". The names column has no head\nEvery figure in this table',
+          table: [["", "Items", "+ Charges", "= Share"], ["Aisyah", "RM 24.90", "RM 4.14", "RM 29.04"], ["Ben", "RM 13.50", "RM 2.24", "RM 15.74"], ["Chen", "RM 21.00", "RM 3.48", "RM 24.48"], ["Adds up to", "RM 59.40", "RM 9.86", "RM 69.26"]] }
+      ],
+      notes: [
+        { k: "note", t: "The satay's split is not printed on its own. Check it from the Items column. Aisyah's RM 24.90 is RM 15.90 + RM 9.00, and Chen's RM 21.00 is RM 12.00 + RM 9.00, half of the satay's RM 18.00 each." },
+        { k: "note", t: "The order of the list decides who gets a spare sen. With Ben above Aisyah the same bill reads Ben RM 2.25 and Aisyah RM 4.13." },
+        { k: "limit", t: "Already ruled by you. On a phone 360 px wide, a by-item bill whose items pass about RM 650 makes the shares table scroll sideways. You chose to fix it in 1.1.0 (2026-10-09). The bill in this case fits." }
+      ],
+      tester: { v: "PASS", w: "The step 4 message exact, tapped names turn dark, the bill summary and every cell of the table as listed. The table fits at 390 and 360 px." },
+      you: { v: "PASS + NOTE", w: "Pass. You did not include what the service charge and sst. Be as accurate and precise as possible when doing test cases. Also the shares number is correct but the charges for ben is 2.25 and aiyah is 4.13 when in test cases ben is 2.24 and aisyah is 4.14 ( check if this is a bug or a simple logic mistake)", d: "2026-10-10" },
+      next: "Script rule taken (findings UAT-F2). The RM 4.13 and RM 2.25 came from Ben being above Aisyah, not a bug (findings UAT-F3, your words)."
+    },
+    {
+      id: "UAT-08", title: "I can start a new bill, but only on purpose", scope: "C8 New bill", status: "Shipped",
+      problem: "You asked for a way to clear everything for the next meal, behind a question so one slip cannot wipe a bill.",
+      before: "UAT-07 done.",
+      steps: [
+        { do: "Click *New bill*, top right.", see: 'A box opens over the dimmed page\n"Start a new bill?"\n"This clears the people, items and amounts." under it\nTwo buttons, *Start new bill* and *Cancel*' },
+        { do: "Click *Cancel*.", see: "The box closes. The bill is unchanged." },
+        { do: "Click *New bill* again.", see: "The same box opens." },
+        { do: "Click the dimmed page outside the box, near the top-left corner.", see: "The box closes. The bill is unchanged." },
+        { do: "Click *New bill* again.", see: "The same box opens." },
+        { do: "Click *Start new bill*.", see: 'The starting state\n"Person 1" and "Person 2", Even chosen\nAn empty Subtotal, Service charge 10, SST 6\nShares reads "Enter the subtotal to see the shares."' },
+        { do: "Click *By item*.", see: 'No items, only *Add item*\nShares reads "Add an item to see the shares."' }
+      ],
+      notes: [{ k: "ask", t: "The approved design said a click outside the box does nothing. While you delegated the run, we made it act like Cancel (step 4), so every way out closes the box and nothing is cleared. Keep it (our recommendation) or make an outside click do nothing." }],
+      tester: { v: "PASS", w: "The question and both buttons as written. Cancel and a click outside the box both closed it with the saved bill unchanged. Start new bill gave the starting state, and By item showed no items with “Add an item to see the shares.”" },
+      you: { v: "PASS", w: "Pass", d: "2026-10-10" },
+      next: "None. The outside click stays like Cancel (your H-01 ruling, “i am happy with the choices made.”)."
+    }
+  ];
+
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  function rich(s) {
+    let h = esc(s);
+    h = h.replace(/`([^`]+)`/g, "<kbd class='typed'>$1</kbd>");
+    h = h.replace(/\[([A-Za-z+]+)\]/g, "<kbd class='key'>$1</kbd>");
+    h = h.replace(/\*([^*]+)\*/g, "<b class='ctl'>$1</b>");
+    h = h.replace(/"([^"]+)"/g, "<span class='ui'>“$1”</span>");
+    h = h.replace(/RM [\d,]+\.\d{2}/g, (m) => "<span class='fig'>" + m + "</span>");
+    return h;
+  }
+  const figs = (s) => esc(s).replace(/RM [\d,]+\.\d{2}/g, (m) => "<span class='fig'>" + m + "</span>");
+
+  const VKEY = { "PASS": "pass", "PASS + NOTE": "note", "FAIL": "fail", "BLOCKED": "block" };
+  const VICON = { "PASS": "check", "PASS + NOTE": "check", "FAIL": "x", "BLOCKED": null };
+  const chip = (v) => `<span class='vchip v-${VKEY[v]}'>${VICON[v] ? svg(VICON[v]) : ""}${v}</span>`;
+  const dot = (letter, v, who) => `<span class='dot d-${VKEY[v]}' title='${who} ${v}'>${letter}</span><span class='sr'>${who} ${v}. </span>`;
+
+  // Legend
+  document.getElementById("legend-row").insertAdjacentHTML("beforeend",
+    LEGEND.map((l) => `<span class='lg-item'>${chip(l.v)} ${esc(l.short)}</span>`).join(""));
+  const lgToggle = document.getElementById("lg-toggle");
+  const lgRow = document.getElementById("legend-row");
+  lgRow.appendChild(lgToggle);
+  const lgEx = document.getElementById("lg-ex");
+  lgEx.innerHTML = LEGEND.map((l) =>
+    `<div class='lgx v-${VKEY[l.v]}'><p><b>${l.v}</b>. ${esc(l.mean)}</p><p class='ex'><b>Example.</b> ${figs(l.ex)}</p></div>`).join("");
+  lgToggle.addEventListener("click", () => {
+    const open = lgToggle.getAttribute("aria-expanded") === "true";
+    lgToggle.setAttribute("aria-expanded", String(!open));
+    lgToggle.textContent = open ? "Show what each means" : "Hide what each means";
+    lgEx.hidden = open;
+  });
+
+  // State. Nothing is saved.
+  const byId = Object.fromEntries(CASES.map((c) => [c.id, c]));
+  const state = Object.fromEntries(CASES.map((c) => [c.id, { done: new Set(), verdict: c.you.v, words: c.you.w }]));
+  let current = "UAT-06";
+
+  function renderList() {
+    document.getElementById("caselist").innerHTML = ALL.map(([id, title, tv, yv]) => {
+      const inSample = !!byId[id];
+      const yourV = inSample ? state[id].verdict : yv;
+      const cur = id === current ? " aria-current='true'" : "";
+      const off = inSample ? "" : " off";
+      const dis = inSample ? "" : " aria-disabled='true'";
+      return `<li><button class='ci${off}' data-id='${id}'${cur}${dis}><span class='ci-num'>${id.split("-")[1]}</span>
+        <span class='ci-body'><span class='ci-title'>${esc(title)}</span>
+        <span class='ci-v'>${dot("T", tv, "Tester")}${dot("Y", yourV, "You")}${inSample ? "" : "<span class='ci-off'>not in this sample</span>"}</span></span></button></li>`;
+    }).join("");
+  }
+
+  function seeCell(st) {
+    const lines = st.see.split("\n").map((l) => `<li>${rich(l)}</li>`).join("");
+    let tbl = "";
+    if (st.table) {
+      const [head, ...rows] = st.table;
+      tbl = `<table class='mini'><thead><tr>${head.map((c) => `<th scope='col'>${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
+        rows.map((r) => `<tr>${r.map((c) => `<td>${figs(c)}</td>`).join("")}</tr>`).join("") + "</tbody></table>";
+    }
+    return `<span class='see-label'>You should see</span><ul class='see-lines'>${lines}</ul>${tbl}`;
+  }
+  const NOTE_TAG = { note: "Note", ask: "Rule on this", limit: "Known limit" };
+
+  function renderCase() {
+    const c = byId[current];
+    const s = state[current];
+    const order = CASES.map((x) => x.id);
+    const idx = order.indexOf(current);
+    const firstOpen = c.steps.findIndex((_, i) => !s.done.has(i));
+    const steps = c.steps.map((st, i) => {
+      const done = s.done.has(i);
+      const cls = ["step", done ? "is-done" : "", i === firstOpen ? "is-current" : ""].join(" ").trim();
+      return `<tr class='${cls}' data-s='${i}'>
+        <td class='done'><input type='checkbox' ${done ? "checked" : ""} aria-label='Step ${i + 1} done'></td>
+        <td class='n'>${i + 1}</td><td class='do'>${rich(st.do)}</td><td class='see'>${seeCell(st)}</td></tr>`;
+    }).join("");
+    const notes = c.notes.map((n) =>
+      `<tr class='noterow'><td colspan='4'><div class='note k-${n.k}'><span class='tag'>${NOTE_TAG[n.k]}</span><p>${figs(n.t)}</p></div></td></tr>`).join("");
+    const opts = Object.keys(VKEY).map((v) =>
+      `<label><input type='radio' name='verdict' value='${v}' ${s.verdict === v ? "checked" : ""}><span class='opt o-${VKEY[v]}'>${VICON[v] ? svg(VICON[v]) : ""}${v}</span></label>`).join("");
+    const n = s.done.size, total = c.steps.length;
+
+    document.getElementById("case").innerHTML = `
+      <header class='c-head'>
+        <div class='c-num' aria-hidden='true'><span>UAT</span><b>${c.id.split("-")[1]}</b></div>
+        <div><h1><span class='sr'>${c.id}. </span>${esc(c.title)}</h1>
+          <div class='chips'><span class='chip'>${esc(c.scope)}</span><span class='chip'>${esc(c.status)}</span><span class='chip'>${total} steps</span></div></div>
+        <div class='c-nav'>
+          <button class='navbtn' data-go='-1' ${idx === 0 ? "disabled" : ""}>Previous case</button>
+          <button class='navbtn' data-go='1' ${idx === order.length - 1 ? "disabled" : ""}>Next case</button>
+        </div>
+      </header>
+      <div class='card'><table class='kv'><tbody>
+        <tr><th scope='row'>Scope</th><td>${esc(c.scope)} · ${esc(c.status)}</td></tr>
+        <tr><th scope='row'>The problem</th><td>${rich(c.problem)}</td></tr>
+        <tr><th scope='row'>Before you start</th><td>${rich(c.before)}</td></tr>
+      </tbody></table></div>
+      <div class='progress' role='status'><span>${n} of ${total} steps done</span><div class='bar' aria-hidden='true'><span style='width:${Math.round((n / total) * 100)}%'></span></div></div>
+      <div class='card'><table class='steps'>
+        <thead><tr><th scope='col' class='c-done'>Done</th><th scope='col' class='c-n'>#</th><th scope='col' class='c-do'>Do this</th><th scope='col'>You should see</th></tr></thead>
+        <tbody>${steps}${notes}</tbody></table></div>
+      <section class='card vp' aria-label='Verdicts'>
+        <div class='vp-tester'><h2>Tester said, pre-run</h2>${chip(c.tester.v)}<p>${figs(c.tester.w)}</p></div>
+        <div class='vp-you'>
+          <fieldset class='seg'><legend class='sr'>Your verdict</legend><h2 style='width:100%'>Your verdict</h2>${opts}</fieldset>
+          <label class='words'>In your words<textarea id='words'>${esc(s.words)}</textarea></label>
+          <div class='vp-meta'>Recorded word for word on ${c.you.d}.</div>
+        </div>
+        <div class='vp-next'><h2>Next step, agreed with you</h2><p>${figs(c.next)}</p></div>
+      </section>`;
+  }
+
+  function render() { renderList(); renderCase(); }
+
+  function go(delta) {
+    const order = CASES.map((x) => x.id);
+    const i = order.indexOf(current) + delta;
+    if (i < 0 || i >= order.length) return;
+    current = order[i];
+    render();
+    document.getElementById("case").scrollIntoView({ block: "start" });
+  }
+
+  document.getElementById("caselist").addEventListener("click", (e) => {
+    const b = e.target.closest(".ci");
+    if (!b || !byId[b.dataset.id]) return;
+    current = b.dataset.id;
+    render();
+  });
+
+  const caseEl = document.getElementById("case");
+  caseEl.addEventListener("click", (e) => {
+    const nav = e.target.closest("[data-go]");
+    if (nav) { go(Number(nav.dataset.go)); return; }
+    const row = e.target.closest("tr.step");
+    if (!row) return;
+    const i = Number(row.dataset.s);
+    const s = state[current];
+    if (s.done.has(i)) s.done.delete(i); else s.done.add(i);
+    renderCase();
+    const box = caseEl.querySelector(`tr.step[data-s='${i}'] input`);
+    if (box) box.focus({ preventScroll: true });
+  });
+  caseEl.addEventListener("keydown", (e) => {
+    if (e.target.matches("tr.step input") && e.key === " ") {
+      e.preventDefault();
+      e.target.closest("tr.step").click();
+    }
+  });
+  caseEl.addEventListener("change", (e) => {
+    if (e.target.name === "verdict") { state[current].verdict = e.target.value; renderList(); }
+  });
+  caseEl.addEventListener("input", (e) => {
+    if (e.target.id === "words") state[current].words = e.target.value;
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.target.matches("textarea, input[type=text]")) return;
+    if (e.key === "]") go(1);
+    if (e.key === "[") go(-1);
+  });
+
+  render();
+</script>
+</body>
+</html>
