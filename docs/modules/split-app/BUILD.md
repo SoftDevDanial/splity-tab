@@ -9,8 +9,9 @@ Task 10 at about 40% of the context, as the role rules require. A resumed run re
 owner had stopped (kept with edits, see judgment call 12), then built Tasks 11, 12 and 13. The functional suite, the
 fidelity gate and the live gate were green at that point. The finders (QA, code review, security), their solvers, the
 fidelity gate and the official live gate have all run since, and the module closed at `22ac9af` (see `docs/progress/STATE.md`).
-A regression pass over the security round's delta followed: its findings and its solver are in
-`findings/regression-code-review.md`, and it added judgment call 20.
+A regression pass over the security round's delta followed: its findings, its solver rounds and its re-check are in
+`findings/regression-code-review.md`. It added judgment call 20 and corrected call 18 twice (RG-CR-01, then RG-CR-08: the Remove
+handlers ignore a repeat press themselves again).
 
 ## Phase skills (docs/phase-skills.md, design row)
 `taste-skill` (entry skill `taste-skill`) and `frontend-design` were read from the plugin cache and applied.
@@ -43,10 +44,15 @@ arithmetic), plain verbs in copy. What did not apply: palette, type, layout, mot
 Each task's box in `spec.md` is ticked in its own commit.
 
 ## Test counts
-Current, after the regression solver (2026-10-09, RG-CR-01 and RG-CR-02): browser 421 passed (about 120 s), unit 275 passed,
+Current, after the second regression solver round (2026-10-10, RG-CR-08): browser 427 passed (about 114 s), unit 275 passed,
+fidelity 10 of 10 pairs at 0 mismatching pixels (`qa/fidelity/20261010-123651/`), live gate 7 of 7 (run into the scratch folder
+`qa/regression-solver-2/20261010-122502/live-gate-check/`). The browser count is the 312 of the security round, plus 108 Add
+person and Add item rows (RG-CR-01), 1 word-select test (RG-CR-02) and 6 rows for a repeat press on a "who had it" chip under a
+price error (RG-CR-08). The runs below are history, each one the run it names.
+
+After the first regression solver (2026-10-09, RG-CR-01 and RG-CR-02): browser 421 passed (about 120 s), unit 275 passed,
 fidelity 10 of 10 pairs at 0 mismatching pixels (`qa/fidelity/20261009-225850/`), live gate 7 of 7 (run into the scratch folder
-`qa/regression-solver/20261009-222856/live-gate-check/`). The browser count is the 312 of the security round, plus 108 Add
-person and Add item rows (RG-CR-01) and 1 word-select test (RG-CR-02). The runs below are history, each one the run it names.
+`qa/regression-solver/20261009-222856/live-gate-check/`).
 
 After Task 13:
 - `python -m pytest tests/browser -q`: 205 passed, 0 failed (about 80 s). 149 after Task 10, plus 14 for RD-3, 1 for RD-2,
@@ -83,15 +89,17 @@ prints the PID and port.
   build or read the flags). `typedInto`, `leftField` and `forgetPrice` update the flags object they are given and return
   nothing. Node unit tests in `tests/errors.test.js`.
 - `src/ui/dom.js`: `el`, `block` (the section and heading scaffold of the four input blocks), `setAttr`, `setText`,
-  `setValue`, `swallowRepeatClicks`, `rowsFor`, `reconcileChildren`. R33 rests on `reconcileChildren`, which never
+  `setValue`, `isRepeatClick`, `swallowRepeatClicks`, `rowsFor`, `reconcileChildren`. R33 rests on `reconcileChildren`, which never
   re-inserts a node that is already in place (re-inserting a focused input drops its focus). The setters skip equal
-  writes, which is belt and braces. `swallowRepeatClicks()` is the one guard against a repeat press (it moved here from
+  writes, which is belt and braces. `swallowRepeatClicks()` is the guard against a repeat press (it moved here from
   `dialog.js` for SEC-01, 2026-10-09). It adds capture listeners for `mousedown` and `click` on the document that cancel
   every press with a click count above 1 (a double click, triple click or double tap) and remove themselves at the first
-  press that is not a repeat, so a click or key press of its own is never held back. No timer. The count test is the
-  file-private `isRepeatClick`. Armed by the Remove click of a person or an item (SEC-01, R7, R12), by the click that
-  closes the dialog (CR-01, R30), by the click that opens it (I-1, R29) and by the Add person and Add item clicks
-  (RG-CR-01, R6, R12). It protects only what arms it, so a new control that moves rows under the pointer must arm it.
+  press that is not a repeat, so a click or key press of its own is never held back. No timer. The count test is
+  `isRepeatClick`, exported since RG-CR-08 because the Remove handlers of `people.js` and `items.js` use it too. Armed by the
+  Remove click of a person or an item (SEC-01, R7, R12), by the click that closes the dialog (CR-01, R30), by the click that
+  opens it (I-1, R29) and by the Add person and Add item clicks (RG-CR-01, R6, R12). It protects only what arms it, and a
+  layout move that is not a click cannot arm it (the error line a price field shows when it is left, RG-CR-08). So a Remove
+  also ignores a repeat press itself, and the guard covers everything else, Add person included, which has no count test.
 - `src/ui/icons.js`: `icon(name)`, the only `createElementNS` call site (CG-10).
 - `src/ui/field-leave.js`: `onFieldLeave(input, handler)`, the one blur gesture of every field whose error shows on blur
   (Subtotal, prices, both rates; RD-3). A blur caused by a press runs the handler when the press ends (`mouseup`,
@@ -103,7 +111,8 @@ prints the PID and port.
   returns `{ el, update(...) }` (plus `focusName`, `focusAdd`). They write DOM and report gestures, they never change the bill.
   `createDialog` (`dialog.js`) calls `swallowRepeatClicks` (from `dom.js`) when a click closes the dialog (CR-01) and when the
   click on New bill opens it (I-1), and remembers where a press began, so only a press that began and ended on the backdrop
-  is a backdrop click (WR-06). The Remove handlers and the Add handlers of `people.js` and `items.js` call it too (SEC-01, RG-CR-01). `panel.js` exports
+  is a backdrop click (WR-06). The Remove handlers and the Add handlers of `people.js` and `items.js` call it too (SEC-01, RG-CR-01), and
+  the Remove handlers also skip a click whose count is above 1 themselves with `isRepeatClick` (RG-CR-08). `panel.js` exports
   `hasShares`.
 - `index.html` holds the static shell (header, `.inputs`, `.tape`, the closed `dialog`). Blocks are built by JS.
 - `tests/browser/rig.py`: `StaticServer`, `new_context` (the only place a context is made, refuses `permissions`
@@ -174,10 +183,11 @@ Added by the resumed run of 2026-10-09:
     `clipboard-s*.txt` are written without a final line end; git may show LF to CRLF warnings on them (`core.autocrlf`).
 
 Added by the security solver of 2026-10-09 (SEC-01, I-1):
-18. **`swallowRepeatClicks` moved to `src/ui/dom.js` and the Remove handlers use it in place of their own count test (SEC-01,
-    ruled by ORCH).** `people.js` and `items.js` used to ignore a click whose count was above 1 (WR-01). They now arm the shared
-    guard and act on every click that reaches them. What the old test covered and the guard does not is a repeat press that lands
-    on a Remove button although no Remove click armed the guard first. The one candidate is a double click on "Dismiss note",
+18. **`swallowRepeatClicks` moved to `src/ui/dom.js` and the Remove handlers used it in place of their own count test (SEC-01,
+    ruled by ORCH). The count test is back since RG-CR-08, see the last correction below.** `people.js` and `items.js` used to
+    ignore a click whose count was above 1 (WR-01). SEC-01 made them arm the shared guard and act on every click that reached
+    them. What the old test covered and the guard does not is a repeat press that lands on a Remove button although no Remove
+    click armed the guard first. The one candidate the solver found was a double click on "Dismiss note",
     because the note leaves the layout and the rows move up. Measured by the solver (probes `p1_dismiss_note.py` and
     `p2_dismiss_scan.py` in `qa/security-solver/20261009-205629/probes/`): over 291 viewports (widths 320 to 1280, three heights)
     and the three standard sizes with mouse double click, triple click and touch double tap, what is under the pointer afterwards
@@ -185,9 +195,27 @@ Added by the security solver of 2026-10-09 (SEC-01, I-1):
     "no path is left open" was wrong.** A repeat press on "Add person" lands on the Remove button of the row it has just added
     (the new row takes the button's grid cell, so that button sits under the right 44 px of "Add person", at every width the
     finder tried, 320 to 1280), and it removed the blank row again. Add person and Add item arm the guard now (Add item has no
-    such overlap and arms it for the sake of one rule). So the guard is armed by Remove, Add person, Add item and the dialog,
-    and "Dismiss note" is the measured exception. The guard protects only what arms it: a new control that moves rows under the
-    pointer must arm it. `isRepeatClick` is private to `dom.js` now.
+    such overlap and arms it for the sake of one rule). So the guard was armed by Remove, Add person, Add item and the dialog,
+    and "Dismiss note" was the measured exception. The guard protects only what arms it. `isRepeatClick` was private to
+    `dom.js` then.
+    **Corrected 2026-10-10 (regression RG-CR-08): "Dismiss note" was not the only candidate, and "a new control that moves rows
+    must arm it" cannot be done for a layout move that is not a click.** With an invalid price still in a focused price field,
+    the first press of a double click, triple click or double tap on a "who had it" chip leaves the field. RD-3 holds that blur
+    until `mouseup`, the error line appears in the item's own line and pushes the chips down by a line, and the click on the chip
+    toggles the person. The repeat press then lands on what was a line higher: at the right end of the first chip row that is
+    the item's own Remove. A chip arms nothing, so no guard was outstanding, and the whole item went (name, price, who) with no
+    undo. Measured by the re-check (`probe_toggle_remove.py`, `qa/regression-recheck/20261009-230750/`): 240 configurations (3
+    name sets, 3 to 12 people, 8 widths from 360 to 1280), 96 of them lay a chip point over its own item's Remove, and the real
+    double click removed an item in 96 of 96 on `a6cbbf8` and in 0 of 96 on `61c3cd3`. The same probe, unchanged, on the fixed
+    tree (`qa/regression-solver-2/20261010-122502/`): 96 of 240 layouts, 0 of 96 removed by the double click and 0 of 96 by the
+    single click, and in all 96 the double click leaves the bill that the single click leaves. The fix: both Remove handlers
+    test the count again, `if (!isRepeatClick(event)) onRemove(id)` after `swallowRepeatClicks()`, and `isRepeatClick` is
+    exported from `dom.js` again. So a Remove ignores a repeat press itself, and the guard covers everything else: it cancels the
+    repeat press for every control that arms it (Add person has no count test and relies on it) and keeps focus where the app
+    put it. Reversible: put the handler back to `() => { swallowRepeatClicks(); onRemove(id); }`. For `items.js` the 6 rows of
+    `test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item` go red (mutant B1). For `people.js` no
+    test goes red (mutant B2, the whole suite stays green): no known path puts a repeat press on a person's Remove that no
+    click armed for, since the person Removes sit above every price field. The line is there for one rule, not for a test.
 19. **I-1 changes one behaviour on purpose.** A double click, triple click or double tap on "New bill" leaves the dialog open
     (it used to flash open and shut). Opening arms the same guard as closing does. Reversible: delete the `swallowRepeatClicks()`
     call in the opener handler of `createDialog`; 12 of the 14 I-1 tests then go red.

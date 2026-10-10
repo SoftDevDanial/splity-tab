@@ -46,9 +46,9 @@ export const isRepeatClick = (event) => event.detail > 1;
  * person" has just added (it slides under the right end of that button, and the blank row went again), the backdrop
  * of the dialog that had just opened (it shut again), or whatever was under a dialog that has closed.
  * The armers are the click on every Remove, on Add person and on Add item (nothing slides under that one, it arms so
- * the rule stays one rule), and the clicks that open and close the dialog. The guard protects only what arms it, and a
- * layout move that is not a click cannot arm anything (the price error line, RG-CR-08). So a Remove also ignores a
- * repeat press itself (`isRepeatClick`), and the guard covers everything else, Add person included, which has no
+ * the rule stays one rule), and the clicks that open and close the dialog. The guard protects only what arms it, and no
+ * click can arm it for a layout move that is not a click (the error line of a price field, RG-CR-08). So a Remove also
+ * ignores a repeat press itself (`isRepeatClick`), and the guard covers everything else, Add person included, which has no
  * count test. "Dismiss note" moves the rows and arms nothing, its repeat press lands on a heading or a div (BUILD.md, call 18).
  * The guard cancels the repeat presses and clicks at the document, in the capture phase, before any control sees
  * them. A cancelled press also keeps focus where the app put it. It is gone at the first press that is not a

@@ -241,6 +241,27 @@ Feature: Split app, served and driven like a person would
       | 1, 4  | 22 px in from its right edge         |
     # Sizes and gestures as above.
 
+  # Added 2026-10-10, ORCH, regression RG-CR-08. An amount that is not a number shows its error when its field is left, and the error line
+  # pushes the chips under it down by a line. A press that blurs the field waits for the mouseup (RD-3), so the click on the chip is kept,
+  # but the repeat press of a double click, triple click or double tap lands on what was a line higher: at the right end of the first chip
+  # row, the Remove of the same item. No click armed the guard (the pressed control is a chip), so the Remove ignores a repeat press itself
+  # (the click count test, as before SEC-01). The test is `test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item`
+  # in `test_app.py`, in the section after the RG-CR-01 rows, one row for each combination below. The press point is found, not assumed:
+  # a scout page makes the price bad, leaves the field by Tab and looks, for every 4 px point of every chip as laid out before the error,
+  # at what lies under it afterwards. The first point that is the Remove of the chip's own item is where a second page presses, with the
+  # price field still focused so that the press itself causes the blur. If a later layout leaves no such point the test fails loudly.
+  @R7 @R12
+  Scenario Outline: A repeat press on a chip under a pending price error never removes the item
+    Given the S1 bill with eight people, Aisyah to Indra, is the stored draft
+    And the viewport is <width> x 3000
+    And "Item 1 price in RM" holds "abc" and still has focus
+    When I <gesture> at a point of a chip that lies over its own item's Remove once the error shows
+    Then the stored draft still holds the four items i4, i5, i6 and i7 (no item went; the click on the chip still toggles that person)
+    Examples:
+      | width    |
+      | 375, 390 |
+    # Gestures: mouse double click, mouse triple click, touch double tap.
+
   @R42
   Scenario: Two people may have the same name (added 2026-10-08)
     Given a cold boot with the clipboard recorder
