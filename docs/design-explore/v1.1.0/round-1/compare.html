@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Splity Tab v1.1.0 round 1 compare</title>
+<style>
+  :root {
+    --bg: #eceef1; --panel: #ffffff; --ink: #16181d; --muted: #4f5662; --line: #d5d9df;
+    --pick: #1f5fd1; --flag-bg: #fff6e0; --flag-edge: #b7791f; --ask-bg: #eef4ff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1320px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 19px; margin: 36px 0 12px; }
+  .lede { color: var(--muted); margin: 0 0 24px; max-width: 78ch; }
+  .box { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px 20px; margin: 0 0 16px; max-width: 100ch; }
+  .box h3 { font-size: 16px; margin: 0 0 6px; }
+  .box p { margin: 0 0 8px; }
+  .box p:last-child { margin: 0; }
+  .rec { border-left: 4px solid var(--pick); }
+  .ask { background: var(--ask-bg); border-left: 4px solid var(--pick); }
+  table { border-collapse: collapse; width: 100%; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; font-size: 14px; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-top: 1px solid var(--line); }
+  thead th { border-top: 0; background: #f6f7f9; font-size: 13px; color: var(--muted); font-weight: 600; }
+  tbody th { white-space: nowrap; }
+  tr.is-pick th, tr.is-pick td { background: #f3f7ff; }
+  .scroll { overflow-x: auto; }
+  .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+  .dir { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-width: 0; }
+  .dir[data-pick] { border-color: var(--pick); box-shadow: 0 0 0 1px var(--pick); }
+  .tag { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0; }
+  .dir[data-pick] .tag { color: var(--pick); font-weight: 600; }
+  .dir h3 { font-size: 18px; margin: 2px 0 4px; }
+  .thesis { margin: 0 0 12px; color: var(--muted); }
+  .frame { width: 100%; aspect-ratio: 390 / 844; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: #fff; position: relative; }
+  .frame iframe { position: absolute; top: 0; left: 0; width: 390px; height: 844px; border: 0; transform-origin: 0 0; }
+  dl { margin: 12px 0 0; }
+  dt { font-weight: 600; font-size: 13px; }
+  dd { margin: 0 0 8px; color: var(--muted); }
+  .flag { background: var(--flag-bg); border-left: 3px solid var(--flag-edge); padding: 6px 10px; font-size: 13px; margin: 8px 0 0; }
+  .open { margin: 10px 0 0; }
+  a { color: var(--pick); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--pick); outline-offset: 2px; }
+  .switch { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+  .switch button { font: inherit; font-size: 14px; min-height: 40px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); cursor: pointer; }
+  .switch button[aria-pressed="true"] { border-color: var(--pick); background: var(--pick); color: #fff; }
+  .desk { width: 100%; aspect-ratio: 1280 / 800; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: #fff; position: relative; }
+  .desk iframe { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; border: 0; transform-origin: 0 0; }
+  .glance { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+  .glance a { display: block; text-decoration: none; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px; }
+  .glance a.is-pick { border-color: var(--pick); box-shadow: 0 0 0 1px var(--pick); }
+  .glance img { display: block; width: 100%; height: auto; border-radius: 4px; }
+  .glance span { display: block; font-size: 13px; margin-top: 6px; font-weight: 600; }
+  @media (max-width: 1000px) {
+    .row { grid-template-columns: minmax(0, 1fr); max-width: 440px; }
+    .glance { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) { .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Splity Tab v1.1.0, design round 1</h1>
+  <p class="lede">Five directions for the key screen, each drawn by its own designer from the same brief. Every frame below is the real prototype, so you can switch Even and By item, open the spare sen choice, press New bill and Copy summary, and use Prototype states inside it for the other states. The desktop view is further down. Every direction shows the brief's exact figures, checked by its own script.</p>
+
+  <section class="box rec" aria-label="Recommendation">
+    <h3>My pick, D Share Orbit</h3>
+    <p>The key screen's job is shares everyone trusts and that visibly add back up to the total. D draws exactly that, a ring around the total where each person owns a segment as long as their share, so "it adds up" is a shape and not only a sum. It also shows this version's new feature, the spare sen, with a mark in the ring and "+1 sen" beside the share that took it. On a phone the answer comes first, and on desktop the ring with name callouts is the most memorable screen of the five. Dark charcoal, one coral and a muted colour per person keep the Discord feel.</p>
+    <p>Runner-up A, Night Console, the most literally Discord, with the shares arriving as a bot message with @mentions. Pick it if you want both apps to look like one family, since my Streaks pick is A too. Its cost is that the shares sit one scroll below the inputs on a phone.</p>
+  </section>
+
+  <section class="box ask" aria-label="Decisions for you">
+    <h3>Decisions for you</h3>
+    <p><strong>1. Which direction.</strong> Pick one, ask for a mix (it becomes one new direction), or reject them all (round 2 brings new bets, not polished copies).</p>
+    <p><strong>2. Only if you pick D.</strong> Its "+1 sen" label beside a share is not in the brief. A and C suggest the same thing in their notes. I recommend keeping it, because it makes your spare sen choice visible without comparing numbers.</p>
+  </section>
+
+  <h2>At a glance</h2>
+  <div class="glance">
+    <a href="#dir-a"><img src="checks/a/k1-390.png" alt="Direction A key screen on a phone"><span>A Night Console</span></a>
+    <a href="#dir-b"><img src="checks/b/k1-390.png" alt="Direction B key screen on a phone"><span>B Glass Receipt</span></a>
+    <a href="#dir-c"><img src="checks/c/k1-390.png" alt="Direction C key screen on a phone"><span>C Daylight Instrument</span></a>
+    <a href="#dir-d" class="is-pick"><img src="checks/d/k1-390.png" alt="Direction D key screen on a phone"><span>D Share Orbit, my pick</span></a>
+    <a href="#dir-e"><img src="checks/e/k1_390_viewport.png" alt="Direction E key screen on a phone"><span>E Command Line</span></a>
+  </div>
+
+  <h2>How they differ</h2>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">Direction</th><th scope="col">Look</th><th scope="col">The shares are</th><th scope="col">First phone screen</th><th scope="col">Desktop</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">A Night Console</th><td>Dark slate panes, one indigo</td><td>A bot message with @mentions and a proof row</td><td>The inputs, shares one scroll down</td><td>Three panes like a chat client</td></tr>
+        <tr><th scope="row">B Glass Receipt</th><td>Deep navy, one glass card, cyan</td><td>Receipt lines under a lit total</td><td>The answer, inputs below</td><td>The card on the left, inputs on the right</td></tr>
+        <tr><th scope="row">C Daylight Instrument</th><td>Cool white, cobalt, huge thin numerals</td><td>A readout with a share scale</td><td>The answer, inputs below</td><td>A readout over a control deck</td></tr>
+        <tr class="is-pick"><th scope="row">D Share Orbit</th><td>Charcoal, coral, a muted colour per person</td><td>A ring around the total, one segment each</td><td>The answer, inputs below</td><td>The ring with name callouts, inputs on the right</td></tr>
+        <tr><th scope="row">E Command Line</th><td>Pale graphite, monospace, signal orange</td><td>Columns lined up like terminal output</td><td>The inputs, shares below</td><td>Inputs on the left, an output pane on the right</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Phone, 390 px</h2>
+  <div class="row">
+    <article class="dir" id="dir-a">
+      <header>
+        <p class="tag">Direction A, runner-up</p>
+        <h3>Night Console</h3>
+        <p class="thesis">A chat app's dark console. People read like a member list, items are tapped like reactions, and the shares arrive as a message from the Splity Tab bot.</p>
+      </header>
+      <div class="frame"><iframe src="a.html" title="Direction A, Night Console" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Bets on</dt><dd>Anyone who uses Discord or Telegram reads it at once. The bot message makes the result an answer, and its proof row shows the working. Tapping who had an item feels like adding a reaction.</dd>
+        <dt>Costs</dt><dd>It reads as "Discord-like" before it reads as its own brand. On a phone the shares are one scroll below the inputs.</dd>
+      </dl>
+      <p class="flag">Prototype only. "At random" uses a fixed seed, so the same draw comes back on reload. The build uses a real random pick.</p>
+      <p class="open"><a href="a.html">Open full size</a></p>
+    </article>
+    <article class="dir" id="dir-b">
+      <header>
+        <p class="tag">Direction B</p>
+        <h3>Glass Receipt</h3>
+        <p class="thesis">The receipt becomes one floating holographic card, the only glass on the page, with the total softly lit.</p>
+      </header>
+      <div class="frame"><iframe src="b.html" title="Direction B, Glass Receipt" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Bets on</dt><dd>The answer comes first, and the lit total is what a visitor remembers. One material and one light carry all the spice, the rest is plain navy. Each share reads like a receipt line, which fits 360 px at any amount.</dd>
+        <dt>Costs</dt><dd>On a phone the inputs sit under the card. Glass and glow are easy to overdo, so they are rationed to three places.</dd>
+      </dl>
+      <p class="flag">Prototype only. The Prototype states tab covers a name field on a phone, and "At random" uses a fixed seed.</p>
+      <p class="open"><a href="b.html">Open full size</a></p>
+    </article>
+    <article class="dir" id="dir-c">
+      <header>
+        <p class="tag">Direction C</p>
+        <h3>Daylight Instrument</h3>
+        <p class="thesis">Futuristic in daylight. The bill reads like a precision instrument, with the total in oversized thin numerals.</p>
+      </header>
+      <div class="frame"><iframe src="c.html" title="Direction C, Daylight Instrument" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Bets on</dt><dd>The numerals are the one bold thing. A share scale under the readout is the logo's cut bar drawn to the bill's real proportions. The whole answer fits the first phone screen.</dd>
+        <dt>Costs</dt><dd>A light page is the furthest from "like discord". The thin figures need a system font with a light weight, and look heavier without one.</dd>
+      </dl>
+      <p class="flag">Prototype only. "At random" uses a fixed seed and steers its first draw away from the top of the list, so it is not a true random pick. The build uses a real one.</p>
+      <p class="open"><a href="c.html">Open full size</a></p>
+    </article>
+    <article class="dir" id="dir-d" data-pick="true">
+      <header>
+        <p class="tag">Direction D, my pick</p>
+        <h3>Share Orbit</h3>
+        <p class="thesis">The split is a shape. A ring of segments around the total, one per person, each as long as that person's share.</p>
+      </header>
+      <div class="frame"><iframe src="d.html" title="Direction D, Share Orbit" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Bets on</dt><dd>"It adds up" becomes something you see. Coral marks the spare sen in the ring and beside the share. A muted colour per person ties the ring, the rows and the callouts together. The arcs match the shares exactly.</dd>
+        <dt>Costs</dt><dd>On a phone the ring comes first, so you scroll to type. Twelve people make thin segments, which carry initials to stay readable.</dd>
+      </dl>
+      <p class="flag">Not in the brief. The "+1 sen" label beside a share. Decision 2 above.</p>
+      <p class="open"><a href="d.html">Open full size</a></p>
+    </article>
+    <article class="dir" id="dir-e">
+      <header>
+        <p class="tag">Direction E</p>
+        <h3>Command Line</h3>
+        <p class="thesis">A keyboard tool for splitting a bill. Mono columns line up like terminal output, and the items list is one command palette.</p>
+      </header>
+      <div class="frame"><iframe src="e.html" title="Direction E, Command Line" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Bets on</dt><dd>The only light direction with a warm accent, and the only one where the input is the memorable object. Every action shows its key, and every action still works by tap.</dd>
+        <dt>Costs</dt><dd>Calmer than "like discord". Key caps are detail a phone user never presses. On a phone the shares sit below the inputs.</dd>
+      </dl>
+      <p class="flag">Not in the brief. The Items and Charges columns drop "RM" to fit 360 px, while the brief writes money as "RM 38.87". The people picker also shows each person's share.</p>
+      <p class="open"><a href="e.html">Open full size</a></p>
+    </article>
+  </div>
+
+  <h2>Desktop, 1280 px</h2>
+  <div class="switch" role="group" aria-label="Choose a direction for the desktop view">
+    <button type="button" data-src="a.html" aria-pressed="false">A Night Console</button>
+    <button type="button" data-src="b.html" aria-pressed="false">B Glass Receipt</button>
+    <button type="button" data-src="c.html" aria-pressed="false">C Daylight Instrument</button>
+    <button type="button" data-src="d.html" aria-pressed="true">D Share Orbit</button>
+    <button type="button" data-src="e.html" aria-pressed="false">E Command Line</button>
+  </div>
+  <div class="desk"><iframe id="desk" src="d.html" title="Desktop view of the chosen direction"></iframe></div>
+</main>
+<script>
+  // Scale each fixed-size prototype frame to the width of its box.
+  function fit() {
+    document.querySelectorAll('.frame').forEach(function (f) {
+      f.querySelector('iframe').style.transform = 'scale(' + (f.clientWidth / 390) + ')';
+    });
+    var d = document.querySelector('.desk');
+    d.querySelector('iframe').style.transform = 'scale(' + (d.clientWidth / 1280) + ')';
+  }
+  document.querySelectorAll('.switch button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.switch button').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      document.getElementById('desk').src = b.dataset.src;
+    });
+  });
+  window.addEventListener('resize', fit);
+  fit();
+</script>
+</body>
+</html>
