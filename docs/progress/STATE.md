@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** uat: sitting 1 pre-run done, waiting for the owner
-- **next:** uat (owner verdicts), then seal on his word
+- **phase:** uat: owner verdicts recorded, 8 of 8 PASS; seal waits for his word
+- **next:** seal on his word, then v1.1.0
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-The owner works docs/v1.0.0/user-test-2026-10-10/TEST-CASES.md on http://127.0.0.1:8732/ (pid 9084, deliberately running). Record his verdicts verbatim with the date, route each non-PASS with him (findings.md, ledger rows with his words). Seal only on his word: SEAL.md, local tag v1.0.0, open v1.1.0 (H-02 table at 360 px through the design phase, SEC-04, the favicon). Stop pid 9084 after his sitting.
+Waiting on the owner: the seal of v1.0.0, his yes on UAT-F1 (leftover sen chosen by the user) for 1.1.0, his answer on UAT-F3 (was Ben above Aisyah), his rulings on each D-01 item, and what the five designs cover. v1.1.0 candidates: H-02, SEC-04, UAT-F1, the logo in the app, a livelier design in a design round with him. Server pid 9084 on 8732 still up until he is done.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

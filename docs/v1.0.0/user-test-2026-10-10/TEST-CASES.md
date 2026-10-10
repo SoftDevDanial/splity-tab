@@ -48,7 +48,7 @@ left with Aisyah, Ben and Chen, and every **×** is now active.
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS: both × greyed at the start and a click on them changed nothing. After Add person the cursor sat in the empty third box with its "Person 3" hint and `Chen` landed there. The fourth box went with its ×, leaving Aisyah, Ben and Chen with every × active | | |
+| PASS: both × greyed at the start and a click on them changed nothing. After Add person the cursor sat in the empty third box with its "Person 3" hint and `Chen` landed there. The fourth box went with its ×, leaving Aisyah, Ben and Chen with every × active | "Pass" (2026-10-10) | none |
 
 ---
 
@@ -71,7 +71,7 @@ RM 116.60. Shares: Aisyah RM 38.87, Ben RM 38.87, Chen RM 38.86.
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS: Subtotal RM 100.00, Service charge RM 10.00 "10% of RM 100.00", SST RM 6.60 "6% of RM 110.00", Total RM 116.60, shares 38.87, 38.87, 38.86 | | |
+| PASS: Subtotal RM 100.00, Service charge RM 10.00 "10% of RM 100.00", SST RM 6.60 "6% of RM 110.00", Total RM 116.60, shares 38.87, 38.87, 38.86 | "Pass" (2026-10-10) | none |
 
 ---
 
@@ -97,7 +97,7 @@ After step 4 everything is back to UAT-02.
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS: tick and "Adds up to RM 116.60". At 10.05: RM 1.01, RM 0.66, Total RM 11.72, shares 3.91, 3.91, 3.90, "Adds up to RM 11.72". Back to UAT-02 after step 4 | | |
+| PASS: tick and "Adds up to RM 116.60". At 10.05: RM 1.01, RM 0.66, Total RM 11.72, shares 3.91, 3.91, 3.90, "Adds up to RM 11.72". Back to UAT-02 after step 4 | "Pass but i prefer if it cannot be evenly split, the number in summary should show the extras then let the user decide to put to who or have a button or random split. So user can split manually or randomly or even have 1 person pay the extras" (2026-10-10) | Proposed for 1.1.0, waiting for your yes (findings.md UAT-F1) |
 
 ---
 
@@ -124,7 +124,7 @@ the bill is back to RM 116.60.
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS: hint exact. At 0: RM 0.00, RM 6.00, Total RM 106.00, shares 35.34, 35.33, 35.33. At 31 then Tab: "Enter a rate from 0 to 30" in red, no Bill summary, "Check the charges to see the shares." Back to RM 116.60 at 10 | | |
+| PASS: hint exact. At 0: RM 0.00, RM 6.00, Total RM 106.00, shares 35.34, 35.33, 35.33. At 31 then Tab: "Enter a rate from 0 to 30" in red, no Bill summary, "Check the charges to see the shares." Back to RM 116.60 at 10 | "Pass" (2026-10-10) | none |
 
 ---
 
@@ -154,7 +154,7 @@ Adds up to RM 116.60
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS, paste step not driven: "Summary copied", and the copied text equals the six lines byte for byte. The tester may not touch the real clipboard (rule CG-7), so it read the text from a stand-in instead of pasting | | |
+| PASS, paste step not driven: "Summary copied", and the copied text equals the six lines byte for byte. The tester may not touch the real clipboard (rule CG-7), so it read the text from a stand-in instead of pasting | "Pass." (2026-10-10) | none |
 
 ---
 
@@ -198,7 +198,7 @@ makes the shares table scroll sideways. You chose to fix it in 1.1.0 (2026-10-09
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS: the step 4 message exact, tapped names turn dark, the bill summary and every cell of the table as listed. The table fits at 390 and 360 px | | |
+| PASS: the step 4 message exact, tapped names turn dark, the bill summary and every cell of the table as listed. The table fits at 390 and 360 px | "Pass. You did not include what the service charge and sst. Be as accurate and precise as possible when doing test cases. Also the shares number is correct but the charges for ben is 2.25 and aiyah is 4.13 when in test cases ben is 2.24 and aisyah is 4.14 ( check if this is a bug or a simple logic mistake)" (2026-10-10) | Script rule taken (findings.md UAT-F2). The 4.13 and 2.25 checked, not reproduced, waiting for your answer (findings.md UAT-F3) |
 
 ---
 
@@ -223,7 +223,7 @@ read RM 38.87, RM 38.87 and RM 38.86 again.
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS: after closing the page and opening a new one, By item with the same four items, taps and shares. After Even: 100.00 and 38.87, 38.87, 38.86 | | |
+| PASS: after closing the page and opening a new one, By item with the same four items, taps and shares. After Even: 100.00 and 38.87, 38.87, 38.86 | "Pass" (2026-10-10) | none |
 
 ---
 
@@ -257,7 +257,7 @@ the same and nothing is cleared. Options: keep it (our recommendation) / make an
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS: the question and both buttons as written. Cancel and a click outside the box both closed it with the saved bill unchanged. Start new bill gave the starting state, and By item showed no items with "Add an item to see the shares." | | |
+| PASS: the question and both buttons as written. Cancel and a click outside the box both closed it with the saved bill unchanged. Start new bill gave the starting state, and By item showed no items with "Add an item to see the shares." | "Pass" (2026-10-10) | none |
 
 ---
 
@@ -265,14 +265,14 @@ the same and nothing is cleared. Options: keep it (our recommendation) / make an
 
 | case | scope | tester | you | next step |
 |---|---|---|---|---|
-| UAT-01 | C1 People | PASS | | |
-| UAT-02 | C2 Even split | PASS | | |
-| UAT-03 | C5 Shares that add up | PASS | | |
-| UAT-04 | C4 Charges | PASS | | |
-| UAT-05 | C6 Copy summary | PASS (paste not driven) | | |
-| UAT-06 | C3 Split by item | PASS | | |
-| UAT-07 | C7 Draft kept | PASS | | |
-| UAT-08 | C8 New bill | PASS | | |
+| UAT-01 | C1 People | PASS | PASS | none |
+| UAT-02 | C2 Even split | PASS | PASS | none |
+| UAT-03 | C5 Shares that add up | PASS | PASS | see the case |
+| UAT-04 | C4 Charges | PASS | PASS | none |
+| UAT-05 | C6 Copy summary | PASS (paste not driven) | PASS | none |
+| UAT-06 | C3 Split by item | PASS | PASS | see the case |
+| UAT-07 | C7 Draft kept | PASS | PASS | none |
+| UAT-08 | C8 New bill | PASS | PASS | none |
 
 The tester's PASS shows the script can be run. It is not the proof that the feature works. That is your verdict.
 Pre-run evidence: `pre-run/20261010-145359/` (the driver, 235 checks at 1280 x 800 and the same 235 at 390 x 844,
@@ -299,6 +299,7 @@ something you could see.
 - **Options.** Accept them as they are · reopen any one of them (it then becomes work for a later version).
 - **Recommendation.** Skim `docs/design-explore/round-1/compare.html` (the three looks side by side) and
   `docs/design/RULINGS.md`. Those carry the most taste. Everything else is in the ledger.
+- **Your ruling (2026-10-10).** "i am happy with the choices made." Every delegated choice stands, the click outside the New bill box included.
 
 ### D-01: The limits we accepted for 1.0 on your behalf
 - **What it is.** Each was found during this version and kept on purpose.
@@ -314,6 +315,7 @@ something you could see.
 - **Why it needs you.** Deferring is a decision we made for you.
 - **Options.** Keep each as a known limit · move any one into 1.1.0.
 - **Recommendation.** Keep them. 1.1.0 already takes the table at 360 px (your ruling) and the held Enter.
+- **Your ruling (2026-10-10).** "Discuss each item". Discussion in progress, each item keeps its 1.0 status until you rule on it.
 
 ---
 

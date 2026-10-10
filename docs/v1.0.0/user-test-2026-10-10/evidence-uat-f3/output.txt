@@ -1,0 +1,6 @@
+﻿[serve_and_run] http.server pid 23168 on 127.0.0.1:46882
+chromium 149.0.7827.55 Aisyah, Ben, Chen: [['Aisyah', 'RM 24.90', 'RM 4.14', 'RM 29.04'], ['Ben', 'RM 13.50', 'RM 2.24', 'RM 15.74'], ['Chen', 'RM 21.00', 'RM 3.48', 'RM 24.48'], ['Adds up to', 'RM 59.40', 'RM 9.86', 'RM 69.26']]
+chromium variant Ben, Aisyah, Chen: [['Ben', 'RM 13.50', 'RM 2.25', 'RM 15.75'], ['Aisyah', 'RM 24.90', 'RM 4.13', 'RM 29.03'], ['Chen', 'RM 21.00', 'RM 3.48', 'RM 24.48'], ['Adds up to', 'RM 59.40', 'RM 9.86', 'RM 69.26']]
+chrome 154.0.8037.99 Aisyah, Ben, Chen: [['Aisyah', 'RM 24.90', 'RM 4.14', 'RM 29.04'], ['Ben', 'RM 13.50', 'RM 2.24', 'RM 15.74'], ['Chen', 'RM 21.00', 'RM 3.48', 'RM 24.48'], ['Adds up to', 'RM 59.40', 'RM 9.86', 'RM 69.26']]
+msedge 154.0.4258.62 Aisyah, Ben, Chen: [['Aisyah', 'RM 24.90', 'RM 4.14', 'RM 29.04'], ['Ben', 'RM 13.50', 'RM 2.24', 'RM 15.74'], ['Chen', 'RM 21.00', 'RM 3.48', 'RM 24.48'], ['Adds up to', 'RM 59.40', 'RM 9.86', 'RM 69.26']]
+[serve_and_run] stopped pid 23168; 127.0.0.1:46882 refuses connections: True; command exit code: 0

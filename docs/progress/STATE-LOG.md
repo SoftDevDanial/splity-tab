@@ -177,3 +177,8 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - App booted by the orchestrator on 127.0.0.1:8732, pid 9084, served output verified. Deliberately running for the owner.
 - sdlc-uat-tester (sonnet): 8 of 8 PASS at 1280 x 800 and 390 x 844, 235 checks each, paste step not driven (CG-7). Evidence pre-run/20261010-145359/.
 - Script wording repaired from the tester's nine notes, tester column filled, human column empty.
+
+## 2026-10-10 15:58 owner's UAT verdicts recorded
+- Owner: 8 of 8 PASS, his words recorded with the date in TEST-CASES.md. H-01 ruled ("i am happy with the choices made."), D-01 in discussion.
+- findings.md: UAT-F1 leftover sen chosen by the user (FULL, 1.1.0), UAT-F2 script precision (taken), UAT-F3 his 2.25 and 4.13 not reproduced in Chromium, Chrome or Edge, they appear only with Ben above Aisyah.
+- Ledger rows with his exact words, including his comments on the logo, the plain look, the test-case layout and the showcase, and a dated correction of the logo row.
