@@ -198,3 +198,8 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Five directions, each by its own designer agent, two at a time, with render checks at 390, 360 and 1280 px: A Night Console `da8a354`, B Glass Receipt `755447a`, C Daylight Instrument `9ce713c`, D Share Orbit `efb824b`, E Command Line `ceaaf87`. All 0 console errors, no sideways scroll at 360, every inventory figure asserted.
 - Rule slips by designers, all self-reported, no file left behind: A redirected output once ("> run2.log", deleted) and fetched six public Phosphor icon files. E used "2>&1" to the terminal (no file). Later briefs forbid both by name.
 - compare.html written by the orchestrator `d1deb01`: pick D Share Orbit, runner-up A. Waiting for the owner (ledger H-03).
+
+## 2026-10-10 21:43 to 21:55 v1.1.0 round 1 ruled, round 2 briefed
+- Owner picked a mix: D Share Orbit's layout in A Night Console's colours, no bright filled buttons (his clarification of "neon backgrounds"), Charges above the Even/By item switch on desktop, the item list in its own scroll frame, inputs first on a phone with the receipt behind a button, keep the spare sen ("i love the sen left over"). Ledger H-03 ruling, S7 row 3.
+- ORCH readings, flagged for round 2: "Split" is the Even/By item switch, the phone receipt becomes a pinned bar with Total, Shares (a sheet) and Copy summary.
+- round-2/BRIEF.md written. One new direction F Orbit Console next.

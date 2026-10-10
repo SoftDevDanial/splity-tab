@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design, round 1 done (sdlc:design step 3), waiting for the owner's pick
-- **next:** owner picks from docs/design-explore/v1.1.0/round-1/compare.html, then converge, lock, compose, wire, goldens
+- **phase:** v1.1.0 design, round 2 (sdlc:design step 4): one mixed direction F Orbit Console from the owner's pick
+- **next:** designer builds round-2/f.html, orchestrator writes round-2/compare.html, owner reviews, then lock, compose, wire, goldens
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-Owner rules on round 1 (`docs/design-explore/v1.1.0/round-1/compare.html`): which direction (orchestrator's pick D Share Orbit, runner-up A Night Console), and if D, whether its "+1 sen" label stays (ledger H-03). Then sdlc:design steps 4 to 9 (converge, lock system, compose every screen and state, wire, self-critique, finalize goldens), the logo redraw with the name "Splity Tab", then plan. **Start a new Claude session before plan** so the 2.2.0 plugin (UAT test sheet, plan-checker with Write) is loaded; the session that ran round 1 still ran plugin 1.0.0, which made no difference to the design steps (identical in both). UAT sheet layout already ruled (ledger off-scope row 5, sdlc 2.2.0 template). S9 several-bills doc is written (docs/future/several-bills.md).
+Round 2 is running: one designer builds `docs/design-explore/v1.1.0/round-2/f.html` (F Orbit Console) from `round-2/BRIEF.md`. The owner picked a mix, D Share Orbit's layout in A Night Console's colours with five changes, and keeps "+1 sen" (ledger H-03 ruling). Then the orchestrator writes `round-2/compare.html` with the ORCH readings flagged, the owner reviews, then sdlc:design steps 5 to 9, the logo with the name "Splity Tab", then plan. **Start a new Claude session before plan** so sdlc 2.4.0 is loaded (this session runs 2.2.0, the design steps are the same). S9 several-bills doc is written (docs/future/several-bills.md).
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

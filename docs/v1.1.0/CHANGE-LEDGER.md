@@ -24,7 +24,7 @@
 | S4 | A bill that cannot be saved says so | OPEN | USER | 0 |
 | S5 | Tested in Safari's engine too | OPEN | USER | 0 |
 | S6 | The logo in the app | OPEN | USER | 0 |
-| S7 | A livelier look, chosen from five directions | OPEN, round 1 done | USER | 1 (H-03) |
+| S7 | A livelier look, chosen from five directions | OPEN, round 2 (one mixed direction) | USER | 0 |
 | S8 | A name that is free to use | OPEN, name ruled | USER | 0 |
 | S9 | Several bills, written up as a future implementation (document only) | OPEN | USER | 0 |
 
@@ -102,6 +102,7 @@ A new look the owner picks from five clickable static directions, then a new gol
 |---|---|---|---|---|---|
 | 1 | Scope opened from the owner's comment | 2026-10-10 seal | Design round with him | USER | Open |
 | 2 | Round 1, five clickable directions on the key screen with every popup and state reachable | 2026-10-10 design | A Night Console `da8a354`, B Glass Receipt `755447a`, C Daylight Instrument `9ce713c`, D Share Orbit `efb824b`, E Command Line `ceaaf87`, each by its own designer agent with render checks at 390, 360 and 1280 px (0 console errors, no sideways scroll at 360, every inventory figure asserted). round-1/compare.html `d1deb01` with the orchestrator's pick D, runner-up A. Prototype-only flags on the page: A, B and C draw "At random" from a fixed seed (C also steers its first draw), B's Prototype states tab covers a name field on a phone. Not in the brief: D's "+1 sen" label, E's bare figures in the Items and Charges columns | ORCH (designer agents) | Waiting for the owner's pick (H-03) |
+| 3 | Owner's pick (H-03 ruling): a mix, D Share Orbit's layout in A Night Console's colours, with five changes | 2026-10-10 21:43 design | Round 2 brief `round-2/BRIEF.md`, one new direction F "Orbit Console". His words and the readings in H-03 | USER, ORCH on the readings | Round 2 next |
 
 ### S8 - A name that is free to use
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
@@ -152,7 +153,9 @@ A short document that describes how several bills could work later. No code.
 - **Why an agent cannot decide it:** the look is his pick.
 - **Options:** pick one direction, ask for a mix (one new direction in round 2), or reject all. If D, keep or drop its "+1 sen" label, which the brief does not list.
 - **Recommendation:** D Share Orbit (the ring makes "it adds up" visible, it shows the spare sen, answer first on a phone, the most memorable desktop), keep "+1 sen". Runner-up A Night Console, which pairs with the Streaks pick if he wants both apps as one family.
-- **Ruling:** (pending)
+- **Ruling, 2026-10-10 21:43 (owner's words):** "1. Color i like Night console, remove neon backgrounds. 2. For desktop version, Move charges above Split 3. By items, make it a a scrollable frame or something. I dont want the whole page to scroll, it should be scrolled within a div instead. 4. For mobile, make the receipt collapsed or maybe display on button press or tab change. Make it easier to input stuff. Right now, its pushed down. 5. Overall, looks good and i love the sen left over"
+- **Clarified, 2026-10-10 21:49 (his answer):** "neon backgrounds" means **bright filled buttons**. The selected Even/By item, the spare-sen choice and Copy summary lose their solid bright fill and become an outline or a dark tint. Night Console's slate panes and indigo accent stay, and the person colours stay so the ring still matches the rows.
+- **Readings (ORCH, reversible, flagged on the round 2 page):** (a) The comments are about D's layout (the ring, the right input column with Charges at its foot, the receipt above the inputs on a phone), so this is a mix, one new direction in round 2. (b) "Split" in point 2 is the Even/By item switch, so Charges moves to the top of the input column, above it. (c) Point 3 is the item list in By item mode, which scrolls inside its own frame so the page itself does not scroll at 1280 x 800. (d) Point 4 is built as a pinned bar on the phone with the Total, a Shares button that opens the receipt (ring, shares, bill) as a sheet, and Copy summary, so the inputs come first. (e) Point 5 keeps "+1 sen" beside a share and the "1 sen left over" line, which answers this item's second question.
 
 ---
 
