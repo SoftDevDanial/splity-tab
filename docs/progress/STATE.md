@@ -2,7 +2,7 @@
 
 - **project:** Split, a bill splitter for one shared restaurant bill
 - **design-phase:** sdlc:design
-- **version:** 1.0.0
+- **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
 - **phase:** v1.0.0 SEALED 2026-10-10 on the owner's word; v1.1.0 opening
 - **next:** v1.1.0: brainstorm delta, then the design round with the owner
