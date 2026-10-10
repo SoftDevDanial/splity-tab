@@ -34,8 +34,10 @@ export function setAttr(node, name, value) {
 /**
  * True for the second and later press of a double click, triple click or double tap. `detail` is the click
  * count (0 for a key press), so a slow second click is an ordinary one: there is no timer.
+ * A Remove button tests it itself, whether or not a guard is armed (RG-CR-08): the error line a price field shows when
+ * it is left pushes the chips down, and the repeat press of a double click on a chip then lands on that item's Remove.
  */
-const isRepeatClick = (event) => event.detail > 1;
+export const isRepeatClick = (event) => event.detail > 1;
 
 /**
  * A click that moves the layout under the pointer arms this guard, because the rest of its double click, triple
@@ -44,9 +46,10 @@ const isRepeatClick = (event) => event.detail > 1;
  * person" has just added (it slides under the right end of that button, and the blank row went again), the backdrop
  * of the dialog that had just opened (it shut again), or whatever was under a dialog that has closed.
  * The armers are the click on every Remove, on Add person and on Add item (nothing slides under that one, it arms so
- * the rule stays one rule), and the clicks that open and close the dialog. The guard protects only what arms it: a
- * control that moves the layout and does not arm it leaves its repeat press free, so a new one must (RG-CR-01).
- * "Dismiss note" is the measured exception, its repeat press lands on a heading or a div (BUILD.md, call 18).
+ * the rule stays one rule), and the clicks that open and close the dialog. The guard protects only what arms it, and a
+ * layout move that is not a click cannot arm anything (the price error line, RG-CR-08). So a Remove also ignores a
+ * repeat press itself (`isRepeatClick`), and the guard covers everything else, Add person included, which has no
+ * count test. "Dismiss note" moves the rows and arms nothing, its repeat press lands on a heading or a div (BUILD.md, call 18).
  * The guard cancels the repeat presses and clicks at the document, in the capture phase, before any control sees
  * them. A cancelled press also keeps focus where the app put it. It is gone at the first press that is not a
  * repeat, so a click or key press of its own (count 1 or 0) is never held back. No timer.

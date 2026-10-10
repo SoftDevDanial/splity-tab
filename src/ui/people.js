@@ -2,7 +2,7 @@
 // createPeople({ onName(id, text), onAdd(), onRemove(id) }) returns { el, update(bill), focusName(index) }.
 // It writes DOM and reports gestures; the bill is changed by the caller.
 import { LIMITS, personLabel } from "../core/bill.js";
-import { block, el, swallowRepeatClicks, setAttr, setValue, rowsFor, reconcileChildren } from "./dom.js";
+import { block, el, isRepeatClick, swallowRepeatClicks, setAttr, setValue, rowsFor, reconcileChildren } from "./dom.js";
 import { icon } from "./icons.js";
 
 export function createPeople({ onName, onAdd, onRemove }) {
@@ -14,8 +14,9 @@ export function createPeople({ onName, onAdd, onRemove }) {
     const remove = el("button", { class: "icon-btn", type: "button" }, icon("x"));
     input.addEventListener("input", () => onName(id, input.value));
     // Removing a row slides the next control under the pointer (the next row's Remove, or Add person for the last
-    // row), so the rest of a double click must not reach it (swallowRepeatClicks).
-    remove.addEventListener("click", () => { swallowRepeatClicks(); onRemove(id); });
+    // row), so the rest of a double click must not reach it (swallowRepeatClicks). The count test is the backstop for a
+    // layout move no click armed, the same line as in items.js (RG-CR-08).
+    remove.addEventListener("click", (event) => { swallowRepeatClicks(); if (!isRepeatClick(event)) onRemove(id); });
     return { el: el("li", { class: "field person" }, input, remove), input, remove };
   }
 

@@ -1826,6 +1826,54 @@ def test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page
     assert seen_by_the_page(page) == {"presses": [1], "clicks": [1]}
 
 
+# ---------------------------------------------------------------- Regression RG-CR-08: the repeat press on a chip under a price error (R7, R12)
+# An amount that is not a number shows its error when its field is left, and the error line pushes everything under it down
+# by one line. A blur caused by a press waits for the mouseup (RD-3), so the click on the chip that was pressed is not lost,
+# but the repeat press of a double click, triple click or double tap lands on what was one line higher: for a chip at the
+# right end of the first chip row that is its own item's Remove button. No click armed the guard (the pressed control was a
+# chip), so the Remove has to ignore a repeat press itself. The point is found, not assumed: a scout page makes the price bad,
+# leaves the field by Tab (the error shows at once) and asks, for every 4 px point of every chip as laid out before the
+# error, what is under it afterwards. The press goes to the first such point on a second page whose price field still has
+# focus, so the press itself causes the blur.
+EIGHT_PEOPLE = seeds.changed(seeds.S1, lambda d: d["bill"].update(nextId=20, people=[
+    {"id": f"p{n}", "name": name}
+    for n, name in enumerate(["Aisyah", "Ben", "Chen", "Devi", "Farid", "Grace", "Hafiz", "Indra"], start=1)]))
+CHIP_BOXES_JS = """() => {
+  window.testChips = [...document.querySelectorAll('.who button')];
+  return window.testChips.map((node, index) => { const r = node.getBoundingClientRect(); return { index, x: r.x, y: r.y, w: r.width, h: r.height }; });
+}"""
+OVER_ITS_OWN_REMOVE_JS = """(boxes) => {
+  const found = [];
+  for (const b of boxes) {
+    const item = window.testChips[b.index].closest('li.item');
+    for (let x = b.x + 2; x < b.x + b.w - 1; x += 4) for (let y = b.y + 2; y < b.y + b.h - 1; y += 4) {
+      const under = document.elementFromPoint(x, y);
+      const button = under && under.closest('button');
+      if (button && /^Remove/.test(button.getAttribute('aria-label') || '') && button.closest('li.item') === item) found.push([x, y]);
+    }
+  }
+  return found;
+}"""
+
+
+@pytest.mark.parametrize("gesture", REPEAT_GESTURES)
+@pytest.mark.parametrize("width", [375, 390])
+def test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item(open_app, width, gesture):
+    scout = open_app(seed=EIGHT_PEOPLE, viewport=(width, 3000)).page  # tall: the whole bill is in view, so the scout's points are the second page's
+    boxes = scout.evaluate(CHIP_BOXES_JS)
+    price = scout.get_by_role("textbox", name="Item 1 price in RM", exact=True)
+    price.fill("abc")
+    price.press("Tab")
+    settle(scout)
+    landings = scout.evaluate(OVER_ITS_OWN_REMOVE_JS, boxes)
+    assert landings, "no chip point lies over its own Remove once the error shows: this test no longer probes anything"
+    page = open_app(seed=EIGHT_PEOPLE, viewport=(width, 3000), touch=gesture == "touch-double").page
+    before = [item["id"] for item in stored(page)["bill"]["items"]]
+    page.get_by_role("textbox", name="Item 1 price in RM", exact=True).fill("abc")  # focus stays: the press below blurs it
+    gesture_at(page, gesture, landings[0])
+    assert [item["id"] for item in stored(page)["bill"]["items"]] == before  # no item went
+
+
 # ---------------------------------------------------------------- Security I-1: the repeat press on New bill (R29, R30)
 # Opening the dialog puts its backdrop under the pointer, so the second click of a double click, triple click or double tap
 # on "New bill" closed it again: the dialog flashed open and shut. Opening arms the same guard as closing does.
