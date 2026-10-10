@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UAT sheet C revised. Run console with line marks</title>
+<style>
+  :root {
+    --rail: #111821;
+    --rail-2: #1b2430;
+    --rail-fg: #e7edf4;
+    --rail-muted: #9aa7b6;
+    --desk: #e6eaef;
+    --paper: #ffffff;
+    --ink: #141c26;
+    --ink-2: #465363;
+    --ink-3: #6b7684;
+    --rule: #d3dae3;
+    --rule-strong: #8f9bab;
+    --tint: #f3f6f9;
+    --accent: #0b5fc4;
+    --accent-bg: #eaf2fd;
+    --pass: #0f7a3c;  --pass-bg: #e5f4ea;  --pass-dot: #3fb36b;
+    --note: #1d4ed8;  --note-bg: #e8eefc;
+    --fail: #b42318;  --fail-bg: #fde9e7;  --fail-dot: #f0645a;
+    --block: #8a5300; --block-bg: #fdf1d8; --block-dot: #e2a93b;
+    --state: #4a5768; --state-bg: #eef1f5; --state-dot: #8d99a8;
+    --retest: #6b3fa0; --retest-bg: #f1eafb;
+    --limit: #3d4a5c; --limit-bg: #eef1f5;
+    --about-bg: #0f1419; --about-fg: #e6edf3; --about-muted: #9da7b3;
+    --sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+    --rail-w: 300px;
+    --sheet-pad-y: 40px;
+    --sheet-pad-x: 44px;
+    --r: 14px;
+    --fs-num: 104px;
+    --fs-title: 26px;
+    --fs-label: 12px;
+    --mk: 34px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--desk); color: var(--ink); font: 16px/1.55 var(--sans); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  button { font: inherit; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* About strip. Not part of the layout. */
+  .about { background: var(--about-bg); color: var(--about-fg); font: 13px/1.5 var(--mono); padding: 12px 16px; border-bottom: 3px dashed #3d4752; }
+  .about-in { display: grid; gap: 6px; max-width: 1240px; margin: 0 auto; }
+  .about b { color: #fff; }
+  .about p { margin: 0; color: var(--about-muted); }
+  .about nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .about nav a { color: var(--about-fg); border: 1px solid #3d4752; border-radius: 6px; padding: 6px 10px; text-decoration: none; }
+  .about nav a[aria-current] { background: #e6edf3; color: #0f1419; }
+
+  .app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); }
+
+  /* Rail */
+  .rail { background: var(--rail); color: var(--rail-fg); padding: 24px 14px; position: sticky; top: 0; align-self: start; height: 100dvh; overflow: auto; }
+  .kicker { font-size: var(--fs-label); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .rail .kicker { color: var(--rail-muted); padding: 0 10px; }
+  .rail-title { font-size: 24px; font-weight: 780; padding: 2px 10px 0; letter-spacing: -.01em; }
+  .rail-meta { color: var(--rail-muted); font-size: 14px; padding: 0 10px 16px; }
+  .caselist { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .ci { position: relative; width: 100%; display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; text-align: left; color: inherit; background: transparent; border: 0; border-radius: 10px; padding: 10px; min-height: 56px; cursor: pointer; }
+  .ci:hover { background: var(--rail-2); }
+  .ci[aria-current="true"] { background: var(--rail-2); box-shadow: inset 3px 0 0 #7fb2ff; }
+  .ci.off { cursor: default; }
+  .ci.off .ci-title, .ci.off .ci-num { color: #7d8a9a; }
+  .ci-num { font-size: 26px; font-weight: 800; letter-spacing: -.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+  .ci-title { display: block; font-size: 14px; line-height: 1.3; }
+  .ci-v { display: flex; gap: 6px; margin-top: 6px; align-items: center; font-size: 12px; color: var(--rail-muted); }
+  .dot { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font: 800 11px/1 var(--sans); color: #0d1218; }
+  .d-pass { background: var(--pass-dot); }
+  .d-fail { background: var(--fail-dot); }
+  .d-block { background: var(--block-dot); }
+  .d-none { background: transparent; color: var(--rail-muted); box-shadow: inset 0 0 0 1.5px #5b6878; }
+  .rail-foot { margin-top: 18px; padding: 14px 10px 0; border-top: 1px solid #2a3442; color: var(--rail-muted); font-size: 13px; display: grid; gap: 6px; }
+  .rail-foot kbd { font-family: var(--mono); border: 1px solid #3a4655; border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; color: var(--rail-fg); }
+  .results-btn { min-height: 44px; border-radius: 10px; border: 1px solid #7fb2ff; background: transparent; color: #cfe2ff; font-weight: 700; cursor: pointer; margin-bottom: 8px; }
+  .results-btn:hover { background: #17263a; }
+
+  /* Main and sheets (B's margins) */
+  .main { padding: 24px 32px 56px; min-width: 0; }
+  .sheet { max-width: 1000px; margin: 0 auto 20px; background: var(--paper); border-radius: var(--r); padding: var(--sheet-pad-y) var(--sheet-pad-x); box-shadow: 0 1px 2px rgba(20, 28, 38, .06), 0 10px 28px rgba(20, 28, 38, .07); }
+
+  /* Verdict guide (B's cards) */
+  .guide-head { display: flex; align-items: center; gap: 12px; }
+  .guide-head h2 { margin: 0; font-size: 18px; font-weight: 720; }
+  .guide-toggle { margin-left: auto; min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; color: var(--accent); font-weight: 650; cursor: pointer; }
+  .guide-body { margin-top: 14px; }
+  .guide-body[hidden] { display: none; }
+  .guide-intro { margin: 0 0 14px; color: var(--ink-2); }
+  .legend { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .lg { border: 1px solid var(--rule); border-radius: 10px; padding: 14px; display: grid; gap: 8px; align-content: start; }
+  .lg p { margin: 0; font-size: 15px; }
+  .lg .ex { font-size: 14px; color: var(--ink-2); border-top: 1px dashed var(--rule); padding-top: 8px; }
+  .lg .ex b { color: var(--ink); font-weight: 650; }
+  .states { margin-top: 12px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px; }
+  .st { border-radius: 10px; background: var(--tint); padding: 12px 14px; font-size: 14px; display: grid; gap: 8px; align-content: start; }
+  .st h3 { margin: 0; font-size: var(--fs-label); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .st p { margin: 0; display: flex; gap: 10px; align-items: flex-start; }
+  .st p > :first-child { flex: none; }
+  .mk-demo { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; color: #fff; }
+  .mk-demo svg { width: 13px; height: 13px; fill: currentColor; }
+  .mk-demo.ok { background: var(--pass); }
+  .mk-demo.no { background: var(--fail); }
+
+  /* Verdict chips */
+  .vchip { display: inline-flex; align-items: center; gap: 6px; font: 700 12px/1 var(--sans); letter-spacing: .06em; padding: 6px 9px; border-radius: 999px; border: 1.5px solid currentColor; white-space: nowrap; }
+  .vchip svg { width: 13px; height: 13px; fill: currentColor; }
+  .v-pass { color: var(--pass); background: var(--pass-bg); }
+  .v-note { color: var(--note); background: var(--note-bg); }
+  .v-fail { color: var(--fail); background: var(--fail-bg); }
+  .v-block { color: var(--block); background: var(--block-bg); border-style: dashed; }
+  .v-state { color: var(--state); background: var(--state-bg); border-style: dotted; }
+  .v-retest { color: var(--retest); background: var(--retest-bg); }
+  .vchip.off { color: #8a95a3; background: transparent; border-color: #c9d1db; border-style: solid; }
+  .vchip.off svg { display: none; }
+
+  /* Case */
+  .case-head { display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: end; padding-bottom: 20px; border-bottom: 3px solid var(--ink); }
+  .case-num { display: grid; line-height: .82; }
+  .case-num .kicker { color: var(--ink-2); padding-left: 4px; }
+  .case-num .digits { font-size: var(--fs-num); font-weight: 820; letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+  .case-head h1 { font-size: var(--fs-title); line-height: 1.2; margin: 0 0 12px; font-weight: 700; letter-spacing: -.01em; max-width: 30ch; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--tint); border: 1px solid var(--rule); color: var(--ink); }
+  .c-nav { display: flex; gap: 8px; }
+  .navbtn { min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--rule); background: #fff; color: var(--ink); cursor: pointer; font-weight: 600; }
+  .navbtn:disabled { color: #8b96a5; cursor: default; }
+
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  .kv { margin-top: 12px; }
+  .kv th { width: 180px; text-align: left; vertical-align: top; padding: 12px 16px 12px 0; font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); line-height: 1.9; }
+  .kv td { padding: 12px 0; vertical-align: top; }
+  .kv tr + tr { border-top: 1px solid var(--rule); }
+
+  .progress { position: sticky; top: 0; z-index: 2; display: flex; gap: 14px; align-items: center; margin: 24px calc(var(--sheet-pad-x) * -1) 0; padding: 12px var(--sheet-pad-x); background: rgba(255, 255, 255, .96); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: 14px; font-weight: 650; }
+  .progress .ct-no { color: var(--fail); }
+  .bar { flex: 1; height: 8px; border-radius: 99px; background: #e3e8ee; overflow: hidden; display: flex; }
+  .bar span { display: block; height: 100%; transition: width .2s ease; }
+  .bar .b-ok { background: var(--pass); }
+  .bar .b-no { background: var(--fail); }
+
+  .steps { margin-top: 8px; }
+  .steps thead th { text-align: left; font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); padding: 14px 12px 10px; border-bottom: 2px solid var(--ink); }
+  .steps thead th:first-child { width: 56px; padding-left: 0; }
+  .steps thead th.c-do { width: 40%; }
+  .steps tbody td { padding: 14px 12px; vertical-align: top; border-bottom: 1px solid var(--rule); }
+  .steps tbody td.n { padding-left: 0; }
+  .num { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--ink); font-weight: 750; font-size: 14px; font-variant-numeric: tabular-nums; }
+  tr.step.is-current td { background: var(--accent-bg); }
+  tr.step.is-current td.n { box-shadow: inset 4px 0 0 var(--accent); }
+  tr.step.is-current .num { background: var(--accent); border-color: var(--accent); color: #fff; }
+  tr.step.is-done .num { background: var(--ink); color: #fff; }
+  tr.step.has-no .num { background: var(--fail); border-color: var(--fail); color: #fff; }
+  .see-label { display: none; }
+
+  .lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .line { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; padding: 3px 6px 3px 3px; border-radius: 8px; }
+  .line .txt { padding-top: 5px; }
+  .line.m-no { background: var(--fail-bg); }
+  .line.m-ok .txt { color: var(--ink-2); }
+  .mks { display: inline-flex; gap: 4px; }
+  .mk { display: inline-grid; place-items: center; width: var(--mk); height: var(--mk); border-radius: 8px; border: 1.5px solid var(--rule); background: #fff; color: var(--ink-3); cursor: pointer; padding: 0; }
+  .mk svg { width: 15px; height: 15px; fill: currentColor; }
+  .mk:hover { border-color: var(--rule-strong); }
+  .mk.ok[aria-pressed="true"] { background: var(--pass); border-color: var(--pass); color: #fff; }
+  .mk.no[aria-pressed="true"] { background: var(--fail); border-color: var(--fail); color: #fff; }
+
+  .fig { font-weight: 680; white-space: nowrap; }
+  .ui { background: var(--tint); border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; }
+  .ctl { font-weight: 680; border: 1px solid var(--rule-strong); border-radius: 5px; padding: 0 5px; background: #fff; white-space: nowrap; }
+  kbd { font-family: var(--mono); font-size: .88em; }
+  kbd.typed { background: #e9eef5; border-radius: 4px; padding: 1px 6px; }
+  kbd.key { border: 1px solid var(--rule-strong); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: #fff; }
+
+  .mini { margin-top: 8px; width: auto; border: 1px solid var(--rule); border-radius: 8px; border-collapse: separate; border-spacing: 0; overflow: hidden; }
+  .mini th, .mini td { padding: 5px 10px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; vertical-align: middle; }
+  .mini th { font-size: 12px; color: var(--ink-2); font-weight: 650; }
+  .mini td.nm, .mini th.nm { text-align: left; font-weight: 650; }
+  .mini td.mkc, .mini th.mkc { padding: 4px 4px 4px 6px; text-align: left; }
+  .mini tr:last-child td { border-bottom: 0; }
+  .mini tr.total td { border-top: 2px solid var(--ink); font-weight: 700; }
+  .mini tr.m-no td { background: var(--fail-bg); }
+  .mini td.combo { display: none; }
+
+  tr.noterow td { padding: 0; border-bottom: 0; }
+  .note { display: grid; grid-template-columns: 132px 1fr; gap: 14px; margin: 12px 0 0; padding: 14px 16px; border-radius: 10px; border-left: 4px solid currentColor; }
+  .note .tag { font: 750 12px/1.6 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+  .note p { margin: 0; color: var(--ink); }
+  .k-note { color: var(--note); background: var(--note-bg); }
+  .k-ask { color: var(--block); background: var(--block-bg); }
+  .k-limit { color: var(--limit); background: var(--limit-bg); }
+
+  /* Verdict block (B's table, with your row live) */
+  .verdicts { margin-top: 28px; border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; }
+  .verdicts th, .verdicts td { padding: 14px 16px; vertical-align: top; border-bottom: 1px solid var(--rule); text-align: left; }
+  .verdicts tr:last-child th, .verdicts tr:last-child td { border-bottom: 0; }
+  .verdicts thead th { background: var(--ink); color: #fff; font-size: var(--fs-label); letter-spacing: .1em; text-transform: uppercase; padding: 10px 16px; }
+  .verdicts thead th.c-who { width: 150px; }
+  .verdicts thead th.c-v { width: 330px; }
+  .verdicts tbody th { font-size: 14px; }
+  .verdicts tbody th small { display: block; font-weight: 500; color: var(--ink-2); }
+  .ballot { display: flex; gap: 6px; flex-wrap: wrap; border: 0; margin: 0; padding: 0; }
+  .bopt { position: relative; display: inline-flex; }
+  .bopt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+  .bopt .vchip { min-height: 40px; padding: 0 14px; font-size: 13px; }
+  .bopt input:focus-visible + .vchip { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .bopt input:not(:checked) + .vchip { color: #6b7684; background: #fff; border-color: #c9d1db; border-style: solid; }
+  .bopt input:not(:checked) + .vchip svg { display: none; }
+  .bopt input:not(:checked):hover + .vchip { border-color: var(--rule-strong); }
+  .words { margin: 0; }
+  .note-field { width: 100%; min-height: 84px; font: 15px/1.5 var(--sans); color: var(--ink); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; resize: vertical; }
+  .note-hint { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); }
+  tr.marksum td, tr.marksum th { background: var(--tint); }
+  .no-list { margin: 6px 0 0; padding-left: 18px; color: var(--fail); }
+  .no-list li span { color: var(--ink); }
+  tr.next td, tr.next th { background: var(--tint); }
+  .case-foot { display: flex; justify-content: flex-end; margin-top: 16px; }
+  .primary { min-height: 44px; padding: 0 18px; border-radius: 10px; border: 0; background: var(--ink); color: #fff; font-weight: 700; cursor: pointer; }
+
+  /* Results dialog */
+  .scrim { position: fixed; inset: 0; background: rgba(13, 18, 24, .55); display: grid; place-items: center; padding: 16px; z-index: 10; }
+  .scrim[hidden] { display: none; }
+  .dialog { width: min(640px, 100%); background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 20px 60px rgba(13, 18, 24, .35); display: grid; gap: 12px; }
+  .dialog h2 { margin: 0; font-size: 20px; }
+  .dialog p { margin: 0; color: var(--ink-2); }
+  .dialog textarea { width: 100%; min-height: 220px; font: 13px/1.5 var(--mono); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; resize: vertical; color: var(--ink); }
+  .dialog .row { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+  .ghost { min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--rule); background: #fff; color: var(--ink); font-weight: 650; cursor: pointer; }
+  #rd-status { min-height: 1.5em; color: var(--pass); font-weight: 650; }
+
+  @media (max-width: 1100px) {
+    :root { --rail-w: 250px; --sheet-pad-x: 32px; }
+    .legend { grid-template-columns: 1fr 1fr; }
+    .case-head { grid-template-columns: auto 1fr; }
+    .c-nav { grid-column: 1 / -1; }
+  }
+  @media (max-width: 760px) {
+    :root { --sheet-pad-y: 22px; --sheet-pad-x: 16px; --fs-num: 72px; --fs-title: 21px; --mk: 40px; }
+    .app { grid-template-columns: minmax(0, 1fr); }
+    .rail { position: static; height: auto; padding: 14px 0 10px; min-width: 0; }
+    .rail .kicker, .rail-title, .rail-meta { padding-left: 16px; padding-right: 16px; }
+    .rail-meta { padding-bottom: 10px; }
+    .caselist { display: flex; overflow-x: auto; gap: 6px; padding: 0 16px 6px; }
+    .caselist li { flex: none; }
+    .ci { grid-template-columns: auto; width: auto; min-width: 64px; gap: 4px; justify-items: center; padding: 8px 10px; }
+    .ci-title, .ci-v .ci-off { display: none; }
+    .ci-v { margin-top: 0; }
+    .ci[aria-current="true"] { box-shadow: inset 0 -3px 0 #7fb2ff; }
+    .rail-foot { display: none; }
+    .main { padding: 0 0 40px; }
+    .sheet { border-radius: 0; margin-bottom: 10px; }
+    .legend, .states { grid-template-columns: 1fr; }
+    .case-head { gap: 16px; }
+    .navbtn { flex: 1; }
+    .kv th, .kv td { display: block; width: auto; padding: 0; }
+    .kv th { padding-top: 12px; }
+    .kv td { padding-bottom: 12px; }
+    .steps, .steps tbody { display: block; }
+    .steps thead { display: none; }
+    .steps tbody tr.step { display: grid; grid-template-columns: 44px minmax(0, 1fr); border-bottom: 1px solid var(--rule); padding: 12px 0; }
+    .steps tbody td { border: 0; padding: 0; background: none !important; }
+    tr.step.is-current { box-shadow: inset 4px 0 0 var(--accent); background: var(--accent-bg); padding-left: 8px !important; margin: 0 -16px; padding-right: 16px !important; grid-template-columns: 52px minmax(0, 1fr) !important; }
+    tr.step.is-current td.n { box-shadow: none; padding-left: 8px; }
+    .steps tbody td.do { padding-bottom: 8px; }
+    .steps tbody td.see { grid-column: 1 / -1; padding: 10px; background: var(--tint) !important; border-radius: 8px; }
+    .see-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 6px; }
+    .mini { width: 100%; }
+    .mini thead { display: none; }
+    .mini td.fg { display: none; }
+    .mini td.combo { display: table-cell; text-align: left; white-space: normal; font-size: 14px; }
+    .mini td.combo .cp { display: flex; justify-content: space-between; gap: 8px; }
+    .mini td.combo .cp-h { color: var(--ink-2); font-size: 13px; }
+    .mini td.nm { white-space: normal; width: 4.6em; padding-right: 6px; line-height: 1.25; }
+    tr.noterow { display: block; }
+    tr.noterow td { display: block; }
+    .note { grid-template-columns: 1fr; gap: 4px; }
+    .verdicts table, .verdicts tbody, .verdicts tr, .verdicts th, .verdicts td { display: block; width: auto !important; }
+    .verdicts thead { display: none; }
+    .verdicts tbody th { border-bottom: 0; padding-bottom: 4px; }
+    .verdicts tbody td { border-bottom: 0; padding-top: 6px; }
+    .verdicts tbody tr { border-bottom: 1px solid var(--rule); }
+    .case-foot .primary { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="about" role="note" aria-label="About this proposal">
+  <div class="about-in">
+    <div><b>About this proposal</b> (not part of the layout) · <b>C revised · Run console with line marks</b></div>
+    <p>Your pick C, one case at a time, with three things from B. B's verdict guide cards on top. B's margins, each case on its own sheet. B's verdict table at the end of each case. New is a tick or a cross on every line you check, so a case can pass and still show what did not match. The verdicts are PASS, FAIL and BLOCKED, each with a note. NOT RUN and RETEST are states the sheet sets. Try the marks, the verdict buttons and "Results for the chat". Nothing is saved in this prototype.</p>
+    <nav aria-label="Proposals"><a href="a.html">A · Markdown tables</a><a href="b.html">B · Test sheet</a><a href="c.html">C · Run console</a><a href="c2.html" aria-current="page">C revised</a></nav>
+  </div>
+</div>
+
+<div class="app">
+  <aside class="rail" aria-label="Cases">
+    <div class="kicker">UAT · sitting 1 of 1</div>
+    <div class="rail-title">Split 1.0.0</div>
+    <div class="rail-meta">8 cases · about 20 minutes</div>
+    <ol class="caselist" id="caselist"></ol>
+    <div class="rail-foot">
+      <button class="results-btn" type="button" data-results>Results for the chat</button>
+      <span><kbd>[</kbd> <kbd>]</kbd> previous and next case</span>
+      <span><b style="color:var(--rail-fg)">T</b> tester · <b style="color:var(--rail-fg)">Y</b> you</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <section class="sheet guide" aria-labelledby="guide-h">
+      <div class="guide-head">
+        <h2 id="guide-h">How to give a verdict</h2>
+        <button class="guide-toggle" id="guide-toggle" type="button" aria-expanded="true" aria-controls="guide-body">Hide the guide</button>
+      </div>
+      <div class="guide-body" id="guide-body">
+        <p class="guide-intro">Every case gets one verdict, including the ones you could not do. The tester's verdict is already there so you can compare. If it says PASS and you find FAIL, that is one of the most useful things you can tell us.</p>
+        <div class="legend" id="legend"></div>
+        <div class="states">
+          <div class="st">
+            <h3>Mark each line as you check it</h3>
+            <p><span class="mk-demo ok" id="demo-ok"></span><span>It matches the sheet.</span></p>
+            <p><span class="mk-demo no" id="demo-no"></span><span>It does not match. A case can still PASS with a cross when you decide the difference does not matter, and the cross stays on record.</span></p>
+          </div>
+          <div class="st">
+            <h3>Set by the sheet, not by you</h3>
+            <p><span class="vchip v-state">NOT RUN</span><span>No verdict yet. It comes back at the next sitting.</span></p>
+            <p><span class="vchip v-retest">RETEST</span><span>It failed, we fixed it, and it is handed back. Your first verdict stays beside the new one.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article class="sheet case" id="case"></article>
+  </main>
+</div>
+
+<div class="scrim" id="results" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="rd-t">
+    <h2 id="rd-t">Your results, ready for the chat</h2>
+    <p>Paste this into the chat with Claude. It holds every verdict, every note and every line you marked with a cross.</p>
+    <textarea id="rd-text" readonly aria-label="Your results"></textarea>
+    <p id="rd-status" role="status"></p>
+    <div class="row">
+      <button class="ghost" type="button" id="rd-close">Close</button>
+      <button class="primary" type="button" id="rd-copy">Copy results</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ICON = {
+    check: "M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z",
+    x: "M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
+  };
+  const svg = (name) => `<svg viewBox='0 0 256 256' aria-hidden='true' focusable='false'><path d='${ICON[name]}'/></svg>`;
+  document.getElementById("demo-ok").innerHTML = svg("check");
+  document.getElementById("demo-no").innerHTML = svg("x");
+
+  const LEGEND = [
+    { v: "PASS", mean: "Every line you checked matches the sheet, or a cross you marked does not matter to you.", ex: "<b>UAT-02.</b> The shares read RM 38.87, RM 38.87 and RM 38.86, exactly as listed." },
+    { v: "FAIL", mean: "A line does not match and it matters. Mark that line with a cross and say in the note what you saw.", ex: "<b>Step 10, Ben's row.</b> The charges read RM 2.25, the sheet says RM 2.24." },
+    { v: "BLOCKED", mean: "You could not run it. Say why in the note. The control was not where the sheet said, the start could not be reached, or the result was not something you could see.", ex: "<b>Step 2</b> says click Add item, but there is no button with that name." },
+    { v: "NOTE", mean: "Any verdict can carry a note. A wish for a change, what you saw, or why you stopped. A note on a PASS becomes a finding for a later version.", ex: "<b>UAT-03.</b> “Pass but i prefer if it cannot be evenly split, the number in summary should show the extras” became scope S1 of 1.1.0." }
+  ];
+
+  const ALL = [
+    ["UAT-01", "I can list the people at the table", "PASS", "PASS"],
+    ["UAT-02", "An even split gives everyone the same share, to the cent", "PASS", "PASS"],
+    ["UAT-03", "The shares always add back up to the total", "PASS", "PASS"],
+    ["UAT-04", "I can change or switch off the charges", "PASS", "PASS"],
+    ["UAT-05", "One tap copies a summary I can paste into the group chat", "PASS", "PASS"],
+    ["UAT-06", "I can split by item, and a shared item is split between the people who had it", "PASS", "PASS"],
+    ["UAT-07", "My bill is still there when I come back", "PASS", "PASS"],
+    ["UAT-08", "I can start a new bill, but only on purpose", "PASS", "PASS"]
+  ];
+
+  const CASES = [
+    {
+      id: "UAT-02", title: "An even split gives everyone the same share, to the cent", scope: "C2 Even split", status: "Shipped",
+      problem: "You asked to type the bill subtotal once and see what each person owes, with the service charge and SST added the way a Malaysian receipt adds them.",
+      before: "UAT-01 done. Aisyah, Ben and Chen are listed and *Even* is chosen.",
+      steps: [
+        { do: "Click the *Subtotal* box. It has RM at its left.", see: "The cursor is in the Subtotal box." },
+        { do: "Type `100.00`.", see: "100.00 is in the box." },
+        { do: "Read the *Bill summary* on the right (below the inputs on a narrow window).", see: 'Subtotal RM 100.00\nService charge RM 10.00, with "10% of RM 100.00" under it\nSST RM 6.60, with "6% of RM 110.00" under it\nTotal RM 116.60' },
+        { do: "Read the *Shares*.", see: 'Aisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nA green tick and "Adds up to" RM 116.60 under them' }
+      ],
+      notes: [{ k: "note", t: "SST is charged on the subtotal plus the service charge, so it reads 6% of RM 110.00, not of RM 100.00." }],
+      tester: { v: "PASS", w: "Subtotal RM 100.00, Service charge RM 10.00 “10% of RM 100.00”, SST RM 6.60 “6% of RM 110.00”, Total RM 116.60, shares 38.87, 38.87, 38.86" },
+      you: { v: "PASS", w: "Pass", d: "2026-10-10" },
+      next: "None"
+    },
+    {
+      id: "UAT-06", title: "I can split by item, and a shared item is split between the people who had it", scope: "C3 Split by item", status: "Shipped, one accepted limit",
+      problem: "You asked for the case where mental maths fails. People ordered different things. You list each item with its price and tap who had it. The charges are then shared in proportion to what each person ate. The shares only show once every item has someone, because a part split would not add up to the receipt.",
+      before: "UAT-05 done. Aisyah, Ben and Chen.",
+      steps: [
+        { do: "Click *By item*, next to Even.", see: "By item is chosen. There are no items yet, only *Add item*." },
+        { do: "Click *Add item*.", see: "A new item appears with the cursor in its name box." },
+        { do: "Type `Nasi lemak ayam`, press [Tab], type `15.90`.", see: "The item reads Nasi lemak ayam, RM 15.90\nThe names Aisyah, Ben and Chen show under it, none of them dark" },
+        { do: "Read the *Shares* area.", see: '"1 item still needs a person. Tap who had it to see the shares."' },
+        { do: "Under that item, click *Aisyah*.", see: "Aisyah turns dark\nThe shares table appears. Its figures change as you add items, so read them at step 10" },
+        { do: "Click *Add item*, type `Char kuey teow`, press [Tab], type `13.50`, then click *Ben* under it.", see: "Ben turns dark under Char kuey teow." },
+        { do: "Click *Add item*, type `Mee goreng mamak`, press [Tab], type `12.00`, then click *Chen* under it.", see: "Chen turns dark under Mee goreng mamak." },
+        { do: "Click *Add item*, type `Satay, 10 sticks`, press [Tab], type `18.00`, then click *Aisyah* and *Chen* under it.", see: "Aisyah and Chen both turn dark under Satay, 10 sticks." },
+        { do: "Read the *Bill summary*.", see: 'Subtotal RM 59.40\nService charge RM 5.94, with "10% of RM 59.40" under it\nSST RM 3.92, with "6% of RM 65.34" under it\nTotal RM 69.26' },
+        { do: "Read the *shares table*. Mark each row.", see: 'Column heads "Items", "+ Charges" and "= Share". The names column has no head',
+          table: { head: ["Items", "+ Charges", "= Share"], rows: [["Aisyah", "RM 24.90", "RM 4.14", "RM 29.04"], ["Ben", "RM 13.50", "RM 2.24", "RM 15.74"], ["Chen", "RM 21.00", "RM 3.48", "RM 24.48"], ["Adds up to", "RM 59.40", "RM 9.86", "RM 69.26"]] } }
+      ],
+      notes: [
+        { k: "note", t: "The satay's split is not printed on its own. Check it from the Items column. Aisyah's RM 24.90 is RM 15.90 + RM 9.00, and Chen's RM 21.00 is RM 12.00 + RM 9.00, half of the satay's RM 18.00 each." },
+        { k: "note", t: "The order of the list decides who gets a spare sen. With Ben above Aisyah the same bill reads Ben RM 2.25 and Aisyah RM 4.13." },
+        { k: "limit", t: "Already ruled by you. On a phone 360 px wide, a by-item bill whose items pass about RM 650 makes the shares table scroll sideways. You chose to fix it in 1.1.0 (2026-10-09). The bill in this case fits." }
+      ],
+      tester: { v: "PASS", w: "The step 4 message exact, tapped names turn dark, the bill summary and every cell of the table as listed. The table fits at 390 and 360 px." },
+      you: { v: "PASS", w: "Pass. You did not include what the service charge and sst. Be as accurate and precise as possible when doing test cases. Also the shares number is correct but the charges for ben is 2.25 and aiyah is 4.13 when in test cases ben is 2.24 and aisyah is 4.14 ( check if this is a bug or a simple logic mistake)", d: "2026-10-10" },
+      next: "Script rule taken (findings UAT-F2). The RM 4.13 and RM 2.25 came from Ben being above Aisyah, not a bug (findings UAT-F3, your words)."
+    },
+    {
+      id: "UAT-08", title: "I can start a new bill, but only on purpose", scope: "C8 New bill", status: "Shipped",
+      problem: "You asked for a way to clear everything for the next meal, behind a question so one slip cannot wipe a bill.",
+      before: "UAT-07 done.",
+      steps: [
+        { do: "Click *New bill*, top right.", see: 'A box opens over the dimmed page\n"Start a new bill?"\n"This clears the people, items and amounts." under it\nTwo buttons, *Start new bill* and *Cancel*' },
+        { do: "Click *Cancel*.", see: "The box closes. The bill is unchanged." },
+        { do: "Click *New bill* again.", see: "The same box opens." },
+        { do: "Click the dimmed page outside the box, near the top-left corner.", see: "The box closes. The bill is unchanged." },
+        { do: "Click *New bill* again.", see: "The same box opens." },
+        { do: "Click *Start new bill*.", see: 'The starting state\n"Person 1" and "Person 2", Even chosen\nAn empty Subtotal, Service charge 10, SST 6\nShares reads "Enter the subtotal to see the shares."' },
+        { do: "Click *By item*.", see: 'No items, only *Add item*\nShares reads "Add an item to see the shares."' }
+      ],
+      notes: [{ k: "ask", t: "The approved design said a click outside the box does nothing. While you delegated the run, we made it act like Cancel (step 4), so every way out closes the box and nothing is cleared. Keep it (our recommendation) or make an outside click do nothing." }],
+      tester: { v: "PASS", w: "The question and both buttons as written. Cancel and a click outside the box both closed it with the saved bill unchanged. Start new bill gave the starting state, and By item showed no items with “Add an item to see the shares.”" },
+      you: { v: "PASS", w: "Pass", d: "2026-10-10" },
+      next: "None. The outside click stays like Cancel (your H-01 ruling, “i am happy with the choices made.”)."
+    }
+  ];
+
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  // Mini markup. *Control*, `typed text`, [Key], "on-screen copy". RM figures are picked out on their own.
+  function rich(s) {
+    let h = esc(s);
+    h = h.replace(/`([^`]+)`/g, "<kbd class='typed'>$1</kbd>");
+    h = h.replace(/\[([A-Za-z+]+)\]/g, "<kbd class='key'>$1</kbd>");
+    h = h.replace(/\*([^*]+)\*/g, "<b class='ctl'>$1</b>");
+    h = h.replace(/"([^"]+)"/g, "<span class='ui'>“$1”</span>");
+    h = h.replace(/RM [\d,]+\.\d{2}/g, (m) => "<span class='fig'>" + m + "</span>");
+    return h;
+  }
+  const figs = (s) => esc(s).replace(/RM [\d,]+\.\d{2}/g, (m) => "<span class='fig'>" + m + "</span>");
+  const plain = (s) => s.replace(/[*`\[\]]/g, "");
+
+  const VKEY = { "PASS": "pass", "FAIL": "fail", "BLOCKED": "block", "NOTE": "note", "NOT RUN": "state" };
+  const VICON = { "PASS": "check", "FAIL": "x" };
+  const chip = (v, off) => `<span class='vchip v-${VKEY[v]}${off ? " off" : ""}'>${VICON[v] ? svg(VICON[v]) : ""}${v}</span>`;
+  const VERDICTS = ["PASS", "FAIL", "BLOCKED"];
+
+  document.getElementById("legend").innerHTML = LEGEND.map((l) =>
+    `<div class='lg'><div>${chip(l.v)}</div><p>${esc(l.mean)}</p><p class='ex'>${l.ex.replace(/RM [\d,]+\.\d{2}/g, (m) => "<span class='fig'>" + m + "</span>")}</p></div>`).join("");
+
+  const guideToggle = document.getElementById("guide-toggle");
+  const guideBody = document.getElementById("guide-body");
+  guideToggle.addEventListener("click", () => {
+    const open = guideToggle.getAttribute("aria-expanded") === "true";
+    guideToggle.setAttribute("aria-expanded", String(!open));
+    guideToggle.textContent = open ? "Show the guide" : "Hide the guide";
+    guideBody.hidden = open;
+  });
+
+  // Every checkable line of a case, in order. Keys are step-line or step-tRow.
+  function checkables(c) {
+    const out = [];
+    c.steps.forEach((st, si) => {
+      st.see.split("\n").forEach((l, li) => out.push({ key: `${si}-${li}`, si, text: plain(l) }));
+      if (st.table) st.table.rows.forEach((r, ri) => out.push({ key: `${si}-t${ri}`, si, text: r.join(" · ") }));
+    });
+    return out;
+  }
+
+  // State. Nothing is saved.
+  const byId = Object.fromEntries(CASES.map((c) => [c.id, c]));
+  const state = Object.fromEntries(CASES.map((c) => [c.id, { marks: {}, verdict: c.you.v, note: c.you.w }]));
+  let current = "UAT-06";
+  const order = CASES.map((c) => c.id);
+
+  function dot(letter, v, who) {
+    const k = v ? VKEY[v] : "none";
+    return `<span class='dot d-${k}' aria-hidden='true'>${letter}</span><span class='sr'>${who} ${v || "NOT RUN"}. </span>`;
+  }
+  function renderList() {
+    document.getElementById("caselist").innerHTML = ALL.map(([id, title, tv, yv]) => {
+      const inSample = !!byId[id];
+      const yourV = inSample ? state[id].verdict : yv;
+      const cur = id === current ? " aria-current='true'" : "";
+      return `<li><button type='button' class='ci${inSample ? "" : " off"}' data-id='${id}'${cur}${inSample ? "" : " aria-disabled='true'"}>
+        <span class='ci-num'>${id.split("-")[1]}</span>
+        <span class='ci-body'><span class='ci-title'>${esc(title)}</span>
+        <span class='ci-v'>${dot("T", tv, "Tester")}${dot("Y", yourV, "You")}${inSample ? "" : "<span class='ci-off'>not in this sample</span>"}</span></span></button></li>`;
+    }).join("");
+  }
+
+  function markButtons(key, m, label) {
+    return `<span class='mks' role='group' aria-label='${esc(label)}'>
+      <button type='button' class='mk ok' data-k='${key}' data-m='ok' aria-pressed='${m === "ok"}' aria-label='Matches'>${svg("check")}</button>
+      <button type='button' class='mk no' data-k='${key}' data-m='no' aria-pressed='${m === "no"}' aria-label='Does not match'>${svg("x")}</button></span>`;
+  }
+
+  function seeCell(st, si, s) {
+    const lines = st.see.split("\n").map((l, li) => {
+      const key = `${si}-${li}`, m = s.marks[key];
+      return `<li class='line${m ? " m-" + m : ""}'>${markButtons(key, m, `Step ${si + 1}, line ${li + 1}`)}<span class='txt'>${rich(l)}</span></li>`;
+    }).join("");
+    let tbl = "";
+    if (st.table) {
+      const t = st.table;
+      tbl = `<table class='mini'><thead><tr><th class='mkc'><span class='sr'>Mark</span></th><th class='nm'><span class='sr'>Name</span></th>${t.head.map((h) => `<th scope='col'>${esc(h)}</th>`).join("")}</tr></thead><tbody>` +
+        t.rows.map((r, ri) => {
+          const key = `${si}-t${ri}`, m = s.marks[key];
+          const total = ri === t.rows.length - 1 ? " total" : "";
+          const combo = r.slice(1).map((v, i) => `<span class='cp'><span class='cp-h'>${esc(t.head[i])}</span> ${figs(v)}</span>`).join("");
+          return `<tr class='${m ? "m-" + m : ""}${total}'><td class='mkc'>${markButtons(key, m, `Step ${si + 1}, ${r[0]} row`)}</td><td class='nm'>${esc(r[0])}</td>` +
+            r.slice(1).map((v) => `<td class='fg'>${figs(v)}</td>`).join("") + `<td class='combo'>${combo}</td></tr>`;
+        }).join("") + "</tbody></table>";
+    }
+    return `<span class='see-label'>You should see</span><ul class='lines'>${lines}</ul>${tbl}`;
+  }
+  const NOTE_TAG = { note: "Note", ask: "Rule on this", limit: "Known limit" };
+
+  function counts(c) {
+    const all = checkables(c), s = state[c.id];
+    const ok = all.filter((x) => s.marks[x.key] === "ok").length;
+    const noList = all.filter((x) => s.marks[x.key] === "no");
+    return { all, ok, no: noList.length, noList, open: all.length - ok - noList.length };
+  }
+
+  function renderCase() {
+    const c = byId[current], s = state[current];
+    const idx = order.indexOf(current);
+    const ct = counts(c);
+    const stepOpen = (si) => ct.all.some((x) => x.si === si && !s.marks[x.key]);
+    const stepNo = (si) => ct.all.some((x) => x.si === si && s.marks[x.key] === "no");
+    const firstOpen = c.steps.findIndex((_, si) => stepOpen(si));
+
+    const steps = c.steps.map((st, si) => {
+      const cls = ["step", si === firstOpen ? "is-current" : "", !stepOpen(si) ? "is-done" : "", stepNo(si) ? "has-no" : ""].join(" ").replace(/\s+/g, " ").trim();
+      return `<tr class='${cls}'><td class='n'><span class='num'>${si + 1}</span></td><td class='do'>${rich(st.do)}</td><td class='see'>${seeCell(st, si, s)}</td></tr>`;
+    }).join("");
+    const notes = c.notes.map((n) =>
+      `<tr class='noterow'><td colspan='3'><div class='note k-${n.k}'><span class='tag'>${NOTE_TAG[n.k]}</span><p>${figs(n.t)}</p></div></td></tr>`).join("");
+    const ballot = VERDICTS.map((v) =>
+      `<label class='bopt'><input type='radio' name='verdict' value='${v}' ${s.verdict === v ? "checked" : ""}>${chip(v)}</label>`).join("");
+    const testerBallot = VERDICTS.map((v) => chip(v, v !== c.tester.v)).join("");
+    const pctOk = Math.round((ct.ok / ct.all.length) * 100), pctNo = Math.round((ct.no / ct.all.length) * 100);
+    const noItems = ct.noList.map((x) => `<li><span>Step ${x.si + 1}. ${esc(x.text)}</span></li>`).join("");
+
+    document.getElementById("case").innerHTML = `
+      <header class='case-head'>
+        <div class='case-num' aria-hidden='true'><span class='kicker'>UAT</span><span class='digits'>${c.id.split("-")[1]}</span></div>
+        <div><h1><span class='sr'>${c.id}. </span>${esc(c.title)}</h1>
+          <div class='chips'><span class='chip'>${esc(c.scope)}</span><span class='chip'>${esc(c.status)}</span><span class='chip'>${c.steps.length} steps · ${ct.all.length} lines to check</span></div></div>
+        <div class='c-nav'>
+          <button type='button' class='navbtn' data-go='-1' ${idx === 0 ? "disabled" : ""}>Previous case</button>
+          <button type='button' class='navbtn' data-go='1' ${idx === order.length - 1 ? "disabled" : ""}>Next case</button>
+        </div>
+      </header>
+      <table class='kv'><tbody>
+        <tr><th scope='row'>Scope</th><td>${esc(c.scope)} · ${esc(c.status)}</td></tr>
+        <tr><th scope='row'>The problem</th><td>${rich(c.problem)}</td></tr>
+        <tr><th scope='row'>Before you start</th><td>${rich(c.before)}</td></tr>
+      </tbody></table>
+      <div class='progress' role='status'>
+        <span>${ct.ok + ct.no} of ${ct.all.length} lines checked${ct.no ? ` · <span class='ct-no'>${ct.no} not matching</span>` : ""}</span>
+        <div class='bar' aria-hidden='true'><span class='b-ok' style='width:${pctOk}%'></span><span class='b-no' style='width:${pctNo}%'></span></div>
+      </div>
+      <table class='steps'>
+        <thead><tr><th scope='col'>Step</th><th scope='col' class='c-do'>Do this</th><th scope='col'>You should see, mark each line</th></tr></thead>
+        <tbody>${steps}${notes}</tbody></table>
+      <div class='verdicts'><table>
+        <thead><tr><th scope='col' class='c-who'>Who</th><th scope='col' class='c-v'>Verdict</th><th scope='col'>Note</th></tr></thead>
+        <tbody>
+          <tr><th scope='row'>Tester<small>pre-run, an agent</small></th><td><div class='ballot' role='img' aria-label='Tester verdict ${c.tester.v}'>${testerBallot}</div></td><td><p class='words'>${figs(c.tester.w)}</p></td></tr>
+          <tr><th scope='row'>You<small>${c.you.d}</small></th><td><fieldset class='ballot'><legend class='sr'>Your verdict</legend>${ballot}</fieldset></td>
+            <td><textarea class='note-field' id='note' aria-label='Your note'>${esc(s.note)}</textarea><p class='note-hint'>Your words, recorded exactly as you write them.</p></td></tr>
+          <tr class='marksum'><th scope='row'>Your marks</th><td colspan='2'>${ct.ok} matching · ${ct.no} not matching · ${ct.open} not marked yet${ct.no ? `<ul class='no-list'>${noItems}</ul>` : ""}</td></tr>
+          <tr class='next'><th scope='row'>Next step<small>agreed with you</small></th><td colspan='2'>${figs(c.next)}</td></tr>
+        </tbody></table></div>
+      <div class='case-foot'><button type='button' class='primary' data-results>Results for the chat</button></div>`;
+  }
+
+  function render() { renderList(); renderCase(); }
+
+  function go(delta) {
+    const i = order.indexOf(current) + delta;
+    if (i < 0 || i >= order.length) return;
+    current = order[i];
+    render();
+    document.getElementById("case").scrollIntoView({ block: "start" });
+  }
+
+  document.getElementById("caselist").addEventListener("click", (e) => {
+    const b = e.target.closest(".ci");
+    if (!b || !byId[b.dataset.id]) return;
+    current = b.dataset.id;
+    render();
+  });
+
+  const caseEl = document.getElementById("case");
+  caseEl.addEventListener("click", (e) => {
+    const nav = e.target.closest("[data-go]");
+    if (nav) { go(Number(nav.dataset.go)); return; }
+    const mk = e.target.closest(".mk");
+    if (!mk) return;
+    const s = state[current], k = mk.dataset.k, m = mk.dataset.m;
+    if (s.marks[k] === m) delete s.marks[k]; else s.marks[k] = m;
+    const sel = `.mk[data-k='${k}'][data-m='${m}']`;
+    renderCase();
+    const again = caseEl.querySelector(sel);
+    if (again) again.focus({ preventScroll: true });
+  });
+  caseEl.addEventListener("change", (e) => {
+    if (e.target.name === "verdict") { state[current].verdict = e.target.value; renderList(); }
+  });
+  caseEl.addEventListener("input", (e) => {
+    if (e.target.id === "note") state[current].note = e.target.value;
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!document.getElementById("results").hidden) return;
+    if (e.target.matches("textarea, input[type=text]")) return;
+    if (e.key === "]") go(1);
+    if (e.key === "[") go(-1);
+  });
+
+  // Results for the chat
+  const scrim = document.getElementById("results");
+  const rdText = document.getElementById("rd-text");
+  const rdStatus = document.getElementById("rd-status");
+  let opener = null;
+  function resultsText() {
+    const lines = ["Split 1.0.0 UAT, sitting 1 of 1, my results", ""];
+    ALL.forEach(([id]) => {
+      const c = byId[id];
+      if (!c) { lines.push(`${id} not in this sample`); return; }
+      const s = state[id], ct = counts(c);
+      lines.push(`${id} ${s.verdict || "NOT RUN"}. ${ct.ok} matching, ${ct.no} not matching, ${ct.open} not marked.`);
+      ct.noList.forEach((x) => lines.push(`  ✗ step ${x.si + 1}. ${x.text}`));
+      if (s.note.trim()) lines.push(`  Note "${s.note.trim()}"`);
+    });
+    return lines.join("\n");
+  }
+  function openResults(from) {
+    opener = from;
+    rdText.value = resultsText();
+    rdStatus.textContent = "";
+    scrim.hidden = false;
+    rdText.focus();
+  }
+  function closeResults() {
+    scrim.hidden = true;
+    if (opener) opener.focus();
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-results]");
+    if (b) openResults(b);
+  });
+  document.getElementById("rd-close").addEventListener("click", closeResults);
+  scrim.addEventListener("click", (e) => { if (e.target === scrim) closeResults(); });
+  scrim.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { e.preventDefault(); closeResults(); }
+    if (e.key === "Tab") {
+      const f = [...scrim.querySelectorAll("textarea, button")];
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  // Copies only when you press the button yourself.
+  document.getElementById("rd-copy").addEventListener("click", () => {
+    const done = () => { rdStatus.style.color = "var(--pass)"; rdStatus.textContent = "Results copied. Paste them into the chat."; };
+    const fail = () => { rdStatus.style.color = "var(--fail)"; rdStatus.textContent = "Could not copy. Select the text and press Ctrl+C."; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(rdText.value).then(done, fail);
+    else fail();
+  });
+
+  render();
+</script>
+</body>
+</html>

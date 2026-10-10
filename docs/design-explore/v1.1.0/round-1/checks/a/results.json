@@ -1,0 +1,909 @@
+{
+  "url": "file:///{workspace}/examples/split/docs/design-explore/v1.1.0/round-1/a.html",
+  "console_errors": {
+    "390": [],
+    "360": [],
+    "1280": [],
+    "1024 reduced motion": []
+  },
+  "hscroll": {
+    "390 W1": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "sideways": false
+    },
+    "360 K1": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 K2": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 S1": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 S2": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 S3": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 S4fail": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 S5": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 S6": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 S7": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 W1": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 P1 open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 M1 open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "360 prototype panel open": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "sideways": false
+    },
+    "1280 K1": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "sideways": false
+    },
+    "1280 K2": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "sideways": false
+    },
+    "1280 S1": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "sideways": false
+    },
+    "1280 S3": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "sideways": false
+    },
+    "1280 S5": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "sideways": false
+    },
+    "1280 S6": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "sideways": false
+    },
+    "1280 S7": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "sideways": false
+    },
+    "1280 W1": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "sideways": false
+    },
+    "1024 K1": {
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "sideways": false
+    }
+  },
+  "asserts": [
+    {
+      "name": "K1 summary",
+      "ok": true,
+      "got": [
+        "RM 59.40",
+        "RM 5.94",
+        "RM 3.92",
+        "RM 69.26"
+      ],
+      "want": [
+        "RM 59.40",
+        "RM 5.94",
+        "RM 3.92",
+        "RM 69.26"
+      ]
+    },
+    {
+      "name": "K1 working",
+      "ok": true,
+      "got": [
+        "10% of RM 59.40",
+        "6% of RM 65.34"
+      ],
+      "want": [
+        "10% of RM 59.40",
+        "6% of RM 65.34"
+      ]
+    },
+    {
+      "name": "K1 names",
+      "ok": true,
+      "got": [
+        "Aisyah",
+        "Ben",
+        "Chen"
+      ],
+      "want": [
+        "Aisyah",
+        "Ben",
+        "Chen"
+      ]
+    },
+    {
+      "name": "K1 shares",
+      "ok": true,
+      "got": [
+        "RM 29.04",
+        "RM 15.74",
+        "RM 24.48"
+      ],
+      "want": [
+        "RM 29.04",
+        "RM 15.74",
+        "RM 24.48"
+      ]
+    },
+    {
+      "name": "K1 share working",
+      "ok": true,
+      "got": [
+        "Items RM 24.90 + Charges RM 4.14",
+        "Items RM 13.50 + Charges RM 2.24",
+        "Items RM 21.00 + Charges RM 3.48"
+      ],
+      "want": [
+        "Items RM 24.90 + Charges RM 4.14",
+        "Items RM 13.50 + Charges RM 2.24",
+        "Items RM 21.00 + Charges RM 3.48"
+      ]
+    },
+    {
+      "name": "K1 adds up",
+      "ok": true,
+      "got": [
+        "RM 69.26",
+        "Items RM 59.40 + Charges RM 9.86"
+      ],
+      "want": [
+        "RM 69.26",
+        "Items RM 59.40 + Charges RM 9.86"
+      ]
+    },
+    {
+      "name": "K1 spare line",
+      "ok": true,
+      "got": [
+        "1 sen left over"
+      ],
+      "want": [
+        "1 sen left over"
+      ]
+    },
+    {
+      "name": "K1 spare choice",
+      "ok": true,
+      "got": [
+        "Top of the list"
+      ],
+      "want": [
+        "Top of the list"
+      ]
+    },
+    {
+      "name": "K1 item prices",
+      "ok": true,
+      "got": [
+        "15.90",
+        "13.50",
+        "12.00",
+        "18.00"
+      ],
+      "want": [
+        "15.90",
+        "13.50",
+        "12.00",
+        "18.00"
+      ]
+    },
+    {
+      "name": "P1 Esc keeps Top of the list",
+      "ok": true,
+      "got": [
+        "Top of the list"
+      ],
+      "want": [
+        "Top of the list"
+      ]
+    },
+    {
+      "name": "K1 one person Ben",
+      "ok": true,
+      "got": [
+        "RM 29.03",
+        "RM 15.75",
+        "RM 24.48"
+      ],
+      "want": [
+        "RM 29.03",
+        "RM 15.75",
+        "RM 24.48"
+      ]
+    },
+    {
+      "name": "K1 random adds up",
+      "ok": true,
+      "got": 6926,
+      "want": 6926
+    },
+    {
+      "name": "K1 pick again adds up",
+      "ok": true,
+      "got": 6926,
+      "want": 6926
+    },
+    {
+      "name": "K1 pick again changes the draw",
+      "ok": true,
+      "got": true,
+      "want": true
+    },
+    {
+      "name": "K2 summary",
+      "ok": true,
+      "got": [
+        "RM 100.00",
+        "RM 10.00",
+        "RM 6.60",
+        "RM 116.60"
+      ],
+      "want": [
+        "RM 100.00",
+        "RM 10.00",
+        "RM 6.60",
+        "RM 116.60"
+      ]
+    },
+    {
+      "name": "K2 working",
+      "ok": true,
+      "got": [
+        "10% of RM 100.00",
+        "6% of RM 110.00"
+      ],
+      "want": [
+        "10% of RM 100.00",
+        "6% of RM 110.00"
+      ]
+    },
+    {
+      "name": "K2 shares",
+      "ok": true,
+      "got": [
+        "RM 38.87",
+        "RM 38.87",
+        "RM 38.86"
+      ],
+      "want": [
+        "RM 38.87",
+        "RM 38.87",
+        "RM 38.86"
+      ]
+    },
+    {
+      "name": "K2 adds up",
+      "ok": true,
+      "got": [
+        "RM 116.60"
+      ],
+      "want": [
+        "RM 116.60"
+      ]
+    },
+    {
+      "name": "K2 spare line",
+      "ok": true,
+      "got": [
+        "2 sen left over"
+      ],
+      "want": [
+        "2 sen left over"
+      ]
+    },
+    {
+      "name": "K2 subtotal field",
+      "ok": true,
+      "got": "100.00",
+      "want": "100.00"
+    },
+    {
+      "name": "K2 one person Ben",
+      "ok": true,
+      "got": [
+        "RM 38.86",
+        "RM 38.88",
+        "RM 38.86"
+      ],
+      "want": [
+        "RM 38.86",
+        "RM 38.88",
+        "RM 38.86"
+      ]
+    },
+    {
+      "name": "K2 random gives two different people one sen",
+      "ok": true,
+      "got": [
+        "RM 38.86",
+        "RM 38.87",
+        "RM 38.87"
+      ],
+      "want": [
+        "RM 38.86",
+        "RM 38.87",
+        "RM 38.87"
+      ]
+    },
+    {
+      "name": "K2 pick again still two different people",
+      "ok": true,
+      "got": [
+        "RM 38.86",
+        "RM 38.87",
+        "RM 38.87"
+      ],
+      "want": [
+        "RM 38.86",
+        "RM 38.87",
+        "RM 38.87"
+      ]
+    },
+    {
+      "name": "K2 pick again changes the draw",
+      "ok": true,
+      "got": true,
+      "want": true
+    },
+    {
+      "name": "M1 copy",
+      "ok": true,
+      "got": [
+        "Start a new bill?",
+        "This clears the people, items and amounts.",
+        "Cancel",
+        "Start new bill"
+      ],
+      "want": [
+        "Start a new bill?",
+        "This clears the people, items and amounts.",
+        "Cancel",
+        "Start new bill"
+      ]
+    },
+    {
+      "name": "M1 Cancel keeps the bill",
+      "ok": true,
+      "got": [
+        "RM 29.04",
+        "RM 15.74",
+        "RM 24.48"
+      ],
+      "want": [
+        "RM 29.04",
+        "RM 15.74",
+        "RM 24.48"
+      ]
+    },
+    {
+      "name": "Start new bill gives S1 people",
+      "ok": true,
+      "got": [
+        "Person 1",
+        "Person 2"
+      ],
+      "want": [
+        "Person 1",
+        "Person 2"
+      ]
+    },
+    {
+      "name": "Start new bill gives S1 message",
+      "ok": true,
+      "got": [
+        "Enter the subtotal to see the shares."
+      ],
+      "want": [
+        "Enter the subtotal to see the shares."
+      ]
+    },
+    {
+      "name": "S4 copied",
+      "ok": true,
+      "got": [
+        "Summary copied"
+      ],
+      "want": [
+        "Summary copied"
+      ]
+    },
+    {
+      "name": "S1 people",
+      "ok": true,
+      "got": [
+        "Person 1",
+        "Person 2"
+      ],
+      "want": [
+        "Person 1",
+        "Person 2"
+      ]
+    },
+    {
+      "name": "S1 removes disabled",
+      "ok": true,
+      "got": [
+        true,
+        true
+      ],
+      "want": [
+        true,
+        true
+      ]
+    },
+    {
+      "name": "S1 mode Even",
+      "ok": true,
+      "got": true,
+      "want": true
+    },
+    {
+      "name": "S1 subtotal empty",
+      "ok": true,
+      "got": "",
+      "want": ""
+    },
+    {
+      "name": "S1 rates",
+      "ok": true,
+      "got": [
+        "10",
+        "6"
+      ],
+      "want": [
+        "10",
+        "6"
+      ]
+    },
+    {
+      "name": "S1 message",
+      "ok": true,
+      "got": [
+        "Enter the subtotal to see the shares."
+      ],
+      "want": [
+        "Enter the subtotal to see the shares."
+      ]
+    },
+    {
+      "name": "S2 error",
+      "ok": true,
+      "got": [
+        "Enter an amount like 12.50"
+      ],
+      "want": [
+        "Enter an amount like 12.50"
+      ]
+    },
+    {
+      "name": "S2 aria-invalid",
+      "ok": true,
+      "got": "true",
+      "want": "true"
+    },
+    {
+      "name": "S3 message",
+      "ok": true,
+      "got": [
+        "1 item still needs a person. Tap who had it to see the shares."
+      ],
+      "want": [
+        "1 item still needs a person. Tap who had it to see the shares."
+      ]
+    },
+    {
+      "name": "S3 summary still shows",
+      "ok": true,
+      "got": [
+        "RM 69.26"
+      ],
+      "want": [
+        "RM 69.26"
+      ]
+    },
+    {
+      "name": "S4 ok",
+      "ok": true,
+      "got": [
+        "Summary copied"
+      ],
+      "want": [
+        "Summary copied"
+      ]
+    },
+    {
+      "name": "S4 fail",
+      "ok": true,
+      "got": [
+        "Could not copy. Your browser blocked the clipboard."
+      ],
+      "want": [
+        "Could not copy. Your browser blocked the clipboard."
+      ]
+    },
+    {
+      "name": "S5 note",
+      "ok": true,
+      "got": [
+        "This bill is not being saved on this device. It will be lost when you close this tab."
+      ],
+      "want": [
+        "This bill is not being saved on this device. It will be lost when you close this tab."
+      ]
+    },
+    {
+      "name": "S5 has no dismiss",
+      "ok": true,
+      "got": 0,
+      "want": 0
+    },
+    {
+      "name": "S6 note",
+      "ok": true,
+      "got": [
+        "Your saved bill could not be read, so a new one was started."
+      ],
+      "want": [
+        "Your saved bill could not be read, so a new one was started."
+      ]
+    },
+    {
+      "name": "S6 dismiss hides the note",
+      "ok": true,
+      "got": true,
+      "want": true
+    },
+    {
+      "name": "S7 twelve people",
+      "ok": true,
+      "got": 12,
+      "want": 12
+    },
+    {
+      "name": "S7 Add person disabled",
+      "ok": true,
+      "got": true,
+      "want": true
+    },
+    {
+      "name": "W1 total",
+      "ok": true,
+      "got": [
+        "RM 1,193.87"
+      ],
+      "want": [
+        "RM 1,193.87"
+      ]
+    },
+    {
+      "name": "W1 shares",
+      "ok": true,
+      "got": [
+        "RM 29.04",
+        "RM 1,140.35",
+        "RM 24.48"
+      ],
+      "want": [
+        "RM 29.04",
+        "RM 1,140.35",
+        "RM 24.48"
+      ]
+    },
+    {
+      "name": "W1 adds up",
+      "ok": true,
+      "got": [
+        "Items RM 1,023.90 + Charges RM 169.97"
+      ],
+      "want": [
+        "Items RM 1,023.90 + Charges RM 169.97"
+      ]
+    },
+    {
+      "name": "reduced motion: no entrance animation",
+      "ok": true,
+      "got": "none",
+      "want": "none"
+    }
+  ],
+  "small_targets": {
+    "390 K1": [],
+    "360 K1": [],
+    "1280 K1": []
+  },
+  "contrast": {
+    "body text on its background (live computed)": {
+      "ratio": 13.55,
+      "need": 4.5,
+      "pass": true
+    },
+    "text on l1 people pane": {
+      "ratio": 15.46,
+      "need": 4.5,
+      "pass": true
+    },
+    "text on l2 bill pane": {
+      "ratio": 14.62,
+      "need": 4.5,
+      "pass": true
+    },
+    "text on l3 chat pane": {
+      "ratio": 13.55,
+      "need": 4.5,
+      "pass": true
+    },
+    "text on l4 embed": {
+      "ratio": 12.09,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted on l1": {
+      "ratio": 8.37,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted on l2": {
+      "ratio": 7.91,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted on l3": {
+      "ratio": 7.33,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted on l4 embed": {
+      "ratio": 6.54,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted on accent tint (proof working)": {
+      "ratio": 5.34,
+      "need": 4.5,
+      "pass": true
+    },
+    "accent ink on l3 (bot name)": {
+      "ratio": 7.51,
+      "need": 4.5,
+      "pass": true
+    },
+    "accent ink on l4 embed": {
+      "ratio": 6.7,
+      "need": 4.5,
+      "pass": true
+    },
+    "accent ink on accent tint (mentions, proof)": {
+      "ratio": 5.47,
+      "need": 4.5,
+      "pass": true
+    },
+    "text on accent tint (tapped chip)": {
+      "ratio": 11.91,
+      "need": 4.5,
+      "pass": true
+    },
+    "on-accent on accent (Copy summary, chosen)": {
+      "ratio": 5.24,
+      "need": 4.5,
+      "pass": true
+    },
+    "on-danger on danger (Start new bill)": {
+      "ratio": 5.1,
+      "need": 4.5,
+      "pass": true
+    },
+    "error ink on l2": {
+      "ratio": 7.71,
+      "need": 4.5,
+      "pass": true
+    },
+    "error ink on l3": {
+      "ratio": 7.15,
+      "need": 4.5,
+      "pass": true
+    },
+    "text on warn bar": {
+      "ratio": 12.93,
+      "need": 4.5,
+      "pass": true
+    },
+    "text on info bar": {
+      "ratio": 13.07,
+      "need": 4.5,
+      "pass": true
+    },
+    "control border on field": {
+      "ratio": 4.25,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on l1": {
+      "ratio": 4.18,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on l2": {
+      "ratio": 3.95,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on l3": {
+      "ratio": 3.66,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on l4": {
+      "ratio": 3.27,
+      "need": 3.0,
+      "pass": true
+    },
+    "chosen fill (accent) on field track": {
+      "ratio": 3.38,
+      "need": 3.0,
+      "pass": true
+    },
+    "tapped chip border on l2": {
+      "ratio": 5.44,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring on l0": {
+      "ratio": 8.98,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring on l2": {
+      "ratio": 8.1,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring on l4": {
+      "ratio": 6.7,
+      "need": 3.0,
+      "pass": true
+    },
+    "warn icon on warn bar": {
+      "ratio": 9.18,
+      "need": 3.0,
+      "pass": true
+    }
+  },
+  "icons": {
+    "x": "exact",
+    "plus": "exact",
+    "copy": "exact",
+    "check": "exact",
+    "caret": "exact",
+    "shuffle": "exact",
+    "warning": "exact",
+    "warning-circle": "exact",
+    "receipt": "exact",
+    "seal-check": "exact"
+  },
+  "screens": [
+    "k1-390.png",
+    "k1-390-full.png",
+    "p1-picker-k1-390.png",
+    "p1-one-person-k1-390.png",
+    "p1-random-k1-390.png",
+    "p1-pick-again-k1-390.png",
+    "k2-390.png",
+    "k2-390-full.png",
+    "p1-picker-k2-390.png",
+    "p1-random-k2-390.png",
+    "m1-390.png",
+    "s1-after-start-new-bill-390.png",
+    "s4-copied-390.png",
+    "proto-panel-390.png",
+    "state-s1-390.png",
+    "state-s2-390.png",
+    "state-s3-390.png",
+    "state-s4-copied-390.png",
+    "state-s4-failed-390.png",
+    "state-s5-390.png",
+    "state-s6-390.png",
+    "state-s7-390.png",
+    "state-w1-390.png",
+    "k1-360.png",
+    "k1-360-full.png",
+    "state-w1-360-full.png",
+    "state-w1-360-shares.png",
+    "p1-picker-360.png",
+    "m1-360.png",
+    "k1-1280.png",
+    "p1-picker-1280.png",
+    "p1-random-1280.png",
+    "m1-1280.png",
+    "state-k2-1280.png",
+    "state-s1-1280.png",
+    "state-s3-1280.png",
+    "state-s5-1280.png",
+    "state-s6-1280.png",
+    "state-s7-1280.png",
+    "state-w1-1280.png",
+    "state-s4-failed-1280.png",
+    "focus-ring-1280.png",
+    "k1-1024-reduced-motion.png"
+  ],
+  "k1_random_draws": [
+    [
+      "RM 29.03",
+      "RM 15.74",
+      "RM 24.49"
+    ],
+    [
+      "RM 29.04",
+      "RM 15.74",
+      "RM 24.48"
+    ]
+  ],
+  "k2_random_draws": [
+    [
+      "RM 38.87",
+      "RM 38.86",
+      "RM 38.87"
+    ],
+    [
+      "RM 38.87",
+      "RM 38.87",
+      "RM 38.86"
+    ]
+  ],
+  "w1_360_out_of_view": [],
+  "failures": []
+}
