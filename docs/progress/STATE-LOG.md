@@ -191,3 +191,10 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-10 16:37 v1.1.0 opened
 - docs/v1.1.0/CHANGE-LEDGER.md opened with the scopes the owner approved at UAT and at the seal.
 - STATE version 1.1.0.
+
+## 2026-10-10 16:46 to 20:25 v1.1.0 design round 1 and the UAT sheet
+- Inputs with the owner: feeling words "Decide for me" (ORCH: sharp, quick, social), "futuristic but minimal, like discord", the spare-sen line with Top of the list, One person and At random, name "Danial's Splity Tab" (the logo and header show "Splity Tab"). Brainstorm delta, docs/future/several-bills.md (S9) and docs/design-explore/v1.1.0/BRIEF.md committed `22641e1`.
+- UAT sheet: three layouts `94bda22`, his pick "C revised" after two rounds of notes (`da8a354`, `c4e37f2`), approved 19:27 (`ac5f73f`, ledger off-scope row 5). Shipped as sdlc 2.2.0's test sheet template on his ask.
+- Five directions, each by its own designer agent, two at a time, with render checks at 390, 360 and 1280 px: A Night Console `da8a354`, B Glass Receipt `755447a`, C Daylight Instrument `9ce713c`, D Share Orbit `efb824b`, E Command Line `ceaaf87`. All 0 console errors, no sideways scroll at 360, every inventory figure asserted.
+- Rule slips by designers, all self-reported, no file left behind: A redirected output once ("> run2.log", deleted) and fetched six public Phosphor icon files. E used "2>&1" to the terminal (no file). Later briefs forbid both by name.
+- compare.html written by the orchestrator `d1deb01`: pick D Share Orbit, runner-up A. Waiting for the owner (ledger H-03).

@@ -24,8 +24,8 @@
 | S4 | A bill that cannot be saved says so | OPEN | USER | 0 |
 | S5 | Tested in Safari's engine too | OPEN | USER | 0 |
 | S6 | The logo in the app | OPEN | USER | 0 |
-| S7 | A livelier look, chosen from five directions | OPEN | USER | 0 |
-| S8 | A name that is free to use | OPEN | USER | 1 |
+| S7 | A livelier look, chosen from five directions | OPEN, round 1 done | USER | 1 (H-03) |
+| S8 | A name that is free to use | OPEN, name ruled | USER | 0 |
 | S9 | Several bills, written up as a future implementation (document only) | OPEN | USER | 0 |
 
 ---
@@ -101,6 +101,7 @@ A new look the owner picks from five clickable static directions, then a new gol
 | # | Problem found | When | What changed | Who | Outcome |
 |---|---|---|---|---|---|
 | 1 | Scope opened from the owner's comment | 2026-10-10 seal | Design round with him | USER | Open |
+| 2 | Round 1, five clickable directions on the key screen with every popup and state reachable | 2026-10-10 design | A Night Console `da8a354`, B Glass Receipt `755447a`, C Daylight Instrument `9ce713c`, D Share Orbit `efb824b`, E Command Line `ceaaf87`, each by its own designer agent with render checks at 390, 360 and 1280 px (0 console errors, no sideways scroll at 360, every inventory figure asserted). round-1/compare.html `d1deb01` with the orchestrator's pick D, runner-up A. Prototype-only flags on the page: A, B and C draw "At random" from a fixed seed (C also steers its first draw), B's Prototype states tab covers a name field on a phone. Not in the brief: D's "+1 sen" label, E's bare figures in the Items and Charges columns | ORCH (designer agents) | Waiting for the owner's pick (H-03) |
 
 ### S8 - A name that is free to use
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
@@ -142,6 +143,15 @@ A short document that describes how several bills could work later. No code.
 - **What:** "SplitIO" is taken. His fallback is his own name with the app name ("Danial's Split") or another way to make it his.
 - **Why an agent cannot decide it:** the name of his public showcase piece is his.
 - **Options:** decided in the design round, beside the wordmark.
+- **Ruling:** (pending)
+- **Ruling, added 2026-10-10:** "Danial's Splity Tab and Danial's Streaky Habit. Logo wise, dont need danial or even initial D." (Off-scope row 2). The logo and header show "Splity Tab".
+
+### H-03 - Which design direction (S7)
+(H-02 is the v1.0.0 finding named in S2, so this item is H-03.)
+- **What:** round 1 gave five directions (round-1/compare.html).
+- **Why an agent cannot decide it:** the look is his pick.
+- **Options:** pick one direction, ask for a mix (one new direction in round 2), or reject all. If D, keep or drop its "+1 sen" label, which the brief does not list.
+- **Recommendation:** D Share Orbit (the ring makes "it adds up" visible, it shows the spare sen, answer first on a phone, the most memorable desktop), keep "+1 sen". Runner-up A Night Console, which pairs with the Streaks pick if he wants both apps as one family.
 - **Ruling:** (pending)
 
 ---
