@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** review done, shippable for UAT
-- **next:** uat
+- **phase:** uat: sitting 1 pre-run done, waiting for the owner
+- **next:** uat (owner verdicts), then seal on his word
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-sdlc:uat: TEST-CASES.md from the ledger's scope sections C1 to C8 (8 cases, one sitting), the orchestrator boots the app on 127.0.0.1:8732, sdlc-uat-tester pre-run, repair the script not the verdict, handover (a) OPEN and (b) SOLVED, then the USER TEST BRIEF. The seal is his word only.
+The owner works docs/v1.0.0/user-test-2026-10-10/TEST-CASES.md on http://127.0.0.1:8732/ (pid 9084, deliberately running). Record his verdicts verbatim with the date, route each non-PASS with him (findings.md, ledger rows with his words). Seal only on his word: SEAL.md, local tag v1.0.0, open v1.1.0 (H-02 table at 360 px through the design phase, SEC-04, the favicon). Stop pid 9084 after his sitting.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

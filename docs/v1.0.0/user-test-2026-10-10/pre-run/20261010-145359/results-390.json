@@ -1,0 +1,2735 @@
+{
+  "mode": "phone",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "url": "http://127.0.0.1:8732/",
+  "cases": {
+    "UAT-01": {
+      "title": "I can list the people at the table",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "name": "start: no draft saved in this browser",
+          "expected": {},
+          "seen": {},
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "start: name boxes",
+          "expected": [
+            "Person 1",
+            "Person 2"
+          ],
+          "seen": [
+            "Person 1",
+            "Person 2"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "start: Even chosen",
+          "expected": "even",
+          "seen": "even",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "start: Subtotal empty",
+          "expected": "",
+          "seen": "",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "start: service/SST",
+          "expected": [
+            "10",
+            "6"
+          ],
+          "seen": [
+            "10",
+            "6"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "before step 3: both x disabled",
+          "expected": [
+            true,
+            true
+          ],
+          "seen": [
+            true,
+            true
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "before step 3: x of box 1 colour is the disabled grey (#9AA19D)",
+          "expected": "rgb(154, 161, 157)",
+          "seen": "rgb(154, 161, 157)",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "before step 3: real click point on x of box 1 resolves to the button",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "before step 3: x of box 2 colour is the disabled grey (#9AA19D)",
+          "expected": "rgb(154, 161, 157)",
+          "seen": "rgb(154, 161, 157)",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "before step 3: real click point on x of box 2 resolves to the button",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "clicking the greyed x did nothing: still two people",
+          "expected": [
+            "Person 1",
+            "Person 2"
+          ],
+          "seen": [
+            "Person 1",
+            "Person 2"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: name box 1",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "INPUT",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: name box 2",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "INPUT",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "steps 1-2: names",
+          "expected": [
+            "Aisyah",
+            "Ben"
+          ],
+          "seen": [
+            "Aisyah",
+            "Ben"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Add person",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: third box appears",
+          "expected": 3,
+          "seen": 3,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: cursor already in the third box",
+          "expected": "Person 3 name",
+          "seen": "Person 3 name",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: third box is empty and shows hint 'Person 3'",
+          "expected": [
+            "",
+            "Person 3"
+          ],
+          "seen": [
+            "",
+            "Person 3"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: hint colour (grey, --ink-muted #4A524E)",
+          "expected": "rgb(74, 82, 78)",
+          "seen": "rgb(74, 82, 78)",
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 4: typing went into the third box",
+          "expected": [
+            "Aisyah",
+            "Ben",
+            "Chen"
+          ],
+          "seen": [
+            "Aisyah",
+            "Ben",
+            "Chen"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Add person (again)",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: fourth box appears",
+          "expected": 4,
+          "seen": 4,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: cursor in the fourth box",
+          "expected": "Person 4 name",
+          "seen": "Person 4 name",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: fourth box hint",
+          "expected": [
+            "",
+            "Person 4"
+          ],
+          "seen": [
+            "",
+            "Person 4"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 6: the x of the fourth box exists and is active",
+          "expected": false,
+          "seen": false,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: x of fourth box (Remove Person 4)",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "path",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 6: fourth box gone, left with Aisyah, Ben, Chen",
+          "expected": [
+            "Aisyah",
+            "Ben",
+            "Chen"
+          ],
+          "seen": [
+            "Aisyah",
+            "Ben",
+            "Chen"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 6: every x is now active",
+          "expected": [
+            false,
+            false,
+            false
+          ],
+          "seen": [
+            false,
+            false,
+            false
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 6 (info): x accessible names",
+          "expected": [
+            "Remove Aisyah",
+            "Remove Ben",
+            "Remove Chen"
+          ],
+          "seen": [
+            "Remove Aisyah",
+            "Remove Ben",
+            "Remove Chen"
+          ],
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 6 (info): where the cursor went",
+          "expected": "Person 3 name",
+          "seen": "Person 3 name",
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 6: x of box 1 colour is ink, not disabled grey",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 6: x of box 2 colour is ink, not disabled grey",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 6: x of box 3 colour is ink, not disabled grey",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        }
+      ],
+      "notes": [],
+      "error": null,
+      "screenshot": "01-uat-01-390.png"
+    },
+    "UAT-02": {
+      "title": "An even split gives everyone the same share, to the cent",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "name": "hit-test before click: Subtotal box",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "INPUT#subtotal",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "subtotal box holds",
+          "expected": "100.00",
+          "seen": "100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 summary: heading 'Bill summary' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 summary: Subtotal",
+          "expected": "RM 100.00",
+          "seen": "RM 100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 summary: Service charge amount",
+          "expected": "RM 10.00",
+          "seen": "RM 10.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 summary: Service charge working line",
+          "expected": "10% of RM 100.00",
+          "seen": "10% of RM 100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 summary: SST amount",
+          "expected": "RM 6.60",
+          "seen": "RM 6.60",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 summary: SST working line",
+          "expected": "6% of RM 110.00",
+          "seen": "6% of RM 110.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 summary: Total",
+          "expected": "RM 116.60",
+          "seen": "RM 116.60",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 shares: heading 'Shares' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 shares: shares table present",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 shares: shares rows",
+          "expected": [
+            [
+              "Aisyah",
+              "RM 38.87"
+            ],
+            [
+              "Ben",
+              "RM 38.87"
+            ],
+            [
+              "Chen",
+              "RM 38.86"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "RM 38.87"
+            ],
+            [
+              "Ben",
+              "RM 38.87"
+            ],
+            [
+              "Chen",
+              "RM 38.86"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-02 shares: 'Adds up to' row",
+          "expected": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "seen": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "raw tape text (info)",
+          "expected": null,
+          "seen": "Bill summary Subtotal RM 100.00 + Service charge RM 10.00 10% of RM 100.00 + SST RM 6.60 6% of RM 110.00 = Total RM 116.60 Shares Person Share Aisyah RM 38.87 Ben RM 38.87 Chen RM 38.86 Adds up to RM 116.60 Copy summary",
+          "ok": true,
+          "info": true
+        }
+      ],
+      "notes": [],
+      "error": null,
+      "screenshot": "02-uat-02-390.png"
+    },
+    "UAT-03": {
+      "title": "The shares always add back up to the total",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "name": "step 1: 'Adds up to' row reads RM 116.60",
+          "expected": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "seen": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 1: the Total is RM 116.60 (same as Adds up to)",
+          "expected": "RM 116.60",
+          "seen": "RM 116.60",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 1: a tick icon is in the 'Adds up to' row",
+          "expected": 1,
+          "seen": 1,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 1: tick has a painted size (not 0x0)",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 1: tick colour is the accent green #0B6B4D",
+          "expected": "rgb(11, 107, 77)",
+          "seen": "rgb(11, 107, 77)",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 1: tick visibility / opacity",
+          "expected": [
+            "visible",
+            "1"
+          ],
+          "seen": [
+            "visible",
+            "1"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Subtotal box",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "INPUT#subtotal",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2: subtotal box holds",
+          "expected": "10.05",
+          "seen": "10.05",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 summary: heading 'Bill summary' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 summary: Subtotal",
+          "expected": "RM 10.05",
+          "seen": "RM 10.05",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 summary: Service charge amount",
+          "expected": "RM 1.01",
+          "seen": "RM 1.01",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 summary: Service charge working line",
+          "expected": "10% of RM 10.05",
+          "seen": "10% of RM 10.05",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 summary: SST amount",
+          "expected": "RM 0.66",
+          "seen": "RM 0.66",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 summary: SST working line",
+          "expected": "6% of RM 11.06",
+          "seen": "6% of RM 11.06",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 summary: Total",
+          "expected": "RM 11.72",
+          "seen": "RM 11.72",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 shares: heading 'Shares' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 shares: shares table present",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 shares: shares rows",
+          "expected": [
+            [
+              "Aisyah",
+              "RM 3.91"
+            ],
+            [
+              "Ben",
+              "RM 3.91"
+            ],
+            [
+              "Chen",
+              "RM 3.90"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "RM 3.91"
+            ],
+            [
+              "Ben",
+              "RM 3.91"
+            ],
+            [
+              "Chen",
+              "RM 3.90"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 3 shares: 'Adds up to' row",
+          "expected": [
+            "Adds up to",
+            "RM 11.72"
+          ],
+          "seen": [
+            "Adds up to",
+            "RM 11.72"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Subtotal box",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "INPUT#subtotal",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: subtotal box holds",
+          "expected": "100.00",
+          "seen": "100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 summary (back to UAT-02): heading 'Bill summary' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 summary (back to UAT-02): Subtotal",
+          "expected": "RM 100.00",
+          "seen": "RM 100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 summary (back to UAT-02): Service charge amount",
+          "expected": "RM 10.00",
+          "seen": "RM 10.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 summary (back to UAT-02): Service charge working line",
+          "expected": "10% of RM 100.00",
+          "seen": "10% of RM 100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 summary (back to UAT-02): SST amount",
+          "expected": "RM 6.60",
+          "seen": "RM 6.60",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 summary (back to UAT-02): SST working line",
+          "expected": "6% of RM 110.00",
+          "seen": "6% of RM 110.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 summary (back to UAT-02): Total",
+          "expected": "RM 116.60",
+          "seen": "RM 116.60",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 shares (back to UAT-02): heading 'Shares' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 shares (back to UAT-02): shares table present",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 shares (back to UAT-02): shares rows",
+          "expected": [
+            [
+              "Aisyah",
+              "RM 38.87"
+            ],
+            [
+              "Ben",
+              "RM 38.87"
+            ],
+            [
+              "Chen",
+              "RM 38.86"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "RM 38.87"
+            ],
+            [
+              "Ben",
+              "RM 38.87"
+            ],
+            [
+              "Chen",
+              "RM 38.86"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-03 step 4 shares (back to UAT-02): 'Adds up to' row",
+          "expected": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "seen": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "ok": true,
+          "info": false
+        }
+      ],
+      "notes": [],
+      "error": null,
+      "screenshot": "03-uat-03-390.png"
+    },
+    "UAT-04": {
+      "title": "I can change or switch off the charges",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "name": "hint is visible",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hint text",
+          "expected": "Set a charge to 0 if your bill already includes it.",
+          "seen": "Set a charge to 0 if your bill already includes it.",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hint colour is grey (--ink-muted #4A524E)",
+          "expected": "rgb(74, 82, 78)",
+          "seen": "rgb(74, 82, 78)",
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "label of the Service charge box",
+          "expected": "Service charge",
+          "seen": "Service charge in percent",
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "hit-test before click: Service charge box",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "INPUT#rate-service",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 1: Service charge box holds",
+          "expected": "0",
+          "seen": "0",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 summary: heading 'Bill summary' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 summary: Subtotal",
+          "expected": "RM 100.00",
+          "seen": "RM 100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 summary: Service charge amount",
+          "expected": "RM 0.00",
+          "seen": "RM 0.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 summary: Service charge working line",
+          "expected": "0% of RM 100.00",
+          "seen": "0% of RM 100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 summary: SST amount",
+          "expected": "RM 6.00",
+          "seen": "RM 6.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 summary: SST working line",
+          "expected": "6% of RM 100.00",
+          "seen": "6% of RM 100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 summary: Total",
+          "expected": "RM 106.00",
+          "seen": "RM 106.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 shares: heading 'Shares' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 shares: shares table present",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 shares: shares rows",
+          "expected": [
+            [
+              "Aisyah",
+              "RM 35.34"
+            ],
+            [
+              "Ben",
+              "RM 35.33"
+            ],
+            [
+              "Chen",
+              "RM 35.33"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "RM 35.34"
+            ],
+            [
+              "Ben",
+              "RM 35.33"
+            ],
+            [
+              "Chen",
+              "RM 35.33"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 2 shares: 'Adds up to' row",
+          "expected": [
+            "Adds up to",
+            "RM 106.00"
+          ],
+          "seen": [
+            "Adds up to",
+            "RM 106.00"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Service charge box",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "INPUT#rate-service",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: box holds 31",
+          "expected": "31",
+          "seen": "31",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3 (before Tab): no red text yet (info)",
+          "expected": [],
+          "seen": [],
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 4: red text reads",
+          "expected": [
+            "Enter a rate from 0 to 30"
+          ],
+          "seen": [
+            "Enter a rate from 0 to 30"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: red text colour #B42318",
+          "expected": "rgb(180, 35, 24)",
+          "seen": "rgb(180, 35, 24)",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: red text sits under the Service charge box",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4 (info): geometry",
+          "expected": null,
+          "seen": {
+            "errTop": 526,
+            "inputBottom": 517,
+            "errLeft": 16,
+            "inputLeft": 17,
+            "sameCell": true
+          },
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 4: Bill summary has gone (no Bill summary heading, no summary rows)",
+          "expected": [
+            [],
+            0
+          ],
+          "seen": [
+            [
+              "Shares"
+            ],
+            0
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: Shares says",
+          "expected": "Check the charges to see the shares.",
+          "seen": "Check the charges to see the shares.",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: no shares table",
+          "expected": null,
+          "seen": null,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4 (info): where the cursor went after Tab",
+          "expected": "SST",
+          "seen": "rate-sst",
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 4 (info): hint still visible with the error showing",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "hit-test before click: Service charge box",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "INPUT#rate-service",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: box holds 10",
+          "expected": "10",
+          "seen": "10",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: red text is gone",
+          "expected": [],
+          "seen": [],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 summary: heading 'Bill summary' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 summary: Subtotal",
+          "expected": "RM 100.00",
+          "seen": "RM 100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 summary: Service charge amount",
+          "expected": "RM 10.00",
+          "seen": "RM 10.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 summary: Service charge working line",
+          "expected": "10% of RM 100.00",
+          "seen": "10% of RM 100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 summary: SST amount",
+          "expected": "RM 6.60",
+          "seen": "RM 6.60",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 summary: SST working line",
+          "expected": "6% of RM 110.00",
+          "seen": "6% of RM 110.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 summary: Total",
+          "expected": "RM 116.60",
+          "seen": "RM 116.60",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 shares: heading 'Shares' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 shares: shares table present",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 shares: shares rows",
+          "expected": [
+            [
+              "Aisyah",
+              "RM 38.87"
+            ],
+            [
+              "Ben",
+              "RM 38.87"
+            ],
+            [
+              "Chen",
+              "RM 38.86"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "RM 38.87"
+            ],
+            [
+              "Ben",
+              "RM 38.87"
+            ],
+            [
+              "Chen",
+              "RM 38.86"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-04 step 5 shares: 'Adds up to' row",
+          "expected": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "seen": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "ok": true,
+          "info": false
+        }
+      ],
+      "notes": [],
+      "error": null,
+      "screenshot": "04-uat-04-390.png"
+    },
+    "UAT-05": {
+      "title": "One tap copies a summary I can paste into the group chat",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "name": "Copy summary button is dark (primary fill #141917)",
+          "expected": "rgb(20, 25, 23)",
+          "seen": "rgb(20, 25, 23)",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "Copy summary sits under the shares",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "recorder in place (no copy yet)",
+          "expected": 0,
+          "seen": 0,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Copy summary",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2: line under the button",
+          "expected": {
+            "text": "Summary copied"
+          },
+          "seen": {
+            "text": "Summary copied"
+          },
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2 (info): status class",
+          "expected": "status",
+          "seen": "status",
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "exactly one write reached the recorder",
+          "expected": 1,
+          "seen": 1,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3 (recorded text, not pasted): equals the six lines exactly, byte for byte",
+          "expected": "Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60",
+          "seen": "Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "recorded text, line by line",
+          "expected": [
+            "Bill split",
+            "Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)",
+            "Aisyah RM 38.87",
+            "Ben RM 38.87",
+            "Chen RM 38.86",
+            "Adds up to RM 116.60"
+          ],
+          "seen": [
+            "Bill split",
+            "Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)",
+            "Aisyah RM 38.87",
+            "Ben RM 38.87",
+            "Chen RM 38.86",
+            "Adds up to RM 116.60"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "recorded text has no trailing newline / no non-breaking spaces (info)",
+          "expected": [
+            false,
+            false
+          ],
+          "seen": [
+            false,
+            false
+          ],
+          "ok": true,
+          "info": true
+        }
+      ],
+      "notes": [
+        "Step 3 (paste into Notepad with Ctrl+V) NOT driven: CG-7 forbids touching the OS clipboard. Verified the recorded text instead.",
+        "recorded text repr: 'Bill split\\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\\nAisyah RM 38.87\\nBen RM 38.87\\nChen RM 38.86\\nAdds up to RM 116.60'"
+      ],
+      "error": null,
+      "screenshot": "05-uat-05-390.png"
+    },
+    "UAT-06": {
+      "title": "I can split by item, and a shared item is split between the people who had it",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "name": "hit-test before click: By item label",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "LABEL",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 1: By item is chosen",
+          "expected": "item",
+          "seen": "item",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 1 (info): Subtotal box hidden, Add item visible",
+          "expected": [
+            false,
+            true
+          ],
+          "seen": [
+            false,
+            true
+          ],
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 1 (info): Shares message with no items",
+          "expected": "Add an item to see the shares.",
+          "seen": "Add an item to see the shares.",
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "hit-test before click: Add item (#1)",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2: cursor goes into the new item's name box",
+          "expected": "Item 1 name",
+          "seen": "Item 1 name",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: Tab lands in the price box",
+          "expected": "Item 1 price in RM",
+          "seen": "Item 1 price in RM",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: Shares reads",
+          "expected": "1 item still needs a person. Tap who had it to see the shares.",
+          "seen": "1 item still needs a person. Tap who had it to see the shares.",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: item row holds name and price",
+          "expected": [
+            "Nasi lemak ayam",
+            "15.90"
+          ],
+          "seen": [
+            "Nasi lemak ayam",
+            "15.90"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4 (info): one tap button per person, none pressed",
+          "expected": [
+            [
+              "Aisyah",
+              "false"
+            ],
+            [
+              "Ben",
+              "false"
+            ],
+            [
+              "Chen",
+              "false"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "false"
+            ],
+            [
+              "Ben",
+              "false"
+            ],
+            [
+              "Chen",
+              "false"
+            ]
+          ],
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "group 'Who had Nasi lemak ayam' exists",
+          "expected": 1,
+          "seen": 1,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Aisyah under Nasi lemak ayam",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.tap",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: Aisyah is pressed",
+          "expected": "true",
+          "seen": "true",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: a tapped name turns dark (#141917 fill)",
+          "expected": "rgb(20, 25, 23)",
+          "seen": "rgb(20, 25, 23)",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5 (info): an untapped name is not dark",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "hit-test before click: Add item (#2)",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "item 2: cursor goes into the new item's name box",
+          "expected": "Item 2 name",
+          "seen": "Item 2 name",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "item 2: Tab lands in its price box",
+          "expected": "Item 2 price in RM",
+          "seen": "Item 2 price in RM",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "group 'Who had Char kuey teow' exists",
+          "expected": 1,
+          "seen": 1,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Ben under Char kuey teow",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.tap",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Add item (#3)",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "item 3: cursor goes into the new item's name box",
+          "expected": "Item 3 name",
+          "seen": "Item 3 name",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "item 3: Tab lands in its price box",
+          "expected": "Item 3 price in RM",
+          "seen": "Item 3 price in RM",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "group 'Who had Mee goreng mamak' exists",
+          "expected": 1,
+          "seen": 1,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Chen under Mee goreng mamak",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.tap",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Add item (#4)",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "item 4: cursor goes into the new item's name box",
+          "expected": "Item 4 name",
+          "seen": "Item 4 name",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "item 4: Tab lands in its price box",
+          "expected": "Item 4 price in RM",
+          "seen": "Item 4 price in RM",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "group 'Who had Satay, 10 sticks' exists",
+          "expected": 1,
+          "seen": 1,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Aisyah under Satay",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.tap",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "group 'Who had Satay, 10 sticks' exists",
+          "expected": 1,
+          "seen": 1,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Chen under Satay",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.tap",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 9: items as typed",
+          "expected": [
+            [
+              "Nasi lemak ayam",
+              "15.90"
+            ],
+            [
+              "Char kuey teow",
+              "13.50"
+            ],
+            [
+              "Mee goreng mamak",
+              "12.00"
+            ],
+            [
+              "Satay, 10 sticks",
+              "18.00"
+            ]
+          ],
+          "seen": [
+            [
+              "Nasi lemak ayam",
+              "15.90"
+            ],
+            [
+              "Char kuey teow",
+              "13.50"
+            ],
+            [
+              "Mee goreng mamak",
+              "12.00"
+            ],
+            [
+              "Satay, 10 sticks",
+              "18.00"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 9: who is tapped",
+          "expected": [
+            [
+              "Aisyah"
+            ],
+            [
+              "Ben"
+            ],
+            [
+              "Chen"
+            ],
+            [
+              "Aisyah",
+              "Chen"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah"
+            ],
+            [
+              "Ben"
+            ],
+            [
+              "Chen"
+            ],
+            [
+              "Aisyah",
+              "Chen"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-06 step 9 summary: heading 'Bill summary' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-06 step 9 summary: Subtotal",
+          "expected": "RM 59.40",
+          "seen": "RM 59.40",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-06 step 9 summary: Service charge amount",
+          "expected": "RM 5.94",
+          "seen": "RM 5.94",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-06 step 9 summary: Service charge working line",
+          "expected": "10% of RM 59.40",
+          "seen": "10% of RM 59.40",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-06 step 9 summary: SST amount",
+          "expected": "RM 3.92",
+          "seen": "RM 3.92",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-06 step 9 summary: SST working line",
+          "expected": "6% of RM 65.34",
+          "seen": "6% of RM 65.34",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-06 step 9 summary: Total",
+          "expected": "RM 69.26",
+          "seen": "RM 69.26",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 9: shares table present",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 9: table columns (after the hidden 'Person' column), operator and label",
+          "expected": [
+            "Items",
+            "+ Charges",
+            "= Share"
+          ],
+          "seen": [
+            "Items",
+            "+ Charges",
+            "= Share"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 9: on screen there is a visible gap (px) between '+' / '=' and the column name",
+          "expected": true,
+          "seen": [
+            4,
+            4
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 9 (info): raw header innerText, no space between glyph and name",
+          "expected": null,
+          "seen": [
+            "Person",
+            "Items",
+            "+Charges",
+            "=Share"
+          ],
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 9: table body",
+          "expected": [
+            [
+              "Aisyah",
+              "RM 24.90",
+              "RM 4.14",
+              "RM 29.04"
+            ],
+            [
+              "Ben",
+              "RM 13.50",
+              "RM 2.24",
+              "RM 15.74"
+            ],
+            [
+              "Chen",
+              "RM 21.00",
+              "RM 3.48",
+              "RM 24.48"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "RM 24.90",
+              "RM 4.14",
+              "RM 29.04"
+            ],
+            [
+              "Ben",
+              "RM 13.50",
+              "RM 2.24",
+              "RM 15.74"
+            ],
+            [
+              "Chen",
+              "RM 21.00",
+              "RM 3.48",
+              "RM 24.48"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 9: Adds up to row",
+          "expected": [
+            "Adds up to",
+            "RM 59.40",
+            "RM 9.86",
+            "RM 69.26"
+          ],
+          "seen": [
+            "Adds up to",
+            "RM 59.40",
+            "RM 9.86",
+            "RM 69.26"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 9: satay RM 18.00 split RM 9.00 each (derived from the Items column: 15.90+9.00=24.90, 12.00+9.00=21.00)",
+          "expected": [
+            24.9,
+            21.0
+          ],
+          "seen": [
+            24.9,
+            21.0
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 9 (info): the RM 9.00 satay split is NOT shown as a figure anywhere on screen",
+          "expected": false,
+          "seen": false,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 9 (info): no sideways scroll at this viewport (table fits, page fits)",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        }
+      ],
+      "notes": [],
+      "error": null,
+      "screenshot": "06-uat-06-390.png"
+    },
+    "UAT-07": {
+      "title": "My bill is still there when I come back",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "name": "precondition: a draft is saved (info)",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 3: By item is still chosen",
+          "expected": "item",
+          "seen": "item",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: names",
+          "expected": [
+            "Aisyah",
+            "Ben",
+            "Chen"
+          ],
+          "seen": [
+            "Aisyah",
+            "Ben",
+            "Chen"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: four items with names and prices",
+          "expected": [
+            [
+              "Nasi lemak ayam",
+              "15.90"
+            ],
+            [
+              "Char kuey teow",
+              "13.50"
+            ],
+            [
+              "Mee goreng mamak",
+              "12.00"
+            ],
+            [
+              "Satay, 10 sticks",
+              "18.00"
+            ]
+          ],
+          "seen": [
+            [
+              "Nasi lemak ayam",
+              "15.90"
+            ],
+            [
+              "Char kuey teow",
+              "13.50"
+            ],
+            [
+              "Mee goreng mamak",
+              "12.00"
+            ],
+            [
+              "Satay, 10 sticks",
+              "18.00"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: same names tapped",
+          "expected": [
+            [
+              "Aisyah"
+            ],
+            [
+              "Ben"
+            ],
+            [
+              "Chen"
+            ],
+            [
+              "Aisyah",
+              "Chen"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah"
+            ],
+            [
+              "Ben"
+            ],
+            [
+              "Chen"
+            ],
+            [
+              "Aisyah",
+              "Chen"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: same Bill summary",
+          "expected": [
+            {
+              "dt": "Subtotal",
+              "amt": "RM 59.40",
+              "work": null
+            },
+            {
+              "dt": "+ Service charge",
+              "amt": "RM 5.94",
+              "work": "10% of RM 59.40"
+            },
+            {
+              "dt": "+ SST",
+              "amt": "RM 3.92",
+              "work": "6% of RM 65.34"
+            },
+            {
+              "dt": "= Total",
+              "amt": "RM 69.26",
+              "work": null
+            }
+          ],
+          "seen": [
+            {
+              "dt": "Subtotal",
+              "amt": "RM 59.40",
+              "work": null
+            },
+            {
+              "dt": "+ Service charge",
+              "amt": "RM 5.94",
+              "work": "10% of RM 59.40"
+            },
+            {
+              "dt": "+ SST",
+              "amt": "RM 3.92",
+              "work": "6% of RM 65.34"
+            },
+            {
+              "dt": "= Total",
+              "amt": "RM 69.26",
+              "work": null
+            }
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: same shares table",
+          "expected": {
+            "head": [
+              [
+                "Person",
+                "Items",
+                "+Charges",
+                "=Share"
+              ]
+            ],
+            "body": [
+              [
+                "Aisyah",
+                "RM 24.90",
+                "RM 4.14",
+                "RM 29.04"
+              ],
+              [
+                "Ben",
+                "RM 13.50",
+                "RM 2.24",
+                "RM 15.74"
+              ],
+              [
+                "Chen",
+                "RM 21.00",
+                "RM 3.48",
+                "RM 24.48"
+              ]
+            ],
+            "foot": [
+              [
+                "Adds up to",
+                "RM 59.40",
+                "RM 9.86",
+                "RM 69.26"
+              ]
+            ]
+          },
+          "seen": {
+            "head": [
+              [
+                "Person",
+                "Items",
+                "+Charges",
+                "=Share"
+              ]
+            ],
+            "body": [
+              [
+                "Aisyah",
+                "RM 24.90",
+                "RM 4.14",
+                "RM 29.04"
+              ],
+              [
+                "Ben",
+                "RM 13.50",
+                "RM 2.24",
+                "RM 15.74"
+              ],
+              [
+                "Chen",
+                "RM 21.00",
+                "RM 3.48",
+                "RM 24.48"
+              ]
+            ],
+            "foot": [
+              [
+                "Adds up to",
+                "RM 59.40",
+                "RM 9.86",
+                "RM 69.26"
+              ]
+            ]
+          },
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3 (info): four items on screen",
+          "expected": 4,
+          "seen": 4,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 3 (info): the copy status is not carried over",
+          "expected": null,
+          "seen": null,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "hit-test before click: Even label",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "LABEL",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: Even chosen",
+          "expected": "even",
+          "seen": "even",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: Subtotal box still holds",
+          "expected": "100.00",
+          "seen": "100.00",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-07 step 4 shares: heading 'Shares' on screen",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-07 step 4 shares: shares table present",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-07 step 4 shares: shares rows",
+          "expected": [
+            [
+              "Aisyah",
+              "RM 38.87"
+            ],
+            [
+              "Ben",
+              "RM 38.87"
+            ],
+            [
+              "Chen",
+              "RM 38.86"
+            ]
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "RM 38.87"
+            ],
+            [
+              "Ben",
+              "RM 38.87"
+            ],
+            [
+              "Chen",
+              "RM 38.86"
+            ]
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "UAT-07 step 4 shares: 'Adds up to' row",
+          "expected": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "seen": [
+            "Adds up to",
+            "RM 116.60"
+          ],
+          "ok": true,
+          "info": false
+        }
+      ],
+      "notes": [],
+      "error": null,
+      "screenshot": "07-uat-07-390.png"
+    },
+    "UAT-08": {
+      "title": "I can start a new bill, but only on purpose",
+      "verdict": "PASS",
+      "checks": [
+        {
+          "name": "step 1: New bill button is at the top right of the page",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 1 (info): New bill box",
+          "expected": null,
+          "seen": {
+            "x": 284.25,
+            "y": 12,
+            "width": 89.75,
+            "height": 44
+          },
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "hit-test before click: New bill",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2: the box is open",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2: title",
+          "expected": "Start a new bill?",
+          "seen": "Start a new bill?",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2: text under it",
+          "expected": "This clears the people, items and amounts.",
+          "seen": "This clears the people, items and amounts.",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2: exactly two buttons, 'Start new bill' and 'Cancel'",
+          "expected": [
+            "Start new bill",
+            "Cancel"
+          ],
+          "seen": [
+            "Start new bill",
+            "Cancel"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2: page behind is dimmed (backdrop scrim)",
+          "expected": "rgba(20, 25, 23, 0.48)",
+          "seen": "rgba(20, 25, 23, 0.48)",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 2 (info): where the cursor is",
+          "expected": "Cancel",
+          "seen": "Cancel",
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "hit-test before click: Cancel",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: box closed",
+          "expected": false,
+          "seen": false,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: bill unchanged (same people, mode, subtotal, summary, shares)",
+          "expected": [
+            [
+              "Aisyah",
+              "Ben",
+              "Chen"
+            ],
+            "even",
+            "100.00",
+            [
+              {
+                "dt": "Subtotal",
+                "amt": "RM 100.00",
+                "work": null
+              },
+              {
+                "dt": "+ Service charge",
+                "amt": "RM 10.00",
+                "work": "10% of RM 100.00"
+              },
+              {
+                "dt": "+ SST",
+                "amt": "RM 6.60",
+                "work": "6% of RM 110.00"
+              },
+              {
+                "dt": "= Total",
+                "amt": "RM 116.60",
+                "work": null
+              }
+            ],
+            {
+              "head": [
+                [
+                  "Person",
+                  "Share"
+                ]
+              ],
+              "body": [
+                [
+                  "Aisyah",
+                  "RM 38.87"
+                ],
+                [
+                  "Ben",
+                  "RM 38.87"
+                ],
+                [
+                  "Chen",
+                  "RM 38.86"
+                ]
+              ],
+              "foot": [
+                [
+                  "Adds up to",
+                  "RM 116.60"
+                ]
+              ]
+            }
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "Ben",
+              "Chen"
+            ],
+            "even",
+            "100.00",
+            [
+              {
+                "dt": "Subtotal",
+                "amt": "RM 100.00",
+                "work": null
+              },
+              {
+                "dt": "+ Service charge",
+                "amt": "RM 10.00",
+                "work": "10% of RM 100.00"
+              },
+              {
+                "dt": "+ SST",
+                "amt": "RM 6.60",
+                "work": "6% of RM 110.00"
+              },
+              {
+                "dt": "= Total",
+                "amt": "RM 116.60",
+                "work": null
+              }
+            ],
+            {
+              "head": [
+                [
+                  "Person",
+                  "Share"
+                ]
+              ],
+              "body": [
+                [
+                  "Aisyah",
+                  "RM 38.87"
+                ],
+                [
+                  "Ben",
+                  "RM 38.87"
+                ],
+                [
+                  "Chen",
+                  "RM 38.86"
+                ]
+              ],
+              "foot": [
+                [
+                  "Adds up to",
+                  "RM 116.60"
+                ]
+              ]
+            }
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3: saved draft unchanged",
+          "expected": {
+            "split.draft": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[{\"id\":\"i5\",\"name\":\"Nasi lemak ayam\",\"priceText\":\"15.90\",\"who\":[\"p1\"]},{\"id\":\"i6\",\"name\":\"Char kuey teow\",\"priceText\":\"13.50\",\"who\":[\"p2\"]},{\"id\":\"i7\",\"name\":\"Mee goreng mamak\",\"priceText\":\"12.00\",\"who\":[\"p3\"]},{\"id\":\"i8\",\"name\":\"Satay, 10 sticks\",\"priceText\":\"18.00\",\"who\":[\"p1\",\"p3\"]}],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":9}}"
+          },
+          "seen": {
+            "split.draft": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[{\"id\":\"i5\",\"name\":\"Nasi lemak ayam\",\"priceText\":\"15.90\",\"who\":[\"p1\"]},{\"id\":\"i6\",\"name\":\"Char kuey teow\",\"priceText\":\"13.50\",\"who\":[\"p2\"]},{\"id\":\"i7\",\"name\":\"Mee goreng mamak\",\"priceText\":\"12.00\",\"who\":[\"p3\"]},{\"id\":\"i8\",\"name\":\"Satay, 10 sticks\",\"priceText\":\"18.00\",\"who\":[\"p1\",\"p3\"]}],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":9}}"
+          },
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 3 (info): cursor returns to",
+          "expected": "New bill",
+          "seen": "New bill",
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "hit-test before click: New bill (again)",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 4: box is open again",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: the point (6,6) is on the dimmed page, outside the box (elementFromPoint is the dialog element, point outside its box)",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5 (info): hit-test detail",
+          "expected": null,
+          "seen": {
+            "tag": "DIALOG",
+            "isDialog": true,
+            "dialogBox": [
+              16,
+              305,
+              374,
+              539
+            ]
+          },
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "step 5: box closed",
+          "expected": false,
+          "seen": false,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: bill unchanged",
+          "expected": [
+            [
+              "Aisyah",
+              "Ben",
+              "Chen"
+            ],
+            "even",
+            "100.00",
+            [
+              {
+                "dt": "Subtotal",
+                "amt": "RM 100.00",
+                "work": null
+              },
+              {
+                "dt": "+ Service charge",
+                "amt": "RM 10.00",
+                "work": "10% of RM 100.00"
+              },
+              {
+                "dt": "+ SST",
+                "amt": "RM 6.60",
+                "work": "6% of RM 110.00"
+              },
+              {
+                "dt": "= Total",
+                "amt": "RM 116.60",
+                "work": null
+              }
+            ],
+            {
+              "head": [
+                [
+                  "Person",
+                  "Share"
+                ]
+              ],
+              "body": [
+                [
+                  "Aisyah",
+                  "RM 38.87"
+                ],
+                [
+                  "Ben",
+                  "RM 38.87"
+                ],
+                [
+                  "Chen",
+                  "RM 38.86"
+                ]
+              ],
+              "foot": [
+                [
+                  "Adds up to",
+                  "RM 116.60"
+                ]
+              ]
+            }
+          ],
+          "seen": [
+            [
+              "Aisyah",
+              "Ben",
+              "Chen"
+            ],
+            "even",
+            "100.00",
+            [
+              {
+                "dt": "Subtotal",
+                "amt": "RM 100.00",
+                "work": null
+              },
+              {
+                "dt": "+ Service charge",
+                "amt": "RM 10.00",
+                "work": "10% of RM 100.00"
+              },
+              {
+                "dt": "+ SST",
+                "amt": "RM 6.60",
+                "work": "6% of RM 110.00"
+              },
+              {
+                "dt": "= Total",
+                "amt": "RM 116.60",
+                "work": null
+              }
+            ],
+            {
+              "head": [
+                [
+                  "Person",
+                  "Share"
+                ]
+              ],
+              "body": [
+                [
+                  "Aisyah",
+                  "RM 38.87"
+                ],
+                [
+                  "Ben",
+                  "RM 38.87"
+                ],
+                [
+                  "Chen",
+                  "RM 38.86"
+                ]
+              ],
+              "foot": [
+                [
+                  "Adds up to",
+                  "RM 116.60"
+                ]
+              ]
+            }
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 5: saved draft unchanged",
+          "expected": {
+            "split.draft": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[{\"id\":\"i5\",\"name\":\"Nasi lemak ayam\",\"priceText\":\"15.90\",\"who\":[\"p1\"]},{\"id\":\"i6\",\"name\":\"Char kuey teow\",\"priceText\":\"13.50\",\"who\":[\"p2\"]},{\"id\":\"i7\",\"name\":\"Mee goreng mamak\",\"priceText\":\"12.00\",\"who\":[\"p3\"]},{\"id\":\"i8\",\"name\":\"Satay, 10 sticks\",\"priceText\":\"18.00\",\"who\":[\"p1\",\"p3\"]}],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":9}}"
+          },
+          "seen": {
+            "split.draft": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[{\"id\":\"i5\",\"name\":\"Nasi lemak ayam\",\"priceText\":\"15.90\",\"who\":[\"p1\"]},{\"id\":\"i6\",\"name\":\"Char kuey teow\",\"priceText\":\"13.50\",\"who\":[\"p2\"]},{\"id\":\"i7\",\"name\":\"Mee goreng mamak\",\"priceText\":\"12.00\",\"who\":[\"p3\"]},{\"id\":\"i8\",\"name\":\"Satay, 10 sticks\",\"priceText\":\"18.00\",\"who\":[\"p1\",\"p3\"]}],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":9}}"
+          },
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: New bill (third time)",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 6: box is open",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "hit-test before click: Start new bill",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "BUTTON.btn",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 7: box closed",
+          "expected": false,
+          "seen": false,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 7: 'Person 1' and 'Person 2'",
+          "expected": [
+            "Person 1",
+            "Person 2"
+          ],
+          "seen": [
+            "Person 1",
+            "Person 2"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 7: Even chosen",
+          "expected": "even",
+          "seen": "even",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 7: Subtotal empty",
+          "expected": "",
+          "seen": "",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 7: Service charge 10 and SST 6",
+          "expected": [
+            "10",
+            "6"
+          ],
+          "seen": [
+            "10",
+            "6"
+          ],
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 7: Shares says",
+          "expected": "Enter the subtotal to see the shares.",
+          "seen": "Enter the subtotal to see the shares.",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 7 (info): Bill summary heading gone",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": true
+        },
+        {
+          "name": "hit-test before click: By item label",
+          "expected": "elementFromPoint resolves inside the control",
+          "seen": "LABEL",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 8: By item chosen",
+          "expected": "item",
+          "seen": "item",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 8: no items",
+          "expected": 0,
+          "seen": 0,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 8: only Add item is there",
+          "expected": true,
+          "seen": true,
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 8: Shares says",
+          "expected": "Add an item to see the shares.",
+          "seen": "Add an item to see the shares.",
+          "ok": true,
+          "info": false
+        },
+        {
+          "name": "step 8 (info): no table, no Copy button",
+          "expected": [
+            null,
+            0
+          ],
+          "seen": [
+            null,
+            0
+          ],
+          "ok": true,
+          "info": true
+        }
+      ],
+      "notes": [],
+      "error": null,
+      "screenshot": "08-uat-08-390.png"
+    }
+  },
+  "env": {
+    "console": [],
+    "pageerrors": [],
+    "requests": [
+      "http://127.0.0.1:8732/",
+      "http://127.0.0.1:8732/src/system.css",
+      "http://127.0.0.1:8732/src/main.js",
+      "http://127.0.0.1:8732/src/core/bill.js",
+      "http://127.0.0.1:8732/src/core/result.js",
+      "http://127.0.0.1:8732/src/core/summary.js",
+      "http://127.0.0.1:8732/src/draft.js",
+      "http://127.0.0.1:8732/src/errors.js",
+      "http://127.0.0.1:8732/src/ui/dialog.js",
+      "http://127.0.0.1:8732/src/ui/note.js",
+      "http://127.0.0.1:8732/src/ui/people.js",
+      "http://127.0.0.1:8732/src/ui/mode.js",
+      "http://127.0.0.1:8732/src/ui/subtotal.js",
+      "http://127.0.0.1:8732/src/ui/items.js",
+      "http://127.0.0.1:8732/src/ui/charges.js",
+      "http://127.0.0.1:8732/src/ui/panel.js",
+      "http://127.0.0.1:8732/src/core/money.js",
+      "http://127.0.0.1:8732/src/core/allocate.js",
+      "http://127.0.0.1:8732/src/ui/dom.js",
+      "http://127.0.0.1:8732/src/ui/icons.js",
+      "http://127.0.0.1:8732/src/ui/field-error.js",
+      "http://127.0.0.1:8732/src/ui/field-leave.js",
+      "http://127.0.0.1:8732/",
+      "http://127.0.0.1:8732/src/system.css",
+      "http://127.0.0.1:8732/src/main.js",
+      "http://127.0.0.1:8732/src/core/bill.js",
+      "http://127.0.0.1:8732/src/core/result.js",
+      "http://127.0.0.1:8732/src/core/summary.js",
+      "http://127.0.0.1:8732/src/draft.js",
+      "http://127.0.0.1:8732/src/errors.js",
+      "http://127.0.0.1:8732/src/ui/dialog.js",
+      "http://127.0.0.1:8732/src/ui/note.js",
+      "http://127.0.0.1:8732/src/ui/people.js",
+      "http://127.0.0.1:8732/src/ui/mode.js",
+      "http://127.0.0.1:8732/src/ui/subtotal.js",
+      "http://127.0.0.1:8732/src/ui/items.js",
+      "http://127.0.0.1:8732/src/ui/charges.js",
+      "http://127.0.0.1:8732/src/ui/panel.js",
+      "http://127.0.0.1:8732/src/core/money.js",
+      "http://127.0.0.1:8732/src/core/allocate.js",
+      "http://127.0.0.1:8732/src/ui/dom.js",
+      "http://127.0.0.1:8732/src/ui/icons.js",
+      "http://127.0.0.1:8732/src/ui/field-error.js",
+      "http://127.0.0.1:8732/src/ui/field-leave.js"
+    ],
+    "requestfailed": []
+  }
+}

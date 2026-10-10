@@ -171,3 +171,9 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - docs/lifecycle.md (phase table, verdict, deviations with cause) and docs/init/repo-summary.md written.
 - Compliance skipped (personal). No out-of-project artifacts logged.
 - Staleness check: newest ledger entry 2026-10-10 review, docs/progress/handoff/ is empty, so the ledger is current.
+
+## 2026-10-10 15:02 uat sitting 1 written and pre-run, ready for the owner
+- TEST-CASES.md: 8 cases from the ledger scopes, handover (a) OPEN H-01 and D-01, (b) SOLVED seven items.
+- App booted by the orchestrator on 127.0.0.1:8732, pid 9084, served output verified. Deliberately running for the owner.
+- sdlc-uat-tester (sonnet): 8 of 8 PASS at 1280 x 800 and 390 x 844, 235 checks each, paste step not driven (CG-7). Evidence pre-run/20261010-145359/.
+- Script wording repaired from the tester's nine notes, tester column filled, human column empty.
