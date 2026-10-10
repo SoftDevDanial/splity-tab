@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** regression PASS; review next
-- **next:** review
+- **phase:** review done, shippable for UAT
+- **next:** uat
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-sdlc:review (stakeholder drive of the brainstorm on a cold boot, lifecycle.md, repo-summary.md), then sdlc:uat (script from C1 to C8, uat-tester pre-run, human column empty), then the USER TEST BRIEF. The seal is his word only.
+sdlc:uat: TEST-CASES.md from the ledger's scope sections C1 to C8 (8 cases, one sitting), the orchestrator boots the app on 127.0.0.1:8732, sdlc-uat-tester pre-run, repair the script not the verdict, handover (a) OPEN and (b) SOLVED, then the USER TEST BRIEF. The seal is his word only.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

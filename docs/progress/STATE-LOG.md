@@ -164,3 +164,10 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - REGRESSION.md written (mode, scope, the fidelity gap, the security ruling on the regression's fixes, finder verdicts, two solver rounds, cold boot table).
 - CHANGE-LEDGER: re-verified rows C1 to C8, the security ruling, the close row. Process ledger +31 rows. Full credential gate exit 0.
 - last-regression = PASS @ 2026-10-10 14:30.
+
+## 2026-10-10 14:49 review, shippable for UAT
+- Precondition: regression PASS at 14:30, no code change since dc180ad.
+- Stakeholder drive on a cold boot, real gestures, no seed: 80 of 80 checks, H-02 measured again as a known limit. Evidence docs/review/20261010-144746/.
+- docs/lifecycle.md (phase table, verdict, deviations with cause) and docs/init/repo-summary.md written.
+- Compliance skipped (personal). No out-of-project artifacts logged.
+- Staleness check: newest ledger entry 2026-10-10 review, docs/progress/handoff/ is empty, so the ledger is current.

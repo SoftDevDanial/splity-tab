@@ -1,0 +1,769 @@
+{
+ "base": "http://127.0.0.1:37897",
+ "checks": [
+  {
+   "group": "flow 1 even split",
+   "check": "cold boot: two people, Person 1 and Person 2",
+   "result": "PASS",
+   "seen": [
+    "Person 1",
+    "Person 2"
+   ]
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "cold boot: Even is chosen, 10% and 6% filled, Subtotal empty",
+   "result": "PASS",
+   "seen": [
+    "10",
+    "6"
+   ]
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "cold boot: the shares area says what to do",
+   "result": "PASS",
+   "seen": "Enter the subtotal to see the shares."
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "cold boot: nothing saved before the first change",
+   "result": "PASS",
+   "seen": null
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "Remove is disabled at 2 people",
+   "result": "PASS",
+   "seen": null
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "the charge hint is on screen",
+   "result": "PASS",
+   "seen": "Set a charge to 0 if your bill already includes it."
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "the draft is saved after a change",
+   "result": "PASS",
+   "seen": null
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "Add person puts the cursor in the new name field",
+   "result": "PASS",
+   "seen": "Person 3 name"
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "bill summary: subtotal, service on subtotal, SST on subtotal plus service, total",
+   "result": "PASS",
+   "seen": [
+    [
+     "Subtotal",
+     "RM 100.00",
+     ""
+    ],
+    [
+     "+Service charge",
+     "RM 10.00",
+     "10% of RM 100.00"
+    ],
+    [
+     "+SST",
+     "RM 6.60",
+     "6% of RM 110.00"
+    ],
+    [
+     "=Total",
+     "RM 116.60",
+     ""
+    ]
+   ]
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "even shares to the cent, leftover cents to the top of the list",
+   "result": "PASS",
+   "seen": [
+    [
+     "Aisyah",
+     "RM 38.87"
+    ],
+    [
+     "Ben",
+     "RM 38.87"
+    ],
+    [
+     "Chen",
+     "RM 38.86"
+    ]
+   ]
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "shares differ by at most 1 sen",
+   "result": "PASS",
+   "seen": [
+    3887,
+    3887,
+    3886
+   ]
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "Adds up to RM X under the shares",
+   "result": "PASS",
+   "seen": [
+    [
+     "Adds up to",
+     "RM 116.60"
+    ]
+   ]
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "bill summary sits above the shares",
+   "result": "PASS",
+   "seen": [
+    "Bill summary",
+    "Shares"
+   ]
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "Copy summary copies the brainstorm's text exactly",
+   "result": "PASS",
+   "seen": "Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60"
+  },
+  {
+   "group": "flow 1 even split",
+   "check": "Copy summary says Summary copied",
+   "result": "PASS",
+   "seen": "Summary copied"
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "By item with no items says what to do",
+   "result": "PASS",
+   "seen": "Add an item to see the shares."
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "unassigned items block the result and are counted",
+   "result": "PASS",
+   "seen": "4 items still need a person. Tap who had each one to see the shares."
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "one item left says 1 item still needs a person",
+   "result": "PASS",
+   "seen": "1 item still needs a person. Tap who had it to see the shares."
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "each person shows items, charges and share",
+   "result": "PASS",
+   "seen": [
+    [
+     "Person",
+     "Items",
+     "+Charges",
+     "=Share"
+    ]
+   ]
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "shared satay split between Aisyah and Chen, charges in proportion, to the cent",
+   "result": "PASS",
+   "seen": [
+    [
+     "Aisyah",
+     "RM 24.90",
+     "RM 4.14",
+     "RM 29.04"
+    ],
+    [
+     "Ben",
+     "RM 13.50",
+     "RM 2.24",
+     "RM 15.74"
+    ],
+    [
+     "Chen",
+     "RM 21.00",
+     "RM 3.48",
+     "RM 24.48"
+    ]
+   ]
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "the check row adds up to the total",
+   "result": "PASS",
+   "seen": [
+    [
+     "Adds up to",
+     "RM 59.40",
+     "RM 9.86",
+     "RM 69.26"
+    ]
+   ]
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "Copy summary in by item lists each person's share and the total",
+   "result": "PASS",
+   "seen": "Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\nAisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26"
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "an item with no name shows as Item N",
+   "result": "PASS",
+   "seen": null
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "an item with no price blocks the shares",
+   "result": "PASS",
+   "seen": "Give every item a price to see the shares."
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "Remove takes the item away at any time",
+   "result": "PASS",
+   "seen": 4
+  },
+  {
+   "group": "flow 2 by item",
+   "check": "switching modes keeps both the subtotal and the items",
+   "result": "PASS",
+   "seen": [
+    "100.00",
+    4
+   ]
+  },
+  {
+   "group": "flow 3 come back",
+   "check": "a closed tab reopens on the same bill, By item",
+   "result": "PASS",
+   "seen": [
+    [
+     "Aisyah",
+     "RM 24.90",
+     "RM 4.14",
+     "RM 29.04"
+    ],
+    [
+     "Ben",
+     "RM 13.50",
+     "RM 2.24",
+     "RM 15.74"
+    ],
+    [
+     "Chen",
+     "RM 21.00",
+     "RM 3.48",
+     "RM 24.48"
+    ]
+   ]
+  },
+  {
+   "group": "flow 3 come back",
+   "check": "the even subtotal and shares are kept too",
+   "result": "PASS",
+   "seen": [
+    [
+     "Aisyah",
+     "RM 38.87"
+    ],
+    [
+     "Ben",
+     "RM 38.87"
+    ],
+    [
+     "Chen",
+     "RM 38.86"
+    ]
+   ]
+  },
+  {
+   "group": "flow 4 start over",
+   "check": "New bill asks the brainstorm's question",
+   "result": "PASS",
+   "seen": "This clears the people, items and amounts."
+  },
+  {
+   "group": "flow 4 start over",
+   "check": "Cancel keeps the bill",
+   "result": "PASS",
+   "seen": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ]
+  },
+  {
+   "group": "flow 4 start over",
+   "check": "Esc also cancels and keeps the bill",
+   "result": "PASS",
+   "seen": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ]
+  },
+  {
+   "group": "flow 4 start over",
+   "check": "a click on the backdrop cancels (delegated ruling CG-8)",
+   "result": "PASS",
+   "seen": null
+  },
+  {
+   "group": "flow 4 start over",
+   "check": "Start new bill returns to two people, even split, 10% and 6%",
+   "result": "PASS",
+   "seen": [
+    [
+     "Person 1",
+     "Person 2"
+    ],
+    true,
+    "10",
+    "6",
+    "",
+    "Enter the subtotal to see the shares."
+   ]
+  },
+  {
+   "group": "flow 4 start over",
+   "check": "the new bill is what a reload shows",
+   "result": "PASS",
+   "seen": [
+    "Person 1",
+    "Person 2"
+   ]
+  },
+  {
+   "group": "flow 4 start over",
+   "check": "the items are cleared too",
+   "result": "PASS",
+   "seen": 0
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount '12' is accepted",
+   "result": "PASS",
+   "seen": []
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount '12.5' is accepted",
+   "result": "PASS",
+   "seen": []
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount '12.50' is accepted",
+   "result": "PASS",
+   "seen": []
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount '99999.99' is accepted",
+   "result": "PASS",
+   "seen": []
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount 'abc' shows the inline error when the field is left",
+   "result": "PASS",
+   "seen": [
+    "Enter an amount like 12.50"
+   ]
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount '0' shows the inline error when the field is left",
+   "result": "PASS",
+   "seen": [
+    "Enter an amount like 12.50"
+   ]
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount '12.345' shows the inline error when the field is left",
+   "result": "PASS",
+   "seen": [
+    "Enter an amount like 12.50"
+   ]
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount '100000' shows the inline error when the field is left",
+   "result": "PASS",
+   "seen": [
+    "Enter an amount like 12.50"
+   ]
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount '-5' shows the inline error when the field is left",
+   "result": "PASS",
+   "seen": [
+    "Enter an amount like 12.50"
+   ]
+  },
+  {
+   "group": "rules amounts",
+   "check": "amount '1,000' shows the inline error when the field is left",
+   "result": "PASS",
+   "seen": [
+    "Enter an amount like 12.50"
+   ]
+  },
+  {
+   "group": "rules amounts",
+   "check": "service rounds half up to the cent (10% of RM 10.05 is RM 1.01)",
+   "result": "PASS",
+   "seen": [
+    [
+     "Subtotal",
+     "RM 10.05",
+     ""
+    ],
+    [
+     "+Service charge",
+     "RM 1.01",
+     "10% of RM 10.05"
+    ],
+    [
+     "+SST",
+     "RM 0.66",
+     "6% of RM 11.06"
+    ],
+    [
+     "=Total",
+     "RM 11.72",
+     ""
+    ]
+   ]
+  },
+  {
+   "group": "rules amounts",
+   "check": "SST on subtotal plus service, half up",
+   "result": "PASS",
+   "seen": [
+    [
+     "Subtotal",
+     "RM 10.05",
+     ""
+    ],
+    [
+     "+Service charge",
+     "RM 1.01",
+     "10% of RM 10.05"
+    ],
+    [
+     "+SST",
+     "RM 0.66",
+     "6% of RM 11.06"
+    ],
+    [
+     "=Total",
+     "RM 11.72",
+     ""
+    ]
+   ]
+  },
+  {
+   "group": "rules amounts",
+   "check": "three people: leftover cents go to the top of the list",
+   "result": "PASS",
+   "seen": [
+    [
+     "Person 1",
+     "RM 3.91"
+    ],
+    [
+     "Person 2",
+     "RM 3.91"
+    ],
+    [
+     "Person 3",
+     "RM 3.90"
+    ]
+   ]
+  },
+  {
+   "group": "rules charges",
+   "check": "service 31 shows its range",
+   "result": "PASS",
+   "seen": [
+    "Enter a rate from 0 to 30"
+   ]
+  },
+  {
+   "group": "rules charges",
+   "check": "service 31 holds back the shares with a reason",
+   "result": "PASS",
+   "seen": "Check the charges to see the shares."
+  },
+  {
+   "group": "rules charges",
+   "check": "sst 21 shows its range",
+   "result": "PASS",
+   "seen": [
+    "Enter a rate from 0 to 20"
+   ]
+  },
+  {
+   "group": "rules charges",
+   "check": "sst 21 holds back the shares with a reason",
+   "result": "PASS",
+   "seen": "Check the charges to see the shares."
+  },
+  {
+   "group": "rules charges",
+   "check": "service 12.555 shows its range",
+   "result": "PASS",
+   "seen": [
+    "Enter a rate from 0 to 30"
+   ]
+  },
+  {
+   "group": "rules charges",
+   "check": "service 12.555 holds back the shares with a reason",
+   "result": "PASS",
+   "seen": "Check the charges to see the shares."
+  },
+  {
+   "group": "rules charges",
+   "check": "service 30 is accepted",
+   "result": "PASS",
+   "seen": []
+  },
+  {
+   "group": "rules charges",
+   "check": "sst 20 is accepted",
+   "result": "PASS",
+   "seen": []
+  },
+  {
+   "group": "rules charges",
+   "check": "service 12.5 is accepted",
+   "result": "PASS",
+   "seen": []
+  },
+  {
+   "group": "rules charges",
+   "check": "0 turns both charges off: total equals the subtotal",
+   "result": "PASS",
+   "seen": [
+    [
+     "Subtotal",
+     "RM 100.00",
+     ""
+    ],
+    [
+     "+Service charge",
+     "RM 0.00",
+     "0% of RM 100.00"
+    ],
+    [
+     "+SST",
+     "RM 0.00",
+     "0% of RM 100.00"
+    ],
+    [
+     "=Total",
+     "RM 100.00",
+     ""
+    ]
+   ]
+  },
+  {
+   "group": "rules people",
+   "check": "a name stops at 20 characters",
+   "result": "PASS",
+   "seen": 20
+  },
+  {
+   "group": "rules people",
+   "check": "duplicate names are allowed",
+   "result": "PASS",
+   "seen": [
+    [
+     "Ali",
+     "RM 5.83"
+    ],
+    [
+     "Ali",
+     "RM 5.83"
+    ]
+   ]
+  },
+  {
+   "group": "rules people",
+   "check": "a blank name shows as Person N",
+   "result": "PASS",
+   "seen": [
+    [
+     "Ali",
+     "RM 5.83"
+    ],
+    [
+     "Person 2",
+     "RM 5.83"
+    ]
+   ]
+  },
+  {
+   "group": "rules people",
+   "check": "Add person is disabled at 12",
+   "result": "PASS",
+   "seen": 12
+  },
+  {
+   "group": "rules people",
+   "check": "Add person comes back at 11",
+   "result": "PASS",
+   "seen": null
+  },
+  {
+   "group": "rules people",
+   "check": "removing a person takes them off every item",
+   "result": "PASS",
+   "seen": [
+    "1 item still needs a person. Tap who had it to see the shares.",
+    [
+     "Aisyah",
+     "Ben"
+    ]
+   ]
+  },
+  {
+   "group": "rules items",
+   "check": "an item name stops at 40 characters",
+   "result": "PASS",
+   "seen": null
+  },
+  {
+   "group": "rules items",
+   "check": "Add item is disabled at 50 items",
+   "result": "PASS",
+   "seen": 50
+  },
+  {
+   "group": "rules copy and draft",
+   "check": "a blocked clipboard says so",
+   "result": "PASS",
+   "seen": "Could not copy. Your browser blocked the clipboard."
+  },
+  {
+   "group": "rules copy and draft",
+   "check": "an unreadable draft starts a new bill with the note",
+   "result": "PASS",
+   "seen": "Your saved bill could not be read, so a new one was started."
+  },
+  {
+   "group": "rules copy and draft",
+   "check": "the note can be dismissed",
+   "result": "PASS",
+   "seen": 0
+  },
+  {
+   "group": "platform",
+   "check": "360 px phone, even split, no sideways scroll",
+   "result": "PASS",
+   "seen": [
+    360,
+    360
+   ]
+  },
+  {
+   "group": "platform",
+   "check": "360 px phone, the brainstorm-sized by-item bill fits",
+   "result": "PASS",
+   "seen": [
+    360,
+    360
+   ]
+  },
+  {
+   "group": "platform",
+   "check": "360 px phone, a by-item bill over RM 653.40 scrolls sideways",
+   "result": "KNOWN (H-02, accepted for v1.0, fixed in v1.1.0)",
+   "seen": [
+    383,
+    360
+   ]
+  },
+  {
+   "group": "platform",
+   "check": "keyboard: Tab goes New bill, then Person 1 name, with a visible focus ring",
+   "result": "PASS",
+   "seen": [
+    "New bill",
+    "Person 1 name",
+    "solid"
+   ]
+  },
+  {
+   "group": "platform",
+   "check": "keyboard: Enter on Add person adds one and moves to its name",
+   "result": "PASS",
+   "seen": "Person 3 name"
+  },
+  {
+   "group": "platform",
+   "check": "keyboard: the arrow key switches to By item",
+   "result": "PASS",
+   "seen": "mode-item"
+  },
+  {
+   "group": "platform",
+   "check": "reduced motion switches transitions off",
+   "result": "PASS",
+   "seen": "0s"
+  },
+  {
+   "group": "platform",
+   "check": "desktop 1280 px, no sideways scroll",
+   "result": "PASS",
+   "seen": [
+    1280,
+    1280
+   ]
+  },
+  {
+   "group": "non-goals",
+   "check": "no payments, accounts, sync, currencies, history, OCR, tips, discounts, theme or language control",
+   "result": "PASS",
+   "seen": []
+  },
+  {
+   "group": "non-goals",
+   "check": "no file upload, no dropdown, no links out",
+   "result": "PASS",
+   "seen": 0
+  },
+  {
+   "group": "privacy and health",
+   "check": "every request went to the app's own address",
+   "result": "PASS",
+   "seen": []
+  },
+  {
+   "group": "privacy and health",
+   "check": "no console errors, page errors or CSP violations in any session",
+   "result": "PASS",
+   "seen": []
+  }
+ ],
+ "requests": 308,
+ "fails": 0,
+ "known": 1
+}
