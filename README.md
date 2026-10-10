@@ -1,23 +1,75 @@
-# Split
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/brand/lockup-dark.svg">
+    <img src="docs/brand/lockup-light.svg" alt="Split" height="64">
+  </picture>
+</p>
 
-Split shares one restaurant bill between friends. Type who was there and either the subtotal or each item,
-and it adds the service charge and SST, shares the total to the sen and copies a plain text summary for the
-group chat. Everything stays in this browser. There is no account, no server and no network call.
+<p align="center">
+  Share one restaurant bill between friends, and see the working.<br>
+  Service charge and SST added, shares to the sen, a plain summary for the group chat. Nothing leaves your browser.
+</p>
 
-Built end to end with the sdlc pipeline. The run's state is in `docs/progress/STATE.md` and every decision,
-finding and fix of this version is in `docs/v1.0.0/CHANGE-LEDGER.md`.
+<p align="center">
+  <img src="docs/brand/badges/version.svg" alt="version 1.0.0">
+  <img src="docs/brand/badges/tests.svg" alt="702 tests passing at 1.0.0">
+  <img src="docs/brand/badges/dependencies.svg" alt="0 dependencies">
+  <img src="docs/brand/badges/design-match.svg" alt="design match 0 px">
+</p>
 
-## Status, v1.0.0
+<p align="center">
+  <img src="docs/brand/screens/showcase.png" alt="Split at 1280 by 800 and on a 390 by 844 phone, splitting a four-item bill by item between Aisyah, Ben and Chen" width="880">
+</p>
+<p align="center"><sub>Real captures of the built app, taken by the pixel gate at 1280 x 800 and 390 x 844. Each one matches its approved design screen with 0 mismatched pixels.</sub></p>
 
-| Module | What it is | State |
+## What it does
+
+- **Who was there.** 2 to 12 people, each with a name.
+- **Even or by item.** Type the subtotal and split it evenly, or type each item and tap who had it.
+- **Charges on top.** Service charge, then SST on the new total, each rounded half up.
+- **Shares that add up.** Every share is in whole sen, and the "Adds up to" line proves the shares come back to the Total.
+- **Copy summary** puts a plain text summary on the clipboard for the group chat.
+- **Your draft stays.** The bill is saved in this browser after every change, so a reload or a closed tab loses nothing.
+
+## How it was built
+
+Built end to end by **sdlc**, the author's own multi-agent pipeline for Claude Code. Agents brainstorm, design, plan, build
+and review. Separate finder agents test, review and audit the work and never fix it. Solver agents fix what the finders report,
+and the orchestrator rules on anything in between. A person tests the result and seals each version. No agent can.
+
+```mermaid
+flowchart LR
+  B["Brainstorm<br/>idea questioned<br/>until it held"] --> D["Design<br/>3 directions,<br/>'Working shown' kept"]
+  D --> P["Plan<br/>2 modules,<br/>specs and test contracts"]
+  P --> E["Build and review<br/>QA, code review,<br/>security, pixel gate"]
+  E --> R["Regression<br/>whole app again,<br/>2 regressions caught"]
+  R --> U["Owner's test<br/>UAT"]
+  U --> S(("v1.0.0"))
+  S -.-> N["v1.1.0<br/>by-item table on 360 px,<br/>favicon"]
+  classDef done fill:#141917,stroke:#141917,color:#F3F5F4
+  classDef next fill:#EEF0EE,stroke:#78807C,color:#141917,stroke-dasharray:4 3
+  class B,D,P,E,R done
+  class U,S,N next
+```
+
+Every decision, finding and fix of this version is dated in [`docs/v1.0.0/CHANGE-LEDGER.md`](docs/v1.0.0/CHANGE-LEDGER.md),
+with who made it. Some of what the reviews caught on the way:
+
+| Found by | What it was | What happened |
 |---|---|---|
-| `split-core` | the money rules, pure functions, no DOM | closed 2026-10-09 |
-| `split-app` | the page, the saved draft, the copy summary | closed 2026-10-09 |
+| QA | A double tap on the dialog's Cancel could land its second tap on a toggle underneath and change the bill | One shared guard now cancels the repeat press after the dialog closes |
+| Security review | A double click on Remove of the last person let the second click land on Add person, which moved up under the pointer, and add a blank person | Every Remove arms the same guard. 40 failing cases before the fix, 0 after |
+| Regression code review | The Remove fix broke a double click on the right edge of Add person, which added a person and removed them again | Add person and Add item arm the guard too. 108 new test rows |
+| Regression re-check | With a wrong price still typed, a double tap on a "who had it" chip could remove the whole item | A Remove now also ignores a repeat press itself. The checker's own probe went from 96 of 96 layouts failing to 0 |
 
-- At v1.0.0, 427 browser tests and 275 unit tests pass.
-- The page matches its five approved design screens to the pixel at 390 x 844 and 1280 x 800 (10 of 10 pairs, 0 mismatched pixels).
-- The cold-boot live gate passes 7 of 7 steps with real gestures on the shipped page.
-- QA, code review and security reviews are done, with their findings fixed or accepted below.
+## Versions
+
+| Version | State | What changed |
+|---|---|---|
+| **1.0.0** | Built and regression checked. Waiting for the owner's test and seal | First release. People, even split, by-item split, service charge and SST, copy summary, saved draft, New bill |
+| **1.1.0** | Planned after the 1.0.0 seal | The by-item table fits a 360 px phone on big bills (H-02). Holding Enter on the last item's Remove no longer adds a blank item (SEC-04). The new logo as the favicon. No new features |
+
+Each sealed version gets a `SEAL.md`, a git tag, and a read-only folder under `docs/`.
 
 ## Run it
 
@@ -28,24 +80,22 @@ python -m http.server 8000 --bind 127.0.0.1
 Run that from the project root, then open `http://127.0.0.1:8000/`. Stop the server when you are done.
 Any static host works. There is no build step and nothing to install.
 
-## Test it
+## Known limits in v1.0.0
 
-| What | Command | Evidence |
-|---|---|---|
-| Unit tests | `node --test "tests/**/*.test.js"` | none |
-| Browser tests | `python -m pytest tests/browser -q` | a failure screenshot in `docs/modules/split-app/qa/functional/<ts>/` |
-| Looks right (fidelity gate) | `python tests/browser/fidelity/run.py` | `docs/modules/split-app/qa/fidelity/<ts>/` |
-| Works right (live gate) | `python tests/browser/live_e2e.py` | `docs/modules/split-app/qa/live-e2e/<ts>/` |
+Each was found during this version and accepted on purpose. The reasoning is in the ledger,
+`docs/modules/split-app/spec.md` (Residual risks) and `docs/modules/split-app/findings/security.md`.
 
-Node 24, Python with pytest and Playwright, headless Chromium. Each browser command starts and stops its own
-local server and prints its PID and port. A bare `node --test tests/` fails on Node 24, so keep the quoted
-glob. The fidelity gate uses the sdlc harness. `SDLC_HARNESS` points it at another copy.
+| Limit | Planned |
+|---|---|
+| On a big bill (from about RM 650 of items) the by-item table is wider than a 360 px phone, so the page scrolls sideways (H-02) | fixed in v1.1.0 |
+| Holding Enter on Remove of the only item adds one blank item, which one click removes (SEC-04) | fixed in v1.1.0 |
+| A double click on Dismiss note or a mode label moves keyboard focus to the page. No data changes | kept |
+| Another page on the same `github.io` origin can read the draft, and the page can be framed | kept, no way to isolate it on that host |
+| Two tabs of one browser editing the bill overwrite each other, last save wins | kept, one draft per browser by design |
+| A hand-edited draft can push the id counter to its ceiling, and the next save is unreadable | kept, only a page that can already overwrite the draft can do it |
 
-The tests never touch the system clipboard. Every browser context gets a stand-in for
-`navigator.clipboard.writeText` (a recorder by default, a rejecting or missing one for the failure tests),
-and no clipboard permission is ever granted.
-
-## How it is built
+<details>
+<summary><b>How it is built</b></summary>
 
 Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no web fonts.
 
@@ -69,7 +119,32 @@ Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no
 **The look.** `src/system.css` is a byte copy of the approved design's `system.css` plus one rule at the end,
 `[hidden] { display: none !important; }`. No other CSS is added or changed.
 
-## The saved draft
+</details>
+
+<details>
+<summary><b>Test it</b></summary>
+
+| What | Command | Evidence |
+|---|---|---|
+| Unit tests | `node --test "tests/**/*.test.js"` | none |
+| Browser tests | `python -m pytest tests/browser -q` | a failure screenshot in `docs/modules/split-app/qa/functional/<ts>/` |
+| Looks right (fidelity gate) | `python tests/browser/fidelity/run.py` | `docs/modules/split-app/qa/fidelity/<ts>/` |
+| Works right (live gate) | `python tests/browser/live_e2e.py` | `docs/modules/split-app/qa/live-e2e/<ts>/` |
+
+Node 24, Python with pytest and Playwright, headless Chromium. Each browser command starts and stops its own
+local server and prints its PID and port. A bare `node --test tests/` fails on Node 24, so keep the quoted
+glob. The fidelity gate uses the sdlc harness. `SDLC_HARNESS` points it at another copy.
+
+The tests never touch the system clipboard. Every browser context gets a stand-in for
+`navigator.clipboard.writeText` (a recorder by default, a rejecting or missing one for the failure tests),
+and no clipboard permission is ever granted.
+
+At v1.0.0, 427 browser tests and 275 unit tests pass.
+
+</details>
+
+<details>
+<summary><b>The saved draft and security</b></summary>
 
 One key, `split.draft` in `localStorage`, holding `{ "version": 1, "bill": ... }`. It is saved after every
 change and read once at boot.
@@ -80,8 +155,6 @@ people, 0 to 50 items, unique ids, names within their length, and the id counter
 known fields only and never throws. A draft it cannot read gives a new bill and a short note saying so. If
 storage is blocked or full, the page keeps working in memory.
 
-## Security
-
 - Names, prices and rates reach the page only as text (`textContent`, `value`, `setAttribute` on labels). `src/` contains no `innerHTML`, `eval` or similar.
 - The page carries a strict Content Security Policy.
   ```
@@ -90,24 +163,14 @@ storage is blocked or full, the page keeps working in memory.
 - Nothing leaves the device. `src/` has no network API, and every test run checks that the only requests are same-origin GETs for the page's own files.
 - **Publish only `index.html`, `src/` and a `.nojekyll` file.** Never serve the repository root. It holds build records, screenshots, local paths and deliberate mutant copies of `src/` used to prove the tests can fail.
 
-## Known limits in v1.0.0
-
-Each was found during this version and accepted on purpose. The reasoning is in the ledger,
-`docs/modules/split-app/spec.md` (Residual risks) and `docs/modules/split-app/findings/security.md`.
-
-| Limit | Planned |
-|---|---|
-| On a big bill (from about RM 650 of items) the by-item table is wider than a 360 px phone, so the page scrolls sideways (H-02) | fixed in v1.1.0 |
-| Holding Enter on Remove of the only item adds one blank item, which one click removes (SEC-04) | fixed in v1.1.0 |
-| A double click on Dismiss note or a mode label moves keyboard focus to the page. No data changes | kept |
-| Another page on the same `github.io` origin can read the draft, and the page can be framed | kept, no way to isolate it on that host |
-| Two tabs of one browser editing the bill overwrite each other, last save wins | kept, one draft per browser by design |
-| A hand-edited draft can push the id counter to its ceiling, and the next save is unreadable | kept, only a page that can already overwrite the draft can do it |
+</details>
 
 ## Where the record lives
 
-- `docs/v1.0.0/CHANGE-LEDGER.md` lists every scope, decision, finding and fix, dated, with who decided.
+- [`docs/v1.0.0/CHANGE-LEDGER.md`](docs/v1.0.0/CHANGE-LEDGER.md) lists every scope, decision, finding and fix, dated, with who decided.
+- `docs/regression/REGRESSION.md` is the last full re-check of the whole app.
 - `docs/modules/<module>/spec.md` and `qa.md` hold the requirements and the test contract.
 - `docs/modules/<module>/findings/` holds each review's verdict (QA, code review, security, fidelity).
 - `docs/modules/<module>/qa/` holds the evidence of every run.
 - `docs/design/` holds the approved design screens. They do not change outside the design phase.
+- `docs/brand/` holds the logo, the README badges and the showcase image.

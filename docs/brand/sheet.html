@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
+<title>Split / logo brand sheet</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:900px;overflow:hidden;background:#0c0d10}
+body{position:relative;font-family:'Geist','Segoe UI',system-ui,sans-serif;color:#d6dbd8;-webkit-font-smoothing:antialiased}
+svg{display:block;position:absolute}
+.head{position:absolute;top:44px;font:500 11px/1 'Cascadia Code','Consolas',monospace;letter-spacing:.16em;text-transform:uppercase;color:#8b928e;white-space:nowrap}
+.head i{font-style:normal;color:#3d4340;padding:0 .6em}
+.chip{display:inline-block;width:10px;height:10px;vertical-align:-1px;margin:0 8px 0 24px;border:1px solid #2c3035}
+.panel{position:absolute;background:#111317;border:1px solid #1d2025;border-radius:6px}
+.card{position:absolute;top:580px;width:368px;height:272px;border-radius:6px}
+.tag{position:absolute;left:24px;top:22px;font:500 10.5px/1 'Cascadia Code','Consolas',monospace;letter-spacing:.16em;text-transform:uppercase;color:#8b928e;white-space:nowrap}
+.cap{position:absolute;bottom:22px;font:400 10.5px/1 'Cascadia Code','Consolas',monospace;letter-spacing:.04em;color:#8b928e;white-space:nowrap}
+.concept{position:absolute;left:0;width:100%;text-align:center;font:500 12.5px/1 'Geist','Segoe UI',system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#858c88}
+.px{position:absolute;width:60px;text-align:center;font:400 10.5px/1 'Cascadia Code','Consolas',monospace;color:#8b928e;white-space:nowrap}
+.strip{position:absolute;left:24px;width:318px;height:56px;border-radius:4px;overflow:hidden}
+.tab{position:absolute;left:8px;top:8px;width:152px;height:48px;border-radius:8px 8px 0 0}
+.tab span{position:absolute;left:38px;top:16px;font:400 12px/16px system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false">
+  <title id="split-sheet-defs-title">Split symbol definitions</title>
+  <defs>
+    <symbol id="split-sheet-mark" viewBox="0 0 48 48"><path fill="currentColor" d="M3 6h24v9H3zM33 6h12v9H33zM3 30h42v9H3z"/></symbol>
+    <symbol id="split-sheet-favicon" viewBox="0 0 16 16"><rect width="16" height="16" fill="#141917"/><path fill="#F3F5F4" d="M1 2h8v3H1zM11 2h4v3h-4zM1 10h14v3H1z"/></symbol>
+    <symbol id="split-sheet-lockup" viewBox="0 0 202 64"><path fill="currentColor" d="M0 4h32v12H0zM40 4h16v12H40zM0 36h56v12H0z"/><text x="77" y="48" textLength="125" lengthAdjust="spacing" fill="currentColor" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="60" font-weight="700" letter-spacing="-0.6">Split</text></symbol>
+  </defs>
+</svg>
+
+<div class="head" style="left:56px">Split<i>/</i>Logo system<i>/</i>v1</div>
+<div class="head" style="right:56px"><span class="chip" style="background:#141917"></span>Ink #141917<span class="chip" style="background:#EEF0EE;border-color:#EEF0EE"></span>Page #EEF0EE<span class="chip" style="background:#F3F5F4;border-color:#F3F5F4"></span>On-ink #F3F5F4</div>
+
+<!-- 1. HERO -->
+<section class="panel" style="left:56px;top:92px;width:544px;height:760px">
+  <div class="tag">Hero</div>
+  <svg style="left:151px;top:223px;color:#F3F5F4" width="240" height="240" viewBox="0 0 48 48" role="img" aria-labelledby="split-sheet-hero-title">
+    <title id="split-sheet-hero-title">Split mark at 240 px over its construction lines</title>
+    <path fill="none" stroke="#F3F5F4" stroke-opacity=".07" stroke-width="1" vector-effect="non-scaling-stroke" shape-rendering="crispEdges" d="M3 1v43M27 1v43M33 1v43M45 1v43M0 6h48M0 15h48M0 30h48M0 39h48"/>
+    <use href="#split-sheet-mark" width="48" height="48"/>
+  </svg>
+  <div class="concept" style="top:462px">The shares add back to the total</div>
+  <div class="cap" style="left:24px">mark.svg / 48 grid / bar 9 / cut 6 / gap 15 / shares 2 : 1, ends flush</div>
+</section>
+
+<!-- 2. LOCKUP -->
+<section class="panel" style="left:624px;top:92px;width:760px;height:200px">
+  <div class="tag">Lockup</div>
+  <svg style="left:276px;top:73px;color:#F3F5F4" width="202" height="64" viewBox="0 0 202 64" role="img" aria-labelledby="split-sheet-lockup-title">
+    <title id="split-sheet-lockup-title">Split lockup</title>
+    <use href="#split-sheet-lockup" width="202" height="64"/>
+  </svg>
+  <div class="cap" style="left:24px">mark 56 px, baseline to ascender / gap 2 bars</div>
+  <div class="cap" style="right:24px">system-ui 700 / 60 px / -0.01em / live text</div>
+</section>
+
+<!-- 3. LEGIBILITY -->
+<section class="panel" style="left:624px;top:316px;width:368px;height:240px">
+  <div class="tag">Legibility</div>
+  <svg style="left:27px;top:64px;color:#F3F5F4" width="96" height="96" viewBox="0 0 48 48" role="img" aria-labelledby="split-sheet-96-title"><title id="split-sheet-96-title">Split mark at 96 px</title><use href="#split-sheet-mark" width="48" height="48"/></svg>
+  <svg style="left:164px;top:88px;color:#F3F5F4" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="split-sheet-48-title"><title id="split-sheet-48-title">Split mark at 48 px</title><use href="#split-sheet-mark" width="48" height="48"/></svg>
+  <svg style="left:252px;top:98px;color:#F3F5F4" width="28" height="28" viewBox="0 0 48 48" role="img" aria-labelledby="split-sheet-28-title"><title id="split-sheet-28-title">Split mark at 28 px</title><use href="#split-sheet-mark" width="48" height="48"/></svg>
+  <svg style="left:321px;top:103px;color:#F3F5F4" width="18" height="18" viewBox="0 0 48 48" role="img" aria-labelledby="split-sheet-18-title"><title id="split-sheet-18-title">Split mark at 18 px</title><use href="#split-sheet-mark" width="48" height="48"/></svg>
+  <div class="px" style="left:45px;top:196px">96 px</div>
+  <div class="px" style="left:158px;top:196px">48 px</div>
+  <div class="px" style="left:236px;top:196px">28 px</div>
+  <div class="px" style="left:300px;top:196px">18 px</div>
+</section>
+
+<!-- FAVICON -->
+<section class="panel" style="left:1016px;top:316px;width:368px;height:240px">
+  <div class="tag">Favicon</div>
+  <div class="px" style="left:32px;top:46px;width:auto;text-align:left">16 px in the tab</div>
+  <div class="px" style="left:284px;top:46px">32 px</div>
+  <div class="strip" style="top:62px;background:#dee1e6">
+    <div class="tab" style="background:#ffffff">
+      <svg style="left:14px;top:16px" width="16" height="16" viewBox="0 0 16 16" role="img" aria-labelledby="split-sheet-fav16-light-title"><title id="split-sheet-fav16-light-title">Split favicon at 16 px in a light tab</title><use href="#split-sheet-favicon" width="16" height="16"/></svg>
+      <span style="color:#1f1f1f">Split</span>
+    </div>
+    <svg style="left:274px;top:12px" width="32" height="32" viewBox="0 0 16 16" role="img" aria-labelledby="split-sheet-fav32-light-title"><title id="split-sheet-fav32-light-title">Split favicon at 32 px on a light strip</title><use href="#split-sheet-favicon" width="16" height="16"/></svg>
+  </div>
+  <div class="strip" style="top:130px;background:#202124">
+    <div class="tab" style="background:#35363a">
+      <svg style="left:14px;top:16px" width="16" height="16" viewBox="0 0 16 16" role="img" aria-labelledby="split-sheet-fav16-dark-title"><title id="split-sheet-fav16-dark-title">Split favicon at 16 px in a dark tab</title><use href="#split-sheet-favicon" width="16" height="16"/></svg>
+      <span style="color:#e3e3e3">Split</span>
+    </div>
+    <svg style="left:274px;top:12px" width="32" height="32" viewBox="0 0 16 16" role="img" aria-labelledby="split-sheet-fav32-dark-title"><title id="split-sheet-fav32-dark-title">Split favicon at 32 px on a dark strip</title><use href="#split-sheet-favicon" width="16" height="16"/></svg>
+  </div>
+  <div class="cap" style="left:24px">favicon.svg / 16 grid / square ink ground</div>
+</section>
+
+<!-- 4. SWATCHES -->
+<section class="card" style="left:624px;background:#15171c;border:1px solid #20232a">
+  <div class="tag">Swatches / dark</div>
+  <svg style="left:80px;top:109px;color:#F3F5F4" width="202" height="64" viewBox="0 0 202 64" role="img" aria-labelledby="split-sheet-swatch-dark-title">
+    <title id="split-sheet-swatch-dark-title">Split lockup on a dark card</title>
+    <use href="#split-sheet-lockup" width="202" height="64"/>
+  </svg>
+  <div class="cap" style="left:24px">#F3F5F4 on #15171c 16.4:1 / on #0d1117 17.3:1</div>
+</section>
+<section class="card" style="left:1016px;background:#EEF0EE">
+  <div class="tag" style="color:#4A524E">Swatches / light page</div>
+  <svg style="left:81px;top:110px;color:#141917" width="202" height="64" viewBox="0 0 202 64" role="img" aria-labelledby="split-sheet-swatch-light-title">
+    <title id="split-sheet-swatch-light-title">Split lockup on the light app page</title>
+    <use href="#split-sheet-lockup" width="202" height="64"/>
+  </svg>
+  <div class="cap" style="left:24px;color:#4A524E">#141917 on #EEF0EE 15.5:1 / on white 17.8:1</div>
+</section>
+
+</body>
+</html>

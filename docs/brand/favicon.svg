@@ -1,0 +1,8 @@
+<!-- Split favicon. Drawn on a 16 grid so every edge is a whole pixel at 16 px and at 32 px.
+     Mark spans 14 of 16 px wide and 11 of 16 px tall, sitting half a pixel above centre.
+     Square ink ground, no baked corners. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" role="img" aria-labelledby="split-favicon-title">
+  <title id="split-favicon-title">Split</title>
+  <rect width="16" height="16" fill="#141917"/>
+  <path fill="#F3F5F4" d="M1 2h8v3H1zM11 2h4v3h-4zM1 10h14v3H1z"/>
+</svg>
