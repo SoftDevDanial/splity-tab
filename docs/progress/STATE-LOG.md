@@ -214,3 +214,8 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - One catch, flagged on the compare page: on a phone "1 sen left over" is only inside the Shares sheet.
 - Designer's self-reported slip: one run of its check script piped through grep with a stderr redirect (2>&1 | grep). Read-only, nothing written, no file left behind. Later briefs keep forbidding it by name.
 - round-2/compare.html written (B, A, G at 390 and 1280, his points table with B's measured figures: desktop page 1,262 px tall, phone first field at 775 px, against G's 800 and 130, readings table). Rendered at 1280 and 390, no sideways scroll, no broken images, desktop switch works, no long dashes. The 6 console lines are Chromium's 'Blocked autofocusing' notices for the dialogs' autofocus inside file:// iframes. The prototypes alone log 0.
+
+## 2026-10-11 00:05 owner accepted G, brief for phone revision G2
+- Owner: "For Splity, i like it. Small thing is the mobile." People and Charges collapse on the phone, Items is the heavy part. On the sen line: it stays in the sheet, and "Shares" becomes "Splits". His words in ledger H-03 round 2 ruling, S7 row 6.
+- ORCH readings, flagged: (f) phone only, desktop unchanged. (g) collapsed by default with a summary line, People open on a new bill, errors open their section. (h) "Splits" everywhere the word "Shares" was read.
+- round-2/BRIEF-G2.md written. One designer builds g2.html from g.html next.
