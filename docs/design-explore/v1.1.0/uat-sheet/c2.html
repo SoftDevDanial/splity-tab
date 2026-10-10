@@ -303,15 +303,15 @@
     <div class="rail-foot">
       <button class="results-btn" type="button" data-results>Results for the chat</button>
       <span><kbd>[</kbd> <kbd>]</kbd> previous and next case</span>
-      <span><b style="color:var(--rail-fg)">T</b> tester · <b style="color:var(--rail-fg)">Y</b> you</span>
+      <span><b style="color:var(--rail-fg)">T</b> tester · <b style="color:var(--rail-fg)">U</b> user</span>
     </div>
   </aside>
 
   <main class="main" id="main">
     <section class="sheet guide" aria-labelledby="guide-h">
       <div class="guide-head">
-        <h2 id="guide-h">How to give a verdict</h2>
-        <button class="guide-toggle" id="guide-toggle" type="button" aria-expanded="true" aria-controls="guide-body">Hide the guide</button>
+        <h2 id="guide-h">Verdict guide</h2>
+        <button class="guide-toggle" id="guide-toggle" type="button" aria-expanded="true" aria-controls="guide-body">Hide</button>
       </div>
       <div class="guide-body" id="guide-body">
         <p class="guide-intro">Every case gets one verdict, including the ones you could not do. The tester's verdict is already there so you can compare. If it says PASS and you find FAIL, that is one of the most useful things you can tell us.</p>
@@ -464,7 +464,7 @@
   guideToggle.addEventListener("click", () => {
     const open = guideToggle.getAttribute("aria-expanded") === "true";
     guideToggle.setAttribute("aria-expanded", String(!open));
-    guideToggle.textContent = open ? "Show the guide" : "Hide the guide";
+    guideToggle.textContent = open ? "Show" : "Hide";
     guideBody.hidden = open;
   });
 
@@ -496,7 +496,7 @@
       return `<li><button type='button' class='ci${inSample ? "" : " off"}' data-id='${id}'${cur}${inSample ? "" : " aria-disabled='true'"}>
         <span class='ci-num'>${id.split("-")[1]}</span>
         <span class='ci-body'><span class='ci-title'>${esc(title)}</span>
-        <span class='ci-v'>${dot("T", tv, "Tester")}${dot("Y", yourV, "You")}${inSample ? "" : "<span class='ci-off'>not in this sample</span>"}</span></span></button></li>`;
+        <span class='ci-v'>${dot("T", tv, "Tester")}${dot("U", yourV, "User")}${inSample ? "" : "<span class='ci-off'>not in this sample</span>"}</span></span></button></li>`;
     }).join("");
   }
 
