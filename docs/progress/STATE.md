@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design, round 2 (sdlc:design step 4): G2 built and verified, compare page updated, waiting for the owner
-- **next:** owner reviews G2 on round-2/compare.html (accept, and S6 People open or not), then lock, compose, wire, goldens
+- **phase:** v1.1.0 design, steps 5 to 8 (lock, compose, wire, self-critique) from the accepted G2
+- **next:** composer builds docs/design-explore/v1.1.0/final/ (system, goldens, manifest, links, self-critique), orchestrator wires and drives the flow (step 7), owner approves the set and the replacement of 1.0's goldens, logo redraw swapped in, finalize, then plan
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-Waiting for the owner's review of G2 on `docs/design-explore/v1.1.0/round-2/compare.html` (top section, ledger S7 row 7). Open questions for him: G2 as the final direction, and whether S6 (saved bill unreadable, a fresh bill) opens People like S1 (orchestrator recommends yes). If he accepts, run sdlc:design steps 5 to 9 (lock the system with AA ratios, compose every screen and state, wire and verify, self-critique, finalize goldens), then the logo with "Splity Tab", then plan on sdlc 2.4.0. F `round-2/f.html` stays withdrawn as a record. S9 several-bills doc is written (docs/future/several-bills.md).
+One composer agent builds `docs/design-explore/v1.1.0/final/` from `v1.1.0/COMPOSE-BRIEF.md` (G2 accepted, ledger S7 row 8, H-03 final ruling). Rulings for the step: S6 opens People like S1, the rate error copy stays, the header mark kept swappable for the logo redraw. Then the orchestrator wires `final/` into `v1.1.0/prototype/` and drives `final/LINKS.json` (flowcheck adapted to v1.1.0 paths), writes `v1.1.0/FLOW-CHECK.md`, and puts the set to the owner. **Finalize writes `docs/design/`, which holds 1.0's immutable goldens. Replacing them needs the owner's explicit word** (1.0's stay in tag v1.0.0). Logo redraw with "Splity Tab" before finalize. F `round-2/f.html` stays withdrawn. S9 several-bills doc is written (docs/future/several-bills.md).
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.
