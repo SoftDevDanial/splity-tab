@@ -152,9 +152,6 @@
   .steps tbody td { padding: 14px 12px; vertical-align: top; border-bottom: 1px solid var(--rule); }
   .steps tbody td.n { padding-left: 0; }
   .num { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--ink); font-weight: 750; font-size: 14px; font-variant-numeric: tabular-nums; }
-  tr.step.is-current td { background: var(--accent-bg); }
-  tr.step.is-current td.n { box-shadow: inset 4px 0 0 var(--accent); }
-  tr.step.is-current .num { background: var(--accent); border-color: var(--accent); color: #fff; }
   tr.step.is-done .num { background: var(--ink); color: #fff; }
   tr.step.has-no .num { background: var(--fail); border-color: var(--fail); color: #fff; }
   .see-label { display: none; }
@@ -197,10 +194,11 @@
   .k-limit { color: var(--limit); background: var(--limit-bg); }
 
   /* Verdict block (B's table, with your row live) */
-  .verdicts { margin-top: 28px; border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; }
-  .verdicts th, .verdicts td { padding: 14px 16px; vertical-align: top; border-bottom: 1px solid var(--rule); text-align: left; }
-  .verdicts tr:last-child th, .verdicts tr:last-child td { border-bottom: 0; }
-  .verdicts thead th { background: var(--ink); color: #fff; font-size: var(--fs-label); letter-spacing: .1em; text-transform: uppercase; padding: 10px 16px; }
+  .verdicts { margin-top: 36px; }
+  .verdicts th, .verdicts td { padding: 14px 12px; vertical-align: top; border-bottom: 1px solid var(--rule); text-align: left; }
+  .verdicts tbody th { padding-left: 0; }
+  .verdicts thead th { color: var(--ink-2); font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 0 12px 10px; border-bottom: 2px solid var(--ink); }
+  .verdicts thead th.c-who { padding-left: 0; }
   .verdicts thead th.c-who { width: 150px; }
   .verdicts thead th.c-v { width: 330px; }
   .verdicts tbody th { font-size: 14px; }
@@ -216,10 +214,8 @@
   .words { margin: 0; }
   .note-field { width: 100%; min-height: 84px; font: 15px/1.5 var(--sans); color: var(--ink); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; resize: vertical; }
   .note-hint { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); }
-  tr.marksum td, tr.marksum th { background: var(--tint); }
   .no-list { margin: 6px 0 0; padding-left: 18px; color: var(--fail); }
   .no-list li span { color: var(--ink); }
-  tr.next td, tr.next th { background: var(--tint); }
   .case-foot { display: flex; justify-content: flex-end; margin-top: 16px; }
   .primary { min-height: 44px; padding: 0 18px; border-radius: 10px; border: 0; background: var(--ink); color: #fff; font-weight: 700; cursor: pointer; }
 
@@ -265,8 +261,6 @@
     .steps thead { display: none; }
     .steps tbody tr.step { display: grid; grid-template-columns: 44px minmax(0, 1fr); border-bottom: 1px solid var(--rule); padding: 12px 0; }
     .steps tbody td { border: 0; padding: 0; background: none !important; }
-    tr.step.is-current { box-shadow: inset 4px 0 0 var(--accent); background: var(--accent-bg); padding-left: 8px !important; margin: 0 -16px; padding-right: 16px !important; grid-template-columns: 52px minmax(0, 1fr) !important; }
-    tr.step.is-current td.n { box-shadow: none; padding-left: 8px; }
     .steps tbody td.do { padding-bottom: 8px; }
     .steps tbody td.see { grid-column: 1 / -1; padding: 10px; background: var(--tint) !important; border-radius: 8px; }
     .see-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 6px; }
@@ -458,8 +452,8 @@
   const plain = (s) => s.replace(/[*`\[\]]/g, "");
 
   const VKEY = { "PASS": "pass", "FAIL": "fail", "BLOCKED": "block", "NOTE": "note", "NOT RUN": "state" };
-  const VICON = { "PASS": "check", "FAIL": "x" };
-  const chip = (v, off) => `<span class='vchip v-${VKEY[v]}${off ? " off" : ""}'>${VICON[v] ? svg(VICON[v]) : ""}${v}</span>`;
+  // Verdicts are words and colour only. The tick and cross belong to the line marks.
+  const chip = (v, off) => `<span class='vchip v-${VKEY[v]}${off ? " off" : ""}'>${v}</span>`;
   const VERDICTS = ["PASS", "FAIL", "BLOCKED"];
 
   document.getElementById("legend").innerHTML = LEGEND.map((l) =>
@@ -546,10 +540,8 @@
     const ct = counts(c);
     const stepOpen = (si) => ct.all.some((x) => x.si === si && !s.marks[x.key]);
     const stepNo = (si) => ct.all.some((x) => x.si === si && s.marks[x.key] === "no");
-    const firstOpen = c.steps.findIndex((_, si) => stepOpen(si));
-
     const steps = c.steps.map((st, si) => {
-      const cls = ["step", si === firstOpen ? "is-current" : "", !stepOpen(si) ? "is-done" : "", stepNo(si) ? "has-no" : ""].join(" ").replace(/\s+/g, " ").trim();
+      const cls = ["step", !stepOpen(si) ? "is-done" : "", stepNo(si) ? "has-no" : ""].join(" ").replace(/\s+/g, " ").trim();
       return `<tr class='${cls}'><td class='n'><span class='num'>${si + 1}</span></td><td class='do'>${rich(st.do)}</td><td class='see'>${seeCell(st, si, s)}</td></tr>`;
     }).join("");
     const notes = c.notes.map((n) =>
@@ -585,11 +577,11 @@
       <div class='verdicts'><table>
         <thead><tr><th scope='col' class='c-who'>Who</th><th scope='col' class='c-v'>Verdict</th><th scope='col'>Note</th></tr></thead>
         <tbody>
-          <tr><th scope='row'>Tester<small>pre-run, an agent</small></th><td><div class='ballot' role='img' aria-label='Tester verdict ${c.tester.v}'>${testerBallot}</div></td><td><p class='words'>${figs(c.tester.w)}</p></td></tr>
+          <tr><th scope='row'>Tester<small>an AI agent, before you</small></th><td><div class='ballot' role='img' aria-label='Tester verdict ${c.tester.v}'>${testerBallot}</div></td><td><p class='words'>${figs(c.tester.w)}</p></td></tr>
           <tr><th scope='row'>You<small>${c.you.d}</small></th><td><fieldset class='ballot'><legend class='sr'>Your verdict</legend>${ballot}</fieldset></td>
             <td><textarea class='note-field' id='note' aria-label='Your note'>${esc(s.note)}</textarea><p class='note-hint'>Your words, recorded exactly as you write them.</p></td></tr>
           <tr class='marksum'><th scope='row'>Your marks</th><td colspan='2'>${ct.ok} matching · ${ct.no} not matching · ${ct.open} not marked yet${ct.no ? `<ul class='no-list'>${noItems}</ul>` : ""}</td></tr>
-          <tr class='next'><th scope='row'>Next step<small>agreed with you</small></th><td colspan='2'>${figs(c.next)}</td></tr>
+          <tr class='next'><th scope='row'>Next step<small>written by the AI agent, agreed with you</small></th><td colspan='2'>${figs(c.next)}</td></tr>
         </tbody></table></div>
       <div class='case-foot'><button type='button' class='primary' data-results>Results for the chat</button></div>`;
   }
