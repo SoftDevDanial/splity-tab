@@ -45,6 +45,7 @@ A list of 2 to 12 people they can add, remove and rename.
 | # | Problem found | When | What changed | Who | Outcome |
 |---|---|---|---|---|---|
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
+| 2 | sdlc:regression --full | 2026-10-10 regression | Re-verified, no regression. Proof: regression-qa.md (every C1 item PASS, flow F5 Add person double click adds one), cold boot `docs/regression/20261010-142445/` step 2 | ORCH | Re-verified |
 
 ### C2 - Even split
 **Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
@@ -56,6 +57,7 @@ Type the subtotal once and everyone pays the same share, to the cent.
 | # | Problem found | When | What changed | Who | Outcome |
 |---|---|---|---|---|---|
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
+| 2 | sdlc:regression --full | 2026-10-10 regression | Re-verified, no regression. Proof: regression-qa.md (every C2 item PASS, flow F1), cold boot `docs/regression/20261010-142445/` steps 2 and 5 | ORCH | Re-verified |
 
 ### C3 - Split by item
 **Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
@@ -67,6 +69,7 @@ List each item, tap who had it, and shared items are split between those people.
 | # | Problem found | When | What changed | Who | Outcome |
 |---|---|---|---|---|---|
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
+| 2 | sdlc:regression --full | 2026-10-10 regression | Re-verified, no regression. Proof: regression-qa.md (every C3 item PASS, flows F2 and F5, RG-CR-08 holds), cold boot `docs/regression/20261010-142445/` step 4 | ORCH | Re-verified |
 
 ### C4 - Charges
 **Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
@@ -78,6 +81,7 @@ List each item, tap who had it, and shared items are split between those people.
 | # | Problem found | When | What changed | Who | Outcome |
 |---|---|---|---|---|---|
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
+| 2 | sdlc:regression --full | 2026-10-10 regression | Re-verified, no regression. Proof: regression-qa.md (every C4 item PASS), cold boot `docs/regression/20261010-142445/` steps 2 and 4 (service charge then SST on top) | ORCH | Re-verified |
 
 ### C5 - Shares that add up
 **Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
@@ -89,6 +93,7 @@ Every share is in whole cents and the shares always add up to the total, with th
 | # | Problem found | When | What changed | Who | Outcome |
 |---|---|---|---|---|---|
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
+| 2 | sdlc:regression --full | 2026-10-10 regression | Re-verified, no regression. Proof: regression-qa.md (every C5 item PASS), fidelity finder clean (the Adds up to row 1-to-1), cold boot `docs/regression/20261010-142445/` steps 2 and 4 | ORCH | Re-verified |
 
 ### C6 - Copy summary
 **Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
@@ -101,6 +106,7 @@ One tap copies a plain-text summary for the group chat.
 |---|---|---|---|---|---|
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
 | 2 | Line-break characters in a name could fake an extra line in the copied summary (WR-10) | 2026-10-09 execute | R24 amended, dated: the seven Unicode mandatory line breaks print as one space. Commits `db3bd35`, `46f5670` | LANE (sdlc-dev-solver), ruled ORCH | Solved, security re-check pending |
+| 3 | sdlc:regression --full | 2026-10-10 regression | Re-verified, no regression. Proof: regression-qa.md (every C6 item PASS), cold boot `docs/regression/20261010-142445/` steps 3 and 4 (exact summaries in the recorder) | ORCH | Re-verified |
 
 ### C7 - Draft kept
 **Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
@@ -112,6 +118,7 @@ The bill survives a reload or a closed tab on the same device.
 | # | Problem found | When | What changed | Who | Outcome |
 |---|---|---|---|---|---|
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
+| 2 | sdlc:regression --full | 2026-10-10 regression | Re-verified, no regression. Proof: regression-qa.md (every C7 item PASS, flow F4), cold boot `docs/regression/20261010-142445/` steps 5 and 6 | ORCH | Re-verified |
 
 ### C8 - New bill
 **Status:** SHIPPED · **Opened:** 2026-10-08 · **Closed:** 2026-10-09 · **Tag:** IN SCOPE
@@ -123,6 +130,7 @@ Clears everything after a confirmation.
 | # | Problem found | When | What changed | Who | Outcome |
 |---|---|---|---|---|---|
 | 1 | Scope opened from the brainstorm capability | 2026-10-08 plan | Specced | ORCH (planner lane) | Open |
+| 2 | sdlc:regression --full | 2026-10-10 regression | Re-verified, no regression. Proof: regression-qa.md (every C8 item PASS, flow F4), fidelity finder clean (the dialog), cold boot `docs/regression/20261010-142445/` step 6 | ORCH | Re-verified |
 
 ---
 
@@ -217,6 +225,8 @@ Clears everything after a confirmation.
 | 65 | split-app fidelity finder (sonnet), the gap routed at 13:16: 1-to-1, status clean, 0 findings, 12 observations. Pixel gate 10 of 10 at 0 mismatching pixels (8 byte-identical, the 2 dialog pairs differ by at most 2 of 255 on rounded corners only), extra runs at 360, 600 and 1024 15 of 15. FE element checklist 131 of 131 qa.md rows plus 26 finder rows, 157 of 157. Whole-page comparison 35 pairs, 2,242,912 property comparisons, 0 differences outside native-modal properties. 13 one-thing mutants all caught. R40 now fully verified | 2026-10-10 regression | findings/fidelity.md, evidence `qa/fidelity/20261010-133017/` and `qa/fidelity-checklist/20261010-133500/` | LANE (sdlc-fidelity-tester, sonnet) | PASS |
 | 66 | Fidelity observation O-01: new-bill-dialog.md says a backdrop click does nothing, the app closes the dialog as Cancel | 2026-10-10 regression | Not a finding: the clarify-gate ruling CG-8 names and overrides that golden sentence. Listed for the owner in the UAT handover (H-01, delegated choices) | ORCH | Ruled, CG-8 stands |
 | 67 | Process slip declared by the fidelity finder: one Python heredoc changed a constant in its own scratch helper, and about a dozen stdin heredocs read its own JSON | 2026-10-10 regression | No product, test or doc file touched by them. Recorded against the Write-and-Edit-only rule | LANE (sdlc-fidelity-tester) | Recorded |
+| 68 | Security on the regression's fixes after `22ac9af` (`e30b015`, `4a36354`, a comment in src/errors.js) | 2026-10-10 regression | Not re-audited: the fixes change only which clicks an Add or a Remove acts on, with no new input, storage, rendering or network path. The security verdict on `22ac9af` stands | ORCH | Ruled, reversible |
+| 69 | sdlc:regression --full closed | 2026-10-10 regression | Cold boot 7 of 7 PASS into `docs/regression/20261010-142445/` (0 console or page errors, no CSP violation, same-origin GETs only). Suites on the final tree 275 unit and 427 browser. Fidelity finder clean. docs/regression/REGRESSION.md written. Process ledger reconciled. Full credential gate exit 0 | ORCH | PASS |
 
 ---
 

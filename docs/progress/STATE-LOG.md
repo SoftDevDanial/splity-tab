@@ -157,3 +157,10 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Suites 427 browser, 275 unit. Fidelity 10 of 10 at 0 px (qa/fidelity/20261010-123651/). Live gate check 7 of 7.
 - Solver section and ORCH ruling merged into findings/regression-code-review.md, status pass. Stop rule: code review ends for v1.0.0.
 - README reconciled: 427 browser tests, swallowRepeatClicks bullet.
+
+## 2026-10-10 14:26 regression --full closed, PASS
+- Fidelity finder (the gap found at 13:16): 1-to-1 clean, 157 of 157 rows, 10 of 10 at 0 px. Commit a1658e6.
+- Cold boot 7 of 7 PASS into docs/regression/20261010-142445/.
+- REGRESSION.md written (mode, scope, the fidelity gap, the security ruling on the regression's fixes, finder verdicts, two solver rounds, cold boot table).
+- CHANGE-LEDGER: re-verified rows C1 to C8, the security ruling, the close row. Process ledger +31 rows. Full credential gate exit 0.
+- last-regression = PASS @ 2026-10-10 14:30.

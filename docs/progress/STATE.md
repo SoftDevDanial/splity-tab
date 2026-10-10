@@ -4,8 +4,9 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** regression (code review closed; QA finder, cold boot and report next)
-- **next:** regression
+- **phase:** regression PASS; review next
+- **next:** review
+- **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
 | module | nature | depends on | status | last green |
@@ -17,7 +18,7 @@
 none
 
 ## Next action
-Regression QA finder (haiku) on both modules on the final code, five hand-driven flows. Then the official cold boot into docs/regression/<ts>/, REGRESSION.md, process ledger, ledger re-verified rows, full credential gate, STATE last-regression. Then logos and README design, review, UAT pre-run.
+sdlc:review (stakeholder drive of the brainstorm on a cold boot, lifecycle.md, repo-summary.md), then sdlc:uat (script from C1 to C8, uat-tester pre-run, human column empty), then the USER TEST BRIEF. The seal is his word only.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.
