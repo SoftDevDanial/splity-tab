@@ -97,7 +97,7 @@ After step 4 everything is back to UAT-02.
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS: tick and "Adds up to RM 116.60". At 10.05: RM 1.01, RM 0.66, Total RM 11.72, shares 3.91, 3.91, 3.90, "Adds up to RM 11.72". Back to UAT-02 after step 4 | "Pass but i prefer if it cannot be evenly split, the number in summary should show the extras then let the user decide to put to who or have a button or random split. So user can split manually or randomly or even have 1 person pay the extras" (2026-10-10) | Proposed for 1.1.0, waiting for your yes (findings.md UAT-F1) |
+| PASS: tick and "Adds up to RM 116.60". At 10.05: RM 1.01, RM 0.66, Total RM 11.72, shares 3.91, 3.91, 3.90, "Adds up to RM 11.72". Back to UAT-02 after step 4 | "Pass but i prefer if it cannot be evenly split, the number in summary should show the extras then let the user decide to put to who or have a button or random split. So user can split manually or randomly or even have 1 person pay the extras" (2026-10-10) | In 1.1.0, your yes on 2026-10-10 (findings.md UAT-F1) |
 
 ---
 
@@ -198,7 +198,7 @@ makes the shares table scroll sideways. You chose to fix it in 1.1.0 (2026-10-09
 
 | tester (pre-run) | YOUR verdict | next step (agreed with you) |
 |---|---|---|
-| PASS: the step 4 message exact, tapped names turn dark, the bill summary and every cell of the table as listed. The table fits at 390 and 360 px | "Pass. You did not include what the service charge and sst. Be as accurate and precise as possible when doing test cases. Also the shares number is correct but the charges for ben is 2.25 and aiyah is 4.13 when in test cases ben is 2.24 and aisyah is 4.14 ( check if this is a bug or a simple logic mistake)" (2026-10-10) | Script rule taken (findings.md UAT-F2). The 4.13 and 2.25 checked, not reproduced, waiting for your answer (findings.md UAT-F3) |
+| PASS: the step 4 message exact, tapped names turn dark, the bill summary and every cell of the table as listed. The table fits at 390 and 360 px | "Pass. You did not include what the service charge and sst. Be as accurate and precise as possible when doing test cases. Also the shares number is correct but the charges for ben is 2.25 and aiyah is 4.13 when in test cases ben is 2.24 and aisyah is 4.14 ( check if this is a bug or a simple logic mistake)" (2026-10-10) | Script rule taken (findings.md UAT-F2). The 4.13 and 2.25 came from Ben being above Aisyah, not a bug (findings.md UAT-F3, your words) |
 
 ---
 
@@ -315,7 +315,8 @@ something you could see.
 - **Why it needs you.** Deferring is a decision we made for you.
 - **Options.** Keep each as a known limit · move any one into 1.1.0.
 - **Recommendation.** Keep them. 1.1.0 already takes the table at 360 px (your ruling) and the held Enter.
-- **Your ruling (2026-10-10).** "Discuss each item". Discussion in progress, each item keeps its 1.0 status until you rule on it.
+- **Your ruling (2026-10-10).** "Discuss each item". Discussed item by item in the conversation.
+- **Your ruling after the discussion (2026-10-10).** "i agree with all. for number 4, its a shared state so technically changing at 1 place will change at the other. If they want to add a different bill, we can have this as future implementation. I think its a good thing to have this as future implementation and put this as a doc only so that we can showcase it. So we dont need to implement this but put this like a future implementation kind of doc." So the held Enter, the silent failed save and the Safari engine go into 1.1.0. The shared github.io address, the Dismiss note double click and the invisible-only name stay as known limits. Two tabs stays as it is, and several bills becomes a future-implementation document, not code.
 
 ---
 

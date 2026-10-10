@@ -182,3 +182,8 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Owner: 8 of 8 PASS, his words recorded with the date in TEST-CASES.md. H-01 ruled ("i am happy with the choices made."), D-01 in discussion.
 - findings.md: UAT-F1 leftover sen chosen by the user (FULL, 1.1.0), UAT-F2 script precision (taken), UAT-F3 his 2.25 and 4.13 not reproduced in Chromium, Chrome or Edge, they appear only with Ben above Aisyah.
 - Ledger rows with his exact words, including his comments on the logo, the plain look, the test-case layout and the showcase, and a dated correction of the logo row.
+
+## 2026-10-10 16:35 v1.0.0 sealed
+- Owner's words: "1. Seal both apps". All UAT cases PASS in his words, his rulings recorded (D-01, H-01, names, design round, showcase).
+- Both UAT servers found already ended at 16:33 (most likely the session restart at about 16:10, after his verdicts at 15:48). Process ledger rows closed.
+- SEAL.md written (checks, shipped scopes, UAT both columns, residuals as ruled, what goes into 1.1.0). Ledger marked sealed. Credential gate clean. Local tag v1.0.0 on the seal commit.

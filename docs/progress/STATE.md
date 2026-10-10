@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** uat: owner verdicts recorded, 8 of 8 PASS; seal waits for his word
-- **next:** seal on his word, then v1.1.0
+- **phase:** v1.0.0 SEALED 2026-10-10 on the owner's word; v1.1.0 opening
+- **next:** v1.1.0: brainstorm delta, then the design round with the owner
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-Waiting on the owner: the seal of v1.0.0, his yes on UAT-F1 (leftover sen chosen by the user) for 1.1.0, his answer on UAT-F3 (was Ben above Aisyah), his rulings on each D-01 item, and what the five designs cover. v1.1.0 candidates: H-02, SEC-04, UAT-F1, the logo in the app, a livelier design in a design round with him. Server pid 9084 on 8732 still up until he is done.
+Open docs/v1.1.0/CHANGE-LEDGER.md with the scopes the owner approved at UAT. Then the brainstorm delta (new rows, future-implementation note), then the design round with him: list the designer's job first, five clickable static directions per app, the name and wordmark, the logo in the app, the test-case layout.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

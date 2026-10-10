@@ -5,9 +5,9 @@ and routed (the README's post-review routing: LITE for a script or wording fix, 
 
 | id | case | what the owner said | routing | status |
 |---|---|---|---|---|
-| UAT-F1 | UAT-03 | "if it cannot be evenly split, the number in summary should show the extras then let the user decide to put to who or have a button or random split. So user can split manually or randomly or even have 1 person pay the extras" | FULL: a new 1.1.0 scope (brainstorm row, design, plan, build, finders) | Proposed for 1.1.0, waiting for his yes |
+| UAT-F1 | UAT-03 | "if it cannot be evenly split, the number in summary should show the extras then let the user decide to put to who or have a button or random split. So user can split manually or randomly or even have 1 person pay the extras" | FULL: a new 1.1.0 scope (brainstorm row, design, plan, build, finders) | In 1.1.0, his yes on 2026-10-10 |
 | UAT-F2 | UAT-06 | "You did not include what the service charge and sst. Be as accurate and precise as possible when doing test cases." | LITE: script rule | Taken for every later script |
-| UAT-F3 | UAT-06 | "the charges for ben is 2.25 and aiyah is 4.13 when in test cases ben is 2.24 and aisyah is 4.14 ( check if this is a bug or a simple logic mistake)" | Investigated, below | Not reproduced, waiting for his answer |
+| UAT-F3 | UAT-06 | "the charges for ben is 2.25 and aiyah is 4.13 when in test cases ben is 2.24 and aisyah is 4.14 ( check if this is a bug or a simple logic mistake)" | Investigated, below | Closed, not a bug: Ben was above Aisyah in his list |
 
 ## UAT-F2: script precision
 The case listed Service charge RM 5.94 and SST RM 3.92 but not the line under each ("10% of RM 59.40", "6% of RM
@@ -30,6 +30,8 @@ script's shares beside those charges.
 **Verdict.** No bug found. Either Ben was on top of the list in the owner's session, or the figures were misread.
 The owner's screen was not captured, so the cause stays unconfirmed. This is also exactly the choice UAT-F1 asks
 to hand to the user, so the 1.1.0 scope would make the leftover sen visible and let the user pick who takes it.
+
+**His answer (2026-10-10 16:31).** "UAT 06 probably is because of ben was above or something." and "Most likely. I think i deleted aisyah and addedf later so yes". Removing Aisyah and adding her back put her below Ben, so the leftover sen went to Ben, as the rule says. Closed, not a bug.
 
 **Calibration note.** Tester and owner both said PASS, but the owner reported different figures. That disagreement
 is recorded here and not resolved away.
