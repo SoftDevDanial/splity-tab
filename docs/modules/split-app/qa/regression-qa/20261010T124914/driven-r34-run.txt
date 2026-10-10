@@ -1,0 +1,3 @@
+server STARTED pid 7644 port 18118 root {workspace}\examples\split
+server STOPPED pid 7644 port 18118, exited True, port free again True
+driven R34 rows PASS {'pass': 15, 'fail': 0}

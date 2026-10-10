@@ -1,0 +1,99 @@
+{
+  "suite_bill_390x3000": {
+    "viewport": [
+      390,
+      3000
+    ],
+    "chips": 32,
+    "first_chip": {
+      "index": 0,
+      "x": 16,
+      "y": 550,
+      "w": 70.65625,
+      "h": 44
+    },
+    "landings": 72,
+    "first_landing": [
+      329.484375,
+      733,
+      "Remove Char kuey teow"
+    ],
+    "scrollY": 0
+  },
+  "suite_bill_390x844": {
+    "viewport": [
+      390,
+      844
+    ],
+    "chips": 32,
+    "first_chip": {
+      "index": 0,
+      "x": 16,
+      "y": 550,
+      "w": 70.65625,
+      "h": 44
+    },
+    "landings": 24,
+    "first_landing": [
+      329.484375,
+      733,
+      "Remove Char kuey teow"
+    ],
+    "scrollY": 0
+  },
+  "one_item_390x844": {
+    "viewport": [
+      390,
+      844
+    ],
+    "chips": 8,
+    "first_chip": {
+      "index": 0,
+      "x": 16,
+      "y": 550,
+      "w": 70.65625,
+      "h": 44
+    },
+    "landings": 0,
+    "first_landing": null,
+    "scrollY": 0
+  },
+  "one_item_390x3000": {
+    "viewport": [
+      390,
+      3000
+    ],
+    "chips": 8,
+    "first_chip": {
+      "index": 0,
+      "x": 16,
+      "y": 550,
+      "w": 70.65625,
+      "h": 44
+    },
+    "landings": 0,
+    "first_landing": null,
+    "scrollY": 0
+  },
+  "suite_bill_375x3000": {
+    "viewport": [
+      375,
+      3000
+    ],
+    "chips": 32,
+    "first_chip": {
+      "index": 0,
+      "x": 16,
+      "y": 550,
+      "w": 70.65625,
+      "h": 44
+    },
+    "landings": 120,
+    "first_landing": [
+      317.484375,
+      733,
+      "Remove Char kuey teow"
+    ],
+    "scrollY": 0
+  }
+}

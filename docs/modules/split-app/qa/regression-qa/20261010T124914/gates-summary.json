@@ -1,0 +1,81 @@
+{
+  "fidelity_exit": 0,
+  "live_exit": 0,
+  "fidelity_run_folder": "{workspace}\\examples\\split\\docs\\modules\\split-app\\qa\\regression-qa\\20261010T124914\\gates\\fidelity\\20261010-130500",
+  "live_run_folder": "{workspace}\\examples\\split\\docs\\modules\\split-app\\qa\\regression-qa\\20261010T124914\\gates\\live-e2e\\20261010-130537",
+  "fidelity_pairs": {
+    "bill-empty-1280x800": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    },
+    "bill-empty-390x844": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    },
+    "bill-even-1280x800": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    },
+    "bill-even-390x844": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    },
+    "bill-items-1280x800": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    },
+    "bill-items-390x844": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    },
+    "bill-unassigned-1280x800": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    },
+    "bill-unassigned-390x844": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    },
+    "new-bill-dialog-1280x800": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    },
+    "new-bill-dialog-390x844": {
+      "dimensions_match": true,
+      "mismatch_pixels": 0,
+      "mismatch_pct": 0.0
+    }
+  },
+  "live_summary": {
+    "started": "2026-10-10T13:05:37",
+    "ended": "2026-10-10T13:05:40",
+    "chromium": "149.0.7827.55",
+    "port": 14669,
+    "server_pid": 17268,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "init_scripts": [
+      "tests/browser/clipboard/recorder.js"
+    ],
+    "storage_state": null,
+    "bypass_csp": false,
+    "steps": 7,
+    "failure": null,
+    "server_log": [
+      "server STARTED pid 17268 port 14669 root {workspace}\\examples\\split",
+      "server STOPPED pid 17268 port 14669, exited True, port free again True"
+    ],
+    "result": "PASS"
+  }
+}

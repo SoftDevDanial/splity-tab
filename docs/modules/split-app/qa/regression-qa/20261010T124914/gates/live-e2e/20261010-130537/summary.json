@@ -1,0 +1,23 @@
+{
+  "started": "2026-10-10T13:05:37",
+  "ended": "2026-10-10T13:05:40",
+  "chromium": "149.0.7827.55",
+  "port": 14669,
+  "server_pid": 17268,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "init_scripts": [
+    "tests/browser/clipboard/recorder.js"
+  ],
+  "storage_state": null,
+  "bypass_csp": false,
+  "steps": 7,
+  "failure": null,
+  "server_log": [
+    "server STARTED pid 17268 port 14669 root {workspace}\\examples\\split",
+    "server STOPPED pid 17268 port 14669, exited True, port free again True"
+  ],
+  "result": "PASS"
+}

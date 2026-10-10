@@ -1,0 +1,7 @@
+server STARTED pid 7112 port 4119 root {workspace}\examples\split
+server STOPPED pid 7112 port 4119, exited True, port free again True
+suite_bill_390x3000: chips 32, landings 72, scrollY 0, first landing [329.484375, 733, 'Remove Char kuey teow']
+suite_bill_390x844: chips 32, landings 24, scrollY 0, first landing [329.484375, 733, 'Remove Char kuey teow']
+one_item_390x844: chips 8, landings 0, scrollY 0, first landing None
+one_item_390x3000: chips 8, landings 0, scrollY 0, first landing None
+suite_bill_375x3000: chips 32, landings 120, scrollY 0, first landing [317.484375, 733, 'Remove Char kuey teow']

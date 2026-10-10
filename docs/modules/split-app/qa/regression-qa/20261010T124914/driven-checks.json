@@ -1,0 +1,698 @@
+{
+  "started": "2026-10-10T12:59:22",
+  "server_port": 48732,
+  "server_pid": 21144,
+  "chromium": "149.0.7827.55",
+  "chromium_pids_while_open": [
+    15616
+  ],
+  "chromium_pids_after_close": [],
+  "server_port_free_after_stop": true,
+  "ended": "2026-10-10T12:59:25",
+  "result": "PASS",
+  "counts": {
+    "pass": 40,
+    "fail": 0,
+    "note": 0
+  },
+  "checks": [
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen '",
+      "what": "field 3 holds the typed text",
+      "expected": "Chen ",
+      "observed": "Chen ",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen '",
+      "what": "all four toggles end in the trimmed label",
+      "expected": [
+        [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen '",
+      "what": "shares row name",
+      "expected": "Chen",
+      "observed": "Chen",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen '",
+      "what": "remove button name",
+      "expected": "Remove Chen",
+      "observed": "Remove Chen",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen W'",
+      "what": "field 3 holds the typed text",
+      "expected": "Chen W",
+      "observed": "Chen W",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen W'",
+      "what": "all four toggles end in the trimmed label",
+      "expected": [
+        [
+          "Aisyah",
+          "Ben",
+          "Chen W"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen W"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen W"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen W"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "Ben",
+          "Chen W"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen W"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen W"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen W"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen W'",
+      "what": "shares row name",
+      "expected": "Chen W",
+      "observed": "Chen W",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen W'",
+      "what": "remove button name",
+      "expected": "Remove Chen W",
+      "observed": "Remove Chen W",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen We'",
+      "what": "field 3 holds the typed text",
+      "expected": "Chen We",
+      "observed": "Chen We",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen We'",
+      "what": "all four toggles end in the trimmed label",
+      "expected": [
+        [
+          "Aisyah",
+          "Ben",
+          "Chen We"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen We"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen We"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen We"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "Ben",
+          "Chen We"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen We"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen We"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen We"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen We'",
+      "what": "shares row name",
+      "expected": "Chen We",
+      "observed": "Chen We",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen We'",
+      "what": "remove button name",
+      "expected": "Remove Chen We",
+      "observed": "Remove Chen We",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen Wei'",
+      "what": "field 3 holds the typed text",
+      "expected": "Chen Wei",
+      "observed": "Chen Wei",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen Wei'",
+      "what": "all four toggles end in the trimmed label",
+      "expected": [
+        [
+          "Aisyah",
+          "Ben",
+          "Chen Wei"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen Wei"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen Wei"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen Wei"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "Ben",
+          "Chen Wei"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen Wei"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen Wei"
+        ],
+        [
+          "Aisyah",
+          "Ben",
+          "Chen Wei"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen Wei'",
+      "what": "shares row name",
+      "expected": "Chen Wei",
+      "observed": "Chen Wei",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "after typing 'Chen Wei'",
+      "what": "remove button name",
+      "expected": "Remove Chen Wei",
+      "observed": "Remove Chen Wei",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "Copy summary",
+      "what": "line 5 of the copied text",
+      "expected": "Chen Wei RM 24.48",
+      "observed": "Chen Wei RM 24.48",
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "end",
+      "what": "Chen's shares row after the rename",
+      "expected": [
+        "Chen Wei",
+        "RM 21.00",
+        "RM 3.48",
+        "RM 24.48"
+      ],
+      "observed": [
+        "Chen Wei",
+        "RM 21.00",
+        "RM 3.48",
+        "RM 24.48"
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D1 R5 rename per keystroke, S1 seed",
+      "step": "end",
+      "what": "problems",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S1 seed",
+      "step": "S1 seed",
+      "what": "body background from the stylesheet",
+      "expected": "rgb(238, 240, 238)",
+      "observed": "rgb(238, 240, 238)",
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S1 seed",
+      "step": "S1 seed",
+      "what": "people rows and Charges inputs exist",
+      "expected": [
+        3,
+        1,
+        1
+      ],
+      "observed": [
+        3,
+        1,
+        1
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S1 seed",
+      "step": "S1 seed",
+      "what": "the S1 table",
+      "expected": [
+        [
+          "Aisyah",
+          "RM 24.90",
+          "RM 4.14",
+          "RM 29.04"
+        ],
+        [
+          "Ben",
+          "RM 13.50",
+          "RM 2.24",
+          "RM 15.74"
+        ],
+        [
+          "Chen",
+          "RM 21.00",
+          "RM 3.48",
+          "RM 24.48"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "RM 24.90",
+          "RM 4.14",
+          "RM 29.04"
+        ],
+        [
+          "Ben",
+          "RM 13.50",
+          "RM 2.24",
+          "RM 15.74"
+        ],
+        [
+          "Chen",
+          "RM 21.00",
+          "RM 3.48",
+          "RM 24.48"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S1 seed",
+      "step": "S1 seed",
+      "what": "the S1 check row",
+      "expected": [
+        [
+          "Adds up to",
+          "RM 59.40",
+          "RM 9.86",
+          "RM 69.26"
+        ]
+      ],
+      "observed": [
+        [
+          "Adds up to",
+          "RM 59.40",
+          "RM 9.86",
+          "RM 69.26"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S1 seed",
+      "step": "S1 seed",
+      "what": "elements under body with a style attribute",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S1 seed",
+      "step": "S1 seed",
+      "what": "no CSP message, no page error, no request outside the rules",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S2 seed with the dialog open",
+      "step": "dialog",
+      "what": "dialog is open",
+      "expected": true,
+      "observed": true,
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S2 seed with the dialog open",
+      "step": "S2 seed",
+      "what": "body background from the stylesheet",
+      "expected": "rgb(238, 240, 238)",
+      "observed": "rgb(238, 240, 238)",
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S2 seed with the dialog open",
+      "step": "S2 seed",
+      "what": "people rows and Charges inputs exist",
+      "expected": [
+        3,
+        1,
+        1
+      ],
+      "observed": [
+        3,
+        1,
+        1
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S2 seed with the dialog open",
+      "step": "S2 seed",
+      "what": "the S2 table under the dialog",
+      "expected": [
+        [
+          "Aisyah",
+          "RM 38.87"
+        ],
+        [
+          "Ben",
+          "RM 38.87"
+        ],
+        [
+          "Chen",
+          "RM 38.86"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "RM 38.87"
+        ],
+        [
+          "Ben",
+          "RM 38.87"
+        ],
+        [
+          "Chen",
+          "RM 38.86"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S2 seed with the dialog open",
+      "step": "S2 seed",
+      "what": "the S2 check row under the dialog",
+      "expected": [
+        [
+          "Adds up to",
+          "RM 116.60"
+        ]
+      ],
+      "observed": [
+        [
+          "Adds up to",
+          "RM 116.60"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S2 seed with the dialog open",
+      "step": "S2 seed",
+      "what": "elements under body with a style attribute",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "D2 R38 strict policy, S2 seed with the dialog open",
+      "step": "S2 seed",
+      "what": "no CSP message, no page error, no request outside the rules",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "D3 R23 browser blocks the clipboard, S2 seed",
+      "step": "Copy summary",
+      "what": "status text",
+      "expected": "Could not copy. Your browser blocked the clipboard.",
+      "observed": "Could not copy. Your browser blocked the clipboard.",
+      "result": "PASS"
+    },
+    {
+      "group": "D3 R23 browser blocks the clipboard, S2 seed",
+      "step": "Copy summary",
+      "what": "status class list",
+      "expected": "status status-failure",
+      "observed": "status status-failure",
+      "result": "PASS"
+    },
+    {
+      "group": "D3 R23 browser blocks the clipboard, S2 seed",
+      "step": "after the blocked copy",
+      "what": "stored draft text is the same",
+      "expected": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":4}}",
+      "observed": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":4}}",
+      "result": "PASS"
+    },
+    {
+      "group": "D3 R23 browser blocks the clipboard, S2 seed",
+      "step": "after the blocked copy",
+      "what": "the form state is the same",
+      "expected": {
+        "people": [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        "removeDisabled": [
+          false,
+          false,
+          false
+        ],
+        "mode": "even",
+        "subtotal": "100.00",
+        "items": [],
+        "rates": [
+          "10",
+          "6"
+        ],
+        "notes": 0,
+        "errors": 0
+      },
+      "observed": {
+        "people": [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        "removeDisabled": [
+          false,
+          false,
+          false
+        ],
+        "mode": "even",
+        "subtotal": "100.00",
+        "items": [],
+        "rates": [
+          "10",
+          "6"
+        ],
+        "notes": 0,
+        "errors": 0
+      },
+      "result": "PASS"
+    },
+    {
+      "group": "D3 R23 browser blocks the clipboard, S2 seed",
+      "step": "after the blocked copy",
+      "what": "the shares rows are the same",
+      "expected": [
+        [
+          "Aisyah",
+          "RM 38.87"
+        ],
+        [
+          "Ben",
+          "RM 38.87"
+        ],
+        [
+          "Chen",
+          "RM 38.86"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "RM 38.87"
+        ],
+        [
+          "Ben",
+          "RM 38.87"
+        ],
+        [
+          "Chen",
+          "RM 38.86"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D3 R23 browser blocks the clipboard, S2 seed",
+      "step": "after the blocked copy",
+      "what": "the check row is the same",
+      "expected": [
+        [
+          "Adds up to",
+          "RM 116.60"
+        ]
+      ],
+      "observed": [
+        [
+          "Adds up to",
+          "RM 116.60"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "D3 R23 browser blocks the clipboard, S2 seed",
+      "step": "after the blocked copy",
+      "what": "the panel is the same apart from the status line",
+      "expected": "Bill summary\nSubtotal\nRM 100.00\n+\nService charge\nRM 10.00\n10% of RM 100.00\n+\nSST\nRM 6.60\n6% of RM 110.00\n=\nTotal\nRM 116.60\nShares\nPerson\tShare\nAisyah\tRM 38.87\nBen\tRM 38.87\nChen\tRM 38.86\nAdds up to\tRM 116.60\nCopy summary",
+      "observed": "Bill summary\nSubtotal\nRM 100.00\n+\nService charge\nRM 10.00\n10% of RM 100.00\n+\nSST\nRM 6.60\n6% of RM 110.00\n=\nTotal\nRM 116.60\nShares\nPerson\tShare\nAisyah\tRM 38.87\nBen\tRM 38.87\nChen\tRM 38.86\nAdds up to\tRM 116.60\nCopy summary",
+      "result": "PASS"
+    },
+    {
+      "group": "D3 R23 browser blocks the clipboard, S2 seed",
+      "step": "end",
+      "what": "problems",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    }
+  ]
+}

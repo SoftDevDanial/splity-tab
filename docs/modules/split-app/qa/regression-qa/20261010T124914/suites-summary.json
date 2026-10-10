@@ -1,0 +1,30 @@
+{
+  "started": "2026-10-10T12:50:46",
+  "python": "C:\\Python314\\python.exe",
+  "root": "{workspace}\\examples\\split",
+  "node": {
+    "tests": 275,
+    "pass": 275,
+    "fail": 0,
+    "skipped": 0,
+    "todo": 0,
+    "cancelled": 0,
+    "source": "node-test.txt (saved by run_suites.py, the one node run)"
+  },
+  "pytest_collect": {
+    "exit_status": 0,
+    "seconds": 0.9,
+    "output_file": "pytest-collect.txt"
+  },
+  "pytest_browser": {
+    "command": "python -m pytest tests/browser -q -p no:cacheprovider --junitxml <evidence>/junit.xml",
+    "exit_status": 0,
+    "seconds_wall": 110.9,
+    "last_line": "427 passed in 109.87s (0:01:49)",
+    "passed": 427,
+    "failed": 0,
+    "errors": 0,
+    "output_file": "pytest.txt",
+    "junit": "junit.xml"
+  }
+}

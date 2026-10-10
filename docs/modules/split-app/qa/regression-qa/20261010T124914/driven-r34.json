@@ -1,0 +1,139 @@
+{
+  "started": "2026-10-10T13:07:18",
+  "server_port": 18118,
+  "server_pid": 7644,
+  "chromium": "149.0.7827.55",
+  "chromium_pids_while_open": [
+    480
+  ],
+  "chromium_pids_after_close": [],
+  "server_port_free_after_stop": true,
+  "ended": "2026-10-10T13:07:21",
+  "result": "PASS",
+  "counts": {
+    "pass": 15,
+    "fail": 0
+  },
+  "checks": [
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row b: Remove Ben",
+      "what": "focus on",
+      "expected": "Person 2 name",
+      "observed": "Person 2 name",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row b: Remove Ben",
+      "what": "the focused field holds",
+      "expected": "Chen",
+      "observed": "Chen",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row b: Remove Ben",
+      "what": "problems",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row c: Remove Chen",
+      "what": "focus on",
+      "expected": "Person 2 name",
+      "observed": "Person 2 name",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row c: Remove Chen",
+      "what": "the focused field holds",
+      "expected": "Ben",
+      "observed": "Ben",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row c: Remove Chen",
+      "what": "problems",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row d: Add item",
+      "what": "focus on",
+      "expected": "Item 5 name",
+      "observed": "Item 5 name",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row d: Add item",
+      "what": "the focused field holds",
+      "expected": "",
+      "observed": "",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row d: Add item",
+      "what": "problems",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row e: Remove Char kuey teow",
+      "what": "focus on",
+      "expected": "Item 2 name",
+      "observed": "Item 2 name",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row e: Remove Char kuey teow",
+      "what": "the focused field holds",
+      "expected": "Mee goreng mamak",
+      "observed": "Mee goreng mamak",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row e: Remove Char kuey teow",
+      "what": "problems",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row f: Remove Satay, 10 sticks",
+      "what": "focus on",
+      "expected": "Item 3 name",
+      "observed": "Item 3 name",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row f: Remove Satay, 10 sticks",
+      "what": "the focused field holds",
+      "expected": "Mee goreng mamak",
+      "observed": "Mee goreng mamak",
+      "result": "PASS"
+    },
+    {
+      "group": "D4 R34 focus after a click, S1 seed",
+      "step": "row f: Remove Satay, 10 sticks",
+      "what": "problems",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    }
+  ]
+}

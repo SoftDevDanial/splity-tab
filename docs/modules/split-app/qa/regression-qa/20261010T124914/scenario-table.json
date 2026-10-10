@@ -1,0 +1,7067 @@
+[
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"12\" is 1200",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"12\") is 1200 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"12\") is 1200 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"12.5\" is 1250",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"12.5\") is 1250 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"12.5\") is 1250 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"12.50\" is 1250",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"12.50\") is 1250 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"12.50\") is 1250 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"0.01\" is 1",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"0.01\") is 1 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"0.01\") is 1 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"99999.99\" is 9999999",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"99999.99\") is 9999999 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"99999.99\") is 9999999 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"1.15\" is 115",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"1.15\") is 115 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"1.15\") is 115 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"4.35\" is 435",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"4.35\") is 435 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"4.35\") is 435 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"0.29\" is 29",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"0.29\") is 29 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"0.29\") is 29 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\" 12.50 \" is 1250",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\" 12.50 \") is 1250 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\" 12.50 \") is 1250 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"007\" is 700",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"007\") is 700 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"007\") is 700 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"12.\" is 1200",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"12.\") is 1200 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"12.\") is 1200 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1",
+    "scenario": "parseAmount accepts valid amounts as exact cents",
+    "row": "\"0000000012.50\" is 1250",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 parseAmount(\"0000000012.50\") is 1250 cents"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 parseAmount(\"0000000012.50\") is 1250 cents"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"0\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"0\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"0\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"0.00\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"0.00\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"0.00\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"100000\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"100000\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"100000\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"99999.991\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"99999.991\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"99999.991\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"12.505\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"12.505\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"12.505\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"13.505\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"13.505\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"13.505\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"-5\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"-5\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"-5\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"+5\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"+5\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"+5\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"1,000\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"1,000\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"1,000\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\".5\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\".5\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\".5\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"1e3\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"1e3\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"1e3\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"0x10\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"0x10\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"0x10\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"Infinity\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"Infinity\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"Infinity\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"NaN\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"NaN\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"NaN\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"abc\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"abc\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"abc\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"12 50\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"12 50\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"12 50\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "parseAmount rejects invalid text as invalid, not empty",
+    "row": "\"１２\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 parseAmount(\"１２\") is invalid, not empty"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 parseAmount(\"１２\") is invalid, not empty"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R2",
+    "scenario": "A 401-character amount is rejected without overflow or exception",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R2 a 401-character amount is invalid and does not throw"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R2 a 401-character amount is invalid and does not throw"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R1 R3",
+    "scenario": "A whole part longer than the ceiling's is refused before any numeric conversion",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion"
+      ]
+    ],
+    "note": "the test spies on Number, and its positive controls show the spy is not blind",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R2",
+    "scenario": "Empty or white-space text is reported as empty",
+    "row": "\"\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R2 \"\" is reported as empty by both parsers"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R2 \"\" is reported as empty by both parsers"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R2",
+    "scenario": "Empty or white-space text is reported as empty",
+    "row": "\"   \"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R2 \"   \" is reported as empty by both parsers"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R2 \"   \" is reported as empty by both parsers"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R2",
+    "scenario": "The parsers never throw for any string",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R2 the parsers never throw and always return a well-formed result"
+      ]
+    ],
+    "note": "500 seeded strings; the test alphabet has one space where qa.md lists two (see observation 12)",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R2 the parsers never throw and always return a well-formed result"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"0\", max 30 is 0 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"0\", 30) is 0 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"0\", 30) is 0 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"10\", max 30 is 1000 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"10\", 30) is 1000 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"10\", 30) is 1000 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"6\", max 20 is 600 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"6\", 20) is 600 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"6\", 20) is 600 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"6.5\", max 20 is 650 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"6.5\", 20) is 650 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"6.5\", 20) is 650 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"6.25\", max 20 is 625 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"6.25\", 20) is 625 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"6.25\", 20) is 625 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"30\", max 30 is 3000 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"30\", 30) is 3000 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"30\", 30) is 3000 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"30.00\", max 30 is 3000 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"30.00\", 30) is 3000 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"30.00\", 30) is 3000 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"20\", max 20 is 2000 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"20\", 20) is 2000 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"20\", 20) is 2000 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"0.01\", max 30 is 1 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"0.01\", 30) is 1 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"0.01\", 30) is 1 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"6.\", max 20 is 600 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"6.\", 20) is 600 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"6.\", 20) is 600 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"06\", max 20 is 600 bp",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"06\", 20) is 600 bp"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"06\", 20) is 600 bp"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"30.01\", max 30 is invalid",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"30.01\", 30) is invalid"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"30.01\", 30) is invalid"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"20.01\", max 20 is invalid",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"20.01\", 20) is invalid"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"20.01\", 20) is invalid"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"25\", max 20 is invalid",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"25\", 20) is invalid"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"25\", 20) is invalid"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"-1\", max 30 is invalid",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"-1\", 30) is invalid"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"-1\", 30) is invalid"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"6.255\", max 20 is invalid",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"6.255\", 20) is invalid"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"6.255\", 20) is invalid"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R3",
+    "scenario": "parseRate reads basis points within its maximum",
+    "row": "\"10%\", max 30 is invalid",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R3 parseRate(\"10%\", 30) is invalid"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R3 parseRate(\"10%\", 30) is invalid"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R4",
+    "scenario": "formatMoney writes RM, a space, ringgit and two sen digits",
+    "row": "0 is \"RM 0.00\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R4 formatMoney(0) is \"RM 0.00\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R4 formatMoney(0) is \"RM 0.00\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R4",
+    "scenario": "formatMoney writes RM, a space, ringgit and two sen digits",
+    "row": "1 is \"RM 0.01\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R4 formatMoney(1) is \"RM 0.01\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R4 formatMoney(1) is \"RM 0.01\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R4",
+    "scenario": "formatMoney writes RM, a space, ringgit and two sen digits",
+    "row": "10 is \"RM 0.10\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R4 formatMoney(10) is \"RM 0.10\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R4 formatMoney(10) is \"RM 0.10\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R4",
+    "scenario": "formatMoney writes RM, a space, ringgit and two sen digits",
+    "row": "100 is \"RM 1.00\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R4 formatMoney(100) is \"RM 1.00\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R4 formatMoney(100) is \"RM 1.00\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R4",
+    "scenario": "formatMoney writes RM, a space, ringgit and two sen digits",
+    "row": "3887 is \"RM 38.87\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R4 formatMoney(3887) is \"RM 38.87\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R4 formatMoney(3887) is \"RM 38.87\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R4",
+    "scenario": "formatMoney writes RM, a space, ringgit and two sen digits",
+    "row": "11660 is \"RM 116.60\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R4 formatMoney(11660) is \"RM 116.60\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R4 formatMoney(11660) is \"RM 116.60\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R4",
+    "scenario": "formatMoney writes RM, a space, ringgit and two sen digits",
+    "row": "15599999 is \"RM 155999.99\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R4 formatMoney(15599999) is \"RM 155999.99\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R4 formatMoney(15599999) is \"RM 155999.99\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R4",
+    "scenario": "formatMoney writes RM, a space, ringgit and two sen digits",
+    "row": "779999922 is \"RM 7799999.22\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R4 formatMoney(779999922) is \"RM 7799999.22\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R4 formatMoney(779999922) is \"RM 7799999.22\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R5",
+    "scenario": "formatRate drops trailing zeros and adds a percent sign",
+    "row": "0 is \"0%\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R5 formatRate(0) is \"0%\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R5 formatRate(0) is \"0%\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R5",
+    "scenario": "formatRate drops trailing zeros and adds a percent sign",
+    "row": "600 is \"6%\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R5 formatRate(600) is \"6%\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R5 formatRate(600) is \"6%\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R5",
+    "scenario": "formatRate drops trailing zeros and adds a percent sign",
+    "row": "1000 is \"10%\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R5 formatRate(1000) is \"10%\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R5 formatRate(1000) is \"10%\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R5",
+    "scenario": "formatRate drops trailing zeros and adds a percent sign",
+    "row": "650 is \"6.5%\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R5 formatRate(650) is \"6.5%\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R5 formatRate(650) is \"6.5%\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R5",
+    "scenario": "formatRate drops trailing zeros and adds a percent sign",
+    "row": "625 is \"6.25%\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R5 formatRate(625) is \"6.25%\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R5 formatRate(625) is \"6.25%\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R5",
+    "scenario": "formatRate drops trailing zeros and adds a percent sign",
+    "row": "605 is \"6.05%\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R5 formatRate(605) is \"6.05%\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R5 formatRate(605) is \"6.05%\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R5",
+    "scenario": "formatRate drops trailing zeros and adds a percent sign",
+    "row": "3000 is \"30%\"",
+    "refs": [
+      [
+        "node",
+        "money.test.js",
+        "@R5 formatRate(3000) is \"30%\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "money.test.js :: @R5 formatRate(3000) is \"30%\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 10000, service 1000, SST 600, total 11660",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(10000, 1000, 600) totals 11660"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(10000, 1000, 600) totals 11660"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 5940, service 1000, SST 600, total 6926",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(5940, 1000, 600) totals 6926"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(5940, 1000, 600) totals 6926"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 8765, service 1000, SST 600, total 10221",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(8765, 1000, 600) totals 10221"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(8765, 1000, 600) totals 10221"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 5, service 1000, SST 0, total 6",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(5, 1000, 0) totals 6"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(5, 1000, 0) totals 6"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 25, service 1000, SST 0, total 28",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(25, 1000, 0) totals 28"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(25, 1000, 0) totals 28"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 4, service 1000, SST 0, total 4",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(4, 1000, 0) totals 4"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(4, 1000, 0) totals 4"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 1000, service 0, SST 0, total 1000",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(1000, 0, 0) totals 1000"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(1000, 0, 0) totals 1000"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 5000, service 1250, SST 625, total 5977",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(5000, 1250, 625) totals 5977"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(5000, 1250, 625) totals 5977"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 9999999, service 3000, SST 2000, total 15599999",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(9999999, 3000, 2000) totals 15599999"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(9999999, 3000, 2000) totals 15599999"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R6",
+    "scenario": "Service and SST round half up to the cent",
+    "row": "subtotal 499999950, service 3000, SST 2000, total 779999922",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R6 billCharges(499999950, 3000, 2000) totals 779999922"
+      ]
+    ],
+    "note": "the test checks service, base, SST and total together with both rates",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R6 billCharges(499999950, 3000, 2000) totals 779999922"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R7",
+    "scenario": "allocateEvenly floors and hands leftover sen to the top",
+    "row": "11660 over 3",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R7 allocateEvenly(11660, 3)"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R7 allocateEvenly(11660, 3)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R7",
+    "scenario": "allocateEvenly floors and hands leftover sen to the top",
+    "row": "1800 over 2",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R7 allocateEvenly(1800, 2)"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R7 allocateEvenly(1800, 2)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R7",
+    "scenario": "allocateEvenly floors and hands leftover sen to the top",
+    "row": "1001 over 3",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R7 allocateEvenly(1001, 3)"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R7 allocateEvenly(1001, 3)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R7",
+    "scenario": "allocateEvenly floors and hands leftover sen to the top",
+    "row": "1 over 3",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R7 allocateEvenly(1, 3)"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R7 allocateEvenly(1, 3)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R7",
+    "scenario": "allocateEvenly floors and hands leftover sen to the top",
+    "row": "0 over 2",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R7 allocateEvenly(0, 2)"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R7 allocateEvenly(0, 2)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R7",
+    "scenario": "allocateEvenly floors and hands leftover sen to the top",
+    "row": "10221 over 4",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R7 allocateEvenly(10221, 4)"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R7 allocateEvenly(10221, 4)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R7",
+    "scenario": "allocateEvenly floors and hands leftover sen to the top",
+    "row": "15599999 over 12",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R7 allocateEvenly(15599999, 12)"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R7 allocateEvenly(15599999, 12)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R8",
+    "scenario": "allocateByWeight floors exactly and skips zero weights for leftovers",
+    "row": "986 over [2490,1350,2100]",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R8 allocateByWeight(986, [2490,1350,2100])"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R8 allocateByWeight(986, [2490,1350,2100])"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R8",
+    "scenario": "allocateByWeight floors exactly and skips zero weights for leftovers",
+    "row": "10 over [0,1,1,1]",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R8 allocateByWeight(10, [0,1,1,1])"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R8 allocateByWeight(10, [0,1,1,1])"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R8",
+    "scenario": "allocateByWeight floors exactly and skips zero weights for leftovers",
+    "row": "0 over [5,7]",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R8 allocateByWeight(0, [5,7])"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R8 allocateByWeight(0, [5,7])"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R8",
+    "scenario": "allocateByWeight floors exactly and skips zero weights for leftovers",
+    "row": "249 over [0,1251,250]",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R8 allocateByWeight(249, [0,1251,250])"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R8 allocateByWeight(249, [0,1251,250])"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R8",
+    "scenario": "allocateByWeight floors exactly and skips zero weights for leftovers",
+    "row": "236419679 over [314963010,157876348]",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R8 BigInt trap: allocateByWeight(236419679, [314963010,157876348])"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R8 BigInt trap: allocateByWeight(236419679, [314963010,157876348])"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R8",
+    "scenario": "allocateByWeight floors exactly and skips zero weights for leftovers",
+    "row": "61846725 over [49676084,322894546]",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R8 BigInt trap: allocateByWeight(61846725, [49676084,322894546])"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R8 BigInt trap: allocateByWeight(61846725, [49676084,322894546])"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R8",
+    "scenario": "allocateByWeight floors exactly and skips zero weights for leftovers",
+    "row": "178450942 over [111531837,207130558]",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R8 BigInt trap: allocateByWeight(178450942, [111531837,207130558])"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R8 BigInt trap: allocateByWeight(178450942, [111531837,207130558])"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R8 R23",
+    "scenario": "allocateByWeight gives the MAX-I charges split exactly, with products past 2^53",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R8 @R23 allocateByWeight gives the MAX-I charges split exactly, with products past 2^53"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R8 @R23 allocateByWeight gives the MAX-I charges split exactly, with products past 2^53"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R9",
+    "scenario": "Allocation rejects impossible input",
+    "row": "allocateEvenly(10, 0)",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R9 allocateEvenly(10, 0) throws RangeError"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R9 allocateEvenly(10, 0) throws RangeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R9",
+    "scenario": "Allocation rejects impossible input",
+    "row": "allocateEvenly(10, 1.5)",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R9 allocateEvenly(10, 1.5) throws RangeError"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R9 allocateEvenly(10, 1.5) throws RangeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R9",
+    "scenario": "Allocation rejects impossible input",
+    "row": "allocateEvenly(-1, 2)",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R9 allocateEvenly(-1, 2) throws RangeError"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R9 allocateEvenly(-1, 2) throws RangeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R9",
+    "scenario": "Allocation rejects impossible input",
+    "row": "allocateEvenly(0.5, 2)",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R9 allocateEvenly(0.5, 2) throws RangeError"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R9 allocateEvenly(0.5, 2) throws RangeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R9",
+    "scenario": "Allocation rejects impossible input",
+    "row": "allocateByWeight(10, [])",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R9 allocateByWeight(10, []) throws RangeError"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R9 allocateByWeight(10, []) throws RangeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R9",
+    "scenario": "Allocation rejects impossible input",
+    "row": "allocateByWeight(10, [0, 0])",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R9 allocateByWeight(10, [0, 0]) throws RangeError"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R9 allocateByWeight(10, [0, 0]) throws RangeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R9",
+    "scenario": "Allocation rejects impossible input",
+    "row": "allocateByWeight(10, [1, -1])",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R9 allocateByWeight(10, [1, -1]) throws RangeError"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R9 allocateByWeight(10, [1, -1]) throws RangeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R9",
+    "scenario": "Allocation rejects impossible input",
+    "row": "allocateByWeight(10, [1.5, 1])",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R9 allocateByWeight(10, [1.5, 1]) throws RangeError"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R9 allocateByWeight(10, [1.5, 1]) throws RangeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R9",
+    "scenario": "Allocation rejects impossible input",
+    "row": "allocateByWeight(-1, [1])",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R9 allocateByWeight(-1, [1]) throws RangeError"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R9 allocateByWeight(-1, [1]) throws RangeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R10",
+    "scenario": "A new bill has two people, even mode and the default rates",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R10 a new bill has two people, even mode and the default rates"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R10 a new bill has two people, even mode and the default rates"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R11",
+    "scenario": "Adding a person appends an empty-named person with the next id",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R11 adding a person appends an empty-named person with the next id"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R11 adding a person appends an empty-named person with the next id"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R11",
+    "scenario": "A new person's id never reuses a removed id",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R11 a new person's id comes from nextId, so it never reuses a removed id"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R11 a new person's id comes from nextId, so it never reuses a removed id"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R11",
+    "scenario": "Adding a 13th person does nothing",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R11 the twelfth person is accepted and the thirteenth does nothing"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R11 the twelfth person is accepted and the thirteenth does nothing"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R12",
+    "scenario": "Removing a person removes them from every item",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R12 removing a person removes them from every item"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R12 removing a person removes them from every item"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R12",
+    "scenario": "Removing is refused at 2 people or for an unknown id",
+    "row": "a new bill, p1",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R12 removing is refused at 2 people or for an unknown id"
+      ]
+    ],
+    "note": "one test covers both rows",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R12 removing is refused at 2 people or for an unknown id"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R12",
+    "scenario": "Removing is refused at 2 people or for an unknown id",
+    "row": "the S1 bill, p99",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R12 removing is refused at 2 people or for an unknown id"
+      ]
+    ],
+    "note": "one test covers both rows",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R12 removing is refused at 2 people or for an unknown id"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R13",
+    "scenario": "Adding an item appends an empty, unassigned item",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R13 adding an item appends an empty, unassigned item"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R13 adding an item appends an empty, unassigned item"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R13",
+    "scenario": "The 51st item is refused and removing works at any time",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R13 the 51st item is refused and removing works at any time"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R13 the 51st item is refused and removing works at any time"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R14",
+    "scenario": "Tapping toggles a person on an item",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R14 tapping toggles a person on an item"
+      ],
+      [
+        "node",
+        "bill.test.js",
+        "@R14 an unknown item or person id returns the same bill"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R14 tapping toggles a person on an item",
+      "bill.test.js :: @R14 an unknown item or person id returns the same bill"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R15",
+    "scenario": "Switching modes keeps both sets of input",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R15 switching modes keeps both sets of input"
+      ]
+    ],
+    "note": "the same test checks that setMode with other returns the same object",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R15 switching modes keeps both sets of input"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R15",
+    "scenario": "Setters store text exactly as typed",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R15 setters store text exactly as typed"
+      ],
+      [
+        "node",
+        "bill.test.js",
+        "@R15 each setter changes only its own field"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R15 setters store text exactly as typed",
+      "bill.test.js :: @R15 each setter changes only its own field"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R16",
+    "scenario": "No action mutates its input",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R16 no action mutates a deep-frozen bill and changes return new objects"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R16 no action mutates a deep-frozen bill and changes return new objects"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R16",
+    "scenario": "The other functions that take objects leave them alone",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "allocate.test.js",
+        "@R16 allocateByWeight leaves frozen weights alone"
+      ],
+      [
+        "node",
+        "bill.test.js",
+        "@R16 @R17 the labels leave a frozen person or item alone"
+      ],
+      [
+        "node",
+        "summary.test.js",
+        "@R16 summaryText leaves a deep-frozen result alone"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "allocate.test.js :: @R16 allocateByWeight leaves frozen weights alone",
+      "bill.test.js :: @R16 @R17 the labels leave a frozen person or item alone",
+      "summary.test.js :: @R16 summaryText leaves a deep-frozen result alone"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R17",
+    "scenario": "Display names fall back to their position",
+    "row": "person \"Aisyah\" at 0 is \"Aisyah\"",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R17 person named \"Aisyah\" at index 0 is \"Aisyah\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R17 person named \"Aisyah\" at index 0 is \"Aisyah\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R17",
+    "scenario": "Display names fall back to their position",
+    "row": "person \" Ben \" at 1 is \"Ben\"",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R17 person named \" Ben \" at index 1 is \"Ben\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R17 person named \" Ben \" at index 1 is \"Ben\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R17",
+    "scenario": "Display names fall back to their position",
+    "row": "person \"   \" at 2 is \"Person 3\"",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R17 person named \"   \" at index 2 is \"Person 3\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R17 person named \"   \" at index 2 is \"Person 3\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R17",
+    "scenario": "Display names fall back to their position",
+    "row": "person \"\" at 0 is \"Person 1\"",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R17 person named \"\" at index 0 is \"Person 1\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R17 person named \"\" at index 0 is \"Person 1\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R17",
+    "scenario": "Display names fall back to their position",
+    "row": "item \"Satay\" at 3 is \"Satay\"",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R17 item named \"Satay\" at index 3 is \"Satay\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R17 item named \"Satay\" at index 3 is \"Satay\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R17",
+    "scenario": "Display names fall back to their position",
+    "row": "item \"\" at 0 is \"Item 1\"",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R17 item named \"\" at index 0 is \"Item 1\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R17 item named \"\" at index 0 is \"Item 1\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18",
+    "scenario": "The first blocking rule wins",
+    "row": "row 1, rates",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 blocking row 1 is \"rates\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 blocking row 1 is \"rates\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18",
+    "scenario": "The first blocking rule wins",
+    "row": "row 2, rates",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 blocking row 2 is \"rates\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 blocking row 2 is \"rates\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18",
+    "scenario": "The first blocking rule wins",
+    "row": "row 3, rates",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 blocking row 3 is \"rates\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 blocking row 3 is \"rates\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18",
+    "scenario": "The first blocking rule wins",
+    "row": "row 4, subtotal",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 blocking row 4 is \"subtotal\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 blocking row 4 is \"subtotal\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18",
+    "scenario": "The first blocking rule wins",
+    "row": "row 5, subtotal",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 blocking row 5 is \"subtotal\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 blocking row 5 is \"subtotal\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18",
+    "scenario": "The first blocking rule wins",
+    "row": "row 6, subtotal",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 blocking row 6 is \"subtotal\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 blocking row 6 is \"subtotal\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18",
+    "scenario": "The first blocking rule wins",
+    "row": "row 7, no-items",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 blocking row 7 is \"no-items\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 blocking row 7 is \"no-items\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18",
+    "scenario": "The first blocking rule wins",
+    "row": "row 8, prices",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 blocking row 8 is \"prices\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 blocking row 8 is \"prices\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18",
+    "scenario": "The first blocking rule wins",
+    "row": "row 9, prices",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 blocking row 9 is \"prices\""
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 blocking row 9 is \"prices\""
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R18 R20",
+    "scenario": "Even mode ignores broken items",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R18 @R20 even mode ignores broken items"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R18 @R20 even mode ignores broken items"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R19",
+    "scenario": "Unassigned items are counted and the charges are still known",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R19 unassigned items are counted and the charges are still known"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R19 unassigned items are counted and the charges are still known"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R19",
+    "scenario": "Two unassigned items give a count of 2",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R19 two unassigned items give a count of 2"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R19 two unassigned items give a count of 2"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R20",
+    "scenario": "Even results match the worked examples",
+    "row": "S2",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R20 @R23 even result for S2"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R20 @R23 even result for S2"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R20",
+    "scenario": "Even results match the worked examples",
+    "row": "E1",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R20 @R23 even result for E1"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R20 @R23 even result for E1"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R20",
+    "scenario": "Even results match the worked examples",
+    "row": "E2",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R20 @R23 even result for E2"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R20 @R23 even result for E2"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R20",
+    "scenario": "Even results match the worked examples",
+    "row": "E3",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R20 @R23 even result for E3"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R20 @R23 even result for E3"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R20",
+    "scenario": "Even results match the worked examples",
+    "row": "MAX-E",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R20 @R23 even result for MAX-E"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R20 @R23 even result for MAX-E"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R21",
+    "scenario": "By-item results match the worked examples",
+    "row": "S1",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R21 @R23 by-item result for S1"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R21 @R23 by-item result for S1"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R21",
+    "scenario": "By-item results match the worked examples",
+    "row": "I2",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R21 @R23 by-item result for I2"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R21 @R23 by-item result for I2"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R21",
+    "scenario": "By-item results match the worked examples",
+    "row": "I3",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R21 @R23 by-item result for I3"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R21 @R23 by-item result for I3"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R21",
+    "scenario": "By-item results match the worked examples",
+    "row": "I4",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R21 @R23 by-item result for I4"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R21 @R23 by-item result for I4"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R21",
+    "scenario": "By-item results match the worked examples",
+    "row": "MAX-I",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R21 @R23 by-item result for MAX-I"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R21 @R23 by-item result for MAX-I"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R21",
+    "scenario": "A shared item's leftover sen follow the people list, not the tap order",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R21 a shared item's leftover sen follow the people list, not the tap order"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R21 a shared item's leftover sen follow the people list, not the tap order"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R22",
+    "scenario": "Generated bills always add up",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "invariants.test.js",
+        "@R22 generated bills always add up"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "invariants.test.js :: @R22 generated bills always add up"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R23",
+    "scenario": "The largest bills compute exactly",
+    "row": "MAX-E and MAX-I",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R20 @R23 even result for MAX-E"
+      ],
+      [
+        "node",
+        "result.test.js",
+        "@R21 @R23 by-item result for MAX-I"
+      ],
+      [
+        "node",
+        "result.test.js",
+        "@R23 MAX-I charges are exact at the bound"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R20 @R23 even result for MAX-E",
+      "result.test.js :: @R21 @R23 by-item result for MAX-I",
+      "result.test.js :: @R23 MAX-I charges are exact at the bound"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Summary text is exact",
+    "row": "S2",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 summary text for S2 is exact"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 summary text for S2 is exact"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Summary text is exact",
+    "row": "S1",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 summary text for S1 is exact"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 summary text for S1 is exact"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Summary text is exact",
+    "row": "E2",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 summary text for E2 zero rates is exact"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 summary text for E2 zero rates is exact"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Summary text is exact",
+    "row": "E3",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 summary text for E3 decimal rates is exact"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 summary text for E3 decimal rates is exact"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Summary text is exact",
+    "row": "I2",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 summary text for I2 zero share is exact"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 summary text for I2 zero share is exact"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A blank name prints as its position",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a blank name prints as its position"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a blank name prints as its position"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A line break inside a name prints as a space, so it cannot forge a line",
+    "row": "LF",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a LF inside a name prints as a space, so it cannot forge a line"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a LF inside a name prints as a space, so it cannot forge a line"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A line break inside a name prints as a space, so it cannot forge a line",
+    "row": "CR",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a CR inside a name prints as a space, so it cannot forge a line"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a CR inside a name prints as a space, so it cannot forge a line"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A line break inside a name prints as a space, so it cannot forge a line",
+    "row": "VT",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a VT inside a name prints as a space, so it cannot forge a line"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a VT inside a name prints as a space, so it cannot forge a line"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A line break inside a name prints as a space, so it cannot forge a line",
+    "row": "FF",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a FF inside a name prints as a space, so it cannot forge a line"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a FF inside a name prints as a space, so it cannot forge a line"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A line break inside a name prints as a space, so it cannot forge a line",
+    "row": "NEL",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a NEL inside a name prints as a space, so it cannot forge a line"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a NEL inside a name prints as a space, so it cannot forge a line"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A line break inside a name prints as a space, so it cannot forge a line",
+    "row": "LS",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a LS inside a name prints as a space, so it cannot forge a line"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a LS inside a name prints as a space, so it cannot forge a line"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A line break inside a name prints as a space, so it cannot forge a line",
+    "row": "PS",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a PS inside a name prints as a space, so it cannot forge a line"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a PS inside a name prints as a space, so it cannot forge a line"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Any other control character in a name prints as a space",
+    "row": "NUL",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a NUL inside a name prints as a space, so no reader can cut the summary there"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a NUL inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Any other control character in a name prints as a space",
+    "row": "FS",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a FS inside a name prints as a space, so no reader can cut the summary there"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a FS inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Any other control character in a name prints as a space",
+    "row": "GS",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a GS inside a name prints as a space, so no reader can cut the summary there"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a GS inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Any other control character in a name prints as a space",
+    "row": "RS",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a RS inside a name prints as a space, so no reader can cut the summary there"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a RS inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Any other control character in a name prints as a space",
+    "row": "ESC",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a ESC inside a name prints as a space, so no reader can cut the summary there"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a ESC inside a name prints as a space, so no reader can cut the summary there"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A right-to-left override in a name cannot reorder the share",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a right-to-left override in a name cannot reorder the share"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a right-to-left override in a name cannot reorder the share"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Exactly the R24 class prints as a space, every other code point up to U+2069 as typed",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Every code point above U+2069 prints as typed",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 every code point above U+2069 prints as typed"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 every code point above U+2069 prints as typed"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "Every member of the class in one name is replaced, one space each",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 every member of the class in one name is replaced, one space each"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 every member of the class in one name is replaced, one space each"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "A lone surrogate prints as typed",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 a lone surrogate is not in the class, so it prints as typed"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 a lone surrogate is not in the class, so it prints as typed"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "By-item rows get the same line-break guard",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 by-item rows get the same line-break guard"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 by-item rows get the same line-break guard"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "summaryText refuses results without shares",
+    "row": "kind blocked",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 results without shares are refused with TypeError"
+      ]
+    ],
+    "note": "one test covers both rows",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 results without shares are refused with TypeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R24",
+    "scenario": "summaryText refuses results without shares",
+    "row": "kind unassigned",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 results without shares are refused with TypeError"
+      ]
+    ],
+    "note": "one test covers both rows",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 results without shares are refused with TypeError"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R25",
+    "scenario": "The core files are pure",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 the scan sees the core files"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 the scanner catches what it should (negative control)"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 the code-only scan reads code, and skips comments, strings, template text and regex bodies"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 allocate.js uses no banned name"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 bill.js uses no banned name"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 money.js uses no banned name"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 result.js uses no banned name"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 summary.js uses no banned name"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 allocate.js imports only from src/core/"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 bill.js imports only from src/core/"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 money.js imports only from src/core/"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 result.js imports only from src/core/"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 summary.js imports only from src/core/"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 the core files do import each other (the import scan is not blind)"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const run = (text) => eval(text); served into each core file goes red as eval"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const make = (body) => Function(body); served into each core file goes red as Function"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const build = (body) => new Function(body); served into each core file goes red as Function"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const load = (name) => import(name); served into each core file goes red as import("
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const soon = (fn) => queueMicrotask(fn); served into each core file goes red as queueMicrotask"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const later = (fn) => setImmediate(fn); served into each core file goes red as setImmediate"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const now = () => performance.now(); served into each core file goes red as performance"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const pick = () => crypto.getRandomValues(new Uint32Array(1))[0]; served into each core file goes red as crypto"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const open = (url) => new WebSocket(url); served into each core file goes red as WebSocket"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const env = () => process.env.SPLIT; served into each core file goes red as process"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 const load = (name) => require(name); served into each core file goes red as require"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "hygiene.test.js :: @R25 the scan sees the core files",
+      "hygiene.test.js :: @R25 the scanner catches what it should (negative control)",
+      "hygiene.test.js :: @R25 the code-only scan reads code, and skips comments, strings, template text and regex bodies",
+      "hygiene.test.js :: @R25 allocate.js uses no banned name",
+      "hygiene.test.js :: @R25 bill.js uses no banned name",
+      "hygiene.test.js :: @R25 money.js uses no banned name",
+      "hygiene.test.js :: @R25 result.js uses no banned name",
+      "hygiene.test.js :: @R25 summary.js uses no banned name",
+      "hygiene.test.js :: @R25 allocate.js imports only from src/core/",
+      "hygiene.test.js :: @R25 bill.js imports only from src/core/",
+      "hygiene.test.js :: @R25 money.js imports only from src/core/",
+      "hygiene.test.js :: @R25 result.js imports only from src/core/",
+      "hygiene.test.js :: @R25 summary.js imports only from src/core/",
+      "hygiene.test.js :: @R25 the core files do import each other (the import scan is not blind)",
+      "hygiene.test.js :: @R25 const run = (text) => eval(text); served into each core file goes red as eval",
+      "hygiene.test.js :: @R25 const make = (body) => Function(body); served into each core file goes red as Function",
+      "hygiene.test.js :: @R25 const build = (body) => new Function(body); served into each core file goes red as Function",
+      "hygiene.test.js :: @R25 const load = (name) => import(name); served into each core file goes red as import(",
+      "hygiene.test.js :: @R25 const soon = (fn) => queueMicrotask(fn); served into each core file goes red as queueMicrotask",
+      "hygiene.test.js :: @R25 const later = (fn) => setImmediate(fn); served into each core file goes red as setImmediate",
+      "hygiene.test.js :: @R25 const now = () => performance.now(); served into each core file goes red as performance",
+      "hygiene.test.js :: @R25 const pick = () => crypto.getRandomValues(new Uint32Array(1))[0]; served into each core file goes red as crypto",
+      "hygiene.test.js :: @R25 const open = (url) => new WebSocket(url); served into each core file goes red as WebSocket",
+      "hygiene.test.js :: @R25 const env = () => process.env.SPLIT; served into each core file goes red as process",
+      "hygiene.test.js :: @R25 const load = (name) => require(name); served into each core file goes red as require"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R25",
+    "scenario": "The core touches no banned global or method at load or while every export runs (runtime trap)",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap: the core touches no banned global or method while it loads and while every export runs"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap: every trap fires for core code and not for test code (negative control)"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap: the trap lists are exactly the pinned ones, so no trap is dropped unseen"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap: every name the source scan bans has a trap"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap: every trap is put back after a run, also after a body that throws"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap: every run loads its own copy of the core"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap: a run whose body throws leaves no hits for the next run"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap: a stack that cannot be read does not leave the recorder stuck"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F1 plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F2 plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F3 plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F4 plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F4b plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F5 plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F6 plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F6b plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F7 plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F8 plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F9 plant in every core file"
+      ],
+      [
+        "node",
+        "hygiene.test.js",
+        "@R25 runtime trap catches the security re-check's F10 plant in every core file"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "hygiene.test.js :: @R25 runtime trap: the core touches no banned global or method while it loads and while every export runs",
+      "hygiene.test.js :: @R25 runtime trap: every trap fires for core code and not for test code (negative control)",
+      "hygiene.test.js :: @R25 runtime trap: the trap lists are exactly the pinned ones, so no trap is dropped unseen",
+      "hygiene.test.js :: @R25 runtime trap: every name the source scan bans has a trap",
+      "hygiene.test.js :: @R25 runtime trap: every trap is put back after a run, also after a body that throws",
+      "hygiene.test.js :: @R25 runtime trap: every run loads its own copy of the core",
+      "hygiene.test.js :: @R25 runtime trap: a run whose body throws leaves no hits for the next run",
+      "hygiene.test.js :: @R25 runtime trap: a stack that cannot be read does not leave the recorder stuck",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F1 plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F2 plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F3 plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F4 plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F4b plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F5 plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F6 plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F6b plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F7 plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F8 plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F9 plant in every core file",
+      "hygiene.test.js :: @R25 runtime trap catches the security re-check's F10 plant in every core file"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R26",
+    "scenario": "Equal names are stored as typed",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R26 equal names are stored as typed and nobody is merged"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R26 equal names are stored as typed and nobody is merged"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R26",
+    "scenario": "Tapping and removing address a person by id, not by name",
+    "row": "",
+    "refs": [
+      [
+        "node",
+        "bill.test.js",
+        "@R26 tapping and removing address a person by id, not by name"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "bill.test.js :: @R26 tapping and removing address a person by id, not by name"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R26",
+    "scenario": "Equal names give one row each",
+    "row": "D1, even",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R26 D1: two people called Ben give two even rows"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R26 D1: two people called Ben give two even rows"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R26",
+    "scenario": "Equal names give one row each",
+    "row": "D2, item",
+    "refs": [
+      [
+        "node",
+        "result.test.js",
+        "@R26 D2: two people called Ben give two by-item rows, only the tapped one pays"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "result.test.js :: @R26 D2: two people called Ben give two by-item rows, only the tapped one pays"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R26",
+    "scenario": "Equal names give one summary line each",
+    "row": "D1, even",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 summary text for D1 equal names, even is exact"
+      ],
+      [
+        "node",
+        "summary.test.js",
+        "@R26 equal names print one line each"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 summary text for D1 equal names, even is exact",
+      "summary.test.js :: @R26 equal names print one line each"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-core",
+    "r": "R26",
+    "scenario": "Equal names give one summary line each",
+    "row": "D2, item",
+    "refs": [
+      [
+        "node",
+        "summary.test.js",
+        "@R24 summary text for D2 equal names, by item is exact"
+      ],
+      [
+        "node",
+        "summary.test.js",
+        "@R26 equal names print one line each"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "summary.test.js :: @R24 summary text for D2 equal names, by item is exact",
+      "summary.test.js :: @R26 equal names print one line each"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R1",
+    "scenario": "The entry point loads only its own files",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R1_entry_point_loads_only_its_own_files"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R1_entry_point_loads_only_its_own_files"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R1",
+    "scenario": "The page works from a sub-path, as on GitHub Pages",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R1_page_works_from_a_sub_path"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R1_page_works_from_a_sub_path"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R2",
+    "scenario": "Cold boot is a new bill with no seed",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R2_cold_boot_is_a_new_bill_with_no_seed"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R2_cold_boot_is_a_new_bill_with_no_seed"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R2",
+    "scenario": "No sample data ships",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R2_no_sample_data_ships"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R2_no_sample_data_ships"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R3",
+    "scenario": "The rendered markup matches its golden",
+    "row": "S3, cold boot, bill-empty",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R3_rendered_markup_matches_its_golden[S3-None-bill-empty]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R3_rendered_markup_matches_its_golden[S3-None-bill-empty]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R3",
+    "scenario": "The rendered markup matches its golden",
+    "row": "S2 seeded, bill-even",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R3_a_restored_bill_matches_its_golden[S2]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R3_rendered_markup_matches_its_golden_by_gestures[S2-build_s2-bill-even]"
+      ]
+    ],
+    "note": "the seeded walk is the scenario; the gesture-built walk is the same golden built by hand",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R3_a_restored_bill_matches_its_golden[S2]",
+      "tests/browser/test_app.py :: test_R3_rendered_markup_matches_its_golden_by_gestures[S2-build_s2-bill-even]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R3",
+    "scenario": "The rendered markup matches its golden",
+    "row": "S1 seeded, bill-items",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R3_a_restored_bill_matches_its_golden[S1]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R3_rendered_markup_matches_its_golden_by_gestures[S1-build_s1-bill-items]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R3_a_restored_bill_matches_its_golden[S1]",
+      "tests/browser/test_app.py :: test_R3_rendered_markup_matches_its_golden_by_gestures[S1-build_s1-bill-items]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R3",
+    "scenario": "The rendered markup matches its golden",
+    "row": "S5 seeded, bill-unassigned",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R3_a_restored_bill_matches_its_golden[S5]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R3_rendered_markup_matches_its_golden_by_gestures[S5-build_s5-bill-unassigned]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R3_a_restored_bill_matches_its_golden[S5]",
+      "tests/browser/test_app.py :: test_R3_rendered_markup_matches_its_golden_by_gestures[S5-build_s5-bill-unassigned]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R4",
+    "scenario": "Person rows carry their names and labels",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R4_person_rows_carry_their_names_and_labels"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R3_a_restored_bill_matches_its_golden[S1]"
+      ]
+    ],
+    "note": "names typed by gestures, the same rows; the seeded S1 walk matches bill-items.html",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R4_person_rows_carry_their_names_and_labels",
+      "tests/browser/test_app.py :: test_R3_a_restored_bill_matches_its_golden[S1]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R4 R5",
+    "scenario": "A blank name falls back to its position everywhere but the field",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R4_a_blank_name_falls_back_to_its_position_but_not_in_the_field"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R5_a_person_label_follows_the_name_into_every_toggle"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R5_a_blank_name_reads_as_its_position_in_the_shares_row"
+      ]
+    ],
+    "note": "toggles and shares row checked on the gesture-built S1 bill",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R4_a_blank_name_falls_back_to_its_position_but_not_in_the_field",
+      "tests/browser/test_app.py :: test_R5_a_person_label_follows_the_name_into_every_toggle",
+      "tests/browser/test_app.py :: test_R5_a_blank_name_reads_as_its_position_in_the_shares_row"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R5",
+    "scenario": "Renaming a person updates every place on each keystroke",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R5_renaming_a_person_updates_the_remove_name_on_each_keystroke"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R5_a_new_name_reaches_the_copied_text"
+      ],
+      [
+        "drv",
+        "D1 R5 rename per keystroke, S1 seed",
+        null
+      ]
+    ],
+    "note": "the suite checks the remove name on each key and the final toggles; D1 drives the toggles and shares row on each key",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R5_renaming_a_person_updates_the_remove_name_on_each_keystroke",
+      "tests/browser/test_app.py :: test_R5_a_new_name_reaches_the_copied_text",
+      "driven_checks.py (driven), group 'D1 R5 rename per keystroke, S1 seed', 19 checks"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R5",
+    "scenario": "Renaming an item updates its accessible names",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R5_renaming_an_item_updates_its_accessible_names"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R5_renaming_an_item_updates_its_accessible_names"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R6",
+    "scenario": "Add person until the limit",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R6_add_person_until_the_limit"
+      ]
+    ],
+    "note": "the cursor and the specimen properties are compared to the S8 button in states.html",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R6_add_person_until_the_limit"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R7",
+    "scenario": "Remove a person and they leave every item",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R7_removing_a_person_takes_them_off_every_item"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R7_removing_a_person_can_leave_an_item_without_anyone"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R7_remove_a_person"
+      ]
+    ],
+    "note": "built by gestures, the same screen as the S1 seed",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R7_removing_a_person_takes_them_off_every_item",
+      "tests/browser/test_app.py :: test_R7_removing_a_person_can_leave_an_item_without_anyone",
+      "tests/browser/test_app.py :: test_R7_remove_a_person"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R7",
+    "scenario": "A repeat press on the last Remove removes that row and adds nothing",
+    "row": "S2, Remove Chen",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-*]",
+        12
+      ]
+    ],
+    "note": "sizes 360x640, 390x844, 1280x800; gestures single, mouse double, mouse triple, touch double",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-*] (12 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R7",
+    "scenario": "A repeat press on the last Remove removes that row and adds nothing",
+    "row": "S8, Remove Mei Ling",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-*]",
+        12
+      ]
+    ],
+    "note": "sizes 360x640, 390x844, 1280x800; gestures single, mouse double, mouse triple, touch double",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-*] (12 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R7",
+    "scenario": "A repeat press on the last Remove removes that row and adds nothing",
+    "row": "S1, Remove Satay",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-*]",
+        12
+      ]
+    ],
+    "note": "sizes 360x640, 390x844, 1280x800; gestures single, mouse double, mouse triple, touch double",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-*] (12 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R7",
+    "scenario": "A repeat press on the last Remove removes that row and adds nothing",
+    "row": "S1 with only its last item, Remove Satay",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-*]",
+        12
+      ]
+    ],
+    "note": "sizes 360x640, 390x844, 1280x800; gestures single, mouse double, mouse triple, touch double",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-*] (12 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R34",
+    "scenario": "After a double click or double tap on a middle Remove, focus is where one click puts it",
+    "row": "S1, Remove Char kuey teow",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[item-2-of-4-*]",
+        2
+      ]
+    ],
+    "note": "mouse double click and touch double tap",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[item-2-of-4-*] (2 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R34",
+    "scenario": "After a double click or double tap on a middle Remove, focus is where one click puts it",
+    "row": "S2 with five people, Remove P2",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[person-2-of-5-*]",
+        2
+      ]
+    ],
+    "note": "mouse double click and touch double tap",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[person-2-of-5-*] (2 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R7",
+    "scenario": "A press of its own is never held back",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R7_a_separate_click_on_what_slid_under_the_pointer_is_not_held_back"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R7_the_guard_of_a_remove_click_ends_at_the_next_press"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R7_a_separate_click_on_what_slid_under_the_pointer_is_not_held_back",
+      "tests/browser/test_app.py :: test_R7_the_guard_of_a_remove_click_ends_at_the_next_press",
+      "tests/browser/test_app.py :: test_R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R6",
+    "scenario": "A repeat press on Add person adds one person and keeps it",
+    "row": "middle of the button",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[*-centre]",
+        36
+      ]
+    ],
+    "note": "people 2, 3, 4, 5 by sizes and gestures",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[*-centre] (36 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R6",
+    "scenario": "A repeat press on Add person adds one person and keeps it",
+    "row": "22 px in from the right edge",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[*-right-edge]",
+        36
+      ]
+    ],
+    "note": "people 2, 3, 4, 5 by sizes and gestures",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[*-right-edge] (36 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R12",
+    "scenario": "A repeat press on Add item adds one item and never reaches the page",
+    "row": "middle of the button",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[*-centre]",
+        18
+      ]
+    ],
+    "note": "items 1 and 4 by sizes and gestures, with the body recorder",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[*-centre] (18 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R12",
+    "scenario": "A repeat press on Add item adds one item and never reaches the page",
+    "row": "22 px in from the right edge",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[*-right-edge]",
+        18
+      ]
+    ],
+    "note": "items 1 and 4 by sizes and gestures, with the body recorder",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[*-right-edge] (18 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R7 R12",
+    "scenario": "A repeat press on a chip under a pending price error never removes the item",
+    "row": "widths 375 and 390",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[*]",
+        6
+      ]
+    ],
+    "note": "widths 375 and 390 with mouse double, mouse triple and touch double",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[*] (6 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R42",
+    "scenario": "Two people may have the same name",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R42_duplicate_names_are_accepted_and_act_on_their_own_row"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R42_duplicate_names_through_the_whole_flow"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R42_the_draft_keeps_both_people_with_the_same_name"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R42_duplicate_names_are_accepted_and_act_on_their_own_row",
+      "tests/browser/test_app.py :: test_R42_duplicate_names_through_the_whole_flow",
+      "tests/browser/test_app.py :: test_R42_the_draft_keeps_both_people_with_the_same_name"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R8",
+    "scenario": "Switching modes keeps both sets of input",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R8_switching_modes_keeps_the_subtotal"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R8_switching_modes_keeps_both_sets_of_input"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R8_the_panel_follows_each_mode"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R8_both_sets_of_input_survive_a_reload"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R8_switching_modes_keeps_the_subtotal",
+      "tests/browser/test_app.py :: test_R8_switching_modes_keeps_both_sets_of_input",
+      "tests/browser/test_app.py :: test_R8_the_panel_follows_each_mode",
+      "tests/browser/test_app.py :: test_R8_both_sets_of_input_survive_a_reload"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R8",
+    "scenario": "Arrow keys move between the modes",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R8_arrow_keys_move_between_the_modes"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R8_arrow_keys_move_between_the_modes"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R9",
+    "scenario": "The subtotal field drives the even split",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R9_subtotal_field_has_its_unit_label_and_input_mode"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R9_a_subtotal_drives_the_even_split"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R9_subtotal_field_has_its_unit_label_and_input_mode",
+      "tests/browser/test_app.py :: test_R9_a_subtotal_drives_the_even_split"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10",
+    "scenario": "An inline error waits for the field to be left",
+    "row": "subtotal",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_an_inline_error_waits_for_the_field_to_be_left[subtotal]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_an_inline_error_waits_for_the_field_to_be_left[subtotal]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10",
+    "scenario": "An inline error waits for the field to be left",
+    "row": "item-price",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_an_inline_error_waits_for_the_field_to_be_left[item-price]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_an_inline_error_waits_for_the_field_to_be_left[item-price]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10",
+    "scenario": "An inline error waits for the field to be left",
+    "row": "service",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_an_inline_error_waits_for_the_field_to_be_left[service]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_an_inline_error_waits_for_the_field_to_be_left[service]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10",
+    "scenario": "An inline error waits for the field to be left",
+    "row": "sst",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_an_inline_error_waits_for_the_field_to_be_left[sst]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_an_inline_error_waits_for_the_field_to_be_left[sst]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10",
+    "scenario": "An empty field never shows an error",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_an_empty_field_never_shows_an_error"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_an_empty_rate_never_shows_an_error"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_an_empty_field_never_shows_an_error",
+      "tests/browser/test_app.py :: test_R10_an_empty_rate_never_shows_an_error"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10",
+    "scenario": "Typing invalid text in a focused field does not show the error early",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10",
+    "scenario": "A restored invalid field shows its error at once",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_restored_bad_field_shows_its_error_at_once"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_a_restored_bad_field_shows_its_error_at_once"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10",
+    "scenario": "An error survives a mode switch",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_an_error_survives_a_mode_switch"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_an_error_survives_a_mode_switch"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10 R13",
+    "scenario": "A press below an invalid field lands on the control it started on",
+    "row": "subtotal",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[subtotal-mouse]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[subtotal-touch]"
+      ]
+    ],
+    "note": "a mouse press and a touch tap",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[subtotal-mouse]",
+      "tests/browser/test_app.py :: test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[subtotal-touch]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10 R13",
+    "scenario": "A press below an invalid field lands on the control it started on",
+    "row": "item-price",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[item-price-mouse]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[item-price-touch]"
+      ]
+    ],
+    "note": "a mouse press and a touch tap",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[item-price-mouse]",
+      "tests/browser/test_app.py :: test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[item-price-touch]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10 R13",
+    "scenario": "A press below an invalid field lands on the control it started on",
+    "row": "service",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[service-mouse]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[service-touch]"
+      ]
+    ],
+    "note": "a mouse press and a touch tap",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[service-mouse]",
+      "tests/browser/test_app.py :: test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[service-touch]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10 R13",
+    "scenario": "A press below an invalid field lands on the control it started on",
+    "row": "sst",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[sst-mouse]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[sst-touch]"
+      ]
+    ],
+    "note": "a mouse press and a touch tap",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[sst-mouse]",
+      "tests/browser/test_app.py :: test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[sst-touch]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R13",
+    "scenario": "A tap on a person below an invalid, unflagged price toggles them and then shows the error",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error[mouse]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error[touch]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error[mouse]",
+      "tests/browser/test_app.py :: test_R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error[touch]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R10",
+    "scenario": "The error waits for the release, and only a press holds it back",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_the_error_waits_for_the_mouse_button_to_come_up"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_pressing_empty_space_also_waits_for_the_release"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[mouse]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[touch]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[held]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R10_the_error_waits_for_the_mouse_button_to_come_up",
+      "tests/browser/test_app.py :: test_R10_pressing_empty_space_also_waits_for_the_release",
+      "tests/browser/test_app.py :: test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[mouse]",
+      "tests/browser/test_app.py :: test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[touch]",
+      "tests/browser/test_app.py :: test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[held]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R11",
+    "scenario": "Item rows carry their names and labels",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R11_item_rows_carry_their_names_and_labels"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R3_a_restored_bill_matches_its_golden[S1]"
+      ]
+    ],
+    "note": "names typed by gestures, the same rows; the seeded S1 walk matches bill-items.html",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R11_item_rows_carry_their_names_and_labels",
+      "tests/browser/test_app.py :: test_R3_a_restored_bill_matches_its_golden[S1]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R12",
+    "scenario": "Add an item, remove one, and reach the limit",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R12_add_an_item_remove_one_and_reach_the_limit"
+      ]
+    ],
+    "note": "the cursor and the specimen properties are compared",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R12_add_an_item_remove_one_and_reach_the_limit"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R13",
+    "scenario": "Tapping a person on an item",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R13_tapping_a_person_on_an_item"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R13_tapping_a_person_changes_the_shares"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R13_tapping_a_person_on_an_item",
+      "tests/browser/test_app.py :: test_R13_tapping_a_person_changes_the_shares"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R14",
+    "scenario": "A price error sits in the item line",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R14_a_price_error_sits_in_the_item_line"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R14_a_price_error_sits_in_the_item_line"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R34",
+    "scenario": "Focus after adding or removing",
+    "row": "cold boot, Add person, Person 3 name",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R34_focus_moves_to_the_name_field_at_the_removed_position[Ben-Chen]"
+      ]
+    ],
+    "note": "the test's first assertion, from a cold boot",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R34_focus_moves_to_the_name_field_at_the_removed_position[Ben-Chen]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R34",
+    "scenario": "Focus after adding or removing",
+    "row": "S1, Remove Ben, Person 2 name (Chen)",
+    "refs": [
+      [
+        "drv",
+        "D4 R34 focus after a click, S1 seed",
+        "row b:"
+      ]
+    ],
+    "note": "driven on the S1 seed (D4); the suite test removes Ben from a three-person bill",
+    "untested": null,
+    "covered_by": [
+      "driven_r34.py (driven), group 'D4 R34 focus after a click, S1 seed', rows starting 'row b:', 3 checks"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R34",
+    "scenario": "Focus after adding or removing",
+    "row": "S1, Remove Chen, Person 2 name (Ben)",
+    "refs": [
+      [
+        "drv",
+        "D4 R34 focus after a click, S1 seed",
+        "row c:"
+      ]
+    ],
+    "note": "driven on the S1 seed (D4); the suite test removes Chen from a three-person bill",
+    "untested": null,
+    "covered_by": [
+      "driven_r34.py (driven), group 'D4 R34 focus after a click, S1 seed', rows starting 'row c:', 3 checks"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R34",
+    "scenario": "Focus after adding or removing",
+    "row": "S1, Add item, Item 5 name",
+    "refs": [
+      [
+        "drv",
+        "D4 R34 focus after a click, S1 seed",
+        "row d:"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R34_focus_after_adding_or_removing_an_item[Add item-Item 5 name]"
+      ]
+    ],
+    "note": "driven on the S1 seed (D4) with the suite test on the same bill",
+    "untested": null,
+    "covered_by": [
+      "driven_r34.py (driven), group 'D4 R34 focus after a click, S1 seed', rows starting 'row d:', 3 checks",
+      "tests/browser/test_app.py :: test_R34_focus_after_adding_or_removing_an_item[Add item-Item 5 name]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R34",
+    "scenario": "Focus after adding or removing",
+    "row": "S1, Remove Char kuey teow, Item 2 name (Mee goreng mamak)",
+    "refs": [
+      [
+        "drv",
+        "D4 R34 focus after a click, S1 seed",
+        "row e:"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R34_focus_after_adding_or_removing_an_item[Remove Char kuey teow-Item 2 name]"
+      ]
+    ],
+    "note": "driven on the S1 seed (D4) with the suite test on the same bill",
+    "untested": null,
+    "covered_by": [
+      "driven_r34.py (driven), group 'D4 R34 focus after a click, S1 seed', rows starting 'row e:', 3 checks",
+      "tests/browser/test_app.py :: test_R34_focus_after_adding_or_removing_an_item[Remove Char kuey teow-Item 2 name]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R34",
+    "scenario": "Focus after adding or removing",
+    "row": "S1, Remove Satay, Item 3 name",
+    "refs": [
+      [
+        "drv",
+        "D4 R34 focus after a click, S1 seed",
+        "row f:"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R34_focus_after_adding_or_removing_an_item[Remove Satay, 10 sticks-Item 3 name]"
+      ]
+    ],
+    "note": "driven on the S1 seed (D4) with the suite test on the same bill",
+    "untested": null,
+    "covered_by": [
+      "driven_r34.py (driven), group 'D4 R34 focus after a click, S1 seed', rows starting 'row f:', 3 checks",
+      "tests/browser/test_app.py :: test_R34_focus_after_adding_or_removing_an_item[Remove Satay, 10 sticks-Item 3 name]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R34",
+    "scenario": "Focus after adding or removing",
+    "row": "cold boot, By item, one item, Remove Item 1, Add item",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R34_removing_the_last_item_focuses_add_item"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R34_removing_the_last_item_focuses_add_item"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R33",
+    "scenario": "Typing never loses its place",
+    "row": "Person 1 name, Aisyah",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R33_typing_in_a_person_name_keeps_focus_and_caret"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R33_typing_in_a_person_name_keeps_focus_and_caret"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R33",
+    "scenario": "Typing never loses its place",
+    "row": "Item 1 name, Nasi",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R33_typing_in_an_item_field_keeps_focus_and_caret[<lambda>-Nasi]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R33_typing_in_an_item_field_keeps_focus_and_caret[<lambda>-Nasi]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R33",
+    "scenario": "Typing never loses its place",
+    "row": "Item 1 price in RM, 15.90",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R33_typing_in_an_item_field_keeps_focus_and_caret[<lambda>-15.90]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R33_typing_in_an_item_field_keeps_focus_and_caret[<lambda>-15.90]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R33",
+    "scenario": "Typing never loses its place",
+    "row": "Subtotal, 100.00",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R33_typing_in_an_amount_or_a_rate_keeps_focus_and_caret[subtotal]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R33_typing_in_an_amount_or_a_rate_keeps_focus_and_caret[subtotal]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R33",
+    "scenario": "Typing never loses its place",
+    "row": "Service charge, 12.5",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R33_typing_in_an_amount_or_a_rate_keeps_focus_and_caret[service-charge]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R33_typing_in_an_amount_or_a_rate_keeps_focus_and_caret[service-charge]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R33",
+    "scenario": "IME composition survives a render",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R33_ime_composition_survives_a_render"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R33_ime_composition_survives_a_render"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R15",
+    "scenario": "The Charges block and its defaults",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R15_charges_block_and_its_defaults"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R15_charges_block_and_its_defaults"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R15",
+    "scenario": "A rate error names both ids and its range",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R15_a_rate_error_names_both_ids_and_its_range"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R15_a_rate_error_names_both_ids_and_its_range"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R15 R19",
+    "scenario": "A charge of 0 is allowed and still shown",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R19_a_charge_of_zero_is_allowed_and_still_shown"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R19_a_charge_of_zero_is_allowed_and_still_shown"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R16",
+    "scenario": "The panel follows every keystroke and stays quiet",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R16_the_panel_follows_every_keystroke_and_stays_quiet"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R16_the_status_is_the_only_live_element_and_only_while_the_table_is"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R16_the_panel_follows_every_keystroke_and_stays_quiet",
+      "tests/browser/test_app.py :: test_R16_the_status_is_the_only_live_element_and_only_while_the_table_is"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R17",
+    "scenario": "When the shares cannot be worked out",
+    "row": "rate-empty",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R17_when_the_shares_cannot_be_worked_out[rate-empty]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R17_when_the_shares_cannot_be_worked_out[rate-empty]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R17",
+    "scenario": "When the shares cannot be worked out",
+    "row": "rate-too-high",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R17_when_the_shares_cannot_be_worked_out[rate-too-high]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R17_when_the_shares_cannot_be_worked_out[rate-too-high]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R17",
+    "scenario": "When the shares cannot be worked out",
+    "row": "subtotal-empty",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R17_when_the_shares_cannot_be_worked_out[subtotal-empty]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R17_when_the_shares_cannot_be_worked_out[subtotal-empty]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R17",
+    "scenario": "When the shares cannot be worked out",
+    "row": "no-items",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R17_when_the_shares_cannot_be_worked_out[no-items]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R17_when_the_shares_cannot_be_worked_out[no-items]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R17",
+    "scenario": "When the shares cannot be worked out",
+    "row": "item-unpriced",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R17_when_the_shares_cannot_be_worked_out[item-unpriced]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R17_when_the_shares_cannot_be_worked_out[item-unpriced]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R17",
+    "scenario": "When the shares cannot be worked out",
+    "row": "item-bad-price",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R17_when_the_shares_cannot_be_worked_out[item-bad-price]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R17_when_the_shares_cannot_be_worked_out[item-bad-price]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R18",
+    "scenario": "Items that still need a person",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R18_items_that_still_need_a_person"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R18_items_that_still_need_a_person"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R19",
+    "scenario": "The bill summary shows its working",
+    "row": "S2",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R19_the_bill_summary_shows_its_working[S2]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R19_the_bill_summary_shows_its_working[S2]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R19",
+    "scenario": "The bill summary shows its working",
+    "row": "S1",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R19_the_bill_summary_shows_its_working[S1]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R19_the_bill_summary_shows_its_working[S1]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R20",
+    "scenario": "The even split from a cold boot (key flow 1)",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R20_the_even_split_from_a_cold_boot"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R20_the_even_split_from_a_cold_boot"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R21",
+    "scenario": "The by-item split from gestures (key flow 2)",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R21_the_by_item_split_from_gestures"
+      ]
+    ],
+    "note": "the table heads are checked as +Charges and =Share, the text the golden renders (observation 3)",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R21_the_by_item_split_from_gestures"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R21",
+    "scenario": "Someone who had nothing is still listed",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R21_someone_who_had_nothing_is_still_listed"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R21_someone_who_had_nothing_is_still_listed"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R22",
+    "scenario": "Copy summary puts the exact text on the clipboard",
+    "row": "S2",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[S2]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[S2]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R22",
+    "scenario": "Copy summary puts the exact text on the clipboard",
+    "row": "S1",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[S1]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[S1]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R23",
+    "scenario": "The browser blocks the clipboard",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R23_the_browser_blocks_the_clipboard"
+      ],
+      [
+        "drv",
+        "D3 R23 browser blocks the clipboard, S2 seed",
+        null
+      ]
+    ],
+    "note": "the suite checks the status and the panel; D3 also checks the draft, the form and the shares rows",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R23_the_browser_blocks_the_clipboard",
+      "driven_checks.py (driven), group 'D3 R23 browser blocks the clipboard, S2 seed', 8 checks"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R23",
+    "scenario": "The clipboard API is missing",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R23_the_clipboard_api_is_missing"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R23_the_clipboard_api_is_missing"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R24",
+    "scenario": "The status lives as long as the table",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R24_the_status_lives_as_long_as_the_table"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R24_the_status_is_not_saved"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R24_the_status_lives_as_long_as_the_table",
+      "tests/browser/test_app.py :: test_R24_the_status_is_not_saved"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R25",
+    "scenario": "Every change is saved",
+    "row": "type A into Person 1 name",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R25_every_change_is_saved[name]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R25_every_change_is_saved[name]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R25",
+    "scenario": "Every change is saved",
+    "row": "click Add person",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R25_every_change_is_saved[add-person]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R25_every_change_is_saved[add-person]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R25",
+    "scenario": "Every change is saved",
+    "row": "type 1 into Subtotal",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R25_every_change_is_saved[subtotal]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R25_every_change_is_saved[subtotal]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R25",
+    "scenario": "Every change is saved",
+    "row": "click By item",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R25_every_change_is_saved[mode]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R25_every_change_is_saved[mode]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R25",
+    "scenario": "Every change is saved",
+    "row": "click By item, then Add item",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R25_every_change_is_saved[add-item]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R25_every_change_is_saved[add-item]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R25",
+    "scenario": "Every change is saved",
+    "row": "replace SST with 8",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R25_every_change_is_saved[sst]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R25_every_change_is_saved[sst]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R25",
+    "scenario": "Leaving a field or copying does not save",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R25_leaving_a_field_or_copying_does_not_save"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R25_leaving_a_field_or_copying_does_not_save"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R26",
+    "scenario": "Come back later (key flow 3)",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R26_come_back_later"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R26_come_back_later"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R26",
+    "scenario": "Odd but readable drafts load",
+    "row": "G1",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R26_odd_but_readable_drafts_load[G1]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R26_odd_but_readable_drafts_load[G1]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R26",
+    "scenario": "Odd but readable drafts load",
+    "row": "G2",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R26_odd_but_readable_drafts_load[G2]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R26_odd_but_readable_drafts_load[G2]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R26",
+    "scenario": "Odd but readable drafts load",
+    "row": "G3",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R26_odd_but_readable_drafts_load[G3]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R26_odd_but_readable_drafts_load[G3]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B1",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B1]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B1]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B2",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B2]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B2]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B3",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B3]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B3]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B4",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B4]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B4]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B5",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B5]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B5]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B6",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B6]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B6]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B7",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B7]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B7]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B8",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B8]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B8]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B9",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B9]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B9]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B10",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B10]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B10]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B11",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B11]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B11]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B12",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B12]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B12]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B13",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B13]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B13]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B14",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B14]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B14]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B15",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B15]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B15]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B16",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B16]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B16]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B17",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B17]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B17]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B18",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B18]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B18]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B19",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B19]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B19]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B20",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B20]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B20]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B21",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B21]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B21]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B22",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B22]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B22]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B23",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B23]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B23]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "An unreadable draft starts a new bill with a note",
+    "row": "B24",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B24]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B24]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R27",
+    "scenario": "Dismissing the note",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_dismissing_the_note_moves_focus_to_the_first_name"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R27_the_note_is_not_touched_by_start_over"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R27_dismissing_the_note_moves_focus_to_the_first_name",
+      "tests/browser/test_app.py :: test_R27_the_note_is_not_touched_by_start_over"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R28",
+    "scenario": "The app works without storage",
+    "row": "read-localStorage",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R28_the_app_works_without_storage[read-localStorage]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R28_the_app_works_without_storage[read-localStorage]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R28",
+    "scenario": "The app works without storage",
+    "row": "getItem",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R28_the_app_works_without_storage[getItem]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R28_the_app_works_without_storage[getItem]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R28",
+    "scenario": "The app works without storage",
+    "row": "setItem",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R28_the_app_works_without_storage[setItem]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R28_the_app_works_without_storage[setItem]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R29",
+    "scenario": "The dialog opens with the safe choice focused",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R29_the_dialog_opens_with_the_safe_choice_focused"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R29_the_dialog_opens_with_the_safe_choice_focused"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R30",
+    "scenario": "Leaving the dialog without starting over",
+    "row": "cancel",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R30_leaving_the_dialog_without_starting_over[cancel]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R30_leaving_the_dialog_without_starting_over[cancel]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R30",
+    "scenario": "Leaving the dialog without starting over",
+    "row": "escape",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R30_leaving_the_dialog_without_starting_over[escape]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R30_leaving_the_dialog_without_starting_over[escape]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R30",
+    "scenario": "Leaving the dialog without starting over",
+    "row": "backdrop-corner",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R30_leaving_the_dialog_without_starting_over[backdrop-corner]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R30_leaving_the_dialog_without_starting_over[backdrop-corner]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R30",
+    "scenario": "Leaving the dialog without starting over",
+    "row": "backdrop-over-a-field",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R30_leaving_the_dialog_without_starting_over[backdrop-over-a-field]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R30_leaving_the_dialog_without_starting_over[backdrop-over-a-field]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R29",
+    "scenario": "A repeat press on New bill leaves the dialog open",
+    "row": "360x640, 390x844, 1280x800 by 3 gestures",
+    "refs": [
+      [
+        "pyglob",
+        "tests/browser/test_app.py",
+        "test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[*]",
+        9
+      ]
+    ],
+    "note": "mouse double, mouse triple and touch double",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[*] (9 ids)"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R30",
+    "scenario": "After a double click on New bill one deliberate click still closes it",
+    "row": "cancel",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[cancel]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[cancel]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R30",
+    "scenario": "After a double click on New bill one deliberate click still closes it",
+    "row": "backdrop",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[backdrop]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[backdrop]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R30",
+    "scenario": "After a double click on New bill one deliberate click still closes it",
+    "row": "escape",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R29",
+    "scenario": "The keyboard and the next press are not held back",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R29_opening_by_keyboard_and_opening_again_straight_away_is_not_held_back"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R29_the_guard_of_opening_ends_at_the_next_press"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R29_opening_by_keyboard_and_opening_again_straight_away_is_not_held_back",
+      "tests/browser/test_app.py :: test_R29_the_guard_of_opening_ends_at_the_next_press"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R31",
+    "scenario": "Start over (key flow 4)",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R31_start_over"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R31_start_over"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R31",
+    "scenario": "Start over clears the copy status",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R31_start_over_clears_the_copy_status"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R31_start_over_clears_the_copy_status"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R31",
+    "scenario": "Start over clears the error flags",
+    "row": "subtotal",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R31_start_over_clears_the_error_flags[subtotal]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R31_start_over_clears_the_error_flags[subtotal]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R31",
+    "scenario": "Start over clears the error flags",
+    "row": "item-price",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R31_start_over_clears_the_error_flags[item-price]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R31_start_over_clears_the_error_flags[item-price]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R31",
+    "scenario": "Start over clears the error flags",
+    "row": "service",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R31_start_over_clears_the_error_flags[service]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R31_start_over_clears_the_error_flags[service]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R31",
+    "scenario": "Start over clears the error flags",
+    "row": "sst",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R31_start_over_clears_the_error_flags[sst]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R31_start_over_clears_the_error_flags[sst]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R32",
+    "scenario": "Tab order follows the golden",
+    "row": "S3",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S3]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R32_the_ring_check_has_teeth"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S3]",
+      "tests/browser/test_app.py :: test_R32_the_ring_check_has_teeth"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R32",
+    "scenario": "Tab order follows the golden",
+    "row": "S1",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S1]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R32_the_ring_check_has_teeth"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S1]",
+      "tests/browser/test_app.py :: test_R32_the_ring_check_has_teeth"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R32",
+    "scenario": "Tab order follows the golden",
+    "row": "S7",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S7]"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R32_the_ring_check_has_teeth"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S7]",
+      "tests/browser/test_app.py :: test_R32_the_ring_check_has_teeth"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "No horizontal overflow at phone and desktop sizes",
+    "row": "S1-360",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-360]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-360]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "No horizontal overflow at phone and desktop sizes",
+    "row": "S2-360",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S2-360]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S2-360]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "No horizontal overflow at phone and desktop sizes",
+    "row": "S3-360",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-360]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-360]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "No horizontal overflow at phone and desktop sizes",
+    "row": "S5-360",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S5-360]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S5-360]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "No horizontal overflow at phone and desktop sizes",
+    "row": "S1-390",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-390]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-390]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "No horizontal overflow at phone and desktop sizes",
+    "row": "S1-1280",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-1280]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-1280]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "No horizontal overflow at phone and desktop sizes",
+    "row": "S3-1280",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-1280]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-1280]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "No horizontal overflow at phone and desktop sizes",
+    "row": "M1-360",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_no_horizontal_overflow_and_the_layout_of_each_size[M1-360]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_no_horizontal_overflow_and_the_layout_of_each_size[M1-360]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "Sizes the design gives at 360 x 780",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_sizes_the_design_gives_at_360_by_780"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_sizes_the_design_gives_at_360_by_780"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R35",
+    "scenario": "Content width at 1280 x 800",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R35_content_width_of_the_header_and_the_note_at_1280_by_800"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R35_content_width_of_the_header_and_the_note_at_1280_by_800"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R36",
+    "scenario": "Motion follows the user's setting",
+    "row": "reduce",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R36_motion_follows_the_users_setting[reduce-0s]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R36_motion_follows_the_users_setting[reduce-0s]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R36",
+    "scenario": "Motion follows the user's setting",
+    "row": "no-preference",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s]"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s]"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R37",
+    "scenario": "Names are shown as text, never as markup",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R37_names_are_shown_as_text_and_never_as_markup"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R37_no_banned_api_in_the_shipped_files"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R37_the_banned_api_scan_has_teeth"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R37_names_are_shown_as_text_and_never_as_markup",
+      "tests/browser/test_app.py :: test_R37_no_banned_api_in_the_shipped_files",
+      "tests/browser/test_app.py :: test_R37_the_banned_api_scan_has_teeth"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R38",
+    "scenario": "The Content Security Policy is exact and never violated",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R38_policy_is_exact_and_nothing_inline"
+      ]
+    ],
+    "note": "the console rule for the whole suite is enforced by the open_app fixture on every browser test",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R38_policy_is_exact_and_nothing_inline"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R38",
+    "scenario": "The strict policy blocks nothing the app needs",
+    "row": "S3, cold boot",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R38_strict_policy_blocks_nothing_the_app_needs"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R38_strict_policy_blocks_nothing_the_app_needs"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R38",
+    "scenario": "The strict policy blocks nothing the app needs",
+    "row": "S1 seed",
+    "refs": [
+      [
+        "drv",
+        "D2 R38 strict policy, S1 seed",
+        null
+      ]
+    ],
+    "note": "the suite test checks only the cold boot row",
+    "untested": null,
+    "covered_by": [
+      "driven_checks.py (driven), group 'D2 R38 strict policy, S1 seed', 6 checks"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R38",
+    "scenario": "The strict policy blocks nothing the app needs",
+    "row": "S2 seed with the New bill dialog open",
+    "refs": [
+      [
+        "drv",
+        "D2 R38 strict policy, S2 seed with the dialog open",
+        null
+      ]
+    ],
+    "note": "the suite test checks only the cold boot row",
+    "untested": null,
+    "covered_by": [
+      "driven_checks.py (driven), group 'D2 R38 strict policy, S2 seed with the dialog open', 7 checks"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R39",
+    "scenario": "Nothing leaves the device",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R39_nothing_leaves_the_device_by_the_static_scan"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R39_the_network_scan_has_teeth"
+      ],
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R39_a_whole_session_makes_only_same_origin_gets"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R39_nothing_leaves_the_device_by_the_static_scan",
+      "tests/browser/test_app.py :: test_R39_the_network_scan_has_teeth",
+      "tests/browser/test_app.py :: test_R39_a_whole_session_makes_only_same_origin_gets"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R39",
+    "scenario": "The SVG icons come from createElementNS",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R39_icons_come_from_createElementNS_and_the_page_holds_its_icons"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R39_icons_come_from_createElementNS_and_the_page_holds_its_icons"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R40",
+    "scenario": "Looks right",
+    "row": "",
+    "refs": [
+      [
+        "gate",
+        "fidelity"
+      ]
+    ],
+    "note": "",
+    "untested": "The pixel half passed: the fidelity gate ran through its own code (run_gates.py, the unchanged tests/browser/fidelity/run.py with its evidence folder moved into this folder) and all 10 pairs match with 0 mismatching pixels. The other half, every FE element checklist row passes, needs a per-element review of styles.json, the fidelity finder's step, which this regression did not run. Not counted as a pass.",
+    "covered_by": [
+      "run_gates.py (driven), tests/browser/fidelity/run.py, 10 pairs, pixel gate"
+    ],
+    "verdict": "UNTESTED"
+  },
+  {
+    "doc": "split-app",
+    "r": "R40",
+    "scenario": "The runner uses the Python that runs pytest",
+    "row": "",
+    "refs": [
+      [
+        "py",
+        "tests/browser/test_app.py",
+        "test_R40_the_runner_uses_the_python_that_runs_pytest"
+      ]
+    ],
+    "note": "",
+    "untested": null,
+    "covered_by": [
+      "tests/browser/test_app.py :: test_R40_the_runner_uses_the_python_that_runs_pytest"
+    ],
+    "verdict": "PASS"
+  },
+  {
+    "doc": "split-app",
+    "r": "R41",
+    "scenario": "Works right",
+    "row": "",
+    "refs": [
+      [
+        "gate",
+        "live"
+      ]
+    ],
+    "note": "the cold-boot live gate passed all 7 steps; its artifacts are in gates/live-e2e",
+    "untested": null,
+    "covered_by": [
+      "run_gates.py (driven), tests/browser/live_e2e.py, 7 steps"
+    ],
+    "verdict": "PASS"
+  }
+]

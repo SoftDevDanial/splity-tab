@@ -1,0 +1,10 @@
+server STARTED pid 11912 port 63751 root {workspace}\examples\split
+chromium 149.0.7827.55 open, pids [24396]
+running flow1_even_split
+running flow2_by_item
+running flow3_wrong_price
+running flow4_come_back
+running flow5_double_presses
+chromium closed, pids left []
+server STOPPED pid 11912 port 63751, exited True, port free again True
+five flows PASS {'pass': 65, 'fail': 0, 'note': 6}

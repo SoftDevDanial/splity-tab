@@ -1,0 +1,11 @@
+server STARTED pid 16640 port 36765 root {workspace}\examples\split
+chromium 149.0.7827.55 open, pids [8836]
+running flow1_even_split
+running flow2_by_item
+running flow3_wrong_price
+running flow4_come_back
+running flow5_double_presses
+flow5_double_presses aborted: TypeError: Checks.expect() missing 1 required positional argument: 'observed'
+chromium closed, pids left []
+server STOPPED pid 16640 port 36765, exited True, port free again True
+five flows FAIL {'pass': 57, 'fail': 2, 'note': 3}

@@ -1,0 +1,3 @@
+server STARTED pid 4036 port 13458 root {workspace}\examples\split
+server STOPPED pid 4036 port 13458, exited True, port free again True
+{"before": {"viewport": {"innerHeight": 844, "innerWidth": 390, "scrollY": 0, "pageHeight": 1327}, "chips": 8}, "after_error": {"viewport": {"innerHeight": 844, "innerWidth": 390, "scrollY": 0, "pageHeight": 1069}, "chips": 8}, "screenshot": "probe-chips-after-error.png"}

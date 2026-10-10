@@ -1,0 +1,1225 @@
+{
+  "started": "2026-10-10T13:04:28",
+  "server_port": 47616,
+  "server_pid": 23236,
+  "viewport": "390x844",
+  "storage": "empty at the start of every flow",
+  "chromium": "149.0.7827.55",
+  "chromium_pids_while_open": [
+    10796
+  ],
+  "chromium_pids_after_close": [],
+  "server_port_free_after_stop": true,
+  "ended": "2026-10-10T13:04:35",
+  "result": "PASS",
+  "counts": {
+    "pass": 73,
+    "fail": 0,
+    "note": 8
+  },
+  "checks": [
+    {
+      "group": "F1 even split",
+      "step": "cold boot",
+      "what": "people fields",
+      "expected": [
+        "Person 1",
+        "Person 2"
+      ],
+      "observed": [
+        "Person 1",
+        "Person 2"
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "cold boot",
+      "what": "panel",
+      "expected": "Shares\nEnter the subtotal to see the shares.",
+      "observed": "Shares\nEnter the subtotal to see the shares.",
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "subtotal 100.00 typed",
+      "what": "shares rows",
+      "expected": [
+        [
+          "Aisyah",
+          "RM 38.87"
+        ],
+        [
+          "Ben",
+          "RM 38.87"
+        ],
+        [
+          "Chen",
+          "RM 38.86"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "RM 38.87"
+        ],
+        [
+          "Ben",
+          "RM 38.87"
+        ],
+        [
+          "Chen",
+          "RM 38.86"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "subtotal 100.00 typed",
+      "what": "Adds up to row",
+      "expected": [
+        [
+          "Adds up to",
+          "RM 116.60"
+        ]
+      ],
+      "observed": [
+        [
+          "Adds up to",
+          "RM 116.60"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "subtotal 100.00 typed",
+      "what": "bill summary",
+      "expected": [
+        [
+          "Subtotal",
+          "RM 100.00",
+          ""
+        ],
+        [
+          "+Service charge",
+          "RM 10.00",
+          "10% of RM 100.00"
+        ],
+        [
+          "+SST",
+          "RM 6.60",
+          "6% of RM 110.00"
+        ],
+        [
+          "=Total",
+          "RM 116.60",
+          ""
+        ]
+      ],
+      "observed": [
+        [
+          "Subtotal",
+          "RM 100.00",
+          ""
+        ],
+        [
+          "+Service charge",
+          "RM 10.00",
+          "10% of RM 100.00"
+        ],
+        [
+          "+SST",
+          "RM 6.60",
+          "6% of RM 110.00"
+        ],
+        [
+          "=Total",
+          "RM 116.60",
+          ""
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "subtotal 100.00 typed",
+      "what": "default charges",
+      "expected": [
+        "10",
+        "6"
+      ],
+      "observed": [
+        "10",
+        "6"
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "shares add up",
+      "what": "three shares add up to the Adds up to amount",
+      "expected": 11660,
+      "observed": 11660,
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "shares add up",
+      "what": "Adds up to amount equals the bill total",
+      "expected": 11660,
+      "observed": 11660,
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "Copy summary",
+      "what": "status text",
+      "expected": "Summary copied",
+      "observed": "Summary copied",
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "Copy summary",
+      "what": "status class",
+      "expected": "status",
+      "observed": "status",
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "Copy summary",
+      "what": "copied text",
+      "expected": "Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60",
+      "observed": "Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60",
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "Copy summary",
+      "what": "clipboard writes",
+      "expected": 1,
+      "observed": 1,
+      "result": "PASS"
+    },
+    {
+      "group": "F1 even split",
+      "step": "end",
+      "what": "console, page errors and requests",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "four items entered",
+      "what": "items",
+      "expected": 4,
+      "observed": 4,
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "four items entered",
+      "what": "who had each (aria-pressed, Aisyah Ben Chen)",
+      "expected": [
+        [
+          "true",
+          "false",
+          "false"
+        ],
+        [
+          "false",
+          "true",
+          "false"
+        ],
+        [
+          "false",
+          "false",
+          "true"
+        ],
+        [
+          "true",
+          "false",
+          "true"
+        ]
+      ],
+      "observed": [
+        [
+          "true",
+          "false",
+          "false"
+        ],
+        [
+          "false",
+          "true",
+          "false"
+        ],
+        [
+          "false",
+          "false",
+          "true"
+        ],
+        [
+          "true",
+          "false",
+          "true"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "shares",
+      "what": "shares rows",
+      "expected": [
+        [
+          "Aisyah",
+          "RM 24.90",
+          "RM 4.14",
+          "RM 29.04"
+        ],
+        [
+          "Ben",
+          "RM 13.50",
+          "RM 2.24",
+          "RM 15.74"
+        ],
+        [
+          "Chen",
+          "RM 21.00",
+          "RM 3.48",
+          "RM 24.48"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "RM 24.90",
+          "RM 4.14",
+          "RM 29.04"
+        ],
+        [
+          "Ben",
+          "RM 13.50",
+          "RM 2.24",
+          "RM 15.74"
+        ],
+        [
+          "Chen",
+          "RM 21.00",
+          "RM 3.48",
+          "RM 24.48"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "shares",
+      "what": "Adds up to row",
+      "expected": [
+        [
+          "Adds up to",
+          "RM 59.40",
+          "RM 9.86",
+          "RM 69.26"
+        ]
+      ],
+      "observed": [
+        [
+          "Adds up to",
+          "RM 59.40",
+          "RM 9.86",
+          "RM 69.26"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "shares",
+      "what": "bill summary",
+      "expected": [
+        [
+          "Subtotal",
+          "RM 59.40",
+          ""
+        ],
+        [
+          "+Service charge",
+          "RM 5.94",
+          "10% of RM 59.40"
+        ],
+        [
+          "+SST",
+          "RM 3.92",
+          "6% of RM 65.34"
+        ],
+        [
+          "=Total",
+          "RM 69.26",
+          ""
+        ]
+      ],
+      "observed": [
+        [
+          "Subtotal",
+          "RM 59.40",
+          ""
+        ],
+        [
+          "+Service charge",
+          "RM 5.94",
+          "10% of RM 59.40"
+        ],
+        [
+          "+SST",
+          "RM 3.92",
+          "6% of RM 65.34"
+        ],
+        [
+          "=Total",
+          "RM 69.26",
+          ""
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "shares add up",
+      "what": "the three shares add up to the Total",
+      "expected": 6926,
+      "observed": 6926,
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "shares add up",
+      "what": "each share is items plus charges",
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "observed": [
+        true,
+        true,
+        true
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "shares add up",
+      "what": "items column adds up to the subtotal",
+      "expected": 5940,
+      "observed": 5940,
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "shares add up",
+      "what": "charges column adds up to service plus SST",
+      "expected": 986,
+      "observed": 986,
+      "result": "PASS"
+    },
+    {
+      "group": "F2 by item",
+      "step": "headings",
+      "what": "table heads as rendered (innerText)",
+      "expected": null,
+      "observed": "Person\n\tItems\t+Charges\t=Share\n",
+      "result": "NOTE"
+    },
+    {
+      "group": "F2 by item",
+      "step": "headings",
+      "what": "table heads as textContent",
+      "expected": null,
+      "observed": [
+        [
+          "Person",
+          "Items",
+          "+Charges",
+          "=Share"
+        ]
+      ],
+      "result": "NOTE"
+    },
+    {
+      "group": "F2 by item",
+      "step": "end",
+      "what": "console, page errors and requests",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "abc typed, field still focused",
+      "what": "error paragraphs",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "abc typed, field still focused",
+      "what": "aria-invalid on the price",
+      "expected": null,
+      "observed": null,
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "abc typed, field still focused",
+      "what": "panel",
+      "expected": "Shares\nGive every item a price to see the shares.",
+      "observed": "Shares\nGive every item a price to see the shares.",
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "left the field with Tab",
+      "what": "error paragraphs",
+      "expected": 1,
+      "observed": 1,
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "left the field with Tab",
+      "what": "error text",
+      "expected": "Enter an amount like 12.50",
+      "observed": "Enter an amount like 12.50",
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "left the field with Tab",
+      "what": "aria-invalid on the price",
+      "expected": "true",
+      "observed": "true",
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "left the field with Tab",
+      "what": "aria-describedby starts with the error id",
+      "expected": true,
+      "observed": true,
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "left the field with Tab",
+      "what": "error id",
+      "expected": null,
+      "observed": "price-error-i4",
+      "result": "NOTE"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "left the field with Tab",
+      "what": "panel still waits for a price",
+      "expected": "Shares\nGive every item a price to see the shares.",
+      "observed": "Shares\nGive every item a price to see the shares.",
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "fixed to 10.00",
+      "what": "error paragraphs",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "fixed to 10.00",
+      "what": "aria-invalid on the price",
+      "expected": null,
+      "observed": null,
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "fixed to 10.00",
+      "what": "price value",
+      "expected": "10.00",
+      "observed": "10.00",
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "fixed to 10.00",
+      "what": "focus stayed in the price field",
+      "expected": "Item 1 price in RM",
+      "observed": "Item 1 price in RM",
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "fixed to 10.00",
+      "what": "bill summary shows while no one is tapped (R18)",
+      "expected": [
+        [
+          "Subtotal",
+          "RM 10.00",
+          ""
+        ],
+        [
+          "+Service charge",
+          "RM 1.00",
+          "10% of RM 10.00"
+        ],
+        [
+          "+SST",
+          "RM 0.66",
+          "6% of RM 11.00"
+        ],
+        [
+          "=Total",
+          "RM 11.66",
+          ""
+        ]
+      ],
+      "observed": [
+        [
+          "Subtotal",
+          "RM 10.00",
+          ""
+        ],
+        [
+          "+Service charge",
+          "RM 1.00",
+          "10% of RM 10.00"
+        ],
+        [
+          "+SST",
+          "RM 0.66",
+          "6% of RM 11.00"
+        ],
+        [
+          "=Total",
+          "RM 11.66",
+          ""
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "fixed to 10.00",
+      "what": "panel asks for a person, below the summary",
+      "expected": true,
+      "observed": true,
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "tapped Aisyah",
+      "what": "shares rows",
+      "expected": [
+        [
+          "Aisyah",
+          "RM 10.00",
+          "RM 1.66",
+          "RM 11.66"
+        ],
+        [
+          "Ben",
+          "RM 0.00",
+          "RM 0.00",
+          "RM 0.00"
+        ],
+        [
+          "Chen",
+          "RM 0.00",
+          "RM 0.00",
+          "RM 0.00"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "RM 10.00",
+          "RM 1.66",
+          "RM 11.66"
+        ],
+        [
+          "Ben",
+          "RM 0.00",
+          "RM 0.00",
+          "RM 0.00"
+        ],
+        [
+          "Chen",
+          "RM 0.00",
+          "RM 0.00",
+          "RM 0.00"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "tapped Aisyah",
+      "what": "Adds up to row",
+      "expected": [
+        [
+          "Adds up to",
+          "RM 10.00",
+          "RM 1.66",
+          "RM 11.66"
+        ]
+      ],
+      "observed": [
+        [
+          "Adds up to",
+          "RM 10.00",
+          "RM 1.66",
+          "RM 11.66"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F3 a wrong price",
+      "step": "end",
+      "what": "console, page errors and requests",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "reload",
+      "what": "the form as it was left",
+      "expected": {
+        "people": [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        "removeDisabled": [
+          false,
+          false,
+          false
+        ],
+        "mode": "even",
+        "subtotal": "100.00",
+        "items": [],
+        "rates": [
+          "10",
+          "6"
+        ],
+        "notes": 0,
+        "errors": 0
+      },
+      "observed": {
+        "people": [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        "removeDisabled": [
+          false,
+          false,
+          false
+        ],
+        "mode": "even",
+        "subtotal": "100.00",
+        "items": [],
+        "rates": [
+          "10",
+          "6"
+        ],
+        "notes": 0,
+        "errors": 0
+      },
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "reload",
+      "what": "the stored draft as it was left",
+      "expected": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":4}}",
+      "observed": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":4}}",
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "reload",
+      "what": "the shares as they were left",
+      "expected": [
+        [
+          "Aisyah",
+          "RM 38.87"
+        ],
+        [
+          "Ben",
+          "RM 38.87"
+        ],
+        [
+          "Chen",
+          "RM 38.86"
+        ]
+      ],
+      "observed": [
+        [
+          "Aisyah",
+          "RM 38.87"
+        ],
+        [
+          "Ben",
+          "RM 38.87"
+        ],
+        [
+          "Chen",
+          "RM 38.86"
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "New bill",
+      "what": "dialog open and modal",
+      "expected": true,
+      "observed": true,
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "New bill",
+      "what": "focus on Cancel",
+      "expected": "Cancel",
+      "observed": "Cancel",
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "Cancel",
+      "what": "dialog closed",
+      "expected": false,
+      "observed": false,
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "Cancel",
+      "what": "bill kept on screen",
+      "expected": {
+        "people": [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        "removeDisabled": [
+          false,
+          false,
+          false
+        ],
+        "mode": "even",
+        "subtotal": "100.00",
+        "items": [],
+        "rates": [
+          "10",
+          "6"
+        ],
+        "notes": 0,
+        "errors": 0
+      },
+      "observed": {
+        "people": [
+          "Aisyah",
+          "Ben",
+          "Chen"
+        ],
+        "removeDisabled": [
+          false,
+          false,
+          false
+        ],
+        "mode": "even",
+        "subtotal": "100.00",
+        "items": [],
+        "rates": [
+          "10",
+          "6"
+        ],
+        "notes": 0,
+        "errors": 0
+      },
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "Cancel",
+      "what": "stored draft kept",
+      "expected": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":4}}",
+      "observed": "{\"version\":1,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"100.00\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"nextId\":4}}",
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "Cancel",
+      "what": "focus back on New bill",
+      "expected": "New bill",
+      "observed": "New bill",
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "Start new bill",
+      "what": "dialog closed",
+      "expected": false,
+      "observed": false,
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "Start new bill",
+      "what": "people back to Person 1 and Person 2",
+      "expected": [
+        "Person 1",
+        "Person 2"
+      ],
+      "observed": [
+        "Person 1",
+        "Person 2"
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "Start new bill",
+      "what": "subtotal empty, Even, charges 10 and 6",
+      "expected": {
+        "subtotal": "",
+        "mode": "even",
+        "rates": [
+          "10",
+          "6"
+        ]
+      },
+      "observed": {
+        "subtotal": "",
+        "mode": "even",
+        "rates": [
+          "10",
+          "6"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "Start new bill",
+      "what": "panel",
+      "expected": "Shares\nEnter the subtotal to see the shares.",
+      "observed": "Shares\nEnter the subtotal to see the shares.",
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "Start new bill",
+      "what": "stored draft is the new bill",
+      "expected": {
+        "version": 1,
+        "bill": {
+          "mode": "even",
+          "people": [
+            {
+              "id": "p1",
+              "name": "Person 1"
+            },
+            {
+              "id": "p2",
+              "name": "Person 2"
+            }
+          ],
+          "subtotalText": "",
+          "items": [],
+          "serviceText": "10",
+          "sstText": "6",
+          "nextId": 3
+        }
+      },
+      "observed": {
+        "version": 1,
+        "bill": {
+          "mode": "even",
+          "people": [
+            {
+              "id": "p1",
+              "name": "Person 1"
+            },
+            {
+              "id": "p2",
+              "name": "Person 2"
+            }
+          ],
+          "subtotalText": "",
+          "items": [],
+          "serviceText": "10",
+          "sstText": "6",
+          "nextId": 3
+        }
+      },
+      "result": "PASS"
+    },
+    {
+      "group": "F4 come back",
+      "step": "end",
+      "what": "console, page errors and requests",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses",
+      "step": "A: double click on Add person",
+      "what": "person rows (2 before, so exactly one added)",
+      "expected": 3,
+      "observed": 3,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses",
+      "step": "A: double click on Add person",
+      "what": "stored people count and id counter",
+      "expected": [
+        3,
+        4
+      ],
+      "observed": [
+        3,
+        4
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses",
+      "step": "A: double click on Add person",
+      "what": "focus on Person 3 name",
+      "expected": "Person 3 name",
+      "observed": "Person 3 name",
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses",
+      "step": "A: end",
+      "what": "console, page errors and requests",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: eight people and the four S1 items",
+      "what": "person rows and item rows",
+      "expected": [
+        8,
+        4
+      ],
+      "observed": [
+        8,
+        4
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: probe at the top of the page",
+      "what": "scrollY",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: abc typed, field focused, no error yet",
+      "what": "error paragraphs",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: abc typed, field focused, no error yet",
+      "what": "scrollY",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: scout",
+      "what": "chips before the error, all items",
+      "expected": null,
+      "observed": 32,
+      "result": "NOTE"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: scout, error shown",
+      "what": "error paragraphs",
+      "expected": 1,
+      "observed": 1,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: scout, error shown",
+      "what": "scrollY unchanged",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: scout",
+      "what": "chip points lying over their own item's Remove after the error",
+      "expected": null,
+      "observed": {
+        "count": 24,
+        "first": [
+          329.484375,
+          733,
+          "Remove Char kuey teow"
+        ]
+      },
+      "result": "NOTE"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: scout restored",
+      "what": "error paragraphs",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: second page loaded at the top",
+      "what": "scrollY",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: abc typed in a focused price field",
+      "what": "error paragraphs",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: abc typed in a focused price field",
+      "what": "focus",
+      "expected": "Item 1 price in RM",
+      "observed": "Item 1 price in RM",
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: abc typed in a focused price field",
+      "what": "scrollY",
+      "expected": 0,
+      "observed": 0,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: double click on the chip under the pending error",
+      "what": "items on the screen",
+      "expected": 4,
+      "observed": 4,
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: double click on the chip under the pending error",
+      "what": "item ids in the stored draft",
+      "expected": [
+        "i9",
+        "i10",
+        "i11",
+        "i12"
+      ],
+      "observed": [
+        "i9",
+        "i10",
+        "i11",
+        "i12"
+      ],
+      "result": "PASS"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: after the double click",
+      "what": "point pressed and what lay under it",
+      "expected": null,
+      "observed": {
+        "x": 329.484375,
+        "y": 733,
+        "label": "Remove Char kuey teow"
+      },
+      "result": "NOTE"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: after the double click",
+      "what": "Char kuey teow toggles before and after",
+      "expected": null,
+      "observed": [
+        [
+          "false",
+          "true",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false"
+        ],
+        [
+          "false",
+          "true",
+          "false",
+          "false",
+          "true",
+          "false",
+          "false",
+          "false"
+        ]
+      ],
+      "result": "NOTE"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: after the double click",
+      "what": "error paragraphs now",
+      "expected": null,
+      "observed": 1,
+      "result": "NOTE"
+    },
+    {
+      "group": "F5 double presses, chip under a pending price error",
+      "step": "B: end",
+      "what": "console, page errors and requests",
+      "expected": [],
+      "observed": [],
+      "result": "PASS"
+    }
+  ]
+}

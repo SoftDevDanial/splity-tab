@@ -1,0 +1,5 @@
+server STARTED pid 21144 port 48732 root {workspace}\examples\split
+chromium 149.0.7827.55 open, pids [15616]
+chromium closed, pids left []
+server STOPPED pid 21144 port 48732, exited True, port free again True
+driven checks PASS {'pass': 40, 'fail': 0, 'note': 0}
