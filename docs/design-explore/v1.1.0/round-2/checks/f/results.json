@@ -1,0 +1,1709 @@
+{
+  "console_errors": [],
+  "page_errors": [],
+  "network": [],
+  "fails": [],
+  "figures": {
+    "K1 bar 390": "TotalRM69.26",
+    "K1 rows 390 sheet": [
+      {
+        "name": "Aisyah",
+        "sen": "+1 sen",
+        "items": "RM 24.90",
+        "charges": "RM 4.14",
+        "share": "RM 29.04"
+      },
+      {
+        "name": "Ben",
+        "sen": "",
+        "items": "RM 13.50",
+        "charges": "RM 2.24",
+        "share": "RM 15.74"
+      },
+      {
+        "name": "Chen",
+        "sen": "",
+        "items": "RM 21.00",
+        "charges": "RM 3.48",
+        "share": "RM 24.48"
+      }
+    ],
+    "K1 adds up 390 sheet": {
+      "items": "RM 59.40",
+      "charges": "RM 9.86",
+      "share": "RM 69.26"
+    },
+    "K1 bill 390 sheet": [
+      "Subtotal = RM 59.40",
+      "Service charge10% of RM 59.40 = RM 5.94",
+      "SST6% of RM 65.34 = RM 3.92",
+      "Total = RM 69.26"
+    ],
+    "K1 spare 390 sheet": "1 sen left overTop of the list",
+    "K1 summary text": "Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\nAisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26",
+    "K1 one Ben": [
+      [
+        "Aisyah",
+        "RM 29.03",
+        ""
+      ],
+      [
+        "Ben",
+        "RM 15.75",
+        "+1 sen"
+      ],
+      [
+        "Chen",
+        "RM 24.48",
+        ""
+      ]
+    ],
+    "K1 random draws": [
+      [
+        "Chen"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Chen"
+      ],
+      [
+        "Aisyah"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Aisyah"
+      ],
+      [
+        "Aisyah"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Ben"
+      ],
+      [
+        "Aisyah"
+      ]
+    ],
+    "K2 shares 390 via switch": [
+      [
+        "Aisyah",
+        "RM 38.87",
+        "+1 sen"
+      ],
+      [
+        "Ben",
+        "RM 38.87",
+        "+1 sen"
+      ],
+      [
+        "Chen",
+        "RM 38.86",
+        ""
+      ]
+    ],
+    "K2 bill 390 via switch": [
+      "Subtotal = RM 100.00",
+      "Service charge10% of RM 100.00 = RM 10.00",
+      "SST6% of RM 110.00 = RM 6.60",
+      "Total = RM 116.60"
+    ],
+    "K2 one Ben": [
+      [
+        "Aisyah",
+        "RM 38.86",
+        ""
+      ],
+      [
+        "Ben",
+        "RM 38.88",
+        "+2 sen"
+      ],
+      [
+        "Chen",
+        "RM 38.86",
+        ""
+      ]
+    ],
+    "K2 random draws": [
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Aisyah",
+        "Chen"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Aisyah",
+        "Ben"
+      ],
+      [
+        "Aisyah",
+        "Chen"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ],
+      [
+        "Ben",
+        "Chen"
+      ]
+    ],
+    "M1": "Start a new bill? This clears the people, items and amounts. Start new bill Cancel",
+    "S1 via Start new bill": {
+      "people": [
+        "|Person 1",
+        "|Person 2"
+      ],
+      "even": true,
+      "subtotal": "",
+      "svc": "10",
+      "sst": "6",
+      "bar": "Enter the subtotal to see the shares.",
+      "centre": "Enter the subtotal to see the shares."
+    },
+    "S2": "Subtotal in RMRMEnter an amount like 12.50",
+    "S3 bar": "1 item still needs a person. Tap who had it to see the shares.",
+    "S3 receipt": "1 item still needs a person. Tap who had it to see the shares.",
+    "S4 blocked": "Could not copy. Your browser blocked the clipboard.",
+    "S4 copied (bar)": "Summary copied",
+    "S5": "This bill is not being saved on this device. It will be lost when you close this tab.",
+    "S6": "Your saved bill could not be read, so a new one was started.",
+    "W2 (prototype only)": {
+      "rows": [
+        {
+          "name": "Aisyah",
+          "sen": "+3 sen",
+          "items": "RM 33.54",
+          "charges": "RM 5.57",
+          "share": "RM 39.11"
+        },
+        {
+          "name": "Ben",
+          "sen": "+3 sen",
+          "items": "RM 27.14",
+          "charges": "RM 4.51",
+          "share": "RM 31.65"
+        },
+        {
+          "name": "Chen",
+          "sen": "",
+          "items": "RM 33.52",
+          "charges": "RM 5.56",
+          "share": "RM 39.08"
+        }
+      ],
+      "bar": "TotalRM109.84",
+      "bill": [
+        "Subtotal = RM 94.20",
+        "Service charge10% of RM 94.20 = RM 9.42",
+        "SST6% of RM 103.62 = RM 6.22",
+        "Total = RM 109.84"
+      ]
+    },
+    "W1 bar": "TotalRM1,193.87",
+    "W1 sheet rows": [
+      {
+        "name": "Aisyah",
+        "sen": "+1 sen",
+        "items": "RM 346.40",
+        "charges": "RM 57.51",
+        "share": "RM 403.91"
+      },
+      {
+        "name": "Ben",
+        "sen": "",
+        "items": "RM 335.00",
+        "charges": "RM 55.61",
+        "share": "RM 390.61"
+      },
+      {
+        "name": "Chen",
+        "sen": "",
+        "items": "RM 342.50",
+        "charges": "RM 56.85",
+        "share": "RM 399.35"
+      }
+    ],
+    "W1 bill": [
+      "Subtotal = RM 1,023.90",
+      "Service charge10% of RM 1,023.90 = RM 102.39",
+      "SST6% of RM 1,126.29 = RM 67.58",
+      "Total = RM 1,193.87"
+    ],
+    "W1 360 collisions": [],
+    "K1 rows 1280": [
+      {
+        "name": "Aisyah",
+        "sen": "+1 sen",
+        "items": "RM 24.90",
+        "charges": "RM 4.14",
+        "share": "RM 29.04"
+      },
+      {
+        "name": "Ben",
+        "sen": "",
+        "items": "RM 13.50",
+        "charges": "RM 2.24",
+        "share": "RM 15.74"
+      },
+      {
+        "name": "Chen",
+        "sen": "",
+        "items": "RM 21.00",
+        "charges": "RM 3.48",
+        "share": "RM 24.48"
+      }
+    ],
+    "K1 adds up 1280": {
+      "items": "RM 59.40",
+      "charges": "RM 9.86",
+      "share": "RM 69.26"
+    },
+    "K1 bill 1280": [
+      "Subtotal = RM 59.40",
+      "Service charge10% of RM 59.40 = RM 5.94",
+      "SST6% of RM 65.34 = RM 3.92",
+      "Total = RM 69.26"
+    ],
+    "K1 spare 1280": "1 sen left overTop of the list",
+    "K1 one Ben 1280": [
+      [
+        "Aisyah",
+        "RM 29.03",
+        ""
+      ],
+      [
+        "Ben",
+        "RM 15.75",
+        "+1 sen"
+      ],
+      [
+        "Chen",
+        "RM 24.48",
+        ""
+      ]
+    ],
+    "K2 shares 1280": [
+      [
+        "Aisyah",
+        "RM 38.87",
+        "+1 sen"
+      ],
+      [
+        "Ben",
+        "RM 38.87",
+        "+1 sen"
+      ],
+      [
+        "Chen",
+        "RM 38.86",
+        ""
+      ]
+    ],
+    "K2 bill 1280": [
+      "Subtotal = RM 100.00",
+      "Service charge10% of RM 100.00 = RM 10.00",
+      "SST6% of RM 110.00 = RM 6.60",
+      "Total = RM 116.60"
+    ],
+    "S7 1280 shares": [
+      [
+        "Aisyah",
+        "RM 9.72",
+        "+1 sen"
+      ],
+      [
+        "Ben",
+        "RM 9.72",
+        "+1 sen"
+      ],
+      [
+        "Chen",
+        "RM 9.72",
+        "+1 sen"
+      ],
+      [
+        "Person 4",
+        "RM 9.72",
+        "+1 sen"
+      ],
+      [
+        "Person 5",
+        "RM 9.72",
+        "+1 sen"
+      ],
+      [
+        "Person 6",
+        "RM 9.72",
+        "+1 sen"
+      ],
+      [
+        "Person 7",
+        "RM 9.72",
+        "+1 sen"
+      ],
+      [
+        "Person 8",
+        "RM 9.72",
+        "+1 sen"
+      ],
+      [
+        "Person 9",
+        "RM 9.71",
+        ""
+      ],
+      [
+        "Person 10",
+        "RM 9.71",
+        ""
+      ],
+      [
+        "Person 11",
+        "RM 9.71",
+        ""
+      ],
+      [
+        "Person 12",
+        "RM 9.71",
+        ""
+      ]
+    ],
+    "W2 1280 rows (prototype only)": [
+      {
+        "name": "Aisyah",
+        "sen": "+3 sen",
+        "items": "RM 33.54",
+        "charges": "RM 5.57",
+        "share": "RM 39.11"
+      },
+      {
+        "name": "Ben",
+        "sen": "+3 sen",
+        "items": "RM 27.14",
+        "charges": "RM 4.51",
+        "share": "RM 31.65"
+      },
+      {
+        "name": "Chen",
+        "sen": "",
+        "items": "RM 33.52",
+        "charges": "RM 5.56",
+        "share": "RM 39.08"
+      }
+    ],
+    "hover lit": [
+      "path:b",
+      "polyline:b"
+    ],
+    "focus after spare button": "copyBtn",
+    "focus outline": "solid rgb(163, 170, 255)",
+    "1024 x 768 K1": {
+      "docScrollHeight": 768,
+      "viewport": 768,
+      "bodyScrollHeight": 768,
+      "receipt": {
+        "scrollHeight": 849,
+        "clientHeight": 711
+      },
+      "inputs": {
+        "scrollHeight": 711,
+        "clientHeight": 711
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 237
+      }
+    },
+    "reduced motion idle at load": true,
+    "reduced motion idle on sheet open": true
+  },
+  "noscroll_1280": {
+    "K1": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "receipt": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "inputs": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 269
+      }
+    },
+    "K2": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "receipt": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "inputs": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "frame": null
+    },
+    "S7": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "receipt": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "inputs": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "frame": null
+    },
+    "W2": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "receipt": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "inputs": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "frame": {
+        "scrollHeight": 1229,
+        "clientHeight": 269
+      }
+    },
+    "W2 scrolled": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "receipt": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "inputs": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "frame": {
+        "scrollHeight": 1229,
+        "clientHeight": 269
+      }
+    },
+    "S3 (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "receipt": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "inputs": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 269
+      }
+    },
+    "S5 (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "receipt": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "inputs": {
+        "scrollHeight": 743,
+        "clientHeight": 743
+      },
+      "frame": {
+        "scrollHeight": 491,
+        "clientHeight": 269
+      }
+    },
+    "S6 (extra)": {
+      "docScrollHeight": 800,
+      "viewport": 800,
+      "bodyScrollHeight": 800,
+      "receipt": {
+        "scrollHeight": 735,
+        "clientHeight": 735
+      },
+      "inputs": {
+        "scrollHeight": 735,
+        "clientHeight": 735
+      },
+      "frame": null
+    }
+  },
+  "frame": {
+    "W2 390": {
+      "sh": 1229,
+      "ch": 609,
+      "down": true
+    },
+    "W2 390 scrolled": {
+      "top": 360,
+      "up": true,
+      "down": true
+    },
+    "K1 1280": {
+      "sh": 491,
+      "ch": 269
+    },
+    "W2 1280": {
+      "sh": 1229,
+      "ch": 269,
+      "down": true
+    },
+    "W2 1280 after wheel": {
+      "top": 500,
+      "winY": 0,
+      "up": true
+    }
+  },
+  "overflow_360": {
+    "K1": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "K2": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S1": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S2": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S3": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S4b": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S5": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "S6": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S7": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W1": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W2": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W1 page bottom": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "W1 sheet": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "P2": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "P1": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    },
+    "M1": {
+      "scrollWidth": 345,
+      "clientWidth": 345,
+      "bad": []
+    }
+  },
+  "proto_tab": {
+    "390 K1 top": {
+      "tab": [
+        0,
+        356,
+        14,
+        132
+      ],
+      "hits": [],
+      "dock": false,
+      "header": false
+    },
+    "390 tab with sheet closed": {
+      "tab": [
+        0,
+        356,
+        14,
+        132
+      ],
+      "hits": [],
+      "dock": false,
+      "header": false
+    },
+    "390 S5": {
+      "tab": [
+        0,
+        356,
+        14,
+        132
+      ],
+      "hits": [],
+      "dock": false,
+      "header": false
+    },
+    "390 W2 scrolled to items": {
+      "tab": [
+        0,
+        356,
+        14,
+        132
+      ],
+      "hits": [],
+      "dock": false,
+      "header": false
+    },
+    "390 W2 page bottom": {
+      "tab": [
+        0,
+        356,
+        14,
+        132
+      ],
+      "hits": [],
+      "dock": false,
+      "header": false
+    },
+    "390 panel vs bar": {
+      "bottom": 624,
+      "dockTop": 737
+    },
+    "390 under backdrop": "newDlg",
+    "360 K1": {
+      "tab": [
+        0,
+        324,
+        14,
+        132
+      ],
+      "hits": [],
+      "dock": false,
+      "header": false
+    },
+    "1280 K1": {
+      "tab": [
+        0,
+        334,
+        14,
+        132
+      ],
+      "hits": [],
+      "dock": false,
+      "header": false
+    },
+    "1280 S5": {
+      "tab": [
+        0,
+        334,
+        14,
+        132
+      ],
+      "hits": [],
+      "dock": false,
+      "header": false
+    }
+  },
+  "order": {
+    "390": {
+      "charges": 73,
+      "mode": 227,
+      "people": 313,
+      "items": 543,
+      "receiptInSheet": true,
+      "receiptInSlot": false
+    },
+    "1280": {
+      "charges": 77,
+      "mode": 223,
+      "people": 301,
+      "items": 469,
+      "receiptInSheet": false,
+      "receiptInSlot": true
+    }
+  },
+  "contrast": {
+    "body text on input pane l2": {
+      "ratio": 14.62,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on receipt panel l3": {
+      "ratio": 13.55,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on page l1": {
+      "ratio": 15.46,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on field": {
+      "ratio": 15.72,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on lit row l4": {
+      "ratio": 12.09,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text on indigo tint (chosen mode, tapped person)": {
+      "ratio": 11.9,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text on l1": {
+      "ratio": 8.37,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text on l2": {
+      "ratio": 7.91,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text on l3": {
+      "ratio": 7.33,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text on l4": {
+      "ratio": 6.54,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text on field (placeholder)": {
+      "ratio": 8.51,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted text on indigo tint (proof work line)": {
+      "ratio": 5.94,
+      "need": 4.5,
+      "pass": true
+    },
+    "indigo text on l3 (+1 sen, status)": {
+      "ratio": 7.51,
+      "need": 4.5,
+      "pass": true
+    },
+    "indigo text on l2": {
+      "ratio": 8.1,
+      "need": 4.5,
+      "pass": true
+    },
+    "indigo text on l1": {
+      "ratio": 8.57,
+      "need": 4.5,
+      "pass": true
+    },
+    "indigo text on tint over l3 (Copy summary, Adds up to)": {
+      "ratio": 6.08,
+      "need": 4.5,
+      "pass": true
+    },
+    "indigo text on tint over l1": {
+      "ratio": 7.05,
+      "need": 4.5,
+      "pass": true
+    },
+    "indigo outline on l3 (Copy summary edge)": {
+      "ratio": 5.05,
+      "need": 3.0,
+      "pass": true
+    },
+    "indigo outline on field (switch)": {
+      "ratio": 5.86,
+      "need": 3.0,
+      "pass": true
+    },
+    "indigo outline on l1 (tapped person edge)": {
+      "ratio": 5.76,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on l1": {
+      "ratio": 4.18,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on l2": {
+      "ratio": 3.95,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on l3": {
+      "ratio": 3.66,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border on field": {
+      "ratio": 4.25,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring on l1": {
+      "ratio": 8.57,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring on l3": {
+      "ratio": 7.51,
+      "need": 3.0,
+      "pass": true
+    },
+    "error text on l1": {
+      "ratio": 8.16,
+      "need": 4.5,
+      "pass": true
+    },
+    "error text on l2": {
+      "ratio": 7.71,
+      "need": 4.5,
+      "pass": true
+    },
+    "Start new bill text on its tint": {
+      "ratio": 6.03,
+      "need": 4.5,
+      "pass": true
+    },
+    "Start new bill outline on l3": {
+      "ratio": 7.15,
+      "need": 3.0,
+      "pass": true
+    },
+    "warning text on warning band": {
+      "ratio": 12.93,
+      "need": 4.5,
+      "pass": true
+    },
+    "warning icon on warning band": {
+      "ratio": 9.18,
+      "need": 3.0,
+      "pass": true
+    },
+    "note text on info band": {
+      "ratio": 13.07,
+      "need": 4.5,
+      "pass": true
+    },
+    "p1 on l3 (ring segment)": {
+      "ratio": 7.1,
+      "need": 3.0,
+      "pass": true
+    },
+    "p1 on l1 (hollow person letter)": {
+      "ratio": 8.11,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p1": {
+      "ratio": 8.11,
+      "need": 4.5,
+      "pass": true
+    },
+    "p2 on l3 (ring segment)": {
+      "ratio": 7.81,
+      "need": 3.0,
+      "pass": true
+    },
+    "p2 on l1 (hollow person letter)": {
+      "ratio": 8.92,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p2": {
+      "ratio": 8.92,
+      "need": 4.5,
+      "pass": true
+    },
+    "p3 on l3 (ring segment)": {
+      "ratio": 7.19,
+      "need": 3.0,
+      "pass": true
+    },
+    "p3 on l1 (hollow person letter)": {
+      "ratio": 8.21,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p3": {
+      "ratio": 8.21,
+      "need": 4.5,
+      "pass": true
+    },
+    "p4 on l3 (ring segment)": {
+      "ratio": 7.23,
+      "need": 3.0,
+      "pass": true
+    },
+    "p4 on l1 (hollow person letter)": {
+      "ratio": 8.25,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p4": {
+      "ratio": 8.25,
+      "need": 4.5,
+      "pass": true
+    },
+    "p5 on l3 (ring segment)": {
+      "ratio": 8.18,
+      "need": 3.0,
+      "pass": true
+    },
+    "p5 on l1 (hollow person letter)": {
+      "ratio": 9.33,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p5": {
+      "ratio": 9.33,
+      "need": 4.5,
+      "pass": true
+    },
+    "p6 on l3 (ring segment)": {
+      "ratio": 6.59,
+      "need": 3.0,
+      "pass": true
+    },
+    "p6 on l1 (hollow person letter)": {
+      "ratio": 7.52,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p6": {
+      "ratio": 7.52,
+      "need": 4.5,
+      "pass": true
+    },
+    "p7 on l3 (ring segment)": {
+      "ratio": 8.71,
+      "need": 3.0,
+      "pass": true
+    },
+    "p7 on l1 (hollow person letter)": {
+      "ratio": 9.94,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p7": {
+      "ratio": 9.94,
+      "need": 4.5,
+      "pass": true
+    },
+    "p8 on l3 (ring segment)": {
+      "ratio": 9.2,
+      "need": 3.0,
+      "pass": true
+    },
+    "p8 on l1 (hollow person letter)": {
+      "ratio": 10.5,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p8": {
+      "ratio": 10.5,
+      "need": 4.5,
+      "pass": true
+    },
+    "p9 on l3 (ring segment)": {
+      "ratio": 7.54,
+      "need": 3.0,
+      "pass": true
+    },
+    "p9 on l1 (hollow person letter)": {
+      "ratio": 8.6,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p9": {
+      "ratio": 8.6,
+      "need": 4.5,
+      "pass": true
+    },
+    "p10 on l3 (ring segment)": {
+      "ratio": 6.79,
+      "need": 3.0,
+      "pass": true
+    },
+    "p10 on l1 (hollow person letter)": {
+      "ratio": 7.75,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p10": {
+      "ratio": 7.75,
+      "need": 4.5,
+      "pass": true
+    },
+    "p11 on l3 (ring segment)": {
+      "ratio": 8.52,
+      "need": 3.0,
+      "pass": true
+    },
+    "p11 on l1 (hollow person letter)": {
+      "ratio": 9.73,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p11": {
+      "ratio": 9.73,
+      "need": 4.5,
+      "pass": true
+    },
+    "p12 on l3 (ring segment)": {
+      "ratio": 7.99,
+      "need": 3.0,
+      "pass": true
+    },
+    "p12 on l1 (hollow person letter)": {
+      "ratio": 9.12,
+      "need": 4.5,
+      "pass": true
+    },
+    "tag text on p12": {
+      "ratio": 9.12,
+      "need": 4.5,
+      "pass": true
+    }
+  },
+  "icons": {
+    "x": "match",
+    "plus": "match",
+    "copy": "match",
+    "check": "match",
+    "caret": "match",
+    "shuffle": "match",
+    "warning": "match",
+    "warning-circle": "match",
+    "receipt": "match"
+  },
+  "dashes": {
+    "em": 0,
+    "en": 0,
+    "middle_dot": 0
+  },
+  "fills": {
+    "390 K1": [
+      {
+        "el": "newBill",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "Even",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "By item",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "addPerson",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "addItem",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "sharesBtn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "dockCopy",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      }
+    ],
+    "390 P2": [
+      {
+        "el": "newBill",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "Even",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "By item",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "addPerson",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "addItem",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "sharesBtn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "dockCopy",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "spareBtn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "copyBtn",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      }
+    ],
+    "390 M1": [
+      {
+        "el": "newBill",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "Even",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "By item",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "addPerson",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "addItem",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "sharesBtn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "dockCopy",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "confirmNew",
+        "bg": "rgba(255, 138, 143, 0.1)"
+      },
+      {
+        "el": "btn btn-quiet btn-lg",
+        "bg": "rgba(0, 0, 0, 0)"
+      }
+    ],
+    "1280 K1": [
+      {
+        "el": "newBill",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "spareBtn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "copyBtn",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "Even",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "By item",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "addPerson",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "addItem",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "icon-btn",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "el": "tap",
+        "bg": "rgba(110, 120, 255, 0.16)"
+      }
+    ]
+  },
+  "targets": {
+    "390 K1": [],
+    "390 P2": [],
+    "360 K1": [],
+    "1280 K1": []
+  },
+  "arcs": {
+    "K1 390": 6.534669681257377e-06,
+    "K1 1280": 8.944778549291321e-06,
+    "S7 1280": 4.390929940617516e-07
+  },
+  "shots": [
+    "k1-390.png",
+    "k1-390-full.png",
+    "p2-390.png",
+    "p2-390-bill.png",
+    "p1-390.png",
+    "p1-picker-390.png",
+    "k1-one-ben-390.png",
+    "k2-390.png",
+    "p2-k2-390.png",
+    "m1-390.png",
+    "s1-390.png",
+    "s2-390.png",
+    "s3-390.png",
+    "s4b-390.png",
+    "s4a-390.png",
+    "s5-390.png",
+    "s6-390.png",
+    "s7-390-full.png",
+    "w2-390.png",
+    "proto-panel-390.png",
+    "k1-360.png",
+    "w1-360-sheet.png",
+    "w1-360.png",
+    "p2-360.png",
+    "m1-360.png",
+    "k1-1280.png",
+    "p1-1280.png",
+    "p1-picker-1280.png",
+    "k1-one-ben-1280.png",
+    "m1-1280.png",
+    "k2-1280.png",
+    "s7-1280.png",
+    "w2-1280.png",
+    "w2-1280-scrolled.png",
+    "s3-1280.png",
+    "s5-1280.png",
+    "s6-1280.png",
+    "s1-1280.png",
+    "hover-ben-1280.png",
+    "focus-copy-1280.png",
+    "k1-1024.png",
+    "k1-768.png",
+    "p2-768.png"
+  ],
+  "tokens": {
+    "l0": "#0B0E13",
+    "l1": "#10141B",
+    "l2": "#151A23",
+    "l3": "#1B212B",
+    "l4": "#232A36",
+    "l5": "#2D3545",
+    "field": "#0E1219",
+    "line-strong": "#6E7891",
+    "text": "#E8EBF2",
+    "text-muted": "#A7AFBF",
+    "accent": "#5059DA",
+    "accent-ink": "#A3AAFF",
+    "accent-line": "#7C85F7",
+    "accent-tint": "rgba(110, 120, 255, 0.16)",
+    "error-ink": "#FF8A8F",
+    "danger-tint": "rgba(255, 138, 143, 0.10)",
+    "warn-ink": "#F2C063",
+    "warn-bg": "#2A2414",
+    "info-bg": "#1E2140",
+    "focus": "#A3AAFF",
+    "on-person": "#10141B",
+    "p1": "#79B8A7",
+    "p2": "#E0A97E",
+    "p3": "#C99FCF",
+    "p4": "#7DB4D8",
+    "p5": "#A9C17F",
+    "p6": "#D8939A",
+    "p7": "#8FC9C3",
+    "p8": "#D9C27A",
+    "p9": "#A7B2C2",
+    "p10": "#C4A27F",
+    "p11": "#9FC6A1",
+    "p12": "#C9AFC0"
+  },
+  "bright_fills": []
+}

@@ -1,0 +1,1641 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Danial's Splity Tab</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230B0E13'/%3E%3Cpath fill='%2379B8A7' d='M1 2h8v3H1z'/%3E%3Cpath fill='%23E0A97E' d='M11 2h4v3h-4z'/%3E%3Cpath fill='%23E8EBF2' d='M1 10h14v3H1z'/%3E%3C/svg%3E">
+<!--
+  Direction F, Orbit Console. Design round 2 for v1.1.0.
+  D Share Orbit's layout and interactions (the ring, the shares table, the spare sen, the picker, every state),
+  in A Night Console's colours (layered slate, one indigo accent). No bright filled buttons anywhere.
+  Indigo marks what is chosen and what the app vouches for, always as a line, a tint or text. Never a solid fill.
+  No network. System fonts. Icons are Phosphor (MIT) paths copied from round 1. The ring is drawn here, it is not an icon.
+-->
+<style>
+:root {
+  /* Night Console surfaces, darkest to lightest */
+  --l0: #0B0E13;          /* top bar */
+  --l1: #10141B;          /* receipt side on desktop, the item frame well */
+  --l2: #151A23;          /* the input pane */
+  --l3: #1B212B;          /* the receipt panel, the pinned bar, sheets and dialogs */
+  --l4: #232A36;          /* a lit share row */
+  --l5: #2D3545;          /* hover, ring track */
+  --field: #0E1219;       /* inset inputs */
+  --line: rgba(255, 255, 255, 0.08);       /* dividers only */
+  --line-frame: rgba(255, 255, 255, 0.14); /* the edge of a scrolling frame */
+  --line-strong: #6E7891; /* control borders, 3 to 1 on every layer */
+  --text: #E8EBF2;
+  --text-muted: #A7AFBF;
+  --text-faint: #5F6878;  /* disabled only */
+  /* The one accent. A line, a tint or text, never a solid fill */
+  --accent: #5059DA;
+  --accent-ink: #A3AAFF;
+  --accent-line: #7C85F7;
+  --accent-tint: rgba(110, 120, 255, 0.16);
+  --accent-tint-strong: rgba(110, 120, 255, 0.26);
+  /* Danger (Start new bill) and errors */
+  --error-ink: #FF8A8F;
+  --danger-tint: rgba(255, 138, 143, 0.10);
+  --danger-tint-strong: rgba(255, 138, 143, 0.18);
+  --warn-ink: #F2C063;
+  --warn-bg: #2A2414;
+  --info-bg: #1E2140;
+  --focus: #A3AAFF;
+  --scrim: rgba(4, 6, 10, 0.72);
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  --shadow-up: 0 -10px 30px rgba(4, 6, 10, 0.5);
+  /* People. Muted, calm, none of them indigo. Text on a filled person colour uses --on-person */
+  --on-person: #10141B;
+  --p1: #79B8A7;  /* teal */
+  --p2: #E0A97E;  /* apricot */
+  --p3: #C99FCF;  /* mauve */
+  --p4: #7DB4D8;  /* sky */
+  --p5: #A9C17F;  /* leaf */
+  --p6: #D8939A;  /* rose */
+  --p7: #8FC9C3;  /* aqua */
+  --p8: #D9C27A;  /* gold */
+  --p9: #A7B2C2;  /* slate */
+  --p10: #C4A27F; /* caramel */
+  --p11: #9FC6A1; /* sage */
+  --p12: #C9AFC0; /* heather */
+
+  /* Type */
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --fs-total: 32px;
+  --fs-total-long: 25px;
+  --fs-callout: 20px;
+  --fs-dock: 22px;
+  --fs-title: 20px;
+  --fs-word: 18px;
+  --fs-share: 17px;
+  --fs-input: 16px;
+  --fs-body: 15px;
+  --fs-control: 14px;
+  --fs-small: 13px;
+  --fs-tag: 12px;
+
+  /* Shape. 8 for controls and fields, 12 for panels and frames, 16 for sheets, pills for chips and the switch */
+  --r: 8px;
+  --r-panel: 12px;
+  --r-sheet: 16px;
+  --r-pill: 999px;
+
+  /* Space, 4 px base */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 20px;
+  --s6: 24px;
+  --s8: 32px;
+
+  --tap: 44px;
+  --field-h: 46px;
+  --top-h: 56px;
+  --dock-h: 0px;   /* set from the pinned bar's real height */
+}
+@media (min-width: 1024px) {
+  :root { --fs-total: 44px; --fs-total-long: 36px; --fs-share: 18px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--l2);
+  color: var(--text);
+  font: 400 var(--fs-body)/1.5 var(--font);
+  font-variant-numeric: tabular-nums lining-nums;
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+h1, h2, h3, p { margin: 0; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.ph { width: 18px; height: 18px; fill: currentColor; flex: none; }
+.ph.sm { width: 16px; height: 16px; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+input:focus-visible { outline: none; }
+
+/* ---------- App frame ---------- */
+.app { min-height: 100dvh; display: flex; flex-direction: column; }
+.top {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px var(--s3);
+  min-height: var(--top-h); padding: 6px var(--s4);
+  background: var(--l0); border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.mark { width: 26px; height: 26px; flex: none; }
+.mark .m-s1 { fill: var(--p1); }
+.mark .m-s2 { fill: var(--p2); }
+.mark .m-t { fill: var(--text); }
+.word { font-size: var(--fs-word); font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+
+/* ---------- Buttons. Outlines and tints only ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s2);
+  min-height: var(--tap); padding: 0 var(--s4);
+  border-radius: var(--r); border: 1px solid transparent; background: transparent; color: var(--text);
+  font-size: var(--fs-control); font-weight: 600; line-height: 20px; white-space: nowrap;
+}
+.btn-quiet { border-color: var(--line-strong); }
+.btn-quiet:hover:not(:disabled) { background: var(--l5); }
+.btn-quiet .ph { color: var(--text-muted); }
+.btn-accent { border: 1.5px solid var(--accent-line); color: var(--accent-ink); background: var(--accent-tint); }
+.btn-accent:hover:not(:disabled) { background: var(--accent-tint-strong); }
+.btn-danger { border: 1.5px solid var(--error-ink); color: var(--error-ink); background: var(--danger-tint); }
+.btn-danger:hover { background: var(--danger-tint-strong); }
+.btn-chip { border-color: var(--line-strong); border-radius: var(--r-pill); padding: 0 var(--s3) 0 var(--s4); }
+.btn-chip:hover { background: var(--l5); }
+.btn-chip .ph { color: var(--text-muted); }
+.btn-block { width: 100%; }
+.btn-lg { min-height: 48px; font-size: var(--fs-body); }
+.btn:disabled { color: var(--text-faint); border-color: var(--l5); background: transparent; cursor: not-allowed; }
+.btn:disabled .ph { color: var(--text-faint); }
+.btn:active:not(:disabled), .icon-btn:active:not(:disabled), .tap:active, .choice:active:not(:disabled) { transform: translateY(1px); }
+.icon-btn {
+  width: var(--tap); height: var(--tap); flex: none; padding: 0;
+  display: grid; place-items: center;
+  border-radius: var(--r); border: 0; background: transparent; color: var(--text-muted);
+}
+.icon-btn:hover:not(:disabled) { background: var(--l5); color: var(--text); }
+.icon-btn:disabled { color: var(--text-faint); cursor: not-allowed; }
+
+/* ---------- Notes (S5, S6). A second row of the top bar on phone, beside the brand on desktop ---------- */
+.notes { order: 3; flex: 1 0 100%; display: grid; gap: var(--s2); padding: 0 0 6px; }
+.notes:empty { display: none; }
+.note {
+  display: flex; align-items: center; gap: var(--s3);
+  padding: var(--s1) var(--s1) var(--s1) var(--s4);
+  border-radius: var(--r); background: var(--info-bg); box-shadow: inset 3px 0 0 var(--accent-line);
+  font-size: var(--fs-control); font-weight: 500;
+}
+.note > .ph { color: var(--accent-ink); width: 20px; height: 20px; }
+.note p { flex: 1; padding: 10px 0; }
+.note.warn { background: var(--warn-bg); box-shadow: inset 3px 0 0 var(--warn-ink); padding-right: var(--s4); }
+.note.warn > .ph { color: var(--warn-ink); }
+
+/* ---------- Layout. Phone first: inputs, then the pinned bar ---------- */
+.layout { flex: 1; min-height: 0; }
+.receipt-slot { display: none; }
+.inputs {
+  display: flex; flex-direction: column; gap: var(--s6);
+  padding: var(--s4) var(--s4) calc(var(--dock-h) + var(--s6));
+  min-width: 0;
+}
+
+/* ---------- Editor blocks ---------- */
+.block-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); min-height: var(--tap); margin-bottom: var(--s2); }
+.block-title { display: block; font-size: var(--fs-body); font-weight: 600; line-height: 20px; }
+.block-title.solo { margin-bottom: var(--s3); }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s3); }
+.lbl { display: block; font-size: var(--fs-control); font-weight: 600; line-height: 20px; margin-bottom: 6px; }
+.hint { margin-top: var(--s2); font-size: var(--fs-small); line-height: 18px; color: var(--text-muted); }
+
+.field {
+  display: flex; align-items: center; min-height: var(--field-h); min-width: 0;
+  background: var(--field); border: 1px solid var(--line-strong); border-radius: var(--r);
+}
+.field:has(input:focus) { outline: 2px solid var(--focus); outline-offset: 2px; }
+.field input {
+  flex: 1; min-width: 0; width: 100%; height: var(--tap); border: 0; background: transparent;
+  padding: 0 var(--s3); font-size: var(--fs-input);
+}
+.field input::placeholder { color: var(--text-muted); opacity: 1; }
+.field .unit { padding-left: var(--s3); font-size: var(--fs-small); font-weight: 600; color: var(--text-muted); flex: none; }
+.money input { text-align: right; padding-left: 6px; }
+.pct input { text-align: right; padding-right: 4px; }
+.pct .unit { padding: 0 var(--s3) 0 0; }
+.field .icon-btn { border-radius: 0 var(--r) var(--r) 0; }
+.field .icon-btn:focus-visible { outline-offset: -3px; }
+.field.invalid { border-color: var(--error-ink); box-shadow: inset 0 0 0 1px var(--error-ink); }
+.err { display: flex; align-items: center; gap: 6px; margin-top: var(--s2); font-size: var(--fs-small); font-weight: 600; line-height: 18px; color: var(--error-ink); }
+.subtotal-field { width: min(240px, 100%); }
+
+/* The split mode switch. Chosen = indigo outline on a dark indigo tint */
+.mode {
+  border: 1px solid var(--line-strong); margin: 0; padding: 2px; min-width: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  background: var(--field); border-radius: var(--r-pill);
+}
+.mode label {
+  position: relative; min-height: var(--tap);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-pill); font-size: var(--fs-control); font-weight: 600; color: var(--text-muted); cursor: pointer;
+}
+.mode label:hover { color: var(--text); background: var(--l5); }
+.mode input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.mode label:has(input:checked) { background: var(--accent-tint); color: var(--text); box-shadow: inset 0 0 0 1.5px var(--accent-line); }
+.mode label:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* People */
+.avatar {
+  width: 28px; height: 28px; border-radius: 50%; flex: none;
+  display: grid; place-items: center;
+  background: var(--pc); color: var(--on-person); font-size: var(--fs-tag); font-weight: 700; line-height: 1;
+}
+.avatar.xs { width: 20px; height: 20px; font-size: 11px; }
+.plist { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.person { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; align-items: center; min-width: 0; }
+
+/* Items, inside their own scrolling frame */
+.frame-wrap {
+  position: relative; display: flex; flex-direction: column; min-height: 0;
+  background: var(--l1); border: 1px solid var(--line-frame); border-radius: var(--r-panel); overflow: hidden;
+}
+.frame {
+  list-style: none; margin: 0; padding: 0 var(--s3);
+  overflow-y: auto; overscroll-behavior: auto;
+  max-height: calc(100dvh - var(--top-h) - var(--dock-h) - 72px);
+  scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent;
+}
+.frame::-webkit-scrollbar { width: 8px; }
+.frame::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 8px; }
+.frame-wrap::before, .frame-wrap::after {
+  content: ""; position: absolute; left: 0; right: 10px; height: 40px; z-index: 1;
+  pointer-events: none; opacity: 0;
+}
+.frame-wrap::before { top: 0; background: linear-gradient(var(--l1), rgba(16, 20, 27, 0)); }
+.frame-wrap::after { bottom: 0; background: linear-gradient(rgba(16, 20, 27, 0), var(--l1) 85%); }
+.frame-wrap[data-up]::before, .frame-wrap[data-down]::after { opacity: 1; }
+.frame-empty { padding: var(--s4) 0; color: var(--text-muted); font-size: var(--fs-control); }
+.item { padding: var(--s3) 0; border-top: 1px solid var(--line); }
+.item:first-child { border-top: 0; }
+.item-top { display: grid; grid-template-columns: minmax(0, 1fr) 112px var(--tap); gap: var(--s2); align-items: center; }
+.item .err { justify-content: flex-end; margin-right: 52px; }
+.who { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s2); }
+.tap {
+  min-height: var(--tap); display: inline-flex; align-items: center; gap: var(--s2);
+  padding: 0 14px 0 var(--s2); border-radius: var(--r-pill);
+  border: 1px solid var(--line-strong); background: transparent;
+  font-size: var(--fs-control); font-weight: 600; color: var(--text-muted);
+}
+.tap .avatar { width: 24px; height: 24px; font-size: var(--fs-tag); background: transparent; color: var(--pc); box-shadow: inset 0 0 0 2px var(--pc); }
+.tap:hover { background: var(--l5); color: var(--text); }
+.tap[aria-pressed="true"] { color: var(--text); background: var(--accent-tint); border-color: var(--accent-line); }
+.tap[aria-pressed="true"] .avatar { background: var(--pc); color: var(--on-person); box-shadow: none; }
+.item.needs .tap { border-style: dashed; }
+
+/* ---------- The orbit (the receipt) ---------- */
+.orbit {
+  background: var(--l3); border: 1px solid var(--line); border-radius: var(--r-panel);
+  padding: var(--s4);
+  display: grid; grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "ring" "res" "act" "bill";
+  gap: var(--s4); min-width: 0;
+}
+.sheet-body .orbit { background: none; border: 0; border-radius: 0; padding: 0; }
+.ring-wrap { grid-area: ring; position: relative; min-width: 0; }
+#ring { display: block; width: 100%; overflow: visible; }
+#ring text { font-family: var(--font); }
+#ring .seg { fill: none; stroke-linecap: butt; }
+#ring .ghost { fill: none; stroke: var(--l5); stroke-dasharray: 2 5; }
+#ring .ini { fill: var(--on-person); font-size: var(--fs-tag); font-weight: 700; }
+#ring .sen-dot { fill: var(--accent-ink); }
+#ring .leader { fill: none; stroke-width: 1.5; }
+#ring .co-name { fill: var(--text-muted); font-size: var(--fs-control); font-weight: 600; }
+#ring .co-sen { fill: var(--accent-ink); font-size: var(--fs-small); font-weight: 700; }
+#ring .co-amt { fill: var(--text); font-size: var(--fs-callout); font-weight: 600; letter-spacing: -0.01em; }
+#ring[data-focus] .seg:not(.on), #ring[data-focus] .leader:not(.on) { opacity: 0.25; }
+
+.centre { position: absolute; left: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none; }
+.c-label { display: block; font-size: var(--fs-small); font-weight: 600; color: var(--text-muted); }
+.c-fig { display: block; font-size: var(--fs-total); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; white-space: nowrap; }
+.c-fig.long { font-size: var(--fs-total-long); }
+.c-unit { font-size: var(--fs-control); font-weight: 600; color: var(--text-muted); letter-spacing: 0; margin-right: var(--s1); }
+.c-msg { display: block; font-size: var(--fs-control); color: var(--text-muted); line-height: 1.4; }
+
+/* Shares list. Phone, two lines a person. Desktop, a table */
+.res { grid-area: res; min-width: 0; }
+.lhead { display: none; }
+.legend { list-style: none; margin: 0; padding: 0; }
+.row {
+  display: grid; grid-template-columns: 36px minmax(0, 1fr) auto;
+  grid-template-areas: "g nm sh" "g wk sh";
+  column-gap: var(--s3); align-items: center;
+  padding: var(--s2) var(--s1); border-top: 1px solid var(--line);
+  min-height: 56px; border-radius: var(--r);
+}
+.legend .row:first-child, .legend .row.col-top { border-top: 0; }
+.legend.item .row { grid-template-areas: "g nm sh" "g wk wk"; row-gap: 2px; }
+.legend.item .sh { align-self: end; }
+.legend.item .wk { align-self: start; }
+.legend.even .row { grid-template-areas: "g nm sh"; min-height: 48px; }
+.row.on { background: var(--l4); }
+.glyph { grid-area: g; width: 36px; height: 36px; display: block; }
+.glyph .g-track { fill: none; stroke: var(--l5); }
+.glyph .g-arc { fill: none; }
+.glyph text { fill: var(--text); font-size: var(--fs-tag); font-weight: 700; font-family: var(--font); }
+.nm { grid-area: nm; font-size: var(--fs-body); font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sen { color: var(--accent-ink); font-size: var(--fs-small); font-weight: 700; margin-left: 6px; }
+.wk { grid-area: wk; font-size: var(--fs-small); color: var(--text-muted); white-space: nowrap; }
+.sh { grid-area: sh; font-size: var(--fs-share); font-weight: 600; text-align: right; white-space: nowrap; }
+
+/* The proof. Adds up to, on a dark indigo tint */
+.foot {
+  display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; column-gap: var(--s3); align-items: center;
+  grid-template-areas: "g nm sh" "g wk wk"; row-gap: 2px;
+  margin-top: var(--s2); padding: var(--s2) var(--s1); min-height: 52px;
+  background: var(--accent-tint); border-radius: var(--r);
+}
+.foot.even { grid-template-areas: "g nm sh"; min-height: 48px; }
+.foot .g-check { grid-area: g; width: 36px; height: 36px; display: grid; place-items: center; color: var(--accent-ink); }
+.foot .nm, .foot .sh { color: var(--accent-ink); }
+.foot .sh { align-self: end; }
+.foot.even .sh { align-self: center; }
+.foot .wk { align-self: start; }
+.result-msg { font-size: var(--fs-body); color: var(--text); padding: var(--s2) 0; }
+
+/* Spare sen line and Copy summary */
+.act { grid-area: act; display: flex; flex-direction: column; gap: var(--s3); min-width: 0; }
+.spare { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s2) var(--s3); }
+.spare-count { font-size: var(--fs-small); font-weight: 600; color: var(--text-muted); }
+.spare-ctl { display: flex; flex-wrap: wrap; gap: var(--s2); justify-content: flex-end; margin-left: auto; }
+.who-name { display: inline-flex; align-items: center; gap: 6px; color: var(--text); }
+.copy-row { display: grid; gap: var(--s2); }
+.status { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: var(--fs-small); font-weight: 600; color: var(--accent-ink); text-align: center; }
+.status.fail { color: var(--error-ink); }
+.status:empty { display: none; }
+
+/* Bill summary */
+.billbox { grid-area: bill; min-width: 0; border-top: 1px solid var(--line); padding-top: var(--s3); }
+.billbox h3 { font-size: var(--fs-small); font-weight: 600; color: var(--text-muted); margin-bottom: var(--s1); }
+.bill { margin: 0; }
+.bill > div { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); padding: 6px 0; }
+.bill dt { font-size: var(--fs-control); color: var(--text); min-width: 0; }
+.bill dt .bw { display: block; font-size: var(--fs-small); color: var(--text-muted); }
+.bill dd { margin: 0; font-size: var(--fs-control); font-weight: 600; white-space: nowrap; }
+.bill .tot { border-top: 1px solid var(--line-strong); margin-top: var(--s1); padding-top: var(--s2); }
+.bill .tot dt { font-weight: 600; }
+
+/* ---------- The pinned bar (phone and tablet) ---------- */
+.dock {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--l3); border-top: 1px solid rgba(255, 255, 255, 0.10); box-shadow: var(--shadow-up);
+  padding: 10px var(--s4) calc(12px + env(safe-area-inset-bottom));
+}
+.dock-in { max-width: 720px; margin: 0 auto; display: grid; gap: var(--s2); }
+.dock-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px var(--s3); min-height: 28px; }
+.dock-info { display: flex; align-items: baseline; gap: var(--s2); min-width: 0; }
+.d-label { font-size: var(--fs-small); font-weight: 600; color: var(--text-muted); }
+.d-fig { font-size: var(--fs-dock); font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; line-height: 28px; }
+.d-unit { font-size: var(--fs-small); font-weight: 600; color: var(--text-muted); margin-right: var(--s1); letter-spacing: 0; }
+.d-msg { font-size: var(--fs-control); line-height: 20px; color: var(--text); padding: 4px 0; }
+.dock .status { justify-content: flex-start; text-align: left; }
+.dock-actions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s2); }
+.dock-actions .btn { padding: 0 var(--s3); min-width: 0; }
+.mini { width: 22px; height: 22px; flex: none; }
+.caret-up { transform: rotate(180deg); }
+
+/* ---------- Popups ---------- */
+dialog {
+  padding: 0; border: 0; background: transparent; color: var(--text);
+  max-width: none; max-height: none; overflow: visible;
+}
+dialog::backdrop { background: var(--scrim); }
+.panel {
+  background: var(--l3); border: 1px solid rgba(255, 255, 255, 0.10); border-radius: var(--r-panel);
+  box-shadow: var(--shadow); padding: var(--s6);
+}
+.grab { display: block; width: 36px; height: 4px; margin: 0 auto var(--s1); border-radius: 2px; background: var(--l5); }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); padding: 0 0 var(--s2) var(--s3); }
+.sheet-head h2 { font-size: var(--fs-body); font-weight: 600; }
+
+/* P2 Shares sheet. Phone, the receipt slides up from the pinned bar */
+#sharesDlg { position: fixed; inset: auto 0 0 0; margin: 0 auto; width: 100%; }
+#sharesDlg .sheet {
+  display: flex; flex-direction: column; max-height: 92dvh;
+  background: var(--l3); border: 1px solid rgba(255, 255, 255, 0.10); border-bottom: 0;
+  border-radius: var(--r-sheet) var(--r-sheet) 0 0; box-shadow: var(--shadow);
+  padding: var(--s2) var(--s2) 0;
+}
+#sharesDlg .sheet-head { flex: none; padding: 0 0 var(--s1) var(--s3); }
+.sheet-body { overflow-y: auto; padding: 0 var(--s2) calc(var(--s6) + env(safe-area-inset-bottom)); }
+@media (min-width: 640px) {
+  #sharesDlg { width: min(600px, 100%); }
+}
+
+/* P1 spare sen. Phone, a sheet from the bottom. From 640 px, a popover under its button */
+#spareDlg { position: fixed; inset: auto 0 0 0; margin: 0; width: 100%; }
+#spareDlg .panel { border-radius: var(--r-sheet) var(--r-sheet) 0 0; border-bottom: 0; padding: var(--s2) var(--s3) var(--s6); max-height: 80dvh; overflow: auto; }
+@media (min-width: 640px) {
+  #spareDlg { inset: auto; width: 340px; }
+  #spareDlg .panel { border-radius: var(--r-panel); border-bottom: 1px solid rgba(255, 255, 255, 0.10); padding: var(--s3); }
+  #spareDlg .grab { display: none; }
+}
+.choices { display: grid; gap: 2px; }
+.choice {
+  display: flex; align-items: center; gap: var(--s3); width: 100%; min-height: 52px;
+  padding: 0 var(--s3); border: 0; border-radius: var(--r); background: transparent;
+  text-align: left; font-size: var(--fs-body); font-weight: 600;
+}
+.choice:hover:not(:disabled) { background: var(--l5); }
+.choice[aria-checked="true"] { background: var(--accent-tint); }
+.choice:disabled { color: var(--text-faint); cursor: not-allowed; }
+.choice .c-txt { flex: 1; min-width: 0; }
+.radio { width: 20px; height: 20px; border-radius: 50%; flex: none; display: grid; place-items: center; box-shadow: inset 0 0 0 2px var(--line-strong); }
+.choice[aria-checked="true"] .radio { box-shadow: inset 0 0 0 2px var(--accent-ink); }
+.choice[aria-checked="true"] .radio::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-ink); }
+.c-caret { color: var(--text-muted); }
+.choice[aria-expanded="true"] .c-caret { transform: rotate(180deg); }
+.picker { display: grid; gap: 2px; margin: 2px 0 var(--s1) var(--s8); padding-left: var(--s3); border-left: 1px solid var(--line); }
+.picker .choice { min-height: 48px; font-size: var(--fs-control); }
+.picker .choice .avatar { width: 24px; height: 24px; font-size: var(--fs-tag); }
+.picker .choice[aria-checked="true"] .avatar { box-shadow: 0 0 0 2px var(--l3), 0 0 0 4px var(--accent-ink); }
+.picker .choice:disabled .avatar { opacity: 0.4; }
+
+/* M1 new bill */
+#newDlg { margin: auto; width: min(420px, calc(100% - 32px)); }
+#newDlg h2 { font-size: var(--fs-title); font-weight: 700; margin-bottom: var(--s2); }
+#newDlg p { color: var(--text-muted); }
+.actions { display: flex; flex-direction: column; gap: var(--s2); margin-top: var(--s6); }
+@media (min-width: 600px) {
+  .actions { flex-direction: row-reverse; justify-content: flex-start; }
+}
+
+/* ---------- Desktop: the receipt beside a pane of inputs, and the page never scrolls ---------- */
+@media (min-width: 1024px) {
+  body { background: var(--l1); }
+  .app { height: 100dvh; min-height: 0; }
+  .top { padding: 6px var(--s6); flex-wrap: nowrap; }
+  .notes { order: 0; flex: 0 1 auto; padding: 0; margin: 0 auto; }
+  .note p { padding: 4px 0; }
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 420px; grid-template-rows: minmax(0, 1fr); }
+  .receipt-slot { display: block; min-height: 0; overflow-y: auto; padding: var(--s4) var(--s6); }
+  .inputs {
+    min-height: 0; overflow-y: auto; gap: var(--s4);
+    padding: var(--s5) var(--s6);
+    background: var(--l2); border-left: 1px solid var(--line);
+  }
+  .plist { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--s3); }
+  .items-block { flex: 1 1 auto; min-height: 150px; display: flex; flex-direction: column; }
+  .items-block .frame-wrap { flex: 1 1 auto; }
+  .frame { flex: 1 1 auto; min-height: 0; max-height: none; }
+  .dock { display: none; }
+  .orbit { padding: var(--s6); }
+
+  /* The shares as a table */
+  .lhead {
+    display: grid; grid-template-columns: 36px minmax(0, 1fr) 96px 84px 108px; column-gap: var(--s3);
+    padding: 0 var(--s1) var(--s1); font-size: var(--fs-small); font-weight: 600; color: var(--text-muted);
+  }
+  .lhead span:nth-child(n+3) { text-align: right; }
+  .legend.item .row, .res .foot.item {
+    grid-template-columns: 36px minmax(0, 1fr) 96px 84px 108px;
+    grid-template-areas: "g nm it ch sh";
+    min-height: 48px; padding-top: var(--s1); padding-bottom: var(--s1);
+  }
+  .legend.even .row { min-height: 42px; padding-top: 3px; padding-bottom: 3px; }
+  .legend.item .wk, .res .foot.item .wk { display: contents; }
+  .legend.item .sh, .res .foot.item .sh, .wk .it, .wk .ch { align-self: center; }
+  .wk .it { grid-area: it; text-align: right; }
+  .wk .ch { grid-area: ch; text-align: right; }
+  .wk .op { display: none; }
+  .legend.item .wk span, .foot.item .wk span { font-size: var(--fs-control); }
+  .act { flex-direction: row; align-items: flex-start; justify-content: space-between; gap: var(--s4); }
+  .spare { flex: 1; justify-content: flex-start; min-height: var(--tap); }
+  .copy-row { width: 210px; flex: none; }
+}
+@media (min-width: 1200px) {
+  .orbit {
+    grid-template-columns: 208px minmax(0, 1fr);
+    grid-template-areas: "ring ring" "bill res" "bill act";
+    column-gap: var(--s6); row-gap: var(--s4);
+  }
+  .billbox { border-top: 0; padding-top: 0; border-right: 1px solid var(--line); padding-right: var(--s5); }
+  /* Many people in an even split read in two columns, so the receipt still fits */
+  .legend.even.many { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-auto-flow: column; grid-template-rows: repeat(var(--rows), auto); column-gap: var(--s5); }
+  .legend.even.many .row { min-height: 38px; padding-top: 1px; padding-bottom: 1px; }
+}
+
+/* ---------- Motion. Only when the viewer allows it ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .icon-btn, .tap, .choice, .mode label, .row { transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
+  .frame-wrap::before, .frame-wrap::after { transition: opacity 160ms ease; }
+  #ring .labels { transition: opacity 180ms ease; }
+  #ring .seg, #ring .leader { transition: opacity 140ms ease; }
+  #newDlg[open] .panel, #spareDlg[open] .panel { animation: rise 180ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  #sharesDlg[open] .sheet { animation: sheet 240ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .choice .c-caret { transition: transform 140ms ease; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes sheet { from { opacity: 0.4; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Prototype states. Not part of the design ---------- */
+.proto-tab {
+  position: fixed; left: 0; top: 50%; z-index: 30;
+  width: 14px; height: 132px; padding: 0;
+  writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg);
+  border: 1px dashed #1C1C1F; border-right: 0; border-radius: 6px 0 0 6px;
+  background: #E8E4DA; color: #1C1C1F;
+  font: 600 10px/1 var(--mono); letter-spacing: 0.02em;
+}
+.proto-tab:focus-visible { outline: 2px solid #E8E4DA; outline-offset: 2px; }
+.proto-panel {
+  position: fixed; left: 20px; top: calc(var(--top-h) + 8px); bottom: calc(var(--dock-h) + 8px); z-index: 31;
+  width: min(300px, calc(100vw - 36px)); max-height: 560px; overflow: auto;
+  background: #F1EEE6; color: #1C1C1F; border: 1px dashed #1C1C1F; border-radius: 8px;
+  padding: 10px; font: 13px/1.35 var(--mono);
+}
+.proto-panel .pp-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+.proto-panel .pp-head p { font-weight: 700; }
+.proto-panel .pp-sub { font-size: 12px; color: #4A4740; margin-bottom: 8px; }
+.proto-panel button {
+  display: block; width: 100%; min-height: 34px; padding: 6px 8px; text-align: left;
+  border: 0; border-radius: 4px; background: transparent; color: inherit; font: inherit;
+}
+.proto-panel button:hover { background: #E0DBCF; }
+.proto-panel button[aria-current="true"] { background: #1C1C1F; color: #F1EEE6; }
+.proto-panel .pp-close { width: auto; min-height: 28px; padding: 2px 8px; border: 1px solid #1C1C1F; }
+.proto-panel button:focus-visible { outline: 2px solid #1C1C1F; outline-offset: 1px; }
+</style>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-x" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 256 256"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 256 256"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></symbol>
+  <symbol id="i-caret" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 256 256"><path d="M237.66,178.34a8,8,0,0,1,0,11.32l-24,24a8,8,0,0,1-11.32-11.32L212.69,192H200.94a72.12,72.12,0,0,1-58.59-30.15l-41.72-58.4A56.1,56.1,0,0,0,55.06,80H32a8,8,0,0,1,0-16H55.06a72.12,72.12,0,0,1,58.59,30.15l41.72,58.4A56.1,56.1,0,0,0,200.94,176h11.75l-10.35-10.34a8,8,0,0,1,11.32-11.32ZM143,107a8,8,0,0,0,11.16-1.86l1.2-1.67A56.1,56.1,0,0,1,200.94,80h11.75L202.34,90.34a8,8,0,0,0,11.32,11.32l24-24a8,8,0,0,0,0-11.32l-24-24a8,8,0,0,0-11.32,11.32L212.69,64H200.94a72.12,72.12,0,0,0-58.59,30.15l-1.2,1.67A8,8,0,0,0,143,107Zm-30,42a8,8,0,0,0-11.16,1.86l-1.2,1.67A56.1,56.1,0,0,1,55.06,176H32a8,8,0,0,0,0,16H55.06a72.12,72.12,0,0,0,58.59-30.15l1.2-1.67A8,8,0,0,0,113,149Z"/></symbol>
+  <symbol id="i-warning" viewBox="0 0 256 256"><path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z"/></symbol>
+  <symbol id="i-warning-circle" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 256 256"><path d="M72,104a8,8,0,0,1,8-8h96a8,8,0,0,1,0,16H80A8,8,0,0,1,72,104Zm8,40h96a8,8,0,0,0,0-16H80a8,8,0,0,0,0,16ZM232,56V208a8,8,0,0,1-11.58,7.15L192,200.94l-28.42,14.21a8,8,0,0,1-7.16,0L128,200.94,99.58,215.15a8,8,0,0,1-7.16,0L64,200.94,35.58,215.15A8,8,0,0,1,24,208V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V195.06l20.42-10.22a8,8,0,0,1,7.16,0L96,199.06l28.42-14.22a8,8,0,0,1,7.16,0L160,199.06l28.42-14.22a8,8,0,0,1,7.16,0L216,195.06Z"/></symbol>
+</svg>
+
+<div class="app" id="app">
+  <header class="top">
+    <div class="brand">
+      <!-- The Split mark, recoloured only: the two shares take the first two person colours, the total stays text colour -->
+      <svg class="mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <path class="m-s1" d="M3 6h24v9H3z"/><path class="m-s2" d="M33 6h12v9H33z"/><path class="m-t" d="M3 30h42v9H3z"/>
+      </svg>
+      <span class="word">Splity Tab</span>
+    </div>
+    <div class="notes" id="notes"></div>
+    <button class="btn btn-quiet" type="button" id="newBill" aria-haspopup="dialog"><svg class="ph" aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg>New bill</button>
+  </header>
+
+  <main class="layout" id="layout">
+    <!-- Desktop: the receipt lives here. Phone: it moves into the Shares sheet -->
+    <div class="receipt-slot" id="receiptSlot">
+      <section class="orbit" id="orbit" aria-labelledby="h-shares">
+        <h2 id="h-shares" class="sr-only">Shares</h2>
+        <div class="ring-wrap" id="ringWrap">
+          <svg id="ring" role="img" aria-labelledby="ringLabel"><title id="ringLabel">Shares ring</title></svg>
+          <div class="centre" id="centre"></div>
+        </div>
+        <div class="res" id="result"></div>
+        <div class="act" id="act">
+          <div class="spare" id="spare"></div>
+          <div class="copy-row" id="copyRow">
+            <button class="btn btn-accent btn-lg btn-block" type="button" id="copyBtn"><svg class="ph" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>Copy summary</button>
+            <p class="status" id="status" role="status"></p>
+          </div>
+        </div>
+        <section class="billbox" id="billbox" aria-labelledby="h-bill">
+          <h3 id="h-bill">Bill summary</h3>
+          <dl class="bill" id="bill"></dl>
+        </section>
+      </section>
+    </div>
+
+    <!-- The inputs. Charges, the split mode, People, then Items -->
+    <section class="inputs" id="inputs" aria-label="Edit the bill">
+      <section aria-labelledby="h-charges">
+        <h2 class="block-title solo" id="h-charges">Charges</h2>
+        <div class="pair">
+          <div>
+            <label class="lbl" for="svc">Service charge</label>
+            <div class="field pct" data-f="service"><input id="svc" inputmode="decimal" autocomplete="off" aria-describedby="charges-hint"><span class="unit" aria-hidden="true">%</span></div>
+          </div>
+          <div>
+            <label class="lbl" for="sst">SST</label>
+            <div class="field pct" data-f="sst"><input id="sst" inputmode="decimal" autocomplete="off" aria-describedby="charges-hint"><span class="unit" aria-hidden="true">%</span></div>
+          </div>
+        </div>
+        <p class="hint" id="charges-hint">Set a charge to 0 if your bill already includes it.</p>
+      </section>
+
+      <fieldset class="mode" id="mode">
+        <legend class="sr-only">Split mode</legend>
+        <label><input type="radio" name="mode" value="even" id="m-even">Even</label>
+        <label><input type="radio" name="mode" value="item" id="m-item">By item</label>
+      </fieldset>
+
+      <section aria-labelledby="h-people">
+        <div class="block-head">
+          <h2 class="block-title" id="h-people">People</h2>
+          <button class="btn btn-quiet" type="button" id="addPerson"><svg class="ph" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>Add person</button>
+        </div>
+        <ul class="plist" id="plist"></ul>
+      </section>
+
+      <div class="bill-inputs items-block" id="billInputs"></div>
+    </section>
+  </main>
+
+  <!-- The pinned bar. Phone and tablet only -->
+  <div class="dock" id="dock">
+    <div class="dock-in">
+      <div class="dock-top">
+        <div class="dock-info" id="dockInfo"></div>
+        <p class="status" id="dockStatus" role="status"></p>
+      </div>
+      <div class="dock-actions">
+        <button class="btn btn-quiet" type="button" id="sharesBtn" aria-haspopup="dialog" aria-controls="sharesDlg" aria-expanded="false">
+          <svg class="mini" id="dockRing" viewBox="0 0 22 22" aria-hidden="true" focusable="false"></svg>Shares<svg class="ph sm caret-up" aria-hidden="true" focusable="false"><use href="#i-caret"/></svg>
+        </button>
+        <button class="btn btn-accent" type="button" id="dockCopy"><svg class="ph" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>Copy summary</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P2 Shares sheet (phone and tablet) -->
+<dialog id="sharesDlg" aria-labelledby="sharesTitle">
+  <div class="sheet">
+    <span class="grab" aria-hidden="true"></span>
+    <div class="sheet-head">
+      <h2 id="sharesTitle">Shares</h2>
+      <button class="icon-btn" type="button" data-close aria-label="Close"><svg class="ph" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="sheet-body" id="sheetBody"></div>
+  </div>
+</dialog>
+
+<!-- P1 Spare sen choice -->
+<dialog id="spareDlg" aria-labelledby="spareTitle">
+  <div class="panel">
+    <span class="grab" aria-hidden="true"></span>
+    <div class="sheet-head">
+      <h2 id="spareTitle">1 sen left over</h2>
+      <button class="icon-btn" type="button" data-close aria-label="Close"><svg class="ph" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="choices" id="choices" role="radiogroup" aria-labelledby="spareTitle"></div>
+  </div>
+</dialog>
+
+<!-- M1 New bill -->
+<dialog id="newDlg" aria-labelledby="newTitle" aria-describedby="newBody">
+  <div class="panel">
+    <h2 id="newTitle">Start a new bill?</h2>
+    <p id="newBody">This clears the people, items and amounts.</p>
+    <div class="actions">
+      <button class="btn btn-danger btn-lg" type="button" id="confirmNew">Start new bill</button>
+      <button class="btn btn-quiet btn-lg" type="button" data-close autofocus>Cancel</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Prototype states. A review tool, not part of the design -->
+<button class="proto-tab" type="button" id="protoTab" aria-expanded="false" aria-controls="protoPanel">Prototype states</button>
+<div class="proto-panel" id="protoPanel" hidden>
+  <div class="pp-head"><p>Prototype states</p><button class="pp-close" type="button" id="protoClose">Close</button></div>
+  <p class="pp-sub">Not part of the design. Each one loads a state.</p>
+  <div id="protoList"></div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  // ---------- small helpers ----------
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const DESK = window.matchMedia("(min-width: 1024px)");
+
+  function build(make, tag, attrs, kids) {
+    const node = make(tag);
+    for (const [key, value] of Object.entries(attrs || {})) {
+      if (value === false || value === null || value === undefined) continue;
+      if (key.startsWith("on") && typeof value === "function") node.addEventListener(key.slice(2), value);
+      else if (value === true) node.setAttribute(key, "");
+      else node.setAttribute(key, String(value));
+    }
+    for (const kid of kids.flat()) {
+      if (kid === null || kid === undefined || kid === false) continue;
+      node.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+    }
+    return node;
+  }
+  const h = (tag, attrs, ...kids) => build((t) => document.createElement(t), tag, attrs, kids);
+  const sv = (tag, attrs, ...kids) => build((t) => document.createElementNS(SVGNS, t), tag, attrs, kids);
+  const icon = (name, cls = "ph") => sv("svg", { class: cls, "aria-hidden": "true", focusable: "false" }, sv("use", { href: "#i-" + name }));
+
+  // ---------- money in whole cents ----------
+  const fig = (c) => Math.floor(c / 100).toLocaleString("en-US") + "." + String(c % 100).padStart(2, "0");
+  const rm = (c) => "RM " + fig(c);
+  const pct = (bp) => String(bp / 100) + "%";
+  function parseAmount(text) {
+    const t = (text || "").trim();
+    if (!t) return { empty: true };
+    if (!/^\d{1,5}(\.\d{1,2})?$/.test(t)) return { error: true };
+    const [whole, part = ""] = t.split(".");
+    const cents = Number(whole) * 100 + Number((part + "00").slice(0, 2));
+    if (cents <= 0 || cents > 9999999) return { error: true };
+    return { ok: true, cents };
+  }
+  function parseRate(text, max) {
+    const t = (text || "").trim();
+    if (!/^\d{1,2}(\.\d{1,2})?$/.test(t)) return { error: true };
+    const [whole, part = ""] = t.split(".");
+    const bp = Number(whole) * 100 + Number((part + "00").slice(0, 2));
+    if (bp > max * 100) return { error: true };
+    return { ok: true, bp };
+  }
+
+  // ---------- state ----------
+  let S = null;
+  let touched = new Set();
+  let LAST = null;
+  let uid = 100;
+  const nextId = (p) => p + (uid++);
+
+  function k1() {
+    return {
+      mode: "item",
+      people: [{ id: "a", name: "Aisyah", c: 0 }, { id: "b", name: "Ben", c: 1 }, { id: "c", name: "Chen", c: 2 }],
+      subtotal: "100.00",
+      items: [
+        { id: "i1", name: "Nasi lemak ayam", price: "15.90", who: ["a"] },
+        { id: "i2", name: "Char kuey teow", price: "13.50", who: ["b"] },
+        { id: "i3", name: "Mee goreng mamak", price: "12.00", who: ["c"] },
+        { id: "i4", name: "Satay, 10 sticks", price: "18.00", who: ["a", "c"] },
+      ],
+      service: "10", sst: "6",
+      spare: { mode: "top", one: null, perm: [] },
+      note: null, status: null,
+    };
+  }
+  function fresh() {
+    return {
+      mode: "even",
+      people: [{ id: "p1", name: "", c: 0 }, { id: "p2", name: "", c: 1 }],
+      subtotal: "", items: [], service: "10", sst: "6",
+      spare: { mode: "top", one: null, perm: [] },
+      note: null, status: null,
+    };
+  }
+  // W2, a long bill. Prototype only, figures worked out live
+  function w2() {
+    const s = k1();
+    s.items.push(
+      { id: "i5", name: "Roti canai, 2 pieces", price: "5.00", who: ["b"] },
+      { id: "i6", name: "Teh tarik, 2 glasses", price: "7.00", who: ["a", "b"] },
+      { id: "i7", name: "Kopi O ais", price: "3.20", who: ["c"] },
+      { id: "i8", name: "Sirap bandung", price: "4.20", who: ["c"] },
+      { id: "i9", name: "Ais kacang", price: "8.90", who: ["a", "b", "c"] },
+      { id: "i10", name: "Keropok lekor", price: "6.50", who: ["a", "b", "c"] });
+    return s;
+  }
+
+  const colorVar = (id) => {
+    const p = S.people.find((x) => x.id === id);
+    return "--p" + ((p ? p.c : 0) + 1);
+  };
+  const displayName = (p, i) => p.name.trim() || "Person " + (i + 1);
+  const nameOf = (id) => { const i = S.people.findIndex((p) => p.id === id); return i < 0 ? "" : displayName(S.people[i], i); };
+  function tags() {
+    const firsts = S.people.map((p, i) => Array.from(displayName(p, i))[0].toUpperCase());
+    const dup = new Set(firsts).size !== firsts.length;
+    return firsts.map((f, i) => (dup ? String(i + 1) : f));
+  }
+  const tagOf = (id) => tags()[S.people.findIndex((p) => p.id === id)];
+
+  function shuffle(list) {
+    const a = list.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  // ---------- the bill maths (whole cents, the 1.0 rules plus the v1.1.0 spare sen choice) ----------
+  function compute() {
+    const ids = S.people.map((p) => p.id);
+    const errors = new Set();
+    const svc = parseRate(S.service, 30);
+    const sst = parseRate(S.sst, 20);
+    if (!svc.ok) errors.add("service");
+    if (!sst.ok) errors.add("sst");
+    let sub = 0;
+    const prices = {};
+    if (S.mode === "even") {
+      const a = parseAmount(S.subtotal);
+      if (a.error) errors.add("subtotal");
+      if (!a.ok) return { kind: "empty", msg: "Enter the subtotal to see the shares.", errors };
+      sub = a.cents;
+    } else {
+      if (!S.items.length) return { kind: "empty", msg: "Add an item to see the shares.", errors };
+      let missing = false;
+      for (const it of S.items) {
+        const a = parseAmount(it.price);
+        if (a.error) errors.add("price-" + it.id);
+        if (!a.ok) missing = true; else prices[it.id] = a.cents;
+      }
+      if (missing) return { kind: "empty", msg: "Give every item a price to see the shares.", errors };
+      sub = S.items.reduce((t, it) => t + prices[it.id], 0);
+    }
+    if (!svc.ok || !sst.ok) return { kind: "empty", msg: "Check the charges to see the shares.", errors };
+    const service = Math.floor((sub * svc.bp + 5000) / 10000);
+    const tax = Math.floor(((sub + service) * sst.bp + 5000) / 10000);
+    const total = sub + service + tax;
+    const bill = { sub, service, tax, total, svcBp: svc.bp, sstBp: sst.bp, sstBase: sub + service };
+
+    if (S.mode === "item") {
+      const open = S.items.filter((it) => !it.who.length);
+      if (open.length) {
+        const msg = open.length === 1
+          ? "1 item still needs a person. Tap who had it to see the shares."
+          : open.length + " items still need a person. Tap who had each one to see the shares.";
+        return { kind: "blocked", bill, msg, errors, open: new Set(open.map((it) => it.id)) };
+      }
+    }
+
+    const items = {}, charges = {}, sen = {};
+    ids.forEach((id) => { items[id] = 0; charges[id] = 0; sen[id] = 0; });
+    const onItems = new Set();
+    if (S.mode === "item") S.items.forEach((it) => it.who.forEach((id) => onItems.add(id)));
+    const canPick = (id) => ids.includes(id) && (S.mode === "even" || onItems.has(id));
+    const oneOk = S.spare.mode === "one" && canPick(S.spare.one);
+    let spare = 0;
+    // Every spare sen follows the one choice for the whole bill
+    const give = (rem, eligible, bucket) => {
+      if (!rem) return;
+      spare += rem;
+      if (oneOk) { bucket[S.spare.one] += rem; sen[S.spare.one] += rem; return; }
+      let order = eligible;
+      if (S.spare.mode === "random") {
+        order = S.spare.perm.filter((id) => eligible.includes(id));
+        eligible.forEach((id) => { if (!order.includes(id)) order.push(id); });
+      }
+      for (let k = 0; k < rem; k++) { const id = order[k % order.length]; bucket[id] += 1; sen[id] += 1; }
+    };
+
+    if (S.mode === "even") {
+      const base = Math.floor(total / ids.length);
+      ids.forEach((id) => { items[id] = base; });
+      give(total - base * ids.length, ids, items);
+      const rows = ids.map((id) => ({ id, items: 0, charges: 0, share: items[id], sen: sen[id] }));
+      return { kind: "ok", bill, rows, spare, errors, canPick };
+    }
+    for (const it of S.items) {
+      const who = ids.filter((id) => it.who.includes(id));
+      const base = Math.floor(prices[it.id] / who.length);
+      who.forEach((id) => { items[id] += base; });
+      give(prices[it.id] - base * who.length, who, items);
+    }
+    const ch = service + tax;
+    const eligible = ids.filter((id) => items[id] > 0);
+    let used = 0;
+    eligible.forEach((id) => { charges[id] = Math.floor((ch * items[id]) / sub); used += charges[id]; });
+    give(ch - used, eligible, charges);
+    const rows = ids.map((id) => ({ id, items: items[id], charges: charges[id], share: items[id] + charges[id], sen: sen[id] }));
+    return { kind: "ok", bill, rows, spare, errors, canPick, chargesTotal: ch };
+  }
+
+  // ---------- the ring ----------
+  const RING = $("#ring");
+  const WRAP = $("#ringWrap");
+  const CENTRE = $("#centre");
+  let prevAngles = null;
+  let tweenId = 0;
+  window.__ringIdle = true;
+
+  function pt(cx, cy, r, a) {
+    const t = ((a - 90) * Math.PI) / 180;
+    return [cx + r * Math.cos(t), cy + r * Math.sin(t)];
+  }
+  function arc(cx, cy, r, a0, a1) {
+    const sweep = a1 - a0;
+    if (sweep <= 0.001) return "";
+    const f = (n) => n.toFixed(3);
+    if (sweep >= 359.999) {
+      const [x0, y0] = pt(cx, cy, r, a0);
+      const [x1, y1] = pt(cx, cy, r, a0 + 180);
+      return `M${f(x0)} ${f(y0)}A${r} ${r} 0 1 1 ${f(x1)} ${f(y1)}A${r} ${r} 0 1 1 ${f(x0)} ${f(y0)}`;
+    }
+    const [x0, y0] = pt(cx, cy, r, a0);
+    const [x1, y1] = pt(cx, cy, r, a1);
+    return `M${f(x0)} ${f(y0)}A${r} ${r} 0 ${sweep > 180 ? 1 : 0} 1 ${f(x1)} ${f(y1)}`;
+  }
+  function geom(n) {
+    const W = Math.max(240, WRAP.clientWidth);
+    const wide = W >= 640;
+    const Ro = wide ? 134 : Math.min(112, Math.floor(W / 2) - 4);
+    const sw = wide ? 30 : 28;
+    const callouts = wide && n > 0 && n <= 6;
+    const H = callouts ? 328 : Ro * 2 + 8;
+    return { W, H, cx: W / 2, cy: H / 2, Ro, sw, r: Ro - sw / 2, ri: Ro - sw, wide, callouts };
+  }
+  // Arc length is true to each share: the visible ring (360 less the gaps) is split in proportion to the shares
+  function anglesFor(segs, total, r, gapPx) {
+    const n = segs.length;
+    const gap = n > 1 ? ((gapPx / r) * 180) / Math.PI : 0;
+    const avail = 360 - n * gap;
+    const out = {};
+    let a = gap / 2;
+    segs.forEach((row) => {
+      const sweep = (avail * row.share) / total;
+      out[row.id] = { a0: a, sw: sweep };
+      a += sweep + gap;
+    });
+    return out;
+  }
+  function focusSeg(id) {
+    if (id) RING.setAttribute("data-focus", id); else RING.removeAttribute("data-focus");
+    RING.querySelectorAll("[data-id]").forEach((n) => n.classList.toggle("on", n.getAttribute("data-id") === id));
+    document.querySelectorAll(".legend .row").forEach((n) => n.classList.toggle("on", n.getAttribute("data-id") === id));
+  }
+
+  function renderRing(R, animate) {
+    const segs = R.kind === "ok" ? R.rows.filter((row) => row.share > 0) : [];
+    const g = geom(segs.length);
+    RING.setAttribute("viewBox", `0 0 ${g.W} ${g.H}`);
+    RING.style.height = g.H + "px";
+    const title = RING.querySelector("title");
+    RING.replaceChildren(title);
+    RING.removeAttribute("data-focus");
+    const target = segs.length ? anglesFor(segs, R.bill.total, g.r, 4) : {};
+    title.textContent = segs.length
+      ? "Shares ring. " + segs.map((row) => nameOf(row.id) + " " + rm(row.share)).join(", ") + ". Total " + rm(R.bill.total) + "."
+      : "Shares ring, empty until the shares can be worked out.";
+
+    if (!segs.length) RING.append(sv("circle", { class: "ghost", cx: g.cx, cy: g.cy, r: g.r, "stroke-width": g.sw }));
+    const segG = sv("g", { class: "segs" });
+    RING.append(segG);
+    const paths = {};
+    segs.forEach((row) => {
+      const p = sv("path", {
+        class: "seg", "data-id": row.id, "data-share": row.share, "data-total": R.bill.total,
+        "stroke-width": g.sw, style: `stroke: var(${colorVar(row.id)})`,
+        onmouseenter: () => focusSeg(row.id), onmouseleave: () => focusSeg(null),
+      });
+      segG.append(p);
+      paths[row.id] = p;
+    });
+
+    // Labels: a tag inside each segment, indigo spare-sen marks inside the ring, callouts on wide screens
+    const lab = sv("g", { class: "labels" });
+    RING.append(lab);
+    const tg = tags();
+    segs.forEach((row) => {
+      const t = target[row.id];
+      const mid = t.a0 + t.sw / 2;
+      const arcLen = ((t.sw * Math.PI) / 180) * g.r;
+      if (arcLen >= 22) {
+        const [x, y] = pt(g.cx, g.cy, g.r, mid);
+        lab.append(sv("text", { class: "ini", x: x.toFixed(2), y: y.toFixed(2), "text-anchor": "middle", "dominant-baseline": "central", "aria-hidden": "true" },
+          tg[S.people.findIndex((p) => p.id === row.id)]));
+      }
+      const k = Math.min(row.sen, 3);
+      for (let j = 0; j < k; j++) {
+        const [x, y] = pt(g.cx, g.cy, g.ri - 9, mid + (j - (k - 1) / 2) * 7);
+        lab.append(sv("circle", { class: "sen-dot", cx: x.toFixed(2), cy: y.toFixed(2), r: 3.5 }));
+      }
+    });
+    if (g.callouts) {
+      const cos = segs.map((row) => {
+        const t = target[row.id];
+        const mid = t.a0 + t.sw / 2;
+        const side = mid < 180 ? 1 : -1;
+        const [px, py] = pt(g.cx, g.cy, g.Ro + 6, mid);
+        const [ex, ey] = pt(g.cx, g.cy, g.Ro + 22, mid);
+        return { row, side, px, py, ex, ey, y: ey };
+      });
+      const gapY = 50;
+      for (const side of [1, -1]) {
+        const L = cos.filter((c) => c.side === side).sort((a, b) => a.y - b.y);
+        for (let i = 1; i < L.length; i++) if (L[i].y < L[i - 1].y + gapY) L[i].y = L[i - 1].y + gapY;
+        const over = L.length ? L[L.length - 1].y - (g.H - 26) : 0;
+        if (over > 0) L.forEach((c) => { c.y -= over; });
+        if (L.length && L[0].y < 26) { const d = 26 - L[0].y; L.forEach((c) => { c.y += d; }); }
+      }
+      cos.forEach((c) => {
+        const lx = g.cx + c.side * (g.Ro + 50);
+        const anchor = c.side > 0 ? "start" : "end";
+        lab.append(sv("polyline", {
+          class: "leader", "data-id": c.row.id,
+          points: `${c.px.toFixed(1)},${c.py.toFixed(1)} ${c.ex.toFixed(1)},${c.ey.toFixed(1)} ${(lx - c.side * 8).toFixed(1)},${c.y.toFixed(1)}`,
+          style: `stroke: var(${colorVar(c.row.id)})`,
+        }));
+        const nm = sv("text", { class: "co-name", x: lx.toFixed(1), y: (c.y - 6).toFixed(1), "text-anchor": anchor, "aria-hidden": "true" });
+        const nameNode = sv("tspan", {}, nameOf(c.row.id));
+        nm.append(nameNode);
+        if (c.row.sen) nm.append(sv("tspan", { class: "co-sen", dx: 6 }, "+" + c.row.sen + " sen"));
+        lab.append(nm);
+        const limit = Math.max(80, (g.W - (g.Ro + 50) * 2) / 2 - 4);
+        while (nm.getComputedTextLength() > limit && nameNode.textContent.length > 2) {
+          nameNode.textContent = nameNode.textContent.replace(/…?$/, "").slice(0, -1) + "…";
+        }
+        lab.append(sv("text", { class: "co-amt", x: lx.toFixed(1), y: (c.y + 17).toFixed(1), "text-anchor": anchor, "aria-hidden": "true" }, rm(c.row.share)));
+      });
+    }
+
+    const from = prevAngles;
+    const draw = (e) => {
+      segs.forEach((row) => {
+        const t = target[row.id];
+        const f = from ? (from[row.id] || { a0: t.a0, sw: 0 }) : { a0: 0, sw: 0 };
+        const a0 = f.a0 + (t.a0 - f.a0) * e;
+        const sweep = f.sw + (t.sw - f.sw) * e;
+        paths[row.id].setAttribute("d", arc(g.cx, g.cy, g.r, a0, a0 + sweep));
+      });
+    };
+    const changed = !from || segs.some((row) => !from[row.id] || Math.abs(from[row.id].a0 - target[row.id].a0) > 0.01 || Math.abs(from[row.id].sw - target[row.id].sw) > 0.01);
+    const id = ++tweenId;
+    if (animate && !reduceMotion.matches && segs.length && changed && WRAP.clientWidth) {
+      window.__ringIdle = false;
+      lab.style.opacity = "0";
+      const dur = from ? 320 : 620;
+      const t0 = performance.now();
+      draw(0);
+      const step = (now) => {
+        if (id !== tweenId) return;
+        const k = Math.min(1, (now - t0) / dur);
+        draw(1 - Math.pow(1 - k, 3));
+        if (k < 1) requestAnimationFrame(step);
+        else { lab.style.opacity = ""; window.__ringIdle = true; }
+      };
+      requestAnimationFrame(step);
+    } else {
+      draw(1);
+      window.__ringIdle = true;
+    }
+    prevAngles = target;
+
+    // The centre
+    CENTRE.style.top = g.cy + "px";
+    CENTRE.style.width = Math.round(2 * g.ri - 16) + "px";
+    CENTRE.replaceChildren();
+    if (R.bill) {
+      const f = fig(R.bill.total);
+      CENTRE.append(h("span", { class: "c-label" }, "Total"),
+        h("span", { class: "c-fig" + (f.length >= 8 ? " long" : "") }, h("span", { class: "c-unit" }, "RM"), f));
+    } else {
+      CENTRE.append(h("span", { class: "c-msg" }, R.msg));
+    }
+    return target;
+  }
+
+  function glyph(id, t) {
+    const svg = sv("svg", { class: "glyph", viewBox: "0 0 36 36", "aria-hidden": "true" });
+    svg.append(sv("circle", { class: "g-track", cx: 18, cy: 18, r: 15, "stroke-width": 4 }));
+    if (t) svg.append(sv("path", { class: "g-arc", d: arc(18, 18, 15, t.a0, t.a0 + t.sw), "stroke-width": 4, style: `stroke: var(${colorVar(id)})` }));
+    svg.append(sv("text", { x: 18, y: 18.5, "text-anchor": "middle", "dominant-baseline": "central" }, tagOf(id)));
+    return svg;
+  }
+
+  // ---------- result area ----------
+  function renderLegend(R, angles) {
+    const box = $("#result");
+    box.replaceChildren();
+    if (R.kind === "empty") { box.hidden = true; return; }
+    box.hidden = false;
+    if (R.kind === "blocked") { box.append(h("p", { class: "result-msg" }, R.msg)); return; }
+    const isItem = S.mode === "item";
+    if (isItem) box.append(h("div", { class: "lhead", "aria-hidden": "true" }, h("span"), h("span", {}, "Person"), h("span", {}, "Items"), h("span", {}, "Charges"), h("span", {}, "Share")));
+    const many = !isItem && R.rows.length > 6;
+    const half = Math.ceil(R.rows.length / 2);
+    const ol = h("ol", { class: "legend " + (isItem ? "item" : "even") + (many ? " many" : ""), "aria-label": "Shares", style: many ? `--rows: ${half}` : null });
+    R.rows.forEach((row, i) => {
+      const li = h("li", { class: "row" + (many && i === half ? " col-top" : ""), "data-id": row.id, onmouseenter: () => focusSeg(row.id), onmouseleave: () => focusSeg(null) },
+        glyph(row.id, angles[row.id]),
+        h("span", { class: "nm" }, nameOf(row.id), row.sen ? h("span", { class: "sen" }, "+" + row.sen + " sen") : null),
+        isItem ? h("span", { class: "wk" },
+          h("span", { class: "sr-only" }, "Items "), h("span", { class: "it" }, rm(row.items)),
+          h("span", { class: "op", "aria-hidden": "true" }, " + "),
+          h("span", { class: "sr-only" }, ", charges "), h("span", { class: "ch" }, rm(row.charges))) : null,
+        h("span", { class: "sh" }, h("span", { class: "sr-only" }, isItem ? ", share " : ", "), rm(row.share)));
+      ol.append(li);
+    });
+    box.append(ol);
+    box.append(h("div", { class: "foot " + (isItem ? "item" : "even") },
+      h("span", { class: "g-check" }, icon("check")),
+      h("span", { class: "nm" }, "Adds up to"),
+      isItem ? h("span", { class: "wk" },
+        h("span", { class: "it" }, rm(R.bill.sub)), h("span", { class: "op", "aria-hidden": "true" }, " + "), h("span", { class: "ch" }, rm(R.chargesTotal))) : null,
+      h("span", { class: "sh" }, rm(R.bill.total))));
+  }
+
+  function renderSpare(R) {
+    const box = $("#spare");
+    box.replaceChildren();
+    if (R.kind !== "ok" || !R.spare) { box.hidden = true; return; }
+    box.hidden = false;
+    box.append(h("span", { class: "spare-count", id: "spareCount" }, R.spare + " sen left over"));
+    const ctl = h("span", { class: "spare-ctl" });
+    const oneOk = S.spare.mode === "one" && R.canPick(S.spare.one);
+    const label = S.spare.mode === "one" && oneOk ? "One person" : S.spare.mode === "random" ? "At random" : "Top of the list";
+    const btn = h("button", { class: "btn btn-chip", type: "button", id: "spareBtn", "aria-haspopup": "dialog", "aria-describedby": "spareCount", onclick: () => openSpare() },
+      label,
+      oneOk ? h("span", { class: "who-name" }, h("span", { class: "avatar xs", style: `--pc: var(${colorVar(S.spare.one)})`, "aria-hidden": "true" }, tagOf(S.spare.one)), nameOf(S.spare.one)) : null,
+      icon("caret", "ph sm"));
+    ctl.append(btn);
+    if (S.spare.mode === "random") ctl.append(h("button", { class: "btn btn-quiet", type: "button", id: "pickAgain", onclick: pickAgain }, icon("shuffle"), "Pick again"));
+    box.append(ctl);
+  }
+
+  function statusNodes() {
+    if (S.status === "ok") return [icon("check", "ph sm"), "Summary copied"];
+    if (S.status === "fail") return [icon("warning-circle", "ph sm"), "Could not copy. Your browser blocked the clipboard."];
+    return [];
+  }
+  function renderCopy(R) {
+    $("#copyRow").hidden = R.kind !== "ok";
+    for (const st of [$("#status"), $("#dockStatus")]) {
+      st.replaceChildren(...statusNodes());
+      st.className = "status" + (S.status === "fail" ? " fail" : "");
+    }
+    $("#dockCopy").disabled = R.kind !== "ok";
+  }
+
+  function renderBill(R) {
+    const box = $("#billbox");
+    const dl = $("#bill");
+    dl.replaceChildren();
+    if (!R.bill) { box.hidden = true; return; }
+    box.hidden = false;
+    const b = R.bill;
+    const line = (term, value, work, cls) => h("div", { class: cls || null }, h("dt", {}, term, work ? h("span", { class: "bw" }, work) : null), h("dd", {}, value));
+    dl.append(
+      line("Subtotal", rm(b.sub)),
+      line("Service charge", rm(b.service), pct(b.svcBp) + " of " + rm(b.sub)),
+      line("SST", rm(b.tax), pct(b.sstBp) + " of " + rm(b.sstBase)),
+      line("Total", rm(b.total), null, "tot"));
+  }
+
+  // The pinned bar: the Total (or what is missing), a live mini ring on the Shares button
+  function renderDock(R) {
+    const info = $("#dockInfo");
+    info.replaceChildren();
+    if (R.kind === "ok") {
+      info.append(h("span", { class: "d-label" }, "Total"), h("span", { class: "d-fig", id: "dockTotal" }, h("span", { class: "d-unit" }, "RM"), fig(R.bill.total)));
+    } else {
+      info.append(h("p", { class: "d-msg", id: "dockMsg" }, R.msg));
+    }
+    const svg = $("#dockRing");
+    svg.replaceChildren();
+    const c = 11, r = 8, w = 4;
+    if (R.kind !== "ok") {
+      svg.append(sv("circle", { cx: c, cy: c, r, fill: "none", stroke: "var(--line-strong)", "stroke-width": 2, "stroke-dasharray": "2 3" }));
+      return;
+    }
+    const segs = R.rows.filter((row) => row.share > 0);
+    const gap = segs.length > 1 ? Math.min(16, 120 / segs.length) : 0;
+    const avail = 360 - gap * segs.length;
+    let a = gap / 2;
+    segs.forEach((row) => {
+      const sweep = (avail * row.share) / R.bill.total;
+      svg.append(sv("path", { d: arc(c, c, r, a, a + sweep), fill: "none", "stroke-width": w, style: `stroke: var(${colorVar(row.id)})` }));
+      a += sweep + gap;
+    });
+  }
+
+  function renderFieldErrors(R) {
+    document.querySelectorAll("[data-err]").forEach((el) => {
+      const key = el.getAttribute("data-err");
+      const show = R.errors.has(key) && touched.has(key);
+      el.hidden = !show;
+      const field = document.querySelector(`[data-f="${key}"]`);
+      if (field) {
+        field.classList.toggle("invalid", show);
+        const input = field.querySelector("input");
+        if (show) input.setAttribute("aria-invalid", "true"); else input.removeAttribute("aria-invalid");
+      }
+    });
+    document.querySelectorAll(".item").forEach((el) => el.classList.toggle("needs", !!(R.open && R.open.has(el.getAttribute("data-item")))));
+  }
+
+  function renderResult(animate = true) {
+    const R = compute();
+    LAST = R;
+    const angles = renderRing(R, animate);
+    renderLegend(R, angles);
+    renderSpare(R);
+    renderCopy(R);
+    renderBill(R);
+    renderDock(R);
+    renderFieldErrors(R);
+    updFrame();
+  }
+
+  // ---------- notes ----------
+  function renderNotes() {
+    const box = $("#notes");
+    box.replaceChildren();
+    if (S.note === "save") {
+      box.append(h("div", { class: "note warn", role: "status" }, icon("warning"),
+        h("p", {}, "This bill is not being saved on this device. It will be lost when you close this tab.")));
+    }
+    if (S.note === "unread") {
+      box.append(h("div", { class: "note", role: "status" }, icon("warning-circle"),
+        h("p", {}, "Your saved bill could not be read, so a new one was started."),
+        h("button", { class: "icon-btn", type: "button", "aria-label": "Dismiss note", onclick: () => { S.note = null; renderNotes(); $("#newBill").focus(); } }, icon("x"))));
+    }
+  }
+
+  // ---------- the item frame: a fade shows there is more above or below ----------
+  function updFrame() {
+    const f = $("#ilist");
+    const w = $("#frameWrap");
+    if (!f || !w) return;
+    w.toggleAttribute("data-up", f.scrollTop > 2);
+    w.toggleAttribute("data-down", f.scrollTop + f.clientHeight < f.scrollHeight - 2);
+  }
+  const frameRO = new ResizeObserver(updFrame);
+  let freshFrame = false;   // a newly loaded bill starts its item list at the top
+
+  // ---------- editor ----------
+  const errEl = (key) => h("p", { class: "err", "data-err": key, id: "err-" + key, hidden: true }, icon("warning-circle", "ph sm"), "Enter an amount like 12.50");
+  function changed() { S.status = null; }
+
+  function renderPeople() {
+    const ul = $("#plist");
+    ul.replaceChildren();
+    const tg = tags();
+    S.people.forEach((p, i) => {
+      const input = h("input", { type: "text", maxlength: 20, placeholder: "Person " + (i + 1), "aria-label": "Person " + (i + 1) + " name", autocomplete: "off" });
+      input.value = p.name;
+      input.addEventListener("input", () => { p.name = input.value; changed(); refreshNames(); });
+      ul.append(h("li", { class: "person" },
+        h("span", { class: "avatar", style: `--pc: var(--p${p.c + 1})`, "aria-hidden": "true" }, tg[i]),
+        h("div", { class: "field" }, input,
+          h("button", { class: "icon-btn", type: "button", "aria-label": "Remove " + displayName(p, i), disabled: S.people.length <= 2, onclick: () => removePerson(p.id) }, icon("x")))));
+    });
+    $("#addPerson").disabled = S.people.length >= 12;
+  }
+  function refreshNames() {
+    const tg = tags();
+    document.querySelectorAll("#plist .person").forEach((li, i) => {
+      li.querySelector(".avatar").textContent = tg[i];
+      li.querySelector(".icon-btn").setAttribute("aria-label", "Remove " + displayName(S.people[i], i));
+    });
+    renderBillInputs();
+    renderResult(false);
+  }
+
+  function renderBillInputs() {
+    const box = $("#billInputs");
+    const old = $("#ilist");
+    const keep = old && !freshFrame ? old.scrollTop : 0;
+    freshFrame = false;
+    if (old) frameRO.unobserve(old);
+    box.replaceChildren();
+    box.classList.toggle("is-items", S.mode === "item");
+    if (S.mode === "even") {
+      box.classList.remove("items-block");
+      const input = h("input", { id: "subtotal", inputmode: "decimal", autocomplete: "off", "aria-describedby": "err-subtotal" });
+      input.value = S.subtotal;
+      input.addEventListener("input", () => { S.subtotal = input.value; touched.delete("subtotal"); changed(); renderResult(); });
+      input.addEventListener("change", () => { touched.add("subtotal"); renderResult(false); });
+      box.append(h("section", {},
+        h("label", { class: "block-title solo", for: "subtotal" }, "Subtotal", h("span", { class: "sr-only" }, " in RM")),
+        h("div", { class: "field money subtotal-field", "data-f": "subtotal" }, h("span", { class: "unit", "aria-hidden": "true" }, "RM"), input),
+        errEl("subtotal")));
+      return;
+    }
+    box.classList.add("items-block");
+    const tg = tags();
+    const ul = h("ul", { class: "frame", id: "ilist", "aria-labelledby": "h-items" });
+    S.items.forEach((it, i) => {
+      const label = it.name.trim() || "Item " + (i + 1);
+      const name = h("input", { type: "text", maxlength: 40, placeholder: "Item " + (i + 1), "aria-label": "Item " + (i + 1) + " name", autocomplete: "off" });
+      name.value = it.name;
+      name.addEventListener("input", () => { it.name = name.value; changed(); });
+      const price = h("input", { inputmode: "decimal", autocomplete: "off", "aria-label": label + " price in RM", "aria-describedby": "err-price-" + it.id });
+      price.value = it.price;
+      price.addEventListener("input", () => { it.price = price.value; touched.delete("price-" + it.id); changed(); renderResult(); });
+      price.addEventListener("change", () => { touched.add("price-" + it.id); renderResult(false); });
+      const who = h("div", { class: "who", role: "group", "aria-label": "Who had " + label });
+      S.people.forEach((p, pi) => {
+        const on = it.who.includes(p.id);
+        const tap = h("button", { class: "tap", type: "button", "aria-pressed": String(on) },
+          h("span", { class: "avatar", style: `--pc: var(--p${p.c + 1})`, "aria-hidden": "true" }, tg[pi]), displayName(p, pi));
+        tap.addEventListener("click", () => {
+          const has = it.who.includes(p.id);
+          it.who = has ? it.who.filter((x) => x !== p.id) : it.who.concat(p.id);
+          tap.setAttribute("aria-pressed", String(!has));
+          changed();
+          renderResult();
+        });
+        who.append(tap);
+      });
+      ul.append(h("li", { class: "item", "data-item": it.id },
+        h("div", { class: "item-top" },
+          h("div", { class: "field" }, name),
+          h("div", { class: "field money", "data-f": "price-" + it.id }, h("span", { class: "unit", "aria-hidden": "true" }, "RM"), price),
+          h("button", { class: "icon-btn", type: "button", "aria-label": "Remove " + label, onclick: () => removeItem(it.id) }, icon("x"))),
+        errEl("price-" + it.id),
+        who));
+    });
+    if (!S.items.length) ul.append(h("li", { class: "frame-empty" }, "Add each item from the receipt, then tap who had it."));
+    const wrap = h("div", { class: "frame-wrap", id: "frameWrap" }, ul);
+    box.append(
+      h("div", { class: "block-head" },
+        h("h2", { class: "block-title", id: "h-items" }, "Items"),
+        h("button", { class: "btn btn-quiet", type: "button", id: "addItem", disabled: S.items.length >= 50, onclick: addItem }, icon("plus"), "Add item")),
+      wrap);
+    ul.scrollTop = keep;
+    ul.addEventListener("scroll", updFrame, { passive: true });
+    frameRO.observe(ul);
+    updFrame();
+  }
+
+  function renderEditor() {
+    $("#m-even").checked = S.mode === "even";
+    $("#m-item").checked = S.mode === "item";
+    $("#svc").value = S.service;
+    $("#sst").value = S.sst;
+    renderPeople();
+    renderBillInputs();
+  }
+
+  function addPerson() {
+    if (S.people.length >= 12) return;
+    const used = new Set(S.people.map((p) => p.c));
+    let c = 0;
+    while (used.has(c)) c++;
+    S.people.push({ id: nextId("p"), name: "", c });
+    changed();
+    renderPeople();
+    renderBillInputs();
+    renderResult();
+    const inputs = document.querySelectorAll("#plist input");
+    inputs[inputs.length - 1].focus();
+  }
+  function removePerson(id) {
+    if (S.people.length <= 2) return;
+    S.people = S.people.filter((p) => p.id !== id);
+    S.items.forEach((it) => { it.who = it.who.filter((x) => x !== id); });
+    if (S.spare.one === id) S.spare = { mode: "top", one: null, perm: [] };
+    changed();
+    renderPeople();
+    renderBillInputs();
+    renderResult();
+    $("#addPerson").focus();
+  }
+  function addItem() {
+    if (S.items.length >= 50) return;
+    S.items.push({ id: nextId("i"), name: "", price: "", who: [] });
+    changed();
+    renderBillInputs();
+    renderResult();
+    const list = $("#ilist");
+    list.scrollTop = list.scrollHeight;
+    const names = document.querySelectorAll(".item-top .field:first-child input");
+    names[names.length - 1].focus();
+  }
+  function removeItem(id) {
+    S.items = S.items.filter((it) => it.id !== id);
+    changed();
+    renderBillInputs();
+    renderResult();
+    $("#addItem").focus();
+  }
+
+  // ---------- where the receipt lives: beside the inputs on desktop, in the Shares sheet on phone ----------
+  const sharesDlg = $("#sharesDlg");
+  const spareDlg = $("#spareDlg");
+  const newDlg = $("#newDlg");
+  let lastW = 0;
+  function placeReceipt() {
+    const orbit = $("#orbit");
+    if (DESK.matches) {
+      if (sharesDlg.open) sharesDlg.close();
+      if (orbit.parentElement !== $("#receiptSlot")) $("#receiptSlot").append(orbit);
+    } else if (orbit.parentElement !== $("#sheetBody")) {
+      $("#sheetBody").append(orbit);
+    }
+    lastW = WRAP.clientWidth;
+    if (LAST) { const a = renderRing(LAST, false); renderLegend(LAST, a); }
+  }
+  DESK.addEventListener("change", placeReceipt);
+
+  // ---------- popups ----------
+  let pickerOpen = false;
+  [sharesDlg, spareDlg, newDlg].forEach((dlg) => {
+    dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.querySelectorAll("[data-close]").forEach((b) => b.addEventListener("click", () => dlg.close()));
+  });
+
+  function openShares() {
+    if (DESK.matches) return;
+    sharesDlg.showModal();
+    $("#sharesBtn").setAttribute("aria-expanded", "true");
+    // The ring draws itself once the sheet has its width
+    prevAngles = null;
+    lastW = WRAP.clientWidth;
+    if (LAST) { const a = renderRing(LAST, true); renderLegend(LAST, a); }
+    sharesDlg.querySelector("[data-close]").focus();
+  }
+  sharesDlg.addEventListener("close", () => {
+    $("#sharesBtn").setAttribute("aria-expanded", "false");
+    if (!DESK.matches) $("#sharesBtn").focus();
+  });
+  $("#sharesBtn").addEventListener("click", openShares);
+
+  function placeSpare() {
+    if (!window.matchMedia("(min-width: 640px)").matches) { spareDlg.style.top = ""; spareDlg.style.left = ""; return; }
+    const btn = $("#spareBtn");
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    const w = spareDlg.offsetWidth || 340;
+    const hgt = spareDlg.offsetHeight || 300;
+    let top = r.bottom + 8;
+    if (top + hgt > window.innerHeight - 16) top = Math.max(16, r.top - 8 - hgt);
+    const left = Math.min(Math.max(16, r.right - w), window.innerWidth - w - 16);
+    spareDlg.style.top = top + "px";
+    spareDlg.style.left = left + "px";
+  }
+  function renderChoices() {
+    const R = LAST;
+    $("#spareTitle").textContent = (R && R.spare ? R.spare : 0) + " sen left over";
+    const box = $("#choices");
+    box.replaceChildren();
+    const choice = (value, label) => h("button", {
+      class: "choice", type: "button", role: "radio", "data-v": value,
+      "aria-checked": String(S.spare.mode === value && (value !== "one" || (R && R.canPick && R.canPick(S.spare.one)))),
+      "aria-expanded": value === "one" ? String(pickerOpen) : null,
+      onclick: () => choose(value),
+    }, h("span", { class: "radio", "aria-hidden": "true" }), h("span", { class: "c-txt" }, label), value === "one" ? icon("caret", "ph sm c-caret") : null);
+    box.append(choice("top", "Top of the list"), choice("one", "One person"));
+    if (pickerOpen) {
+      const pick = h("div", { class: "picker", role: "radiogroup", "aria-label": "Who pays the spare sen", id: "picker" });
+      S.people.forEach((p) => {
+        const ok = R && R.canPick ? R.canPick(p.id) : false;
+        pick.append(h("button", {
+          class: "choice", type: "button", role: "radio", "data-person": p.id, disabled: !ok,
+          "aria-checked": String(S.spare.mode === "one" && S.spare.one === p.id),
+          onclick: () => { S.spare = { mode: "one", one: p.id, perm: S.spare.perm }; changed(); spareDlg.close(); renderResult(); focusSpareBtn(); },
+        }, h("span", { class: "avatar", style: `--pc: var(${colorVar(p.id)})`, "aria-hidden": "true" }, tagOf(p.id)), h("span", { class: "c-txt" }, nameOf(p.id))));
+      });
+      box.append(pick);
+    }
+    box.append(choice("random", "At random"));
+  }
+  function focusSpareBtn() { const b = $("#spareBtn"); if (b) b.focus(); }
+  function choose(value) {
+    if (value === "one") {
+      pickerOpen = !pickerOpen;
+      renderChoices();
+      placeSpare();
+      const first = pickerOpen ? $("#picker .choice:not(:disabled)") : $('#choices [data-v="one"]');
+      if (first) first.focus();
+      return;
+    }
+    if (value === "top") S.spare = { mode: "top", one: null, perm: S.spare.perm };
+    if (value === "random") S.spare = { mode: "random", one: null, perm: shuffle(S.people.map((p) => p.id)) };
+    changed();
+    spareDlg.close();
+    renderResult();
+    focusSpareBtn();
+  }
+  function openSpare() {
+    if (!LAST || LAST.kind !== "ok" || !LAST.spare) return;
+    pickerOpen = S.spare.mode === "one";
+    renderChoices();
+    spareDlg.showModal();
+    placeSpare();
+    const cur = $('#choices .choice[aria-checked="true"]') || $("#choices .choice");
+    cur.focus();
+  }
+  function pickAgain() {
+    S.spare.perm = shuffle(S.people.map((p) => p.id));
+    changed();
+    renderResult();
+    const b = $("#pickAgain");
+    if (b) b.focus();
+  }
+  window.addEventListener("resize", () => { if (spareDlg.open) placeSpare(); });
+
+  $("#newBill").addEventListener("click", () => newDlg.showModal());
+  $("#confirmNew").addEventListener("click", () => {
+    newDlg.close();
+    load(fresh());
+    $("#newBill").focus();
+  });
+
+  // ---------- Copy summary: the 1.0 plain-text format, shares as chosen ----------
+  function summaryText(R) {
+    const b = R.bill;
+    const lines = ["Bill split",
+      `Total ${rm(b.total)} (subtotal ${rm(b.sub)}, service ${pct(b.svcBp)} ${rm(b.service)}, SST ${pct(b.sstBp)} ${rm(b.tax)})`];
+    R.rows.forEach((row) => lines.push(nameOf(row.id) + " " + rm(row.share)));
+    lines.push("Adds up to " + rm(b.total));
+    return lines.join("\n");
+  }
+  async function copySummary() {
+    const R = LAST;
+    if (!R || R.kind !== "ok") return;
+    try {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error("no clipboard");
+      await navigator.clipboard.writeText(summaryText(R));
+      S.status = "ok";
+    } catch (e) {
+      S.status = "fail";
+    }
+    renderCopy(LAST);
+  }
+  $("#copyBtn").addEventListener("click", copySummary);
+  $("#dockCopy").addEventListener("click", copySummary);
+
+  // ---------- editor wiring ----------
+  document.querySelectorAll('#mode input[name="mode"]').forEach((r) => r.addEventListener("change", () => {
+    S.mode = r.value;
+    changed();
+    renderBillInputs();
+    renderResult();
+  }));
+  $("#addPerson").addEventListener("click", addPerson);
+  [["#svc", "service"], ["#sst", "sst"]].forEach(([sel, key]) => {
+    const input = $(sel);
+    input.addEventListener("input", () => { S[key] = input.value; changed(); renderResult(); });
+  });
+
+  // The pinned bar's real height keeps the last input clear of it
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty("--dock-h", $("#dock").offsetHeight + "px");
+  }).observe($("#dock"));
+
+  // ---------- loading a state ----------
+  function load(state, opts = {}) {
+    S = state;
+    touched = new Set(opts.touched || []);
+    pickerOpen = false;
+    prevAngles = null;
+    freshFrame = true;
+    renderNotes();
+    renderEditor();
+    renderResult(opts.animate !== false);
+  }
+
+  const closeAll = () => { [spareDlg, newDlg, sharesDlg].forEach((d) => { if (d.open) d.close(); }); };
+  const PRESETS = [
+    ["K1", "K1 By item (key screen)", () => load(k1())],
+    ["K2", "K2 Even split", () => load(Object.assign(k1(), { mode: "even" }))],
+    ["P1", "P1 Spare sen choice", () => { load(k1(), { animate: false }); openShares(); openSpare(); }],
+    ["P2", "P2 Shares sheet (phone)", () => { load(k1(), { animate: false }); openShares(); }],
+    ["M1", "M1 New bill dialog", () => { load(k1(), { animate: false }); newDlg.showModal(); }],
+    ["S1", "S1 First open", () => load(fresh())],
+    ["S2", "S2 Amount error", () => load(Object.assign(k1(), { mode: "even", subtotal: "12.505" }), { touched: ["subtotal"] })],
+    ["S3", "S3 Item needs a person", () => { const s = k1(); s.items[3].who = []; load(s); }],
+    ["S4a", "S4 Summary copied", () => load(Object.assign(k1(), { status: "ok" }))],
+    ["S4b", "S4 Copy blocked", () => load(Object.assign(k1(), { status: "fail" }))],
+    ["S5", "S5 Save warning", () => load(Object.assign(k1(), { note: "save" }))],
+    ["S6", "S6 Saved bill unreadable", () => load(Object.assign(fresh(), { note: "unread" }))],
+    ["S7", "S7 12 people reached", () => {
+      const s = Object.assign(k1(), { mode: "even" });
+      for (let i = 3; i < 12; i++) s.people.push({ id: "q" + i, name: "", c: i });
+      load(s);
+    }],
+    ["W1", "W1 Large bill at 360 px", () => {
+      const s = k1();
+      s.items.push({ id: "i5", name: "Seafood platter", price: "964.50", who: ["a", "b", "c"] });
+      load(s);
+    }],
+    ["W2", "W2 Long bill, ten items", () => load(w2())],
+  ];
+  window.__loadState = (key) => { const p = PRESETS.find((x) => x[0] === key); if (p) { closeProto(); closeAll(); window.scrollTo(0, 0); p[2](); markProto(key); } };
+
+  const protoTab = $("#protoTab");
+  const protoPanel = $("#protoPanel");
+  let protoCurrent = "K1";
+  function markProto(key) {
+    protoCurrent = key;
+    document.querySelectorAll("#protoList button").forEach((b) => b.setAttribute("aria-current", String(b.getAttribute("data-k") === key)));
+  }
+  function openProto() { protoPanel.hidden = false; protoTab.setAttribute("aria-expanded", "true"); const cur = $(`#protoList [data-k="${protoCurrent}"]`); if (cur) cur.focus(); }
+  function closeProto() { protoPanel.hidden = true; protoTab.setAttribute("aria-expanded", "false"); }
+  PRESETS.forEach(([key, label]) => {
+    $("#protoList").append(h("button", { type: "button", "data-k": key, onclick: () => window.__loadState(key) }, label));
+  });
+  protoTab.addEventListener("click", () => (protoPanel.hidden ? openProto() : closeProto()));
+  $("#protoClose").addEventListener("click", () => { closeProto(); protoTab.focus(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !protoPanel.hidden && !document.querySelector("dialog[open]")) { closeProto(); protoTab.focus(); } });
+
+  // Keep the ring true to its box when the width changes
+  new ResizeObserver(() => {
+    const w = WRAP.clientWidth;
+    if (w && w !== lastW && LAST) { lastW = w; const a = renderRing(LAST, false); renderLegend(LAST, a); }
+  }).observe(WRAP);
+
+  placeReceipt();
+  load(k1());
+  markProto("K1");
+})();
+</script>
+</body>
+</html>
