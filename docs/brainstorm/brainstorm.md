@@ -123,3 +123,48 @@ history, OCR or other currencies.
 
 **Approval:** given by the orchestrator under the owner's delegation on 2026-10-08, tagged ORCH. The
 owner may reopen any row above.
+
+---
+
+## v1.1.0 delta (2026-10-10, from the owner's UAT and his answers)
+
+> Not delegated. **USER** rows are the owner's words or choices. **ORCH** rows are details the orchestrator
+> settled so design can start. They are reversible and shown to him in the design round.
+
+### Name
+**Danial's Splity Tab.** The logo and the header show "Splity Tab" only ("Logo wise, dont need danial or even
+initial D. Danial is just to make it unique."). The page title and the READMEs use the full name. (USER)
+
+### Capabilities added or changed
+| ID | Capability | What the user gets | Tag |
+|---|---|---|---|
+| C9 | Spare sen choice | When the total does not divide to the sen, a line under the shares says how many sen are left over, with three choices: top of the list (the default, the 1.0 rule), one person pays them, or at random | USER |
+| C10 | Save warning | If this browser cannot save the bill, a note says so | USER |
+| C3 | Split by item (changed) | The shares table fits a 360 px phone at any bill size | USER |
+| C0 | Look (changed) | A new look, futuristic but minimal, picked by the owner from five directions. The logo shows in the header and as the tab icon | USER |
+
+### Rules
+- **Spare sen, one choice for the whole bill.** Every leftover sen follows it: the even split's remainder, a
+  shared item's remainder, and the charges' remainder in by-item mode. (ORCH)
+- **Top of the list** keeps the 1.0 rule. **One person** gives every spare sen to the person chosen, and only
+  people with a share above zero can be chosen. **At random** gives each spare sen to a different person, picked
+  once and kept in the draft, so the shares do not jump while typing. "Pick again" draws again. (ORCH)
+- The line shows only when there are spare sen, for example "2 sen left over". The shares always add up to the
+  total, whichever choice is set. (ORCH)
+- The copied summary keeps the 1.0 format and shows the shares as chosen. (ORCH)
+- **Save warning copy:** "This bill is not being saved on this device. It will be lost when you close this tab."
+  It shows while saving fails and goes away after the next save works. It cannot be dismissed. (ORCH)
+- **One theme**, which may now be dark. A theme switcher stays a non-goal. (ORCH)
+- **Still no web fonts and no network.** Designs use system font stacks. (ORCH, the stack lock)
+
+### Future implementation (document only, not built)
+Several bills at once: `docs/future/several-bills.md`. Owner: "put this like a future implementation kind of doc." (USER)
+
+### Grill log (v1.1.0)
+| # | Question | Decision | Tag |
+|---|---|---|---|
+| 14 | What happens to leftover sen? | The user chooses: top of the list, one person, or at random | USER |
+| 15 | Where does the choice live? | A line under the shares, three choices, top of the list by default | USER |
+| 16 | How should it feel? | Futuristic but minimal, "like discord" | USER |
+| 17 | Feeling words | Owner: "Decide for me". Sharp, quick, social | ORCH |
+| 18 | Name | Danial's Splity Tab, logo without his name or initial | USER |
