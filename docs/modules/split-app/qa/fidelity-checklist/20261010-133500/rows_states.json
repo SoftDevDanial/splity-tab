@@ -1,0 +1,667 @@
+{
+ "rows": {
+  "ST-01": {
+   "390": [
+    [
+     true,
+     "error not showing while the 0 is still being typed (p.error count 0)"
+    ],
+    [
+     true,
+     "input#subtotal aria-invalid=true, aria-describedby=subtotal-error, value '0'"
+    ],
+    [
+     true,
+     "p.error#subtotal-error text 'Enter an amount like 12.50'"
+    ],
+    [
+     true,
+     "p.error comes right after div.cells (previous sibling cells/div)"
+    ],
+    [
+     true,
+     "p.error vs #s4-subtotal-error: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "margin-top 8px, text-align start (left aligned, as the specimen)"
+    ],
+    [
+     true,
+     "span.field.money (red border, 2 px inset shadow) vs the specimen's: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "border colour rgb(180, 35, 24), box-shadow rgb(180, 35, 24) 0px 0px 0px 1px inset"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "error not showing while the 0 is still being typed (p.error count 0)"
+    ],
+    [
+     true,
+     "input#subtotal aria-invalid=true, aria-describedby=subtotal-error, value '0'"
+    ],
+    [
+     true,
+     "p.error#subtotal-error text 'Enter an amount like 12.50'"
+    ],
+    [
+     true,
+     "p.error comes right after div.cells (previous sibling cells/div)"
+    ],
+    [
+     true,
+     "p.error vs #s4-subtotal-error: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "margin-top 8px, text-align start (left aligned, as the specimen)"
+    ],
+    [
+     true,
+     "span.field.money (red border, 2 px inset shadow) vs the specimen's: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "border colour rgb(180, 35, 24), box-shadow rgb(180, 35, 24) 0px 0px 0px 1px inset"
+    ]
+   ]
+  },
+  "ST-02": {
+   "390": [
+    [
+     true,
+     "p.error#price-error-i5 text 'Enter an amount like 12.50'"
+    ],
+    [
+     true,
+     "p.error is the last child of the item's div.item-line (price-error-i5)"
+    ],
+    [
+     true,
+     "p.error vs #s4-price-error: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "text-align right, margin-top 0px, grid-column 1 / 3 (spans name and price)"
+    ],
+    [
+     true,
+     "price field span.field.money vs the specimen's price field: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "price input aria-invalid=true, aria-describedby=price-error-i5"
+    ],
+    [
+     true,
+     "toggles keep their gap: [8, '8px', '8px'] (app) vs [8, '8px', '8px'] (specimen)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "p.error#price-error-i5 text 'Enter an amount like 12.50'"
+    ],
+    [
+     true,
+     "p.error is the last child of the item's div.item-line (price-error-i5)"
+    ],
+    [
+     true,
+     "p.error vs #s4-price-error: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "text-align right, margin-top 0px, grid-column 1 / 3 (spans name and price)"
+    ],
+    [
+     true,
+     "price field span.field.money vs the specimen's price field: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "price input aria-invalid=true, aria-describedby=price-error-i5"
+    ],
+    [
+     true,
+     "toggles keep their gap: [8, '8px', '8px'] (app) vs [8, '8px', '8px'] (specimen)"
+    ]
+   ]
+  },
+  "ST-03": {
+   "390": [
+    [
+     true,
+     "focused error field vs the specimen's field focused the same way: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "focused error field keeps border rgb(180, 35, 24) and inset shadow, gains outline 2px solid rgb(20, 25, 23) offset 2px"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "focused error field vs the specimen's field focused the same way: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "focused error field keeps border rgb(180, 35, 24) and inset shadow, gains outline 2px solid rgb(20, 25, 23) offset 2px"
+    ]
+   ]
+  },
+  "ST-04": {
+   "390": [
+    [
+     true,
+     "p.status text 'Summary copied', class 'status', role status"
+    ],
+    [
+     true,
+     "p.status vs the specimen: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "8 px under Copy summary, text-align center, 14px/20px 600, colour rgb(20, 25, 23)"
+    ],
+    [
+     true,
+     "clipboard recorder [1, 6] (the real clipboard is never reached)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "p.status text 'Summary copied', class 'status', role status"
+    ],
+    [
+     true,
+     "p.status vs the specimen: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "8 px under Copy summary, text-align center, 14px/20px 600, colour rgb(20, 25, 23)"
+    ],
+    [
+     true,
+     "clipboard recorder [1, 6] (the real clipboard is never reached)"
+    ]
+   ]
+  },
+  "ST-05": {
+   "390": [
+    [
+     true,
+     "p.status text 'Could not copy. Your browser blocked the clipboard.', class 'status status-failure', role status"
+    ],
+    [
+     true,
+     "p.status vs the specimen: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "8 px under Copy summary, text-align center, 14px/20px 600, colour rgb(180, 35, 24)"
+    ],
+    [
+     true,
+     "clipboard recorder [None, None] (the real clipboard is never reached)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "p.status text 'Could not copy. Your browser blocked the clipboard.', class 'status status-failure', role status"
+    ],
+    [
+     true,
+     "p.status vs the specimen: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "8 px under Copy summary, text-align center, 14px/20px 600, colour rgb(180, 35, 24)"
+    ],
+    [
+     true,
+     "clipboard recorder [None, None] (the real clipboard is never reached)"
+    ]
+   ]
+  },
+  "ST-06": {
+   "390": [
+    [
+     true,
+     "div.note-wrap > div.note[role=status] present"
+    ],
+    [
+     true,
+     "between the header and the layout: header.bar div.note-wrap main.layout"
+    ],
+    [
+     true,
+     "text 'Your saved bill could not be read, so a new one was started.'"
+    ],
+    [
+     true,
+     "button aria-label 'Dismiss note', 44 x 44"
+    ],
+    [
+     true,
+     "X icon svg vs the specimen's: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "X path data equal to the specimen's (184 characters)"
+    ],
+    [
+     true,
+     "div.note vs the specimen's .note: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "div.note p vs the specimen's: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "Dismiss note button vs the specimen's: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "wordmark h1 (app) vs the specimen's p.wordmark (allowed difference 6, the tag only): equal to the specimen on 471 computed properties"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "div.note-wrap > div.note[role=status] present"
+    ],
+    [
+     true,
+     "between the header and the layout: header.bar div.note-wrap main.layout"
+    ],
+    [
+     true,
+     "text 'Your saved bill could not be read, so a new one was started.'"
+    ],
+    [
+     true,
+     "button aria-label 'Dismiss note', 44 x 44"
+    ],
+    [
+     true,
+     "X icon svg vs the specimen's: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "X path data equal to the specimen's (184 characters)"
+    ],
+    [
+     true,
+     "div.note vs the specimen's .note: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "div.note p vs the specimen's: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "Dismiss note button vs the specimen's: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "wordmark h1 (app) vs the specimen's p.wordmark (allowed difference 6, the tag only): equal to the specimen on 471 computed properties"
+    ]
+   ]
+  },
+  "ST-07": {
+   "390": [
+    [
+     true,
+     "people Person 1/Person 1 name|Person 2/Person 2 name; removes true/Remove Person 1|true/Remove Person 2"
+    ],
+    [
+     true,
+     "panel and fields ['Enter the subtotal to see the shares.', True, '10', '6', '']"
+    ],
+    [
+     true,
+     "Person 1 remove (disabled) vs the S7 frame's: equal to the specimen on 471 computed properties"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "people Person 1/Person 1 name|Person 2/Person 2 name; removes true/Remove Person 1|true/Remove Person 2"
+    ],
+    [
+     true,
+     "panel and fields ['Enter the subtotal to see the shares.', True, '10', '6', '']"
+    ],
+    [
+     true,
+     "Person 1 remove (disabled) vs the S7 frame's: equal to the specimen on 471 computed properties"
+    ]
+   ]
+  },
+  "ST-08": {
+   "390": [
+    [
+     true,
+     "Add person disabled=True, cursor not-allowed"
+    ],
+    [
+     true,
+     "fill rgba(0, 0, 0, 0), border rgb(201, 206, 203), text rgb(154, 161, 157)"
+    ],
+    [
+     true,
+     "Add person (disabled) vs the S8 specimen (not its width): equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "plus icon of the disabled button: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "plus icon fill rgb(154, 161, 157)"
+    ],
+    [
+     true,
+     "6 rows of 2 for 12 people (expected 6), Add person in the next cell (top 428, last person row top 376)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Add person disabled=True, cursor not-allowed"
+    ],
+    [
+     true,
+     "fill rgba(0, 0, 0, 0), border rgb(201, 206, 203), text rgb(154, 161, 157)"
+    ],
+    [
+     true,
+     "Add person (disabled) vs the S8 specimen (not its width): equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "plus icon of the disabled button: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "plus icon fill rgb(154, 161, 157)"
+    ],
+    [
+     true,
+     "4 rows of 3 for 12 people (expected 4), Add person in the next cell (top 344, last person row top 292)"
+    ]
+   ]
+  },
+  "ST-09": {
+   "390": [
+    [
+     true,
+     "remove 1: disabled=True, colour rgb(154, 161, 157), cursor not-allowed, borders kept (rgb(120, 128, 124), left rgb(201, 206, 203))"
+    ],
+    [
+     true,
+     "remove 1 vs the S8 2-people specimen: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "X icon 1: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "remove 2: disabled=True, colour rgb(154, 161, 157), cursor not-allowed, borders kept (rgb(120, 128, 124), left rgb(201, 206, 203))"
+    ],
+    [
+     true,
+     "remove 2 vs the S8 2-people specimen: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "X icon 2: equal to the specimen on 471 computed properties"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "remove 1: disabled=True, colour rgb(154, 161, 157), cursor not-allowed, borders kept (rgb(120, 128, 124), left rgb(201, 206, 203))"
+    ],
+    [
+     true,
+     "remove 1 vs the S8 2-people specimen: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "X icon 1: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "remove 2: disabled=True, colour rgb(154, 161, 157), cursor not-allowed, borders kept (rgb(120, 128, 124), left rgb(201, 206, 203))"
+    ],
+    [
+     true,
+     "remove 2 vs the S8 2-people specimen: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "X icon 2: equal to the specimen on 471 computed properties"
+    ]
+   ]
+  },
+  "ST-10": {
+   "390": [
+    [
+     true,
+     "rate-service-error text 'Enter a rate from 0 to 30', last child of its cell (rate-service-error), input aria-invalid true, aria-describedby 'rate-service-error charges-hint'"
+    ],
+    [
+     true,
+     "p.error#rate-service-error vs #s4-subtotal-error: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "rate-service field border rgb(180, 35, 24), box-shadow rgb(180, 35, 24) 0px 0px 0px 1px inset"
+    ],
+    [
+     true,
+     "rate-sst-error text 'Enter a rate from 0 to 20', last child of its cell (rate-sst-error), input aria-invalid true, aria-describedby 'rate-sst-error charges-hint'"
+    ],
+    [
+     true,
+     "p.error#rate-sst-error vs #s4-subtotal-error: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "rate-sst field border rgb(180, 35, 24), box-shadow rgb(180, 35, 24) 0px 0px 0px 1px inset"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "rate-service-error text 'Enter a rate from 0 to 30', last child of its cell (rate-service-error), input aria-invalid true, aria-describedby 'rate-service-error charges-hint'"
+    ],
+    [
+     true,
+     "p.error#rate-service-error vs #s4-subtotal-error: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "rate-service field border rgb(180, 35, 24), box-shadow rgb(180, 35, 24) 0px 0px 0px 1px inset"
+    ],
+    [
+     true,
+     "rate-sst-error text 'Enter a rate from 0 to 20', last child of its cell (rate-sst-error), input aria-invalid true, aria-describedby 'rate-sst-error charges-hint'"
+    ],
+    [
+     true,
+     "p.error#rate-sst-error vs #s4-subtotal-error: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "rate-sst field border rgb(180, 35, 24), box-shadow rgb(180, 35, 24) 0px 0px 0px 1px inset"
+    ]
+   ]
+  },
+  "ST-11": {
+   "390": [
+    [
+     true,
+     "message 'Check the charges to see the shares.'"
+    ],
+    [
+     true,
+     "p.result-msg (Check the charges to see...) vs S3's p.result-msg: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "message 'Add an item to see the shares.'"
+    ],
+    [
+     true,
+     "p.result-msg (Add an item to see the s...) vs S3's p.result-msg: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "message 'Give every item a price to see the shares.'"
+    ],
+    [
+     true,
+     "p.result-msg (Give every item a price ...) vs S3's p.result-msg: equal to the specimen on 471 computed properties"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "message 'Check the charges to see the shares.'"
+    ],
+    [
+     true,
+     "p.result-msg (Check the charges to see...) vs S3's p.result-msg: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "message 'Add an item to see the shares.'"
+    ],
+    [
+     true,
+     "p.result-msg (Add an item to see the s...) vs S3's p.result-msg: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "message 'Give every item a price to see the shares.'"
+    ],
+    [
+     true,
+     "p.result-msg (Give every item a price ...) vs S3's p.result-msg: equal to the specimen on 471 computed properties"
+    ]
+   ]
+  },
+  "ST-12": {
+   "390": [
+    [
+     true,
+     "message '2 items still need a person. Tap who had each one to see the shares.'"
+    ],
+    [
+     true,
+     "plural p.result-msg vs S5's p.result-msg: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "2 lines (48 px tall at 24 px per line, S5's singular is 48)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "message '2 items still need a person. Tap who had each one to see the shares.'"
+    ],
+    [
+     true,
+     "plural p.result-msg vs S5's p.result-msg: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "2 lines (48 px tall at 24 px per line, S5's singular is 48)"
+    ]
+   ]
+  },
+  "ST-13": {
+   "390": [
+    [
+     true,
+     "50 item rows, Add item disabled=True, cursor not-allowed"
+    ],
+    [
+     true,
+     "Add item (disabled) vs the S8 specimen (not its width): equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "plus icon of the disabled Add item: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "natural width 122.781 px (the specimen button fills a cell)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "50 item rows, Add item disabled=True, cursor not-allowed"
+    ],
+    [
+     true,
+     "Add item (disabled) vs the S8 specimen (not its width): equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "plus icon of the disabled Add item: equal to the specimen on 471 computed properties"
+    ],
+    [
+     true,
+     "natural width 122.781 px (the specimen button fills a cell)"
+    ]
+   ]
+  },
+  "ST-14": {
+   "360": [
+    [
+     true,
+     "p.status 328 x 40 (two lines of 20 px), text-align center, class 'status status-failure'"
+    ],
+    [
+     true,
+     "the text wraps onto 2 lines"
+    ],
+    [
+     true,
+     "the specimen's failure status is 40 px tall at 360 as well"
+    ],
+    [
+     true,
+     "scrollWidth 360 <= innerWidth 360 (no horizontal overflow)"
+    ],
+    [
+     true,
+     "p.status at 360 vs the specimen: equal to the specimen on 471 computed properties"
+    ]
+   ]
+  },
+  "ST-15": {
+   "1280": [
+    [
+     true,
+     "div.note 1040 px wide, header content 1040, note-wrap content 1040 (1040 expected)"
+    ]
+   ]
+  }
+ },
+ "console_errors": []
+}

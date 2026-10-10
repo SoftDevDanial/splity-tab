@@ -1,0 +1,232 @@
+[
+ {
+  "pair": "bill-empty-1280x800",
+  "golden_size": [
+   1280,
+   800
+  ],
+  "candidate_size": [
+   1280,
+   800
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 0,
+  "max_channel_delta": 0,
+  "differing_box": null,
+  "golden_distinct_colours": 522,
+  "golden_sha256": "00594ae02db5ca5c",
+  "candidate_sha256": "00594ae02db5ca5c",
+  "files_byte_identical": true
+ },
+ {
+  "pair": "bill-empty-390x844",
+  "golden_size": [
+   390,
+   844
+  ],
+  "candidate_size": [
+   390,
+   844
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 0,
+  "max_channel_delta": 0,
+  "differing_box": null,
+  "golden_distinct_colours": 499,
+  "golden_sha256": "d4bf48a3819483b4",
+  "candidate_sha256": "d4bf48a3819483b4",
+  "files_byte_identical": true
+ },
+ {
+  "pair": "bill-even-1280x800",
+  "golden_size": [
+   1280,
+   800
+  ],
+  "candidate_size": [
+   1280,
+   800
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 0,
+  "max_channel_delta": 0,
+  "differing_box": null,
+  "golden_distinct_colours": 792,
+  "golden_sha256": "770a826bc035ba9d",
+  "candidate_sha256": "770a826bc035ba9d",
+  "files_byte_identical": true
+ },
+ {
+  "pair": "bill-even-390x844",
+  "golden_size": [
+   390,
+   1189
+  ],
+  "candidate_size": [
+   390,
+   1189
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 0,
+  "max_channel_delta": 0,
+  "differing_box": null,
+  "golden_distinct_colours": 775,
+  "golden_sha256": "dbf4e535c872bff1",
+  "candidate_sha256": "dbf4e535c872bff1",
+  "files_byte_identical": true
+ },
+ {
+  "pair": "bill-items-1280x800",
+  "golden_size": [
+   1280,
+   1129
+  ],
+  "candidate_size": [
+   1280,
+   1129
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 0,
+  "max_channel_delta": 0,
+  "differing_box": null,
+  "golden_distinct_colours": 915,
+  "golden_sha256": "888449368588ecb4",
+  "candidate_sha256": "888449368588ecb4",
+  "files_byte_identical": true
+ },
+ {
+  "pair": "bill-items-390x844",
+  "golden_size": [
+   390,
+   1711
+  ],
+  "candidate_size": [
+   390,
+   1711
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 0,
+  "max_channel_delta": 0,
+  "differing_box": null,
+  "golden_distinct_colours": 897,
+  "golden_sha256": "67ce9e7f4bf517ad",
+  "candidate_sha256": "67ce9e7f4bf517ad",
+  "files_byte_identical": true
+ },
+ {
+  "pair": "bill-unassigned-1280x800",
+  "golden_size": [
+   1280,
+   1129
+  ],
+  "candidate_size": [
+   1280,
+   1129
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 0,
+  "max_channel_delta": 0,
+  "differing_box": null,
+  "golden_distinct_colours": 674,
+  "golden_sha256": "c154c6d62bcdb37f",
+  "candidate_sha256": "c154c6d62bcdb37f",
+  "files_byte_identical": true
+ },
+ {
+  "pair": "bill-unassigned-390x844",
+  "golden_size": [
+   390,
+   1506
+  ],
+  "candidate_size": [
+   390,
+   1506
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 0,
+  "max_channel_delta": 0,
+  "differing_box": null,
+  "golden_distinct_colours": 651,
+  "golden_sha256": "0e368cbed5def3c3",
+  "candidate_sha256": "0e368cbed5def3c3",
+  "files_byte_identical": true
+ },
+ {
+  "pair": "new-bill-dialog-1280x800",
+  "golden_size": [
+   1280,
+   800
+  ],
+  "candidate_size": [
+   1280,
+   800
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 103,
+  "max_channel_delta": 2,
+  "differing_box": [
+   120,
+   32,
+   1159,
+   499
+  ],
+  "golden_distinct_colours": 742,
+  "golden_sha256": "0bd6e219a74dc019",
+  "candidate_sha256": "12ceee0528fdcc67",
+  "files_byte_identical": false
+ },
+ {
+  "pair": "new-bill-dialog-390x844",
+  "golden_size": [
+   390,
+   844
+  ],
+  "candidate_size": [
+   390,
+   844
+  ],
+  "same_size": true,
+  "harness_mismatch_pixels": 0,
+  "harness_threshold": 0.01,
+  "dimensions_match": true,
+  "pixels_differing_at_any_level": 141,
+  "max_channel_delta": 2,
+  "differing_box": [
+   16,
+   305,
+   373,
+   538
+  ],
+  "golden_distinct_colours": 593,
+  "golden_sha256": "71db3d4ad3134b95",
+  "candidate_sha256": "05ea03469af8a970",
+  "files_byte_identical": false
+ }
+]

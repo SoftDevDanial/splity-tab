@@ -1,0 +1,187 @@
+[
+ {
+  "viewport": "360x780",
+  "static_golden_vs_app_real_click": {
+   "any_level": 102,
+   "max_delta": 2,
+   "box": [
+    41,
+    390,
+    318,
+    493
+   ]
+  },
+  "native_golden_vs_app_real_click": {
+   "any_level": 0,
+   "max_delta": 0,
+   "box": null
+  },
+  "native_golden_vs_app_harness_setup": {
+   "any_level": 0,
+   "max_delta": 0,
+   "box": null
+  },
+  "static_golden_vs_native_golden": {
+   "any_level": 102,
+   "max_delta": 2,
+   "box": [
+    41,
+    390,
+    318,
+    493
+   ]
+  }
+ },
+ {
+  "viewport": "390x844",
+  "static_golden_vs_app_real_click": {
+   "any_level": 95,
+   "max_delta": 2,
+   "box": [
+    41,
+    410,
+    348,
+    513
+   ]
+  },
+  "native_golden_vs_app_real_click": {
+   "any_level": 0,
+   "max_delta": 0,
+   "box": null
+  },
+  "native_golden_vs_app_harness_setup": {
+   "any_level": 0,
+   "max_delta": 0,
+   "box": null
+  },
+  "static_golden_vs_native_golden": {
+   "any_level": 95,
+   "max_delta": 2,
+   "box": [
+    41,
+    410,
+    348,
+    513
+   ]
+  }
+ },
+ {
+  "viewport": "600x900",
+  "static_golden_vs_app_real_click": {
+   "any_level": 88,
+   "max_delta": 2,
+   "box": [
+    256,
+    466,
+    474,
+    513
+   ]
+  },
+  "native_golden_vs_app_real_click": {
+   "any_level": 0,
+   "max_delta": 0,
+   "box": null
+  },
+  "native_golden_vs_app_harness_setup": {
+   "any_level": 0,
+   "max_delta": 0,
+   "box": null
+  },
+  "static_golden_vs_native_golden": {
+   "any_level": 88,
+   "max_delta": 2,
+   "box": [
+    256,
+    466,
+    474,
+    513
+   ]
+  }
+ },
+ {
+  "viewport": "1024x768",
+  "static_golden_vs_app_real_click": {
+   "any_level": 91,
+   "max_delta": 2,
+   "box": [
+    32,
+    138,
+    685,
+    499
+   ]
+  },
+  "native_golden_vs_app_real_click": {
+   "any_level": 27,
+   "max_delta": 1,
+   "box": [
+    32,
+    138,
+    33,
+    499
+   ]
+  },
+  "native_golden_vs_app_harness_setup": {
+   "any_level": 27,
+   "max_delta": 1,
+   "box": [
+    32,
+    138,
+    33,
+    499
+   ]
+  },
+  "static_golden_vs_native_golden": {
+   "any_level": 64,
+   "max_delta": 2,
+   "box": [
+    468,
+    400,
+    685,
+    447
+   ]
+  }
+ },
+ {
+  "viewport": "1280x800",
+  "static_golden_vs_app_real_click": {
+   "any_level": 81,
+   "max_delta": 2,
+   "box": [
+    120,
+    138,
+    814,
+    499
+   ]
+  },
+  "native_golden_vs_app_real_click": {
+   "any_level": 27,
+   "max_delta": 1,
+   "box": [
+    120,
+    138,
+    121,
+    499
+   ]
+  },
+  "native_golden_vs_app_harness_setup": {
+   "any_level": 27,
+   "max_delta": 1,
+   "box": [
+    120,
+    138,
+    121,
+    499
+   ]
+  },
+  "static_golden_vs_native_golden": {
+   "any_level": 54,
+   "max_delta": 2,
+   "box": [
+    723,
+    416,
+    814,
+    463
+   ]
+  }
+ }
+]

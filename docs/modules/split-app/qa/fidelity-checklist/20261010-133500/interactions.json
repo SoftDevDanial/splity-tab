@@ -1,0 +1,437 @@
+{
+ "rows": {
+  "IX-01": {
+   "390": [
+    [
+     true,
+     "bill-items hover New bill (outline button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover Add person (outline button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover Add item (outline button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "bill-items hover New bill (outline button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover Add person (outline button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover Add item (outline button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ]
+  },
+  "IX-02": {
+   "390": [
+    [
+     true,
+     "bill-items hover Copy summary (primary button): matches :hover=True, bg rgb(42, 48, 45), colour rgb(243, 245, 244); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "bill-items hover Copy summary (primary button): matches :hover=True, bg rgb(42, 48, 45), colour rgb(243, 245, 244); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ]
+  },
+  "IX-03": {
+   "390": [
+    [
+     true,
+     "bill-items hover Person remove (icon button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover Item remove (icon button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "bill-items hover Person remove (icon button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover Item remove (icon button): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ]
+  },
+  "IX-04": {
+   "390": [
+    [
+     true,
+     "bill-items hover toggle off (Ben): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover toggle on (Aisyah): matches :hover=True, bg rgb(20, 25, 23), colour rgb(243, 245, 244); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "bill-items hover toggle off (Ben): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover toggle on (Aisyah): matches :hover=True, bg rgb(20, 25, 23), colour rgb(243, 245, 244); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ]
+  },
+  "IX-05": {
+   "390": [
+    [
+     true,
+     "bill-items hover mode label, unchecked (Even): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover mode label, checked (By item): matches :hover=True, bg rgb(20, 25, 23), colour rgb(243, 245, 244); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "bill-items hover mode label, unchecked (Even): matches :hover=True, bg rgb(227, 231, 228), colour rgb(20, 25, 23); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-items hover mode label, checked (By item): matches :hover=True, bg rgb(20, 25, 23), colour rgb(243, 245, 244); whole page equal to the golden under the same hover (174 elements, 0 differences)"
+    ]
+   ]
+  },
+  "IX-06": {
+   "390": [
+    [
+     true,
+     "bill-empty hover disabled person remove (no hover): matches :hover=True, bg rgba(0, 0, 0, 0), colour rgb(154, 161, 157); whole page equal to the golden under the same hover (57 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-empty hover disabled person remove 2 (no hover): matches :hover=True, bg rgba(0, 0, 0, 0), colour rgb(154, 161, 157); whole page equal to the golden under the same hover (57 elements, 0 differences)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "bill-empty hover disabled person remove (no hover): matches :hover=True, bg rgba(0, 0, 0, 0), colour rgb(154, 161, 157); whole page equal to the golden under the same hover (57 elements, 0 differences)"
+    ],
+    [
+     true,
+     "bill-empty hover disabled person remove 2 (no hover): matches :hover=True, bg rgba(0, 0, 0, 0), colour rgb(154, 161, 157); whole page equal to the golden under the same hover (57 elements, 0 differences)"
+    ]
+   ]
+  },
+  "IX-07": {
+   "390": [
+    [
+     true,
+     "pressed New bill: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "New bill: releasing the press away from the control changed nothing (draft unchanged)"
+    ],
+    [
+     true,
+     "pressed Add person: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "Add person: releasing the press away from the control changed nothing (draft unchanged)"
+    ],
+    [
+     true,
+     "pressed Copy summary: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "Copy summary: releasing the press away from the control changed nothing (draft unchanged)"
+    ],
+    [
+     true,
+     "pressed person remove: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "person remove: releasing the press away from the control changed nothing (draft unchanged)"
+    ],
+    [
+     true,
+     "pressed toggle: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "toggle: releasing the press away from the control changed nothing (draft unchanged)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "pressed New bill: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "New bill: releasing the press away from the control changed nothing (draft unchanged)"
+    ],
+    [
+     true,
+     "pressed Add person: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "Add person: releasing the press away from the control changed nothing (draft unchanged)"
+    ],
+    [
+     true,
+     "pressed Copy summary: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "Copy summary: releasing the press away from the control changed nothing (draft unchanged)"
+    ],
+    [
+     true,
+     "pressed person remove: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "person remove: releasing the press away from the control changed nothing (draft unchanged)"
+    ],
+    [
+     true,
+     "pressed toggle: transform matrix(1, 0, 0, 1, 0, 1) (1 px down); whole page equal to the golden under the same press (174 elements, 0 differences)"
+    ],
+    [
+     true,
+     "toggle: releasing the press away from the control changed nothing (draft unchanged)"
+    ]
+   ]
+  },
+  "IX-08": {
+   "390": [
+    [
+     true,
+     "pressed disabled remove: transform none (no shift); whole page equal to the golden (57 elements, 0 differences)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "pressed disabled remove: transform none (no shift); whole page equal to the golden (57 elements, 0 differences)"
+    ]
+   ]
+  },
+  "IX-09": {
+   "390": [
+    [
+     true,
+     "bill-items: 37 Tab stops, the whole page equal to the golden after every stop (0 differences)"
+    ],
+    [
+     true,
+     "bill-items: Tab order equal to the golden's (37 stops: button[New bill] > input[Person 1 name] > button[Remove Aisyah] > input[Person 2 name] > button[Remove Ben] > input[Person 3 name] > button[Remove Chen] > button[Add person] > input#mode-item[mode](checked) > input[Item 1 name] > input[Item 1 price in RM] > button[Remove Nasi lemak ayam] > button[Aisyah] > button[Ben] > button[Chen] > input[Item 2 name] > input[Item 2 price in RM] > button[Remove Char kuey teow] > button[Aisyah] > button[Ben] > button[Chen] > input[Item 3 name] > input[Item 3 price in RM] > button[Remove Mee goreng mamak] > button[Aisyah] > button[Ben] > button[Chen] > input[Item 4 name] > input[Item 4 price in RM] > button[Remove Satay, 10 sticks] > button[Aisyah] > button[Ben] > button[Chen] > button[Add item] > input#rate-service[] > input#rate-sst[] > button[Copy summary])"
+    ],
+    [
+     true,
+     "bill-items: every stop shows the system ring on the right element (2 px solid ink, 2 px offset; on the field wrapper for inputs; inset -3 px on the person Remove; outer ring plus the 3 px field and 2 px ink double ring on the mode switch)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "bill-items: 37 Tab stops, the whole page equal to the golden after every stop (0 differences)"
+    ],
+    [
+     true,
+     "bill-items: Tab order equal to the golden's (37 stops: button[New bill] > input[Person 1 name] > button[Remove Aisyah] > input[Person 2 name] > button[Remove Ben] > input[Person 3 name] > button[Remove Chen] > button[Add person] > input#mode-item[mode](checked) > input[Item 1 name] > input[Item 1 price in RM] > button[Remove Nasi lemak ayam] > button[Aisyah] > button[Ben] > button[Chen] > input[Item 2 name] > input[Item 2 price in RM] > button[Remove Char kuey teow] > button[Aisyah] > button[Ben] > button[Chen] > input[Item 3 name] > input[Item 3 price in RM] > button[Remove Mee goreng mamak] > button[Aisyah] > button[Ben] > button[Chen] > input[Item 4 name] > input[Item 4 price in RM] > button[Remove Satay, 10 sticks] > button[Aisyah] > button[Ben] > button[Chen] > button[Add item] > input#rate-service[] > input#rate-sst[] > button[Copy summary])"
+    ],
+    [
+     true,
+     "bill-items: every stop shows the system ring on the right element (2 px solid ink, 2 px offset; on the field wrapper for inputs; inset -3 px on the person Remove; outer ring plus the 3 px field and 2 px ink double ring on the mode switch)"
+    ]
+   ]
+  },
+  "IX-10": {
+   "390": [
+    [
+     true,
+     "bill-even: 13 Tab stops, the whole page equal to the golden after every stop (0 differences)"
+    ],
+    [
+     true,
+     "bill-even: Tab order equal to the golden's (13 stops: button[New bill] > input[Person 1 name] > button[Remove Aisyah] > input[Person 2 name] > button[Remove Ben] > input[Person 3 name] > button[Remove Chen] > button[Add person] > input#mode-even[mode](checked) > input#subtotal[] > input#rate-service[] > input#rate-sst[] > button[Copy summary])"
+    ],
+    [
+     true,
+     "bill-even: every stop shows the system ring on the right element (2 px solid ink, 2 px offset; on the field wrapper for inputs; inset -3 px on the person Remove; outer ring plus the 3 px field and 2 px ink double ring on the mode switch)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "bill-even: 13 Tab stops, the whole page equal to the golden after every stop (0 differences)"
+    ],
+    [
+     true,
+     "bill-even: Tab order equal to the golden's (13 stops: button[New bill] > input[Person 1 name] > button[Remove Aisyah] > input[Person 2 name] > button[Remove Ben] > input[Person 3 name] > button[Remove Chen] > button[Add person] > input#mode-even[mode](checked) > input#subtotal[] > input#rate-service[] > input#rate-sst[] > button[Copy summary])"
+    ],
+    [
+     true,
+     "bill-even: every stop shows the system ring on the right element (2 px solid ink, 2 px offset; on the field wrapper for inputs; inset -3 px on the person Remove; outer ring plus the 3 px field and 2 px ink double ring on the mode switch)"
+    ]
+   ]
+  },
+  "IX-11": {
+   "390": [
+    [
+     true,
+     "bill-empty: 8 Tab stops, the whole page equal to the golden after every stop (0 differences)"
+    ],
+    [
+     true,
+     "bill-empty: Tab order equal to the golden's (8 stops: button[New bill] > input[Person 1 name] > input[Person 2 name] > button[Add person] > input#mode-even[mode](checked) > input#subtotal[] > input#rate-service[] > input#rate-sst[])"
+    ],
+    [
+     true,
+     "bill-empty: every stop shows the system ring on the right element (2 px solid ink, 2 px offset; on the field wrapper for inputs; inset -3 px on the person Remove; outer ring plus the 3 px field and 2 px ink double ring on the mode switch)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "bill-empty: 8 Tab stops, the whole page equal to the golden after every stop (0 differences)"
+    ],
+    [
+     true,
+     "bill-empty: Tab order equal to the golden's (8 stops: button[New bill] > input[Person 1 name] > input[Person 2 name] > button[Add person] > input#mode-even[mode](checked) > input#subtotal[] > input#rate-service[] > input#rate-sst[])"
+    ],
+    [
+     true,
+     "bill-empty: every stop shows the system ring on the right element (2 px solid ink, 2 px offset; on the field wrapper for inputs; inset -3 px on the person Remove; outer ring plus the 3 px field and 2 px ink double ring on the mode switch)"
+    ]
+   ]
+  },
+  "IX-12": {
+   "390": [
+    [
+     true,
+     "empty name field: placeholder 'Person 2' in rgb(74, 82, 78) at opacity 1 (ink muted, opacity 1, as system.css)"
+    ],
+    [
+     true,
+     "blank name shows Person 2 elsewhere (Remove Person 2 button named)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "empty name field: placeholder 'Person 2' in rgb(74, 82, 78) at opacity 1 (ink muted, opacity 1, as system.css)"
+    ],
+    [
+     true,
+     "blank name shows Person 2 elsewhere (Remove Person 2 button named)"
+    ]
+   ]
+  },
+  "IX-13": {
+   "390": [
+    [
+     true,
+     "prefers-reduced-motion no-preference: transition-duration 0.12s, 0.12s on buttons, toggles, icon buttons and mode labels, equal to the golden: .btn 0.12s, 0.12s (background-color, color); button.copy 0.12s, 0.12s (background-color, color); .icon-btn 0.12s, 0.12s (background-color, color); .tap 0.12s, 0.12s (background-color, color); label[for=mode-even] 0.12s, 0.12s (background-color, color)"
+    ],
+    [
+     true,
+     "prefers-reduced-motion reduce: transition-duration 0s on buttons, toggles, icon buttons and mode labels, equal to the golden: .btn 0s (all); button.copy 0s (all); .icon-btn 0s (all); .tap 0s (all); label[for=mode-even] 0s (all)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "prefers-reduced-motion no-preference: transition-duration 0.12s, 0.12s on buttons, toggles, icon buttons and mode labels, equal to the golden: .btn 0.12s, 0.12s (background-color, color); button.copy 0.12s, 0.12s (background-color, color); .icon-btn 0.12s, 0.12s (background-color, color); .tap 0.12s, 0.12s (background-color, color); label[for=mode-even] 0.12s, 0.12s (background-color, color)"
+    ],
+    [
+     true,
+     "prefers-reduced-motion reduce: transition-duration 0s on buttons, toggles, icon buttons and mode labels, equal to the golden: .btn 0s (all); button.copy 0s (all); .icon-btn 0s (all); .tap 0s (all); label[for=mode-even] 0s (all)"
+    ]
+   ]
+  },
+  "IX-14": {
+   "390": [
+    [
+     true,
+     "colour scheme dark: body rgb(238, 240, 238) (one light theme, no dark mode), whole page equal to the golden (174 elements, 0 differences)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "colour scheme dark: body rgb(238, 240, 238) (one light theme, no dark mode), whole page equal to the golden (174 elements, 0 differences)"
+    ]
+   ]
+  },
+  "IX-15": {
+   "390": [
+    [
+     true,
+     "keyboard open: Cancel focused=True, :focus-visible=True, outline 2px solid rgb(20, 25, 23) offset 2px"
+    ],
+    [
+     true,
+     "Tab from Cancel: Start new bill focused=True, ring 2px solid offset 2px"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "keyboard open: Cancel focused=True, :focus-visible=True, outline 2px solid rgb(20, 25, 23) offset 2px"
+    ],
+    [
+     true,
+     "Tab from Cancel: Start new bill focused=True, ring 2px solid offset 2px"
+    ]
+   ]
+  },
+  "IX-16": {
+   "390": [
+    [
+     true,
+     "Start new bill hover: fill rgb(42, 48, 45), border rgb(42, 48, 45) (ink hover)"
+    ],
+    [
+     true,
+     "Cancel hover: fill rgb(227, 231, 228) (hover fill)"
+    ],
+    [
+     true,
+     "golden dialog buttons give the same hover fills (rgb(42, 48, 45), rgb(227, 231, 228))"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Start new bill hover: fill rgb(42, 48, 45), border rgb(42, 48, 45) (ink hover)"
+    ],
+    [
+     true,
+     "Cancel hover: fill rgb(227, 231, 228) (hover fill)"
+    ],
+    [
+     true,
+     "golden dialog buttons give the same hover fills (rgb(42, 48, 45), rgb(227, 231, 228))"
+    ]
+   ]
+  }
+ },
+ "console_errors": []
+}

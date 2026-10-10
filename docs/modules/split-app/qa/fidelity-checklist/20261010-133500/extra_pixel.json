@@ -1,0 +1,257 @@
+[
+ {
+  "viewport": "360x780",
+  "screen": "bill-empty",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   360,
+   780
+  ],
+  "candidate_size": [
+   360,
+   780
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "360x780",
+  "screen": "bill-even",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   360,
+   1189
+  ],
+  "candidate_size": [
+   360,
+   1189
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "360x780",
+  "screen": "bill-items",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   360,
+   1711
+  ],
+  "candidate_size": [
+   360,
+   1711
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "360x780",
+  "screen": "bill-unassigned",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   360,
+   1506
+  ],
+  "candidate_size": [
+   360,
+   1506
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "360x780",
+  "screen": "new-bill-dialog",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   360,
+   780
+  ],
+  "candidate_size": [
+   360,
+   780
+  ],
+  "any_level_pixels": 127,
+  "max_channel_delta": 2
+ },
+ {
+  "viewport": "600x900",
+  "screen": "bill-empty",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   600,
+   900
+  ],
+  "candidate_size": [
+   600,
+   900
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "600x900",
+  "screen": "bill-even",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   600,
+   1200
+  ],
+  "candidate_size": [
+   600,
+   1200
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "600x900",
+  "screen": "bill-items",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   600,
+   1722
+  ],
+  "candidate_size": [
+   600,
+   1722
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "600x900",
+  "screen": "bill-unassigned",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   600,
+   1493
+  ],
+  "candidate_size": [
+   600,
+   1493
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "600x900",
+  "screen": "new-bill-dialog",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   600,
+   900
+  ],
+  "candidate_size": [
+   600,
+   900
+  ],
+  "any_level_pixels": 101,
+  "max_channel_delta": 2
+ },
+ {
+  "viewport": "1024x768",
+  "screen": "bill-empty",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   1024,
+   768
+  ],
+  "candidate_size": [
+   1024,
+   768
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "1024x768",
+  "screen": "bill-even",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   1024,
+   768
+  ],
+  "candidate_size": [
+   1024,
+   768
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "1024x768",
+  "screen": "bill-items",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   1024,
+   1129
+  ],
+  "candidate_size": [
+   1024,
+   1129
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "1024x768",
+  "screen": "bill-unassigned",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   1024,
+   1129
+  ],
+  "candidate_size": [
+   1024,
+   1129
+  ],
+  "any_level_pixels": 0,
+  "max_channel_delta": 0
+ },
+ {
+  "viewport": "1024x768",
+  "screen": "new-bill-dialog",
+  "exit": 0,
+  "harness_mismatch_pixels": 0,
+  "dimensions_match": true,
+  "golden_size": [
+   1024,
+   768
+  ],
+  "candidate_size": [
+   1024,
+   768
+  ],
+  "any_level_pixels": 113,
+  "max_channel_delta": 2
+ }
+]

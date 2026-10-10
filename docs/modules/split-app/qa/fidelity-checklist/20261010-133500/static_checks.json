@@ -1,0 +1,4120 @@
+{
+ "css": {
+  "src_equals_system_plus_hidden_rule": true,
+  "src_bytes": 18142,
+  "system_bytes": 18102,
+  "goldens": {
+   "bill-empty": {
+    "style_blocks": 1,
+    "first_block_equals_system_css": true,
+    "first_block_equals_system_css_exactly": true
+   },
+   "bill-even": {
+    "style_blocks": 1,
+    "first_block_equals_system_css": true,
+    "first_block_equals_system_css_exactly": true
+   },
+   "bill-items": {
+    "style_blocks": 1,
+    "first_block_equals_system_css": true,
+    "first_block_equals_system_css_exactly": true
+   },
+   "bill-unassigned": {
+    "style_blocks": 1,
+    "first_block_equals_system_css": true,
+    "first_block_equals_system_css_exactly": true
+   },
+   "new-bill-dialog": {
+    "style_blocks": 1,
+    "first_block_equals_system_css": true,
+    "first_block_equals_system_css_exactly": true
+   },
+   "states": {
+    "style_blocks": 2,
+    "first_block_equals_system_css": true,
+    "first_block_equals_system_css_exactly": true
+   }
+  },
+  "index_has_inline_style_or_script": false
+ },
+ "document": [
+  {
+   "screen": "bill-empty",
+   "viewport": "390x844",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  },
+  {
+   "screen": "bill-empty",
+   "viewport": "1280x800",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  },
+  {
+   "screen": "bill-even",
+   "viewport": "390x844",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  },
+  {
+   "screen": "bill-even",
+   "viewport": "1280x800",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  },
+  {
+   "screen": "bill-items",
+   "viewport": "390x844",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  },
+  {
+   "screen": "bill-items",
+   "viewport": "1280x800",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  },
+  {
+   "screen": "bill-unassigned",
+   "viewport": "390x844",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  },
+  {
+   "screen": "bill-unassigned",
+   "viewport": "1280x800",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  },
+  {
+   "screen": "new-bill-dialog",
+   "viewport": "390x844",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  },
+  {
+   "screen": "new-bill-dialog",
+   "viewport": "1280x800",
+   "document_golden": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_app": {
+    "title": "Split",
+    "lang": "en",
+    "mode": "CSS1Compat",
+    "viewport": "width=device-width, initial-scale=1",
+    "charset": "UTF-8",
+    "doctype": "html"
+   },
+   "document_equal": true,
+   "html_style_diffs": {},
+   "html_properties_compared": 544,
+   "body_style_diffs": {},
+   "body_properties_compared": 544,
+   "root_custom_properties": 59,
+   "root_custom_properties_equal": true
+  }
+ ],
+ "icons": {
+  "specimen_distinct_paths": 3,
+  "bill_items_distinct_paths": 4,
+  "rows": [
+   {
+    "screen": "bill-empty",
+    "viewport": "390x844",
+    "icons_golden": 3,
+    "icons_app": 3,
+    "equal": true,
+    "distinct_paths_app": 2,
+    "all_paths_in_golden_sets": true
+   },
+   {
+    "screen": "bill-empty",
+    "viewport": "1280x800",
+    "icons_golden": 3,
+    "icons_app": 3,
+    "equal": true,
+    "distinct_paths_app": 2,
+    "all_paths_in_golden_sets": true
+   },
+   {
+    "screen": "bill-even",
+    "viewport": "390x844",
+    "icons_golden": 6,
+    "icons_app": 6,
+    "equal": true,
+    "distinct_paths_app": 4,
+    "all_paths_in_golden_sets": true
+   },
+   {
+    "screen": "bill-even",
+    "viewport": "1280x800",
+    "icons_golden": 6,
+    "icons_app": 6,
+    "equal": true,
+    "distinct_paths_app": 4,
+    "all_paths_in_golden_sets": true
+   },
+   {
+    "screen": "bill-items",
+    "viewport": "390x844",
+    "icons_golden": 11,
+    "icons_app": 11,
+    "equal": true,
+    "distinct_paths_app": 4,
+    "all_paths_in_golden_sets": true
+   },
+   {
+    "screen": "bill-items",
+    "viewport": "1280x800",
+    "icons_golden": 11,
+    "icons_app": 11,
+    "equal": true,
+    "distinct_paths_app": 4,
+    "all_paths_in_golden_sets": true
+   },
+   {
+    "screen": "bill-unassigned",
+    "viewport": "390x844",
+    "icons_golden": 9,
+    "icons_app": 9,
+    "equal": true,
+    "distinct_paths_app": 2,
+    "all_paths_in_golden_sets": true
+   },
+   {
+    "screen": "bill-unassigned",
+    "viewport": "1280x800",
+    "icons_golden": 9,
+    "icons_app": 9,
+    "equal": true,
+    "distinct_paths_app": 2,
+    "all_paths_in_golden_sets": true
+   },
+   {
+    "screen": "new-bill-dialog",
+    "viewport": "390x844",
+    "icons_golden": 6,
+    "icons_app": 6,
+    "equal": true,
+    "distinct_paths_app": 4,
+    "all_paths_in_golden_sets": true
+   },
+   {
+    "screen": "new-bill-dialog",
+    "viewport": "1280x800",
+    "icons_golden": 6,
+    "icons_app": 6,
+    "equal": true,
+    "distinct_paths_app": 4,
+    "all_paths_in_golden_sets": true
+   }
+  ]
+ },
+ "layouts": [
+  {
+   "screen": "bill-empty",
+   "viewport": "360x780",
+   "app": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 780,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     641
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     360,
+     103
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     160,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 780,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     641
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     360,
+     103
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     160,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-empty",
+   "viewport": "390x844",
+   "app": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 844,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     641
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     390,
+     103
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     175,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 844,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     641
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     390,
+     103
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     175,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-empty",
+   "viewport": "599x900",
+   "app": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 900,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     589
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     414
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 494,
+    "tape": [
+     0,
+     526,
+     599,
+     103
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     290,
+     183.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 900,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     589
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     414
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 494,
+    "tape": [
+     0,
+     526,
+     599,
+     103
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     290,
+     183.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-empty",
+   "viewport": "600x900",
+   "app": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 900,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     592
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     414
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 502,
+    "tape": [
+     36,
+     534,
+     528,
+     106
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     36,
+     298,
+     170.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 900,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     592
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     414
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 502,
+    "tape": [
+     36,
+     534,
+     528,
+     106
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     36,
+     298,
+     170.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-empty",
+   "viewport": "1023x768",
+   "app": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 768,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     592
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     414
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 502,
+    "tape": [
+     247.5,
+     534,
+     528,
+     106
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     247.5,
+     298,
+     170.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 768,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     592
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     414
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 502,
+    "tape": [
+     247.5,
+     534,
+     528,
+     106
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     247.5,
+     298,
+     170.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-empty",
+   "viewport": "1024x768",
+   "app": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 768,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     502
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     438
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 514,
+    "tape": [
+     572,
+     100,
+     420,
+     106
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     32,
+     310,
+     153.33,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 768,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     502
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     438
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 514,
+    "tape": [
+     572,
+     100,
+     420,
+     106
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     32,
+     310,
+     153.33,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-empty",
+   "viewport": "1280x800",
+   "app": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 800,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     502
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     438
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 514,
+    "tape": [
+     740,
+     100,
+     420,
+     106
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     120,
+     310,
+     180,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 800,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     502
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     438
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     44
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 514,
+    "tape": [
+     740,
+     100,
+     420,
+     106
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     120,
+     310,
+     180,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-even",
+   "viewport": "360x780",
+   "app": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 1189,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     360,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     160,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 1189,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     360,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     160,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-even",
+   "viewport": "390x844",
+   "app": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 1189,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     390,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     175,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 1189,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     390,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     175,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-even",
+   "viewport": "599x900",
+   "app": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 1189,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     599,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     183.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 1189,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     599,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     183.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-even",
+   "viewport": "600x900",
+   "app": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 1200,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     1111.89
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     466
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 554,
+    "tape": [
+     36,
+     586,
+     528,
+     573.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     36,
+     350,
+     170.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 1200,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     1111.89
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     466
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 554,
+    "tape": [
+     36,
+     586,
+     528,
+     573.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     36,
+     350,
+     170.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-even",
+   "viewport": "1023x768",
+   "app": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 1200,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     1111.89
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     466
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 554,
+    "tape": [
+     247.5,
+     586,
+     528,
+     573.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     247.5,
+     350,
+     170.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 1200,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     1111.89
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     466
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 554,
+    "tape": [
+     247.5,
+     586,
+     528,
+     573.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     247.5,
+     350,
+     170.66,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-even",
+   "viewport": "1024x768",
+   "app": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 768,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     661.89
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     490
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 566,
+    "tape": [
+     572,
+     100,
+     420,
+     573.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     32,
+     362,
+     153.33,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 768,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     661.89
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     490
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 566,
+    "tape": [
+     572,
+     100,
+     420,
+     573.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     32,
+     362,
+     153.33,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-even",
+   "viewport": "1280x800",
+   "app": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 800,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     661.89
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     490
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 566,
+    "tape": [
+     740,
+     100,
+     420,
+     573.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     120,
+     362,
+     180,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 800,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     661.89
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     490
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 566,
+    "tape": [
+     740,
+     100,
+     420,
+     573.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     120,
+     362,
+     180,
+     44
+    ],
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-items",
+   "viewport": "360x780",
+   "app": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 1711,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     1630.89
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     360,
+     593.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     196,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 1711,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     1630.89
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     360,
+     593.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     196,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-items",
+   "viewport": "390x844",
+   "app": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 1711,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     1630.89
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     390,
+     593.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     226,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 1711,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     1630.89
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     390,
+     593.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     226,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-items",
+   "viewport": "599x900",
+   "app": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 1711,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     1630.89
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     599,
+     593.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     435,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 1711,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     1630.89
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     599,
+     593.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     435,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-items",
+   "viewport": "600x900",
+   "app": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 1722,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     1633.89
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     965
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1053,
+    "tape": [
+     36,
+     1085,
+     528,
+     596.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     392,
+     350,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 1722,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     1633.89
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     965
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1053,
+    "tape": [
+     36,
+     1085,
+     528,
+     596.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     392,
+     350,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-items",
+   "viewport": "1023x768",
+   "app": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 1722,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     1633.89
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     965
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1053,
+    "tape": [
+     247.5,
+     1085,
+     528,
+     596.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     603.5,
+     350,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 1722,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     1633.89
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     965
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1053,
+    "tape": [
+     247.5,
+     1085,
+     528,
+     596.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     603.5,
+     350,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-items",
+   "viewport": "1024x768",
+   "app": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 1129,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     1053
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     989
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1065,
+    "tape": [
+     572,
+     100,
+     420,
+     596.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     336,
+     362,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 1129,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     1053
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     989
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1065,
+    "tape": [
+     572,
+     100,
+     420,
+     596.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     336,
+     362,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-items",
+   "viewport": "1280x800",
+   "app": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 1129,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     1053
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     989
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1065,
+    "tape": [
+     740,
+     100,
+     420,
+     596.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     504,
+     362,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 1129,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     1053
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     989
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1065,
+    "tape": [
+     740,
+     100,
+     420,
+     596.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     504,
+     362,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-unassigned",
+   "viewport": "360x780",
+   "app": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 1506,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     1425.89
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     360,
+     388.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     196,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 1506,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     1425.89
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     360,
+     388.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     196,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-unassigned",
+   "viewport": "390x844",
+   "app": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 1506,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     1425.89
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     390,
+     388.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     226,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 1506,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     1425.89
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     390,
+     388.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     226,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-unassigned",
+   "viewport": "599x900",
+   "app": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 1482,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     1401.89
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     599,
+     364.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     435,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 1482,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     1401.89
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     965
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1045,
+    "tape": [
+     0,
+     1077,
+     599,
+     364.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": [
+     435,
+     342,
+     96,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-unassigned",
+   "viewport": "600x900",
+   "app": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 1493,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     1404.89
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     965
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1053,
+    "tape": [
+     36,
+     1085,
+     528,
+     367.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     392,
+     350,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 1493,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     1404.89
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     965
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1053,
+    "tape": [
+     36,
+     1085,
+     528,
+     367.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     392,
+     350,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-unassigned",
+   "viewport": "1023x768",
+   "app": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 1493,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     1404.89
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     965
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1053,
+    "tape": [
+     247.5,
+     1085,
+     528,
+     367.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     603.5,
+     350,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 1493,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     1404.89
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     965
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1053,
+    "tape": [
+     247.5,
+     1085,
+     528,
+     367.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     603.5,
+     350,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-unassigned",
+   "viewport": "1024x768",
+   "app": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 1129,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     1053
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     989
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1065,
+    "tape": [
+     572,
+     100,
+     420,
+     391.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     336,
+     362,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 1129,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     1053
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     989
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1065,
+    "tape": [
+     572,
+     100,
+     420,
+     391.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     336,
+     362,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "bill-unassigned",
+   "viewport": "1280x800",
+   "app": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 1129,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     1053
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     989
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1065,
+    "tape": [
+     740,
+     100,
+     420,
+     391.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     504,
+     362,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "golden": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 1129,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     1053
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     989
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 1065,
+    "tape": [
+     740,
+     100,
+     420,
+     391.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": [
+     504,
+     362,
+     120,
+     44
+    ],
+    "subtotalField": null,
+    "dialog": null,
+    "actionsDir": null,
+    "dialogTextH": null
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "new-bill-dialog",
+   "viewport": "360x780",
+   "app": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 780,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     360,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     160,
+     44
+    ],
+    "dialog": [
+     16,
+     261,
+     328,
+     258
+    ],
+    "actionsDir": "column",
+    "dialogTextH": 48
+   },
+   "golden": {
+    "scrollWidth": 360,
+    "innerWidth": 360,
+    "scrollHeight": 780,
+    "header": [
+     0,
+     0,
+     360,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     360,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     360,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     328,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     360,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     160,
+     44
+    ],
+    "dialog": [
+     16,
+     261,
+     328,
+     258
+    ],
+    "actionsDir": "column",
+    "dialogTextH": 48
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "new-bill-dialog",
+   "viewport": "390x844",
+   "app": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 844,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     390,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     175,
+     44
+    ],
+    "dialog": [
+     16,
+     305,
+     358,
+     234
+    ],
+    "actionsDir": "column",
+    "dialogTextH": 24
+   },
+   "golden": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "scrollHeight": 844,
+    "header": [
+     0,
+     0,
+     390,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     390,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     390,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     358,
+     96
+    ],
+    "peopleCols": 2,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     390,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     175,
+     44
+    ],
+    "dialog": [
+     16,
+     305,
+     358,
+     234
+    ],
+    "actionsDir": "column",
+    "dialogTextH": 24
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "new-bill-dialog",
+   "viewport": "599x900",
+   "app": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 900,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     599,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     183.66,
+     44
+    ],
+    "dialog": [
+     99.5,
+     333,
+     400,
+     234
+    ],
+    "actionsDir": "column",
+    "dialogTextH": 24
+   },
+   "golden": {
+    "scrollWidth": 599,
+    "innerWidth": 599,
+    "scrollHeight": 900,
+    "header": [
+     0,
+     0,
+     599,
+     56
+    ],
+    "layout": [
+     0,
+     80,
+     599,
+     1108.89
+    ],
+    "inputs": [
+     0,
+     80,
+     599,
+     466
+    ],
+    "peopleGrid": [
+     16,
+     116,
+     567,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 546,
+    "tape": [
+     0,
+     578,
+     599,
+     570.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "2px",
+    "priceField": null,
+    "subtotalField": [
+     16,
+     342,
+     183.66,
+     44
+    ],
+    "dialog": [
+     99.5,
+     333,
+     400,
+     234
+    ],
+    "actionsDir": "column",
+    "dialogTextH": 24
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "new-bill-dialog",
+   "viewport": "600x900",
+   "app": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 900,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     1111.89
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     466
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 554,
+    "tape": [
+     36,
+     586,
+     528,
+     573.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     36,
+     350,
+     170.66,
+     44
+    ],
+    "dialog": [
+     100,
+     361,
+     400,
+     178
+    ],
+    "actionsDir": "row",
+    "dialogTextH": 24
+   },
+   "golden": {
+    "scrollWidth": 600,
+    "innerWidth": 600,
+    "scrollHeight": 900,
+    "header": [
+     20,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     20,
+     88,
+     560,
+     1111.89
+    ],
+    "inputs": [
+     20,
+     88,
+     560,
+     466
+    ],
+    "peopleGrid": [
+     36,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 554,
+    "tape": [
+     36,
+     586,
+     528,
+     573.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     36,
+     350,
+     170.66,
+     44
+    ],
+    "dialog": [
+     100,
+     361,
+     400,
+     178
+    ],
+    "actionsDir": "row",
+    "dialogTextH": 24
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "new-bill-dialog",
+   "viewport": "1023x768",
+   "app": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 768,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     1111.89
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     466
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 554,
+    "tape": [
+     247.5,
+     586,
+     528,
+     573.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     247.5,
+     350,
+     170.66,
+     44
+    ],
+    "dialog": [
+     311.5,
+     295,
+     400,
+     178
+    ],
+    "actionsDir": "row",
+    "dialogTextH": 24
+   },
+   "golden": {
+    "scrollWidth": 1023,
+    "innerWidth": 1023,
+    "scrollHeight": 768,
+    "header": [
+     231.5,
+     0,
+     560,
+     64
+    ],
+    "layout": [
+     231.5,
+     88,
+     560,
+     1111.89
+    ],
+    "inputs": [
+     231.5,
+     88,
+     560,
+     466
+    ],
+    "peopleGrid": [
+     247.5,
+     124,
+     528,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 554,
+    "tape": [
+     247.5,
+     586,
+     528,
+     573.89
+    ],
+    "tapePos": "static",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     247.5,
+     350,
+     170.66,
+     44
+    ],
+    "dialog": [
+     311.5,
+     295,
+     400,
+     178
+    ],
+    "actionsDir": "row",
+    "dialogTextH": 24
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "new-bill-dialog",
+   "viewport": "1024x768",
+   "app": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 768,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     661.89
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     490
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 566,
+    "tape": [
+     572,
+     100,
+     420,
+     573.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     32,
+     362,
+     153.33,
+     44
+    ],
+    "dialog": [
+     312,
+     295,
+     400,
+     178
+    ],
+    "actionsDir": "row",
+    "dialogTextH": 24
+   },
+   "golden": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "scrollHeight": 768,
+    "header": [
+     0,
+     0,
+     1024,
+     76
+    ],
+    "layout": [
+     0,
+     76,
+     1024,
+     661.89
+    ],
+    "inputs": [
+     32,
+     76,
+     476,
+     490
+    ],
+    "peopleGrid": [
+     32,
+     136,
+     476,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 566,
+    "tape": [
+     572,
+     100,
+     420,
+     573.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     32,
+     362,
+     153.33,
+     44
+    ],
+    "dialog": [
+     312,
+     295,
+     400,
+     178
+    ],
+    "actionsDir": "row",
+    "dialogTextH": 24
+   },
+   "equal": true,
+   "overflow": false
+  },
+  {
+   "screen": "new-bill-dialog",
+   "viewport": "1280x800",
+   "app": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 800,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     661.89
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     490
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 566,
+    "tape": [
+     740,
+     100,
+     420,
+     573.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     120,
+     362,
+     180,
+     44
+    ],
+    "dialog": [
+     440,
+     311,
+     400,
+     178
+    ],
+    "actionsDir": "row",
+    "dialogTextH": 24
+   },
+   "golden": {
+    "scrollWidth": 1280,
+    "innerWidth": 1280,
+    "scrollHeight": 800,
+    "header": [
+     88,
+     0,
+     1104,
+     76
+    ],
+    "layout": [
+     88,
+     76,
+     1104,
+     661.89
+    ],
+    "inputs": [
+     120,
+     76,
+     556,
+     490
+    ],
+    "peopleGrid": [
+     120,
+     136,
+     556,
+     96
+    ],
+    "peopleCols": 3,
+    "chargesBottom": 566,
+    "tape": [
+     740,
+     100,
+     420,
+     573.89
+    ],
+    "tapePos": "sticky",
+    "tapeBorderTop": "1px",
+    "priceField": null,
+    "subtotalField": [
+     120,
+     362,
+     180,
+     44
+    ],
+    "dialog": [
+     440,
+     311,
+     400,
+     178
+    ],
+    "actionsDir": "row",
+    "dialogTextH": 24
+   },
+   "equal": true,
+   "overflow": false
+  }
+ ]
+}

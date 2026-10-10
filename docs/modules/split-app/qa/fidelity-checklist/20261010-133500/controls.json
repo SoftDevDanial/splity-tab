@@ -1,0 +1,379 @@
+[
+ {
+  "mutant": "(no mutation, control)",
+  "rows_failing": [],
+  "rows_failing_count": 0,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 0,
+  "dom_rect_diff_elements": 0,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 0,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 0,
+   "any_level": 0
+  }
+ },
+ {
+  "mutant": "wordmark letter-spacing 0",
+  "rows_failing": [
+   "S1-01"
+  ],
+  "rows_failing_count": 1,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 1,
+  "dom_rect_diff_elements": 1,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 1,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 304,
+   "any_level": 311
+  }
+ },
+ {
+  "mutant": "header button border colour (1 level)",
+  "rows_failing": [
+   "S1-02"
+  ],
+  "rows_failing_count": 1,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 1,
+  "dom_rect_diff_elements": 0,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 1,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 0,
+   "any_level": 253
+  }
+ },
+ {
+  "mutant": "person 1 remove icon colour (1 level)",
+  "rows_failing": [
+   "S1-05"
+  ],
+  "rows_failing_count": 1,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 2,
+  "dom_rect_diff_elements": 0,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 1,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 0,
+   "any_level": 38
+  }
+ },
+ {
+  "mutant": "Ben toggle on item 1 flipped to pressed",
+  "rows_failing": [
+   "S1-19"
+  ],
+  "rows_failing_count": 1,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 1,
+  "dom_rect_diff_elements": 0,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 1,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 2217,
+   "any_level": 2220
+  }
+ },
+ {
+  "mutant": "Total double rule made single",
+  "rows_failing": [
+   "S1-45"
+  ],
+  "rows_failing_count": 1,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 1,
+  "dom_rect_diff_elements": 0,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 1,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 116,
+   "any_level": 116
+  }
+ },
+ {
+  "mutant": "check row copy 'Adds up to' -> 'Adds up'",
+  "rows_failing": [
+   "S1-40",
+   "S1-46",
+   "S1-47",
+   "S1-48",
+   "S1-49",
+   "S1-50",
+   "S1-51"
+  ],
+  "rows_failing_count": 7,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 22,
+  "dom_rect_diff_elements": 22,
+  "dom_text_diffs": 1,
+  "dom_attr_diffs": 0,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 4600,
+   "any_level": 4625
+  }
+ },
+ {
+  "mutant": "hint 14px -> 13px",
+  "rows_failing": [
+   "S1-39"
+  ],
+  "rows_failing_count": 1,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 1,
+  "dom_rect_diff_elements": 0,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 1,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 1852,
+   "any_level": 1852
+  }
+ },
+ {
+  "mutant": "Copy summary min-height 48 -> 47",
+  "rows_failing": [
+   "S1-40",
+   "S1-46",
+   "S1-52"
+  ],
+  "rows_failing_count": 3,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 5,
+  "dom_rect_diff_elements": 7,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 1,
+  "pixels": {
+   "size_differs": [
+    [
+     1711,
+     390
+    ],
+    [
+     1710,
+     390
+    ]
+   ],
+   "above_0.01": "dimensions differ",
+   "any_level": "dimensions differ"
+  }
+ },
+ {
+  "mutant": "item 2 separator colour (1 level)",
+  "rows_failing": [
+   "S1-32"
+  ],
+  "rows_failing_count": 1,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 1,
+  "dom_rect_diff_elements": 0,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 1,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 0,
+   "any_level": 358
+  }
+ },
+ {
+  "mutant": "--ink one level lighter (#141917 -> #151917)",
+  "rows_failing": [
+   "S1-01",
+   "S1-02",
+   "S1-03",
+   "S1-04",
+   "S1-05",
+   "S1-06",
+   "S1-07",
+   "S1-08",
+   "S1-09",
+   "S1-10",
+   "S1-11",
+   "S1-12",
+   "S1-13",
+   "S1-14",
+   "S1-15",
+   "S1-16",
+   "S1-17",
+   "S1-18",
+   "S1-19",
+   "S1-20",
+   "S1-21",
+   "S1-22",
+   "S1-23",
+   "S1-24",
+   "S1-25",
+   "S1-26",
+   "S1-27",
+   "S1-28",
+   "S1-29",
+   "S1-30",
+   "S1-31",
+   "S1-32",
+   "S1-33",
+   "S1-34",
+   "S1-35",
+   "S1-36",
+   "S1-37",
+   "S1-38",
+   "S1-39",
+   "S1-40",
+   "S1-41",
+   "S1-42",
+   "S1-43",
+   "S1-44",
+   "S1-45",
+   "S1-46",
+   "S1-47",
+   "S1-48",
+   "S1-49",
+   "S1-50",
+   "S1-51",
+   "S1-52"
+  ],
+  "rows_failing_count": 52,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 174,
+  "dom_rect_diff_elements": 0,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 0,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 0,
+   "any_level": 47495
+  }
+ },
+ {
+  "mutant": "--line-strong one level (#78807C -> #78807D)",
+  "rows_failing": [
+   "S1-01",
+   "S1-02",
+   "S1-03",
+   "S1-04",
+   "S1-05",
+   "S1-06",
+   "S1-07",
+   "S1-08",
+   "S1-09",
+   "S1-10",
+   "S1-11",
+   "S1-12",
+   "S1-13",
+   "S1-14",
+   "S1-15",
+   "S1-16",
+   "S1-17",
+   "S1-18",
+   "S1-19",
+   "S1-20",
+   "S1-21",
+   "S1-22",
+   "S1-23",
+   "S1-24",
+   "S1-25",
+   "S1-26",
+   "S1-27",
+   "S1-28",
+   "S1-29",
+   "S1-30",
+   "S1-31",
+   "S1-32",
+   "S1-33",
+   "S1-34",
+   "S1-35",
+   "S1-36",
+   "S1-37",
+   "S1-38",
+   "S1-39",
+   "S1-40",
+   "S1-41",
+   "S1-42",
+   "S1-43",
+   "S1-44",
+   "S1-45",
+   "S1-46",
+   "S1-47",
+   "S1-48",
+   "S1-49",
+   "S1-50",
+   "S1-51",
+   "S1-52"
+  ],
+  "rows_failing_count": 52,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 174,
+  "dom_rect_diff_elements": 0,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 0,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 0,
+   "any_level": 8267
+  }
+ },
+ {
+  "mutant": "panel padding-top 20 -> 19",
+  "rows_failing": [
+   "S1-40",
+   "S1-41",
+   "S1-42",
+   "S1-43",
+   "S1-44",
+   "S1-45",
+   "S1-46",
+   "S1-47",
+   "S1-48",
+   "S1-49",
+   "S1-50",
+   "S1-51",
+   "S1-52"
+  ],
+  "rows_failing_count": 13,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 4,
+  "dom_rect_diff_elements": 64,
+  "dom_text_diffs": 0,
+  "dom_attr_diffs": 1,
+  "pixels": {
+   "size_differs": [
+    [
+     1711,
+     390
+    ],
+    [
+     1710,
+     390
+    ]
+   ],
+   "above_0.01": "dimensions differ",
+   "any_level": "dimensions differ"
+  }
+ },
+ {
+  "mutant": "Add person button text -> Add people",
+  "rows_failing": [
+   "S1-10",
+   "S1-11"
+  ],
+  "rows_failing_count": 2,
+  "expected_rows_among_failing": true,
+  "dom_style_diff_elements": 0,
+  "dom_rect_diff_elements": 2,
+  "dom_text_diffs": 1,
+  "dom_attr_diffs": 0,
+  "pixels": {
+   "size_differs": null,
+   "above_0.01": 234,
+   "any_level": 240
+  }
+ }
+]

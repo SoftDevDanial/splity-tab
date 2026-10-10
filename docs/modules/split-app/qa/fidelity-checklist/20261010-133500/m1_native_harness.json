@@ -1,0 +1,32 @@
+[
+ {
+  "viewport": "390x844",
+  "native_golden_vs_gate_candidate": {
+   "any_level": 46,
+   "max_delta": 2
+  },
+  "native_golden_vs_gate_golden": {
+   "any_level": 95,
+   "max_delta": 2
+  },
+  "gate_golden_vs_gate_candidate": {
+   "any_level": 141,
+   "max_delta": 2
+  }
+ },
+ {
+  "viewport": "1280x800",
+  "native_golden_vs_gate_candidate": {
+   "any_level": 49,
+   "max_delta": 1
+  },
+  "native_golden_vs_gate_golden": {
+   "any_level": 54,
+   "max_delta": 2
+  },
+  "gate_golden_vs_gate_candidate": {
+   "any_level": 103,
+   "max_delta": 2
+  }
+ }
+]

@@ -1,0 +1,86 @@
+[
+ {
+  "viewport": "390x844",
+  "variant": "plain (CSP on)",
+  "native_golden_vs_app": 0,
+  "static_golden_vs_app": 95,
+  "static_golden_vs_native_golden": 95
+ },
+ {
+  "viewport": "390x844",
+  "variant": "bypass_csp",
+  "native_golden_vs_app": 0,
+  "static_golden_vs_app": 95,
+  "static_golden_vs_native_golden": 95
+ },
+ {
+  "viewport": "390x844",
+  "variant": "bypass_csp + freeze css",
+  "native_golden_vs_app": 46,
+  "static_golden_vs_app": 141,
+  "static_golden_vs_native_golden": 95
+ },
+ {
+  "viewport": "390x844",
+  "variant": "pinned clock",
+  "native_golden_vs_app": 0,
+  "static_golden_vs_app": 95,
+  "static_golden_vs_native_golden": 95
+ },
+ {
+  "viewport": "390x844",
+  "variant": "300 ms settle",
+  "native_golden_vs_app": 0,
+  "static_golden_vs_app": 95,
+  "static_golden_vs_native_golden": 95
+ },
+ {
+  "viewport": "390x844",
+  "variant": "all four (the harness)",
+  "native_golden_vs_app": 46,
+  "static_golden_vs_app": 141,
+  "static_golden_vs_native_golden": 95
+ },
+ {
+  "viewport": "1280x800",
+  "variant": "plain (CSP on)",
+  "native_golden_vs_app": 27,
+  "static_golden_vs_app": 81,
+  "static_golden_vs_native_golden": 54
+ },
+ {
+  "viewport": "1280x800",
+  "variant": "bypass_csp",
+  "native_golden_vs_app": 27,
+  "static_golden_vs_app": 81,
+  "static_golden_vs_native_golden": 54
+ },
+ {
+  "viewport": "1280x800",
+  "variant": "bypass_csp + freeze css",
+  "native_golden_vs_app": 49,
+  "static_golden_vs_app": 103,
+  "static_golden_vs_native_golden": 54
+ },
+ {
+  "viewport": "1280x800",
+  "variant": "pinned clock",
+  "native_golden_vs_app": 27,
+  "static_golden_vs_app": 81,
+  "static_golden_vs_native_golden": 54
+ },
+ {
+  "viewport": "1280x800",
+  "variant": "300 ms settle",
+  "native_golden_vs_app": 27,
+  "static_golden_vs_app": 81,
+  "static_golden_vs_native_golden": 54
+ },
+ {
+  "viewport": "1280x800",
+  "variant": "all four (the harness)",
+  "native_golden_vs_app": 49,
+  "static_golden_vs_app": 103,
+  "static_golden_vs_native_golden": 54
+ }
+]

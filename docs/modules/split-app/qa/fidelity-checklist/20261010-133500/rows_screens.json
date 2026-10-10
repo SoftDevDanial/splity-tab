@@ -1,0 +1,4571 @@
+{
+ "qa": {
+  "S1-01": [
+   "Wordmark `h1.wordmark`",
+   "\"Split\", 22/28 700, ink, letter-spacing -0.01em"
+  ],
+  "S1-02": [
+   "Header button",
+   "`.btn.btn-outline` \"New bill\", field fill, line-strong border, 15/20 600, right end of `.bar`"
+  ],
+  "S1-03": [
+   "People heading",
+   "`h2.block-title#h-people` \"People\", 18/24 700"
+  ],
+  "S1-04": [
+   "Person 1 field",
+   "`li.field.person`, input value \"Aisyah\", aria-label \"Person 1 name\", maxlength 20"
+  ],
+  "S1-05": [
+   "Person 1 remove",
+   "`.icon-btn` \"Remove Aisyah\", enabled, X icon 20 px ink muted, `--line` left divider, 44 x 44"
+  ],
+  "S1-06": [
+   "Person 2 field",
+   "value \"Ben\", aria-label \"Person 2 name\""
+  ],
+  "S1-07": [
+   "Person 2 remove",
+   "\"Remove Ben\", enabled, X icon"
+  ],
+  "S1-08": [
+   "Person 3 field",
+   "value \"Chen\", aria-label \"Person 3 name\""
+  ],
+  "S1-09": [
+   "Person 3 remove",
+   "\"Remove Chen\", enabled, X icon"
+  ],
+  "S1-10": [
+   "Add person",
+   "`.btn.btn-outline` in the next cell, full cell width, plus icon 18 px ink muted, \"Add person\", enabled"
+  ],
+  "S1-11": [
+   "People grid",
+   "`ul.cells`, 2 columns at 390, 3 at 1280, 8 px gaps"
+  ],
+  "S1-12": [
+   "Mode switch",
+   "`fieldset.mode`, hidden legend \"Split mode\", two equal 44 px halves, line-strong outline and divider"
+  ],
+  "S1-13": [
+   "Even label",
+   "unchecked, field fill, ink text"
+  ],
+  "S1-14": [
+   "By item label",
+   "checked, ink fill, on-ink text"
+  ],
+  "S1-15": [
+   "Items heading",
+   "`h2.block-title#h-items` \"Items\""
+  ],
+  "S1-16": [
+   "Item 1 name",
+   "value \"Nasi lemak ayam\", aria-label \"Item 1 name\", maxlength 40"
+  ],
+  "S1-17": [
+   "Item 1 price",
+   "`span.field.money` with \"RM\" unit (ink muted, aria-hidden), value \"15.90\" right aligned, aria-label \"Item 1 price in RM\", 96 px wide at 390 and 120 px at 1280"
+  ],
+  "S1-18": [
+   "Item 1 remove",
+   "\"Remove Nasi lemak ayam\", X icon"
+  ],
+  "S1-19": [
+   "Item 1 toggles",
+   "group \"Who had Nasi lemak ayam\". Aisyah pressed (ink fill), Ben and Chen not pressed (field fill)"
+  ],
+  "S1-20": [
+   "Item 2 name",
+   "\"Char kuey teow\", \"Item 2 name\""
+  ],
+  "S1-21": [
+   "Item 2 price",
+   "\"13.50\", \"Item 2 price in RM\""
+  ],
+  "S1-22": [
+   "Item 2 remove",
+   "\"Remove Char kuey teow\""
+  ],
+  "S1-23": [
+   "Item 2 toggles",
+   "\"Who had Char kuey teow\", Ben pressed only"
+  ],
+  "S1-24": [
+   "Item 3 name",
+   "\"Mee goreng mamak\", \"Item 3 name\""
+  ],
+  "S1-25": [
+   "Item 3 price",
+   "\"12.00\", \"Item 3 price in RM\""
+  ],
+  "S1-26": [
+   "Item 3 remove",
+   "\"Remove Mee goreng mamak\""
+  ],
+  "S1-27": [
+   "Item 3 toggles",
+   "\"Who had Mee goreng mamak\", Chen pressed only"
+  ],
+  "S1-28": [
+   "Item 4 name",
+   "\"Satay, 10 sticks\", \"Item 4 name\""
+  ],
+  "S1-29": [
+   "Item 4 price",
+   "\"18.00\", \"Item 4 price in RM\""
+  ],
+  "S1-30": [
+   "Item 4 remove",
+   "\"Remove Satay, 10 sticks\""
+  ],
+  "S1-31": [
+   "Item 4 toggles",
+   "\"Who had Satay, 10 sticks\", Aisyah and Chen pressed, Ben not"
+  ],
+  "S1-32": [
+   "Item separators",
+   "1 px `--line` above items 2 to 4, none above item 1, 16 px item padding"
+  ],
+  "S1-33": [
+   "Add item",
+   "outline button, plus icon, \"Add item\", natural width, left aligned after the list"
+  ],
+  "S1-34": [
+   "Charges heading",
+   "`h2.block-title#h-charges` \"Charges\""
+  ],
+  "S1-35": [
+   "Service label",
+   "`label.label` \"Service charge\" + hidden \" in percent\", 15/20 600"
+  ],
+  "S1-36": [
+   "Service input",
+   "value \"10\" right aligned, \"%\" unit after it, aria-describedby \"charges-hint\""
+  ],
+  "S1-37": [
+   "SST label",
+   "\"SST\" + hidden \" in percent\""
+  ],
+  "S1-38": [
+   "SST input",
+   "value \"6\", \"%\" unit, aria-describedby \"charges-hint\""
+  ],
+  "S1-39": [
+   "Hint",
+   "`p.hint#charges-hint` \"Set a charge to 0 if your bill already includes it.\", 14/20 ink muted"
+  ],
+  "S1-40": [
+   "Panel frame",
+   "`div.tape`. At 390 full bleed, 2 px ink top rule, 1 px line bottom. At 1280 420 px wide, 1 px ink border, 6 px radius, sticky, top level with the People block"
+  ],
+  "S1-41": [
+   "Summary heading",
+   "`h2.tape-title#h-summary` \"Bill summary\""
+  ],
+  "S1-42": [
+   "Subtotal row",
+   "empty operator, \"Subtotal\", \"RM 59.40\""
+  ],
+  "S1-43": [
+   "Service row",
+   "\"+\", \"Service charge\", \"RM 5.94\", working \"10% of RM 59.40\" (15/20 ink muted)"
+  ],
+  "S1-44": [
+   "SST row",
+   "\"+\", \"SST\", \"RM 3.92\", working \"6% of RM 65.34\""
+  ],
+  "S1-45": [
+   "Total row",
+   "\"=\", \"Total\" 18 px 700, \"RM 69.26\" 26/32 700 on the 3 px double rule, 1 px ink rule above from 28 px"
+  ],
+  "S1-46": [
+   "Shares heading",
+   "`h2.tape-title#h-shares` \"Shares\", 32 px under the Total"
+  ],
+  "S1-47": [
+   "Table heads",
+   "hidden \"Person\", \"Items\", \"+ Charges\", \"= Share\", 13/18 600 ink muted, right aligned"
+  ],
+  "S1-48": [
+   "Row Aisyah",
+   "name 15 px 600 ink. \"RM 24.90\", \"RM 4.14\" (14 px ink muted). \"RM 29.04\" 18 px 700 ink"
+  ],
+  "S1-49": [
+   "Row Ben",
+   "\"RM 13.50\", \"RM 2.24\", \"RM 15.74\""
+  ],
+  "S1-50": [
+   "Row Chen",
+   "\"RM 21.00\", \"RM 3.48\", \"RM 24.48\""
+  ],
+  "S1-51": [
+   "Check row",
+   "check icon 18 px accent in the gutter, \"Adds up to\" accent, \"RM 59.40\", \"RM 9.86\", \"RM 69.26\" accent 18 px 700, 1 px ink rule above"
+  ],
+  "S1-52": [
+   "Copy summary",
+   "`.btn.btn-primary.btn-large.btn-block.copy`, ink fill, copy icon 20 px, \"Copy summary\", full width, 48 px, 24 px under the table"
+  ],
+  "S1-53": [
+   "Status",
+   "`p.status[role=status]` present, empty, not displayed"
+  ],
+  "S2-01": [
+   "Wordmark",
+   "as S1-01"
+  ],
+  "S2-02": [
+   "New bill",
+   "as S1-02"
+  ],
+  "S2-03": [
+   "People heading",
+   "as S1-03"
+  ],
+  "S2-04": [
+   "Person rows 1 to 3 (fields and removes)",
+   "as S1-04 to S1-09"
+  ],
+  "S2-05": [
+   "Add person",
+   "as S1-10"
+  ],
+  "S2-06": [
+   "People grid",
+   "as S1-11"
+  ],
+  "S2-07": [
+   "Mode switch",
+   "as S1-12"
+  ],
+  "S2-08": [
+   "Even label",
+   "checked, ink fill, on-ink text"
+  ],
+  "S2-09": [
+   "By item label",
+   "unchecked, field fill"
+  ],
+  "S2-10": [
+   "Subtotal heading",
+   "`h2.block-title#h-subtotal` holding `label[for=subtotal]` \"Subtotal\" + hidden \" in RM\""
+  ],
+  "S2-11": [
+   "Subtotal field",
+   "`span.field.money` in one grid cell (175 px at 390, 180 px at 1280), \"RM\" unit, `input#subtotal` value \"100.00\", no aria-invalid, no error paragraph"
+  ],
+  "S2-12": [
+   "Items block",
+   "not rendered"
+  ],
+  "S2-13": [
+   "Charges block (heading, two labels, two inputs, hint)",
+   "as S1-34 to S1-39"
+  ],
+  "S2-14": [
+   "Panel frame",
+   "as S1-40"
+  ],
+  "S2-15": [
+   "Summary heading",
+   "as S1-41"
+  ],
+  "S2-16": [
+   "Subtotal row",
+   "\"RM 100.00\""
+  ],
+  "S2-17": [
+   "Service row",
+   "\"RM 10.00\", \"10% of RM 100.00\""
+  ],
+  "S2-18": [
+   "SST row",
+   "\"RM 6.60\", \"6% of RM 110.00\""
+  ],
+  "S2-19": [
+   "Total row",
+   "\"RM 116.60\" on the double rule"
+  ],
+  "S2-20": [
+   "Shares heading",
+   "as S1-46"
+  ],
+  "S2-21": [
+   "Table heads",
+   "`thead.sr-only` with \"Person\" and \"Share\""
+  ],
+  "S2-22": [
+   "Row Aisyah",
+   "`th` \"Aisyah\", `td.share` \"RM 38.87\", no Items or Charges cell"
+  ],
+  "S2-23": [
+   "Row Ben",
+   "\"RM 38.87\""
+  ],
+  "S2-24": [
+   "Row Chen",
+   "\"RM 38.86\""
+  ],
+  "S2-25": [
+   "Check row",
+   "check icon, \"Adds up to\", \"RM 116.60\" in accent"
+  ],
+  "S2-26": [
+   "Copy summary",
+   "as S1-52"
+  ],
+  "S2-27": [
+   "Status",
+   "as S1-53"
+  ],
+  "S2-28": [
+   "Subtotal field at 360 x 780 (added 2026-10-08)",
+   "`span.field.money` is 160 px wide, one grid cell (`bill-even.md`)"
+  ],
+  "S3-01": [
+   "Wordmark, New bill, People heading",
+   "as S1-01 to S1-03"
+  ],
+  "S3-02": [
+   "Person 1 field",
+   "value \"Person 1\", aria-label \"Person 1 name\", placeholder \"Person 1\""
+  ],
+  "S3-03": [
+   "Person 1 remove",
+   "\"Remove Person 1\", `disabled`, X in `--ink-disabled`, borders kept, `not-allowed` cursor, skipped by Tab"
+  ],
+  "S3-04": [
+   "Person 2 field",
+   "value \"Person 2\", aria-label \"Person 2 name\""
+  ],
+  "S3-05": [
+   "Person 2 remove",
+   "\"Remove Person 2\", disabled as S3-03"
+  ],
+  "S3-06": [
+   "Add person",
+   "enabled, third grid cell (second row at 390)"
+  ],
+  "S3-07": [
+   "Mode switch",
+   "Even checked, By item unchecked"
+  ],
+  "S3-08": [
+   "Subtotal heading and field",
+   "as S2-10 and S2-11 but empty, \"RM\" unit visible, no error"
+  ],
+  "S3-09": [
+   "Charges block",
+   "as S1-34 to S1-39"
+  ],
+  "S3-10": [
+   "Panel frame",
+   "as S1-40 (short card at 1280)"
+  ],
+  "S3-11": [
+   "Bill summary",
+   "not rendered"
+  ],
+  "S3-12": [
+   "Shares heading",
+   "as S1-46"
+  ],
+  "S3-13": [
+   "Result message",
+   "`p.result-msg` \"Enter the subtotal to see the shares.\", 16/24 ink, 8 px under the heading, no indent"
+  ],
+  "S3-14": [
+   "Table, Copy summary, status",
+   "not rendered"
+  ],
+  "S5-01": [
+   "Header, People, mode switch",
+   "as S1-01 to S1-14"
+  ],
+  "S5-02": [
+   "Items 1, 2 and 4",
+   "as S1-16 to S1-23 and S1-28 to S1-31"
+  ],
+  "S5-03": [
+   "Item 3 fields and remove",
+   "as S1-24 to S1-26"
+  ],
+  "S5-04": [
+   "Item 3 toggles",
+   "\"Who had Mee goreng mamak\", Aisyah, Ben and Chen all not pressed, no error styling"
+  ],
+  "S5-05": [
+   "Add item, Charges block",
+   "as S1-33 to S1-39"
+  ],
+  "S5-06": [
+   "Bill summary",
+   "as S1-41 to S1-45"
+  ],
+  "S5-07": [
+   "Shares heading",
+   "as S1-46"
+  ],
+  "S5-08": [
+   "Result message",
+   "\"1 item still needs a person. Tap who had it to see the shares.\", styled as S3-13, two lines at 390 and at 1280"
+  ],
+  "S5-09": [
+   "Table, Copy summary, status",
+   "not rendered"
+  ],
+  "S5-10": [
+   "Items heading (added 2026-10-08)",
+   "as S1-15"
+  ],
+  "S5-11": [
+   "Item separators (added 2026-10-08)",
+   "as S1-32"
+  ],
+  "S5-12": [
+   "Panel frame (added 2026-10-08)",
+   "as S1-40, with the 1280 card ending 24 px under the result message (`div.tape` padding-bottom 24 px and `p.result-msg` the last thing in it, `bill-unassigned.md`). At 390 it is full bleed, as in S1-40"
+  ],
+  "M1-01": [
+   "Page behind",
+   "the S2 render, under the scrim, `.app` clipped to the viewport height, not scrollable"
+  ],
+  "M1-02": [
+   "Scrim",
+   "whole viewport, `rgba(20, 25, 23, 0.48)`"
+  ],
+  "M1-03": [
+   "Dialog box",
+   "centred both ways, 358 px wide at 390 and 400 px at 1280, 24 px padding, surface fill, 1 px ink border, 6 px radius, no shadow"
+  ],
+  "M1-04": [
+   "Title",
+   "`h2.dialog-title#dialog-title` \"Start a new bill?\", 18/24 700, names the dialog"
+  ],
+  "M1-05": [
+   "Body",
+   "`p.dialog-text#dialog-text` \"This clears the people, items and amounts.\", 16/24 ink muted, 8 px under the title, describes the dialog"
+  ],
+  "M1-06": [
+   "Start new bill",
+   "`.btn.btn-primary.btn-large`, first. Full width at 390, natural width in a right-aligned row at 1280"
+  ],
+  "M1-07": [
+   "Cancel",
+   "`.btn.btn-outline.btn-large`, second, focused on open with no visible ring after a mouse open"
+  ],
+  "M1-08": [
+   "Actions",
+   "8 px apart, 24 px under the body"
+  ],
+  "M1-09": [
+   "Dialog at 360 x 780 (added 2026-10-08)",
+   "328 px wide (`min(400px, 100% - 32px)`), centred, `p.dialog-text` on two lines (48 px tall), no horizontal overflow (`new-bill-dialog.md`)"
+  ],
+  "ST-01": [
+   "S4 subtotal error",
+   "\"0\" typed and left. Input aria-invalid \"true\", aria-describedby \"subtotal-error\". `p.error#subtotal-error` \"Enter an amount like 12.50\" right after `div.cells`. The specimen properties and `margin-top` of the paragraph equal those of `#s4-subtotal-error`, and the specimen properties of `span.field.money` (the red border colour and the 2 px inset `box-shadow` among them) equal those of its field in the specimen"
+  ],
+  "ST-02": [
+   "S4 price error",
+   "\"13.505\" left in Item 2's price. `p.error` last in `div.item-line`, and its specimen properties, `text-align` (right) and `margin-top` (0) equal those of `#s4-price-error`. The price field shows the error look too: the specimen properties of its `span.field.money`, the red border colour and the 2 px inset `box-shadow` among them, equal those of the `span.field.money` around `input[aria-label=\"Item 1 price in RM\"][aria-invalid=\"true\"]` in the S4 frame of the specimen (added 2026-10-08). Toggles keep their 8 px gap"
+  ],
+  "ST-03": [
+   "S4 error with focus",
+   "the error field keeps its red border and gains the ink ring"
+  ],
+  "ST-04": [
+   "S6 copy success",
+   "`p.status` \"Summary copied\", ink, centred, 14/20 600, 8 px under Copy summary (`margin-top` 8 px), and its specimen properties and `text-align` (center) equal those of the S6 success specimen"
+  ],
+  "ST-05": [
+   "S6 copy failure",
+   "`p.status.status-failure` \"Could not copy. Your browser blocked the clipboard.\", error red, and its specimen properties and `text-align` (center) equal those of the S6 failure specimen"
+  ],
+  "ST-06": [
+   "S7 note",
+   "`div.note-wrap > div.note[role=status]` between the header and People, the text, and `.icon-btn` \"Dismiss note\" with the X icon. The specimen properties of `div.note` equal those of `.note` in the specimen"
+  ],
+  "ST-07": [
+   "S7 screen under the note",
+   "S3 (Person 1 and Person 2, remove disabled)"
+  ],
+  "ST-08": [
+   "S8 12 people",
+   "S8 seed. Add person disabled, transparent fill, `--line` border, `--ink-disabled` text and plus icon, and its specimen properties and `cursor` (not-allowed) equal those of the \"S8 12 people\" button in the specimen (not its width, the app cell is 175 px and the specimen cell 158 px). Six rows of two at 390, Add person in the next cell"
+  ],
+  "ST-09": [
+   "S8 2 people",
+   "both removes disabled, X in `--ink-disabled`, borders kept, and the specimen properties and `cursor` of each remove button equal those of the \"S8 2 people\" remove buttons in the specimen"
+  ],
+  "ST-10": [
+   "Rate errors (ruling 2, not drawn)",
+   "\"Enter a rate from 0 to 30\" and \"Enter a rate from 0 to 20\" in `p.error` under their field, styled by the `.error` rule exactly as ST-01"
+  ],
+  "ST-11": [
+   "Other panel messages (ruling 3, not drawn)",
+   "\"Check the charges to see the shares.\", \"Add an item to see the shares.\", \"Give every item a price to see the shares.\" styled as S3-13"
+  ],
+  "ST-12": [
+   "Plural S5 message (not drawn)",
+   "\"2 items still need a person. Tap who had each one to see the shares.\" styled as S5-08"
+  ],
+  "ST-13": [
+   "Add item at 50 (not drawn)",
+   "disabled, with the specimen properties and `cursor` of ST-08 (not its width, \"Add item\" has its natural width)"
+  ],
+  "ST-14": [
+   "S6 copy failure at 360 x 780 (added 2026-10-08)",
+   "the failure text wraps onto two centred lines (`p.status` 40 px tall, `text-align` center) with no horizontal overflow, as `states.md` says"
+  ],
+  "ST-15": [
+   "S7 note at 1280 x 800 (added 2026-10-08)",
+   "`div.note` is 1040 px wide, the content width of `.note-wrap` (the 1104 px page maximum less two 32 px gutters), and the content of `header.bar` is 1040 px as well"
+  ]
+ },
+ "rows": {
+  "M1-01": {
+   "390": [
+    [
+     true,
+     ".app height 844 of viewport 844, overflow hidden, position relative"
+    ],
+    [
+     true,
+     "mouse wheel leaves scrollY at 0; a hit on the header button lands on dialog.dialog (page behind inert)"
+    ],
+    [
+     true,
+     "golden .app height 844, overflow hidden, inert True"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     ".app height 800 of viewport 800, overflow hidden, position relative"
+    ],
+    [
+     true,
+     "mouse wheel leaves scrollY at 0; a hit on the header button lands on dialog.dialog (page behind inert)"
+    ],
+    [
+     true,
+     "golden .app height 800, overflow hidden, inert True"
+    ]
+   ]
+  },
+  "M1-02": {
+   "390": [
+    [
+     true,
+     "app ::backdrop rgba(20, 25, 23, 0.48) fixed inset 0px/0px/0px/0px, golden .backdrop rgba(20, 25, 23, 0.48) fixed 390x844"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "app ::backdrop rgba(20, 25, 23, 0.48) fixed inset 0px/0px/0px/0px, golden .backdrop rgba(20, 25, 23, 0.48) fixed 1280x800"
+    ]
+   ]
+  },
+  "M1-03": {
+   "390": [
+    [
+     true,
+     "dialog box: w=358, cx=195, cy=422, pad=24px 24px 24px 24px, bg=surface, b4=1px solid ink, rad=6px, bsh=none, color=ink, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "dialog box: w=400, cx=640, cy=400, pad=24px 24px 24px 24px, bg=surface, b4=1px solid ink, rad=6px, bsh=none, color=ink, = golden"
+    ]
+   ]
+  },
+  "M1-04": {
+   "390": [
+    [
+     true,
+     "h2.dialog-title#dialog-title: text=Start a new bill?, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "dialog aria-labelledby=dialog-title, aria-describedby=dialog-text, open=True, :modal=True (showModal)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2.dialog-title#dialog-title: text=Start a new bill?, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "dialog aria-labelledby=dialog-title, aria-describedby=dialog-text, open=True, :modal=True (showModal)"
+    ]
+   ]
+  },
+  "M1-05": {
+   "390": [
+    [
+     true,
+     "p.dialog-text#dialog-text: text=This clears the people, items and amounts., fs=16px, lh=24px, color=ink-muted, mt=8px, y=362, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "p.dialog-text#dialog-text: text=This clears the people, items and amounts., fs=16px, lh=24px, color=ink-muted, mt=8px, y=368, = golden"
+    ]
+   ]
+  },
+  "M1-06": {
+   "390": [
+    [
+     true,
+     "Start new bill: cls=btn btn-primary btn-large, text=Start new bill, bg=ink, color=on-ink, h=48, fs=16px, lh=24px, fw=600, = golden"
+    ],
+    [
+     true,
+     "Start new bill full width: 308 of 308"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Start new bill: cls=btn btn-primary btn-large, text=Start new bill, bg=ink, color=on-ink, h=48, fs=16px, lh=24px, fw=600, = golden"
+    ],
+    [
+     true,
+     "natural width 129.469 of 350, right aligned row (Cancel right edge 815, actions right 815), Start new bill first"
+    ]
+   ]
+  },
+  "M1-07": {
+   "390": [
+    [
+     true,
+     "Cancel: cls=btn btn-outline btn-large, text=Cancel, bg=field, b4=1px solid line-strong, color=ink, h=48, fs=16px, fw=600, focused=True, focusVisible=False, ols=none, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Cancel: cls=btn btn-outline btn-large, text=Cancel, bg=field, b4=1px solid line-strong, color=ink, h=48, fs=16px, fw=600, focused=True, focusVisible=False, ols=none, = golden"
+    ]
+   ]
+  },
+  "M1-08": {
+   "390": [
+    [
+     true,
+     "actions: disp=flex, gap=8px, mt=24px, y=410, = golden"
+    ],
+    [
+     true,
+     "stacked (column), Start new bill above Cancel, 8 px apart"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "actions: disp=flex, gap=8px, mt=24px, y=416, = golden"
+    ],
+    [
+     true,
+     "buttons 8 px apart in a row"
+    ]
+   ]
+  },
+  "M1-09": {
+   "360": [
+    [
+     true,
+     "dialog at 360: w=328, cx=180, cy=390, = golden"
+    ],
+    [
+     true,
+     "body at 360: h=48, text=This clears the people, items and amounts., = golden"
+    ],
+    [
+     true,
+     "scrollWidth 360 <= innerWidth 360 with the dialog open"
+    ]
+   ]
+  },
+  "S1-01": {
+   "390": [
+    [
+     true,
+     "h1.wordmark: text=Split, fs=22px, lh=28px, fw=700, color=ink, ls=-0.22px, tag=h1, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h1.wordmark: text=Split, fs=22px, lh=28px, fw=700, color=ink, ls=-0.22px, tag=h1, = golden"
+    ]
+   ]
+  },
+  "S1-02": {
+   "390": [
+    [
+     true,
+     "header.bar .btn.btn-outline: text=New bill, bg=field, b4=1px solid line-strong, fs=15px, lh=20px, fw=600, color=ink, r=374, rad=6px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "header.bar .btn.btn-outline: text=New bill, bg=field, b4=1px solid line-strong, fs=15px, lh=20px, fw=600, color=ink, r=1160, rad=6px, = golden"
+    ]
+   ]
+  },
+  "S1-03": {
+   "390": [
+    [
+     true,
+     "h2#h-people: text=People, fs=18px, lh=24px, fw=700, tag=h2, mb=12px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-people: text=People, fs=18px, lh=24px, fw=700, tag=h2, mb=12px, = golden"
+    ]
+   ]
+  },
+  "S1-04": {
+   "390": [
+    [
+     true,
+     "person 1 input: @aria-label=Person 1 name, value=Aisyah, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 1, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 1 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 1 input: @aria-label=Person 1 name, value=Aisyah, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 1, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 1 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ]
+  },
+  "S1-05": {
+   "390": [
+    [
+     true,
+     "person 1 remove: @aria-label=Remove Aisyah, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 1 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 1 remove: @aria-label=Remove Aisyah, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 1 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ]
+  },
+  "S1-06": {
+   "390": [
+    [
+     true,
+     "person 2 input: @aria-label=Person 2 name, value=Ben, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 2, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 2 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 2 input: @aria-label=Person 2 name, value=Ben, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 2, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 2 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ]
+  },
+  "S1-07": {
+   "390": [
+    [
+     true,
+     "person 2 remove: @aria-label=Remove Ben, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 2 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 2 remove: @aria-label=Remove Ben, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 2 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ]
+  },
+  "S1-08": {
+   "390": [
+    [
+     true,
+     "person 3 input: @aria-label=Person 3 name, value=Chen, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 3, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 3 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 3 input: @aria-label=Person 3 name, value=Chen, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 3, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 3 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ]
+  },
+  "S1-09": {
+   "390": [
+    [
+     true,
+     "person 3 remove: @aria-label=Remove Chen, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 3 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 3 remove: @aria-label=Remove Chen, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 3 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ]
+  },
+  "S1-10": {
+   "390": [
+    [
+     true,
+     "Add person: text=Add person, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, w=175, h=44, x=199, y=168, fs=15px, fw=600, color=ink, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Add person plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Add person: text=Add person, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, w=180, h=44, x=120, y=188, fs=15px, fw=600, color=ink, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Add person plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ]
+   ]
+  },
+  "S1-11": {
+   "390": [
+    [
+     true,
+     "people grid: disp=grid, gap=8px, = golden"
+    ],
+    [
+     true,
+     "people grid: 2 columns (175px 175px), expected 2 at 390, gaps 8px / 8px"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "people grid: disp=grid, gap=8px, = golden"
+    ],
+    [
+     true,
+     "people grid: 3 columns (180px 180px 180px), expected 3 at 1280, gaps 8px / 8px"
+    ]
+   ]
+  },
+  "S1-12": {
+   "390": [
+    [
+     true,
+     "fieldset.mode: disp=grid, bg=field, b4=1px solid line-strong, rad=6px, ov=hidden, mt=24px, = golden"
+    ],
+    [
+     true,
+     "hidden legend: text=Split mode, cls=sr-only, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "two equal 44 px halves: 178 x 44 and 178 x 44"
+    ],
+    [
+     true,
+     "By item half (divider): bl=1px solid line-strong, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "fieldset.mode: disp=grid, bg=field, b4=1px solid line-strong, rad=6px, ov=hidden, mt=24px, = golden"
+    ],
+    [
+     true,
+     "hidden legend: text=Split mode, cls=sr-only, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "two equal 44 px halves: 277 x 44 and 277 x 44"
+    ],
+    [
+     true,
+     "By item half (divider): bl=1px solid line-strong, = golden"
+    ]
+   ]
+  },
+  "S1-13": {
+   "390": [
+    [
+     true,
+     "Even label: text=Even, bg=rgba(0, 0, 0, 0), color=ink, fs=15px, lh=20px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Even radio: checked=False, @type=radio, @name=mode, @value=even, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Even label: text=Even, bg=rgba(0, 0, 0, 0), color=ink, fs=15px, lh=20px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Even radio: checked=False, @type=radio, @name=mode, @value=even, = golden"
+    ]
+   ]
+  },
+  "S1-14": {
+   "390": [
+    [
+     true,
+     "By item label: text=By item, bg=ink, color=on-ink, fs=15px, lh=20px, fw=600, = golden"
+    ],
+    [
+     true,
+     "By item radio: checked=True, @type=radio, @name=mode, @value=item, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "By item label: text=By item, bg=ink, color=on-ink, fs=15px, lh=20px, fw=600, = golden"
+    ],
+    [
+     true,
+     "By item radio: checked=True, @type=radio, @name=mode, @value=item, = golden"
+    ]
+   ]
+  },
+  "S1-15": {
+   "390": [
+    [
+     true,
+     "h2#h-items: text=Items, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Subtotal block (even mode only): count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-items: text=Items, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Subtotal block (even mode only): count 0, golden 0"
+    ]
+   ]
+  },
+  "S1-16": {
+   "390": [
+    [
+     true,
+     "item 1 name: value=Nasi lemak ayam, @aria-label=Item 1 name, @maxlength=40, @autocomplete=off, @placeholder=Item 1, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 1 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 1 name: value=Nasi lemak ayam, @aria-label=Item 1 name, @maxlength=40, @autocomplete=off, @placeholder=Item 1, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 1 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ]
+   ]
+  },
+  "S1-17": {
+   "390": [
+    [
+     true,
+     "item 1 price field: w=96, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 1 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 1 price input: value=15.90, ta=right, @aria-label=Item 1 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 1 price field: w=120, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 1 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 1 price input: value=15.90, ta=right, @aria-label=Item 1 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ]
+   ]
+  },
+  "S1-18": {
+   "390": [
+    [
+     true,
+     "item 1 remove: @aria-label=Remove Nasi lemak ayam, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 1 remove: @aria-label=Remove Nasi lemak ayam, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ]
+  },
+  "S1-19": {
+   "390": [
+    [
+     true,
+     "item 1 toggle group: @role=group, @aria-label=Who had Nasi lemak ayam, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Aisyah: text=Aisyah, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 1 toggle group: @role=group, @aria-label=Who had Nasi lemak ayam, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Aisyah: text=Aisyah, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ]
+  },
+  "S1-20": {
+   "390": [
+    [
+     true,
+     "item 2 name: value=Char kuey teow, @aria-label=Item 2 name, @maxlength=40, @autocomplete=off, @placeholder=Item 2, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 2 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 2 name: value=Char kuey teow, @aria-label=Item 2 name, @maxlength=40, @autocomplete=off, @placeholder=Item 2, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 2 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ]
+   ]
+  },
+  "S1-21": {
+   "390": [
+    [
+     true,
+     "item 2 price field: w=96, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 2 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 2 price input: value=13.50, ta=right, @aria-label=Item 2 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 2 price field: w=120, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 2 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 2 price input: value=13.50, ta=right, @aria-label=Item 2 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ]
+   ]
+  },
+  "S1-22": {
+   "390": [
+    [
+     true,
+     "item 2 remove: @aria-label=Remove Char kuey teow, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 2 remove: @aria-label=Remove Char kuey teow, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ]
+  },
+  "S1-23": {
+   "390": [
+    [
+     true,
+     "item 2 toggle group: @role=group, @aria-label=Who had Char kuey teow, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Aisyah: text=Aisyah, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Ben: text=Ben, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 2 toggle group: @role=group, @aria-label=Who had Char kuey teow, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Aisyah: text=Aisyah, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Ben: text=Ben, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ]
+  },
+  "S1-24": {
+   "390": [
+    [
+     true,
+     "item 3 name: value=Mee goreng mamak, @aria-label=Item 3 name, @maxlength=40, @autocomplete=off, @placeholder=Item 3, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 3 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 3 name: value=Mee goreng mamak, @aria-label=Item 3 name, @maxlength=40, @autocomplete=off, @placeholder=Item 3, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 3 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ]
+   ]
+  },
+  "S1-25": {
+   "390": [
+    [
+     true,
+     "item 3 price field: w=96, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 3 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 3 price input: value=12.00, ta=right, @aria-label=Item 3 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 3 price field: w=120, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 3 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 3 price input: value=12.00, ta=right, @aria-label=Item 3 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ]
+   ]
+  },
+  "S1-26": {
+   "390": [
+    [
+     true,
+     "item 3 remove: @aria-label=Remove Mee goreng mamak, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 3 remove: @aria-label=Remove Mee goreng mamak, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ]
+  },
+  "S1-27": {
+   "390": [
+    [
+     true,
+     "item 3 toggle group: @role=group, @aria-label=Who had Mee goreng mamak, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Aisyah: text=Aisyah, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Chen: text=Chen, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 3 toggle group: @role=group, @aria-label=Who had Mee goreng mamak, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Aisyah: text=Aisyah, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Chen: text=Chen, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ]
+  },
+  "S1-28": {
+   "390": [
+    [
+     true,
+     "item 4 name: value=Satay, 10 sticks, @aria-label=Item 4 name, @maxlength=40, @autocomplete=off, @placeholder=Item 4, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 4 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 4 name: value=Satay, 10 sticks, @aria-label=Item 4 name, @maxlength=40, @autocomplete=off, @placeholder=Item 4, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 4 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ]
+   ]
+  },
+  "S1-29": {
+   "390": [
+    [
+     true,
+     "item 4 price field: w=96, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 4 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 4 price input: value=18.00, ta=right, @aria-label=Item 4 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 4 price field: w=120, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 4 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 4 price input: value=18.00, ta=right, @aria-label=Item 4 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ]
+   ]
+  },
+  "S1-30": {
+   "390": [
+    [
+     true,
+     "item 4 remove: @aria-label=Remove Satay, 10 sticks, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 4 remove: @aria-label=Remove Satay, 10 sticks, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ]
+  },
+  "S1-31": {
+   "390": [
+    [
+     true,
+     "item 4 toggle group: @role=group, @aria-label=Who had Satay, 10 sticks, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Aisyah: text=Aisyah, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Chen: text=Chen, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 4 toggle group: @role=group, @aria-label=Who had Satay, 10 sticks, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Aisyah: text=Aisyah, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Chen: text=Chen, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ]
+  },
+  "S1-32": {
+   "390": [
+    [
+     true,
+     "item 1 (no separator): bt=0px none ink, pt=0px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 2 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 3 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 4 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 1 (no separator): bt=0px none ink, pt=0px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 2 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 3 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 4 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ]
+   ]
+  },
+  "S1-33": {
+   "390": [
+    [
+     true,
+     "Add item: text=Add item, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, h=44, x=16, y=841, fs=15px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "natural width 122.781 px (not the full 358 px line)"
+    ],
+    [
+     true,
+     "Add item plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Add item: text=Add item, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, h=44, x=120, y=861, fs=15px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "natural width 122.781 px (not the full 1040 px line)"
+    ],
+    [
+     true,
+     "Add item plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ]
+   ]
+  },
+  "S1-34": {
+   "390": [
+    [
+     true,
+     "h2#h-charges: text=Charges, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-charges: text=Charges, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ]
+  },
+  "S1-35": {
+   "390": [
+    [
+     true,
+     "Service charge label: text=Service charge in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "Service charge hidden ending: text=in percent, w=1, h=1, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Service charge label: text=Service charge in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "Service charge hidden ending: text=in percent, w=1, h=1, = golden"
+    ]
+   ]
+  },
+  "S1-36": {
+   "390": [
+    [
+     true,
+     "Service charge input: value=10, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "Service charge field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=16, = golden"
+    ],
+    [
+     true,
+     "Service charge % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Service charge input: value=10, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "Service charge field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=120, = golden"
+    ],
+    [
+     true,
+     "Service charge % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ]
+   ]
+  },
+  "S1-37": {
+   "390": [
+    [
+     true,
+     "SST label: text=SST in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "SST hidden ending: text=in percent, w=1, h=1, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "SST label: text=SST in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "SST hidden ending: text=in percent, w=1, h=1, = golden"
+    ]
+   ]
+  },
+  "S1-38": {
+   "390": [
+    [
+     true,
+     "SST input: value=6, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "SST field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=199, = golden"
+    ],
+    [
+     true,
+     "SST % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "SST input: value=6, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "SST field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=308, = golden"
+    ],
+    [
+     true,
+     "SST % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ]
+   ]
+  },
+  "S1-39": {
+   "390": [
+    [
+     true,
+     "p.hint#charges-hint: text=Set a charge to 0 if your bill already includes it., fs=14px, lh=20px, color=ink-muted, mt=8px, fw=400, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "p.hint#charges-hint: text=Set a charge to 0 if your bill already includes it., fs=14px, lh=20px, color=ink-muted, mt=8px, fw=400, = golden"
+    ]
+   ]
+  },
+  "S1-40": {
+   "390": [
+    [
+     true,
+     "panel frame: w=390, x=0, bt=2px solid ink, bb=1px solid line, bl=0px none ink, br=0px none ink, rad=0px, pad=20px 16px 24px 16px, mt=32px, bg=surface, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "panel frame: w=420, x=740, b4=1px solid ink, rad=6px, pos=sticky, top=24px, pad=24px 24px 24px 24px, bg=surface, = golden"
+    ],
+    [
+     true,
+     "panel top 100 equals People block top 100"
+    ],
+    [
+     true,
+     "scrolled 120 px (page scrolls 329 px): panel top 24 in the app, 24 in the golden (sticky behaves the same)"
+    ]
+   ]
+  },
+  "S1-41": {
+   "390": [
+    [
+     true,
+     "h2#h-summary: text=Bill summary, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-summary: text=Bill summary, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ]
+  },
+  "S1-42": {
+   "390": [
+    [
+     true,
+     "row 1 label: text=Subtotal, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 operator: text=, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 1 amount: text=RM 59.40, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 working lines: count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 1 label: text=Subtotal, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 operator: text=, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 1 amount: text=RM 59.40, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 working lines: count 0, golden 0"
+    ]
+   ]
+  },
+  "S1-43": {
+   "390": [
+    [
+     true,
+     "row 2 label: text=+Service charge, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 2 amount: text=RM 5.94, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 working: text=10% of RM 59.40, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 2 label: text=+Service charge, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 2 amount: text=RM 5.94, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 working: text=10% of RM 59.40, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ]
+   ]
+  },
+  "S1-44": {
+   "390": [
+    [
+     true,
+     "row 3 label: text=+SST, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 3 amount: text=RM 3.92, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 working: text=6% of RM 65.34, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 3 label: text=+SST, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 3 amount: text=RM 3.92, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 working: text=6% of RM 65.34, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ]
+   ]
+  },
+  "S1-45": {
+   "390": [
+    [
+     true,
+     "Total row: cls=row total, mt=12px, pt=12px, pos=relative, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule above from 28 px (::before: position=absolute, top=0px, left=28px, right=0px, border-top-width=1px, border-top-style=solid, border-top-color=rgb(20, 25, 23))"
+    ],
+    [
+     true,
+     "Total label: text==Total, fs=18px, fw=700, color=ink, = golden"
+    ],
+    [
+     true,
+     "Total amount cell: fs=26px, lh=32px, fw=700, ta=right, = golden"
+    ],
+    [
+     true,
+     "span.final: text=RM 69.26, bb=3px double ink, disp=inline-block, lh=29.9px, fs=26px, fw=700, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Total row: cls=row total, mt=12px, pt=12px, pos=relative, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule above from 28 px (::before: position=absolute, top=0px, left=28px, right=0px, border-top-width=1px, border-top-style=solid, border-top-color=rgb(20, 25, 23))"
+    ],
+    [
+     true,
+     "Total label: text==Total, fs=18px, fw=700, color=ink, = golden"
+    ],
+    [
+     true,
+     "Total amount cell: fs=26px, lh=32px, fw=700, ta=right, = golden"
+    ],
+    [
+     true,
+     "span.final: text=RM 69.26, bb=3px double ink, disp=inline-block, lh=29.9px, fs=26px, fw=700, = golden"
+    ]
+   ]
+  },
+  "S1-46": {
+   "390": [
+    [
+     true,
+     "h2#h-shares: text=Shares, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Shares section (32 px under the Total): mt=32px, = golden"
+    ],
+    [
+     true,
+     "gap between the Bill summary section and the Shares section 32 px (32 expected)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-shares: text=Shares, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Shares section (32 px under the Total): mt=32px, = golden"
+    ],
+    [
+     true,
+     "gap between the Bill summary section and the Shares section 32 px (32 expected)"
+    ]
+   ]
+  },
+  "S1-47": {
+   "390": [
+    [
+     true,
+     "table.shares: cls=shares, @aria-labelledby=h-shares, mt=8px, w=358, = golden"
+    ],
+    [
+     true,
+     "head 1 (hidden Person): text=Person, w=1, h=1, pos=absolute, = golden"
+    ],
+    [
+     true,
+     "head 2: text=Items, fs=13px, lh=18px, fw=600, color=ink-muted, ta=right, va=bottom, pt=0px, pb=4px, = golden"
+    ],
+    [
+     true,
+     "head 3: text=+Charges, fs=13px, lh=18px, fw=600, color=ink-muted, ta=right, va=bottom, pt=0px, pb=4px, = golden"
+    ],
+    [
+     true,
+     "head 3 operator: text=+, disp=inline, mr=4px, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "head 4: text==Share, fs=13px, lh=18px, fw=600, color=ink-muted, ta=right, va=bottom, pt=0px, pb=4px, = golden"
+    ],
+    [
+     true,
+     "head 4 operator: text==, disp=inline, mr=4px, @aria-hidden=true, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "table.shares: cls=shares, @aria-labelledby=h-shares, mt=8px, w=370, = golden"
+    ],
+    [
+     true,
+     "head 1 (hidden Person): text=Person, w=1, h=1, pos=absolute, = golden"
+    ],
+    [
+     true,
+     "head 2: text=Items, fs=13px, lh=18px, fw=600, color=ink-muted, ta=right, va=bottom, pt=0px, pb=4px, = golden"
+    ],
+    [
+     true,
+     "head 3: text=+Charges, fs=13px, lh=18px, fw=600, color=ink-muted, ta=right, va=bottom, pt=0px, pb=4px, = golden"
+    ],
+    [
+     true,
+     "head 3 operator: text=+, disp=inline, mr=4px, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "head 4: text==Share, fs=13px, lh=18px, fw=600, color=ink-muted, ta=right, va=bottom, pt=0px, pb=4px, = golden"
+    ],
+    [
+     true,
+     "head 4 operator: text==, disp=inline, mr=4px, @aria-hidden=true, = golden"
+    ]
+   ]
+  },
+  "S1-48": {
+   "390": [
+    [
+     true,
+     "row 1 name: text=Aisyah, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 1 items: text=RM 24.90, fs=14px, color=ink-muted, ta=right, fw=400, ws=nowrap, = golden"
+    ],
+    [
+     true,
+     "row 1 charges: text=RM 4.14, fs=14px, color=ink-muted, ta=right, fw=400, = golden"
+    ],
+    [
+     true,
+     "row 1 share: text=RM 29.04, fs=18px, fw=700, color=ink, ta=right, cls=share, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 1 name: text=Aisyah, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 1 items: text=RM 24.90, fs=14px, color=ink-muted, ta=right, fw=400, ws=nowrap, = golden"
+    ],
+    [
+     true,
+     "row 1 charges: text=RM 4.14, fs=14px, color=ink-muted, ta=right, fw=400, = golden"
+    ],
+    [
+     true,
+     "row 1 share: text=RM 29.04, fs=18px, fw=700, color=ink, ta=right, cls=share, = golden"
+    ]
+   ]
+  },
+  "S1-49": {
+   "390": [
+    [
+     true,
+     "row 2 name: text=Ben, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 2 items: text=RM 13.50, fs=14px, color=ink-muted, ta=right, fw=400, ws=nowrap, = golden"
+    ],
+    [
+     true,
+     "row 2 charges: text=RM 2.24, fs=14px, color=ink-muted, ta=right, fw=400, = golden"
+    ],
+    [
+     true,
+     "row 2 share: text=RM 15.74, fs=18px, fw=700, color=ink, ta=right, cls=share, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 2 name: text=Ben, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 2 items: text=RM 13.50, fs=14px, color=ink-muted, ta=right, fw=400, ws=nowrap, = golden"
+    ],
+    [
+     true,
+     "row 2 charges: text=RM 2.24, fs=14px, color=ink-muted, ta=right, fw=400, = golden"
+    ],
+    [
+     true,
+     "row 2 share: text=RM 15.74, fs=18px, fw=700, color=ink, ta=right, cls=share, = golden"
+    ]
+   ]
+  },
+  "S1-50": {
+   "390": [
+    [
+     true,
+     "row 3 name: text=Chen, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 3 items: text=RM 21.00, fs=14px, color=ink-muted, ta=right, fw=400, ws=nowrap, = golden"
+    ],
+    [
+     true,
+     "row 3 charges: text=RM 3.48, fs=14px, color=ink-muted, ta=right, fw=400, = golden"
+    ],
+    [
+     true,
+     "row 3 share: text=RM 24.48, fs=18px, fw=700, color=ink, ta=right, cls=share, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 3 name: text=Chen, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 3 items: text=RM 21.00, fs=14px, color=ink-muted, ta=right, fw=400, ws=nowrap, = golden"
+    ],
+    [
+     true,
+     "row 3 charges: text=RM 3.48, fs=14px, color=ink-muted, ta=right, fw=400, = golden"
+    ],
+    [
+     true,
+     "row 3 share: text=RM 24.48, fs=18px, fw=700, color=ink, ta=right, cls=share, = golden"
+    ]
+   ]
+  },
+  "S1-51": {
+   "390": [
+    [
+     true,
+     "check row label: text=Adds up to, color=accent, fs=15px, fw=600, ta=left, pl=28px, pt=12px, pb=0px, pos=relative, @scope=row, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule from 28 px in the name column (background 100% 1px at 28px 0px, no-repeat, linear-gradient(rgb(20, 25, 23), rgb(20, 25,)"
+    ],
+    [
+     true,
+     "check icon: w=18, h=18, fill=accent, pos=absolute, left=0px, top=14px, x=16, @aria-hidden=true, @viewBox=0 0 256 256, = golden"
+    ],
+    [
+     true,
+     "check cell 1: text=RM 59.40, bt=1px solid ink, ta=right, pt=12px, pb=0px, fs=14px, fw=400, color=ink-muted, = golden"
+    ],
+    [
+     true,
+     "check cell 2: text=RM 9.86, bt=1px solid ink, ta=right, pt=12px, pb=0px, fs=14px, fw=400, color=ink-muted, = golden"
+    ],
+    [
+     true,
+     "check cell 3: text=RM 69.26, bt=1px solid ink, ta=right, pt=12px, pb=0px, fs=18px, fw=700, color=accent, cls=share, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "check row label: text=Adds up to, color=accent, fs=15px, fw=600, ta=left, pl=28px, pt=12px, pb=0px, pos=relative, @scope=row, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule from 28 px in the name column (background 100% 1px at 28px 0px, no-repeat, linear-gradient(rgb(20, 25, 23), rgb(20, 25,)"
+    ],
+    [
+     true,
+     "check icon: w=18, h=18, fill=accent, pos=absolute, left=0px, top=14px, x=765, @aria-hidden=true, @viewBox=0 0 256 256, = golden"
+    ],
+    [
+     true,
+     "check cell 1: text=RM 59.40, bt=1px solid ink, ta=right, pt=12px, pb=0px, fs=14px, fw=400, color=ink-muted, = golden"
+    ],
+    [
+     true,
+     "check cell 2: text=RM 9.86, bt=1px solid ink, ta=right, pt=12px, pb=0px, fs=14px, fw=400, color=ink-muted, = golden"
+    ],
+    [
+     true,
+     "check cell 3: text=RM 69.26, bt=1px solid ink, ta=right, pt=12px, pb=0px, fs=18px, fw=700, color=accent, cls=share, = golden"
+    ]
+   ]
+  },
+  "S1-52": {
+   "390": [
+    [
+     true,
+     "Copy summary: cls=btn btn-primary btn-large btn-block copy, text=Copy summary, bg=ink, color=on-ink, b4=1px solid ink, h=48, w=358, mt=24px, fs=16px, lh=24px, fw=600, y=1597.89, disabled=False, cursor=pointer, rad=6px, = golden"
+    ],
+    [
+     true,
+     "copy icon: w=20, h=20, fill=on-ink, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Copy summary: cls=btn btn-primary btn-large btn-block copy, text=Copy summary, bg=ink, color=on-ink, b4=1px solid ink, h=48, w=370, mt=24px, fs=16px, lh=24px, fw=600, y=623.89, disabled=False, cursor=pointer, rad=6px, = golden"
+    ],
+    [
+     true,
+     "copy icon: w=20, h=20, fill=on-ink, = golden"
+    ]
+   ]
+  },
+  "S1-53": {
+   "390": [
+    [
+     true,
+     "p.status[role=status] present, text '', class 'status', display none (empty, not displayed), golden same"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "p.status[role=status] present, text '', class 'status', display none (empty, not displayed), golden same"
+    ]
+   ]
+  },
+  "S2-01": {
+   "390": [
+    [
+     true,
+     "h1.wordmark: text=Split, fs=22px, lh=28px, fw=700, color=ink, ls=-0.22px, tag=h1, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h1.wordmark: text=Split, fs=22px, lh=28px, fw=700, color=ink, ls=-0.22px, tag=h1, = golden"
+    ]
+   ]
+  },
+  "S2-02": {
+   "390": [
+    [
+     true,
+     "header.bar .btn.btn-outline: text=New bill, bg=field, b4=1px solid line-strong, fs=15px, lh=20px, fw=600, color=ink, r=374, rad=6px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "header.bar .btn.btn-outline: text=New bill, bg=field, b4=1px solid line-strong, fs=15px, lh=20px, fw=600, color=ink, r=1160, rad=6px, = golden"
+    ]
+   ]
+  },
+  "S2-03": {
+   "390": [
+    [
+     true,
+     "h2#h-people: text=People, fs=18px, lh=24px, fw=700, tag=h2, mb=12px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-people: text=People, fs=18px, lh=24px, fw=700, tag=h2, mb=12px, = golden"
+    ]
+   ]
+  },
+  "S2-04": {
+   "390": [
+    [
+     true,
+     "person 1 input: @aria-label=Person 1 name, value=Aisyah, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 1, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 1 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 1 remove: @aria-label=Remove Aisyah, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 1 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "person 2 input: @aria-label=Person 2 name, value=Ben, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 2, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 2 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 2 remove: @aria-label=Remove Ben, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 2 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "person 3 input: @aria-label=Person 3 name, value=Chen, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 3, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 3 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 3 remove: @aria-label=Remove Chen, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 3 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 1 input: @aria-label=Person 1 name, value=Aisyah, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 1, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 1 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 1 remove: @aria-label=Remove Aisyah, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 1 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "person 2 input: @aria-label=Person 2 name, value=Ben, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 2, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 2 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 2 remove: @aria-label=Remove Ben, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 2 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "person 3 input: @aria-label=Person 3 name, value=Chen, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 3, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 3 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 3 remove: @aria-label=Remove Chen, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 3 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ]
+  },
+  "S2-05": {
+   "390": [
+    [
+     true,
+     "Add person: text=Add person, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, w=175, h=44, x=199, y=168, fs=15px, fw=600, color=ink, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Add person plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Add person: text=Add person, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, w=180, h=44, x=120, y=188, fs=15px, fw=600, color=ink, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Add person plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ]
+   ]
+  },
+  "S2-06": {
+   "390": [
+    [
+     true,
+     "people grid: disp=grid, gap=8px, = golden"
+    ],
+    [
+     true,
+     "people grid: 2 columns (175px 175px), expected 2 at 390, gaps 8px / 8px"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "people grid: disp=grid, gap=8px, = golden"
+    ],
+    [
+     true,
+     "people grid: 3 columns (180px 180px 180px), expected 3 at 1280, gaps 8px / 8px"
+    ]
+   ]
+  },
+  "S2-07": {
+   "390": [
+    [
+     true,
+     "fieldset.mode: disp=grid, bg=field, b4=1px solid line-strong, rad=6px, ov=hidden, mt=24px, = golden"
+    ],
+    [
+     true,
+     "hidden legend: text=Split mode, cls=sr-only, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "two equal 44 px halves: 178 x 44 and 178 x 44"
+    ],
+    [
+     true,
+     "By item half (divider): bl=1px solid line-strong, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "fieldset.mode: disp=grid, bg=field, b4=1px solid line-strong, rad=6px, ov=hidden, mt=24px, = golden"
+    ],
+    [
+     true,
+     "hidden legend: text=Split mode, cls=sr-only, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "two equal 44 px halves: 277 x 44 and 277 x 44"
+    ],
+    [
+     true,
+     "By item half (divider): bl=1px solid line-strong, = golden"
+    ]
+   ]
+  },
+  "S2-08": {
+   "390": [
+    [
+     true,
+     "Even label: text=Even, bg=ink, color=on-ink, fs=15px, lh=20px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Even radio: checked=True, @type=radio, @name=mode, @value=even, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Even label: text=Even, bg=ink, color=on-ink, fs=15px, lh=20px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Even radio: checked=True, @type=radio, @name=mode, @value=even, = golden"
+    ]
+   ]
+  },
+  "S2-09": {
+   "390": [
+    [
+     true,
+     "By item label: text=By item, bg=rgba(0, 0, 0, 0), color=ink, fs=15px, lh=20px, fw=600, = golden"
+    ],
+    [
+     true,
+     "By item radio: checked=False, @type=radio, @name=mode, @value=item, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "By item label: text=By item, bg=rgba(0, 0, 0, 0), color=ink, fs=15px, lh=20px, fw=600, = golden"
+    ],
+    [
+     true,
+     "By item radio: checked=False, @type=radio, @name=mode, @value=item, = golden"
+    ]
+   ]
+  },
+  "S2-10": {
+   "390": [
+    [
+     true,
+     "h2#h-subtotal: fs=18px, lh=24px, fw=700, tag=h2, text=Subtotal in RM, = golden"
+    ],
+    [
+     true,
+     "label[for=subtotal]: @for=subtotal, text=Subtotal in RM, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-subtotal: fs=18px, lh=24px, fw=700, tag=h2, text=Subtotal in RM, = golden"
+    ],
+    [
+     true,
+     "label[for=subtotal]: @for=subtotal, text=Subtotal in RM, = golden"
+    ]
+   ]
+  },
+  "S2-11": {
+   "390": [
+    [
+     true,
+     "Subtotal field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, cls=field money, x=16, = golden"
+    ],
+    [
+     true,
+     "RM unit: text=RM, color=ink-muted, @aria-hidden=true, pl=8px, = golden"
+    ],
+    [
+     true,
+     "input#subtotal: value=100.00, @inputmode=decimal, @autocomplete=off, @type=text, @aria-invalid=None, @aria-describedby=None, ta=right, pad=0px 8px 0px 4px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "p.error elements in the DOM: count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Subtotal field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, cls=field money, x=120, = golden"
+    ],
+    [
+     true,
+     "RM unit: text=RM, color=ink-muted, @aria-hidden=true, pl=8px, = golden"
+    ],
+    [
+     true,
+     "input#subtotal: value=100.00, @inputmode=decimal, @autocomplete=off, @type=text, @aria-invalid=None, @aria-describedby=None, ta=right, pad=0px 8px 0px 4px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "p.error elements in the DOM: count 0, golden 0"
+    ]
+   ]
+  },
+  "S2-12": {
+   "390": [
+    [
+     true,
+     "Items block (by-item mode only): count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Items block (by-item mode only): count 0, golden 0"
+    ]
+   ]
+  },
+  "S2-13": {
+   "390": [
+    [
+     true,
+     "h2#h-charges: text=Charges, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Service charge label: text=Service charge in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "Service charge hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "Service charge input: value=10, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "Service charge field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=16, = golden"
+    ],
+    [
+     true,
+     "Service charge % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "SST label: text=SST in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "SST hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "SST input: value=6, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "SST field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=199, = golden"
+    ],
+    [
+     true,
+     "SST % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "p.hint#charges-hint: text=Set a charge to 0 if your bill already includes it., fs=14px, lh=20px, color=ink-muted, mt=8px, fw=400, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-charges: text=Charges, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Service charge label: text=Service charge in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "Service charge hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "Service charge input: value=10, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "Service charge field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=120, = golden"
+    ],
+    [
+     true,
+     "Service charge % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "SST label: text=SST in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "SST hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "SST input: value=6, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "SST field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=308, = golden"
+    ],
+    [
+     true,
+     "SST % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "p.hint#charges-hint: text=Set a charge to 0 if your bill already includes it., fs=14px, lh=20px, color=ink-muted, mt=8px, fw=400, = golden"
+    ]
+   ]
+  },
+  "S2-14": {
+   "390": [
+    [
+     true,
+     "panel frame: w=390, x=0, bt=2px solid ink, bb=1px solid line, bl=0px none ink, br=0px none ink, rad=0px, pad=20px 16px 24px 16px, mt=32px, bg=surface, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "panel frame: w=420, x=740, b4=1px solid ink, rad=6px, pos=sticky, top=24px, pad=24px 24px 24px 24px, bg=surface, = golden"
+    ],
+    [
+     true,
+     "panel top 100 equals People block top 100"
+    ],
+    [
+     true,
+     "scrolled 120 px (page scrolls 0 px): panel top 100 in the app, 100 in the golden (sticky behaves the same)"
+    ]
+   ]
+  },
+  "S2-15": {
+   "390": [
+    [
+     true,
+     "h2#h-summary: text=Bill summary, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-summary: text=Bill summary, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ]
+  },
+  "S2-16": {
+   "390": [
+    [
+     true,
+     "row 1 label: text=Subtotal, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 operator: text=, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 1 amount: text=RM 100.00, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 working lines: count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 1 label: text=Subtotal, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 operator: text=, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 1 amount: text=RM 100.00, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 working lines: count 0, golden 0"
+    ]
+   ]
+  },
+  "S2-17": {
+   "390": [
+    [
+     true,
+     "row 2 label: text=+Service charge, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 2 amount: text=RM 10.00, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 working: text=10% of RM 100.00, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 2 label: text=+Service charge, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 2 amount: text=RM 10.00, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 working: text=10% of RM 100.00, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ]
+   ]
+  },
+  "S2-18": {
+   "390": [
+    [
+     true,
+     "row 3 label: text=+SST, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 3 amount: text=RM 6.60, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 working: text=6% of RM 110.00, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 3 label: text=+SST, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 3 amount: text=RM 6.60, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 working: text=6% of RM 110.00, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ]
+   ]
+  },
+  "S2-19": {
+   "390": [
+    [
+     true,
+     "Total row: cls=row total, mt=12px, pt=12px, pos=relative, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule above from 28 px (::before: position=absolute, top=0px, left=28px, right=0px, border-top-width=1px, border-top-style=solid, border-top-color=rgb(20, 25, 23))"
+    ],
+    [
+     true,
+     "Total label: text==Total, fs=18px, fw=700, color=ink, = golden"
+    ],
+    [
+     true,
+     "Total amount cell: fs=26px, lh=32px, fw=700, ta=right, = golden"
+    ],
+    [
+     true,
+     "span.final: text=RM 116.60, bb=3px double ink, disp=inline-block, lh=29.9px, fs=26px, fw=700, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Total row: cls=row total, mt=12px, pt=12px, pos=relative, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule above from 28 px (::before: position=absolute, top=0px, left=28px, right=0px, border-top-width=1px, border-top-style=solid, border-top-color=rgb(20, 25, 23))"
+    ],
+    [
+     true,
+     "Total label: text==Total, fs=18px, fw=700, color=ink, = golden"
+    ],
+    [
+     true,
+     "Total amount cell: fs=26px, lh=32px, fw=700, ta=right, = golden"
+    ],
+    [
+     true,
+     "span.final: text=RM 116.60, bb=3px double ink, disp=inline-block, lh=29.9px, fs=26px, fw=700, = golden"
+    ]
+   ]
+  },
+  "S2-20": {
+   "390": [
+    [
+     true,
+     "h2#h-shares: text=Shares, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Shares section (32 px under the Total): mt=32px, = golden"
+    ],
+    [
+     true,
+     "gap between the Bill summary section and the Shares section 32 px (32 expected)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-shares: text=Shares, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Shares section (32 px under the Total): mt=32px, = golden"
+    ],
+    [
+     true,
+     "gap between the Bill summary section and the Shares section 32 px (32 expected)"
+    ]
+   ]
+  },
+  "S2-21": {
+   "390": [
+    [
+     true,
+     "thead.sr-only: cls=sr-only, w=1, h=1, pos=absolute, = golden"
+    ],
+    [
+     true,
+     "hidden heads read Person/col|Share/col"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "thead.sr-only: cls=sr-only, w=1, h=1, pos=absolute, = golden"
+    ],
+    [
+     true,
+     "hidden heads read Person/col|Share/col"
+    ]
+   ]
+  },
+  "S2-22": {
+   "390": [
+    [
+     true,
+     "row 1 name: text=Aisyah, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 1 share: text=RM 38.87, fs=18px, fw=700, color=ink, ta=right, = golden"
+    ],
+    [
+     true,
+     "row 1 cells (no Items or Charges cell): count 2, golden 2"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 1 name: text=Aisyah, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 1 share: text=RM 38.87, fs=18px, fw=700, color=ink, ta=right, = golden"
+    ],
+    [
+     true,
+     "row 1 cells (no Items or Charges cell): count 2, golden 2"
+    ]
+   ]
+  },
+  "S2-23": {
+   "390": [
+    [
+     true,
+     "row 2 name: text=Ben, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 2 share: text=RM 38.87, fs=18px, fw=700, color=ink, ta=right, = golden"
+    ],
+    [
+     true,
+     "row 2 cells (no Items or Charges cell): count 2, golden 2"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 2 name: text=Ben, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 2 share: text=RM 38.87, fs=18px, fw=700, color=ink, ta=right, = golden"
+    ],
+    [
+     true,
+     "row 2 cells (no Items or Charges cell): count 2, golden 2"
+    ]
+   ]
+  },
+  "S2-24": {
+   "390": [
+    [
+     true,
+     "row 3 name: text=Chen, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 3 share: text=RM 38.86, fs=18px, fw=700, color=ink, ta=right, = golden"
+    ],
+    [
+     true,
+     "row 3 cells (no Items or Charges cell): count 2, golden 2"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "row 3 name: text=Chen, fs=15px, fw=600, color=ink, ta=left, pl=28px, @scope=row, = golden"
+    ],
+    [
+     true,
+     "row 3 share: text=RM 38.86, fs=18px, fw=700, color=ink, ta=right, = golden"
+    ],
+    [
+     true,
+     "row 3 cells (no Items or Charges cell): count 2, golden 2"
+    ]
+   ]
+  },
+  "S2-25": {
+   "390": [
+    [
+     true,
+     "check row label: text=Adds up to, color=accent, fs=15px, fw=600, ta=left, pl=28px, pt=12px, pb=0px, pos=relative, @scope=row, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule from 28 px in the name column (background 100% 1px at 28px 0px, no-repeat, linear-gradient(rgb(20, 25, 23), rgb(20, 25,)"
+    ],
+    [
+     true,
+     "check icon: w=18, h=18, fill=accent, pos=absolute, left=0px, top=14px, x=16, @aria-hidden=true, @viewBox=0 0 256 256, = golden"
+    ],
+    [
+     true,
+     "check cell 1: text=RM 116.60, bt=1px solid ink, ta=right, pt=12px, pb=0px, fs=18px, fw=700, color=accent, cls=share, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "check row label: text=Adds up to, color=accent, fs=15px, fw=600, ta=left, pl=28px, pt=12px, pb=0px, pos=relative, @scope=row, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule from 28 px in the name column (background 100% 1px at 28px 0px, no-repeat, linear-gradient(rgb(20, 25, 23), rgb(20, 25,)"
+    ],
+    [
+     true,
+     "check icon: w=18, h=18, fill=accent, pos=absolute, left=0px, top=14px, x=765, @aria-hidden=true, @viewBox=0 0 256 256, = golden"
+    ],
+    [
+     true,
+     "check cell 1: text=RM 116.60, bt=1px solid ink, ta=right, pt=12px, pb=0px, fs=18px, fw=700, color=accent, cls=share, = golden"
+    ]
+   ]
+  },
+  "S2-26": {
+   "390": [
+    [
+     true,
+     "Copy summary: cls=btn btn-primary btn-large btn-block copy, text=Copy summary, bg=ink, color=on-ink, b4=1px solid ink, h=48, w=358, mt=24px, fs=16px, lh=24px, fw=600, y=1075.89, disabled=False, cursor=pointer, rad=6px, = golden"
+    ],
+    [
+     true,
+     "copy icon: w=20, h=20, fill=on-ink, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Copy summary: cls=btn btn-primary btn-large btn-block copy, text=Copy summary, bg=ink, color=on-ink, b4=1px solid ink, h=48, w=370, mt=24px, fs=16px, lh=24px, fw=600, y=600.89, disabled=False, cursor=pointer, rad=6px, = golden"
+    ],
+    [
+     true,
+     "copy icon: w=20, h=20, fill=on-ink, = golden"
+    ]
+   ]
+  },
+  "S2-27": {
+   "390": [
+    [
+     true,
+     "p.status[role=status] present, text '', class 'status', display none (empty, not displayed), golden same"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "p.status[role=status] present, text '', class 'status', display none (empty, not displayed), golden same"
+    ]
+   ]
+  },
+  "S2-28": {
+   "360": [
+    [
+     true,
+     "Subtotal field at 360: w=160, h=44, cls=field money, = golden"
+    ],
+    [
+     true,
+     "scrollWidth 360 <= innerWidth 360"
+    ]
+   ]
+  },
+  "S3-01": {
+   "390": [
+    [
+     true,
+     "h1.wordmark: text=Split, fs=22px, lh=28px, fw=700, color=ink, ls=-0.22px, tag=h1, = golden"
+    ],
+    [
+     true,
+     "header.bar .btn.btn-outline: text=New bill, bg=field, b4=1px solid line-strong, fs=15px, lh=20px, fw=600, color=ink, r=374, rad=6px, = golden"
+    ],
+    [
+     true,
+     "h2#h-people: text=People, fs=18px, lh=24px, fw=700, tag=h2, mb=12px, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h1.wordmark: text=Split, fs=22px, lh=28px, fw=700, color=ink, ls=-0.22px, tag=h1, = golden"
+    ],
+    [
+     true,
+     "header.bar .btn.btn-outline: text=New bill, bg=field, b4=1px solid line-strong, fs=15px, lh=20px, fw=600, color=ink, r=1160, rad=6px, = golden"
+    ],
+    [
+     true,
+     "h2#h-people: text=People, fs=18px, lh=24px, fw=700, tag=h2, mb=12px, = golden"
+    ]
+   ]
+  },
+  "S3-02": {
+   "390": [
+    [
+     true,
+     "person 1 input: @aria-label=Person 1 name, value=Person 1, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 1, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 1 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 1 input: @aria-label=Person 1 name, value=Person 1, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 1, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 1 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ]
+  },
+  "S3-03": {
+   "390": [
+    [
+     true,
+     "person 1 remove: @aria-label=Remove Person 1, disabled=True, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-disabled, cursor=not-allowed, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 1 remove X icon: w=20, h=20, fill=ink-disabled, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 1 remove: @aria-label=Remove Person 1, disabled=True, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-disabled, cursor=not-allowed, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 1 remove X icon: w=20, h=20, fill=ink-disabled, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ]
+  },
+  "S3-04": {
+   "390": [
+    [
+     true,
+     "person 2 input: @aria-label=Person 2 name, value=Person 2, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 2, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 2 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 2 input: @aria-label=Person 2 name, value=Person 2, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 2, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 2 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ]
+   ]
+  },
+  "S3-05": {
+   "390": [
+    [
+     true,
+     "person 2 remove: @aria-label=Remove Person 2, disabled=True, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-disabled, cursor=not-allowed, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 2 remove X icon: w=20, h=20, fill=ink-disabled, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "person 2 remove: @aria-label=Remove Person 2, disabled=True, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-disabled, cursor=not-allowed, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 2 remove X icon: w=20, h=20, fill=ink-disabled, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ]
+   ]
+  },
+  "S3-06": {
+   "390": [
+    [
+     true,
+     "Add person: text=Add person, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, w=175, h=44, x=16, y=168, fs=15px, fw=600, color=ink, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Add person plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "people grid: disp=grid, gap=8px, = golden"
+    ],
+    [
+     true,
+     "people grid: 2 columns (175px 175px), expected 2 at 390, gaps 8px / 8px"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Add person: text=Add person, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, w=180, h=44, x=496, y=136, fs=15px, fw=600, color=ink, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Add person plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "people grid: disp=grid, gap=8px, = golden"
+    ],
+    [
+     true,
+     "people grid: 3 columns (180px 180px 180px), expected 3 at 1280, gaps 8px / 8px"
+    ]
+   ]
+  },
+  "S3-07": {
+   "390": [
+    [
+     true,
+     "fieldset.mode: disp=grid, bg=field, b4=1px solid line-strong, rad=6px, ov=hidden, mt=24px, = golden"
+    ],
+    [
+     true,
+     "hidden legend: text=Split mode, cls=sr-only, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "two equal 44 px halves: 178 x 44 and 178 x 44"
+    ],
+    [
+     true,
+     "By item half (divider): bl=1px solid line-strong, = golden"
+    ],
+    [
+     true,
+     "Even label: text=Even, bg=ink, color=on-ink, fs=15px, lh=20px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Even radio: checked=True, @type=radio, @name=mode, @value=even, = golden"
+    ],
+    [
+     true,
+     "By item label: text=By item, bg=rgba(0, 0, 0, 0), color=ink, fs=15px, lh=20px, fw=600, = golden"
+    ],
+    [
+     true,
+     "By item radio: checked=False, @type=radio, @name=mode, @value=item, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "fieldset.mode: disp=grid, bg=field, b4=1px solid line-strong, rad=6px, ov=hidden, mt=24px, = golden"
+    ],
+    [
+     true,
+     "hidden legend: text=Split mode, cls=sr-only, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "two equal 44 px halves: 277 x 44 and 277 x 44"
+    ],
+    [
+     true,
+     "By item half (divider): bl=1px solid line-strong, = golden"
+    ],
+    [
+     true,
+     "Even label: text=Even, bg=ink, color=on-ink, fs=15px, lh=20px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Even radio: checked=True, @type=radio, @name=mode, @value=even, = golden"
+    ],
+    [
+     true,
+     "By item label: text=By item, bg=rgba(0, 0, 0, 0), color=ink, fs=15px, lh=20px, fw=600, = golden"
+    ],
+    [
+     true,
+     "By item radio: checked=False, @type=radio, @name=mode, @value=item, = golden"
+    ]
+   ]
+  },
+  "S3-08": {
+   "390": [
+    [
+     true,
+     "h2#h-subtotal: fs=18px, lh=24px, fw=700, tag=h2, text=Subtotal in RM, = golden"
+    ],
+    [
+     true,
+     "label[for=subtotal]: @for=subtotal, text=Subtotal in RM, = golden"
+    ],
+    [
+     true,
+     "Subtotal field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, cls=field money, x=16, = golden"
+    ],
+    [
+     true,
+     "RM unit: text=RM, color=ink-muted, @aria-hidden=true, pl=8px, = golden"
+    ],
+    [
+     true,
+     "input#subtotal: value=, @inputmode=decimal, @autocomplete=off, @type=text, @aria-invalid=None, @aria-describedby=None, ta=right, pad=0px 8px 0px 4px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "p.error elements in the DOM: count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-subtotal: fs=18px, lh=24px, fw=700, tag=h2, text=Subtotal in RM, = golden"
+    ],
+    [
+     true,
+     "label[for=subtotal]: @for=subtotal, text=Subtotal in RM, = golden"
+    ],
+    [
+     true,
+     "Subtotal field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, cls=field money, x=120, = golden"
+    ],
+    [
+     true,
+     "RM unit: text=RM, color=ink-muted, @aria-hidden=true, pl=8px, = golden"
+    ],
+    [
+     true,
+     "input#subtotal: value=, @inputmode=decimal, @autocomplete=off, @type=text, @aria-invalid=None, @aria-describedby=None, ta=right, pad=0px 8px 0px 4px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "p.error elements in the DOM: count 0, golden 0"
+    ]
+   ]
+  },
+  "S3-09": {
+   "390": [
+    [
+     true,
+     "h2#h-charges: text=Charges, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Service charge label: text=Service charge in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "Service charge hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "Service charge input: value=10, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "Service charge field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=16, = golden"
+    ],
+    [
+     true,
+     "Service charge % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "SST label: text=SST in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "SST hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "SST input: value=6, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "SST field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=199, = golden"
+    ],
+    [
+     true,
+     "SST % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "p.hint#charges-hint: text=Set a charge to 0 if your bill already includes it., fs=14px, lh=20px, color=ink-muted, mt=8px, fw=400, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-charges: text=Charges, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Service charge label: text=Service charge in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "Service charge hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "Service charge input: value=10, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "Service charge field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=120, = golden"
+    ],
+    [
+     true,
+     "Service charge % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "SST label: text=SST in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "SST hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "SST input: value=6, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "SST field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=308, = golden"
+    ],
+    [
+     true,
+     "SST % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "p.hint#charges-hint: text=Set a charge to 0 if your bill already includes it., fs=14px, lh=20px, color=ink-muted, mt=8px, fw=400, = golden"
+    ]
+   ]
+  },
+  "S3-10": {
+   "390": [
+    [
+     true,
+     "panel frame: w=390, x=0, bt=2px solid ink, bb=1px solid line, bl=0px none ink, br=0px none ink, rad=0px, pad=20px 16px 24px 16px, mt=32px, bg=surface, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "panel frame: w=420, x=740, b4=1px solid ink, rad=6px, pos=sticky, top=24px, pad=24px 24px 24px 24px, bg=surface, = golden"
+    ],
+    [
+     true,
+     "panel top 100 equals People block top 100"
+    ],
+    [
+     true,
+     "scrolled 120 px (page scrolls 0 px): panel top 100 in the app, 100 in the golden (sticky behaves the same)"
+    ]
+   ]
+  },
+  "S3-11": {
+   "390": [
+    [
+     true,
+     "Bill summary heading: count 0, golden 0"
+    ],
+    [
+     true,
+     "dl.sum: count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Bill summary heading: count 0, golden 0"
+    ],
+    [
+     true,
+     "dl.sum: count 0, golden 0"
+    ]
+   ]
+  },
+  "S3-12": {
+   "390": [
+    [
+     true,
+     "h2#h-shares: text=Shares, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-shares: text=Shares, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ]
+  },
+  "S3-13": {
+   "390": [
+    [
+     true,
+     "result message: text=Enter the subtotal to see the shares., fs=16px, lh=24px, color=ink, fw=400, mt=8px, h=24, x=16, y=632, cls=result-msg, = golden"
+    ],
+    [
+     true,
+     "p.result-msg elements: count 1, golden 1"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "result message: text=Enter the subtotal to see the shares., fs=16px, lh=24px, color=ink, fw=400, mt=8px, h=24, x=765, y=157, cls=result-msg, = golden"
+    ],
+    [
+     true,
+     "p.result-msg elements: count 1, golden 1"
+    ]
+   ]
+  },
+  "S3-14": {
+   "390": [
+    [
+     true,
+     "Copy summary button: count 0, golden 0"
+    ],
+    [
+     true,
+     "shares table: count 0, golden 0"
+    ],
+    [
+     true,
+     "p.status: count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Copy summary button: count 0, golden 0"
+    ],
+    [
+     true,
+     "shares table: count 0, golden 0"
+    ],
+    [
+     true,
+     "p.status: count 0, golden 0"
+    ]
+   ]
+  },
+  "S5-01": {
+   "390": [
+    [
+     true,
+     "h1.wordmark: text=Split, fs=22px, lh=28px, fw=700, color=ink, ls=-0.22px, tag=h1, = golden"
+    ],
+    [
+     true,
+     "header.bar .btn.btn-outline: text=New bill, bg=field, b4=1px solid line-strong, fs=15px, lh=20px, fw=600, color=ink, r=374, rad=6px, = golden"
+    ],
+    [
+     true,
+     "h2#h-people: text=People, fs=18px, lh=24px, fw=700, tag=h2, mb=12px, = golden"
+    ],
+    [
+     true,
+     "person 1 input: @aria-label=Person 1 name, value=Aisyah, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 1, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 1 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 1 remove: @aria-label=Remove Aisyah, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 1 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "person 2 input: @aria-label=Person 2 name, value=Ben, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 2, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 2 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 2 remove: @aria-label=Remove Ben, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 2 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "person 3 input: @aria-label=Person 3 name, value=Chen, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 3, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 3 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 3 remove: @aria-label=Remove Chen, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 3 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "Add person: text=Add person, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, w=175, h=44, x=199, y=168, fs=15px, fw=600, color=ink, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Add person plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "people grid: disp=grid, gap=8px, = golden"
+    ],
+    [
+     true,
+     "people grid: 2 columns (175px 175px), expected 2 at 390, gaps 8px / 8px"
+    ],
+    [
+     true,
+     "fieldset.mode: disp=grid, bg=field, b4=1px solid line-strong, rad=6px, ov=hidden, mt=24px, = golden"
+    ],
+    [
+     true,
+     "hidden legend: text=Split mode, cls=sr-only, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "two equal 44 px halves: 178 x 44 and 178 x 44"
+    ],
+    [
+     true,
+     "By item half (divider): bl=1px solid line-strong, = golden"
+    ],
+    [
+     true,
+     "Even label: text=Even, bg=rgba(0, 0, 0, 0), color=ink, fs=15px, lh=20px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Even radio: checked=False, @type=radio, @name=mode, @value=even, = golden"
+    ],
+    [
+     true,
+     "By item label: text=By item, bg=ink, color=on-ink, fs=15px, lh=20px, fw=600, = golden"
+    ],
+    [
+     true,
+     "By item radio: checked=True, @type=radio, @name=mode, @value=item, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h1.wordmark: text=Split, fs=22px, lh=28px, fw=700, color=ink, ls=-0.22px, tag=h1, = golden"
+    ],
+    [
+     true,
+     "header.bar .btn.btn-outline: text=New bill, bg=field, b4=1px solid line-strong, fs=15px, lh=20px, fw=600, color=ink, r=1160, rad=6px, = golden"
+    ],
+    [
+     true,
+     "h2#h-people: text=People, fs=18px, lh=24px, fw=700, tag=h2, mb=12px, = golden"
+    ],
+    [
+     true,
+     "person 1 input: @aria-label=Person 1 name, value=Aisyah, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 1, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 1 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 1 remove: @aria-label=Remove Aisyah, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 1 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "person 2 input: @aria-label=Person 2 name, value=Ben, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 2, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 2 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 2 remove: @aria-label=Remove Ben, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 2 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "person 3 input: @aria-label=Person 3 name, value=Chen, @maxlength=20, @type=text, @autocomplete=off, @placeholder=Person 3, fs=16px, lh=24px, color=ink, pad=0px 12px 0px 12px, h=42, = golden"
+    ],
+    [
+     true,
+     "person 3 field wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, cls=field person, = golden"
+    ],
+    [
+     true,
+     "person 3 remove: @aria-label=Remove Chen, disabled=False, w=44, h=44, bt=1px solid line-strong, bb=1px solid line-strong, br=1px solid line-strong, bl=1px solid line, radii=0px 6px 6px 0px, bg=rgba(0, 0, 0, 0), color=ink-muted, cursor=pointer, @type=button, = golden"
+    ],
+    [
+     true,
+     "person 3 remove X icon: w=20, h=20, fill=ink-muted, @aria-hidden=true, @viewBox=0 0 256 256, @focusable=false, = golden"
+    ],
+    [
+     true,
+     "Add person: text=Add person, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, w=180, h=44, x=120, y=188, fs=15px, fw=600, color=ink, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Add person plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "people grid: disp=grid, gap=8px, = golden"
+    ],
+    [
+     true,
+     "people grid: 3 columns (180px 180px 180px), expected 3 at 1280, gaps 8px / 8px"
+    ],
+    [
+     true,
+     "fieldset.mode: disp=grid, bg=field, b4=1px solid line-strong, rad=6px, ov=hidden, mt=24px, = golden"
+    ],
+    [
+     true,
+     "hidden legend: text=Split mode, cls=sr-only, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "two equal 44 px halves: 277 x 44 and 277 x 44"
+    ],
+    [
+     true,
+     "By item half (divider): bl=1px solid line-strong, = golden"
+    ],
+    [
+     true,
+     "Even label: text=Even, bg=rgba(0, 0, 0, 0), color=ink, fs=15px, lh=20px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "Even radio: checked=False, @type=radio, @name=mode, @value=even, = golden"
+    ],
+    [
+     true,
+     "By item label: text=By item, bg=ink, color=on-ink, fs=15px, lh=20px, fw=600, = golden"
+    ],
+    [
+     true,
+     "By item radio: checked=True, @type=radio, @name=mode, @value=item, = golden"
+    ]
+   ]
+  },
+  "S5-02": {
+   "390": [
+    [
+     true,
+     "item 1 name: value=Nasi lemak ayam, @aria-label=Item 1 name, @maxlength=40, @autocomplete=off, @placeholder=Item 1, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 1 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ],
+    [
+     true,
+     "item 1 price field: w=96, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 1 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 1 price input: value=15.90, ta=right, @aria-label=Item 1 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ],
+    [
+     true,
+     "item 1 remove: @aria-label=Remove Nasi lemak ayam, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle group: @role=group, @aria-label=Who had Nasi lemak ayam, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Aisyah: text=Aisyah, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 name: value=Char kuey teow, @aria-label=Item 2 name, @maxlength=40, @autocomplete=off, @placeholder=Item 2, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 2 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ],
+    [
+     true,
+     "item 2 price field: w=96, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 2 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 2 price input: value=13.50, ta=right, @aria-label=Item 2 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ],
+    [
+     true,
+     "item 2 remove: @aria-label=Remove Char kuey teow, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle group: @role=group, @aria-label=Who had Char kuey teow, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Aisyah: text=Aisyah, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Ben: text=Ben, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 name: value=Satay, 10 sticks, @aria-label=Item 4 name, @maxlength=40, @autocomplete=off, @placeholder=Item 4, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 4 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ],
+    [
+     true,
+     "item 4 price field: w=96, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 4 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 4 price input: value=18.00, ta=right, @aria-label=Item 4 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ],
+    [
+     true,
+     "item 4 remove: @aria-label=Remove Satay, 10 sticks, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle group: @role=group, @aria-label=Who had Satay, 10 sticks, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Aisyah: text=Aisyah, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Chen: text=Chen, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 1 name: value=Nasi lemak ayam, @aria-label=Item 1 name, @maxlength=40, @autocomplete=off, @placeholder=Item 1, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 1 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ],
+    [
+     true,
+     "item 1 price field: w=120, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 1 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 1 price input: value=15.90, ta=right, @aria-label=Item 1 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ],
+    [
+     true,
+     "item 1 remove: @aria-label=Remove Nasi lemak ayam, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle group: @role=group, @aria-label=Who had Nasi lemak ayam, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Aisyah: text=Aisyah, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 1 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 name: value=Char kuey teow, @aria-label=Item 2 name, @maxlength=40, @autocomplete=off, @placeholder=Item 2, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 2 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ],
+    [
+     true,
+     "item 2 price field: w=120, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 2 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 2 price input: value=13.50, ta=right, @aria-label=Item 2 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ],
+    [
+     true,
+     "item 2 remove: @aria-label=Remove Char kuey teow, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle group: @role=group, @aria-label=Who had Char kuey teow, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Aisyah: text=Aisyah, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Ben: text=Ben, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 2 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 name: value=Satay, 10 sticks, @aria-label=Item 4 name, @maxlength=40, @autocomplete=off, @placeholder=Item 4, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 4 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ],
+    [
+     true,
+     "item 4 price field: w=120, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 4 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 4 price input: value=18.00, ta=right, @aria-label=Item 4 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ],
+    [
+     true,
+     "item 4 remove: @aria-label=Remove Satay, 10 sticks, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle group: @role=group, @aria-label=Who had Satay, 10 sticks, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Aisyah: text=Aisyah, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 4 toggle Chen: text=Chen, @aria-pressed=true, bg=ink, color=on-ink, b4=1px solid ink, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ]
+   ]
+  },
+  "S5-03": {
+   "390": [
+    [
+     true,
+     "item 3 name: value=Mee goreng mamak, @aria-label=Item 3 name, @maxlength=40, @autocomplete=off, @placeholder=Item 3, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 3 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ],
+    [
+     true,
+     "item 3 price field: w=96, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 3 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 3 price input: value=12.00, ta=right, @aria-label=Item 3 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ],
+    [
+     true,
+     "item 3 remove: @aria-label=Remove Mee goreng mamak, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 3 name: value=Mee goreng mamak, @aria-label=Item 3 name, @maxlength=40, @autocomplete=off, @placeholder=Item 3, @type=text, fs=16px, lh=24px, = golden"
+    ],
+    [
+     true,
+     "item 3 name wrapper: bg=field, b4=1px solid line-strong, rad=6px, h=44, = golden"
+    ],
+    [
+     true,
+     "item 3 price field: w=120, h=44, bg=field, b4=1px solid line-strong, rad=6px, = golden"
+    ],
+    [
+     true,
+     "item 3 RM unit: text=RM, color=ink-muted, @aria-hidden=true, = golden"
+    ],
+    [
+     true,
+     "item 3 price input: value=12.00, ta=right, @aria-label=Item 3 price in RM, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, = golden"
+    ],
+    [
+     true,
+     "item 3 remove: @aria-label=Remove Mee goreng mamak, w=44, h=44, color=ink-muted, disabled=False, bg=rgba(0, 0, 0, 0), rad=6px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 remove X icon: w=20, h=20, fill=ink-muted, = golden"
+    ]
+   ]
+  },
+  "S5-04": {
+   "390": [
+    [
+     true,
+     "item 3 toggle group: @role=group, @aria-label=Who had Mee goreng mamak, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Aisyah: text=Aisyah, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "p.error elements: count 0, golden 0"
+    ],
+    [
+     true,
+     "aria-invalid attributes: count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 3 toggle group: @role=group, @aria-label=Who had Mee goreng mamak, gap=8px, mt=8px, disp=flex, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Aisyah: text=Aisyah, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Ben: text=Ben, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "item 3 toggle Chen: text=Chen, @aria-pressed=false, bg=field, color=ink, b4=1px solid line-strong, h=44, fs=15px, lh=20px, fw=600, rad=6px, pad=0px 12px 0px 12px, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "p.error elements: count 0, golden 0"
+    ],
+    [
+     true,
+     "aria-invalid attributes: count 0, golden 0"
+    ]
+   ]
+  },
+  "S5-05": {
+   "390": [
+    [
+     true,
+     "Add item: text=Add item, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, h=44, x=16, y=841, fs=15px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "natural width 122.781 px (not the full 358 px line)"
+    ],
+    [
+     true,
+     "Add item plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "h2#h-charges: text=Charges, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Service charge label: text=Service charge in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "Service charge hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "Service charge input: value=10, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "Service charge field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=16, = golden"
+    ],
+    [
+     true,
+     "Service charge % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "SST label: text=SST in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "SST hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "SST input: value=6, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "SST field: w=175, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=199, = golden"
+    ],
+    [
+     true,
+     "SST % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "p.hint#charges-hint: text=Set a charge to 0 if your bill already includes it., fs=14px, lh=20px, color=ink-muted, mt=8px, fw=400, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "Add item: text=Add item, cls=btn btn-outline, disabled=False, bg=field, b4=1px solid line-strong, h=44, x=120, y=861, fs=15px, fw=600, cursor=pointer, = golden"
+    ],
+    [
+     true,
+     "natural width 122.781 px (not the full 1040 px line)"
+    ],
+    [
+     true,
+     "Add item plus icon: w=18, h=18, fill=ink-muted, = golden"
+    ],
+    [
+     true,
+     "h2#h-charges: text=Charges, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Service charge label: text=Service charge in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "Service charge hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "Service charge input: value=10, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "Service charge field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=120, = golden"
+    ],
+    [
+     true,
+     "Service charge % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "SST label: text=SST in percent, fs=15px, lh=20px, fw=600, disp=block, mb=8px, color=ink, = golden"
+    ],
+    [
+     true,
+     "SST hidden ending: text=in percent, w=1, h=1, = golden"
+    ],
+    [
+     true,
+     "SST input: value=6, ta=right, @aria-describedby=charges-hint, @inputmode=decimal, @autocomplete=off, @aria-invalid=None, pad=0px 2px 0px 12px, fs=16px, = golden"
+    ],
+    [
+     true,
+     "SST field: w=180, h=44, bg=field, b4=1px solid line-strong, rad=6px, x=308, = golden"
+    ],
+    [
+     true,
+     "SST % unit: text=%, color=ink-muted, @aria-hidden=true, pr=12px, = golden"
+    ],
+    [
+     true,
+     "p.hint#charges-hint: text=Set a charge to 0 if your bill already includes it., fs=14px, lh=20px, color=ink-muted, mt=8px, fw=400, = golden"
+    ]
+   ]
+  },
+  "S5-06": {
+   "390": [
+    [
+     true,
+     "h2#h-summary: text=Bill summary, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "row 1 label: text=Subtotal, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 operator: text=, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 1 amount: text=RM 59.40, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 working lines: count 0, golden 0"
+    ],
+    [
+     true,
+     "row 2 label: text=+Service charge, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 2 amount: text=RM 5.94, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 working: text=10% of RM 59.40, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ],
+    [
+     true,
+     "row 3 label: text=+SST, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 3 amount: text=RM 3.92, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 working: text=6% of RM 65.34, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ],
+    [
+     true,
+     "Total row: cls=row total, mt=12px, pt=12px, pos=relative, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule above from 28 px (::before: position=absolute, top=0px, left=28px, right=0px, border-top-width=1px, border-top-style=solid, border-top-color=rgb(20, 25, 23))"
+    ],
+    [
+     true,
+     "Total label: text==Total, fs=18px, fw=700, color=ink, = golden"
+    ],
+    [
+     true,
+     "Total amount cell: fs=26px, lh=32px, fw=700, ta=right, = golden"
+    ],
+    [
+     true,
+     "span.final: text=RM 69.26, bb=3px double ink, disp=inline-block, lh=29.9px, fs=26px, fw=700, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-summary: text=Bill summary, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "row 1 label: text=Subtotal, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 operator: text=, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 1 amount: text=RM 59.40, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 1 working lines: count 0, golden 0"
+    ],
+    [
+     true,
+     "row 2 label: text=+Service charge, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 2 amount: text=RM 5.94, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 2 working: text=10% of RM 59.40, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ],
+    [
+     true,
+     "row 3 label: text=+SST, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 operator: text=+, color=ink-muted, fw=600, w=20, ta=center, @aria-hidden=true, mr=8px, = golden"
+    ],
+    [
+     true,
+     "row 3 amount: text=RM 3.92, ta=right, ws=nowrap, fs=16px, = golden"
+    ],
+    [
+     true,
+     "row 3 working: text=6% of RM 65.34, fs=15px, lh=20px, color=ink-muted, pl=28px, = golden"
+    ],
+    [
+     true,
+     "Total row: cls=row total, mt=12px, pt=12px, pos=relative, = golden"
+    ],
+    [
+     true,
+     "1 px ink rule above from 28 px (::before: position=absolute, top=0px, left=28px, right=0px, border-top-width=1px, border-top-style=solid, border-top-color=rgb(20, 25, 23))"
+    ],
+    [
+     true,
+     "Total label: text==Total, fs=18px, fw=700, color=ink, = golden"
+    ],
+    [
+     true,
+     "Total amount cell: fs=26px, lh=32px, fw=700, ta=right, = golden"
+    ],
+    [
+     true,
+     "span.final: text=RM 69.26, bb=3px double ink, disp=inline-block, lh=29.9px, fs=26px, fw=700, = golden"
+    ]
+   ]
+  },
+  "S5-07": {
+   "390": [
+    [
+     true,
+     "h2#h-shares: text=Shares, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Shares section (32 px under the Total): mt=32px, = golden"
+    ],
+    [
+     true,
+     "gap between the Bill summary section and the Shares section 32 px (32 expected)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-shares: text=Shares, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ],
+    [
+     true,
+     "Shares section (32 px under the Total): mt=32px, = golden"
+    ],
+    [
+     true,
+     "gap between the Bill summary section and the Shares section 32 px (32 expected)"
+    ]
+   ]
+  },
+  "S5-08": {
+   "390": [
+    [
+     true,
+     "result message: text=1 item still needs a person. Tap who had it to see the shares., fs=16px, lh=24px, color=ink, fw=400, mt=8px, h=48, x=16, y=1392.89, cls=result-msg, = golden"
+    ],
+    [
+     true,
+     "p.result-msg elements: count 1, golden 1"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "result message: text=1 item still needs a person. Tap who had it to see the shares., fs=16px, lh=24px, color=ink, fw=400, mt=8px, h=48, x=765, y=418.89, cls=result-msg, = golden"
+    ],
+    [
+     true,
+     "p.result-msg elements: count 1, golden 1"
+    ]
+   ]
+  },
+  "S5-09": {
+   "390": [
+    [
+     true,
+     "table.shares: count 0, golden 0"
+    ],
+    [
+     true,
+     "button.copy: count 0, golden 0"
+    ],
+    [
+     true,
+     "p.status: count 0, golden 0"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "table.shares: count 0, golden 0"
+    ],
+    [
+     true,
+     "button.copy: count 0, golden 0"
+    ],
+    [
+     true,
+     "p.status: count 0, golden 0"
+    ]
+   ]
+  },
+  "S5-10": {
+   "390": [
+    [
+     true,
+     "h2#h-items: text=Items, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "h2#h-items: text=Items, fs=18px, lh=24px, fw=700, tag=h2, = golden"
+    ]
+   ]
+  },
+  "S5-11": {
+   "390": [
+    [
+     true,
+     "item 1 (no separator): bt=0px none ink, pt=0px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 2 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 3 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 4 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "item 1 (no separator): bt=0px none ink, pt=0px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 2 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 3 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ],
+    [
+     true,
+     "item 4 separator: bt=1px solid line, pt=16px, pb=16px, cls=item, = golden"
+    ]
+   ]
+  },
+  "S5-12": {
+   "390": [
+    [
+     true,
+     "panel frame: w=390, x=0, bt=2px solid ink, bb=1px solid line, bl=0px none ink, br=0px none ink, rad=0px, pad=20px 16px 24px 16px, mt=32px, bg=surface, = golden"
+    ],
+    [
+     true,
+     "panel ends 1465.89, message ends 1440.89, padding-bottom 24, bottom border 1 (the card ends 24 px under the message)"
+    ]
+   ],
+   "1280": [
+    [
+     true,
+     "panel frame: w=420, x=740, b4=1px solid ink, rad=6px, pos=sticky, top=24px, pad=24px 24px 24px 24px, bg=surface, = golden"
+    ],
+    [
+     true,
+     "panel top 100 equals People block top 100"
+    ],
+    [
+     true,
+     "scrolled 120 px (page scrolls 329 px): panel top 24 in the app, 24 in the golden (sticky behaves the same)"
+    ],
+    [
+     true,
+     "panel ends 491.891, message ends 466.891, padding-bottom 24, bottom border 1 (the card ends 24 px under the message)"
+    ]
+   ]
+  }
+ },
+ "console_errors": []
+}

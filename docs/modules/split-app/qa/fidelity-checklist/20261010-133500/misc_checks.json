@@ -1,0 +1,210 @@
+{
+ "seed_scripts": {
+  "seed-s1.js": {
+   "one_statement": true,
+   "equals_qa_md_seed": true,
+   "equals_seeds_py": true,
+   "sets_only_split_draft": true
+  },
+  "seed-s2.js": {
+   "one_statement": true,
+   "equals_qa_md_seed": true,
+   "equals_seeds_py": true,
+   "sets_only_split_draft": true
+  },
+  "seed-s5.js": {
+   "one_statement": true,
+   "equals_qa_md_seed": true,
+   "equals_seeds_py": true,
+   "sets_only_split_draft": true
+  },
+  "open-new-bill.js": {
+   "statements": [
+    "const nextFrame = () => new Promise((resolve) => requestAnimationFrame(() => resolve()));",
+    "document.querySelector(\"header .btn\").click();",
+    "await nextFrame();",
+    "await nextFrame();",
+    "document.activeElement.blur();",
+    "await nextFrame();",
+    "await nextFrame();"
+   ]
+  }
+ },
+ "note_geometry": [
+  {
+   "viewport": "360x780",
+   "app": {
+    "note_width": 328,
+    "note_height": 66,
+    "lines": 2,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 64,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 328
+   },
+   "specimen": {
+    "note_width": 294,
+    "note_height": 66,
+    "lines": 2,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 64,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 294
+   },
+   "ok": true,
+   "lines_equal_to_specimen_when_widths_equal": null
+  },
+  {
+   "viewport": "390x844",
+   "app": {
+    "note_width": 358,
+    "note_height": 66,
+    "lines": 2,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 64,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 358
+   },
+   "specimen": {
+    "note_width": 324,
+    "note_height": 66,
+    "lines": 2,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 64,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 324
+   },
+   "ok": true,
+   "lines_equal_to_specimen_when_widths_equal": null
+  },
+  {
+   "viewport": "600x900",
+   "app": {
+    "note_width": 528,
+    "note_height": 46,
+    "lines": 1,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 40,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 528
+   },
+   "specimen": {
+    "note_width": 534,
+    "note_height": 46,
+    "lines": 1,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 40,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 534
+   },
+   "ok": true,
+   "lines_equal_to_specimen_when_widths_equal": null
+  },
+  {
+   "viewport": "1024x768",
+   "app": {
+    "note_width": 960,
+    "note_height": 46,
+    "lines": 1,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 40,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 960
+   },
+   "specimen": {
+    "note_width": 270,
+    "note_height": 90,
+    "lines": 3,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 88,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 270
+   },
+   "ok": true,
+   "lines_equal_to_specimen_when_widths_equal": null
+  },
+  {
+   "viewport": "1280x800",
+   "app": {
+    "note_width": 1040,
+    "note_height": 46,
+    "lines": 1,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 40,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 1040
+   },
+   "specimen": {
+    "note_width": 355.33,
+    "note_height": 66,
+    "lines": 2,
+    "gap_under_header": 16,
+    "button_top_offset": 1,
+    "button_right_inset": 1.0,
+    "button": [
+     44,
+     44
+    ],
+    "p_height": 64,
+    "p_centre_offset": 0.0,
+    "content_width_of_wrap": 355.33
+   },
+   "ok": true,
+   "lines_equal_to_specimen_when_widths_equal": null
+  }
+ ]
+}
