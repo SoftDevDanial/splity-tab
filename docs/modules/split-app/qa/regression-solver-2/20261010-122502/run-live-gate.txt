@@ -1,0 +1,12 @@
+$ python -B docs/modules/split-app/qa/regression-solver-2/20261010-122502/live_gate_scratch.py   (cwd {workspace}\examples\split)   exit 0   3.4 s wall
+server STARTED pid 12852 port 13836 root {workspace}\examples\split
+01 | gesture: open / with empty storage | assertion: the S3 screen (two people, Even, empty Subtotal, 10 and 6, only the Shares message) and no split.draft key | PASS
+02 | gesture: replace Person 1 with Aisyah and Person 2 with Ben, click Add person, type Chen, type 100.00 in Subtotal | assertion: Bill summary RM 100.00, 10.00, 6.60, 116.60, shares RM 38.87, RM 38.87, RM 38.86, Adds up to RM 116.60 | PASS
+03 | gesture: click Copy summary | assertion: status Summary copied and the recorder holds the S2 block exactly | PASS
+04 | gesture: click By item, add the four S1 items by typing names and prices, tap their people, click Copy summary | assertion: S1 shares RM 29.04, RM 15.74, RM 24.48, check row RM 59.40, RM 9.86, RM 69.26, and the recorder holds the S1 block exactly | PASS
+05 | gesture: close the page, open / in a new page of the same context, click Even | assertion: the S1 screen as left, then Subtotal 100.00 and the S2 shares | PASS
+06 | gesture: click New bill, then Start new bill, then reload | assertion: the dialog is modal with Cancel focused, then the S3 screen, and the S3 screen again after the reload | PASS
+07 | gesture: no gesture, the logs of steps 1 to 6 are read | assertion: zero console errors, zero page errors, no Content Security Policy violation, only same-origin GETs | PASS
+server STOPPED pid 12852 port 13836, exited True, port free again True
+live gate PASS, evidence in {workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\live-gate-check\20261010-123748
+files: 01-cold-boot.png, 02-even-split.png, 03-copy-even.png, 04-by-item.png, 05-come-back.png, 06-start-over.png, 07-throughout.png, clipboard-s1.txt, clipboard-s2.txt, console.log, network.log, steps.log, summary.json

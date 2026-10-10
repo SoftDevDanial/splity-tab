@@ -4,7 +4,7 @@
 - **design-phase:** sdlc:design
 - **version:** 1.0.0
 - **mode:** greenfield
-- **phase:** regression (RG-CR-08 BLOCKER, dev solver next)
+- **phase:** regression (code review closed; QA finder, cold boot and report next)
 - **next:** regression
 
 ## Modules
@@ -17,7 +17,7 @@
 none
 
 ## Next action
-Dev solver on RG-CR-08 (double press on a who-had-it chip removes the item while a price error is pending): Remove handlers ignore count above 1 again plus arm swallowRepeatClicks, candidate test rows from qa/regression-recheck/20261009-230750/, doc corrections. Then README swallowRepeatClicks bullet, QA finder (haiku) both modules, cold boot into docs/regression/<ts>/, REGRESSION.md, process ledger, credential gate. Then review, UAT pre-run.
+Regression QA finder (haiku) on both modules on the final code, five hand-driven flows. Then the official cold boot into docs/regression/<ts>/, REGRESSION.md, process ledger, ledger re-verified rows, full credential gate, STATE last-regression. Then logos and README design, review, UAT pre-run.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

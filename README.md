@@ -14,7 +14,7 @@ finding and fix of this version is in `docs/v1.0.0/CHANGE-LEDGER.md`.
 | `split-core` | the money rules, pure functions, no DOM | closed 2026-10-09 |
 | `split-app` | the page, the saved draft, the copy summary | closed 2026-10-09 |
 
-- At v1.0.0, 421 browser tests and 275 unit tests pass.
+- At v1.0.0, 427 browser tests and 275 unit tests pass.
 - The page matches its five approved design screens to the pixel at 390 x 844 and 1280 x 800 (10 of 10 pairs, 0 mismatched pixels).
 - The cold-boot live gate passes 7 of 7 steps with real gestures on the shipped page.
 - QA, code review and security reviews are done, with their findings fixed or accepted below.
@@ -63,7 +63,7 @@ Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no
 - `src/ui/` builds one block per section (`createX(handlers)` returns `{ el, update }`). Blocks write the DOM and report gestures. They never change the bill.
 - `reconcileChildren` updates lists without re-inserting a node that is already in place, so typing never loses focus.
 - `onFieldLeave` holds a field's error back until a press ends, so a tap on the button below an invalid field is never lost.
-- `swallowRepeatClicks` cancels the repeat press of a double click, triple click or double tap, so it never lands on a control that moved under the pointer. It protects only the controls that arm it. Every Remove button, Add person, Add item, and the New bill dialog on open and close arm it.
+- `swallowRepeatClicks` cancels the repeat press of a double click, triple click or double tap, so it never lands on a control that moved under the pointer. It protects only the controls that arm it. Every Remove button, Add person, Add item, and the New bill dialog on open and close arm it. A Remove button also ignores a repeat press itself (`isRepeatClick`), so when a price error moves the rows and the second press of a double click lands on a Remove, nothing is removed.
 - `createDialog` runs the New bill dialog. Cancel, Esc and Start new bill close it. A click on the backdrop closes it only if the press began on the backdrop too.
 
 **The look.** `src/system.css` is a byte copy of the approved design's `system.css` plus one rule at the end,

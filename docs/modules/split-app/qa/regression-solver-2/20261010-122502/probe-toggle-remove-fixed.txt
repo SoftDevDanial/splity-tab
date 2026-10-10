@@ -1,0 +1,28 @@
+$ python -B docs/modules/split-app/qa/regression-solver-2/20261010-122502/probe_toggle_remove.py {workspace}/examples/split fixed   (cwd {workspace}\examples\split)   exit 0   83.8 s wall
+server STARTED pid 20764 port 31259 root {workspace}\examples\split
+server STOPPED pid 20764 port 31259, exited True, port free again True
+fixed: 240 configurations, 96 with a chip point that lands on a Remove after the error, 0 where the real double click removed an item, 0 where the single click did
+  names short    width  360: people with a landing [6, 7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names short    width  375: people with a landing [6, 7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names short    width  390: people with a landing [7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names short    width  412: people with a landing [7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names short    width  600: people with a landing [10, 11, 12]  real double click removed an item for []
+  names short    width  768: people with a landing [10, 11, 12]  real double click removed an item for []
+  names short    width 1024: people with a landing [9, 10, 11, 12]  real double click removed an item for []
+  names short    width 1280: people with a landing [10, 11, 12]  real double click removed an item for []
+  names typical  width  360: people with a landing []  real double click removed an item for []
+  names typical  width  375: people with a landing [5, 6, 7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names typical  width  390: people with a landing [5, 6, 7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names typical  width  412: people with a landing []  real double click removed an item for []
+  names typical  width  600: people with a landing []  real double click removed an item for []
+  names typical  width  768: people with a landing []  real double click removed an item for []
+  names typical  width 1024: people with a landing [7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names typical  width 1280: people with a landing [8, 9, 10, 11, 12]  real double click removed an item for []
+  names long     width  360: people with a landing [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names long     width  375: people with a landing [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names long     width  390: people with a landing []  real double click removed an item for []
+  names long     width  412: people with a landing []  real double click removed an item for []
+  names long     width  600: people with a landing []  real double click removed an item for []
+  names long     width  768: people with a landing []  real double click removed an item for []
+  names long     width 1024: people with a landing [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  real double click removed an item for []
+  names long     width 1280: people with a landing []  real double click removed an item for []

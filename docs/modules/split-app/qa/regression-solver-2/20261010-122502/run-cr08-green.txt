@@ -1,0 +1,14 @@
+$ python -B -m pytest tests/browser -q -p no:cacheprovider --tb=short -rf -v -k pending_price_error   (cwd {workspace}\examples\split)   exit 0   4.8 s wall
+============================= test session starts =============================
+platform win32 -- Python 3.14.0, pytest-9.1.0, pluggy-1.6.0
+rootdir: {workspace}\examples\split\tests\browser
+configfile: pytest.ini
+collected 427 items / 421 deselected / 6 selected
+
+tests\browser\test_app.py 
+server STARTED pid 22512 port 12158 root {workspace}\examples\split
+.
+tests\browser\test_app.py .....
+server STOPPED pid 22512 port 12158, exited True, port free again True
+                                                                         [100%]
+====================== 6 passed, 421 deselected in 4.28s ======================

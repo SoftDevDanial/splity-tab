@@ -1,0 +1,67 @@
+# cr08-red: mutant RED (no mutation (the project as it is)); select 'pending_price_error'; exit 1; 5.6 s wall
+server STARTED pid 4164 port 40504 root {workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch
+FFFFFFserver STOPPED pid 4164 port 40504, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+_ test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-double] _
+tests\browser\test_app.py:1874: in test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item
+    assert [item["id"] for item in stored(page)["bill"]["items"]] == before  # no item went
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E     
+E     At index 1 diff: 'i6' != 'i5'
+E     Right contains one more item: 'i7'
+E     Use -v to get more diff
+_ test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-triple] _
+tests\browser\test_app.py:1874: in test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item
+    assert [item["id"] for item in stored(page)["bill"]["items"]] == before  # no item went
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E     
+E     At index 1 diff: 'i6' != 'i5'
+E     Right contains one more item: 'i7'
+E     Use -v to get more diff
+_ test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-touch-double] _
+tests\browser\test_app.py:1874: in test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item
+    assert [item["id"] for item in stored(page)["bill"]["items"]] == before  # no item went
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E     
+E     At index 1 diff: 'i6' != 'i5'
+E     Right contains one more item: 'i7'
+E     Use -v to get more diff
+_ test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-double] _
+tests\browser\test_app.py:1874: in test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item
+    assert [item["id"] for item in stored(page)["bill"]["items"]] == before  # no item went
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E     
+E     At index 1 diff: 'i6' != 'i5'
+E     Right contains one more item: 'i7'
+E     Use -v to get more diff
+_ test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-triple] _
+tests\browser\test_app.py:1874: in test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item
+    assert [item["id"] for item in stored(page)["bill"]["items"]] == before  # no item went
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E     
+E     At index 1 diff: 'i6' != 'i5'
+E     Right contains one more item: 'i7'
+E     Use -v to get more diff
+_ test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-touch-double] _
+tests\browser\test_app.py:1874: in test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item
+    assert [item["id"] for item in stored(page)["bill"]["items"]] == before  # no item went
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E     
+E     At index 1 diff: 'i6' != 'i5'
+E     Right contains one more item: 'i7'
+E     Use -v to get more diff
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-touch-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-touch-double]
+6 failed, 421 deselected in 5.05s

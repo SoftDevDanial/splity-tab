@@ -1,0 +1,54 @@
+# full-B1: mutant B1 (items.js Remove drops the count test (HEAD's line)); select None; exit 1; 113.3 s wall
+server STARTED pid 9276 port 56155 root {workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch
+........................................................................ [ 16%]
+........................................................................ [ 33%]
+........................................................................ [ 50%]
+........................................................................ [ 67%]
+........................................................................ [ 84%]
+.....FFFFFF........................................................server STOPPED pid 9276 port 56155, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+      
+      At index 1 diff: 'i6' != 'i5'
+      Right contains one more item: 'i7'
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1874: AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+      
+      At index 1 diff: 'i6' != 'i5'
+      Right contains one more item: 'i7'
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1874: AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+      
+      At index 1 diff: 'i6' != 'i5'
+      Right contains one more item: 'i7'
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1874: AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+      
+      At index 1 diff: 'i6' != 'i5'
+      Right contains one more item: 'i7'
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1874: AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+      
+      At index 1 diff: 'i6' != 'i5'
+      Right contains one more item: 'i7'
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1874: AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+E   AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+      
+      At index 1 diff: 'i6' != 'i5'
+      Right contains one more item: 'i7'
+      Use -v to get more diff
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1874: AssertionError: assert ['i4', 'i6', 'i7'] == ['i4', 'i5', 'i6', 'i7']
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-touch-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-touch-double]
+6 failed, 421 passed in 112.32s (0:01:52)

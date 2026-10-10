@@ -1,0 +1,23 @@
+{
+  "started": "2026-10-10T12:37:48",
+  "ended": "2026-10-10T12:37:51",
+  "chromium": "149.0.7827.55",
+  "port": 13836,
+  "server_pid": 12852,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "init_scripts": [
+    "tests/browser/clipboard/recorder.js"
+  ],
+  "storage_state": null,
+  "bypass_csp": false,
+  "steps": 7,
+  "failure": null,
+  "server_log": [
+    "server STARTED pid 12852 port 13836 root {workspace}\\examples\\split",
+    "server STOPPED pid 12852 port 13836, exited True, port free again True"
+  ],
+  "result": "PASS"
+}

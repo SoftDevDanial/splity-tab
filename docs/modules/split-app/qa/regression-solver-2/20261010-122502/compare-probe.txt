@@ -1,0 +1,7 @@
+$ python -B docs/modules/split-app/qa/regression-solver-2/20261010-122502/compare_probe.py   (cwd {workspace}\examples\split)   exit 0   0.0 s wall
+configurations: fixed 240, HEAD a6cbbf8 240; same layout scan and same example point in every one: True
+affected layouts (a chip point lands on its own item's Remove once the error shows): fixed 96, HEAD 96
+real double click removed an item: HEAD 96 of 96, fixed 0 of 96
+single click removed an item:      HEAD 0 of 96, fixed 0 of 96
+fixed tree: the double click left exactly the bill that the single click leaves in 96 of 96
+page errors during the affected runs, fixed tree: 0

@@ -1,0 +1,5 @@
+$ python -B -m pytest tests/browser -q -p no:cacheprovider --tb=short -rf -k R37 or R39 or pending_price_error   (cwd {workspace}\examples\split)   exit 0   6.4 s wall
+server STARTED pid 23484 port 13289 root {workspace}\examples\split
+...................server STOPPED pid 23484 port 13289, exited True, port free again True
+                                                                         [100%]
+19 passed, 408 deselected in 5.91s

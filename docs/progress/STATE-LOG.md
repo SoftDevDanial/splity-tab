@@ -151,3 +151,9 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 
 ## 2026-10-09 23:50 regression re-check collected, RG-CR-08 blocker
 - Re-check: RG-CR-01 to 04 hold. New RG-CR-08 BLOCKER, second regression of 071577a (chip double press removes the item). Fix verified by the re-check in a scratch copy. Queued for next session.
+
+## 2026-10-10 12:48 RG-CR-08 solved, code review closed
+- Dev solver round 2: 4a36354 fix (isRepeatClick exported, Remove handlers ignore a repeat press, 6 test rows), 059f560 docs. Red 6 of 6 then green, probe 0 of 96, B1 killed, B2 recorded.
+- Suites 427 browser, 275 unit. Fidelity 10 of 10 at 0 px (qa/fidelity/20261010-123651/). Live gate check 7 of 7.
+- Solver section and ORCH ruling merged into findings/regression-code-review.md, status pass. Stop rule: code review ends for v1.0.0.
+- README reconciled: 427 browser tests, swallowRepeatClicks bullet.

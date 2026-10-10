@@ -1,0 +1,8 @@
+$ python -B -m pytest tests/browser -q -p no:cacheprovider --tb=short -rf -k R6 or R7 or R12 or R29 or R30 or R34   (cwd {workspace}\examples\split)   exit 0   79.1 s wall
+server STARTED pid 3584 port 32035 root {workspace}\examples\split
+........................................................................ [ 32%]
+........................................................................ [ 64%]
+........................................................................ [ 96%]
+........server STOPPED pid 3584 port 32035, exited True, port free again True
+                                                                         [100%]
+224 passed, 203 deselected in 77.36s (0:01:17)

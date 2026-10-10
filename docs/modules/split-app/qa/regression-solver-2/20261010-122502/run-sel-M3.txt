@@ -1,0 +1,238 @@
+# sel-M3: mutant M3 (items.js Remove arms no guard, keeps the count test); select 'R6 or R7 or R12 or R29 or R30 or R34'; exit 1; 66.1 s wall
+server STARTED pid 1492 port 62354 root {workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch
+..................................................................FFF.FF [ 32%]
+F.FFF.FFF.FFF.FFFFF..................................................... [ 64%]
+........................................................................ [ 96%]
+........server STOPPED pid 1492 port 62354, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsRMAisyahBenChenRMAisyahBenChenRMAisyahBenChenAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Item 3 name'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+E   AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+      
+      - Add item
+      + Split
+      +     New bill
+      +   
+      +   
+      +     PeopleAdd personSplit modeEvenBy itemSubtotal in RMRMItemsAdd itemChargesService charge in percent%SST in percent%Set a charge to 0 if your bill already includes it....
+      
+      ...Full output truncated (9 lines hidden), use '-vv' to show
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1710: AssertionError: assert 'Split\n    N...l\n    Cancel' == 'Add item'
+E   AssertionError: assert 'Remove Mee goreng mamak' == 'Item 2 name'
+      
+      - Item 2 name
+      + Remove Mee goreng mamak
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1719: AssertionError: assert 'Remove Mee goreng mamak' == 'Item 2 name'
+E   AssertionError: assert 'Remove Mee goreng mamak' == 'Item 2 name'
+      
+      - Item 2 name
+      + Remove Mee goreng mamak
+{workspace}\examples\split\docs\modules\split-app\qa\regression-solver-2\20261010-122502\scratch\tests\browser\test_app.py:1719: AssertionError: assert 'Remove Mee goreng mamak' == 'Item 2 name'
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-360x640-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-360x640-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-360x640-touch-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-390x844-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-390x844-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-390x844-touch-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-1280x800-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-1280x800-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-1280x800-touch-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x640-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x640-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x640-touch-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-touch-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-mouse-double]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-mouse-triple]
+FAILED tests\browser\test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-touch-double]
+FAILED tests\browser\test_app.py::test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[item-2-of-4-mouse]
+FAILED tests\browser\test_app.py::test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[item-2-of-4-touch]
+20 failed, 204 passed, 203 deselected in 65.28s (0:01:05)
