@@ -4,7 +4,7 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design, steps 5 to 8 (lock, compose, wire, self-critique) from the accepted G2
+- **phase:** v1.1.0 design, steps 5, 6 and 8 composed (final/ committed), step 7 wire and verify next
 - **next:** composer builds docs/design-explore/v1.1.0/final/ (system, goldens, manifest, links, self-critique), orchestrator wires and drives the flow (step 7), owner approves the set and the replacement of 1.0's goldens, logo redraw swapped in, finalize, then plan
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-One composer agent builds `docs/design-explore/v1.1.0/final/` from `v1.1.0/COMPOSE-BRIEF.md` (G2 accepted, ledger S7 row 8, H-03 final ruling). Rulings for the step: S6 opens People like S1, the rate error copy stays, the header mark kept swappable for the logo redraw. Then the orchestrator wires `final/` into `v1.1.0/prototype/` and drives `final/LINKS.json` (flowcheck adapted to v1.1.0 paths), writes `v1.1.0/FLOW-CHECK.md`, and puts the set to the owner. **Finalize writes `docs/design/`, which holds 1.0's immutable goldens. Replacing them needs the owner's explicit word** (1.0's stay in tag v1.0.0). Logo redraw with "Splity Tab" before finalize. F `round-2/f.html` stays withdrawn. S9 several-bills doc is written (docs/future/several-bills.md).
+Composer done: `docs/design-explore/v1.1.0/final/` (system.md, system.css, 15 goldens with .md: bill-items, bill-items-open, bill-even, spare-sen, spare-sen-one, spare-sen-random, splits-sheet, new-bill-dialog, bill-empty, rate-error, bill-unassigned, bill-unreadable, bill-twelve, bill-large, states; MANIFEST.md, LINKS.json with 48 links, SELF-CRITIQUE.md, checks). Next: run `flowcheck_v.py split v1.1.0`, put SELF-CRITIQUE's copy list and 13 interaction rules to the owner, plus four open questions (an invalid rate counts as 0 in the receipt, an invalid price is left out of the totals, the P1 picker and At random goldens sit on K2 to match the inventory figures, the logo swap touches the inline mark and the tab icon). Then logo redraw, then the finalize gate (his approval AND his word to replace 1.0's goldens).
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.
