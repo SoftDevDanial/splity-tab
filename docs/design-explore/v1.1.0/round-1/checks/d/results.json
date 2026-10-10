@@ -1,0 +1,705 @@
+{
+  "console_errors": [],
+  "page_errors": [],
+  "network": [],
+  "scroll": {},
+  "overflow": {
+    "K1 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "K2 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S1 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S2 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S3 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S4b 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S5 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S6 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "S7 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "W1 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "P1 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    },
+    "M1 360": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "bad": []
+    }
+  },
+  "arcs": {
+    "K1 top": [
+      {
+        "id": "a",
+        "share": 2904,
+        "total": 6926,
+        "len": 253.157,
+        "lenFrac": 0.41929,
+        "shareFrac": 0.41929
+      },
+      {
+        "id": "b",
+        "share": 1574,
+        "total": 6926,
+        "len": 137.218,
+        "lenFrac": 0.22727,
+        "shareFrac": 0.22726
+      },
+      {
+        "id": "c",
+        "share": 2448,
+        "total": 6926,
+        "len": 213.401,
+        "lenFrac": 0.35344,
+        "shareFrac": 0.35345
+      }
+    ],
+    "K1 one Ben": [
+      {
+        "id": "a",
+        "share": 2903,
+        "total": 6926,
+        "len": 253.073,
+        "lenFrac": 0.41915,
+        "shareFrac": 0.41915
+      },
+      {
+        "id": "b",
+        "share": 1575,
+        "total": 6926,
+        "len": 137.304,
+        "lenFrac": 0.22741,
+        "shareFrac": 0.2274
+      },
+      {
+        "id": "c",
+        "share": 2448,
+        "total": 6926,
+        "len": 213.401,
+        "lenFrac": 0.35344,
+        "shareFrac": 0.35345
+      }
+    ],
+    "K2 top": [
+      {
+        "id": "a",
+        "share": 3887,
+        "total": 11660,
+        "len": 201.27,
+        "lenFrac": 0.33336,
+        "shareFrac": 0.33336
+      },
+      {
+        "id": "b",
+        "share": 3887,
+        "total": 11660,
+        "len": 201.271,
+        "lenFrac": 0.33336,
+        "shareFrac": 0.33336
+      },
+      {
+        "id": "c",
+        "share": 3886,
+        "total": 11660,
+        "len": 201.219,
+        "lenFrac": 0.33328,
+        "shareFrac": 0.33328
+      }
+    ],
+    "K2 one Ben": [
+      {
+        "id": "a",
+        "share": 3886,
+        "total": 11660,
+        "len": 201.219,
+        "lenFrac": 0.33328,
+        "shareFrac": 0.33328
+      },
+      {
+        "id": "b",
+        "share": 3888,
+        "total": 11660,
+        "len": 201.323,
+        "lenFrac": 0.33345,
+        "shareFrac": 0.33345
+      },
+      {
+        "id": "c",
+        "share": 3886,
+        "total": 11660,
+        "len": 201.219,
+        "lenFrac": 0.33328,
+        "shareFrac": 0.33328
+      }
+    ],
+    "S7": [
+      {
+        "id": "a",
+        "share": 972,
+        "total": 11660,
+        "len": 47.329,
+        "lenFrac": 0.08336,
+        "shareFrac": 0.08336
+      },
+      {
+        "id": "b",
+        "share": 972,
+        "total": 11660,
+        "len": 47.329,
+        "lenFrac": 0.08336,
+        "shareFrac": 0.08336
+      },
+      {
+        "id": "c",
+        "share": 972,
+        "total": 11660,
+        "len": 47.329,
+        "lenFrac": 0.08336,
+        "shareFrac": 0.08336
+      },
+      {
+        "id": "q3",
+        "share": 972,
+        "total": 11660,
+        "len": 47.329,
+        "lenFrac": 0.08336,
+        "shareFrac": 0.08336
+      },
+      {
+        "id": "q4",
+        "share": 972,
+        "total": 11660,
+        "len": 47.329,
+        "lenFrac": 0.08336,
+        "shareFrac": 0.08336
+      },
+      {
+        "id": "q5",
+        "share": 972,
+        "total": 11660,
+        "len": 47.33,
+        "lenFrac": 0.08336,
+        "shareFrac": 0.08336
+      },
+      {
+        "id": "q6",
+        "share": 972,
+        "total": 11660,
+        "len": 47.329,
+        "lenFrac": 0.08336,
+        "shareFrac": 0.08336
+      },
+      {
+        "id": "q7",
+        "share": 972,
+        "total": 11660,
+        "len": 47.329,
+        "lenFrac": 0.08336,
+        "shareFrac": 0.08336
+      },
+      {
+        "id": "q8",
+        "share": 971,
+        "total": 11660,
+        "len": 47.281,
+        "lenFrac": 0.08328,
+        "shareFrac": 0.08328
+      },
+      {
+        "id": "q9",
+        "share": 971,
+        "total": 11660,
+        "len": 47.281,
+        "lenFrac": 0.08328,
+        "shareFrac": 0.08328
+      },
+      {
+        "id": "q10",
+        "share": 971,
+        "total": 11660,
+        "len": 47.28,
+        "lenFrac": 0.08328,
+        "shareFrac": 0.08328
+      },
+      {
+        "id": "q11",
+        "share": 971,
+        "total": 11660,
+        "len": 47.28,
+        "lenFrac": 0.08328,
+        "shareFrac": 0.08328
+      }
+    ],
+    "W1": [
+      {
+        "id": "a",
+        "share": 40391,
+        "total": 119387,
+        "len": 204.266,
+        "lenFrac": 0.33832,
+        "shareFrac": 0.33832
+      },
+      {
+        "id": "b",
+        "share": 39061,
+        "total": 119387,
+        "len": 197.537,
+        "lenFrac": 0.32718,
+        "shareFrac": 0.32718
+      },
+      {
+        "id": "c",
+        "share": 39935,
+        "total": 119387,
+        "len": 201.959,
+        "lenFrac": 0.3345,
+        "shareFrac": 0.3345
+      }
+    ],
+    "K1 1280": [
+      {
+        "id": "a",
+        "share": 2904,
+        "total": 6926,
+        "len": 308.485,
+        "lenFrac": 0.41929,
+        "shareFrac": 0.41929
+      },
+      {
+        "id": "b",
+        "share": 1574,
+        "total": 6926,
+        "len": 167.207,
+        "lenFrac": 0.22727,
+        "shareFrac": 0.22726
+      },
+      {
+        "id": "c",
+        "share": 2448,
+        "total": 6926,
+        "len": 260.037,
+        "lenFrac": 0.35344,
+        "shareFrac": 0.35345
+      }
+    ]
+  },
+  "figures": {
+    "K1 legend": "A\nAisyah+1 sen\nItems\nRM 24.90 + \n, charges\nRM 4.14\n, share\nRM 29.04\nB\nBen\nItems\nRM 13.50 + \n, charges\nRM 2.24\n, share\nRM 15.74\nC\nChen\nItems\nRM 21.00 + \n, charges\nRM 3.48\n, share\nRM 24.48\nAdds up to\nRM 59.40 + RM 9.86\nRM 69.26",
+    "K1 bill": "Subtotal\nRM 59.40\nService charge\n10% of RM 59.40\nRM 5.94\nSST\n6% of RM 65.34\nRM 3.92\nTotal\nRM 69.26",
+    "K1 centre": "Total\nRM69.26",
+    "K1 spare": "1 sen left over\nTop of the list",
+    "K1 one Ben": "A\nAisyah\nItems\nRM 24.90 + \n, charges\nRM 4.13\n, share\nRM 29.03\nB\nBen+1 sen\nItems\nRM 13.50 + \n, charges\nRM 2.25\n, share\nRM 15.75\nC\nChen\nItems\nRM 21.00 + \n, charges\nRM 3.48\n, share\nRM 24.48\nAdds up to\nRM 59.40 + RM 9.86\nRM 69.26",
+    "P1 closes on Esc": true,
+    "P1 closes on backdrop": true,
+    "K2 legend": "A\nAisyah+1 sen\n,\nRM 38.87\nB\nBen+1 sen\n,\nRM 38.87\nC\nChen\n,\nRM 38.86\nAdds up to\nRM 116.60",
+    "K2 spare": "2 sen left over\nTop of the list",
+    "K2 one Ben": "A\nAisyah\n,\nRM 38.86\nB\nBen+2 sen\n,\nRM 38.88\nC\nChen\n,\nRM 38.86\nAdds up to\nRM 116.60",
+    "K2 random draws": [
+      ",\nRM 38.87* | ,\nRM 38.87* | ,\nRM 38.86",
+      ",\nRM 38.86 | ,\nRM 38.87* | ,\nRM 38.87*",
+      ",\nRM 38.87* | ,\nRM 38.87* | ,\nRM 38.86",
+      ",\nRM 38.87* | ,\nRM 38.86 | ,\nRM 38.87*",
+      ",\nRM 38.87* | ,\nRM 38.86 | ,\nRM 38.87*",
+      ",\nRM 38.87* | ,\nRM 38.87* | ,\nRM 38.86",
+      ",\nRM 38.87* | ,\nRM 38.86 | ,\nRM 38.87*",
+      ",\nRM 38.87* | ,\nRM 38.86 | ,\nRM 38.87*",
+      ",\nRM 38.86 | ,\nRM 38.87* | ,\nRM 38.87*",
+      ",\nRM 38.87* | ,\nRM 38.86 | ,\nRM 38.87*",
+      ",\nRM 38.87* | ,\nRM 38.86 | ,\nRM 38.87*",
+      ",\nRM 38.87* | ,\nRM 38.86 | ,\nRM 38.87*"
+    ],
+    "M1 closes on Esc": true,
+    "M1 closes on backdrop": true,
+    "M1 confirm gives S1": "Enter the subtotal to see the shares.",
+    "S4 copied": "Summary copied",
+    "S2": "Subtotal\nin RM\nRM\n\nEnter an amount like 12.50",
+    "S3": "1 item still needs a person. Tap who had it to see the shares.",
+    "S4 blocked": "Could not copy. Your browser blocked the clipboard.",
+    "S5": "This bill is not being saved on this device. It will be lost when you close this tab.",
+    "S6": "Your saved bill could not be read, so a new one was started. / Enter the subtotal to see the shares.",
+    "S7 add disabled": true,
+    "proto tab box": [
+      0,
+      588,
+      16,
+      136
+    ],
+    "W1 centre": "Total\nRM1,193.87",
+    "W1 legend": "A\nAisyah+1 sen\nItems\nRM 346.40 + \n, charges\nRM 57.51\n, share\nRM 403.91\nB\nBen\nItems\nRM 335.00 + \n, charges\nRM 55.61\n, share\nRM 390.61\nC\nChen\nItems\nRM 342.50 + \n, charges\nRM 56.85\n, share\nRM 399.35\nAdds up to\nRM 1,023.90 + RM 169.97\nRM 1,193.87",
+    "W1 bill": "Subtotal\nRM 1,023.90\nService charge\n10% of RM 1,023.90\nRM 102.39\nSST\n6% of RM 1,126.29\nRM 67.58\nTotal\nRM 1,193.87",
+    "1280 orbit bottom": 792,
+    "hover lit": [
+      "path:b",
+      "polyline:b"
+    ],
+    "ring dim flag after re-render": false,
+    "focused": "copyBtn",
+    "reduced motion idle at load": true
+  },
+  "contrast": {
+    "ink on bg": {
+      "ratio": 14.41,
+      "need": 4.5,
+      "pass": true
+    },
+    "ink on surface": {
+      "ratio": 12.94,
+      "need": 4.5,
+      "pass": true
+    },
+    "ink on raised": {
+      "ratio": 11.45,
+      "need": 4.5,
+      "pass": true
+    },
+    "ink on hover": {
+      "ratio": 10.02,
+      "need": 4.5,
+      "pass": true
+    },
+    "ink-muted on bg": {
+      "ratio": 7.24,
+      "need": 4.5,
+      "pass": true
+    },
+    "ink-muted on surface": {
+      "ratio": 6.5,
+      "need": 4.5,
+      "pass": true
+    },
+    "ink-muted on raised": {
+      "ratio": 5.75,
+      "need": 4.5,
+      "pass": true
+    },
+    "coral on bg": {
+      "ratio": 6.47,
+      "need": 4.5,
+      "pass": true
+    },
+    "coral on surface": {
+      "ratio": 5.81,
+      "need": 4.5,
+      "pass": true
+    },
+    "coral on raised": {
+      "ratio": 5.14,
+      "need": 4.5,
+      "pass": true
+    },
+    "on-coral on coral (Copy summary)": {
+      "ratio": 6.47,
+      "need": 4.5,
+      "pass": true
+    },
+    "on-coral on coral-hover": {
+      "ratio": 7.49,
+      "need": 4.5,
+      "pass": true
+    },
+    "amber on bg": {
+      "ratio": 10.46,
+      "need": 4.5,
+      "pass": true
+    },
+    "amber on surface": {
+      "ratio": 9.39,
+      "need": 4.5,
+      "pass": true
+    },
+    "amber on raised": {
+      "ratio": 8.31,
+      "need": 3.0,
+      "pass": true
+    },
+    "line-strong on raised (control border)": {
+      "ratio": 3.46,
+      "need": 3.0,
+      "pass": true
+    },
+    "line-strong on bg": {
+      "ratio": 4.35,
+      "need": 3.0,
+      "pass": true
+    },
+    "line-strong on surface": {
+      "ratio": 3.91,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring ink on bg": {
+      "ratio": 14.41,
+      "need": 3.0,
+      "pass": true
+    },
+    "coral border on raised": {
+      "ratio": 5.14,
+      "need": 3.0,
+      "pass": true
+    },
+    "p1 on surface (segment)": {
+      "ratio": 6.71,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p1 (tag text)": {
+      "ratio": 7.47,
+      "need": 4.5,
+      "pass": true
+    },
+    "p2 on surface (segment)": {
+      "ratio": 6.12,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p2 (tag text)": {
+      "ratio": 6.81,
+      "need": 4.5,
+      "pass": true
+    },
+    "p3 on surface (segment)": {
+      "ratio": 6.79,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p3 (tag text)": {
+      "ratio": 7.56,
+      "need": 4.5,
+      "pass": true
+    },
+    "p4 on surface (segment)": {
+      "ratio": 6.83,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p4 (tag text)": {
+      "ratio": 7.6,
+      "need": 4.5,
+      "pass": true
+    },
+    "p5 on surface (segment)": {
+      "ratio": 7.72,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p5 (tag text)": {
+      "ratio": 8.6,
+      "need": 4.5,
+      "pass": true
+    },
+    "p6 on surface (segment)": {
+      "ratio": 8.08,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p6 (tag text)": {
+      "ratio": 8.99,
+      "need": 4.5,
+      "pass": true
+    },
+    "p7 on surface (segment)": {
+      "ratio": 8.22,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p7 (tag text)": {
+      "ratio": 9.16,
+      "need": 4.5,
+      "pass": true
+    },
+    "p8 on surface (segment)": {
+      "ratio": 6.69,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p8 (tag text)": {
+      "ratio": 7.45,
+      "need": 4.5,
+      "pass": true
+    },
+    "p9 on surface (segment)": {
+      "ratio": 7.12,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p9 (tag text)": {
+      "ratio": 7.93,
+      "need": 4.5,
+      "pass": true
+    },
+    "p10 on surface (segment)": {
+      "ratio": 8.32,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p10 (tag text)": {
+      "ratio": 9.26,
+      "need": 4.5,
+      "pass": true
+    },
+    "p11 on surface (segment)": {
+      "ratio": 8.05,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p11 (tag text)": {
+      "ratio": 8.96,
+      "need": 4.5,
+      "pass": true
+    },
+    "p12 on surface (segment)": {
+      "ratio": 7.54,
+      "need": 3.0,
+      "pass": true
+    },
+    "on-person on p12 (tag text)": {
+      "ratio": 8.4,
+      "need": 4.5,
+      "pass": true
+    },
+    "p1 on bg (hollow avatar letter)": {
+      "ratio": 7.47,
+      "need": 4.5,
+      "pass": true
+    },
+    "p2 on bg (hollow avatar letter)": {
+      "ratio": 6.81,
+      "need": 4.5,
+      "pass": true
+    },
+    "p3 on bg (hollow avatar letter)": {
+      "ratio": 7.56,
+      "need": 4.5,
+      "pass": true
+    }
+  },
+  "icons": {
+    "x": "match",
+    "plus": "match",
+    "copy": "match",
+    "check": "match",
+    "caret": "match",
+    "shuffle": "match",
+    "warning": "match",
+    "warning-circle": "match",
+    "receipt": "match"
+  },
+  "dashes": {
+    "em": 0,
+    "en": 0,
+    "middle_dot": 0
+  },
+  "shots": [
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\k1-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\k1-390-full.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\p1-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\p1-picker-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\k1-one-ben-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\k2-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\k2-random-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\m1-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s1-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s2-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s3-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s4b-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s5-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s6-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s7-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\w1-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\proto-panel-390.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\k1-360.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\w1-360.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\w1-360-full.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\p1-360.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\m1-360.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\k1-1280.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\k1-1280-full.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\p1-picker-1280.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\m1-1280.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\k2-1280.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s3-1280.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s7-1280.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\s5-1280.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\hover-ben-1280.png",
+    "{workspace}\\examples\\split\\docs\\design-explore\\v1.1.0\\round-1\\checks\\d\\focus-copy-1280.png"
+  ],
+  "collisions": {
+    "K1 360": [],
+    "K2 360": [],
+    "S1 360": [],
+    "S2 360": [],
+    "S3 360": [],
+    "S4b 360": [],
+    "S5 360": [],
+    "S6 360": [],
+    "S7 360": [],
+    "W1 360": [],
+    "K1 1280": []
+  },
+  "tokens": {
+    "bg": "#1C1C1F",
+    "surface": "#252529",
+    "raised": "#2E2E33",
+    "hover": "#37373D",
+    "line": "#36363C",
+    "line-strong": "#80808A",
+    "ink": "#EEECE8",
+    "ink-muted": "#ABA9A4",
+    "ink-faint": "#6B6A70",
+    "coral": "#FF7566",
+    "coral-hover": "#FF8B7E",
+    "on-coral": "#1C1C1F",
+    "amber": "#F2C55C",
+    "on-person": "#1C1C1F",
+    "p1": "#79B8A7",
+    "p2": "#93A1E0",
+    "p3": "#C99FCF",
+    "p4": "#7DB4D8",
+    "p5": "#A9C17F",
+    "p6": "#D4B98A",
+    "p7": "#8FC9C3",
+    "p8": "#B3A3DD",
+    "p9": "#A7B2C2",
+    "p10": "#C5C287",
+    "p11": "#9FC6A1",
+    "p12": "#C9AFC0"
+  }
+}
