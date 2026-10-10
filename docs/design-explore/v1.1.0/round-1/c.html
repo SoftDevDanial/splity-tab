@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Danial's Splity Tab</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%232445F5' d='M3 6h24v9H3zM33 6h12v9H33zM3 30h42v9H3z'/%3E%3C/svg%3E">
+<style>
+/* Direction C, Daylight Instrument. One light theme. Every colour, size, radius and space is a token here. */
+:root{
+  /* colour */
+  --page:#ECF0F5;          /* page ground, cool white */
+  --face:#FAFBFD;          /* the instrument face, dialogs, notes */
+  --field:#FDFEFF;         /* input and outline-control fill */
+  --frame:#C3CCD8;         /* face and dialog outline (decorative edge, the scrim or page already separates them) */
+  --rule:#D3DAE3;          /* 1 px hairlines between rows and modules */
+  --rule-strong:#7D899B;   /* every control border (3:1 against field, face and page) */
+  --hover:#E4E9F0;
+  --ink:#0C1424;           /* text, selected toggles, selected mode */
+  --ink-2:#4B5568;         /* labels, working lines, units, hints */
+  --ink-3:#8E98A8;         /* disabled controls only */
+  --on-ink:#F4F6FA;
+  --cobalt:#2445F5;        /* the one accent: the mark, the scale, the proof row, Copy summary, focus */
+  --cobalt-press:#1A33C7;
+  --on-cobalt:#F7F9FF;
+  --error:#C2262E;         /* amount errors and the copy failure only */
+  --scrim:rgba(12,20,36,.44);
+  --scrim-light:rgba(12,20,36,.16);
+  --shadow-face:0 1px 2px rgba(12,20,36,.06),0 22px 44px -30px rgba(36,69,245,.42);
+  --shadow-pop:0 24px 60px -24px rgba(12,20,36,.40),0 2px 6px rgba(12,20,36,.08);
+
+  /* type: system faces only, no web fonts */
+  --font:"Segoe UI Variable Text",-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-display:"Segoe UI Variable Display",-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --t-hero:60px;           /* the Total readout */
+  --t-share:30px;          /* each share and the proof figure */
+  --t-param:28px;          /* rate inputs */
+  --t-param-big:40px;      /* the subtotal input */
+  --t-title:20px;
+  --t-body:16px;
+  --t-ctl:15px;
+  --t-small:14px;
+  --t-cap:13px;
+  --t-micro:12px;
+
+  /* shape: frames 14, everything else 8, data bars square */
+  --r-frame:14px;
+  --r-ctl:8px;
+
+  /* space, 4 px base */
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s7:28px;--s8:32px;--s10:40px;--s12:48px;
+  --gut:16px;
+  --max:1240px;
+  --tap:44px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html:has(dialog[open]){overflow:hidden}
+body{margin:0;background:var(--page);color:var(--ink);font:400 var(--t-body)/1.5 var(--font);font-variant-numeric:tabular-nums lining-nums;-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit;letter-spacing:inherit}
+button{cursor:pointer}
+h1,h2,h3,p{margin:0}
+ul{list-style:none;margin:0;padding:0}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.ic{width:20px;height:20px;fill:currentColor;flex:none}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+:focus:not(:focus-visible){outline:none}
+
+.app{min-height:100dvh;padding-bottom:96px;overflow-x:clip}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+
+/* ---------- header ---------- */
+.top{border-bottom:1px solid var(--rule)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:60px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:26px;height:26px;fill:var(--cobalt);flex:none}
+.word{font:600 21px/1 var(--font-display);letter-spacing:-.015em;white-space:nowrap}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:var(--tap);padding:0 var(--s4);border:1px solid transparent;border-radius:var(--r-ctl);background:none;font:600 var(--t-ctl)/20px var(--font);white-space:nowrap;text-decoration:none}
+.btn-out{background:var(--field);border-color:var(--rule-strong);color:var(--ink)}
+.btn-out .ic{color:var(--ink-2)}
+.btn-out:hover:not(:disabled){background:var(--hover)}
+.btn-pri{background:var(--cobalt);border-color:var(--cobalt);color:var(--on-cobalt)}
+.btn-pri:hover{background:var(--cobalt-press);border-color:var(--cobalt-press)}
+.btn:active:not(:disabled){transform:translateY(1px)}
+.btn:disabled{background:transparent;border-color:var(--rule);color:var(--ink-3);cursor:not-allowed}
+.btn:disabled .ic{color:var(--ink-3)}
+.btn-lg{min-height:48px;font-size:var(--t-body)}
+.btn-block{width:100%}
+.icon-btn{display:inline-grid;place-items:center;width:var(--tap);height:var(--tap);flex:none;padding:0;border:0;border-radius:var(--r-ctl);background:none;color:var(--ink-2)}
+.icon-btn:hover:not(:disabled){background:var(--hover);color:var(--ink)}
+.icon-btn:active:not(:disabled){transform:translateY(1px)}
+.icon-btn:disabled{color:var(--ink-3);cursor:not-allowed}
+
+/* ---------- notes (S5, S6) ---------- */
+#notes:empty{display:none}
+.note{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s3);padding:var(--s2) var(--s2) var(--s2) var(--s4);background:var(--face);border:1px solid var(--rule-strong);border-radius:var(--r-ctl);font-size:var(--t-ctl);line-height:22px}
+.note > .ic{color:var(--ink)}
+.note p{flex:1;padding:var(--s2) 0}
+.note-save{border-left:3px solid var(--ink)}
+
+/* ---------- layout ---------- */
+.main{display:grid;gap:var(--s7);padding-top:var(--s4)}
+
+/* ---------- the instrument face ---------- */
+.face{background:var(--face);border:1px solid var(--frame);border-radius:var(--r-frame);box-shadow:var(--shadow-face);min-width:0}
+.face-a,.face-b,.face-s{padding:var(--s4);min-width:0}
+.face-a{padding-bottom:0}
+.face-b{border-top:1px solid var(--rule);padding-top:var(--s3)}
+
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:0;padding:3px;min-width:0;border:1px solid var(--rule-strong);border-radius:var(--r-ctl);background:var(--field)}
+.mode label{position:relative;display:flex}
+.mode input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.mode span{flex:1;display:flex;align-items:center;justify-content:center;min-height:var(--tap);border-radius:5px;font:600 var(--t-ctl)/20px var(--font);color:var(--ink)}
+.mode input:hover + span{background:var(--hover)}
+.mode input:checked + span{background:var(--ink);color:var(--on-ink)}
+.mode input:focus-visible + span{outline:2px solid var(--cobalt);outline-offset:2px}
+
+.tot-l{margin-top:var(--s4);font:600 var(--t-small)/20px var(--font);color:var(--ink-2)}
+.tot{margin-top:var(--s1);font:300 var(--t-hero)/1 var(--font-display);letter-spacing:-.035em;white-space:nowrap}
+.tot .u{display:inline-block;margin-right:6px;font:600 var(--t-ctl)/1 var(--font);letter-spacing:0;color:var(--ink-2);vertical-align:top;transform:translateY(.55em)}
+.tot.is-long{font-size:calc(var(--t-hero) * .85)}
+.tot.is-idle .num{color:var(--ink-2)}
+.num{display:inline-block}
+
+.brk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:var(--s4) 0 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.brk > div{min-width:0;padding:10px 6px;border-left:1px solid var(--rule)}
+.brk > div:first-child{border-left:0;padding-left:0}
+.brk > div:last-child{padding-right:0}
+.brk dt{font:400 var(--t-cap)/18px var(--font);color:var(--ink-2);white-space:nowrap}
+.brk dd{margin:2px 0 0;font:500 var(--t-ctl)/22px var(--font);white-space:nowrap}
+.brk.is-idle dd{color:var(--ink-2)}
+
+/* the scale: the shares, cut, over the whole total. The brand mark, drawn to the bill's real proportions */
+.sc-names{display:flex;gap:var(--cut);margin-bottom:6px;font:500 var(--t-micro)/16px var(--font);color:var(--ink-2)}
+.sc-names span{flex:var(--g) 1 0;min-width:0;overflow:hidden;white-space:nowrap}
+.face-s{--bar:8px;--row:8px;--cut:4px}
+.bar{display:flex;gap:var(--cut);height:var(--bar)}
+.bar i{flex:var(--g,1) 1 0;min-width:0;background:var(--cobalt)}
+.bar.whole{margin-top:var(--row)}
+.bar.is-empty{border:1px dashed var(--rule-strong);background:none}
+.bar.is-empty i{display:none}
+.ticks{display:flex;justify-content:space-between;align-items:flex-start;height:10px;margin-top:8px}
+.ticks i{width:1px;height:4px;background:var(--rule-strong)}
+.ticks i.mid{height:6px}
+.ticks i.maj{height:10px;background:var(--ink-2)}
+
+/* shares */
+.sh{display:block;width:100%;border-collapse:collapse}
+.sh thead,.sh tbody,.sh tfoot{display:block}
+.sh thead tr{display:flex;align-items:flex-end;gap:var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--rule);font:500 var(--t-cap)/18px var(--font);color:var(--ink-2);text-align:left}
+.sh thead th{font-weight:500;padding:0}
+.sh thead .hs{margin-left:auto;text-align:right}
+.sh tbody tr,.sh tfoot tr{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n s" "w s";column-gap:var(--s3);align-items:center;padding:10px 0;border-bottom:1px solid var(--rule)}
+.sh.is-even tbody tr,.sh.is-even tfoot tr{grid-template-areas:"n s"}
+.sh th.n{grid-area:n;padding:0;text-align:left;font:600 17px/22px var(--font);overflow-wrap:anywhere}
+.sh td.w{grid-area:w;padding:0;font:400 var(--t-small)/20px var(--font);color:var(--ink-2)}
+.sh td.w .op{padding:0 2px}
+.sh td.s{grid-area:s;padding:0;text-align:right;white-space:nowrap;font:300 var(--t-share)/1.1 var(--font-display);letter-spacing:-.025em}
+.sh td.s .u{font:600 var(--t-cap)/1 var(--font);letter-spacing:0;color:var(--ink-2);margin-right:2px}
+.sh tfoot tr{border-top:1px solid var(--ink);border-bottom:0;margin-top:-1px}
+.sh tfoot th.n{display:flex;align-items:center;gap:6px}
+.sh tfoot .ck{width:18px;height:18px;color:var(--cobalt)}
+.sh tfoot td.s{font-weight:400}
+.sh tfoot td.s .num{color:var(--cobalt)}
+.sh tfoot td.s .u{color:var(--cobalt)}
+
+.msg{display:flex;gap:var(--s3);align-items:flex-start;margin-top:var(--s3);padding:var(--s4);border:1px dashed var(--rule-strong);border-radius:var(--r-ctl);font:400 var(--t-body)/24px var(--font)}
+.msg .ic{color:var(--ink-2);margin-top:2px}
+
+.spare{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s2) var(--s3);margin-top:var(--s1);padding-top:var(--s3);border-top:1px solid var(--rule)}
+.spare-t{font:600 var(--t-ctl)/20px var(--font)}
+.spare-c{display:flex;flex-wrap:wrap;gap:var(--s2);justify-content:flex-end}
+.pick .cr{width:16px;height:16px}
+#copyWrap{margin-top:var(--s4)}
+#copyWrap[hidden]{display:none}
+.status{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:var(--s2);font:600 var(--t-small)/20px var(--font);color:var(--ink);text-align:center}
+.status:empty{display:none}
+.status .ic{width:18px;height:18px;color:var(--cobalt)}
+.status.is-fail,.status.is-fail .ic{color:var(--error)}
+
+/* ---------- the control deck ---------- */
+.deck{display:grid;gap:var(--s7);min-width:0}
+.mod{min-width:0}
+.gh{display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s3);font:600 var(--t-ctl)/20px var(--font)}
+.gh::after{content:"";flex:1;height:1px;background:var(--rule-strong)}
+
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--s2)}
+.pcell{display:flex;align-items:center;min-width:0;height:46px;border:1px solid var(--rule-strong);border-radius:var(--r-ctl);background:var(--field)}
+.pcell input{flex:1;min-width:0;height:100%;padding:0 0 0 var(--s3);border:0;background:transparent;font:500 var(--t-body)/24px var(--font)}
+.pcell input:focus-visible{outline:none}
+.pcell:has(input:focus-visible){outline:2px solid var(--cobalt);outline-offset:2px}
+.people .add{width:100%;height:46px}
+
+.fld{display:flex;align-items:center;min-width:0;height:var(--tap);border:1px solid var(--rule-strong);border-radius:var(--r-ctl);background:var(--field)}
+.fld input{flex:1;min-width:0;height:100%;padding:0 var(--s3);border:0;background:transparent;font:400 var(--t-body)/24px var(--font)}
+.fld input:focus-visible{outline:none}
+.fld:has(input:focus-visible){outline:2px solid var(--cobalt);outline-offset:2px}
+.fld .unit{padding-left:10px;font:600 var(--t-cap)/1 var(--font);color:var(--ink-2)}
+.fld.money input{padding:0 10px 0 6px;text-align:right}
+.fld.is-bad,.param.is-bad{border-color:var(--error);box-shadow:inset 0 0 0 1px var(--error)}
+
+.items{display:grid}
+.item{padding:var(--s3) 0;border-top:1px solid var(--rule)}
+.item:first-child{border-top:0;padding-top:0}
+.item-top{display:grid;grid-template-columns:minmax(0,1fr) 116px var(--tap);gap:var(--s2);align-items:center}
+.who{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:10px}
+.tog{display:inline-flex;align-items:center;gap:6px;min-height:var(--tap);padding:0 14px;border:1px solid var(--rule-strong);border-radius:var(--r-ctl);background:var(--field);font:600 var(--t-ctl)/20px var(--font);color:var(--ink)}
+.tog .ic{display:none;width:16px;height:16px}
+.tog:hover{background:var(--hover)}
+.tog[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.tog[aria-pressed="true"] .ic{display:block}
+.tog:active{transform:translateY(1px)}
+.items + .add{margin-top:var(--s3)}
+
+.err{display:flex;align-items:flex-start;gap:6px;margin-top:var(--s2);font:600 var(--t-small)/20px var(--font);color:var(--error)}
+.err .ic{width:18px;height:18px;margin-top:1px}
+.item .err{justify-content:flex-end}
+
+.param{display:block;min-width:0;padding:10px var(--s3) 6px;border:1px solid var(--rule-strong);border-radius:var(--r-ctl);background:var(--field);cursor:text}
+.param:has(input:focus-visible){outline:2px solid var(--cobalt);outline-offset:2px}
+.param-l{display:block;font:500 var(--t-cap)/18px var(--font);color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.param-v{display:flex;align-items:baseline;gap:6px}
+.param-v input{flex:1;min-width:0;width:100%;padding:0;border:0;background:transparent;text-align:right;font:300 var(--t-param)/40px var(--font-display);letter-spacing:-.02em}
+.param-v input:focus-visible{outline:none}
+.param-v input::placeholder{color:var(--ink-2);opacity:1}
+.param-v .unit{font:600 var(--t-small)/1 var(--font);color:var(--ink-2)}
+.param.big .param-v input{font-size:var(--t-param-big);line-height:52px}
+.params{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2)}
+.hint{margin-top:var(--s2);font:400 var(--t-small)/20px var(--font);color:var(--ink-2)}
+
+/* ---------- dialogs ---------- */
+dialog{padding:0;border:1px solid var(--ink);border-radius:var(--r-frame);background:var(--face);color:var(--ink);box-shadow:var(--shadow-pop)}
+dialog::backdrop{background:var(--scrim)}
+.dlg{width:min(400px,calc(100% - 32px));max-width:none}
+.dlg-in{padding:var(--s6)}
+.dlg h2{font:600 var(--t-title)/26px var(--font)}
+.dlg p{margin-top:var(--s2);color:var(--ink-2)}
+.dlg-act{display:flex;flex-direction:column;gap:var(--s2);margin-top:var(--s6)}
+
+.pop{width:100%;max-width:none;max-height:calc(100dvh - 48px);margin:auto 0 0;inset:auto 0 0 0;border-bottom:0;border-radius:var(--r-frame) var(--r-frame) 0 0}
+.pop-in{padding:var(--s5) var(--s4) calc(var(--s5) + env(safe-area-inset-bottom))}
+.pop-h{font:600 18px/24px var(--font)}
+.pop-sub{margin-top:2px;font:400 var(--t-small)/20px var(--font);color:var(--ink-2)}
+.opts{display:grid;gap:6px;margin-top:var(--s3)}
+.opt{display:flex;align-items:center;gap:var(--s3);width:100%;min-height:56px;padding:var(--s2) var(--s3);border:1px solid var(--rule-strong);border-radius:var(--r-ctl);background:var(--field);text-align:left}
+.opt:hover{background:var(--hover)}
+.opt[aria-pressed="true"]{border-color:var(--cobalt);box-shadow:inset 0 0 0 1px var(--cobalt)}
+.opt-mk{display:grid;place-items:center;width:22px;height:22px;flex:none;border:1px solid var(--rule-strong);border-radius:50%;color:var(--on-cobalt)}
+.opt-mk .ic{width:14px;height:14px;visibility:hidden}
+.opt[aria-pressed="true"] .opt-mk{background:var(--cobalt);border-color:var(--cobalt)}
+.opt[aria-pressed="true"] .opt-mk .ic{visibility:visible}
+.opt-t{flex:1;min-width:0;font:600 var(--t-ctl)/20px var(--font)}
+.opt-t small{display:block;font:400 var(--t-cap)/18px var(--font);color:var(--ink-2)}
+.opt-v{font:400 var(--t-ctl)/20px var(--font);color:var(--ink-2)}
+.opt .go{width:16px;height:16px;color:var(--ink-2);transform:rotate(-90deg)}
+.back{display:inline-flex;align-items:center;gap:4px;min-height:var(--tap);margin:-10px 0 var(--s1) -8px;padding:0 var(--s2);border:0;border-radius:var(--r-ctl);background:none;font:600 var(--t-small)/20px var(--font);color:var(--ink-2)}
+.back .ic{width:16px;height:16px;transform:rotate(90deg)}
+.back:hover{background:var(--hover);color:var(--ink)}
+
+/* ---------- prototype states bar (not part of the design) ---------- */
+/* a thin handle inside the left gutter, so it never covers content; opens a list to its right */
+.proto{position:fixed;left:0;bottom:112px;z-index:30;display:flex;align-items:flex-end;gap:6px;font:500 12px/16px ui-monospace,"Cascadia Mono",Consolas,monospace;color:#3D3100}
+.proto-tab{writing-mode:vertical-rl;transform:rotate(180deg);width:16px;min-height:136px;padding:8px 0;border:1px dashed #8A6D00;border-right:0;border-radius:6px 0 0 6px;background:#FFF2B8;color:#3D3100;font:700 11px/14px ui-monospace,"Cascadia Mono",Consolas,monospace;white-space:nowrap}
+.proto-tab[aria-expanded="true"]{background:#3D3100;color:#FFF2B8}
+.proto-list{display:grid;gap:4px;width:min(300px,calc(100vw - 32px));max-height:min(62dvh,560px);overflow:auto;padding:8px;border:1px dashed #8A6D00;border-radius:6px;background:#FFF8D9;box-shadow:0 8px 24px rgba(61,49,0,.18)}
+.proto-list[hidden]{display:none}
+.proto-list p{padding:2px 4px 6px}
+.proto-list button{min-height:40px;padding:0 10px;border:1px solid #C9B25A;border-radius:4px;background:#FFFDF2;color:#3D3100;font:inherit;text-align:left}
+.proto-list button[aria-pressed="true"]{background:#3D3100;border-color:#3D3100;color:#FFF8D9}
+.proto :focus-visible{outline:2px solid #3D3100;outline-offset:2px}
+
+/* ---------- 600 px and up ---------- */
+@media (min-width:600px){
+  :root{--t-hero:76px;--t-share:34px;--gut:24px}
+  .top-in{min-height:64px}
+  .main{max-width:720px}
+  .face-a,.face-b,.face-s{padding:var(--s6)}
+  .face-a{padding-bottom:0}
+  .face-s{padding-top:var(--s5);--bar:9px;--row:10px;--cut:6px}
+  .face-b{padding-top:var(--s4)}
+  .brk dd{font-size:17px}
+  .dlg-act{flex-direction:row-reverse;justify-content:flex-start}
+  .item-top{grid-template-columns:minmax(0,1fr) 132px var(--tap)}
+}
+
+/* ---------- popover anchored to its button from 768 px ---------- */
+@media (min-width:768px){
+  .pop{width:340px;margin:0;inset:auto;border-bottom:1px solid var(--ink);border-radius:var(--r-frame)}
+  .pop::backdrop{background:var(--scrim-light)}
+  .pop-in{padding:var(--s4)}
+}
+
+/* ---------- 1024 px and up: display on top, control deck below ---------- */
+@media (min-width:1024px){
+  :root{--t-hero:128px;--t-share:40px;--gut:40px}
+  .main{max-width:var(--max);gap:var(--s10);padding-top:var(--s7)}
+  .face{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"a b" "s s"}
+  .face-a{grid-area:a;display:flex;flex-direction:column;padding:var(--s7) var(--s8)}
+  .face-b{grid-area:b;padding:var(--s5) var(--s8) var(--s7);border-top:0;border-left:1px solid var(--rule)}
+  .face-b:has(.msg){display:flex;flex-direction:column;justify-content:center}
+  .face-b .msg{margin-top:0}
+  .face-s{grid-area:s;padding:var(--s5) var(--s8) var(--s6);border-top:1px solid var(--rule);--bar:9px;--row:15px;--cut:6px}
+  .sc-names{font-size:var(--t-cap);margin-bottom:var(--s2)}
+  .mode{width:264px}
+  .tot-l{margin-top:var(--s7)}
+  .tot{margin-bottom:var(--s6)}
+  .tot.is-long{font-size:calc(var(--t-hero) * .7)}
+  .brk{margin-top:auto}
+  .deck{grid-template-columns:minmax(0,4fr) minmax(0,5fr) minmax(0,3.6fr);gap:0}
+  .deck > .mod{padding:0 var(--s7);border-left:1px solid var(--rule)}
+  .deck > .mod:first-child{padding-left:0;border-left:0}
+  .deck > .mod:last-child{padding-right:0}
+  .params{grid-template-columns:1fr}
+}
+
+/* ---------- motion: only when the person has not asked for less ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .btn,.icon-btn,.tog,.mode span,.opt{transition:background-color .12s ease,color .12s ease,border-color .12s ease}
+  .flip{animation:flip .44s cubic-bezier(.2,.7,.2,1)}
+  @keyframes flip{0%{transform:translateY(-.22em);opacity:0;color:var(--cobalt)}45%{opacity:1;color:var(--cobalt)}100%{transform:none;opacity:1}}
+  .bar i,.sc-names span{transition:flex-grow .32s cubic-bezier(.2,.7,.2,1)}
+  dialog[open]{animation:rise .16s ease-out}
+  .pop[open]{animation:sheet .2s cubic-bezier(.2,.7,.2,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @keyframes sheet{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
+}
+@media (prefers-reduced-motion:no-preference) and (min-width:768px){
+  .pop[open]{animation:rise .14s ease-out}
+}
+</style>
+</head>
+<body>
+
+<!-- Phosphor Icons (MIT), regular weight, check bold. Paths copied, never drawn. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-x" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 256 256"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 256 256"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></symbol>
+  <symbol id="i-caret" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 256 256"><path d="M237.66,178.34a8,8,0,0,1,0,11.32l-24,24a8,8,0,0,1-11.32-11.32L212.69,192H200.94a72.12,72.12,0,0,1-58.59-30.15l-41.72-58.4A56.1,56.1,0,0,0,55.06,80H32a8,8,0,0,1,0-16H55.06a72.12,72.12,0,0,1,58.59,30.15l41.72,58.4A56.1,56.1,0,0,0,200.94,176h11.75l-10.35-10.34a8,8,0,0,1,11.32-11.32ZM143,107a8,8,0,0,0,11.16-1.86l1.2-1.67A56.1,56.1,0,0,1,200.94,80h11.75L202.34,90.34a8,8,0,0,0,11.32,11.32l24-24a8,8,0,0,0,0-11.32l-24-24a8,8,0,0,0-11.32,11.32L212.69,64H200.94a72.12,72.12,0,0,0-58.59,30.15l-1.2,1.67A8,8,0,0,0,143,107Zm-30,42a8,8,0,0,0-11.16,1.86l-1.2,1.67A56.1,56.1,0,0,1,55.06,176H32a8,8,0,0,0,0,16H55.06a72.12,72.12,0,0,0,58.59-30.15l1.2-1.67A8,8,0,0,0,113,149Z"/></symbol>
+  <symbol id="i-warning" viewBox="0 0 256 256"><path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z"/></symbol>
+  <symbol id="i-warning-circle" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 256 256"><path d="M72,104a8,8,0,0,1,8-8h96a8,8,0,0,1,0,16H80A8,8,0,0,1,72,104Zm8,40h96a8,8,0,0,0,0-16H80a8,8,0,0,0,0,16ZM232,56V208a8,8,0,0,1-11.58,7.15L192,200.94l-28.42,14.21a8,8,0,0,1-7.16,0L128,200.94,99.58,215.15a8,8,0,0,1-7.16,0L64,200.94,35.58,215.15A8,8,0,0,1,24,208V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V195.06l20.42-10.22a8,8,0,0,1,7.16,0L96,199.06l28.42-14.22a8,8,0,0,1,7.16,0L160,199.06l28.42-14.22a8,8,0,0,1,7.16,0L216,195.06Z"/></symbol>
+</svg>
+
+<div class="app">
+  <header class="top">
+    <div class="wrap top-in">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M3 6h24v9H3zM33 6h12v9H33zM3 30h42v9H3z"/></svg>
+        <span class="word">Splity Tab</span>
+      </div>
+      <button type="button" class="btn btn-out" id="newBill" aria-haspopup="dialog"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>New bill</button>
+    </div>
+  </header>
+
+  <div class="wrap" id="notes"></div>
+
+  <main class="wrap main">
+    <section class="face" id="face" aria-label="Bill">
+      <div class="face-a">
+        <fieldset class="mode">
+          <legend class="sr-only">Split mode</legend>
+          <label><input type="radio" name="mode" value="even"><span>Even</span></label>
+          <label><input type="radio" name="mode" value="item"><span>By item</span></label>
+        </fieldset>
+        <div id="readA"></div>
+      </div>
+      <div class="face-s" id="readScale" aria-hidden="true"></div>
+      <div class="face-b">
+        <h2 class="sr-only">Shares</h2>
+        <div id="readB"></div>
+        <div id="copyWrap">
+          <button type="button" class="btn btn-pri btn-lg btn-block" id="copyBtn"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>Copy summary</button>
+          <p class="status" id="status" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="deck" id="deck"></div>
+  </main>
+</div>
+
+<!-- P1, spare sen choice -->
+<dialog class="pop" id="spareDlg" aria-labelledby="spareTitle">
+  <div class="pop-in">
+    <div id="stepChoice">
+      <h2 class="pop-h" id="spareTitle">1 sen left over</h2>
+      <p class="pop-sub">Who pays the spare sen?</p>
+      <div class="opts">
+        <button type="button" class="opt" data-rule="top" aria-pressed="true"><span class="opt-mk" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span><span class="opt-t">Top of the list<small>One each, from the top of the people list</small></span></button>
+        <button type="button" class="opt" data-rule="one" aria-pressed="false"><span class="opt-mk" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span><span class="opt-t">One person<small>The person you choose pays them all</small></span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-caret"/></svg></button>
+        <button type="button" class="opt" data-rule="random" aria-pressed="false"><span class="opt-mk" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span><span class="opt-t">At random<small>Each spare sen goes to a different person</small></span></button>
+      </div>
+    </div>
+    <div id="stepPerson" hidden>
+      <button type="button" class="back" id="spareBack"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-caret"/></svg>Back</button>
+      <h2 class="pop-h" id="pickTitle">Who pays the spare sen?</h2>
+      <div class="opts" id="personOpts"></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- M1, new bill -->
+<dialog class="dlg" id="newDlg" aria-labelledby="newTitle" aria-describedby="newBody">
+  <div class="dlg-in">
+    <h2 id="newTitle">Start a new bill?</h2>
+    <p id="newBody">This clears the people, items and amounts.</p>
+    <div class="dlg-act">
+      <button type="button" class="btn btn-pri btn-lg" id="newGo">Start new bill</button>
+      <button type="button" class="btn btn-out btn-lg" id="newCancel">Cancel</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Prototype states: not part of the design -->
+<div class="proto" id="proto">
+  <button type="button" class="proto-tab" id="protoTab" aria-expanded="false" aria-controls="protoList">Prototype states</button>
+  <div class="proto-list" id="protoList" hidden>
+    <p>Not part of the design. P1 opens from the spare sen button, M1 from New bill.</p>
+    <button type="button" data-state="K1">K1 By item, key screen</button>
+    <button type="button" data-state="K2">K2 Even split</button>
+    <button type="button" data-state="S1">S1 First open</button>
+    <button type="button" data-state="S2">S2 Amount error</button>
+    <button type="button" data-state="S3">S3 Item needs a person</button>
+    <button type="button" data-state="S4ok">S4 Summary copied</button>
+    <button type="button" data-state="S4fail">S4 Copy blocked</button>
+    <button type="button" data-state="S5">S5 Save warning</button>
+    <button type="button" data-state="S6">S6 Saved bill unreadable</button>
+    <button type="button" data-state="S7">S7 12 people reached</button>
+    <button type="button" data-state="W1">W1 RM 1,193.87 in the table</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const ic = (n, cls = "ic") => `<svg class="${cls}" aria-hidden="true" focusable="false"><use href="#i-${n}"/></svg>`;
+
+  /* ---------- money in whole cents ---------- */
+  const money = (c) => Math.floor(c / 100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + String(c % 100).padStart(2, "0");
+  const RM = (c) => "RM " + money(c);
+  function parseAmount(t) {
+    t = String(t).trim();
+    if (!t) return { empty: true };
+    if (!/^\d{1,5}(\.\d{1,2})?$/.test(t)) return { bad: true };
+    const [a, b = ""] = t.split(".");
+    const c = Number(a) * 100 + Number((b + "00").slice(0, 2));
+    if (c <= 0 || c > 9999999) return { bad: true };
+    return { c };
+  }
+  function parseRate(t, max) {
+    t = String(t).trim();
+    if (!/^\d{1,2}(\.\d{1,2})?$/.test(t)) return { bad: true };
+    const [a, b = ""] = t.split(".");
+    const bp = Number(a) * 100 + Number((b + "00").slice(0, 2));
+    if (bp > max * 100) return { bad: true };
+    return { bp };
+  }
+  const halfUp = (n, d) => Math.floor((2 * n + d) / (2 * d));
+  const rateText = (bp) => String(bp / 100);
+
+  /* ---------- seeded draw for "At random", kept with the bill so shares never jump ---------- */
+  function rng(seed) {
+    let t = seed >>> 0;
+    return () => { t = (t + 0x6D2B79F5) >>> 0; let x = Math.imul(t ^ (t >>> 15), 1 | t); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; };
+  }
+  function shuffled(arr, seed) {
+    const a = arr.slice(), r = rng(seed);
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  }
+
+  /* ---------- state ---------- */
+  const shown = (p, i) => (p.name.trim() || `Person ${i + 1}`);
+  const itemName = (it, k) => (it.name.trim() || `Item ${k + 1}`);
+  const three = () => [{ id: 1, name: "Aisyah" }, { id: 2, name: "Ben" }, { id: 3, name: "Chen" }];
+  const k1Items = () => [
+    { id: 1, name: "Nasi lemak ayam", price: "15.90", who: [1] },
+    { id: 2, name: "Char kuey teow", price: "13.50", who: [2] },
+    { id: 3, name: "Mee goreng mamak", price: "12.00", who: [3] },
+    { id: 4, name: "Satay, 10 sticks", price: "18.00", who: [1, 3] },
+  ];
+  const spare0 = () => ({ rule: "top", pid: null, draw: 0 });
+  const K1 = () => ({ mode: "item", people: three(), items: k1Items(), even: "100.00", service: "10", sst: "6", spare: spare0(), copy: null, note: null });
+  const fresh = () => ({ mode: "even", people: [{ id: 1, name: "Person 1" }, { id: 2, name: "Person 2" }], items: [], even: "", service: "10", sst: "6", spare: spare0(), copy: null, note: null });
+  const STATES = {
+    K1,
+    K2: () => ({ ...K1(), mode: "even" }),
+    S1: fresh,
+    S2: () => ({ ...K1(), mode: "even", even: "100.005" }),
+    S3: () => { const s = K1(); s.items[3].who = []; return s; },
+    S4ok: () => ({ ...K1(), copy: "ok" }),
+    S4fail: () => ({ ...K1(), copy: "fail" }),
+    S5: () => ({ ...K1(), note: "save" }),
+    S6: () => ({ ...fresh(), note: "unread" }),
+    S7: () => { const s = { ...K1(), mode: "even" }; for (let i = 4; i <= 12; i++) s.people.push({ id: i, name: `Person ${i}` }); return s; },
+    W1: () => { const s = K1(); s.items.push({ id: 5, name: "Seafood platter", price: "964.50", who: [1, 2, 3] }); return s; },
+  };
+  let S = K1();
+  let nid = 100;
+
+  /* ---------- the split ---------- */
+  function spareTo(r, elig, salt) {
+    if (r <= 0 || !elig.length) return [];
+    const sp = S.spare;
+    if (sp.rule === "one") {
+      const pi = S.people.findIndex((p) => p.id === sp.pid);
+      if (elig.includes(pi)) return Array(r).fill(pi);
+    }
+    if (sp.rule === "random") return shuffled(elig, sp.draw * 7919 + salt).slice(0, r);
+    return elig.slice(0, r);
+  }
+
+  function compute() {
+    const P = S.people, n = P.length;
+    const R = { block: null, rows: null, sub: null, svc: 0, sst: 0, total: null, spare: 0 };
+    const svc = parseRate(S.service, 30), sst = parseRate(S.sst, 20);
+    R.svcBp = svc.bp; R.sstBp = sst.bp;
+    let sub = null;
+    if (S.mode === "even") {
+      const a = parseAmount(S.even);
+      if (a.c == null) R.block = "subtotal"; else sub = a.c;
+    } else if (!S.items.length) {
+      R.block = "no-items";
+    } else {
+      const pr = S.items.map((it) => parseAmount(it.price));
+      if (pr.some((p) => p.c == null)) R.block = "prices"; else sub = pr.reduce((s, p) => s + p.c, 0);
+    }
+    if (svc.bad || sst.bad) R.block = "rates";
+    if (sub != null && !svc.bad && !sst.bad) {
+      R.sub = sub;
+      R.svc = halfUp(sub * svc.bp, 10000);
+      R.sst = halfUp((sub + R.svc) * sst.bp, 10000);
+      R.total = sub + R.svc + R.sst;
+    }
+    if (R.block) return R;
+
+    if (S.mode === "even") {
+      const base = Math.floor(R.total / n), r = R.total - base * n;
+      const sh = Array(n).fill(base);
+      spareTo(r, [...Array(n).keys()], 11).forEach((i) => sh[i]++);
+      R.spare = r;
+      R.rows = P.map((p, i) => ({ id: p.id, name: shown(p, i), share: sh[i] }));
+      return R;
+    }
+    const ids = new Set(P.map((p) => p.id));
+    const unassigned = S.items.filter((it) => !it.who.some((id) => ids.has(id))).length;
+    if (unassigned) { R.block = "unassigned"; R.unassigned = unassigned; return R; }
+    const items = Array(n).fill(0);
+    let spare = 0;
+    S.items.forEach((it, k) => {
+      const c = parseAmount(it.price).c;
+      const t = P.map((p, i) => (it.who.includes(p.id) ? i : -1)).filter((i) => i >= 0);
+      const b = Math.floor(c / t.length), r = c - b * t.length;
+      t.forEach((i) => { items[i] += b; });
+      spareTo(r, t, 101 + k).forEach((i) => items[i]++);
+      spare += r;
+    });
+    const ch = R.svc + R.sst;
+    const cs = items.map((v) => Math.floor((ch * v) / R.sub));
+    const r = ch - cs.reduce((a, b) => a + b, 0);
+    spareTo(r, items.map((v, i) => (v > 0 ? i : -1)).filter((i) => i >= 0), 997).forEach((i) => cs[i]++);
+    R.spare = spare + r;
+    R.charges = ch;
+    R.rows = P.map((p, i) => ({ id: p.id, name: shown(p, i), items: items[i], charges: cs[i], share: items[i] + cs[i] }));
+    return R;
+  }
+
+  const BLOCK = {
+    rates: "Check the charges to see the shares.",
+    subtotal: "Enter the subtotal to see the shares.",
+    "no-items": "Add an item to see the shares.",
+    prices: "Give every item a price to see the shares.",
+  };
+  const unassignedMsg = (n) => (n === 1 ? "1 item still needs a person. Tap who had it to see the shares." : `${n} items still need a person. Tap who had each one to see the shares.`);
+
+  /* ---------- the readout ---------- */
+  const readA = $("#readA"), readB = $("#readB"), readScale = $("#readScale"), copyWrap = $("#copyWrap"), statusEl = $("#status");
+  let animate = false;
+
+  function scale(R) {
+    const live = R.rows && !R.block;
+    const rows = live ? R.rows.filter((r) => r.share > 0) : [];
+    const names = live && rows.length <= 6
+      ? `<div class="sc-names">${rows.map((r) => `<span style="--g:${r.share}">${esc(r.name)}</span>`).join("")}</div>` : "";
+    const ticks = Array.from({ length: 41 }, (_, i) => `<i${i % 10 === 0 ? ' class="maj"' : i % 2 === 0 ? ' class="mid"' : ""}></i>`).join("");
+    return `${names}
+      <div class="bar cut${live ? "" : " is-empty"}">${rows.map((r) => `<i style="--g:${r.share}"></i>`).join("")}</div>
+      <div class="bar whole${R.total != null ? "" : " is-empty"}"><i></i></div>
+      <div class="ticks">${ticks}</div>`;
+  }
+
+  /* same shape: update the segments in place so they slide to the new proportions */
+  function renderScale(R) {
+    const live = !!(R.rows && !R.block);
+    const rows = live ? R.rows.filter((r) => r.share > 0) : [];
+    const key = `${live}|${rows.length}|${R.total != null}`;
+    if (animate && readScale.dataset.key === key) {
+      $$(".bar.cut i", readScale).forEach((el, i) => el.style.setProperty("--g", rows[i].share));
+      $$(".sc-names span", readScale).forEach((el, i) => { el.style.setProperty("--g", rows[i].share); el.textContent = rows[i].name; });
+      return;
+    }
+    readScale.dataset.key = key;
+    readScale.innerHTML = scale(R);
+  }
+
+  function renderReadout() {
+    const prev = {};
+    $$("#face [data-k]").forEach((el) => { prev[el.dataset.k] = el.textContent; });
+    const focusId = document.activeElement && document.activeElement.id;
+    const R = compute();
+    const has = R.total != null;
+    const totText = has ? money(R.total) : "0.00";
+    const svcLabel = R.svcBp != null ? `Service ${rateText(R.svcBp)}%` : "Service";
+    const sstLabel = R.sstBp != null ? `SST ${rateText(R.sstBp)}%` : "SST";
+
+    readA.innerHTML = `
+      <p class="tot-l" id="totLabel">Total</p>
+      <p class="tot${has ? "" : " is-idle"}${totText.length >= 8 ? " is-long" : ""}" aria-describedby="totLabel"><span class="u">RM </span><span class="num" data-k="total">${totText}</span></p>
+      <dl class="brk${has ? "" : " is-idle"}">
+        <div><dt>Subtotal</dt><dd data-k="sub">${RM(R.sub || 0)}</dd></div>
+        <div><dt>${svcLabel}</dt><dd data-k="svc">${RM(has ? R.svc : 0)}</dd></div>
+        <div><dt>${sstLabel}</dt><dd data-k="sst">${RM(has ? R.sst : 0)}</dd></div>
+      </dl>`;
+    renderScale(R);
+
+    if (R.block) {
+      const text = R.block === "unassigned" ? unassignedMsg(R.unassigned) : BLOCK[R.block];
+      readB.innerHTML = `<div class="msg" id="blockMsg">${ic(R.block === "unassigned" ? "warning" : "receipt")}<p>${esc(text)}</p></div>`;
+      copyWrap.hidden = true;
+    } else {
+      const item = S.mode === "item";
+      const sum = R.rows.reduce((s, r) => s + r.share, 0);
+      const head = `<thead><tr><th scope="col" class="sr-only">Person</th>${item ? '<th scope="col">Items + charges</th>' : ""}<th scope="col" class="hs">Share</th></tr></thead>`;
+      const body = R.rows.map((r, i) => `<tr><th scope="row" class="n">${esc(r.name)}</th>${item
+        ? `<td class="w"><span data-k="i${i}">${RM(r.items)}</span><span class="op"> + </span><span data-k="c${i}">${RM(r.charges)}</span></td>` : ""}<td class="s"><span class="u">RM </span><span class="num" data-k="s${i}">${money(r.share)}</span></td></tr>`).join("");
+      const foot = `<tfoot><tr><th scope="row" class="n">${ic("check", "ic ck")}Adds up to</th>${item
+        ? `<td class="w">${RM(R.sub)}<span class="op"> + </span>${RM(R.charges)}</td>` : ""}<td class="s"><span class="u">RM </span><span class="num" data-k="sum">${money(sum)}</span></td></tr></tfoot>`;
+      let spare = "";
+      if (R.spare > 0) {
+        const pi = S.people.findIndex((p) => p.id === S.spare.pid);
+        const rule = S.spare.rule === "one" && pi < 0 ? "top" : S.spare.rule;
+        const label = rule === "one" ? `One person, ${esc(shown(S.people[pi], pi))}` : rule === "random" ? "At random" : "Top of the list";
+        spare = `<div class="spare"><p class="spare-t"><span data-k="sp">${R.spare} sen</span> left over</p><div class="spare-c">
+          <button type="button" class="btn btn-out pick" id="spareBtn" aria-haspopup="dialog"><span class="sr-only">Spare sen go to </span>${label}${ic("caret", "ic cr")}</button>
+          ${rule === "random" ? `<button type="button" class="btn btn-out" id="pickAgain">${ic("shuffle")}Pick again</button>` : ""}</div></div>`;
+      }
+      readB.innerHTML = `<table class="sh${item ? "" : " is-even"}" id="shares">${head}<tbody>${body}</tbody>${foot}</table>${spare}`;
+      copyWrap.hidden = false;
+    }
+
+    if (animate) {
+      $$("#face [data-k]").forEach((el) => {
+        const k = el.dataset.k;
+        if (prev[k] !== undefined && prev[k] !== el.textContent) el.classList.add("flip");
+      });
+    }
+    animate = true;
+    if (focusId && !document.activeElement.id) { const f = document.getElementById(focusId); if (f) f.focus(); }
+  }
+
+  function renderStatus() {
+    statusEl.className = "status" + (S.copy === "fail" ? " is-fail" : "");
+    statusEl.innerHTML = S.copy === "ok" ? `${ic("check")}<span>Summary copied</span>`
+      : S.copy === "fail" ? `${ic("warning-circle")}<span>Could not copy. Your browser blocked the clipboard.</span>` : "";
+  }
+
+  function renderNotes() {
+    const box = $("#notes");
+    if (S.note === "save") {
+      box.innerHTML = `<div class="note note-save" role="status">${ic("warning")}<p>This bill is not being saved on this device. It will be lost when you close this tab.</p></div>`;
+    } else if (S.note === "unread") {
+      box.innerHTML = `<div class="note" role="status">${ic("warning-circle")}<p>Your saved bill could not be read, so a new one was started.</p><button type="button" class="icon-btn" id="dismissNote" aria-label="Dismiss note">${ic("x")}</button></div>`;
+    } else box.innerHTML = "";
+  }
+
+  /* ---------- the control deck ---------- */
+  const deck = $("#deck");
+  const errHtml = (id, msg) => `<p class="err" id="${id}">${ic("warning-circle")}<span>${msg}</span></p>`;
+
+  function renderDeck() {
+    const n = S.people.length;
+    $$('input[name="mode"]').forEach((r) => { r.checked = r.value === S.mode; });
+    const people = `<section class="mod" aria-labelledby="h-people"><h2 class="gh" id="h-people">People</h2><ul class="people">
+      ${S.people.map((p, i) => `<li class="pcell"><input type="text" data-pname="${p.id}" aria-label="Person ${i + 1} name" maxlength="20" value="${esc(p.name)}" autocomplete="off" spellcheck="false"><button type="button" class="icon-btn" data-rmp="${p.id}" aria-label="Remove ${esc(shown(p, i))}"${n <= 2 ? " disabled" : ""}>${ic("x")}</button></li>`).join("")}
+      <li><button type="button" class="btn btn-out add" id="addPerson"${n >= 12 ? " disabled" : ""}>${ic("plus")}Add person</button></li></ul></section>`;
+
+    let middle;
+    if (S.mode === "even") {
+      const a = parseAmount(S.even);
+      middle = `<section class="mod" aria-labelledby="h-sub"><h2 class="gh" id="h-sub">Subtotal</h2>
+        <label class="param big${a.bad ? " is-bad" : ""}" id="subCell" for="subtotal"><span class="sr-only">Subtotal</span><span class="param-v"><span class="unit" aria-hidden="true">RM</span><input id="subtotal" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00" value="${esc(S.even)}"${a.bad ? ' aria-invalid="true" aria-describedby="subErr"' : ""}><span class="sr-only"> in RM</span></span></label>
+        ${a.bad ? errHtml("subErr", "Enter an amount like 12.50") : ""}</section>`;
+    } else {
+      middle = `<section class="mod" aria-labelledby="h-items"><h2 class="gh" id="h-items">Items</h2><ul class="items">${S.items.map(itemRow).join("")}</ul>
+        <button type="button" class="btn btn-out add" id="addItem">${ic("plus")}Add item</button></section>`;
+    }
+
+    const pct = (k, label, max) => {
+      const bad = parseRate(S[k], max).bad;
+      return `<div><label class="param${bad ? " is-bad" : ""}" for="r-${k}"><span class="param-l">${label}</span><span class="param-v"><input id="r-${k}" data-rate="${k}" type="text" inputmode="decimal" autocomplete="off" value="${esc(S[k])}" aria-describedby="${bad ? `r-${k}-err ` : ""}chHint"${bad ? ' aria-invalid="true"' : ""}><span class="unit" aria-hidden="true">%</span><span class="sr-only"> in percent</span></span></label>
+        ${bad ? errHtml(`r-${k}-err`, `Enter a rate from 0 to ${max}`) : ""}</div>`;
+    };
+    const charges = `<section class="mod" aria-labelledby="h-ch"><h2 class="gh" id="h-ch">Charges</h2><div class="params">${pct("service", "Service charge", 30)}${pct("sst", "SST", 20)}</div>
+      <p class="hint" id="chHint">Set a charge to 0 if your bill already includes it.</p></section>`;
+
+    deck.innerHTML = people + middle + charges;
+  }
+
+  function itemRow(it, k) {
+    const bad = parseAmount(it.price).bad;
+    const nm = itemName(it, k);
+    return `<li class="item" data-item="${it.id}"><div class="item-top">
+      <span class="fld"><input type="text" data-iname="${it.id}" aria-label="Item ${k + 1} name" maxlength="40" value="${esc(it.name)}" autocomplete="off"></span>
+      <span class="fld money${bad ? " is-bad" : ""}"><span class="unit" aria-hidden="true">RM</span><input type="text" inputmode="decimal" data-iprice="${it.id}" aria-label="Item ${k + 1} price in RM" value="${esc(it.price)}" autocomplete="off"${bad ? ` aria-invalid="true" aria-describedby="ie${it.id}"` : ""}></span>
+      <button type="button" class="icon-btn" data-rmi="${it.id}" aria-label="Remove ${esc(nm)}">${ic("x")}</button></div>
+      ${bad ? errHtml(`ie${it.id}`, "Enter an amount like 12.50") : ""}
+      <div class="who" role="group" aria-label="Who had ${esc(nm)}">${S.people.map((p, i) => `<button type="button" class="tog" data-tog="${it.id}:${p.id}" aria-pressed="${it.who.includes(p.id)}">${ic("check")}${esc(shown(p, i))}</button>`).join("")}</div></li>`;
+  }
+
+  /* show or clear an inline error in place, so typing keeps focus */
+  function setError(box, input, show, id, msg, afterEl) {
+    let p = document.getElementById(id);
+    box.classList.toggle("is-bad", show);
+    if (show) {
+      input.setAttribute("aria-invalid", "true");
+      const d = (input.getAttribute("aria-describedby") || "").split(" ").filter((x) => x && x !== id);
+      input.setAttribute("aria-describedby", [id, ...d].join(" "));
+      if (!p) { afterEl.insertAdjacentHTML("afterend", errHtml(id, msg)); }
+    } else {
+      input.removeAttribute("aria-invalid");
+      const d = (input.getAttribute("aria-describedby") || "").split(" ").filter((x) => x && x !== id);
+      if (d.length) input.setAttribute("aria-describedby", d.join(" ")); else input.removeAttribute("aria-describedby");
+      if (p) p.remove();
+    }
+  }
+
+  deck.addEventListener("input", (e) => {
+    const t = e.target;
+    S.copy = null;
+    if (t.dataset.pname) {
+      const id = Number(t.dataset.pname), i = S.people.findIndex((p) => p.id === id);
+      S.people[i].name = t.value;
+      const nm = shown(S.people[i], i);
+      $$(`[data-tog$=":${id}"]`).forEach((b) => { b.innerHTML = ic("check") + esc(nm); });
+      const rm = $(`[data-rmp="${id}"]`); if (rm) rm.setAttribute("aria-label", `Remove ${nm}`);
+    } else if (t.dataset.iname) {
+      const id = Number(t.dataset.iname), k = S.items.findIndex((x) => x.id === id);
+      S.items[k].name = t.value;
+      const nm = itemName(S.items[k], k), li = t.closest(".item");
+      $(".who", li).setAttribute("aria-label", `Who had ${nm}`);
+      $("[data-rmi]", li).setAttribute("aria-label", `Remove ${nm}`);
+    } else if (t.dataset.iprice) {
+      const id = Number(t.dataset.iprice), it = S.items.find((x) => x.id === id);
+      it.price = t.value;
+      const box = t.closest(".fld");
+      setError(box, t, !!parseAmount(t.value).bad, `ie${id}`, "Enter an amount like 12.50", t.closest(".item-top"));
+    } else if (t.id === "subtotal") {
+      S.even = t.value;
+      setError($("#subCell"), t, !!parseAmount(t.value).bad, "subErr", "Enter an amount like 12.50", $("#subCell"));
+    } else if (t.dataset.rate) {
+      const k = t.dataset.rate, max = k === "service" ? 30 : 20;
+      S[k] = t.value;
+      const cell = t.closest(".param");
+      setError(cell, t, !!parseRate(t.value, max).bad, `r-${k}-err`, `Enter a rate from 0 to ${max}`, cell);
+      if (!t.getAttribute("aria-describedby")) t.setAttribute("aria-describedby", "chHint");
+      else if (!t.getAttribute("aria-describedby").includes("chHint")) t.setAttribute("aria-describedby", t.getAttribute("aria-describedby") + " chHint");
+    }
+    renderStatus();
+    renderReadout();
+  });
+
+  deck.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b || b.disabled) return;
+    S.copy = null;
+    if (b.id === "addPerson") {
+      const id = nid++;
+      S.people.push({ id, name: `Person ${S.people.length + 1}` });
+      renderDeck(); renderReadout(); renderStatus();
+      const inp = $(`[data-pname="${id}"]`); if (inp) inp.focus();
+    } else if (b.dataset.rmp) {
+      const id = Number(b.dataset.rmp);
+      S.people = S.people.filter((p) => p.id !== id);
+      S.items.forEach((it) => { it.who = it.who.filter((x) => x !== id); });
+      if (S.spare.pid === id) S.spare = { ...S.spare, rule: "top", pid: null };
+      renderDeck(); renderReadout(); renderStatus();
+      $("#addPerson").focus();
+    } else if (b.dataset.tog) {
+      const [iid, pid] = b.dataset.tog.split(":").map(Number);
+      const it = S.items.find((x) => x.id === iid);
+      it.who = it.who.includes(pid) ? it.who.filter((x) => x !== pid) : [...it.who, pid];
+      b.setAttribute("aria-pressed", String(it.who.includes(pid)));
+      renderReadout(); renderStatus();
+    } else if (b.id === "addItem") {
+      const id = nid++;
+      S.items.push({ id, name: "", price: "", who: [] });
+      renderDeck(); renderReadout(); renderStatus();
+      const inp = $(`[data-iname="${id}"]`); if (inp) inp.focus();
+    } else if (b.dataset.rmi) {
+      const id = Number(b.dataset.rmi);
+      S.items = S.items.filter((x) => x.id !== id);
+      renderDeck(); renderReadout(); renderStatus();
+      $("#addItem").focus();
+    }
+  });
+
+  $$('input[name="mode"]').forEach((r) => r.addEventListener("change", () => {
+    S.mode = r.value; S.copy = null;
+    renderDeck(); renderReadout(); renderStatus();
+  }));
+
+  /* ---------- face actions ---------- */
+  $("#face").addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    if (b.id === "spareBtn") openSpare();
+    else if (b.id === "pickAgain") pickAgain();
+    else if (b.id === "copyBtn") { S.copy = "ok"; renderStatus(); } /* prototype: shows the status, never touches the clipboard */
+  });
+
+  function pickAgain() {
+    const before = compute().rows.map((r) => r.share).join();
+    let tries = 0;
+    do { S.spare.draw++; tries++; } while (compute().rows.map((r) => r.share).join() === before && tries < 24);
+    S.copy = null; renderStatus(); renderReadout();
+    const pa = $("#pickAgain"); if (pa) pa.focus();
+  }
+
+  /* ---------- P1, spare sen ---------- */
+  const spareDlg = $("#spareDlg"), stepChoice = $("#stepChoice"), stepPerson = $("#stepPerson");
+  const wide = matchMedia("(min-width: 768px)");
+
+  function placePop() {
+    if (!wide.matches || !spareDlg.open) { spareDlg.style.top = spareDlg.style.left = ""; return; }
+    const btn = $("#spareBtn"); if (!btn) return;
+    const r = btn.getBoundingClientRect(), w = spareDlg.offsetWidth, h = spareDlg.offsetHeight;
+    let top = r.bottom + 8;
+    if (top + h > innerHeight - 8) top = Math.max(8, r.top - 8 - h);
+    const left = Math.min(Math.max(8, r.right - w), innerWidth - w - 8);
+    spareDlg.style.top = top + "px"; spareDlg.style.left = left + "px";
+  }
+
+  function showStep(which) {
+    stepChoice.hidden = which !== "choice";
+    stepPerson.hidden = which !== "person";
+    spareDlg.setAttribute("aria-labelledby", which === "choice" ? "spareTitle" : "pickTitle");
+    placePop();
+  }
+
+  function openSpare() {
+    const R = compute();
+    $("#spareTitle").textContent = `${R.spare} sen left over`;
+    const pi = S.people.findIndex((p) => p.id === S.spare.pid);
+    const rule = S.spare.rule === "one" && pi < 0 ? "top" : S.spare.rule;
+    $$(".opt[data-rule]").forEach((o) => o.setAttribute("aria-pressed", String(o.dataset.rule === rule)));
+    showStep("choice");
+    spareDlg.showModal();
+    placePop();
+    ($(`.opt[data-rule="${rule}"]`) || $(".opt")).focus();
+  }
+
+  function openPeople() {
+    const R = compute();
+    $("#personOpts").innerHTML = R.rows.filter((r) => r.share > 0).map((r) => `<button type="button" class="opt" data-pick="${r.id}" aria-pressed="${S.spare.rule === "one" && S.spare.pid === r.id}"><span class="opt-mk" aria-hidden="true">${ic("check")}</span><span class="opt-t">${esc(r.name)}</span><span class="opt-v">${RM(r.share)}</span></button>`).join("");
+    showStep("person");
+    ($('#personOpts .opt[aria-pressed="true"]') || $("#personOpts .opt")).focus();
+  }
+
+  function closeSpare() { if (spareDlg.open) spareDlg.close(); }
+  spareDlg.addEventListener("close", () => {
+    showStep("choice");
+    const b = $("#spareBtn"); if (b) b.focus();
+  });
+  spareDlg.addEventListener("click", (e) => {
+    if (e.target === spareDlg) { closeSpare(); return; }
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.id === "spareBack") { showStep("choice"); $('.opt[data-rule="one"]').focus(); return; }
+    if (b.dataset.rule === "one") { openPeople(); return; }
+    if (b.dataset.rule) {
+      if (b.dataset.rule === "random" && S.spare.rule !== "random") {
+        /* the first draw lands somewhere other than the top of the list when it can, so the choice visibly acts */
+        S.spare = { ...S.spare, rule: "top" };
+        const top = compute().rows.map((r) => r.share).join();
+        S.spare = { ...S.spare, rule: "random", draw: S.spare.draw || 1 };
+        for (let i = 0; i < 24 && compute().rows.map((r) => r.share).join() === top; i++) S.spare.draw++;
+      } else S.spare = { ...S.spare, rule: b.dataset.rule };
+    } else if (b.dataset.pick) {
+      S.spare = { ...S.spare, rule: "one", pid: Number(b.dataset.pick) };
+    } else return;
+    S.copy = null; renderStatus(); renderReadout();
+    closeSpare();
+  });
+  addEventListener("resize", placePop);
+
+  /* ---------- M1, new bill ---------- */
+  const newDlg = $("#newDlg");
+  $("#newBill").addEventListener("click", () => { newDlg.showModal(); $("#newCancel").focus(); });
+  newDlg.addEventListener("click", (e) => {
+    if (e.target === newDlg || e.target.closest("#newCancel")) { newDlg.close(); return; }
+    if (e.target.closest("#newGo")) { newDlg.close(); load("S1", false); const f = $("[data-pname]"); if (f) f.focus(); }
+  });
+  newDlg.addEventListener("close", () => { if (!document.activeElement || document.activeElement === document.body) $("#newBill").focus(); });
+
+  /* ---------- notes ---------- */
+  $("#notes").addEventListener("click", (e) => {
+    if (e.target.closest("#dismissNote")) { S.note = null; renderNotes(); $("#newBill").focus(); }
+  });
+
+  /* ---------- prototype states ---------- */
+  const protoTab = $("#protoTab"), protoList = $("#protoList");
+  protoTab.addEventListener("click", () => {
+    const open = protoList.hidden;
+    protoList.hidden = !open;
+    protoTab.setAttribute("aria-expanded", String(open));
+  });
+  protoList.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-state]"); if (!b) return;
+    load(b.dataset.state, true);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !protoList.hidden && !document.querySelector("dialog[open]")) { protoList.hidden = true; protoTab.setAttribute("aria-expanded", "false"); protoTab.focus(); }
+  });
+
+  function load(key, mark) {
+    S = STATES[key]();
+    animate = false;
+    renderNotes(); renderDeck(); renderReadout(); renderStatus();
+    $$("[data-state]").forEach((b) => b.setAttribute("aria-pressed", String(mark && b.dataset.state === key)));
+  }
+
+  window.__proto = { load, compute: () => compute() };
+  load("K1", true);
+})();
+</script>
+</body>
+</html>

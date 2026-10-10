@@ -1,0 +1,1398 @@
+{
+  "url": "file:///{workspace}/examples/split/docs/design-explore/v1.1.0/round-1/c.html",
+  "console_errors": [],
+  "requests": [],
+  "checks": [
+    {
+      "name": "no em or en dash in the page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no external src or href",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no @import or url(http",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "every icon path is an exact copy (icons.js or b.html)",
+      "ok": true,
+      "detail": {
+        "icons": [
+          "caret",
+          "check",
+          "copy",
+          "plus",
+          "receipt",
+          "shuffle",
+          "warning",
+          "warning-circle",
+          "x"
+        ],
+        "not_exact": []
+      }
+    },
+    {
+      "name": "mark path is the brand geometry",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 page title",
+      "ok": true,
+      "detail": "Danial's Splity Tab"
+    },
+    {
+      "name": "390 header wordmark is Splity Tab only",
+      "ok": true,
+      "detail": "Splity Tab"
+    },
+    {
+      "name": "390 K1 figures",
+      "ok": true,
+      "detail": {
+        "total": "69.26",
+        "sub": "RM 59.40",
+        "svc": "RM 5.94",
+        "sst": "RM 3.92",
+        "i0": "RM 24.90",
+        "c0": "RM 4.14",
+        "s0": "29.04",
+        "i1": "RM 13.50",
+        "c1": "RM 2.24",
+        "s1": "15.74",
+        "i2": "RM 21.00",
+        "c2": "RM 3.48",
+        "s2": "24.48",
+        "sum": "69.26",
+        "sp": "1 sen"
+      }
+    },
+    {
+      "name": "390 K1 proof row working",
+      "ok": true,
+      "detail": "Adds up to\nRM 59.40 + RM 9.86\nRM 69.26"
+    },
+    {
+      "name": "390 K1 spare choice shows Top of the list",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 P1 closes on Esc",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 K1 one person Ben gives 29.03 and 15.75",
+      "ok": true,
+      "detail": [
+        "29.03",
+        "15.75",
+        "24.48"
+      ]
+    },
+    {
+      "name": "390 K1 choice label shows Ben",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 K1 random gives the 1 sen to one person",
+      "ok": true,
+      "detail": [
+        "29.03",
+        "15.75",
+        "24.48"
+      ]
+    },
+    {
+      "name": "390 K1 random shows Pick again",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 K1 Pick again draws again",
+      "ok": true,
+      "detail": {
+        "before": [
+          "29.03",
+          "15.75",
+          "24.48"
+        ],
+        "after": [
+          "29.04",
+          "15.74",
+          "24.48"
+        ]
+      }
+    },
+    {
+      "name": "390 P1 closes on backdrop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 K2 figures",
+      "ok": true,
+      "detail": {
+        "total": "116.60",
+        "sub": "RM 100.00",
+        "svc": "RM 10.00",
+        "sst": "RM 6.60",
+        "s0": "38.87",
+        "s1": "38.87",
+        "s2": "38.86",
+        "sum": "116.60",
+        "sp": "2 sen"
+      }
+    },
+    {
+      "name": "390 K2 one person Ben gives 38.86 38.88 38.86",
+      "ok": true,
+      "detail": [
+        "38.86",
+        "38.88",
+        "38.86"
+      ]
+    },
+    {
+      "name": "390 K2 random gives two different people one sen each",
+      "ok": true,
+      "detail": [
+        "38.86",
+        "38.87",
+        "38.87"
+      ]
+    },
+    {
+      "name": "390 proto bar sits under the M1 backdrop",
+      "ok": true,
+      "detail": "newDlg"
+    },
+    {
+      "name": "390 M1 closes on Esc",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 M1 closes on backdrop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 M1 Cancel keeps the bill",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 Start new bill gives S1",
+      "ok": true,
+      "detail": [
+        "Person 1",
+        "Person 2"
+      ]
+    },
+    {
+      "name": "390 Copy summary shows Summary copied",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 S1 copy",
+      "ok": true,
+      "detail": "S1"
+    },
+    {
+      "name": "390 S2 copy",
+      "ok": true,
+      "detail": "S2"
+    },
+    {
+      "name": "390 S3 copy",
+      "ok": true,
+      "detail": "S3"
+    },
+    {
+      "name": "390 S4ok copy",
+      "ok": true,
+      "detail": "S4ok"
+    },
+    {
+      "name": "390 S4fail copy",
+      "ok": true,
+      "detail": "S4fail"
+    },
+    {
+      "name": "390 S5 copy",
+      "ok": true,
+      "detail": "S5"
+    },
+    {
+      "name": "390 S6 copy",
+      "ok": true,
+      "detail": "S6"
+    },
+    {
+      "name": "390 S6 note dismisses",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 S7 Add person disabled at 12",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 W1 adds up to RM 1,193.87",
+      "ok": true,
+      "detail": {
+        "total": "1,193.87",
+        "sub": "RM 1,023.90",
+        "svc": "RM 102.39",
+        "sst": "RM 67.58",
+        "i0": "RM 346.40",
+        "c0": "RM 57.51",
+        "s0": "403.91",
+        "i1": "RM 335.00",
+        "c1": "RM 55.61",
+        "s1": "390.61",
+        "i2": "RM 342.50",
+        "c2": "RM 56.85",
+        "s2": "399.35",
+        "sum": "1,193.87",
+        "sp": "1 sen"
+      }
+    },
+    {
+      "name": "360 page title",
+      "ok": true,
+      "detail": "Danial's Splity Tab"
+    },
+    {
+      "name": "360 header wordmark is Splity Tab only",
+      "ok": true,
+      "detail": "Splity Tab"
+    },
+    {
+      "name": "360 K1 figures",
+      "ok": true,
+      "detail": {
+        "total": "69.26",
+        "sub": "RM 59.40",
+        "svc": "RM 5.94",
+        "sst": "RM 3.92",
+        "i0": "RM 24.90",
+        "c0": "RM 4.14",
+        "s0": "29.04",
+        "i1": "RM 13.50",
+        "c1": "RM 2.24",
+        "s1": "15.74",
+        "i2": "RM 21.00",
+        "c2": "RM 3.48",
+        "s2": "24.48",
+        "sum": "69.26",
+        "sp": "1 sen"
+      }
+    },
+    {
+      "name": "360 K1 proof row working",
+      "ok": true,
+      "detail": "Adds up to\nRM 59.40 + RM 9.86\nRM 69.26"
+    },
+    {
+      "name": "360 K1 spare choice shows Top of the list",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 P1 closes on Esc",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 K1 one person Ben gives 29.03 and 15.75",
+      "ok": true,
+      "detail": [
+        "29.03",
+        "15.75",
+        "24.48"
+      ]
+    },
+    {
+      "name": "360 K1 choice label shows Ben",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 K1 random gives the 1 sen to one person",
+      "ok": true,
+      "detail": [
+        "29.03",
+        "15.75",
+        "24.48"
+      ]
+    },
+    {
+      "name": "360 K1 random shows Pick again",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 K1 Pick again draws again",
+      "ok": true,
+      "detail": {
+        "before": [
+          "29.03",
+          "15.75",
+          "24.48"
+        ],
+        "after": [
+          "29.04",
+          "15.74",
+          "24.48"
+        ]
+      }
+    },
+    {
+      "name": "360 P1 closes on backdrop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 K2 figures",
+      "ok": true,
+      "detail": {
+        "total": "116.60",
+        "sub": "RM 100.00",
+        "svc": "RM 10.00",
+        "sst": "RM 6.60",
+        "s0": "38.87",
+        "s1": "38.87",
+        "s2": "38.86",
+        "sum": "116.60",
+        "sp": "2 sen"
+      }
+    },
+    {
+      "name": "360 K2 one person Ben gives 38.86 38.88 38.86",
+      "ok": true,
+      "detail": [
+        "38.86",
+        "38.88",
+        "38.86"
+      ]
+    },
+    {
+      "name": "360 K2 random gives two different people one sen each",
+      "ok": true,
+      "detail": [
+        "38.86",
+        "38.87",
+        "38.87"
+      ]
+    },
+    {
+      "name": "360 proto bar sits under the M1 backdrop",
+      "ok": true,
+      "detail": "newDlg"
+    },
+    {
+      "name": "360 M1 closes on Esc",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 M1 closes on backdrop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 M1 Cancel keeps the bill",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 Start new bill gives S1",
+      "ok": true,
+      "detail": [
+        "Person 1",
+        "Person 2"
+      ]
+    },
+    {
+      "name": "360 Copy summary shows Summary copied",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 S1 copy",
+      "ok": true,
+      "detail": "S1"
+    },
+    {
+      "name": "360 S2 copy",
+      "ok": true,
+      "detail": "S2"
+    },
+    {
+      "name": "360 S3 copy",
+      "ok": true,
+      "detail": "S3"
+    },
+    {
+      "name": "360 S4ok copy",
+      "ok": true,
+      "detail": "S4ok"
+    },
+    {
+      "name": "360 S4fail copy",
+      "ok": true,
+      "detail": "S4fail"
+    },
+    {
+      "name": "360 S5 copy",
+      "ok": true,
+      "detail": "S5"
+    },
+    {
+      "name": "360 S6 copy",
+      "ok": true,
+      "detail": "S6"
+    },
+    {
+      "name": "360 S6 note dismisses",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 S7 Add person disabled at 12",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360 W1 adds up to RM 1,193.87",
+      "ok": true,
+      "detail": {
+        "total": "1,193.87",
+        "sub": "RM 1,023.90",
+        "svc": "RM 102.39",
+        "sst": "RM 67.58",
+        "i0": "RM 346.40",
+        "c0": "RM 57.51",
+        "s0": "403.91",
+        "i1": "RM 335.00",
+        "c1": "RM 55.61",
+        "s1": "390.61",
+        "i2": "RM 342.50",
+        "c2": "RM 56.85",
+        "s2": "399.35",
+        "sum": "1,193.87",
+        "sp": "1 sen"
+      }
+    },
+    {
+      "name": "1280 page title",
+      "ok": true,
+      "detail": "Danial's Splity Tab"
+    },
+    {
+      "name": "1280 header wordmark is Splity Tab only",
+      "ok": true,
+      "detail": "Splity Tab"
+    },
+    {
+      "name": "1280 K1 figures",
+      "ok": true,
+      "detail": {
+        "total": "69.26",
+        "sub": "RM 59.40",
+        "svc": "RM 5.94",
+        "sst": "RM 3.92",
+        "i0": "RM 24.90",
+        "c0": "RM 4.14",
+        "s0": "29.04",
+        "i1": "RM 13.50",
+        "c1": "RM 2.24",
+        "s1": "15.74",
+        "i2": "RM 21.00",
+        "c2": "RM 3.48",
+        "s2": "24.48",
+        "sum": "69.26",
+        "sp": "1 sen"
+      }
+    },
+    {
+      "name": "1280 K1 proof row working",
+      "ok": true,
+      "detail": "Adds up to\nRM 59.40 + RM 9.86\nRM 69.26"
+    },
+    {
+      "name": "1280 K1 spare choice shows Top of the list",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 P1 closes on Esc",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 K1 one person Ben gives 29.03 and 15.75",
+      "ok": true,
+      "detail": [
+        "29.03",
+        "15.75",
+        "24.48"
+      ]
+    },
+    {
+      "name": "1280 K1 choice label shows Ben",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 K1 random gives the 1 sen to one person",
+      "ok": true,
+      "detail": [
+        "29.03",
+        "15.75",
+        "24.48"
+      ]
+    },
+    {
+      "name": "1280 K1 random shows Pick again",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 K1 Pick again draws again",
+      "ok": true,
+      "detail": {
+        "before": [
+          "29.03",
+          "15.75",
+          "24.48"
+        ],
+        "after": [
+          "29.04",
+          "15.74",
+          "24.48"
+        ]
+      }
+    },
+    {
+      "name": "1280 P1 closes on backdrop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 K2 figures",
+      "ok": true,
+      "detail": {
+        "total": "116.60",
+        "sub": "RM 100.00",
+        "svc": "RM 10.00",
+        "sst": "RM 6.60",
+        "s0": "38.87",
+        "s1": "38.87",
+        "s2": "38.86",
+        "sum": "116.60",
+        "sp": "2 sen"
+      }
+    },
+    {
+      "name": "1280 K2 one person Ben gives 38.86 38.88 38.86",
+      "ok": true,
+      "detail": [
+        "38.86",
+        "38.88",
+        "38.86"
+      ]
+    },
+    {
+      "name": "1280 K2 random gives two different people one sen each",
+      "ok": true,
+      "detail": [
+        "38.86",
+        "38.87",
+        "38.87"
+      ]
+    },
+    {
+      "name": "1280 proto bar sits under the M1 backdrop",
+      "ok": true,
+      "detail": "newDlg"
+    },
+    {
+      "name": "1280 M1 closes on Esc",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 M1 closes on backdrop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 M1 Cancel keeps the bill",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 Start new bill gives S1",
+      "ok": true,
+      "detail": [
+        "Person 1",
+        "Person 2"
+      ]
+    },
+    {
+      "name": "1280 Copy summary shows Summary copied",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 S1 copy",
+      "ok": true,
+      "detail": "S1"
+    },
+    {
+      "name": "1280 S2 copy",
+      "ok": true,
+      "detail": "S2"
+    },
+    {
+      "name": "1280 S3 copy",
+      "ok": true,
+      "detail": "S3"
+    },
+    {
+      "name": "1280 S4ok copy",
+      "ok": true,
+      "detail": "S4ok"
+    },
+    {
+      "name": "1280 S4fail copy",
+      "ok": true,
+      "detail": "S4fail"
+    },
+    {
+      "name": "1280 S5 copy",
+      "ok": true,
+      "detail": "S5"
+    },
+    {
+      "name": "1280 S6 copy",
+      "ok": true,
+      "detail": "S6"
+    },
+    {
+      "name": "1280 S6 note dismisses",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 S7 Add person disabled at 12",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280 W1 adds up to RM 1,193.87",
+      "ok": true,
+      "detail": {
+        "total": "1,193.87",
+        "sub": "RM 1,023.90",
+        "svc": "RM 102.39",
+        "sst": "RM 67.58",
+        "i0": "RM 346.40",
+        "c0": "RM 57.51",
+        "s0": "403.91",
+        "i1": "RM 335.00",
+        "c1": "RM 55.61",
+        "s1": "390.61",
+        "i2": "RM 342.50",
+        "c2": "RM 56.85",
+        "s2": "399.35",
+        "sum": "1,193.87",
+        "sp": "1 sen"
+      }
+    },
+    {
+      "name": "motion: changed figures flip when motion is allowed",
+      "ok": true,
+      "detail": {
+        "count": 4,
+        "anim": "flip"
+      }
+    },
+    {
+      "name": "motion: reduced motion stops the flip and transitions",
+      "ok": true,
+      "detail": {
+        "anim": "none",
+        "transition": "0s"
+      }
+    },
+    {
+      "name": "no clipped text k1-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S1-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S2-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S3-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S4ok-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S4fail-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S5-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S6-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S7-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text W1-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll k1-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text k1-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll S1-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text S1-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll S2-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text S2-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll S3-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text S3-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll S4ok-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text S4ok-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll S4fail-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text S4fail-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll S5-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text S5-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll S6-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text S6-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll S7-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text S7-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no sideways scroll W1-360",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 360,
+        "bodyScrollWidth": 360,
+        "clientWidth": 360,
+        "poking": [],
+        "clipped": []
+      }
+    },
+    {
+      "name": "no clipped text W1-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text k1-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S1-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S2-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S3-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S4ok-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S4fail-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S5-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S6-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text S7-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no clipped text W1-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "44 px targets k1-390",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "44 px targets k1-360",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "44 px targets k1-1280",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "console errors are zero",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no network requests",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "all contrast pairs pass",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "overflow": {
+    "k1-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "S1-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "S2-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "S3-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "S4ok-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "S4fail-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "S5-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "S6-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "S7-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "W1-390": {
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "clientWidth": 390,
+      "poking": [],
+      "clipped": []
+    },
+    "k1-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "S1-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "S2-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "S3-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "S4ok-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "S4fail-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "S5-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "S6-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "S7-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "W1-360": {
+      "scrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "clientWidth": 360,
+      "poking": [],
+      "clipped": []
+    },
+    "k1-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    },
+    "S1-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    },
+    "S2-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    },
+    "S3-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    },
+    "S4ok-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    },
+    "S4fail-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    },
+    "S5-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    },
+    "S6-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    },
+    "S7-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    },
+    "W1-1280": {
+      "scrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "clientWidth": 1280,
+      "poking": [],
+      "clipped": []
+    }
+  },
+  "contrast": {
+    "body text: ink on page": {
+      "fg": "#0C1424",
+      "bg": "#ECF0F5",
+      "ratio": 16.08,
+      "need": 4.5,
+      "pass": true
+    },
+    "body text: ink on face": {
+      "fg": "#0C1424",
+      "bg": "#FAFBFD",
+      "ratio": 17.77,
+      "need": 4.5,
+      "pass": true
+    },
+    "ink on field": {
+      "fg": "#0C1424",
+      "bg": "#FDFEFF",
+      "ratio": 18.22,
+      "need": 4.5,
+      "pass": true
+    },
+    "ink on hover": {
+      "fg": "#0C1424",
+      "bg": "#E4E9F0",
+      "ratio": 15.08,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted: ink-2 on page": {
+      "fg": "#4B5568",
+      "bg": "#ECF0F5",
+      "ratio": 6.56,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted: ink-2 on face": {
+      "fg": "#4B5568",
+      "bg": "#FAFBFD",
+      "ratio": 7.25,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted: ink-2 on field": {
+      "fg": "#4B5568",
+      "bg": "#FDFEFF",
+      "ratio": 7.43,
+      "need": 4.5,
+      "pass": true
+    },
+    "muted: ink-2 on hover": {
+      "fg": "#4B5568",
+      "bg": "#E4E9F0",
+      "ratio": 6.15,
+      "need": 4.5,
+      "pass": true
+    },
+    "accent text: cobalt on face": {
+      "fg": "#2445F5",
+      "bg": "#FAFBFD",
+      "ratio": 6.25,
+      "need": 4.5,
+      "pass": true
+    },
+    "accent: cobalt on page": {
+      "fg": "#2445F5",
+      "bg": "#ECF0F5",
+      "ratio": 5.65,
+      "need": 4.5,
+      "pass": true
+    },
+    "button text: on-cobalt on cobalt": {
+      "fg": "#F7F9FF",
+      "bg": "#2445F5",
+      "ratio": 6.15,
+      "need": 4.5,
+      "pass": true
+    },
+    "button hover: on-cobalt on cobalt-press": {
+      "fg": "#F7F9FF",
+      "bg": "#1A33C7",
+      "ratio": 8.52,
+      "need": 4.5,
+      "pass": true
+    },
+    "selected: on-ink on ink": {
+      "fg": "#F4F6FA",
+      "bg": "#0C1424",
+      "ratio": 17.01,
+      "need": 4.5,
+      "pass": true
+    },
+    "error on face": {
+      "fg": "#C2262E",
+      "bg": "#FAFBFD",
+      "ratio": 5.62,
+      "need": 4.5,
+      "pass": true
+    },
+    "error on page": {
+      "fg": "#C2262E",
+      "bg": "#ECF0F5",
+      "ratio": 5.08,
+      "need": 4.5,
+      "pass": true
+    },
+    "error on field": {
+      "fg": "#C2262E",
+      "bg": "#FDFEFF",
+      "ratio": 5.76,
+      "need": 4.5,
+      "pass": true
+    },
+    "control border: rule-strong on field": {
+      "fg": "#7D899B",
+      "bg": "#FDFEFF",
+      "ratio": 3.51,
+      "need": 3.0,
+      "pass": true
+    },
+    "control border: rule-strong on page": {
+      "fg": "#7D899B",
+      "bg": "#ECF0F5",
+      "ratio": 3.1,
+      "need": 3.0,
+      "pass": true
+    },
+    "focus ring: cobalt on page": {
+      "fg": "#2445F5",
+      "bg": "#ECF0F5",
+      "ratio": 5.65,
+      "need": 3.0,
+      "pass": true
+    }
+  },
+  "targets": {
+    "k1-390": [],
+    "k1-360": [],
+    "k1-1280": []
+  },
+  "tokens": {
+    "page": "#ECF0F5",
+    "face": "#FAFBFD",
+    "field": "#FDFEFF",
+    "hover": "#E4E9F0",
+    "ink": "#0C1424",
+    "ink-2": "#4B5568",
+    "on-ink": "#F4F6FA",
+    "cobalt": "#2445F5",
+    "cobalt-press": "#1A33C7",
+    "on-cobalt": "#F7F9FF",
+    "error": "#C2262E",
+    "rule-strong": "#7D899B"
+  }
+}
