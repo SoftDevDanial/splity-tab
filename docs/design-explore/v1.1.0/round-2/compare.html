@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Splity Tab v1.1.0 round 2 compare</title>
+<style>
+  :root {
+    --bg: #eceef1; --panel: #ffffff; --ink: #16181d; --muted: #4f5662; --line: #d5d9df;
+    --pick: #1f5fd1; --flag-bg: #fff6e0; --flag-edge: #b7791f; --ask-bg: #eef4ff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1320px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 19px; margin: 36px 0 12px; }
+  .lede { color: var(--muted); margin: 0 0 24px; max-width: 78ch; }
+  .box { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px 20px; margin: 0 0 16px; max-width: 100ch; }
+  .box h3 { font-size: 16px; margin: 0 0 6px; }
+  .box p { margin: 0 0 8px; }
+  .box p:last-child { margin: 0; }
+  .rec { border-left: 4px solid var(--pick); }
+  .ask { background: var(--ask-bg); border-left: 4px solid var(--pick); }
+  table { border-collapse: collapse; width: 100%; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; font-size: 14px; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-top: 1px solid var(--line); }
+  thead th { border-top: 0; background: #f6f7f9; font-size: 13px; color: var(--muted); font-weight: 600; }
+  tbody th { font-weight: 600; }
+  td.num { white-space: nowrap; }
+  tr.flag td, tr.flag th { background: var(--flag-bg); }
+  .who { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line); background: #f6f7f9; color: var(--muted); white-space: nowrap; }
+  .who.you { border-color: var(--pick); color: var(--pick); background: #f3f7ff; }
+  .who.orch { border-color: var(--flag-edge); color: #7a4f0f; background: var(--flag-bg); }
+  .scroll { overflow-x: auto; }
+  .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+  .dir { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-width: 0; }
+  .dir[data-pick] { border-color: var(--pick); box-shadow: 0 0 0 1px var(--pick); }
+  .tag { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0; }
+  .dir[data-pick] .tag { color: var(--pick); font-weight: 600; }
+  .dir h3 { font-size: 18px; margin: 2px 0 4px; }
+  .thesis { margin: 0 0 12px; color: var(--muted); }
+  .frame { width: 100%; aspect-ratio: 390 / 844; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: #151a23; position: relative; }
+  .frame iframe { position: absolute; top: 0; left: 0; width: 390px; height: 844px; border: 0; transform-origin: 0 0; }
+  dl { margin: 12px 0 0; }
+  dt { font-weight: 600; font-size: 13px; }
+  dd { margin: 0 0 8px; color: var(--muted); }
+  .open { margin: 10px 0 0; }
+  a { color: var(--pick); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--pick); outline-offset: 2px; }
+  .switch { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+  .switch button { font: inherit; font-size: 14px; min-height: 40px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); cursor: pointer; }
+  .switch button[aria-pressed="true"] { border-color: var(--pick); background: var(--pick); color: #fff; }
+  .desk { width: 100%; aspect-ratio: 1280 / 800; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: #151a23; position: relative; }
+  .desk iframe { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; border: 0; transform-origin: 0 0; }
+  .glance { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+  .glance figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px; }
+  .glance figure.is-pick { border-color: var(--pick); box-shadow: 0 0 0 1px var(--pick); }
+  .glance img { display: block; width: 100%; height: auto; border-radius: 4px; }
+  .glance figcaption { font-size: 13px; margin-top: 6px; font-weight: 600; }
+  .glance .wide { grid-column: span 2; }
+  @media (max-width: 1000px) {
+    .row { grid-template-columns: minmax(0, 1fr); max-width: 440px; }
+    .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .glance .wide { grid-column: span 2; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Splity Tab v1.1.0, design round 2</h1>
+  <p class="lede">G is B Glass Receipt's layout and its one glass card, in A Night Console's slate and indigo, with no glow. It follows your correction at 22:50. The first round 2 page, F, was built on D by my misread, so it is withdrawn and not shown here (the file stays as a record). Round 1 B and A sit beside G so you can see what came from each. Every frame below is the real prototype, so you can type, tap who had an item, open Shares on the phone, and use Prototype states in the left edge for the other states. The desktop view is further down.</p>
+
+  <section class="box rec" aria-label="Recommendation">
+    <h3>My recommendation, take G forward</h3>
+    <p>G does all five of your points and both clarifications. The phone now opens on the inputs, with the first field at 130 px from the top where B had it at 775 px. The receipt is one tap away in a strip pinned to the bottom that always shows the Total. On a desktop the page never scrolls, even with 12 people or a ten-item bill, because only the item list scrolls inside its own frame.</p>
+    <p>If you accept it, the next steps are lock the design system with its contrast ratios, compose every screen and state, wire the flow, then the golden files the build is checked against. The logo is redrawn with the name "Splity Tab" after that.</p>
+  </section>
+
+  <section class="box ask" aria-label="Decisions for you">
+    <h3>What needs your word</h3>
+    <p><strong>1. G as the direction.</strong> Accept it, or give more notes for a revision.</p>
+    <p><strong>2. "1 sen left over" on the phone.</strong> On a phone it lives inside the Shares sheet, not on the strip, so it is one tap away. You said you love that line. The designer suggests showing it on the strip as well. I recommend yes, and it can go in at the compose step.</p>
+    <p><strong>3. The readings below.</strong> Where your words left a detail open, I or the designer chose. Each is easy to change. The highlighted rows are the ones most likely to matter to you.</p>
+  </section>
+
+  <h2>At a glance</h2>
+  <div class="glance">
+    <figure><img src="../round-1/checks/b/k1-390.png" alt="Round 1 B on a phone, the receipt on top"><figcaption>Round 1 B, phone</figcaption></figure>
+    <figure class="is-pick"><img src="checks/g/k1-390.png" alt="G on a phone, the inputs first with a strip pinned at the bottom"><figcaption>G, phone</figcaption></figure>
+    <figure class="is-pick"><img src="checks/g/p2-390.png" alt="G on a phone with the Shares sheet open"><figcaption>G, Shares sheet</figcaption></figure>
+    <figure class="is-pick wide"><img src="checks/g/k1-1280.png" alt="G on a desktop, the glass receipt beside the inputs"><figcaption>G, desktop</figcaption></figure>
+  </div>
+
+  <h2>What changed, point by point</h2>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">Your point</th><th scope="col">Round 1 B</th><th scope="col">G now</th><th scope="col">Where to see it</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">"color night console but use glass receipt"</th><td>Deep navy with cyan, one glass card</td><td>B's layout and its one glass card, in A's slate layers and indigo. The card is slate glass with an indigo hairline edge</td><td>Everywhere</td></tr>
+        <tr><th scope="row">"remove neon backgrounds", only the glow behind the receipt</th><td>Light pools behind the card</td><td>No light pools and no page gradient. The glass card stays</td><td>Desktop view</td></tr>
+        <tr><th scope="row">Copy summary keeps a solid fill, in indigo</th><td>A cyan fill</td><td>A solid indigo fill with near-white text, 5.24 to 1</td><td>The card on a desktop, the strip on a phone</td></tr>
+        <tr><th scope="row">"Move charges above Split"</th><td>People, Split, Items, then Charges</td><td>People, Charges, Split, Items on every width</td><td>The input column</td></tr>
+        <tr><th scope="row">"By items... scrolled within a div"</th><td>The desktop page was 1,262 px tall at 1280 x 800 and scrolled</td><td>The page is exactly 800 px tall in every state. The item list scrolls inside its own frame, with a fade where there is more</td><td>Prototype states, W2 Long bill or S7 12 people</td></tr>
+        <tr><th scope="row">"make the receipt collapsed... Make it easier to input stuff"</th><td>The receipt came first, so the first field was 775 px down an 844 px screen</td><td>The inputs come first, the first field at 130 px. A strip pinned to the bottom shows the Total, Shares and Copy summary. Shares lifts the whole receipt card up as a sheet</td><td>Phone view, Shares</td></tr>
+        <tr><th scope="row">"i love the sen left over"</th><td>"1 sen left over" with its Top of the list chip</td><td>Kept exactly, on the receipt's spare sen line</td><td>The card, or Shares on a phone</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Readings made for you</h2>
+  <p class="lede">The first column says who chose. <span class="who orch">ORCH</span> is me, from your words. <span class="who">DESIGNER</span> is the designer agent, where the brief left it open.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">Who</th><th scope="col">Reading</th><th scope="col">Why</th></tr></thead>
+      <tbody>
+        <tr class="flag"><td class="num"><span class="who orch">ORCH</span></td><td>On a phone the receipt collapses into a strip pinned to the bottom (Total, Shares, Copy summary), and Shares opens it as a sheet</td><td>Your words offered "collapsed", "button press" or "tab change". A pinned strip keeps the Total in sight while you type, which a tab would hide</td></tr>
+        <tr class="flag"><td class="num"><span class="who">DESIGNER</span></td><td>On a phone "1 sen left over" is inside the Shares sheet, not on the strip</td><td>The strip holds the Total and two buttons. Asked of you above</td></tr>
+        <tr class="flag"><td class="num"><span class="who">DESIGNER</span></td><td>The soft light under the Total and the glow on the Total figure are gone too, inside the card</td><td>They read as glow. The Total is lit by size and colour alone. A faint glow on the figure only could come back if you miss it</td></tr>
+        <tr class="flag"><td class="num"><span class="who orch">ORCH</span></td><td>"Split" read as B's own Split section, the Even and By item switch</td><td>So Charges sits between People and the switch</td></tr>
+        <tr><td class="num"><span class="who orch">ORCH</span></td><td>No "+1 sen" label beside a share</td><td>That label was D's, not B's. B shows the spare sen once, on its own line</td></tr>
+        <tr><td class="num"><span class="who">DESIGNER</span></td><td>The strip is the receipt card collapsed, in the same glass. Only one glass surface is ever on screen</td><td>Keeps the one material B was built on</td></tr>
+        <tr><td class="num"><span class="who">DESIGNER</span></td><td>B's rainbow foil strip and seal are one indigo sheen</td><td>A has one accent colour</td></tr>
+        <tr><td class="num"><span class="who">DESIGNER</span></td><td>Add person and Add item sit in their section's heading row. Split is one row, heading left and switch right. On a desktop the charge hint sits beside the two fields</td><td>Saves height, so 12 people and the item frame still fit 1280 x 800, and Add item stays in reach while the list scrolls</td></tr>
+        <tr><td class="num"><span class="who">DESIGNER</span></td><td>At 1280 x 800 the item frame shows about two and a half items before it scrolls</td><td>The cost of a page that never scrolls</td></tr>
+        <tr><td class="num"><span class="who">DESIGNER</span></td><td>Start new bill uses A's red fill</td><td>It deletes the bill, so it gets the danger colour. B used its main fill</td></tr>
+        <tr><td class="num"><span class="who">DESIGNER</span></td><td>Tablet widths, 600 to 1023 px, use the phone layout with the sheet centred</td><td>Two columns do not fit well below 1024 px</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Phone, 390 px</h2>
+  <div class="row">
+    <article class="dir" id="dir-b">
+      <header>
+        <p class="tag">Round 1, your pick for the base</p>
+        <h3>B Glass Receipt</h3>
+        <p class="thesis">The receipt as one floating glass card with the total softly lit, on deep navy.</p>
+      </header>
+      <div class="frame"><iframe src="../round-1/b.html" title="Round 1 B, Glass Receipt" loading="lazy"></iframe></div>
+      <p class="open"><a href="../round-1/b.html">Open full size</a></p>
+    </article>
+    <article class="dir" id="dir-a">
+      <header>
+        <p class="tag">Round 1, your pick for the colours</p>
+        <h3>A Night Console</h3>
+        <p class="thesis">A chat app's dark console in slate layers with one indigo.</p>
+      </header>
+      <div class="frame"><iframe src="../round-1/a.html" title="Round 1 A, Night Console" loading="lazy"></iframe></div>
+      <p class="open"><a href="../round-1/a.html">Open full size</a></p>
+    </article>
+    <article class="dir" id="dir-g" data-pick="true">
+      <header>
+        <p class="tag">Round 2, my pick</p>
+        <h3>G Glass Console</h3>
+        <p class="thesis">B's glass receipt and layout in A's colours, no glow, inputs first on a phone.</p>
+      </header>
+      <div class="frame"><iframe src="g.html" title="G, Glass Console" loading="lazy"></iframe></div>
+      <dl>
+        <dt>Try</dt><dd>Type a price, tap who had an item, then Shares at the bottom. Copy summary on the strip. Prototype states is the thin tab on the left edge.</dd>
+        <dt>Costs</dt><dd>Each person's share is one tap away on a phone. Without the light pools the glass reads through its edge and highlight, so it is calmer than B.</dd>
+      </dl>
+      <p class="open"><a href="g.html">Open full size</a></p>
+    </article>
+  </div>
+
+  <h2>Desktop, 1280 px</h2>
+  <div class="switch" role="group" aria-label="Choose a design for the desktop view">
+    <button type="button" data-src="../round-1/b.html" aria-pressed="false">Round 1 B</button>
+    <button type="button" data-src="../round-1/a.html" aria-pressed="false">Round 1 A</button>
+    <button type="button" data-src="g.html" aria-pressed="true">G, my pick</button>
+  </div>
+  <div class="desk"><iframe id="desk" src="g.html" title="Desktop view of the chosen design"></iframe></div>
+
+  <h2>Checks</h2>
+  <p class="lede">G passed the designer's render checks with no failures at 1280, 1024, 768, 390 and 360 px, and my own separate spot check at 1280, 390 and 360. No console errors, no network requests, no page scroll at 1280 x 800 in K1, K2, 12 people or the ten-item bill, no sideways scroll at 360, and the shares add up to the Total in whole sen. Copy summary only reached a stand-in clipboard. The one thing my check caught is the phone "1 sen left over" placement, asked of you above. Screenshots are in checks/g.</p>
+</main>
+<script>
+  // Scale each fixed-size prototype frame to the width of its box.
+  function fit() {
+    document.querySelectorAll('.frame').forEach(function (f) {
+      f.querySelector('iframe').style.transform = 'scale(' + (f.clientWidth / 390) + ')';
+    });
+    var d = document.querySelector('.desk');
+    d.querySelector('iframe').style.transform = 'scale(' + (d.clientWidth / 1280) + ')';
+  }
+  document.querySelectorAll('.switch button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.switch button').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      document.getElementById('desk').src = b.dataset.src;
+    });
+  });
+  window.addEventListener('resize', fit);
+  fit();
+</script>
+</body>
+</html>
