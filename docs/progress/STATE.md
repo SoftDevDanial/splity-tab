@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.0.0 SEALED 2026-10-10 on the owner's word; v1.1.0 opening
-- **next:** v1.1.0: brainstorm delta, then the design round with the owner
+- **phase:** v1.1.0 opened; design round with the owner next
+- **next:** brainstorm delta, then sdlc:design with the owner
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-Open docs/v1.1.0/CHANGE-LEDGER.md with the scopes the owner approved at UAT. Then the brainstorm delta (new rows, future-implementation note), then the design round with him: list the designer's job first, five clickable static directions per app, the name and wordmark, the logo in the app, the test-case layout.
+Owner first gets the list of what the designer does (he asked for it before the round). Then brainstorm delta rows for the new scopes, then the design round: five clickable static directions, dialogs and popups reachable, the name and wordmark, the logo in the app, the UAT sheet layout.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

@@ -187,3 +187,7 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Owner's words: "1. Seal both apps". All UAT cases PASS in his words, his rulings recorded (D-01, H-01, names, design round, showcase).
 - Both UAT servers found already ended at 16:33 (most likely the session restart at about 16:10, after his verdicts at 15:48). Process ledger rows closed.
 - SEAL.md written (checks, shipped scopes, UAT both columns, residuals as ruled, what goes into 1.1.0). Ledger marked sealed. Credential gate clean. Local tag v1.0.0 on the seal commit.
+
+## 2026-10-10 16:37 v1.1.0 opened
+- docs/v1.1.0/CHANGE-LEDGER.md opened with the scopes the owner approved at UAT and at the seal.
+- STATE version 1.1.0.
