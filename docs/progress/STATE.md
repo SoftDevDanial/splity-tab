@@ -4,7 +4,7 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design, round 2 (sdlc:design step 4): one mixed direction F Orbit Console from the owner's pick
+- **phase:** v1.1.0 design, round 2 (sdlc:design step 4): direction G Glass Console next (F withdrawn, built on a misread base)
 - **next:** designer builds round-2/f.html, orchestrator writes round-2/compare.html, owner reviews, then lock, compose, wire, goldens
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-Round 2 is running: one designer builds `docs/design-explore/v1.1.0/round-2/f.html` (F Orbit Console) from `round-2/BRIEF.md`. The owner picked a mix, D Share Orbit's layout in A Night Console's colours with five changes, and keeps "+1 sen" (ledger H-03 ruling). Then the orchestrator writes `round-2/compare.html` with the ORCH readings flagged, the owner reviews, then sdlc:design steps 5 to 9, the logo with the name "Splity Tab", then plan. **Start a new Claude session before plan** so sdlc 2.4.0 is loaded (this session runs 2.2.0, the design steps are the same). S9 several-bills doc is written (docs/future/several-bills.md).
+Launch one designer for direction G "Glass Console" from `docs/design-explore/v1.1.0/round-2/BRIEF-G.md`: B Glass Receipt's layout and glass card in A Night Console's colours, no glow, Copy summary a solid indigo fill, Charges above the Split switch, item list in its own frame, phone inputs first with a pinned bar and a Shares sheet, keep "1 sen left over" (ledger H-03 correction, S7 row 4). F `round-2/f.html` was built on D by the orchestrator's misread and is kept only as a record. Then `round-2/compare.html` (round 1 B and A beside G, readings flagged), his review, sdlc:design steps 5 to 9, the logo with "Splity Tab", then plan on sdlc 2.4.0. S9 several-bills doc is written (docs/future/several-bills.md).
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

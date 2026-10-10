@@ -1,5 +1,8 @@
 # Round 2 brief: Danial's Splity Tab, v1.1.0
 
+> **Superseded 2026-10-10 22:50 by `BRIEF-G.md`.** This brief mapped the owner's comments onto D Share Orbit, the
+> orchestrator's misread. He meant B Glass Receipt in Night Console's colours. Kept as the record of F.
+
 **Phase:** design (sdlc:design step 4, critique and converge) · **Date:** 2026-10-10 · **Ledger:** S7 row 3, H-03
 **Round 1 brief still applies** (`../BRIEF.md`: who, the key screen's job, hard constraints, logo, the whole
 inventory with its exact figures). This file only adds what the owner's pick changes.
