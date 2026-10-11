@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<meta name="color-scheme" content="dark">
+<title>Splity Tab logo, round 1, S3, the tear is the tick</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230B0E13'/%3E%3Cpath fill='%23A3AAFF' d='M3,1.5A.5,.5,0,0,1,3.5,1H12.5A.5,.5,0,0,1,13,1.5V14.5A.5,.5,0,0,1,12.5,15H3.5A.5,.5,0,0,1,3,14.5V12.207A.5,.5,0,0,1,3.854,11.854L4.646,12.646A.5,.5,0,0,0,5.354,12.646L10.646,7.354A.5,.5,0,0,0,10.646,6.646L9.354,5.354A.5,.5,0,0,0,8.646,5.354L5.354,8.646A.5,.5,0,0,1,4.646,8.646L3.146,7.146A.5,.5,0,0,1,3,6.793Z'/%3E%3C/svg%3E">
+<style>
+/*
+  Splity Tab, logo round 1, direction S3. The tear is the tick.
+  A receipt slip torn in from its left edge along the app's own check (45 and 45 degrees, short arm to long arm
+  about 3 to 7, the "Adds up to" seal's check). The short arm runs out of the edge where the tear began, the long arm
+  stops short of the right edge, so the stub under the tick still holds on by a bridge. One path, one flat fill.
+  Master drawn at 28 x 28 on whole pixels. The hero is that master at exactly 9x (252 px). The favicon is redrawn
+  on its own 16 grid. Corner rule, one radius on every corner, in or out, 1 px of the 28 grid (half a px on the 16).
+*/
+:root {
+  --app: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --num: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, "Roboto Mono", monospace;
+  --mono: 'Cascadia Code', 'Consolas', monospace;
+  --hair: rgba(255, 255, 255, 0.06);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  width: 1440px; height: 900px; overflow: hidden;
+  background: #0c0d10; color: #E8EBF2;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h2, p, figure { margin: 0; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.mk { display: block; flex: none; fill: #A3AAFF; }
+
+/* ---------- sheet grid ---------- */
+.sheet {
+  width: 1440px; height: 900px; padding: 32px 48px 48px;
+  display: grid; grid-template-columns: 532px 792px; grid-template-rows: 24px 772px;
+  column-gap: 20px; row-gap: 24px;
+}
+.head {
+  grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; line-height: 24px; color: #6F7789;
+}
+.head b { color: #E8EBF2; font-weight: 600; }
+.sep { margin: 0 8px; color: #3A404C; }
+
+.lbl { display: flex; align-items: center; gap: 10px; height: 18px; font-size: 13px; line-height: 18px; font-weight: 600; color: #A7AFBF; }
+.lbl .n { font-family: var(--mono); font-size: 11px; font-weight: 400; color: #5F6878; }
+
+/* ---------- 1 hero ---------- */
+.hero { position: relative; }
+.hero .lbl { position: absolute; left: 0; top: 0; }
+.hstage {
+  position: absolute; left: 140px; top: 160px; width: 253px; height: 253px;
+  background-image:
+    linear-gradient(to right, rgba(163, 170, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(163, 170, 255, 0.055) 1px, transparent 1px);
+  background-size: 9px 9px;
+}
+.cap { position: absolute; left: 0; right: 0; top: 452px; text-align: center; }
+.cap .t { font-size: 15px; line-height: 22px; font-weight: 600; color: #A7AFBF; }
+.cap .id { margin-right: 10px; font-family: var(--mono); font-size: 13px; font-weight: 400; color: #7A84A0; }
+.cap .s { width: 404px; margin: 8px auto 0; font-size: 14px; line-height: 22px; color: #8A92A3; }
+.cap .spec { margin-top: 22px; font-size: 12px; line-height: 18px; color: #6F7789; }
+
+/* ---------- right column ---------- */
+.right { position: relative; display: flex; flex-direction: column; gap: 40px; }
+.right::before { content: ""; position: absolute; left: -10px; top: 0; bottom: 0; width: 1px; background: var(--hair); }
+.right > section { position: relative; }
+.right > section + section::before { content: ""; position: absolute; left: 0; right: 0; top: -20px; height: 1px; background: var(--hair); }
+.right .lbl { margin-bottom: 14px; }
+.s2 { height: 184px; }
+.s3 { height: 210px; }
+.s4 { height: 298px; }
+
+/* ---------- 2 in the app ---------- */
+.row { display: flex; gap: 24px; }
+.s2 figure { width: 384px; }
+.s2 figcaption { margin-top: 8px; font-size: 12px; line-height: 16px; color: #7C8496; }
+.win { position: relative; height: 128px; border-radius: 12px; overflow: hidden; outline: 1px solid rgba(255, 255, 255, 0.07); outline-offset: -1px; }
+.w1 { background: #151A23; }
+.tb {
+  height: 65px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+  background: #10141B; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.word { font: 700 19px/24px var(--app); letter-spacing: -0.01em; color: #E8EBF2; white-space: nowrap; }
+.nb {
+  display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px;
+  border: 1px solid #6E7891; border-radius: 10px; font: 600 15px/20px var(--app); color: #E8EBF2; white-space: nowrap;
+}
+.nb svg { width: 18px; height: 18px; fill: #A7AFBF; }
+.pg { position: relative; height: 63px; }
+.gc {
+  position: absolute; left: 20px; top: 14px; width: 236px; height: 90px; overflow: hidden;
+  border: 1px solid rgba(163, 170, 255, 0.30); border-bottom: 0; border-radius: 22px 22px 0 0;
+  background: linear-gradient(155deg, rgba(200, 206, 255, 0.10) 0%, rgba(150, 158, 235, 0.04) 40%, rgba(8, 10, 14, 0.34) 100%), rgba(27, 33, 43, 0.5);
+  box-shadow: inset 0 1px 0 rgba(232, 235, 255, 0.18);
+}
+.gc i { display: block; height: 3px; background: linear-gradient(90deg, #5059DA 0%, #7C85F7 25%, #C9CDFF 50%, #7C85F7 75%, #5059DA 100%); }
+.gc .gl { display: block; padding: 9px 18px 0; font: 600 12px/16px var(--app); color: #E8EBF2; }
+.gc .ga { display: block; padding: 2px 18px 0; font: 600 22px/26px var(--num); letter-spacing: -0.03em; color: #F4F5FF; }
+.gc .ga small { font-size: 11px; letter-spacing: 0; color: #E8EBF2; }
+.w2 { display: flex; align-items: center; padding-left: 32px; background: #10141B; }
+.b2 { gap: 20px; }
+.b2 .word { font-size: 38px; line-height: 48px; }
+
+/* ---------- 3 legibility ---------- */
+.stage { position: relative; display: flex; height: 152px; background: #10141B; border-radius: 12px; outline: 1px solid rgba(255, 255, 255, 0.05); outline-offset: -1px; }
+.stage::after { content: ""; position: absolute; left: 528px; top: 24px; bottom: 40px; width: 1px; background: rgba(255, 255, 255, 0.07); }
+.cell { width: 132px; padding-top: 16px; display: flex; flex-direction: column; align-items: center; }
+.box { width: 132px; height: 100px; display: flex; align-items: center; justify-content: center; }
+.px { margin-top: 8px; font: 400 11px/16px var(--mono); color: #7C8496; white-space: nowrap; }
+.note { margin-top: 10px; font-size: 12px; line-height: 16px; color: #6F7789; }
+
+/* ---------- 4 swatches ---------- */
+.grid { display: grid; grid-template-columns: 388px 388px; grid-auto-rows: 126px; gap: 14px 16px; }
+.tile { display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 32px; border-radius: 14px; }
+.tag { font: 400 11px/16px var(--mono); text-align: right; white-space: nowrap; }
+.marks { display: flex; align-items: center; gap: 28px; }
+.t-dark { background: #15171c; outline: 1px solid rgba(255, 255, 255, 0.06); outline-offset: -1px; }
+.t-dark .tag { color: #6F7789; }
+.t-light { background: #f7f6f3; }
+.t-light .mk { fill: #1E2140; }
+.t-light .word { color: #1E2140; }
+.t-light .tag { color: #8A8984; }
+.t-bw { background: #ffffff; }
+.t-bw .mk { fill: #000000; }
+.t-bw .tag { color: #8C8C8C; }
+.t-wb { background: #000000; outline: 1px solid rgba(255, 255, 255, 0.08); outline-offset: -1px; }
+.t-wb .mk { fill: #ffffff; }
+.t-wb .tag { color: #7A7A7A; }
+</style>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <!-- The mark, 28 px master. Every straight edge on a whole pixel. One radius (1) on every corner -->
+  <symbol id="m28" viewBox="0 0 28 28"><path d="M5 2A1 1 0 0 1 6 1H22A1 1 0 0 1 23 2V26A1 1 0 0 1 22 27H6A1 1 0 0 1 5 26V22.414A1 1 0 0 1 6.707 21.707L7.293 22.293A1 1 0 0 0 8.707 22.293L18.293 12.707A1 1 0 0 0 18.293 11.293L16.707 9.707A1 1 0 0 0 15.293 9.707L8.707 16.293A1 1 0 0 1 7.293 16.293L5.293 14.293A1 1 0 0 1 5 13.586Z"/></symbol>
+  <!-- The mark redrawn on the 16 grid for the favicon. Same corner rule at half a pixel -->
+  <symbol id="m16" viewBox="0 0 16 16"><path d="M3 1.5A.5 .5 0 0 1 3.5 1H12.5A.5 .5 0 0 1 13 1.5V14.5A.5 .5 0 0 1 12.5 15H3.5A.5 .5 0 0 1 3 14.5V12.207A.5 .5 0 0 1 3.854 11.854L4.646 12.646A.5 .5 0 0 0 5.354 12.646L10.646 7.354A.5 .5 0 0 0 10.646 6.646L9.354 5.354A.5 .5 0 0 0 8.646 5.354L5.354 8.646A.5 .5 0 0 1 4.646 8.646L3.146 7.146A.5 .5 0 0 1 3 6.793Z"/></symbol>
+  <symbol id="fav" viewBox="0 0 16 16"><rect width="16" height="16" fill="#0B0E13"/><path fill="#A3AAFF" d="M3 1.5A.5 .5 0 0 1 3.5 1H12.5A.5 .5 0 0 1 13 1.5V14.5A.5 .5 0 0 1 12.5 15H3.5A.5 .5 0 0 1 3 14.5V12.207A.5 .5 0 0 1 3.854 11.854L4.646 12.646A.5 .5 0 0 0 5.354 12.646L10.646 7.354A.5 .5 0 0 0 10.646 6.646L9.354 5.354A.5 .5 0 0 0 8.646 5.354L5.354 8.646A.5 .5 0 0 1 4.646 8.646L3.146 7.146A.5 .5 0 0 1 3 6.793Z"/></symbol>
+  <!-- Phosphor plus (MIT), the app's own New bill icon. Not the mark -->
+  <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+</svg>
+
+<main class="sheet">
+  <header class="head">
+    <div><b>Splity Tab</b><span class="sep">·</span>Logo round 1<span class="sep">·</span>S3, negative space and dual meaning</div>
+    <div>v1.1.0<span class="sep">·</span>one path, one flat fill<span class="sep">·</span>#A3AAFF</div>
+  </header>
+
+  <!-- 1 Hero -->
+  <section class="hero" aria-label="Hero">
+    <h2 class="lbl"><span class="n">1</span>Hero</h2>
+    <div class="hstage">
+      <svg class="mk" width="252" height="252" viewBox="0 0 28 28" role="img" aria-label="Splity Tab mark"><use href="#m28"/></svg>
+    </div>
+    <div class="cap">
+      <p class="t"><span class="id">S3</span>The tear is the tick</p>
+      <p class="s">A receipt slip torn in from its edge along the app's own check, so the receipt and its proof are one silhouette.</p>
+      <p class="spec">One path, one fill<span class="sep">·</span>28 px grid at 9x<span class="sep">·</span>1 px radius on every corner</p>
+    </div>
+  </section>
+
+  <div class="right">
+    <!-- 2 In the app -->
+    <section class="s2" aria-label="In the app">
+      <h2 class="lbl"><span class="n">2</span>In the app</h2>
+      <div class="row">
+        <figure>
+          <div class="win w1">
+            <div class="tb">
+              <div class="brand"><svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+              <span class="nb"><svg viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>New bill</span>
+            </div>
+            <div class="pg">
+              <div class="gc" aria-hidden="true"><i></i><span class="gl">Total</span><span class="ga"><small>RM </small>69.26</span></div>
+            </div>
+          </div>
+          <figcaption>Header at 1x. 28 px mark, 10 px gap, 19 px word</figcaption>
+        </figure>
+        <figure>
+          <div class="win w2">
+            <div class="brand b2"><svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+          </div>
+          <figcaption>The same lockup at 2x, for detail</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3 Legibility -->
+    <section class="s3" aria-label="Legibility">
+      <h2 class="lbl"><span class="n">3</span>Legibility</h2>
+      <div class="stage">
+        <div class="cell"><div class="box"><svg class="mk" width="96" height="96" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">96 px</span></div>
+        <div class="cell"><div class="box"><svg class="mk" width="48" height="48" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">48 px</span></div>
+        <div class="cell"><div class="box"><svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">28 px slot</span></div>
+        <div class="cell"><div class="box"><svg class="mk" width="18" height="18" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">18 px</span></div>
+        <div class="cell"><div class="box"><svg width="32" height="32" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></div><span class="px">32 px tile</span></div>
+        <div class="cell"><div class="box"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></div><span class="px">16 px tile</span></div>
+      </div>
+      <p class="note">28 px master on whole pixels, hero at exactly 9x. Favicon redrawn on a 16 grid, tick, bridge and stub all 2 px or more.</p>
+    </section>
+
+    <!-- 4 Swatches -->
+    <section class="s4" aria-label="Swatches">
+      <h2 class="lbl"><span class="n">4</span>Swatches</h2>
+      <div class="grid">
+        <div class="tile t-dark">
+          <div class="brand b2"><svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+          <span class="tag">Dark card<br>#15171c</span>
+        </div>
+        <div class="tile t-light">
+          <div class="brand b2"><svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+          <span class="tag">Light card<br>#f7f6f3</span>
+        </div>
+        <div class="tile t-bw">
+          <div class="marks">
+            <svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m16"/></svg>
+          </div>
+          <span class="tag">Black on white<br>#000 on #fff</span>
+        </div>
+        <div class="tile t-wb">
+          <div class="marks">
+            <svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m16"/></svg>
+          </div>
+          <span class="tag">White on black<br>#fff on #000</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Production sources. Lift these. Hidden so the sheet stays exactly 900 px tall -->
+<svg id="mark-src" viewBox="0 0 28 28" aria-hidden="true" style="display:none"><path fill="currentColor" d="M5 2A1 1 0 0 1 6 1H22A1 1 0 0 1 23 2V26A1 1 0 0 1 22 27H6A1 1 0 0 1 5 26V22.414A1 1 0 0 1 6.707 21.707L7.293 22.293A1 1 0 0 0 8.707 22.293L18.293 12.707A1 1 0 0 0 18.293 11.293L16.707 9.707A1 1 0 0 0 15.293 9.707L8.707 16.293A1 1 0 0 1 7.293 16.293L5.293 14.293A1 1 0 0 1 5 13.586Z"/></svg>
+<svg id="favicon-src" viewBox="0 0 16 16" aria-hidden="true" style="display:none"><rect width="16" height="16" fill="#0B0E13"/><path fill="#A3AAFF" d="M3 1.5A.5 .5 0 0 1 3.5 1H12.5A.5 .5 0 0 1 13 1.5V14.5A.5 .5 0 0 1 12.5 15H3.5A.5 .5 0 0 1 3 14.5V12.207A.5 .5 0 0 1 3.854 11.854L4.646 12.646A.5 .5 0 0 0 5.354 12.646L10.646 7.354A.5 .5 0 0 0 10.646 6.646L9.354 5.354A.5 .5 0 0 0 8.646 5.354L5.354 8.646A.5 .5 0 0 1 4.646 8.646L3.146 7.146A.5 .5 0 0 1 3 6.793Z"/></svg>
+</body>
+</html>

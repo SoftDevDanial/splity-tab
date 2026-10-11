@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<meta name="color-scheme" content="dark">
+<title>Splity Tab logo, round 1, S1 the fan</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230B0E13'/%3E%3Cpath fill='%23A3AAFF' d='M6 2h4v12H6zM11 6l1-3 3 1-4 11zM5 6 4 3 1 4l4 11z'/%3E%3C/svg%3E">
+<style>
+/*
+  S1, the fan, revision 2. Three equal slips, 6 by 18 on the 28 px slot grid. The front slip stands at x 11 to 17,
+  y 4 to 22. The back two turn 27 degrees each way about one pivot at (14, 24.923), below the front foot, placed so
+  each back foot corner lands exactly on its gap line (x 18 and x 10). One 1 px gap on whole pixels at 28 px.
+  Square corners on every visible corner. Every rendering below is a use of #mark-src or #favicon-src.
+*/
+:root {
+  --bg: #0c0d10;
+  --panel: #101217;
+  --bar: #10141B;
+  --page: #151A23;
+  --ink: #E8EBF2;
+  --soft: #b3b9c7;
+  --muted: #8f96a6;
+  --faint: #626979;
+  --line: rgba(255, 255, 255, 0.07);
+  --accent-ink: #A3AAFF;
+  --sans: 'Segoe UI', system-ui, sans-serif;
+  --mono: 'Cascadia Mono', 'Cascadia Code', Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); }
+body {
+  width: 1440px; height: 900px; overflow: hidden;
+  font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased;
+}
+p, ul { margin: 0; padding: 0; }
+svg { display: block; }
+.src { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ---------- sheet grid ---------- */
+.sheet {
+  display: grid; grid-template-columns: 520px 752px; column-gap: 56px;
+  width: 1440px; height: 900px; padding: 48px 56px;
+}
+.col { display: grid; grid-template-rows: 230px 204px 214px; row-gap: 78px; }
+
+.lbl {
+  display: flex; align-items: center; gap: 10px; height: 20px;
+  font-size: 13px; line-height: 20px; font-weight: 600; color: var(--soft); white-space: nowrap;
+}
+.lbl .n { font-family: var(--mono); font-size: 12px; font-weight: 400; color: var(--faint); }
+.lbl .aside { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--faint); }
+
+/* ---------- 1 hero ---------- */
+.hero {
+  position: relative; height: 804px; padding: 28px 32px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 20px;
+}
+.hero-mark { position: absolute; left: 119px; top: 56px; width: 280px; height: 280px; color: var(--accent-ink); }
+.hero-cap { position: absolute; left: 32px; right: 32px; top: 344px; text-align: center; }
+.hero-cap .id { font-size: 15px; line-height: 22px; font-weight: 600; color: var(--soft); }
+.hero-cap .idea { font-size: 15px; line-height: 22px; color: var(--muted); }
+.hero-rule { position: absolute; left: 32px; right: 32px; top: 430px; height: 1px; background: var(--line); }
+.hero-foot {
+  position: absolute; left: 32px; right: 32px; top: 454px;
+  display: grid; grid-template-columns: 150px 276px; column-gap: 28px;
+}
+.mini-h { margin-bottom: 10px; font-size: 12px; line-height: 18px; font-weight: 600; color: var(--soft); }
+.constr { width: 150px; height: 150px; }
+.constr .sil { color: #242946; }
+.constr .ax { fill: none; stroke: #3a405f; stroke-width: 1; stroke-dasharray: 2 3; vector-effect: non-scaling-stroke; }
+.constr .sl { fill: none; stroke: #6a72c8; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.constr .sl.back { stroke-dasharray: 3 2; }
+.constr .arc { fill: none; stroke: #A3AAFF; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.constr .pv { fill: #A3AAFF; }
+.constr-cap { margin-top: 12px; font-size: 12px; line-height: 17px; color: var(--muted); }
+.tests ul { list-style: none; }
+.tests li { font-size: 12px; line-height: 17px; color: var(--muted); }
+.tests li + li { margin-top: 8px; }
+.tests b { font-weight: 600; color: var(--soft); }
+
+/* ---------- shared lockup ---------- */
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand .mk { width: 28px; height: 28px; flex: none; color: var(--accent-ink); }
+.brand .wd { font-size: 19px; line-height: 24px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); white-space: nowrap; }
+
+/* ---------- 2 in the app ---------- */
+.app-row { display: grid; grid-template-columns: 424px 312px; column-gap: 16px; height: 168px; margin-top: 16px; }
+.crop {
+  position: relative; height: 168px; overflow: hidden;
+  background: var(--page); border: 1px solid var(--line); border-radius: 14px;
+}
+.top {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 65px; padding: 0 20px; background: var(--bar); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ghost {
+  display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px;
+  border: 1px solid #6E7891; border-radius: 10px;
+  font-size: 15px; line-height: 20px; font-weight: 600; color: var(--ink); white-space: nowrap;
+}
+.ghost svg { width: 18px; height: 18px; fill: #A7AFBF; }
+.gcard {
+  position: absolute; left: 20px; top: 85px; width: 260px; height: 120px; overflow: hidden;
+  border: 1px solid rgba(163, 170, 255, 0.30); border-radius: 22px;
+  background: linear-gradient(155deg, rgba(200, 206, 255, 0.10) 0%, rgba(150, 158, 235, 0.04) 40%, rgba(8, 10, 14, 0.34) 100%), rgba(27, 33, 43, 0.5);
+  box-shadow: inset 0 1px 0 rgba(232, 235, 255, 0.18);
+}
+.foil { height: 3px; background: linear-gradient(90deg, #5059DA 0%, #7C85F7 25%, #C9CDFF 50%, #7C85F7 75%, #5059DA 100%); }
+.gin { padding: 14px 20px 0; }
+.gin .t { display: block; font-size: 14px; line-height: 20px; font-weight: 600; color: var(--ink); }
+.gin .a {
+  margin-top: 4px; font-family: var(--mono); font-size: 30px; line-height: 34px; font-weight: 600;
+  letter-spacing: -0.03em; color: #F4F5FF; white-space: nowrap;
+}
+.gin .a .c { font-size: 13px; letter-spacing: 0; color: var(--ink); }
+.x2 {
+  display: flex; align-items: center; height: 168px; padding-left: 31px;
+  background: var(--bar); border: 1px solid var(--line); border-radius: 14px;
+}
+.x2 .brand { gap: 20px; }
+.x2 .mk { width: 56px; height: 56px; }
+.x2 .wd { font-size: 38px; line-height: 48px; }
+.caps { display: grid; column-gap: 16px; margin-top: 8px; font-size: 12px; line-height: 18px; color: var(--faint); white-space: nowrap; }
+.caps.app { grid-template-columns: 424px 312px; }
+.caps.sw { grid-template-columns: 232px 232px 120px 120px; }
+
+/* ---------- 3 legibility ---------- */
+.leg {
+  position: relative; height: 168px; margin-top: 16px;
+  background: var(--bar); border: 1px solid var(--line); border-radius: 14px;
+}
+.leg .it { position: absolute; color: var(--accent-ink); }
+.leg .rule { position: absolute; left: 410px; top: 30px; width: 1px; height: 80px; background: var(--line); }
+.leg .cap {
+  position: absolute; top: 132px; width: 120px; margin-left: -60px; text-align: center;
+  font-family: var(--mono); font-size: 11px; line-height: 16px; color: var(--faint); white-space: nowrap;
+}
+.tab {
+  position: absolute; left: 590px; top: 54px; width: 118px; height: 32px;
+  display: flex; align-items: center; gap: 8px; padding: 0 10px;
+  background: #1c2029; border-radius: 8px; font-size: 12px; line-height: 16px; color: #c9cede; white-space: nowrap;
+}
+.tab svg { width: 16px; height: 16px; flex: none; }
+
+/* ---------- 4 swatches ---------- */
+.sw { display: grid; grid-template-columns: 232px 232px 120px 120px; column-gap: 16px; margin-top: 16px; }
+.sw .card { display: flex; align-items: center; height: 152px; border-radius: 14px; }
+.sw .lock { padding-left: 28px; }
+.sw .lock .mk { width: 40px; height: 40px; flex: none; }
+.sw .lock .wd { margin-left: 14px; font-size: 27px; line-height: 32px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+.sw .mono { justify-content: center; }
+.sw .mono .mk { width: 72px; height: 72px; }
+.c-dark { background: #15171c; color: #A3AAFF; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
+.c-dark .wd { color: #E8EBF2; }
+.c-light { background: #f7f6f3; color: #1E2140; }
+.c-bw { background: #ffffff; color: #000000; }
+.c-wb { background: #000000; color: #ffffff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10); }
+</style>
+</head>
+<body>
+
+<main class="sheet">
+
+  <!-- 1 Hero -->
+  <section class="hero" aria-label="Hero">
+    <div class="lbl"><span class="n">1</span>Mark<span class="aside">S1, abstract geometric, revision 2</span></div>
+    <svg class="hero-mark" viewBox="0 0 28 28" role="img" aria-label="Splity Tab mark, S1 the fan"><use href="#fan"/></svg>
+    <div class="hero-cap">
+      <p class="id">S1, the fan</p>
+      <p class="idea">Three equal slips fanned from one pivot, a receipt dealt out into shares.</p>
+    </div>
+    <div class="hero-rule"></div>
+    <div class="hero-foot">
+      <div>
+        <p class="mini-h">Construction</p>
+        <svg class="constr" viewBox="0 0 28 28" aria-hidden="true">
+          <use href="#fan" class="sil"/>
+          <line class="ax" x1="14" y1="24.923" x2="14" y2="1.5"/>
+          <line class="ax" x1="14" y1="24.923" x2="24.442" y2="4.430"/>
+          <line class="ax" x1="14" y1="24.923" x2="3.558" y2="4.430"/>
+          <rect class="sl back" x="11" y="4" width="6" height="18" transform="rotate(-27 14 24.923)"/>
+          <rect class="sl back" x="11" y="4" width="6" height="18" transform="rotate(27 14 24.923)"/>
+          <rect class="sl" x="11" y="4" width="6" height="18"/>
+          <path class="arc" d="M14 16.923A8 8 0 0 1 17.632 17.795"/>
+          <circle class="pv" cx="14" cy="24.923" r=".55"/>
+        </svg>
+        <p class="constr-cap">6 by 18 slips on the 28 px slot grid. The back two turn 27° about one pivot below the front foot, so each back foot lands on the 1 px gap line. Square corners only.</p>
+      </div>
+      <div class="tests">
+        <p class="mini-h">Pressure tests</p>
+        <ul>
+          <li><b>Hand of cards.</b> Card icons overlap round cornered 5 to 7 cards left to right. Here the corners are square, each strip shows its full 1 to 3 length, and the middle one covers both.</li>
+          <li><b>Paint swatch fan.</b> Swatch books swing many strips on a rivet you can see. Here there are three, and the pivot is only implied.</li>
+          <li><b>Peacock.</b> Round feathers fan half a circle around a body. Here the ends are square, the spread is 54°, and there is no body.</li>
+          <li><b>Loading icon.</b> Spinner bars stand apart around an empty hub. Here both back strips run behind the front one, a stack, not a ring.</li>
+          <li><b>Letters.</b> No D and no round side. At a glance it can still read as a W, which is the open risk.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="col">
+
+    <!-- 2 In the app -->
+    <section aria-label="In the app">
+      <div class="lbl"><span class="n">2</span>In the app<span class="aside">top bar #10141B, mark 28 px, word 19 px bold, gap 10 px</span></div>
+      <div class="app-row">
+        <div class="crop">
+          <header class="top">
+            <div class="brand">
+              <svg class="mk" viewBox="0 0 28 28" aria-hidden="true"><use href="#fan"/></svg>
+              <span class="wd">Splity Tab</span>
+            </div>
+            <span class="ghost"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>New bill</span>
+          </header>
+          <div class="gcard">
+            <div class="foil"></div>
+            <div class="gin">
+              <span class="t">Total</span>
+              <p class="a"><span class="c">RM </span>69.26</p>
+            </div>
+          </div>
+        </div>
+        <div class="x2">
+          <div class="brand">
+            <svg class="mk" viewBox="0 0 28 28" aria-hidden="true"><use href="#fan"/></svg>
+            <span class="wd">Splity Tab</span>
+          </div>
+        </div>
+      </div>
+      <div class="caps app"><span>1x live header, 10 px gap, 11.8 px from ink to word</span><span>2x detail, 56 px mark, 20 px gap</span></div>
+    </section>
+
+    <!-- 3 Legibility -->
+    <section aria-label="Legibility">
+      <div class="lbl"><span class="n">3</span>Legibility<span class="aside">mark at 96, 48, 28, the 16 grid cut at 18, then the favicon tile at true size</span></div>
+      <div class="leg">
+        <svg class="it" style="left:44px;top:22px;width:96px;height:96px" viewBox="0 0 28 28" aria-hidden="true"><use href="#fan"/></svg>
+        <svg class="it" style="left:184px;top:46px;width:48px;height:48px" viewBox="0 0 28 28" aria-hidden="true"><use href="#fan"/></svg>
+        <svg class="it" style="left:276px;top:56px;width:28px;height:28px" viewBox="0 0 28 28" aria-hidden="true"><use href="#fan"/></svg>
+        <svg class="it" style="left:348px;top:61px;width:18px;height:18px" viewBox="-1 -1 18 18" aria-hidden="true"><use href="#fav-mark"/></svg>
+        <div class="rule"></div>
+        <svg class="it" style="left:454px;top:54px;width:32px;height:32px" viewBox="0 0 16 16" aria-hidden="true"><use href="#fav"/></svg>
+        <svg class="it" style="left:530px;top:62px;width:16px;height:16px" viewBox="0 0 16 16" aria-hidden="true"><use href="#fav"/></svg>
+        <div class="tab"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#fav"/></svg>Splity Tab</div>
+        <span class="cap" style="left:92px">96 px</span>
+        <span class="cap" style="left:208px">48 px</span>
+        <span class="cap" style="left:290px">28 px</span>
+        <span class="cap" style="left:357px">18 px<br>16 grid cut</span>
+        <span class="cap" style="left:470px">32 px</span>
+        <span class="cap" style="left:538px">16 px</span>
+        <span class="cap" style="left:649px">tab, 16 px</span>
+      </div>
+    </section>
+
+    <!-- 4 Swatches -->
+    <section aria-label="Swatches">
+      <div class="lbl"><span class="n">4</span>Swatches<span class="aside">one flat fill on every ground</span></div>
+      <div class="sw">
+        <div class="card lock c-dark">
+          <svg class="mk" viewBox="0 0 28 28" aria-hidden="true"><use href="#fan"/></svg>
+          <span class="wd">Splity Tab</span>
+        </div>
+        <div class="card lock c-light">
+          <svg class="mk" viewBox="0 0 28 28" aria-hidden="true"><use href="#fan"/></svg>
+          <span class="wd">Splity Tab</span>
+        </div>
+        <div class="card mono c-bw">
+          <svg class="mk" viewBox="0 0 28 28" aria-hidden="true"><use href="#fan"/></svg>
+        </div>
+        <div class="card mono c-wb">
+          <svg class="mk" viewBox="0 0 28 28" aria-hidden="true"><use href="#fan"/></svg>
+        </div>
+      </div>
+      <div class="caps sw"><span>Dark card #15171c</span><span>Light card #f7f6f3, ink #1E2140</span><span>Black on white</span><span>White on black</span></div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Production sources. The mark is one path of three closed shapes, fill only, square corners. The favicon is redrawn on the 16 px grid with every vertex on a whole pixel, and the same 16 grid cut serves any size under 24 px. -->
+<svg id="mark-src" class="src" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" aria-hidden="true"><path id="fan" fill="currentColor" d="M11 4h6v18h-6zM18 10.464L20.826 4.918L26.172 7.642L18 23.681ZM10 10.464L7.174 4.918L1.828 7.642L10 23.681Z"/></svg>
+<svg id="favicon-src" class="src" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true"><g id="fav"><rect width="16" height="16" fill="#0B0E13"/><path id="fav-mark" fill="#A3AAFF" d="M6 2h4v12H6zM11 6l1-3 3 1-4 11zM5 6 4 3 1 4l4 11z"/></g></svg>
+
+</body>
+</html>
