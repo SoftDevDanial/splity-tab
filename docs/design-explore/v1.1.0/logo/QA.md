@@ -19,4 +19,6 @@ Each sheet was rendered by the orchestrator in headless Chromium at 1440 x 900 (
 
 **Sheet fix, S3 and S8, 2026-10-11.** The In the app receipt peek cropped the bottom of "RM 69.26" (S8's reviewer). `.gc` top 14 to 8 px, `.gl` top padding 9 to 6, `.ga` line height 26 to 24, the mark untouched. `shoot_sheet.py` now reports text cut by a clipping ancestor (`clipped`), both sheets clean at 1440 x 900.
 
+**No tile, S3 and S8, 2026-10-11 (owner's ruling).** The orchestrator removed the `#0B0E13` tile rect from `favicon-src`, the tab icon data URI and the sheet sprites, nothing else in the marks. The favicon cells now show each size on a dark tab (`#35363A`) and a white tab. On white the knockouts take the tab colour and `#A3AAFF` is about 2.1 to 1, faint but whole. Re-rendered at 1440 x 900, no console errors, no clipped text.
+
 **Lesson carried into the remaining briefs.** The idea must read at the real 28 px slot and in the 16 px favicon, with every feature that carries it at least 2 px. A feature that only reads at hero size is texture, not the idea.

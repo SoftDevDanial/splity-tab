@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=1440">
 <meta name="color-scheme" content="dark">
 <title>Splity Tab logo, round 1, S8, all square</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230B0E13'/%3E%3Cpath fill='%23A3AAFF' d='M1,2A1,1,0,0,1,2,1H7L1,7ZM10,1H14A1,1,0,0,1,15,2V3L3,15H2A1,1,0,0,1,1,14V10ZM15,6V14A1,1,0,0,1,14,15H6Z'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23A3AAFF' d='M1,2A1,1,0,0,1,2,1H7L1,7ZM10,1H14A1,1,0,0,1,15,2V3L3,15H2A1,1,0,0,1,1,14V10ZM15,6V14A1,1,0,0,1,14,15H6Z'/%3E%3C/svg%3E">
 <style>
 /*
   Splity Tab, logo round 1, direction S8, abstract geometric. All square.
@@ -131,6 +131,10 @@ h2, p, figure { margin: 0; }
 .stage::after { content: ""; position: absolute; left: 528px; top: 24px; bottom: 40px; width: 1px; background: rgba(255, 255, 255, 0.07); }
 .cell { width: 132px; padding-top: 16px; display: flex; flex-direction: column; align-items: center; }
 .box { width: 132px; height: 100px; display: flex; align-items: center; justify-content: center; }
+.tabs { width: 104px; height: 100px; display: flex; flex-direction: column; border-radius: 10px; overflow: hidden; }
+.tabs span { flex: 1; display: flex; align-items: center; justify-content: center; }
+.tabs .dk { background: #35363A; }
+.tabs .lt { background: #FFFFFF; }
 .px { margin-top: 8px; font: 400 11px/16px var(--mono); color: #7C8496; white-space: nowrap; }
 .note { margin-top: 10px; font-size: 12px; line-height: 16px; color: #6F7789; }
 
@@ -160,10 +164,10 @@ h2, p, figure { margin: 0; }
   <symbol id="m28" viewBox="0 0 28 28"><path d="M3 5A2 2 0 0 1 5 3H13L3 13Z M17 3H23A2 2 0 0 1 25 5V7L7 25H5A2 2 0 0 1 3 23V17Z M25 11V23A2 2 0 0 1 23 25H11Z"/></symbol>
   <!-- The mark redrawn on the 16 grid, for the favicon and every cell under 20 px. Radius 1 outside -->
   <symbol id="m16" viewBox="0 0 16 16"><path d="M1 2A1 1 0 0 1 2 1H7L1 7Z M10 1H14A1 1 0 0 1 15 2V3L3 15H2A1 1 0 0 1 1 14V10Z M15 6V14A1 1 0 0 1 14 15H6Z"/></symbol>
-  <symbol id="fav" viewBox="0 0 16 16"><rect width="16" height="16" fill="#0B0E13"/><path fill="#A3AAFF" d="M1 2A1 1 0 0 1 2 1H7L1 7Z M10 1H14A1 1 0 0 1 15 2V3L3 15H2A1 1 0 0 1 1 14V10Z M15 6V14A1 1 0 0 1 14 15H6Z"/></symbol>
+  <symbol id="fav" viewBox="0 0 16 16"><path fill="#A3AAFF" d="M1 2A1 1 0 0 1 2 1H7L1 7Z M10 1H14A1 1 0 0 1 15 2V3L3 15H2A1 1 0 0 1 1 14V10Z M15 6V14A1 1 0 0 1 14 15H6Z"/></symbol>
   <!-- The lane's two dropped sketches, on the same 16 grid -->
-  <symbol id="tA" viewBox="0 0 16 16"><rect width="16" height="16" fill="#0B0E13"/><path fill="#7A84A0" d="M1 1H9V15H1Z M11 1H15V6H11Z M11 8H15V15H11Z"/></symbol>
-  <symbol id="tB" viewBox="0 0 16 16"><rect width="16" height="16" fill="#0B0E13"/><path fill="#7A84A0" d="M1 1H9V7H5V15H1Z M11 1H15V15H7V9H11Z"/></symbol>
+  <symbol id="tA" viewBox="0 0 16 16"><path fill="#7A84A0" d="M1 1H9V15H1Z M11 1H15V6H11Z M11 8H15V15H11Z"/></symbol>
+  <symbol id="tB" viewBox="0 0 16 16"><path fill="#7A84A0" d="M1 1H9V7H5V15H1Z M11 1H15V15H7V9H11Z"/></symbol>
   <!-- Phosphor plus (MIT), the app's own New bill icon. Not the mark -->
   <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
 </svg>
@@ -257,10 +261,10 @@ h2, p, figure { margin: 0; }
         <div class="cell"><div class="box"><svg class="mk" width="48" height="48" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">48 px</span></div>
         <div class="cell"><div class="box"><svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">28 px slot</span></div>
         <div class="cell"><div class="box"><svg class="mk" width="18" height="18" viewBox="-1 -1 18 18" aria-hidden="true" focusable="false"><use href="#m16" x="0" y="0" width="16" height="16"/></svg></div><span class="px">18 px, 16 grid 1:1</span></div>
-        <div class="cell"><div class="box"><svg width="32" height="32" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></div><span class="px">32 px tile</span></div>
-        <div class="cell"><div class="box"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></div><span class="px">16 px tile</span></div>
+        <div class="cell"><div class="tabs"><span class="dk"><svg width="32" height="32" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></span><span class="lt"><svg width="32" height="32" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></span></div><span class="px">32 px favicon</span></div>
+        <div class="cell"><div class="tabs"><span class="dk"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></span><span class="lt"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></span></div><span class="px">16 px favicon</span></div>
       </div>
-      <p class="note">Master on the 28 grid, hero at exactly 9x. 18 px and the favicon use the 16 grid drawing 1:1, every slice 4 px or more.</p>
+      <p class="note">Master on the 28 grid, hero at exactly 9x. 18 px and the favicon use the 16 grid drawing 1:1, every slice 4 px or more. No tile (owner), the favicon sits on the browser tab, dark tab above, white tab below.</p>
     </section>
 
     <!-- 4 Swatches -->
@@ -299,6 +303,6 @@ h2, p, figure { margin: 0; }
 <!-- Production sources. Lift these. Hidden so the sheet stays exactly 900 px tall -->
 <svg id="mark-src" viewBox="0 0 28 28" aria-hidden="true" style="display:none"><path fill="currentColor" d="M3 5A2 2 0 0 1 5 3H13L3 13Z M17 3H23A2 2 0 0 1 25 5V7L7 25H5A2 2 0 0 1 3 23V17Z M25 11V23A2 2 0 0 1 23 25H11Z"/></svg>
 <svg id="mark16-src" viewBox="0 0 16 16" aria-hidden="true" style="display:none"><path fill="currentColor" d="M1 2A1 1 0 0 1 2 1H7L1 7Z M10 1H14A1 1 0 0 1 15 2V3L3 15H2A1 1 0 0 1 1 14V10Z M15 6V14A1 1 0 0 1 14 15H6Z"/></svg>
-<svg id="favicon-src" viewBox="0 0 16 16" aria-hidden="true" style="display:none"><rect width="16" height="16" fill="#0B0E13"/><path fill="#A3AAFF" d="M1 2A1 1 0 0 1 2 1H7L1 7Z M10 1H14A1 1 0 0 1 15 2V3L3 15H2A1 1 0 0 1 1 14V10Z M15 6V14A1 1 0 0 1 14 15H6Z"/></svg>
+<svg id="favicon-src" viewBox="0 0 16 16" aria-hidden="true" style="display:none"><path fill="#A3AAFF" d="M1 2A1 1 0 0 1 2 1H7L1 7Z M10 1H14A1 1 0 0 1 15 2V3L3 15H2A1 1 0 0 1 1 14V10Z M15 6V14A1 1 0 0 1 14 15H6Z"/></svg>
 </body>
 </html>
