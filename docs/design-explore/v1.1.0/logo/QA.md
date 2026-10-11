@@ -23,3 +23,9 @@ Each sheet was rendered by the orchestrator in headless Chromium at 1440 x 900 (
 **No tile, S3 and S8, 2026-10-11 (owner's ruling).** The orchestrator removed the `#0B0E13` tile rect from `favicon-src`, the tab icon data URI and the sheet sprites, nothing else in the marks. The favicon cells now show each size on a dark tab (`#35363A`) and a white tab. On white the knockouts take the tab colour and `#A3AAFF` is about 2.1 to 1, faint but whole. Re-rendered at 1440 x 900, no console errors, no clipped text.
 
 **Lesson carried into the remaining briefs.** The idea must read at the real 28 px slot and in the 16 px favicon, with every feature that carries it at least 2 px. A feature that only reads at hero size is texture, not the idea.
+
+## Round 2, the owner's direction
+
+| Id | Idea | Verdict | Score | Weakest criterion | Risks for the owner |
+|---|---|---|---|---|---|
+| S12 | The cut equals on a receipt (owner's direction, sketch B) | FAIL, first review, sent back | 24 of 28 | No gate at 0. Spec met (outline receipt, solid cut equals two to one, rounded corners, thinner than B, wider than B, transparent). Fixable, the tear is a mirror symmetric W, not "more naturally ripped", and the 16 px favicon foot collapses to one tail (a chat bubble read). Sheet notes overstated (tear band, mark28 range). Distinctiveness 1, the stock receipt plus an equals, his lane | Twin of Phosphor Receipt, the app's own 28 px empty state icon on three goldens (bill-empty, bill-unreadable, rate-error), he rules at the swap. "Thinner" shows mainly from 48 px up, the 28 px frame is 2 against B's 2.33. Exception to confirm, the favicon's 1 px frame and 1 px bar end gap (2 px at 32). Three sources, mark28-src at 28 only, favicon-src at 16 and 32, mark-src from 48 |
