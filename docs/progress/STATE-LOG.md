@@ -239,3 +239,7 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - flowcheck_v.py split v1.1.0 first run 24 of 32, all eight helper limits (hidden mode radios, the composer's chip taps as points). Helper fixed, 48 of 48 with width-less links at all three widths.
 - One golden defect found while testing names. Chromium's own tree read the phone header rows as "People , Aisyah, Ben, Chen". People and Charges now named by .sec-name and described by .sec-sum, hidden comma gone, nothing visible changed. check_final.py 778 of 778 (specimen compare ignores g2's hidden comma).
 - FLOW-CHECK.md and prototype/ written. Ledger S7 rows 9 and 10.
+
+## 2026-10-11 13:01 owner's rulings on the composed set, rate error follows 1.0
+- Owner chose the recommended option on all four questions. Copy list and interaction rules approved, small points accepted, logo marks to be redrawn.
+- ORCH, told to him. An invalid rate or price blocks the receipt as in 1.0 core R18 and app R17, so rate-error.html will show the blocked receipt. Not done yet.
