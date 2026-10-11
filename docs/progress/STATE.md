@@ -4,7 +4,7 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design, step 7 done, rulings written (RULINGS.md v1.1.0), logo round next
+- **phase:** v1.1.0 design, logo round 1 in progress (S3 passed, S1 and S2 retired, S4 and S5 next)
 - **next:** logo round (redraw the mark from the glass receipt, four directions, QA-checked, he picks on the design board), swap the mark and favicon into every golden, rerun check_final.py, finalize gate (his approval AND his word to replace 1.0's goldens), then plan (sdlc 2.5.0 is installed)
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-RULINGS.md v1.1.0 written in docs/design-explore/v1.1.0/ (his four answers, USER, and the ORCH blocked-receipt order a to e from 1.0 core R18 and app R17). Next the logo round, usage check first, at most 2 agents at a time, load the logo-design skill. Then swap his pick into each golden's one inline <svg class="mark"> and the favicon data URL, rerun check_final.py. Then the finalize gate. Details in `HANDOFF-2026-10-11b.md` at the showcase root.
+Logo round 1 in docs/design-explore/v1.1.0/logo/ (BRIEF.md, QA.md, round-1/). S3 passed QA 26 of 28. S1 and S2 retired at their structural limits. Next S4, S5 (and S6 if needed), each rendered by the orchestrator and QA-checked, then the board on port 4555. Details in `HANDOFF-2026-10-11c.md` at the showcase root.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

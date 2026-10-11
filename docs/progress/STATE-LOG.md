@@ -252,3 +252,6 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-11 13:33 v1.1.0 RULINGS.md written
 - docs/design-explore/v1.1.0/RULINGS.md. USER, copy list and thirteen rules approved, P1 on K2, dialog edges accepted, the mark redrawn. ORCH, the blocked receipt order a to e, a blank rate blocks (1.0 core R18 (a)) and never counts as 0, folded Charges shows Check for a blank rate, row c widens R18 (c) to no valid price, a plan delta.
 - rate-error.md had said a blank rate counts as 0 "as in 1.0". 1.0 blocks on it. Fixed, with states.md's price note. check_final.py 748 of 748. Ledger S7 row 12.
+
+## 2026-10-11 15:08 logo round 1 started
+- Brief written (glass receipt, one flat fill, 28 px header and 16 px favicon slots, no D). S1 the fan retired after two reviews (a W or crest, or a three-card fan). S2 the receipt S retired (a plain bold S at the real sizes). S3 the tear is the tick passed 26 of 28. Lesson added as hard constraint 7, the idea must read at 28 and 16 px. Committed 3d847dc.
