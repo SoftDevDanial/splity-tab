@@ -53,7 +53,7 @@ Each new direction is a lane, not a fixed drawing. The designer first sketches t
 | S9 | Pictorial or symbolic | **The people at the table.** A few friends around one bill, the table that shares it. Never cute, no mascot, no faces |
 | S10 | Motion or emblem, app icon first | **The sheet that lifts.** On a phone the receipt docks as a strip at the bottom and lifts into a sheet. The mark carries the lift |
 
-S8 passed QA 25 of 28. S9 was retired for concept legibility 0, a table for four from above reads as ":I:", a car from above or a domino, and the lane leaves people only as dots (`QA.md`).
+S8 passed QA 25 of 28. S9 was retired for concept legibility 0, a table for four from above reads as ":I:", a car from above or a domino, and the lane leaves people only as dots (`QA.md`). S10 was retired for concept legibility 0, a sheet in a dock reads as an armchair or an upload tray and cannot show which way it moves. The widened lanes leave S3 and S8 as the passed Split marks.
 
 **Every new direction must avoid** what this round has already learned. No letter but S, nothing that reads as a D. No face (two marks over one inside a block). No stock document, notes or ID icon, no squared S or digital 5, no blocks over a bar (computer, toilet), no sock or boot. No stock UI glyph that means something else in an app header (notification badge, status dot, spinner, hamburger menu, copy, printer, trash, battery, upload tray, layout grid). No category cliché (zigzag receipt, pie wedges, divided circle, coins, currency signs, equals or percent signs, two-colour S). No bar chart (finance and analytics).
 
