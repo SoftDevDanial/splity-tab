@@ -243,3 +243,8 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 ## 2026-10-11 13:01 owner's rulings on the composed set, rate error follows 1.0
 - Owner chose the recommended option on all four questions. Copy list and interaction rules approved, small points accepted, logo marks to be redrawn.
 - ORCH, told to him. An invalid rate or price blocks the receipt as in 1.0 core R18 and app R17, so rate-error.html will show the blocked receipt. Not done yet.
+
+## 2026-10-11 13:25 rate-error golden blocked as in 1.0
+- rate-error.html, the card's receipt and the strip now show the blocked state of 1.0 core R18 and app R17, "Check the charges to see the splits." under the receipt icon, no Total, Copy summary disabled. Golden strip height 108 px as bill-empty.html.
+- rate-error.md, SELF-CRITIQUE (ruled difference from g2, copy list, open questions 1 and 2 ruled) and the prototype copy updated. check_final.py 748 of 748, 0 console, 0 network (the 30 money asserts on the old Total no longer apply). Flow check 48 of 48. Ledger S7 row 11.
+- sdlc 2.5.0 install confirmed (installed_plugins.json, cache 2.5.0, commit 087dc18).

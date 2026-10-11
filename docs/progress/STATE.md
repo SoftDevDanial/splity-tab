@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design, step 7 done, owner's rulings given 2026-10-11, rate-error golden, RULINGS.md and logo round next
-- **next:** rate-error.html to 1.0's blocked receipt, write v1.1.0/RULINGS.md, logo round (redraw the mark, four directions, he picks), swap the mark in, finalize gate (his approval AND his word to replace 1.0's goldens), install sdlc 2.5.0 (his yes), then plan
+- **phase:** v1.1.0 design, step 7 done, owner's rulings given 2026-10-11, rate-error golden blocked as in 1.0, RULINGS.md and logo round next
+- **next:** write v1.1.0/RULINGS.md, logo round (redraw the mark, four directions, he picks), swap the mark in, finalize gate (his approval AND his word to replace 1.0's goldens), then plan (sdlc 2.5.0 is installed)
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-Owner answered on 2026-10-11 (recommended option each). Copy list and 13 interaction rules approved. P1 picker on K2 and the dialog edges accepted. Logo, redraw the mark. ORCH, told to him, the composer's open questions 1 and 2 are settled by the sealed 1.0 spec (core R18 blocks the receipt on a bad rate or price). So first change `rate-error.html` to the blocked receipt, "Check the charges to see the splits.", no Total, Copy summary disabled on the strip, at 390, 360 and 1280, then update its .md, SELF-CRITIQUE and check_final.py. Then RULINGS.md, then the logo round, then the finalize gate. Details in `HANDOFF-2026-10-11b.md` at the showcase root.
+rate-error.html shows 1.0's blocked receipt (core R18, app R17), "Check the charges to see the splits.", no Total, Copy summary disabled on the strip, at 390, 360 and 1280. check_final.py 748 of 748, flow check 48 of 48. Next write docs/design-explore/v1.1.0/RULINGS.md (his four answers of 2026-10-11 and the ORCH ruling on open questions 1 and 2), then the logo round, then the finalize gate. Details in `HANDOFF-2026-10-11b.md` at the showcase root.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

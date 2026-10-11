@@ -38,6 +38,7 @@ RECIPES = {
     "new-bill-dialog.html": ["m1"],
     "bill-empty.html": ["s1"],
     "amount-error.html": ["s2"],
+    # ruled difference: g2 counts the bad rate as 0, the golden blocks the receipt (1.0 core R18, app R17, ORCH 2026-10-11)
     "rate-error.html": ["s2rate"],
     "bill-unassigned.html": ["s3"],
     "summary-copied.html": ["s4ok"],

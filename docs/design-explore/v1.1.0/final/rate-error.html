@@ -542,6 +542,8 @@ dialog::backdrop { background: var(--scrim); }
 /* Golden only. The build sets data-down while the item frame has more below. At 1280 x 800 the error grows the
    Charges block, so the frame holds 491 px of items in 243 px. On a phone the frame fits its items. */
 @media (min-width: 1024px) { .frame-wrap::after { opacity: 1; } }
+/* Golden only. The strip with a one-line message is 108 px tall, which the build measures and sets */
+@media (max-width: 1023px) { :root { --strip-h: 108px; } }
 </style>
 </head>
 <body>
@@ -579,28 +581,13 @@ dialog::backdrop { background: var(--scrim); }
   </header>
 
   <main class="layout">
-    <!-- The receipt counts the rate that is not valid as 0, g2's prototype shortcut, open for the owner's ruling (SELF-CRITIQUE.md) -->
+    <!-- A rate that is not valid blocks the receipt (1.0 core R18, app R17), so there is nothing to work out -->
     <section class="stage" id="stage" aria-label="Bill and splits">
       <article class="glass card" id="card">
         <div class="foil" aria-hidden="true"></div>
         <div class="rbody" id="rbody">
-          <div class="r-total"><span class="r-label">Total</span><p class="r-amount" id="rTotal"><span class="cur">RM </span>62.96</p></div>
-          <dl class="r-lines">
-            <div><dt>Subtotal</dt><dd>RM 59.40</dd></div>
-            <div><dt>Service 0%</dt><dd>RM 0.00</dd></div>
-            <div><dt>SST 6%</dt><dd>RM 3.56</dd></div>
-          </dl>
-          <div class="r-rule" aria-hidden="true"></div>
-          <div class="r-head"><h2 id="splitsH">Splits</h2><span aria-hidden="true">items + charges</span></div>
-          <ul class="r-splits" id="splits" aria-labelledby="splitsH">
-            <li><span class="nm">Aisyah</span><span class="amt">RM 26.40</span><span class="wk"><span class="sr">Items </span>24.90 + <span class="sr">charges </span>1.50</span></li>
-            <li><span class="nm">Ben</span><span class="amt">RM 14.31</span><span class="wk"><span class="sr">Items </span>13.50 + <span class="sr">charges </span>0.81</span></li>
-            <li><span class="nm">Chen</span><span class="amt">RM 22.25</span><span class="wk"><span class="sr">Items </span>21.00 + <span class="sr">charges </span>1.25</span></li>
-          </ul>
-          <div class="r-check"><svg class="seal" aria-hidden="true" focusable="false"><use href="#i-seal-check"/></svg><span class="lbl-proof">Adds up to</span><span class="amt" id="addsUp">RM 62.96</span><span class="wk">59.40 + 3.56</span></div>
-          <div class="r-spare"><p id="spareLine">2 sen left over</p><div class="r-spare-acts"><button type="button" class="chip-btn" id="spareBtn" aria-haspopup="dialog" aria-label="Spare sen: Top of the list. Change">Top of the list<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-caret"/></svg></button></div></div>
-          <button type="button" class="btn btn-primary btn-block r-copy" id="copyBtn"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>Copy summary</button>
-          <p class="status" id="cardStatus" role="status"></p>
+          <div class="r-total"><span class="r-label">Total</span></div>
+          <div class="r-empty"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg><p>Check the charges to see the splits.</p></div>
         </div>
       </article>
     </section>
@@ -707,12 +694,12 @@ dialog::backdrop { background: var(--scrim); }
     <div class="foil" aria-hidden="true"></div>
     <div class="strip-in">
       <div class="strip-top">
-        <div class="strip-info" id="stripInfo"><span class="s-label">Total</span><span class="s-fig" id="stripTotal"><span class="cur">RM </span>62.96</span></div>
+        <div class="strip-info" id="stripInfo"><p class="s-msg" id="stripMsg">Check the charges to see the splits.</p></div>
         <p class="status" id="stripStatus" role="status"></p>
       </div>
       <div class="strip-acts">
         <button type="button" class="btn btn-ghost" id="splitsBtn" aria-haspopup="dialog" aria-controls="splitsDlg" aria-expanded="false">Splits<svg class="ic caret-up" aria-hidden="true" focusable="false"><use href="#i-caret"/></svg></button>
-        <button type="button" class="btn btn-primary" id="stripCopy"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>Copy summary</button>
+        <button type="button" class="btn btn-primary" id="stripCopy" disabled><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>Copy summary</button>
       </div>
     </div>
   </div>

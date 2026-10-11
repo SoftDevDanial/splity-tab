@@ -3,7 +3,7 @@
  "page_errors": [],
  "network": [],
  "fails": [],
- "passes": 778,
+ "passes": 748,
  "static": {
   "goldens present": [
    "bill-items.html",
@@ -9339,15 +9339,15 @@
      ],
      ".strip": [
       0,
-      733,
+      736,
       390,
-      111
+      108
      ],
      ".strip-info": [
       17,
-      747,
-      131,
-      33
+      750,
+      216,
+      30
      ],
      "#splitsBtn": [
       17,
@@ -9386,46 +9386,14 @@
     "sums": {
      "visible": 0,
      "receipt": {
-      "total": 6296,
-      "lines": [
-       5940,
-       0,
-       356
-      ],
-      "rows": [
-       {
-        "name": "Aisyah",
-        "share": 2640,
-        "parts": [
-         2490,
-         150
-        ]
-       },
-       {
-        "name": "Ben",
-        "share": 1431,
-        "parts": [
-         1350,
-         81
-        ]
-       },
-       {
-        "name": "Chen",
-        "share": 2225,
-        "parts": [
-         2100,
-         125
-        ]
-       }
-      ],
-      "proof": 6296,
-      "proofParts": [
-       5940,
-       356
-      ],
-      "spare": "2 sen left over"
+      "total": null,
+      "lines": [],
+      "rows": [],
+      "proof": null,
+      "proofParts": null,
+      "spare": null
      },
-     "stripTotal": 6296,
+     "stripTotal": null,
      "prices": [
       "15.90",
       "13.50",
@@ -9435,16 +9403,16 @@
     },
     "strip": {
      "first_screen": {
-      "stripTop": 733,
+      "stripTop": 736,
       "people": 117,
       "charges": 348,
       "split": 407
      },
      "first_screen_asserted": false,
      "page_end": {
-      "stripTop": 733,
-      "scrollY": 284,
-      "docH": 1128,
+      "stripTop": 736,
+      "scrollY": 281,
+      "docH": 1125,
       "hits": []
      },
      "tabbed": 30,
@@ -9452,7 +9420,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 126
+     "names_checked": 122
     },
     "inputs": [
      [
@@ -9556,14 +9524,69 @@
      "diff": {
       "w": 390,
       "h": 844,
-      "diffPixels": 0,
-      "ratio": 0,
-      "boxes": []
+      "diffPixels": 12714,
+      "ratio": 3.863,
+      "boxes": [
+       [
+        176,
+        784,
+        200,
+        48,
+        8592
+       ],
+       [
+        0,
+        728,
+        392,
+        32,
+        2596
+       ],
+       [
+        16,
+        752,
+        216,
+        24,
+        1521
+       ]
+      ]
      },
-     "rects_moved": {},
-     "text_only_golden": [],
+     "rects_moved": {
+      ".strip": [
+       [
+        0,
+        736,
+        390,
+        108
+       ],
+       [
+        0,
+        733,
+        390,
+        111
+       ]
+      ],
+      ".strip-info": [
+       [
+        17,
+        750,
+        216,
+        30
+       ],
+       [
+        17,
+        747,
+        131,
+        33
+       ]
+      ]
+     },
+     "text_only_golden": [
+      "Check the charges to see the splits."
+     ],
      "text_only_g2": [
-      ","
+      ",",
+      "Total",
+      "RM 62.96"
      ],
      "text_same_order": false,
      "inputs_same": true,
@@ -9575,18 +9598,50 @@
        "People"
       ],
       [
+       "StaticText",
+       "Check the charges to see the splits."
+      ],
+      [
        "button",
        "People"
+      ],
+      [
+       "InlineTextBox",
+       "Check the charges to see the splits."
       ]
      ],
      "ax_only_g2": [
+      [
+       "StaticText",
+       "Total"
+      ],
       [
        "heading",
        "People , Aisyah, Ben, Chen"
       ],
       [
+       "InlineTextBox",
+       "Total"
+      ],
+      [
+       "StaticText",
+       "RM "
+      ],
+      [
+       "StaticText",
+       "62.96"
+      ],
+      [
        "button",
        "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "InlineTextBox",
+       "RM "
+      ],
+      [
+       "InlineTextBox",
+       "62.96"
       ],
       [
        "StaticText",
@@ -9710,15 +9765,15 @@
      ],
      ".strip": [
       0,
-      669,
+      672,
       345,
-      111
+      108
      ],
      ".strip-info": [
       17,
-      683,
-      131,
-      33
+      686,
+      216,
+      30
      ],
      "#splitsBtn": [
       17,
@@ -9757,46 +9812,14 @@
     "sums": {
      "visible": 0,
      "receipt": {
-      "total": 6296,
-      "lines": [
-       5940,
-       0,
-       356
-      ],
-      "rows": [
-       {
-        "name": "Aisyah",
-        "share": 2640,
-        "parts": [
-         2490,
-         150
-        ]
-       },
-       {
-        "name": "Ben",
-        "share": 1431,
-        "parts": [
-         1350,
-         81
-        ]
-       },
-       {
-        "name": "Chen",
-        "share": 2225,
-        "parts": [
-         2100,
-         125
-        ]
-       }
-      ],
-      "proof": 6296,
-      "proofParts": [
-       5940,
-       356
-      ],
-      "spare": "2 sen left over"
+      "total": null,
+      "lines": [],
+      "rows": [],
+      "proof": null,
+      "proofParts": null,
+      "spare": null
      },
-     "stripTotal": 6296,
+     "stripTotal": null,
      "prices": [
       "15.90",
       "13.50",
@@ -9806,16 +9829,16 @@
     },
     "strip": {
      "first_screen": {
-      "stripTop": 669,
+      "stripTop": 672,
       "people": 117,
       "charges": 348,
       "split": 407
      },
      "first_screen_asserted": false,
      "page_end": {
-      "stripTop": 669,
-      "scrollY": 348,
-      "docH": 1128,
+      "stripTop": 672,
+      "scrollY": 345,
+      "docH": 1125,
       "hits": []
      },
      "tabbed": 30,
@@ -9823,7 +9846,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 126
+     "names_checked": 122
     },
     "inputs": [
      [
@@ -9927,14 +9950,76 @@
      "diff": {
       "w": 360,
       "h": 780,
-      "diffPixels": 0,
-      "ratio": 0,
-      "boxes": []
+      "diffPixels": 11337,
+      "ratio": 4.037,
+      "boxes": [
+       [
+        152,
+        720,
+        176,
+        48,
+        7447
+       ],
+       [
+        0,
+        664,
+        344,
+        32,
+        2338
+       ],
+       [
+        16,
+        688,
+        216,
+        24,
+        1521
+       ],
+       [
+        344,
+        528,
+        16,
+        8,
+        23
+       ]
+      ]
      },
-     "rects_moved": {},
-     "text_only_golden": [],
+     "rects_moved": {
+      ".strip": [
+       [
+        0,
+        672,
+        345,
+        108
+       ],
+       [
+        0,
+        669,
+        345,
+        111
+       ]
+      ],
+      ".strip-info": [
+       [
+        17,
+        686,
+        216,
+        30
+       ],
+       [
+        17,
+        683,
+        131,
+        33
+       ]
+      ]
+     },
+     "text_only_golden": [
+      "Check the charges to see the splits."
+     ],
      "text_only_g2": [
-      ","
+      ",",
+      "Total",
+      "RM 62.96"
      ],
      "text_same_order": false,
      "inputs_same": true,
@@ -9946,18 +10031,50 @@
        "People"
       ],
       [
+       "StaticText",
+       "Check the charges to see the splits."
+      ],
+      [
        "button",
        "People"
+      ],
+      [
+       "InlineTextBox",
+       "Check the charges to see the splits."
       ]
      ],
      "ax_only_g2": [
+      [
+       "StaticText",
+       "Total"
+      ],
       [
        "heading",
        "People , Aisyah, Ben, Chen"
       ],
       [
+       "InlineTextBox",
+       "Total"
+      ],
+      [
+       "StaticText",
+       "RM "
+      ],
+      [
+       "StaticText",
+       "62.96"
+      ],
+      [
        "button",
        "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "InlineTextBox",
+       "RM "
+      ],
+      [
+       "InlineTextBox",
+       "62.96"
       ],
       [
        "StaticText",
@@ -9996,57 +10113,22 @@
       98,
       84,
       460,
-      642
+      161
      ],
-     ".r-amount": [
+     ".r-amount": null,
+     ".r-lines": null,
+     ".r-head": null,
+     ".r-splits": null,
+     ".r-check": null,
+     ".r-spare": null,
+     ".chip-btn": null,
+     ".r-copy": null,
+     ".r-empty": [
       123,
-      132,
+      144,
       410,
-      53
+      76
      ],
-     ".r-lines": [
-      123,
-      201,
-      410,
-      78
-     ],
-     ".r-head": [
-      123,
-      316,
-      410,
-      20
-     ],
-     ".r-splits": [
-      123,
-      348,
-      410,
-      150
-     ],
-     ".r-check": [
-      123,
-      514,
-      410,
-      59
-     ],
-     ".r-spare": [
-      123,
-      589,
-      410,
-      44
-     ],
-     ".chip-btn": [
-      392,
-      589,
-      141,
-      44
-     ],
-     ".r-copy": [
-      123,
-      653,
-      410,
-      48
-     ],
-     ".r-empty": null,
      ".r-msg": null,
      ".status": null,
      "#peopleBtn": null,
@@ -10166,46 +10248,14 @@
     "sums": {
      "visible": 1,
      "receipt": {
-      "total": 6296,
-      "lines": [
-       5940,
-       0,
-       356
-      ],
-      "rows": [
-       {
-        "name": "Aisyah",
-        "share": 2640,
-        "parts": [
-         2490,
-         150
-        ]
-       },
-       {
-        "name": "Ben",
-        "share": 1431,
-        "parts": [
-         1350,
-         81
-        ]
-       },
-       {
-        "name": "Chen",
-        "share": 2225,
-        "parts": [
-         2100,
-         125
-        ]
-       }
-      ],
-      "proof": 6296,
-      "proofParts": [
-       5940,
-       356
-      ],
-      "spare": "2 sen left over"
+      "total": null,
+      "lines": [],
+      "rows": [],
+      "proof": null,
+      "proofParts": null,
+      "spare": null
      },
-     "stripTotal": 6296,
+     "stripTotal": null,
      "prices": [
       "15.90",
       "13.50",
@@ -10215,7 +10265,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 203
+     "names_checked": 132
     },
     "inputs": [
      [
@@ -10343,19 +10393,416 @@
      "diff": {
       "w": 1280,
       "h": 800,
-      "diffPixels": 0,
-      "ratio": 0,
-      "boxes": []
+      "diffPixels": 45695,
+      "ratio": 4.462,
+      "boxes": [
+       [
+        120,
+        648,
+        416,
+        56,
+        19608
+       ],
+       [
+        96,
+        224,
+        464,
+        504,
+        13792
+       ],
+       [
+        120,
+        192,
+        256,
+        32,
+        1539
+       ],
+       [
+        120,
+        528,
+        128,
+        40,
+        1068
+       ],
+       [
+        240,
+        136,
+        56,
+        40,
+        1046
+       ],
+       [
+        160,
+        136,
+        72,
+        40,
+        1027
+       ],
+       [
+        392,
+        584,
+        144,
+        56,
+        887
+       ],
+       [
+        120,
+        352,
+        56,
+        40,
+        590
+       ],
+       [
+        120,
+        456,
+        56,
+        40,
+        472
+       ],
+       [
+        120,
+        152,
+        32,
+        24,
+        435
+       ],
+       [
+        120,
+        512,
+        416,
+        8,
+        410
+       ],
+       [
+        120,
+        408,
+        56,
+        32,
+        399
+       ],
+       [
+        480,
+        352,
+        56,
+        16,
+        366
+       ],
+       [
+        480,
+        536,
+        56,
+        16,
+        346
+       ],
+       [
+        120,
+        600,
+        96,
+        16,
+        338
+       ],
+       [
+        480,
+        456,
+        56,
+        24,
+        333
+       ],
+       [
+        480,
+        408,
+        56,
+        16,
+        312
+       ],
+       [
+        480,
+        320,
+        56,
+        16,
+        294
+       ],
+       [
+        488,
+        200,
+        48,
+        24,
+        264
+       ],
+       [
+        120,
+        320,
+        40,
+        16,
+        237
+       ]
+      ]
      },
-     "rects_moved": {},
-     "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "rects_moved": {
+      ".card": [
+       [
+        98,
+        84,
+        460,
+        161
+       ],
+       [
+        98,
+        84,
+        460,
+        642
+       ]
+      ],
+      ".r-amount": [
+       null,
+       [
+        123,
+        132,
+        410,
+        53
+       ]
+      ],
+      ".r-lines": [
+       null,
+       [
+        123,
+        201,
+        410,
+        78
+       ]
+      ],
+      ".r-head": [
+       null,
+       [
+        123,
+        316,
+        410,
+        20
+       ]
+      ],
+      ".r-splits": [
+       null,
+       [
+        123,
+        348,
+        410,
+        150
+       ]
+      ],
+      ".r-check": [
+       null,
+       [
+        123,
+        514,
+        410,
+        59
+       ]
+      ],
+      ".r-spare": [
+       null,
+       [
+        123,
+        589,
+        410,
+        44
+       ]
+      ],
+      ".chip-btn": [
+       null,
+       [
+        392,
+        589,
+        141,
+        44
+       ]
+      ],
+      ".r-copy": [
+       null,
+       [
+        123,
+        653,
+        410,
+        48
+       ]
+      ],
+      ".r-empty": [
+       [
+        123,
+        144,
+        410,
+        76
+       ],
+       null
+      ]
+     },
+     "text_only_golden": [
+      "Check the charges to see the splits."
+     ],
+     "text_only_g2": [
+      "RM 62.96",
+      "Subtotal",
+      "RM 59.40",
+      "Service 0%",
+      "RM 0.00",
+      "SST 6%",
+      "RM 3.56",
+      "Splits",
+      "items + charges",
+      "RM 26.40",
+      "24.90 +",
+      "charges",
+      "1.50",
+      "RM 14.31",
+      "13.50 +",
+      "charges",
+      "0.81",
+      "RM 22.25",
+      "21.00 +",
+      "charges",
+      "1.25",
+      "Adds up to",
+      "RM 62.96",
+      "59.40 + 3.56",
+      "2 sen left over",
+      "Top of the list",
+      "Copy summary"
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "StaticText",
+       "Check the charges to see the splits."
+      ],
+      [
+       "InlineTextBox",
+       "Check the charges to see the splits."
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "Splits"
+      ],
+      [
+       "list",
+       "Splits"
+      ],
+      [
+       "StaticText",
+       "Adds up to"
+      ],
+      [
+       "StaticText",
+       "59.40 + 3.56"
+      ],
+      [
+       "button",
+       "Spare sen: Top of the list. Change"
+      ],
+      [
+       "button",
+       "Copy summary"
+      ],
+      [
+       "StaticText",
+       "RM "
+      ],
+      [
+       "StaticText",
+       "62.96"
+      ],
+      [
+       "term",
+       "Subtotal"
+      ],
+      [
+       "term",
+       "Service 0%"
+      ],
+      [
+       "term",
+       "SST 6%"
+      ],
+      [
+       "StaticText",
+       "Splits"
+      ],
+      [
+       "InlineTextBox",
+       "Adds up to"
+      ],
+      [
+       "StaticText",
+       "RM 62.96"
+      ],
+      [
+       "InlineTextBox",
+       "59.40 + 3.56"
+      ],
+      [
+       "StaticText",
+       "2 sen left over"
+      ],
+      [
+       "StaticText",
+       "Top of the list"
+      ],
+      [
+       "StaticText",
+       "Copy summary"
+      ],
+      [
+       "InlineTextBox",
+       "RM "
+      ],
+      [
+       "InlineTextBox",
+       "62.96"
+      ],
+      [
+       "StaticText",
+       "Subtotal"
+      ],
+      [
+       "StaticText",
+       "RM 59.40"
+      ],
+      [
+       "StaticText",
+       "Service 0%"
+      ],
+      [
+       "StaticText",
+       "RM 0.00"
+      ],
+      [
+       "StaticText",
+       "SST 6%"
+      ],
+      [
+       "StaticText",
+       "RM 3.56"
+      ],
+      [
+       "InlineTextBox",
+       "Splits"
+      ],
+      [
+       "StaticText",
+       "RM 26.40"
+      ],
+      [
+       "StaticText",
+       "24.90 + "
+      ],
+      [
+       "StaticText",
+       "charges"
+      ]
+     ]
     }
    }
   },
@@ -16314,7 +16761,7 @@
  },
  "summary": {
   "asserts": {
-   "passed": 778,
+   "passed": 748,
    "failed": 0
   },
   "console_errors": 0,

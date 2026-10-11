@@ -16,7 +16,7 @@ Every golden was rendered headless at 390 x 844 (a touch phone with overlay scro
 | `splits-sheet.html` (P2) | Copy summary | Yes | Yes | The sheet open over K1 | Yes | Yes, 6926 | Yes | Pass / Pass / Pass (K1) |
 | `new-bill-dialog.html` (M1) | Start new bill | Yes | Yes | Open over K1, page inert | Yes, all brainstorm copy | n/a | Yes | Pass / Pass / Pass |
 | `bill-empty.html` (S1) | None needed, the Subtotal is the next step | Yes | Yes | New bill, remove disabled at two, Copy summary disabled | Yes | n/a | Yes | Pass / Pass / Pass |
-| `rate-error.html` (S2 rate) | None, fix the rate | Yes | Yes | Charges open on load, the error | Yes | Yes, 6296 (see open question 1) | Yes | Pass / Pass / Pass |
+| `rate-error.html` (S2 rate) | None, fix the rate | Yes | Yes | Charges open on load, the error, the receipt blocked, Copy summary disabled | Yes | n/a, blocked (open question 1, ruled) | Yes | Pass / Pass / Pass |
 | `bill-unassigned.html` (S3) | None, tap who had it | Yes | Yes | Marker, messages on card and strip, Copy summary disabled | Yes | Bill lines yes, 6926 | Yes | Pass / Pass / Pass |
 | `bill-unreadable.html` (S6) | None, Dismiss note or name people | Yes | Yes | The note, then S1 with People open | Yes | n/a | Yes | Pass / Pass / Pass |
 | `bill-twelve.html` (S7) | Copy summary | Yes | Yes | Add person disabled, two columns on desktop | Yes | Yes, 11660 | Yes | Pass / Pass / Pass |
@@ -28,13 +28,13 @@ Every golden was rendered headless at 390 x 844 (a touch phone with overlay scro
 ## Verification result
 | Check | Result |
 |---|---|
-| Asserts | 778 passed, 0 failed |
+| Asserts | 748 passed, 0 failed (778 at step 8. The 30 money asserts on `rate-error.html`'s old Total, ten per width, no longer apply since its receipt is blocked) |
 | Console and page errors | 0 (every golden at the three widths, and once more with motion allowed) |
 | Network requests | 0 (anything that is not file or data is aborted and logged, none were) |
 | Sideways scroll | None at 360, 390 or 1280, and no element past the viewport |
 | Page scroll at 1280 x 800 | None in all fifteen goldens. Neither column of a screen overflows |
 | Touch targets | Every button, field, switch label, choice, pill and toggle 44 px or more at all three widths |
-| Money | In every golden with splits, the splits add to the Total and to Adds up to, each person's items plus charges equal their split, the working under Adds up to equals the Subtotal plus the charges, the items column equals the Subtotal, the bill lines add to the Total, the item prices add to the Subtotal, and the strip's Total equals the receipt's. Totals 6926, 11660, 6296 and 119387 sen |
+| Money | In every golden with splits, the splits add to the Total and to Adds up to, each person's items plus charges equal their split, the working under Adds up to equals the Subtotal plus the charges, the items column equals the Subtotal, the bill lines add to the Total, the item prices add to the Subtotal, and the strip's Total equals the receipt's. Totals 6926, 11660 and 119387 sen |
 | The strip and the inputs | With the sections folded, People, Charges and Split end above the strip on the first screen. At the page end no control is under it. Tabbing every control in the working (4 to 37 per golden) never left one under the strip, with no script (the build's `scroll-padding-bottom` does it) |
 | "Shares" | Absent from the visible text and every accessible name in every golden at every width |
 | `system.css` | The first `<style>` of every golden is `system.css` byte for byte |
@@ -46,13 +46,14 @@ Every golden was rendered headless at 390 x 844 (a touch phone with overlay scro
 | Links | Every link in `LINKS.json` was opened on its source golden at its width. Every named control was found and every point lands on the intended control or backdrop |
 
 ## Every difference from g2, and why
-Each golden was screenshotted beside g2 at the same state and width (`checks/shots/side-*.png`) and diffed pixel by pixel. With g2's Prototype states tab hidden, every golden matched at every width with 0 differing pixels, except where the brief's ruling changes it.
+Each golden was screenshotted beside g2 at the same state and width (`checks/shots/side-*.png`) and diffed pixel by pixel. With g2's Prototype states tab hidden, every golden matched at every width with 0 differing pixels, except where a ruling changes it.
 
 ### Visible
 | Golden | Width | Difference | Why |
 |---|---|---|---|
 | `bill-unreadable.html` (S6) | 390, 360 | People is open, so the two name fields and Add person show, and Charges, Split and the Subtotal sit 126 px lower than in g2's S6 (about 20,900 pixels in four areas, `side-bill-unreadable-vs-g2-unruled-*.png`). Against g2 after a tap on People it is identical | Ruling 1. S6 starts a fresh bill like S1, so naming people is the first step |
 | `bill-unreadable.html` (S6) | 1280 | None | Sections are always open on desktop |
+| `rate-error.html` (S2 rate) | All | The receipt is blocked, the Total label and "Check the charges to see the splits." under a 28 px receipt icon, where g2 shows Total RM 62.96 with "Service 0%". On a phone the strip shows the message with Copy summary disabled and is 108 px, not 111 (about 11,300 to 45,700 pixels, `side-rate-error-*.png`). The work column is identical, save the scrollbar thumb at 360, since the page is 3 px shorter | Open question 1, ruled 2026-10-11 (ORCH) by the sealed 1.0 spec, core R18 (a) and app R17 `rates` |
 | Every golden | All | No Prototype states tab in the left gutter | Not part of the design (g2 says so itself). It was hidden in g2's screenshots for the comparison |
 
 Ruling 2 (the rate error copy) and ruling 3 (the mark recoloured, one inline `<svg>` per page) were already true in g2, so they cause no difference.
@@ -88,6 +89,7 @@ No eyebrows, no all-caps labels, no section numbers, no middle-dot strings in th
 | Total · Subtotal · Service 10% · SST 6% | Receipt and strip | g2 (brainstorm nouns) |
 | Enter the subtotal to see the splits. | Receipt and strip, Even with no valid subtotal | 1.0's line with the rename |
 | Add each item and tap who had it to see the splits. | Receipt and strip, By item with no valid price | g2, new in round 2 |
+| Check the charges to see the splits. | Receipt and strip, a rate that is not valid (`rate-error.html`) | 1.0's line with the rename (app R17 `rates`), added 2026-10-11 by the ruling on open question 1 |
 | 1 item still needs a person. Tap who had it to see the splits. · N items still need a person. Tap who had each one to see the splits. | Receipt and strip, S3 | 1.0's lines with the rename |
 | Enter a rate from 0 to 30 · Enter a rate from 0 to 20 | Under a rate field | Ruling 2 (1.0's suggested wording, added in g2) |
 | Check service charge · Check SST · Check both rates | A folded Charges row with an error | g2, new |
@@ -117,8 +119,8 @@ Brainstorm copy used verbatim is "Enter an amount like 12.50", "Set a charge to 
 13. The rate fields name their error in `aria-describedby` only while it shows. A blank rate is not an error.
 
 ## Open questions for the owner (nothing invented)
-1. **A rate that is not valid counts as 0 in the receipt.** `rate-error.html` shows g2 as it is, Total RM 62.96 with "Service 0%", while the field says the rate is wrong. A Total built on a rate the person did not mean can be copied. g2.md suggested the receipt say so instead (for example "Check the rates to see the splits." with no Total). Needs a ruling before the build.
-2. **A price that is not valid is left out of the totals while its error shows** (g2's prototype shortcut, S2 on a price). The same choice as question 1, for items.
+1. **A rate that is not valid counts as 0 in the receipt.** `rate-error.html` showed g2 as it is, Total RM 62.96 with "Service 0%", while the field says the rate is wrong. A Total built on a rate the person did not mean can be copied. g2.md suggested the receipt say so instead (for example "Check the rates to see the splits." with no Total). **Ruled 2026-10-11, ORCH, told to the owner.** The sealed 1.0 spec already settles it. Core R18 (a) blocks the result first on a rate that fails its parser, and app R17 words it "Check the charges to see the shares.", now "splits". `rate-error.html` now shows the blocked receipt at all three widths, no Total, Copy summary disabled on the strip.
+2. **A price that is not valid is left out of the totals while its error shows** (g2's prototype shortcut, S2 on a price). The same choice as question 1, for items. **Ruled 2026-10-11, ORCH, with question 1.** Core R18 (d) blocks the result, and app R17 `prices` words it "Give every item a price to see the splits." with the rename. No golden shows it, it is a builder note.
 3. **P1's picker and At random are shown on K2,** following the inventory's figures. If the owner wants all of P1 on K1, the figures would be 29.03, 15.75, 24.48 for One person, Ben.
 4. **Dialogs against their scrim** measure 1.01 to 1.21 (`system.md`). Not a WCAG requirement, and the owner accepted the look in g2. Recorded so it is a choice, not an accident.
 5. **The logo swap touches two places per page,** the inline mark `<svg>` and the tab icon's data URI in `<head>`.
