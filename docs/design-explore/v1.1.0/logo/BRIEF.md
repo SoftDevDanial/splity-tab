@@ -71,6 +71,8 @@ Each lane follows the lane rule above (three candidates on the 16 grid, keep the
 | S15 | Abstract, curved | Round 1 was all straight edges. Shares drawn with curves (a ribbon, a drop, arcs that close into one shape). Not a pie, a divided circle or a yin yang |
 | S16 | Wild card | The designer's own lane, any logo type the five above do not use, with one sentence on why it fits a calm, exact, friendly bill splitter |
 
+**Round 2 stopped (owner, 22:07).** Before any sheet was written he chose the 1.0 mark with his own tweak instead (`../RULINGS.md`). S11 and S13 to S16 are not drawn. S12 became his direction, "The cut equals on a receipt", a receipt outline with a natural torn foot, the cut equals in solid bars inside, thinner lines, slightly wider, rounded corners, transparent.
+
 **Light grounds.** The owner had no preference, so the Streaky Habit ruling is followed for consistency. The mark is `#A3AAFF` on dark and `#1E2140` on light (the light card already uses it). The favicon carries both, `<style>.fi{fill:#A3AAFF}@media (prefers-color-scheme:light){.fi{fill:#1E2140}}</style>` on a `class="fi"` path, no tile.
 
 ## Output contract
