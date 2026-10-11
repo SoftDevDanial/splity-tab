@@ -21,6 +21,8 @@ Redraw the mark with the logo-design skill. Four directions, each checked by a s
 
 **Source widened (USER, 2026-10-11 17:40).** Seven receipt directions were drawn and six retired at QA, because at 28 and 16 px a receipt is a plain rectangle and only a check (S3) lands on it (`logo/QA.md`). The owner chose to keep the receipt as the root and let the mark grow from what it does, the split into shares, the people at the table, the sheet that lifts, not only the paper object. Three new directions, the same QA bar (constraint 7 stays). S3 stays in the set.
 
+**No background, no tile (USER, 2026-10-11 20:40).** Given for Streaks ("The logo will not have a background color or tile ... Favicon, logo and everything uses the one without a background or in other words transparent background"), then "Yes, Split too". The favicon is the mark alone in `#A3AAFF` on a transparent 16 x 16 ground, no `#0B0E13` tile. S3 and S8 sheets follow at the next touch, S10 is drawn that way.
+
 ## The receipt when the bill cannot be worked out (ORCH, told to the owner)
 Open questions 1 and 2 asked whether a rate or a price that is not valid may count as 0 or be left out, as g2 did. The sealed 1.0 spec already settles it. Core R18 blocks the result and app R17 words the message, so there is no Total to copy. 1.1.0 keeps 1.0's order and uses the approved copy.
 

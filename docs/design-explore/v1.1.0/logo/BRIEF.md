@@ -18,7 +18,7 @@ Bill-splitting and expense-sharing apps. Their marks lean on receipt icons with 
 
 ## Hard constraints (every direction)
 1. **One colour, fill only.** The production mark is one or a few `<path>` elements, no `stroke` attributes (outline any stroke into a filled path), `fill-rule` allowed. The app colours it with CSS `.mark { fill: var(--accent-ink) }`, so it must be complete in one flat fill. No gradient, no opacity, no glow, no glass effect inside the mark. The glass is the source of the idea, not a render effect.
-2. **Its real slots.** The app header shows it at 28 x 28 px beside the live wordmark "Splity Tab" (system font stack, 700, -0.01em) on the top bar `#10141B`, in `#A3AAFF`. The favicon is a 16 x 16 tile `#0B0E13` with the mark in `#A3AAFF`, every edge on a whole pixel at 16 and 32 px. It must hold at both sizes.
+2. **Its real slots.** The app header shows it at 28 x 28 px beside the live wordmark "Splity Tab" (system font stack, 700, -0.01em) on the top bar `#10141B`, in `#A3AAFF`. The favicon is the mark alone in `#A3AAFF` on a transparent 16 x 16 ground, no tile (owner, 2026-10-11 20:40, "no background color or tile"), every edge on a whole pixel at 16 and 32 px. It must hold at both sizes.
 3. **No "D", no "Danial".** No letter D, nothing that reads as a D at 16 px (a rounded slab with one straight side and one round side is a D risk, check it). The only letter allowed is an S, and only in the lettermark direction.
 4. **No myths, no rationalisation.** One idea you can say in one sentence. No golden ratio claims.
 5. **The wordmark is live text,** never traced into paths (licensed outlines). "Splity Tab" on one line.
@@ -66,7 +66,7 @@ A self-contained HTML brand sheet, exactly 1440 x 900, background `#0c0d10`, inl
 
 Put the production sources in the sheet so they can be lifted without guessing.
 - `<svg id="mark-src" viewBox="..." aria-hidden="true">` holding only the mark's path(s) with `fill="currentColor"` and nothing else.
-- `<svg id="favicon-src" viewBox="0 0 16 16">` holding the tile rect and the pixel-snapped mark.
+- `<svg id="favicon-src" viewBox="0 0 16 16">` holding only the pixel-snapped mark in the brand colour, no tile rect, transparent.
 Both sit at the end of the body hidden with `style="display:none"` (the `hidden` attribute does not hide an svg in Chromium, so the sheet must stay exactly 900 px tall).
 
 Write the complete file (it must end with `</html>`) to the path you are given. Then reply with one line, the idea, the path and an honest self-critique naming the rubric criterion a reviewer is most likely to dock.
