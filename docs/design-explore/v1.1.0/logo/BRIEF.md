@@ -33,8 +33,11 @@ Bill-splitting and expense-sharing apps. Their marks lean on receipt icons with 
 | S3 | Negative space, dual meaning | **The tear is the tick.** A receipt slip whose torn foot is one deep notch shaped as a tick, the app's "Adds up to" check, cut out of the paper. Receipt and proof in one silhouette. Pressure test against a stock receipt icon, a shield, a bookmark ribbon and a V |
 | S4 | Bold geometric, app-icon first | **The tab, cut two to one.** The rounded glass card cut once by one straight line, two to one, the smaller piece slid out by one gap. It carries the 1.0 mark's cut (`../../../brand/BRAND.md`) onto the receipt. Pressure test against a battery icon, a toggle, a folder tab and a D |
 | S5 | Pictorial reduction | **The curl.** One receipt slip, straight sides and a square top, whose foot rolls forward into a curl, the way a fresh receipt leaves the printer and the app's strip lifts into a sheet. No zigzag, the curl is the receipt cue. Pressure test against a scroll, a page-curl document icon, a ski, a hockey stick and the letters J and L |
+| S6 | Lettermark, negative space | **The slip S.** One receipt slip, a plain upright rectangle, cut twice from alternate sides (once from the right in the upper part, once from the left in the lower part), so the paper left between the cuts writes an S. The bill is split into three shares that still join up as one piece. The outline stays a slip, only the two cuts make the letter. Pressure test against the digits 5 and 2, a dollar sign, a Greek key, a radiator, a hamburger menu, a server rack and the 1.0 equals mark |
 
 S1 was retired after two QA reviews (`QA.md`). Its fan of strips reached a structural limit, a W or crest when the back feet hide, a stock three-card fan when they show, with no way to carry the receipt. S5 replaces it.
+
+S2 was retired for distinctiveness 0 (a plain bold S at the real sizes) and S4 for concept legibility 0 (a square over a bar at 28 and 16 px, the receipt never shows). S6 replaces S4 and takes the lettermark lane S2 left, with the slip's outline doing the work S2's tear could not.
 
 ## Output contract
 A self-contained HTML brand sheet, exactly 1440 x 900, background `#0c0d10`, inline CSS and SVG only, no network, system fonts only (`'Segoe UI', system-ui, sans-serif`). Four sections.
