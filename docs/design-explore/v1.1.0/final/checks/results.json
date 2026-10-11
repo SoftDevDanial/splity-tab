@@ -394,7 +394,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 117
+     "names_checked": 113
     },
     "inputs": [
      [
@@ -488,13 +488,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "360": {
@@ -701,7 +754,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 117
+     "names_checked": 113
     },
     "inputs": [
      [
@@ -795,13 +848,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "1280": {
@@ -2486,7 +2592,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 47
+     "names_checked": 43
     },
     "inputs": [
      [
@@ -2524,13 +2630,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "360": {
@@ -2701,7 +2860,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 47
+     "names_checked": 43
     },
     "inputs": [
      [
@@ -2739,13 +2898,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "1280": {
@@ -3406,8 +3618,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -3780,8 +3995,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -4510,8 +4728,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -4821,8 +5042,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -5464,8 +5688,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -5751,8 +5978,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -6423,8 +6653,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -6763,8 +6996,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -7564,8 +7800,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -7859,8 +8098,11 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
@@ -8416,7 +8658,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 49
+     "names_checked": 47
     },
     "inputs": [
      [
@@ -8470,13 +8712,41 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "360": {
@@ -8637,7 +8907,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 49
+     "names_checked": 47
     },
     "inputs": [
      [
@@ -8691,13 +8961,41 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "1280": {
@@ -9154,7 +9452,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 128
+     "names_checked": 126
     },
     "inputs": [
      [
@@ -9264,13 +9562,41 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "button",
+       "People"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "360": {
@@ -9497,7 +9823,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 128
+     "names_checked": 126
     },
     "inputs": [
      [
@@ -9607,13 +9933,41 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "button",
+       "People"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "1280": {
@@ -10182,7 +10536,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 114
+     "names_checked": 110
     },
     "inputs": [
      [
@@ -10276,13 +10630,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "360": {
@@ -10461,7 +10868,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 114
+     "names_checked": 110
     },
     "inputs": [
      [
@@ -10555,13 +10962,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "1280": {
@@ -11064,7 +11524,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 53
+     "names_checked": 51
     },
     "inputs": [
      [
@@ -11118,13 +11578,41 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     },
     "vs_g2_s6_unruled": {
      "w": 390,
@@ -11394,7 +11882,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 53
+     "names_checked": 51
     },
     "inputs": [
      [
@@ -11448,13 +11936,41 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     },
     "vs_g2_s6_unruled": {
      "w": 360,
@@ -12016,7 +12532,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 47
+     "names_checked": 43
     },
     "inputs": [
      [
@@ -12054,13 +12570,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen, Person 4 and 8 more"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen, Person 4 and 8 more"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "360": {
@@ -12276,7 +12845,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 47
+     "names_checked": 43
     },
     "inputs": [
      [
@@ -12314,13 +12883,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen and 9 more"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen and 9 more"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "1280": {
@@ -12938,7 +13560,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 132
+     "names_checked": 128
     },
     "inputs": [
      [
@@ -13048,13 +13670,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "360": {
@@ -13262,7 +13937,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 132
+     "names_checked": 128
     },
     "inputs": [
      [
@@ -13372,13 +14047,66 @@
      },
      "rects_moved": {},
      "text_only_golden": [],
-     "text_only_g2": [],
-     "text_same_order": true,
+     "text_only_g2": [
+      ",",
+      ","
+     ],
+     "text_same_order": false,
      "inputs_same": true,
      "inputs_golden": "same",
      "inputs_g2": "same",
-     "ax_only_golden": [],
-     "ax_only_g2": []
+     "ax_only_golden": [
+      [
+       "heading",
+       "People"
+      ],
+      [
+       "heading",
+       "Charges"
+      ],
+      [
+       "button",
+       "People"
+      ],
+      [
+       "button",
+       "Charges"
+      ]
+     ],
+     "ax_only_g2": [
+      [
+       "heading",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "heading",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "button",
+       "People , Aisyah, Ben, Chen"
+      ],
+      [
+       "button",
+       "Charges , Service 10%, SST 6%"
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "StaticText",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ],
+      [
+       "InlineTextBox",
+       ","
+      ]
+     ]
     }
    },
    "1280": {
@@ -13946,7 +14674,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 165
+     "names_checked": 159
     },
     "inputs": [
      [
@@ -14282,7 +15010,7 @@
         "gap": "normal",
         "textAlign": "right"
        },
-       "text": ", Check service charge"
+       "text": "Check service charge"
       },
       "g2": {
        "style": {
@@ -14516,7 +15244,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 168
+     "names_checked": 162
     },
     "inputs": [
      [
@@ -14731,7 +15459,7 @@
     },
     "shares_word": {
      "hits": [],
-     "names_checked": 165
+     "names_checked": 159
     },
     "inputs": [
      [

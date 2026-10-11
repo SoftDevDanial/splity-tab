@@ -19,7 +19,7 @@ SST at `25`. Same field error as above, the message in two even lines under the 
 
 ## Charges folded with an error (phone)
 **Copy.** Check service charge · Check SST · Check both rates
-The header row's summary turns to error red at 600 with a 16 px warning circle 6 px before the words, right aligned beside the caret. The section name stays in body text, so the row still reads as Charges. The accessible name reads, for example, "Charges, Check SST".
+The header row's summary turns to error red at 600 with a 16 px warning circle 6 px before the words, right aligned beside the caret. The section name stays in body text, so the row still reads as Charges. The button is named "Charges" and described by its summary, for example "Check SST".
 
 ## S4 Copy status (C6)
 | State | Copy | Look |

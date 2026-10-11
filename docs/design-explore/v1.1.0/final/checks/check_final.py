@@ -474,7 +474,8 @@ with sync_playwright() as pw:
                         g2_state(gp, steps, desk)
                         theirs = gp.evaluate(JS_STYLE, gsel)
                         gctx.close()
-                        same = mine is not None and theirs is not None and mine["style"] == theirs["style"] and mine["text"] == theirs["text"]
+                        # g2's header row summary starts with a visually hidden ", " (dropped at step 7, the row is described by its summary now)
+                        same = mine is not None and theirs is not None and mine["style"] == theirs["style"] and mine["text"] == theirs["text"].removeprefix(", ")
                         res[label] = {"same": same, "states": mine, "g2": theirs}
                         check(same, f"{tag}: specimen {label} differs from g2 {mine} {theirs}")
                     out["specimen_vs_g2"] = res

@@ -234,3 +234,8 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Composer agent: final/ with 15 goldens and notes, system.md + system.css (no colour, size or space value changed, --strip-h default 111 px for scriptless goldens, a static stand-ins section for open dialogs, the Prototype states rules removed), MANIFEST, LINKS (48), SELF-CRITIQUE. Its check 778 of 778: 0 console, 0 page errors, 0 network, no sideways scroll, no page scroll at 1280 in all 15, targets 44 px, contrast with glass composited, sums 6926, 11660, 6296, 119387 in whole sen, the strip never over an input, no 'Shares', system.css byte-equal in every golden. Only difference from g2: S6 on a phone opens People (ORCH ruling).
 - Orchestrator check: nothing changed outside final/ (docs/design, 1.0's final/ and round-2 clean in git), all 15 goldens render at 390 and 1280 with 0 console errors, 0 requests, no sideways scroll, no page scroll at 1280, bill-items.html at 390 matches g2.
 - Composer's self-reported bends: two scripts (measure and check), scripts wrote their own results and screenshots inside checks/.
+
+## 2026-10-11 11:58 v1.1.0 step 7 wired and verified
+- flowcheck_v.py split v1.1.0 first run 24 of 32, all eight helper limits (hidden mode radios, the composer's chip taps as points). Helper fixed, 48 of 48 with width-less links at all three widths.
+- One golden defect found while testing names. Chromium's own tree read the phone header rows as "People , Aisyah, Ben, Chen". People and Charges now named by .sec-name and described by .sec-sum, hidden comma gone, nothing visible changed. check_final.py 778 of 778 (specimen compare ignores g2's hidden comma).
+- FLOW-CHECK.md and prototype/ written. Ledger S7 rows 9 and 10.

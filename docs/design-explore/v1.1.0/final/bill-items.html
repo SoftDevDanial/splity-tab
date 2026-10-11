@@ -609,7 +609,7 @@ dialog::backdrop { background: var(--scrim); }
          Below 1024 px People and Charges fold to their header row. Split, Items and the Subtotal never fold. -->
     <section class="work" id="work" aria-label="Edit the bill">
       <div class="blk sec" id="peopleBlk" data-open="false">
-        <h2 class="sec-h"><button type="button" class="sec-btn" id="peopleBtn" aria-expanded="false" aria-controls="peopleBody"><span class="sec-name">People</span><span class="sec-sum" id="peopleSum"><span class="sr">, </span><span class="sec-txt">Aisyah, Ben, Chen</span></span><svg class="ic sec-caret" aria-hidden="true" focusable="false"><use href="#i-caret"/></svg></button></h2>
+        <h2 class="sec-h"><button type="button" class="sec-btn" id="peopleBtn" aria-expanded="false" aria-controls="peopleBody" aria-labelledby="peopleName" aria-describedby="peopleSum"><span class="sec-name" id="peopleName">People</span><span class="sec-sum" id="peopleSum"><span class="sec-txt">Aisyah, Ben, Chen</span></span><svg class="ic sec-caret" aria-hidden="true" focusable="false"><use href="#i-caret"/></svg></button></h2>
         <div class="sec-body" id="peopleBody">
           <div class="sec-in people-in">
             <div class="blk-head">
@@ -626,7 +626,7 @@ dialog::backdrop { background: var(--scrim); }
       </div>
 
       <div class="blk sec" id="chargesBlk" data-open="false">
-        <h2 class="sec-h"><button type="button" class="sec-btn" id="chargesBtn" aria-expanded="false" aria-controls="chargesBody"><span class="sec-name">Charges</span><span class="sec-sum" id="chargesSum"><span class="sr">, </span><span class="sec-txt">Service 10%, SST 6%</span></span><svg class="ic sec-caret" aria-hidden="true" focusable="false"><use href="#i-caret"/></svg></button></h2>
+        <h2 class="sec-h"><button type="button" class="sec-btn" id="chargesBtn" aria-expanded="false" aria-controls="chargesBody" aria-labelledby="chargesName" aria-describedby="chargesSum"><span class="sec-name" id="chargesName">Charges</span><span class="sec-sum" id="chargesSum"><span class="sec-txt">Service 10%, SST 6%</span></span><svg class="ic sec-caret" aria-hidden="true" focusable="false"><use href="#i-caret"/></svg></button></h2>
         <div class="sec-body" id="chargesBody">
           <div class="sec-in">
             <h2 class="blk-h solo" id="chargesH">Charges</h2>

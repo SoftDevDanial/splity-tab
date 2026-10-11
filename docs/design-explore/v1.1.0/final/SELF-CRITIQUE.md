@@ -128,3 +128,6 @@ Brainstorm copy used verbatim is "Enter an amount like 12.50", "Set a charge to 
 - The W1 fade rule reads the screen's height, which matches the build's rule at the three sizes here.
 - The twelve person summary is written for 390 and 360. Wider phones and tablets fit more names, which the build measures.
 - Tablet widths (600 to 1023 px) use the phone layout and have no golden of their own, as in g2.
+
+## After the run, orchestrator (design step 7)
+- **Header row names.** A visually hidden ", " between a flex button's flex items gave "People , Aisyah, Ben, Chen" in Chromium's own accessibility tree (a space is added between flex items). The People and Charges buttons are now named by `.sec-name` (`aria-labelledby`) and described by `.sec-sum` (`aria-describedby`), the hidden comma is gone. Measured after the change, name "People", description "Aisyah, Ben, Chen" (at 360 in S7 the narrow summary), and "Charges" with "Check service charge" on a rate error. Nothing visible changed.

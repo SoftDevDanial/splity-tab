@@ -55,7 +55,7 @@ Charges are shared in proportion to items, rounded down (Aisyah 986 x 2490 / 594
 | Split switch | Even · By item |
 | Receipt | Total · Subtotal · Service 10% · SST 6% · Splits · items + charges · Adds up to · 1 sen left over · Top of the list · Copy summary |
 | Strip | Total · Splits · Copy summary |
-| Accessible names | Bill and splits (card region) · Edit the bill (working region) · People, Aisyah, Ben, Chen and Charges, Service 10%, SST 6% (header rows) · Person 1 name to Person 3 name · Remove Aisyah, Remove Ben, Remove Chen · Item 1 name to Item 4 name · Nasi lemak ayam price in RM (and each item) · Remove Nasi lemak ayam (and each item) · Who had Nasi lemak ayam (and each item) · Spare sen: Top of the list. Change (the chip) · Splits (the strip button, which controls the sheet) |
+| Accessible names | Bill and splits (card region) · Edit the bill (working region) · People and Charges (header rows, each described by its summary, here Aisyah, Ben, Chen and Service 10%, SST 6%) · Person 1 name to Person 3 name · Remove Aisyah, Remove Ben, Remove Chen · Item 1 name to Item 4 name · Nasi lemak ayam price in RM (and each item) · Remove Nasi lemak ayam (and each item) · Who had Nasi lemak ayam (and each item) · Spare sen: Top of the list. Change (the chip) · Splits (the strip button, which controls the sheet) |
 | Hidden working | Each split's working reads "Items 24.90 + charges 4.14" to a screen reader, "24.90 + 4.14" on screen |
 
 **What Copy summary puts on the clipboard** (the 1.0 format, unchanged, never shown on screen).
