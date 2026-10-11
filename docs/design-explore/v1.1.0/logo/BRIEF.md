@@ -57,16 +57,32 @@ S8 passed QA 25 of 28. S9 was retired for concept legibility 0, a table for four
 
 **Every new direction must avoid** what this round has already learned. No letter but S, nothing that reads as a D. No face (two marks over one inside a block). No stock document, notes or ID icon, no squared S or digital 5, no blocks over a bar (computer, toilet), no sock or boot. No stock UI glyph that means something else in an app header (notification badge, status dot, spinner, hamburger menu, copy, printer, trash, battery, upload tray, layout grid). No category cliché (zigzag receipt, pie wedges, divided circle, coins, currency signs, equals or percent signs, two-colour S). No bar chart (finance and analytics).
 
+## Round 2, six more variants (owner, 2026-10-11 22:10)
+He saw S3 and S8 and answered "Neither. Why is there only 2 suggestions? I thought theres S10 meaning 10 variants? Try give more variants next time", then chose a new round of six. **Every variant is shown to him with QA's verdict beside it**, passed or not, and each sheet's two "Also tried" sketches count as variants too. A FAIL is not revised before he sees it. He revises what he picks.
+
+Each lane follows the lane rule above (three candidates on the 16 grid, keep the strongest, show the other two). Every lane must still avoid the list above, and must not repeat a round 1 drawing (`round-1/s1.html` to `s10.html`, contact sheet in `QA.md`).
+
+| Id | Lane | Source |
+|---|---|---|
+| S11 | Lettermark S | An S with one idea of its own, the split or the receipt in how it is built. Not a plain bold S (S2) and not a squared S (S6) |
+| S12 | Brand carry-over, build on 1.0 | The 1.0 mark (`../../../brand/mark.svg`, an equals sign whose top bar is cut once, two to one) plus one touch from the v1.1.0 glass receipt (the foil sheen on its top edge, the proof row, the dashed rule), the way Streaky Habit's approved T6 builds on its 1.0 mark. The equals ban does not apply to this lane only |
+| S13 | Pictorial, the Malaysian table | One thing from a shared Malaysian meal (a mamak table, a teh tarik glass, a banana leaf, a shared plate, a tiffin carrier), reduced to one flat shape that carries the sharing. Never cute, no mascot, no faces, no figures |
+| S14 | Negative space, dual meaning | One silhouette whose counter or cut holds a second reading tied to splitting a bill. Not S3's check |
+| S15 | Abstract, curved | Round 1 was all straight edges. Shares drawn with curves (a ribbon, a drop, arcs that close into one shape). Not a pie, a divided circle or a yin yang |
+| S16 | Wild card | The designer's own lane, any logo type the five above do not use, with one sentence on why it fits a calm, exact, friendly bill splitter |
+
+**Light grounds.** The owner had no preference, so the Streaky Habit ruling is followed for consistency. The mark is `#A3AAFF` on dark and `#1E2140` on light (the light card already uses it). The favicon carries both, `<style>.fi{fill:#A3AAFF}@media (prefers-color-scheme:light){.fi{fill:#1E2140}}</style>` on a `class="fi"` path, no tile.
+
 ## Output contract
 A self-contained HTML brand sheet, exactly 1440 x 900, background `#0c0d10`, inline CSS and SVG only, no network, system fonts only (`'Segoe UI', system-ui, sans-serif`). Four sections.
 1. **Hero.** The mark about 240 px, centred, in `#A3AAFF`, with the direction's id and one-sentence idea beneath in muted text (sentence case, no all caps).
 2. **In the app.** The real header row, top bar `#10141B`, mark 28 px in `#A3AAFF`, the word "Splity Tab" 19 px 700 in `#E8EBF2`, a 10 px gap. Beside it the same lockup at 2x for detail.
-3. **Legibility.** The mark at 96, 48, 28 and 18 px, then the favicon tile at 32 and 16 px at their actual pixel size, each with a small px label.
+3. **Legibility.** The mark at 96, 48, 28 and 18 px, then the favicon at 32 and 16 px at their actual pixel size, each on a dark tab ground `#35363A` and a white one `#FFFFFF` (no tile, white tab in `#1E2140`), each with a small px label.
 4. **Swatches.** The lockup on a dark card `#15171c` and on a light card `#f7f6f3` (mark and word in `#1E2140`), and the mark alone in pure black on white and pure white on black.
 
 Put the production sources in the sheet so they can be lifted without guessing.
 - `<svg id="mark-src" viewBox="..." aria-hidden="true">` holding only the mark's path(s) with `fill="currentColor"` and nothing else.
-- `<svg id="favicon-src" viewBox="0 0 16 16">` holding only the pixel-snapped mark in the brand colour, no tile rect, transparent.
+- `<svg id="favicon-src" viewBox="0 0 16 16">` holding only the light-ground style and the pixel-snapped mark path with `class="fi" fill="#A3AAFF"`, no tile rect, transparent. The tab icon `<link rel="icon">` data URI is the same file.
 Both sit at the end of the body hidden with `style="display:none"` (the `hidden` attribute does not hide an svg in Chromium, so the sheet must stay exactly 900 px tall).
 
 Write the complete file (it must end with `</html>`) to the path you are given. Then reply with one line, the idea, the path and an honest self-critique naming the rubric criterion a reviewer is most likely to dock.
