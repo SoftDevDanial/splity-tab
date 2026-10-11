@@ -19,6 +19,8 @@ All thirteen rules in "Interaction rules I specified, or carried from g2" of `fi
 ## The mark (USER)
 Redraw the mark with the logo-design skill. Four directions, each checked by a separate QA agent, and the owner picks one on the design board. Splity Tab's mark grows from the glass receipt. No "Danial" and no "D" in the mark. The pick replaces the one inline `<svg class="mark">` and the tab icon's data URI in every golden (open question 5), then `final/checks/check_final.py` runs again.
 
+**Source widened (USER, 2026-10-11 17:40).** Seven receipt directions were drawn and six retired at QA, because at 28 and 16 px a receipt is a plain rectangle and only a check (S3) lands on it (`logo/QA.md`). The owner chose to keep the receipt as the root and let the mark grow from what it does, the split into shares, the people at the table, the sheet that lifts, not only the paper object. Three new directions, the same QA bar (constraint 7 stays). S3 stays in the set.
+
 ## The receipt when the bill cannot be worked out (ORCH, told to the owner)
 Open questions 1 and 2 asked whether a rate or a price that is not valid may count as 0 or be left out, as g2 did. The sealed 1.0 spec already settles it. Core R18 blocks the result and app R17 words the message, so there is no Total to copy. 1.1.0 keeps 1.0's order and uses the approved copy.
 

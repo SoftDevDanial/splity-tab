@@ -42,6 +42,19 @@ S2 was retired for distinctiveness 0 (a plain bold S at the real sizes) and S4 f
 
 S5 was retired for concept legibility 0 and a letter reading (an L, a b or a sock at 28 and 16 px). S7 replaces it.
 
+## The source, widened (owner, 2026-10-11 17:40)
+S6 and S7 were retired too (a squared S or digital 5, and a face). Six of seven receipt directions failed for one reason, at 28 and 16 px a receipt is a plain rectangle and only a check lands on it (S3). The owner kept the receipt as the root and widened the source to **what the receipt does**: the split into shares, the people at the table, the sheet that lifts. Constraint 7 stays. S3 stays in the set.
+
+Each new direction is a lane, not a fixed drawing. The designer first sketches three candidate ideas for the lane on the 16 px grid (on the sheet, small, with one line each on what a stranger would call it), keeps the one with the strongest 16 px read, then draws it. The sheet shows the two rejected candidates in a small "Also tried" row.
+
+| Id | Lane | Source |
+|---|---|---|
+| S8 | Abstract geometric | **The split into shares.** One whole divided into unequal shares that still make the whole, a bill rarely splits evenly. The 1.0 cut (two to one) may carry over, not required |
+| S9 | Pictorial or symbolic | **The people at the table.** A few friends around one bill, the table that shares it. Never cute, no mascot, no faces |
+| S10 | Motion or emblem, app icon first | **The sheet that lifts.** On a phone the receipt docks as a strip at the bottom and lifts into a sheet. The mark carries the lift |
+
+**Every new direction must avoid** what this round has already learned. No letter but S, nothing that reads as a D. No face (two marks over one inside a block). No stock document, notes or ID icon, no squared S or digital 5, no blocks over a bar (computer, toilet), no sock or boot. No stock UI glyph that means something else in an app header (notification badge, status dot, spinner, hamburger menu, copy, printer, trash, battery, upload tray, layout grid). No category cliché (zigzag receipt, pie wedges, divided circle, coins, currency signs, equals or percent signs, two-colour S). No bar chart (finance and analytics).
+
 ## Output contract
 A self-contained HTML brand sheet, exactly 1440 x 900, background `#0c0d10`, inline CSS and SVG only, no network, system fonts only (`'Segoe UI', system-ui, sans-serif`). Four sections.
 1. **Hero.** The mark about 240 px, centred, in `#A3AAFF`, with the direction's id and one-sentence idea beneath in muted text (sentence case, no all caps).
