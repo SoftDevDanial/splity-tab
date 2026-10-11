@@ -39,3 +39,5 @@ Open questions 1 and 2 asked whether a rate or a price that is not valid may cou
 - An empty field never shows an inline error (1.0 ruling 1). It still blocks with its message. A blank rate does not count as 0.
 - Folded on a phone, Charges shows its "Check" marker whenever a rate blocks the receipt, blank or not valid, with the approved copy ("Check service charge", "Check SST", "Check both rates"). A Charges summary never reads "Service 0%" for a blank rate. ORCH, it reuses the marker and its copy, nothing new.
 - For the plan phase. Row c widens 1.0's core R18 (c) from "no items" to "no item has a valid price", as the approved copy list words it ("By item with no valid price"). Its line replaces 1.0's "Add an item to see the shares." Every app R17 message takes "splits" for "shares".
+
+**Finalize gate (USER, 2026-10-11 23:45).** Asked to approve the v1.1.0 final golden sets for both apps (Streaky Habit 9 screens with T6, Splity Tab 15 screens with S12) and to replace 1.0's goldens in `docs/design/` with them (1.0's stay in tag v1.0.0), he answered "Yes, but later". Approved. The copy into `docs/design/` runs in the next session.
