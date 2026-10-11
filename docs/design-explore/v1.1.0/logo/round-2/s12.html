@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<meta name="color-scheme" content="dark">
+<title>Splity Tab logo, round 2, S12, the cut equals on a receipt</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cstyle%3E.fi{fill:%23A3AAFF}@media (prefers-color-scheme:light){.fi{fill:%231E2140}}%3C/style%3E%3Cpath class='fi' fill='%23A3AAFF' fill-rule='evenodd' d='M0,15V2A2,2,0,0,1,2,0H13A2,2,0,0,1,15,2V14L13,13L10,15L8,13L6,16L2,13ZM1,12L2,11L6,14L8,11L10,13L13,11L14,11.5V2A1,1,0,0,0,13,1H2A1,1,0,0,0,1,2ZM3,3H7A1,1,0,0,1,7,5H3A1,1,0,0,1,3,3ZM11,3H12A1,1,0,0,1,12,5H11A1,1,0,0,1,11,3ZM3,7H12A1,1,0,0,1,12,9H3A1,1,0,0,1,3,7Z'/%3E%3C/svg%3E">
+<style>
+/*
+  Splity Tab, logo round 2, S12, brand carry-over built on the 1.0 mark (docs/brand/mark.svg). The owner's direction,
+  reading B of sketch-split-receipt.png. A receipt drawn as an outline with rounded top corners and a hand torn foot,
+  the 1.0 cut equals inside it in solid bars. Transparent inside and out, no tile.
+  One silhouette, three optical sizes, each one path with fill-rule evenodd (outer edge, inner edge, three bars).
+  Display master, mark-src, 56 grid, 48 px and up. Receipt 4 to 52 by 2 to 54, frame 3, top corners 6 outside and
+  3 inside. Bars 5, rows 15 to 20 and 24 to 29, long share 14 to 30, cut 4, short share 34 to 42, whole bar 14 to 42.
+  Header drawing, mark28-src, 28 grid, 1 unit per pixel at 28 px. Receipt 2 to 26 by 1 to 27, frame 2, corners 3 and 1.
+  Bars 3 with round ends, rows 7 to 10 and 12 to 15, shares 7 to 15 and 17 to 21, whole bar 7 to 21, so 8, 2 and 4
+  are exactly 1.0's 24, 6 and 12 over 3. Every straight edge sits on a whole pixel.
+  Tear, outer edge on 28: (2,26) (6,22) (12,27) (15,23) (17,26) (22,22) (26,25). Two teeth and two corner tips, all of
+  different width, depth and lean, the tips climbing from 27 to 25 toward the right. The inner edge is each facet
+  offset by the frame width and mitred where facets meet, so the outline runs along the tear at an even weight.
+  Favicon, favicon-src, its own 16 grid. Receipt 0 to 15 by 0 to 16, frame 1, corners 2 and 1, bars 2, shares 2 to 8
+  and 10 to 13, whole bar 2 to 13, tear (0,15) (2,13) (6,16) (8,13) (10,15) (13,13) (15,14), inner edge 2 px above.
+  One flat fill. No stroke, no gradient, no opacity. Sources at the end of the body.
+*/
+:root {
+  --app: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --num: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, "Roboto Mono", monospace;
+  --mono: 'Cascadia Code', 'Consolas', monospace;
+  --hair: rgba(255, 255, 255, 0.06);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  width: 1440px; height: 900px; overflow: hidden;
+  background: #0c0d10; color: #E8EBF2;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h2, p, figure { margin: 0; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.mk { display: block; flex: none; fill: #A3AAFF; }
+
+/* ---------- sheet grid ---------- */
+.sheet {
+  width: 1440px; height: 900px; padding: 32px 48px 48px;
+  display: grid; grid-template-columns: 532px 792px; grid-template-rows: 24px 772px;
+  column-gap: 20px; row-gap: 24px;
+}
+.head {
+  grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; line-height: 24px; color: #6F7789;
+}
+.head b { color: #E8EBF2; font-weight: 600; }
+.sep { margin: 0 8px; color: #3A404C; }
+.lbl { display: flex; align-items: center; gap: 10px; height: 18px; font-size: 13px; line-height: 18px; font-weight: 600; color: #A7AFBF; }
+.lbl .n { font-family: var(--mono); font-size: 11px; font-weight: 400; color: #5F6878; }
+
+/* ---------- 1 hero, construction and pressure tests ---------- */
+.hero { position: relative; }
+.hero > .lbl { position: absolute; left: 0; top: 0; }
+/* 252 px box, the 56 grid at 4.5x. Faint 9 px grid, one cell per pixel of the 28 px header */
+.hstage {
+  position: absolute; left: 140px; top: 32px; width: 252px; height: 252px;
+  background-image:
+    linear-gradient(to right, rgba(163, 170, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(163, 170, 255, 0.055) 1px, transparent 1px);
+  background-size: 9px 9px;
+}
+.cap { position: absolute; left: 0; right: 0; top: 296px; text-align: center; }
+.cap .t { font-size: 15px; line-height: 22px; font-weight: 600; color: #A7AFBF; }
+.cap .id { margin-right: 10px; font-family: var(--mono); font-size: 13px; font-weight: 400; color: #7A84A0; }
+.cap .s { width: 470px; margin: 6px auto 0; font-size: 14px; line-height: 22px; color: #8A92A3; }
+.cap .spec { margin-top: 8px; font-size: 12px; line-height: 18px; color: #6F7789; }
+
+.cons { position: absolute; left: 0; right: 0; top: 412px; }
+.cons .lbl { margin-bottom: 10px; }
+.cons p { font-size: 11.5px; line-height: 16px; color: #7C8496; }
+.cons b { font-weight: 600; color: #A7AFBF; }
+
+.tests { position: absolute; left: 0; right: 0; top: 608px; }
+.tests .lbl { margin-bottom: 8px; }
+.tests ul { list-style: none; margin: 0; padding: 0; }
+.tests li { font-size: 11.5px; line-height: 17px; color: #7C8496; white-space: nowrap; }
+.tests li b { margin-right: 6px; font-weight: 600; color: #A7AFBF; }
+
+/* ---------- right column ---------- */
+.right { position: relative; display: flex; flex-direction: column; gap: 40px; }
+.right::before { content: ""; position: absolute; left: -10px; top: 0; bottom: 0; width: 1px; background: var(--hair); }
+.right > section { position: relative; }
+.right > section + section::before { content: ""; position: absolute; left: 0; right: 0; top: -20px; height: 1px; background: var(--hair); }
+.right .lbl { margin-bottom: 14px; }
+.s2 { height: 184px; }
+.s3 { height: 242px; }
+.s4 { height: 266px; }
+
+/* ---------- 2 in the app ---------- */
+.row { display: flex; gap: 24px; }
+.s2 figure { width: 384px; }
+.s2 figcaption { margin-top: 8px; font-size: 12px; line-height: 16px; color: #7C8496; }
+.win { position: relative; height: 128px; border-radius: 12px; overflow: hidden; outline: 1px solid rgba(255, 255, 255, 0.07); outline-offset: -1px; }
+.w1 { background: #151A23; }
+.tb {
+  height: 65px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+  background: #10141B; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.word { font: 700 19px/24px var(--app); letter-spacing: -0.01em; color: #E8EBF2; white-space: nowrap; }
+.nb {
+  display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px;
+  border: 1px solid #6E7891; border-radius: 10px; font: 600 15px/20px var(--app); color: #E8EBF2; white-space: nowrap;
+}
+.nb svg { width: 18px; height: 18px; fill: #A7AFBF; }
+.pg { position: relative; height: 63px; }
+.gc {
+  position: absolute; left: 20px; top: 8px; width: 236px; height: 90px; overflow: hidden;
+  border: 1px solid rgba(163, 170, 255, 0.30); border-bottom: 0; border-radius: 22px 22px 0 0;
+  background: linear-gradient(155deg, rgba(200, 206, 255, 0.10) 0%, rgba(150, 158, 235, 0.04) 40%, rgba(8, 10, 14, 0.34) 100%), rgba(27, 33, 43, 0.5);
+  box-shadow: inset 0 1px 0 rgba(232, 235, 255, 0.18);
+}
+.gc i { display: block; height: 3px; background: linear-gradient(90deg, #5059DA 0%, #7C85F7 25%, #C9CDFF 50%, #7C85F7 75%, #5059DA 100%); }
+.gc .gl { display: block; padding: 6px 18px 0; font: 600 12px/16px var(--app); color: #E8EBF2; }
+.gc .ga { display: block; padding: 2px 18px 0; font: 600 22px/24px var(--num); letter-spacing: -0.03em; color: #F4F5FF; }
+.gc .ga small { font-size: 11px; letter-spacing: 0; color: #E8EBF2; }
+.w2 { display: flex; align-items: center; padding-left: 32px; background: #10141B; }
+.b2 { gap: 20px; }
+.b2 .word { font-size: 38px; line-height: 48px; }
+
+/* ---------- 3 legibility ---------- */
+.stage { position: relative; display: flex; height: 152px; background: #10141B; border-radius: 12px; outline: 1px solid rgba(255, 255, 255, 0.05); outline-offset: -1px; }
+.stage::after { content: ""; position: absolute; left: 528px; top: 24px; bottom: 40px; width: 1px; background: rgba(255, 255, 255, 0.07); }
+.cell { width: 132px; padding-top: 16px; display: flex; flex-direction: column; align-items: center; }
+.box { width: 132px; height: 100px; display: flex; align-items: center; justify-content: center; }
+.tabs { width: 104px; height: 100px; display: flex; flex-direction: column; border-radius: 10px; overflow: hidden; }
+.tabs span { flex: 1; display: flex; align-items: center; justify-content: center; }
+.tabs .dk { background: #35363A; }
+.tabs .lt { background: #FFFFFF; }
+.px { margin-top: 8px; font: 400 11px/16px var(--mono); color: #7C8496; white-space: nowrap; }
+.note { margin-top: 10px; font-size: 12px; line-height: 16px; color: #6F7789; }
+.note b { font-weight: 600; color: #A7AFBF; }
+
+/* ---------- 4 swatches ---------- */
+.grid { display: grid; grid-template-columns: 388px 388px; grid-auto-rows: 110px; gap: 14px 16px; }
+.tile { display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 32px; border-radius: 14px; }
+.tag { font: 400 11px/16px var(--mono); text-align: right; white-space: nowrap; }
+.marks { display: flex; align-items: center; gap: 28px; }
+.t-dark { background: #15171c; outline: 1px solid rgba(255, 255, 255, 0.06); outline-offset: -1px; }
+.t-dark .tag { color: #6F7789; }
+.t-light { background: #f7f6f3; }
+.t-light .mk { fill: #1E2140; }
+.t-light .word { color: #1E2140; }
+.t-light .tag { color: #8A8984; }
+.t-bw { background: #ffffff; }
+.t-bw .mk { fill: #000000; }
+.t-bw .tag { color: #8C8C8C; }
+.t-wb { background: #000000; outline: 1px solid rgba(255, 255, 255, 0.08); outline-offset: -1px; }
+.t-wb .mk { fill: #ffffff; }
+.t-wb .tag { color: #7A7A7A; }
+</style>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <!-- Display master, 56 grid, 48 px and up. Byte for byte the path in #mark-src -->
+  <symbol id="mL" viewBox="0 0 56 56"><path fill-rule="evenodd" d="M4,52V8A6,6,0,0,1,10,2H46A6,6,0,0,1,52,8V50L44,44L34,52L30,46L24,54L12,44ZM7,44.76L11.82,39.94L23.49,49.67L30.14,40.81L34.68,47.61L43.94,40.21L49,44V8A3,3,0,0,0,46,5H10A3,3,0,0,0,7,8ZM16.5,15H27.5A2.5,2.5,0,0,1,27.5,20H16.5A2.5,2.5,0,0,1,16.5,15ZM36.5,15H39.5A2.5,2.5,0,0,1,39.5,20H36.5A2.5,2.5,0,0,1,36.5,15ZM16.5,24H39.5A2.5,2.5,0,0,1,39.5,29H16.5A2.5,2.5,0,0,1,16.5,24Z"/></symbol>
+  <!-- Header drawing, 28 grid, 1 unit per pixel at 28 px. Byte for byte the path in #mark28-src -->
+  <symbol id="m28" viewBox="0 0 28 28"><path fill-rule="evenodd" d="M2,26V4A3,3,0,0,1,5,1H23A3,3,0,0,1,26,4V25L22,22L17,26L15,23L12,27L6,22ZM4,21.17L5.88,19.29L11.66,24.12L15.1,19.54L17.45,23.08L21.96,19.47L24,21V4A1,1,0,0,0,23,3H5A1,1,0,0,0,4,4ZM8.5,7H13.5A1.5,1.5,0,0,1,13.5,10H8.5A1.5,1.5,0,0,1,8.5,7ZM18.5,7H19.5A1.5,1.5,0,0,1,19.5,10H18.5A1.5,1.5,0,0,1,18.5,7ZM8.5,12H19.5A1.5,1.5,0,0,1,19.5,15H8.5A1.5,1.5,0,0,1,8.5,12Z"/></symbol>
+  <!-- Favicon drawing, its own 16 grid. Byte for byte the path in #favicon-src -->
+  <symbol id="m16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0,15V2A2,2,0,0,1,2,0H13A2,2,0,0,1,15,2V14L13,13L10,15L8,13L6,16L2,13ZM1,12L2,11L6,14L8,11L10,13L13,11L14,11.5V2A1,1,0,0,0,13,1H2A1,1,0,0,0,1,2ZM3,3H7A1,1,0,0,1,7,5H3A1,1,0,0,1,3,3ZM11,3H12A1,1,0,0,1,12,5H11A1,1,0,0,1,11,3ZM3,7H12A1,1,0,0,1,12,9H3A1,1,0,0,1,3,7Z"/></symbol>
+  <symbol id="fav" viewBox="0 0 16 16"><use href="#m16" x="0" y="0" width="16" height="16" fill="#A3AAFF"/></symbol>
+  <symbol id="favl" viewBox="0 0 16 16"><use href="#m16" x="0" y="0" width="16" height="16" fill="#1E2140"/></symbol>
+  <!-- Phosphor plus (MIT), the app's own New bill icon. Not the mark -->
+  <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+</svg>
+
+<main class="sheet">
+  <header class="head">
+    <div><b>Splity Tab</b><span class="sep">·</span>Logo round 2<span class="sep">·</span>S12, brand carry-over, built on 1.0, the owner's direction</div>
+    <div>v1.1.0<span class="sep">·</span>three optical sizes, one flat fill<span class="sep">·</span>#A3AAFF</div>
+  </header>
+
+  <!-- 1 Hero -->
+  <section class="hero" aria-label="Hero">
+    <h2 class="lbl"><span class="n">1</span>Hero</h2>
+    <div class="hstage">
+      <svg class="mk" width="252" height="252" viewBox="0 0 56 56" role="img" aria-label="Splity Tab mark, S12"><use href="#mL"/></svg>
+    </div>
+    <div class="cap">
+      <p class="t"><span class="id">S12</span>The cut equals on a receipt</p>
+      <p class="s">The 1.0 cut equals in solid bars on a receipt drawn in outline and torn off by hand, the shares still adding back to the total.</p>
+      <p class="spec">Display master<span class="sep">·</span>56 grid at 4.5x<span class="sep">·</span>frame 3, bars 5, cut 4<span class="sep">·</span>one path, evenodd</p>
+    </div>
+
+    <div class="cons">
+      <h2 class="lbl"><span class="n">1a</span>Construction</h2>
+      <p><b>Three optical sizes, one silhouette.</b> Display master on a 56 grid from 48 px up, frame 3 and bars 5 (sketch B is 4.7 and 7). Header drawing on the 28 grid, frame 2 and bars 3, every straight edge on a whole pixel. Favicon redrawn on its own 16 grid. <b>Receipt.</b> 24 by 26 on 28 (sketch B 21 by 24.5), top corners 3 outside, 1 inside. <b>Cut equals.</b> Shares 8 and 4, cut 2, 1.0's 24, 12 and 6 over 3, ends flush. Rows 3, 2, 3 against 1.0's 9, 15, 9. <b>Tear.</b> Two teeth and two corner tips, each a different width, depth and lean, tips at 26, 27, 26 and 25, so the edge climbs right like a hand tear. The inner edge is each facet offset by the frame width, mitred where facets meet, so the outline follows the tear. Teeth 9 and 7 wide, the fewest and largest that keep a dip of 3 or more inside the frame.</p>
+    </div>
+
+    <div class="tests">
+      <h2 class="lbl"><span class="n">1b</span>Pressure tests</h2>
+      <ul>
+        <li><b>Reads first</b>A receipt at 28 and 16 px. The stock receipt icon is the closest call.</li>
+        <li><b>Stock receipt icon</b>Even zigzag, equal lines. Here a hand tear and the 1.0 cut.</li>
+        <li><b>Document, notes</b>The second read at 16 px. A page has a straight foot, not a tear.</li>
+        <li><b>Ghost with eyes</b>Square shoulders, no dome. The top row is a line with a break.</li>
+        <li><b>Face</b>S7's failure. Shares 8 and 4, flush with the bar below, read as print.</li>
+        <li><b>Calculator, battery</b>No key grid, no terminal nub, and both have a straight foot.</li>
+        <li><b>List or menu</b>Bare bars, often three. Here two rows held inside a frame.</li>
+        <li><b>Letter D</b>Both sides straight, both shoulders alike, no bowl.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="right">
+    <!-- 2 In the app -->
+    <section class="s2" aria-label="In the app">
+      <h2 class="lbl"><span class="n">2</span>In the app</h2>
+      <div class="row">
+        <figure>
+          <div class="win w1">
+            <div class="tb">
+              <div class="brand"><svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+              <span class="nb"><svg viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>New bill</span>
+            </div>
+            <div class="pg">
+              <div class="gc" aria-hidden="true"><i></i><span class="gl">Total</span><span class="ga"><small>RM </small>69.26</span></div>
+            </div>
+          </div>
+          <figcaption>Header at 1x. 28 px header drawing, 10 px gap, 19 px word</figcaption>
+        </figure>
+        <figure>
+          <div class="win w2">
+            <div class="brand b2"><svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+          </div>
+          <figcaption>The same header lockup at 2x, for detail</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3 Legibility -->
+    <section class="s3" aria-label="Legibility">
+      <h2 class="lbl"><span class="n">3</span>Legibility</h2>
+      <div class="stage">
+        <div class="cell"><div class="box"><svg class="mk" width="96" height="96" viewBox="0 0 56 56" aria-hidden="true" focusable="false"><use href="#mL"/></svg></div><span class="px">96 px</span></div>
+        <div class="cell"><div class="box"><svg class="mk" width="48" height="48" viewBox="0 0 56 56" aria-hidden="true" focusable="false"><use href="#mL"/></svg></div><span class="px">48 px</span></div>
+        <div class="cell"><div class="box"><svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">28 px slot</span></div>
+        <div class="cell"><div class="box"><svg class="mk" width="18" height="18" viewBox="-1 -1 18 18" aria-hidden="true" focusable="false"><use href="#m16" x="0" y="0" width="16" height="16"/></svg></div><span class="px">18 px, 16 grid 1:1</span></div>
+        <div class="cell"><div class="tabs"><span class="dk"><svg width="32" height="32" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></span><span class="lt"><svg width="32" height="32" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#favl"/></svg></span></div><span class="px">32 px favicon</span></div>
+        <div class="cell"><div class="tabs"><span class="dk"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></span><span class="lt"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#favl"/></svg></span></div><span class="px">16 px favicon</span></div>
+      </div>
+      <p class="note">96 and 48 px draw the display master, 28 px the header drawing, 18 px and both tabs the 16 grid drawing 1:1. <b>The 16 px trade.</b> A 1 px frame and a 1 px gap at each bar end, since two to one with a 2 px cut needs an 11 px bar and the receipt is 13 inside. Both are 2 px at 32. The tear band is about 1.4 px so its diagonals hold. No tile, dark tab above, white tab below in #1E2140.</p>
+    </section>
+
+    <!-- 4 Swatches -->
+    <section class="s4" aria-label="Swatches">
+      <h2 class="lbl"><span class="n">4</span>Swatches</h2>
+      <div class="grid">
+        <div class="tile t-dark">
+          <div class="brand b2"><svg class="mk" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true" focusable="false"><use href="#mL"/></svg><span class="word">Splity Tab</span></div>
+          <span class="tag">Dark card<br>#15171c</span>
+        </div>
+        <div class="tile t-light">
+          <div class="brand b2"><svg class="mk" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true" focusable="false"><use href="#mL"/></svg><span class="word">Splity Tab</span></div>
+          <span class="tag">Light card<br>#f7f6f3</span>
+        </div>
+        <div class="tile t-bw">
+          <div class="marks">
+            <svg class="mk" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true" focusable="false"><use href="#mL"/></svg>
+            <svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m16"/></svg>
+          </div>
+          <span class="tag">Black on white<br>#000 on #fff</span>
+        </div>
+        <div class="tile t-wb">
+          <div class="marks">
+            <svg class="mk" width="56" height="56" viewBox="0 0 56 56" aria-hidden="true" focusable="false"><use href="#mL"/></svg>
+            <svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m16"/></svg>
+          </div>
+          <span class="tag">White on black<br>#fff on #000</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Production sources. Lift these. mark-src from 48 px up (README, brand files), mark28-src for the 28 px app header
+     and anything from 20 to 47 px, favicon-src below 20 px and for the tab icon. Hidden so the sheet stays 900 px tall -->
+<svg id="mark-src" viewBox="0 0 56 56" aria-hidden="true" style="display:none"><path fill="currentColor" fill-rule="evenodd" d="M4,52V8A6,6,0,0,1,10,2H46A6,6,0,0,1,52,8V50L44,44L34,52L30,46L24,54L12,44ZM7,44.76L11.82,39.94L23.49,49.67L30.14,40.81L34.68,47.61L43.94,40.21L49,44V8A3,3,0,0,0,46,5H10A3,3,0,0,0,7,8ZM16.5,15H27.5A2.5,2.5,0,0,1,27.5,20H16.5A2.5,2.5,0,0,1,16.5,15ZM36.5,15H39.5A2.5,2.5,0,0,1,39.5,20H36.5A2.5,2.5,0,0,1,36.5,15ZM16.5,24H39.5A2.5,2.5,0,0,1,39.5,29H16.5A2.5,2.5,0,0,1,16.5,24Z"/></svg>
+<svg id="mark28-src" viewBox="0 0 28 28" aria-hidden="true" style="display:none"><path fill="currentColor" fill-rule="evenodd" d="M2,26V4A3,3,0,0,1,5,1H23A3,3,0,0,1,26,4V25L22,22L17,26L15,23L12,27L6,22ZM4,21.17L5.88,19.29L11.66,24.12L15.1,19.54L17.45,23.08L21.96,19.47L24,21V4A1,1,0,0,0,23,3H5A1,1,0,0,0,4,4ZM8.5,7H13.5A1.5,1.5,0,0,1,13.5,10H8.5A1.5,1.5,0,0,1,8.5,7ZM18.5,7H19.5A1.5,1.5,0,0,1,19.5,10H18.5A1.5,1.5,0,0,1,18.5,7ZM8.5,12H19.5A1.5,1.5,0,0,1,19.5,15H8.5A1.5,1.5,0,0,1,8.5,12Z"/></svg>
+<svg id="favicon-src" viewBox="0 0 16 16" style="display:none"><style>.fi{fill:#A3AAFF}@media (prefers-color-scheme:light){.fi{fill:#1E2140}}</style><path class="fi" fill="#A3AAFF" fill-rule="evenodd" d="M0,15V2A2,2,0,0,1,2,0H13A2,2,0,0,1,15,2V14L13,13L10,15L8,13L6,16L2,13ZM1,12L2,11L6,14L8,11L10,13L13,11L14,11.5V2A1,1,0,0,0,13,1H2A1,1,0,0,0,1,2ZM3,3H7A1,1,0,0,1,7,5H3A1,1,0,0,1,3,3ZM11,3H12A1,1,0,0,1,12,5H11A1,1,0,0,1,11,3ZM3,7H12A1,1,0,0,1,12,9H3A1,1,0,0,1,3,7Z"/></svg>
+</body>
+</html>
