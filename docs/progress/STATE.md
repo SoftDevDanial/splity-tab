@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design, logo round 1 in progress (S3 passed, S1 and S2 retired, S4 and S5 next)
-- **next:** logo round (redraw the mark from the glass receipt, four directions, QA-checked, he picks on the design board), swap the mark and favicon into every golden, rerun check_final.py, finalize gate (his approval AND his word to replace 1.0's goldens), then plan (sdlc 2.5.0 is installed)
+- **phase:** v1.1.0 design, logo done (S12 approved and swapped into final/), finalize gate next
+- **next:** finalize gate (step 9), ask him explicitly to approve the final set AND to replace 1.0's goldens in docs/design/ (1.0's stay in tag v1.0.0), then STATE design done, skills-loaded declaration, sdlc:plan with the R18 (c) delta
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-Logo round 1 in docs/design-explore/v1.1.0/logo/ (BRIEF.md, QA.md, round-1/). S3 passed QA 26 of 28. S1 and S2 retired at their structural limits. Next S4, S5 (and S6 if needed), each rendered by the orchestrator and QA-checked, then the board on port 4555. Details in `HANDOFF-2026-10-11c.md` at the showcase root.
+Logo closed for Splity Tab. The owner kept the 1.0 cut equals and tweaked it, S12, a thin receipt outline with a hand torn foot behind the cut equals, transparent. QA PASS 26 of 28 after two craft revisions. Approved with the favicon's 1 px frame exception, the empty state shows S12 muted. Swapped into the 15 final goldens (mark, tab icon, i-mark empty state, desktop brand offset 1 px). check_final.py 748 of 748 (it now expects i-mark), FLOW-CHECK 48 of 48. Ledger S7. Next is the finalize gate for both apps, his explicit word before anything is copied into docs/design/.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

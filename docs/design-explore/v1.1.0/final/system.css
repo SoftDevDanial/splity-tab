@@ -463,6 +463,7 @@ dialog::backdrop { background: var(--scrim); }
 @media (min-width: 1024px) {
   .app { height: 100dvh; min-height: 0; display: flex; flex-direction: column; }
   .top { flex: none; flex-wrap: nowrap; padding: 0 max(var(--s12), calc((100vw - 1184px) / 2)); }
+  .app > .top .brand { margin-top: 1px; } /* the 47 px content area centres the 28 px mark on a half pixel, this lands it on a whole one */
   .notes { order: 0; flex: 1 1 auto; display: flex; justify-content: center; min-width: 0; padding: 0; }
   .note { min-height: 44px; padding-top: 0; padding-bottom: 0; }
   .note p { padding: 0; }

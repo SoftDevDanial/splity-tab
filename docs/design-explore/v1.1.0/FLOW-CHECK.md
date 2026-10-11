@@ -1,6 +1,6 @@
 # Flow check, v1.1.0
 
-**Run:** 2026-10-11 13:24 · **Method:** headless Chromium (Python Playwright), one fresh page per link, at the width the link
+**Run:** 2026-10-11 23:35 · **Method:** headless Chromium (Python Playwright), one fresh page per link, at the width the link
 exists at (360 x 780, 390 x 844 or 1280 x 800). The prototype is `v1.1.0/prototype/`, a copy of `v1.1.0/final/` with
 one wiring script per page. The wiring script is not part of any golden.
 

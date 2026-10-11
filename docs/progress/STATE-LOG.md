@@ -255,3 +255,8 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 
 ## 2026-10-11 15:08 logo round 1 started
 - Brief written (glass receipt, one flat fill, 28 px header and 16 px favicon slots, no D). S1 the fan retired after two reviews (a W or crest, or a three-card fan). S2 the receipt S retired (a plain bold S at the real sizes). S3 the tear is the tick passed 26 of 28. Lesson added as hard constraint 7, the idea must read at 28 and 16 px. Committed 3d847dc.
+
+## 2026-10-11 23:36 Logo S12 approved and swapped
+- Round 1 closed, S3 and S8 declined, round 2 stopped, the owner kept the 1.0 mark with a receipt outline
+- S12 passed QA 26 of 28 after a mirrored tear and a chat tail were fixed, owner approved, empty state shows S12 muted
+- S12 swapped into final/ (15 goldens), check_final 748 of 748, FLOW-CHECK 48 of 48, ledger S7

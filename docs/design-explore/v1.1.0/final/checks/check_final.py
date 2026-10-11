@@ -78,6 +78,11 @@ def check(cond, label):
 css = (FINAL / "system.css").read_text(encoding="utf-8")
 g2src = G2.read_text(encoding="utf-8")
 g2_syms = re.findall(r"<symbol[^\n]+</symbol>", g2src)
+# Owner's ruling 2026-10-11 (RULINGS.md): the empty state shows the approved S12 mark, muted, so g2's i-receipt
+# symbol is expected as i-mark drawing S12's 28 px header path. Every other symbol stays g2's byte for byte.
+_m28 = re.search(r'<svg id="mark28-src".*?d="([^"]+)"', (FINAL.parent / "logo/round-2/s12.html").read_text(encoding="utf-8"), re.S).group(1)
+g2_syms = [f'<symbol id="i-mark" viewBox="0 0 28 28"><path fill-rule="evenodd" d="{_m28}"/></symbol>'
+           if 'id="i-receipt"' in l else l for l in g2_syms]
 g2_defs = re.search(r"<defs>.*?</defs>", g2src, re.S).group(0)
 present = [f for f in RECIPES if (FINAL / f).exists()]
 R["static"]["goldens present"] = present
