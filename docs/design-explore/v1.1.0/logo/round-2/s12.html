@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=1440">
 <meta name="color-scheme" content="dark">
 <title>Splity Tab logo, round 2, S12, the cut equals on a receipt</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cstyle%3E.fi{fill:%23A3AAFF}@media (prefers-color-scheme:light){.fi{fill:%231E2140}}%3C/style%3E%3Cpath class='fi' fill='%23A3AAFF' fill-rule='evenodd' d='M0,15V2A2,2,0,0,1,2,0H13A2,2,0,0,1,15,2V14L13,13L10,15L8,13L6,16L2,13ZM1,12L2,11L6,14L8,11L10,13L13,11L14,11.5V2A1,1,0,0,0,13,1H2A1,1,0,0,0,1,2ZM3,3H7A1,1,0,0,1,7,5H3A1,1,0,0,1,3,3ZM11,3H12A1,1,0,0,1,12,5H11A1,1,0,0,1,11,3ZM3,7H12A1,1,0,0,1,12,9H3A1,1,0,0,1,3,7Z'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cstyle%3E.fi{fill:%23A3AAFF}@media (prefers-color-scheme:light){.fi{fill:%231E2140}}%3C/style%3E%3Cpath class='fi' fill='%23A3AAFF' fill-rule='evenodd' d='M0,13V2A2,2,0,0,1,2,0H13A2,2,0,0,1,15,2V14L14,13L12,15L10,13L8,15L6,13L3,16ZM1,12L3,14L6,11L8,13L10,11L12,13L14,11V2A1,1,0,0,0,13,1H2A1,1,0,0,0,1,2ZM3,3H7A1,1,0,0,1,7,5H3A1,1,0,0,1,3,3ZM11,3H12A1,1,0,0,1,12,5H11A1,1,0,0,1,11,3ZM3,7H12A1,1,0,0,1,12,9H3A1,1,0,0,1,3,7Z'/%3E%3C/svg%3E">
 <style>
 /*
   Splity Tab, logo round 2, S12, brand carry-over built on the 1.0 mark (docs/brand/mark.svg). The owner's direction,
@@ -14,14 +14,19 @@
   One silhouette, three optical sizes, each one path with fill-rule evenodd (outer edge, inner edge, three bars).
   Display master, mark-src, 56 grid, 48 px and up. Receipt 4 to 52 by 2 to 54, frame 3, top corners 6 outside and
   3 inside. Bars 5, rows 15 to 20 and 24 to 29, long share 14 to 30, cut 4, short share 34 to 42, whole bar 14 to 42.
-  Header drawing, mark28-src, 28 grid, 1 unit per pixel at 28 px. Receipt 2 to 26 by 1 to 27, frame 2, corners 3 and 1.
+  Header drawing, mark28-src, 28 px only, 28 grid, 1 unit per pixel. Receipt 2 to 26 by 1 to 27, frame 2, corners 3 and 1.
   Bars 3 with round ends, rows 7 to 10 and 12 to 15, shares 7 to 15 and 17 to 21, whole bar 7 to 21, so 8, 2 and 4
   are exactly 1.0's 24, 6 and 12 over 3. Every straight edge sits on a whole pixel.
-  Tear, outer edge on 28: (2,26) (6,22) (12,27) (15,23) (17,26) (22,22) (26,25). Two teeth and two corner tips, all of
-  different width, depth and lean, the tips climbing from 27 to 25 toward the right. The inner edge is each facet
-  offset by the frame width and mitred where facets meet, so the outline runs along the tear at an even weight.
-  Favicon, favicon-src, its own 16 grid. Receipt 0 to 15 by 0 to 16, frame 1, corners 2 and 1, bars 2, shares 2 to 8
-  and 10 to 13, whole bar 2 to 13, tear (0,15) (2,13) (6,16) (8,13) (10,15) (13,13) (15,14), inner edge 2 px above.
+  Tear, outer edge on 28: (2,21) (7,27) (10,22) (13,25.5) (17,21.5) (26,24.5). The left edge breaks off high, one
+  dominant tooth 5 below its notch, a second 3.5 to 4, then one run at 1 in 3 for 9.5 down to the right corner at 24.5.
+  Both teeth sit 4 left of centre and the edge falls 3.5 across. The inner edge is each facet offset by the frame
+  width and mitred, except the sharpest notch (10,22), bevelled 0.9 under its mitre (ink 1.25 bands, not 1.7).
+  Inner dips 3.28 and 4.06 on the big tooth, 3.06 and 3.35 on the second. The 56 master is this tear doubled, frame 3,
+  notch (20,44) bevelled to the same 1.25 bands.
+  Favicon, favicon-src, 16 and 32 px, its own 16 grid. Receipt 0 to 15 by 0 to 16, frame 1, corners 2 and 1, bars 2,
+  shares 2 to 8 and 10 to 13, whole bar 2 to 13. Foot (0,13) (3,16) (6,13) (8,15) (10,13) (12,15) (14,13) (15,14),
+  every facet 45 degrees, every vertex on a whole pixel, inner edge 2 above (1.41 perpendicular), the inner foot tops
+  out at 11 so rows 9 and 10 stay empty under the whole bar. Big tooth 3 deep, the other two 2.
   One flat fill. No stroke, no gradient, no opacity. Sources at the end of the body.
 */
 :root {
@@ -79,7 +84,7 @@ h2, p, figure { margin: 0; }
 .cons p { font-size: 11.5px; line-height: 16px; color: #7C8496; }
 .cons b { font-weight: 600; color: #A7AFBF; }
 
-.tests { position: absolute; left: 0; right: 0; top: 608px; }
+.tests { position: absolute; left: 0; right: 0; top: 590px; }
 .tests .lbl { margin-bottom: 8px; }
 .tests ul { list-style: none; margin: 0; padding: 0; }
 .tests li { font-size: 11.5px; line-height: 17px; color: #7C8496; white-space: nowrap; }
@@ -163,11 +168,11 @@ h2, p, figure { margin: 0; }
 
 <svg class="sprite" aria-hidden="true" focusable="false">
   <!-- Display master, 56 grid, 48 px and up. Byte for byte the path in #mark-src -->
-  <symbol id="mL" viewBox="0 0 56 56"><path fill-rule="evenodd" d="M4,52V8A6,6,0,0,1,10,2H46A6,6,0,0,1,52,8V50L44,44L34,52L30,46L24,54L12,44ZM7,44.76L11.82,39.94L23.49,49.67L30.14,40.81L34.68,47.61L43.94,40.21L49,44V8A3,3,0,0,0,46,5H10A3,3,0,0,0,7,8ZM16.5,15H27.5A2.5,2.5,0,0,1,27.5,20H16.5A2.5,2.5,0,0,1,16.5,15ZM36.5,15H39.5A2.5,2.5,0,0,1,39.5,20H36.5A2.5,2.5,0,0,1,36.5,15ZM16.5,24H39.5A2.5,2.5,0,0,1,39.5,29H16.5A2.5,2.5,0,0,1,16.5,24Z"/></symbol>
+  <symbol id="mL" viewBox="0 0 56 56"><path fill-rule="evenodd" d="M4,42V8A6,6,0,0,1,10,2H46A6,6,0,0,1,52,8V49L34,43L26,51L20,44L14,54ZM7,40.91L13.6,48.83L18.75,40.25L20.74,40.25L26.17,46.59L33.19,39.57L49,44.84V8A3,3,0,0,0,46,5H10A3,3,0,0,0,7,8ZM16.5,15H27.5A2.5,2.5,0,0,1,27.5,20H16.5A2.5,2.5,0,0,1,16.5,15ZM36.5,15H39.5A2.5,2.5,0,0,1,39.5,20H36.5A2.5,2.5,0,0,1,36.5,15ZM16.5,24H39.5A2.5,2.5,0,0,1,39.5,29H16.5A2.5,2.5,0,0,1,16.5,24Z"/></symbol>
   <!-- Header drawing, 28 grid, 1 unit per pixel at 28 px. Byte for byte the path in #mark28-src -->
-  <symbol id="m28" viewBox="0 0 28 28"><path fill-rule="evenodd" d="M2,26V4A3,3,0,0,1,5,1H23A3,3,0,0,1,26,4V25L22,22L17,26L15,23L12,27L6,22ZM4,21.17L5.88,19.29L11.66,24.12L15.1,19.54L17.45,23.08L21.96,19.47L24,21V4A1,1,0,0,0,23,3H5A1,1,0,0,0,4,4ZM8.5,7H13.5A1.5,1.5,0,0,1,13.5,10H8.5A1.5,1.5,0,0,1,8.5,7ZM18.5,7H19.5A1.5,1.5,0,0,1,19.5,10H18.5A1.5,1.5,0,0,1,18.5,7ZM8.5,12H19.5A1.5,1.5,0,0,1,19.5,15H8.5A1.5,1.5,0,0,1,8.5,12Z"/></symbol>
+  <symbol id="m28" viewBox="0 0 28 28"><path fill-rule="evenodd" d="M2,21V4A3,3,0,0,1,5,1H23A3,3,0,0,1,26,4V24.5L17,21.5L13,25.5L10,22L7,27ZM4,20.28L6.73,23.56L9.17,19.5L10.49,19.5L13.11,22.56L16.46,19.21L24,21.73V4A1,1,0,0,0,23,3H5A1,1,0,0,0,4,4ZM8.5,7H13.5A1.5,1.5,0,0,1,13.5,10H8.5A1.5,1.5,0,0,1,8.5,7ZM18.5,7H19.5A1.5,1.5,0,0,1,19.5,10H18.5A1.5,1.5,0,0,1,18.5,7ZM8.5,12H19.5A1.5,1.5,0,0,1,19.5,15H8.5A1.5,1.5,0,0,1,8.5,12Z"/></symbol>
   <!-- Favicon drawing, its own 16 grid. Byte for byte the path in #favicon-src -->
-  <symbol id="m16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0,15V2A2,2,0,0,1,2,0H13A2,2,0,0,1,15,2V14L13,13L10,15L8,13L6,16L2,13ZM1,12L2,11L6,14L8,11L10,13L13,11L14,11.5V2A1,1,0,0,0,13,1H2A1,1,0,0,0,1,2ZM3,3H7A1,1,0,0,1,7,5H3A1,1,0,0,1,3,3ZM11,3H12A1,1,0,0,1,12,5H11A1,1,0,0,1,11,3ZM3,7H12A1,1,0,0,1,12,9H3A1,1,0,0,1,3,7Z"/></symbol>
+  <symbol id="m16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0,13V2A2,2,0,0,1,2,0H13A2,2,0,0,1,15,2V14L14,13L12,15L10,13L8,15L6,13L3,16ZM1,12L3,14L6,11L8,13L10,11L12,13L14,11V2A1,1,0,0,0,13,1H2A1,1,0,0,0,1,2ZM3,3H7A1,1,0,0,1,7,5H3A1,1,0,0,1,3,3ZM11,3H12A1,1,0,0,1,12,5H11A1,1,0,0,1,11,3ZM3,7H12A1,1,0,0,1,12,9H3A1,1,0,0,1,3,7Z"/></symbol>
   <symbol id="fav" viewBox="0 0 16 16"><use href="#m16" x="0" y="0" width="16" height="16" fill="#A3AAFF"/></symbol>
   <symbol id="favl" viewBox="0 0 16 16"><use href="#m16" x="0" y="0" width="16" height="16" fill="#1E2140"/></symbol>
   <!-- Phosphor plus (MIT), the app's own New bill icon. Not the mark -->
@@ -194,19 +199,20 @@ h2, p, figure { margin: 0; }
 
     <div class="cons">
       <h2 class="lbl"><span class="n">1a</span>Construction</h2>
-      <p><b>Three optical sizes, one silhouette.</b> Display master on a 56 grid from 48 px up, frame 3 and bars 5 (sketch B is 4.7 and 7). Header drawing on the 28 grid, frame 2 and bars 3, every straight edge on a whole pixel. Favicon redrawn on its own 16 grid. <b>Receipt.</b> 24 by 26 on 28 (sketch B 21 by 24.5), top corners 3 outside, 1 inside. <b>Cut equals.</b> Shares 8 and 4, cut 2, 1.0's 24, 12 and 6 over 3, ends flush. Rows 3, 2, 3 against 1.0's 9, 15, 9. <b>Tear.</b> Two teeth and two corner tips, each a different width, depth and lean, tips at 26, 27, 26 and 25, so the edge climbs right like a hand tear. The inner edge is each facet offset by the frame width, mitred where facets meet, so the outline follows the tear. Teeth 9 and 7 wide, the fewest and largest that keep a dip of 3 or more inside the frame.</p>
+      <p><b>Three optical sizes, one silhouette.</b> Display master on a 56 grid from 48 px, frame 3, bars 5 (sketch B 4.7 and 7). Header drawing on the 28 grid, frame 2, bars 3, on whole pixels. Receipt 24 by 26 (B 21 by 24.5). <b>Cut equals.</b> Shares 8 and 4, cut 2, 1.0's 24, 12 and 6 over 3, ends flush, rows 3, 2, 3. <b>Tear, on 28.</b> The left edge breaks off high at 21. One big tooth hangs 5 below its notch, a second 3.5 to 4, then one run at 1 in 3 for 9.5 px down to the right corner at 24.5. Both teeth sit 4 left of centre and the edge falls 3.5 across. The inner edge is each facet offset by the frame width, the sharpest notch bevelled 0.9 under its mitre so its ink is 1.25 bands, not 1.7. Every inner dip is 3 or more.</p>
     </div>
 
     <div class="tests">
       <h2 class="lbl"><span class="n">1b</span>Pressure tests</h2>
       <ul>
-        <li><b>Reads first</b>A receipt at 28 and 16 px. The stock receipt icon is the closest call.</li>
-        <li><b>Stock receipt icon</b>Even zigzag, equal lines. Here a hand tear and the 1.0 cut.</li>
-        <li><b>Document, notes</b>The second read at 16 px. A page has a straight foot, not a tear.</li>
+        <li><b>Reads first</b>A receipt at 28 px, a receipt or a notes page at 16 px.</li>
+        <li><b>Phosphor Receipt</b>Empty-state icon, 28 px. Same outline, lines and teeth. Closest call.</li>
+        <li><b>Chat bubble</b>Rounded box, lines, one tail. No single tail now, still close at 16.</li>
+        <li><b>Stock receipt icon</b>The same object. Only the uneven foot and the cut line differ.</li>
+        <li><b>Document, notes</b>A page has a straight foot. At 16 px the teeth are 2 and 3 deep.</li>
         <li><b>Ghost with eyes</b>Square shoulders, no dome. The top row is a line with a break.</li>
-        <li><b>Face</b>S7's failure. Shares 8 and 4, flush with the bar below, read as print.</li>
-        <li><b>Calculator, battery</b>No key grid, no terminal nub, and both have a straight foot.</li>
-        <li><b>List or menu</b>Bare bars, often three. Here two rows held inside a frame.</li>
+        <li><b>Face</b>S7's failure. Shares 8 and 4 sit flush with the bar below, like print.</li>
+        <li><b>Calculator, battery, menu</b>No key grid, no nub. A menu is bare bars, often three.</li>
         <li><b>Letter D</b>Both sides straight, both shoulders alike, no bowl.</li>
       </ul>
     </div>
@@ -249,7 +255,7 @@ h2, p, figure { margin: 0; }
         <div class="cell"><div class="tabs"><span class="dk"><svg width="32" height="32" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></span><span class="lt"><svg width="32" height="32" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#favl"/></svg></span></div><span class="px">32 px favicon</span></div>
         <div class="cell"><div class="tabs"><span class="dk"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></span><span class="lt"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#favl"/></svg></span></div><span class="px">16 px favicon</span></div>
       </div>
-      <p class="note">96 and 48 px draw the display master, 28 px the header drawing, 18 px and both tabs the 16 grid drawing 1:1. <b>The 16 px trade.</b> A 1 px frame and a 1 px gap at each bar end, since two to one with a 2 px cut needs an 11 px bar and the receipt is 13 inside. Both are 2 px at 32. The tear band is about 1.4 px so its diagonals hold. No tile, dark tab above, white tab below in #1E2140.</p>
+      <p class="note">96 and 48 px draw the display master, 28 px the header drawing, 18 px and the tabs the 16 grid 1:1. <b>The 16 px trade.</b> A 1 px frame and 1 px gaps at the bar ends, since two to one with a 2 px cut needs an 11 px bar in 13. Both 2 px at 32. Foot facets all 45 degrees on whole pixels, 1.41 px on every facet, big tooth 3 deep, the others 2. White tab #1E2140.</p>
     </section>
 
     <!-- 4 Swatches -->
@@ -285,10 +291,10 @@ h2, p, figure { margin: 0; }
   </div>
 </main>
 
-<!-- Production sources. Lift these. mark-src from 48 px up (README, brand files), mark28-src for the 28 px app header
-     and anything from 20 to 47 px, favicon-src below 20 px and for the tab icon. Hidden so the sheet stays 900 px tall -->
-<svg id="mark-src" viewBox="0 0 56 56" aria-hidden="true" style="display:none"><path fill="currentColor" fill-rule="evenodd" d="M4,52V8A6,6,0,0,1,10,2H46A6,6,0,0,1,52,8V50L44,44L34,52L30,46L24,54L12,44ZM7,44.76L11.82,39.94L23.49,49.67L30.14,40.81L34.68,47.61L43.94,40.21L49,44V8A3,3,0,0,0,46,5H10A3,3,0,0,0,7,8ZM16.5,15H27.5A2.5,2.5,0,0,1,27.5,20H16.5A2.5,2.5,0,0,1,16.5,15ZM36.5,15H39.5A2.5,2.5,0,0,1,39.5,20H36.5A2.5,2.5,0,0,1,36.5,15ZM16.5,24H39.5A2.5,2.5,0,0,1,39.5,29H16.5A2.5,2.5,0,0,1,16.5,24Z"/></svg>
-<svg id="mark28-src" viewBox="0 0 28 28" aria-hidden="true" style="display:none"><path fill="currentColor" fill-rule="evenodd" d="M2,26V4A3,3,0,0,1,5,1H23A3,3,0,0,1,26,4V25L22,22L17,26L15,23L12,27L6,22ZM4,21.17L5.88,19.29L11.66,24.12L15.1,19.54L17.45,23.08L21.96,19.47L24,21V4A1,1,0,0,0,23,3H5A1,1,0,0,0,4,4ZM8.5,7H13.5A1.5,1.5,0,0,1,13.5,10H8.5A1.5,1.5,0,0,1,8.5,7ZM18.5,7H19.5A1.5,1.5,0,0,1,19.5,10H18.5A1.5,1.5,0,0,1,18.5,7ZM8.5,12H19.5A1.5,1.5,0,0,1,19.5,15H8.5A1.5,1.5,0,0,1,8.5,12Z"/></svg>
-<svg id="favicon-src" viewBox="0 0 16 16" style="display:none"><style>.fi{fill:#A3AAFF}@media (prefers-color-scheme:light){.fi{fill:#1E2140}}</style><path class="fi" fill="#A3AAFF" fill-rule="evenodd" d="M0,15V2A2,2,0,0,1,2,0H13A2,2,0,0,1,15,2V14L13,13L10,15L8,13L6,16L2,13ZM1,12L2,11L6,14L8,11L10,13L13,11L14,11.5V2A1,1,0,0,0,13,1H2A1,1,0,0,0,1,2ZM3,3H7A1,1,0,0,1,7,5H3A1,1,0,0,1,3,3ZM11,3H12A1,1,0,0,1,12,5H11A1,1,0,0,1,11,3ZM3,7H12A1,1,0,0,1,12,9H3A1,1,0,0,1,3,7Z"/></svg>
+<!-- Production sources. Lift these. mark-src from 48 px (README, brand files). mark28-src is 28 px only, the app header.
+     favicon-src for 16 and 32, the tab icon (and the 18 px cell). Hidden so the sheet stays 900 px tall -->
+<svg id="mark-src" viewBox="0 0 56 56" aria-hidden="true" style="display:none"><path fill="currentColor" fill-rule="evenodd" d="M4,42V8A6,6,0,0,1,10,2H46A6,6,0,0,1,52,8V49L34,43L26,51L20,44L14,54ZM7,40.91L13.6,48.83L18.75,40.25L20.74,40.25L26.17,46.59L33.19,39.57L49,44.84V8A3,3,0,0,0,46,5H10A3,3,0,0,0,7,8ZM16.5,15H27.5A2.5,2.5,0,0,1,27.5,20H16.5A2.5,2.5,0,0,1,16.5,15ZM36.5,15H39.5A2.5,2.5,0,0,1,39.5,20H36.5A2.5,2.5,0,0,1,36.5,15ZM16.5,24H39.5A2.5,2.5,0,0,1,39.5,29H16.5A2.5,2.5,0,0,1,16.5,24Z"/></svg>
+<svg id="mark28-src" viewBox="0 0 28 28" aria-hidden="true" style="display:none"><path fill="currentColor" fill-rule="evenodd" d="M2,21V4A3,3,0,0,1,5,1H23A3,3,0,0,1,26,4V24.5L17,21.5L13,25.5L10,22L7,27ZM4,20.28L6.73,23.56L9.17,19.5L10.49,19.5L13.11,22.56L16.46,19.21L24,21.73V4A1,1,0,0,0,23,3H5A1,1,0,0,0,4,4ZM8.5,7H13.5A1.5,1.5,0,0,1,13.5,10H8.5A1.5,1.5,0,0,1,8.5,7ZM18.5,7H19.5A1.5,1.5,0,0,1,19.5,10H18.5A1.5,1.5,0,0,1,18.5,7ZM8.5,12H19.5A1.5,1.5,0,0,1,19.5,15H8.5A1.5,1.5,0,0,1,8.5,12Z"/></svg>
+<svg id="favicon-src" viewBox="0 0 16 16" style="display:none"><style>.fi{fill:#A3AAFF}@media (prefers-color-scheme:light){.fi{fill:#1E2140}}</style><path class="fi" fill="#A3AAFF" fill-rule="evenodd" d="M0,13V2A2,2,0,0,1,2,0H13A2,2,0,0,1,15,2V14L14,13L12,15L10,13L8,15L6,13L3,16ZM1,12L3,14L6,11L8,13L10,11L12,13L14,11V2A1,1,0,0,0,13,1H2A1,1,0,0,0,1,2ZM3,3H7A1,1,0,0,1,7,5H3A1,1,0,0,1,3,3ZM11,3H12A1,1,0,0,1,12,5H11A1,1,0,0,1,11,3ZM3,7H12A1,1,0,0,1,12,9H3A1,1,0,0,1,3,7Z"/></svg>
 </body>
 </html>
