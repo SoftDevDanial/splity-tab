@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<meta name="color-scheme" content="dark">
+<title>Splity Tab logo, round 1, S7, the slip adds up</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230B0E13'/%3E%3Cpath fill='%23A3AAFF' d='M2.5 1H13.5A.5 .5 0 0 1 14 1.5V14.5A.5 .5 0 0 1 13.5 15H2.5A.5 .5 0 0 1 2 14.5V1.5A.5 .5 0 0 1 2.5 1ZM4 6V8H8V6ZM10 6V8H12V6ZM4 11V13H12V11Z'/%3E%3C/svg%3E">
+<style>
+/*
+  Splity Tab, logo round 1, direction S7. The slip adds up.
+  One receipt slip with the 1.0 mark knocked out at its foot, where a bill prints its total and where the app's
+  receipt prints its proof row ("Adds up to"). The hole is the 1.0 favicon's own geometry, pixel for pixel: shares
+  8 and 4, cut 2, bars 3, rows 5 apart, whole 14. It sits in a 20 x 26 slip with a 3 px frame on both sides and
+  the foot, so frame and bar are one module. The bars stay inside the paper. Run to the edge they would cut the
+  slip into three slabs (the hamburger menu) and the equals would stop being a figure.
+  One path, holes wound against the outline (so nonzero and evenodd fill alike), one flat fill, no stroke.
+  Master drawn at 28 x 28 on whole pixels, viewBox -4 0 28 28 so the 20 px slip sits 4 px in from each side.
+  Hero is that master at exactly 9x. Favicon redrawn on its own 16 grid, slip 12 x 14, every feature 2 px.
+  Corner rule, one radius on the slip (1 px at 28, half a px at 16), square ends on the bars, as in 1.0.
+*/
+:root {
+  --app: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --num: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, "Roboto Mono", monospace;
+  --mono: 'Cascadia Code', 'Consolas', monospace;
+  --hair: rgba(255, 255, 255, 0.06);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  width: 1440px; height: 900px; overflow: hidden;
+  background: #0c0d10; color: #E8EBF2;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h2, h3, p, figure, dl, dd { margin: 0; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.mk { display: block; flex: none; fill: #A3AAFF; }
+
+/* ---------- sheet grid ---------- */
+.sheet {
+  width: 1440px; height: 900px; padding: 32px 48px 48px;
+  display: grid; grid-template-columns: 532px 792px; grid-template-rows: 24px 772px;
+  column-gap: 20px; row-gap: 24px;
+}
+.head {
+  grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; line-height: 24px; color: #6F7789;
+}
+.head b { color: #E8EBF2; font-weight: 600; }
+.sep { margin: 0 8px; color: #3A404C; }
+
+.lbl { display: flex; align-items: center; gap: 10px; height: 18px; font-size: 13px; line-height: 18px; font-weight: 600; color: #A7AFBF; }
+.lbl .n { font-family: var(--mono); font-size: 11px; font-weight: 400; color: #5F6878; }
+
+/* ---------- 1 hero ---------- */
+.hero { position: relative; height: 772px; }
+.hero > .lbl { position: absolute; left: 0; top: 0; }
+.hstage {
+  position: absolute; left: 140px; top: 52px; width: 253px; height: 253px;
+  background-image:
+    linear-gradient(to right, rgba(163, 170, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(163, 170, 255, 0.055) 1px, transparent 1px);
+  background-size: 9px 9px;
+}
+.call {
+  position: absolute; left: 0; width: 124px; text-align: right;
+  font: 400 11px/16px var(--mono); color: #5F6878; white-space: nowrap;
+}
+.c1 { top: 174px; }
+.c2 { top: 246px; }
+.cap { position: absolute; left: 0; right: 0; top: 329px; text-align: center; }
+.cap .t { font-size: 15px; line-height: 22px; font-weight: 600; color: #A7AFBF; }
+.cap .id { margin-right: 10px; font-family: var(--mono); font-size: 13px; font-weight: 400; color: #7A84A0; }
+.cap .s { width: 432px; margin: 8px auto 0; font-size: 14px; line-height: 22px; color: #8A92A3; text-wrap: balance; }
+.cap .spec { margin-top: 14px; font-size: 12px; line-height: 18px; color: #6F7789; }
+
+.pt { position: absolute; left: 0; right: 0; top: 485px; padding-top: 18px; border-top: 1px solid var(--hair); }
+.pt .lbl { justify-content: space-between; margin-bottom: 12px; }
+.pt .lbl span { font-size: 12px; font-weight: 400; color: #5F6878; }
+.pt dl { display: grid; gap: 4px; }
+.pt dl div { display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: 12px; }
+.pt dt { font-size: 12px; line-height: 20px; font-weight: 600; color: #A7AFBF; white-space: nowrap; }
+.pt dd { font-size: 12px; line-height: 20px; color: #8A92A3; }
+.pt .close dt, .pt .close dd { color: #D6DAE4; }
+
+/* ---------- right column ---------- */
+.right { position: relative; display: flex; flex-direction: column; gap: 36px; }
+.right::before { content: ""; position: absolute; left: -10px; top: 0; bottom: 0; width: 1px; background: var(--hair); }
+.right > section { position: relative; }
+.right > section + section::before { content: ""; position: absolute; left: 0; right: 0; top: -18px; height: 1px; background: var(--hair); }
+.right .lbl { margin-bottom: 14px; }
+.s2 { height: 204px; }
+.s3 { height: 242px; }
+.s4 { height: 254px; }
+
+/* ---------- 2 in the app ---------- */
+.row { display: flex; gap: 24px; }
+.s2 figure { width: 384px; }
+.s2 figcaption { margin-top: 8px; font-size: 12px; line-height: 16px; color: #7C8496; white-space: nowrap; }
+.win { position: relative; height: 148px; border-radius: 12px; overflow: hidden; outline: 1px solid rgba(255, 255, 255, 0.07); outline-offset: -1px; }
+.w1 { background: #151A23; }
+.tb {
+  height: 61px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px;
+  background: #10141B; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.word { font: 700 19px/24px var(--app); letter-spacing: -0.01em; color: #E8EBF2; white-space: nowrap; }
+.nb {
+  display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px;
+  border: 1px solid #6E7891; border-radius: 10px; font: 600 15px/20px var(--app); color: #E8EBF2; white-space: nowrap;
+}
+.nb svg { width: 18px; height: 18px; fill: #A7AFBF; }
+.pg { position: relative; height: 87px; }
+/* the receipt strip docked at the foot of the phone, its top row only (the source motif) */
+.strip {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 56px; overflow: hidden;
+  border: 1px solid rgba(163, 170, 255, 0.30); border-bottom: 0; border-radius: 22px 22px 0 0;
+  background: #1D2330; box-shadow: inset 0 1px 0 rgba(232, 235, 255, 0.18);
+}
+.strip i { display: block; height: 3px; background: linear-gradient(90deg, #5059DA 0%, #7C85F7 25%, #C9CDFF 50%, #7C85F7 75%, #5059DA 100%); }
+.srow { display: flex; align-items: baseline; gap: 8px; padding: 10px 16px 0; }
+.sl { font: 600 14px/20px var(--app); color: #E8EBF2; }
+.sf { font: 600 24px/30px var(--num); letter-spacing: -0.02em; color: #F4F5FF; white-space: nowrap; }
+.sf small { font-size: 14px; letter-spacing: 0; color: #E8EBF2; }
+.w2 { display: flex; align-items: center; padding-left: 32px; background: #10141B; }
+.b2 { gap: 20px; }
+.b2 .word { font-size: 38px; line-height: 48px; }
+
+/* ---------- 3 legibility ---------- */
+.stage { position: relative; display: flex; height: 152px; background: #10141B; border-radius: 12px; outline: 1px solid rgba(255, 255, 255, 0.05); outline-offset: -1px; }
+.stage::after { content: ""; position: absolute; left: 528px; top: 24px; bottom: 40px; width: 1px; background: rgba(255, 255, 255, 0.07); }
+.cell { width: 132px; padding-top: 16px; display: flex; flex-direction: column; align-items: center; }
+.box { width: 132px; height: 100px; display: flex; align-items: center; justify-content: center; }
+.px { margin-top: 8px; font: 400 11px/16px var(--mono); color: #7C8496; white-space: nowrap; }
+.note { margin-top: 10px; font-size: 12px; line-height: 16px; color: #6F7789; }
+
+/* ---------- 4 swatches ---------- */
+.grid { display: grid; grid-template-columns: 388px 388px; grid-auto-rows: 104px; gap: 14px 16px; }
+.tile { display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 32px; border-radius: 14px; }
+.tag { font: 400 11px/16px var(--mono); text-align: right; white-space: nowrap; }
+.marks { display: flex; align-items: center; gap: 28px; }
+.t-dark { background: #15171c; outline: 1px solid rgba(255, 255, 255, 0.06); outline-offset: -1px; }
+.t-dark .tag { color: #6F7789; }
+.t-light { background: #f7f6f3; }
+.t-light .mk { fill: #1E2140; }
+.t-light .word { color: #1E2140; }
+.t-light .tag { color: #8A8984; }
+.t-bw { background: #ffffff; }
+.t-bw .mk { fill: #000000; }
+.t-bw .tag { color: #8C8C8C; }
+.t-wb { background: #000000; outline: 1px solid rgba(255, 255, 255, 0.08); outline-offset: -1px; }
+.t-wb .mk { fill: #ffffff; }
+.t-wb .tag { color: #7A7A7A; }
+</style>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <!-- The mark, 28 px master. Slip 20 x 26 at x 0 to 20, y 1 to 27. Holes are the 1.0 favicon geometry, wound the other way -->
+  <symbol id="m28" viewBox="-4 0 28 28"><path d="M1 1H19A1 1 0 0 1 20 2V26A1 1 0 0 1 19 27H1A1 1 0 0 1 0 26V2A1 1 0 0 1 1 1ZM3 13V16H11V13ZM13 13V16H17V13ZM3 21V24H17V21Z"/></symbol>
+  <!-- The mark redrawn on the 16 grid. Slip 12 x 14, margins 2, bars 2, shares 4 and 2, cut 2, rows 3 apart -->
+  <symbol id="m16" viewBox="0 0 16 16"><path d="M2.5 1H13.5A.5 .5 0 0 1 14 1.5V14.5A.5 .5 0 0 1 13.5 15H2.5A.5 .5 0 0 1 2 14.5V1.5A.5 .5 0 0 1 2.5 1ZM4 6V8H8V6ZM10 6V8H12V6ZM4 11V13H12V11Z"/></symbol>
+  <symbol id="fav" viewBox="0 0 16 16"><rect width="16" height="16" fill="#0B0E13"/><path fill="#A3AAFF" d="M2.5 1H13.5A.5 .5 0 0 1 14 1.5V14.5A.5 .5 0 0 1 13.5 15H2.5A.5 .5 0 0 1 2 14.5V1.5A.5 .5 0 0 1 2.5 1ZM4 6V8H8V6ZM10 6V8H12V6ZM4 11V13H12V11Z"/></symbol>
+  <!-- Phosphor plus (MIT), the app's own New bill icon. Not the mark -->
+  <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+</svg>
+
+<main class="sheet">
+  <header class="head">
+    <div><b>Splity Tab</b><span class="sep">·</span>Logo round 1<span class="sep">·</span>S7, negative space and brand carry-over</div>
+    <div>v1.1.0<span class="sep">·</span>one path, one flat fill<span class="sep">·</span>#A3AAFF</div>
+  </header>
+
+  <!-- 1 Hero -->
+  <section class="hero" aria-label="Hero">
+    <h2 class="lbl"><span class="n">1</span>Hero</h2>
+    <p class="call c1" aria-hidden="true">8 · cut 2 · 4</p>
+    <p class="call c2" aria-hidden="true">whole 14</p>
+    <div class="hstage">
+      <svg class="mk" width="252" height="252" viewBox="0 0 28 28" role="img" aria-label="Splity Tab mark"><use href="#m28"/></svg>
+    </div>
+    <div class="cap">
+      <p class="t"><span class="id">S7</span>The slip adds up</p>
+      <p class="s">One receipt slip with the 1.0 mark knocked out at its foot, an equals sign whose top bar is cut once, two to one, so the shares add back to the total printed on the bill.</p>
+      <p class="spec">One path, one fill<span class="sep">·</span>28 grid at 9x<span class="sep">·</span>the hole is the 1.0 favicon, pixel for pixel</p>
+    </div>
+    <div class="pt">
+      <h3 class="lbl">Pressure test<span>closest first</span></h3>
+      <dl>
+        <div class="close"><dt>Document or notes</dt><dd>Closest. Thin rules from the top, these are heavy and low.</dd></div>
+        <div><dt>Credit card</dt><dd>Landscape, stripes run edge to edge. The slip stands upright.</dd></div>
+        <div><dt>Hamburger menu</dt><dd>Three loose bars. These are two, held in paper, one cut.</dd></div>
+        <div><dt>Battery</dt><dd>Fills from the foot too, but has a nub and never a cut bar.</dd></div>
+        <div><dt>Wallet</dt><dd>Landscape with a clasp tab. The slip is upright, no tab.</dd></div>
+        <div><dt>I Ching line</dt><dd>Its break is centred. This cut is two to one, never centred.</dd></div>
+        <div><dt>Why bars stay in</dt><dd>To the edge they cut the slip into three slabs, a menu.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="right">
+    <!-- 2 In the app -->
+    <section class="s2" aria-label="In the app">
+      <h2 class="lbl"><span class="n">2</span>In the app</h2>
+      <div class="row">
+        <figure>
+          <div class="win w1">
+            <div class="tb">
+              <div class="brand"><svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+              <span class="nb"><svg viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>New bill</span>
+            </div>
+            <div class="pg">
+              <div class="strip" aria-hidden="true"><i></i><div class="srow"><span class="sl">Total</span><span class="sf"><small>RM </small>69.26</span></div></div>
+            </div>
+          </div>
+          <figcaption>Phone header at 1x. 28 px mark, 10 px gap, 19 px word</figcaption>
+        </figure>
+        <figure>
+          <div class="win w2">
+            <div class="brand b2"><svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+          </div>
+          <figcaption>The same lockup at 2x, for detail</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3 Legibility -->
+    <section class="s3" aria-label="Legibility">
+      <h2 class="lbl"><span class="n">3</span>Legibility</h2>
+      <div class="stage">
+        <div class="cell"><div class="box"><svg class="mk" width="96" height="96" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">96 px</span></div>
+        <div class="cell"><div class="box"><svg class="mk" width="48" height="48" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">48 px</span></div>
+        <div class="cell"><div class="box"><svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg></div><span class="px">28 px slot</span></div>
+        <div class="cell"><div class="box"><svg class="mk" width="18" height="18" viewBox="-1 -1 18 18" aria-hidden="true" focusable="false"><use href="#m16" width="16" height="16"/></svg></div><span class="px">18 px, 16 grid</span></div>
+        <div class="cell"><div class="box"><svg width="32" height="32" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></div><span class="px">32 px tile</span></div>
+        <div class="cell"><div class="box"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#fav"/></svg></div><span class="px">16 px tile</span></div>
+      </div>
+      <p class="note">28 px master on whole pixels, hero at exactly 9x. The vector blurs at 18 px, so that cell shows the 16 grid drawing at 1x. Favicon on that grid, every edge whole, every feature 2 px, rows 3 apart. Its short share is 2 by 2, the one bend of the 1.0 rule of 1.33 times the height, since 3 px would widen the slip to 15 of 16 and square it.</p>
+    </section>
+
+    <!-- 4 Swatches -->
+    <section class="s4" aria-label="Swatches">
+      <h2 class="lbl"><span class="n">4</span>Swatches</h2>
+      <div class="grid">
+        <div class="tile t-dark">
+          <div class="brand b2"><svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+          <span class="tag">Dark card<br>#15171c</span>
+        </div>
+        <div class="tile t-light">
+          <div class="brand b2"><svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg><span class="word">Splity Tab</span></div>
+          <span class="tag">Light card<br>#f7f6f3</span>
+        </div>
+        <div class="tile t-bw">
+          <div class="marks">
+            <svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m16"/></svg>
+          </div>
+          <span class="tag">Black on white<br>#000 on #fff</span>
+        </div>
+        <div class="tile t-wb">
+          <div class="marks">
+            <svg class="mk" width="56" height="56" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><use href="#m28"/></svg>
+            <svg class="mk" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m16"/></svg>
+          </div>
+          <span class="tag">White on black<br>#fff on #000</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Production sources. Lift these. Hidden with display none so the sheet stays exactly 900 px tall -->
+<svg id="mark-src" viewBox="-4 0 28 28" aria-hidden="true" style="display:none"><path fill="currentColor" d="M1 1H19A1 1 0 0 1 20 2V26A1 1 0 0 1 19 27H1A1 1 0 0 1 0 26V2A1 1 0 0 1 1 1ZM3 13V16H11V13ZM13 13V16H17V13ZM3 21V24H17V21Z"/></svg>
+<svg id="favicon-src" viewBox="0 0 16 16" style="display:none"><rect width="16" height="16" fill="#0B0E13"/><path fill="#A3AAFF" d="M2.5 1H13.5A.5 .5 0 0 1 14 1.5V14.5A.5 .5 0 0 1 13.5 15H2.5A.5 .5 0 0 1 2 14.5V1.5A.5 .5 0 0 1 2.5 1ZM4 6V8H8V6ZM10 6V8H12V6ZM4 11V13H12V11Z"/></svg>
+</body>
+</html>
