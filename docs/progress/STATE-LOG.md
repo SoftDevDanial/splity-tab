@@ -248,3 +248,7 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - rate-error.html, the card's receipt and the strip now show the blocked state of 1.0 core R18 and app R17, "Check the charges to see the splits." under the receipt icon, no Total, Copy summary disabled. Golden strip height 108 px as bill-empty.html.
 - rate-error.md, SELF-CRITIQUE (ruled difference from g2, copy list, open questions 1 and 2 ruled) and the prototype copy updated. check_final.py 748 of 748, 0 console, 0 network (the 30 money asserts on the old Total no longer apply). Flow check 48 of 48. Ledger S7 row 11.
 - sdlc 2.5.0 install confirmed (installed_plugins.json, cache 2.5.0, commit 087dc18).
+
+## 2026-10-11 13:33 v1.1.0 RULINGS.md written
+- docs/design-explore/v1.1.0/RULINGS.md. USER, copy list and thirteen rules approved, P1 on K2, dialog edges accepted, the mark redrawn. ORCH, the blocked receipt order a to e, a blank rate blocks (1.0 core R18 (a)) and never counts as 0, folded Charges shows Check for a blank rate, row c widens R18 (c) to no valid price, a plan delta.
+- rate-error.md had said a blank rate counts as 0 "as in 1.0". 1.0 blocks on it. Fixed, with states.md's price note. check_final.py 748 of 748. Ledger S7 row 12.

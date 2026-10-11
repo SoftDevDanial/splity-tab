@@ -34,7 +34,7 @@ A price that is not valid blocks the same way with "Give every item a price to s
 People ends at 117, Charges at 348, Split at 407. The strip starts at 736 (672 at 360). The page is 1125 px and scrolls (the golden sets the strip height to 108 px, as `bill-empty.html`). At 1280 the card is 161 px tall.
 
 ## Behaviour this golden implies
-- A blank rate is not an error, it counts as 0, as in 1.0.
+- A blank rate shows no error under its field (1.0 ruling 1). It does not count as 0 (g2's shortcut). It blocks the receipt with the same message, as in 1.0 (core R18 (a), empty or not valid).
 - A rate that is not valid blocks the receipt (core R18). The receipt comes back as soon as both rates are valid, whatever the field's error timing (app R10).
 - The error shows while the value is wrong and goes as soon as it is valid. The rate fields name their error in `aria-describedby` only while it shows.
 - A section opens on load only. Typing a bad rate with Charges open does not reopen anything later, and folding shows "Check".

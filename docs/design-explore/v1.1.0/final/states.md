@@ -11,7 +11,7 @@ Each piece was checked against g2's own element in the same state, by computed s
 ## S2 on an amount (C2, C3)
 **Copy.** Enter an amount like 12.50
 - **The Subtotal (Even).** Value `100,00`, which is not an amount. The field gets the red edge with a 1 px inset (reads 2 px, nothing moves), `aria-invalid="true"`, and the message 8 px below in 14/20 600 error red with a 16 px warning circle. The field keeps the value as typed. On the screen this is K2 with this field, and the receipt and strip say "Enter the subtotal to see the splits." because there is no valid subtotal.
-- **An item price (By item).** Char kuey teow at `13,50`. The message spans the name and price columns and is right aligned, so it ends under the price, then the toggles 8 px below. In g2 an item whose price is not valid is left out of the totals while its error shows (a prototype shortcut, see `SELF-CRITIQUE.md`).
+- **An item price (By item).** Char kuey teow at `13,50`. The message spans the name and price columns and is right aligned, so it ends under the price, then the toggles 8 px below. In g2 an item whose price is not valid is left out of the totals while its error shows (a prototype shortcut). Ruled 2026-10-11 (ORCH, `../RULINGS.md`), it blocks the receipt as in 1.0, "Give every item a price to see the splits."
 
 ## S2 on a rate, SST (C4)
 **Copy.** Enter a rate from 0 to 20

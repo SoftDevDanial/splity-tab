@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design, step 7 done, owner's rulings given 2026-10-11, rate-error golden blocked as in 1.0, RULINGS.md and logo round next
-- **next:** write v1.1.0/RULINGS.md, logo round (redraw the mark, four directions, he picks), swap the mark in, finalize gate (his approval AND his word to replace 1.0's goldens), then plan (sdlc 2.5.0 is installed)
+- **phase:** v1.1.0 design, step 7 done, rulings written (RULINGS.md v1.1.0), logo round next
+- **next:** logo round (redraw the mark from the glass receipt, four directions, QA-checked, he picks on the design board), swap the mark and favicon into every golden, rerun check_final.py, finalize gate (his approval AND his word to replace 1.0's goldens), then plan (sdlc 2.5.0 is installed)
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,7 +18,7 @@
 none
 
 ## Next action
-rate-error.html shows 1.0's blocked receipt (core R18, app R17), "Check the charges to see the splits.", no Total, Copy summary disabled on the strip, at 390, 360 and 1280. check_final.py 748 of 748, flow check 48 of 48. Next write docs/design-explore/v1.1.0/RULINGS.md (his four answers of 2026-10-11 and the ORCH ruling on open questions 1 and 2), then the logo round, then the finalize gate. Details in `HANDOFF-2026-10-11b.md` at the showcase root.
+RULINGS.md v1.1.0 written in docs/design-explore/v1.1.0/ (his four answers, USER, and the ORCH blocked-receipt order a to e from 1.0 core R18 and app R17). Next the logo round, usage check first, at most 2 agents at a time, load the logo-design skill. Then swap his pick into each golden's one inline <svg class="mark"> and the favicon data URL, rerun check_final.py. Then the finalize gate. Details in `HANDOFF-2026-10-11b.md` at the showcase root.
 
 ## Notes
 Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.

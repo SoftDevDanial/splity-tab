@@ -121,9 +121,9 @@ Brainstorm copy used verbatim is "Enter an amount like 12.50", "Set a charge to 
 ## Open questions for the owner (nothing invented)
 1. **A rate that is not valid counts as 0 in the receipt.** `rate-error.html` showed g2 as it is, Total RM 62.96 with "Service 0%", while the field says the rate is wrong. A Total built on a rate the person did not mean can be copied. g2.md suggested the receipt say so instead (for example "Check the rates to see the splits." with no Total). **Ruled 2026-10-11, ORCH, told to the owner.** The sealed 1.0 spec already settles it. Core R18 (a) blocks the result first on a rate that fails its parser, and app R17 words it "Check the charges to see the shares.", now "splits". `rate-error.html` now shows the blocked receipt at all three widths, no Total, Copy summary disabled on the strip.
 2. **A price that is not valid is left out of the totals while its error shows** (g2's prototype shortcut, S2 on a price). The same choice as question 1, for items. **Ruled 2026-10-11, ORCH, with question 1.** Core R18 (d) blocks the result, and app R17 `prices` words it "Give every item a price to see the splits." with the rename. No golden shows it, it is a builder note.
-3. **P1's picker and At random are shown on K2,** following the inventory's figures. If the owner wants all of P1 on K1, the figures would be 29.03, 15.75, 24.48 for One person, Ben.
-4. **Dialogs against their scrim** measure 1.01 to 1.21 (`system.md`). Not a WCAG requirement, and the owner accepted the look in g2. Recorded so it is a choice, not an accident.
-5. **The logo swap touches two places per page,** the inline mark `<svg>` and the tab icon's data URI in `<head>`.
+3. **P1's picker and At random are shown on K2,** following the inventory's figures. If the owner wants all of P1 on K1, the figures would be 29.03, 15.75, 24.48 for One person, Ben. **Ruled 2026-10-11, owner, keep them on K2.**
+4. **Dialogs against their scrim** measure 1.01 to 1.21 (`system.md`). Not a WCAG requirement, and the owner accepted the look in g2. Recorded so it is a choice, not an accident. **Ruled 2026-10-11, owner, accepted as he saw them.**
+5. **The logo swap touches two places per page,** the inline mark `<svg>` and the tab icon's data URI in `<head>`. **Ruled 2026-10-11, owner, the mark is redrawn** (`../RULINGS.md`).
 
 ## Known limits, accepted
 - On desktop P1's place is written for 1280 and wider (`left: calc(50% - 66px)`). Between 1024 and 1279 the build's script places it.
