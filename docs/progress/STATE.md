@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 plan, step 3 plan check BLOCK (2026-10-13 22:08, 4 BLOCK, 10 FLAG, 8 NOTE), planner fix pass next. All contracts written by three planner runs. Clarify gate parts 1 and 2 ruled (CG-P1 to CG-P8, all USER)
-- **next:** planner fix pass on PLAN-CHECK.md, plan re-check, then the ledger scope map, CLAUDE.md stack line, commit. The orchestrator installs WebKit (owner approved 2026-10-13) before app task A0
+- **phase:** v1.1.0 plan DONE 2026-10-13 23:05. PLAN-CHECK PASS (re-check 22:59, then a touch-up closed F11, F12, N9, N10). Clarify gates parts 1 and 2 all ruled (USER, CG-P1 to CG-P8). Ledger scopes S1 to S9 name their module R#s
+- **next:** sdlc:execute v1.1.0. Step 0, the orchestrator installs WebKit (python -m playwright install webkit, owner approved 2026-10-13, ledger S5 row 2) and records it in process-ledger.md. Then the ROADMAP v1.1.0 build order, A0 (1.0 golden fixtures, engine switch, probes, baselines 427 in Chromium on unchanged src and the 1.0 live gate in both engines), C1, C2, A1, C3 to C6, A2 to A18, A19 fidelity (Chromium), A20 live gate (both engines). UI tasks load taste-skill and frontend-design. Weekly usage was 77% at plan close, the owner decides when the build waves start
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules

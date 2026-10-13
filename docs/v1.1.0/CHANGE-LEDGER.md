@@ -35,6 +35,7 @@
 ### S1 - The user decides who takes the spare sen
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
 **Source:** UAT-03 and UAT-F1, owner: "if it cannot be evenly split, the number in summary should show the extras then let the user decide to put to who or have a button or random split. So user can split manually or randomly or even have 1 person pay the extras". Approved for 1.1.0: "3.  Yes."
+**Implements (plan 2026-10-13, docs/modules/ROADMAP.md scope trace):** split-core/R10, R11, R12, R20, R21, R22, R24, R27 to R33. split-app/R20, R21, R25, R26, R51, R52, R53, R54, R61
 
 When a bill does not divide to the sen, the spare sen are shown, and the user can give them to one person, split them at random, or keep the top-of-the-list rule.
 
@@ -47,6 +48,7 @@ When a bill does not divide to the sen, the spare sen are shown, and the user ca
 ### S2 - The by-item table fits a 360 px phone (H-02)
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
 **Source:** H-02, ruled by the owner on 2026-10-09 ("Fix the v1.0 limits"). Needs a design change to the table.
+**Implements (plan 2026-10-13, docs/modules/ROADMAP.md scope trace):** split-app/R35, R60
 
 On a small phone the shares table never scrolls sideways, however big the bill.
 
@@ -57,6 +59,7 @@ On a small phone the shares table never scrolls sideways, however big the bill.
 ### S3 - Holding Enter on Remove adds no blank item (SEC-04)
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
 **Source:** SEC-04 (v1.0.0 ledger row 48), D-01 item 1, owner: "i agree with all."
+**Implements (plan 2026-10-13, docs/modules/ROADMAP.md scope trace):** split-app/R57
 
 Holding Enter down on an item's × removes that item and nothing else.
 
@@ -67,6 +70,7 @@ Holding Enter down on an item's × removes that item and nothing else.
 ### S4 - A bill that cannot be saved says so
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
 **Source:** D-01 item 2, owner: "i agree with all." (move into 1.1.0)
+**Implements (plan 2026-10-13, docs/modules/ROADMAP.md scope trace):** split-app/R25, R28, R46, R47
 
 If the browser blocks or fills its storage, the page tells the user the bill is not being saved on this device.
 
@@ -79,6 +83,7 @@ If the browser blocks or fills its storage, the page tells the user the bill is 
 ### S5 - Tested in Safari's engine too
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
 **Source:** D-01 item 7, owner: "i agree with all." (move into 1.1.0)
+**Implements (plan 2026-10-13, docs/modules/ROADMAP.md scope trace):** split-app/R40, R41, R58, R59, and every functional scenario runs in both engines
 
 The browser tests and the gates also run in WebKit, the engine of Safari on iPhone, since the app is used on a phone at the table.
 
@@ -90,6 +95,7 @@ The browser tests and the gates also run in WebKit, the engine of Safari on iPho
 ### S6 - The logo in the app
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
 **Source:** owner: "Wheres the logo. I dont see it being used for both"
+**Implements (plan 2026-10-13, docs/modules/ROADMAP.md scope trace):** split-app/R1, R38, R39, R44, R45
 
 The logo shows in the app's header and as the browser tab icon.
 
@@ -101,6 +107,7 @@ The logo shows in the app's header and as the browser tab icon.
 ### S7 - A livelier look, chosen from five directions
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
 **Source:** owner: "Both designs are great but is just that its so dull. Need to spice it up so it looks nicer" and "Propose 5 designs for both app. Doesnt need to be working, i just want the design part." Then: "as long as i can see the design. Including popups and modals or anything that requires a button click"
+**Implements (plan 2026-10-13, docs/modules/ROADMAP.md scope trace):** split-core/R4, R18, R24, R34. split-app/R1 to R24, R26, R27, R29, R31, R32, R35 to R38, R40, R41, R42, R48 to R52, R55, R56
 
 A new look the owner picks from five clickable static directions, then a new golden set.
 
@@ -125,6 +132,7 @@ A new look the owner picks from five clickable static directions, then a new gol
 ### S8 - A name that is free to use
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
 **Source:** owner: "for split, change it to SplitIO. Also, if both names cant be used, then add Danials [app name] Or if theres a better way to make it uniquely to me."
+**Implements (plan 2026-10-13, docs/modules/ROADMAP.md scope trace):** split-app/R1, R2, R43
 
 A product name no other app or known software company uses, shown in the new wordmark and the logo lockup.
 
@@ -135,6 +143,7 @@ A product name no other app or known software company uses, shown in the new wor
 ### S9 - Several bills, written up as a future implementation (document only)
 **Status:** OPEN · **Opened:** 2026-10-10 · **Tag:** USER
 **Source:** D-01 item 4, owner: "If they want to add a different bill, we can have this as future implementation. I think its a good thing to have this as future implementation and put this as a doc only so that we can showcase it. So we dont need to implement this but put this like a future implementation kind of doc."
+**Implements (plan 2026-10-13, docs/modules/ROADMAP.md scope trace):** no R#, a non-goal in both modules. The deliverable is docs/future/several-bills.md (written 2026-10-10, house-style colon fixed 2026-10-13)
 
 A short document that describes how several bills could work later. No code.
 
@@ -157,7 +166,10 @@ A short document that describes how several bills could work later. No code.
 | 7 | A home-screen icon (iPhone and Android) | 2026-10-13 18:45 plan | Not built in v1.1.0. Why, a home-screen icon needs a filled tile, against the owner's no-tile ruling, and iOS paints a transparent icon black. Blocking item, a tile logo round with the owner | USER "Header and tab only (Recommended)" | DEFERRED |
 | 8 | Planner process notes. One planner wrote a read-only helper into the session scratchpad with a shell heredoc, against the Write-tool rule. The planners also recorded orchestrator decisions PD-17 to PD-23 (rows per even split, sheet focus at 1024 px, Math.random as the random source, the receipt drawn into the sheet only while open, the repeat-click guard on the sheet and P1, the section reveal as a Web Animations API animation, P1 focus and placement) | 2026-10-13 21:05 plan | The helper is outside the project and its bytes were checked by the planner. Later briefs forbid any shell write. PD-17 to PD-23 are listed in docs/modules/ROADMAP.md as ORCH rows | ORCH (planners) | Noted, PD rows reversible |
 | 9 | Plan check (coverage gate) on the v1.1.0 contracts. BLOCK, 4 BLOCK, 10 FLAG, 8 NOTE (docs/modules/PLAN-CHECK.md). Coverage complete, nothing invented. B1, eleven 1.0 browser tests (15 cases) in tests/browser/test_app.py read goldens the 2026-10-13 finalize replaced (the system.css byte test, five golden walks, five states.html lookups), so A0 cannot end green. B2, 16 of 40 fidelity after-load scripts press controls with no clipboard stand-in. B3, the cold-boot live gate names no control. B4, CG-P8 was open when the check ran (ruled since, S1 row 3). Flags on stale pending wording for CG-P1 to CG-P7, the RED-first method for new Node cases, a false probability note on core R31, two golden interactions with no scenario, R3 and scan controls, PD-24 only in the ROADMAP, README items, A0 probes, prose colons | 2026-10-13 22:08 plan | Routed to one planner fix pass. B1 as in Streaks, the replaced 1.0 goldens restored byte for byte from tag v1.0.0 as test fixtures (ORCH, reversible). B4 cleared by the owner's CG-P8 ruling | ORCH (plan checker, routing) | Fix pass next, re-check after |
-| 10 | Removing 1.0 test files during the build. Streaks task 12 removes eight tracked 1.0 browser test files and the 1.0 fixture folder, Split removes its 1.0 fixture copies with their readers. The house rule says cleanups never delete, so the owner was asked (plan check F15 in Streaks) | 2026-10-13 22:20 plan | USER "git rm, kept in tag v1.0.0 (Recommended)", each file is removed in the build commit that rewrites or retires it and stays recoverable with git checkout v1.0.0 -- <path>. No archive copy | USER | Ruled |
+| 10 | Removing 1.0 test files during the build. Streaks task 12 removes eight tracked 1.0 browser test files and the 1.0 fixture folder, Split removes its 1.0 fixture copies with their readers. The house rule says cleanups never delete, so the owner was asked (plan check F15 in Streaks) | 2026-10-13 22:20 plan | USER "git rm, kept in tag v1.0.0 (Recommended)", each file is removed in the build commit that rewrites or retires it and stays recoverable with git checkout v1.0.0 -- <path>. No archive copy. Corrected 2026-10-13 23:00 (planner touch-up, Streaks F15). That command restores the 1.0 test files only. The 1.0 fixture copies under tests/fixtures/design-v1.0.0/ never sat at that path in the tag, so they come back with git checkout <the fixture task's commit> -- tests/fixtures/design-v1.0.0/, or git show v1.0.0:docs/design/<file> checked against the blob ids the spec names. Never git checkout v1.0.0 -- docs/design/<file>, which would overwrite a v1.1.0 golden | USER | Ruled |
+| 11 | Plan check fix pass on B1 to B4, F1 to F10, N1 to N8 | 2026-10-13 22:30 plan | One planner pass with Edit only (6bc04cd). B1 the seven replaced 1.0 design files come back byte for byte from tag v1.0.0 into tests/fixtures/design-v1.0.0/ at task A0 (blob ids named), A2 and A8 remove them with their readers. B2 every fidelity seed starts with the clipboard stand-in and every after-load script refuses to click without it. B3 a live gate control run (--control seeded) that must fail at step 1 in each engine. B4 and F1 CG-P1 to CG-P8 written as ruled. F3 the RED-first stub method. F4 the R31 probability note corrected. F5 two new scenarios. F6 controls for the R3 walk and two scans. F7 PD-24 in core task C3. App scenarios 158, checklist 210 | ORCH (planner) | Fixed, re-check next |
+| 12 | Plan re-check after the fix pass | 2026-10-13 22:59 plan | PASS, 0 BLOCK (docs/modules/PLAN-CHECK.md, the first verdict in 9c5a673). Every prior finding FIXED with evidence. New F11 the B3 control puts storage_state into live_e2e.py, which the sealed 1.0 static guard test_R41_the_gate_uses_real_gestures_and_reads_only forbids. New F12 app R1 pins src/system.css to the SHA-256 of this machine's CRLF working copy, the committed blob is LF. NOTEs N9 three spots the fix pass missed, N10 the golden helpers need a folder argument, N11 this ledger lacked the fix pass row (added above) | ORCH (plan checker) | PASS. F11, F12, N9, N10 go to a short planner touch-up before execute |
+| 13 | Plan touch-up after the PASS re-check, F11, F12, N9, N10 | 2026-10-13 23:05 plan | One planner pass with Edit only. F11 task A20 names the three sealed live gate tests, the static guard allows storage_state only on the --control seeded path, every green run's summary.json holds control null, a new @R41 @static scenario with three planted copies. F12 the system.css pin is the committed LF blob (33070 bytes, SHA-256 66807273b62f87e05caa931faac40a4bcac1cf7294b2cf38a9f046154b6d3c08, blob bf30ddad), compared after CRLF to LF on both sides, A2 copies it from git cat-file blob, the CRLF working copy is never a pin. N9 three spots aligned. N10 the golden helpers take a folder argument. App scenarios 159, task to R# lists unchanged | ORCH (planner) | Closed. FLAG fixes after a PASS, task to R# map unchanged, so no further check |
 
 ---
 

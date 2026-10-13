@@ -11,6 +11,8 @@
 
 Changed 2026-10-13 after the plan check (`docs/modules/PLAN-CHECK.md`, B2, B3, B4, F1, F3, F5, F6, F9, N2, N4, N5). New scenarios are the R3 walk control, an R6 step from twelve people, Arrow keys in P1 (R52), the after-load stand-in check (R40) and the live gate's control (R41). The fidelity seeds carry the clipboard stand-in, the R47 and R54 scans have planted copies, and five checklist sections have a row for the rest. Each change carries its own dated line.
 
+Changed 2026-10-13 after the plan re-check (`docs/modules/PLAN-CHECK.md`, F11, F12, N9). One new scenario, the live gate script's static guard (R41), which is the v1.1.0 form of three sealed 1.0 tests. "Works right" asserts `"control": null` in each green run's summary. The R1 scenario compares `src/system.css` with the golden after turning CRLF into LF. The Seed drafts paragraph states the two parts of each fidelity seed file. Each change carries its own dated line.
+
 ## How to run
 - **Functional suite.** `python -m pytest tests/browser -q` runs Chromium (the default, as in 1.0). `python -m pytest tests/browser -q --engine webkit` runs WebKit. Test functions are named `test_R<n>_<what>`, so a grep maps each one to its tag. `split-core`'s unit tests and this module's Node tests (`tests/draft.test.js`, `tests/errors.test.js`) run with `node --test "tests/**/*.test.js"`.
 - **Fidelity gate.** `python tests/browser/fidelity/run.py`, Chromium only. It has no engine option (R58).
@@ -51,7 +53,7 @@ Changed 2026-10-13 after the plan check (`docs/modules/PLAN-CHECK.md`, B2, B3, B
 - Sizes are CSS px, positions are `getBoundingClientRect()` values, and a measured number matches within 0.5 px.
 
 ## Seed drafts
-`tests/browser/seeds.py` is the one source. The fidelity files `tests/browser/fidelity/seed-*.js` repeat some of them, and `test_R40_fidelity_seeds_match` keeps each file equal to its seed. Every seed is version 2 with `"spare":{"rule":"top"}` unless its row says otherwise. Names in this file map to `seeds.py` names as K1 = `S1` (the `bill-items` bill), K2 = `S2` (the `bill-even` bill), BU = `S5` (the `bill-unassigned` bill) and S8 = `S8` (twelve named people). The other names are new in `seeds.py` under the same name (`-` becomes `_`).
+`tests/browser/seeds.py` is the one source. Each fidelity file `tests/browser/fidelity/seed-*.js` starts with the text of `tests/browser/clipboard/recorder.js` byte for byte, followed by exactly one `localStorage.setItem` statement that repeats one of these seeds. `test_R40_fidelity_seeds_match` keeps the first part equal to `recorder.js` and the seed part equal to `seeds.py` (Fidelity gate, Seed scripts). [Changed 2026-10-13 after the plan re-check (N9). It said the test keeps each file equal to its seed, which the B2 fix had made untrue.] Every seed is version 2 with `"spare":{"rule":"top"}` unless its row says otherwise. Names in this file map to `seeds.py` names as K1 = `S1` (the `bill-items` bill), K2 = `S2` (the `bill-even` bill), BU = `S5` (the `bill-unassigned` bill) and S8 = `S8` (twelve named people). The other names are new in `seeds.py` under the same name (`-` becomes `_`).
 
 | Name | Value |
 |---|---|
@@ -135,7 +137,9 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Given a fresh context with empty storage
     When I open "/"
     Then html has lang "en" and the head holds exactly, in this order, meta charset "utf-8", meta viewport "width=device-width, initial-scale=1, viewport-fit=cover", meta color-scheme "dark", the CSP meta of spec R38, title "Danial's Splity Tab", link rel "icon" type "image/svg+xml" href "src/icon.svg", link rel "stylesheet" href "src/system.css" and script type "module" src "src/main.js"
-    And the SHA-256 of src/system.css equals that of docs/design/system.css ("eaa6a3b2753abf7848afb81b848aa411fbf3fa16b87b961a6170e042e1bdb7b0" at planning time)
+    And with every CRLF turned into LF in both files, src/system.css equals docs/design/system.css byte for byte, and both are 33070 bytes with SHA-256 "66807273b62f87e05caa931faac40a4bcac1cf7294b2cf38a9f046154b6d3c08" (the committed LF blob)
+    And in a pytest temporary folder the same comparison passes for a CRLF copy of docs/design/system.css and reports an LF copy with one rule changed
+    # Changed 2026-10-13 after the plan re-check (F12). It compared the raw SHA-256 of the two working files and quoted "eaa6a3b2753abf7848afb81b848aa411fbf3fa16b87b961a6170e042e1bdb7b0", the hash of this machine's CRLF working copy, so the result hung on the line-end settings. The second line is the comparison's own control.
     And no console error, page error or CSP violation was recorded
     And every request was a same-origin GET for "/", "/src/system.css", a file under "/src/" or "/favicon.ico"
 
@@ -1191,6 +1195,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     When the cold-boot live-e2e gate below runs with --engine chromium and with --engine webkit
     Then it passes in each, and each run's evidence folder exists and is listed after the run
     # Added 2026-10-13 after the plan check (B3). A green run counts only beside the RED capture of its control in the same engine (next scenario).
+    And each green run's summary.json records "control": null, and a run whose summary records "control": "seeded" never counts as green
+    # Added 2026-10-13 after the plan re-check (F11).
 
   @R41 @gate
   Scenario Outline: The live gate fails when the app starts from a saved bill (control)
@@ -1205,6 +1211,19 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
       | engine   |
       | chromium |
       | webkit   |
+
+  @R41 @static
+  Scenario: The gate script makes a cold context except on its control path
+    # Added 2026-10-13 after the plan re-check (F11). The v1.1.0 form of three sealed 1.0 tests in tests/browser/test_app.py, rewritten in task A20. test_R41_the_gate_uses_real_gestures_and_reads_only, test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields and test_R41_the_gate_installs_the_clipboard_recorder_and_nothing_else (renamed to say both scripts).
+    Given the text and the syntax tree of tests/browser/live_e2e.py, read through one helper that takes a path
+    Then "bypass_csp" and "permissions" are never a keyword argument in it
+    And "storage_state" is a keyword argument exactly once, on the script's one rig.new_context call, and its value is a conditional expression whose test is an == comparison of the parsed --control value with "seeded" and whose else branch is None
+    And the one add_argument call for "--control" has choices ["seeded"] and default None
+    And no attribute in it is fill, dispatch_event, check, set_checked, select_option, route, add_init_script or launch_persistent_context, the one context comes from rig.new_context, and every page.evaluate argument is on the test's read-only list, which holds reads only (window.testCspViolations among them)
+    And the gate.step calls are numbered 1 to 9, one per step of the flow below, each with a gesture field that starts with one of the 1.0 action words and an assertion field that does not
+    And INIT_SCRIPTS is exactly ["tests/browser/clipboard/recorder.js", "tests/browser/csp/listener.js"]
+    And three planted copies of live_e2e.py checked in a pytest temporary folder are each reported, one that passes storage_state with no condition, one whose else branch is the K2 state, and one that adds bypass_csp=False to the rig.new_context call
+    # Watched failing first. Before A20 changes the script, the rewritten tests run against the live_e2e.py of that moment (the 1.0 flow with A0's --engine) and fail on the missing control path, the seven steps and the one init script. That RED run keeps its own qa/functional/<stamp>-<engine>/ folder (How to run, Controls). The planted copies keep the guard's own RED in every later run.
 
   # ---------- The name and the logo (v1.1.0, S8, S6) ----------
   @R43 @both
@@ -2214,7 +2233,7 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
 ## Cold-boot live-e2e gate (Chromium and WebKit)
 - **Script.** `tests/browser/live_e2e.py`, run once with `--engine chromium` (the default) and once with `--engine webkit`, after the suite is green in both engines and the fidelity gate is green.
 - **Control and baseline** (constitution, Gates and evidence, added 2026-10-13 after the plan check, B3). The gate compares the running app with the cold-boot rule (R2, R41), a first visit with empty storage that shows `bill-empty` with People open and the strip reading "Enter the subtotal to see the splits.", and it must be able to fail when the app does not start empty. Its control is the same script in the same engine against the same server, run once with `--control seeded` just before that engine's green run (the `@R41` scenario "The live gate fails when the app starts from a saved bill"). It makes its one context with `storage_state` holding the K2 seed, runs the same steps, and must stop at step 1 with pass false, failing on the cold-boot assertions while step 1's clipboard check passes. Its evidence is kept as the RED capture in `docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>-control/`, beside the green run and never overwritten. A control that passes step 1 means the gate cannot fail, and the gate is not met. The baseline is the gate's own prior run in the same engine, first the A0 runs of the 1.0 gate (`--engine chromium` and `--engine webkit`), then each earlier green run of the v1.1.0 gate.
-- **Control mode.** `--control seeded` is the only option that changes what the script does, and it can only make the run fail. A run without it writes `"control": null` in `summary.json`, and only such a run can meet the gate. The seed is test-side data given to the context as `storage_state`, never through the app.
+- **Control mode.** `--control seeded` is the only option that changes what the script does, and it can only make the run fail. A run without it writes `"control": null` in `summary.json`, and only such a run can meet the gate. The seed is test-side data given to the context as `storage_state`, never through the app. The script passes `storage_state` in one place only, the one `rig.new_context` call, as the K2 state when the parsed `--control` value equals `"seeded"` and `None` otherwise. The `@R41 @static` scenario "The gate script makes a cold context except on its control path" checks exactly that, with planted copies, and "Works right" asserts `"control": null` in each green run's `summary.json`. [Added 2026-10-13 after the plan re-check (F11). The sealed 1.0 test `test_R41_the_gate_uses_real_gestures_and_reads_only` banned `storage_state` outright, and the plan did not give the guard its new form.]
 - **Rules.** The browser is launched by `rig.launch(playwright, engine)`, headless. One new context with **no** `storage_state` (apart from the control mode) and **no** `bypass_csp`, so the shipped policy is live for the whole run. Viewport 390 x 844, device scale factor 1, colour scheme dark, reduced motion `reduce`. Its only init scripts are `tests/browser/clipboard/recorder.js` (never the operating system clipboard, CG-7 of 1.0) and `tests/browser/csp/listener.js`. No clipboard permission is granted. The entry point is the shipped `index.html` at `/`. Only real gestures change the app (mouse clicks on visible controls, keyboard typing, key presses). `page.evaluate` only **reads** (`window.testClipboardText`, `window.testCspViolations`, `document.activeElement`, `localStorage` for a check, the source text of `navigator.clipboard.writeText`), and never changes state. No seed, fixture, app hook or test-only code path in the app.
 - **Flow.** Each numbered step takes a screenshot and adds a line to `steps.log` (step, gesture, assertion, PASS or FAIL).
   1. Open `/`. Assert that `navigator.clipboard.writeText` is the stand-in (its source text holds no "[native code]"), that the screen is `bill-empty` with People open, and that `split.draft` is absent.

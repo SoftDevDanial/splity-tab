@@ -5,6 +5,8 @@ The version in work is on top. Each sealed version keeps its section below, unch
 ## v1.1.0 (plan, 2026-10-13)
 
 > Changed 2026-10-13 after the plan check (`docs/modules/PLAN-CHECK.md`, B1 to B4, F1, F3 to F10, N1, N2, N4 to N8). The four contracts and this section carry a dated note at each change a reader needs. F2 is the ledger (the orchestrator's). N3 needed nothing.
+>
+> Changed 2026-10-13 after the plan re-check (`docs/modules/PLAN-CHECK.md`, F11, F12, N9, N10). App task A20 names the sealed live gate guard and its v1.1.0 form, with one new `@R41 @static` scenario (F11). App R1 compares `src/system.css` with the golden after turning CRLF into LF, and A2 writes the copy from the committed LF blob (F12). Three app spots and A0's fixture wiring now match their rules (N9, N10). N11 is the ledger (the orchestrator's).
 
 **Phase.** plan · **Date.** 2026-10-13 · **Written by.** the planner (solutions architect role), in three passes with two handoffs (`docs/progress/handoff/handoff-2026-10-13-plan-split.md` and `handoff-2026-10-13-plan-split-2.md`), then one fix pass after the plan check.
 **Inputs.** `docs/brainstorm/brainstorm.md` with its v1.1.0 delta, the research in `docs/brainstorm/research/` (`webkit-testing.md`, `save-warning-and-tab-icon.md`), `docs/design/` (the fifteen goldens and their `.md` files, `system.md`, `system.css`, `LINKS.json`, `RULINGS.md`, `RULINGS-v1.1.0.md`), `docs/design-explore/v1.1.0/final/SELF-CRITIQUE.md`, `docs/v1.1.0/CHANGE-LEDGER.md` (scopes S1 to S9), `CLAUDE.md`, `docs/constitution.md` (sdlc 2.6.0) and the sealed 1.0 contracts (tag `v1.0.0`).
@@ -49,9 +51,9 @@ There is no cycle and no deadlock. Core never imports the app, and the one inter
 
 | Task | Work | R# |
 |---|---|---|
-| A0 | After the WebKit install. The seven 1.0 golden fixtures in `tests/fixtures/design-v1.0.0/` with the eleven 1.0 tests pointed at them (B1). The engine switch (`--engine`, the `engine` fixture, `rig.launch`, `chromium_only`, counted skips, the evidence suffix, `live_e2e.py --engine`, engine and version in each summary, the launch meta test), the IME test marked `chromium_only`, the probe script `tests/browser/probe_webkit.py`. The baselines, 427 sealed tests passing in Chromium, the WebKit run of the suite, the 1.0 live gate in each engine, the R59 probes through the rig with the clipboard stand-in, each WebKit failure sorted | R58, R59 |
+| A0 | After the WebKit install. The seven 1.0 golden fixtures in `tests/fixtures/design-v1.0.0/` with the eleven 1.0 tests pointed at them (B1), through a folder argument on `open_golden` and `golden_walk` and the R1 test's own path (N10). The engine switch (`--engine`, the `engine` fixture, `rig.launch`, `chromium_only`, counted skips, the evidence suffix, `live_e2e.py --engine`, engine and version in each summary, the launch meta test), the IME test marked `chromium_only`, the probe script `tests/browser/probe_webkit.py`. The baselines, 427 sealed tests passing in Chromium, the WebKit run of the suite, the 1.0 live gate in each engine, the R59 probes through the rig with the clipboard stand-in, each WebKit failure sorted | R58, R59 |
 | A1 | Right after C2. `src/draft.js` version 2 (`encodeDraft` writes version 2, D3, D13, D14, `loadDraft` reports `failed`) with `tests/draft.test.js` cases | R61, R25, R26 |
-| A2 | Shell and head, `src/system.css` byte copy, `src/icon.svg`, the sprite and the mark, the top bar, the two regions, the strip frame, the three dialog elements, the icons module, cold boot into `bill-empty`, the static scans. The 1.0 R1 test and the four 1.0 walk tests are rewritten or replaced, and six fixtures go | R1, R2, R3, R37, R38, R39, R43, R44, R45 |
+| A2 | Shell and head, `src/system.css` as a byte copy of the committed LF blob of the golden CSS, compared after CRLF to LF on both sides (F12), `src/icon.svg`, the sprite and the mark, the top bar, the two regions, the strip frame, the three dialog elements, the icons module, cold boot into `bill-empty`, the static scans. The 1.0 R1 test and the four 1.0 walk tests are rewritten or replaced, and six fixtures go | R1, R2, R3, R37, R38, R39, R43, R44, R45 |
 | A3 | Notes and the save warning, storage failures in memory, the test-side storage drivers. The 1.0 note specimen test is rewritten or retired | R27, R28, R46, R47 |
 | A4 | Sections, open on load, toggles, the two summaries, the reveal, folds after a reload | R48, R26 |
 | A5 | People, live names, Add person and Remove with limits and guards, focus, duplicates, typing keeps focus. The two 1.0 `test_R6_*` tests that read `states.html` are rewritten | R4, R5, R6, R7, R33, R34, R42 |
@@ -69,9 +71,9 @@ There is no cycle and no deadlock. Core never imports the app, and the one inter
 | A17 | The held-key guard in `swallowRepeatClicks` | R57 |
 | A18 | Cross-cutting checks in both engines (Tab order and rings, overflow and sizes, the desktop layout, large bills at 360, motion, injection, CSSOM targets, the network log, per-engine expectations) | R32, R35, R36, R37, R38, R39, R55, R59, R60 |
 | A19 | Fidelity gate in Chromium, version 2 seeds each led by the clipboard stand-in, after-load scripts that check for it before their first click, `run.py` with the 40 pairs and the two controls, a passing run with evidence | R40, R3 |
-| A20 | Cold-boot live gate in both engines with its control mode `--control seeded`. Per engine a control run seen failing at step 1, then a passing run, each with evidence | R41 |
+| A20 | Cold-boot live gate in both engines with its control mode `--control seeded`. Per engine a control run seen failing at step 1, then a passing run, each with evidence. The sealed guard `test_R41_the_gate_uses_real_gestures_and_reads_only` allows `storage_state` only on the `--control seeded` path, the step-log and init-script tests take the nine steps and the CSP listener, and each green summary records `"control": null` (F11) | R41 |
 
-Every R# of both specs is cited by at least one task. Each task adds the `qa.md` scenarios of its R#s. Rows A0, A2, A3, A5, A6, A8, A13, A19 and A20 changed 2026-10-13 after the plan check (B1 to B4, F9), and follow the app spec's tasks.
+Every R# of both specs is cited by at least one task. Each task adds the `qa.md` scenarios of its R#s. Rows A0, A2, A3, A5, A6, A8, A13, A19 and A20 changed 2026-10-13 after the plan check (B1 to B4, F9), and follow the app spec's tasks. Rows A0, A2 and A20 changed again 2026-10-13 after the plan re-check (F11, F12, N10).
 
 ### Commands
 | What | Command | Status |
