@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design done (finalize gate passed 2026-10-13, goldens in docs/design/)
-- **next:** sdlc:plan for v1.1.0 (a delta on the sealed 1.0 specs, scope S1 to S9 in docs/v1.1.0/CHANGE-LEDGER.md), carrying the R18 (c) delta from RULINGS-v1.1.0.md
+- **phase:** v1.1.0 plan, step 1 research (started 2026-10-13 18:20 from sdlc:continue, sdlc 2.6.0)
+- **next:** research returns (docs/brainstorm/research/webkit-testing.md, save-warning-and-tab-icon.md, both shared with Streaks), then the planner writes the delta specs (scope S1 to S9 in docs/v1.1.0/CHANGE-LEDGER.md), carrying the R18 (c) delta from RULINGS-v1.1.0.md, then plan check and the clarify gate
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
