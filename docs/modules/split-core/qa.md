@@ -21,6 +21,9 @@
 | `tests/invariants.test.js` | R22 |
 | `tests/summary.test.js` | R24, R26 |
 | `tests/hygiene.test.js` | R25 |
+| `tests/spare.test.js` (v1.1.0, new) | R29, R30, R31 |
+
+**v1.1.0 delta (2026-10-13, planner, solutions architect role).** New scenarios for R27 to R34 sit at the end of the Gherkin block under "Spare sen" and "Formatting". Scenarios whose expected result changed carry a `# [Changed 2026-10-13, v1.1.0, <scope>]` line saying what changed, and keep their tag. The R27, R28 and R32 cases live in `tests/bill.test.js` and `tests/result.test.js` beside the 1.0 cases of the same functions, R34 in `tests/money.test.js`. Every 1.0 case not marked here keeps its expected result, which is the proof that Top of the list is the 1.0 rule. The random source in every test is scripted (a list of numbers returned in turn), never `Math.random`.
 
 ## Named example bills
 Used by the scenarios. Rates are `serviceText` / `sstText`. People are listed in order with their ids.
@@ -40,6 +43,9 @@ Used by the scenarios. Rates are `serviceText` / `sstText`. People are listed in
 | **MAX-I** | item | twelve people | fifty items `99999.99`, item k (0-based) who [person k mod 12], rates `30` / `20` | charges 499999950, 149999985, 649999935, 129999987, total 779999922. Items 49999995 x2, 39999996 x10. Charges 27999998 x2, 22399998 x6, 22399997 x4. Shares 77999993 x2, 62399994 x6, 62399993 x4 |
 | **D1** (added 2026-10-08) | even | p1 Ben, p2 Ben, p3 Chen | subtotal `100.00`, rates `10` / `6` | as S2. Rows Ben 3887, Ben 3887, Chen 3886. Check 11660 |
 | **D2** (added 2026-10-08) | item | p1 Ben, p2 Ben, p3 Chen (built from `newBill()` with `addPerson`, `addItem` and the setters, so `nextId` is 5) | one item i4 `Tea` `10.00` who [p2]. Rates `10` / `6` | charges 1000, 100, 1100, 66, total 1166. Rows Ben 0 / 0 / 0, Ben 1000 / 166 / 1166, Chen 0 / 0 / 0. Check 1000 / 166 / 1166 |
+| **W1** (v1.1.0) | item | as S1 | S1 plus i8 `""` `964.50` who [p1] | charges 102390, 10239, 112629, 6758, total 119387. Rows Aisyah 98940 / 16425 / 115365, Ben 1350 / 224 / 1574, Chen 2100 / 348 / 2448. Check 102390 / 16997 / 119387. Spare count 1 (`bill-large.md`) |
+
+Since v1.1.0 every named bill has `spare: { rule: "top" }` unless a scenario names another choice, written as `<bill> with spare <choice>` (for example "S2 with spare one p2", "S2 with spare random [p2, p3, p1]"). The numbers each choice gives are the R32 table in `spec.md`.
 
 ## Functional test cases (Gherkin)
 A table cell written in double quotes is a JavaScript string literal, so its spaces count. An empty cell is the empty string. Other cells are literal text.
@@ -149,20 +155,25 @@ Feature: split-core money, maths, state rules and summary text
       | 10%   | 30  | invalid                   |
 
   @R4
-  Scenario Outline: formatMoney writes RM, a space, ringgit and two sen digits
+  # [Changed 2026-10-13, v1.1.0, S7] The last two rows had no comma (CG-5). The design system now writes a thousands
+  # comma from RM 1,000, and four rows around the first comma are added.
+  Scenario Outline: formatMoney writes RM, a space, ringgit with thousands commas and two sen digits
     Given <cents> cents
     When formatMoney is called
     Then it returns "<text>"
     Examples:
-      | cents     | text          |
-      | 0         | RM 0.00       |
-      | 1         | RM 0.01       |
-      | 10        | RM 0.10       |
-      | 100       | RM 1.00       |
-      | 3887      | RM 38.87      |
-      | 11660     | RM 116.60     |
-      | 15599999  | RM 155999.99  |
-      | 779999922 | RM 7799999.22 |
+      | cents     | text            |
+      | 0         | RM 0.00         |
+      | 1         | RM 0.01         |
+      | 10        | RM 0.10         |
+      | 100       | RM 1.00         |
+      | 3887      | RM 38.87        |
+      | 11660     | RM 116.60       |
+      | 99999     | RM 999.99       |
+      | 100000    | RM 1,000.00     |
+      | 119387    | RM 1,193.87     |
+      | 15599999  | RM 155,999.99   |
+      | 779999922 | RM 7,799,999.22 |
 
   @R5
   Scenario Outline: formatRate drops trailing zeros and adds a percent sign
@@ -258,9 +269,10 @@ Feature: split-core money, maths, state rules and summary text
       | allocateByWeight(-1, [1])      |
 
   @R10
-  Scenario: A new bill has two people, even mode and the default rates
+  # [Changed 2026-10-13, v1.1.0, S1] The expected value gains spare { rule: "top" }.
+  Scenario: A new bill has two people, even mode, the default rates and Top of the list
     When newBill is called
-    Then it deep-equals { mode: "even", people: [{ id: "p1", name: "Person 1" }, { id: "p2", name: "Person 2" }], subtotalText: "", items: [], serviceText: "10", sstText: "6", nextId: 3 }
+    Then it deep-equals { mode: "even", people: [{ id: "p1", name: "Person 1" }, { id: "p2", name: "Person 2" }], subtotalText: "", items: [], serviceText: "10", sstText: "6", spare: { rule: "top" }, nextId: 3 }
 
   @R11
   Scenario: Adding a person appends an empty-named person with the next id
@@ -381,10 +393,16 @@ Feature: split-core money, maths, state rules and summary text
       | item | 10  | 20.01 |        | none                                          | rates    |
       | even | 10  | 6     |        | none                                          | subtotal |
       | even | 10  | 6     | 0      | none                                          | subtotal |
-      | even | 10  | 6     | 12.505 | none                                          | subtotal |
-      | item | 10  | 6     | 100    | none                                          | no-items |
-      | item | 10  | 6     |        | one item, price "", who []                    | prices   |
-      | item | 10  | 6     |        | "15.90" who [p1] and "abc" who [p1]           | prices   |
+      | even | 10  | 6     | 12.505 | none                                          | subtotal  |
+      | item | 10  | 6     | 100    | none                                          | no-prices |
+      | item | 10  | 6     |        | one item, price "", who []                    | no-prices |
+      | item | 10  | 6     |        | "abc" who [p1] and "" who []                  | no-prices |
+      | item | 10  | 6     |        | "15.90" who [p1] and "abc" who [p1]           | prices    |
+      | item | 10  | 6     |        | "15.90" who [p1] and "" who []                | prices    |
+      | item |     | 6     |        | "15.90" who [p1]                              | rates     |
+    # [Changed 2026-10-13, v1.1.0, S7] Row 7 read "no-items" and row 8 read "prices" (one item with an empty price).
+    # RULINGS-v1.1.0 row c makes both "no item has a valid price", reason "no-prices". Rows 9, 11 and 12 are added:
+    # every price invalid is no-prices, one valid price with one empty is prices, and a blank rate still wins first.
 
   @R18 @R20
   Scenario: Even mode ignores broken items
@@ -438,6 +456,11 @@ Feature: split-core money, maths, state rules and summary text
     Then Aisyah's items are 501 and Chen's items are 500
 
   @R22
+  # [Changed 2026-10-13, v1.1.0, S1] Each generated bill is now worked out three times, with spare top, with spare
+  # one (a person drawn by the same generator from sparePeople) and with spare random (an order drawn by the same
+  # generator), and every Then line below holds for all three. The "larger ones first" line is checked under top
+  # only, the "differ by at most 1" line under top and random, and under one the chosen share is floor(total / n)
+  # plus spare.count while the rest are floor(total / n).
   Scenario: Generated bills always add up
     Given 2000 bills from a mulberry32 generator seeded with 20261008
       | half even mode and half by-item mode                                  |
@@ -642,6 +665,179 @@ Feature: split-core money, maths, state rules and summary text
       | bill |
       | D1   |
       | D2   |
+
+  # ---------- Spare sen (v1.1.0, S1) ----------
+  @R27 @R11
+  Scenario: Adding a person extends the drawn order and keeps the people already drawn in place
+    Given the S2 bill with spare random [p2, p3, p1] and nextId 4
+    When addPerson is called
+    Then spare is { rule: "random", order: [p2, p3, p1, p4] } and nextId is 5
+    And on the S2 bill with spare top or spare one p2, addPerson leaves spare deep-equal to what it was
+
+  @R27 @R12
+  Scenario Outline: Removing a person keeps the spare choice valid
+    Given the S2 bill with spare <before>
+    When removePerson is called with "<id>"
+    Then spare deep-equals <after>
+    Examples:
+      | before                   | id | after                               |
+      | random [p2, p3, p1]      | p3 | { rule: "random", order: [p2, p1] } |
+      | one p2                   | p2 | { rule: "top" }                     |
+      | one p2                   | p3 | { rule: "one", personId: "p2" }     |
+      | top                      | p1 | { rule: "top" }                     |
+
+  @R27 @R15
+  Scenario: A mode switch, the setters and the item actions never touch the spare choice
+    Given the S1 bill with spare one p2
+    When setMode "even", setMode "item", setSubtotalText, setServiceText, addItem, removeItem and toggleItemPerson are each called
+    Then every returned bill has spare deep-equal to { rule: "one", personId: "p2" }
+
+  @R28
+  Scenario Outline: Who can take the spare sen
+    Given the <bill> bill
+    When sparePeople is called
+    Then it returns <ids>
+    Examples:
+      | bill                                  | ids              |
+      | S2                                    | [p1, p2, p3]     |
+      | S1                                    | [p1, p2, p3]     |
+      | I2                                    | [p2, p3]         |
+      | I3                                    | [p1, p3]         |
+      | I2 switched to even mode (setMode)     | [p1, p2, p3]     |
+      | D2                                    | [p2]             |
+
+  @R29
+  Scenario Outline: Choosing a rule
+    Given the <bill> bill with spare <before> and a scripted random source returning <numbers>
+    When chooseSpareRule is called with "<rule>"
+    Then spare deep-equals <after>
+    Examples:
+      | bill | before        | numbers      | rule   | after                                        |
+      | S2   | top           | none         | one    | { rule: "one", personId: "p1" }              |
+      | I2   | top           | none         | one    | { rule: "one", personId: "p2" }              |
+      | S2   | top           | 0.9, 0.1     | random | { rule: "random", order: [p2, p1, p3] }      |
+      | S2   | top           | 0, 0         | random | { rule: "random", order: [p2, p3, p1] }      |
+      | S2   | one p2        | none         | top    | { rule: "top" }                              |
+    # Fisher and Yates from [p1, p2, p3] with i from 2 down to 1. Row 3: 0.9 gives j 2 (no swap), then 0.1 gives j 0
+    # (swap entries 1 and 0), so [p2, p1, p3]. Row 4: 0 gives j 0 (swap 2 and 0, [p3, p2, p1]), then 0 gives j 0
+    # (swap 1 and 0), so [p2, p3, p1], the draw spare-sen-random.html shows.
+
+  @R29
+  Scenario: Choosing the rule already set, or a rule that does not exist, changes nothing
+    Given the S2 bill with spare random [p2, p3, p1]
+    Then chooseSpareRule with "random" returns the same bill object and never calls the random source
+    And chooseSpareRule with "split" returns the same bill object
+    And on the S2 bill with spare top, chooseSpareRule with "top" returns the same bill object
+
+  @R30
+  Scenario Outline: Choosing the one person
+    Given the <bill> bill with spare <before>
+    When chooseSparePerson is called with "<id>"
+    Then <outcome>
+    Examples:
+      | bill | before | id  | outcome                                          |
+      | S2   | one p1 | p2  | spare is { rule: "one", personId: "p2" }         |
+      | S2   | top    | p3  | spare is { rule: "one", personId: "p3" }         |
+      | I2   | one p2 | p1  | the same bill object is returned (p1 has no item) |
+      | S2   | one p2 | p2  | the same bill object is returned                 |
+      | S2   | top    | p9  | the same bill object is returned                 |
+
+  @R31
+  Scenario: Pick again draws until the splits change
+    Given the S2 bill with spare random [p2, p3, p1]
+    And a scripted random source returning 0, 0.5, 0.5, 0.5 (the first draw gives [p3, p2, p1], the second [p1, p3, p2])
+    When pickAgain is called
+    Then spare.order is [p1, p3, p2] and the rows are 3887, 3886, 3887, because the first draw gives Chen and Ben the spare sen again and leaves the rows as they were
+    And the source was called exactly four times (two draws)
+
+  @R31
+  Scenario Outline: Pick again returns the same bill when it cannot or must not draw
+    Given <setup>
+    When pickAgain is called with a source that always returns 0
+    Then the same bill object is returned
+    And the source was called <calls>
+    Examples:
+      | setup                                                                | calls                         |
+      | the S2 bill with spare top                                           | never                         |
+      | the S2 bill with spare one p2                                        | never                         |
+      | the S2 bill with spare random [p2, p3, p1] and subtotal ""            | never (the result is blocked) |
+      | a new bill with spare random [p1, p2], subtotal "1.00" and rates "0" and "0" (100 sen over two people, no spare sen) | 64 times, one number for each of 64 draws (no draw can change the rows) |
+
+  @R32 @R20 @R21
+  Scenario Outline: Every spare sen goes where its rule says
+    Given the <bill> bill with spare <choice>
+    When computeResult is called
+    Then the rows are <rows> and spare.count is <count>
+    And check.share equals charges.total
+    Examples:
+      | bill | choice              | rows                                                             | count |
+      | S2   | top                 | 3887, 3887, 3886                                                 | 2     |
+      | S2   | one p2              | 3886, 3888, 3886                                                 | 2     |
+      | S2   | random [p2, p3, p1] | 3886, 3887, 3887                                                 | 2     |
+      | S1   | top                 | 2490/414/2904, 1350/224/1574, 2100/348/2448                      | 1     |
+      | S1   | one p2              | 2490/413/2903, 1350/225/1575, 2100/348/2448                      | 1     |
+      | S1   | random [p3, p1, p2] | 2490/413/2903, 1350/224/1574, 2100/349/2449                      | 1     |
+      | I3   | top                 | 501/84/585, 0/0/0, 500/82/582                                    | 2     |
+      | I3   | one p3              | 500/82/582, 0/0/0, 501/84/585                                    | 2     |
+      | I3   | random [p2, p3, p1] | 500/83/583, 0/0/0, 501/83/584                                    | 2     |
+      | W1   | top                 | 98940/16425/115365, 1350/224/1574, 2100/348/2448                 | 1     |
+
+  @R32 @R33
+  Scenario: One person falls back to Top of the list while the chosen person has nothing, and the choice is kept
+    Given the I2 bill with spare one p1
+    When computeResult is called
+    Then the rows are the I2 rows under top and spare is { count: 2, rule: "top", personId: null }
+    And the bill still holds spare { rule: "one", personId: "p1" }
+    When the bill is switched to even mode with subtotal "100.00"
+    Then the shares are 3888, 3886, 3886 and spare is { count: 2, rule: "one", personId: "p1" }
+
+  @R33
+  Scenario Outline: The result names the rule in effect
+    Given the <bill> bill with spare <choice>
+    When computeResult is called
+    Then result.spare deep-equals <spare>
+    Examples:
+      | bill | choice              | spare                                           |
+      | S2   | top                 | { count: 2, rule: "top", personId: null }       |
+      | S2   | one p2              | { count: 2, rule: "one", personId: "p2" }       |
+      | S2   | random [p2, p3, p1] | { count: 2, rule: "random", personId: null }    |
+      | E2   | top                 | { count: 1, rule: "top", personId: null }       |
+    And a blocked result and an unassigned result have no spare key
+
+  @R24 @R32
+  # [Added 2026-10-13, v1.1.0, S1 and S7] The copied text shows the shares as chosen, in the 1.0 lines.
+  Scenario Outline: The summary prints the shares as the spare rule left them
+    Given the <bill> bill with spare <choice>
+    When summaryText is called on its result
+    Then the text equals the <block> block below exactly
+    Examples:
+      | bill | choice              | block       |
+      | S2   | one p2              | S2-ONE      |
+      | S2   | random [p2, p3, p1] | S2-RANDOM   |
+      | W1   | top                 | W1          |
+
+  # ---------- Formatting (v1.1.0, S7) ----------
+  @R34
+  Scenario Outline: formatAmount writes the figure with thousands commas and no currency
+    Given <cents> cents
+    When formatAmount is called
+    Then it returns "<text>"
+    Examples:
+      | cents     | text         |
+      | 0         | 0.00         |
+      | 2490      | 24.90        |
+      | 98940     | 989.40       |
+      | 99999     | 999.99       |
+      | 100000    | 1,000.00     |
+      | 102390    | 1,023.90     |
+      | 119387    | 1,193.87     |
+      | 100000000 | 1,000,000.00 |
+      | 779999922 | 7,799,999.22 |
+
+  @R34 @R4
+  Scenario: formatMoney is RM, a space and formatAmount, for every cents value
+    Given 1000 cents values from 0 to 779999922 drawn by a mulberry32 generator seeded with 20261013
+    Then formatMoney of each equals "RM " followed by formatAmount of the same value
 ```
 
 ### Expected summary blocks
@@ -688,6 +884,33 @@ Ben RM 0.00
 Ben RM 11.66
 Chen RM 0.00
 Adds up to RM 11.66
+```
+S2-ONE (v1.1.0, the S2 bill with spare one p2)
+```
+Bill split
+Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)
+Aisyah RM 38.86
+Ben RM 38.88
+Chen RM 38.86
+Adds up to RM 116.60
+```
+S2-RANDOM (v1.1.0, the S2 bill with spare random [p2, p3, p1])
+```
+Bill split
+Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)
+Aisyah RM 38.86
+Ben RM 38.87
+Chen RM 38.87
+Adds up to RM 116.60
+```
+W1 (v1.1.0, money with thousands commas, pending clarify item CG-P1)
+```
+Bill split
+Total RM 1,193.87 (subtotal RM 1,023.90, service 10% RM 102.39, SST 6% RM 67.58)
+Aisyah RM 1,153.65
+Ben RM 15.74
+Chen RM 24.48
+Adds up to RM 1,193.87
 ```
 
 ## FE element checklist

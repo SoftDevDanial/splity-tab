@@ -2,12 +2,38 @@
 
 > Build contract. Read by the builder. Build ONLY what is here.
 > Stack is LOCKED to the project stack (vanilla JavaScript ES modules, zero dependencies, Node 24 for tests).
-> Depends on nothing. Nature is pure logic (no DOM, no storage, no network, no clock, no randomness).
-> Sources are `docs/brainstorm/brainstorm.md` (rules), `docs/design/RULINGS.md` (rulings 1 to 4), the S1 and S2 numbers in `docs/design/bill-items.md` and `docs/design/bill-even.md`.
+> Depends on nothing. Nature is pure logic (no DOM, no storage, no network, no clock, no randomness of its own. Since v1.1.0 a caller passes a random number function into the two spare sen draws, R29 and R31).
+> Sources are `docs/brainstorm/brainstorm.md` (rules, and its "v1.1.0 delta" section), `docs/design/RULINGS.md` (rulings 1 to 4), `docs/design/RULINGS-v1.1.0.md` (the blocked receipt order a to e), `docs/design-explore/v1.1.0/final/SELF-CRITIQUE.md` (interaction rules 8 and 9), `docs/design/system.md` (money format), and the numbers in `docs/design/bill-items.md`, `bill-even.md`, `spare-sen-one.md`, `spare-sen-random.md` and `bill-large.md`.
+
+## v1.1.0 delta
+Written 2026-10-13 by the planner (solutions architect role). The 1.0 text of every changed requirement is in git tag `v1.0.0`. Scopes are the ones in `docs/v1.1.0/CHANGE-LEDGER.md`.
+
+| R# | Status | Scope | What changed |
+|---|---|---|---|
+| R4 | Changed | S7 | `formatMoney` writes a thousands comma from RM 1,000 (the v1.1.0 design system replaces CG-5) |
+| R10 | Changed | S1 | A new bill carries `spare: { rule: "top" }` |
+| R11 | Changed | S1 | Adding a person also extends the drawn order when the rule is At random |
+| R12 | Changed | S1 | Removing a person also leaves the drawn order, and a removed chosen person resets the rule to Top of the list |
+| R18 | Changed | S7 | Row (c) widens from "no items" to "no item has a valid price", reason `"no-prices"` (RULINGS-v1.1.0 row c) |
+| R20 | Changed | S1 | Even shares hand their spare sen out by the spare rule, and the result carries `spare` |
+| R21 | Changed | S1 | Item and charges spare sen follow the spare rule, and the result carries `spare` |
+| R22 | Changed | S1 | The sums hold under every spare rule. The "at most 1 sen apart" rule is stated per rule |
+| R24 | Changed | S1, S7 | Same six lines. Shares as chosen. Money as `formatMoney` writes it now (clarify item CG-P1) |
+| R27 | New | S1 | The spare choice is part of the bill |
+| R28 | New | S1 | Who can take the spare sen |
+| R29 | New | S1 | Choosing the rule, with the draw for At random |
+| R30 | New | S1 | Choosing the one person |
+| R31 | New | S1 | Pick again |
+| R32 | New | S1 | Where every spare sen goes, and how many there are |
+| R33 | New | S1 | The result names the rule in effect |
+| R34 | New | S7 | `formatAmount`, a money figure without "RM" |
+
+No requirement is retired. R1 to R3, R5 to R9, R13 to R17, R19, R23, R25 and R26 are unchanged. R16 and R25 cover the new exports by their own wording, so their tests grow (see `qa.md`).
 
 ## Module roadmap
 - **Build order.** First. Nothing depends on anything else here, and `split-app` imports it.
 - **Done when.** Every R# below has a passing `node --test` case (see `qa.md`), the code-review and security finders pass, and the reverse audit finds no exported symbol without an R#.
+- **v1.1.0 build order.** After the WebKit switch and baseline (split-app task A0), before any split-app UI task. Core tasks C1 to C6 below. The 1.0 suite must stay green on every commit, because Top of the list keeps every 1.0 number.
 - **Shape change from the expected shape, with the reason.** Besides money parsing, bill maths, cent allocation and the summary text, this module also owns the **bill state rules** (the `Bill` shape, the defaults of a new bill, people and item limits, "removing a person removes them from every item", the display-name fallback and the order of the blocking messages). They are DOM-free rules from the brainstorm and `RULINGS.md`, so they get exact, fast unit tests here, and `split-app` stays a thin browser shell that never edits arrays itself.
 
 ## Invariants & assumptions
@@ -55,7 +81,7 @@
   | `06` | 20 | 600 | | | |
 
 ### Formatting (brief: money is written `RM 38.87`)
-- **R4. Money format.** `formatMoney(cents)` returns `"RM "`, the whole ringgit in plain decimal digits with no group separator, `"."`, then the sen as exactly 2 digits. Examples are 0 to `RM 0.00`, 1 to `RM 0.01`, 10 to `RM 0.10`, 100 to `RM 1.00`, 3887 to `RM 38.87`, 11660 to `RM 116.60`, 15599999 to `RM 155999.99`, 779999922 to `RM 7799999.22`. [CG-5 ruled 2026-10-08, ORCH. Accepted as written.]
+- **R4. Money format.** (v1.1.0 changed) `formatMoney(cents)` returns `"RM "` followed by `formatAmount(cents)` (R34). Examples are 0 to `RM 0.00`, 1 to `RM 0.01`, 10 to `RM 0.10`, 100 to `RM 1.00`, 3887 to `RM 38.87`, 11660 to `RM 116.60`, 99999 to `RM 999.99`, 100000 to `RM 1,000.00`, 119387 to `RM 1,193.87`, 15599999 to `RM 155,999.99`, 779999922 to `RM 7,799,999.22`. [Changed 2026-10-13, v1.1.0, S7. CG-5 (no group separator, ruled 2026-10-08, ORCH) is replaced by the approved v1.1.0 design system, `docs/design/system.md` Type, "Money is always written `RM 38.87`, with a thousands comma from 1,000", and the W1 golden `bill-large.html` (RM 1,193.87).]
 - **R5. Rate format.** `formatRate(bp)` returns the whole percent, then (only when the fraction is not zero) `"."` and the fraction digits with trailing zeros removed, then `"%"`. Examples are 0 to `0%`, 600 to `6%`, 1000 to `10%`, 650 to `6.5%`, 625 to `6.25%`, 605 to `6.05%`, 3000 to `30%`. A rate typed as `10.00` therefore shows as `10%`.
 
 ### Bill maths (C4, C5)
@@ -100,9 +126,9 @@
 - **R9. Allocation preconditions.** `allocateEvenly` throws `RangeError` when `count` is not an integer of at least 1 or `amount` is not a non-negative safe integer. `allocateByWeight` throws `RangeError` when `weights` is empty, a weight is not a non-negative safe integer, the weights sum to 0, or `amount` is not a non-negative safe integer.
 
 ### Bill state rules (C1, C3, C7, C8)
-- **R10. New bill.** `newBill()` returns exactly `{ mode: "even", people: [{ id: "p1", name: "Person 1" }, { id: "p2", name: "Person 2" }], subtotalText: "", items: [], serviceText: "10", sstText: "6", nextId: 3 }`.
-- **R11. Add person.** `addPerson(bill)` appends `{ id: "p" + nextId, name: "" }` and increments `nextId`. With 12 people it returns the input unchanged (same reference). The new person is on no item. [The empty name is CG-1, ruled 2026-10-08, ORCH. Accepted as written.]
-- **R12. Remove person.** `removePerson(bill, personId)` removes that person from `people` and removes their id from the `who` of every item. With 2 people, or with an unknown id, it returns the input unchanged (same reference).
+- **R10. New bill.** (v1.1.0 changed) `newBill()` returns exactly `{ mode: "even", people: [{ id: "p1", name: "Person 1" }, { id: "p2", name: "Person 2" }], subtotalText: "", items: [], serviceText: "10", sstText: "6", spare: { rule: "top" }, nextId: 3 }`. [Changed 2026-10-13, v1.1.0, S1. The `spare` field, R27. Top of the list is the default (brainstorm v1.1.0, capability C9).]
+- **R11. Add person.** (v1.1.0 changed) `addPerson(bill)` appends `{ id: "p" + nextId, name: "" }` and increments `nextId`. With 12 people it returns the input unchanged (same reference). The new person is on no item. [The empty name is CG-1, ruled 2026-10-08, ORCH. Accepted as written.] [Added 2026-10-13, v1.1.0, S1. When `spare.rule` is `"random"`, the new id is also appended to the end of `spare.order`, so the order keeps every person of the bill (R27) and the people already drawn keep their places.]
+- **R12. Remove person.** (v1.1.0 changed) `removePerson(bill, personId)` removes that person from `people` and removes their id from the `who` of every item. With 2 people, or with an unknown id, it returns the input unchanged (same reference). [Added 2026-10-13, v1.1.0, S1. It also removes the id from `spare.order` when the rule is `"random"`, and when the rule is `"one"` with that `personId` the spare choice becomes `{ rule: "top" }`. Source: interaction rule 8 of `SELF-CRITIQUE.md`, approved in `RULINGS-v1.1.0.md`, "If the chosen person is removed, the rule falls back to Top of the list".]
 - **R13. Add and remove item.** `addItem(bill)` appends `{ id: "i" + nextId, name: "", priceText: "", who: [] }` and increments `nextId`. With 50 items it returns the input unchanged. `removeItem(bill, itemId)` removes that item, or returns the input unchanged for an unknown id.
 - **R14. Tap a person on an item.** `toggleItemPerson(bill, itemId, personId)` adds `personId` to that item's `who` when absent and removes it when present. The order of ids in `who` carries no meaning. An unknown item or person id returns the input unchanged.
 - **R15. Field setters.** `setPersonName`, `setItemName`, `setItemPriceText`, `setSubtotalText`, `setServiceText`, `setSstText` and `setMode` replace exactly one field and keep everything else. `setMode` changes only `mode`, so `subtotalText` and `items` both survive any number of switches. Setters store the text exactly as given (no trimming, no parsing). `setMode` with a value other than `"even"` or `"item"` returns the input unchanged.
@@ -110,15 +136,15 @@
 - **R17. Display names.** `personLabel(person, index)` returns `person.name.trim()` when that is not empty, otherwise `"Person " + (index + 1)`. `itemLabel(item, index)` does the same with `"Item " + (index + 1)`. `index` is the 0-based position in the current list, so the fallback follows the position after a removal.
 
 ### The result (C2, C3, C5, RULINGS 3)
-- **R18. Blocking order.** `computeResult(bill)` returns `{ kind: "blocked", reason }` for the first rule that applies, in this order. (a) `"rates"` when `serviceText` fails `parseRate(_, 30)` or `sstText` fails `parseRate(_, 20)` (empty or invalid). (b) `"subtotal"` in even mode when `subtotalText` fails `parseAmount`. (c) `"no-items"` in by-item mode when there are no items. (d) `"prices"` in by-item mode when any item's `priceText` fails `parseAmount`. Even mode ignores `items`, and by-item mode ignores `subtotalText`.
+- **R18. Blocking order.** (v1.1.0 changed) `computeResult(bill)` returns `{ kind: "blocked", reason }` for the first rule that applies, in this order. (a) `"rates"` when `serviceText` fails `parseRate(_, 30)` or `sstText` fails `parseRate(_, 20)` (empty or invalid). (b) `"subtotal"` in even mode when `subtotalText` fails `parseAmount`. (c) `"no-prices"` in by-item mode when no item has a valid price, that is when there are no items or every item's `priceText` fails `parseAmount`. (d) `"prices"` in by-item mode when at least one item's `priceText` passes `parseAmount` and at least one other fails it. Even mode ignores `items`, and by-item mode ignores `subtotalText`. [Changed 2026-10-13, v1.1.0, S7. `RULINGS-v1.1.0.md`, "The receipt when the bill cannot be worked out", row c widens 1.0's (c) from "no items" to "no item has a valid price" ("Add each item and tap who had it to see the splits."), and row d keeps "Give every item a price to see the splits." for the rest. The reason `"no-items"` is renamed `"no-prices"` so its name says what it tests. A blank rate never counts as 0 (row a).]
 - **R19. Unassigned items.** In by-item mode, when every price is valid but one or more items have an empty `who`, `computeResult` returns `{ kind: "unassigned", count, charges }`, where `count` is the number of such items and `charges` is `billCharges` of the sum of all item prices (the bill summary stays visible, ruling 3e).
-- **R20. Even result.** In even mode with valid rates and subtotal, `computeResult` returns `{ kind: "even", charges, rows, check }`. `charges` is `billCharges(subtotal, serviceBp, sstBp)`. `rows` has one `{ name, share }` per person in list order, `name` is `personLabel`, and the shares are `allocateEvenly(charges.total, people.length)`. `check.share` is the sum of the row shares.
-- **R21. By-item result.** In by-item mode with valid rates, at least one item, every price valid and every item tapped, `computeResult` returns `{ kind: "item", charges, rows, check }`. (1) Each item's price is split with `allocateEvenly` over the people on it, taken in **people-list order** (not tap order), so leftover sen go to whoever is highest in the list. (2) A person's `items` is the sum of their parts. (3) `charges` is `billCharges` of the sum of all prices. (4) The charges total (service + sst) is split with `allocateByWeight` using each person's `items` as the weight. (5) `share` = `items` + that person's charges part. `rows` has one `{ name, items, charges, share }` per person in list order, including people with nothing (all three values 0). `check` is `{ items, charges, share }`, each the sum of that column.
-- **R22. The shares always add up.** For every `even` and `item` result, `check.share === charges.total`. For `item` results also `check.items === charges.subtotal` and `check.charges === charges.service + charges.sst`. Even-mode shares differ by at most 1 sen with the larger ones at the top. Every value is a non-negative safe integer.
+- **R20. Even result.** (v1.1.0 changed) In even mode with valid rates and subtotal, `computeResult` returns `{ kind: "even", charges, rows, check, spare }`. `charges` is `billCharges(subtotal, serviceBp, sstBp)`. `rows` has one `{ name, share }` per person in list order, `name` is `personLabel`. The shares are `charges.total` split in equal floor parts over the people, with the spare sen handed out by the spare rule (R32). With `spare` `{ rule: "top" }` they are exactly `allocateEvenly(charges.total, people.length)`, as in 1.0. `check.share` is the sum of the row shares. `spare` is R33. [Changed 2026-10-13, v1.1.0, S1.]
+- **R21. By-item result.** (v1.1.0 changed) In by-item mode with valid rates, every price valid and every item tapped, `computeResult` returns `{ kind: "item", charges, rows, check, spare }`. (1) Each item's price is split in equal floor parts over the people on it, taken in **people-list order** (not tap order), and the item's spare sen go by the spare rule (R32). With Top of the list that is `allocateEvenly` over the people on it in list order, so leftover sen go to whoever is highest in the list, as in 1.0. (2) A person's `items` is the sum of their parts. (3) `charges` is `billCharges` of the sum of all prices. (4) The charges total (service + sst) is split in floor parts weighted by each person's `items`, computed exactly as in R8, and its spare sen go by the spare rule. With Top of the list that is exactly `allocateByWeight(service + sst, items)`. (5) `share` = `items` + that person's charges part. `rows` has one `{ name, items, charges, share }` per person in list order, including people with nothing (all three values 0). `check` is `{ items, charges, share }`, each the sum of that column. `spare` is R33. [Changed 2026-10-13, v1.1.0, S1. "Every leftover sen follows it: the even split's remainder, a shared item's remainder, and the charges' remainder in by-item mode" (brainstorm v1.1.0 rules). "At least one item" is now part of R18 (c).]
+- **R22. The shares always add up.** (v1.1.0 changed) For every `even` and `item` result, under every spare rule, `check.share === charges.total`. For `item` results also `check.items === charges.subtotal`, `check.charges === charges.service + charges.sst`, and a person whose `items` is 0 has `charges` 0. In even mode, under Top of the list the shares differ by at most 1 sen with the larger ones at the top (1.0), under At random they differ by at most 1 sen, and under One person every share is floor(total / people) except the chosen person's, which is that plus `spare.count`. Every value is a non-negative safe integer. [Changed 2026-10-13, v1.1.0, S1. "The shares always add up to the total, whichever choice is set" (brainstorm v1.1.0 rules).]
 - **R23. Bounds.** The largest bills compute exactly (see the MAX rows in `qa.md`). Twelve people, a 99,999.99 subtotal, 30% and 20% give a total of 15599999 and shares of eleven times 1300000 then 1299999. Fifty items at 99,999.99, item k tapped by person (k mod 12), 30% and 20% give items [49999995, 49999995, then ten times 39999996], charges [27999998, 27999998, six times 22399998, four times 22399997], shares [77999993, 77999993, six times 62399994, four times 62399993] and a total of 779999922. ~~A floating-point implementation gets these charges wrong.~~ [Changed 2026-10-09, ORCH, code-review WR-01: that sentence was false. A float allocator still gets MAX-I right. The BigInt guard is the R8 rows marked BigInt trap.]
 
 ### Summary text (C6)
-- **R24. Summary text.** `summaryText(result)` takes an `even` or `item` result and returns these lines joined with `"\n"` and no trailing newline. Line 1 is `Bill split`. Line 2 is `Total <total> (subtotal <subtotal>, service <service rate> <service>, SST <SST rate> <sst>)` with money from `formatMoney` and rates from `formatRate`. Then one line per row in list order, `<name> <share>`. The last line is `Adds up to <check.share>`. Rates of 0 still print (`service 0% RM 0.00`). Any other `result.kind` throws `TypeError`. [Added 2026-10-09, ORCH, code-review WR-10, security: in each row's `<name>`, every line-breaking character (U+000A LF, U+000D CR, U+000B VT, U+000C FF, U+0085 NEL, U+2028 LS, U+2029 PS) is replaced by one space, so a name can never start a new line in the copied text. Rows carry person labels only, since item labels do not appear in the summary.] [Changed 2026-10-09, ORCH, security SEC-01: the replaced set is widened from those seven to every character in `[\p{Cc}\p{Zl}\p{Zp}]` (all C0 and C1 controls, which include the seven, plus LS and PS), each replaced by one space. Other readers end a line or the whole text at controls outside the seven: NUL (U+0000) ends a C-string clipboard and would leave a forged last line, and FS, GS and RS (U+001C to U+001E) end a line for Python's `splitlines`. ESC (U+001B) starts a terminal sequence.] [Changed 2026-10-09, ORCH, security SEC-02: the set also takes `\p{Bidi_Control}` (U+061C, U+200E, U+200F, U+202A to U+202E, U+2066 to U+2069), so the class is `[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]`. A name ending in RLO (U+202E) made a bidi-aware renderer draw the rest of its row right to left, so "RM 38.87" read "78.83 MR".] For the S2 bill the text is exactly
+- **R24. Summary text.** (v1.1.0 changed) [Changed 2026-10-13, v1.1.0, S1 and S7: the lines stay the six-line 1.0 format and each row prints the share as the spare rule left it (the result's own rows), so the copied text matches the splits on screen. No line about spare sen is added. Money is `formatMoney`, so a bill from RM 1,000 prints its thousands comma (`Total RM 1,193.87 (subtotal RM 1,023.90, ...)`). That last point waits on clarify item CG-P1 in `docs/modules/ROADMAP.md`. Below RM 1,000 every line is byte for byte the 1.0 text.] `summaryText(result)` takes an `even` or `item` result and returns these lines joined with `"\n"` and no trailing newline. Line 1 is `Bill split`. Line 2 is `Total <total> (subtotal <subtotal>, service <service rate> <service>, SST <SST rate> <sst>)` with money from `formatMoney` and rates from `formatRate`. Then one line per row in list order, `<name> <share>`. The last line is `Adds up to <check.share>`. Rates of 0 still print (`service 0% RM 0.00`). Any other `result.kind` throws `TypeError`. [Added 2026-10-09, ORCH, code-review WR-10, security: in each row's `<name>`, every line-breaking character (U+000A LF, U+000D CR, U+000B VT, U+000C FF, U+0085 NEL, U+2028 LS, U+2029 PS) is replaced by one space, so a name can never start a new line in the copied text. Rows carry person labels only, since item labels do not appear in the summary.] [Changed 2026-10-09, ORCH, security SEC-01: the replaced set is widened from those seven to every character in `[\p{Cc}\p{Zl}\p{Zp}]` (all C0 and C1 controls, which include the seven, plus LS and PS), each replaced by one space. Other readers end a line or the whole text at controls outside the seven: NUL (U+0000) ends a C-string clipboard and would leave a forged last line, and FS, GS and RS (U+001C to U+001E) end a line for Python's `splitlines`. ESC (U+001B) starts a terminal sequence.] [Changed 2026-10-09, ORCH, security SEC-02: the set also takes `\p{Bidi_Control}` (U+061C, U+200E, U+200F, U+202A to U+202E, U+2066 to U+2069), so the class is `[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]`. A name ending in RLO (U+202E) made a bidi-aware renderer draw the rest of its row right to left, so "RM 38.87" read "78.83 MR".] For the S2 bill the text is exactly
 
   ```
   Bill split
@@ -146,30 +172,66 @@
 ### Names (C1, added 2026-10-08 after the plan check)
 - **R26. Duplicate names are allowed.** The brainstorm rule "Duplicate names are allowed" had no requirement. A name is a label and never an identity, and people are addressed by `id` only. `setPersonName` stores a name that equals another person's name, whether it matches exactly, after trimming or only in letter case, and no function rejects, merges, renames or reorders people because of it. `computeResult` gives one row per person, so two people called "Ben" give two rows with the same `name`, each with its own share. `toggleItemPerson` and `removePerson` act on the person with the given id, so tapping or removing one of two people called "Ben" never touches the other. `summaryText` prints one line per row, so both "Ben" lines appear. Examples D1 (even) and D2 (by item) are in `qa.md`.
 
+### Spare sen (C9, added in v1.1.0)
+Sources. Brainstorm v1.1.0, capability C9 and its rules (USER and ORCH). `SELF-CRITIQUE.md` interaction rules 8 and 9, approved in `RULINGS-v1.1.0.md`. The goldens `bill-even.md`, `spare-sen-one.md` and `spare-sen-random.md` for the numbers. Every point the inputs leave open is marked with its clarify item in `docs/modules/ROADMAP.md` (CG-P2, CG-P3) and is written here as the recommended answer, so a ruling that differs changes one requirement.
+
+- **R27. The spare choice is part of the bill.** (v1.1.0 new) `bill.spare` is exactly one of `{ rule: "top" }` (Top of the list), `{ rule: "one", personId }` (One person) or `{ rule: "random", order }` (At random). For `"one"`, `personId` is the id of a person in the bill. For `"random"`, `order` holds every person id of the bill exactly once. A new bill has `{ rule: "top" }` (R10). `addPerson` and `removePerson` keep the invariant (R11, R12). `setMode`, the text setters and the item actions never change `spare` (R15), so a mode switch keeps the choice. It is one choice for the whole bill.
+- **R28. Who can take the spare sen.** (v1.1.0 new) `sparePeople(bill)` returns the ids of the people who can be chosen, in list order. In even mode that is every person. In by-item mode it is every person whose id is in the `who` of at least one item. [The brainstorm says "only people with a share above zero can be chosen". In by-item mode a person on no item has a split of 0 under every rule, and in even mode every person pays a share. This reading is clarify item CG-P2.]
+- **R29. Choosing the rule.** (v1.1.0 new) `chooseSpareRule(bill, rule, random)` returns the bill with a new `spare`. `"top"` gives `{ rule: "top" }`. `"one"` gives `{ rule: "one", personId }` with the first id of `sparePeople(bill)` (interaction rule 8, "One person picks the first eligible person at once"), and when `sparePeople(bill)` is empty it returns the input unchanged. `"random"` gives `{ rule: "random", order }` with a newly drawn order (interaction rule 9). The draw is a Fisher and Yates shuffle of the people's ids in list order: for i from n - 1 down to 1, j = `Math.floor(random() * (i + 1))`, then entries i and j swap. With people p1, p2, p3 and `random` returning 0.9 then 0.1, the order is [p2, p1, p3]. Choosing the rule that is already set, or a value that is not one of the three, returns the input unchanged (same reference). `random` is a function the caller passes, returning a number from 0 up to but not including 1. Core never reads a random source of its own (R25).
+- **R30. Choosing the one person.** (v1.1.0 new) `chooseSparePerson(bill, personId)` returns the bill with `spare` `{ rule: "one", personId }` when `personId` is in `sparePeople(bill)`. For any other id, or when that person is already the chosen one, it returns the input unchanged (same reference).
+- **R31. Pick again.** (v1.1.0 new) `pickAgain(bill, random)` works only when `spare.rule` is `"random"` and `computeResult(bill)` is an `even` or `item` result. It draws new orders as R29 does, one after another, at most 64 times, and returns the bill with the first order whose result rows differ from the current rows (any `share`, `items` or `charges` of any row). In every other case, including 64 draws that all leave the rows as they are, it returns the input unchanged (same reference). [Interaction rule 9, "Pick again draws until the result changes". When no order can change the rows (only one person can take spare sen, or the spare sen divide evenly among them) an unbounded loop would never end. With a change possible, 64 failed draws have a chance of at most 2 to the power -64. Clarify item CG-P3.]
+- **R32. Where the spare sen go.** (v1.1.0 new) `computeResult` splits money in **divisions**, in this order. Even mode has one, `charges.total` over every person. By-item mode has one per item in list order (its price over the people on it), then the charges (service + sst over the people whose `items` is above 0, weighted by `items`). Each division gives each of its members a floor part (equal parts in even mode and for an item, the exact R8 floor for the charges), and its **spare sen** are its amount less the sum of those parts. A spare sen given in an item division adds to the receiver's `items`, in the charges division to their `charges`, and in even mode to their `share`. The rule decides who gets each spare sen.
+  1. **Top of the list.** Each division gives its spare sen one each to its own members in people-list order, from the first. This is the 1.0 rule, so every 1.0 result is unchanged.
+  2. **One person.** Every spare sen of every division goes to the chosen person, also the spare sen of an item they did not have (the owner's words, "have 1 person pay the extras"). When the chosen person is not in `sparePeople(bill)` for the current mode, the bill is worked out as Top of the list and the choice stays stored (a switch to By item and back loses nothing, brainstorm decision 13).
+  3. **At random.** One cursor walks the drawn `order` across the whole bill, starting at its first entry. Each spare sen, division by division in the order above, goes to the next person in `order`, from the cursor on and wrapping round at the end, who is a member of that division. The cursor then moves to the entry after that person. In even mode this is "the first spare sen to the first person drawn, the next to the second", so two spare sen always go to two different people (`spare-sen-random.md`).
+  The number of spare sen is the sum of every division's spare sen under the rule applied. Worked examples (named bills in `qa.md`):
+
+  | Bill | Spare choice | Shares (and items, charges) | Spare sen |
+  |---|---|---|---|
+  | S2 | top | 3887, 3887, 3886 (1.0) | 2 |
+  | S2 | one, p2 | 3886, 3888, 3886 (`spare-sen-one.html`) | 2 |
+  | S2 | random, order [p2, p3, p1] | 3886, 3887, 3887 (`spare-sen-random.html`) | 2 |
+  | S1 | top | Aisyah 2490 / 414 / 2904, Ben 1350 / 224 / 1574, Chen 2100 / 348 / 2448 (1.0) | 1 |
+  | S1 | one, p2 | Aisyah 2490 / 413 / 2903, Ben 1350 / 225 / 1575, Chen 2100 / 348 / 2448 | 1 |
+  | S1 | random, order [p3, p1, p2] | Aisyah 2490 / 413 / 2903, Ben 1350 / 224 / 1574, Chen 2100 / 349 / 2449 | 1 |
+  | I3 | top | Aisyah 501 / 84 / 585, Ben 0 / 0 / 0, Chen 500 / 82 / 582 (1.0) | 2 |
+  | I3 | one, p3 | Aisyah 500 / 82 / 582, Ben 0 / 0 / 0, Chen 501 / 84 / 585 | 2 |
+  | I3 | random, order [p2, p3, p1] | Aisyah 500 / 83 / 583, Ben 0 / 0 / 0, Chen 501 / 83 / 584 | 2 |
+  | I2 | one, p1 (Aisyah is on no item) | as I2 under top (1.0), `spare.rule` is `"top"`, `spare.personId` is `null` | 2 (Y's 1 and the charges' 1) |
+
+  [The brainstorm rules "Every leftover sen follows it" and "Top of the list keeps the 1.0 rule" fix rules 1 and 2 for even mode. How One person and At random treat an item's spare sen and the charges' spare sen in by-item mode is not worded anywhere, so points 2 and 3 for by-item mode are clarify item CG-P2 with this recommended answer.]
+- **R33. The result names the rule in effect.** (v1.1.0 new) Every `even` and `item` result carries `spare: { count, rule, personId }`. `count` is the number of spare sen (R32). `rule` is the rule that was applied, so it reads `"top"` when One person falls back (R32 point 2). `personId` is the chosen id when `rule` is `"one"`, otherwise `null`. `blocked` and `unassigned` results carry no `spare`.
+
+### Formatting (added in v1.1.0)
+- **R34. A money figure without the currency.** (v1.1.0 new) `formatAmount(cents)` returns the whole ringgit in plain decimal digits, with a comma between groups of three digits counted from the right when there are four or more, then `"."` and the sen as exactly 2 digits. No currency, no space, and no locale API (R25 already bans `Intl` and `toLocaleString`). Examples are 0 to `0.00`, 2490 to `24.90`, 98940 to `989.40`, 99999 to `999.99`, 100000 to `1,000.00`, 102390 to `1,023.90`, 119387 to `1,193.87`, 100000000 to `1,000,000.00`, 779999922 to `7,799,999.22`. [The goldens write the Total figure as `<span class="cur">RM </span>69.26` and the working under a split as "24.90 + 4.14" and "1,023.90 + 169.97", so the app needs the figure without "RM", and money is formatted only here (split-app invariant).]
+
 ## Contracts
 
 ### Files
 | File | Exports |
 |---|---|
-| `src/core/money.js` | `parseAmount`, `parseRate`, `formatMoney`, `formatRate`, `AMOUNT_MIN_CENTS` (1), `AMOUNT_MAX_CENTS` (9999999) |
+| `src/core/money.js` | `parseAmount`, `parseRate`, `formatMoney`, `formatRate`, `formatAmount` (v1.1.0), `AMOUNT_MIN_CENTS` (1), `AMOUNT_MAX_CENTS` (9999999) |
 | `src/core/allocate.js` | `allocateEvenly`, `allocateByWeight` |
-| `src/core/bill.js` | `LIMITS`, `newBill`, `addPerson`, `removePerson`, `setPersonName`, `setMode`, `setSubtotalText`, `setServiceText`, `setSstText`, `addItem`, `removeItem`, `setItemName`, `setItemPriceText`, `toggleItemPerson`, `personLabel`, `itemLabel` |
+| `src/core/bill.js` | `LIMITS`, `newBill`, `addPerson`, `removePerson`, `setPersonName`, `setMode`, `setSubtotalText`, `setServiceText`, `setSstText`, `addItem`, `removeItem`, `setItemName`, `setItemPriceText`, `toggleItemPerson`, `personLabel`, `itemLabel`, `sparePeople` (v1.1.0) |
 | `src/core/result.js` | `billCharges`, `computeResult` |
+| `src/core/spare.js` (v1.1.0, new) | `chooseSpareRule`, `chooseSparePerson`, `pickAgain` |
 | `src/core/summary.js` | `summaryText` |
 
-No other exports. Helpers stay module-private.
+No other exports. Helpers stay module-private. [Added 2026-10-13, v1.1.0. Why a new file: `pickAgain` needs `computeResult`, and `result.js` already imports `bill.js`, so the choice actions in `bill.js` would make an import cycle. `sparePeople` sits in `bill.js` because `result.js` (the One person fallback) and `spare.js` both need it, written once. The floor and spare sen step of R32 is written once in `result.js` and serves all three rules. `allocateEvenly` and `allocateByWeight` keep their R7 and R8 results, which are the Top of the list rule. The Fisher and Yates draw is one private helper in `spare.js`, used by `chooseSpareRule` and `pickAgain`.]
 
 ### Types (JSDoc in the source, shown here as the contract)
 ```js
 /** @typedef {"even" | "item"} Mode */
 /** @typedef {{ id: string, name: string }} Person */              // id is "p" + a positive integer
 /** @typedef {{ id: string, name: string, priceText: string, who: string[] }} Item */  // id is "i" + a positive integer
+/** @typedef {{ rule: "top" } | { rule: "one", personId: string } | { rule: "random", order: string[] }} Spare */  // v1.1.0, R27
 /**
  * @typedef {{
  *   mode: Mode, people: Person[], subtotalText: string, items: Item[],
- *   serviceText: string, sstText: string, nextId: number
+ *   serviceText: string, sstText: string, spare: Spare, nextId: number
  * }} Bill
  */
+/** @typedef {{ count: number, rule: "top" | "one" | "random", personId: string | null }} SpareResult */  // v1.1.0, R33
 /** @typedef {{ ok: true, cents: number } | { ok: false, empty: boolean }} AmountResult */
 /** @typedef {{ ok: true, bp: number } | { ok: false, empty: boolean }} RateResult */
 /**
@@ -180,13 +242,14 @@ No other exports. Helpers stay module-private.
 /** @typedef {{ name: string, items: number, charges: number, share: number }} ItemRow */
 /**
  * @typedef {
- *   | { kind: "blocked", reason: "rates" | "subtotal" | "no-items" | "prices" }
+ *   | { kind: "blocked", reason: "rates" | "subtotal" | "no-prices" | "prices" }   // v1.1.0: "no-items" became "no-prices" (R18)
  *   | { kind: "unassigned", count: number, charges: Charges }
- *   | { kind: "even", charges: Charges, rows: EvenRow[], check: { share: number } }
+ *   | { kind: "even", charges: Charges, rows: EvenRow[], check: { share: number }, spare: SpareResult }
  *   | { kind: "item", charges: Charges, rows: ItemRow[],
- *       check: { items: number, charges: number, share: number } }
+ *       check: { items: number, charges: number, share: number }, spare: SpareResult }
  * } Result
  */
+/** @typedef {() => number} RandomSource */  // v1.1.0, a number from 0 up to but not including 1 (R29, R31)
 ```
 
 ### Constants
@@ -215,8 +278,13 @@ export const LIMITS = Object.freeze({
 | `setPersonName(bill, personId, name)` · `setItemName(bill, itemId, name)` · `setItemPriceText(bill, itemId, text)` · `setSubtotalText(bill, text)` · `setServiceText(bill, text)` · `setSstText(bill, text)` · `setMode(bill, mode)`, each returning `Bill` | R15 |
 | `personLabel(person: Person, index: number): string` · `itemLabel(item: Item, index: number): string` | R17 |
 | `billCharges(subtotal: number, serviceBp: number, sstBp: number): Charges` | R6 |
-| `computeResult(bill: Bill): Result` | R18 to R22 |
+| `computeResult(bill: Bill): Result` | R18 to R22, R32, R33 |
 | `summaryText(result: Result): string` | R24 |
+| `formatAmount(cents: number): string` (v1.1.0) | R34 |
+| `sparePeople(bill: Bill): string[]` (v1.1.0) | R28 |
+| `chooseSpareRule(bill: Bill, rule: string, random: RandomSource): Bill` (v1.1.0) | R27, R29 |
+| `chooseSparePerson(bill: Bill, personId: string): Bill` (v1.1.0) | R30 |
+| `pickAgain(bill: Bill, random: RandomSource): Bill` (v1.1.0) | R31 |
 
 ### Persistence and state
 None. This module holds no state. `split-app` stores a `Bill` in its draft envelope (see `split-app/spec.md`).
@@ -230,7 +298,15 @@ Each task is one commit, adds its `node --test` cases (named `@R<n> ...`) and le
 5. [ ] `src/core/result.js` (`billCharges`, `computeResult`) with `tests/result.test.js`: the charges table, the blocking-order table, S1, S2, S5, I2, I3, I4, E1, E3, D1, D2 and the two MAX bills. -> R6, R18, R19, R20, R21, R23, R26
 6. [ ] `tests/invariants.test.js`, a seeded sweep over generated bills checking R22 (no new source). -> R22
 7. [ ] `src/core/summary.js` with `tests/summary.test.js` (S1, S2, E2 zero rates, E3 decimal rates, I2 zero share, D1 and D2 equal names, blank-name fallback, the TypeError). -> R24, R26
-8. [ ] `tests/hygiene.test.js`, a static scan of `src/core/` for the banned names and foreign imports. -> R25 [Changed 2026-10-09, ORCH, code-review WR-14: since security SEC-05 the file also holds the runtime trap, and the trap is the primary guard. "A static scan" is now the runtime trap plus the scan, see R25.]
+8. [ ] `tests/hygiene.test.js`, a static scan of `src/core/` for the banned names and foreign imports. -> R25
+
+### v1.1.0 tasks (one commit each, `node --test "tests/**/*.test.js"` green on every commit, 1.0 cases unchanged unless `qa.md` marks them)
+- C1. [ ] `formatAmount` and the thousands comma in `formatMoney` (`money.js`), with the R4 and R34 tables and the summary of a four figure bill. -> R4, R34, R24
+- C2. [ ] The `spare` field in `bill.js` (`newBill`, `addPerson`, `removePerson`) and `sparePeople`, with `tests/bill.test.js` cases. -> R10, R11, R12, R27, R28
+- C3. [ ] Blocking row (c) as "no item has a valid price" (`result.js`), with the R18 table. -> R18
+- C4. [ ] The spare sen divisions and `result.spare` in `computeResult` (`result.js`), the R32 table, and the R22 sweep run under all three rules (`tests/invariants.test.js`). -> R20, R21, R22, R32, R33
+- C5. [ ] `src/core/spare.js` (`chooseSpareRule`, `chooseSparePerson`, `pickAgain`) with `tests/spare.test.js`, driven by a scripted random source. -> R29, R30, R31
+- C6. [ ] `tests/hygiene.test.js` and the R16 deep-freeze test cover `spare.js` and every new export (the runtime trap workload calls each one, a negative control plants `Math.random` in `spare.js`). -> R16, R25 [Changed 2026-10-09, ORCH, code-review WR-14: since security SEC-05 the file also holds the runtime trap, and the trap is the primary guard. "A static scan" is now the runtime trap plus the scan, see R25.]
 
 ## Threat model
 | Asset | Trust boundary | Threat | Required mitigation |
@@ -239,7 +315,10 @@ Each task is one commit, adds its `node --test` cases (named `@R<n> ...`) and le
 | Correct shares | Same | A rounding rule that differs from the brainstorm (banker's rounding, rounding each share instead of allocating leftovers) | R6 half-up table rows (5, 25, 8765). R7, R8 leftover order. R22 sum invariant over a generated sweep. |
 | Availability of the page | Arbitrary strings, including very long ones from storage | Catastrophic regex backtracking or an exception on odd input freezes or breaks rendering | The grammar is a single linear pattern with no nested quantifier. Parsing checks the digit count before any numeric conversion ~~(400-digit case in R1)~~ [Changed 2026-10-09, ORCH, code-review WR-06: the cap is the digit count of the caller's ceiling, derived once in `readHundredths`. Its proof is the R1/R3 test that spies on numeric conversion. The 400-digit R1 row proves only "invalid, no exception", which holds with or without the cap.]. R2 says the parsers never throw for a string. |
 | Clipboard text integrity | Names flow into `summaryText` | A name with a line break forges an extra line such as a fake "Adds up to" in the group chat | Invariant that names never hold CR or LF (the input strips them, the `split-app` decoder rejects them). `summaryText` writes one line per row and nothing else. [Added 2026-10-09, ORCH, code-review WR-10: the invariant alone left U+000B, U+000C, U+0085, U+2028 and U+2029 open. `summaryText` now prints each of the seven line-breaking characters as a space (R24), with one test per character.] [Changed 2026-10-09, ORCH, security SEC-01: a NUL truncates the text for a C-string reader, and FS to RS split it for Python, so `summaryText` now replaces every `[\p{Cc}\p{Zl}\p{Zp}]` character (R24). There are tests for NUL, FS, GS, RS and ESC besides the seven.] [Added 2026-10-09, ORCH, security SEC-02: a new threat under the same asset. A bidi control in a name (RLO, RLE, RLI) reorders how that row's share reads in any bidi-aware renderer. `summaryText` also replaces `\p{Bidi_Control}` (R24), with a test for RLO.] |
-| Object integrity | `Bill` objects may come from parsed JSON | Prototype pollution through `__proto__` keys when copying objects | Actions build new objects from known fields only. No `Object.assign` or spread of a whole parsed object onto a target. |
+| Object integrity | `Bill` objects may come from parsed JSON | Prototype pollution through `__proto__` keys when copying objects | Actions build new objects from known fields only. No `Object.assign` or spread of a whole parsed object onto a target. [Added 2026-10-13, v1.1.0: this holds for `spare` too. The choice actions build a new `spare` object from known fields only.] |
+| Correct shares under every spare rule (v1.1.0) | The spare choice and the drawn order, typed by the user or read from storage | A rule that loses or doubles a sen, gives a sen to a person who had nothing, or changes 1.0's numbers under Top of the list | R32 one written step for all three rules. R22 sum invariants over a generated sweep under all three rules. The R32 table. Every 1.0 case stays green, so Top of the list is unchanged. `split-app`'s decoder checks the stored choice against R27 before core sees it. |
+| Availability of the page (v1.1.0) | The caller's random source | Pick again loops for ever on a bill where no new order can change the splits | R31 bounds the draws at 64 and returns the bill unchanged after that. A test drives a source that always returns the same number. |
+| Purity (v1.1.0) | The draw needs randomness | Core reads `Math.random` or `crypto`, so its results stop being repeatable in tests | R29 and R31 take the random source as an argument. R25 still bans `Math.random` and `crypto` in core, and the runtime trap covers `spare.js`. |
 
 ~~Residual risk accepted. None in this module beyond what `split-app` documents.~~
 
@@ -250,9 +329,13 @@ Each task is one commit, adds its `node --test` cases (named `@R<n> ...`) and le
 ## Non-goals
 Do NOT build any of the following. Building one is a defect.
 - Payments, transfer links or DuitNow QR.
-- Currencies other than ringgit, currency conversion, other languages or locale-aware number formats (no `Intl.NumberFormat`, no group separators, CG-5 ruled 2026-10-08, ORCH).
+- Currencies other than ringgit, currency conversion, other languages or locale-aware number formats (no `Intl.NumberFormat`). [Changed 2026-10-13 after CG-P1. The line said "no group separators, CG-5 ruled 2026-10-08, ORCH", which contradicted R4 and R34. v1.1.0 replaces CG-5. `formatMoney` and `formatAmount` write a thousands comma from 1,000 without a locale API (R4, R34, R25), and the owner ruled the comma into the copied summary too (CG-P1, USER, 2026-10-13).]
 - 5-sen cash rounding.
 - Tips, discounts, vouchers, per-item tax exemptions, or any charge besides service charge and SST.
 - A history of past bills or more than one bill.
 - Any DOM, storage, clipboard, network or timer code (that is `split-app`, or nothing at all).
 - Generic helpers nobody calls (a money class, a rounding-mode option, configurable currency, an undo stack).
+- [Added 2026-10-13, v1.1.0] Any spare sen rule besides the three of R27, a split of spare sen typed by hand, or a weight per person.
+- [Added 2026-10-13, v1.1.0] A line about spare sen in the copied summary (R24 keeps the 1.0 lines).
+- [Added 2026-10-13, v1.1.0] A random source inside core, a seeded generator in shipped code, or a record of past draws.
+- [Added 2026-10-13, v1.1.0] Several bills at once. It is written up as a future implementation only (`docs/future/several-bills.md`, ledger S9).

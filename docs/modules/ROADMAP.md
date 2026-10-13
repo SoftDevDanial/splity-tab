@@ -1,3 +1,146 @@
+# Roadmap: Split
+
+The version in work is on top. Each sealed version keeps its section below, unchanged.
+
+## v1.1.0 (plan, 2026-10-13)
+
+**Phase.** plan · **Date.** 2026-10-13 · **Written by.** the planner (solutions architect role), in three passes with two handoffs (`docs/progress/handoff/handoff-2026-10-13-plan-split.md` and `handoff-2026-10-13-plan-split-2.md`).
+**Inputs.** `docs/brainstorm/brainstorm.md` with its v1.1.0 delta, the research in `docs/brainstorm/research/` (`webkit-testing.md`, `save-warning-and-tab-icon.md`), `docs/design/` (the fifteen goldens and their `.md` files, `system.md`, `system.css`, `LINKS.json`, `RULINGS.md`, `RULINGS-v1.1.0.md`), `docs/design-explore/v1.1.0/final/SELF-CRITIQUE.md`, `docs/v1.1.0/CHANGE-LEDGER.md` (scopes S1 to S9), `CLAUDE.md`, `docs/constitution.md` (sdlc 2.6.0) and the sealed 1.0 contracts (tag `v1.0.0`).
+**Phase skills.** The registry (`docs/phase-skills.md`) assigns none to plan. UI tasks in execute (app A2 and later, as the app spec says) load the design row, `taste-skill` and `frontend-design`, before they write anything, and each build record says what transferred.
+**Clarify gate.** CG-P1 to CG-P6 were ruled by the owner on 2026-10-13 (USER), each as recommended. CG-P7 and CG-P8 are open, each with a recommended answer. The specs and `qa.md` are written to those answers, and only the tasks named in the clarify table wait on them.
+
+### Modules
+| Order | Module | Nature | Depends on | New | Changed | Retired | Unchanged | Total R# | Contract |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | `split-core` | Pure logic. Money parsing and formatting, bill maths, cent allocation, bill state rules, the spare sen rules, summary text. No DOM, no I/O, no random source of its own | none | 8 (R27 to R34) | 9 (R4, R10, R11, R12, R18, R20, R21, R22, R24) | 0 | 17 | 34 | `split-core/spec.md`, `split-core/qa.md` |
+| 2 | `split-app` | FE and the **live-composition module**. `index.html`, the UI, the draft (version 2), the save warning, the clipboard, the dialogs, the engine switch, the fidelity gate and the cold-boot live-e2e gate | `split-core` (exported functions only) | 19 (R43 to R61) | 39 (R1 to R29, R31, R32, R35 to R42) | 0 | 3 (R30, R33, R34) | 61 | `split-app/spec.md`, `split-app/qa.md` |
+
+**Counted** from the delta tables of the two specs on 2026-10-13, by script. 95 requirements in all (34 and 61), 27 new, 48 changed, none retired.
+
+**Still two modules.** The two reasons to change are the same as in 1.0 (how the money works, and how the page looks and behaves), with one seam between them. The spare sen rules are money rules, so they live in core (`src/core/spare.js`), and the app passes the random source in. The save warning, the engine switch and the tab icon are browser concerns of the app. A third module (the draft, or the spare sen UI) would add a cross-module contract with no variation point behind it.
+
+### Build order
+0. **The orchestrator installs WebKit** with `python -m playwright install webkit` (owner approved 2026-10-13, ledger S5 row 2). Nothing else in the plan installs anything.
+1. **A0** (app). The engine switch and a WebKit baseline run of the 1.0 suite and live gate, with the R59 probes, every WebKit failure sorted (a), (b) or (c). It comes first, so every later task can record its WebKit run and what WebKit does differently is known before anything changes.
+2. **C1, C2** (core).
+3. **A1** (app), draft version 2. It comes right after C2, because from C2 on a `Bill` carries `spare` and the 1.0 decoder drops unknown keys, so a reload would hand core a bill without `spare`.
+4. **C3, C4, C5, C6** (core). C3 renames a reason the 1.0 receipt reads, so its commit follows PD-24.
+5. **A2 to A18** (app), the UI tasks in the order of the app spec.
+6. **A19** (app), the fidelity gate in Chromium, 40 pairs after two controls.
+7. **A20** (app), the cold-boot live gate in Chromium and in WebKit.
+
+There is no cycle and no deadlock. Core never imports the app, and the one interleave (A1 after C2) follows the data shape. Every core commit keeps `node --test "tests/**/*.test.js"` green. Every app commit keeps that and the Chromium browser suite green, and from A2 on the WebKit run of each task is recorded. A new test for a later task is committed `xfail(strict=True, reason="task An")` and seen failing first.
+
+### Tasks
+**split-core** (`split-core/spec.md`, v1.1.0 tasks)
+
+| Task | Work | R# |
+|---|---|---|
+| C1 | `formatAmount` and the thousands comma in `formatMoney` (`money.js`), with the R4 and R34 tables and the summary of a four-figure bill | R4, R34, R24 |
+| C2 | The `spare` field in `bill.js` (`newBill`, `addPerson`, `removePerson`) and `sparePeople` | R10, R11, R12, R27, R28 |
+| C3 | Blocking row (c) as "no item has a valid price", the reason `no-prices` (`result.js`), with PD-24 | R18 |
+| C4 | The spare sen divisions and `result.spare` in `computeResult`, the R32 table, and the R22 sweep under all three rules | R20, R21, R22, R32, R33 |
+| C5 | `src/core/spare.js` (`chooseSpareRule`, `chooseSparePerson`, `pickAgain`), driven by a scripted random source | R29, R30, R31 |
+| C6 | `tests/hygiene.test.js` and the R16 deep-freeze test cover `spare.js` and every new export, with a negative control that plants `Math.random` | R16, R25 |
+
+**split-app** (`split-app/spec.md`, Tasks)
+
+| Task | Work | R# |
+|---|---|---|
+| A0 | After the WebKit install. The engine switch (`--engine`, the `engine` fixture, `rig.launch`, `chromium_only`, counted skips, the evidence suffix, `live_e2e.py --engine`, engine and version in each summary, the launch meta test), the IME test marked `chromium_only`, the WebKit baseline of the current suite and live gate with the R59 probes, each failure sorted | R58, R59 |
+| A1 | Right after C2. `src/draft.js` version 2 (`encodeDraft` writes version 2, D3, D13, D14, `loadDraft` reports `failed`) with `tests/draft.test.js` cases | R61, R25, R26 |
+| A2 | Shell and head, `src/system.css` byte copy, `src/icon.svg`, the sprite and the mark, the top bar, the two regions, the strip frame, the three dialog elements, the icons module, cold boot into `bill-empty`, the static scans | R1, R2, R3, R37, R38, R39, R43, R44, R45 |
+| A3 | Notes and the save warning, storage failures in memory, the test-side storage drivers | R27, R28, R46, R47 |
+| A4 | Sections, open on load, toggles, the two summaries, the reveal, folds after a reload | R48, R26 |
+| A5 | People, live names, Add person and Remove with limits and guards, focus, duplicates, typing keeps focus | R4, R5, R6, R7, R33, R34, R42 |
+| A6 | Charges with rate errors and rule 13 | R15, R10 |
+| A7 | Split switch and Subtotal with the error rule | R8, R9, R10 |
+| A8 | Items and the frame, toggles, the `needs` marker, price errors, Add item and Remove, `data-up` and `data-down`, focus | R11, R12, R13, R14, R56, R10, R34 |
+| A9 | The receipt renderer and the card, blocked, unassigned, even (with `many`) and by-item forms, the quiet regions | R16, R17, R18, R19, R20, R21 |
+| A10 | Copy and status on every status line, cleared by the next change | R22, R23, R24 |
+| A11 | The strip with `--strip-h` | R49 |
+| A12 | The Splits sheet (PD-18, PD-20, PD-21) | R50 |
+| A13 | The spare line, the chips and P1, its place and the sheet padding (CG-P7, CG-P8, PD-21, PD-23) | R51, R52, R25, R26 |
+| A14 | One person and the picker (CG-P7) | R53 |
+| A15 | At random and Pick again with `Math.random` | R54 |
+| A16 | The New bill dialog and Start new bill | R29, R30, R31 |
+| A17 | The held-key guard in `swallowRepeatClicks` | R57 |
+| A18 | Cross-cutting checks in both engines (Tab order and rings, overflow and sizes, the desktop layout, large bills at 360, motion, injection, CSSOM targets, the network log, per-engine expectations) | R32, R35, R36, R37, R38, R39, R55, R59, R60 |
+| A19 | Fidelity gate in Chromium, version 2 seeds, after-load scripts, `run.py` with the 40 pairs and the two controls, a passing run with evidence | R40, R3 |
+| A20 | Cold-boot live gate in both engines, a passing run per engine with evidence | R41 |
+
+Every R# of both specs is cited by at least one task. Each task adds the `qa.md` scenarios of its R#s.
+
+### Commands
+| What | Command | Status |
+|---|---|---|
+| Serve | `python -m http.server <port> --bind 127.0.0.1` from the project root | as in `CLAUDE.md` |
+| Unit tests | `node --test "tests/**/*.test.js"` | as in `CLAUDE.md` |
+| Browser tests, Chromium | `python -m pytest tests/browser -q` | as in `CLAUDE.md` |
+| Browser tests, WebKit | `python -m pytest tests/browser -q --engine webkit` | new from A0, `CLAUDE.md` to be amended (orchestrator action 2) |
+| Fidelity gate | `python tests/browser/fidelity/run.py` | Chromium only, 40 pairs after two controls, no engine option |
+| Live gate, Chromium | `python tests/browser/live_e2e.py` | as in 1.0 |
+| Live gate, WebKit | `python tests/browser/live_e2e.py --engine webkit` | new from A0 |
+| WebKit install (once) | `python -m playwright install webkit` | orchestrator, owner approved 2026-10-13 |
+
+### Orchestrator actions
+These sit outside the planner's and the builders' lanes.
+1. **Install WebKit** before A0 (ledger S5 row 2).
+2. **Amend the `CLAUDE.md` stack line** "Browser tests and gates: Python Playwright, headless Chromium only" to say the functional suite and the live gate run headless in Chromium and in WebKit (`--engine webkit`) and the fidelity gate in Chromium only, and add the two WebKit commands to its Commands. The ledger (S5 row 2) says the plan amends it, and the planner may not write `CLAUDE.md`.
+3. **README limits.** Private browsing and Safari's 7-day clean-up lose the bill with no failure the page can see, so the save warning cannot show for them (SW8, ledger S4 row 2). Safari 26 shows the tab icon in one colour in both themes (WebKit bug 309949, accepted by the owner). WebKit on Windows is not Safari on an iPhone, so touch timing, the on-screen keyboard and Safari's storage clean-up stay with UAT.
+4. **UAT cases on the owner's iPhone.** A double tap on the last person's Remove and on Cancel of the New bill dialog, the save warning with Safari "Block All Cookies" set, and the tab icon in the light and the dark theme.
+5. **The core non-goal line.** Done on 2026-10-13 by the third planner pass on the orchestrator's authorisation. The line in `split-core/spec.md` Non-goals that said "no group separators, CG-5 ruled" now agrees with core R4, R34 and CG-P1, with a dated note. Listed for the ledger.
+6. **Record the rulings where the specs still call them open.** Dated notes, in the specs' own convention, in core spec R24 ("waits on clarify item CG-P1"), the notes of core R28, R31 and R32 (they name CG-P2 and CG-P3 as clarify items), the W1 heading of `split-core/qa.md` ("pending clarify item CG-P1"), and the app spec's Module roadmap line "CG-P1 to CG-P7 are open for the owner" and its delta header, which should also name CG-P8 and PD-24. The ledger rows of CG-P1 to CG-P6 too. The planner's lane for this pass was the three files written here, so these were not edited.
+7. **The prose colon** in `docs/future/several-bills.md` ("The owner's reading at UAT" is followed by a colon), a house-style slip in a file the orchestrator owns (S9).
+8. **WebKit rows in `docs/regression/REGRESSION.md`**, so the final all-modules pass runs the suite and the live gate in both engines.
+9. **Report the CG-P6 measurement.** The `qa.md` scenario under R9 and R11 writes the accessible description of the Subtotal and a price, with the error hidden and shown, to `accessible-description.txt` in its run's evidence. The orchestrator passes it to the owner.
+
+### Planner decisions (v1.1.0, ORCH, reversible)
+| Id | Decision | Reason |
+|---|---|---|
+| PD-17 | In even mode above six people the splits list is `ul.r-splits.many` with `--rows` = ceil(n / 2), set through the CSSOM (app R20) | `bill-twelve.html` shows twelve as six rows in two columns from 1024 px. No golden draws seven to eleven |
+| PD-18 | When the window reaches 1024 px while the Splits sheet is open, the sheet closes and the app moves no focus (app R50) | Splits is not shown from 1024 px, so there is no visible control to return to. The browser's own dialog close step decides |
+| PD-19 | The app's random source is `Math.random`, passed into `chooseSpareRule` and `pickAgain` only (app R54, core R29, R31) | The draw decides who pays a sen, which nobody gains from predicting. Core takes the source as an argument, so tests script it |
+| PD-20 | The receipt is rendered into the sheet only while it is open, by the card's renderer, and its only id is `sheetSplitsH` (app R50) | One renderer for card and sheet (DRY), and ids stay unique on the page |
+| PD-21 | Every click that opens or closes the Splits sheet or P1 arms `swallowRepeatClicks`, as M1 does since 1.0 (app R50, R52) | The sheet rises under the second tap of a double tap on Splits, with its Copy summary there, and P1's light backdrop lies under the second click on the desktop chip (1.0 I-1, CR-01) |
+| PD-22 | The 200 ms section reveal is one Web Animations API animation on `div.sec-body` with no inline style write (app R48, R38) | `system.css` has no reveal rule, and g2 wrote `overflow` through the CSSOM, which R38's narrow allowance does not include |
+| PD-23 | P1 returns focus to the spare chip shown at that moment, and follows the place of the current width when the width crosses 1024 px while it is open (app R52) | The chip lives on the card from 1024 px and in the sheet below it, so one fixed return target would point at a hidden control after a resize. The case with no chip shown is CG-P8 |
+| PD-24 | The commit of core task C3 also renames the key `no-items` to `no-prices` in the 1.0 receipt's message map (`src/ui/panel.js`, its 1.0 text kept until A9), and updates the 1.0 browser test rows whose message the widened row (c) changes, so the Chromium browser suite stays green on every commit. A9 then replaces that renderer with the v1.1.0 receipt and its four messages | Added 2026-10-13 by the third planner pass. `src/ui/panel.js` keys a 1.0 message on `"no-items"` (found by grep), and the app spec asks every app commit to keep the browser suite green. Without this the 1.0 receipt shows no message for a by-item bill with no valid price from C3 until A9. The core spec's C3 line does not name the app file, so it is written here |
+
+### Clarify gate (v1.1.0)
+| Id | Question | Why it was open | Answer | Ruling | Affects | Tasks that wait |
+|---|---|---|---|---|---|---|
+| CG-P1 | Does the copied summary write a thousands comma from RM 1,000? | The brainstorm says the summary "keeps the 1.0 format", and `system.md` writes money "with a thousands comma from 1,000" | The comma in the copied summary too, one money format. "The 1.0 format" is the six-line layout. Below RM 1,000 nothing changes | Ruled 2026-10-13, USER, as recommended | core R4, R24, R34, app R22 | none |
+| CG-P2 | How do spare sen go in By item, and who can be chosen? | The brainstorm fixes Top of the list and says only people with a share above zero can be chosen, but not how One person and At random treat an item's spare sen and the charges' | One person takes every spare sen of every division, also those of an item the person did not have. Only people on at least one item can be chosen in By item, and everyone in Even. At random walks the drawn order once across the whole bill. While the chosen person has nothing, the bill is worked out as Top of the list and the choice stays stored | Ruled 2026-10-13, USER, as recommended | core R28, R32, app R53 | none |
+| CG-P3 | What does Pick again do when no order can change the splits? | Rule 9 says it draws until the result changes, which never ends on such a bill | At most 64 draws, then nothing changes and nothing is saved | Ruled 2026-10-13, USER, as recommended | core R31, app R54 | none |
+| CG-P4 | Which bill counts as "a new bill" that opens People on a phone? | Ruling 1 of S6 opens People on a new bill, without saying whether a reload of one counts | Any bill equal to `newBill()`, that is a cold boot, Start new bill, an unreadable draft and a reload of an untouched new bill | Ruled 2026-10-13, USER, as recommended | app R2, R27, R31, R48, live gate step 8 | none |
+| CG-P5 | Which comes first in `#notes` when the save warning and the unreadable note both show? | No golden draws both, and both sit in `#notes` | The save warning first | Ruled 2026-10-13, USER, as recommended | app R46 | none |
+| CG-P6 | The goldens point the Subtotal and every price at their hidden error paragraph at all times, while rule 13 names a rate's error only while it shows. Follow the golden? | A reference to a hidden element can still be read out | Build to the golden (the DOM walk compares it), measure the accessible description in the build, and report it to the owner | Ruled 2026-10-13, USER, as recommended | app R9, R10, R11, orchestrator action 9 | none |
+| CG-P7 | What do the chip and P1 show while a One person choice falls back to Top of the list? | Core R32 point 2 keeps the choice stored while the person has nothing in By item, and no golden draws that state | The chip names the rule in effect, from `result.spare` ("Top of the list"). P1 shows the stored choice, One person checked, with the picker listing the eligible people and none chosen, so a tap on a pill applies at once. Why, "One person, Ben" while Ben pays RM 0.00 misleads, and Top of the list checked in P1 would make One person unselectable, because core R29 returns the bill unchanged for the rule already set | Open, recommended answer pending | app R51, R52, R53, the G4 rows in `qa.md` | A13 (the chip text and the checked radio), A14 (the picker with no pill checked) |
+| CG-P8 | Where does focus go when P1 closes below 1024 px and no spare chip is shown? | Added 2026-10-13 by the third planner pass. R52 returns focus to the chip shown at that moment. When P1 was opened from the desktop chip and the window then narrowed below 1024 px, the card is hidden and the Splits sheet is closed, so no chip is shown | Focus goes to Splits on the strip (`#splitsBtn`), the control that brings back the receipt and its chip. Leaving it to the browser would put it on the hidden desktop chip or on the page body | Open, recommended answer pending | app R52 (PD-23) and its `qa.md` scenario | A13 (that one close path) |
+
+### Traceability (v1.1.0 scopes)
+| Scope | split-core | split-app |
+|---|---|---|
+| S1 The user decides who takes the spare sen | R10, R11, R12, R20, R21, R22, R24, R27, R28, R29, R30, R31, R32, R33 | R20, R21, R25, R26, R51, R52, R53, R54, R61 |
+| S2 The by-item table fits a 360 px phone | none | R35, R60 |
+| S3 Holding Enter on Remove adds no blank item | none | R57 |
+| S4 A bill that cannot be saved says so | none | R25, R28, R46, R47 |
+| S5 Tested in Safari's engine too | none | R40, R41, R58, R59 |
+| S6 The logo in the app | none | R1, R38, R39, R44, R45 |
+| S7 A livelier look | R4, R18, R24, R34 | R1 to R24, R26, R27, R29, R31, R32, R35, R36, R37, R38, R40, R41, R42, R48, R49, R50, R51, R52, R55, R56 |
+| S8 A name that is free to use | none | R1, R2, R43 |
+| S9 Several bills, a future implementation (document only) | none, a non-goal | none, a non-goal (`docs/future/several-bills.md`, orchestrator owned) |
+| Clarify items CG-P1 to CG-P8 | see the Affects column above | see the Affects column above |
+| Goldens (fifteen) | none | R3 (markup), R40 (fidelity, 40 pairs), the FE element checklist of `split-app/qa.md` (205 rows) |
+| Definition of done (live gate, both engines) | none | R41 |
+
+### Global non-goals (v1.1.0)
+The 1.0 list below still stands. v1.1.0 adds several bills at once (S9 is a design note only, `docs/future/several-bills.md`), a home-screen icon, an `apple-touch-icon` and a web app manifest (deferred, ledger off-scope row 7), a light theme (the design is one dark theme, and the theme switcher stays a non-goal), a WebKit fidelity gate, any detection of private browsing or of Safari's 7-day clean-up, a fourth spare sen rule, and a line about spare sen in the copied summary. Each module's spec lists its own on top of these.
+
+## v1.0.0 (sealed 2026-10-10)
+The text below is the 1.0 roadmap, unchanged by this plan. Its first heading keeps the planning name it had then. It differs from tag `v1.0.0` in one line only, the harness path in the Commands table, moved to `{sdlc}` on 2026-10-12 (commit `edd4f52`).
+
 # Roadmap: Split v0.1.0
 
 **Phase.** plan · **Date.** 2026-10-08 · **Written by.** the planner (solutions architect role)
