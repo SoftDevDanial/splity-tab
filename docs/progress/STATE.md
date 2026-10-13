@@ -4,8 +4,8 @@
 - **design-phase:** sdlc:design
 - **version:** 1.1.0 (1.0.0 sealed 2026-10-10, tag v1.0.0)
 - **mode:** greenfield
-- **phase:** v1.1.0 design, logo done (S12 approved and swapped into final/), finalize gate next
-- **next:** finalize gate (step 9), ask him explicitly to approve the final set AND to replace 1.0's goldens in docs/design/ (1.0's stay in tag v1.0.0), then STATE design done, skills-loaded declaration, sdlc:plan with the R18 (c) delta
+- **phase:** v1.1.0 design done (finalize gate passed 2026-10-13, goldens in docs/design/)
+- **next:** sdlc:plan for v1.1.0 (a delta on the sealed 1.0 specs, scope S1 to S9 in docs/v1.1.0/CHANGE-LEDGER.md), carrying the R18 (c) delta from RULINGS-v1.1.0.md
 - **last-regression:** PASS @ 2026-10-10 14:30 (docs/regression/REGRESSION.md)
 
 ## Modules
@@ -18,9 +18,9 @@
 none
 
 ## Next action
-Logo closed for Splity Tab. The owner kept the 1.0 cut equals and tweaked it, S12, a thin receipt outline with a hand torn foot behind the cut equals, transparent. QA PASS 26 of 28 after two craft revisions. Approved with the favicon's 1 px frame exception, the empty state shows S12 muted. Swapped into the 15 final goldens (mark, tab icon, i-mark empty state, desktop brand offset 1 px). check_final.py 748 of 748 (it now expects i-mark), FLOW-CHECK 48 of 48. Ledger S7. Next is the finalize gate for both apps, his explicit word before anything is copied into docs/design/.
+Design v1.1.0 closed. The owner approved the final set and the replacement of 1.0's goldens on 2026-10-11 23:45 ("Yes, but later"). On 2026-10-13 final/ was copied into docs/design/ (34 files, SHA-256 equal), the v1.1.0 rulings sit beside 1.0's as RULINGS-v1.1.0.md, and check_final.py rerun against docs/design/ gave 747 of 748 with every golden section equal to the final/ run, the one fail being 1.0's RULINGS.md header picked up by the markdown lint (design-explore/v1.1.0/finalize/). Ledger S7 row 14. Next is sdlc:plan. Its inputs are the goldens below, both RULINGS files, design-explore/v1.1.0/final/SELF-CRITIQUE.md (the approved copy list and thirteen interaction rules the rulings point to) and the brainstorm delta. Build swap notes, mark28-src at 28 px only, favicon-src for the tab icon, mark-src (56 grid) from 48 px up, keep the desktop `.brand` 1 px offset.
 
 ## Notes
-Goldens (immutable): docs/design/bill-items.html (key), bill-even.html, bill-empty.html, bill-unassigned.html, new-bill-dialog.html, states.html (specimen sheet), system.md, system.css, RULINGS.md.
+Goldens (immutable, v1.1.0, 1.0's in tag v1.0.0): docs/design/bill-items.html (key), bill-items-open.html, bill-even.html, spare-sen.html, spare-sen-one.html, spare-sen-random.html, splits-sheet.html, new-bill-dialog.html, bill-empty.html, rate-error.html, bill-unassigned.html, bill-unreadable.html, bill-twelve.html, bill-large.html, states.html (specimen sheet), each with its .md, plus system.md, system.css, LINKS.json, MANIFEST.md, RULINGS.md (1.0), RULINGS-v1.1.0.md.
 
 For the split-app builder brief (core solver and security audit): the draft decoder rejects an unknown `mode`; rebuilds or rejects people and items with unknown or `__proto__` keys; rejects duplicate person ids, a `who` that is not an array of known ids, and a stale `nextId`; keeps an empty people list out of even mode. `personLabel` shows control and bidi characters as typed while the summary prints a space, so the name input or decoder should reject or strip them to keep screen and summary the same. Name rule D8 rejects only LF and CR today.

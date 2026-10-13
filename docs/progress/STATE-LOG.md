@@ -260,3 +260,9 @@ Append-only history. STATE.md holds the situation, this file holds what happened
 - Round 1 closed, S3 and S8 declined, round 2 stopped, the owner kept the 1.0 mark with a receipt outline
 - S12 passed QA 26 of 28 after a mirrored tear and a chat tail were fixed, owner approved, empty state shows S12 muted
 - S12 swapped into final/ (15 goldens), check_final 748 of 748, FLOW-CHECK 48 of 48, ledger S7
+
+## 2026-10-13 design v1.1.0 finalized
+- Finalize gate approved by the owner 2026-10-11 23:45 ("Yes, but later"), run in the showcase session after the unify move
+- final/ copied into docs/design/, 34 files (20 new, 14 replacing 1.0's, 1.0's in tag v1.0.0), SHA-256 equal. v1.1.0 rulings beside 1.0's as RULINGS-v1.1.0.md. checks/ and SELF-CRITIQUE.md stay in design-explore
+- check_final.py rerun with goldens read from docs/design/, 747 of 748, every golden section equal to the final/ run. The fail is 1.0's RULINGS.md header in the markdown lint's glob, left as sealed (design-explore/v1.1.0/finalize/)
+- Phase skills loaded throughout the round, taste-skill and frontend-design (docs/design/system.md, Skills loaded). Ledger S7 row 14. Next sdlc:plan

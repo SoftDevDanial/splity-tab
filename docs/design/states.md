@@ -1,38 +1,42 @@
 # States specimen sheet
 
-**Golden.** `states.html` · **Inventory.** S4, S6, S7, S8 · **Not a screen.** It shows states that live inside the screens, drawn in the system.
+**Golden.** `states.html` · **Inventory.** S2 on an amount, S4 copied and blocked, S5, and the variants with no prototype preset (folded Check SST and Check both rates, a rate error on SST, two items still needing a person, By item with nothing to work out) · **Not a screen.** It shows states that live inside a screen, drawn in the system.
+**Reference widths.** 390 x 844 for every phone piece, 1280 x 800 for the card pieces (S4 on the card is desktop only). At 1280 the sheet lays out in three columns and fits the screen without scrolling. At 360 and 390 it is one column and scrolls, as a sheet should.
 
 ## How to read it
-Each state sits in a frame drawn at phone layout, whatever the page width (one column at 360 and 390, three columns at 1280). The frame, its grey caption above it and the sheet title are labels for this sheet only. They are not part of the app and are styled by a second `<style>` block marked "Specimen sheet only". Product headings inside frames are `h3` here so the sheet outline stays valid. In the app they are `h2`, as in the screen goldens.
+Each state sits in a dashed frame with a short caption above it. The page title, the captions and the frames are sheet chrome, styled by a second `<style>` block marked "Specimen sheet only". They are not app copy. Every frame shows its piece at phone layout whatever the page width (the specimen block restates the phone rules inside `.spec`), except the card pieces, which are the desktop card. Product headings inside frames are `h3` so the sheet's outline stays valid. In the app the section header rows are `h2`. The wordmark inside the S5 frame is a `span`, since the sheet's own title is the page's `h1`.
 
-## S4 Amount error (C2, C3)
+Each piece was checked against g2's own element in the same state, by computed style and text (`checks/results.json`, `specimen_vs_g2`).
+
+## S2 on an amount (C2, C3)
 **Copy.** Enter an amount like 12.50
-- Shown under the Subtotal field (value `0`, which is not above 0) and under an item price (value `13.505`, three decimals).
-- The input gets `aria-invalid="true"` and `aria-describedby` pointing at the message.
-- Field. Border turns `--error` and thickens to 2 px through an inset shadow, so the layout does not move. The value stays as typed.
-- Message. 14/20 600 `--error`. Under the Subtotal it sits 8 px below the field, left aligned. In an item row it spans the name and price columns and is right aligned, so it ends under the price field, directly above the toggles (which keep their 8 px gap).
-- When the field is focused it keeps the red border and gains the normal ink focus ring.
+- **The Subtotal (Even).** Value `100,00`, which is not an amount. The field gets the red edge with a 1 px inset (reads 2 px, nothing moves), `aria-invalid="true"`, and the message 8 px below in 14/20 600 error red with a 16 px warning circle. The field keeps the value as typed. On the screen this is K2 with this field, and the receipt and strip say "Enter the subtotal to see the splits." because there is no valid subtotal.
+- **An item price (By item).** Char kuey teow at `13,50`. The message spans the name and price columns and is right aligned, so it ends under the price, then the toggles 8 px below. In g2 an item whose price is not valid is left out of the totals while its error shows (a prototype shortcut). Ruled 2026-10-11 (ORCH, `../RULINGS.md`), it blocks the receipt as in 1.0, "Give every item a price to see the splits."
 
-## S6 Copy status (C6)
+## S2 on a rate, SST (C4)
+**Copy.** Enter a rate from 0 to 20
+SST at `25`. Same field error as above, the message in two even lines under the half-width field ("Enter a rate" over "from 0 to 20") with the icon on the first. The hint stays under both fields. `rate-error.html` shows the Service charge case on the full screen.
+
+## Charges folded with an error (phone)
+**Copy.** Check service charge · Check SST · Check both rates
+The header row's summary turns to error red at 600 with a 16 px warning circle 6 px before the words, right aligned beside the caret. The section name stays in body text, so the row still reads as Charges. The button is named "Charges" and described by its summary, for example "Check SST".
+
+## S4 Copy status (C6)
 | State | Copy | Look |
 |---|---|---|
-| Success | Summary copied | 14/20 600 ink, centred, 8 px under Copy summary |
-| Failure | Could not copy. Your browser blocked the clipboard. | Same, in `--error`. Wraps to two centred lines at 360. |
-- Both use the same `p.status` with `role="status"`, so the message is announced politely. It is empty and hidden until a copy is tried, and it is replaced by the next attempt.
-- Success is ink, not green. Green stays reserved for the "Adds up to" proof line.
+| Copied | Summary copied | 14/20 600 body text with a 16 px indigo check. On the strip it sits beside the Total, right of it on the same line. On the card it is centred 12 px under Copy summary |
+| Blocked | Could not copy. Your browser blocked the clipboard. | The same with a red warning circle. On the strip it does not fit beside the Total, so it takes its own line under it and wraps to two lines, and the strip grows to 153 px. On the card it wraps to two lines, left aligned beside the icon |
+- Both use `p.status` with `role="status"`, so the line is read politely. It is empty and hidden until a copy is tried and is cleared by the next change to the bill.
+- Copied is body text with an indigo check, not a colour of its own. Red stays for errors.
 
-## S7 Saved bill could not be read (C7)
-**Copy.** Your saved bill could not be read, so a new one was started.
-**Dismiss control.** X icon button, accessible name "Dismiss note".
-- The note sits under the header and above the People block, inside `.note-wrap`, so it has the header's width and gutters (full width of the content area on desktop, 1040 px at 1280).
-- Surface fill, 1 px `--line-strong` border, 6 px radius, 16 px left padding, 16 px below the header. Text 16/24 ink, vertically centred against the 44 x 44 dismiss button. At phone width the text wraps to two lines and the button stays at the top right.
-- `role="status"`. Dismissing removes the note and the content below moves up. Focus then goes to the next control in order.
-- The screen under the note is S3 (a new bill), so the frame shows "Person 1" and "Person 2" with remove disabled.
+## S5 Save warning (C10)
+**Copy.** This bill is not being saved on this device. It will be lost when you close this tab.
+On a phone the note is a second row of the top bar, full width, the warning band (`--warn-bg`) with an amber edge at 45%, a 20 px amber warning triangle, the text in 14/20, 16 px padding at the right (no dismiss). At 390 it wraps to two lines. On desktop it sits centred in the top bar between the brand and New bill, 44 px tall, on one line. It cannot be dismissed and goes away after the next save works. `role="status"`.
 
-## S8 People limits (C1)
-| State | What is disabled | Look |
-|---|---|---|
-| 12 people (Aisyah, Ben, Chen, Devi, Farid, Grace, Hafiz, Indra, Jia Hui, Kumar, Lina, Mei Ling) | Add person | Transparent fill, `--line` border, `--ink-disabled` text and plus icon, `disabled` attribute, skipped by Tab, no hover |
-| 2 people (Aisyah, Ben) | Both remove buttons | Borders stay (they outline the field), the X turns `--ink-disabled`, `disabled` attribute, skipped by Tab |
-- At 12 people the grid holds six rows of two at phone width, and "Add person" sits in the next cell.
-- Disabled colours are exempt from contrast rules (WCAG 1.4.3) and were chosen to read clearly as unavailable next to the enabled controls.
+## Two items still need a person (card)
+**Copy.** 2 items still need a person. Tap who had each one to see the splits.
+The plural of S3 (`bill-unassigned.md`). The bill lines stay above it on the screen. The strip says the same with its own amber icon.
+
+## By item, nothing to work out yet (phone)
+**Copy.** Add each item and tap who had it to see the splits.
+By item with no item that has a valid price. The strip shows the sentence in place of the Total with Copy summary disabled, wrapping to two lines where the strip is narrower than the sentence. The card shows "Total" with the 28 px receipt icon and the same sentence, as S1 does for Even.
