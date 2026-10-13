@@ -11,13 +11,28 @@
   `MODULE_NOT_FOUND` on Node 24.11.1 (measured during planning), so do not use it.
 - Evidence: the full runner output goes to `docs/modules/split-core/qa/unit/<YYYYMMDD-HHMMSS>/node-test.txt`.
   The run is green only when the output shows `fail 0` and the test count is not 0.
+- RED first for a new or changed case (added 2026-10-13 after the plan check, F3). A case that imports an export
+  that does not exist yet fails when the module links, which is a label earned by exiting non-zero and not a RED
+  (constitution, Gates and evidence). So before the code a case tests lands, the case runs against a throwaway
+  stub of that export in the working tree. The stub has the export's signature and returns a value of the right
+  type that the case must reject (for a changed R#, the 1.0 function as it stands is the stub). Where one stub
+  passes some cases of an export (a stub that returns its input passes "returns the same bill object"), a second
+  stub that returns a fresh copy covers them, so every new or changed case is seen failing on its own assertion
+  in at least one run. That run's output and the stub's source go to
+  `docs/modules/<module>/qa/unit/<YYYYMMDD-HHMMSS>-red/` (`node-test.txt`, `stub.txt`), never over an earlier
+  run. The build then replaces the stub, the same cases go green, and no commit ever holds a stub. The app's
+  Node cases in `tests/draft.test.js` (D13, D14 and the `loadDraft` and `saveDraft` states, R61) use the same
+  method. The 1.0 `src/draft.js` is the stub for the cases that expect a version 2 draft read and for the
+  `loadDraft` and `saveDraft` states, and a stub decoder that skips the version and `spare` checks covers the
+  cases that expect `{ ok: false }`, which the 1.0 decoder already refuses. Their RED output goes to
+  `docs/modules/split-app/qa/unit/<YYYYMMDD-HHMMSS>-red/`.
 
 | Test file | Covers |
 |---|---|
-| `tests/money.test.js` | R1, R2, R3, R4, R5 |
+| `tests/money.test.js` | R1, R2, R3, R4, R5, R34 |
 | `tests/allocate.test.js` | R7, R8, R9 |
-| `tests/bill.test.js` | R10 to R17, R26 |
-| `tests/result.test.js` | R6, R18 to R21, R23, R26 |
+| `tests/bill.test.js` | R10 to R17, R26, R27, R28 |
+| `tests/result.test.js` | R6, R18 to R21, R23, R26, R32, R33 |
 | `tests/invariants.test.js` | R22 |
 | `tests/summary.test.js` | R24, R26 |
 | `tests/hygiene.test.js` | R25 |
@@ -903,7 +918,7 @@ Ben RM 38.87
 Chen RM 38.87
 Adds up to RM 116.60
 ```
-W1 (v1.1.0, money with thousands commas, pending clarify item CG-P1)
+W1 (v1.1.0, money with thousands commas, clarify item CG-P1 ruled by the owner as recommended on 2026-10-13, ledger S1 row 2. Changed 2026-10-13 after the plan check, F1, the heading said "pending")
 ```
 Bill split
 Total RM 1,193.87 (subtotal RM 1,023.90, service 10% RM 102.39, SST 6% RM 67.58)

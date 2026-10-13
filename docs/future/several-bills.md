@@ -5,7 +5,7 @@
 
 ## Why this note exists
 Splity Tab keeps one bill. Two tabs open on the same device show the same bill, and the last change wins. The owner's
-reading at UAT: "its a shared state so technically changing at 1 place will change at the other. If they want to add
+reading at UAT was "its a shared state so technically changing at 1 place will change at the other. If they want to add
 a different bill, we can have this as future implementation." He asked for it to be written up, not built.
 
 ## What the user would get

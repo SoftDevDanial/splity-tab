@@ -7,7 +7,9 @@
 > counted. Gherkin tags map each scenario to an R# in `spec.md`, and every R# has at least one scenario. The
 > fidelity gate (Chromium only) and the cold-boot live-e2e gate (both engines) run after the suite is green.
 
-**v1.1.0 delta.** Written 2026-10-13 by the planner (solutions architect role). This file replaces the sealed 1.0 file, which stays in git tag `v1.0.0`. A 1.0 scenario whose expectation or setup changed keeps its tag and carries a `# [Changed 2026-10-13, v1.1.0, S#]` line saying what changed. New scenarios sit at the end of the Gherkin block under `# ---------- <topic> (v1.1.0, S#) ----------` headers. Screens are named by golden file (`bill-empty`, `bill-items`), because the v1.1.0 inventory ids (S1 first open, S3 unassigned) clash with 1.0's. Scopes S1 to S9 are those of `docs/v1.1.0/CHANGE-LEDGER.md`. Clarify items CG-P1 to CG-P6 are ruled by the owner (USER, 2026-10-13), and the scenarios assert the rulings. CG-P7 and CG-P8 are open. A scenario written to their recommended answer says "pending CG-P7" or "pending CG-P8". Both items are in `docs/modules/ROADMAP.md`, section v1.1.0.
+**v1.1.0 delta.** Written 2026-10-13 by the planner (solutions architect role). This file replaces the sealed 1.0 file, which stays in git tag `v1.0.0`. A 1.0 scenario whose expectation or setup changed keeps its tag and carries a `# [Changed 2026-10-13, v1.1.0, S#]` line saying what changed. New scenarios sit at the end of the Gherkin block under `# ---------- <topic> (v1.1.0, S#) ----------` headers. Screens are named by golden file (`bill-empty`, `bill-items`), because the v1.1.0 inventory ids (S1 first open, S3 unassigned) clash with 1.0's. Scopes S1 to S9 are those of `docs/v1.1.0/CHANGE-LEDGER.md`. Clarify items CG-P1 to CG-P8 are ruled by the owner (USER, 2026-10-13), each as recommended (ledger S1 rows 2 and 3, S4 row 3, S7 row 15), and the scenarios assert the rulings. The items are in `docs/modules/ROADMAP.md`, section v1.1.0. ~~CG-P7 and CG-P8 are open. A scenario written to their recommended answer says "pending CG-P7" or "pending CG-P8".~~ Changed 2026-10-13 after the plan check (F1, B4).
+
+Changed 2026-10-13 after the plan check (`docs/modules/PLAN-CHECK.md`, B2, B3, B4, F1, F3, F5, F6, F9, N2, N4, N5). New scenarios are the R3 walk control, an R6 step from twelve people, Arrow keys in P1 (R52), the after-load stand-in check (R40) and the live gate's control (R41). The fidelity seeds carry the clipboard stand-in, the R47 and R54 scans have planted copies, and five checklist sections have a row for the rest. Each change carries its own dated line.
 
 ## How to run
 - **Functional suite.** `python -m pytest tests/browser -q` runs Chromium (the default, as in 1.0). `python -m pytest tests/browser -q --engine webkit` runs WebKit. Test functions are named `test_R<n>_<what>`, so a grep maps each one to its tag. `split-core`'s unit tests and this module's Node tests (`tests/draft.test.js`, `tests/errors.test.js`) run with `node --test "tests/**/*.test.js"`.
@@ -35,7 +37,7 @@
   - **D-d, a real quota fill.** A `page.evaluate` on the app's page writes filler keys `test.fill.<n>`, halving the size from 1 MiB down to one character, until even one more character is refused. A gesture that grows the stored text then makes the engine throw its own error through the app's own `setItem`. Removing the filler keys and one more change prove the clear. Run once per engine.
   - **The write counter `count-set.js`.** Wraps `Storage.prototype.setItem`, adds 1 to `window.testSetItemCalls` on each call and then calls the original. It proves "writes nothing".
   If the A0 probe finds that WebKit lets no init script redefine the `window.localStorage` getter, the D-b scenarios become `@chromium_only` with that measured reason (R59 (c)).
-- **Controls.** A control asserts the requirement and is watched failing first. Every new or changed scenario is committed before its task as `xfail(strict=True, reason="task An")` and is seen failing on the asserted property against the tree of that moment. That RED run keeps its own `qa/functional/<stamp>-<engine>/` folder. The task that builds the requirement removes the mark. A new test that passes before its task is a finding, because it asserts nothing or asserts the old state.
+- **Controls.** A control asserts the requirement and is watched failing first. Every new or changed scenario is committed before its task as `xfail(strict=True, reason="task An")` and is seen failing on the asserted property against the tree of that moment. That RED run keeps its own `qa/functional/<stamp>-<engine>/` folder. The task that builds the requirement removes the mark. A new test that passes before its task is a finding, because it asserts nothing or asserts the old state. The `xfail` mark is pytest's only, so a new or changed `@node` case (R61 in `tests/draft.test.js`) is seen failing on its own assertion by the stub method that `split-core/qa.md` states once (How to run, "RED first for a new or changed case"), its RED output in `docs/modules/split-app/qa/unit/<YYYYMMDD-HHMMSS>-red/` (added 2026-10-13 after the plan check, F3).
 - **No hooks in shipped code.** The app gets no test hook, global or URL parameter (R2, R59). Storage failures, the clipboard and CSP observation come from the test side only.
 - **Evidence.** `docs/modules/split-app/qa/functional/<YYYYMMDD-HHMMSS>-<engine>/` holds `pytest.txt`, `junit.xml`, `skips.txt` (every skip with its reason, and the count) and a screenshot of every failed scenario. Nothing is written to the project root or to `docs/design/`.
 
@@ -115,7 +117,7 @@ Helpers in `seeds.py` build the derived bills named in scenarios ("K1 cut to its
 | G1 | K2 plus a top-level `"extra":1` and a person key `"colour":"red"` | loads as K2. After one change the draft has neither key |
 | G2 | K2 with Aisyah renamed to 20 copies of the Malaysian flag emoji (U+1F1F2 U+1F1FE, 20 grapheme clusters, 80 UTF-16 code units) | loads, and the name shows in full |
 | G3 | K2 with `"__proto__":{"polluted":true}` inside `bill` | loads as K2, and `({}).polluted` is `undefined` in the page |
-| G4 | K1 with `"spare":{"rule":"one","personId":"p2"}` and i5 `"who":["p1"]`, so Ben is on no item | loads. The splits are Top of the list's (Aisyah RM 44.78, Ben RM 0.00, Chen RM 24.48), the chip reads "Top of the list", and P1 shows One person checked with pills for Aisyah and Chen and none checked (pending CG-P7) |
+| G4 | K1 with `"spare":{"rule":"one","personId":"p2"}` and i5 `"who":["p1"]`, so Ben is on no item | loads. The splits are Top of the list's (Aisyah RM 44.78, Ben RM 0.00, Chen RM 24.48), the chip reads "Top of the list", and P1 shows One person checked with pills for Aisyah and Chen and none checked (CG-P7, ruled by the owner as recommended on 2026-10-13, ledger S1 row 2. It read "pending CG-P7" before the plan check, F1) |
 | G5 | S2_V1 with `"spare":{"rule":"random","order":["p1"]}` inside `bill` | loads as K2 with spare Top of the list (D14). After one change the draft is version 2 with `"spare":{"rule":"top"}` |
 | G6 | K2 with `"spare":{"rule":"top","extra":1}` | loads as K2. After one change the draft's `spare` is exactly `{"rule":"top"}` |
 | G7 | S1_V1 unchanged (a draft saved by 1.0) | loads as K1 with spare Top of the list and both sections folded below 1024 px. After one change the draft is version 2 |
@@ -190,6 +192,20 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
       | bill-large       | W1   | none                                                                                               | 390, 360, 1280 |
     # 40 pairs. A 390 width means a 390 x 844 viewport, 360 means 360 x 780 and 1280 means 1280 x 800.
 
+  @R3 @both
+  Scenario: The walk sees every rendered element and flags each kind of change (the walk's control)
+    # Added 2026-10-13 after the plan check (F6). The v1.1.0 form of 1.0's test_R3_the_walk_sees_every_rendered_element_and_flags_a_change, which neither qa listed. The walk skips by computed display on both sides and compares many attributes, so each kind of change must be seen reported.
+    Given the K1 seed at 390 x 844 and the DOM walk of its body
+    Then the walk holds more than 40 entries
+    When a deep copy of the walk has the first toggle's aria-pressed changed from "true" to "false"
+    Then first_diff of the walk and the copy names aria-pressed on that toggle, "true" on one side and "false" on the other
+    When another copy has the data-open of #peopleBlk changed from "false" to "true"
+    Then first_diff names data-open on that element
+    When another copy drops the last li.item of ul.frame#itemList
+    Then first_diff names a children difference at that list
+    When I click Splits and walk the body again
+    Then first_diff of the walk before and the walk after names a children difference at body that holds dialog.sheet-dlg on one side only, so an element displayed on one side only is reported and not skipped
+
   # ---------- People ----------
   @R4 @both
   Scenario: Person rows carry their names and labels
@@ -243,6 +259,17 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Then #addPerson is equal to the golden's #addPerson in bill-twelve.html at 1280 x 800, plus cursor "not-allowed"
     When I click "Add person" again
     Then there are still 12 person rows
+
+  @R6 @both
+  Scenario: Removing anyone from twelve turns Add person back on
+    # Added 2026-10-13 after the plan check (F5). bill-twelve.md, "Removing anyone turns Add person back on". Also the v1.1.0 form of 1.0's test_R6_a_restored_twelve_person_bill_shows_the_limit_state (task A5).
+    Given the S8 seed and People opened first
+    Then there are 12 person rows and #addPerson has the disabled attribute, and the stored text equals the S8 seed (a restore writes nothing)
+    When I click "Remove Mei Ling"
+    Then there are 11 person rows, #addPerson has no disabled attribute, and "Person 11 name" has focus
+    And a Tab from #peopleBtn moves focus to #addPerson
+    When I click "Add person"
+    Then there are 12 person rows, the new field is empty with placeholder "Person 12", and #addPerson has the disabled attribute again
 
   @R7 @both
   Scenario: Remove a person and they leave every item
@@ -742,6 +769,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
   @R26 @R61 @both
   Scenario Outline: Odd but readable drafts load
     # [Changed 2026-10-13, v1.1.0, S1] G4 to G7 added, the version 2 spare choice and drafts saved by 1.0.
+    # Changed 2026-10-13 after the plan check (F1). The G4 row said "pending CG-P7". The owner ruled it as recommended.
     Given the <id> seed
     When the page loads
     Then #notes holds no note and <expected>
@@ -750,7 +778,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
       | G1 | the K2 screen shows, and after one edit the draft has no "extra" or "colour" key                                            |
       | G2 | Person 1 shows the 20 flags in full                                                                                         |
       | G3 | the K2 screen shows and ({}).polluted is undefined                                                                          |
-      | G4 | the card's splits read Aisyah RM 44.78, Ben RM 0.00, Chen RM 24.48 and #spareBtn reads "Top of the list" (pending CG-P7)    |
+      | G4 | the card's splits read Aisyah RM 44.78, Ben RM 0.00, Chen RM 24.48 and #spareBtn reads "Top of the list" (CG-P7, ruled 2026-10-13, ledger S1 row 2) |
       | G5 | the K2 screen shows with #spareBtn reading "Top of the list", and after one edit the draft is version 2 with spare {"rule":"top"} |
       | G6 | the K2 screen shows, and after one edit the draft's spare is exactly {"rule":"top"}                                         |
       | G7 | the K1 screen shows with #spareBtn reading "Top of the list" and both sections folded, and after one edit the draft is version 2 |
@@ -1076,7 +1104,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Given <state> in a context without bypass_csp
     Then the stylesheet applies (body's computed background-color equals the golden's body background-color at the same width)
     And the module ran (<proof>)
-    And style attributes exist only on the root element (holding only --strip-h), ul.r-splits.many (only --rows), #spareDlg (only left and bottom, from 1024 px) and #sheetScroll (only padding-bottom, while P1 is open below 1024 px)
+    And style attributes exist only on the root element (holding only --strip-h), ul.r-splits.many (only --rows), #spareDlg (only left and bottom, from 1024 px) and #sheetScroll (only padding-bottom, while P1 and the Splits sheet are both open below 1024 px, wording changed 2026-10-13 after the plan check, N2)
     And no CSP violation was recorded and no page error was logged
     Examples:
       | state                                                     | proof                                                         |
@@ -1137,17 +1165,46 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     And importing playwright, PIL and numpy in the Python that runs the test succeeds
 
   @R40 @static
-  Scenario: The fidelity seeds equal seeds.py
+  Scenario: The fidelity seeds equal seeds.py and carry the clipboard stand-in
     # [Changed 2026-10-13, v1.1.0, S1, S7] Version 2 seeds, one file per seed the fidelity table uses.
-    Given every tests/browser/fidelity/seed-*.js
-    Then each holds exactly one statement, localStorage.setItem("split.draft", '<seed>'), whose seed equals its seed in seeds.py
+    # Changed 2026-10-13 after the plan check (B2). The title was "The fidelity seeds equal seeds.py", and each file held only the setItem statement, so the candidate of a pair whose after-load script presses a control had no clipboard stand-in.
+    Given every tests/browser/fidelity/seed-*.js and tests/browser/clipboard/recorder.js
+    Then each seed file starts with the text of recorder.js byte for byte
+    And the rest of the file is exactly one statement, localStorage.setItem("split.draft", '<seed>'), whose seed equals its seed in seeds.py
     And there is one file for each of K1, K2, ONE, RND, RE, BU, B1, T12 and W1
+    And a planted copy of seed-s1.js with the recorder part cut, and one with a second setItem statement, each checked in a pytest temporary folder, are both reported
+
+  @R40 @chromium_only
+  # reason. The after-load scripts serve the fidelity gate, which runs in Chromium only (ledger S5 row 2).
+  Scenario: An after-load script presses nothing without the clipboard stand-in
+    # Added 2026-10-13 after the plan check (B2). Constitution, Browser gates. The check is the control of the stand-in rule, so it must be seen failing.
+    Given the K1 seed in a context made by rig.new_context with clipboard "missing", and a body recorder
+    When each of open-sections.js, open-splits.js, open-spare.js and open-new-bill.js runs inside an async function, as the harness runs it
+    Then each rejects with an Error whose message is "clipboard stand-in missing", the recorder counted no mousedown and no click, and no section, sheet or dialog opened
+    Given the K1 seed in a context made by rig.new_context with the default recorder.js
+    When open-splits.js runs the same way
+    Then #splitsDlg matches ":modal", window.testClipboardWrites is 0, and document.activeElement is body with no element matching ":focus-visible"
 
   @R41 @gate
   Scenario: Works right
     # [Changed 2026-10-13, v1.1.0, S5, S7] The v1.1.0 headline flow, in Chromium and in WebKit.
     When the cold-boot live-e2e gate below runs with --engine chromium and with --engine webkit
     Then it passes in each, and each run's evidence folder exists and is listed after the run
+    # Added 2026-10-13 after the plan check (B3). A green run counts only beside the RED capture of its control in the same engine (next scenario).
+
+  @R41 @gate
+  Scenario Outline: The live gate fails when the app starts from a saved bill (control)
+    # Added 2026-10-13 after the plan check (B3). Constitution, Gates and evidence. Run just before the green run of the same engine, against the same server.
+    Given the app is served as for the gate, and live_e2e.py runs with --engine <engine> --control seeded
+    When the script makes its one context through rig.new_context with storage_state holding the K2 seed, and runs its steps from step 1
+    Then the run stops at step 1 with pass false, and steps.log names step 1's failed assertions, the screen is not bill-empty (#peopleBlk has data-open "false" and the strip reads "Total RM 116.60", not "Enter the subtotal to see the splits.") and split.draft is present
+    And step 1's check that navigator.clipboard.writeText is the stand-in passed, so the RED comes from the cold-boot property and not from the clipboard check
+    And summary.json records "control": "seeded", the engine, browser.version and pass false
+    And the evidence folder name ends in "-<engine>-control", it holds no earlier run's files, and it is listed after the run and never overwritten
+    Examples:
+      | engine   |
+      | chromium |
+      | webkit   |
 
   # ---------- The name and the logo (v1.1.0, S8, S6) ----------
   @R43 @both
@@ -1287,6 +1344,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Given the static scan of src/
     Then it holds none of "QuotaExceededError", "SecurityError", "DOMException", "setTimeout", "setInterval" or "removeItem("
     And "getItem(" appears exactly once (the boot read in loadDraft) and "setItem(" exactly once (in saveDraft)
+    # Added 2026-10-13 after the plan check (F6). The scan has teeth, as R38's and R39's do.
+    And a planted copy of src/draft.js with a line that reads e.name === "QuotaExceededError", one with a second getItem( call (a read back) and one with a setTimeout( call, each scanned in a pytest temporary folder, are each reported
 
   # ---------- Sections, strip, sheet and layout (v1.1.0, S7) ----------
   @R48 @both
@@ -1537,6 +1596,18 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Then #pickWrap is gone and the splits read RM 38.87, RM 38.87, RM 38.86
 
   @R52 @both
+  Scenario: Arrow keys move between the three choices and focus stays on the radio
+    # Added 2026-10-13 after the plan check (F5). spare-sen.md, "Arrow keys move between the three choices (native radios)". An arrow key fires change, which applies the rule and renders P1 again, so the render must keep the focused radio.
+    Given the K2 seed at 1280 x 800 and P1 open from #spareBtn, with the "top" radio focused
+    When I press ArrowDown
+    Then the "one" radio is checked and has focus, #pickWrap is shown with the "Aisyah" pill checked, the card's splits read RM 38.88, RM 38.86, RM 38.86, and #spareBtn reads "One person, Aisyah"
+    When I press ArrowDown
+    Then the "random" radio is checked and has focus, #randWrap is shown and #pickWrap is gone, two of the splits are RM 38.87 and one is RM 38.86, #spareBtn reads "At random", and the card holds #pickAgain
+    And the draft's spare is {"rule":"random"} with an order holding p1, p2 and p3 once each
+    When I press ArrowUp twice
+    Then the "top" radio is checked and has focus, the splits read RM 38.87, RM 38.87, RM 38.86, and #spareBtn reads "Top of the list"
+
+  @R52 @both
   Scenario Outline: P1 sits beside the card on the desktop
     Given the <seed> seed at <size> and P1 open from #spareBtn
     Then <place>
@@ -1602,7 +1673,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
 
   @R52 @both
   Scenario: P1 opened on the desktop and closed below 1024 px
-    # Pending CG-P8, written to its recommended answer. No spare chip is shown below 1024 px while the Splits sheet is closed.
+    # CG-P8, ruled by the owner as recommended, "The Splits button (Recommended)" (USER, 2026-10-13, ledger S1 row 3). No spare chip is shown below 1024 px while the Splits sheet is closed.
+    # Changed 2026-10-13 after the plan check (B4). This line read "Pending CG-P8, written to its recommended answer".
     Given the K1 seed at 1280 x 800 and P1 open from #spareBtn
     When the viewport becomes 900 x 800
     Then P1 is still open as a bottom sheet and its style holds neither left nor bottom
@@ -1633,7 +1705,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
 
   @R53 @both
   Scenario: A chosen person who has nothing falls back to Top of the list and stays chosen
-    # Pending CG-P7, written to its recommended answer. The fallback itself is CG-P2, ruled by the owner.
+    # CG-P7, ruled by the owner as recommended, "Line says Top of the list" (USER, 2026-10-13, ledger S1 row 2). The fallback itself is CG-P2, ruled by the owner.
+    # Changed 2026-10-13 after the plan check (F1). This line read "Pending CG-P7, written to its recommended answer".
     Given the G4 seed at 1280 x 800
     Then the card's splits read Aisyah RM 44.78, Ben RM 0.00, Chen RM 24.48, and #spareBtn reads "Top of the list", named "Spare sen: Top of the list. Change"
     When I click #spareBtn
@@ -1677,6 +1750,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     # PD-19.
     Given the static scan of src/
     Then "Math.random" appears only as an argument of chooseSpareRule and pickAgain calls, and src/ holds no "crypto.getRandomValues"
+    # Added 2026-10-13 after the plan check (F6). The scan has teeth, as R38's and R39's do.
+    And a planted copy of a src/ file with the line "const r = Math.random();" outside those calls, and one with a "crypto.getRandomValues(" call, each scanned in a pytest temporary folder, are each reported
 
   # ---------- Large bills at 360 px (v1.1.0, S2) ----------
   @R60 @both
@@ -1727,7 +1802,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Given tests/browser/conftest.py, rig.py, live_e2e.py and every Python file under tests/browser/
     Then conftest.py's pytest_addoption adds "--engine" with choices "chromium" and "webkit" and default "chromium", and a session fixture "engine" returns it
     And a browser is launched only in rig.py, by rig.launch(playwright, engine), headless, with its launch arguments kept per engine
-    And contexts are made only by rig.new_context, and no file under tests/ passes is_mobile or bypass_csp
+    And contexts are made only by rig.new_context, and no Playwright call outside rig.py passes is_mobile or bypass_csp
+    # Changed 2026-10-13 after the plan check (N4). It read "no file under tests/ passes is_mobile or bypass_csp", which would match test_R39_a_context_never_gets_a_permission_or_bypasses_the_policy. That negative test hands bypass_csp to rig.new_context to prove the rig refuses it, and stays exempt by name.
     And a marker "chromium_only" with a "reason" argument is registered
     And live_e2e.py takes "--engine" with the same choices and default, and tests/browser/fidelity/run.py has no engine option
 
@@ -1759,9 +1835,15 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
 
   @R59 @gate
   Scenario: The A0 baseline record is complete
+    # Changed 2026-10-13 after the plan check (B1, B3, F9). The record names the Chromium count with the 1.0 golden fixtures, both live gate baselines, and the probe script with its launch rule, and the probe list gains the label, the radio and the .svg type.
     Given the A0 evidence folder docs/modules/split-app/qa/webkit-baseline/<stamp>/
-    Then it holds pytest.txt, junit.xml and skips.txt of the WebKit run of the suite as it stood before A1, and the folder of a live_e2e.py --engine webkit run
+    Then it holds pytest.txt, junit.xml and skips.txt of the WebKit run of the suite as it stood before A1
+    And it names the docs/modules/split-app/qa/functional/<stamp>-chromium/ folder of the Chromium run at the same commit, whose junit.xml shows the 427 sealed 1.0 tests passing, with A0's new tests counted apart
+    And it names the folders of a live_e2e.py --engine chromium run and a live_e2e.py --engine webkit run of the 1.0 gate, the baseline of the A20 gate
+    And probes.json was written by python tests/browser/probe_webkit.py --engine webkit, which launched through rig.launch, made every context with rig.new_context and recorded that the clipboard stand-in was in place before its first gesture
     And probes.json records, measured in WebKit on this machine, the click count (detail) of a quick touch double tap, the order of a tap's pointer and mouse events, isSecureContext and typeof Clipboard on http://127.0.0.1, whether an init script can redefine window.localStorage, and the console text of a CSP violation and of a denied localStorage
+    And it records document.activeElement after a mouse click on a label of a radio and after a mouse click on a visible radio, on a page the probe writes with page.set_content so the app's styling does not decide it
+    And it records the Content-Type header the test server sends for an .svg file already in the project (for example docs/brand/mark.svg), read by the probe's own GET
     And sorting.md lists every failed test of that run's junit.xml exactly once, each with one of (a) app defect, fixed in the app, (b) engine difference, with its measurement, or (c) Chromium-only tool, with its reason, and the commit or scenario change that follows
 
   # ---------- The accessible description of the amount fields (v1.1.0, S7, CG-P6) ----------
@@ -1991,6 +2073,7 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | BE-12 | Strip Copy summary | `disabled`, faint label and icon, `--l5` border, no fill |
 | BE-13 | Strip height | 108 px, its top at 736 at 390 |
 | BE-14 | Positions at 390 | People ends at 243, Charges at 296, Split at 355, no page scroll |
+| BE-15 | The rest (added 2026-10-13 after the plan check, N5) | as K1-01 to K1-05 (the top bar), K1-33 to K1-39 at 1280 (Charges), K1-60 (the closed sheet), K1-61 (the sprite) and K1-64 (the tab icon) |
 
 ### RE `docs/design/rate-error.html` (inventory S2 on a rate) at 390 x 844, 360 x 780 and 1280 x 800
 | Id | Element | Expected |
@@ -2004,6 +2087,7 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | RE-07 | Card | blocked with "Check the charges to see the splits." under the mark, as BE-09, 161 px tall at 1280 |
 | RE-08 | Strip | "Check the charges to see the splits.", Copy summary disabled, 108 px, its top at 736 at 390 and 672 at 360 |
 | RE-09 | Positions at 390 | People ends at 117, Charges at 348, Split at 407, the page is 1125 px |
+| RE-10 | The rest (added 2026-10-13 after the plan check, N5) | as K1-01 to K1-05 (the top bar), K1-24 to K1-31 (People), K1-60, K1-61 and K1-64 |
 
 ### BU `docs/design/bill-unassigned.html` (inventory S3) at 390 x 844, 360 x 780 and 1280 x 800
 | Id | Element | Expected |
@@ -2015,6 +2099,7 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | BU-05 | Card message `div.r-msg` | a 22 px amber warning circle and "1 item still needs a person. Tap who had it to see the splits." |
 | BU-06 | Nothing after it | no splits, proof, spare line, Copy summary or status |
 | BU-07 | Strip | `#stripMsg` with an 18 px amber warning circle and the same sentence on two lines, Copy summary disabled, 128 px |
+| BU-08 | The rest (added 2026-10-13 after the plan check, N5) | as K1-01 to K1-05 (the top bar), K1-24 to K1-39 (People and Charges), K1-60, K1-61 and K1-64 |
 
 ### BR `docs/design/bill-unreadable.html` (inventory S6) at 390 x 844, 360 x 780 and 1280 x 800
 | Id | Element | Expected |
@@ -2035,6 +2120,7 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | BT-05 | Figures | Aisyah, Ben, Chen and Person 4 to Person 8 RM 9.72, Person 9 to Person 12 RM 9.71, proof RM 116.60, "8 sen left over" with "Top of the list" |
 | BT-06 | Card | 658 px tall at 1280 |
 | BT-07 | Sheet on a phone (not drawn) | one column of twelve, checked by the R20 scenario, because the golden draws the sheet closed |
+| BT-08 | The rest (added 2026-10-13 after the plan check, N5) | as K1-01 to K1-05 (the top bar), K1-32 to K1-39 (Charges), K1-60, K1-61 and K1-64 |
 
 ### W1 `docs/design/bill-large.html` (inventory W1) at 390 x 844, 360 x 780 and 1280 x 800
 | Id | Element | Expected |
@@ -2045,6 +2131,7 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | W1-04 | Aisyah | RM 1,153.65 with "989.40 + 164.25", Ben and Chen as K1 |
 | W1-05 | Proof and spare line | RM 1,193.87 with "1,023.90 + 169.97", "1 sen left over" with "Top of the list" |
 | W1-06 | Frame | at 360 it holds 614 px in 581 with the bottom fade (`data-down`), at 390 it fits with no fade, at 1280 it is 291 px tall with the fade |
+| W1-07 | The rest (added 2026-10-13 after the plan check, N5) | as K1-01 to K1-05 (the top bar), K1-24 to K1-39 (People and Charges), K1-60, K1-61 and K1-64 |
 
 ### ST `docs/design/states.html` (specimen sheet, no pixel diff, 1.0 precedent)
 Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the piece" uses the property list of "Equal to the golden", never width, because the specimen frames are narrower than the app.
@@ -2075,8 +2162,8 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
 - **The policy is off inside every render.** A fidelity pass says nothing about the CSP. The suite's R38 scenarios and the live gate never bypass it.
 - **Runner.** `python tests/browser/fidelity/run.py` from the project root. It manages the server with the lifecycle rules of How to run, runs the two controls and then the 40 pairs, each into its own folder, and adds no rendering or diff logic of its own.
 - **Golden.** `./docs/design/<screen>.html`, opened by the harness as a file, never written. **Candidate.** `http://127.0.0.1:<port>/`, brought into the golden's state by the test-side scripts below, never by a hook in the app.
-- **Seed scripts** (`--candidate-init-script`). One statement each, `localStorage.setItem("split.draft", '<seed JSON>')`, run before the app's own scripts so the app boots into that bill through its real load path. `seed-s1.js` (K1), `seed-s2.js` (K2), `seed-s5.js` (BU), `seed-re.js` (RE), `seed-w1.js` (W1), `seed-t12.js` (T12), `seed-one.js` (ONE), `seed-rnd.js` (RND) and `seed-b1.js` (B1). `test_R40_fidelity_seeds_match` keeps each equal to `seeds.py`.
-- **After-load scripts** (`--candidate-after-load`). Each clicks with `element.click()`, waits two animation frames, calls `document.activeElement.blur()` and waits two more frames (1.0 PD-16, because a scripted click makes Chromium draw a keyboard focus ring that a real mouse click does not).
+- **Seed scripts** (`--candidate-init-script`). Run before the app's own scripts so the app boots into that bill through its real load path. `seed-s1.js` (K1), `seed-s2.js` (K2), `seed-s5.js` (BU), `seed-re.js` (RE), `seed-w1.js` (W1), `seed-t12.js` (T12), `seed-one.js` (ONE), `seed-rnd.js` (RND) and `seed-b1.js` (B1). The harness takes one init script per render, so each seed file holds two parts. First the clipboard stand-in, the text of `tests/browser/clipboard/recorder.js` byte for byte. Then exactly one statement, `localStorage.setItem("split.draft", '<seed JSON>')`. `test_R40_fidelity_seeds_match` keeps the first part equal to `recorder.js` and the seed equal to `seeds.py`. The constitution (Browser gates) asks for a stand-in in every run that presses anything, and 16 of the 40 pairs press controls through their after-load script. All nine seed files carry it, so one rule covers every seeded pair. The `bill-empty` pairs and the two controls load no init script and press nothing, so they are render-only captures, which need no stand-in. [Changed 2026-10-13 after the plan check (B2). Each file held only the `setItem` statement, so no candidate had a stand-in.]
+- **After-load scripts** (`--candidate-after-load`). Each first checks that the stand-in is in place and throws `new Error("clipboard stand-in missing")` before any click when `window.testClipboardWrites` is not the number 0, or when `navigator.clipboard.writeText` exists and its source text holds "[native code]" (added 2026-10-13 after the plan check, B2). A pair whose script throws cannot pass, because no click happened and the page never reaches the golden's state, and `run.py` counts a harness exit other than 0 or a missing `report.json` as FAIL, as in 1.0. The `@R40` scenario "An after-load script presses nothing without the clipboard stand-in" is this check's control. Each script then clicks with `element.click()`, waits two animation frames, calls `document.activeElement.blur()` and waits two more frames (1.0 PD-16, because a scripted click makes Chromium draw a keyboard focus ring that a real mouse click does not).
   - `open-sections.js` clicks `#peopleBtn`, then `#chargesBtn`.
   - `open-splits.js` clicks `#splitsBtn`.
   - `open-spare.js` clicks `#splitsBtn` and then the sheet's spare chip below 1024 px, and `#spareBtn` from 1024 px.
@@ -2126,7 +2213,9 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
 
 ## Cold-boot live-e2e gate (Chromium and WebKit)
 - **Script.** `tests/browser/live_e2e.py`, run once with `--engine chromium` (the default) and once with `--engine webkit`, after the suite is green in both engines and the fidelity gate is green.
-- **Rules.** The browser is launched by `rig.launch(playwright, engine)`, headless. One new context with **no** `storage_state` and **no** `bypass_csp`, so the shipped policy is live for the whole run. Viewport 390 x 844, device scale factor 1, colour scheme dark, reduced motion `reduce`. Its only init scripts are `tests/browser/clipboard/recorder.js` (never the operating system clipboard, CG-7 of 1.0) and `tests/browser/csp/listener.js`. No clipboard permission is granted. The entry point is the shipped `index.html` at `/`. Only real gestures change the app (mouse clicks on visible controls, keyboard typing, key presses). `page.evaluate` only **reads** (`window.testClipboardText`, `window.testCspViolations`, `document.activeElement`, `localStorage` for a check, the source text of `navigator.clipboard.writeText`), and never changes state. No seed, fixture, app hook or test-only code path in the app.
+- **Control and baseline** (constitution, Gates and evidence, added 2026-10-13 after the plan check, B3). The gate compares the running app with the cold-boot rule (R2, R41), a first visit with empty storage that shows `bill-empty` with People open and the strip reading "Enter the subtotal to see the splits.", and it must be able to fail when the app does not start empty. Its control is the same script in the same engine against the same server, run once with `--control seeded` just before that engine's green run (the `@R41` scenario "The live gate fails when the app starts from a saved bill"). It makes its one context with `storage_state` holding the K2 seed, runs the same steps, and must stop at step 1 with pass false, failing on the cold-boot assertions while step 1's clipboard check passes. Its evidence is kept as the RED capture in `docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>-control/`, beside the green run and never overwritten. A control that passes step 1 means the gate cannot fail, and the gate is not met. The baseline is the gate's own prior run in the same engine, first the A0 runs of the 1.0 gate (`--engine chromium` and `--engine webkit`), then each earlier green run of the v1.1.0 gate.
+- **Control mode.** `--control seeded` is the only option that changes what the script does, and it can only make the run fail. A run without it writes `"control": null` in `summary.json`, and only such a run can meet the gate. The seed is test-side data given to the context as `storage_state`, never through the app.
+- **Rules.** The browser is launched by `rig.launch(playwright, engine)`, headless. One new context with **no** `storage_state` (apart from the control mode) and **no** `bypass_csp`, so the shipped policy is live for the whole run. Viewport 390 x 844, device scale factor 1, colour scheme dark, reduced motion `reduce`. Its only init scripts are `tests/browser/clipboard/recorder.js` (never the operating system clipboard, CG-7 of 1.0) and `tests/browser/csp/listener.js`. No clipboard permission is granted. The entry point is the shipped `index.html` at `/`. Only real gestures change the app (mouse clicks on visible controls, keyboard typing, key presses). `page.evaluate` only **reads** (`window.testClipboardText`, `window.testCspViolations`, `document.activeElement`, `localStorage` for a check, the source text of `navigator.clipboard.writeText`), and never changes state. No seed, fixture, app hook or test-only code path in the app.
 - **Flow.** Each numbered step takes a screenshot and adds a line to `steps.log` (step, gesture, assertion, PASS or FAIL).
   1. Open `/`. Assert that `navigator.clipboard.writeText` is the stand-in (its source text holds no "[native code]"), that the screen is `bill-empty` with People open, and that `split.draft` is absent.
   2. In the open People section replace Person 1 with "Aisyah" and Person 2 with "Ben", click Add person, type "Chen", and type "100.00" in Subtotal. Assert that the strip reads "Total RM 116.60".
@@ -2137,7 +2226,7 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
   7. Reload in a new page of the same context. Assert the K1 screen with both sections folded. Click Even and assert Subtotal "100.00" and the splits RM 38.87, RM 38.87, RM 38.86.
   8. Click New bill. Assert the dialog with Cancel focused. Click Start new bill. Assert `bill-empty` with People open and focus on New bill. Reload and assert `bill-empty` with People open again (CG-P4).
   9. Throughout, assert zero console errors, zero page errors and zero recorded CSP violations (in Chromium also no console text holding "Content Security Policy"), and only same-origin GETs.
-- **Evidence artifact.** `docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>/` with `01-*.png` onwards (one per step), `steps.log`, `console.log`, `network.log`, `clipboard-s2.txt`, `clipboard-s1.txt` and `summary.json` (start and end time, engine, `browser.version`, port, server PID, the init scripts used, result). After each run, list the folder to prove the files landed there. **No artifact means not done**, and a WebKit failure blocks the seal (ledger S5 row 2).
+- **Evidence artifact.** `docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>/` with `01-*.png` onwards (one per step), `steps.log`, `console.log`, `network.log`, `clipboard-s2.txt`, `clipboard-s1.txt` and `summary.json` (start and end time, engine, `browser.version`, port, server PID, the init scripts used, `control` null or "seeded", result). A run stops at its first failed step and still writes the screenshots taken so far, `steps.log`, `console.log`, `network.log` and `summary.json`. After each run, list the folder to prove the files landed there. **No artifact means not done**, and a WebKit failure blocks the seal (ledger S5 row 2). A green run with no control capture of the same engine beside it does not meet the gate (B3).
 
 ## Regression
 - Re-run the functional suite in Chromium and in WebKit, the fidelity gate in Chromium and the live gate in both engines in the final all-modules pass, together with `node --test "tests/**/*.test.js"`. The WebKit rows of `docs/regression/REGRESSION.md` are an orchestrator action (ROADMAP, section v1.1.0).
