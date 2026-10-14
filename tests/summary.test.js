@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { summaryText } from "../src/core/summary.js";
 import { computeResult } from "../src/core/result.js";
 import { setPersonName } from "../src/core/bill.js";
-import { S1, S2, S5, E2, E3, I2, W1, D1, D2, deepFreeze } from "./support/bills.js";
+import { S1, S2, S5, E2, E3, I2, W1, D1, D2, deepFreeze, withSpare } from "./support/bills.js";
 
 const block = (...lines) => lines.join("\n");
 
@@ -54,6 +54,22 @@ const blocks = [
     "Ben RM 15.74",
     "Chen RM 24.48",
     "Adds up to RM 1,193.87",
+  )],
+  ["S2-ONE, spare sen to Ben", withSpare(S2, { rule: "one", personId: "p2" }), block(
+    "Bill split",
+    "Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)",
+    "Aisyah RM 38.86",
+    "Ben RM 38.88",
+    "Chen RM 38.86",
+    "Adds up to RM 116.60",
+  )],
+  ["S2-RANDOM, order p2 p3 p1", withSpare(S2, { rule: "random", order: ["p2", "p3", "p1"] }), block(
+    "Bill split",
+    "Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)",
+    "Aisyah RM 38.86",
+    "Ben RM 38.87",
+    "Chen RM 38.87",
+    "Adds up to RM 116.60",
   )],
   ["D1 equal names, even", D1, block(
     "Bill split",

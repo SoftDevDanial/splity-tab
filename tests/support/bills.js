@@ -42,6 +42,9 @@ export function deepFreeze(value) {
   return value;
 }
 
+/** A copy of `bill` with its spare choice set directly, so a test names the choice without the choose actions. */
+export const withSpare = (bill, spare) => deepFreeze({ ...structuredClone(bill), spare });
+
 const fixture = (spec) => deepFreeze(buildBill(spec));
 
 const TRIO = ["Aisyah", "Ben", "Chen"];

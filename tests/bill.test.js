@@ -5,12 +5,9 @@ import {
   setServiceText, setSstText, addItem, removeItem, setItemName, setItemPriceText,
   toggleItemPerson, personLabel, itemLabel, sparePeople,
 } from "../src/core/bill.js";
-import { S1, S2, I2, I3, D2, MAX_E, MAX_I, deepFreeze } from "./support/bills.js";
+import { S1, S2, I2, I3, D2, MAX_E, MAX_I, deepFreeze, withSpare } from "./support/bills.js";
 
 const BILL_KEYS = ["mode", "people", "subtotalText", "items", "serviceText", "sstText", "spare", "nextId"];
-
-/** A bill with the spare choice set directly, because the choice actions are core task C5. */
-const withSpare = (bill, spare) => deepFreeze({ ...structuredClone(bill), spare });
 
 test("@R10 a new bill has two people, even mode, the default rates and Top of the list", () => {
   assert.deepEqual(newBill(), {

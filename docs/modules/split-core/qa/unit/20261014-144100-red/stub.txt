@@ -1,0 +1,6 @@
+Task C4 changes computeResult (R20, R21, R22 changed, R32 and R33 new). The committed C3 computeResult in
+src/core/result.js is the stub for the changed behaviour, so run 1 needed no edit. Never committed.
+
+Stub 2 (run 2), two lines of result.js changed for the "no spare key" case, reverted after the run:
+  const blocked = (reason) => ({ kind: "blocked", reason, spare: { count: 0, rule: "top", personId: null } });
+  ... return { kind: "unassigned", count: unassigned, charges, spare: { count: 0, rule: "top", personId: null } };

@@ -1,0 +1,31 @@
+RED-first run for task C4 (R20, R21, R22, R32, R33), 2026-10-14, split-core builder.
+Commands: node --test tests/result.test.js tests/invariants.test.js tests/summary.test.js
+Condensed to the failing test names and the counts. Passing lines left out. The C3 result.js (no spare) was in place,
+so for the changed R# the existing computeResult is the stub 1 (see stub.txt).
+
+=== Run 1, stub 1: computeResult as committed in C3 (no spare, Top of the list only) ===
+tests 95, pass 75, fail 20
+FAIL @R22 generated bills always add up, under every spare rule        (result.spare is undefined, first bill)
+FAIL @R32 @R20 @R21 S2 top           actual spare.count undefined, expected 2
+FAIL @R32 @R20 @R21 S2 one p2        actual rows [3887, 3887, 3886], expected [3886, 3888, 3886]
+FAIL @R32 @R20 @R21 S2 random        actual rows [3887, 3887, 3886], expected [3886, 3887, 3887]
+FAIL @R32 @R20 @R21 S1 top           actual spare.count undefined, expected 1
+FAIL @R32 @R20 @R21 S1 one p2        actual charges 414/224, expected 413/225
+FAIL @R32 @R20 @R21 S1 random        actual Chen 348, expected 349
+FAIL @R32 @R20 @R21 I3 top           actual spare.count undefined, expected 2
+FAIL @R32 @R20 @R21 I3 one p3        actual Aisyah 501/84/585, expected 500/82/582
+FAIL @R32 @R20 @R21 I3 random        actual Aisyah 501/84/585, expected 500/83/583
+FAIL @R32 @R20 @R21 W1 top           actual spare.count undefined, expected 1
+FAIL @R32 One person also takes the spare sen of an item they did not have   actual Aisyah 1, expected 0
+FAIL @R32 At random walks the drawn order once across the whole bill and wraps round its end   actual [3, 0, 0], expected [2, 0, 1]
+FAIL @R32 @R33 One person falls back to Top of the list ... and the choice is kept   actual spare undefined
+FAIL @R33 the result of S2 top / S2 one p2 / S2 random / E2 top names ...   (4 cases, actual spare undefined)
+FAIL @R24 summary text for S2-ONE, spare sen to Ben is exact          actual Ben RM 38.87, expected RM 38.88
+FAIL @R24 summary text for S2-RANDOM, order p2 p3 p1 is exact          actual Aisyah RM 38.87, expected RM 38.86
+Passing against stub 1 on purpose: "@R32 Top of the list leaves every 1.0 result as it was" (a guard on the 1.0
+numbers) and "@R33 a blocked result and an unassigned result carry no spare" (see run 2).
+
+=== Run 2, stub 2: blocked() and the unassigned return carry a spare key ===
+Command: node --test tests/result.test.js
+tests 62, pass 32, fail 30 (the 12 R18 blocking rows, which compare the whole result, fail too)
+FAIL @R33 a blocked result and an unassigned result carry no spare     (Object.hasOwn(result, "spare") is true)

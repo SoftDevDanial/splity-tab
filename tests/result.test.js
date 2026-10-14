@@ -1,9 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { billCharges, computeResult } from "../src/core/result.js";
-import { toggleItemPerson } from "../src/core/bill.js";
+import { allocateEvenly, allocateByWeight } from "../src/core/allocate.js";
+import { toggleItemPerson, setMode, setSubtotalText } from "../src/core/bill.js";
 import {
-  buildBill, deepFreeze, S1, S2, S5, E1, E2, E3, I2, I3, I4, MAX_E, MAX_I, D1, D2,
+  buildBill, deepFreeze, withSpare, S1, S2, S5, W1, E1, E2, E3, I2, I3, I4, MAX_E, MAX_I, D1, D2,
 } from "./support/bills.js";
 
 const charges = (subtotal, serviceBp, service, sstBp, sstBase, sst, total) => (
@@ -196,5 +197,91 @@ test("@R16 computeResult leaves a deep-frozen bill alone", () => {
     const frozen = deepFreeze(structuredClone(bill));
     assert.doesNotThrow(() => computeResult(frozen));
     assert.deepEqual(computeResult(frozen), computeResult(bill));
+  }
+});
+
+// ---- Spare sen (R32, R33) ----
+const TOP = { rule: "top" };
+const one = (personId) => ({ rule: "one", personId });
+const random = (...order) => ({ rule: "random", order });
+// An even row is its share, a by-item row is [items, charges, share].
+const shape = (row) => ("items" in row ? [row.items, row.charges, row.share] : row.share);
+
+// title, bill, spare choice, expected rows, spare.count (the R32 table of spec.md)
+const spareTable = [
+  ["S2", S2, TOP, [3887, 3887, 3886], 2],
+  ["S2", S2, one("p2"), [3886, 3888, 3886], 2],
+  ["S2", S2, random("p2", "p3", "p1"), [3886, 3887, 3887], 2],
+  ["S1", S1, TOP, [[2490, 414, 2904], [1350, 224, 1574], [2100, 348, 2448]], 1],
+  ["S1", S1, one("p2"), [[2490, 413, 2903], [1350, 225, 1575], [2100, 348, 2448]], 1],
+  ["S1", S1, random("p3", "p1", "p2"), [[2490, 413, 2903], [1350, 224, 1574], [2100, 349, 2449]], 1],
+  ["I3", I3, TOP, [[501, 84, 585], [0, 0, 0], [500, 82, 582]], 2],
+  ["I3", I3, one("p3"), [[500, 82, 582], [0, 0, 0], [501, 84, 585]], 2],
+  ["I3", I3, random("p2", "p3", "p1"), [[500, 83, 583], [0, 0, 0], [501, 83, 584]], 2],
+  ["W1", W1, TOP, [[98940, 16425, 115365], [1350, 224, 1574], [2100, 348, 2448]], 1],
+];
+for (const [title, bill, spare, rows, count] of spareTable) {
+  test(`@R32 @R20 @R21 ${title} with spare ${JSON.stringify(spare)} gives ${JSON.stringify(rows)} and ${count} spare sen`, () => {
+    const result = computeResult(withSpare(bill, spare));
+    assert.deepEqual(result.rows.map(shape), rows);
+    assert.equal(result.spare?.count, count);
+    assert.equal(result.check.share, result.charges.total);
+  });
+}
+
+test("@R32 Top of the list leaves every 1.0 result as it was (the allocators are the reference)", () => {
+  assert.deepEqual(computeResult(S2).rows.map((row) => row.share), allocateEvenly(11660, 3));
+  assert.deepEqual(computeResult(S1).rows.map((row) => row.charges), allocateByWeight(986, [2490, 1350, 2100]));
+  assert.deepEqual(computeResult(I2).rows.map((row) => row.charges), allocateByWeight(249, [0, 1251, 250]));
+});
+
+test("@R32 One person also takes the spare sen of an item they did not have", () => {
+  const bill = buildBill({
+    mode: "item", names: ["Aisyah", "Ben", "Chen"], service: "0", sst: "0",
+    items: [{ price: "0.01", who: ["p1", "p2"] }, { price: "1.00", who: ["p3"] }],
+  });
+  assert.deepEqual(computeResult(withSpare(bill, TOP)).rows.map(shape), [[1, 0, 1], [0, 0, 0], [100, 0, 100]]);
+  const result = computeResult(withSpare(bill, one("p3")));
+  assert.deepEqual(result.rows.map(shape), [[0, 0, 0], [0, 0, 0], [101, 0, 101]]);
+  assert.equal(result.spare?.count, 1);
+});
+
+test("@R32 At random walks the drawn order once across the whole bill and wraps round its end", () => {
+  const bill = buildBill({
+    mode: "item", names: ["Aisyah", "Ben", "Chen"], service: "0", sst: "0",
+    items: [0, 1, 2].map(() => ({ price: "0.01", who: ["p1", "p3"] })),
+  });
+  // Item 1 goes to p1 (cursor on p2), item 2 skips p2 for p3 (cursor wraps to p1), item 3 goes to p1.
+  const result = computeResult(withSpare(bill, random("p1", "p2", "p3")));
+  assert.deepEqual(result.rows.map(shape), [[2, 0, 2], [0, 0, 0], [1, 0, 1]]);
+  assert.equal(result.spare?.count, 3);
+});
+
+test("@R32 @R33 One person falls back to Top of the list while the chosen person has nothing, and the choice is kept", () => {
+  const chosen = withSpare(I2, one("p1"));
+  const result = computeResult(chosen);
+  assert.deepEqual(result.rows, computeResult(I2).rows);
+  assert.deepEqual(result.spare, { count: 2, rule: "top", personId: null });
+  assert.deepEqual(chosen.spare, one("p1"));
+  const even = computeResult(setMode(setSubtotalText(chosen, "100.00"), "even"));
+  assert.deepEqual(even.rows.map(shape), [3888, 3886, 3886]);
+  assert.deepEqual(even.spare, { count: 2, rule: "one", personId: "p1" });
+});
+
+const namedRule = [
+  ["S2", S2, TOP, { count: 2, rule: "top", personId: null }],
+  ["S2", S2, one("p2"), { count: 2, rule: "one", personId: "p2" }],
+  ["S2", S2, random("p2", "p3", "p1"), { count: 2, rule: "random", personId: null }],
+  ["E2", E2, TOP, { count: 1, rule: "top", personId: null }],
+];
+for (const [title, bill, spare, expected] of namedRule) {
+  test(`@R33 the result of ${title} with spare ${JSON.stringify(spare)} names ${JSON.stringify(expected)}`, () => {
+    assert.deepEqual(computeResult(withSpare(bill, spare)).spare, expected);
+  });
+}
+
+test("@R33 a blocked result and an unassigned result carry no spare", () => {
+  for (const result of [computeResult(buildBill({ subtotal: "" })), computeResult(S5)]) {
+    assert.equal(Object.hasOwn(result, "spare"), false, result.kind);
   }
 });
