@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="11" skipped="47" tests="61" time="15.721" timestamp="2026-10-14T15:28:41.064155+08:00" hostname="{host}"><testcase classname="test_app" name="test_R1_entry_point_loads_only_its_own_files" time="1.549"><failure message="AssertionError: assert [['meta', {'c...ain.js'}, '']] == [['meta', {'c...g'}, ''], ...]&#10;  &#10;  At index 1 diff: ['meta', {'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}, ''] != ['meta', {'name': 'viewport', 'content': 'width=device-width, initial-scale=1, viewport-fit=cover'}, '']&#10;  Right contains 2 more items, first extra item: ['link', {'rel': 'stylesheet', 'href': 'src/system.css'}, '']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F317BD8E00&gt;
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-0/test_R1_entry_point_loads_only0')
+
+    def test_R1_entry_point_loads_only_its_own_files(open_app, tmp_path):
+        session = open_app()
+&gt;       assert session.page.evaluate(HEAD_SUMMARY_JS) == [
+            ["meta", {"charset": "utf-8"}, ""],
+            ["meta", {"name": "viewport", "content": "width=device-width, initial-scale=1, viewport-fit=cover"}, ""],
+            ["meta", {"name": "color-scheme", "content": "dark"}, ""],
+            ["meta", {"http-equiv": "Content-Security-Policy", "content": CSP}, ""],
+            ["title", {}, "Danial's Splity Tab"],
+            ["link", {"rel": "icon", "type": "image/svg+xml", "href": "src/icon.svg"}, ""],
+            ["link", {"rel": "stylesheet", "href": "src/system.css"}, ""],
+            ["script", {"type": "module", "src": "src/main.js"}, ""],
+        ]
+E       AssertionError: assert [['meta', {'c...ain.js'}, '']] == [['meta', {'c...g'}, ''], ...]
+E         
+E         At index 1 diff: ['meta', {'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}, ''] != ['meta', {'name': 'viewport', 'content': 'width=device-width, initial-scale=1, viewport-fit=cover'}, '']
+E         Right contains 2 more items, first extra item: ['link', {'rel': 'stylesheet', 'href': 'src/system.css'}, '']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:145: AssertionError</failure></testcase><testcase classname="test_app" name="test_R1_every_url_in_the_page_is_relative" time="0.004" /><testcase classname="test_app" name="test_R1_page_works_from_a_sub_path" time="0.674"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R2_cold_boot_is_a_new_bill_with_no_seed" time="0.092"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-items-390]" time="0.271"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-items-360]" time="0.228"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-items-1280]" time="0.266"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-items-open-390]" time="0.149"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-items-open-360]" time="0.156"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-even-390]" time="0.227"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-even-360]" time="0.220"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-even-1280]" time="0.242"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-390]" time="0.154"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-360]" time="0.169"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-1280]" time="0.163"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-one-390]" time="0.160"><skipped type="pytest.xfail" message="task A14" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-one-360]" time="0.156"><skipped type="pytest.xfail" message="task A14" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280]" time="0.154"><skipped type="pytest.xfail" message="task A14" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-390]" time="0.163"><skipped type="pytest.xfail" message="task A15" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-360]" time="0.155"><skipped type="pytest.xfail" message="task A15" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280]" time="0.168"><skipped type="pytest.xfail" message="task A15" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[splits-sheet-390]" time="0.160"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[splits-sheet-360]" time="0.156"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[new-bill-dialog-390]" time="0.149"><skipped type="pytest.xfail" message="task A16" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[new-bill-dialog-360]" time="0.142"><skipped type="pytest.xfail" message="task A16" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[new-bill-dialog-1280]" time="0.156"><skipped type="pytest.xfail" message="task A16" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-empty-390]" time="0.181"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-empty-360]" time="0.170"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-empty-1280]" time="0.169"><skipped type="pytest.xfail" message="task A7" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[rate-error-390]" time="0.223"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[rate-error-360]" time="0.220"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[rate-error-1280]" time="0.225"><skipped type="pytest.xfail" message="task A8" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-unassigned-390]" time="0.240"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-unassigned-360]" time="0.227"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-unassigned-1280]" time="0.229"><skipped type="pytest.xfail" message="task A9" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-unreadable-390]" time="0.213"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-unreadable-360]" time="0.222"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-unreadable-1280]" time="0.224"><skipped type="pytest.xfail" message="task A7" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-twelve-390]" time="0.229"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-twelve-360]" time="0.247"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-twelve-1280]" time="0.248"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-large-390]" time="0.231"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-large-360]" time="0.235"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-large-1280]" time="0.248"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R3_the_walk_sees_every_rendered_element_and_flags_each_kind_of_change" time="0.173"><skipped type="pytest.xfail" message="task A12" /></testcase><testcase classname="test_app" name="test_R38_policy_is_exact_and_nothing_inline" time="0.001" /><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[cold-boot]" time="0.197"><failure message="AssertionError: assert 'rgb(238, 240, 238)' == 'rgb(21, 26, 35)'&#10;  &#10;  - rgb(21, 26, 35)&#10;  + rgb(238, 240, 238)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F316ABF3D0&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001F316ABECF0&gt;
+state = 'cold-boot', golden = 'bill-empty', seed = None, width = 390
+clicks = (), proof = 'card-blocked'
+
+    @pytest.mark.parametrize("state, golden, seed, width, clicks, proof", [
+        pytest.param(*row[:6], id=row[0], marks=[pytest.mark.xfail(strict=True, reason=f"task {row[6]}")] if row[6] else [])
+        for row in POLICY_STATES])
+    def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app, plain_context, state, golden, seed, width, clicks, proof):
+        session = open_app(seed=seed, viewport=VIEWPORTS[width])
+        page = session.page
+        click_after_load(page, clicks)
+        body_background = "getComputedStyle(document.body).backgroundColor"
+&gt;       assert page.evaluate(body_background) == open_golden(plain_context, golden, VIEWPORTS[width]).evaluate(body_background)
+E       AssertionError: assert 'rgb(238, 240, 238)' == 'rgb(21, 26, 35)'
+E         
+E         - rgb(21, 26, 35)
+E         + rgb(238, 240, 238)
+
+tests\browser\test_app.py:351: AssertionError</failure></testcase><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[K1]" time="0.227"><skipped type="pytest.xfail" message="task A9" /></testcase><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[K1-new-bill]" time="0.176"><failure message="AssertionError: after-load control #newBill is not on the page&#10;assert 0 == 1&#10; +  where 0 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:56630/'&gt; selector='#newBill'&gt;.count">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F319575380&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001F3172ED900&gt;
+state = 'K1-new-bill', golden = 'new-bill-dialog'
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 390, clicks = ('#newBill',), proof = 'dialog-open'
+
+    @pytest.mark.parametrize("state, golden, seed, width, clicks, proof", [
+        pytest.param(*row[:6], id=row[0], marks=[pytest.mark.xfail(strict=True, reason=f"task {row[6]}")] if row[6] else [])
+        for row in POLICY_STATES])
+    def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app, plain_context, state, golden, seed, width, clicks, proof):
+        session = open_app(seed=seed, viewport=VIEWPORTS[width])
+        page = session.page
+&gt;       click_after_load(page, clicks)
+
+tests\browser\test_app.py:349: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = &lt;Page url='http://127.0.0.1:56630/'&gt;, selectors = ('#newBill',)
+
+    def click_after_load(page, selectors):
+        """The clicks that reach a golden's state. A control the page does not hold yet fails at once, not after a wait."""
+        for selector in selectors:
+            control = page.locator(selector)
+&gt;           assert control.count() == 1, f"after-load control {selector} is not on the page"
+E           AssertionError: after-load control #newBill is not on the page
+E           assert 0 == 1
+E            +  where 0 = count()
+E            +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:56630/'&gt; selector='#newBill'&gt;.count
+
+tests\browser\test_app.py:266: AssertionError</failure></testcase><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[K1-sheet-P1]" time="0.174"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[K2-P1-desktop]" time="0.143"><skipped type="pytest.xfail" message="task A13" /></testcase><testcase classname="test_app" name="test_R38_code_writes_style_only_to_the_four_allowed_targets" time="0.018"><skipped type="pytest.xfail" message="task A4" /></testcase><testcase classname="test_app" name="test_R43_the_name_in_the_title_and_the_top_bar" time="0.127"><failure message="assert 'Split' == &quot;Danial's Splity Tab&quot;&#10;  &#10;  - Danial's Splity Tab&#10;  + Split">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F315192DA0&gt;
+
+    def test_R43_the_name_in_the_title_and_the_top_bar(open_app):
+        page = open_app().page
+&gt;       assert page.title() == "Danial's Splity Tab"
+E       assert 'Split' == "Danial's Splity Tab"
+E         
+E         - Danial's Splity Tab
+E         + Split
+
+tests\browser\test_app.py:390: AssertionError</failure></testcase><testcase classname="test_app" name="test_R44_the_sprite_and_the_mark_are_the_goldens_bytes" time="0.001"><failure message="AttributeError: 'NoneType' object has no attribute 'group'">def test_R44_the_sprite_and_the_mark_are_the_goldens_bytes():
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        golden = (GOLDEN_DIR / "bill-items.html").read_text(encoding="utf-8")
+&gt;       sprite = SPRITE.search(html).group(0)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'group'
+
+tests\browser\test_app.py:408: AttributeError</failure></testcase><testcase classname="test_app" name="test_R44_the_sprite_comes_first_and_the_empty_receipt_uses_the_mark" time="0.113"><failure message="playwright._impl._errors.Error: Page.evaluate: TypeError: Cannot read properties of null (reading 'getBoundingClientRect')&#10;    at eval (eval at evaluate (:303:30), &lt;anonymous&gt;:3:103)&#10;    at UtilityScript.evaluate (&lt;anonymous&gt;:310:18)&#10;    at UtilityScript.&lt;anonymous&gt; (&lt;anonymous&gt;:1:44)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F31A0D0F60&gt;
+
+    def test_R44_the_sprite_comes_first_and_the_empty_receipt_uses_the_mark(open_app):
+&gt;       found = open_app().page.evaluate("""() =&gt; {
+          const first = document.body.firstElementChild;
+          const box = first.getBoundingClientRect(), mark = document.querySelector('div.brand &gt; svg.mark').getBoundingClientRect();
+          return { first: `${first.localName}.${first.getAttribute('class')}`, hidden: first.getAttribute('aria-hidden'),
+                   focusable: first.getAttribute('focusable'), size: [box.width, box.height], mark: [mark.width, mark.height],
+                   emptyIcon: document.querySelector('#card div.r-empty &gt; svg.ic &gt; use')?.getAttribute('href') ?? null };
+        }""")
+
+tests\browser\test_app.py:419: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:9280: in evaluate
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:472: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_frame.py:345: in evaluate
+    await self._channel.send(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001F317C40980&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001F31A0D3B60&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.Error: Page.evaluate: TypeError: Cannot read properties of null (reading 'getBoundingClientRect')
+E               at eval (eval at evaluate (:303:30), &lt;anonymous&gt;:3:103)
+E               at UtilityScript.evaluate (&lt;anonymous&gt;:310:18)
+E               at UtilityScript.&lt;anonymous&gt; (&lt;anonymous&gt;:1:44)
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: Error</failure></testcase><testcase classname="test_app" name="test_R45_the_tab_icon_file_is_the_goldens_icon" time="0.002"><failure message="FileNotFoundError: [Errno 2] No such file or directory: '{workspace}\\examples\\split\\src\\icon.svg'">def test_R45_the_tab_icon_file_is_the_goldens_icon():
+        hrefs = []
+        for golden in sorted(GOLDEN_DIR.glob("*.html")):
+            links = re.findall(r'&lt;link\b[^&gt;]*\brel="icon"[^&gt;]*&gt;', golden.read_text(encoding="utf-8"))
+            assert len(links) == 1, golden.name
+            hrefs.append(re.search(r'\bhref="([^"]*)"', links[0]).group(1))
+        assert len(hrefs) == 15 and len(set(hrefs)) == 1 and hrefs[0].startswith("data:")
+&gt;       icon = (ROOT / "src" / "icon.svg").read_bytes()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\browser\test_app.py:441: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python314\Lib\pathlib\__init__.py:782: in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('{workspace}/examples/split/src/icon.svg')
+mode = 'rb', buffering = 0, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+&gt;       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '{workspace}\\examples\\split\\src\\icon.svg'
+
+C:\Python314\Lib\pathlib\__init__.py:776: FileNotFoundError</failure></testcase><testcase classname="test_app" name="test_R45_the_tab_icon_loads_under_the_live_policy" time="0.121"><failure message="playwright._impl._errors.Error: Page.evaluate: TypeError: Cannot read properties of null (reading 'type')&#10;    at eval (eval at evaluate (:303:30), &lt;anonymous&gt;:1:77)&#10;    at UtilityScript.evaluate (&lt;anonymous&gt;:310:18)&#10;    at UtilityScript.&lt;anonymous&gt; (&lt;anonymous&gt;:1:44)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F31AF1B530&gt;
+
+    def test_R45_the_tab_icon_loads_under_the_live_policy(open_app):
+        session = open_app()
+        page = session.page
+&gt;       assert page.evaluate("() =&gt; { const link = document.querySelector('link[rel=icon]'); return [link.type, link.href]; }") == [
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            "image/svg+xml", session.base + "/src/icon.svg"]
+
+tests\browser\test_app.py:456: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:9280: in evaluate
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:472: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_frame.py:345: in evaluate
+    await self._channel.send(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001F317C40980&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001F319860250&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.Error: Page.evaluate: TypeError: Cannot read properties of null (reading 'type')
+E               at eval (eval at evaluate (:303:30), &lt;anonymous&gt;:1:77)
+E               at UtilityScript.evaluate (&lt;anonymous&gt;:310:18)
+E               at UtilityScript.&lt;anonymous&gt; (&lt;anonymous&gt;:1:44)
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: Error</failure></testcase><testcase classname="test_app" name="test_R45_the_tab_icon_colour_follows_the_colour_scheme" time="0.256"><failure message="KeyError: 'opaque'">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F31AC1F7F0&gt;
+engine = 'chromium'
+request = &lt;FixtureRequest for &lt;Function test_R45_the_tab_icon_colour_follows_the_colour_scheme&gt;&gt;
+
+    def test_R45_the_tab_icon_colour_follows_the_colour_scheme(open_app, engine, request):
+        readings = {scheme: open_app(color_scheme=scheme).page.evaluate(ICON_COLOURS_JS) for scheme in ("dark", "light")}
+        if engine == "chromium":
+&gt;           assert readings["dark"]["opaque"] &gt;= 20 and readings["dark"]["colours"] == ["rgb(163, 170, 255)"], readings
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'opaque'
+
+tests\browser\test_app.py:493: KeyError</failure></testcase><testcase classname="test_app" name="test_R39_nothing_leaves_the_device_by_the_static_scan" time="0.003"><failure message="assert 'src/icon.svg' in {'index.html': '&lt;!doctype html&gt;\n&lt;html lang=&quot;en&quot;&gt;\n&lt;head&gt;\n&lt;meta charset=&quot;utf-8&quot;&gt;\n&lt;meta name=&quot;viewport&quot; content=&quot;widt...00).padStart(2, &quot;0&quot;).replace(/0+$/, &quot;&quot;);\n  return fraction === &quot;&quot; ? `${whole}%` : `${whole}.${fraction}%`;\n}\n', ...}">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-0/test_R39_nothing_leaves_the_de0')
+
+    def test_R39_nothing_leaves_the_device_by_the_static_scan(tmp_path):
+        shipped = support.shipped_text()
+&gt;       assert "src/icon.svg" in shipped
+E       assert 'src/icon.svg' in {'index.html': '&lt;!doctype html&gt;\n&lt;html lang="en"&gt;\n&lt;head&gt;\n&lt;meta charset="utf-8"&gt;\n&lt;meta name="viewport" content="widt...00).padStart(2, "0").replace(/0+$/, "");\n  return fraction === "" ? `${whole}%` : `${whole}.${fraction}%`;\n}\n', ...}
+
+tests\browser\test_app.py:2426: AssertionError</failure></testcase><testcase classname="test_app" name="test_R39_the_network_scan_has_teeth" time="0.001" /><testcase classname="test_app" name="test_R39_the_run_time_icons_come_from_createElementNS" time="0.248"><failure message="AssertionError: assert ('ph' == 'sprite'&#10;  &#10;  - sprite&#10;  + ph)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F31A9C6A30&gt;
+
+    def test_R39_the_run_time_icons_come_from_createElementNS(open_app):
+        sources = {name: text for name, text in support.shipped_text().items() if name.startswith("src/")}
+        calls = sum(text.count("createElementNS(") for text in sources.values())
+        assert calls &gt;= 1 and calls == sum(len(NAMESPACE_CALLS.findall(text)) for text in sources.values())  # every call names the namespace
+        svgs = open_app(seed=seeds.S1, viewport=(1280, 800)).page.evaluate("""() =&gt; [...document.querySelectorAll('body svg')].map((svg) =&gt; ({
+          cls: svg.getAttribute('class'), first: svg === document.body.firstElementChild, inBrand: !!svg.closest('div.brand'),
+          hidden: svg.getAttribute('aria-hidden'), focusable: svg.getAttribute('focusable'),
+          children: [...svg.children].map((child) =&gt; [child.localName, child.getAttribute('href')]) }))""")
+&gt;       assert svgs[0]["cls"] == "sprite" and svgs[0]["first"]
+E       AssertionError: assert ('ph' == 'sprite'
+E         
+E         - sprite
+E         + ph)
+
+tests\browser\test_app.py:2461: AssertionError</failure></testcase></testsuite></testsuites>

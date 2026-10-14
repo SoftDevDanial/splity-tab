@@ -347,6 +347,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 |---|---|---|
 | A0 | `4b67e96` | `test(split-app): engine switch, 1.0 golden fixtures and the WebKit baseline (task A0, R58, R59)` |
 | C2 (split-core) | `ad0436b` | Committed with the app tests C2 breaks marked for A1, listed in `docs/modules/split-core/BUILD.md`, section C2 |
+| A1 | `4231563` | `feat(split-app): draft version 2 with the spare choice (task A1, R61, R25, R26)`, recorded by the A2 section |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -394,3 +395,114 @@ Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Per
   - Chromium `docs/modules/split-app/qa/functional/20261014-142342-chromium/`. 424 passed, 6 xfailed (the two R40 tests), 0 failed, exit 0. 430 call reports.
   - WebKit `docs/modules/split-app/qa/functional/20261014-142538-webkit/`. 375 passed, 48 failed, 1 skipped (the IME test), 6 xfailed (the R40 tests), 243.6 s. The 48 failures are the A0 baseline's 48 (`qa/functional/20261014-125604-webkit/`), the same node ids, so no new WebKit failure and no baseline failure changed. Passed went from 381 to 375 only because the six R40 cases are now xfailed. `skips.txt` lists 7, the skip and the six xfails.
 - What the README reconcile needs. Draft version 2 (`encodeDraft`, `decodeDraft` with D13 and D14, `loadDraft` state `failed`), and the browser seeds are version 2.
+
+## v1.1.0 task A2, shell and head (2026-10-14)
+Built by the frontend developer role from `spec.md` (task A2, R1, R2, R3, R37, R38, R39, R43, R44, R45, Contracts "Files", "DOM contract" and "Allowed differences", "The 1.0 golden fixtures") and `qa.md`, in two sittings. The first built the shell, wrote the tests, ran RED and the sorting run, and handed off at about 39 percent context (`docs/progress/handoff/handoff-2026-10-14-execute-split-A2.md`). The second applied the orchestrator's and the owner's rulings, ran the gates and committed.
+
+**Status. Committed with this section.** Node and Chromium green. WebKit recorded and compared with the A0 baseline below. The next section or the commit table records the hash.
+
+**Phase skills (design row of `docs/phase-skills.md`).** Read and applied from disk, `taste-skill` (`taste-skill/1.0.0/skills/taste-skill/SKILL.md`) and `frontend-design` (`frontend-design/8d392c816966/skills/frontend-design/SKILL.md`). Both are written for new pages and redesigns, and here the golden fixes every design choice, so only their transferable rules applied.
+- The brief's own words win (frontend-design) and nothing changes silently (taste-skill 11.F). The shell is the golden's markup, classes and copy, with no element the golden does not draw.
+- Never hand-roll an icon (taste-skill 3.C and 9.E). The sprite (Phosphor, MIT) and the mark are the golden's bytes in `index.html`, every run-time icon is one `<use>` into that sprite, and the tab icon is the golden's own icon decoded from its link.
+- Icons are decoration (`aria-hidden="true"`, `focusable="false"`), and the control around each one carries the name.
+- No em dash and a copy self-audit (taste-skill 9.G and 4.9). Every visible string of the shell is a row of the spec's Copy table.
+- The quality floor (frontend-design, Restraint). Reduced motion, the focus ring and the dark theme come from the byte copy of the golden CSS. No CSS rule is added.
+- Critique by screenshot (frontend-design). The render check under Proof.
+- Not transferred, because the golden or the locked stack decides them. The design read and the three dials, palette, type and layout choices, Tailwind, React, Motion and every library.
+
+**What changed** (cite by symbol).
+- `index.html`. The head in R1's order (charset, viewport with `viewport-fit=cover`, `color-scheme` dark, the CSP meta, the title, the icon link, the stylesheet, the module script). `svg.sprite` as the first child of body, byte equal to the block in `docs/design/bill-items.html`, with the Phosphor licence comment above it. `header.top` with `div.brand` (`svg.mark` and `h1.word`), `div.notes#notes` and `#newBill`. `main.layout` with `section.stage#stage` (`article.glass.card#card` with its foil and an empty `div.rbody#rbody`) and an empty `section.work#work`. The strip frame `div.strip#strip` (foil, `#stripInfo`, `p.status#stripStatus`, `#splitsBtn`, `#stripCopy`). `dialog.sheet-dlg#splitsDlg` and `dialog.pop#spareDlg` empty, and `dialog.modal#newDlg` with its full static content. No `xmlns` anywhere.
+- `src/system.css`. The committed LF blob of `docs/design/system.css`, written by a one-off Python run from `git cat-file blob HEAD:docs/design/system.css`. `git hash-object --no-filters src/system.css` gives `bf30ddadb8c756dc5d462243c642c218597ae0ac`, 33070 bytes, SHA-256 `66807273b62f87e05caa931faac40a4bcac1cf7294b2cf38a9f046154b6d3c08`, no CR byte.
+- `src/icon.svg` (new). The golden icon link's `href` after its first comma, URL-decoded, 470 bytes, SHA-256 `7b5e4176a6182d23f06073ff181f01bbb73e2ac562f78d58a930ffb80fe7fef2`.
+- `src/ui/icons.js`. `icon(name, modifier)` returns `svg.ic` (plus the modifier class, `caret-up` on Splits) holding one `use` of `#i-{name}`, both made through `svgNode`, the one `createElementNS` call. The four 1.0 path constants are gone.
+- `src/ui/receipt.js` (new). `blockedReceipt(reason)` gives the R17 blocked form (`div.r-total` with `span.r-label` "Total", then `div.r-empty` with the `mark` icon and the message). `BLOCKED_MESSAGE` holds the four v1.1.0 messages.
+- `src/ui/panel.js`. `createPanel(container, { onCopy })` keeps the 1.0 unassigned, even and by-item forms, now drawn into `#rbody`, until A9. Its blocked branch and its 1.0 `BLOCKED_MESSAGE` are gone.
+- `src/ui/dialog.js`. `createDialog` finds Start new bill and Cancel by `.acts .btn`.
+- `src/main.js`. At boot the plus icon goes on `#newBill`, the caret on `#splitsBtn` and the copy icon on `#stripCopy`. `render` draws a blocked result with `blockedReceipt` into `#rbody` and every other result with the 1.0 panel. The 1.0 blocks go into `#work`, the 1.0 note after `header.top`, and M1 is wired on `#newDlg`.
+- `tests/browser/csp/listener.js` (new). Records each `securitypolicyviolation` in `window.testCspViolations`.
+- `tests/browser/conftest.py`. `open_app` adds the listener to every context and takes `color_scheme`. `Session.csp_violations` feeds `Session.problems`. New fixture `evidence_folder`.
+- `tests/browser/seeds.py`. `ONE`, `RND`, `RE`, `W1` and `T12`, as qa.md's Seed drafts define them.
+- `tests/browser/support.py`. The v1.1.0 R3 walk `DOM_WALK_JS`, `first_diff` (names the attribute and ends its path at the element), `walk_label`, `walk_entries`, `READS_JS`, `reads` and `card_text`. `panel_text` reads `#rbody`.
+- `tests/browser/expected.py`. `BLOCKED_CARD`, what the card reads for each blocked reason, the one home of those four texts.
+- `tests/browser/test_app.py`. See Tests below.
+- `tests/fixtures/design-v1.0.0/`. `system.css`, `bill-empty.html`, `bill-even.html`, `bill-items.html`, `bill-unassigned.html` and `new-bill-dialog.html` leave the repository (judgment call 9). `states.html` and `.gitattributes` stay until A8, and `GOLDEN_V1_DIR` stays for the `states.html` readers.
+
+**Comments written.** The module headers of `src/ui/icons.js`, `src/ui/receipt.js`, `src/ui/panel.js` and `tests/browser/csp/listener.js`, the docstring of `icon`, the boot icons comment in `src/main.js`, the R3 walk and "reads" comments in `support.py`, `BLOCKED_CARD`'s comment, and the docstrings of the new test helpers (`network_problems`, `click_after_load`, `edited_walk`, `walk_entries`, `reads`, `card_text`).
+
+**Tests.**
+- New or rewritten for A2. `test_R1_entry_point_loads_only_its_own_files` (R1's CRLF to LF comparison, with its own control on two copies in a temporary folder), `test_R1_every_url_in_the_page_is_relative` (the static half of the sub-path scenario), `test_R1_page_works_from_a_sub_path` (xfail A11), `test_R2_cold_boot_is_a_new_bill_with_no_seed` (xfail A11), `test_R3_rendered_markup_matches_its_golden` (the 40 pairs, each xfail with its task in `R3_STATES`), `test_R3_the_walk_sees_every_rendered_element_and_flags_each_kind_of_change` (xfail A12), `test_R38_strict_policy_blocks_nothing_the_app_needs` (5 rows, cold boot and K1 New bill pass, K1 xfail A9, the two P1 rows xfail A13), `test_R38_code_writes_style_only_to_the_four_allowed_targets` (xfail A4), `test_R43_the_name_in_the_title_and_the_top_bar`, `test_R44_the_sprite_and_the_mark_are_the_goldens_bytes`, `test_R44_the_sprite_comes_first_and_the_empty_receipt_uses_the_mark`, `test_R45_the_tab_icon_file_is_the_goldens_icon`, `test_R45_the_tab_icon_loads_under_the_live_policy`, `test_R45_the_tab_icon_colour_follows_the_colour_scheme` (per engine), `test_R39_nothing_leaves_the_device_by_the_static_scan` (the icon root exemption and two planted copies), `test_R39_the_network_scan_has_teeth` and `test_R39_the_run_time_icons_come_from_createElementNS`.
+- Deleted, replaced by the v1.1.0 R3 outline and its control. `test_R3_rendered_markup_matches_its_golden_by_gestures`, `test_R3_a_restored_bill_matches_its_golden`, `test_R3_the_open_dialog_and_the_page_behind_it_match_their_golden` and `test_R3_the_walk_sees_every_rendered_element_and_flags_a_change`.
+- Selector renames in 1.0 tests for the v1.1.0 shell. `dialog.dialog` to `dialog#newDlg`, `#dialog-text` to `#newBody`, `#dialog-title` to `#newTitle`, `h1.wordmark` to `h1.word`.
+- The 73 failures of the sorting run, each 1.0 test the shell retires, disposed of as ruled. Every mark is `xfail(strict=True, reason="task An")`, An being the task after which the test can pass.
+
+| Test | Cases | Choice | Why |
+|---|---|---|---|
+| `test_R8_switching_modes_keeps_the_subtotal` | 1 | update | Q-A2-3 (ORCH). The card reads `BLOCKED_CARD["no-prices"]`, and the R8 input checks keep guarding |
+| `test_R10_an_empty_field_never_shows_an_error` | 1 | update | Q-A2-3. `BLOCKED_CARD["subtotal"]`, and the R10 no-error checks keep guarding |
+| `test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early` | 1 | update | Q-A2-3. `BLOCKED_CARD["subtotal"]` |
+| `test_R10_an_empty_rate_never_shows_an_error` | 1 | update | Q-A2-3. `BLOCKED_CARD["rates"]` |
+| `test_R29_the_dialog_opens_with_the_safe_choice_focused` | 1 | update | ORCH ruling, the ids `newTitle` and `newBody`, and the button classes of R29 (judgment call 10) |
+| `test_R31_start_over` | 1 | update | The card after Start new bill reads R2's bill-empty card, `BLOCKED_CARD["subtotal"]`, which A2 builds (judgment call 11) |
+| `test_R6_add_person_until_the_limit`, `test_R6_a_restored_twelve_person_bill_shows_the_limit_state` | 2 | xfail A5 | 1.0 `states.html` readers (spec, "The 1.0 golden fixtures") |
+| `test_R7_a_separate_click_on_what_slid_under_the_pointer_is_not_held_back` | 1 | xfail A5 | Add person no longer slides under the pointer, and qa.md rewrites the scenario with a body recorder |
+| `test_R15_a_rate_error_names_both_ids_and_its_range` | 1 | xfail A6 | `states.html` reader |
+| `test_R12_add_an_item_remove_one_and_reach_the_limit`, `test_R14_a_price_error_sits_in_the_item_line` | 2 | xfail A8 | `states.html` readers |
+| `test_R3_the_note_matches_its_specimen` | 1 | xfail A3 | `states.html` reader, and the note moves into `#notes` |
+| `test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note` | 24 | xfail A3 | It reads the 1.0 note after `.bar` |
+| `test_R17_when_the_shares_cannot_be_worked_out` | 6 | xfail A9 | The 1.0 panel's text and structure |
+| `test_R18_items_that_still_need_a_person`, `test_R7_removing_a_person_can_leave_an_item_without_anyone` | 2 | xfail A9 | The 1.0 unassigned panel, not displayed below 1024 px |
+| `test_R16_the_panel_follows_every_keystroke_and_stays_quiet`, `test_R16_the_status_is_the_only_live_element_and_only_while_the_table_is` | 2 | xfail A9 | They read `div.tape`, and the strip's `p.status` is a second live element |
+| `test_R22_copy_summary_puts_the_exact_text_on_the_clipboard` (2), `test_R22_a_failed_copy_is_replaced_by_the_next_attempt`, `test_R23_the_browser_blocks_the_clipboard`, `test_R23_the_clipboard_api_is_missing`, `test_R24_the_status_lives_as_long_as_the_table`, `test_R24_a_copy_that_finishes_after_the_table_left_sets_no_status`, `test_R24_the_status_is_not_saved` | 8 | xfail A10 | Two `p.status` exist now, and Copy summary at 390 reaches the strip's button, which is not wired |
+| `test_R5_a_new_name_reaches_the_copied_text`, `test_R42_duplicate_names_through_the_whole_flow` | 2 | xfail A10 | They copy, so they pass only once copying works again (judgment call 13) |
+| `test_R31_start_over_clears_the_copy_status` | 1 | xfail A16 | It copies first (A10), then R31's own rewrite |
+| `test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring` | 3 | xfail A18 | The strip adds two stops below 1024 px |
+| `test_R35_no_horizontal_overflow_and_the_layout_of_each_size` (8), `test_R35_sizes_the_design_gives_at_360_by_780`, `test_R35_content_width_of_the_header_and_the_note_at_1280_by_800` | 10 | xfail A18 | 1.0 layout selectors and sizes |
+| `test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s]` | 1 | xfail A18 | The v1.1.0 `.btn` has three transitions (judgment call 14) |
+| `test_R37_names_are_shown_as_text_and_never_as_markup` | 1 | xfail A18 | It counts `svg.ph` and copies. The v1.1.0 icon classes are checked by `test_R39_the_run_time_icons_come_from_createElementNS` |
+
+That is 6 updates and 67 xfailed cases, the 73 of the sorting run.
+
+**RED first.** The new A2 tests against the 1.0 tree, `docs/modules/split-app/qa/functional/20261014-152841-chromium/`. 11 failed, 47 xfailed, 3 passed. The 3 that pass before the build guard what 1.0 already held, the static relative URL scan (`test_R1_every_url_in_the_page_is_relative`, kept from 1.0), the exact CSP meta (`test_R38_policy_is_exact_and_nothing_inline`, unchanged) and the scan helper's own teeth (`test_R39_the_network_scan_has_teeth`, which reads no shipped file). Of the 11, 6 failed on their assertion (the head list, the body background against the golden, the missing `#newBill`, the title, `src/icon.svg` missing from the shipped files, the 1.0 icon class). 5 failed by an exception where the thing under test was absent (`AttributeError` with no `svg.sprite` in `index.html`, `TypeError` on a null `svg.mark` and on a null icon link, `FileNotFoundError` for `src/icon.svg`, `KeyError` when the icon did not load). Recorded as measured. The six updated 1.0 tests change one expectation each and were not re-run against the 1.0 tree.
+
+**Proof** (each folder listed on disk after its run).
+- Sorting run, the A2 build before any mark, `docs/modules/split-app/qa/functional/20261014-153343-chromium/`. 73 failed, 348 passed, 53 xfailed, 257 s. The failure messages behind the table above are in its `junit.xml`.
+- Chromium on the commit's tree, `docs/modules/split-app/qa/functional/20261014-155757-chromium/`. 354 passed, 120 xfailed, 0 failed, exit 0, 258.8 s. The 73 of the sorting run are 6 passed (the updates) and 67 xfailed, and no test that passed in the sorting run fails here. `skips.txt` count 120, every one an xfail.
+- WebKit on the same tree, `docs/modules/split-app/qa/functional/20261014-160227-webkit/`. 318 passed, 35 failed, 1 skipped (the IME test with its reason), 120 xfailed (the same 120 node ids as in Chromium), 390.9 s. `skips.txt` count 121. `icon-colour.txt` records rgb(30, 33, 64) in both the dark and the light context, information only (R45, Safari's one-colour bug accepted by the owner).
+- Node. `node --test "tests/**/*.test.js"`, 369 of 369 pass.
+- Render check of the shell, `docs/modules/split-app/qa/shell-render/20261014-161103-chromium/`, with its script `render.py`. The cold boot and `docs/design/bill-empty.html` at 1280 x 800 and 390 x 844 in headless Chromium, nothing pressed. `header.top`, `div.brand`, `svg.mark`, `h1.word`, `#notes`, `#newBill`, `#stage`, `#card`, `#rbody`, `div.r-total`, `div.r-empty` with its icon, and `#splitsBtn` have equal boxes, colours and fonts at both widths (`boxes.json`). What differs is the strip's message and the disabled Copy summary (A11, R49), the working column (the 1.0 blocks until A4 to A8), and the hidden card's `innerText` at 390, "TotalEnter" against "Total Enter", the white-space reading of judgment call 4.
+
+**WebKit against the A0 baseline** (the 48 failures of `docs/modules/split-app/qa/functional/20261014-142538-webkit/junit.xml`, compared by node id). 35 failed now.
+- Still failing, 29. All 5 class (b). `test_R29_the_dialog_opens_with_the_safe_choice_focused` was rewritten here and still fails on the same line, 843.984375 against 844. `test_R30_leaving_the_dialog_without_starting_over[escape]`, `test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]`, `test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[service-touch]` and `[sst-touch]` are unchanged. And 24 of the 43 class (a) touch double activations of H-04 (Add item 12, New bill 3, Cancel at 375x667 and 412x732 2, the second click 3, a double tap on Remove 2, a chip under a pending price error 2).
+- Baseline failures that pass now, 19, all class (a) H-04. `test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it`, touch-double-right-edge at 2 to 5 people and three widths (12), `test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing`, S2 person 3 of 3 and S8 person 12 of 12 at three widths (6), and `test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing[360x640-touch]` (1). None was rewritten or marked. The defect is not fixed, since WebKit still gives each tap `detail` 1. The v1.1.0 stylesheet moved the 1.0 blocks, so the second tap now lands on something harmless.
+- New failures, 6, all `test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing` touch-double. `S1-item-4-of-4` at 1280x800, 390x844 and 360x640, where the second tap also removes item 3, and `S1-only-item` at the same three widths, where the second tap focuses Service charge instead of Add item. The single, mouse double and mouse triple cases of the same rows pass in WebKit, and every case passes in Chromium. Same cause, the H-04 class (a) defect at a place the new layout put under the second tap, which task A17 fixes. Not marked, because a strict mark would fail in Chromium, where they pass.
+- No WebKit failure outside the H-04 family and the 5 class (b), and none in an A2 test.
+
+**Judgment calls.**
+1. A2 builds the R17 blocked form in the card, because the cold boot of R2 and the cold-boot rows of R38 and R44 need it. Until A9 the 1.0 panel draws the unassigned, even and by-item results inside `#rbody` with the 1.0 "Bill summary" and "Shares" copy, which is not displayed below 1024 px.
+2. `dialog.modal#newDlg` carries its full static content now, so the 1.0 New bill flow and its SEC-01 and I-1 guards keep working. `#splitsDlg` and `#spareDlg` are bare, their content is A12's and A13's. `#spareDlg` names `spareTitle` and `spareSub`, which do not exist until A13, harmless while it is closed.
+3. The strip frame has no content and `#stripCopy` has no `disabled` until A11 (R49 owns both).
+4. Q-A2-1, ruled (ORCH, 2026-10-14). "The card reads" is read as every text node of the element joined with a space, then every run of white space made one space (`support.READS_JS`). qa.md says `textContent`, which gives "TotalEnter the subtotal ..." for a DOM built by script (allowed difference 4). The qa.md wording goes to a later planner pass.
+5. The static half of the sub-path scenario is its own test, so the relative URL guard stays green while the screen half waits for A11.
+6. `test_R2_cold_boot_is_a_new_bill_with_no_seed` is xfail until A11 (People open is A4, the Subtotal markup A7, the strip A11), so its `window.__` line guards nothing until then. `test_R25_a_cold_boot_and_a_reload_write_nothing` still guards the no-write line.
+7. The CSP listener is added by `open_app` in conftest, not by `rig.new_context`, so the live gate keeps its own init script list for A20.
+8. The golden's mark comment names `docs/brand/mark.svg`, which R45's scan bans in `index.html`, so it is left out. The Phosphor licence comment above the sprite is kept.
+9. Q-A2-2, ruled (USER, the house rule that moves and cleanups never delete). The orchestrator moved the six fixtures to the owner's archive with `safe_move.py` (SHA-256 equal 6 of 6). This commit stages only their removal, by exact path. Their bytes also stay in commit `4b67e96` and tag `v1.0.0`.
+10. The ORCH ruling on `test_R29_the_dialog_opens_with_the_safe_choice_focused` named the ids `newTitle` and `newBody`. With those updated the test failed next on the button classes, the other half of the same markup change, so they follow R29's text (`btn btn-danger btn-lg`, `btn btn-ghost btn-lg`) and the test passes, as the ruling intended. The orchestrator may overturn it, and the fallback is `xfail(strict=True, reason="task A16")`.
+11. `test_R31_start_over` is updated, not marked. Start new bill renders the bill-empty state (R31), and what that card reads is R2's, which A2 builds. Only its two card lines changed, so its R31 checks (dialog closed, focus on New bill, the new bill's fields, the stored draft, the reload) keep guarding.
+12. `BLOCKED_CARD` in `expected.py` is the one home of the four card texts, used by `COLD_BOOT`, `POLICY_PROOFS` and the updated tests.
+13. A mark names the task after which the test can pass, not the task of its R#. `test_R5_a_new_name_reaches_the_copied_text` and `test_R42_duplicate_names_through_the_whole_flow` copy, so they wait for A10, not A5.
+14. Only the `no-preference` case of `test_R36_motion_follows_the_users_setting` is marked, because the `reduce` case passes and a strict mark on it would fail.
+
+**Deviations.** None. The engineering principles hold without a named exception. The 1.0 panel beside the new blocked receipt is the planned state between A2 and A9, not a duplicate, since each draws different results.
+
+**Non-goals honoured.** No CSS change (`src/system.css` is a byte copy), no home-screen icon or manifest, no use of `docs/brand/favicon.svg`, no `xmlns` in `index.html`, no hook in the app, nothing under `docs/design/` written.
+
+**Observation for the orchestrator.** qa.md How to run says the default context has colour scheme `dark` and reduced motion `reduce`. `open_app` in `tests/browser/conftest.py` still defaults to `light` and no reduced motion, as in 1.0. A2 left the defaults as they were, since a change moves the context of every 1.0 test, and no task names it.
+
+**For the README reconcile** (symbols).
+- The shell is static in `index.html` (head, sprite, mark, top bar, the two regions, the strip frame, the three dialogs). `src/icon.svg` is the tab icon. `src/system.css` is a byte copy of the golden CSS, compared with every CRLF turned into LF.
+- `icon(name, modifier)` in `src/ui/icons.js` builds every run-time icon as `svg.ic` with one `<use>` into the sprite.
+- `blockedReceipt` in `src/ui/receipt.js` draws the blocked card, which is the cold boot's receipt.
+- Tests. `tests/browser/csp/listener.js` (`window.testCspViolations`) fails any scenario with a policy violation in either engine. `support.card_text` is qa.md's "the card reads". `expected.BLOCKED_CARD` holds the blocked card texts.
+
+**How to view.** `python -m http.server <port> --bind 127.0.0.1` from the project root, then `http://127.0.0.1:<port>/`. Below 1024 px the top bar, the 1.0 working blocks and the strip frame show. From 1024 px the card with the blocked receipt shows beside the working blocks.

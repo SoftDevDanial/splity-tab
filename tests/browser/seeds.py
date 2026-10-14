@@ -41,6 +41,16 @@ def with_bill(seed, **fields):
 
 
 S5 = changed(S1, lambda d: d["bill"]["items"][2].update(who=[]))
+# The other qa.md seeds the R3 walk reaches its goldens from (qa.md names in brackets).
+ONE = changed(S2, lambda d: d["bill"].update(spare={"rule": "one", "personId": "p2"}))  # [ONE]
+RND = changed(S2, lambda d: d["bill"].update(spare={"rule": "random", "order": ["p2", "p3", "p1"]}))  # [RND]
+RE = with_bill(S1, serviceText="35")  # [RE]
+W1 = changed(S1, lambda d: (d["bill"]["items"].append({"id": "i8", "name": "", "priceText": "964.50", "who": ["p1"]}),
+                            d["bill"].update(nextId=9)))  # [W1]
+T12 = dump({"version": 2, "bill": {
+    "mode": "even", "people": [{"id": f"p{n}", "name": name} for n, name in enumerate(["Aisyah", "Ben", "Chen"] + [""] * 9, start=1)],
+    "subtotalText": "100.00", "items": [], "serviceText": "10", "sstText": "6", "spare": {"rule": "top"}, "nextId": 13,
+}})  # [T12]
 
 _TWELVE = ["Aisyah", "Ben", "Chen", "Devi", "Farid", "Grace", "Hafiz", "Indra", "Jia Hui", "Kumar", "Lina", "Mei Ling"]
 S8 = dump({"version": 2, "bill": {

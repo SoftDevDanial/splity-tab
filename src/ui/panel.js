@@ -1,17 +1,12 @@
-// The bill panel (C2, C3, C5, R16 to R21): Bill summary, then Shares. Every figure comes from the
-// split-core result, formatted by split-core. createPanel(tape, { onCopy }) fills the static div.tape and
-// returns { update(result, copyStatus) }, where copyStatus is null, "ok" or "fail" (R22 to R24).
+// The bill panel (C2, C3, C5, R16 to R21): Bill summary, then Shares, for an unassigned, even or by-item result
+// (a blocked result is receipt.js's). Every figure comes from the split-core result, formatted by split-core.
+// createPanel(container, { onCopy }) fills `container` and returns { update(result, copyStatus) }, where
+// copyStatus is null, "ok" or "fail" (R22 to R24).
 // The panel is quiet on purpose (R16): the only live region in it is the copy status.
 import { formatMoney, formatRate } from "../core/money.js";
 import { el, setAttr, setText, reconcileChildren } from "./dom.js";
 import { icon } from "./icons.js";
 
-const BLOCKED_MESSAGE = {
-  rates: "Check the charges to see the shares.",
-  subtotal: "Enter the subtotal to see the shares.",
-  "no-prices": "Add an item to see the shares.",
-  prices: "Give every item a price to see the shares.",
-};
 const COPY_STATUS = {
   ok: { text: "Summary copied", className: "status" },
   fail: { text: "Could not copy. Your browser blocked the clipboard.", className: "status status-failure" },
@@ -74,7 +69,7 @@ function itemTable(result) {
       el("td", { class: "share" }, formatMoney(check.share))]));
 }
 
-export function createPanel(tape, { onCopy }) {
+export function createPanel(container, { onCopy }) {
   const summaryTitle = el("h2", { class: "tape-title", id: "h-summary" }, "Bill summary");
   const summary = el("section", { class: "tape-section", "aria-labelledby": "h-summary" }, summaryTitle);
   const sharesTitle = el("h2", { class: "tape-title", id: "h-shares" }, "Shares");
@@ -87,7 +82,7 @@ export function createPanel(tape, { onCopy }) {
   const status = el("p", { class: "status", role: "status" });
 
   function update(result, copyStatus) {
-    if (result.kind !== "blocked") reconcileChildren(summary, [summaryTitle, summaryList(result.charges)]);
+    reconcileChildren(summary, [summaryTitle, summaryList(result.charges)]);
     if (hasShares(result)) {
       const shown = COPY_STATUS[copyStatus] ?? { text: "", className: "status" };
       setText(status, shown.text);
@@ -95,10 +90,10 @@ export function createPanel(tape, { onCopy }) {
       const table = result.kind === "even" ? evenTable(result) : itemTable(result);
       reconcileChildren(shares, [sharesTitle, table, copy, status]);
     } else {
-      setText(message, result.kind === "blocked" ? BLOCKED_MESSAGE[result.reason] : unassignedMessage(result.count));
+      setText(message, unassignedMessage(result.count));
       reconcileChildren(shares, [sharesTitle, message]);
     }
-    reconcileChildren(tape, result.kind === "blocked" ? [shares] : [summary, shares]);
+    reconcileChildren(container, [summary, shares]);
   }
 
   return { update };

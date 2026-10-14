@@ -1,0 +1,946 @@
+{
+ "app-1280": {
+  "header.top": {
+   "box": [
+    0,
+    0,
+    1280,
+    64
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgb(16, 20, 27)",
+   "font": "400 16px/24px",
+   "text": "Splity Tab New bill"
+  },
+  "div.brand": {
+   "box": [
+    48,
+    18,
+    123.7,
+    28
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Splity Tab"
+  },
+  "svg.mark": {
+   "box": [
+    48,
+    18,
+    28,
+    28
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "h1.word": {
+   "box": [
+    86,
+    20,
+    85.7,
+    24
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "700 19px/24px",
+   "text": "Splity Tab"
+  },
+  "#notes": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "none",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#newBill": {
+   "box": [
+    1116.3,
+    9.5,
+    115.8,
+    44
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "600 15px/20px",
+   "text": "New bill"
+  },
+  "main.layout": {
+   "box": [
+    0,
+    64,
+    1280,
+    736
+   ],
+   "display": "grid",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits. People Add person Split mode EvenBy "
+  },
+  "#stage": {
+   "box": [
+    48,
+    64,
+    560,
+    736
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits."
+  },
+  "#card": {
+   "box": [
+    98,
+    84,
+    460,
+    161
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(27, 33, 43, 0.5)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits."
+  },
+  "#rbody": {
+   "box": [
+    123,
+    88,
+    410,
+    132
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits."
+  },
+  "div.r-total": {
+   "box": [
+    123,
+    88,
+    410,
+    56
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total"
+  },
+  "div.r-empty": {
+   "box": [
+    123,
+    144,
+    410,
+    76
+   ],
+   "display": "grid",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Enter the subtotal to see the splits."
+  },
+  "div.r-empty svg": {
+   "box": [
+    123,
+    148,
+    28,
+    28
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#work": {
+   "box": [
+    672,
+    64,
+    560,
+    736
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "People Add person Split mode EvenBy item Subtotal in RM RM Charges Service charg"
+  },
+  "#strip": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "none",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(27, 33, 43, 0.92)",
+   "font": "400 16px/24px",
+   "text": "Splits Copy summary"
+  },
+  "#stripInfo": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#splitsBtn": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(14, 18, 25, 0.5)",
+   "font": "600 15px/20px",
+   "text": "Splits"
+  },
+  "#stripCopy": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "flex",
+   "color": "rgb(247, 248, 255)",
+   "background": "rgb(80, 89, 218)",
+   "font": "600 15px/20px",
+   "text": "Copy summary"
+  }
+ },
+ "golden-1280": {
+  "header.top": {
+   "box": [
+    0,
+    0,
+    1280,
+    64
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgb(16, 20, 27)",
+   "font": "400 16px/24px",
+   "text": "Splity Tab New bill"
+  },
+  "div.brand": {
+   "box": [
+    48,
+    18,
+    123.7,
+    28
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Splity Tab"
+  },
+  "svg.mark": {
+   "box": [
+    48,
+    18,
+    28,
+    28
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "h1.word": {
+   "box": [
+    86,
+    20,
+    85.7,
+    24
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "700 19px/24px",
+   "text": "Splity Tab"
+  },
+  "#notes": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "none",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#newBill": {
+   "box": [
+    1116.3,
+    9.5,
+    115.8,
+    44
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "600 15px/20px",
+   "text": "New bill"
+  },
+  "main.layout": {
+   "box": [
+    0,
+    64,
+    1280,
+    736
+   ],
+   "display": "grid",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits. People Add person Charges Service ch"
+  },
+  "#stage": {
+   "box": [
+    48,
+    64,
+    560,
+    736
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits."
+  },
+  "#card": {
+   "box": [
+    98,
+    84,
+    460,
+    161
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(27, 33, 43, 0.5)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits."
+  },
+  "#rbody": {
+   "box": [
+    123,
+    88,
+    410,
+    132
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits."
+  },
+  "div.r-total": {
+   "box": [
+    123,
+    88,
+    410,
+    56
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total"
+  },
+  "div.r-empty": {
+   "box": [
+    123,
+    144,
+    410,
+    76
+   ],
+   "display": "grid",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Enter the subtotal to see the splits."
+  },
+  "div.r-empty svg": {
+   "box": [
+    123,
+    148,
+    28,
+    28
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#work": {
+   "box": [
+    672,
+    64,
+    560,
+    736
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "People Add person Charges Service charge % SST % Set a charge to 0 if your bill "
+  },
+  "#strip": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "none",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(27, 33, 43, 0.92)",
+   "font": "400 16px/24px",
+   "text": "Enter the subtotal to see the splits. Splits Copy summary"
+  },
+  "#stripInfo": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Enter the subtotal to see the splits."
+  },
+  "#splitsBtn": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(14, 18, 25, 0.5)",
+   "font": "600 15px/20px",
+   "text": "Splits"
+  },
+  "#stripCopy": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "flex",
+   "color": "rgb(95, 104, 120)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "600 15px/20px",
+   "text": "Copy summary"
+  }
+ },
+ "app-390": {
+  "header.top": {
+   "box": [
+    0,
+    0,
+    390,
+    61
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgb(16, 20, 27)",
+   "font": "400 16px/24px",
+   "text": "Splity Tab New bill"
+  },
+  "div.brand": {
+   "box": [
+    16,
+    16,
+    123.7,
+    28
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Splity Tab"
+  },
+  "svg.mark": {
+   "box": [
+    16,
+    16,
+    28,
+    28
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "h1.word": {
+   "box": [
+    54,
+    18,
+    85.7,
+    24
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "700 19px/24px",
+   "text": "Splity Tab"
+  },
+  "#notes": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "none",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#newBill": {
+   "box": [
+    258.3,
+    8,
+    115.8,
+    44
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "600 15px/20px",
+   "text": "New bill"
+  },
+  "main.layout": {
+   "box": [
+    0,
+    61,
+    390,
+    650.6
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "People Add person Split mode EvenBy item Subtotal in RM RM Charges Service charg"
+  },
+  "#stage": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "none",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "TotalEnter the subtotal to see the splits."
+  },
+  "#card": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(27, 33, 43, 0.5)",
+   "font": "400 16px/24px",
+   "text": "TotalEnter the subtotal to see the splits."
+  },
+  "#rbody": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "TotalEnter the subtotal to see the splits."
+  },
+  "div.r-total": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total"
+  },
+  "div.r-empty": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "grid",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Enter the subtotal to see the splits."
+  },
+  "div.r-empty svg": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#work": {
+   "box": [
+    0,
+    61,
+    390,
+    650.6
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "People Add person Split mode EvenBy item Subtotal in RM RM Charges Service charg"
+  },
+  "#strip": {
+   "box": [
+    0,
+    736,
+    390,
+    108
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(27, 33, 43, 0.92)",
+   "font": "400 16px/24px",
+   "text": "Splits Copy summary"
+  },
+  "#stripInfo": {
+   "box": [
+    17,
+    750,
+    0,
+    0
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#splitsBtn": {
+   "box": [
+    17,
+    788,
+    151.3,
+    44
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(14, 18, 25, 0.5)",
+   "font": "600 15px/20px",
+   "text": "Splits"
+  },
+  "#stripCopy": {
+   "box": [
+    176.3,
+    788,
+    196.7,
+    44
+   ],
+   "display": "flex",
+   "color": "rgb(247, 248, 255)",
+   "background": "rgb(80, 89, 218)",
+   "font": "600 15px/20px",
+   "text": "Copy summary"
+  }
+ },
+ "golden-390": {
+  "header.top": {
+   "box": [
+    0,
+    0,
+    390,
+    61
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgb(16, 20, 27)",
+   "font": "400 16px/24px",
+   "text": "Splity Tab New bill"
+  },
+  "div.brand": {
+   "box": [
+    16,
+    16,
+    123.7,
+    28
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Splity Tab"
+  },
+  "svg.mark": {
+   "box": [
+    16,
+    16,
+    28,
+    28
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "h1.word": {
+   "box": [
+    54,
+    18,
+    85.7,
+    24
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "700 19px/24px",
+   "text": "Splity Tab"
+  },
+  "#notes": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "none",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#newBill": {
+   "box": [
+    258.3,
+    8,
+    115.8,
+    44
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "600 15px/20px",
+   "text": "New bill"
+  },
+  "main.layout": {
+   "box": [
+    0,
+    61,
+    390,
+    543
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "People Add person Charges Service 10%, SST 6% Split Even By item Subtotal RM"
+  },
+  "#stage": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "none",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits."
+  },
+  "#card": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(27, 33, 43, 0.5)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits."
+  },
+  "#rbody": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total Enter the subtotal to see the splits."
+  },
+  "div.r-total": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Total"
+  },
+  "div.r-empty": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "grid",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Enter the subtotal to see the splits."
+  },
+  "div.r-empty svg": {
+   "box": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "display": "block",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": ""
+  },
+  "#work": {
+   "box": [
+    0,
+    61,
+    390,
+    543
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "People Add person Charges Service 10%, SST 6% Split Even By item Subtotal RM"
+  },
+  "#strip": {
+   "box": [
+    0,
+    736,
+    390,
+    108
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(27, 33, 43, 0.92)",
+   "font": "400 16px/24px",
+   "text": "Enter the subtotal to see the splits. Splits Copy summary"
+  },
+  "#stripInfo": {
+   "box": [
+    17,
+    750,
+    213.4,
+    30
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "400 16px/24px",
+   "text": "Enter the subtotal to see the splits."
+  },
+  "#splitsBtn": {
+   "box": [
+    17,
+    788,
+    151.3,
+    44
+   ],
+   "display": "flex",
+   "color": "rgb(232, 235, 242)",
+   "background": "rgba(14, 18, 25, 0.5)",
+   "font": "600 15px/20px",
+   "text": "Splits"
+  },
+  "#stripCopy": {
+   "box": [
+    176.3,
+    788,
+    196.7,
+    44
+   ],
+   "display": "flex",
+   "color": "rgb(95, 104, 120)",
+   "background": "rgba(0, 0, 0, 0)",
+   "font": "600 15px/20px",
+   "text": "Copy summary"
+  }
+ }
+}

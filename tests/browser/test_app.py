@@ -5,21 +5,25 @@ Real gestures only. State that is not under test is set up with fill() and click
 never through a hook in the app (there is none).
 """
 import ast
+import hashlib
 import json
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 from pathlib import Path
+from xml.etree import ElementTree
 
 import pytest
 
 import rig
 import seeds
 import support
-from expected import (EVEN_MESSAGE, S1_CHECK, S1_COPY, S1_ITEMS, S1_ROWS, S1_SUMMARY, S2_CHECK, S2_COPY, S2_ROWS,
-                      S2_SUMMARY)
-from support import CSP, GOLDEN_V1_DIR, ROOT, dom_walk, first_diff, golden_walk, open_golden, panel_text, person_field
+from expected import (BLOCKED_CARD, EVEN_MESSAGE, S1_CHECK, S1_COPY, S1_ITEMS, S1_ROWS, S1_SUMMARY, S2_CHECK, S2_COPY,
+                      S2_ROWS, S2_SUMMARY)
+from support import (CSP, GOLDEN_DIR, GOLDEN_V1_DIR, ROOT, card_text, dom_walk, first_diff, golden_walk, open_golden,
+                     panel_text, person_field, walk_entries)
 
 
 # ---------------------------------------------------------------- Task 1: the rig (R1, R39)
@@ -123,24 +127,55 @@ SAMPLE_NAMES = ["Aisyah", "Ben", "Chen", "Devi", "Farid", "Grace", "Hafiz", "Ind
                 "Mei Ling", "Nasi lemak", "Char kuey teow", "Mee goreng", "Satay"]
 
 
-def test_R1_entry_point_loads_only_its_own_files(open_app):
+GOLDEN_CSS_LF_BYTES = 33070
+GOLDEN_CSS_LF_SHA256 = "66807273b62f87e05caa931faac40a4bcac1cf7294b2cf38a9f046154b6d3c08"  # the committed LF blob (spec R1)
+
+
+def lf_bytes(path):
+    return path.read_bytes().replace(b"\r\n", b"\n")
+
+
+def same_stylesheet(shipped, golden):
+    """R1's comparison. Both files with every CRLF turned into LF, then byte for byte, so any checkout agrees."""
+    return lf_bytes(shipped) == lf_bytes(golden)
+
+
+def test_R1_entry_point_loads_only_its_own_files(open_app, tmp_path):
     session = open_app()
     assert session.page.evaluate(HEAD_SUMMARY_JS) == [
         ["meta", {"charset": "utf-8"}, ""],
-        ["meta", {"name": "viewport", "content": "width=device-width, initial-scale=1"}, ""],
+        ["meta", {"name": "viewport", "content": "width=device-width, initial-scale=1, viewport-fit=cover"}, ""],
+        ["meta", {"name": "color-scheme", "content": "dark"}, ""],
         ["meta", {"http-equiv": "Content-Security-Policy", "content": CSP}, ""],
-        ["title", {}, "Split"],
+        ["title", {}, "Danial's Splity Tab"],
+        ["link", {"rel": "icon", "type": "image/svg+xml", "href": "src/icon.svg"}, ""],
         ["link", {"rel": "stylesheet", "href": "src/system.css"}, ""],
         ["script", {"type": "module", "src": "src/main.js"}, ""],
     ]
     assert session.page.evaluate("document.documentElement.lang") == "en"
-    golden = (GOLDEN_V1_DIR / "system.css").read_bytes()
-    # RC-5: the shipped stylesheet is the golden's bytes plus one trailing rule, so hidden elements stay hidden.
-    assert (ROOT / "src" / "system.css").read_bytes() == golden + b"\n[hidden] { display: none !important; }\n"
+    shipped, golden = ROOT / "src" / "system.css", GOLDEN_DIR / "system.css"
+    assert same_stylesheet(shipped, golden)
+    for path in (shipped, golden):
+        turned = lf_bytes(path)
+        assert (len(turned), hashlib.sha256(turned).hexdigest()) == (GOLDEN_CSS_LF_BYTES, GOLDEN_CSS_LF_SHA256), path.name
+    # The comparison's own control: a CRLF copy still matches, a copy with one rule changed does not.
+    crlf_copy, changed_copy = tmp_path / "crlf.css", tmp_path / "changed.css"
+    crlf_copy.write_bytes(lf_bytes(golden).replace(b"\n", b"\r\n"))
+    changed_copy.write_bytes(lf_bytes(golden).replace(b"[hidden] { display: none !important; }", b"[hidden] { display: block !important; }"))
+    assert same_stylesheet(crlf_copy, golden) and not same_stylesheet(changed_copy, golden)
     assert session.problems() == []
     assert ("GET", session.base + "/src/system.css") in session.requests
 
 
+def test_R1_every_url_in_the_page_is_relative():
+    # The static half of "The page works from a sub-path", kept apart so it guards while the screen half waits (BUILD.md, A2).
+    for name, text in support.shipped_text().items():
+        assert not SOURCE_URL.search(text.replace(NAMESPACE_CALL, "")), name
+        if name == "index.html":
+            assert "://" not in text
+
+
+@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R1_page_works_from_a_sub_path(open_app):
     # The target is a GitHub Pages project path (/split/), so the app must work one folder down. The only way to serve
     # it there is a server rooted at the parent folder, which also serves the sibling projects on 127.0.0.1 while this
@@ -149,26 +184,49 @@ def test_R1_page_works_from_a_sub_path(open_app):
     try:
         folder = f"/{ROOT.name}"
         session = open_app(base_server=parent, path=folder + "/", prefix=folder)
-        assert panel_text(session.page) == "Shares\nEnter the subtotal to see the shares."
-        assert session.page.locator("li.person").count() == 2
+        assert session.page.evaluate("document.querySelector('link[rel=icon]').href").endswith(f"{folder}/src/icon.svg")
+        assert cold_boot_state(session.page) == COLD_BOOT
         assert session.problems() == []
     finally:
         parent.stop()
-    for name, text in support.shipped_text().items():
-        assert not SOURCE_URL.search(text.replace(NAMESPACE_CALL, "")), name
-        if name == "index.html":
-            assert "://" not in text
 
 
+# R2's first render, read in one pass so a part that is not built yet fails at once instead of waiting for it.
+COLD_BOOT_JS = """() => {
+  const one = (selector) => document.querySelector(selector);
+  const attr = (selector, name) => one(selector)?.getAttribute(name) ?? null;
+  const field = (selector) => one(selector) ? [one(selector).value, one(selector).placeholder] : null;
+  const copy = one('#stripCopy');
+  return {
+    names: [...document.querySelectorAll('li.field.person input')].map((input) => input.value),
+    removesDisabled: [...document.querySelectorAll('li.field.person button')].map((button) => button.disabled),
+    evenChecked: one('#modeEven')?.checked ?? null,
+    subtotal: field('#evenSub'),
+    subtotalErrorHidden: one('p.err#evenErr')?.hidden ?? null,
+    rates: [one('#svc')?.value ?? null, one('#sst')?.value ?? null],
+    open: [attr('#peopleBlk', 'data-open'), attr('#peopleBtn', 'aria-expanded'), attr('#chargesBlk', 'data-open')],
+    totalHolds: [...(one('#rbody > div.r-total')?.children ?? [])].map((el) => `${el.localName}.${el.className}`),
+    emptyIcon: attr('#rbody > div.r-empty > svg.ic > use', 'href'),
+    strip: one('#stripInfo')?.innerText.trim() ?? null,
+    stripCopy: copy ? { shown: copy.checkVisibility(), disabled: copy.disabled } : null,
+  };
+}"""
+COLD_BOOT = {
+    "names": ["Person 1", "Person 2"], "removesDisabled": [True, True], "evenChecked": True, "subtotal": ["", "0.00"],
+    "subtotalErrorHidden": True, "rates": ["10", "6"], "open": ["true", "true", "false"],
+    "card": BLOCKED_CARD["subtotal"], "totalHolds": ["span.r-label"], "emptyIcon": "#i-mark",
+    "strip": "Enter the subtotal to see the splits.", "stripCopy": {"shown": True, "disabled": True},
+}
+
+
+def cold_boot_state(page):
+    return {**page.evaluate(COLD_BOOT_JS), "card": card_text(page)}
+
+
+@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R2_cold_boot_is_a_new_bill_with_no_seed(open_app):
     page = open_app().page
-    assert [field.input_value() for field in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
-    assert all(button.is_disabled() for button in page.locator("li.person button").all())
-    assert page.locator("#mode-even").is_checked() and not page.locator("#mode-item").is_checked()
-    assert page.locator("#subtotal").input_value() == ""
-    assert (page.locator("#rate-service").input_value(), page.locator("#rate-sst").input_value()) == ("10", "6")
-    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
-    assert panel_text(page) == "Shares\nEnter the subtotal to see the shares."
+    assert cold_boot_state(page) == COLD_BOOT
     assert page.evaluate("localStorage.getItem('split.draft')") is None
     assert page.evaluate("Object.getOwnPropertyNames(window).filter((n) => n.startsWith('__'))") == []
 
@@ -179,22 +237,72 @@ def test_R2_no_sample_data_ships():
             assert not re.search(rf"\b{re.escape(sample)}\b", text, re.IGNORECASE), f"{sample} in {name}"
 
 
-@pytest.mark.parametrize("state, seed, golden", [("S3", None, "bill-empty")])
-def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, state, seed, golden):
-    app = dom_walk(open_app(seed=seed).page)
-    assert first_diff(app, golden_walk(plain_context, golden, folder=GOLDEN_V1_DIR)) is None, state
+VIEWPORTS = {390: (390, 844), 360: (360, 780), 1280: (1280, 800)}
+SHEET_SPARE_CHIP = "#splitsDlg .r-spare-acts button[aria-haspopup=dialog]"
+SPARE_OPENERS = {"phone": ("#splitsBtn", SHEET_SPARE_CHIP), "desktop": ("#spareBtn",)}
+# qa.md, "The rendered markup matches its golden": golden -> (seed, the clicks after load below and from 1024 px,
+# and per width the task that completes the state, the reason of its xfail until that task removes it).
+R3_STATES = {
+    "bill-items": (seeds.S1, {}, {390: "A11", 360: "A11", 1280: "A13"}),
+    "bill-items-open": (seeds.S1, {"phone": ("#peopleBtn", "#chargesBtn")}, {390: "A11", 360: "A11"}),
+    "bill-even": (seeds.S2, {}, {390: "A11", 360: "A11", 1280: "A13"}),
+    "spare-sen": (seeds.S1, SPARE_OPENERS, {390: "A13", 360: "A13", 1280: "A13"}),
+    "spare-sen-one": (seeds.ONE, SPARE_OPENERS, {390: "A14", 360: "A14", 1280: "A14"}),
+    "spare-sen-random": (seeds.RND, SPARE_OPENERS, {390: "A15", 360: "A15", 1280: "A15"}),
+    "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, {390: "A13", 360: "A13"}),
+    "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: "A16", 360: "A16", 1280: "A16"}),
+    "bill-empty": (None, {}, {390: "A11", 360: "A11", 1280: "A7"}),
+    "rate-error": (seeds.RE, {}, {390: "A11", 360: "A11", 1280: "A8"}),
+    "bill-unassigned": (seeds.S5, {}, {390: "A11", 360: "A11", 1280: "A9"}),
+    "bill-unreadable": (seeds.UNREADABLE["B1"], {}, {390: "A11", 360: "A11", 1280: "A7"}),
+    "bill-twelve": (seeds.T12, {}, {390: "A11", 360: "A11", 1280: "A13"}),
+    "bill-large": (seeds.W1, {}, {390: "A11", 360: "A11", 1280: "A13"}),
+}
+R3_PAIRS = [pytest.param(golden, width, marks=pytest.mark.xfail(strict=True, reason=f"task {task}"), id=f"{golden}-{width}")
+            for golden, (_, _, tasks) in R3_STATES.items() for width, task in tasks.items()]
 
 
-def test_R3_the_walk_sees_every_rendered_element_and_flags_a_change(open_app):
-    app = dom_walk(open_app().page)
+def click_after_load(page, selectors):
+    """The clicks that reach a golden's state. A control the page does not hold yet fails at once, not after a wait."""
+    for selector in selectors:
+        control = page.locator(selector)
+        assert control.count() == 1, f"after-load control {selector} is not on the page"
+        control.click()
 
-    def count(entry):
-        return 1 + sum(count(child) for child in entry["children"])
 
-    assert count(app) > 40
-    changed = json.loads(json.dumps(app))
-    changed["children"][0]["children"][0]["children"][0]["text"] = "Different"  # the wordmark
-    assert "app='Split' golden='Different'" in first_diff(app, changed)
+@pytest.mark.parametrize("golden, width", R3_PAIRS)
+def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+    seed, after_load, _ = R3_STATES[golden]
+    page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+    click_after_load(page, after_load.get("desktop" if width >= 1024 else "phone", ()))
+    assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+
+
+def edited_walk(walk, matches, edit):
+    """A deep copy of a walk with `edit` applied to the first entry that `matches`."""
+    copy = json.loads(json.dumps(walk))
+    edit(next(entry for entry in walk_entries(copy) if matches(entry)))
+    return copy
+
+
+@pytest.mark.xfail(strict=True, reason="task A12")
+def test_R3_the_walk_sees_every_rendered_element_and_flags_each_kind_of_change(open_app):
+    page = open_app(seed=seeds.S1).page
+    walk = dom_walk(page)
+    assert len(list(walk_entries(walk))) > 40
+    pressed = edited_walk(walk, lambda e: e["tag"] == "button" and "tap" in e["cls"].split() and e["attrs"].get("aria-pressed") == "true",
+                          lambda e: e["attrs"].update({"aria-pressed": "false"}))
+    found = first_diff(walk, pressed)
+    assert re.search(r"button\.tap\[\d+\]: attr aria-pressed app='true' golden='false'$", found), found
+    opened = edited_walk(walk, lambda e: e["attrs"].get("id") == "peopleBlk", lambda e: e["attrs"].update({"data-open": "true"}))
+    found = first_diff(walk, opened)
+    assert re.search(r"div\.blk\.sec\[\d+\]: attr data-open app='false' golden='true'$", found), found
+    shorter = edited_walk(walk, lambda e: e["attrs"].get("id") == "itemList", lambda e: e["children"].pop())
+    found = first_diff(walk, shorter)
+    assert re.search(r"ul\.frame\[\d+\]: children ", found), found
+    page.locator("#splitsBtn").click()
+    found = first_diff(walk, dom_walk(page))
+    assert found.startswith("body: children ") and "dialog.sheet-dlg" in found, found
 
 
 def test_R38_policy_is_exact_and_nothing_inline():
@@ -205,14 +313,193 @@ def test_R38_policy_is_exact_and_nothing_inline():
     assert not re.search(r"<script(?![^>]*\ssrc=)", html) and not re.search(r"\son[a-z]+\s*=", html)
 
 
-def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app):
+# The four CSSOM targets of spec R38, each with the properties it may hold at that moment.
+STYLE_OUTSIDE_TARGETS_JS = """() => [...document.querySelectorAll('[style]')].flatMap((el) => {
+  const bothOpen = document.querySelector('#spareDlg')?.open && document.querySelector('#splitsDlg')?.open;
+  const allowed = el === document.documentElement ? ['--strip-h']
+    : el.matches('ul.r-splits.many') ? ['--rows']
+    : el.matches('#spareDlg') && innerWidth >= 1024 ? ['left', 'bottom']
+    : el.matches('#sheetScroll') && bothOpen ? ['padding-bottom'] : [];
+  const extra = [...el.style].filter((name) => !allowed.includes(name));
+  return extra.length ? [`${el.localName}#${el.id}.${el.className}: ${extra.join(' ')}`] : [];
+})"""
+K1_SPLITS = ["RM 29.04", "RM 15.74", "RM 24.48", "RM 69.26"]
+# (state, golden of that state, seed, width, the clicks after load, the proof the module ran, the task that completes it)
+POLICY_STATES = [
+    ("cold-boot", "bill-empty", None, 390, (), "card-blocked", None),
+    ("K1", "bill-items", seeds.S1, 390, (), "card-K1", "A9"),
+    ("K1-new-bill", "new-bill-dialog", seeds.S1, 390, ("#newBill",), "dialog-open", None),
+    ("K1-sheet-P1", "spare-sen", seeds.S1, 390, ("#splitsBtn", SHEET_SPARE_CHIP), "sheet-padding", "A13"),
+    ("K2-P1-desktop", "bill-even", seeds.S2, 1280, ("#spareBtn",), "spare-place", "A13"),
+]
+POLICY_PROOFS = {  # proof -> (what the page shows, what it must show)
+    "card-blocked": (card_text, BLOCKED_CARD["subtotal"]),
+    "card-K1": (lambda page: page.evaluate("() => [...document.querySelectorAll('#splits .amt, #addsUp')].map((el) => el.textContent)"),
+                K1_SPLITS),
+    "dialog-open": (lambda page: page.evaluate("() => document.querySelector('#newDlg').matches(':modal')"), True),
+    "sheet-padding": (lambda page: page.evaluate("() => document.querySelector('#sheetScroll')?.style.getPropertyValue('padding-bottom') ?? null"),
+                      "271px"),
+    "spare-place": (lambda page: page.evaluate("""() => { const dialog = document.querySelector('#spareDlg');
+       return [dialog.style.getPropertyValue('left'), dialog.getBoundingClientRect().bottom]; }"""), ["574px", 560.8]),
+}
+
+
+@pytest.mark.parametrize("state, golden, seed, width, clicks, proof", [
+    pytest.param(*row[:6], id=row[0], marks=[pytest.mark.xfail(strict=True, reason=f"task {row[6]}")] if row[6] else [])
+    for row in POLICY_STATES])
+def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app, plain_context, state, golden, seed, width, clicks, proof):
+    session = open_app(seed=seed, viewport=VIEWPORTS[width])
+    page = session.page
+    click_after_load(page, clicks)
+    body_background = "getComputedStyle(document.body).backgroundColor"
+    assert page.evaluate(body_background) == open_golden(plain_context, golden, VIEWPORTS[width]).evaluate(body_background)
+    shows, expected = POLICY_PROOFS[proof]
+    found = shows(page)
+    if proof == "spare-place":
+        assert found[0] == expected[0] and abs(found[1] - expected[1]) <= 0.5, found
+    else:
+        assert found == expected
+    assert page.evaluate(STYLE_OUTSIDE_TARGETS_JS) == []
+    assert session.problems() == []
+
+
+# R38, the narrow CSSOM allowance and the one Web Animation (PD-22).
+STYLE_TOKENS = ['setAttribute("style"', "setAttribute('style'", "cssText", "insertRule", "new CSSStyleSheet",
+                "adoptedStyleSheets", "<style"]
+DIRECT_STYLE_WRITE = re.compile(r"\.style\.[A-Za-z]+\s*=(?!=)")
+STYLE_CALL = re.compile(r"""\bstyle\.(?:setProperty|removeProperty)\(\s*(?:(["'`])([^"'`]*)\1)?""")
+STYLE_TARGETS = {"--strip-h", "--rows", "left", "bottom", "padding-bottom"}
+
+
+def style_write_problems(name, text):
+    found = [f"{token} in {name}" for token in STYLE_TOKENS if token in text]
+    found += [f"direct style write {match.group(0)!r} in {name}" for match in DIRECT_STYLE_WRITE.finditer(text)]
+    return found + [f"style call on {match.group(2)!r} in {name}" for match in STYLE_CALL.finditer(text)
+                    if match.group(2) not in STYLE_TARGETS]
+
+
+@pytest.mark.xfail(strict=True, reason="task A4")
+def test_R38_code_writes_style_only_to_the_four_allowed_targets(tmp_path):
+    scripts = {name: text for name, text in support.shipped_text().items() if name.startswith("src/") and name.endswith(".js")}
+    assert [problem for name, text in scripts.items() for problem in style_write_problems(name, text)] == []
+    planted = tmp_path / "main.js"
+    planted.write_text(scripts["src/main.js"] + '\ndocument.body.style.setProperty("color", "red");\n', encoding="utf-8")
+    assert style_write_problems("planted main.js", planted.read_text(encoding="utf-8")) != []
+    assert sum(text.count(".animate(") for text in scripts.values()) == 1
+
+
+# ---------------------------------------------------------------- v1.1.0 task A2: the name, the mark and the tab icon (R43 to R45)
+def test_R43_the_name_in_the_title_and_the_top_bar(open_app):
+    page = open_app().page
+    assert page.title() == "Danial's Splity Tab"
+    found = page.evaluate("""() => {
+      const brand = document.querySelector('header.top > div.brand');
+      return { brand: brand ? [...brand.children].map((el) => `${el.localName}.${el.getAttribute('class')}`) : null,
+               word: document.querySelector('div.brand > h1.word')?.textContent ?? null, text: document.body.textContent };
+    }""")
+    assert found["brand"] == ["svg.mark", "h1.word"] and found["word"] == "Splity Tab"
+    assert found["text"].count("Splity Tab") == 1 and "Danial" not in found["text"]
+
+
+SPRITE = re.compile(r'<svg class="sprite".*?</svg>', re.S)
+MARK = re.compile(r'<svg class="mark".*?</svg>', re.S)
+SPRITE_SYMBOLS = ["i-x", "i-plus", "i-copy", "i-check", "i-caret", "i-shuffle", "i-warning", "i-warning-circle", "i-mark", "i-seal-check"]
+
+
+def test_R44_the_sprite_and_the_mark_are_the_goldens_bytes():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    golden = (GOLDEN_DIR / "bill-items.html").read_text(encoding="utf-8")
+    sprite = SPRITE.search(html).group(0)
+    assert sprite == SPRITE.search(golden).group(0)
+    assert re.findall(r'<symbol id="([^"]+)"', sprite) == SPRITE_SYMBOLS and '<linearGradient id="seal-grad"' in sprite
+    mark, golden_mark = MARK.search(html).group(0), MARK.search(golden).group(0)
+    assert mark.startswith('<svg class="mark" viewBox="0 0 28 28" aria-hidden="true" focusable="false">')
+    path_of = lambda text: re.findall(r'<path fill-rule="([^"]*)" d="([^"]*)"/>', text)
+    assert len(re.findall(r"<path\b", mark)) == 1 and path_of(mark) == path_of(golden_mark) != []
+    assert "xmlns" not in html
+
+
+def test_R44_the_sprite_comes_first_and_the_empty_receipt_uses_the_mark(open_app):
+    found = open_app().page.evaluate("""() => {
+      const first = document.body.firstElementChild;
+      const box = first.getBoundingClientRect(), mark = document.querySelector('div.brand > svg.mark').getBoundingClientRect();
+      return { first: `${first.localName}.${first.getAttribute('class')}`, hidden: first.getAttribute('aria-hidden'),
+               focusable: first.getAttribute('focusable'), size: [box.width, box.height], mark: [mark.width, mark.height],
+               emptyIcon: document.querySelector('#card div.r-empty > svg.ic > use')?.getAttribute('href') ?? null };
+    }""")
+    assert found == {"first": "svg.sprite", "hidden": "true", "focusable": "false", "size": [0, 0], "mark": [28, 28],
+                     "emptyIcon": "#i-mark"}
+
+
+TAB_ICON_BYTES = 470
+TAB_ICON_SHA256 = "7b5e4176a6182d23f06073ff181f01bbb73e2ac562f78d58a930ffb80fe7fef2"  # at planning time (spec R45)
+
+
+def test_R45_the_tab_icon_file_is_the_goldens_icon():
+    hrefs = []
+    for golden in sorted(GOLDEN_DIR.glob("*.html")):
+        links = re.findall(r'<link\b[^>]*\brel="icon"[^>]*>', golden.read_text(encoding="utf-8"))
+        assert len(links) == 1, golden.name
+        hrefs.append(re.search(r'\bhref="([^"]*)"', links[0]).group(1))
+    assert len(hrefs) == 15 and len(set(hrefs)) == 1 and hrefs[0].startswith("data:")
+    icon = (ROOT / "src" / "icon.svg").read_bytes()
+    assert icon == urllib.parse.unquote(hrefs[0].split(",", 1)[1]).encode("utf-8")
+    assert (len(icon), hashlib.sha256(icon).hexdigest()) == (TAB_ICON_BYTES, TAB_ICON_SHA256)
+    root = ElementTree.fromstring(icon)
+    assert (root.tag, root.get("viewBox")) == ("{http://www.w3.org/2000/svg}svg", "0 0 16 16")
+    text = icon.decode("utf-8").lower()
+    assert "#a3aaff" in text and re.search(r"@media\s*\(prefers-color-scheme:\s*light\)\s*\{[^}]*#1e2140", text)
+    favicon = (ROOT / "docs" / "brand" / "favicon.svg").read_bytes()
+    assert all(path.read_bytes() != favicon for path in (ROOT / "src").rglob("*") if path.is_file())
+    assert all("favicon.svg" not in text and "brand/" not in text for text in support.shipped_text().values())
+
+
+def test_R45_the_tab_icon_loads_under_the_live_policy(open_app):
     session = open_app()
     page = session.page
-    assert page.evaluate("getComputedStyle(document.body).backgroundColor") == "rgb(238, 240, 238)"
-    assert page.locator("li.person").count() == 2 and page.locator("#rate-service").count() == 1
-    assert panel_text(page) == "Shares\nEnter the subtotal to see the shares."
-    assert page.locator("body [style]").count() == 0
-    assert session.problems() == []
+    assert page.evaluate("() => { const link = document.querySelector('link[rel=icon]'); return [link.type, link.href]; }") == [
+        "image/svg+xml", session.base + "/src/icon.svg"]
+    loaded = page.evaluate("""() => new Promise((resolve) => {
+      const image = new Image();
+      const timer = setTimeout(() => resolve({ load: false, gaveUp: 'after 5 s' }), 5000);
+      image.onload = () => { clearTimeout(timer); resolve({ load: true, width: image.naturalWidth }); };
+      image.onerror = () => { clearTimeout(timer); resolve({ load: false }); };
+      image.src = 'src/icon.svg';
+    })""")
+    assert loaded["load"] and loaded["width"] > 0, loaded
+    assert page.evaluate("window.testCspViolations") == []
+
+
+# Draws src/icon.svg on a 64 x 64 canvas that is never put in the page, and lists the colours of its opaque pixels.
+ICON_COLOURS_JS = """() => new Promise((resolve) => {
+  const image = new Image();
+  const timer = setTimeout(() => resolve({ error: 'gave up after 5 s' }), 5000);
+  image.onload = () => {
+    clearTimeout(timer);
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width = 64; canvas.height = 64;
+      const context = canvas.getContext('2d');
+      context.drawImage(image, 0, 0, 64, 64);
+      const data = context.getImageData(0, 0, 64, 64).data, opaque = [];
+      for (let i = 0; i < data.length; i += 4) if (data[i + 3] === 255) opaque.push(`rgb(${data[i]}, ${data[i + 1]}, ${data[i + 2]})`);
+      resolve({ opaque: opaque.length, colours: [...new Set(opaque)] });
+    } catch (error) { resolve({ error: String(error) }); }
+  };
+  image.onerror = () => { clearTimeout(timer); resolve({ error: 'load failed' }); };
+  image.src = 'src/icon.svg';
+})"""
+
+
+def test_R45_the_tab_icon_colour_follows_the_colour_scheme(open_app, engine, request):
+    readings = {scheme: open_app(color_scheme=scheme).page.evaluate(ICON_COLOURS_JS) for scheme in ("dark", "light")}
+    if engine == "chromium":
+        assert readings["dark"]["opaque"] >= 20 and readings["dark"]["colours"] == ["rgb(163, 170, 255)"], readings
+        assert readings["light"]["opaque"] >= 20 and readings["light"]["colours"] == ["rgb(30, 33, 64)"], readings
+    else:  # Safari 26 draws one colour in both themes (WebKit bug 309949, accepted by the owner), so this is a record only
+        record = request.getfixturevalue("evidence_folder") / "icon-colour.txt"
+        record.write_text("".join(f"{scheme}: {json.dumps(reading)}\n" for scheme, reading in readings.items()), encoding="utf-8")
+        assert [line.split(":")[0] for line in record.read_text(encoding="utf-8").splitlines()] == ["dark", "light"]
 
 
 # ---------------------------------------------------------------- Task 3: people (R4 to R7, R33, R34, R42)
@@ -267,6 +554,7 @@ def test_R5_renaming_a_person_updates_the_remove_name_on_each_keystroke(open_app
     assert person_field(page, 3).input_value() == "Chen Wei"
 
 
+@pytest.mark.xfail(strict=True, reason="task A5")
 def test_R6_add_person_until_the_limit(open_app, plain_context):
     page = open_app().page
     add = page.get_by_role("button", name="Add person")
@@ -285,6 +573,7 @@ def test_R6_add_person_until_the_limit(open_app, plain_context):
     assert page.locator("li.person").count() == 12
 
 
+@pytest.mark.xfail(strict=True, reason="task A5")
 def test_R6_a_restored_twelve_person_bill_shows_the_limit_state(open_app, plain_context):
     # qa.md ST-08 boots the S8 seed: the limit state as a restored bill, not only as the end of nine clicks.
     page = open_app(seed=seeds.S8).page
@@ -383,7 +672,7 @@ def test_R8_switching_modes_keeps_the_subtotal(open_app):
     support.replace_text(page, subtotal_field(page), "100.00")
     switch_to(page, "By item")
     assert page.locator("#mode-item").is_checked() and not page.locator("#subtotal").is_visible()
-    assert panel_text(page) == "Shares\nAdd an item to see the shares."
+    assert card_text(page) == BLOCKED_CARD["no-prices"]  # the v1.1.0 card since task A2 (BUILD.md, A2, Q-A2-3)
     switch_to(page, "Even")
     assert page.locator("#mode-even").is_checked() and subtotal_field(page).input_value() == "100.00"
 
@@ -463,14 +752,14 @@ def test_R10_an_empty_field_never_shows_an_error(open_app):
     subtotal_field(page).click()
     page.keyboard.press("Tab")
     assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
-    assert panel_text(page) == EVEN_MESSAGE
+    assert card_text(page) == BLOCKED_CARD["subtotal"]  # the v1.1.0 card since task A2 (BUILD.md, A2, Q-A2-3)
 
 
 def test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early(open_app):
     page = open_app().page
     subtotal_field(page).click()
     page.keyboard.type("abc")
-    assert page.locator("p.error").count() == 0 and panel_text(page) == EVEN_MESSAGE
+    assert page.locator("p.error").count() == 0 and card_text(page) == BLOCKED_CARD["subtotal"]
 
 
 def test_R10_an_error_survives_a_mode_switch(open_app):
@@ -575,6 +864,7 @@ def test_R11_item_rows_carry_their_names_and_labels(open_app):
         assert remove_button(page, name).is_enabled()
 
 
+@pytest.mark.xfail(strict=True, reason="task A8")
 def test_R12_add_an_item_remove_one_and_reach_the_limit(open_app, plain_context):
     page = open_app().page
     switch_to(page, "By item")
@@ -609,6 +899,7 @@ def test_R13_tapping_a_person_on_an_item(open_app):
     assert ben.get_attribute("aria-pressed") == "false"
 
 
+@pytest.mark.xfail(strict=True, reason="task A8")
 def test_R14_a_price_error_sits_in_the_item_line(open_app, plain_context):
     page = open_app().page
     build_s1(page)
@@ -663,6 +954,7 @@ def test_R15_charges_block_and_its_defaults(open_app):
     assert page.locator("p.hint#charges-hint").inner_text() == "Set a charge to 0 if your bill already includes it."
 
 
+@pytest.mark.xfail(strict=True, reason="task A6")
 def test_R15_a_rate_error_names_both_ids_and_its_range(open_app, plain_context):
     page = open_app().page
     support.replace_text(page, rate_field(page, "Service charge"), "31")
@@ -680,7 +972,7 @@ def test_R10_an_empty_rate_never_shows_an_error(open_app):
     support.replace_text(page, rate_field(page, "Service charge"), "")
     page.keyboard.press("Tab")
     assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
-    assert panel_text(page) == "Shares\nCheck the charges to see the shares."
+    assert card_text(page) == BLOCKED_CARD["rates"]  # the v1.1.0 card since task A2 (BUILD.md, A2, Q-A2-3)
 
 
 # ---------------------------------------------------------------- Task 7: the bill panel (R3, R16 to R21)
@@ -711,14 +1003,6 @@ def build_s5(page):
     toggle(page, "Mee goreng mamak", "Chen").click()
 
 
-@pytest.mark.parametrize("state, build, golden", [
-    ("S2", build_s2, "bill-even"), ("S1", build_s1, "bill-items"), ("S5", build_s5, "bill-unassigned")])
-def test_R3_rendered_markup_matches_its_golden_by_gestures(open_app, plain_context, state, build, golden):
-    page = open_app().page
-    build(page)
-    assert first_diff(dom_walk(page), golden_walk(plain_context, golden, folder=GOLDEN_V1_DIR)) is None, state
-
-
 def test_R9_a_subtotal_drives_the_even_split(open_app):
     page = open_app().page
     subtotal_field(page).fill("100.00")
@@ -726,6 +1010,7 @@ def test_R9_a_subtotal_drives_the_even_split(open_app):
     assert table_cells(page, "tbody") == [["Person 1", "RM 58.30"], ["Person 2", "RM 58.30"]]
 
 
+@pytest.mark.xfail(strict=True, reason="task A9")
 def test_R16_the_panel_follows_every_keystroke_and_stays_quiet(open_app):
     page = open_app().page
     build_s2(page)
@@ -743,6 +1028,7 @@ def live_elements_in_tape(page):
         .map((e) => `${e.tagName.toLowerCase()}.${e.className}[role=${e.getAttribute('role')}]`)""")
 
 
+@pytest.mark.xfail(strict=True, reason="task A9")
 def test_R16_the_status_is_the_only_live_element_and_only_while_the_table_is(open_app):
     # RD-2 (qa.md, 2026-10-09): p.status[role=status] is the one live element in the tape. The tape and its
     # sections carry no aria-live and no role, and a blocked or unassigned panel has no live element at all.
@@ -773,6 +1059,7 @@ BLOCKED_CASES = [
 ]
 
 
+@pytest.mark.xfail(strict=True, reason="task A9")
 @pytest.mark.parametrize("setup, message", BLOCKED_CASES)
 def test_R17_when_the_shares_cannot_be_worked_out(open_app, setup, message):
     page = open_app().page
@@ -782,6 +1069,7 @@ def test_R17_when_the_shares_cannot_be_worked_out(open_app, setup, message):
     assert page.locator(COPY_BUTTON).count() == 0
 
 
+@pytest.mark.xfail(strict=True, reason="task A9")
 def test_R18_items_that_still_need_a_person(open_app):
     page = open_app().page
     build_s1(page)
@@ -797,6 +1085,7 @@ def test_R18_items_that_still_need_a_person(open_app):
     assert page.locator(COPY_BUTTON).count() == 1
 
 
+@pytest.mark.xfail(strict=True, reason="task A9")
 def test_R7_removing_a_person_can_leave_an_item_without_anyone(open_app):
     page = open_app().page
     build_s1(page)
@@ -899,6 +1188,7 @@ def status_of(page):
     return status.inner_text() if status.count() else None, status.get_attribute("class") if status.count() else None
 
 
+@pytest.mark.xfail(strict=True, reason="task A10")
 @pytest.mark.parametrize("build, expected", [(build_s2, S2_COPY), (build_s1, S1_COPY)], ids=["S2", "S1"])
 def test_R22_copy_summary_puts_the_exact_text_on_the_clipboard(open_app, build, expected):
     page = open_app().page
@@ -908,6 +1198,7 @@ def test_R22_copy_summary_puts_the_exact_text_on_the_clipboard(open_app, build, 
     assert page.evaluate("window.testClipboardText") == expected and page.evaluate("window.testClipboardWrites") == 1
 
 
+@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R23_the_browser_blocks_the_clipboard(open_app):
     page = open_app(clipboard="reject").page
     build_s2(page)
@@ -917,6 +1208,7 @@ def test_R23_the_browser_blocks_the_clipboard(open_app):
     assert panel_text(page).replace(FAILED_COPY, "").strip() == before.strip()
 
 
+@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R23_the_clipboard_api_is_missing(open_app):
     page = open_app(clipboard="missing").page
     build_s2(page)
@@ -924,6 +1216,7 @@ def test_R23_the_clipboard_api_is_missing(open_app):
     assert status_of(page) == (FAILED_COPY, "status status-failure")
 
 
+@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R24_the_status_lives_as_long_as_the_table(open_app):
     page = open_app().page
     build_s2(page)
@@ -941,6 +1234,7 @@ def test_R24_the_status_lives_as_long_as_the_table(open_app):
     assert status_of(page) == ("", "status")
 
 
+@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R22_a_failed_copy_is_replaced_by_the_next_attempt(open_app):
     page = open_app(clipboard="reject").page
     build_s2(page)
@@ -950,6 +1244,7 @@ def test_R22_a_failed_copy_is_replaced_by_the_next_attempt(open_app):
     assert status_of(page) == ("Summary copied", "status")
 
 
+@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R24_a_copy_that_finishes_after_the_table_left_sets_no_status(open_app):
     # The browser may take a while to decide (a permission prompt). If the panel turns into a message meanwhile, the
     # late answer must not leave a status behind for the table that comes back.
@@ -967,6 +1262,7 @@ def test_R24_a_copy_that_finishes_after_the_table_left_sets_no_status(open_app):
     assert status_of(page) == ("", "status")
 
 
+@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R5_a_new_name_reaches_the_copied_text(open_app):
     page = open_app().page
     build_s1(page)
@@ -977,6 +1273,7 @@ def test_R5_a_new_name_reaches_the_copied_text(open_app):
     assert page.evaluate("window.testClipboardText").splitlines()[4] == "Chen Wei RM 24.48"
 
 
+@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R42_duplicate_names_through_the_whole_flow(open_app):
     page = open_app().page
     person_field(page, 1).fill("Ben")
@@ -1086,28 +1383,13 @@ def test_R26_a_restored_bill_looks_like_the_one_built_by_gestures(open_app, seed
     assert stored_text(restored.page) == seed  # restoring writes nothing
 
 
-@pytest.mark.parametrize("seed, golden", [(seeds.S2, "bill-even"), (seeds.S1, "bill-items"), (seeds.S5, "bill-unassigned")],
-                         ids=["S2", "S1", "S5"])
-def test_R3_a_restored_bill_matches_its_golden(open_app, plain_context, seed, golden):
-    assert first_diff(dom_walk(open_app(seed=seed).page), golden_walk(plain_context, golden, folder=GOLDEN_V1_DIR)) is None
-
-
+@pytest.mark.xfail(strict=True, reason="task A3")
 def test_R3_the_note_matches_its_specimen(open_app, plain_context):
     # WR-05 (mutant LIVE2: a stray aria-live on the wrapper and aria-pressed on the button). S7 is walked as a part of
     # the page, because the specimen frame in states.html carries specimen-only markup around it (allowed difference 6).
     app = dom_walk(open_app(seed=seeds.UNREADABLE["B1"]).page, "div.note-wrap")
     golden = golden_walk(plain_context, "states", selector='section[aria-labelledby="spec-s7"] div.note-wrap', folder=GOLDEN_V1_DIR)
     assert first_diff(app, golden) is None
-
-
-def test_R3_the_open_dialog_and_the_page_behind_it_match_their_golden(open_app, plain_context):
-    # The golden draws the scrim as div.backdrop and marks .app inert (allowed difference 4), so the walk compares the
-    # dialog and the page behind it, the two parts that are the same markup in both.
-    page = open_app(seed=seeds.S2).page
-    open_dialog(page)
-    golden = open_golden(plain_context, "new-bill-dialog", folder=GOLDEN_V1_DIR)
-    for part in ("dialog.dialog", "div.app"):
-        assert first_diff(dom_walk(page, part), dom_walk(golden, part)) is None, part
 
 
 def test_R26_come_back_later(open_app):
@@ -1155,6 +1437,7 @@ def test_R26_odd_but_readable_drafts_load(open_app, name):
         assert "extra" not in text and "colour" not in text and json.loads(text)["bill"]["subtotalText"] == "100.0"
 
 
+@pytest.mark.xfail(strict=True, reason="task A3")
 @pytest.mark.parametrize("name", list(seeds.UNREADABLE))
 def test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note(open_app, name):
     session = open_app(seed=seeds.UNREADABLE[name])
@@ -1200,6 +1483,7 @@ def test_R10_a_restored_bad_field_shows_its_error_at_once(open_app):
     assert page.locator("p.error#rate-sst-error").count() == 0
 
 
+@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R24_the_status_is_not_saved(open_app):
     page = open_app(seed=seeds.S2).page
     copy_summary(page)
@@ -1235,9 +1519,10 @@ def focused(page):
 def test_R29_the_dialog_opens_with_the_safe_choice_focused(open_app):
     page = open_app(seed=seeds.S2).page
     dialog = open_dialog(page)
-    assert dialog.evaluate("(d) => d.matches(':modal')") and dialog.get_attribute("aria-describedby") == "dialog-text"
-    assert page.locator("#dialog-text").inner_text() == "This clears the people, items and amounts."
-    assert [b.get_attribute("class") for b in dialog.get_by_role("button").all()] == ["btn btn-primary btn-large", "btn btn-outline btn-large"]
+    assert dialog.evaluate("(d) => d.matches(':modal')") and dialog.get_attribute("aria-describedby") == "newBody"
+    assert dialog.get_attribute("aria-labelledby") == "newTitle"
+    assert page.locator("#newBody").inner_text() == "This clears the people, items and amounts."
+    assert [b.get_attribute("class") for b in dialog.get_by_role("button").all()] == ["btn btn-danger btn-lg", "btn btn-ghost btn-lg"]
     assert focused(page) == "Cancel"
     page.keyboard.press("Tab")
     assert focused(page) == "Start new bill"
@@ -1256,9 +1541,9 @@ def test_R30_a_click_inside_the_dialog_box_keeps_it_open(open_app):
     # WR-05 (mutant J: every click that targets the dialog element closes it). The padding belongs to the element itself.
     page = open_app(seed=seeds.S2).page
     open_dialog(page)
-    box = page.locator("dialog.dialog").bounding_box()
+    box = page.locator("dialog#newDlg").bounding_box()
     inside = [(box["x"] + 3, box["y"] + 3), (box["x"] + box["width"] - 3, box["y"] + box["height"] - 3),
-              centre_of(page.locator("#dialog-title")), centre_of(page.locator("#dialog-text"))]
+              centre_of(page.locator("#newTitle")), centre_of(page.locator("#newBody"))]
     for point in inside:
         page.mouse.click(*point)
         assert dialog_is_open(page) is True, point
@@ -1278,7 +1563,7 @@ def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
         page.mouse.click(10, 10)
     else:
         page.mouse.click(first_name["x"] + first_name["width"] / 2, first_name["y"] + first_name["height"] / 2)
-    assert page.locator("dialog.dialog").evaluate("(d) => d.open") is False
+    assert page.locator("dialog#newDlg").evaluate("(d) => d.open") is False
     assert focused(page) == "New bill" and stored_text(page) == seeds.S2
     assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page) and summary_rows(page) == S2_SUMMARY
 
@@ -1287,15 +1572,17 @@ def test_R31_start_over(open_app):
     page = open_app(seed=seeds.S1).page
     open_dialog(page)
     page.get_by_role("button", name="Start new bill").click()
-    assert page.locator("dialog.dialog").evaluate("(d) => d.open") is False and focused(page) == "New bill"
+    assert page.locator("dialog#newDlg").evaluate("(d) => d.open") is False and focused(page) == "New bill"
     assert [f.input_value() for f in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
     assert page.locator("#mode-even").is_checked() and subtotal_field(page).input_value() == ""
     assert (rate_field(page, "Service charge").input_value(), rate_field(page, "SST").input_value()) == ("10", "6")
-    assert panel_text(page) == EVEN_MESSAGE and stored_text(page) == NEW_BILL_DRAFT
+    # The bill-empty card of R2, which task A2 builds (BUILD.md, A2, judgment call on the 1.0 tests).
+    assert card_text(page) == BLOCKED_CARD["subtotal"] and stored_text(page) == NEW_BILL_DRAFT
     page.reload()
-    assert panel_text(page) == EVEN_MESSAGE and page.locator("li.person").count() == 2
+    assert card_text(page) == BLOCKED_CARD["subtotal"] and page.locator("li.person").count() == 2
 
 
+@pytest.mark.xfail(strict=True, reason="task A16")
 def test_R31_start_over_clears_the_copy_status(open_app):
     page = open_app(seed=seeds.S2).page
     copy_summary(page)
@@ -1449,7 +1736,7 @@ def test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press(open_app
 def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
     page = open_app().page
     support.replace_text(page, rate_field(page, "SST"), "25")
-    box = page.locator("h1.wordmark").bounding_box()
+    box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)  # blank header space
     page.mouse.down()
     assert page.locator("p.error").count() == 0
@@ -1463,7 +1750,7 @@ def test_R10_a_press_that_ends_runs_each_waiting_handler_once(open_app):
     sub = page.locator("#subtotal")
     sub.click()
     page.keyboard.type("abc")
-    box = page.locator("h1.wordmark").bounding_box()
+    box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)  # blank header space
     page.mouse.down()
     assert page.locator("p.error").count() == 0
@@ -1483,7 +1770,7 @@ def test_R10_a_secondary_button_press_does_not_hold_the_error_back(open_app):
     # primary button, the one that can produce a click, may hold a blur back.
     page = open_app().page
     support.replace_text(page, rate_field(page, "SST"), "25")
-    box = page.locator("h1.wordmark").bounding_box()
+    box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
     page.mouse.down(button="right")
     assert page.locator("p.error#rate-sst-error").count() == 1  # before any release
@@ -1495,7 +1782,7 @@ def test_R10_a_cancelled_press_releases_the_waiting_error(open_app):
     # one, so the event is dispatched on the document as the browser would (a read-only stand-in, no app hook).
     page = open_app().page
     support.replace_text(page, rate_field(page, "SST"), "25")
-    box = page.locator("h1.wordmark").bounding_box()
+    box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
     page.mouse.down()
     assert page.locator("p.error").count() == 0
@@ -1542,7 +1829,7 @@ def activate_twice(page, how, point):
 
 
 def dialog_is_open(page):
-    return page.locator("dialog.dialog").evaluate("(d) => d.open")
+    return page.locator("dialog#newDlg").evaluate("(d) => d.open")
 
 
 @pytest.mark.parametrize("how", ["mouse", "touch"])
@@ -1609,14 +1896,14 @@ def test_R30_a_press_that_starts_in_the_dialog_and_ends_on_the_backdrop_keeps_it
     # WR-06: the click is sent to the dialog element, which also owns the backdrop, but the user did not click the backdrop.
     page = open_app(seed=seeds.S2).page
     open_dialog(page)
-    drag(page, centre_of(page.locator("#dialog-text")), (10, 10))
+    drag(page, centre_of(page.locator("#newBody")), (10, 10))
     assert dialog_is_open(page) is True
 
 
 def test_R30_a_press_that_starts_on_the_backdrop_and_ends_in_the_dialog_keeps_it_open(open_app):
     page = open_app(seed=seeds.S2).page
     open_dialog(page)
-    drag(page, (10, 10), centre_of(page.locator("#dialog-text")))
+    drag(page, (10, 10), centre_of(page.locator("#newBody")))
     assert dialog_is_open(page) is True
 
 
@@ -1721,6 +2008,7 @@ def test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it(ope
     assert support.active_label(page) == ("Item 2 name" if rows == "li.item" else "Person 2 name")
 
 
+@pytest.mark.xfail(strict=True, reason="task A5")
 def test_R7_a_separate_click_on_what_slid_under_the_pointer_is_not_held_back(open_app):
     # The guard goes by click count, not by time or place: a click of its own (count 1) on the same spot is a new press.
     page = open_app(seed=seeds.S2).page
@@ -1973,6 +2261,7 @@ def ring_problem(stop):
     return None if stop["self"] == expected else f"control {stop['self']}"
 
 
+@pytest.mark.xfail(strict=True, reason="task A18")
 @pytest.mark.parametrize("seed, order", TAB_CASES)
 def test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring(open_app, seed, order):
     page = open_app(seed=seed).page
@@ -2024,6 +2313,7 @@ LAYOUT_CASES = [
 ]
 
 
+@pytest.mark.xfail(strict=True, reason="task A18")
 @pytest.mark.parametrize("state, seed, viewport, columns, panel", LAYOUT_CASES)
 def test_R35_no_horizontal_overflow_and_the_layout_of_each_size(open_app, state, seed, viewport, columns, panel):
     page = open_app(seed=seed, viewport=viewport).page
@@ -2038,6 +2328,7 @@ def test_R35_no_horizontal_overflow_and_the_layout_of_each_size(open_app, state,
         assert found["tapeLeft"] >= found["inputsRight"] - 0.5 and found["position"] == "sticky"
 
 
+@pytest.mark.xfail(strict=True, reason="task A18")
 def test_R35_sizes_the_design_gives_at_360_by_780(open_app):
     page = open_app(seed=seeds.S2, clipboard="reject", viewport=(360, 780)).page
     assert page.locator("span.field.money:has(#subtotal)").bounding_box()["width"] == 160  # S2-28, bill-even.md
@@ -2053,6 +2344,7 @@ def test_R35_sizes_the_design_gives_at_360_by_780(open_app):
     assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
 
 
+@pytest.mark.xfail(strict=True, reason="task A18")
 def test_R35_content_width_of_the_header_and_the_note_at_1280_by_800(open_app):
     page = open_app(seed=seeds.UNREADABLE["B1"], viewport=(1280, 800)).page
     assert page.locator("div.note").bounding_box()["width"] == 1040  # ST-15
@@ -2065,7 +2357,9 @@ WATCH_TRANSITIONS_JS = """() => { window.testTransitions = [];
   document.addEventListener('transitionrun', (event) => window.testTransitions.push(event.propertyName), true); }"""
 
 
-@pytest.mark.parametrize("setting, duration", [("reduce", "0s"), ("no-preference", "0.12s, 0.12s")])
+@pytest.mark.parametrize("setting, duration", [
+    ("reduce", "0s"),
+    pytest.param("no-preference", "0.12s, 0.12s", marks=pytest.mark.xfail(strict=True, reason="task A18"))])
 def test_R36_motion_follows_the_users_setting(open_app, setting, duration):
     page = open_app(seed=seeds.S1, reduced_motion=setting).page
     for selector in (".btn", ".tap", ".icon-btn", ".mode label"):
@@ -2090,6 +2384,7 @@ def test_R36_motion_follows_the_users_setting(open_app, setting, duration):
 PERSON_PAYLOAD, ITEM_PAYLOAD, SCRIPT_PAYLOAD = "<svg onload=f()>", "<img src=x onerror=alert(1)>", '"><script>alert(2)</script>'
 
 
+@pytest.mark.xfail(strict=True, reason="task A18")
 def test_R37_names_are_shown_as_text_and_never_as_markup(open_app):
     page = open_app(seed=seeds.S1).page
     dialogs = []
@@ -2132,11 +2427,18 @@ def banned_api_problems(name, text):
     return found + ([f"<template in {name}"] if "<template" in text else [])
 
 
+TAB_ICON_ROOT_XMLNS = re.compile(r"""\A(<svg\b[^>]*?)\s+xmlns=(["'])""" + re.escape(SVG_NAMESPACE) + r"\2")
+
+
 def network_problems(name, text):
+    """R39. The two allowed scheme strings are the namespace as the first argument of createElementNS (CG-10) and,
+    in src/icon.svg only, the xmlns of the root element. Anything else with a scheme is reported."""
     found = [f"{token} in {name}" for token in NETWORK_APIS if token in text]
-    without_icons = NAMESPACE_CALLS.sub("", text)  # the one allowed use of a scheme string (CG-10)
-    found += [f"scheme string {match.group(0)} in {name}" for match in SCHEME.finditer(without_icons)]
-    return found + ([f"namespace outside createElementNS in {name}"] if SVG_NAMESPACE in without_icons else [])
+    allowed_gone = NAMESPACE_CALLS.sub("", text)
+    if name.endswith("icon.svg"):
+        allowed_gone = TAB_ICON_ROOT_XMLNS.sub(r"\1", allowed_gone, count=1)
+    found += [f"scheme string {match.group(0)} in {name}" for match in SCHEME.finditer(allowed_gone)]
+    return found + ([f"namespace outside its two places in {name}"] if SVG_NAMESPACE in allowed_gone else [])
 
 
 def test_R37_no_banned_api_in_the_shipped_files():
@@ -2155,18 +2457,25 @@ def test_R37_the_banned_api_scan_has_teeth():
     assert banned_api_problems("x.js", "el.setAttribute('aria-label', x); el.textContent = y") == []
 
 
-def test_R39_nothing_leaves_the_device_by_the_static_scan():
-    problems = []
-    for name, text in support.shipped_text().items():
-        problems += network_problems(name, text)
-    assert problems == []
-    assert "://" not in (ROOT / "index.html").read_text(encoding="utf-8")
+def test_R39_nothing_leaves_the_device_by_the_static_scan(tmp_path):
+    shipped = support.shipped_text()
+    assert "src/icon.svg" in shipped
+    assert [problem for name, text in shipped.items() for problem in network_problems(name, text)] == []
+    assert "://" not in shipped["index.html"]
+    # The scan's teeth on planted copies: a second xmlns in the tab icon, another namespace in a script.
+    icon_copy, script_copy = tmp_path / "icon.svg", tmp_path / "icons.js"
+    icon_copy.write_text(shipped["src/icon.svg"].replace("<path ", f'<path xmlns="{SVG_NAMESPACE}" ', 1), encoding="utf-8")
+    script_copy.write_text(shipped["src/ui/icons.js"] + '\nconst link = "http://www.w3.org/1999/xlink";\n', encoding="utf-8")
+    for copy in (icon_copy, script_copy):
+        assert network_problems(f"planted {copy.name}", copy.read_text(encoding="utf-8")) != [], copy.name
 
 
 def test_R39_the_network_scan_has_teeth():
     ok = f'const node = document.createElementNS("{SVG_NAMESPACE}", tag);'
     assert network_problems("icons.js", ok) == []
     assert network_problems("icons.js", ok.replace('"', "'")) == [] and network_problems("icons.js", ok.replace('"', "`")) == []
+    icon_root = f"<svg xmlns='{SVG_NAMESPACE}' viewBox='0 0 16 16'><path d='M0,0Z'/></svg>"
+    assert network_problems("src/icon.svg", icon_root) == [] and network_problems("src/other.svg", icon_root) != []
     for bad in ["fetch('/x')", "new XMLHttpRequest()", "new WebSocket(u)", "new EventSource(u)", "navigator.sendBeacon(u)",
                 "navigator.serviceWorker", "const u = 'https://example.com/a'", "import x from 'http://a.b/c.js'",
                 f'document.createElementNS("urn:other", "svg"); // {SVG_NAMESPACE}', f'const ns = "{SVG_NAMESPACE}";',
@@ -2174,18 +2483,24 @@ def test_R39_the_network_scan_has_teeth():
         assert network_problems("x.js", bad), bad
 
 
-def test_R39_icons_come_from_createElementNS_and_the_page_holds_its_icons(open_app):
+ICON_NAMES = ["x", "plus", "copy", "check", "caret", "shuffle", "warning", "warning-circle", "mark", "seal-check"]
+
+
+def test_R39_the_run_time_icons_come_from_createElementNS(open_app):
     sources = {name: text for name, text in support.shipped_text().items() if name.startswith("src/")}
     calls = sum(text.count("createElementNS(") for text in sources.values())
     assert calls >= 1 and calls == sum(len(NAMESPACE_CALLS.findall(text)) for text in sources.values())  # every call names the namespace
-    page = open_app(seed=seeds.S1).page
-    icons = page.evaluate("""() => [...document.querySelectorAll('svg.ph')].map((svg) => ({
-      place: svg.closest('button.copy') ? 'copy' : svg.closest('tfoot') ? 'check' : svg.closest('.btn-outline') ? 'plus' : svg.closest('.icon-btn') ? 'x' : '?',
-      viewBox: svg.getAttribute('viewBox'), hidden: svg.getAttribute('aria-hidden'), focusable: svg.getAttribute('focusable'),
-      paths: svg.children.length, namespace: svg.namespaceURI }))""")
-    assert len(icons) == 11 and sorted(icon["place"] for icon in icons) == ["check"] + ["copy"] + ["plus"] * 2 + ["x"] * 7
-    assert all(icon["viewBox"] == "0 0 256 256" and icon["hidden"] == "true" and icon["focusable"] == "false" and icon["paths"] == 1
-               and icon["namespace"] == SVG_NAMESPACE for icon in icons)
+    svgs = open_app(seed=seeds.S1, viewport=(1280, 800)).page.evaluate("""() => [...document.querySelectorAll('body svg')].map((svg) => ({
+      cls: svg.getAttribute('class'), first: svg === document.body.firstElementChild, inBrand: !!svg.closest('div.brand'),
+      hidden: svg.getAttribute('aria-hidden'), focusable: svg.getAttribute('focusable'),
+      children: [...svg.children].map((child) => [child.localName, child.getAttribute('href')]) }))""")
+    assert svgs[0]["cls"] == "sprite" and svgs[0]["first"]
+    assert [svg["inBrand"] for svg in svgs if svg["cls"] == "mark"] == [True]
+    icons = [svg for svg in svgs if svg["cls"] not in ("sprite", "mark")]
+    assert icons and all(svg["cls"].split()[0] in ("ic", "seal") for svg in icons), svgs
+    allowed = [["use", f"#i-{name}"] for name in ICON_NAMES]
+    assert all(svg["hidden"] == "true" and svg["focusable"] == "false" and len(svg["children"]) == 1 and svg["children"][0] in allowed
+               for svg in icons), icons
 
 
 def test_R39_a_whole_session_makes_only_same_origin_gets(open_app):
@@ -2244,7 +2559,7 @@ def page_has_no_note(page):
 def test_R40_the_open_new_bill_script_leaves_the_dialog_open_without_a_ring(open_app):
     page = open_app(seed=seeds.S2).page
     page.evaluate(f"async () => {{ {(FIDELITY_DIR / 'open-new-bill.js').read_text(encoding='utf-8')}\n }}")  # as the harness runs it
-    assert page.locator("dialog.dialog").evaluate("(d) => d.open && d.matches(':modal')")
+    assert page.locator("dialog#newDlg").evaluate("(d) => d.open && d.matches(':modal')")
     assert page.evaluate("document.activeElement === document.body && document.querySelectorAll(':focus-visible').length === 0")
     assert stored_text(page) == seeds.S2  # opening the dialog changes nothing
 

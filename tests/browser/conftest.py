@@ -17,11 +17,13 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 import pytest
+from playwright.sync_api import Error as PlaywrightError
 from playwright.sync_api import sync_playwright
 
 import rig
 
 EVIDENCE_ROOT = rig.ROOT / "docs" / "modules" / "split-app" / "qa" / "functional"
+CSP_LISTENER = (Path(__file__).resolve().parent / "csp" / "listener.js").read_text(encoding="utf-8")
 _evidence = {"dir": None, "engine": rig.DEFAULT_ENGINE, "browser_version": None, "lines": [], "skips": []}
 
 
@@ -129,10 +131,21 @@ class Session:
         files = {self.prefix + "/", self.prefix + "/src/system.css", "/favicon.ico"}
         return method == "GET" and own and (path in files or path.startswith(self.prefix + "/src/"))
 
+    def csp_violations(self):
+        """What csp/listener.js recorded in every page still open (R38). A page that is closing reports nothing."""
+        found = []
+        for page in self.context.pages:
+            try:
+                found += page.evaluate("() => window.testCspViolations || []")
+            except PlaywrightError:
+                pass
+        return found
+
     def problems(self):
         found = [f"console {kind}: {text}" for kind, text in self.console
                  if kind == "error" or "Content Security Policy" in text]
         found += [f"page error: {error}" for error in self.page_errors]
+        found += [f"csp violation: {violation}" for violation in self.csp_violations()]
         found += [f"request: {method} {url}" for method, url in self.requests
                   if not self.request_is_allowed(method, url)]
         return found
@@ -164,21 +177,23 @@ def browser(engine):
 @pytest.fixture
 def open_app(server, browser, request):
     """open_app(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion=None, init_scripts=(),
-    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False) -> Session"""
+    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="light") -> Session
+
+    Every context also gets csp/listener.js, so a policy violation fails the scenario in either engine (R38)."""
     sessions = []
 
     def factory(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion=None, init_scripts=(),
-                path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False):
+                path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="light"):
         target = base_server or server
         options = {"viewport": {"width": viewport[0], "height": viewport[1]},
-                   "device_scale_factor": 1, "color_scheme": "light"}
+                   "device_scale_factor": 1, "color_scheme": color_scheme}
         if reduced_motion:
             options["reduced_motion"] = reduced_motion
         if touch:  # page.touchscreen.tap needs a context that has touch (RD-3)
             options["has_touch"] = True
         if seed is not None:
             options["storage_state"] = rig.storage_state(target.base, seed)
-        context = rig.new_context(browser, clipboard=clipboard, init_scripts=init_scripts, **options)
+        context = rig.new_context(browser, clipboard=clipboard, init_scripts=(CSP_LISTENER, *init_scripts), **options)
         session = Session(context, target.base, prefix)
         session.allow_problems = allow_problems
         sessions.append(session)
@@ -198,6 +213,12 @@ def open_app(server, browser, request):
         session.context.close()
     if not failed and leftovers:
         pytest.fail("browser problems: " + "; ".join(leftovers), pytrace=False)
+
+
+@pytest.fixture
+def evidence_folder():
+    """The run's evidence folder, for a scenario that records what it measured as information (R45 in WebKit)."""
+    return evidence_dir()
 
 
 @pytest.fixture

@@ -6,7 +6,7 @@
 import { swallowRepeatClicks } from "./dom.js";
 
 export function createDialog(dialog, opener, { onConfirm }) {
-  const [start, cancel] = dialog.querySelectorAll(".dialog-actions .btn");
+  const [start, cancel] = dialog.querySelectorAll(".acts .btn");
   // Closing with a click arms the guard of dom.js, because the rest of a double click or double tap would land on
   // whatever is drawn under the pointer once the dialog is gone (R30: Cancel changes nothing). A cancelled press
   // also keeps focus on New bill.

@@ -8,6 +8,14 @@ never loaded by index.html.
 # The panel of a new bill: only the Shares heading and the message (S3, bill-empty).
 EVEN_MESSAGE = "Shares\nEnter the subtotal to see the shares."
 
+# What the v1.1.0 card reads for a blocked result, by the result's reason (spec R17, qa.md "the card reads").
+BLOCKED_CARD = {
+    "rates": "Total Check the charges to see the splits.",
+    "subtotal": "Total Enter the subtotal to see the splits.",
+    "no-prices": "Total Add each item and tap who had it to see the splits.",
+    "prices": "Total Give every item a price to see the splits.",
+}
+
 # S1: Aisyah, Ben and Chen, By item, four items and who had them.
 S1_ITEMS = [("Nasi lemak ayam", "15.90", ["Aisyah"]), ("Char kuey teow", "13.50", ["Ben"]),
             ("Mee goreng mamak", "12.00", ["Chen"]), ("Satay, 10 sticks", "18.00", ["Aisyah", "Chen"])]

@@ -15,7 +15,10 @@ import { createMode } from "./ui/mode.js";
 import { createSubtotal } from "./ui/subtotal.js";
 import { createItems } from "./ui/items.js";
 import { createCharges } from "./ui/charges.js";
+import { icon } from "./ui/icons.js";
 import { createPanel, hasShares } from "./ui/panel.js";
+import { blockedReceipt } from "./ui/receipt.js";
+import { reconcileChildren } from "./ui/dom.js";
 
 // Boot (R2, R26 to R28). A cold boot is a new bill and writes nothing. A readable draft is shown as it was.
 // An unreadable one starts a new bill, saves it at once so a reload does not show the note again, and shows the note.
@@ -112,8 +115,14 @@ const items = createItems({
   },
 });
 const charges = createCharges({ onInput: (kind, text) => amountTyped(kind, text), onLeave: (kind, text) => amountLeft(kind, text) });
-const panel = createPanel(document.querySelector(".tape"), { onCopy: copySummary });
-createDialog(document.querySelector("dialog"), document.querySelector(".bar .btn"), {
+// The shell's static buttons get their icons here, because every icon but the sprite and the mark is built at run time (R44).
+const newBillButton = document.getElementById("newBill");
+newBillButton.prepend(icon("plus"));
+document.getElementById("splitsBtn").append(icon("caret", "caret-up"));
+document.getElementById("stripCopy").prepend(icon("copy"));
+const receipt = document.getElementById("rbody");
+const panel = createPanel(receipt, { onCopy: copySummary });
+createDialog(document.getElementById("newDlg"), newBillButton, {
   onConfirm() {
     // The view state is reset with the bill (R31): a stale error flag or copy status must not outlive it.
     view.errorShown = newErrorFlags();
@@ -121,23 +130,25 @@ createDialog(document.querySelector("dialog"), document.querySelector(".bar .btn
     commit(newBill());
   },
 });
-const note = createNote(document.querySelector(".bar"), {
+const note = createNote(document.querySelector("header.top"), {
   onDismiss() {
     view.noteShown = false;
     render();
     people.focusName(0);
   },
 });
-document.querySelector(".inputs").append(people.el, mode.el, subtotal.el, items.el, charges.el);
+document.getElementById("work").append(people.el, mode.el, subtotal.el, items.el, charges.el);
 
 function render() {
   const errors = visibleErrors(view.errorShown, bill);
+  const result = computeResult(bill);
   people.update(bill);
   mode.update(bill);
   subtotal.update(bill, errors);
   items.update(bill, errors);
   charges.update(bill, errors);
-  panel.update(computeResult(bill), view.status);
+  if (result.kind === "blocked") reconcileChildren(receipt, blockedReceipt(result.reason));
+  else panel.update(result, view.status);
   note.update(view.noteShown);
 }
 
