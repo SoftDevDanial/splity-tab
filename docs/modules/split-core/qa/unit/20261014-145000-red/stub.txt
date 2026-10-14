@@ -1,0 +1,15 @@
+Throwaway edits for the RED runs only. Never committed. Each was reverted with an Edit after its run.
+
+Stub A (run 1), first line of withSpare in src/core/spare.js:
+  if (bill) { bill.spare = spare; return bill; }
+
+Stub B (run 2), replaces stub A:
+  if (bill) return { ...bill, spare };
+
+Stub C (run 3), in drawOrder of src/core/spare.js:
+  const j = Math.floor((random ?? Math.random)() * (i + 1));
+Stub C2 (run 3), replaces stub C:
+  const j = Math.floor(random() * (i + 1)) + 0 * Math.random();
+
+Stub D (run 4), in record() of tests/hygiene.test.js:
+  if (fromCore && label !== "Math.random") hits.push(label);

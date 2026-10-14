@@ -426,6 +426,39 @@ test("@R25 runtime trap: every trap fires for core code and not for test code (n
   assert.deepEqual(await trapped(async () => { void globalThis.performance; Math.random(); }), []);
 });
 
+// spare.js is the one core file whose job is a random draw, so it is the file a Math.random is most likely to
+// creep into (R25, R29, R31 take the source as an argument). Two plants, served in memory, none written to disk.
+const MATH_RANDOM_PLANTS = {
+  loadTime: "void Math.random();",
+  // Function declarations are mutable bindings, so this swaps the real draw for one that reads Math.random,
+  // and only a run of the export reaches it (the workload case, not the load case).
+  runTime: "drawOrder = (bill) => { Math.random(); return bill.people.map((person) => person.id); };",
+};
+const SPARE_CALLER_BILL = {
+  mode: "even", people: [{ id: "p1", name: "A" }, { id: "p2", name: "B" }, { id: "p3", name: "C" }], subtotalText: "",
+  items: [], serviceText: "10", sstText: "6", spare: { rule: "top" }, nextId: 4,
+};
+
+test("@R25 a Math.random planted in spare.js is caught by the scan (negative control)", () => {
+  const spareSource = sources.find(([name]) => name === "spare.js")[1];
+  for (const plant of Object.values(MATH_RANDOM_PLANTS)) {
+    assert.deepEqual(bannedNamesIn(`${spareSource}\n${plant}\n`), ["Math\\.random"]);
+  }
+  assert.deepEqual(bannedNamesIn(spareSource), []);
+});
+
+test("@R25 a Math.random planted in spare.js is caught by the runtime trap at load and when an export runs (negative control)", async () => {
+  const loaded = await trapped(() => importPlanted("spare.js", MATH_RANDOM_PLANTS.loadTime));
+  assert.ok(loaded.includes("Math.random"), JSON.stringify(loaded));
+  const drawWith = async (plant) => trapped(async () => {
+    const spare = await importPlanted("spare.js", plant);
+    spare.chooseSpareRule(SPARE_CALLER_BILL, "random", () => 0.5);
+  });
+  assert.ok((await drawWith(MATH_RANDOM_PLANTS.runTime)).includes("Math.random"));
+  // The same call on the real file is clean, so the hit above comes from the plant and not from the call.
+  assert.deepEqual(await drawWith("void 0;"), []);
+});
+
 // The negative control above builds its cases from the same three arrays, so a trap deleted from an array
 // would take its own control with it and the suite would stay green. This pin names every trap, so deleting
 // one is red. Adding or removing a trap is a deliberate edit of the pin too.

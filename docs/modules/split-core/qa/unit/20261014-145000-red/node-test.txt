@@ -1,0 +1,34 @@
+RED-first run for task C6 (R16, R25), 2026-10-14, split-core builder.
+Commands: node --test tests/bill.test.js, node --test tests/hygiene.test.js
+Condensed to the failing test names and the counts. Passing lines left out. spare.js (built in C5) was edited with a
+throwaway stub per run (see stub.txt) and restored after each run. Nothing here was committed.
+
+=== Run 1, stub A: withSpare writes into the bill it is given and returns it ===
+tests/bill.test.js: tests 67, pass 60, fail 7
+FAIL @R16 no action mutates a deep-frozen bill and changes return new objects        (frozen bill, TypeError)
+FAIL @R16 @R31 pickAgain and the spare choices leave a deep-frozen bill alone and return a new bill
+FAIL @R16 chooseSpareRule one / random / top, chooseSparePerson, pickAgain on a parsed bill builds the bill and the
+     spare choice from known fields      (5 cases, the returned bill is the input)
+
+=== Run 2, stub B: withSpare spreads the whole bill, { ...bill, spare } ===
+tests/bill.test.js: tests 67, pass 62, fail 5
+FAIL the same 5 "on a parsed bill builds the bill and the spare choice from known fields" cases
+     (the bill keeps its stray key, "extra", and an own "__proto__" key)
+The two deep-frozen cases pass against stub B on purpose, a spread copy does not write to its input.
+
+=== Run 3, stub C2: drawOrder also calls Math.random() ===
+tests/hygiene.test.js: tests 49. Stub C (a "random ?? Math.random" default) pass 36, fail 13. Stub C2 pass 34, fail 15.
+FAIL @R25 spare.js uses no banned name                                      (the scan)
+FAIL @R25 runtime trap: the core touches no banned global or method ...      (stub C2 only, see below)
+FAIL @R25 a Math.random planted in spare.js is caught by the scan / by the runtime trap (the controls assert the real
+     spare.js is clean, so they go red too)
+FAIL the CODE_PLANTS cases for spare.js (a file that already holds Math.random reads as two names)
+Stub C ("random ?? Math.random") was red in the scan only. The workload passes a source, so `??` never evaluates
+Math.random and the trap, which sees only a path the workload runs, stayed green (the limit spec R25 states).
+Stub C2 calls Math.random() on every draw, and the runtime trap went red as well.
+
+=== Run 4, stub D: the trap's record() ignores the Math.random label (a blind trap) ===
+tests/hygiene.test.js: tests 49, pass 47, fail 2
+FAIL @R25 a Math.random planted in spare.js is caught by the runtime trap at load and when an export runs (negative control)
+FAIL @R25 runtime trap: every trap fires for core code and not for test code (negative control)
+So the new control cannot pass with a trap that is blind to Math.random.

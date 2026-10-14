@@ -5,8 +5,12 @@ import {
   setServiceText, setSstText, addItem, removeItem, setItemName, setItemPriceText,
   toggleItemPerson, personLabel, itemLabel, sparePeople,
 } from "../src/core/bill.js";
+import { chooseSpareRule, chooseSparePerson, pickAgain } from "../src/core/spare.js";
 import { S1, S2, I2, I3, D2, MAX_E, MAX_I, deepFreeze, withSpare } from "./support/bills.js";
+import { scripted, constant } from "./support/rng.js";
 
+// A random source for the cases that must not draw: it throws if the code under test asks it for a number.
+const never = scripted();
 const BILL_KEYS = ["mode", "people", "subtotalText", "items", "serviceText", "sstText", "spare", "nextId"];
 
 test("@R10 a new bill has two people, even mode, the default rates and Top of the list", () => {
@@ -231,6 +235,9 @@ test("@R16 no action mutates a deep-frozen bill and changes return new objects",
     () => setServiceText(frozen, "1"),
     () => setSstText(frozen, "1"),
     () => setMode(frozen, "even"),
+    () => chooseSpareRule(frozen, "one", never),
+    () => chooseSpareRule(frozen, "random", constant(0)),
+    () => chooseSparePerson(frozen, "p2"),
   ];
   for (const apply of changing) {
     const result = apply();
@@ -238,6 +245,17 @@ test("@R16 no action mutates a deep-frozen bill and changes return new objects",
     assert.deepEqual(Object.keys(result), BILL_KEYS);
   }
   assert.deepEqual(frozen, S1);
+});
+
+test("@R16 @R31 pickAgain and the spare choices leave a deep-frozen bill alone and return a new bill", () => {
+  const frozen = withSpare(S2, { rule: "random", order: ["p2", "p3", "p1"] });
+  const again = pickAgain(frozen, scripted(0.9, 0.9));
+  assert.notEqual(again, frozen);
+  assert.deepEqual(Object.keys(again), BILL_KEYS);
+  assert.deepEqual(frozen.spare, { rule: "random", order: ["p2", "p3", "p1"] });
+  assert.deepEqual(chooseSpareRule(frozen, "top", never).spare, { rule: "top" });
+  assert.deepEqual(chooseSparePerson(frozen, "p3").spare, { rule: "one", personId: "p3" });
+  assert.deepEqual(frozen, withSpare(S2, { rule: "random", order: ["p2", "p3", "p1"] }));
 });
 
 // A bill as JSON.parse returns it: stray keys on the bill, on a person and on an item, and own
@@ -293,6 +311,33 @@ for (const [title, act, spare, keys] of spareRebuilds) {
     const next = act(parsedWithSpare(spare));
     assert.deepEqual(Object.keys(next.spare), keys);
     assert.equal(Object.hasOwn(next.spare, "__proto__"), false);
+    assert.equal({}.polluted, undefined);
+  });
+}
+
+// The three choice actions (spare.js) build the new Bill and its spare choice from known fields too. pickAgain
+// needs shares to compare, so its parsed bill has a subtotal.
+const chooseOnParsed = [
+  ["chooseSpareRule one", (b) => chooseSpareRule(b, "one", never), "top"],
+  ["chooseSpareRule random", (b) => chooseSpareRule(b, "random", constant(0)), "top"],
+  ["chooseSpareRule top", (b) => chooseSpareRule(b, "top", never), "one"],
+  ["chooseSparePerson", (b) => chooseSparePerson(b, "p2"), "top"],
+  ["pickAgain", (b) => pickAgain({ ...b, subtotalText: "100.00" }, scripted(0.5, 0.9)), "random"],
+];
+const PARSED_SPARE = {
+  top: '{"rule":"top"}',
+  one: `{"rule":"one","personId":"p1",${STRAY}}`,
+  random: `{"rule":"random","order":["p1","p2","p3"],${STRAY}}`,
+};
+for (const [title, act, before] of chooseOnParsed) {
+  test(`@R16 ${title} on a parsed bill builds the bill and the spare choice from known fields`, () => {
+    const parsed = parsedWithSpare(PARSED_SPARE[before]);
+    const next = act(parsed);
+    assert.notEqual(next, parsed);
+    assert.deepEqual(Object.keys(next), BILL_KEYS);
+    assert.equal(Object.hasOwn(next, "__proto__"), false);
+    assert.equal(Object.hasOwn(next.spare, "__proto__"), false);
+    assert.equal(Object.hasOwn(next.spare, "stray"), false);
     assert.equal({}.polluted, undefined);
   });
 }
