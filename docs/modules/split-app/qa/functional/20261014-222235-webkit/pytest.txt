@@ -1,0 +1,16 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R4_person_rows_carry_their_names_and_labels (0.59s)
+FAILED   call     test_app.py::test_R4_a_blank_name_falls_back_to_its_position_everywhere_but_the_field (0.67s)
+FAILED   call     test_app.py::test_R5_renaming_a_person_updates_every_place_on_each_keystroke (0.64s)
+FAILED   call     test_app.py::test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills (0.74s)
+FAILED   call     test_app.py::test_R6_add_person_until_the_limit (0.22s)
+FAILED   call     test_app.py::test_R6_removing_anyone_from_twelve_turns_add_person_back_on (0.53s)
+PASSED   call     test_app.py::test_R34_focus_after_adding_or_removing_a_person[cold-boot-add-person] (0.37s)
+PASSED   call     test_app.py::test_R34_focus_after_adding_or_removing_a_person[K1-remove-Ben] (0.67s)
+PASSED   call     test_app.py::test_R34_focus_after_adding_or_removing_a_person[K1-remove-Chen] (0.62s)
+PASSED   call     test_app.py::test_R33_typing_in_a_person_name_keeps_focus_and_caret (0.69s)
+FAILED   call     test_app.py::test_R7_removing_a_person_takes_them_off_every_item (0.68s)
+FAILED   call     test_app.py::test_R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip (0.60s)
+PASSED   call     test_app.py::test_R7_a_separate_click_on_the_same_point_is_a_press_of_its_own (0.72s)
+FAILED   call     test_app.py::test_R57_a_slow_second_tap_and_a_quick_tap_elsewhere_change_the_draft_as_two_presses (1.62s)
+exit status 1

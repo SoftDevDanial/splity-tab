@@ -1,0 +1,4 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[person-2-of-5-mouse] (0.73s)
+FAILED   call     test_app.py::test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[person-2-of-5-touch] (0.67s)
+exit status 1

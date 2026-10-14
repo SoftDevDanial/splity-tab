@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="5" time="4.672" timestamp="2026-10-14T22:25:54.690188+08:00" hostname="{host}"><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_a_person[cold-boot-add-person]" time="1.569"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 3 name'&#10;  &#10;  - Person 3 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 3 name'
+      
+      - Person 3 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_a_person[K1-remove-Ben]" time="0.677"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'
+      
+      - Person 2 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_a_person[K1-remove-Chen]" time="0.615"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'
+      
+      - Person 2 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R33_typing_in_a_person_name_keeps_focus_and_caret" time="0.693"><failure message="assert [False, 1] == [True, 1]&#10;  &#10;  At index 0 diff: False != True&#10;  Use -v to get more diff">E   assert [False, 1] == [True, 1]
+      
+      At index 0 diff: False != True
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R7_a_separate_click_on_the_same_point_is_a_press_of_its_own" time="0.745"><failure message="AssertionError: assert {'presses': [...'clicks': [1]} == {'presses': [...icks': [1, 1]}&#10;  &#10;  Differing items:&#10;  {'clicks': [1]} != {'clicks': [1, 1]}&#10;  {'presses': [1]} != {'presses': [1, 1]}&#10;  Use -v to get more diff">E   AssertionError: assert {'presses': [...'clicks': [1]} == {'presses': [...icks': [1, 1]}
+      
+      Differing items:
+      {'clicks': [1]} != {'clicks': [1, 1]}
+      {'presses': [1]} != {'presses': [1, 1]}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

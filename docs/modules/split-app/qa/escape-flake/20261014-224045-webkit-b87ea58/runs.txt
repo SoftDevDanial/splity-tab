@@ -1,0 +1,44 @@
+tree 7dac4de (task A4, before A5), from git archive 7dac4de extracted into the session scratch folder and run there. This file is the copy of that run's runs.txt.
+node tests/browser/test_app.py::test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]
+engine webkit, 10 runs
+run 1: exit 1
+    =========================== short test summary info ===========================
+    FAILED tests\browser\test_app.py::test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]
+    1 failed in 2.34s
+run 2: exit 1
+    =========================== short test summary info ===========================
+    FAILED tests\browser\test_app.py::test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]
+    1 failed in 2.09s
+run 3: exit 0
+                                                                             [100%]
+    engine webkit, browser version 26.5, skipped 0
+    1 passed in 2.03s
+run 4: exit 0
+                                                                             [100%]
+    engine webkit, browser version 26.5, skipped 0
+    1 passed in 1.98s
+run 5: exit 0
+                                                                             [100%]
+    engine webkit, browser version 26.5, skipped 0
+    1 passed in 2.10s
+run 6: exit 0
+                                                                             [100%]
+    engine webkit, browser version 26.5, skipped 0
+    1 passed in 1.95s
+run 7: exit 0
+                                                                             [100%]
+    engine webkit, browser version 26.5, skipped 0
+    1 passed in 1.98s
+run 8: exit 0
+                                                                             [100%]
+    engine webkit, browser version 26.5, skipped 0
+    1 passed in 1.97s
+run 9: exit 0
+                                                                             [100%]
+    engine webkit, browser version 26.5, skipped 0
+    1 passed in 1.97s
+run 10: exit 0
+                                                                             [100%]
+    engine webkit, browser version 26.5, skipped 0
+    1 passed in 1.96s
+passed 8, failed 2

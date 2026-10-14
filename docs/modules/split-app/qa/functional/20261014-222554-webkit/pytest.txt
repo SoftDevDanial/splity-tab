@@ -1,0 +1,7 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R34_focus_after_adding_or_removing_a_person[cold-boot-add-person] (0.43s)
+FAILED   call     test_app.py::test_R34_focus_after_adding_or_removing_a_person[K1-remove-Ben] (0.64s)
+FAILED   call     test_app.py::test_R34_focus_after_adding_or_removing_a_person[K1-remove-Chen] (0.58s)
+FAILED   call     test_app.py::test_R33_typing_in_a_person_name_keeps_focus_and_caret (0.66s)
+FAILED   call     test_app.py::test_R7_a_separate_click_on_the_same_point_is_a_press_of_its_own (0.68s)
+exit status 1

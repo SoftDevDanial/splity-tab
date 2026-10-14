@@ -519,76 +519,167 @@ def remove_button(page, label):
     return page.get_by_role("button", name=f"Remove {label}", exact=True)
 
 
+# v1.1.0 task A5. What the People content shows (R4, R6, R7), read in one pass, so a part that is not built yet fails on
+# the assertion that names it and never on a wait. An icon reads as "class href".
+PEOPLE_JS = """() => {
+  const list = document.querySelector('ul.people#peopleList'), add = document.querySelector('#addPerson');
+  const icons = (node) => [...node.querySelectorAll('svg')].map((svg) => `${svg.getAttribute('class')} ${svg.querySelector('use')?.getAttribute('href')}`);
+  return {
+    list: list && { labelledBy: list.getAttribute('aria-labelledby'), rows: [...list.children].map((li) => {
+      const input = li.querySelector('input'), remove = li.querySelector('button');
+      return { li: `${li.localName}.${li.className}`, value: input ? input.value : null,
+        input: input && ['type', 'aria-label', 'placeholder', 'maxlength', 'autocomplete'].map((name) => input.getAttribute(name)),
+        remove: remove && [remove.className, remove.getAttribute('aria-label'), remove.disabled, ...icons(remove)] };
+    }) },
+    add: add && [add.className, add.disabled, add.textContent.trim(), ...icons(add)],
+  };
+}"""
+GOLDEN_LOOK = ["lineHeight", "cursor"]  # qa.md "Equal to the golden" adds line-height to the specimen list, the rows add cursor
+
+
+def people_shown(page):
+    """{ list: { labelledBy, rows } or None, add: Add person or None }, as PEOPLE_JS reads them."""
+    return page.evaluate(PEOPLE_JS)
+
+
+def person_rows(page):
+    """The rows of ul.people#peopleList, or None when the page has no such list."""
+    shown = people_shown(page)["list"]
+    return shown and shown["rows"]
+
+
+def person_row(number, value, name, disabled=False):
+    """A row as spec R4 writes it, at 1-based `number`, holding `value`, its Remove named for `name`."""
+    return {"li": "li.field person", "value": value,
+            "input": ["text", f"Person {number} name", f"Person {number}", "20", "off"],
+            "remove": ["icon-btn", f"Remove {name}", disabled, "ic #i-x"]}
+
+
+def add_person_shown(disabled=False):
+    """#addPerson as spec R6 writes it."""
+    return ["btn btn-ghost", disabled, "Add person", "ic #i-plus"]
+
+
 def test_R4_person_rows_carry_their_names_and_labels(open_app):
-    page = open_app().page
-    three_people(page)
-    for number, name in enumerate(["Aisyah", "Ben", "Chen"], start=1):
-        field = person_field(page, number)
-        assert field.input_value() == name
-        assert [field.get_attribute(a) for a in ("placeholder", "maxlength", "autocomplete", "type")] == [
-            f"Person {number}", "20", "off", "text"]
-        assert remove_button(page, name).is_enabled()
+    # [v1.1.0] ul.people#peopleList, and the X icon through the sprite.
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
+    assert people_shown(page)["list"] == {"labelledBy": "peopleH", "rows": [
+        person_row(1, "Aisyah", "Aisyah"), person_row(2, "Ben", "Ben"), person_row(3, "Chen", "Chen")]}
 
 
-def test_R4_a_blank_name_falls_back_to_its_position_but_not_in_the_field(open_app):
-    page = open_app().page
-    three_people(page)
+def test_R4_a_blank_name_falls_back_to_its_position_everywhere_but_the_field(open_app):
+    # [v1.1.0] K1, and the People summary shows the fallback too. The card's splits row is task A9's (until then the 1.0
+    # form, test_R5_a_blank_name_reads_as_its_position_in_the_shares_row).
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
     support.replace_text(page, person_field(page, 2), "")
-    assert person_field(page, 2).input_value() == ""
-    assert person_field(page, 2).get_attribute("placeholder") == "Person 2"
-    assert remove_button(page, "Person 2").count() == 1
-    support.replace_text(page, person_field(page, 2), "   ")  # spaces only count as blank (PD-2)
-    assert person_field(page, 2).input_value() == "   " and remove_button(page, "Person 2").count() == 1
+    rows = person_rows(page)
+    assert rows is not None, "no ul.people#peopleList"
+    assert rows[1] == person_row(2, "", "Person 2")
+    for name, _, _ in S1_ITEMS:
+        assert who_group(page, name).get_by_role("button").all_inner_texts() == ["Aisyah", "Person 2", "Chen"]
+    page.locator("#peopleBtn").click()
+    assert visible_text(page, "#peopleSum") == "Aisyah, Person 2, Chen"
+    open_people_first(page)
+    support.replace_text(page, person_field(page, 2), "   ")  # spaces only count as blank (PD-2 of 1.0)
+    assert person_rows(page)[1] == person_row(2, "   ", "Person 2")
 
 
-def test_R5_renaming_a_person_updates_the_remove_name_on_each_keystroke(open_app):
-    page = open_app().page
-    three_people(page)
+# After each key of a rename of the third person: their toggle in every item, their Remove name, the People summary.
+RENAME_READS_JS = """() => ({
+  toggles: [...document.querySelectorAll('li.item')].map((item) => item.querySelectorAll('button.tap')[2]?.textContent.trim() ?? null),
+  remove: document.querySelectorAll('ul.people#peopleList > li')[2]?.querySelector('button')?.getAttribute('aria-label') ?? null,
+  summary: document.querySelector('#peopleSum span.sec-txt')?.textContent ?? null,
+})"""
+
+
+def rename_chen_to_chen_wei(page, watch=None):
+    """qa.md: click the end of "Person 3 name" and type " Wei", calling `watch(label so far)` after each key."""
     person_field(page, 3).click()
     page.keyboard.press("End")
     typed = "Chen"
     for key in " Wei":
         page.keyboard.type(key)
         typed += key
-        assert remove_button(page, typed.strip()).count() == 1
+        if watch:
+            watch(typed.strip())
+
+
+def test_R5_renaming_a_person_updates_every_place_on_each_keystroke(open_app):
+    # [v1.1.0] K1. The toggles, the Remove name and the People summary here. The card's splits row is task A9's (until
+    # then the 1.0 form, test_R5_a_person_label_follows_the_name_into_every_toggle and the shares table tests), and the
+    # sheet, the copy and the pills are the next test's.
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
+
+    def every_place_reads(label):
+        assert page.evaluate(RENAME_READS_JS) == {"toggles": [label] * 4, "remove": f"Remove {label}",
+                                                  "summary": f"Aisyah, Ben, {label}"}
+
+    rename_chen_to_chen_wei(page, every_place_reads)
     assert person_field(page, 3).input_value() == "Chen Wei"
 
 
-@pytest.mark.xfail(strict=True, reason="task A5")
+@pytest.mark.xfail(strict=True, reason="task A14")
+def test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills(open_app):
+    # The rest of qa.md "Renaming a person updates every place on each keystroke". The sheet is task A12's, its Copy
+    # summary A10 and A12, the spare chip in it A13 and the pills A14. Each read fails on its assertion, never on a wait.
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
+    rename_chen_to_chen_wei(page)
+    page.locator("#splitsBtn").click()
+    names = page.evaluate("() => [...document.querySelectorAll('#splitsDlg ul.r-splits > li > span.nm')].map((el) => el.textContent)")
+    assert names == ["Aisyah", "Ben", "Chen Wei"], names
+    page.locator("#splitsDlg .r-copy").click()
+    assert page.evaluate("window.testClipboardText").splitlines()[4] == "Chen Wei RM 24.48"
+    page.locator(SHEET_SPARE_CHIP).click()
+    page.locator("#spareDlg label.choice", has_text="One person").click()
+    pills = page.evaluate("() => [...document.querySelectorAll('#pickList label.pill .pill-face')].map((el) => el.textContent.trim())")
+    assert pills == ["Aisyah", "Ben", "Chen Wei"], pills
+
+
 def test_R6_add_person_until_the_limit(open_app, plain_context):
+    # [v1.1.0] People is open on a cold boot below 1024 px, and the disabled look is compared with bill-twelve.html. The
+    # 1.0 form compared it with a states.html specimen (B1).
     page = open_app().page
-    add = page.get_by_role("button", name="Add person")
+    assert people_shown(page)["add"] == add_person_shown(), "no #addPerson as spec R6 writes it"
+    add = page.locator("#addPerson")
     add.click()
-    assert page.locator("li.person").count() == 3
-    assert person_field(page, 3).input_value() == "" and person_field(page, 3).get_attribute("placeholder") == "Person 3"
-    assert all(button.is_enabled() for button in page.locator("li.person button").all())
+    assert person_rows(page) == [person_row(1, "Person 1", "Person 1"), person_row(2, "Person 2", "Person 2"),
+                                 person_row(3, "", "Person 3")]
     for _ in range(9):
         add.click()
-    assert page.locator("li.person").count() == 12 and add.is_disabled()
-    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator('section[aria-labelledby="spec-s8a"] button[disabled]')
-    assert support.specimen_props(add, ["cursor"]) == support.specimen_props(specimen, ["cursor"])
+    assert len(person_rows(page)) == 12 and people_shown(page)["add"] == add_person_shown(disabled=True)
+    page.locator("#peopleBtn").focus()
+    page.keyboard.press("Tab")
+    assert support.active_label(page) == "Person 1 name"  # Tab skips the disabled Add person
+    page.set_viewport_size({"width": 1280, "height": 800})
+    golden = open_golden(plain_context, "bill-twelve", VIEWPORTS[1280]).locator("#addPerson")
+    assert support.specimen_props(add, GOLDEN_LOOK) == support.specimen_props(golden, GOLDEN_LOOK)
     assert add.evaluate("(el) => getComputedStyle(el).cursor") == "not-allowed"
     box = add.bounding_box()
     page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
-    assert page.locator("li.person").count() == 12
+    assert len(person_rows(page)) == 12
 
 
-@pytest.mark.xfail(strict=True, reason="task A5")
-def test_R6_a_restored_twelve_person_bill_shows_the_limit_state(open_app, plain_context):
-    # qa.md ST-08 boots the S8 seed: the limit state as a restored bill, not only as the end of nine clicks.
+def test_R6_removing_anyone_from_twelve_turns_add_person_back_on(open_app):
+    # qa.md (plan check F5, bill-twelve.md). The v1.1.0 form of 1.0's test_R6_a_restored_twelve_person_bill_shows_the_limit_state,
+    # which read a states.html specimen and the 1.0 grid cells (B1).
     page = open_app(seed=seeds.S8).page
-    add = page.get_by_role("button", name="Add person")
-    assert page.locator("li.person").count() == 12 and add.is_disabled()
-    assert person_field(page, 12).input_value() == "Mei Ling" and stored_text(page) == seeds.S8  # a restore writes nothing
-    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator('section[aria-labelledby="spec-s8a"] button[disabled]')
-    assert support.specimen_props(add, ["cursor"]) == support.specimen_props(specimen, ["cursor"])
-    cells = page.eval_on_selector_all(
-        "section[aria-labelledby=h-people] ul.cells > li",
-        "(els) => els.map((el) => { const box = el.getBoundingClientRect(); return [Math.round(box.left), Math.round(box.top)]; })")
-    assert len(cells) == 13
-    assert len({top for _, top in cells[:12]}) == 6 and len({left for left, _ in cells[:12]}) == 2  # six rows of two at 390
-    assert cells[12][0] == cells[0][0] and cells[12][1] > cells[11][1]  # Add person is the next cell
-    assert panel_text(page) == EVEN_MESSAGE
+    open_people_first(page)
+    rows = person_rows(page)
+    assert rows is not None and len(rows) == 12 and people_shown(page)["add"] == add_person_shown(disabled=True)
+    assert stored_text(page) == seeds.S8  # a restore writes nothing
+    remove_button(page, "Mei Ling").click()
+    assert len(person_rows(page)) == 11 and people_shown(page)["add"] == add_person_shown()
+    assert support.active_label(page) == "Person 11 name"
+    page.locator("#peopleBtn").focus()
+    page.keyboard.press("Tab")
+    assert page.evaluate("document.activeElement.id") == "addPerson"
+    page.locator("#addPerson").click()
+    assert person_rows(page)[11] == person_row(12, "", "Person 12")
+    assert people_shown(page)["add"] == add_person_shown(disabled=True)
 
 
 def test_R7_remove_a_person(open_app):
@@ -599,16 +690,18 @@ def test_R7_remove_a_person(open_app):
     assert all(button.is_disabled() for button in page.locator("li.person button").all())
 
 
-@pytest.mark.parametrize("remove, now_at_two", [("Ben", "Chen"), ("Chen", "Ben")])
-def test_R34_focus_moves_to_the_name_field_at_the_removed_position(open_app, remove, now_at_two):
-    page = open_app().page
-    page.get_by_role("button", name="Add person").click()
-    assert support.active_label(page) == "Person 3 name"
-    three_people_again = ["Aisyah", "Ben", "Chen"]
-    for number, name in enumerate(three_people_again, start=1):
-        person_field(page, number).fill(name)
-    remove_button(page, remove).click()
-    assert support.active_label(page) == "Person 2 name" and person_field(page, 2).input_value() == now_at_two
+@pytest.mark.parametrize("seed, action, target, value", [
+    pytest.param(None, "Add person", "Person 3 name", "", id="cold-boot-add-person"),
+    pytest.param(seeds.S1, "Remove Ben", "Person 2 name", "Chen", id="K1-remove-Ben"),
+    pytest.param(seeds.S1, "Remove Chen", "Person 2 name", "Ben", id="K1-remove-Chen"),
+])
+def test_R34_focus_after_adding_or_removing_a_person(open_app, seed, action, target, value):
+    # [v1.1.0] The person rows of qa.md "Focus after adding or removing", on K1 with People opened first.
+    page = open_app(seed=seed).page
+    open_people_first(page)
+    page.get_by_role("button", name=action, exact=True).click()
+    assert support.active_label(page) == target
+    assert page.evaluate("document.activeElement.value") == value
 
 
 def type_and_watch(page, field, text):
@@ -625,7 +718,8 @@ def type_and_watch(page, field, text):
 
 
 def test_R33_typing_in_a_person_name_keeps_focus_and_caret(open_app):
-    page = open_app().page
+    page = open_app(seed=seeds.S1).page  # [v1.1.0] K1 with People opened first
+    open_people_first(page)
     type_and_watch(page, person_field(page, 1), "Aisyah")
 
 
@@ -835,13 +929,34 @@ def test_R5_a_person_label_follows_the_name_into_every_toggle(open_app):
         assert who_group(page, name).get_by_role("button").all_inner_texts() == ["Aisyah", "Person 2", "Chen Wei"]
 
 
-def test_R7_removing_a_person_takes_them_off_every_item(open_app):
-    page = open_app().page
-    build_s1(page)
+def test_R7_removing_a_person_takes_them_off_every_item(open_app, plain_context):
+    # [v1.1.0] qa.md "Remove a person and they leave every item" on K1, the disabled look compared with bill-empty.html.
+    # The needs marker, the card's message and the strip are the next test's.
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
     remove_button(page, "Chen").click()
-    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Aisyah", "Ben"]
+    assert person_rows(page) == [person_row(1, "Aisyah", "Aisyah", disabled=True), person_row(2, "Ben", "Ben", disabled=True)]
+    removes = "ul.people li.field.person button.icon-btn"
+    golden = open_golden(plain_context, "bill-empty").locator(removes)
+    for number in (0, 1):
+        assert support.specimen_props(page.locator(removes).nth(number), GOLDEN_LOOK) == \
+            support.specimen_props(golden.nth(number), GOLDEN_LOOK)
     for name, _, _ in S1_ITEMS:
         assert who_group(page, name).get_by_role("button").all_inner_texts() == ["Aisyah", "Ben"]
+
+
+@pytest.mark.xfail(strict=True, reason="task A11")
+def test_R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip(open_app):
+    # The rest of qa.md "Remove a person and they leave every item". The needs marker is task A8's, the card's div.r-msg
+    # A9's and the strip's message A11's.
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
+    remove_button(page, "Chen").click()
+    marked = page.evaluate("() => [...document.querySelectorAll('li.item.needs')].map((li) => li.querySelector('input').value)")
+    assert marked == ["Mee goreng mamak"]
+    message = "1 item still needs a person. Tap who had it to see the splits."
+    assert support.reads(page, "#rbody div.r-msg") == message
+    assert visible_text(page, "#stripInfo") == message
 
 
 def test_R8_switching_modes_keeps_both_sets_of_input(open_app):
@@ -2256,6 +2371,10 @@ def test_R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each(open_app
 # check the rows, the draft and the focus.
 SIZES = [(360, 640), (390, 844), (1280, 800)]
 SIZE_IDS = [f"{w}x{h}" for w, h in SIZES]
+# The v1.1.0 sizes of these outlines (qa.md). The R6 and R7 rows use them since task A5, R12 moves with task A8 and R29
+# with task A16, and SIZES goes with the last of them.
+V11_SIZES = [(360, 780), (390, 844), (1280, 800)]
+V11_SIZE_IDS = [f"{w}x{h}" for w, h in V11_SIZES]
 GESTURES = ["single", "mouse-double", "mouse-triple", "touch-double"]  # "single" is the control: what one click does
 ONE_ITEM = seeds.changed(seeds.S1, lambda d: d["bill"].update(items=d["bill"]["items"][3:]))
 LAST_ROW_CASES = [  # (seed, the remove button, the row selector, where focus goes by R34 afterwards)
@@ -2288,7 +2407,7 @@ def bill_without_last(seed, rows):
 
 
 @pytest.mark.parametrize("gesture", GESTURES)
-@pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+@pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
 @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
 def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
         open_app, seed, button, rows, focus_after, viewport, gesture):
@@ -2315,19 +2434,25 @@ def test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it(ope
     if rows == "li.person":
         open_people_first(page)  # folded on a restored bill below 1024 px (R48)
     activate_twice(page, how, centre_of(page.get_by_role("button", name=button, exact=True)))
+    # qa.md "one row is gone" (task A5): a second removal also leaves focus on the name at position 2.
+    assert page.locator(rows).count() == before - 1
     assert support.active_label(page) == ("Item 2 name" if rows == "li.item" else "Person 2 name")
 
 
-@pytest.mark.xfail(strict=True, reason="task A5")
-def test_R7_a_separate_click_on_what_slid_under_the_pointer_is_not_held_back(open_app):
-    # The guard goes by click count, not by time or place: a click of its own (count 1) on the same spot is a new press.
+def test_R7_a_separate_click_on_the_same_point_is_a_press_of_its_own(open_app):
+    # [v1.1.0] qa.md "A press of its own is never held back", first part. Add person no longer slides under the pointer, so
+    # the body recorder shows the second click reached the page. For a mouse the guard goes by click count, not by time or
+    # place (spec R57 (b)). The 1.0 form, test_R7_a_separate_click_on_what_slid_under_the_pointer_is_not_held_back, read
+    # Add person under the point.
     page = open_app(seed=seeds.S2).page
+    open_people_first(page)
+    page.evaluate(RECORD_BODY_CLICKS_JS)
     point = centre_of(page.get_by_role("button", name="Remove Chen", exact=True))
     page.mouse.click(*point)
-    under = page.evaluate("([x, y]) => document.elementFromPoint(x, y).closest('button').textContent.trim()", list(point))
-    assert under == "Add person"  # the removal moved it under the pointer
-    page.mouse.click(*point)
-    assert [p["name"] for p in stored(page)["bill"]["people"]] == ["Aisyah", "Ben", ""]
+    page.mouse.click(*point)  # a click of its own, count 1, at once
+    settle(page)
+    assert seen_by_the_page(page) == {"presses": [1, 1], "clicks": [1, 1]}
+    assert [p["name"] for p in stored(page)["bill"]["people"]] == ["Aisyah", "Ben"]
 
 
 def test_R7_the_guard_of_a_remove_click_ends_at_the_next_press(open_app):
@@ -2398,10 +2523,12 @@ def press_point(button, place):
 
 @pytest.mark.parametrize("place", PRESS_PLACES)
 @pytest.mark.parametrize("gesture", REPEAT_GESTURES)
-@pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+@pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
 @pytest.mark.parametrize("people", [2, 3, 4, 5])
 def test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it(open_app, people, viewport, gesture, place):
-    # The "centre" rows are the control: the repeat press misses the new Remove button there, on every tree.
+    # [v1.1.0] Add person is in the heading row (under the list below 1024 px), so no new Remove lies under it. The proof
+    # is the body recorder. Below 1024 px a person who starts a new grid row pushes Add person down, and the repeat lands
+    # on that person's name (measured, qa/people-render).
     seed = people_bill(people)
     page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
     open_people_first(page)  # folded on a restored bill below 1024 px (R48)
@@ -2640,7 +2767,7 @@ def slow_tap_then_tap_elsewhere(open_app):
 
 
 def test_R57_a_slow_second_tap_or_a_quick_tap_elsewhere_is_never_held_back(open_app):
-    # The draft lines of the scenario need Add person to stay under the point, which task A5 builds (the next test).
+    # The draft lines of the scenario are the next test.
     slow, elsewhere = slow_tap_then_tap_elsewhere(open_app)
     assert slow["gap"] >= 500, f"the second tap came {slow['gap']:.1f} ms after the first, so it was not a slow second tap"
     assert slow["counted"] == (2, 2), f"the body counted {slow['counted']} presses and clicks"
@@ -2652,9 +2779,9 @@ def test_R57_a_slow_second_tap_or_a_quick_tap_elsewhere_is_never_held_back(open_
     assert elsewhere["first_name_focused"] is True
 
 
-@pytest.mark.xfail(strict=True, reason="task A5")
 def test_R57_a_slow_second_tap_and_a_quick_tap_elsewhere_change_the_draft_as_two_presses(open_app):
-    # On the 1.0 People block the first tap moves Add person a cell down, so the slow second tap lands on the new name.
+    # K2 has three people, so the first tap fills the second column and Add person stays under the point for the slow
+    # second tap (on the 1.0 People block it moved a cell down, task A5).
     slow, elsewhere = slow_tap_then_tap_elsewhere(open_app)
     assert slow["names"] == ["Aisyah", "Ben", "Chen", "", ""]
     assert len(elsewhere["names"]) == 6

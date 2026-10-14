@@ -170,7 +170,7 @@ function toggleSection(key) {
   view.open[key] = !view.open[key];
   render();
 }
-const peopleSection = createPeopleSection([people.el], () => toggleSection("people"));
+const peopleSection = createPeopleSection(people.content, () => toggleSection("people"));
 const chargesSection = createChargesSection([charges.el], () => toggleSection("charges"));
 document.getElementById("work").append(peopleSection.el, chargesSection.el, mode.el, subtotal.el, items.el);
 

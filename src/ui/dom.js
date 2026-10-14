@@ -70,10 +70,9 @@ const isRepeat = (event) => (event.type === "keydown" ? event.repeat : isRepeatC
 
 /**
  * A click that moves the layout under the pointer arms this guard, because the rest of its double click, triple
- * click or double tap would land on whatever is drawn there next: the control that took a removed row's place (for
- * the last person that is "Add person", and a blank person was saved), the Remove button of the row that "Add
- * person" has just added (it slides under the right end of that button, and the blank row went again), the backdrop
- * of the dialog that had just opened (it shut again), or whatever was under a dialog that has closed.
+ * click or double tap would land on whatever is drawn there next: the row or control that took a removed row's place,
+ * the person row that pushed "Add person" down (below 1024 px it sits under the list), the backdrop of the dialog that
+ * had just opened (it shut again), or whatever was under a dialog that has closed.
  * The armers are the click on every Remove, on Add person and on Add item (nothing slides under that one, it arms so
  * the rule stays one rule), and the clicks that open and close the dialog. The guard protects only what arms it, and no
  * click can arm it for a layout move that is not a click (the error line of a price field, RG-CR-08). So a Remove also

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="90" skipped="0" tests="98" time="35.132" timestamp="2026-10-14T22:26:21.304351+08:00" hostname="{host}"><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x780-single]" time="1.744" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x780-mouse-double]" time="0.399"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x780-mouse-triple]" time="0.311"><failure message="AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}&#10;  &#10;  Omitting 7 identical items, use -vv to show&#10;  Differing items:&#10;  {'nextId': 5} != {'nextId': 4}&#10;  Use -v to get more diff">E   AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}
+      
+      Omitting 7 identical items, use -vv to show
+      Differing items:
+      {'nextId': 5} != {'nextId': 4}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x780-touch-double]" time="0.365"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 3 == (3 - 1)
+     +  where 3 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-single]" time="0.280" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-mouse-double]" time="0.334"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'
+      
+      - Person 2 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-mouse-triple]" time="0.315"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'
+      
+      - Person 2 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-touch-double]" time="0.396"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'
+      
+      - Person 2 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-single]" time="0.232" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-mouse-double]" time="0.325"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'
+      
+      - Person 2 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-mouse-triple]" time="0.330"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'
+      
+      - Person 2 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-touch-double]" time="0.366"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'&#10;  &#10;  - Person 2 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 2 name'
+      
+      - Person 2 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x780-single]" time="0.274" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x780-mouse-double]" time="0.334"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'&#10;  &#10;  - Person 11 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'
+      
+      - Person 11 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x780-mouse-triple]" time="0.296"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'&#10;  &#10;  - Person 11 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'
+      
+      - Person 11 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x780-touch-double]" time="0.366"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'&#10;  &#10;  - Person 11 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'
+      
+      - Person 11 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-single]" time="0.281" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-mouse-double]" time="0.335"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'&#10;  &#10;  - Person 11 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'
+      
+      - Person 11 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-mouse-triple]" time="0.332"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'&#10;  &#10;  - Person 11 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'
+      
+      - Person 11 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-touch-double]" time="0.383"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'&#10;  &#10;  - Person 11 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'
+      
+      - Person 11 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-single]" time="0.246" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-mouse-double]" time="0.333"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'&#10;  &#10;  - Person 11 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'
+      
+      - Person 11 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-mouse-triple]" time="0.265"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'&#10;  &#10;  - Person 11 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'
+      
+      - Person 11 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-touch-double]" time="0.333"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'&#10;  &#10;  - Person 11 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Person 11 name'
+      
+      - Person 11 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[person-2-of-5-mouse]" time="0.271" /><testcase classname="test_app" name="test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it[person-2-of-5-touch]" time="0.299" /><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-360x780-mouse-double-right-edge]" time="0.343"><failure message="AssertionError: assert 2 == (2 + 1)&#10; +  where 2 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-360x780-mouse-double-centre]" time="0.348"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-360x780-mouse-triple-right-edge]" time="0.316"><failure message="AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}&#10;  &#10;  Omitting 6 identical items, use -vv to show&#10;  Differing items:&#10;  {'nextId': 5} != {'nextId': 4}&#10;  {'people': [{'id': 'p1', 'name': 'P1'}, {'id': 'p2', 'name': 'P2'}, {'id': 'p4', 'name': ''}]} != {'people': [{'id': 'p1', 'name': 'P1'}, {'id': 'p2', 'name': 'P2'}, {'id': 'p3', 'name': ''}]}&#10;  Use -v to get more diff">E   AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}
+      
+      Omitting 6 identical items, use -vv to show
+      Differing items:
+      {'nextId': 5} != {'nextId': 4}
+      {'people': [{'id': 'p1', 'name': 'P1'}, {'id': 'p2', 'name': 'P2'}, {'id': 'p4', 'name': ''}]} != {'people': [{'id': 'p1', 'name': 'P1'}, {'id': 'p2', 'name': 'P2'}, {'id': 'p3', 'name': ''}]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-360x780-mouse-triple-centre]" time="0.296"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3&#10;assert ['mousedown 2...2', 'click 3'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3
+    assert ['mousedown 2...2', 'click 3'] == []
+      
+      Left contains 4 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-360x780-touch-double-right-edge]" time="0.370"><failure message="AssertionError: assert 2 == (2 + 1)&#10; +  where 2 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 2 == (2 + 1)
+     +  where 2 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-360x780-touch-double-centre]" time="0.360"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-390x844-mouse-double-right-edge]" time="0.349"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-390x844-mouse-double-centre]" time="0.348"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-390x844-mouse-triple-right-edge]" time="0.315"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3&#10;assert ['mousedown 2...2', 'click 3'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3
+    assert ['mousedown 2...2', 'click 3'] == []
+      
+      Left contains 4 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-390x844-mouse-triple-centre]" time="0.316"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3&#10;assert ['mousedown 2...2', 'click 3'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3
+    assert ['mousedown 2...2', 'click 3'] == []
+      
+      Left contains 4 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-390x844-touch-double-right-edge]" time="0.398"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-390x844-touch-double-centre]" time="0.365"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-1280x800-mouse-double-right-edge]" time="0.338"><failure message="AssertionError: assert 4 == (2 + 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 4 == (2 + 1)
+     +  where 4 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-1280x800-mouse-double-centre]" time="0.333"><failure message="AssertionError: assert 4 == (2 + 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 4 == (2 + 1)
+     +  where 4 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-1280x800-mouse-triple-right-edge]" time="0.336"><failure message="AssertionError: assert 5 == (2 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (2 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-1280x800-mouse-triple-centre]" time="0.311"><failure message="AssertionError: assert 5 == (2 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (2 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-1280x800-touch-double-right-edge]" time="0.364"><failure message="AssertionError: assert 4 == (2 + 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 4 == (2 + 1)
+     +  where 4 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[2-1280x800-touch-double-centre]" time="0.364"><failure message="AssertionError: assert 4 == (2 + 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 4 == (2 + 1)
+     +  where 4 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-360x780-mouse-double-right-edge]" time="0.357"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-360x780-mouse-double-centre]" time="0.332"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-360x780-mouse-triple-right-edge]" time="0.316"><failure message="AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}&#10;  &#10;  Omitting 7 identical items, use -vv to show&#10;  Differing items:&#10;  {'nextId': 6} != {'nextId': 5}&#10;  Use -v to get more diff">E   AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}
+      
+      Omitting 7 identical items, use -vv to show
+      Differing items:
+      {'nextId': 6} != {'nextId': 5}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-360x780-mouse-triple-centre]" time="0.298"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-360x780-touch-double-right-edge]" time="0.366"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-360x780-touch-double-centre]" time="0.363"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-390x844-mouse-double-right-edge]" time="0.351"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-390x844-mouse-double-centre]" time="0.346"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-390x844-mouse-triple-right-edge]" time="0.316"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-390x844-mouse-triple-centre]" time="0.317"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-390x844-touch-double-right-edge]" time="0.382"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-390x844-touch-double-centre]" time="0.380"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-1280x800-mouse-double-right-edge]" time="0.342"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-1280x800-mouse-double-centre]" time="0.365"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-1280x800-mouse-triple-right-edge]" time="0.316"><failure message="AssertionError: assert 6 == (3 + 1)&#10; +  where 6 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 6 == (3 + 1)
+     +  where 6 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-1280x800-mouse-triple-centre]" time="0.313"><failure message="AssertionError: assert 6 == (3 + 1)&#10; +  where 6 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 6 == (3 + 1)
+     +  where 6 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-1280x800-touch-double-right-edge]" time="0.367"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[3-1280x800-touch-double-centre]" time="0.381"><failure message="AssertionError: assert 5 == (3 + 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 5 == (3 + 1)
+     +  where 5 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-360x780-mouse-double-right-edge]" time="0.354"><failure message="AssertionError: assert 4 == (4 + 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-360x780-mouse-double-centre]" time="0.331"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-360x780-mouse-triple-right-edge]" time="0.333"><failure message="AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}&#10;  &#10;  Omitting 6 identical items, use -vv to show&#10;  Differing items:&#10;  {'nextId': 7} != {'nextId': 6}&#10;  {'people': [{'id': 'p1', 'name': 'P1'}, {'id': 'p2', 'name': 'P2'}, {'id': 'p3', 'name': 'P3'}, {'id': 'p4', 'name': 'P4'}, {'id': 'p6', 'name': ''}]} != {'people': [{'id': 'p1', 'name': 'P1'}, {'id': 'p2', 'name': 'P2'}, {'id': 'p3', 'name': 'P3'}, {'id': 'p4', 'name': 'P4'}, {'id': 'p5', 'name': ''}]}&#10;  Use -v to get more diff">E   AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}
+      
+      Omitting 6 identical items, use -vv to show
+      Differing items:
+      {'nextId': 7} != {'nextId': 6}
+      {'people': [{'id': 'p1', 'name': 'P1'}, {'id': 'p2', 'name': 'P2'}, {'id': 'p3', 'name': 'P3'}, {'id': 'p4', 'name': 'P4'}, {'id': 'p6', 'name': ''}]} != {'people': [{'id': 'p1', 'name': 'P1'}, {'id': 'p2', 'name': 'P2'}, {'id': 'p3', 'name': 'P3'}, {'id': 'p4', 'name': 'P4'}, {'id': 'p5', 'name': ''}]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-360x780-mouse-triple-centre]" time="0.313"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3&#10;assert ['mousedown 2...2', 'click 3'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3
+    assert ['mousedown 2...2', 'click 3'] == []
+      
+      Left contains 4 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-360x780-touch-double-right-edge]" time="0.367"><failure message="AssertionError: assert 4 == (4 + 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 4 == (4 + 1)
+     +  where 4 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-360x780-touch-double-centre]" time="0.364"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-390x844-mouse-double-right-edge]" time="0.348"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-390x844-mouse-double-centre]" time="0.334"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-390x844-mouse-triple-right-edge]" time="0.314"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3&#10;assert ['mousedown 2...2', 'click 3'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3
+    assert ['mousedown 2...2', 'click 3'] == []
+      
+      Left contains 4 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-390x844-mouse-triple-centre]" time="0.331"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3&#10;assert ['mousedown 2...2', 'click 3'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3
+    assert ['mousedown 2...2', 'click 3'] == []
+      
+      Left contains 4 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-390x844-touch-double-right-edge]" time="0.366"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-390x844-touch-double-centre]" time="0.365"><failure message="AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2&#10;assert ['mousedown 2', 'click 2'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'mousedown 2'&#10;  Use -v to get more diff">E   AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+    assert ['mousedown 2', 'click 2'] == []
+      
+      Left contains 2 more items, first extra item: 'mousedown 2'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-1280x800-mouse-double-right-edge]" time="0.339"><failure message="AssertionError: assert 6 == (4 + 1)&#10; +  where 6 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 6 == (4 + 1)
+     +  where 6 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-1280x800-mouse-double-centre]" time="0.332"><failure message="AssertionError: assert 6 == (4 + 1)&#10; +  where 6 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 6 == (4 + 1)
+     +  where 6 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-1280x800-mouse-triple-right-edge]" time="0.315"><failure message="AssertionError: assert 7 == (4 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (4 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-1280x800-mouse-triple-centre]" time="0.317"><failure message="AssertionError: assert 7 == (4 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (4 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-1280x800-touch-double-right-edge]" time="0.397"><failure message="AssertionError: assert 6 == (4 + 1)&#10; +  where 6 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 6 == (4 + 1)
+     +  where 6 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[4-1280x800-touch-double-centre]" time="0.363"><failure message="AssertionError: assert 6 == (4 + 1)&#10; +  where 6 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 6 == (4 + 1)
+     +  where 6 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-360x780-mouse-double-right-edge]" time="0.339"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-360x780-mouse-double-centre]" time="0.365"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-360x780-mouse-triple-right-edge]" time="0.332"><failure message="AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}&#10;  &#10;  Omitting 7 identical items, use -vv to show&#10;  Differing items:&#10;  {'nextId': 8} != {'nextId': 7}&#10;  Use -v to get more diff">E   AssertionError: assert {'mode': 'eve...ems': [], ...} == {'mode': 'eve...ems': [], ...}
+      
+      Omitting 7 identical items, use -vv to show
+      Differing items:
+      {'nextId': 8} != {'nextId': 7}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-360x780-mouse-triple-centre]" time="0.314"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-360x780-touch-double-right-edge]" time="0.365"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-360x780-touch-double-centre]" time="0.381"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-390x844-mouse-double-right-edge]" time="0.349"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-390x844-mouse-double-centre]" time="0.349"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-390x844-mouse-triple-right-edge]" time="0.331"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-390x844-mouse-triple-centre]" time="0.332"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-390x844-touch-double-right-edge]" time="0.363"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-390x844-touch-double-centre]" time="0.385"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-1280x800-mouse-double-right-edge]" time="0.358"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-1280x800-mouse-double-centre]" time="0.328"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-1280x800-mouse-triple-right-edge]" time="0.316"><failure message="AssertionError: assert 8 == (5 + 1)&#10; +  where 8 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 8 == (5 + 1)
+     +  where 8 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-1280x800-mouse-triple-centre]" time="0.314"><failure message="AssertionError: assert 8 == (5 + 1)&#10; +  where 8 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 8 == (5 + 1)
+     +  where 8 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-1280x800-touch-double-right-edge]" time="0.383"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase><testcase classname="test_app" name="test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it[5-1280x800-touch-double-centre]" time="0.423"><failure message="AssertionError: assert 7 == (5 + 1)&#10; +  where 7 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator">E   AssertionError: assert 7 == (5 + 1)
+     +  where 7 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt;.count
+     +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:53845/'&gt; selector='li.person'&gt; = locator('li.person')
+     +        where locator = &lt;Page url='http://127.0.0.1:53845/'&gt;.locator</failure></testcase></testsuite></testsuites>
