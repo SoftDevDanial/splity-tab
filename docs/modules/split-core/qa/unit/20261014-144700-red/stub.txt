@@ -1,0 +1,12 @@
+Throwaway stubs written as src/core/spare.js for the RED runs only. Never committed. The real code replaced them
+before the commit.
+
+Stub 1 (run 1):
+export function chooseSpareRule(bill, rule, random) { return bill; }
+export function chooseSparePerson(bill, personId) { return bill; }
+export function pickAgain(bill, random) { return bill; }
+
+Stub 2 (runs 2 and 3), replaces stub 1:
+export function chooseSpareRule(bill, rule, random) { return { ...bill }; }
+export function chooseSparePerson(bill, personId) { return { ...bill }; }
+export function pickAgain(bill, random) { return { ...bill }; }

@@ -147,7 +147,7 @@ const CORE_FILES = readdirSync(CORE_DIR, { recursive: true }).filter((name) => n
 const sources = CORE_FILES.map((name) => [name, readFileSync(join(CORE_DIR, name), "utf8")]);
 
 test("@R25 the scan sees the core files", () => {
-  assert.deepEqual([...CORE_FILES].sort(), ["allocate.js", "bill.js", "money.js", "result.js", "summary.js"]);
+  assert.deepEqual([...CORE_FILES].sort(), ["allocate.js", "bill.js", "money.js", "result.js", "spare.js", "summary.js"]);
 });
 
 test("@R25 the scanner catches what it should (negative control)", () => {
@@ -356,7 +356,7 @@ function importPlanted(file, plant) {
 }
 
 /** Calls every export on representative input: both modes, every blocking path and both throws. */
-function runEveryExport({ money, allocate, bill, result, summary }) {
+function runEveryExport({ money, allocate, bill, result, spare, summary }) {
   void money.AMOUNT_MIN_CENTS;
   void money.AMOUNT_MAX_CENTS;
   void bill.LIMITS;
@@ -385,6 +385,9 @@ function runEveryExport({ money, allocate, bill, result, summary }) {
   bill.personLabel(b.people[0], 0);
   bill.itemLabel(b.items[0], 0);
   bill.sparePeople(b);
+  const drawn = spare.chooseSpareRule(b, "random", () => 0.5);
+  spare.chooseSparePerson(drawn, "p2");
+  spare.pickAgain(drawn, () => 0.25);
   money.parseAmount(" 12.50 ");
   money.parseRate("6.25", 20);
   money.formatMoney(779999922);

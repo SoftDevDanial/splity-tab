@@ -1,0 +1,26 @@
+RED-first run for task C5 (R29, R30, R31), 2026-10-14, split-core builder.
+Command: node --test tests/spare.test.js
+Condensed to the failing test names and the counts. Passing lines left out. src/core/spare.js did not exist, so each
+export was a throwaway stub (see stub.txt). Two stubs, because stub 1 passes every "returns the same bill object" case.
+
+=== Run 1, stub 1: every export returns its input bill ===
+tests 22, pass 7, fail 15 (before the last case was rewritten to count draws, see below)
+FAIL @R29 choosing "one" on S2 / on I2, "random" (two draws), "top" from one p2   (spare unchanged)
+FAIL @R29 the draw is a Fisher and Yates shuffle that takes one number for each step, from the end
+FAIL @R29 a number just under 1 stays inside the list (no swap)
+FAIL @R29 the drawn order holds every person once, also a person on no item
+FAIL @R30 choosing p3 from top, p2 from one p1, p1 from random
+FAIL @R31 Pick again draws until the splits change
+FAIL @R31 a new order that moves money between items and charges counts as a change, even at equal shares
+FAIL @R31 a source that always gives the same number ... and stops at 64 draws        (source.calls is 0, expected 128)
+FAIL @R31 with no spare sen no order can change the splits: 64 draws, then the same bill (source.calls is 0, expected 64)
+Passing against stub 1 on purpose, the "same bill object" cases: R29 already set / unknown rule / nobody to pick,
+R30 cannot take / already chosen / unknown, R31 never draws for top, one, blocked and unassigned.
+
+=== Run 2, stub 2: every export returns a fresh copy of its input bill ===
+tests 22, pass 1, fail 21 (the one pass was the draw-count case, rewritten after this run to assert the draw count)
+All of run 1's failures, plus FAIL for every "same bill object" case above.
+
+=== Run 3, stub 2, after the last case was rewritten ===
+tests 22, pass 0, fail 22
+FAIL @R31 the first order that changes the rows is taken, and no number is drawn after it
