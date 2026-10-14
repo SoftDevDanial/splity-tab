@@ -66,7 +66,7 @@ def test_R1_seeds_parse_and_differ_as_documented():
     assert s1["bill"]["items"][3]["who"] == ["p1", "p3"]
     assert s5["bill"]["items"][2]["who"] == [] and s5["bill"]["items"][0]["who"] == ["p1"]
     assert len(s8["bill"]["people"]) == 12 and s8["bill"]["nextId"] == 13
-    assert len(seeds.UNREADABLE) == 24 and len(set(seeds.UNREADABLE.values())) == 24
+    assert len(seeds.UNREADABLE) == 32 and len(set(seeds.UNREADABLE.values())) == 32  # qa.md B1 to B32 (v1.1.0)
     assert set(seeds.ODD_READABLE) == {"G1", "G2", "G3"}
     assert seeds.dump(json.loads(seeds.S2)) == seeds.S2 and seeds.dump(json.loads(seeds.S1)) == seeds.S1
 
@@ -1383,13 +1383,18 @@ def test_R26_a_restored_bill_looks_like_the_one_built_by_gestures(open_app, seed
     assert stored_text(restored.page) == seed  # restoring writes nothing
 
 
-@pytest.mark.xfail(strict=True, reason="task A3")
-def test_R3_the_note_matches_its_specimen(open_app, plain_context):
-    # WR-05 (mutant LIVE2: a stray aria-live on the wrapper and aria-pressed on the button). S7 is walked as a part of
-    # the page, because the specimen frame in states.html carries specimen-only markup around it (allowed difference 6).
-    app = dom_walk(open_app(seed=seeds.UNREADABLE["B1"]).page, "div.note-wrap")
-    golden = golden_walk(plain_context, "states", selector='section[aria-labelledby="spec-s7"] div.note-wrap', folder=GOLDEN_V1_DIR)
-    assert first_diff(app, golden) is None
+@pytest.mark.parametrize("setup, golden, golden_note", [
+    pytest.param({"seed": seeds.UNREADABLE["B1"]}, "bill-unreadable", "#notes > div.note", id="unreadable-note"),
+    pytest.param({"init_scripts": [support.storage_driver("fail-get")]}, "states",
+                 'section[aria-labelledby="c-s5"] div.notes > div.note', id="save-warning"),
+])
+def test_R3_the_notes_match_their_goldens(open_app, plain_context, setup, golden, golden_note):
+    # The v1.1.0 form of 1.0's note specimen test (WR-05, mutant LIVE2: a stray aria-live and aria-pressed). Each note
+    # is walked as a part of the page. The save warning's golden is the S5 frame of states.html, whose div.notes is
+    # specimen chrome without the id (allowed difference 5), so the note itself is walked on both sides.
+    page = open_app(**setup).page
+    assert page.locator("#notes > div.note").count() == 1
+    assert first_diff(dom_walk(page, "#notes > div.note"), golden_walk(plain_context, golden, selector=golden_note)) is None
 
 
 def test_R26_come_back_later(open_app):
@@ -1437,43 +1442,278 @@ def test_R26_odd_but_readable_drafts_load(open_app, name):
         assert "extra" not in text and "colour" not in text and json.loads(text)["bill"]["subtotalText"] == "100.0"
 
 
-@pytest.mark.xfail(strict=True, reason="task A3")
+# ---------------------------------------------------------------- Task A3: the notes and the save warning (R27, R28, R46, R47)
+D_A, D_B, D_C = (support.storage_driver(name) for name in ("fail-set", "fail-get", "fail-getitem"))
+STORAGE_COMES_BACK = "window.dispatchEvent(new CustomEvent('test:storage', { detail: false }))"
+NOTES_JS = """() => [...document.querySelectorAll('#notes > *')].map((note) => ({
+  cls: note.className, role: note.getAttribute('role'),
+  icons: [...note.querySelectorAll(':scope > svg.ic > use')].map((use) => use.getAttribute('href')),
+  text: note.querySelector('p') ? note.querySelector('p').textContent : null,
+  buttons: [...note.querySelectorAll('button')].map((button) => [button.type, button.className, button.id,
+    button.getAttribute('aria-label'), [...button.querySelectorAll('svg.ic > use')].map((use) => use.getAttribute('href'))]),
+}))"""
+WARNING = {"cls": "note is-warn", "role": "status", "icons": ["#i-warning"], "buttons": [],
+           "text": "This bill is not being saved on this device. It will be lost when you close this tab."}
+UNREADABLE_NOTE = {"cls": "note", "role": "status", "icons": ["#i-warning-circle"],
+                   "text": "Your saved bill could not be read, so a new one was started.",
+                   "buttons": [["button", "icon-btn", "dismissNote", "Dismiss note", ["#i-x"]]]}
+
+
+def notes(page):
+    """What #notes holds, one entry per child, in order (R27, R46)."""
+    return page.evaluate(NOTES_JS)
+
+
+def screen_walk(page):
+    """The R3 walk of the bill on screen, everything of div.app but the top bar's notes."""
+    return [dom_walk(page, "main.layout"), dom_walk(page, "#strip")]
+
+
+def type_into(page, locator, text):
+    """qa.md "type Y into X": click the field and type key by key."""
+    locator.click()
+    page.keyboard.type(text)
+
+
+def type_at_end(page, locator, text):
+    """qa.md "type Y at the end of X": click the field, move the caret to the end, type key by key."""
+    locator.click()
+    page.keyboard.press("End")
+    page.keyboard.type(text)
+
+
+def new_bill_draft_with_first_name(name):
+    draft = json.loads(NEW_BILL_DRAFT)
+    draft["bill"]["people"][0]["name"] = name
+    return draft
+
+
 @pytest.mark.parametrize("name", list(seeds.UNREADABLE))
 def test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note(open_app, name):
-    session = open_app(seed=seeds.UNREADABLE[name])
-    page = session.page
-    note = page.locator("div.note-wrap > div.note[role=status]")
-    assert note.locator("p").inner_text() == "Your saved bill could not be read, so a new one was started."
-    assert note.get_by_role("button", name="Dismiss note").count() == 1
-    assert page.evaluate("document.querySelector('.bar').nextElementSibling.className") == "note-wrap"
-    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
-    assert page.locator("#mode-even").is_checked() and subtotal_field(page).input_value() == ""
-    assert panel_text(page) == EVEN_MESSAGE
+    page = open_app(seed=seeds.UNREADABLE[name]).page
+    assert notes(page) == [UNREADABLE_NOTE]
+    # The screen under the note is a cold boot's, the bill-empty screen of R2. From task A4 that walk also holds
+    # #peopleBlk data-open "true" (R48, ruling 1 of S6), so People opening is checked by the same line.
+    cold_boot = screen_walk(open_app().page)
+    assert screen_walk(page) == cold_boot
     assert stored_text(page) == NEW_BILL_DRAFT
     page.reload()
-    assert page.locator("div.note").count() == 0 and stored_text(page) == NEW_BILL_DRAFT
+    assert notes(page) == [] and screen_walk(page) == cold_boot
 
 
-def test_R27_dismissing_the_note_moves_focus_to_the_first_name(open_app):
+def test_R27_dismissing_the_note(open_app):
     page = open_app(seed=seeds.UNREADABLE["B1"]).page
+    assert notes(page) == [UNREADABLE_NOTE]
+    page.evaluate("window.testNote = document.querySelector('#notes > div.note')")
+    place = page.locator("#notes > div.note").bounding_box()
+    open_dialog(page)
+    page.get_by_role("button", name="Start new bill").click()
+    # Start new bill does not show, hide or move the note (R27): the same element, in the same place.
+    assert notes(page) == [UNREADABLE_NOTE] and page.evaluate("document.querySelector('#notes > div.note') === window.testNote")
+    assert page.locator("#notes > div.note").bounding_box() == place
     page.get_by_role("button", name="Dismiss note").click()
-    assert page.locator("div.note-wrap").count() == 0 and support.active_label(page) == "Person 1 name"
+    assert page.locator("div.note").count() == 0 and page.evaluate("document.activeElement.id") == "newBill"  # rule 12
+    open_dialog(page)
+    page.get_by_role("button", name="Start new bill").click()
+    assert page.locator("div.note").count() == 0
 
 
-STORAGE_BREAKERS = {
-    "read-localStorage": "Object.defineProperty(window, 'localStorage', { get() { throw new DOMException('blocked', 'SecurityError'); } });",
-    "getItem": "Storage.prototype.getItem = function () { throw new Error('read failed'); };",
-    "setItem": "Storage.prototype.setItem = function () { throw new DOMException('full', 'QuotaExceededError'); };",
-}
+STORAGE_DRIVERS = {"D-b": D_B, "D-c": D_C, "D-a": D_A}
 
 
-@pytest.mark.parametrize("script", STORAGE_BREAKERS.values(), ids=STORAGE_BREAKERS.keys())
-def test_R28_the_app_works_without_storage(open_app, script):
-    page = open_app(init_scripts=[script]).page
-    subtotal_field(page).fill("100.00")
+def add_a_person_after_a_subtotal(page):
+    """The gestures of the R28 outline: type "100.00" into Subtotal and click "Add person"."""
+    type_into(page, subtotal_field(page), "100.00")
     page.get_by_role("button", name="Add person").click()
+
+
+@pytest.mark.parametrize("driver", STORAGE_DRIVERS.values(), ids=STORAGE_DRIVERS.keys())
+def test_R28_the_app_works_without_storage(open_app, driver):
+    # 1.0's "no message about storage shows" is retired by R46 and R47. The card is read through the 1.0 panel until
+    # task A9 replaces it (R19, R20). No page error, console error or CSP violation is checked at teardown.
+    page = open_app(init_scripts=[driver]).page
+    add_a_person_after_a_subtotal(page)
     assert summary_rows(page)[3][1] == "RM 116.60" and len(table_cells(page, "tbody")) == 3
-    assert page.locator("div.note, p.error").count() == 0
+
+
+@pytest.mark.xfail(strict=True, reason="task A11")
+@pytest.mark.parametrize("driver", STORAGE_DRIVERS.values(), ids=STORAGE_DRIVERS.keys())
+def test_R28_the_strip_follows_the_bill_without_storage(open_app, driver):
+    page = open_app(init_scripts=[driver]).page
+    add_a_person_after_a_subtotal(page)
+    assert " ".join(page.locator("#stripInfo").inner_text().split()) == "Total RM 116.60"  # "the strip reads" (R49)
+
+
+DRIVER_OUTCOMES_JS = """(name) => {
+  const outcome = (act) => { try { act(); return 'ok'; } catch (error) { return error.name; } };
+  const comeBack = () => window.dispatchEvent(new CustomEvent('test:storage', { detail: false }));
+  if (name === 'fail-set') return [outcome(() => localStorage.setItem('t', '1')), (comeBack(), outcome(() => localStorage.setItem('t', '1')))];
+  if (name === 'fail-get') return [outcome(() => localStorage), (comeBack(), outcome(() => localStorage.length))];
+  if (name === 'fail-getitem') return [outcome(() => localStorage.getItem('t'))];
+  localStorage.setItem('t', '1');
+  localStorage.setItem('t', '2');
+  return [window.testSetItemCalls];
+}"""
+
+
+@pytest.mark.parametrize("name, expected", [("fail-set", ["QuotaExceededError", "ok"]), ("fail-get", ["SecurityError", "ok"]),
+                                            ("fail-getitem", ["SecurityError"]), ("count-set", [2])])
+def test_R46_the_storage_drivers_do_what_how_to_run_says(open_app, name, expected):
+    # The drivers' own control. A page with no app script, so only the driver touches storage.
+    page = open_app(path="/docs/design/bill-even.html", init_scripts=[support.storage_driver(name)], allow_problems=True).page
+    assert page.evaluate(DRIVER_OUTCOMES_JS, name) == expected
+
+
+def test_R46_a_cold_boot_with_working_storage_shows_no_warning(open_app):
+    assert notes(open_app().page) == []
+
+
+def test_R46_the_first_failed_save_shows_the_warning(open_app):
+    page = open_app(init_scripts=[D_A]).page
+    assert notes(page) == []
+    support.replace_text(page, person_field(page, 1), "A")
+    assert notes(page) == [WARNING]
+    # The bill keeps working. The label follows the name and the card follows the bill (R5, R17). The People summary
+    # that also reads "A" is task A4's (R48), and a cold boot is in Even mode, so it has no toggles.
+    assert remove_button(page, "A").count() == 1 and card_text(page) == BLOCKED_CARD["subtotal"]
+
+
+def test_R46_the_warning_stays_while_saves_fail_and_a_reload_starts_without_it(open_app):
+    page = open_app(init_scripts=[D_A]).page
+    support.replace_text(page, person_field(page, 1), "A")
+    assert notes(page) == [WARNING]
+    add_a_person_after_a_subtotal(page)
+    assert notes(page) == [WARNING]
+    page.reload()
+    assert notes(page) == []  # the boot read works (SW5)
+    support.replace_text(page, person_field(page, 1), "A")
+    assert notes(page) == [WARNING]
+
+
+def test_R47_the_first_save_that_works_removes_the_warning(open_app):
+    page = open_app(init_scripts=[D_A]).page
+    support.replace_text(page, person_field(page, 1), "A")
+    assert notes(page) == [WARNING]
+    page.evaluate(STORAGE_COMES_BACK)
+    type_at_end(page, person_field(page, 1), "B")
+    assert notes(page) == [] and stored(page) == new_bill_draft_with_first_name("AB")  # the bill on screen (SW4)
+
+
+@pytest.mark.parametrize("driver", [D_B, D_C], ids=["D-b", "D-c"])
+def test_R46_a_failed_boot_read_shows_the_warning_in_the_first_render(open_app, driver):
+    page = open_app(init_scripts=[driver]).page
+    assert notes(page) == [WARNING]  # before any gesture, and no unreadable note
+    assert screen_walk(page) == screen_walk(open_app().page)  # the bill-empty screen, People open from task A4
+
+
+def test_R46_an_unreadable_draft_whose_reset_save_fails_shows_both_notes_the_warning_first(open_app):
+    page = open_app(seed=seeds.UNREADABLE["B1"], init_scripts=[D_A]).page
+    assert notes(page) == [WARNING, UNREADABLE_NOTE]  # CG-P5
+    page.get_by_role("button", name="Dismiss note").click()
+    assert notes(page) == [WARNING] and page.evaluate("document.activeElement.id") == "newBill"
+
+
+def test_R47_a_storage_object_that_comes_back_clears_the_warning_without_a_reload(open_app):
+    page = open_app(init_scripts=[D_B]).page
+    assert notes(page) == [WARNING]
+    page.evaluate(STORAGE_COMES_BACK)
+    support.replace_text(page, person_field(page, 1), "A")
+    assert notes(page) == [] and stored(page)["bill"]["people"][0]["name"] == "A"  # SW6
+
+
+@pytest.mark.xfail(strict=True, reason="task A15")
+def test_R47_a_change_that_writes_nothing_leaves_the_warning(open_app):
+    page = open_app(seed=seeds.PA0, viewport=(1280, 800), init_scripts=[D_A]).page
+    support.replace_text(page, person_field(page, 1), "A")
+    assert notes(page) == [WARNING]
+    page.evaluate(STORAGE_COMES_BACK)
+    assert page.locator("#pickAgain").count() == 1  # the card's Pick again chip (R51, R54)
+    page.locator("#pickAgain").click()
+    splits = page.eval_on_selector_all("#splits > li > span.amt", "(amounts) => amounts.map((amount) => amount.textContent)")
+    assert splits == ["RM 0.01", "RM 0.01", "RM 0.00"] and notes(page) == [WARNING]  # Pick again changed nothing (CG-P3)
+    type_at_end(page, person_field(page, 1), "B")
+    assert notes(page) == [] and stored(page)["bill"]["people"][0]["name"] == "AB"
+
+
+WATCH_NOTES_JS = """() => { window.testNoteMutations = 0;
+  new MutationObserver((records) => { window.testNoteMutations += records.length; }).observe(
+    document.getElementById('notes'), { childList: true, subtree: true, characterData: true, attributes: true }); }"""
+
+
+def test_R46_the_warnings_live_region_is_not_touched_on_every_keystroke(open_app):
+    page = open_app(init_scripts=[D_A]).page
+    support.replace_text(page, person_field(page, 1), "A")
+    assert notes(page) == [WARNING]
+    page.evaluate(WATCH_NOTES_JS)
+    type_at_end(page, person_field(page, 1), "bcde")
+    assert person_field(page, 1).input_value() == "Abcde" and page.evaluate("window.testNoteMutations") == 0  # SW7
+
+
+# D-d. Filler keys from 1 MiB down to one character, then the first filler grows until even one more character is refused.
+FILL_STORAGE_JS = """() => {
+  let size = 1 << 20, count = 0;
+  while (size >= 1) {
+    try { localStorage.setItem(`test.fill.${count}`, 'x'.repeat(size)); count += 1; } catch { size = Math.floor(size / 2); }
+  }
+  let value = localStorage.getItem('test.fill.0'), grow = 1 << 20;
+  while (grow >= 1) {
+    try { localStorage.setItem('test.fill.0', value + 'x'.repeat(grow)); value += 'x'.repeat(grow); } catch { grow = Math.floor(grow / 2); }
+  }
+  return count;
+}"""
+EMPTY_STORAGE_JS = """() => Object.keys(localStorage).filter((key) => key.startsWith('test.fill.'))
+  .forEach((key) => localStorage.removeItem(key))"""
+
+
+def open_people_first(page):
+    """qa.md "Open People first": below 1024 px, a click on People's header row when it is folded. The row exists
+    from task A4 (R48). Until then People is never folded and the step does nothing."""
+    row = page.locator("#peopleBtn")
+    if row.count() and row.is_visible() and row.get_attribute("aria-expanded") == "false":
+        row.click()
+
+
+def test_R46_a_real_full_storage_shows_the_warning_and_room_again_clears_it(open_app):
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
+    assert page.evaluate(FILL_STORAGE_JS) >= 1
+    type_at_end(page, person_field(page, 3), " Wei")
+    # The engine throws its own error through the app's own save. The card is read through the 1.0 panel until task A9.
+    assert notes(page) == [WARNING] and table_cells(page, "tbody")[2][0] == "Chen Wei"
+    page.evaluate(EMPTY_STORAGE_JS)
+    type_at_end(page, person_field(page, 3), "x")
+    assert notes(page) == [] and stored(page)["bill"]["people"][2]["name"] == "Chen Weix"
+
+
+STORAGE_PROBES = ("QuotaExceededError", "SecurityError", "DOMException", "setTimeout", "setInterval", ".removeItem(")
+
+
+def storage_problems(sources):
+    """What the R47 scan finds in {name: text}. An error name, a timer or a removal anywhere, or a storage read or
+    write other than the one boot read in loadDraft and the one write in saveDraft."""
+    found = [f"{name}: {word}" for name, text in sources.items() for word in STORAGE_PROBES if word in text]
+    for call in ("getItem(", "setItem("):
+        count = sum(text.count(call) for text in sources.values())
+        if count != 1:
+            found.append(f"{call} {count} times")
+    return found
+
+
+def test_R47_the_app_reads_no_error_name_and_probes_nothing(tmp_path):
+    # ".removeItem(" is the storage method. "removeItem(" alone also matches split-core's removeItem(bill, itemId),
+    # which the Contracts import (BUILD.md, task A3, Q-A3-1).
+    sources = {name: text for name, text in support.shipped_text().items() if name.startswith("src/")}
+    assert storage_problems(sources) == []
+    draft = sources["src/draft.js"]
+    read = "text = storage.getItem(DRAFT_KEY);"
+    assert read in draft
+    planted = {"error-name": draft + '\nconst full = (e) => e.name === "QuotaExceededError";\n',
+               "read-back": draft.replace(read, read + " storage.getItem(DRAFT_KEY);"),
+               "timer": draft + "\nsetTimeout(() => {}, 0);\n"}
+    for name, text in planted.items():
+        copy = tmp_path / f"{name}-draft.js"
+        copy.write_text(text, encoding="utf-8")
+        assert storage_problems(dict(sources, **{"src/draft.js": copy.read_text(encoding="utf-8")})) != [], name
 
 
 def test_R10_a_restored_bad_field_shows_its_error_at_once(open_app):
@@ -1624,17 +1864,6 @@ def test_R31_start_over_clears_the_error_flags(open_app, seed, prepare, field_of
     assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
     page.keyboard.press("Tab")
     assert page.locator("p.error").count() == 1 and field.get_attribute("aria-invalid") == "true"
-
-
-def test_R27_the_note_is_not_touched_by_start_over(open_app):
-    page = open_app(seed=seeds.UNREADABLE["B1"]).page
-    open_dialog(page)
-    page.get_by_role("button", name="Start new bill").click()
-    assert page.locator("div.note").count() == 1
-    page.get_by_role("button", name="Dismiss note").click()
-    open_dialog(page)
-    page.get_by_role("button", name="Start new bill").click()
-    assert page.locator("div.note").count() == 0
 
 
 # ---------------------------------------------------------------- RD-3: a press below a field that is being left (R10, CG-3)

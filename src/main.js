@@ -9,7 +9,7 @@ import { summaryText } from "./core/summary.js";
 import { getStorage, loadDraft, saveDraft } from "./draft.js";
 import { flagsFor, newErrorFlags, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
 import { createDialog } from "./ui/dialog.js";
-import { createNote } from "./ui/note.js";
+import { createNotes } from "./ui/note.js";
 import { createPeople } from "./ui/people.js";
 import { createMode } from "./ui/mode.js";
 import { createSubtotal } from "./ui/subtotal.js";
@@ -20,13 +20,25 @@ import { createPanel, hasShares } from "./ui/panel.js";
 import { blockedReceipt } from "./ui/receipt.js";
 import { reconcileChildren } from "./ui/dom.js";
 
-// Boot (R2, R26 to R28). A cold boot is a new bill and writes nothing. A readable draft is shown as it was.
+// Boot (R2, R26 to R28, R46). A cold boot is a new bill and writes nothing. A readable draft is shown as it was.
 // An unreadable one starts a new bill, saves it at once so a reload does not show the note again, and shows the note.
-const storage = getStorage();
+// A failed boot read shows the save warning in the first render. `storage` is null while the getter fails.
+let storage = getStorage();
 const loaded = loadDraft(storage);
 let bill = loaded.state === "ok" ? loaded.bill : newBill();
-const view = { errorShown: flagsFor(bill), status: null, noteShown: loaded.state === "unreadable" };
-if (view.noteShown) saveDraft(storage, bill);
+const view = {
+  errorShown: flagsFor(bill), status: null, noteShown: loaded.state === "unreadable", saveFailing: loaded.state === "failed",
+};
+if (view.noteShown) save();
+
+/**
+ * R46, R47: one save attempt, and the latest attempt decides whether the warning shows. While the storage object
+ * could not be obtained, each attempt reads the getter again, so storage that comes back clears the warning (SW6).
+ */
+function save() {
+  if (storage === null) storage = getStorage();
+  view.saveFailing = !saveDraft(storage, bill);
+}
 
 /**
  * R24: the copy status lives only while the shares table does. This is the one place that writes
@@ -54,7 +66,7 @@ async function copySummary() {
 function commit(next) {
   if (next === bill) return;
   bill = next;
-  saveDraft(storage, bill);
+  save();
   setStatus(view.status);
   render();
 }
@@ -130,11 +142,11 @@ createDialog(document.getElementById("newDlg"), newBillButton, {
     commit(newBill());
   },
 });
-const note = createNote(document.querySelector("header.top"), {
+const notes = createNotes(document.getElementById("notes"), {
   onDismiss() {
     view.noteShown = false;
     render();
-    people.focusName(0);
+    newBillButton.focus(); // rule 12
   },
 });
 document.getElementById("work").append(people.el, mode.el, subtotal.el, items.el, charges.el);
@@ -149,7 +161,7 @@ function render() {
   charges.update(bill, errors);
   if (result.kind === "blocked") reconcileChildren(receipt, blockedReceipt(result.reason));
   else panel.update(result, view.status);
-  note.update(view.noteShown);
+  notes.update(view);
 }
 
 render();

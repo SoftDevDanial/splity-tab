@@ -1,0 +1,5 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R3_the_notes_match_their_goldens[unreadable-note] (0.16s)
+FAILED   call     test_app.py::test_R3_the_notes_match_their_goldens[save-warning] (0.10s)
+FAILED   call     test_app.py::test_R27_dismissing_the_note (0.13s)
+exit status 1

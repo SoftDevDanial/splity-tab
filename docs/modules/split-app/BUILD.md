@@ -348,6 +348,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 | A0 | `4b67e96` | `test(split-app): engine switch, 1.0 golden fixtures and the WebKit baseline (task A0, R58, R59)` |
 | C2 (split-core) | `ad0436b` | Committed with the app tests C2 breaks marked for A1, listed in `docs/modules/split-core/BUILD.md`, section C2 |
 | A1 | `4231563` | `feat(split-app): draft version 2 with the spare choice (task A1, R61, R25, R26)`, recorded by the A2 section |
+| A2 | `d62c270` | `feat(split-app): shell and head, the sprite, the mark and the tab icon, cold boot into the blocked card (task A2, ...)`, recorded by the A3 section |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -506,3 +507,72 @@ That is 6 updates and 67 xfailed cases, the 73 of the sorting run.
 - Tests. `tests/browser/csp/listener.js` (`window.testCspViolations`) fails any scenario with a policy violation in either engine. `support.card_text` is qa.md's "the card reads". `expected.BLOCKED_CARD` holds the blocked card texts.
 
 **How to view.** `python -m http.server <port> --bind 127.0.0.1` from the project root, then `http://127.0.0.1:<port>/`. Below 1024 px the top bar, the 1.0 working blocks and the strip frame show. From 1024 px the card with the blocked receipt shows beside the working blocks.
+
+## v1.1.0 task A3, the notes and the save warning (2026-10-14)
+Built by the frontend developer role from `spec.md` (task A3, R27, R28, R46, R47, the view state, the DOM contract of `#notes`) and `qa.md` (How to run, storage drivers, the R27, R28, R46 and R47 scenarios, ST-10, BR-01 to BR-03).
+
+**Status. Committed with this section.** Node and Chromium green. WebKit recorded and compared by id with A2's 35 below. The next section or the commit table records the hash.
+
+**Phase skills (design row of `docs/phase-skills.md`).** Read and applied from disk, `taste-skill` (`taste-skill/1.0.0/skills/taste-skill/SKILL.md`) and `frontend-design` (`frontend-design/8d392c816966/skills/frontend-design/SKILL.md`). The goldens fix every design choice here, so only the transferable rules applied.
+- The brief's own words win (frontend-design) and nothing changes silently (taste-skill 11.F). The two notes are the goldens' markup and copy (`bill-unreadable.html` `#notes`, the S5 frame of `states.html`), with nothing they do not draw. No dismiss on the warning, because the golden draws none.
+- Errors say what happened and what follows, in the interface's voice (frontend-design, writing). The copy is the spec's Copy table, word for word.
+- Icons from the one sprite (taste-skill 3.C, 9.E), `#i-warning` and `#i-warning-circle` through `icon`, decoration only.
+- Motion is motivated (taste-skill 5). The notes have none, and the live region is touched only when a note's state flips (SW7).
+- No em dash and a copy self-audit (taste-skill 9.G, 4.9). Both note texts are the Copy table's rows.
+- Critique by render (frontend-design). The render check under Proof.
+- Not transferred, because the golden or the locked stack decides them. The design read, the dials, palette, type, layout, libraries.
+
+**What changed** (cite by symbol).
+- `src/ui/note.js`. `createNotes(container, { onDismiss })` builds the save warning (`div.note.is-warn`, `#i-warning`) and the unreadable note (`div.note`, `#i-warning-circle`, `button.icon-btn#dismissNote`) once each, and `update({ saveFailing, noteShown })` puts them into `#notes` with `reconcileChildren`, the warning first (CG-P5). A note is inserted or removed only when its state flips (SW7). The 1.0 `createNote` and its `div.note-wrap` after the header are gone.
+- `src/main.js`. `save()` is the one save attempt (R25, the reset save of R27, Start new bill through `commit`). It re-reads `getStorage()` while the handle is null (SW6) and sets `view.saveFailing` from `saveDraft` (R46, R47, the latest attempt decides). `view.saveFailing` starts from the boot read, `loadDraft` state `failed` (R46 at boot). Dismiss note hides the note and focuses New bill (rule 12). `notes.update(view)` in `render`.
+- `src/draft.js` unchanged. Its one `getItem(` and one `setItem(` stand (R47 scan).
+- `tests/browser/storage/` (new). `fail-set.js` (D-a), `fail-get.js` (D-b), `fail-getitem.js` (D-c), `count-set.js` (the write counter), as qa.md How to run says. None touches `localStorage` at its top level.
+- `tests/browser/support.py`. `STORAGE_DIR` and `storage_driver(name)`. `open_golden` opens goldens with colour scheme `dark` and reduced motion `reduce`.
+- `tests/browser/conftest.py`. `open_app` defaults to colour scheme `dark` and reduced motion `reduce` (qa.md How to run), viewport and scale unchanged.
+- `tests/browser/seeds.py`. `UNREADABLE` B25 to B32 (D13), `PA0`.
+- `tests/browser/test_app.py`. The A3 block (helpers `notes`, `screen_walk`, `type_into`, `type_at_end`, `open_people_first`, `storage_problems`) and the tests below.
+
+**Tests.**
+- Rewritten. `test_R3_the_note_matches_its_specimen` (xfail A3, a 1.0 `states.html` reader) becomes `test_R3_the_notes_match_their_goldens`, the R3 walk of each note against `bill-unreadable.html` and the S5 frame of `states.html`. `test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note` (24 xfail A3) now covers B1 to B32. `test_R27_dismissing_the_note_moves_focus_to_the_first_name` and `test_R27_the_note_is_not_touched_by_start_over` become `test_R27_dismissing_the_note` (rule 12, qa.md "Dismissing the note"). `test_R28_the_app_works_without_storage` uses D-b, D-c and D-a, and drops 1.0's "no message about storage shows", which R46 retires.
+- New. `test_R28_the_strip_follows_the_bill_without_storage` (3, xfail A11), `test_R46_the_storage_drivers_do_what_how_to_run_says` (4, the drivers' own control), scenarios (a) to (f) of R46 and R47, SW6, SW7 and D-d, `test_R47_a_change_that_writes_nothing_leaves_the_warning` (SW4, xfail A15, it needs `#pickAgain`) and the `@static` scan `test_R47_the_app_reads_no_error_name_and_probes_nothing` with its three planted copies.
+- Updated. `test_R1_seeds_parse_and_differ_as_documented` counts 32 unreadable drafts (qa.md B1 to B32).
+- Marks removed, the 25 A2 left for A3. Marks added, 4 (`task A11` 3, `task A15` 1).
+
+**RED first.**
+- `docs/modules/split-app/qa/functional/20261014-202110-chromium/`, the A3 tests against the tree before the build. 44 failed, 9 passed, 4 xfailed. 41 failed on their assertions (an empty `#notes` where a note is expected). 3 failed by an exception where the note did not exist yet (two R3 walks, one bounding box wait in the dismiss test), recorded as measured. Each then gained an asserted precondition and was run again, `20261014-202212-chromium/`, 3 failed, each on its assertion. The 9 that pass before the build are the three R28 cases (an updated 1.0 test, the app always worked without storage), the four driver controls (test-side scripts), scenario (a) (no warning with working storage) and the static scan, whose teeth are its own planted copies.
+- Teeth of the two assertions RED could not reach, each against a stub put in and taken out with the Edit tool. Scenario (a) against `saveFailing: true` at every boot, `20261014-202303-chromium/`, 1 failed on its assertion. SW7 against a warning cloned on every render, `20261014-202313-chromium/`, 1 failed on the mutation count. `grep cloneNode` and `saveFailing: true` find nothing in `src/` after.
+
+**Proof** (each folder listed on disk after its run).
+- The new defaults alone, before any A3 code. Chromium `20261014-201407-chromium/`, 354 passed, 120 xfailed, every id's outcome equal to A2's `20261014-155757-chromium/`. WebKit `20261014-201639-webkit/`, 319 passed, 34 failed, 1 skipped, 120 xfailed. Against A2's `20261014-160227-webkit/` one id changed, `test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]` (class (b), A16) now passes. So the defaults change one test's result, in WebKit only, and nothing in Chromium.
+- Chromium on the build, first run `20261014-202330-chromium/`, 1 failed, `test_R1_seeds_parse_and_differ_as_documented` (it counted 24 unreadable drafts), updated as above. Commit tree `20261014-202551-chromium/`, 402 passed, 99 xfailed, 0 failed, exit 0.
+- WebKit on the commit tree `20261014-202809-webkit/`, 366 passed, 35 failed, 1 skipped (the IME test), 99 xfailed. Every new A3 test passes in WebKit, the D-d quota fill and the D-b getter driver included.
+- Node. `node --test "tests/**/*.test.js"`, 369 of 369 pass.
+- Render check, `docs/modules/split-app/qa/note-render/20261014-203359-chromium/boxes.json` by `render.py` beside it, nothing pressed, headless Chromium in the dark and reduce context. The unreadable note against `bill-unreadable.html` at 390 x 844, 360 x 780 and 1280 x 800, top bar box, note box, text box, icon, Dismiss note and computed styles all equal (BR-01 to BR-03). The warning's styles and icon fill equal the S5 frame at 390 (ST-10), two text lines at 390 and 360 (the note 66 px tall, the top bar 139), one line and 44 px tall at 1280, 16 px right padding.
+- `git hash-object --no-filters src/system.css` is `bf30ddadb8c756dc5d462243c642c218597ae0ac`, unchanged. `docs/design/` was never written.
+
+**WebKit by id against A2's 35** (`20261014-160227-webkit/junit.xml`).
+- Still failing, 34. The H-04 class (a) family, 30 (the 24 of the A0 43 that still failed at A2, and the 6 new at A2, `test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing` touch double on `S1-item-4-of-4` and `S1-only-item` at three widths), all for A17. Class (b), 4 (`test_R29_the_dialog_opens_with_the_safe_choice_focused`, `test_R30_leaving_the_dialog_without_starting_over[escape]`, `test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[service-touch]` and `[sst-touch]`), for A6 and A16.
+- Gone, 1. `test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]` passes in both WebKit runs since the reduce default (class (b), A16 still applies R59 (2)).
+- New, 1, not H-04. `test_R30_leaving_the_dialog_without_starting_over[cancel]` failed in the full WebKit run, "focus is on the dialog, not New bill", right after a Cancel click. It passed at A0, at A2 and in the defaults run, and 10 of 10 alone on this tree (bounded loop, no failure). `createDialog` returns focus in the dialog's `close` event, which both engines queue as a task, and under the full suite's load WebKit sometimes runs that task after the test reads focus. A3 changes nothing on that path. Finding F-A3-1 below, not marked.
+
+**Judgment calls.**
+1. Lines of an A3 scenario that need a later task are carried as follows, never dropped. "The bill-empty screen shows under it with `#peopleBlk` data-open true" (R27 and (e)) is a comparison of the R3 walk of `main.layout` and `#strip` with a cold boot's (`screen_walk`), so from A4 on it also checks People open, and R48's B1 row is A4's own. "The strip reads Total RM 116.60" (R28) is `test_R28_the_strip_follows_the_bill_without_storage`, xfail A11. "The card holds three splits rows" (R28) and "the card's third splits row reads Chen Wei" (D-d) read the 1.0 panel until A9 replaces it, so A9 updates those two reads. In (b) the People summary that reads "A" is A4's and a cold boot in Even mode has no toggles, so the test reads the label where it shows today, `Remove A`, and the card.
+2. Q-A3-1, a contradiction in the R47 `@static` scan. qa.md bans "removeItem(" anywhere in `src/`, but split-core's own `removeItem(bill, itemId)` (Contracts, Imports) is called `removeItem(` in `src/core/bill.js` and `src/main.js`. The scan bans the storage method `.removeItem(`, the reading the scenario's title gives ("probes nothing"). Recommended answer, qa.md reads ".removeItem(". If ruled otherwise, a one-word change in `STORAGE_PROBES`.
+3. `open_people_first` follows the qa.md phrase literally, a click on `#peopleBtn` only when it exists, is shown and is folded. Before A4 there is no header row and the step does nothing, as the phrase says from 1024 px.
+4. `PA0` has `"subtotalText":""`, which qa.md's row does not state. The seed is by item, so the subtotal does not reach the result.
+5. The save warning's R3 golden is the S5 frame of `states.html`, whose `div.notes` has no id (specimen chrome, allowed difference 5), so the walk compares the note element on both sides. The warning shows through D-b at boot, the same markup as after a failed save.
+6. `test_R46_the_storage_drivers_do_what_how_to_run_says` opens `/docs/design/bill-even.html` through the test server, a page with no app script, as the R39 clipboard tests do, so only the driver touches storage.
+
+**Deviations.** None. The engineering principles hold. `save()` is the one home of a save attempt (DRY), `createNotes` owns both notes (single responsibility), and the drivers are test-side only.
+
+**Finding for the orchestrator.**
+- F-A3-1. `test_R30_leaving_the_dialog_without_starting_over[cancel]` is timing dependent in WebKit (above). Recommended, A16 applies R59 (2)'s wait for the `close` event to every R30 close it reads focus after (Cancel and the backdrop as well as Escape), or the planner rules that `closeByClick` in `createDialog` focuses the opener at once, which removes the race in the app. Not sorted by A3, since R30 is A16's.
+
+**Non-goals honoured.** No probe write, no read back, no timer for storage, no exception name read, no dismiss on the warning, no "saved" indicator, no CSS change, nothing under `docs/design/`.
+
+**For the README reconcile** (symbols).
+- The save warning (R46, R47). `save()` in `src/main.js` makes every save attempt, re-reads `getStorage()` while it is null and sets `view.saveFailing`. `createNotes` in `src/ui/note.js` shows the warning and the unreadable note in `#notes`, the warning first. Dismiss note focuses New bill.
+- Tests. The storage drivers `tests/browser/storage/fail-set.js` (D-a), `fail-get.js` (D-b), `fail-getitem.js` (D-c) and `count-set.js`, loaded by `support.storage_driver`. `open_app` and `support.open_golden` default to the dark, reduced motion context of qa.md How to run.
+- The limit SW8 (private browsing and Safari's 7-day clean-up lose data with no failure the page can see) is the orchestrator's README line (R47).
+
+**How to view.** Serve as above. The unreadable note shows with a stored `split.draft` of `not json`. The save warning shows when the browser refuses storage, for example Safari with "Block All Cookies".

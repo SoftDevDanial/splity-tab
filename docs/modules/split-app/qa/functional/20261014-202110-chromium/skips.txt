@@ -1,0 +1,6 @@
+engine chromium, browser version 149.0.7827.55
+test_app.py::test_R28_the_strip_follows_the_bill_without_storage[D-b] | xfail task A11
+test_app.py::test_R28_the_strip_follows_the_bill_without_storage[D-c] | xfail task A11
+test_app.py::test_R28_the_strip_follows_the_bill_without_storage[D-a] | xfail task A11
+test_app.py::test_R47_a_change_that_writes_nothing_leaves_the_warning | xfail task A15
+count 4

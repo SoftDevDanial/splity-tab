@@ -102,7 +102,24 @@ UNREADABLE = {
     "B22": with_bill(S2, nextId=3),
     "B23": with_bill(S2, nextId=1.5),
     "B24": with_bill(S2, nextId=2000000000),
+    # D13, the spare choice (task A3, qa.md B25 to B32)
+    "B25": changed(S2, lambda d: d["bill"].pop("spare")),
+    "B26": with_bill(S2, spare={"rule": "two"}),
+    "B27": with_bill(S2, spare={"rule": "one", "personId": "p9"}),
+    "B28": with_bill(S2, spare={"rule": "one"}),
+    "B29": with_bill(S2, spare={"rule": "random", "order": ["p1", "p2"]}),
+    "B30": with_bill(S2, spare={"rule": "random", "order": ["p1", "p1", "p2", "p3"]}),
+    "B31": with_bill(S2, spare={"rule": "random", "order": ["p1", "p2", "p3", "p4"]}),
+    "B32": with_bill(S2, spare=[]),
 }
+
+# [PA0] Two spare sen, and every order gives Aisyah RM 0.01, Ben RM 0.01, Chen RM 0.00, so Pick again can change nothing.
+PA0 = dump({"version": 2, "bill": {
+    "mode": "item", "people": [{"id": "p1", "name": "Aisyah"}, {"id": "p2", "name": "Ben"}, {"id": "p3", "name": "Chen"}],
+    "subtotalText": "", "items": [{"id": "i4", "name": "X", "priceText": "0.01", "who": ["p1", "p2"]},
+                                  {"id": "i5", "name": "Y", "priceText": "0.01", "who": ["p1", "p2"]}],
+    "serviceText": "0", "sstText": "0", "spare": {"rule": "random", "order": ["p1", "p2", "p3"]}, "nextId": 6,
+}})
 
 # Readable drafts that look odd (must load, R26 with D8, D11, D12). Id -> stored text.
 ODD_READABLE = {

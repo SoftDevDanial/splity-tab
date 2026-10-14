@@ -11,6 +11,13 @@ GOLDEN_V1_DIR = ROOT / "tests" / "fixtures" / "design-v1.0.0"
 
 CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; "
        "base-uri 'none'; form-action 'none'")
+STORAGE_DIR = ROOT / "tests" / "browser" / "storage"
+
+
+def storage_driver(name):
+    """The init script of one storage driver in STORAGE_DIR (qa.md How to run), "fail-set" (D-a), "fail-get" (D-b),
+    "fail-getitem" (D-c) or "count-set" (the write counter). A test passes it to open_app in init_scripts."""
+    return (STORAGE_DIR / f"{name}.js").read_text(encoding="utf-8")
 
 # The R3 walk (spec R3 and its allowed differences). Compares tag, class list, own text, every aria-* attribute,
 # the attributes in KEEP, the href of every use, and an input's value and checked properties (the property, so the
@@ -97,8 +104,10 @@ def card_text(page):
 
 
 def open_golden(plain_context, name, viewport=(390, 844), folder=GOLDEN_DIR):
-    """A page on one golden, opened read-only as a file from `folder` (GOLDEN_V1_DIR for a 1.0 golden)."""
-    context = plain_context(viewport={"width": viewport[0], "height": viewport[1]}, color_scheme="light")
+    """A page on one golden, opened read-only as a file from `folder` (GOLDEN_V1_DIR for a 1.0 golden), in the
+    default context of qa.md How to run, so the app and the golden it is compared with share one context (task A3)."""
+    context = plain_context(viewport={"width": viewport[0], "height": viewport[1]}, color_scheme="dark",
+                            reduced_motion="reduce")
     page = context.new_page()
     page.goto((folder / f"{name}.html").as_uri())
     return page

@@ -1,17 +1,20 @@
-// The "saved bill could not be read" note (R27), under the header. Dismissing it removes it from the DOM.
-// createNote(header, { onDismiss }) returns { update(shown) }.
-import { el } from "./dom.js";
+// The notes in the top bar's div.notes#notes (R27, R46). The save warning comes first, then the "saved bill could
+// not be read" note with Dismiss note (CG-P5). Each note is built once and only inserted or removed when its state
+// flips, so a keystroke that saves (or fails to) never touches the live regions (SW7).
+// createNotes(container, { onDismiss }) returns { update({ saveFailing, noteShown }) }.
+import { el, reconcileChildren } from "./dom.js";
 import { icon } from "./icons.js";
 
-export function createNote(header, { onDismiss }) {
-  const dismiss = el("button", { class: "icon-btn", type: "button", "aria-label": "Dismiss note" }, icon("x"));
+export function createNotes(container, { onDismiss }) {
+  const warning = el("div", { class: "note is-warn", role: "status" }, icon("warning"),
+    el("p", {}, "This bill is not being saved on this device. It will be lost when you close this tab."));
+  const dismiss = el("button", { type: "button", class: "icon-btn", id: "dismissNote", "aria-label": "Dismiss note" }, icon("x"));
   dismiss.addEventListener("click", onDismiss);
-  const wrap = el("div", { class: "note-wrap" }, el("div", { class: "note", role: "status" },
-    el("p", {}, "Your saved bill could not be read, so a new one was started."), dismiss));
+  const unreadable = el("div", { class: "note", role: "status" }, icon("warning-circle"),
+    el("p", {}, "Your saved bill could not be read, so a new one was started."), dismiss);
 
-  function update(shown) {
-    if (!shown) wrap.remove();
-    else if (header.nextElementSibling !== wrap) header.after(wrap);
+  function update({ saveFailing, noteShown }) {
+    reconcileChildren(container, [saveFailing && warning, noteShown && unreadable].filter(Boolean));
   }
 
   return { update };

@@ -176,19 +176,19 @@ def browser(engine):
 
 @pytest.fixture
 def open_app(server, browser, request):
-    """open_app(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion=None, init_scripts=(),
-    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="light") -> Session
+    """open_app(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark") -> Session
 
-    Every context also gets csp/listener.js, so a policy violation fails the scenario in either engine (R38)."""
+    The defaults are the default context of qa.md How to run (task A3). A scenario that names "no-preference" or a
+    light colour scheme passes it. Every context also gets csp/listener.js, so a policy violation fails the scenario
+    in either engine (R38)."""
     sessions = []
 
-    def factory(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion=None, init_scripts=(),
-                path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="light"):
+    def factory(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+                path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark"):
         target = base_server or server
         options = {"viewport": {"width": viewport[0], "height": viewport[1]},
-                   "device_scale_factor": 1, "color_scheme": color_scheme}
-        if reduced_motion:
-            options["reduced_motion"] = reduced_motion
+                   "device_scale_factor": 1, "color_scheme": color_scheme, "reduced_motion": reduced_motion}
         if touch:  # page.touchscreen.tap needs a context that has touch (RD-3)
             options["has_touch"] = True
         if seed is not None:
