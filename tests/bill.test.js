@@ -3,13 +3,16 @@ import assert from "node:assert/strict";
 import {
   LIMITS, newBill, addPerson, removePerson, setPersonName, setMode, setSubtotalText,
   setServiceText, setSstText, addItem, removeItem, setItemName, setItemPriceText,
-  toggleItemPerson, personLabel, itemLabel,
+  toggleItemPerson, personLabel, itemLabel, sparePeople,
 } from "../src/core/bill.js";
-import { S1, D2, MAX_E, MAX_I, deepFreeze } from "./support/bills.js";
+import { S1, S2, I2, I3, D2, MAX_E, MAX_I, deepFreeze } from "./support/bills.js";
 
-const BILL_KEYS = ["mode", "people", "subtotalText", "items", "serviceText", "sstText", "nextId"];
+const BILL_KEYS = ["mode", "people", "subtotalText", "items", "serviceText", "sstText", "spare", "nextId"];
 
-test("@R10 a new bill has two people, even mode and the default rates", () => {
+/** A bill with the spare choice set directly, because the choice actions are core task C5. */
+const withSpare = (bill, spare) => deepFreeze({ ...structuredClone(bill), spare });
+
+test("@R10 a new bill has two people, even mode, the default rates and Top of the list", () => {
   assert.deepEqual(newBill(), {
     mode: "even",
     people: [{ id: "p1", name: "Person 1" }, { id: "p2", name: "Person 2" }],
@@ -17,6 +20,7 @@ test("@R10 a new bill has two people, even mode and the default rates", () => {
     items: [],
     serviceText: "10",
     sstText: "6",
+    spare: { rule: "top" },
     nextId: 3,
   });
 });
@@ -25,6 +29,7 @@ test("@R10 every call returns a fresh bill, never a shared one", () => {
   const first = newBill();
   assert.notEqual(newBill(), first);
   assert.notEqual(newBill().people, first.people);
+  assert.notEqual(newBill().spare, first.spare);
 });
 
 test("@R10 the limits constant matches the contract and is frozen", () => {
@@ -64,6 +69,75 @@ test("@R12 removing a person removes them from every item", () => {
   assert.deepEqual(bill.items.find((i) => i.id === "i7").who, ["p1"]);
   const knownIds = new Set(bill.people.map((p) => p.id));
   assert.ok(bill.items.every((item) => item.who.every((id) => knownIds.has(id))));
+});
+
+test("@R27 @R11 adding a person extends the drawn order and keeps the people already drawn in place", () => {
+  const drawn = withSpare(S2, { rule: "random", order: ["p2", "p3", "p1"] });
+  assert.equal(drawn.nextId, 4);
+  const added = addPerson(drawn);
+  assert.deepEqual(added.spare, { rule: "random", order: ["p2", "p3", "p1", "p4"] });
+  assert.equal(added.nextId, 5);
+  for (const spare of [{ rule: "top" }, { rule: "one", personId: "p2" }]) {
+    assert.deepEqual(addPerson(withSpare(S2, spare)).spare, spare);
+  }
+});
+
+const removals = [
+  [{ rule: "random", order: ["p2", "p3", "p1"] }, "p3", { rule: "random", order: ["p2", "p1"] }],
+  [{ rule: "one", personId: "p2" }, "p2", { rule: "top" }],
+  [{ rule: "one", personId: "p2" }, "p3", { rule: "one", personId: "p2" }],
+  [{ rule: "top" }, "p1", { rule: "top" }],
+];
+for (const [before, id, after] of removals) {
+  test(`@R27 @R12 removing ${id} from spare ${JSON.stringify(before)} leaves ${JSON.stringify(after)}`, () => {
+    assert.deepEqual(removePerson(withSpare(S2, before), id).spare, after);
+  });
+}
+
+test("@R27 @R12 a refused removal keeps the spare choice as it was", () => {
+  const chosen = withSpare(newBill(), { rule: "one", personId: "p1" });
+  assert.equal(removePerson(chosen, "p1"), chosen);
+  const drawn = withSpare(S2, { rule: "random", order: ["p2", "p3", "p1"] });
+  assert.equal(removePerson(drawn, "p99"), drawn);
+});
+
+test("@R27 @R15 a mode switch, the setters and the item actions never touch the spare choice", () => {
+  const spare = { rule: "one", personId: "p2" };
+  const chosen = withSpare(S1, spare);
+  const actions = [
+    (b) => setMode(setMode(b, "even"), "item"),
+    (b) => setSubtotalText(b, "9"),
+    (b) => setServiceText(b, "9"),
+    (b) => setSstText(b, "9"),
+    (b) => setPersonName(b, "p1", "Z"),
+    (b) => addItem(b),
+    (b) => removeItem(b, "i4"),
+    (b) => setItemName(b, "i4", "Z"),
+    (b) => setItemPriceText(b, "i4", "9"),
+    (b) => toggleItemPerson(b, "i4", "p2"),
+  ];
+  for (const act of actions) assert.deepEqual(act(chosen).spare, spare);
+});
+
+const spareHolders = [
+  ["S2", S2, ["p1", "p2", "p3"]],
+  ["S1", S1, ["p1", "p2", "p3"]],
+  ["I2", I2, ["p2", "p3"]],
+  ["I3 (tapped Chen first, still list order)", I3, ["p1", "p3"]],
+  ["I2 switched to even mode", setMode(I2, "even"), ["p1", "p2", "p3"]],
+  ["D2", D2, ["p2"]],
+  ["a new bill switched to by-item mode", setMode(newBill(), "item"), []],
+];
+for (const [title, bill, ids] of spareHolders) {
+  test(`@R28 sparePeople of ${title} is ${JSON.stringify(ids)}`, () => {
+    assert.deepEqual(sparePeople(bill), ids);
+  });
+}
+
+test("@R28 @R16 sparePeople leaves a deep-frozen bill alone and lists a person once", () => {
+  const frozen = deepFreeze(structuredClone(S1));
+  assert.deepEqual(sparePeople(frozen), ["p1", "p2", "p3"]);
+  assert.deepEqual(frozen, S1);
 });
 
 test("@R12 removing is refused at 2 people or for an unknown id", () => {
@@ -174,7 +248,7 @@ test("@R16 no action mutates a deep-frozen bill and changes return new objects",
 const parsedBill = () => JSON.parse(
   '{"mode":"even","people":[{"id":"p1","name":"A","x":1},{"id":"p2","name":"B","__proto__":{"polluted":true}},' +
   '{"id":"p3","name":"C"}],"subtotalText":"","items":[{"id":"i4","name":"T","priceText":"1","who":["p1"],' +
-  '"stray":1}],"serviceText":"10","sstText":"6","nextId":5,"extra":1,"__proto__":{"polluted":true}}',
+  '"stray":1}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":5,"extra":1,"__proto__":{"polluted":true}}',
 );
 const PERSON_KEYS = ["id", "name"];
 const ITEM_KEYS = ["id", "name", "priceText", "who"];
@@ -207,6 +281,34 @@ for (const [title, act, rebuilt, keys] of rebuilds) {
     assert.equal({}.polluted, undefined);
   });
 }
+
+// The spare choice an action rebuilds comes from known fields only, like a person or an item (threat model,
+// object integrity). Stray and __proto__ keys on the parsed choice must not travel into the new one.
+const parsedWithSpare = (spare) => ({ ...parsedBill(), spare: JSON.parse(spare) });
+const STRAY = '"stray":1,"__proto__":{"polluted":true}';
+const spareRebuilds = [
+  ["addPerson", (b) => addPerson(b), `{"rule":"random","order":["p1","p2","p3"],${STRAY}}`, ["rule", "order"]],
+  ["removePerson (random)", (b) => removePerson(b, "p3"), `{"rule":"random","order":["p1","p2","p3"],${STRAY}}`, ["rule", "order"]],
+  ["removePerson (the chosen one)", (b) => removePerson(b, "p2"), `{"rule":"one","personId":"p2",${STRAY}}`, ["rule"]],
+];
+for (const [title, act, spare, keys] of spareRebuilds) {
+  test(`@R27 @R16 ${title} on a parsed bill builds the spare choice from known fields`, () => {
+    const next = act(parsedWithSpare(spare));
+    assert.deepEqual(Object.keys(next.spare), keys);
+    assert.equal(Object.hasOwn(next.spare, "__proto__"), false);
+    assert.equal({}.polluted, undefined);
+  });
+}
+
+test("@R27 @R16 addPerson and removePerson leave a deep-frozen random choice alone", () => {
+  const frozen = withSpare(S2, { rule: "random", order: ["p2", "p3", "p1"] });
+  const added = addPerson(frozen);
+  const removed = removePerson(frozen, "p2");
+  assert.notEqual(added, frozen);
+  assert.deepEqual(Object.keys(added), BILL_KEYS);
+  assert.deepEqual(removed.spare, { rule: "random", order: ["p3", "p1"] });
+  assert.deepEqual(frozen.spare, { rule: "random", order: ["p2", "p3", "p1"] });
+});
 
 const labels = [
   ["person", { name: "Aisyah" }, 0, "Aisyah"],

@@ -2,17 +2,18 @@
 // so the browser shell can keep the previous bill as is and never edits state itself.
 // Text fields are stored exactly as typed. Parsing happens on read (see result.js).
 // An unknown id, or a move past a limit, returns the same bill object so callers can skip a re-render.
-// The Bill and any person or item an action changes are rebuilt from known fields, never spread, so no
-// stray or __proto__ key is copied into what an action builds. Untouched people and items are shared by
-// reference, so cleaning a bill parsed from JSON is split-app's draft decoder's job.
+// The Bill and any person, item or spare choice an action changes are rebuilt from known fields, never
+// spread, so no stray or __proto__ key is copied into what an action builds. Untouched people, items and
+// spare choice are shared by reference, so cleaning a bill parsed from JSON is split-app's draft decoder's job.
 
 /** @typedef {"even" | "item"} Mode */
 /** @typedef {{ id: string, name: string }} Person */
 /** @typedef {{ id: string, name: string, priceText: string, who: string[] }} Item */
+/** @typedef {{ rule: "top" } | { rule: "one", personId: string } | { rule: "random", order: string[] }} Spare */
 /**
  * @typedef {{
  *   mode: Mode, people: Person[], subtotalText: string, items: Item[],
- *   serviceText: string, sstText: string, nextId: number
+ *   serviceText: string, sstText: string, spare: Spare, nextId: number
  * }} Bill
  */
 
@@ -32,6 +33,7 @@ function billWith(bill, changes) {
     items: changes.items ?? bill.items,
     serviceText: changes.serviceText ?? bill.serviceText,
     sstText: changes.sstText ?? bill.sstText,
+    spare: changes.spare ?? bill.spare,
     nextId: changes.nextId ?? bill.nextId,
   };
 }
@@ -49,7 +51,7 @@ function itemWith(item, changes) {
   };
 }
 
-/** @returns {Bill} the starting bill (R10): two people, even mode, 10% service and 6% SST */
+/** @returns {Bill} the starting bill (R10): two people, even mode, 10% service, 6% SST, Top of the list */
 export function newBill() {
   return {
     mode: "even",
@@ -58,24 +60,44 @@ export function newBill() {
     items: [],
     serviceText: "10",
     sstText: "6",
+    spare: { rule: "top" },
     nextId: 3,
   };
+}
+
+// The two keep R27 true when the people change: a drawn order holds every person once, and a chosen
+// person must still be on the bill. The choice is rebuilt from known fields, never spread, like a person.
+function spareWith(spare, personId) {
+  return spare.rule === "random" ? { rule: "random", order: [...spare.order, personId] } : spare;
+}
+
+function spareWithout(spare, personId) {
+  if (spare.rule === "random") return { rule: "random", order: spare.order.filter((id) => id !== personId) };
+  return spare.rule === "one" && spare.personId === personId ? { rule: "top" } : spare;
 }
 
 /** Adds an unnamed person (R11). The empty name shows as "Person N" through personLabel (ruled CG-1). */
 export function addPerson(bill) {
   if (bill.people.length >= LIMITS.maxPeople) return bill;
   const person = { id: `p${bill.nextId}`, name: "" };
-  return billWith(bill, { people: [...bill.people, person], nextId: bill.nextId + 1 });
+  return billWith(bill, {
+    people: [...bill.people, person],
+    spare: spareWith(bill.spare, person.id),
+    nextId: bill.nextId + 1,
+  });
 }
 
-/** Removes a person and every tap of theirs (R12), so no item keeps an id that is gone. */
+/**
+ * Removes a person and every tap of theirs (R12), so no item keeps an id that is gone, and takes them
+ * out of the spare choice (R27).
+ */
 export function removePerson(bill, personId) {
   const known = bill.people.some((person) => person.id === personId);
   if (!known || bill.people.length <= LIMITS.minPeople) return bill;
   return billWith(bill, {
     people: bill.people.filter((person) => person.id !== personId),
     items: bill.items.map((item) => itemWith(item, { who: item.who.filter((id) => id !== personId) })),
+    spare: spareWithout(bill.spare, personId),
   });
 }
 
@@ -165,4 +187,18 @@ export function personLabel(person, index) {
  */
 export function itemLabel(item, index) {
   return labelOf(item.name, "Item", index);
+}
+
+/**
+ * The people who can be chosen to take spare sen (R28). A person on no item has a split of 0 under every
+ * rule, so in by-item mode they cannot take one. Written once here because result.js (the One person
+ * fallback) and spare.js both need it.
+ * @param {Bill} bill
+ * @returns {string[]} person ids in list order
+ */
+export function sparePeople(bill) {
+  const everyone = bill.people.map((person) => person.id);
+  if (bill.mode === "even") return everyone;
+  const onAnItem = new Set(bill.items.flatMap((item) => item.who));
+  return everyone.filter((id) => onAnItem.has(id));
 }

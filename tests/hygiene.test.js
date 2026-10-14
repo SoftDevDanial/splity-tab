@@ -384,6 +384,7 @@ function runEveryExport({ money, allocate, bill, result, summary }) {
   bill.removePerson(b, "p3");
   bill.personLabel(b.people[0], 0);
   bill.itemLabel(b.items[0], 0);
+  bill.sparePeople(b);
   money.parseAmount(" 12.50 ");
   money.parseRate("6.25", 20);
   money.formatMoney(779999922);

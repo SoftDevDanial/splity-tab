@@ -1,0 +1,11 @@
+Throwaway stubs added to src/core/bill.js for the RED runs only. Never committed.
+The real code replaced them before the commit.
+
+Stub 1 (run 1), a new export:
+export function sparePeople(bill) { return []; }
+
+Stub 2 (run 2), replaces stub 1:
+export function sparePeople(bill) { return bill.people.map((person) => person.id); }
+
+Stub 3 (run 2), one line of removePerson changed so a refusal returns a copy and not the input:
+  if (!known || bill.people.length <= LIMITS.minPeople) return { ...bill };

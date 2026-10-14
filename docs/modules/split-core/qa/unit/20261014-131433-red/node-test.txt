@@ -1,0 +1,36 @@
+RED-first run for task C2 (R10, R11, R12, R27, R28), 2026-10-14, split-core builder.
+Command: node --test tests/bill.test.js
+Condensed to the failing test names and the counts. Passing lines left out. In every run the 1.0 bill.js was in
+place (no spare field, 1.0 billWith, addPerson, removePerson), so for the changed R# the 1.0 function is the stub.
+
+=== Run 1, stub 1: sparePeople returns [] ===
+tests 61, pass 28, fail 33
+FAIL @R10 a new bill has two people, even mode, the default rates and Top of the list      (no spare key)
+FAIL @R10 every call returns a fresh bill, never a shared one                              (spare is undefined)
+FAIL @R16 no action mutates a deep-frozen bill and changes return new objects              (keys lack "spare")
+FAIL @R16 <action> on a parsed bill builds only known fields, for setMode, setSubtotalText, setServiceText,
+     setSstText, addPerson, addItem, removeItem, setPersonName, setPersonName (person with a __proto__ key),
+     removePerson, setItemName, setItemPriceText, toggleItemPerson   (13 cases, keys lack "spare")
+FAIL @R27 @R11 adding a person extends the drawn order and keeps the people already drawn in place
+FAIL @R27 @R12 removing p3 from spare {"rule":"random","order":["p2","p3","p1"]} leaves {"rule":"random","order":["p2","p1"]}
+FAIL @R27 @R12 removing p2 from spare {"rule":"one","personId":"p2"} leaves {"rule":"top"}
+FAIL @R27 @R12 removing p3 from spare {"rule":"one","personId":"p2"} leaves {"rule":"one","personId":"p2"}
+FAIL @R27 @R12 removing p1 from spare {"rule":"top"} leaves {"rule":"top"}
+FAIL @R27 @R15 a mode switch, the setters and the item actions never touch the spare choice
+FAIL @R27 @R16 addPerson and removePerson leave a deep-frozen random choice alone
+FAIL @R27 @R16 addPerson on a parsed bill builds the spare choice from known fields
+FAIL @R27 @R16 removePerson (random) on a parsed bill builds the spare choice from known fields
+FAIL @R27 @R16 removePerson (the chosen one) on a parsed bill builds the spare choice from known fields
+FAIL @R28 sparePeople of S2, S1, I2, I3, I2 switched to even mode, D2   (6 cases, got [])
+FAIL @R28 @R16 sparePeople leaves a deep-frozen bill alone and lists a person once
+Passed with this stub, so run 2 covers it: @R28 sparePeople of a new bill switched to by-item mode is [] (the stub returns []),
+and @R27 @R12 a refused removal keeps the spare choice as it was (1.0 returns the same object already).
+
+=== Run 2, stubs 2 and 3: sparePeople returns every person id, removePerson returns a copy when it refuses ===
+tests 61, pass 29, fail 32
+FAIL @R28 sparePeople of a new bill switched to by-item mode is []
+FAIL @R28 sparePeople of I2, I3, D2   (3 cases, got every id)
+FAIL @R27 @R12 a refused removal keeps the spare choice as it was    (not the same object)
+FAIL @R12 removing is refused at 2 people or for an unknown id       (not the same object, a 1.0 case that guards the stub itself)
+Plus the same 1.0-stub failures as run 1 for R10, R16, R27 R11, R27 R12, R27 R15.
+Every new or changed C2 case failed on its own assertion in at least one of the two runs.

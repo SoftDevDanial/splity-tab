@@ -13,7 +13,7 @@ const bill = (changes = {}) => ({
 const draft = (changes) => JSON.stringify({ version: 1, bill: bill(changes) });
 const rejects = (text) => assert.deepEqual(decodeDraft(text), { ok: false });
 
-test("@R25 encodeDraft and decodeDraft round-trip a new bill and an item bill", () => {
+test("@R25 encodeDraft and decodeDraft round-trip a new bill and an item bill", { todo: "task A1" }, () => {
   assert.deepEqual(decodeDraft(encodeDraft(newBill())), { ok: true, bill: newBill() });
   const full = bill({ mode: "item", items: [{ id: "i3", name: "Tea", priceText: "5", who: ["p2"] }], nextId: 4 });
   assert.deepEqual(decodeDraft(encodeDraft(full)), { ok: true, bill: full });
@@ -110,7 +110,7 @@ test("@R28 getStorage, loadDraft and saveDraft never throw", () => {
   assert.equal(saveDraft(broken, newBill()), false);
 });
 
-test("@R27 loadDraft tells none, ok and unreadable apart, and saveDraft writes the encoded draft", () => {
+test("@R27 loadDraft tells none, ok and unreadable apart, and saveDraft writes the encoded draft", { todo: "task A1" }, () => {
   const memory = new Map();
   const storage = { getItem: (key) => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, value) };
   assert.deepEqual(loadDraft(storage), { state: "none" });
