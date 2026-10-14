@@ -13,7 +13,7 @@ Changed 2026-10-13 after the plan check (`docs/modules/PLAN-CHECK.md`, B2, B3, B
 
 Changed 2026-10-13 after the plan re-check (`docs/modules/PLAN-CHECK.md`, F11, F12, N9). One new scenario, the live gate script's static guard (R41), which is the v1.1.0 form of three sealed 1.0 tests. "Works right" asserts `"control": null` in each green run's summary. The R1 scenario compares `src/system.css` with the golden after turning CRLF into LF. The Seed drafts paragraph states the two parts of each fidelity seed file. Each change carries its own dated line.
 
-Changed 2026-10-14 in execute, by the planner pass the plan owed before A17 and A20 (ledger H-04, H-05, S5 rows 4, 5 and 7, S7 rows 17 to 19). "The card reads" is every text node joined with a space (Q-A2-1). "A body recorder" also proves that a repeat was cancelled, whatever lies under the second press, and checks that a double tap was one. "Press Escape" on a dialog waits for its close (R59 (2)). New scenarios are the touch tap on the charges hint (`@per_engine`, R59 (3)), the second press after a double activation closed M1 (R30), the repeat rule's Node table and two tap scenarios (R57 (b), awaiting the owner's ruling). The live gate captures screencast frames (R41, H-05). Each change carries its own dated line.
+Changed 2026-10-14 in execute, by the planner pass the plan owed before A17 and A20 (ledger H-04, H-05, S5 rows 4, 5 and 7, S7 rows 17 to 19). "The card reads" is every text node joined with a space (Q-A2-1). "A body recorder" also proves that a repeat was cancelled, whatever lies under the second press, and checks that a double tap was one. "Press Escape" on a dialog waits for its close (R59 (2)). New scenarios are the touch tap on the charges hint (`@per_engine`, R59 (3)), the second press after a double activation closed M1 (R30), the repeat rule's Node table and two tap scenarios (R57 (b), ~~awaiting the owner's ruling~~ ruled USER 2026-10-14 20:00, "Time + place (Recommended)"). The live gate captures screencast frames (R41, H-05). Each change carries its own dated line. [Changed 2026-10-14 in execute after the owner's H-04 ruling. A17 builds right after A3 (ORCH), the A0 record scenario names the WebKit run's own folder (ORCH, Q-A0-2).]
 
 ## How to run
 - **Functional suite.** `python -m pytest tests/browser -q` runs Chromium (the default, as in 1.0). `python -m pytest tests/browser -q --engine webkit` runs WebKit. Test functions are named `test_R<n>_<what>`, so a grep maps each one to its tag. `split-core`'s unit tests and this module's Node tests (`tests/draft.test.js`, `tests/errors.test.js`) run with `node --test "tests/**/*.test.js"`.
@@ -320,7 +320,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
   @R7 @both
   Scenario: A press of its own is never held back
     # [Changed 2026-10-13, v1.1.0, S7] The second click is proven by the body recorder. Add person sits in the heading row now and is no longer under the pointer.
-    # [Changed 2026-10-14 in execute, ledger H-04] Every press here is a mouse click, and for a mouse "the guard goes by click count, not by time or place" stays true under spec R57 (b). A tap goes by time and place as well, awaiting the owner's ruling (scenario "A slow second tap, or a quick tap elsewhere, is never held back").
+    # [Changed 2026-10-14 in execute, ledger H-04] Every press here is a mouse click, and for a mouse "the guard goes by click count, not by time or place" stays true under spec R57 (b). A tap goes by time and place as well, ~~awaiting the owner's ruling~~ ruled USER 2026-10-14 20:00, "Time + place (Recommended)" (scenario "A slow second tap, or a quick tap elsewhere, is never held back").
     Given the K2 seed, People opened first, and a body recorder
     When I click the centre of "Remove Chen" and then, as a separate click with click count 1, the same point
     Then the recorder counted two presses and two clicks, and the draft holds the two people Aisyah and Ben (the guard goes by click count, not by time or place)
@@ -933,7 +933,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
 
   @R30 @both
   Scenario Outline: The second press of a double activation that closed the dialog never reaches the page
-    # Added 2026-10-14 in execute (ledger H-04, S5 rows 4 and 7). The v1.1.0 form of the 1.0 CR-01 tests test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing, test_R30_the_second_click_of_a_double_activation_never_reaches_the_page and test_R30_a_triple_click_on_cancel_changes_nothing_either, written by A16. In WebKit the touch rows fail until A17 (H-04 class (a), spec R57 (b)). The body recorder proves the cancel, so no row passes only because the layout put something harmless under the second press.
+    # Added 2026-10-14 in execute (ledger H-04, S5 rows 4 and 7). The v1.1.0 form of the 1.0 CR-01 tests test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing, test_R30_the_second_click_of_a_double_activation_never_reaches_the_page and test_R30_a_triple_click_on_cancel_changes_nothing_either, written by A16. ~~In WebKit the touch rows fail until A17 (H-04 class (a), spec R57 (b)).~~ [Changed 2026-10-14 in execute, ORCH. A17 builds before A16, so the touch rows pass in WebKit from the start, through spec R57 (b).] The body recorder proves the cancel, so no row passes only because the layout put something harmless under the second press.
     Given the K1 seed at <size>, the stored text noted, the dialog opened by a click on "New bill", and a body recorder
     When I <gesture> at <point>
     Then the dialog is closed, "New bill" has focus, and only press 1 and click 1 reached the page
@@ -1853,8 +1853,9 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     When I hold "a" in "Item 1 name" (keyboard.down("a"), 520 ms, four more keyboard.down("a"), keyboard.up("a"))
     Then "Item 1 name" holds "aaaaa"
 
-  # ---------- Double taps (v1.1.0, S5, H-04, awaiting the owner's ruling) ----------
-  # Added 2026-10-14 in execute (ledger H-04, S5 rows 4, 5 and 7). Spec R57 (b), written to option 1. If the owner rules another option, the planner rewrites these first.
+  # ---------- Double taps (v1.1.0, S5, H-04, ~~awaiting the owner's ruling~~ ruled USER 2026-10-14 20:00) ----------
+  # Added 2026-10-14 in execute (ledger H-04, S5 rows 4, 5 and 7). Spec R57 (b), written to option 1. ~~If the owner rules another option, the planner rewrites these first.~~
+  # [Changed 2026-10-14 in execute. The owner ruled option 1 at 20:00, "Time + place (Recommended)" (USER, ledger H-04). Task A17, built right after A3 (ORCH).]
   # The double tap rows of the R6, R7, R12, R29, R30 and R50 scenarios prove it in both engines through the body recorder (Phrases), and the R34 middle Remove rows through their end state, which fails without the rule. In Chromium a double tap is caught by point 1 (click count 2), as in 1.0.
   # In WebKit only point 2 catches it, since each tap has click count 1. The Node table below fixes the edges of point 2, which a browser gesture cannot hit to the millisecond.
   @R57 @node
@@ -1926,7 +1927,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
   Scenario: The A0 baseline record is complete
     # Changed 2026-10-13 after the plan check (B1, B3, F9). The record names the Chromium count with the 1.0 golden fixtures, both live gate baselines, and the probe script with its launch rule, and the probe list gains the label, the radio and the .svg type.
     Given the A0 evidence folder docs/modules/split-app/qa/webkit-baseline/<stamp>/
-    Then it holds pytest.txt, junit.xml and skips.txt of the WebKit run of the suite as it stood before A1
+    # [Changed 2026-10-14 in execute, ORCH, Q-A0-2 (ledger S5 row 4). The line read "Then it holds pytest.txt, junit.xml and skips.txt of the WebKit run of the suite as it stood before A1". The record names the WebKit run's own folder, and no copy is made.]
+    Then it names the WebKit run's own folder, which holds them (pytest.txt, junit.xml and skips.txt of the WebKit run of the suite as it stood before A1)
     And it names the docs/modules/split-app/qa/functional/<stamp>-chromium/ folder of the Chromium run at the same commit, whose junit.xml shows the 427 sealed 1.0 tests passing, with A0's new tests counted apart
     And it names the folders of a live_e2e.py --engine chromium run and a live_e2e.py --engine webkit run of the 1.0 gate, the baseline of the A20 gate
     And probes.json was written by python tests/browser/probe_webkit.py --engine webkit, which launched through rig.launch, made every context with rig.new_context and recorded that the clipboard stand-in was in place before its first gesture
