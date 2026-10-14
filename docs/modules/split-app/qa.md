@@ -13,6 +13,8 @@ Changed 2026-10-13 after the plan check (`docs/modules/PLAN-CHECK.md`, B2, B3, B
 
 Changed 2026-10-13 after the plan re-check (`docs/modules/PLAN-CHECK.md`, F11, F12, N9). One new scenario, the live gate script's static guard (R41), which is the v1.1.0 form of three sealed 1.0 tests. "Works right" asserts `"control": null` in each green run's summary. The R1 scenario compares `src/system.css` with the golden after turning CRLF into LF. The Seed drafts paragraph states the two parts of each fidelity seed file. Each change carries its own dated line.
 
+Changed 2026-10-14 in execute, by the planner pass the plan owed before A17 and A20 (ledger H-04, H-05, S5 rows 4, 5 and 7, S7 rows 17 to 19). "The card reads" is every text node joined with a space (Q-A2-1). "A body recorder" also proves that a repeat was cancelled, whatever lies under the second press, and checks that a double tap was one. "Press Escape" on a dialog waits for its close (R59 (2)). New scenarios are the touch tap on the charges hint (`@per_engine`, R59 (3)), the second press after a double activation closed M1 (R30), the repeat rule's Node table and two tap scenarios (R57 (b), awaiting the owner's ruling). The live gate captures screencast frames (R41, H-05). Each change carries its own dated line.
+
 ## How to run
 - **Functional suite.** `python -m pytest tests/browser -q` runs Chromium (the default, as in 1.0). `python -m pytest tests/browser -q --engine webkit` runs WebKit. Test functions are named `test_R<n>_<what>`, so a grep maps each one to its tag. `split-core`'s unit tests and this module's Node tests (`tests/draft.test.js`, `tests/errors.test.js`) run with `node --test "tests/**/*.test.js"`.
 - **Fidelity gate.** `python tests/browser/fidelity/run.py`, Chromium only. It has no engine option (R58).
@@ -27,7 +29,7 @@ Changed 2026-10-13 after the plan re-check (`docs/modules/PLAN-CHECK.md`, F11, F
   - `@static` reads files only. It runs in both engine runs and gives the same result.
   - `@node` is a Node test under `node --test`, with no browser.
   - `@gate` is a gate run. The scenario names its engines.
-  When the A0 baseline sorts a WebKit failure as (b), an engine difference, its scenario becomes `@per_engine` with the measurement written in. When it sorts one as (c), a Chromium-only tool, the scenario becomes `@chromium_only` with that reason (R59). The A0 record is checked by the R59 scenarios.
+  When the A0 baseline sorts a WebKit failure as (b), an engine difference, its scenario becomes `@per_engine` with the measurement written in. When it sorts one as (c), a Chromium-only tool, the scenario becomes `@chromium_only` with that reason (R59). The A0 record is checked by the R59 scenarios. [Changed 2026-10-14 in execute, ledger S5 rows 4 and 5. A (b) whose end state is the same in both engines keeps `@both`, and its test reads the result the way spec R59 writes it (the R29 height within 0.5 px, the R30 Escape cases waiting for the close). Only the charges hint tap becomes `@per_engine`.]
 - **Seeding.** A scenario that starts from a stored bill passes it through Playwright `storage_state` when it makes the context (`origins[0].localStorage = [{ name: "split.draft", value: <seed> }]`). Nothing is ever injected into the app, and no `window.__*` hook exists or is used. Init scripts that control the **browser platform** are allowed, test-side only and kept under `tests/browser/`. They are the clipboard stand-ins, the storage drivers, the CSP listener and the write counter below.
 - **Clipboard (CG-7 of 1.0).** No test ever touches the operating system clipboard, not even to read it, and no clipboard permission is ever granted. Every context in both engines gets exactly one script from `tests/browser/clipboard/`. `recorder.js` is the default. It replaces `writeText` with a function that stores `String(text)` in `window.testClipboardText`, adds 1 to `window.testClipboardWrites` and returns a resolved promise. `reject.js` makes `writeText` return `Promise.reject(new DOMException("Write permission denied.", "NotAllowedError"))`. `missing.js` makes `navigator.clipboard` read as `undefined`. The A0 probe records whether WebKit on `http://127.0.0.1` is a secure context with a `Clipboard` interface (R59). Where it has none, `recorder.js` and `reject.js` define `navigator.clipboard` with their own `writeText`, as `missing.js` redefines it, and the A0 record says which path each engine took. The app calls the real `navigator.clipboard.writeText` and gets no hook.
 - **CSP listener.** Every context also gets `tests/browser/csp/listener.js`. It adds a `securitypolicyviolation` listener that pushes `{ violatedDirective, blockedURI }` to `window.testCspViolations`. It is the engine-neutral detector of a policy violation. In Chromium a console message holding "Content Security Policy" also fails a scenario, as in 1.0.
@@ -46,8 +48,9 @@ Changed 2026-10-13 after the plan re-check (`docs/modules/PLAN-CHECK.md`, F11, F
 ### Phrases used below
 - "Replace the text of X with Y" means click X, press Control+A, then type Y key by key. "Leave the field" means press Tab.
 - "Open People first" and "open Charges first" mean, below 1024 px, a click on that section's header row (`#peopleBtn`, `#chargesBtn`) when it is folded. From 1024 px both sections are always open and the step does nothing.
-- "The card reads" means the `textContent` of `#rbody` with every run of white space made one space. It can be read at any width, because the card is in the DOM below 1024 px though not displayed. "The sheet reads" is the same for `#splitsDlg .rbody` after a click on Splits. "The strip reads" is the visible text of `#stripInfo`.
-- "A body recorder" is a test-side listener, added with `page.evaluate` before the gesture, that counts the `mousedown` and `click` events reaching `document.body` in the bubble phase, with their `detail`. "Only press 1 and click 1 reached the page" means it counted one of each.
+- "The card reads" means ~~the `textContent` of `#rbody` with every run of white space made one space~~ every text node inside `#rbody`, in document order, joined with one space, then every run of white space made one space and the ends trimmed (`support.card_text`). [Changed 2026-10-14 in execute, ledger S7 rows 17 and 19, Q-A2-1, ruled ORCH. `textContent` joins text nodes with nothing between them, so a card built by script read "TotalEnter the subtotal ..." where the golden's markup reads "Total Enter the subtotal ...", a white-space difference that allowed difference 4 permits.] It can be read at any width, because the card is in the DOM below 1024 px though not displayed. "The sheet reads" is the same for `#splitsDlg .rbody` after a click on Splits. "The strip reads" is the visible text of `#stripInfo`.
+- "A body recorder" is a test-side listener, added with `page.evaluate` before the gesture, that counts the `mousedown` and `click` events reaching `document.body` in the bubble phase, with their `detail`. "Only press 1 and click 1 reached the page" means it counted one of each. [Changed 2026-10-14 in execute, ledger H-04 and S5 row 7.] It is two listeners. The second sits on `window` in the capture phase, so it runs before the app's guard, and keeps every `pointerdown`, `mousedown` and `click` of the gesture with its `pointerType`, `detail`, `timeStamp`, `clientX` and `clientY`, and the event itself. "Only press 1 and click 1 reached the page" also means that the `window` listener saw every press and click of the gesture, and that each one after the first has `defaultPrevented` true once its dispatch is over. The proof that a repeat was cancelled then does not depend on what lies under the point, because 19 WebKit cases passed at A2 only since the layout had moved. For a touch double tap it also means that the second tap's `click` came less than 500 ms after the first and within 22 px of it by those records. Otherwise the case fails and names the gap, because it did not test a double tap (spec R57 (b)).
+- "Press Escape", while a dialog is open (M1, the Splits sheet or P1), means press Escape and then wait for that dialog's `close` event before anything is read, at most 2 s, failing with "dialog still open after 2 s" when it has not fired by then (a listener added before the key press catches a close that came first). [Added 2026-10-14 in execute, ledger S5 rows 4 and 5, class (b).] WebKit closes the dialog in a task after keyup, Chromium before the key press returns (spec R59 (2)). The end state is the same, so these scenarios stay `@both`.
 - "Equal to the golden" (replaces 1.0's "equal to the specimen"). These computed properties are read on the app element and on the named golden element, both rendered in the engine of the run at the same width, the golden opened as a file and never written. `color`, `background-color`, `font-size`, `font-weight`, `line-height`, the width, style and colour of each border side, `box-shadow`, the four `padding-*` values and the four corner radii. A row that needs another property names it. Width, height and position are compared only where the row names them.
 - "The draft" means the parsed value of `localStorage["split.draft"]`. "Stored text" means its raw string.
 - Sizes are CSS px, positions are `getBoundingClientRect()` values, and a measured number matches within 0.5 px.
@@ -317,6 +320,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
   @R7 @both
   Scenario: A press of its own is never held back
     # [Changed 2026-10-13, v1.1.0, S7] The second click is proven by the body recorder. Add person sits in the heading row now and is no longer under the pointer.
+    # [Changed 2026-10-14 in execute, ledger H-04] Every press here is a mouse click, and for a mouse "the guard goes by click count, not by time or place" stays true under spec R57 (b). A tap goes by time and place as well, awaiting the owner's ruling (scenario "A slow second tap, or a quick tap elsewhere, is never held back").
     Given the K2 seed, People opened first, and a body recorder
     When I click the centre of "Remove Chen" and then, as a separate click with click count 1, the same point
     Then the recorder counted two presses and two clicks, and the draft holds the two people Aisyah and Ben (the guard goes by click count, not by time or place)
@@ -486,6 +490,20 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
       | a cold boot, Charges opened first | "Service charge"             | 31     | p.hint#chargeHint                               | svcErr  |
       | a cold boot, Charges opened first | "SST"                        | 25     | p.hint#chargeHint                               | sstErr  |
     # The Subtotal row runs below 1024 px, where the header row is shown.
+    # [Changed 2026-10-14 in execute, ledger S5 rows 4 and 5, class (b)] On the two p.hint#chargeHint rows the press is the mouse only. Their touch tap is the @per_engine scenario below (spec R59 (3)), because WebKit sends no mouse event and no click to text that is not a control. Task A6.
+
+  @R10 @R59 @per_engine
+  Scenario Outline: A touch tap on the charges hint below an invalid rate
+    # Added 2026-10-14 in execute (ledger S5 rows 4 and 5, sorting.md, tap_on_hint in diagnostics/sorting_diagnostics.json). Both results follow R10 (a), the error shows when the field is left. Whether an iPhone does the same is a UAT case.
+    Given a cold boot in a has_touch context, Charges opened first
+    When I replace the text of <field> with "<bad>" and the error is not showing yet
+    And a body recorder is added, and I tap p.hint#chargeHint once at its middle, found before the tap
+    Then In Chromium the click event reached p.hint#chargeHint exactly once, <field> no longer has focus, p.err#<error> shows and the input has aria-invalid "true"
+    And In WebKit the recorder saw no mousedown and no click, <field> still has focus, p.err#<error> carries hidden and the input has aria-invalid "false"
+    Examples:
+      | field            | bad | error  |
+      | "Service charge" | 31  | svcErr |
+      | "SST"            | 25  | sstErr |
 
   @R13 @both
   Scenario: A tap on a person below an invalid, unflagged price toggles them and then shows the error
@@ -871,10 +889,12 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Then "Cancel" has focus
     And a mouse wheel of 400 px over the scrim leaves window.scrollY unchanged
     # Tab wrapping is 1.0's PD-14. The v1.1.0 new-bill-dialog.md no longer mentions it, and spec R29 keeps it. Flagged for the plan checker.
+    # [Added 2026-10-14 in execute, ledger S5 rows 4 and 5, class (b)] A height read here matches within 0.5 px (Phrases). WebKit lays the .app box out at 843.984375 px at 390 x 844 and Chromium at 844 (spec R59 (1)). The 1.0 test asserts exactly 844 and fails in WebKit until A16 rewrites it to this scenario.
 
   @R30 @both
   Scenario Outline: Leaving the dialog without starting over
     # [Changed 2026-10-13, v1.1.0, S7] R30 is unchanged. The backdrop point is (20, 20) from LINKS.json, and the control under the backdrop is the By item half of the Split switch.
+    # [Added 2026-10-14 in execute, ledger S5 rows 4 and 5, class (b)] "press Escape" waits for the dialog's close event (Phrases, spec R59 (2)). The 1.0 test's [escape] case reads focus right after the key press and fails in WebKit until A16 rewrites it.
     Given the K2 seed and the stored text noted
     When I click "New bill" and then <close>
     Then the dialog is closed and <extra>
@@ -901,6 +921,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
   @R30 @both
   Scenario Outline: After a double click on New bill one deliberate click still closes it
     # [Changed 2026-10-13, v1.1.0, S7] The backdrop point is (20, 20).
+    # [Added 2026-10-14 in execute, ledger S5 rows 4 and 5, class (b)] "press Escape" waits for the dialog's close event (Phrases, spec R59 (2)). The 1.0 test's [escape] case fails in WebKit until A16 rewrites it.
     Given the K1 seed and a double click on "New bill" has opened the dialog
     When I <close>
     Then the dialog is closed, "New bill" has focus and the stored text is unchanged
@@ -909,6 +930,20 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
       | click "Cancel"                 |
       | click the backdrop at (20, 20) |
       | press Escape                   |
+
+  @R30 @both
+  Scenario Outline: The second press of a double activation that closed the dialog never reaches the page
+    # Added 2026-10-14 in execute (ledger H-04, S5 rows 4 and 7). The v1.1.0 form of the 1.0 CR-01 tests test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing, test_R30_the_second_click_of_a_double_activation_never_reaches_the_page and test_R30_a_triple_click_on_cancel_changes_nothing_either, written by A16. In WebKit the touch rows fail until A17 (H-04 class (a), spec R57 (b)). The body recorder proves the cancel, so no row passes only because the layout put something harmless under the second press.
+    Given the K1 seed at <size>, the stored text noted, the dialog opened by a click on "New bill", and a body recorder
+    When I <gesture> at <point>
+    Then the dialog is closed, "New bill" has focus, and only press 1 and click 1 reached the page
+    And <after>
+    Examples:
+      | point                          | size                                       | after                                                                   |
+      | the centre of "Cancel"         | 360 x 640, 375 x 667, 412 x 732, 390 x 844 | the screen and the stored text are unchanged                            |
+      | the centre of "Start new bill" | 390 x 844                                  | the bill-empty screen shows and the draft is { "version": 2, "bill": <newBill()> } |
+      | the backdrop at (20, 20)       | 390 x 844                                  | the screen and the stored text are unchanged                            |
+    # Gestures, a mouse double click and a touch double tap on every row, and a mouse triple click on "Cancel" at 360 x 640.
 
   @R29 @both
   Scenario: The keyboard and the next press are not held back
@@ -1223,6 +1258,9 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     And the gate.step calls are numbered 1 to 9, one per step of the flow below, each with a gesture field that starts with one of the 1.0 action words and an assertion field that does not
     And INIT_SCRIPTS is exactly ["tests/browser/clipboard/recorder.js", "tests/browser/csp/listener.js"]
     And three planted copies of live_e2e.py checked in a pytest temporary folder are each reported, one that passes storage_state with no condition, one whose else branch is the K2 state, and one that adds bypass_csp=False to the rig.new_context call
+    # Added 2026-10-14 in execute (ledger H-05, spec R41 and R59 (4)). A WebKit screenshot adds a stylesheet the policy refuses, so the capture is a screencast frame.
+    And no attribute in it is screenshot, and page.screencast.start is called exactly once, with on_frame and a size equal to the context's viewport
+    And a fourth planted copy that calls page.screenshot in its step helper is reported
     # Watched failing first. Before A20 changes the script, the rewritten tests run against the live_e2e.py of that moment (the 1.0 flow with A0's --engine) and fail on the missing control path, the seven steps and the one init script. That RED run keeps its own qa/functional/<stamp>-<engine>/ folder (How to run, Controls). The planted copies keep the guard's own RED in every later run.
 
   # ---------- The name and the logo (v1.1.0, S8, S6) ----------
@@ -1815,6 +1853,38 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     When I hold "a" in "Item 1 name" (keyboard.down("a"), 520 ms, four more keyboard.down("a"), keyboard.up("a"))
     Then "Item 1 name" holds "aaaaa"
 
+  # ---------- Double taps (v1.1.0, S5, H-04, awaiting the owner's ruling) ----------
+  # Added 2026-10-14 in execute (ledger H-04, S5 rows 4, 5 and 7). Spec R57 (b), written to option 1. If the owner rules another option, the planner rewrites these first.
+  # The double tap rows of the R6, R7, R12, R29, R30 and R50 scenarios prove it in both engines through the body recorder (Phrases), and the R34 middle Remove rows through their end state, which fails without the rule. In Chromium a double tap is caught by point 1 (click count 2), as in 1.0.
+  # In WebKit only point 2 catches it, since each tap has click count 1. The Node table below fixes the edges of point 2, which a browser gesture cannot hit to the millisecond.
+  @R57 @node
+  Scenario Outline: The repeat rule reads the click count, the pointer, the time and the place
+    # Seen failing first by the stub method of split-core/qa.md (How to run, "RED first for a new or changed case").
+    Given the previous pointer click <previous>
+    When the press has click count <detail>, is <pointer>, comes <after> ms after that click's timeStamp and lies at (<x>, <y>)
+    Then the rule says <repeat>
+    Examples:
+      | previous                   | detail | pointer | after | x     | y   | repeat                                          |
+      | at (100, 100)              | 2      | a mouse | 5000  | 300   | 300 | repeat (point 1)                                |
+      | at (100, 100)              | 3      | a tap   | 0     | 100   | 100 | repeat (point 1)                                |
+      | at (100, 100)              | 1      | a mouse | 10    | 100   | 100 | not a repeat (a mouse goes by its count only)   |
+      | at (100, 100)              | 0      | a tap   | 10    | 100   | 100 | not a repeat (a key press)                      |
+      | at (100, 100)              | 1      | a tap   | 0     | 100   | 100 | repeat (point 2)                                |
+      | at (100, 100)              | 1      | a tap   | 499.9 | 122   | 78  | repeat (point 2, every edge inside)             |
+      | at (100, 100)              | 1      | a tap   | 500   | 100   | 100 | not a repeat (500 ms is not less than 500)      |
+      | at (100, 100)              | 1      | a tap   | 10    | 122.5 | 100 | not a repeat (more than 22 px across)           |
+      | at (100, 100)              | 1      | a tap   | 10    | 100   | 123 | not a repeat (more than 22 px down)             |
+      | none yet (null)            | 1      | a tap   | 10    | 100   | 100 | not a repeat (no previous pointer click)        |
+
+  @R57 @both
+  Scenario: A slow second tap, or a quick tap elsewhere, is never held back
+    # The other side of point 2, in both engines. The mouse form is the R7 scenario "A press of its own is never held back".
+    Given the K2 seed in a has_touch context at 390 x 844, People opened first, and a body recorder
+    When I tap the centre of "Add person", wait 600 ms, and tap the same point again
+    Then the recorder's two click timeStamps are at least 500 ms apart (otherwise the case fails and names the gap), the body counted two presses and two clicks, the second tap's mousedown and click have defaultPrevented false, and the draft holds five people, the last two blank
+    When I tap the centre of "Add person" and at once tap the centre of "Person 1 name", whose centre lies more than 22 px from it on at least one axis (otherwise the case fails and names both points)
+    Then the second tap reached the page (counted at the body, its mousedown and click with defaultPrevented false), "Person 1 name" has focus, and the draft holds six people
+
   # ---------- Two engines (v1.1.0, S5) ----------
   @R58 @static
   Scenario: The engine option and the one launch place
@@ -2235,7 +2305,7 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
 - **Control and baseline** (constitution, Gates and evidence, added 2026-10-13 after the plan check, B3). The gate compares the running app with the cold-boot rule (R2, R41), a first visit with empty storage that shows `bill-empty` with People open and the strip reading "Enter the subtotal to see the splits.", and it must be able to fail when the app does not start empty. Its control is the same script in the same engine against the same server, run once with `--control seeded` just before that engine's green run (the `@R41` scenario "The live gate fails when the app starts from a saved bill"). It makes its one context with `storage_state` holding the K2 seed, runs the same steps, and must stop at step 1 with pass false, failing on the cold-boot assertions while step 1's clipboard check passes. Its evidence is kept as the RED capture in `docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>-control/`, beside the green run and never overwritten. A control that passes step 1 means the gate cannot fail, and the gate is not met. The baseline is the gate's own prior run in the same engine, first the A0 runs of the 1.0 gate (`--engine chromium` and `--engine webkit`), then each earlier green run of the v1.1.0 gate.
 - **Control mode.** `--control seeded` is the only option that changes what the script does, and it can only make the run fail. A run without it writes `"control": null` in `summary.json`, and only such a run can meet the gate. The seed is test-side data given to the context as `storage_state`, never through the app. The script passes `storage_state` in one place only, the one `rig.new_context` call, as the K2 state when the parsed `--control` value equals `"seeded"` and `None` otherwise. The `@R41 @static` scenario "The gate script makes a cold context except on its control path" checks exactly that, with planted copies, and "Works right" asserts `"control": null` in each green run's `summary.json`. [Added 2026-10-13 after the plan re-check (F11). The sealed 1.0 test `test_R41_the_gate_uses_real_gestures_and_reads_only` banned `storage_state` outright, and the plan did not give the guard its new form.]
 - **Rules.** The browser is launched by `rig.launch(playwright, engine)`, headless. One new context with **no** `storage_state` (apart from the control mode) and **no** `bypass_csp`, so the shipped policy is live for the whole run. Viewport 390 x 844, device scale factor 1, colour scheme dark, reduced motion `reduce`. Its only init scripts are `tests/browser/clipboard/recorder.js` (never the operating system clipboard, CG-7 of 1.0) and `tests/browser/csp/listener.js`. No clipboard permission is granted. The entry point is the shipped `index.html` at `/`. Only real gestures change the app (mouse clicks on visible controls, keyboard typing, key presses). `page.evaluate` only **reads** (`window.testClipboardText`, `window.testCspViolations`, `document.activeElement`, `localStorage` for a check, the source text of `navigator.clipboard.writeText`), and never changes state. No seed, fixture, app hook or test-only code path in the app.
-- **Flow.** Each numbered step takes a screenshot and adds a line to `steps.log` (step, gesture, assertion, PASS or FAIL).
+- **Flow.** Each numbered step takes a ~~screenshot~~ capture and adds a line to `steps.log` (step, gesture, assertion, PASS or FAIL). [Changed 2026-10-14 in execute, ledger H-05, ORCH. The capture is the page's newest screencast frame once the step's checks are done, never `page.screenshot` or `locator.screenshot`, because in WebKit every screenshot adds an inline stylesheet that the policy refuses, one console error and one CSP violation each (spec R59 (4)). The script starts `page.screencast.start` once after the page opens, with `on_frame` and `size` equal to the viewport, and stops it at the end. For each capture it waits two animation frames, then until no new frame has come for 400 ms, at most 5 s, and a step that gets no frame or no quiet in that time fails with "capture gave up after 5 s". The same capture runs in both engines. Measured by the planner's read-only probe on 2026-10-14, frames gave no console line and no violation in either engine, came at 390 x 844, and showed the open dialog. So step 9 needs no allowance.]
   1. Open `/`. Assert that `navigator.clipboard.writeText` is the stand-in (its source text holds no "[native code]"), that the screen is `bill-empty` with People open, and that `split.draft` is absent.
   2. In the open People section replace Person 1 with "Aisyah" and Person 2 with "Ben", click Add person, type "Chen", and type "100.00" in Subtotal. Assert that the strip reads "Total RM 116.60".
   3. Click Splits. Assert the splits RM 38.87, RM 38.87, RM 38.86, "2 sen left over" and the proof RM 116.60. Click Copy summary in the sheet. Assert "Summary copied" and that `window.testClipboardText` equals the S2 block of core R24 exactly.
@@ -2245,7 +2315,7 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
   7. Reload in a new page of the same context. Assert the K1 screen with both sections folded. Click Even and assert Subtotal "100.00" and the splits RM 38.87, RM 38.87, RM 38.86.
   8. Click New bill. Assert the dialog with Cancel focused. Click Start new bill. Assert `bill-empty` with People open and focus on New bill. Reload and assert `bill-empty` with People open again (CG-P4).
   9. Throughout, assert zero console errors, zero page errors and zero recorded CSP violations (in Chromium also no console text holding "Content Security Policy"), and only same-origin GETs.
-- **Evidence artifact.** `docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>/` with `01-*.png` onwards (one per step), `steps.log`, `console.log`, `network.log`, `clipboard-s2.txt`, `clipboard-s1.txt` and `summary.json` (start and end time, engine, `browser.version`, port, server PID, the init scripts used, `control` null or "seeded", result). A run stops at its first failed step and still writes the screenshots taken so far, `steps.log`, `console.log`, `network.log` and `summary.json`. After each run, list the folder to prove the files landed there. **No artifact means not done**, and a WebKit failure blocks the seal (ledger S5 row 2). A green run with no control capture of the same engine beside it does not meet the gate (B3).
+- **Evidence artifact.** `docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>/` with ~~`01-*.png`~~ `01-*.jpg` onwards (one per step, the viewport's screencast frame, changed 2026-10-14 in execute, H-05), `steps.log`, `console.log`, `network.log`, `clipboard-s2.txt`, `clipboard-s1.txt` and `summary.json` (start and end time, engine, `browser.version`, port, server PID, the init scripts used, `control` null or "seeded", result). A run stops at its first failed step and still writes the ~~screenshots~~ captures taken so far, `steps.log`, `console.log`, `network.log` and `summary.json`. After each run, list the folder to prove the files landed there. **No artifact means not done**, and a WebKit failure blocks the seal (ledger S5 row 2). A green run with no control capture of the same engine beside it does not meet the gate (B3).
 
 ## Regression
 - Re-run the functional suite in Chromium and in WebKit, the fidelity gate in Chromium and the live gate in both engines in the final all-modules pass, together with `node --test "tests/**/*.test.js"`. The WebKit rows of `docs/regression/REGRESSION.md` are an orchestrator action (ROADMAP, section v1.1.0).
