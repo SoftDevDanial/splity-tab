@@ -1,23 +1,25 @@
-// The Subtotal block (C2, R9, R10), shown in even mode only.
-// createSubtotal({ onInput(text), onLeave(text) }) returns { el, update(bill, errors) }.
-import { block, el, setValue } from "./dom.js";
-import { AMOUNT_ERROR, createErrorSlot } from "./field-error.js";
+// The Subtotal block (R9, R10), div.blk#evenBlock, in the DOM in even mode only (R8, the caller places it).
+// createSubtotal({ onInput(text), onLeave(text) }) returns { el, update(bill, errors) }. The field is named by its
+// aria-label "Subtotal in RM" and names its error paragraph at all times, as the golden does (CG-P6).
+import { el, setValue } from "./dom.js";
+import { AMOUNT_ERROR, createFieldError } from "./field-error.js";
 import { onFieldLeave } from "./field-leave.js";
 
 export function createSubtotal({ onInput, onLeave }) {
-  const input = el("input", { id: "subtotal", type: "text", inputmode: "decimal", autocomplete: "off" });
+  const input = el("input", { type: "text", id: "evenSub", inputmode: "decimal", autocomplete: "off", placeholder: "0.00",
+    "aria-label": "Subtotal in RM" });
   input.addEventListener("input", () => onInput(input.value));
   onFieldLeave(input, onLeave);
-  const field = el("span", { class: "field money" }, el("span", { class: "unit", "aria-hidden": "true" }, "RM"), input);
-  const section = block("h-subtotal", el("label", { for: "subtotal" }, "Subtotal", el("span", { class: "sr-only" }, " in RM")),
-    el("div", { class: "cells" }, field));
-  const error = createErrorSlot(section, input, { id: "subtotal-error", message: AMOUNT_ERROR });
+  const field = el("div", { class: "field money sub-field", id: "evenField" },
+    el("span", { class: "unit", "aria-hidden": "true" }, "RM"), input);
+  const error = createFieldError(field, input, { id: "evenErr", message: AMOUNT_ERROR });
+  const block = el("div", { class: "blk", id: "evenBlock" },
+    el("label", { class: "blk-h solo", for: "evenSub" }, "Subtotal"), field, error.el);
 
   function update(bill, errors) {
-    section.hidden = bill.mode !== "even";
     setValue(input, bill.subtotalText);
     error.set(errors.subtotal);
   }
 
-  return { el: section, update };
+  return { el: block, update };
 }

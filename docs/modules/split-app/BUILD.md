@@ -353,6 +353,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 | A17 | `22cc845` | `feat(split-app): the held-key guard and the tap-safe repeat rule, a double tap is one press in both engines (task A17, ...)`, recorded by the A4 section |
 | A4 | `7dac4de` | `feat(split-app): People and Charges fold below 1024 px, header rows, the fitted People summary and the Check marker, the one reveal, ... (task A4, R48, R26)`, recorded by the A5 section |
 | A5 | `8b882a6` | `feat(split-app): People rows in ul.people, Add person in the heading row, the disabled look at 12 and at 2, live names, focus after add and remove (task A5, R4, R5, R6, R7, R33, R34, R42)`, recorded by the A6 section |
+| A6 | `4b806ff` | `feat(split-app): Charges content in div.charges, the v1.1.0 rate errors with rule 13, and the hint tap per engine (task A6, R15, R10, R59)`, recorded by the A7 section |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -880,3 +881,72 @@ Built by the frontend developer role from `spec.md` (task A6, R15, R10, R59 (3),
 - Tests. `field_error`, `error_state`, `shown_errors`, `invalid_fields` and `rate_field` in `tests/browser/test_app.py`. The render check `docs/modules/split-app/qa/charges-render/render.py` and the probe `docs/modules/split-app/qa/hint-tap/probe.py`.
 
 **How to view.** Serve as above and open `http://127.0.0.1:<port>/`. Below 1024 px tap the Charges row to open it. Service charge 10 and SST 6 sit side by side with the hint under them. Type 35 in Service charge and leave the field, the field turns red and "Enter a rate from 0 to 30" shows under it on two lines. Fold the row and it reads "Check service charge" in red. From 1024 px Charges shows open with its own heading and the hint beside the fields.
+
+## v1.1.0 task A7, the Split switch and the Subtotal with the error rule (2026-10-14)
+Built by the frontend developer role from `spec.md` (task A7, R8, R9, R10, the DOM contract of `#splitBlk` and `#evenBlock`, the Gesture to action rows of a Split radio and of Subtotal) and `qa.md` (the `@R8` and `@R9` scenarios, the Subtotal rows of the `@R10` scenarios, the "By item" label row of the `@R59 @per_engine` scenario "Focus after a mouse click is the engine's own", checklist rows K1-40 to K1-43, K2-05 to K2-07, BE-07, BE-08 and ST-01), resumed from `docs/progress/handoff/handoff-2026-10-14-execute-split-A7.md`.
+
+**Status. Committed with this section.** Node, Chromium and WebKit run on the commit's tree. The next section or the commit table records the hash.
+
+**Phase skills (design row of `docs/phase-skills.md`).** Read from disk, `taste-skill` (`taste-skill/1.0.0/skills/taste-skill/SKILL.md`) and `frontend-design` (`frontend-design/8d392c816966/skills/frontend-design/SKILL.md`). The goldens fix every design choice of the two blocks and `src/system.css` already holds their rules, so only the transferable rules applied.
+- The brief's own words win (frontend-design) and nothing changes silently (taste-skill 11.F). The heading, the switch, the label, the field, the unit, the error paragraph, ids, classes and copy are those of `bill-even.html` and `bill-empty.html`, with nothing they do not draw. The hidden legend "Split mode" and the hidden " in RM" ending are gone as R8 and R9 say.
+- Label above the input, error text below it, no placeholder as label (taste-skill 4.6). The visible `label.blk-h.solo` "Subtotal" sits above the field, the placeholder "0.00" is a hint of the format only, and the field's name is its `aria-label` "Subtotal in RM" as the golden gives it.
+- Error states inline and clear (taste-skill 4.5). `p.err#evenErr` stays in the DOM, hidden until the field is left holding bad text, and the input names it at all times (CG-P6).
+- Failure as direction (frontend-design, writing). The copy is the spec's, "Enter an amount like 12.50".
+- Icons from the one sprite (taste-skill 3.C), the warning circle through `createFieldError`, decoration only.
+- No em dash and a copy self-audit (taste-skill 9.G, 4.9). Every string is a row of the spec's Copy table.
+- Critique by render (frontend-design). The render check under Proof.
+- Not transferred, because the golden or the locked stack decides them. The design read, the dials, palette, type, layout, motion and libraries.
+
+**What changed** (cite by symbol).
+- `src/ui/mode.js`. `createMode` builds `div.blk.split#splitBlk` (`role` "group", `aria-labelledby` "splitH") with `h2.blk-h#splitH` "Split" and `div.mode-sw` holding `#modeEven` and `#modeItem` (`name` "mode"), each followed by its `label[for]`. The 1.0 `fieldset.mode`, its hidden legend and the ids `mode-even` and `mode-item` are gone. A change still calls `onMode`.
+- `src/ui/subtotal.js`. `createSubtotal` builds `div.blk#evenBlock` with `label.blk-h.solo[for=evenSub]` "Subtotal", `div.field.money.sub-field#evenField` (`span.unit` "RM" and `input#evenSub` with the R9 attributes) and `p.err#evenErr` from `createFieldError` with no hint. Its `update` no longer hides the block. The 1.0 `section.block`, `span.field.money`, `input#subtotal`, the hidden " in RM" ending and `p.error#subtotal-error` are gone.
+- `src/main.js`. `placeSubtotal`, called from `render`, takes `#evenBlock` out of the DOM in by-item mode and puts it back after `#splitBlk` in even mode only when it is missing (R8, and R33, since moving the block that holds the focused field drops its focus). `#work` is built without it, and the first render places it.
+- `src/ui/field-error.js`. Comments only. `createErrorSlot` has the prices as its last user, and A8 deletes it.
+- `tests/browser/test_app.py`. See Tests.
+- Evidence script, `docs/modules/split-app/qa/split-render/render.py`.
+
+**Comments written.** The module headers of `src/ui/mode.js`, `src/ui/subtotal.js` and `src/ui/field-error.js`, the doc of `createErrorSlot`, and the comment on `placeSubtotal` (why the block is put back only when missing). In the tests the comments on `SPLIT_STATE_JS`, `SPLIT_MARKUP_JS`, `ERROR_CASES`, `RATE_ERROR_CASES`, `PRESS_CASES`, `RATE_PRESS_CASES` and `R3_PAIRS`, the docstring of `shown_errors`, and the notes in the tests on which lines wait for A8 and A11.
+
+**Tests.**
+- Rewritten to the v1.1.0 markup. `test_R8_switching_modes_keeps_the_subtotal`, `test_R8_arrow_keys_move_between_the_modes` (Tab to `#modeEven`, ArrowRight checks and focuses `#modeItem`), `test_R8_switching_modes_keeps_both_sets_of_input` and `test_R8_both_sets_of_input_survive_a_reload` read the radios and the count of `#evenBlock` through `split_state` (null for a missing radio, so nothing waits). `test_R9_subtotal_field_has_its_unit_label_and_input_mode` is now `test_R9_the_subtotal_field_drives_the_even_split`, the qa.md scenario, which reads the whole Split block and Subtotal block in one evaluate (`SPLIT_MARKUP_JS`, no legend on the page) and checks the card holds no `div.r-spare` after typing. Its splits are `test_R9_a_subtotal_drives_the_even_split`, unchanged.
+- The R10 outlines. The Subtotal row moved from `..._in_the_1_0_markup` to the v1.1.0 functions `test_R10_an_inline_error_waits_for_the_field_to_be_left[subtotal]`, `test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again[subtotal]` (`RATE_ERROR_CASES`, `aria-describedby` "evenErr" in every state) and `test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[subtotal-mouse]` and `[subtotal-touch]` (`RATE_PRESS_CASES`, now with the field, both `aria-describedby` values and the target per row, the target `#chargesBtn` at 390 x 844). The 1.0 functions keep only their `[item-price]` rows for A8.
+- Updated to the v1.1.0 markup through `field_error` or `shown_errors`. `test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early`, `test_R10_an_error_survives_a_mode_switch`, `test_R10_a_restored_bad_field_shows_its_error_at_once` (its Subtotal line), `test_R10_a_press_that_ends_runs_each_waiting_handler_once`, `test_R31_start_over`, `test_R26_come_back_later`.
+- New. `test_R59_focus_after_a_mouse_click_is_the_engines_own[by-item-label]`, Chromium `#modeItem`, WebKit `body`.
+- Helpers and selectors. `SNAPSHOT_JS` reads `#evenSub` (null in by-item mode). `test_R36_motion_follows_the_users_setting` reads `.mode-sw label`. `test_R35_sizes_the_design_gives_at_360_by_780` (xfail A18) reads `#evenField`, so it fails on its width and not on a wait.
+- Marks. `R3_PAIRS` takes `None` for a complete pair. `bill-empty` and `bill-unreadable` at 1280 lose their `task A7` mark and pass (2 marks removed, 0 added).
+
+**RED first** (every RED run folder listed on disk after its run).
+- No stub was needed. On the tree of `4b806ff` the 1.0 Subtotal is also named "Subtotal in RM" (its label with the hidden ending), so every A7 test reaches the field by its name, and the v1.1.0 parts are read in one evaluate that gives null for a missing part.
+- Chromium `docs/modules/split-app/qa/functional/20261014-232921-chromium/`, 17 failed, 22 passed, 2 xfailed. WebKit `20261014-232953-webkit/`, 16 failed, 23 passed, 2 xfailed. Every failure is an `AssertionError` on its asserted property (`#modeEven` null, the Split and Subtotal blocks null, `hidden` null where true is due, `['subtotal-error']` against `['evenErr']`, focus on `mode-item` against `modeItem`, no `.mode-sw label`). `test_R26_come_back_later` also logged a teardown error, the failure screenshot of a page the test had closed itself. The passes are the rate rows and other tests of the same selection that A7 does not change. The one A7 row that passes in WebKit is `test_R59_focus_after_a_mouse_click_is_the_engines_own[by-item-label]`, judgment call 2.
+- After the build, a selection run without `SPLIT_EVIDENCE` showed the two `task A7` R3 pairs passing against their strict xfail (its folder `20261014-233110-chromium/` holds only their two screenshots), so their marks were removed.
+
+**Proof** (each folder listed on disk after its run).
+- Node `docs/modules/split-app/qa/unit/20261014-233306/node-test.txt`, 379 of 379.
+- Chromium on the commit's tree, `docs/modules/split-app/qa/functional/20261014-233206-chromium/`, 441 passed, 96 xfailed, 0 failed, 210 s, `skips.txt` count 96. A6 had 438 and 98 of 536. The difference is the new R59 row (537 tests), the 4 Subtotal rows moved by name from the 1.0 functions to the v1.1.0 ones, the R9 test renamed, and the 2 `task A7` marks removed (their pairs pass).
+- WebKit on the same tree, `docs/modules/split-app/qa/functional/20261014-233538-webkit/`, 437 passed, 3 failed, 1 skipped (the IME test), 96 xfailed, 365 s, `skips.txt` count 97.
+- Render check, `docs/modules/split-app/qa/split-render/20261014-234202-chromium/` (`boxes.json` and two screenshots) by `render.py` beside it, headless Chromium in the dark and reduce context. The R3 walks of `#splitBlk` and `#evenBlock` equal the golden's, and every measured part (the Split block, its heading, the switch, both labels, the Subtotal block, its label, `#evenField`, the unit, `#evenSub`, `#evenErr` and its icon, the box within 0.5 px and 28 computed properties) equals the golden's, for K2 at 390, 360 and 1280 (`bill-even.html`) and the cold boot at 390, 360 and 1280 (`bill-empty.html`). The hidden error paragraph is not displayed on either side. ST-01 (`#evenErr` shown) has no golden of its own in v1.1.0 and is held by the R10 tests.
+- `git hash-object --no-filters src/system.css` is `bf30ddadb8c756dc5d462243c642c218597ae0ac`, unchanged. `docs/design/` was never written.
+
+**WebKit by id against A6's `20261014-231400-webkit/`.**
+- Still failing, 2, the class (b) ids A16 owns. `test_R29_the_dialog_opens_with_the_safe_choice_focused` (843.984375 against 844, R59 (1)) and `test_R30_leaving_the_dialog_without_starting_over[escape]` (R59 (2)).
+- Showed again, 1, F-A5-1 `test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]` (dialog closed, focus still on Cancel, its known signature), A16's. It passed in A6's run. A7 changed no dialog code. F-A3-1 did not show.
+- New failures, 0. No H-04 failure.
+- From xfail to passed, `test_R3_rendered_markup_matches_its_golden[bill-empty-1280]` and `[bill-unreadable-1280]`.
+- Ids only in A6's run, 5, and only in this run, 6, all from the moves and the rename under Tests plus the new R59 row. Every id only in this run passed.
+
+**Judgment calls.**
+1. The lines of the two `@R8` scenarios that need a later task are left to it and named here, with no strict xfail test of their own. "#itemsBlock is in the DOM" (and "is not") waits for A8, which gives the Items block its id and rewrites the Items tests. "the strip reads Total RM 116.60" and "Total RM 5.83" wait for A11, which builds the strip. A7 asserts the lines it owns, the radios and `#evenBlock` in and out of the DOM. The strip line of "Typing invalid text in a focused field does not show the error early" is A11's the same way, already read by `test_R2_cold_boot_is_a_new_bill_with_no_seed` (xfail A11).
+2. `test_R59_focus_after_a_mouse_click_is_the_engines_own[by-item-label]` failed in the Chromium RED on its assertion and passes in the WebKit RED, because WebKit leaves focus on `body` after a label click in either markup. Its WebKit line asserts the engine's measured behaviour (the A0 probe), not markup. Teeth by throwaway stub S-A7 on the built tree, a click listener that focuses `#modeItem` when its label is clicked, put in and taken out with the Edit tool. WebKit `20261014-234213-webkit/`, the row failed on its assertion ('modeItem' against 'body'). No commit holds the stub, and `grep STUB src/` finds nothing.
+3. The Subtotal block is placed by `src/main.js` (`placeSubtotal`) and not by `createSubtotal`, because its place is after `#splitBlk`, which the Subtotal module does not know. `#itemsBlock` presence is A8's, and the 1.0 Items `section` is still hidden by its own `update` until then.
+4. `tests/browser/live_e2e.py` still reads `fieldset.mode label`. The 1.0 gate is not run before A20 rewrites it (A6 judgment call 7).
+
+**Deviations.** None new. A6's named deviation (two inline error forms in `src/ui/field-error.js`) now has the prices as the 1.0 form's last user, until A8.
+
+**Non-goals honoured.** No CSS change, no element the goldens do not draw, no timer, no hook in the app, nothing that makes an engine pass. Nothing under `docs/design/`.
+
+**For the README reconcile** (symbols).
+- Split (R8). `createMode` in `src/ui/mode.js` builds `#splitBlk` with the switch `div.mode-sw` (`#modeEven`, `#modeItem`). `placeSubtotal` in `src/main.js` keeps `#evenBlock` in the DOM in even mode only.
+- Subtotal (R9, R10). `createSubtotal` in `src/ui/subtotal.js` builds `#evenBlock` (`#evenField`, `#evenSub`, `#evenErr`) with `createFieldError` and no hint, so the field names its error at all times (CG-P6).
+- Tests. `split_state`, `SPLIT_MARKUP_JS` in `tests/browser/test_app.py`. The render check `docs/modules/split-app/qa/split-render/render.py`.
+
+**How to view.** Serve as above and open `http://127.0.0.1:<port>/`. Under the Charges row the Split heading sits left of the Even and By item switch, Even checked. Below it Subtotal has the "RM" unit and the muted placeholder "0.00". Type 0 and leave the field, the field turns red and "Enter an amount like 12.50" shows under it. Pick By item and the Subtotal block leaves the page, pick Even and it comes back with its text and its error.

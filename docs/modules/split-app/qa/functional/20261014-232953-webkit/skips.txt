@@ -1,0 +1,4 @@
+engine webkit, browser version 26.5
+test_app.py::test_R31_start_over_clears_the_copy_status | xfail task A16
+test_app.py::test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s] | xfail task A18
+count 2

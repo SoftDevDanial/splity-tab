@@ -252,15 +252,16 @@ R3_STATES = {
     "spare-sen-random": (seeds.RND, SPARE_OPENERS, {390: "A15", 360: "A15", 1280: "A15"}),
     "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, {390: "A13", 360: "A13"}),
     "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: "A16", 360: "A16", 1280: "A16"}),
-    "bill-empty": (None, {}, {390: "A11", 360: "A11", 1280: "A7"}),
+    "bill-empty": (None, {}, {390: "A11", 360: "A11", 1280: None}),
     "rate-error": (seeds.RE, {}, {390: "A11", 360: "A11", 1280: "A8"}),
     "bill-unassigned": (seeds.S5, {}, {390: "A11", 360: "A11", 1280: "A9"}),
-    "bill-unreadable": (seeds.UNREADABLE["B1"], {}, {390: "A11", 360: "A11", 1280: "A7"}),
+    "bill-unreadable": (seeds.UNREADABLE["B1"], {}, {390: "A11", 360: "A11", 1280: None}),
     "bill-twelve": (seeds.T12, {}, {390: "A11", 360: "A11", 1280: "A13"}),
     "bill-large": (seeds.W1, {}, {390: "A11", 360: "A11", 1280: "A13"}),
 }
-R3_PAIRS = [pytest.param(golden, width, marks=pytest.mark.xfail(strict=True, reason=f"task {task}"), id=f"{golden}-{width}")
-            for golden, (_, _, tasks) in R3_STATES.items() for width, task in tasks.items()]
+R3_PAIRS = [pytest.param(golden, width, id=f"{golden}-{width}",
+                         marks=() if task is None else pytest.mark.xfail(strict=True, reason=f"task {task}"))
+            for golden, (_, _, tasks) in R3_STATES.items() for width, task in tasks.items()]  # None, the pair is complete
 
 
 def click_after_load(page, selectors):
@@ -761,36 +762,91 @@ def switch_to(page, label):
     page.get_by_text(label, exact=True).click()
 
 
+# Which Split radio is checked and how many Subtotal blocks the page holds (R8, the block of the other mode is absent
+# from the DOM), read in one evaluate so a radio that is not there gives null instead of a wait.
+SPLIT_STATE_JS = """() => ({ even: document.querySelector('#modeEven')?.checked ?? null,
+  item: document.querySelector('#modeItem')?.checked ?? null, evenBlocks: document.querySelectorAll('#evenBlock').length })"""
+EVEN_SHOWN = {"even": True, "item": False, "evenBlocks": 1}
+ITEM_SHOWN = {"even": False, "item": True, "evenBlocks": 0}
+
+
+def split_state(page):
+    return page.evaluate(SPLIT_STATE_JS)
+
+
 def test_R8_switching_modes_keeps_the_subtotal(open_app):
     page = open_app().page
     support.replace_text(page, subtotal_field(page), "100.00")
     switch_to(page, "By item")
-    assert page.locator("#mode-item").is_checked() and not page.locator("#subtotal").is_visible()
+    assert split_state(page) == ITEM_SHOWN
     assert card_text(page) == BLOCKED_CARD["no-prices"]  # the v1.1.0 card since task A2 (BUILD.md, A2, Q-A2-3)
     switch_to(page, "Even")
-    assert page.locator("#mode-even").is_checked() and subtotal_field(page).input_value() == "100.00"
+    assert split_state(page) == EVEN_SHOWN and subtotal_field(page).input_value() == "100.00"
 
 
 def test_R8_arrow_keys_move_between_the_modes(open_app):
+    # qa.md's "#itemsBlock is in the DOM" waits for task A8, which gives the Items block its id.
     page = open_app().page
     for _ in range(12):
         page.keyboard.press("Tab")
-        if page.evaluate("document.activeElement.id") == "mode-even":
+        if page.evaluate("document.activeElement.id") == "modeEven":
             break
-    assert page.evaluate("document.activeElement.id") == "mode-even"
+    assert page.evaluate("document.activeElement.id") == "modeEven"
     page.keyboard.press("ArrowRight")
-    assert page.locator("#mode-item").is_checked() and page.evaluate("document.activeElement.id") == "mode-item"
+    assert split_state(page) == ITEM_SHOWN and page.evaluate("document.activeElement.id") == "modeItem"
 
 
-def test_R9_subtotal_field_has_its_unit_label_and_input_mode(open_app):
+# qa.md "Focus after a mouse click is the engine's own" (@per_engine, spec R59), the "By item" label row (task A7).
+# Chromium focuses the radio, WebKit leaves document.activeElement on body (isMouseFocusable, the A0 probe).
+@pytest.mark.parametrize("control, focused", [pytest.param("By item", "modeItem", id="by-item-label")])
+def test_R59_focus_after_a_mouse_click_is_the_engines_own(open_app, engine, control, focused):
     page = open_app().page
-    field = subtotal_field(page)
-    assert field.get_attribute("id") == "subtotal"
-    assert [field.get_attribute(a) for a in ("type", "inputmode", "autocomplete")] == ["text", "decimal", "off"]
-    wrapper = page.locator("span.field.money:has(#subtotal)")
-    assert wrapper.locator(".unit").inner_text() == "RM" and wrapper.locator("input").count() == 1
-    support.replace_text(page, field, "100.00")
-    assert field.input_value() == "100.00"
+    page.get_by_text(control, exact=True).click()
+    active = page.evaluate("document.activeElement.id || document.activeElement.localName")
+    assert active == (focused if engine == "chromium" else "body")
+
+
+# The Split block and the Subtotal block of R8 and R9, read in one evaluate (null for a block that is not there).
+SPLIT_MARKUP_JS = """() => {
+  const tag = (el) => `${el.localName}${el.id ? '#' + el.id : ''}${[...el.classList].map((c) => '.' + c).join('')}`;
+  const attrs = (el, names) => el && Object.fromEntries(names.map((name) => [name, el.getAttribute(name)]));
+  const split = document.querySelector('div.blk.split#splitBlk'), even = document.querySelector('div.blk#evenBlock');
+  const sw = split?.querySelector('div.mode-sw');
+  return {
+    split: split && { attrs: attrs(split, ['role', 'aria-labelledby']), children: [...split.children].map(tag),
+      heading: split.querySelector('h2#splitH')?.textContent ?? null,
+      switch: sw && [...sw.children].map((el) => el.localName === 'label' ? ['label', el.htmlFor, el.textContent]
+        : ['input', el.type, el.name, el.id, el.value]) },
+    legends: document.querySelectorAll('legend').length,
+    even: even && { children: [...even.children].map(tag),
+      label: attrs(even.children[0], ['for']), labelText: even.children[0]?.textContent ?? null,
+      field: [...(even.querySelector('#evenField')?.children ?? [])].map((el) => [tag(el), el.getAttribute('aria-hidden'), el.textContent]),
+      input: attrs(even.querySelector('input#evenSub'), ['type', 'inputmode', 'autocomplete', 'placeholder', 'aria-label',
+        'aria-describedby', 'aria-invalid']),
+      errorHidden: even.querySelector('p.err#evenErr')?.hidden ?? null },
+  };
+}"""
+SPLIT_MARKUP = {
+    "split": {"attrs": {"role": "group", "aria-labelledby": "splitH"}, "children": ["h2#splitH.blk-h", "div.mode-sw"],
+              "heading": "Split", "switch": [["input", "radio", "mode", "modeEven", "even"], ["label", "modeEven", "Even"],
+                                             ["input", "radio", "mode", "modeItem", "item"], ["label", "modeItem", "By item"]]},
+    "legends": 0,
+    "even": {"children": ["label.blk-h.solo", "div#evenField.field.money.sub-field", "p#evenErr.err"],
+             "label": {"for": "evenSub"}, "labelText": "Subtotal",
+             "field": [["span.unit", "true", "RM"], ["input#evenSub", None, ""]],
+             "input": {"type": "text", "inputmode": "decimal", "autocomplete": "off", "placeholder": "0.00",
+                       "aria-label": "Subtotal in RM", "aria-describedby": "evenErr", "aria-invalid": "false"},
+             "errorHidden": True},
+}
+
+
+def test_R9_the_subtotal_field_drives_the_even_split(open_app):
+    # qa.md "The subtotal field drives the even split", with the Split block of R8 (no legend). The splits after typing
+    # are test_R9_a_subtotal_drives_the_even_split.
+    page = open_app().page
+    assert page.evaluate(SPLIT_MARKUP_JS) == SPLIT_MARKUP
+    support.replace_text(page, subtotal_field(page), "100.00")
+    assert subtotal_field(page).input_value() == "100.00" and page.locator("#rbody div.r-spare").count() == 0
 
 
 def opened_rate_field(label):
@@ -832,7 +888,7 @@ SHOWN_ERRORS_JS = "() => [...document.querySelectorAll('p.err:not([hidden]), p.e
 
 def shown_errors(page):
     """The ids of every inline error that shows, in the v1.1.0 markup (p.err without hidden) or in the 1.0 markup that
-    Subtotal and the prices keep until tasks A7 and A8 (p.error, in the DOM only while it shows)."""
+    the prices keep until task A8 (p.error, in the DOM only while it shows)."""
     return page.evaluate(SHOWN_ERRORS_JS)
 
 
@@ -840,14 +896,15 @@ def invalid_fields(page):
     return page.locator("[aria-invalid=true]").count()
 
 
-# The 1.0 rows, Subtotal and the item price in the 1.0 markup (p.error added and removed, aria-invalid removed). Tasks A7 and
-# A8 move each row to the v1.1.0 outline below, and this test and the next one go with the last of them.
+# The 1.0 row, the item price in the 1.0 markup (p.error added and removed, aria-invalid removed). Task A8 moves it to
+# the v1.1.0 outline below, and this test and the next one go with it.
 ERROR_CASES = [
-    pytest.param(lambda page: None, lambda page: page.locator("#subtotal"), "0", AMOUNT_MESSAGE, "subtotal-error", "12.50", id="subtotal"),
     pytest.param(lambda page: build_s1(page), lambda page: item_price(page, 2), "13.505", AMOUNT_MESSAGE, "price-error-i5", "13.50", id="item-price"),
 ]
-# The v1.1.0 rows of qa.md "An inline error waits for the field to be left" (task A6 the rates, rule 13).
+# The v1.1.0 rows of qa.md "An inline error waits for the field to be left" (task A6 the rates, rule 13, task A7 the
+# Subtotal, which names its error at all times, CG-P6).
 RATE_ERROR_CASES = [
+    pytest.param(subtotal_field, "0", AMOUNT_MESSAGE, "evenErr", "evenErr", "evenErr", "12.50", id="subtotal"),
     pytest.param(opened_rate_field("Service charge"), "31", SERVICE_MESSAGE, "svcErr", "chargeHint", "chargeHint svcErr", "10", id="service"),
     pytest.param(opened_rate_field("SST"), "20.01", SST_MESSAGE, "sstErr", "chargeHint", "chargeHint sstErr", "6", id="sst"),
 ]
@@ -948,7 +1005,9 @@ def test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early(open_app):
     page = open_app().page
     subtotal_field(page).click()
     page.keyboard.type("abc")
-    assert page.locator("p.error").count() == 0 and card_text(page) == BLOCKED_CARD["subtotal"]
+    # qa.md's strip line is task A11's (test_R2_cold_boot_is_a_new_bill_with_no_seed reads the strip text).
+    assert field_error(subtotal_field(page), "evenErr") == error_state(AMOUNT_MESSAGE, "evenErr", shown=False)
+    assert card_text(page) == BLOCKED_CARD["subtotal"]
 
 
 def test_R10_an_error_survives_a_mode_switch(open_app):
@@ -957,7 +1016,7 @@ def test_R10_an_error_survives_a_mode_switch(open_app):
     page.keyboard.press("Tab")
     switch_to(page, "By item")
     switch_to(page, "Even")
-    assert page.locator("p.error#subtotal-error").inner_text() == "Enter an amount like 12.50"
+    assert field_error(subtotal_field(page), "evenErr") == error_state(AMOUNT_MESSAGE, "evenErr", shown=True)
 
 
 # ---------------------------------------------------------------- Task 5: items (R7, R11 to R14, R10, R34)
@@ -1050,9 +1109,10 @@ def test_R8_switching_modes_keeps_both_sets_of_input(open_app):
     support.replace_text(page, subtotal_field(page), "100.00")
     switch_to(page, "By item")
     add_item_named(page, "Tea", "5.00", ["Person 1"])
-    assert page.locator("ol.items").is_visible() and not page.locator("#subtotal").is_visible()
+    assert page.locator("ol.items").is_visible() and split_state(page) == ITEM_SHOWN  # #itemsBlock is task A8's
     switch_to(page, "Even")
-    assert subtotal_field(page).input_value() == "100.00" and not page.locator("ol.items").is_visible()
+    assert split_state(page) == EVEN_SHOWN and subtotal_field(page).input_value() == "100.00"
+    assert not page.locator("ol.items").is_visible()
     switch_to(page, "By item")
     assert item_name(page, 1).input_value() == "Tea" and item_price(page, 1).input_value() == "5.00"
     assert toggle(page, "Tea", "Person 1").get_attribute("aria-pressed") == "true"
@@ -1526,7 +1586,7 @@ NEW_BILL_DRAFT = ('{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name
 SNAPSHOT_JS = """() => ({
   people: [...document.querySelectorAll('li.person input')].map((i) => i.value),
   mode: document.querySelector('input[name=mode]:checked').value,
-  subtotal: document.querySelector('#subtotal').value,
+  subtotal: document.querySelector('#evenSub')?.value ?? null,
   items: [...document.querySelectorAll('li.item')].map((li) => [...li.querySelectorAll('input')].map((i) => i.value)
     .concat([...li.querySelectorAll('.tap')].map((b) => b.getAttribute('aria-pressed')))),
   rates: [document.querySelector('#svc').value, document.querySelector('#sst').value],
@@ -1628,7 +1688,7 @@ def test_R26_come_back_later(open_app):
     page.close()
     again = session.new_page()
     session.open("/", page=again)
-    assert snapshot(again) == before and again.locator("#mode-item").is_checked()
+    assert snapshot(again) == before and split_state(again) == ITEM_SHOWN
     assert section_state(again) == [FOLDED, FOLDED]  # R26, sections fold by R48 on a reload (task A4)
     assert table_cells(again, "tbody") == S1_ROWS and table_cells(again, "tfoot") == S1_CHECK
     switch_to(again, "Even")
@@ -1642,7 +1702,7 @@ def test_R8_both_sets_of_input_survive_a_reload(open_app):
     switch_to(page, "By item")
     add_item_named(page, "Tea", "5.00", ["Person 1"])
     page.reload()
-    assert page.locator("#mode-item").is_checked() and item_name(page, 1).input_value() == "Tea"
+    assert split_state(page) == ITEM_SHOWN and item_name(page, 1).input_value() == "Tea"
     assert toggle(page, "Tea", "Person 1").get_attribute("aria-pressed") == "true" and summary_rows(page)[3][1] == "RM 5.83"
     switch_to(page, "Even")
     assert subtotal_field(page).input_value() == "100.00" and summary_rows(page)[3][1] == "RM 116.60"
@@ -1949,7 +2009,7 @@ def test_R47_the_app_reads_no_error_name_and_probes_nothing(tmp_path):
 
 def test_R10_a_restored_bad_field_shows_its_error_at_once(open_app):
     page = open_app(seed=seeds.with_bill(seeds.S2, subtotalText="0", serviceText="31")).page
-    assert page.locator("p.error#subtotal-error").inner_text() == "Enter an amount like 12.50"  # the 1.0 markup until task A7
+    assert field_error(subtotal_field(page), "evenErr") == error_state(AMOUNT_MESSAGE, "evenErr", shown=True)
     assert field_error(page.locator("#svc"), "svcErr") == error_state(SERVICE_MESSAGE, "chargeHint svcErr", shown=True)
     assert field_error(page.locator("#sst"), "sstErr") == error_state(SST_MESSAGE, "chargeHint", shown=False)
 
@@ -2047,7 +2107,7 @@ def test_R31_start_over(open_app):
     assert page.locator("dialog#newDlg").evaluate("(d) => d.open") is False and focused(page) == "New bill"
     assert section_state(page) == [OPEN, FOLDED]  # People open, Charges folded, as at load (R48, task A4)
     assert [f.input_value() for f in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
-    assert page.locator("#mode-even").is_checked() and subtotal_field(page).input_value() == ""
+    assert split_state(page) == EVEN_SHOWN and subtotal_field(page).input_value() == ""
     open_charges_first(page)  # the rate fields sit in the folded Charges section below 1024 px
     assert (rate_field(page, "Service charge").input_value(), rate_field(page, "SST").input_value()) == ("10", "6")
     # The bill-empty card of R2, which task A2 builds (BUILD.md, A2, judgment call on the 1.0 tests).
@@ -2113,20 +2173,22 @@ RECORD_CLICKS_JS = """() => {
     window.testClicks.push(hit.id || hit.tagName.toLowerCase()); }, true);
 }"""
 PRESS_CASES = [  # (seed, field, bad text, the control pressed under it, error id, the click's target, the error's text)
-    # Since task A4 nothing sits under the Subtotal, and the target is the Charges header row above it, which the error
-    # does not move (the v1.1.0 qa.md row). The click reaches it once and the error shows after.
-    # These two rows keep the 1.0 markup until tasks A7 and A8 move each to the v1.1.0 outline below.
-    pytest.param(None, lambda page: page.locator("#subtotal"), "0", lambda page: page.locator("#chargesBtn"),
-                 "subtotal-error", "chargesBtn", AMOUNT_MESSAGE, id="subtotal"),
+    # This row keeps the 1.0 markup until task A8 moves it to the v1.1.0 outline below.
     pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", lambda page: toggle(page, "Char kuey teow", "Aisyah"),
                  "price-error-i5", "button", AMOUNT_MESSAGE, id="item-price"),
 ]
-# The v1.1.0 rows on p.hint#chargeHint, pressed with the mouse only. Their touch tap is the @per_engine scenario
+# The v1.1.0 rows. Since task A4 nothing sits under the Subtotal, and its target is the Charges header row above it,
+# which the error does not move. It runs below 1024 px, where that row shows, with the mouse and with a touch tap (task A7).
+# The rows on p.hint#chargeHint are pressed with the mouse only. Their touch tap is the @per_engine scenario
 # (test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate), since WebKit sends no mouse event and no click to text
 # that is not a control (spec R59 (3), task A6).
-RATE_PRESS_CASES = [  # (rate, bad text, error id, the error's text, aria-describedby while it shows)
-    pytest.param("Service charge", "31", "svcErr", SERVICE_MESSAGE, "chargeHint svcErr", "mouse", id="service-mouse"),
-    pytest.param("SST", "25", "sstErr", SST_MESSAGE, "chargeHint sstErr", "mouse", id="sst-mouse"),
+RATE_PRESS_CASES = [  # (field, bad text, error id, the error's text, aria-describedby hidden and shown, the target, how)
+    pytest.param(subtotal_field, "0", "evenErr", AMOUNT_MESSAGE, "evenErr", "evenErr", "chargesBtn", "mouse", id="subtotal-mouse"),
+    pytest.param(subtotal_field, "0", "evenErr", AMOUNT_MESSAGE, "evenErr", "evenErr", "chargesBtn", "touch", id="subtotal-touch"),
+    pytest.param(opened_rate_field("Service charge"), "31", "svcErr", SERVICE_MESSAGE, "chargeHint", "chargeHint svcErr",
+                 "chargeHint", "mouse", id="service-mouse"),
+    pytest.param(opened_rate_field("SST"), "25", "sstErr", SST_MESSAGE, "chargeHint", "chargeHint sstErr", "chargeHint", "mouse",
+                 id="sst-mouse"),
 ]
 
 
@@ -2145,16 +2207,16 @@ def press(page, how, point):
         page.mouse.click(*point)
 
 
-@pytest.mark.parametrize("label, bad, error_id, message, shown_described, how", RATE_PRESS_CASES)
+@pytest.mark.parametrize("field_of, bad, error_id, message, described, shown_described, target, how", RATE_PRESS_CASES)
 def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
-        open_app, label, bad, error_id, message, shown_described, how):
-    page = open_app().page
-    field = opened_rate_field(label)(page)
+        open_app, field_of, bad, error_id, message, described, shown_described, target, how):
+    page = open_app(touch=how == "touch").page
+    field = field_of(page)
     support.replace_text(page, field, bad)
-    assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)  # not showing yet (CG-3)
+    assert field_error(field, error_id) == error_state(message, described, shown=False)  # not showing yet (CG-3)
     page.evaluate(RECORD_CLICKS_JS)
-    press(page, how, centre_of(page.locator("#chargeHint")))
-    assert page.evaluate("window.testClicks") == ["chargeHint"]
+    press(page, how, centre_of(page.locator(f"#{target}")))
+    assert page.evaluate("window.testClicks") == [target]
     assert field_error(field, error_id) == error_state(message, shown_described, shown=True)
 
 
@@ -2278,22 +2340,22 @@ def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
 def test_R10_a_press_that_ends_runs_each_waiting_handler_once(open_app):
     # WR-03 (mutant P1: the waiting handlers are never dropped, so every later release re-runs the old ones).
     page = open_app().page
-    sub = page.locator("#subtotal")
+    sub = subtotal_field(page)
     sub.click()
     page.keyboard.type("abc")
     box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)  # blank header space
     page.mouse.down()
-    assert page.locator("p.error").count() == 0
+    assert shown_errors(page) == []
     page.mouse.up()
-    assert page.locator("p.error#subtotal-error").count() == 1  # the held-back blur ran once
+    assert shown_errors(page) == ["evenErr"]  # the held-back blur ran once
     sub.click()
     page.keyboard.press("Control+A")
     page.keyboard.type("5")  # valid: the error goes
     page.keyboard.type("x")  # bad again, and the field still has focus, so no error until it is left
-    assert page.locator("p.error").count() == 0
+    assert shown_errors(page) == []
     page.mouse.click(*centre_of(sub))  # a press inside the focused field blurs nothing, so nothing may run
-    assert page.locator("p.error").count() == 0
+    assert shown_errors(page) == []
 
 
 def test_R10_a_secondary_button_press_does_not_hold_the_error_back(open_app):
@@ -3057,7 +3119,7 @@ def test_R35_no_horizontal_overflow_and_the_layout_of_each_size(open_app, state,
 @pytest.mark.xfail(strict=True, reason="task A18")
 def test_R35_sizes_the_design_gives_at_360_by_780(open_app):
     page = open_app(seed=seeds.S2, clipboard="reject", viewport=(360, 780)).page
-    assert page.locator("span.field.money:has(#subtotal)").bounding_box()["width"] == 160  # S2-28, bill-even.md
+    assert page.locator("#evenField").bounding_box()["width"] == 160  # S2-28, bill-even.md
     copy_summary(page)
     status = page.locator("p.status.status-failure")
     box = status.bounding_box()
@@ -3088,7 +3150,7 @@ WATCH_TRANSITIONS_JS = """() => { window.testTransitions = [];
     pytest.param("no-preference", "0.12s, 0.12s", marks=pytest.mark.xfail(strict=True, reason="task A18"))])
 def test_R36_motion_follows_the_users_setting(open_app, setting, duration):
     page = open_app(seed=seeds.S1, reduced_motion=setting).page
-    for selector in (".btn", ".tap", ".icon-btn", ".mode label"):
+    for selector in (".btn", ".tap", ".icon-btn", ".mode-sw label"):
         found = page.eval_on_selector_all(selector, "(els) => els.map((e) => getComputedStyle(e).transitionDuration)")
         assert found and set(found) == {duration}, selector
     assert page.evaluate("document.getAnimations().length") == 0  # nothing animates by itself

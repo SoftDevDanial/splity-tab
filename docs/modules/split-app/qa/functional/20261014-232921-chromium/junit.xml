@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="17" skipped="2" tests="42" time="19.290" timestamp="2026-10-14T23:29:21.442978+08:00" hostname="{host}"><testcase classname="test_app" name="test_R8_switching_modes_keeps_the_subtotal" time="2.002"><failure message="AssertionError: assert {'even': None...venBlocks': 0} == {'even': Fals...venBlocks': 0}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'even': None} != {'even': False}&#10;  {'item': None} != {'item': True}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031C31BB60&gt;
+
+    def test_R8_switching_modes_keeps_the_subtotal(open_app):
+        page = open_app().page
+        support.replace_text(page, subtotal_field(page), "100.00")
+        switch_to(page, "By item")
+&gt;       assert split_state(page) == ITEM_SHOWN
+E       AssertionError: assert {'even': None...venBlocks': 0} == {'even': Fals...venBlocks': 0}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'even': None} != {'even': False}
+E         {'item': None} != {'item': True}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:780: AssertionError</failure></testcase><testcase classname="test_app" name="test_R8_arrow_keys_move_between_the_modes" time="0.335"><failure message="AssertionError: assert 'newBill' == 'modeEven'&#10;  &#10;  - modeEven&#10;  + newBill">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031C088BF0&gt;
+
+    def test_R8_arrow_keys_move_between_the_modes(open_app):
+        # qa.md's "#itemsBlock is in the DOM" waits for task A8, which gives the Items block its id.
+        page = open_app().page
+        for _ in range(12):
+            page.keyboard.press("Tab")
+            if page.evaluate("document.activeElement.id") == "modeEven":
+                break
+&gt;       assert page.evaluate("document.activeElement.id") == "modeEven"
+E       AssertionError: assert 'newBill' == 'modeEven'
+E         
+E         - modeEven
+E         + newBill
+
+tests\browser\test_app.py:793: AssertionError</failure></testcase><testcase classname="test_app" name="test_R59_focus_after_a_mouse_click_is_the_engines_own[by-item-label]" time="0.220"><failure message="AssertionError: assert 'mode-item' == 'modeItem'&#10;  &#10;  - modeItem&#10;  ?     ^&#10;  + mode-item&#10;  ?     ^^">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031BD58510&gt;
+engine = 'chromium', control = 'By item', focused = 'modeItem'
+
+    @pytest.mark.parametrize("control, focused", [pytest.param("By item", "modeItem", id="by-item-label")])
+    def test_R59_focus_after_a_mouse_click_is_the_engines_own(open_app, engine, control, focused):
+        page = open_app().page
+        page.get_by_text(control, exact=True).click()
+        active = page.evaluate("document.activeElement.id || document.activeElement.localName")
+&gt;       assert active == (focused if engine == "chromium" else "body")
+E       AssertionError: assert 'mode-item' == 'modeItem'
+E         
+E         - modeItem
+E         ?     ^
+E         + mode-item
+E         ?     ^^
+
+tests\browser\test_app.py:805: AssertionError</failure></testcase><testcase classname="test_app" name="test_R9_the_subtotal_field_drives_the_even_split" time="0.167"><failure message="AssertionError: assert {'split': Non... 'even': None} == {'split': {'a...e, '']], ...}}&#10;  &#10;  Differing items:&#10;  {'split': None} != {'split': {'attrs': {'role': 'group', 'aria-labelledby': 'splitH'}, 'children': ['h2#splitH.blk-h', 'div.mode-sw'], 'h...n'], ['label', 'modeEven', 'Even'], ['input', 'radio', 'mode', 'modeItem', 'item'], ['label', 'modeItem', 'By item']]}}&#10;  {'even': None} != {'even': {'children': ['label.blk-h.solo', 'div#evenField.field.money.sub-field', 'p#evenErr.err'], 'label': {'for': 'evenSub'}, 'labelText': 'Subtotal', 'field': [['span.unit', 'true', 'RM'], ['input#evenSub', None, '']], ...}}&#10;  {'legends': 1} != {'legends': 0}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031BED7270&gt;
+
+    def test_R9_the_subtotal_field_drives_the_even_split(open_app):
+        # qa.md "The subtotal field drives the even split", with the Split block of R8 (no legend). The splits after typing
+        # are test_R9_a_subtotal_drives_the_even_split.
+        page = open_app().page
+&gt;       assert page.evaluate(SPLIT_MARKUP_JS) == SPLIT_MARKUP
+E       AssertionError: assert {'split': Non... 'even': None} == {'split': {'a...e, '']], ...}}
+E         
+E         Differing items:
+E         {'split': None} != {'split': {'attrs': {'role': 'group', 'aria-labelledby': 'splitH'}, 'children': ['h2#splitH.blk-h', 'div.mode-sw'], 'h...n'], ['label', 'modeEven', 'Even'], ['input', 'radio', 'mode', 'modeItem', 'item'], ['label', 'modeItem', 'By item']]}}
+E         {'even': None} != {'even': {'children': ['label.blk-h.solo', 'div#evenField.field.money.sub-field', 'p#evenErr.err'], 'label': {'for': 'evenSub'}, 'labelText': 'Subtotal', 'field': [['span.unit', 'true', 'RM'], ['input#evenSub', None, '']], ...}}
+E         {'legends': 1} != {'legends': 0}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:846: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_an_inline_error_waits_for_the_field_to_be_left[subtotal]" time="0.256"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'hidden': None} != {'hidden': True}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'describedBy': None} != {'describedBy': 'evenErr'}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031C646A30&gt;
+field_of = &lt;function subtotal_field at 0x000002031C54B3D0&gt;, bad = '0'
+message = 'Enter an amount like 12.50', error_id = 'evenErr'
+described = 'evenErr', shown_described = 'evenErr', good = '12.50'
+
+    @pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+    def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, field_of, bad, message, error_id, described,
+                                                                shown_described, good):
+        page = open_app().page
+        field = field_of(page)
+        support.replace_text(page, field, bad)
+&gt;       assert field_error(field, error_id) == error_state(message, described, shown=False)
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Differing items:
+E         {'hidden': None} != {'hidden': True}
+E         {'text': None} != {'text': 'Enter an amount like 12.50'}
+E         {'bad': None} != {'bad': False}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         {'describedBy': None} != {'describedBy': 'evenErr'}
+E         {'invalid': None} != {'invalid': 'false'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:918: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_an_inline_error_waits_for_the_field_to_be_left[service]" time="0.362" /><testcase classname="test_app" name="test_R10_an_inline_error_waits_for_the_field_to_be_left[sst]" time="0.407" /><testcase classname="test_app" name="test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again[subtotal]" time="0.298"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'hidden': None} != {'hidden': True}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'describedBy': None} != {'describedBy': 'evenErr'}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031B658D50&gt;
+field_of = &lt;function subtotal_field at 0x000002031C54B3D0&gt;, bad = '0'
+message = 'Enter an amount like 12.50', error_id = 'evenErr'
+described = 'evenErr', shown_described = 'evenErr', good = '12.50'
+
+    @pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+    def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again(
+            open_app, field_of, bad, message, error_id, described, shown_described, good):
+        # WR-03 / K1: (c) says the error goes at valid text and "does not come back until the field next loses focus".
+        page = open_app().page
+        field = field_of(page)
+        support.replace_text(page, field, bad)
+        page.keyboard.press("Tab")
+        support.replace_text(page, field, good[0])
+        page.keyboard.type("x")  # bad again, and the field still has focus
+&gt;       assert field_error(field, error_id) == error_state(message, described, shown=False)
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Differing items:
+E         {'hidden': None} != {'hidden': True}
+E         {'text': None} != {'text': 'Enter an amount like 12.50'}
+E         {'bad': None} != {'bad': False}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         {'describedBy': None} != {'describedBy': 'evenErr'}
+E         {'invalid': None} != {'invalid': 'false'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:937: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again[service]" time="0.335" /><testcase classname="test_app" name="test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again[sst]" time="0.352" /><testcase classname="test_app" name="test_R10_an_inline_error_waits_for_the_field_to_be_left_in_the_1_0_markup[item-price]" time="0.884" /><testcase classname="test_app" name="test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again_in_the_1_0_markup[item-price]" time="0.811" /><testcase classname="test_app" name="test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early" time="0.244"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'hidden': None} != {'hidden': True}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'describedBy': None} != {'describedBy': 'evenErr'}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031BA78D50&gt;
+
+    def test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early(open_app):
+        page = open_app().page
+        subtotal_field(page).click()
+        page.keyboard.type("abc")
+        # qa.md's strip line is task A11's (test_R2_cold_boot_is_a_new_bill_with_no_seed reads the strip text).
+&gt;       assert field_error(subtotal_field(page), "evenErr") == error_state(AMOUNT_MESSAGE, "evenErr", shown=False)
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Differing items:
+E         {'hidden': None} != {'hidden': True}
+E         {'text': None} != {'text': 'Enter an amount like 12.50'}
+E         {'bad': None} != {'bad': False}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         {'describedBy': None} != {'describedBy': 'evenErr'}
+E         {'invalid': None} != {'invalid': 'false'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1008: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_an_error_survives_a_mode_switch" time="0.315"><failure message="AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'hidden': None} != {'hidden': False}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': True}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'describedBy': 'subtotal-error'} != {'describedBy': 'evenErr'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031BA7A090&gt;
+
+    def test_R10_an_error_survives_a_mode_switch(open_app):
+        page = open_app().page
+        support.replace_text(page, subtotal_field(page), "0")
+        page.keyboard.press("Tab")
+        switch_to(page, "By item")
+        switch_to(page, "Even")
+&gt;       assert field_error(subtotal_field(page), "evenErr") == error_state(AMOUNT_MESSAGE, "evenErr", shown=True)
+E       AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'hidden': None} != {'hidden': False}
+E         {'text': None} != {'text': 'Enter an amount like 12.50'}
+E         {'bad': None} != {'bad': True}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         {'describedBy': 'subtotal-error'} != {'describedBy': 'evenErr'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1018: AssertionError</failure></testcase><testcase classname="test_app" name="test_R8_switching_modes_keeps_both_sets_of_input" time="0.402"><failure message="AssertionError: assert (True and {'even': None...venBlocks': 0} == {'even': Fals...venBlocks': 0}&#10; +  where True = is_visible()&#10; +    where is_visible = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:21614/'&gt; selector='ol.items'&gt;.is_visible&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:21614/'&gt; selector='ol.items'&gt; = locator('ol.items')&#10; +        where locator = &lt;Page url='http://127.0.0.1:21614/'&gt;.locator&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'even': None} != {'even': False}&#10;  {'item': None} != {'item': True}&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031ACDB270&gt;
+
+    def test_R8_switching_modes_keeps_both_sets_of_input(open_app):
+        page = open_app().page
+        support.replace_text(page, subtotal_field(page), "100.00")
+        switch_to(page, "By item")
+        add_item_named(page, "Tea", "5.00", ["Person 1"])
+&gt;       assert page.locator("ol.items").is_visible() and split_state(page) == ITEM_SHOWN  # #itemsBlock is task A8's
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert (True and {'even': None...venBlocks': 0} == {'even': Fals...venBlocks': 0}
+E        +  where True = is_visible()
+E        +    where is_visible = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:21614/'&gt; selector='ol.items'&gt;.is_visible
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:21614/'&gt; selector='ol.items'&gt; = locator('ol.items')
+E        +        where locator = &lt;Page url='http://127.0.0.1:21614/'&gt;.locator
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'even': None} != {'even': False}
+E         {'item': None} != {'item': True}
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:1111: AssertionError</failure></testcase><testcase classname="test_app" name="test_R9_a_subtotal_drives_the_even_split" time="0.169" /><testcase classname="test_app" name="test_R8_the_panel_follows_each_mode" time="0.351" /><testcase classname="test_app" name="test_R26_a_restored_bill_looks_like_the_one_built_by_gestures[S2]" time="0.443" /><testcase classname="test_app" name="test_R26_a_restored_bill_looks_like_the_one_built_by_gestures[S1]" time="0.841" /><testcase classname="test_app" name="test_R26_a_restored_bill_looks_like_the_one_built_by_gestures[S5]" time="0.991" /><testcase classname="test_app" name="test_R26_come_back_later" time="0.803"><failure message="AssertionError: assert ({'people': ['...'true']], ...} == {'people': ['...'true']], ...}&#10;  &#10;  Omitting 5 identical items, use -vv to show&#10;  Use -v to get more diff and {'even': None...venBlocks': 0} == {'even': Fals...venBlocks': 0}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'even': None} != {'even': False}&#10;  {'item': None} != {'item': True}&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031B15A610&gt;
+
+    def test_R26_come_back_later(open_app):
+        session = open_app()
+        page = session.page
+        build_s2(page)
+        build_items_after_switch(page)
+        before = snapshot(page)
+        page.close()
+        again = session.new_page()
+        session.open("/", page=again)
+&gt;       assert snapshot(again) == before and split_state(again) == ITEM_SHOWN
+E       AssertionError: assert ({'people': ['...'true']], ...} == {'people': ['...'true']], ...}
+E         
+E         Omitting 5 identical items, use -vv to show
+E         Use -v to get more diff and {'even': None...venBlocks': 0} == {'even': Fals...venBlocks': 0}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'even': None} != {'even': False}
+E         {'item': None} != {'item': True}
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:1690: AssertionError</failure></testcase><testcase classname="test_app" name="test_R26_come_back_later" time="0.004"><error message="failed on teardown with &quot;playwright._impl._errors.TargetClosedError: Page.screenshot: Target page, context or browser has been closed&quot;">server = &lt;rig.StaticServer object at 0x000002031C50FCB0&gt;
+browser = &lt;Browser type=&lt;BrowserType name=chromium executable_path={home}\AppData\Local\ms-playwright\chromium-1228\chrome-win64\chrome.exe&gt; version=149.0.7827.55&gt;
+request = &lt;SubRequest 'open_app' for &lt;Function test_R26_come_back_later&gt;&gt;
+
+    @pytest.fixture
+    def open_app(server, browser, request):
+        """open_app(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+        path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark") -&gt; Session
+    
+        The defaults are the default context of qa.md How to run (task A3). A scenario that names "no-preference" or a
+        light colour scheme passes it. Every context also gets csp/listener.js, so a policy violation fails the scenario
+        in either engine (R38)."""
+        sessions = []
+    
+        def factory(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+                    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark"):
+            target = base_server or server
+            options = {"viewport": {"width": viewport[0], "height": viewport[1]},
+                       "device_scale_factor": 1, "color_scheme": color_scheme, "reduced_motion": reduced_motion}
+            if touch:  # page.touchscreen.tap needs a context that has touch (RD-3)
+                options["has_touch"] = True
+            if seed is not None:
+                options["storage_state"] = rig.storage_state(target.base, seed)
+            context = rig.new_context(browser, clipboard=clipboard, init_scripts=(CSP_LISTENER, *init_scripts), **options)
+            session = Session(context, target.base, prefix)
+            session.allow_problems = allow_problems
+            sessions.append(session)
+            if goto:
+                session.open(path)
+            return session
+    
+        yield factory
+        failed = getattr(request.node, "rep_call", None) is not None and request.node.rep_call.failed
+        leftovers = []
+        for number, session in enumerate(sessions, start=1):
+            if failed:
+                name = re.sub(r"[^A-Za-z0-9_.-]+", "_", request.node.nodeid)
+&gt;               session.page.screenshot(path=str(evidence_dir() / f"{name}-{number}.png"))
+
+tests\browser\conftest.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:10754: in screenshot
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:828: in screenshot
+    encoded_binary = await self._channel.send(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000002031C3297F0&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000002031BC1A400&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TargetClosedError: Page.screenshot: Target page, context or browser has been closed
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: TargetClosedError</error></testcase><testcase classname="test_app" name="test_R8_both_sets_of_input_survive_a_reload" time="0.343"><failure message="AssertionError: assert ({'even': None...venBlocks': 0} == {'even': Fals...venBlocks': 0}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'even': None} != {'even': False}&#10;  {'item': None} != {'item': True}&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031ADFAF00&gt;
+
+    def test_R8_both_sets_of_input_survive_a_reload(open_app):
+        page = open_app().page
+        subtotal_field(page).fill("100.00")
+        switch_to(page, "By item")
+        add_item_named(page, "Tea", "5.00", ["Person 1"])
+        page.reload()
+&gt;       assert split_state(page) == ITEM_SHOWN and item_name(page, 1).input_value() == "Tea"
+E       AssertionError: assert ({'even': None...venBlocks': 0} == {'even': Fals...venBlocks': 0}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'even': None} != {'even': False}
+E         {'item': None} != {'item': True}
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:1704: AssertionError</failure></testcase><testcase classname="test_app" name="test_R26_odd_but_readable_drafts_load[G1]" time="0.393" /><testcase classname="test_app" name="test_R26_odd_but_readable_drafts_load[G2]" time="0.214" /><testcase classname="test_app" name="test_R26_odd_but_readable_drafts_load[G3]" time="0.409" /><testcase classname="test_app" name="test_R10_a_restored_bad_field_shows_its_error_at_once" time="0.253"><failure message="AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'hidden': None} != {'hidden': False}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': True}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'describedBy': 'subtotal-error'} != {'describedBy': 'evenErr'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031CBDE6C0&gt;
+
+    def test_R10_a_restored_bad_field_shows_its_error_at_once(open_app):
+        page = open_app(seed=seeds.with_bill(seeds.S2, subtotalText="0", serviceText="31")).page
+&gt;       assert field_error(subtotal_field(page), "evenErr") == error_state(AMOUNT_MESSAGE, "evenErr", shown=True)
+E       AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'hidden': None} != {'hidden': False}
+E         {'text': None} != {'text': 'Enter an amount like 12.50'}
+E         {'bad': None} != {'bad': True}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         {'describedBy': 'subtotal-error'} != {'describedBy': 'evenErr'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2011: AssertionError</failure></testcase><testcase classname="test_app" name="test_R31_start_over" time="0.330"><failure message="AssertionError: assert ({'even': None...venBlocks': 0} == {'even': True...venBlocks': 1}&#10;  &#10;  Differing items:&#10;  {'evenBlocks': 0} != {'evenBlocks': 1}&#10;  {'even': None} != {'even': True}&#10;  {'item': None} != {'item': False}&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031A664CA0&gt;
+
+    def test_R31_start_over(open_app):
+        page = open_app(seed=seeds.S1).page
+        open_dialog(page)
+        page.get_by_role("button", name="Start new bill").click()
+        assert page.locator("dialog#newDlg").evaluate("(d) =&gt; d.open") is False and focused(page) == "New bill"
+        assert section_state(page) == [OPEN, FOLDED]  # People open, Charges folded, as at load (R48, task A4)
+        assert [f.input_value() for f in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
+&gt;       assert split_state(page) == EVEN_SHOWN and subtotal_field(page).input_value() == ""
+E       AssertionError: assert ({'even': None...venBlocks': 0} == {'even': True...venBlocks': 1}
+E         
+E         Differing items:
+E         {'evenBlocks': 0} != {'evenBlocks': 1}
+E         {'even': None} != {'even': True}
+E         {'item': None} != {'item': False}
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:2109: AssertionError</failure></testcase><testcase classname="test_app" name="test_R31_start_over_clears_the_copy_status" time="0.240"><skipped type="pytest.xfail" message="task A16" /></testcase><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[subtotal]" time="0.332" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[item-price]" time="0.465" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[service]" time="0.383" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[sst]" time="0.355" /><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[subtotal-mouse]" time="0.243"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'hidden': None} != {'hidden': True}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'describedBy': None} != {'describedBy': 'evenErr'}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031A680040&gt;
+field_of = &lt;function subtotal_field at 0x000002031C54B3D0&gt;, bad = '0'
+error_id = 'evenErr', message = 'Enter an amount like 12.50'
+described = 'evenErr', shown_described = 'evenErr', target = 'chargesBtn'
+how = 'mouse'
+
+    @pytest.mark.parametrize("field_of, bad, error_id, message, described, shown_described, target, how", RATE_PRESS_CASES)
+    def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
+            open_app, field_of, bad, error_id, message, described, shown_described, target, how):
+        page = open_app(touch=how == "touch").page
+        field = field_of(page)
+        support.replace_text(page, field, bad)
+&gt;       assert field_error(field, error_id) == error_state(message, described, shown=False)  # not showing yet (CG-3)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Differing items:
+E         {'hidden': None} != {'hidden': True}
+E         {'text': None} != {'text': 'Enter an amount like 12.50'}
+E         {'bad': None} != {'bad': False}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         {'describedBy': None} != {'describedBy': 'evenErr'}
+E         {'invalid': None} != {'invalid': 'false'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2215: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[subtotal-touch]" time="0.237"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'hidden': None} != {'hidden': True}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'describedBy': None} != {'describedBy': 'evenErr'}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031CACBE20&gt;
+field_of = &lt;function subtotal_field at 0x000002031C54B3D0&gt;, bad = '0'
+error_id = 'evenErr', message = 'Enter an amount like 12.50'
+described = 'evenErr', shown_described = 'evenErr', target = 'chargesBtn'
+how = 'touch'
+
+    @pytest.mark.parametrize("field_of, bad, error_id, message, described, shown_described, target, how", RATE_PRESS_CASES)
+    def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
+            open_app, field_of, bad, error_id, message, described, shown_described, target, how):
+        page = open_app(touch=how == "touch").page
+        field = field_of(page)
+        support.replace_text(page, field, bad)
+&gt;       assert field_error(field, error_id) == error_state(message, described, shown=False)  # not showing yet (CG-3)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Differing items:
+E         {'hidden': None} != {'hidden': True}
+E         {'text': None} != {'text': 'Enter an amount like 12.50'}
+E         {'bad': None} != {'bad': False}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         {'describedBy': None} != {'describedBy': 'evenErr'}
+E         {'invalid': None} != {'invalid': 'false'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2215: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[service-mouse]" time="0.280" /><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[sst-mouse]" time="0.280" /><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on_in_the_1_0_markup[item-price-mouse]" time="0.314" /><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on_in_the_1_0_markup[item-price-touch]" time="0.324" /><testcase classname="test_app" name="test_R10_a_press_that_ends_runs_each_waiting_handler_once" time="0.247"><failure message="AssertionError: assert ['subtotal-error'] == ['evenErr']&#10;  &#10;  At index 0 diff: 'subtotal-error' != 'evenErr'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031E55F110&gt;
+
+    def test_R10_a_press_that_ends_runs_each_waiting_handler_once(open_app):
+        # WR-03 (mutant P1: the waiting handlers are never dropped, so every later release re-runs the old ones).
+        page = open_app().page
+        sub = subtotal_field(page)
+        sub.click()
+        page.keyboard.type("abc")
+        box = page.locator("h1.word").bounding_box()
+        page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)  # blank header space
+        page.mouse.down()
+        assert shown_errors(page) == []
+        page.mouse.up()
+&gt;       assert shown_errors(page) == ["evenErr"]  # the held-back blur ran once
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert ['subtotal-error'] == ['evenErr']
+E         
+E         At index 0 diff: 'subtotal-error' != 'evenErr'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2350: AssertionError</failure></testcase><testcase classname="test_app" name="test_R36_motion_follows_the_users_setting[reduce-0s]" time="0.231"><failure message="AssertionError: .mode-sw label&#10;assert ([])">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002031DDE6560&gt;
+setting = 'reduce', duration = '0s'
+
+    @pytest.mark.parametrize("setting, duration", [
+        ("reduce", "0s"),
+        pytest.param("no-preference", "0.12s, 0.12s", marks=pytest.mark.xfail(strict=True, reason="task A18"))])
+    def test_R36_motion_follows_the_users_setting(open_app, setting, duration):
+        page = open_app(seed=seeds.S1, reduced_motion=setting).page
+        for selector in (".btn", ".tap", ".icon-btn", ".mode-sw label"):
+            found = page.eval_on_selector_all(selector, "(els) =&gt; els.map((e) =&gt; getComputedStyle(e).transitionDuration)")
+&gt;           assert found and set(found) == {duration}, selector
+E           AssertionError: .mode-sw label
+E           assert ([])
+
+tests\browser\test_app.py:3154: AssertionError</failure></testcase><testcase classname="test_app" name="test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s]" time="0.270"><skipped type="pytest.xfail" message="task A18" /></testcase></testsuite></testsuites>

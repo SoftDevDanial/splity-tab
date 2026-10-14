@@ -172,7 +172,14 @@ function toggleSection(key) {
 }
 const peopleSection = createPeopleSection(people.content, () => toggleSection("people"));
 const chargesSection = createChargesSection(charges.content, () => toggleSection("charges"));
-document.getElementById("work").append(peopleSection.el, chargesSection.el, mode.el, subtotal.el, items.el);
+document.getElementById("work").append(peopleSection.el, chargesSection.el, mode.el, items.el);
+
+// R8, the Subtotal block is in the DOM in even mode only. It is put back only when it is missing, because moving the
+// block that holds the focused field drops its focus (R33).
+function placeSubtotal() {
+  if (bill.mode !== "even") subtotal.el.remove();
+  else if (!subtotal.el.isConnected) mode.el.after(subtotal.el);
+}
 
 function render() {
   const errors = visibleErrors(view.errorShown, bill);
@@ -181,6 +188,7 @@ function render() {
   chargesSection.update(bill, view.open.charges);
   people.update(bill);
   mode.update(bill);
+  placeSubtotal();
   subtotal.update(bill, errors);
   items.update(bill, errors);
   charges.update(bill, errors);

@@ -1,7 +1,7 @@
 // The inline error under an amount or rate field (R10, R14, R15), shared by Subtotal, item prices and
 // the two rates so their markup cannot drift apart. createFieldError is the v1.1.0 form of the goldens, which the
-// rates use since task A6. createErrorSlot is the 1.0 form that Subtotal and the prices keep until tasks A7 and A8
-// move them to createFieldError, and it goes with the last of them.
+// rates use since task A6 and the Subtotal since task A7. createErrorSlot is the 1.0 form that the prices keep until
+// task A8 moves them to createFieldError, and it goes with them.
 import { el, setAttr } from "./dom.js";
 import { icon } from "./icons.js";
 
@@ -32,7 +32,7 @@ export function createFieldError(wrapper, input, { id, message, hint }) {
 }
 
 /**
- * The 1.0 error (Subtotal and the prices until tasks A7 and A8).
+ * The 1.0 error (the prices until task A8).
  * @param {HTMLElement} host the element the paragraph is the last child of
  * @param {HTMLInputElement} input the field it describes
  * @param {{ id: string, message: string }} options

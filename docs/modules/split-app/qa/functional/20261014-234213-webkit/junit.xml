@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="1.829" timestamp="2026-10-14T23:42:13.595924+08:00" hostname="{host}"><testcase classname="test_app" name="test_R59_focus_after_a_mouse_click_is_the_engines_own[by-item-label]" time="1.421"><failure message="AssertionError: assert 'modeItem' == 'body'&#10;  &#10;  - body&#10;  + modeItem">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x00000219BFCE3950&gt;
+engine = 'webkit', control = 'By item', focused = 'modeItem'
+
+    @pytest.mark.parametrize("control, focused", [pytest.param("By item", "modeItem", id="by-item-label")])
+    def test_R59_focus_after_a_mouse_click_is_the_engines_own(open_app, engine, control, focused):
+        page = open_app().page
+        page.get_by_text(control, exact=True).click()
+        active = page.evaluate("document.activeElement.id || document.activeElement.localName")
+&gt;       assert active == (focused if engine == "chromium" else "body")
+E       AssertionError: assert 'modeItem' == 'body'
+E         
+E         - body
+E         + modeItem
+
+tests\browser\test_app.py:806: AssertionError</failure></testcase></testsuite></testsuites>
