@@ -1,5 +1,6 @@
-// Unit tests for src/draft.js (split-app R25 to R28, decoder rules D1 to D12). The browser suite proves the
+// Unit tests for src/draft.js (split-app R25 to R28 and R61, decoder rules D1 to D14). The browser suite proves the
 // same rules through the page; these pin the edges (limits, boundaries, what is copied) without a browser.
+// `draft()` builds a version 1 draft as 1.0 saved it, so the D5 to D12 cases also prove that 1.0 drafts still load.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { DRAFT_KEY, encodeDraft, decodeDraft, getStorage, loadDraft, saveDraft } from "../src/draft.js";
@@ -13,9 +14,57 @@ const bill = (changes = {}) => ({
 const draft = (changes) => JSON.stringify({ version: 1, bill: bill(changes) });
 const rejects = (text) => assert.deepEqual(decodeDraft(text), { ok: false });
 
-test("@R25 encodeDraft and decodeDraft round-trip a new bill and an item bill", { todo: "task A1" }, () => {
+// The seed drafts of split-app qa.md ("Seed drafts", "Unreadable drafts", "Readable drafts that look odd") that the
+// R61 cases name. K1 and K2 are the qa.md texts, the rest are built from them as the tables say.
+const K1 = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},'
+  + '{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},'
+  + '{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},'
+  + '{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6",'
+  + '"spare":{"rule":"top"},"nextId":8}}';
+const K2 = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},'
+  + '{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}';
+const S2_V1 = '{"version":1,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},'
+  + '{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","nextId":4}}';
+const edited = (text, edit) => {
+  const value = JSON.parse(text);
+  edit(value);
+  return JSON.stringify(value);
+};
+const withSpare = (text, spare) => edited(text, (value) => { value.bill.spare = spare; });
+const billOf = (text) => JSON.parse(text).bill;
+const TOP = { rule: "top" };
+const ONE = withSpare(K2, { rule: "one", personId: "p2" });
+const RND = withSpare(K2, { rule: "random", order: ["p2", "p3", "p1"] });
+const PA0 = JSON.stringify({ version: 2, bill: {
+  mode: "item", people: [person(1, "Aisyah"), person(2, "Ben"), person(3, "Chen")], subtotalText: "",
+  items: [{ id: "i4", name: "X", priceText: "0.01", who: ["p1", "p2"] }, { id: "i5", name: "Y", priceText: "0.01", who: ["p1", "p2"] }],
+  serviceText: "0", sstText: "0", spare: { rule: "random", order: ["p1", "p2", "p3"] }, nextId: 6,
+} });
+const S1_V1 = edited(K1, (value) => { value.version = 1; delete value.bill.spare; });
+const G4 = edited(K1, (value) => { value.bill.spare = { rule: "one", personId: "p2" }; value.bill.items[1].who = ["p1"]; });
+const G5 = withSpare(S2_V1, { rule: "random", order: ["p1"] });
+const G6 = withSpare(K2, { rule: "top", extra: 1 });
+const UNREADABLE_V2 = {
+  B4: edited(K2, (value) => { value.version = 3; }),
+  B5: edited(K2, (value) => { value.version = "2"; }),
+  B25: edited(K2, (value) => { delete value.bill.spare; }),
+  B26: withSpare(K2, { rule: "two" }),
+  B27: withSpare(K2, { rule: "one", personId: "p9" }),
+  B28: withSpare(K2, { rule: "one" }),
+  B29: withSpare(K2, { rule: "random", order: ["p1", "p2"] }),
+  B30: withSpare(K2, { rule: "random", order: ["p1", "p1", "p2", "p3"] }),
+  B31: withSpare(K2, { rule: "random", order: ["p1", "p2", "p3", "p4"] }),
+  B32: withSpare(K2, []),
+};
+const storageHolding = (text) => {
+  const memory = new Map(text === null ? [] : [[DRAFT_KEY, text]]);
+  return { getItem: (key) => memory.get(key) ?? null, setItem: (key, value) => { memory.set(key, String(value)); } };
+};
+const throwingStorage = { getItem() { throw new Error("read failed"); }, setItem() { throw new Error("full"); } };
+
+test("@R25 encodeDraft and decodeDraft round-trip a new bill and an item bill", () => {
   assert.deepEqual(decodeDraft(encodeDraft(newBill())), { ok: true, bill: newBill() });
-  const full = bill({ mode: "item", items: [{ id: "i3", name: "Tea", priceText: "5", who: ["p2"] }], nextId: 4 });
+  const full = bill({ mode: "item", items: [{ id: "i3", name: "Tea", priceText: "5", who: ["p2"] }], spare: TOP, nextId: 4 });
   assert.deepEqual(decodeDraft(encodeDraft(full)), { ok: true, bill: full });
 });
 
@@ -93,7 +142,7 @@ test("@R26 D11 and D12 drop unknown keys and build new objects from known fields
   assert.ok(dirty.includes('"__proto__":{"polluted":true}')); // a computed key is an own key, as JSON.parse reads it
   const decoded = decodeDraft(dirty);
   assert.equal(decoded.ok, true);
-  assert.deepEqual(Object.keys(decoded.bill), ["mode", "people", "subtotalText", "items", "serviceText", "sstText", "nextId"]);
+  assert.deepEqual(Object.keys(decoded.bill), ["mode", "people", "subtotalText", "items", "serviceText", "sstText", "spare", "nextId"]);
   assert.deepEqual(Object.keys(decoded.bill.people[0]), ["id", "name"]);
   assert.deepEqual(Object.keys(decoded.bill.items[0]), ["id", "name", "priceText", "who"]);
   assert.equal(({}).polluted, undefined);
@@ -103,14 +152,50 @@ test("@R26 D11 and D12 drop unknown keys and build new objects from known fields
 
 test("@R28 getStorage, loadDraft and saveDraft never throw", () => {
   assert.equal(getStorage(), null); // no window here, which is what a blocked localStorage looks like
-  assert.deepEqual(loadDraft(null), { state: "none" });
+  assert.deepEqual(loadDraft(null), { state: "failed" });
   assert.equal(saveDraft(null, newBill()), false);
-  const broken = { getItem() { throw new Error("no"); }, setItem() { throw new Error("full"); } };
-  assert.deepEqual(loadDraft(broken), { state: "none" });
-  assert.equal(saveDraft(broken, newBill()), false);
+  assert.deepEqual(loadDraft(throwingStorage), { state: "failed" });
+  assert.equal(saveDraft(throwingStorage, newBill()), false);
 });
 
-test("@R27 loadDraft tells none, ok and unreadable apart, and saveDraft writes the encoded draft", { todo: "task A1" }, () => {
+test("@R61 D3 and D13 read a version 2 draft with its spare choice as stored", () => {
+  for (const text of [K1, K2, ONE, RND, PA0]) assert.deepEqual(decodeDraft(text), { ok: true, bill: billOf(text) });
+});
+
+test("@R61 D14 reads a version 1 draft with spare Top of the list, whatever spare key it holds", () => {
+  for (const text of [S1_V1, S2_V1]) assert.deepEqual(decodeDraft(text), { ok: true, bill: { ...billOf(text), spare: TOP } });
+  assert.deepEqual(decodeDraft(G5), { ok: true, bill: { ...billOf(S2_V1), spare: TOP } });
+});
+
+test("@R61 D13 keeps a One person choice whose person is on no item, and keeps only the fields a rule needs", () => {
+  assert.deepEqual(decodeDraft(G4), { ok: true, bill: billOf(G4) });
+  assert.deepEqual(decodeDraft(G6), { ok: true, bill: billOf(K2) });
+  const crossed = withSpare(K2, { rule: "random", order: ["p3", "p1", "p2"], personId: "p1" });
+  assert.deepEqual(decodeDraft(crossed).bill.spare, { rule: "random", order: ["p3", "p1", "p2"] });
+  const extraOrder = withSpare(K2, { rule: "one", personId: "p3", order: ["p1"] });
+  assert.deepEqual(decodeDraft(extraOrder).bill.spare, { rule: "one", personId: "p3" });
+});
+
+test("@R61 D3 and D13 reject another version and every spare choice outside core R27", () => {
+  for (const [name, text] of Object.entries(UNREADABLE_V2)) assert.deepEqual(decodeDraft(text), { ok: false }, name);
+});
+
+test("@R61 encodeDraft writes version 2, and loadDraft and saveDraft report a storage that fails", () => {
+  const k1 = billOf(K1);
+  assert.deepEqual(JSON.parse(encodeDraft(k1)), { version: 2, bill: k1 });
+  assert.deepEqual(loadDraft(null), { state: "failed" });
+  assert.deepEqual(loadDraft(throwingStorage), { state: "failed" });
+  assert.deepEqual(loadDraft(storageHolding(null)), { state: "none" });
+  assert.deepEqual(loadDraft(storageHolding("not json")), { state: "unreadable" }); // B1
+  assert.deepEqual(loadDraft(storageHolding(K2)), { state: "ok", bill: billOf(K2) });
+  assert.equal(saveDraft(null, k1), false);
+  assert.equal(saveDraft(throwingStorage, k1), false);
+  const working = storageHolding(null);
+  assert.equal(saveDraft(working, k1), true);
+  assert.equal(working.getItem(DRAFT_KEY), encodeDraft(k1));
+});
+
+test("@R27 loadDraft tells none, ok and unreadable apart, and saveDraft writes the encoded draft", () => {
   const memory = new Map();
   const storage = { getItem: (key) => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, value) };
   assert.deepEqual(loadDraft(storage), { state: "none" });

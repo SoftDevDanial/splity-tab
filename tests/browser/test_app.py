@@ -1002,8 +1002,8 @@ def test_R42_duplicate_names_through_the_whole_flow(open_app):
 
 
 # ---------------------------------------------------------------- Task 9: the draft (R25 to R28, with R3, R8, R10, R24, R26, R42)
-NEW_BILL_DRAFT = ('{"version":1,"bill":{"mode":"even","people":[{"id":"p1","name":"Person 1"},{"id":"p2","name":"Person 2"}],'
-                  '"subtotalText":"","items":[],"serviceText":"10","sstText":"6","nextId":3}}')
+NEW_BILL_DRAFT = ('{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Person 1"},{"id":"p2","name":"Person 2"}],'
+                  '"subtotalText":"","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":3}}')
 SNAPSHOT_JS = """() => ({
   people: [...document.querySelectorAll('li.person input')].map((i) => i.value),
   mode: document.querySelector('input[name=mode]:checked').value,
@@ -1047,7 +1047,7 @@ def test_R25_every_change_is_saved(open_app, change, check):
     assert stored(page) is None
     change(page)
     draft = stored(page)
-    assert list(draft) == ["version", "bill"] and draft["version"] == 1 and check(draft["bill"])
+    assert list(draft) == ["version", "bill"] and draft["version"] == 2 and check(draft["bill"])
 
 
 def test_R25_leaving_a_field_or_copying_does_not_save(open_app):
@@ -1065,7 +1065,6 @@ def test_R25_a_cold_boot_and_a_reload_write_nothing(open_app):
     assert stored_text(page) is None
 
 
-@pytest.mark.xfail(strict=True, reason="task A1")
 @pytest.mark.parametrize("build, seed", [(build_s2, seeds.S2), (lambda page: (build_s2(page), build_items_after_switch(page)), None)],
                          ids=["S2", "S1-after-a-subtotal"])
 def test_R25_a_bill_built_by_gestures_is_stored_like_its_seed(open_app, build, seed):
@@ -1156,7 +1155,6 @@ def test_R26_odd_but_readable_drafts_load(open_app, name):
         assert "extra" not in text and "colour" not in text and json.loads(text)["bill"]["subtotalText"] == "100.0"
 
 
-@pytest.mark.xfail(strict=True, reason="task A1")
 @pytest.mark.parametrize("name", list(seeds.UNREADABLE))
 def test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note(open_app, name):
     session = open_app(seed=seeds.UNREADABLE[name])
@@ -1285,7 +1283,6 @@ def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
     assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page) and summary_rows(page) == S2_SUMMARY
 
 
-@pytest.mark.xfail(strict=True, reason="task A1")
 def test_R31_start_over(open_app):
     page = open_app(seed=seeds.S1).page
     open_dialog(page)
@@ -1635,8 +1632,7 @@ FIVE_PEOPLE = seeds.changed(seeds.S2, lambda d: d["bill"].update(
     people=[{"id": f"p{n}", "name": f"P{n}"} for n in range(1, 6)], nextId=6))
 REMOVE_CASES = [  # (seed, the remove button, the row selector, rows before)
     pytest.param(seeds.S1, "Remove Char kuey teow", "li.item", 4, id="item-2-of-4"),
-    pytest.param(FIVE_PEOPLE, "Remove P2", "li.person", 5, id="person-2-of-5",
-                 marks=pytest.mark.xfail(strict=True, reason="task A1")),
+    pytest.param(FIVE_PEOPLE, "Remove P2", "li.person", 5, id="person-2-of-5"),
 ]
 
 
@@ -1673,10 +1669,8 @@ SIZE_IDS = [f"{w}x{h}" for w, h in SIZES]
 GESTURES = ["single", "mouse-double", "mouse-triple", "touch-double"]  # "single" is the control: what one click does
 ONE_ITEM = seeds.changed(seeds.S1, lambda d: d["bill"].update(items=d["bill"]["items"][3:]))
 LAST_ROW_CASES = [  # (seed, the remove button, the row selector, where focus goes by R34 afterwards)
-    pytest.param(seeds.S2, "Remove Chen", "li.person", "Person 2 name", id="S2-person-3-of-3",
-                 marks=pytest.mark.xfail(strict=True, reason="task A1")),
-    pytest.param(seeds.S8, "Remove Mei Ling", "li.person", "Person 11 name", id="S8-person-12-of-12",
-                 marks=pytest.mark.xfail(strict=True, reason="task A1")),
+    pytest.param(seeds.S2, "Remove Chen", "li.person", "Person 2 name", id="S2-person-3-of-3"),
+    pytest.param(seeds.S8, "Remove Mei Ling", "li.person", "Person 11 name", id="S8-person-12-of-12"),
     pytest.param(seeds.S1, "Remove Satay, 10 sticks", "li.item", "Item 3 name", id="S1-item-4-of-4"),
     pytest.param(ONE_ITEM, "Remove Satay, 10 sticks", "li.item", "Add item", id="S1-only-item"),
 ]
@@ -1727,7 +1721,6 @@ def test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it(ope
     assert support.active_label(page) == ("Item 2 name" if rows == "li.item" else "Person 2 name")
 
 
-@pytest.mark.xfail(strict=True, reason="task A1")
 def test_R7_a_separate_click_on_what_slid_under_the_pointer_is_not_held_back(open_app):
     # The guard goes by click count, not by time or place: a click of its own (count 1) on the same spot is a new press.
     page = open_app(seed=seeds.S2).page
@@ -1753,9 +1746,6 @@ def test_R7_the_guard_of_a_remove_click_ends_at_the_next_press(open_app):
     assert aisyah.get_attribute("aria-pressed") == "false" and stored(page)["bill"]["items"][0]["who"] == ["p2"]
 
 
-# Not strict, because the call passes and only the teardown's page error check fails, and pytest fails a strict
-# xfail whose call passes. Task A1 removes it with the strict marks.
-@pytest.mark.xfail(strict=False, reason="task A1")
 def test_R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word(open_app):
     # The user-visible side of the same lifetime (RG-CR-02). The first press of this double click has count 1 and ends the
     # guard; a guard that kept its press listener would cancel the second press, and the word would not be selected.
@@ -1811,7 +1801,6 @@ def press_point(button, place):
 @pytest.mark.parametrize("gesture", REPEAT_GESTURES)
 @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
 @pytest.mark.parametrize("people", [2, 3, 4, 5])
-@pytest.mark.xfail(strict=True, reason="task A1")
 def test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it(open_app, people, viewport, gesture, place):
     # The "centre" rows are the control: the repeat press misses the new Remove button there, on every tree.
     seed = people_bill(people)
@@ -2228,6 +2217,7 @@ def load_runner():
     return module
 
 
+@pytest.mark.xfail(strict=True, reason="task A19")
 @pytest.mark.parametrize("name, seed", [("seed-s1.js", seeds.S1), ("seed-s2.js", seeds.S2), ("seed-s5.js", seeds.S5)])
 def test_R40_fidelity_seeds_match(name, seed):
     match = SEED_SCRIPT.match((FIDELITY_DIR / name).read_text(encoding="utf-8"))
@@ -2235,6 +2225,7 @@ def test_R40_fidelity_seeds_match(name, seed):
     assert match.group(1) == seed  # the very text of seeds.py, byte for byte
 
 
+@pytest.mark.xfail(strict=True, reason="task A19")
 @pytest.mark.parametrize("name, seed", [("seed-s1.js", seeds.S1), ("seed-s2.js", seeds.S2), ("seed-s5.js", seeds.S5)])
 def test_R40_a_seed_script_boots_the_app_through_its_own_load_path(open_app, name, seed):
     session = open_app(init_scripts=[(FIDELITY_DIR / name).read_text(encoding="utf-8")], allow_problems=True)

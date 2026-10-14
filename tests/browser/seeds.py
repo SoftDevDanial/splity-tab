@@ -1,6 +1,7 @@
 """Seed drafts for the browser tests (qa.md, "Seed drafts"). This file is the one source.
 
-The fidelity setup scripts in fidelity/ repeat S1, S2 and S5, and a test keeps them equal.
+The fidelity setup scripts in fidelity/ repeat S1, S2 and S5, and a test keeps them equal. Since task A1 the seeds
+here are version 2 and the scripts still hold the version 1 texts, so that test waits for task A19, which rewrites them.
 Test-side only: nothing here is loaded by the app, and no seed lives under src/.
 """
 import copy
@@ -13,17 +14,17 @@ def dump(value):
 
 
 S2 = (
-    '{"version":1,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},'
-    '{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","nextId":4}}'
+    '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},'
+    '{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
 )
 S1 = (
-    '{"version":1,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},'
+    '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},'
     '{"id":"p3","name":"Chen"}],"subtotalText":"","items":['
     '{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},'
     '{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},'
     '{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},'
     '{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],'
-    '"serviceText":"10","sstText":"6","nextId":8}}'
+    '"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
 )
 
 
@@ -42,8 +43,8 @@ def with_bill(seed, **fields):
 S5 = changed(S1, lambda d: d["bill"]["items"][2].update(who=[]))
 
 _TWELVE = ["Aisyah", "Ben", "Chen", "Devi", "Farid", "Grace", "Hafiz", "Indra", "Jia Hui", "Kumar", "Lina", "Mei Ling"]
-S8 = dump({"version": 1, "bill": {
-    "mode": "even", "subtotalText": "", "items": [], "serviceText": "10", "sstText": "6", "nextId": 13,
+S8 = dump({"version": 2, "bill": {
+    "mode": "even", "subtotalText": "", "items": [], "serviceText": "10", "sstText": "6", "spare": {"rule": "top"}, "nextId": 13,
     "people": [{"id": f"p{n}", "name": name} for n, name in enumerate(_TWELVE, start=1)],
 }})
 
@@ -70,8 +71,8 @@ UNREADABLE = {
     "B1": "not json",
     "B2": "[]",
     "B3": "null",
-    "B4": changed(S2, lambda d: d.update(version=2)),
-    "B5": changed(S2, lambda d: d.update(version="1")),
+    "B4": changed(S2, lambda d: d.update(version=3)),
+    "B5": changed(S2, lambda d: d.update(version="2")),
     "B6": '{"version":1,"bill":[]}',
     "B7": with_bill(S2, mode="split"),
     "B8": changed(S2, lambda d: d["bill"].update(people=d["bill"]["people"][:1])),

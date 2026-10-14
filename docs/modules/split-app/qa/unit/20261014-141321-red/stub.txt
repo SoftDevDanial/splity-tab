@@ -1,0 +1,12 @@
+RED-first run 1 for task A1 (R61, R25, R26), 2026-10-14, frontend developer role.
+
+Stub. The 1.0 src/draft.js as committed at ad0436b, unchanged. By the method of split-core qa.md (How to run,
+"RED first for a new or changed case") it is the stub for the cases that expect a version 2 read and for the
+loadDraft and saveDraft states. It writes version 1, accepts only version 1, carries no spare, and reports
+"none" where A1 reports "failed".
+
+Command, run from the project root, the runner writing its own output beside this file.
+node --test --test-reporter=spec --test-reporter-destination=docs/modules/split-app/qa/unit/20261014-141321-red/node-test.txt tests/draft.test.js
+
+The one new case this stub cannot fail ("@R61 D3 and D13 reject another version and every spare choice outside
+core R27", since the 1.0 decoder refuses every version but 1) is covered by run 2, folder 20261014-*-red after this one.

@@ -341,3 +341,56 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 **Non-goals honoured.** No UI, no change under `src/` or `docs/design/`, nothing installed, no fidelity engine option.
 
 **How to run.** `python -m pytest tests/browser -q [--engine webkit]` (set `SPLIT_EVIDENCE=1` for the evidence files), `python tests/browser/live_e2e.py [--engine webkit]`, `python tests/browser/probe_webkit.py --engine webkit`.
+
+## v1.1.0 commits so far
+| Task | Commit | Note |
+|---|---|---|
+| A0 | `4b67e96` | `test(split-app): engine switch, 1.0 golden fixtures and the WebKit baseline (task A0, R58, R59)` |
+| C2 (split-core) | `ad0436b` | Committed with the app tests C2 breaks marked for A1, listed in `docs/modules/split-core/BUILD.md`, section C2 |
+
+## v1.1.0 task A1, draft version 2 (2026-10-14)
+Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
+
+**Status. Built, NOT committed, blocked (B-A1-1 below).** `node --test` is green. The Chromium browser suite is red on 1.0 expectations of the version 1 text, and the spec gives no task the change that clears most of them.
+
+**Status, corrected 2026-10-14 after the ruling. Committed with this section, Node and Chromium green, WebKit equal to the A0 baseline.** See "Ruling on B-A1-1" at the end of this section.
+
+**Phase skills.** None loaded. A1 writes no UI (`src/draft.js` and Node tests), so the design row of `docs/phase-skills.md` does not apply.
+
+**What changed** (cite by symbol).
+- `src/draft.js`. `encodeDraft` writes version 2. `decode` accepts version 1 and 2 (D3), builds `spare` with the private `readSpare` for version 2 (D13, only the field its rule needs, a new `order` array) and gives `{ rule: "top" }` to version 1 whatever it holds (D14). The decoded bill keeps core's key order, `spare` before `nextId`. `loadDraft` returns `{ state: "failed" }` for null storage or a throwing `getItem` (it returned `none`). `src/main.js` is unchanged, since it treats every state but `ok` as a new bill and only `unreadable` shows the note, so a failed read still boots as a cold boot until A3 adds the warning.
+- `tests/draft.test.js`. The K1, K2, ONE, RND, PA0, S1_V1, S2_V1, G4, G5, G6, B4, B5 and B25 to B32 drafts of `qa.md`, five new `@R61` cases, and three changed 1.0 cases, `@R25` round-trip (the item bill carries `spare`), `@R26 D11 and D12` (keys include `spare`) and `@R28` (`failed` for null storage and a throwing `getItem`). The two `todo: "task A1"` marks of C2 are gone.
+- `tests/browser/test_app.py`. Every "task A1" mark of C2 is removed. The file is byte for byte its A0 state (`git diff 4b67e96 -- tests/browser/test_app.py` is empty).
+
+**Comments.** `src/draft.js` module header (R61, D13, D14, version 1 still loads), `readSpare` doc, `encodeDraft` and `loadDraft` docs. `tests/draft.test.js` header (why `draft()` stays version 1) and the note above the qa.md drafts.
+
+**RED first** (split-core qa.md, How to run). Run 1, the 1.0 `src/draft.js` as the stub, `docs/modules/split-app/qa/unit/20261014-141321-red/`, 8 of 16 failed, each on an `AssertionError`. Run 2, a stub decoder with no version check and no spare check, put in and taken out with the Edit tool, `docs/modules/split-app/qa/unit/20261014-141339-red/`, 9 failed, among them the one case run 1 passed (`@R61 D3 and D13 reject another version ...`, on B4). Each folder holds the runner's own `node-test.txt` and `stub.txt`.
+
+**Counts.**
+- `node --test "tests/**/*.test.js"`. 313 tests, 313 pass, 0 todo (308 before, plus 5 new).
+- Chromium suite on A1, marks removed, `docs/modules/split-app/qa/functional/20261014-141448-chromium/` (not committed). 193 failed, 237 passed. By function, `test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it` 72, `test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing` 48, `test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page` 36, `test_R27_an_unreadable_draft_starts_a_new_bill_with_a_note` 24, `test_R25_every_change_is_saved` 8, `test_R25_a_bill_built_by_gestures_is_stored_like_its_seed` 2, `test_R29_the_guard_of_opening_ends_at_the_next_press` 1, `test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_held_back` 1, `test_R31_start_over` 1.
+- WebKit run. NOT RUN, because the tree is not the one to commit. (Run after the ruling, see below.)
+
+**Why they fail.** Every one compares the stored draft with 1.0's version 1 text. 160 compare with a bill or text built from a 1.0 seed in `tests/browser/seeds.py` (`S1`, `S2`, `S8` and the helpers `people_bill`, `items_bill`, `bill_after_one_add`, `bill_without_last`), which has no `spare`, while the app now saves `"spare":{"rule":"top"}` and version 2. 33 compare with a 1.0 constant, `NEW_BILL_DRAFT` (version 1, R27 24 and R31 1) or `draft["version"] == 1` (R25 8).
+
+**Measurement probe** (not a fix, reverted). `S1`, `S2` and `S8` in `seeds.py` set to version 2 with `"spare":{"rule":"top"}` in core's key order (the qa.md K1 and K2 texts), put in and taken out with the Edit tool, `seeds.py` has no diff now. Run `docs/modules/split-app/qa/functional/20261014-141810-chromium/` (not committed). 39 failed, 391 passed, 2 errors. The 160 seed-derived failures all pass. Left are the 33 above and `test_R40_fidelity_seeds_match` (3) and `test_R40_a_seed_script_boots_the_app_through_its_own_load_path` (3 failed, 2 teardown errors), because `tests/browser/fidelity/seed-s1.js`, `seed-s2.js` and `seed-s5.js` hold the version 1 seeds and must equal `seeds.py` (A19 writes the version 2 fidelity seeds).
+
+**B-A1-1, for the orchestrator.** The Tasks rule says a 1.0 browser test whose expectation a v1.1.0 change retires is updated or marked in the commit that retires it, and qa.md says every seed is version 2 with `"spare":{"rule":"top"}`. No task is named for turning `seeds.py` into version 2, and the 1.0 unreadable table in `seeds.py` builds B4 as "S2 with version 2" (unreadable in 1.0, readable in v1.1.0 once the seed has a valid `spare`), so the conversion reaches the R27 table too. Options.
+1. Mark by owner. `xfail(strict=True)` with the task of each R#, R6 and R7 (120 cases) for A5, R12 (36) for A8, R27 (24) for A3, R29, R30 and R31 (3) for A16, and A1 updates its own R25 tests (10). The SEC-01 and RG-CR-01 repeat press guards (R6, R7, R12) then stop guarding in Chromium until A5 and A8.
+2. Version 2 seeds in A1. `S1`, `S2`, `S8` to the qa.md version 2 texts, the 1.0 unreadable B4 and B5 to qa.md's version 3 and `"2"`, `NEW_BILL_DRAFT` and the R25 version check to version 2. The three fidelity seed files would then be marked `xfail(strict=True, reason="task A19")` on the two R40 tests, or their seed line updated now.
+3. Keep the seeds version 1 (they are valid 1.0 drafts that D14 reads) and change the expectations instead, `bill_after_one_add`, `bill_without_last` and the text compares adding `"spare":{"rule":"top"}` and version 2. That edits helpers of tests owned by A5, A8 and A16.
+
+**Deviations.** None in `src/`. The C2 mark on `test_R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word` was `strict=False` (its call passes and only its teardown fails), recorded in `docs/modules/split-core/BUILD.md`, and is removed here with the others.
+
+**Non-goals honoured.** No UI, no save warning (A3, R46), no change to `src/main.js`, `getStorage` or `saveDraft`, nothing under `docs/design/`.
+
+**Resume.** After the ruling, apply it, run `node --test "tests/**/*.test.js"`, the Chromium suite (`SPLIT_EVIDENCE=1 python -m pytest tests/browser -q`) and one WebKit run (`--engine webkit`) compared with the A0 baseline of 48 failures, then commit `src/draft.js`, `tests/draft.test.js`, `tests/browser/test_app.py` (the C2 marks are removed in the working tree, plus whatever the ruling adds), this file and the two RED folders under `docs/modules/split-app/qa/unit/`. (Done 2026-10-14, see below.)
+
+**Ruling on B-A1-1 (2026-10-14, ORCH, reversible).** Option 2, version 2 seeds in A1. The orchestrator's reasons: qa.md already makes `tests/browser/seeds.py` the one source with version 2 drafts, its B4 row has been K2 with `"version":3` since 2026-10-13, and option 2 keeps the SEC-01 and RG-CR-01 repeat press guards guarding in Chromium, which option 1 would lose until A5 and A8. Applied as ruled.
+- `tests/browser/seeds.py`. `S1`, `S2` and `S8` are version 2 with `"spare":{"rule":"top"}` before `nextId` (S1 and S2 are the qa.md K1 and K2 texts). `S5`, `UNREADABLE`, `ODD_READABLE` and the test helpers `people_bill`, `items_bill`, `bill_after_one_add` and `bill_without_last` build from them, so they are version 2 with no change of their own. `UNREADABLE` B4 is version 3 and B5 is `"2"`, the qa.md values. The module docstring says the fidelity scripts wait for A19. `S1_V1` and `S2_V1` are not added, since no browser test reads them yet (their scenarios G5 and G7 belong to later tasks). They exist as qa.md defines them in `tests/draft.test.js`.
+- `tests/browser/test_app.py`. `NEW_BILL_DRAFT` is version 2 with `"spare":{"rule":"top"}` (qa.md R27 and R31, "the draft is { "version": 2, ... }"), and `test_R25_every_change_is_saved` checks `draft["version"] == 2` (qa.md R25, "Every change is saved"). No other assertion changed. Marks added, `xfail(strict=True, reason="task A19")` on `test_R40_fidelity_seeds_match` and `test_R40_a_seed_script_boots_the_app_through_its_own_load_path` (3 cases each), because `tests/browser/fidelity/seed-s1.js`, `seed-s2.js` and `seed-s5.js` still hold the version 1 texts and A19 rewrites them. Those files are not edited. Every strict mark made the run green, so none is `strict=False`.
+- Counts after the ruling.
+  - `node --test "tests/**/*.test.js"`. 313 tests, 313 pass.
+  - Chromium `docs/modules/split-app/qa/functional/20261014-142342-chromium/`. 424 passed, 6 xfailed (the two R40 tests), 0 failed, exit 0. 430 call reports.
+  - WebKit `docs/modules/split-app/qa/functional/20261014-142538-webkit/`. 375 passed, 48 failed, 1 skipped (the IME test), 6 xfailed (the R40 tests), 243.6 s. The 48 failures are the A0 baseline's 48 (`qa/functional/20261014-125604-webkit/`), the same node ids, so no new WebKit failure and no baseline failure changed. Passed went from 381 to 375 only because the six R40 cases are now xfailed. `skips.txt` lists 7, the skip and the six xfails.
+- What the README reconcile needs. Draft version 2 (`encodeDraft`, `decodeDraft` with D13 and D14, `loadDraft` state `failed`), and the browser seeds are version 2.

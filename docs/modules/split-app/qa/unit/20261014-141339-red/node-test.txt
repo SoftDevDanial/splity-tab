@@ -1,0 +1,345 @@
+✖ @R25 encodeDraft and decodeDraft round-trip a new bill and an item bill (1.8056ms)
+✔ @R26 D1 to D4 reject text, shapes and versions that are not a draft (0.1827ms)
+✔ @R26 D5 rejects an unknown mode (0.143ms)
+✔ @R26 D6 takes 2 to 12 people with unique ids of the form p<digits> (0.3289ms)
+✔ @R26 D7 takes 0 to 50 items whose who is a duplicate-free list of known people (1.1395ms)
+✔ @R26 D8 counts grapheme clusters and refuses line breaks (0.2734ms)
+✔ @R26 D9 wants the three text fields as strings (0.2445ms)
+✔ @R26 D10 wants nextId an integer above every id and at most 1,000,000,000 (0.2573ms)
+✖ @R26 D11 and D12 drop unknown keys and build new objects from known fields (0.3884ms)
+✖ @R28 getStorage, loadDraft and saveDraft never throw (0.2793ms)
+✖ @R61 D3 and D13 read a version 2 draft with its spare choice as stored (0.2899ms)
+✖ @R61 D14 reads a version 1 draft with spare Top of the list, whatever spare key it holds (0.2575ms)
+✖ @R61 D13 keeps a One person choice whose person is on no item, and keeps only the fields a rule needs (0.3013ms)
+✖ @R61 D3 and D13 reject another version and every spare choice outside core R27 (0.1693ms)
+✖ @R61 encodeDraft writes version 2, and loadDraft and saveDraft report a storage that fails (0.2184ms)
+✖ @R27 loadDraft tells none, ok and unreadable apart, and saveDraft writes the encoded draft (0.2709ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 7
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 68.1536
+
+✖ failing tests:
+
+test at tests\draft.test.js:65:1
+✖ @R25 encodeDraft and decodeDraft round-trip a new bill and an item bill (1.8056ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bill: {
+        items: [],
+        mode: 'even',
+        nextId: 3,
+  ...
+        serviceText: '10',
+  -     spare: {
+  -       rule: 'top'
+  -     },
+        sstText: '6',
+        subtotalText: ''
+      },
+      ok: true
+    }
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/draft.test.js:66:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { ok: true, bill: { mode: 'even', people: [Array], subtotalText: '', items: [], serviceText: '10', sstText: '6', nextId: 3 } },
+    expected: { ok: true, bill: { mode: 'even', people: [Array], subtotalText: '', items: [], serviceText: '10', sstText: '6', spare: [Object], nextId: 3 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\draft.test.js:136:1
+✖ @R26 D11 and D12 drop unknown keys and build new objects from known fields (0.3884ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'mode',
+      'people',
+      'subtotalText',
+      'items',
+      'serviceText',
+      'sstText',
+  -   'spare',
+      'nextId'
+    ]
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/draft.test.js:145:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'mode', 'people', 'subtotalText', 'items', 'serviceText', 'sstText', 'nextId' ],
+    expected: [ 'mode', 'people', 'subtotalText', 'items', 'serviceText', 'sstText', 'spare', 'nextId' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\draft.test.js:153:1
+✖ @R28 getStorage, loadDraft and saveDraft never throw (0.2793ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   state: 'none'
+  -   state: 'failed'
+    }
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/draft.test.js:155:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { state: 'none' },
+    expected: { state: 'failed' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\draft.test.js:161:1
+✖ @R61 D3 and D13 read a version 2 draft with its spare choice as stored (0.2899ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bill: {
+        items: [
+          {
+            id: 'i4',
+  ...
+        serviceText: '10',
+  -     spare: {
+  -       rule: 'top'
+  -     },
+        sstText: '6',
+        subtotalText: ''
+      },
+      ok: true
+    }
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/draft.test.js:162:54)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { ok: true, bill: { mode: 'item', people: [Array], subtotalText: '', items: [Array], serviceText: '10', sstText: '6', nextId: 8 } },
+    expected: { ok: true, bill: { mode: 'item', people: [Array], subtotalText: '', items: [Array], serviceText: '10', sstText: '6', spare: [Object], nextId: 8 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\draft.test.js:165:1
+✖ @R61 D14 reads a version 1 draft with spare Top of the list, whatever spare key it holds (0.2575ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bill: {
+        items: [
+          {
+            id: 'i4',
+  ...
+        serviceText: '10',
+  -     spare: {
+  -       rule: 'top'
+  -     },
+        sstText: '6',
+        subtotalText: ''
+      },
+      ok: true
+    }
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/draft.test.js:166:45)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { ok: true, bill: { mode: 'item', people: [Array], subtotalText: '', items: [Array], serviceText: '10', sstText: '6', nextId: 8 } },
+    expected: { ok: true, bill: { mode: 'item', people: [Array], subtotalText: '', items: [Array], serviceText: '10', sstText: '6', nextId: 8, spare: [Object] } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\draft.test.js:170:1
+✖ @R61 D13 keeps a One person choice whose person is on no item, and keeps only the fields a rule needs (0.3013ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bill: {
+        items: [
+          {
+            id: 'i4',
+  ...
+        serviceText: '10',
+  -     spare: {
+  -       personId: 'p2',
+  -       rule: 'one'
+  -     },
+        sstText: '6',
+        subtotalText: ''
+      },
+      ok: true
+    }
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/draft.test.js:171:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { ok: true, bill: { mode: 'item', people: [Array], subtotalText: '', items: [Array], serviceText: '10', sstText: '6', nextId: 8 } },
+    expected: { ok: true, bill: { mode: 'item', people: [Array], subtotalText: '', items: [Array], serviceText: '10', sstText: '6', spare: [Object], nextId: 8 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\draft.test.js:179:1
+✖ @R61 D3 and D13 reject another version and every spare choice outside core R27 (0.1693ms)
+  AssertionError [ERR_ASSERTION]: B4
+  + actual - expected
+  
+    {
+  +   bill: {
+  +     items: [],
+  +     mode: 'even',
+  +     nextId: 4,
+  +     people: [
+  +       {
+  +         id: 'p1',
+  +         name: 'Aisyah'
+  +       },
+  +       {
+  +         id: 'p2',
+  +         name: 'Ben'
+  +       },
+  +       {
+  +         id: 'p3',
+  +         name: 'Chen'
+  +       }
+  +     ],
+  +     serviceText: '10',
+  +     sstText: '6',
+  +     subtotalText: '100.00'
+  +   },
+  +   ok: true
+  -   ok: false
+    }
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/draft.test.js:180:68)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { ok: true, bill: { mode: 'even', people: [Array], subtotalText: '100.00', items: [], serviceText: '10', sstText: '6', nextId: 4 } },
+    expected: { ok: false },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\draft.test.js:183:1
+✖ @R61 encodeDraft writes version 2, and loadDraft and saveDraft report a storage that fails (0.2184ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bill: {
+        items: [
+          {
+            id: 'i4',
+  ...
+      },
+  +   version: 1
+  -   version: 2
+    }
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/draft.test.js:185:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { version: 1, bill: { mode: 'item', people: [Array], subtotalText: '', items: [Array], serviceText: '10', sstText: '6', spare: [Object], nextId: 8 } },
+    expected: { version: 2, bill: { mode: 'item', people: [Array], subtotalText: '', items: [Array], serviceText: '10', sstText: '6', spare: [Object], nextId: 8 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\draft.test.js:198:1
+✖ @R27 loadDraft tells none, ok and unreadable apart, and saveDraft writes the encoded draft (0.2709ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bill: {
+        items: [],
+        mode: 'even',
+        nextId: 3,
+  ...
+        serviceText: '10',
+  -     spare: {
+  -       rule: 'top'
+  -     },
+        sstText: '6',
+        subtotalText: ''
+      },
+      state: 'ok'
+    }
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/draft.test.js:204:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { state: 'ok', bill: { mode: 'even', people: [Array], subtotalText: '', items: [], serviceText: '10', sstText: '6', nextId: 3 } },
+    expected: { state: 'ok', bill: { mode: 'even', people: [Array], subtotalText: '', items: [], serviceText: '10', sstText: '6', spare: [Object], nextId: 3 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
