@@ -583,7 +583,7 @@ def test_R12_add_an_item_remove_one_and_reach_the_limit(open_app, plain_context)
     assert page.locator("li.item").count() == 1
     assert item_name(page, 1).input_value() == "" and item_name(page, 1).get_attribute("placeholder") == "Item 1"
     assert item_price(page, 1).input_value() == "" and toggle_states(page, 1) == ["false", "false"]
-    assert panel_text(page) == "Shares\nGive every item a price to see the shares."
+    assert panel_text(page) == "Shares\nAdd an item to see the shares."
     for _ in range(49):
         add.click()
     assert page.locator("li.item").count() == 50 and add.is_disabled()
@@ -767,7 +767,7 @@ BLOCKED_CASES = [
                  "Enter the subtotal to see the shares.", id="subtotal-empty"),
     pytest.param(lambda page: switch_to(page, "By item"), "Add an item to see the shares.", id="no-items"),
     pytest.param(lambda page: (switch_to(page, "By item"), page.get_by_role("button", name="Add item").click()),
-                 "Give every item a price to see the shares.", id="item-unpriced"),
+                 "Add an item to see the shares.", id="item-unpriced"),
     pytest.param(lambda page: (build_s1(page), support.replace_text(page, item_price(page, 1), "abc")),
                  "Give every item a price to see the shares.", id="item-bad-price"),
 ]

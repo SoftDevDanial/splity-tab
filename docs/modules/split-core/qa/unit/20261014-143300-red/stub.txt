@@ -1,0 +1,6 @@
+Task C3 needs no throwaway stub. R18 is a changed requirement, so the 1.0 itemResult in src/core/result.js, as it
+stood at HEAD 4231563, is the stub (qa.md, How to run, RED first). Nothing was added to the working tree for the run.
+The 1.0 lines under test:
+  if (bill.items.length === 0) return blocked("no-items");
+  const parsed = bill.items.map((item) => parseAmount(item.priceText));
+  if (!parsed.every((price) => price.ok)) return blocked("prices");

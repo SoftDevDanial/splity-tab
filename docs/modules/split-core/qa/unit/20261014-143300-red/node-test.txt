@@ -1,0 +1,11 @@
+RED-first run for task C3 (R18), 2026-10-14, split-core builder.
+Command: node --test tests/result.test.js
+Condensed to the failing test names and the counts. Passing lines left out. The 1.0 result.js was in place, so for the
+changed R# the 1.0 function is the stub (see stub.txt).
+
+tests 43, pass 40, fail 3
+FAIL @R18 blocking row 7 is "no-prices"   actual { kind: 'blocked', reason: 'no-items' }, expected reason 'no-prices'
+FAIL @R18 blocking row 8 is "no-prices"   actual reason 'prices' (one item, price "", who []), expected 'no-prices'
+FAIL @R18 blocking row 9 is "no-prices"   actual reason 'prices' ("abc" who [p1] and "" who []), expected 'no-prices'
+The other new rows (10 "15.90" + "abc" is prices, 11 "15.90" + "" is prices, 12 blank service rate is rates) pass
+against the 1.0 code on purpose. They pin the rows that must NOT change.

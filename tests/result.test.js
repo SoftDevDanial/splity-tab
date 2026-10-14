@@ -37,9 +37,12 @@ const blockedRows = [
   ["even", "10", "6", "", [], "subtotal"],
   ["even", "10", "6", "0", [], "subtotal"],
   ["even", "10", "6", "12.505", [], "subtotal"],
-  ["item", "10", "6", "100", [], "no-items"],
-  ["item", "10", "6", "", [{ price: "", who: [] }], "prices"],
+  ["item", "10", "6", "100", [], "no-prices"],
+  ["item", "10", "6", "", [{ price: "", who: [] }], "no-prices"],
+  ["item", "10", "6", "", [{ price: "abc", who: ["p1"] }, { price: "", who: [] }], "no-prices"],
   ["item", "10", "6", "", [{ price: "15.90", who: ["p1"] }, { price: "abc", who: ["p1"] }], "prices"],
+  ["item", "10", "6", "", [{ price: "15.90", who: ["p1"] }, { price: "", who: [] }], "prices"],
+  ["item", "", "6", "", [{ price: "15.90", who: ["p1"] }], "rates"],
 ];
 blockedRows.forEach(([mode, service, sst, subtotal, items, reason], n) => {
   test(`@R18 blocking row ${n + 1} is "${reason}"`, () => {

@@ -11,7 +11,7 @@ import { LIMITS, personLabel } from "./bill.js";
 /** @typedef {{ name: string, items: number, charges: number, share: number }} ItemRow */
 /**
  * @typedef {
- *   | { kind: "blocked", reason: "rates" | "subtotal" | "no-items" | "prices" }
+ *   | { kind: "blocked", reason: "rates" | "subtotal" | "no-prices" | "prices" }
  *   | { kind: "unassigned", count: number, charges: Charges }
  *   | { kind: "even", charges: Charges, rows: EvenRow[], check: { share: number } }
  *   | { kind: "item", charges: Charges, rows: ItemRow[],
@@ -79,8 +79,9 @@ function itemTotals(bill, prices, holders) {
 }
 
 function itemResult(bill, serviceBp, sstBp) {
-  if (bill.items.length === 0) return blocked("no-items");
   const parsed = bill.items.map((item) => parseAmount(item.priceText));
+  // "No items" and "every price invalid" share one message (RULINGS-v1.1.0 row c), so one reason.
+  if (!parsed.some((price) => price.ok)) return blocked("no-prices");
   if (!parsed.every((price) => price.ok)) return blocked("prices");
   const prices = parsed.map((price) => price.cents);
   const charges = billCharges(sum(prices), serviceBp, sstBp);
@@ -104,7 +105,7 @@ function itemResult(bill, serviceBp, sstBp) {
 
 /**
  * Turns a Bill into what the screen shows (R18 to R22). Blocking rules apply in order:
- * rates, then the subtotal (even) or no-items and prices (by item). Even mode ignores items and
+ * rates, then the subtotal (even) or no-prices and prices (by item). Even mode ignores items and
  * by-item mode ignores the subtotal.
  * @param {import("./bill.js").Bill} bill
  * @returns {Result}

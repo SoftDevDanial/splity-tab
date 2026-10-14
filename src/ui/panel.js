@@ -9,7 +9,7 @@ import { icon } from "./icons.js";
 const BLOCKED_MESSAGE = {
   rates: "Check the charges to see the shares.",
   subtotal: "Enter the subtotal to see the shares.",
-  "no-items": "Add an item to see the shares.",
+  "no-prices": "Add an item to see the shares.",
   prices: "Give every item a price to see the shares.",
 };
 const COPY_STATUS = {
