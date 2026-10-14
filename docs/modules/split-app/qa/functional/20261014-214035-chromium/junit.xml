@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="4.153" timestamp="2026-10-14T21:40:35.132130+08:00" hostname="{host}"><testcase classname="test_app" name="test_R48_opening_reveals_the_body_through_one_web_animation_and_folding_is_instant" time="3.439"><failure message="AssertionError: assert ([{'target': '...'0px', '1']]}] == []&#10;  &#10;  Left contains one more item: {'target': 'peopleBody', 'duration': 200, 'frames': [['0px', '0'], ['0px', '1']]}&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001981601DC70&gt;
+
+    def test_R48_opening_reveals_the_body_through_one_web_animation_and_folding_is_instant(open_app):
+        # R48 (3) and the reveal lines of the R36 scenario "With motion allowed nothing loops" (PD-22).
+        page = open_app(seed=seeds.S1, reduced_motion="no-preference").page
+        assert nothing_runs_within(page, 3000)  # the strip's foil sweep on load has run out
+        row = page.locator("#peopleBtn")
+        row.click()
+        reveals, has_style = page.evaluate(REVEALS_JS), page.evaluate(HAS_STYLE_JS)
+        assert [(reveal["target"], reveal["duration"]) for reveal in reveals] == [("peopleBody", 200)] and has_style is False
+        start, end = reveals[0]["frames"][0], reveals[0]["frames"][-1]
+        assert start == ["0px", "0"] and end[1] == "1"
+        assert nothing_runs_within(page, 1000) and page.evaluate(REVEALS_JS) == []  # nothing loops, and the reveal is gone
+        full = page.locator("#peopleBody").evaluate("(el) =&gt; el.getBoundingClientRect().height")
+        assert abs(float(end[0].removesuffix("px")) - full) &lt;= 0.5 and page.evaluate(HAS_STYLE_JS) is False
+        row.click()
+&gt;       assert page.evaluate(REVEALS_JS) == [] and displayed(page, "#peopleBody") == [False]  # folding is instant
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert ([{'target': '...'0px', '1']]}] == []
+E         
+E         Left contains one more item: {'target': 'peopleBody', 'duration': 200, 'frames': [['0px', '0'], ['0px', '1']]}
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:3386: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_under_reduced_motion_a_section_opens_at_once" time="0.279"><failure message="AssertionError: assert (1 == 0)&#10; +  where 1 = evaluate('() =&gt; document.getAnimations().length')&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:10737/'&gt;.evaluate">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000019815F34040&gt;
+
+    def test_R48_under_reduced_motion_a_section_opens_at_once(open_app):
+        page = open_app(seed=seeds.S1).page  # reduced motion "reduce", the default context
+        page.locator("#peopleBtn").click()
+&gt;       assert page.evaluate("() =&gt; document.getAnimations().length") == 0 and displayed(page, "#peopleBody") == [True]
+E       AssertionError: assert (1 == 0)
+E        +  where 1 = evaluate('() =&gt; document.getAnimations().length')
+E        +    where evaluate = &lt;Page url='http://127.0.0.1:10737/'&gt;.evaluate
+
+tests\browser\test_app.py:3392: AssertionError</failure></testcase></testsuite></testsuites>

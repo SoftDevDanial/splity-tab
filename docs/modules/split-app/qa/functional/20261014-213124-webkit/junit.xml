@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="26" skipped="2" tests="30" time="19.800" timestamp="2026-10-14T21:31:24.311690+08:00" hostname="{host}"><testcase classname="test_app" name="test_R38_code_writes_style_only_to_the_four_allowed_targets" time="0.009"><failure message="assert 0 == 1&#10; +  where 0 = sum(&lt;generator object test_R38_code_writes_style_only_to_the_four_allowed_targets.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000018C1FAF18C0&gt;)">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-16/test_R38_code_writes_style_onl0')
+
+    def test_R38_code_writes_style_only_to_the_four_allowed_targets(tmp_path):
+        scripts = {name: text for name, text in support.shipped_text().items() if name.startswith("src/") and name.endswith(".js")}
+        assert [problem for name, text in scripts.items() for problem in style_write_problems(name, text)] == []
+        planted = tmp_path / "main.js"
+        planted.write_text(scripts["src/main.js"] + '\ndocument.body.style.setProperty("color", "red");\n', encoding="utf-8")
+        assert style_write_problems("planted main.js", planted.read_text(encoding="utf-8")) != []
+&gt;       assert sum(text.count(".animate(") for text in scripts.values()) == 1
+E       assert 0 == 1
+E        +  where 0 = sum(&lt;generator object test_R38_code_writes_style_only_to_the_four_allowed_targets.&lt;locals&gt;.&lt;genexpr&gt; at 0x0000018C1FAF18C0&gt;)
+
+tests\browser\test_app.py:388: AssertionError</failure></testcase><testcase classname="test_app" name="test_R26_come_back_later" time="2.859"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]&#10;  &#10;  At index 0 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1FB400F0&gt;
+
+    def test_R26_come_back_later(open_app):
+        session = open_app()
+        page = session.page
+        build_s2(page)
+        build_items_after_switch(page)
+        before = snapshot(page)
+        page.close()
+        again = session.new_page()
+        session.open("/", page=again)
+        assert snapshot(again) == before and again.locator("#mode-item").is_checked()
+&gt;       assert section_state(again) == [FOLDED, FOLDED]  # R26, sections fold by R48 on a reload (task A4)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]
+E         
+E         At index 0 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1410: AssertionError</failure></testcase><testcase classname="test_app" name="test_R26_come_back_later" time="0.066"><error message="failed on teardown with &quot;playwright._impl._errors.TargetClosedError: Page.screenshot: Target page, context or browser has been closed&quot;">server = &lt;rig.StaticServer object at 0x0000018C1FC45010&gt;
+browser = &lt;Browser type=&lt;BrowserType name=webkit executable_path={home}\AppData\Local\ms-playwright\webkit-2311\Playwright.exe&gt; version=26.5&gt;
+request = &lt;SubRequest 'open_app' for &lt;Function test_R26_come_back_later&gt;&gt;
+
+    @pytest.fixture
+    def open_app(server, browser, request):
+        """open_app(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+        path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark") -&gt; Session
+    
+        The defaults are the default context of qa.md How to run (task A3). A scenario that names "no-preference" or a
+        light colour scheme passes it. Every context also gets csp/listener.js, so a policy violation fails the scenario
+        in either engine (R38)."""
+        sessions = []
+    
+        def factory(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+                    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark"):
+            target = base_server or server
+            options = {"viewport": {"width": viewport[0], "height": viewport[1]},
+                       "device_scale_factor": 1, "color_scheme": color_scheme, "reduced_motion": reduced_motion}
+            if touch:  # page.touchscreen.tap needs a context that has touch (RD-3)
+                options["has_touch"] = True
+            if seed is not None:
+                options["storage_state"] = rig.storage_state(target.base, seed)
+            context = rig.new_context(browser, clipboard=clipboard, init_scripts=(CSP_LISTENER, *init_scripts), **options)
+            session = Session(context, target.base, prefix)
+            session.allow_problems = allow_problems
+            sessions.append(session)
+            if goto:
+                session.open(path)
+            return session
+    
+        yield factory
+        failed = getattr(request.node, "rep_call", None) is not None and request.node.rep_call.failed
+        leftovers = []
+        for number, session in enumerate(sessions, start=1):
+            if failed:
+                name = re.sub(r"[^A-Za-z0-9_.-]+", "_", request.node.nodeid)
+&gt;               session.page.screenshot(path=str(evidence_dir() / f"{name}-{number}.png"))
+
+tests\browser\conftest.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:10754: in screenshot
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:828: in screenshot
+    encoded_binary = await self._channel.send(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x0000018C1FC46A50&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x0000018C1F8AFE20&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TargetClosedError: Page.screenshot: Target page, context or browser has been closed
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: TargetClosedError</error></testcase><testcase classname="test_app" name="test_R31_start_over" time="0.562"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]&#10;  &#10;  At index 1 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1F6FB270&gt;
+
+    def test_R31_start_over(open_app):
+        page = open_app(seed=seeds.S1).page
+        open_dialog(page)
+        page.get_by_role("button", name="Start new bill").click()
+        assert page.locator("dialog#newDlg").evaluate("(d) =&gt; d.open") is False and focused(page) == "New bill"
+&gt;       assert section_state(page) == [OPEN, FOLDED]  # People open, Charges folded, as at load (R48, task A4)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]
+E         
+E         At index 1 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1825: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[cold-boot]" time="0.215"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]&#10;  &#10;  At index 1 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1DC31010&gt;
+setup = &lt;function &lt;lambda&gt; at 0x0000018C1FCB7A00&gt;, people = 'true'
+charges = 'false'
+
+    @pytest.mark.parametrize("setup, people, charges", OPEN_ON_LOAD)
+    def test_R48_which_section_is_open_on_load(open_app, setup, people, charges):
+        # R26: a restored bill opens or folds its sections by R48, and nothing about them is saved.
+        page = setup(open_app)
+&gt;       assert section_state(page) == [[people, people], [charges, charges]]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]
+E         
+E         At index 1 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3216: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[K1]" time="0.336"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]&#10;  &#10;  At index 0 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1DBC78A0&gt;
+setup = &lt;function &lt;lambda&gt; at 0x0000018C1FCB7AB0&gt;, people = 'false'
+charges = 'false'
+
+    @pytest.mark.parametrize("setup, people, charges", OPEN_ON_LOAD)
+    def test_R48_which_section_is_open_on_load(open_app, setup, people, charges):
+        # R26: a restored bill opens or folds its sections by R48, and nothing about them is saved.
+        page = setup(open_app)
+&gt;       assert section_state(page) == [[people, people], [charges, charges]]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]
+E         
+E         At index 0 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3216: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[RE]" time="0.328"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...rue', 'true']]&#10;  &#10;  At index 0 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1F6B16F0&gt;
+setup = &lt;function &lt;lambda&gt; at 0x0000018C1FCB7B60&gt;, people = 'false'
+charges = 'true'
+
+    @pytest.mark.parametrize("setup, people, charges", OPEN_ON_LOAD)
+    def test_R48_which_section_is_open_on_load(open_app, setup, people, charges):
+        # R26: a restored bill opens or folds its sections by R48, and nothing about them is saved.
+        page = setup(open_app)
+&gt;       assert section_state(page) == [[people, people], [charges, charges]]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...rue', 'true']]
+E         
+E         At index 0 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3216: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[B1]" time="0.374"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]&#10;  &#10;  At index 1 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1F6A6C40&gt;
+setup = &lt;function &lt;lambda&gt; at 0x0000018C1FCB7C10&gt;, people = 'true'
+charges = 'false'
+
+    @pytest.mark.parametrize("setup, people, charges", OPEN_ON_LOAD)
+    def test_R48_which_section_is_open_on_load(open_app, setup, people, charges):
+        # R26: a restored bill opens or folds its sections by R48, and nothing about them is saved.
+        page = setup(open_app)
+&gt;       assert section_state(page) == [[people, people], [charges, charges]]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]
+E         
+E         At index 1 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3216: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[K1-started-over-and-reloaded]" time="0.663"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]&#10;  &#10;  At index 1 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1EB8D2D0&gt;
+setup = &lt;function k1_started_over_and_reloaded at 0x0000018C1FCB78A0&gt;
+people = 'true', charges = 'false'
+
+    @pytest.mark.parametrize("setup, people, charges", OPEN_ON_LOAD)
+    def test_R48_which_section_is_open_on_load(open_app, setup, people, charges):
+        # R26: a restored bill opens or folds its sections by R48, and nothing about them is saved.
+        page = setup(open_app)
+&gt;       assert section_state(page) == [[people, people], [charges, charges]]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]
+E         
+E         At index 1 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3216: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[cold-boot-renamed-and-reloaded]" time="0.406"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]&#10;  &#10;  At index 0 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1EE26CF0&gt;
+setup = &lt;function cold_boot_renamed_and_reloaded at 0x0000018C1FCB7950&gt;
+people = 'false', charges = 'false'
+
+    @pytest.mark.parametrize("setup, people, charges", OPEN_ON_LOAD)
+    def test_R48_which_section_is_open_on_load(open_app, setup, people, charges):
+        # R26: a restored bill opens or folds its sections by R48, and nothing about them is saved.
+        page = setup(open_app)
+&gt;       assert section_state(page) == [[people, people], [charges, charges]]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]
+E         
+E         At index 0 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3216: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[K2-blank-rate]" time="0.311"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]&#10;  &#10;  At index 0 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1EE27E20&gt;
+setup = &lt;function &lt;lambda&gt; at 0x0000018C1FCB7CC0&gt;, people = 'false'
+charges = 'false'
+
+    @pytest.mark.parametrize("setup, people, charges", OPEN_ON_LOAD)
+    def test_R48_which_section_is_open_on_load(open_app, setup, people, charges):
+        # R26: a restored bill opens or folds its sections by R48, and nothing about them is saved.
+        page = setup(open_app)
+&gt;       assert section_state(page) == [[people, people], [charges, charges]]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]
+E         
+E         At index 0 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3216: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_a_header_row_toggles_by_click_enter_and_space" time="0.595"><failure message="AssertionError: assert (['true', 'true'] == ['false', 'false']&#10;  &#10;  At index 0 diff: 'true' != 'false'&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1E892B90&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x0000018C1E892A30&gt;
+
+    def test_R48_a_header_row_toggles_by_click_enter_and_space(open_app, plain_context):
+        page = open_app(seed=seeds.S1).page
+        assert page.evaluate(ROW_WIRING_JS) == [["peopleBody", "peopleName", "peopleSum"], ["chargesBody", "chargesName", "chargesSum"]]
+        stored_before = stored_text(page)
+        row = page.locator("#peopleBtn")
+        row.click()
+        assert section_state(page)[0] == OPEN and displayed(page, "#peopleBody") == [True]
+        summary = page.locator("#peopleSum").evaluate(SUMMARY_BOX_JS)
+        golden = open_golden(plain_context, "bill-items-open").locator("#peopleSum").evaluate(SUMMARY_BOX_JS)
+        assert summary["visibility"] == golden["visibility"] == "hidden" and summary["opacity"] == golden["opacity"]
+        assert abs(summary["width"] - golden["width"]) &lt;= 0.5, (summary, golden)  # it keeps its box
+        row.press("Enter")
+&gt;       assert section_state(page)[0] == FOLDED and displayed(page, "#peopleBody") == [False]
+E       AssertionError: assert (['true', 'true'] == ['false', 'false']
+E         
+E         At index 0 diff: 'true' != 'false'
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:3237: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_people_summary_fits_its_row[K1-390]" time="0.371"><failure message="AssertionError: assert '' == 'Aisyah, Ben, Chen'&#10;  &#10;  - Aisyah, Ben, Chen">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1E692E50&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+size = (390, 844), text = 'Aisyah, Ben, Chen'
+
+    @pytest.mark.parametrize("seed, size, text", [
+        pytest.param(seeds.S1, (390, 844), "Aisyah, Ben, Chen", id="K1-390"),
+        pytest.param(seeds.T12, (390, 844), "Aisyah, Ben, Chen, Person 4 and 8 more", id="T12-390"),
+        pytest.param(seeds.T12, (360, 780), "Aisyah, Ben, Chen and 9 more", id="T12-360"),
+        pytest.param(seeds.T12W, (360, 780), "12 people", id="T12W-360"),
+    ])
+    def test_R48_the_people_summary_fits_its_row(open_app, seed, size, text):
+        page = open_app(seed=seed, viewport=size).page
+&gt;       assert visible_text(page, "#peopleSum") == text
+E       AssertionError: assert '' == 'Aisyah, Ben, Chen'
+E         
+E         - Aisyah, Ben, Chen
+
+tests\browser\test_app.py:3254: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_people_summary_fits_its_row[T12-390]" time="0.368"><failure message="AssertionError: assert '' == 'Aisyah, Ben,... 4 and 8 more'&#10;  &#10;  - Aisyah, Ben, Chen, Person 4 and 8 more">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1F4B40F0&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...","name":""}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":13}}'
+size = (390, 844), text = 'Aisyah, Ben, Chen, Person 4 and 8 more'
+
+    @pytest.mark.parametrize("seed, size, text", [
+        pytest.param(seeds.S1, (390, 844), "Aisyah, Ben, Chen", id="K1-390"),
+        pytest.param(seeds.T12, (390, 844), "Aisyah, Ben, Chen, Person 4 and 8 more", id="T12-390"),
+        pytest.param(seeds.T12, (360, 780), "Aisyah, Ben, Chen and 9 more", id="T12-360"),
+        pytest.param(seeds.T12W, (360, 780), "12 people", id="T12W-360"),
+    ])
+    def test_R48_the_people_summary_fits_its_row(open_app, seed, size, text):
+        page = open_app(seed=seed, viewport=size).page
+&gt;       assert visible_text(page, "#peopleSum") == text
+E       AssertionError: assert '' == 'Aisyah, Ben,... 4 and 8 more'
+E         
+E         - Aisyah, Ben, Chen, Person 4 and 8 more
+
+tests\browser\test_app.py:3254: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_people_summary_fits_its_row[T12-360]" time="0.328"><failure message="AssertionError: assert '' == 'Aisyah, Ben, Chen and 9 more'&#10;  &#10;  - Aisyah, Ben, Chen and 9 more">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1F4F2E50&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...","name":""}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":13}}'
+size = (360, 780), text = 'Aisyah, Ben, Chen and 9 more'
+
+    @pytest.mark.parametrize("seed, size, text", [
+        pytest.param(seeds.S1, (390, 844), "Aisyah, Ben, Chen", id="K1-390"),
+        pytest.param(seeds.T12, (390, 844), "Aisyah, Ben, Chen, Person 4 and 8 more", id="T12-390"),
+        pytest.param(seeds.T12, (360, 780), "Aisyah, Ben, Chen and 9 more", id="T12-360"),
+        pytest.param(seeds.T12W, (360, 780), "12 people", id="T12W-360"),
+    ])
+    def test_R48_the_people_summary_fits_its_row(open_app, seed, size, text):
+        page = open_app(seed=seed, viewport=size).page
+&gt;       assert visible_text(page, "#peopleSum") == text
+E       AssertionError: assert '' == 'Aisyah, Ben, Chen and 9 more'
+E         
+E         - Aisyah, Ben, Chen and 9 more
+
+tests\browser\test_app.py:3254: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_people_summary_fits_its_row[T12W-360]" time="0.299"><failure message="AssertionError: assert '' == '12 people'&#10;  &#10;  - 12 people">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1EAA8250&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"WWWWWWWWWWWWWWWWWWWW"},{"id":"p2","name":"WWWWWWWWWWW...WWWWWWWWWW"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":13}}'
+size = (360, 780), text = '12 people'
+
+    @pytest.mark.parametrize("seed, size, text", [
+        pytest.param(seeds.S1, (390, 844), "Aisyah, Ben, Chen", id="K1-390"),
+        pytest.param(seeds.T12, (390, 844), "Aisyah, Ben, Chen, Person 4 and 8 more", id="T12-390"),
+        pytest.param(seeds.T12, (360, 780), "Aisyah, Ben, Chen and 9 more", id="T12-360"),
+        pytest.param(seeds.T12W, (360, 780), "12 people", id="T12W-360"),
+    ])
+    def test_R48_the_people_summary_fits_its_row(open_app, seed, size, text):
+        page = open_app(seed=seed, viewport=size).page
+&gt;       assert visible_text(page, "#peopleSum") == text
+E       AssertionError: assert '' == '12 people'
+E         
+E         - 12 people
+
+tests\browser\test_app.py:3254: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_people_summary_refits_when_its_rows_width_changes" time="0.323"><failure message="AssertionError: assert '' == 'Aisyah, Ben,... 4 and 8 more'&#10;  &#10;  - Aisyah, Ben, Chen, Person 4 and 8 more">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1EA822A0&gt;
+
+    def test_R48_the_people_summary_refits_when_its_rows_width_changes(open_app):
+        page = open_app(seed=seeds.T12).page
+&gt;       assert visible_text(page, "#peopleSum") == "Aisyah, Ben, Chen, Person 4 and 8 more"
+E       AssertionError: assert '' == 'Aisyah, Ben,... 4 and 8 more'
+E         
+E         - Aisyah, Ben, Chen, Person 4 and 8 more
+
+tests\browser\test_app.py:3260: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_charges_summary_names_a_rate_that_blocks[valid]" time="0.702"><failure message="AssertionError: assert {'bad': False...], 'text': ''} == {'bad': False... 10%, SST 6%'}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'text': ''} != {'text': 'Service 10%, SST 6%'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1E48C460&gt;
+svc = '10', sst = '6', bad = False, text = 'Service 10%, SST 6%'
+
+    @pytest.mark.parametrize("svc, sst, bad, text", [
+        ("10", "6", False, "Service 10%, SST 6%"),
+        ("", "6", True, "Check service charge"),
+        ("10", "25", True, "Check SST"),
+        ("31", "", True, "Check both rates"),
+        ("12.50", "6.25", False, "Service 12.5%, SST 6.25%"),
+    ], ids=["valid", "service-blank", "sst-too-high", "both", "fractions"])
+    def test_R48_the_charges_summary_names_a_rate_that_blocks(open_app, svc, sst, bad, text):
+        # RULINGS-v1.1.0: a blank rate shows the marker too and never reads as 0.
+        page = open_app(seed=seeds.S1).page
+        open_charges_first(page)
+        support.replace_text(page, rate_field(page, "Service charge"), svc)
+        support.replace_text(page, rate_field(page, "SST"), sst)
+        page.locator("#chargesBtn").click()
+        holds = ["#i-warning-circle", "span.sec-txt"] if bad else ["span.sec-txt"]
+&gt;       assert charges_summary(page) == {"bad": bad, "holds": holds, "text": text}
+E       AssertionError: assert {'bad': False...], 'text': ''} == {'bad': False... 10%, SST 6%'}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'text': ''} != {'text': 'Service 10%, SST 6%'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3293: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_charges_summary_names_a_rate_that_blocks[service-blank]" time="0.756"><failure message="AssertionError: assert {'bad': False...], 'text': ''} == {'bad': True,...rvice charge'}&#10;  &#10;  Differing items:&#10;  {'text': ''} != {'text': 'Check service charge'}&#10;  {'holds': ['span.sec-txt']} != {'holds': ['#i-warning-circle', 'span.sec-txt']}&#10;  {'bad': False} != {'bad': True}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1E4F77F0&gt;, svc = ''
+sst = '6', bad = True, text = 'Check service charge'
+
+    @pytest.mark.parametrize("svc, sst, bad, text", [
+        ("10", "6", False, "Service 10%, SST 6%"),
+        ("", "6", True, "Check service charge"),
+        ("10", "25", True, "Check SST"),
+        ("31", "", True, "Check both rates"),
+        ("12.50", "6.25", False, "Service 12.5%, SST 6.25%"),
+    ], ids=["valid", "service-blank", "sst-too-high", "both", "fractions"])
+    def test_R48_the_charges_summary_names_a_rate_that_blocks(open_app, svc, sst, bad, text):
+        # RULINGS-v1.1.0: a blank rate shows the marker too and never reads as 0.
+        page = open_app(seed=seeds.S1).page
+        open_charges_first(page)
+        support.replace_text(page, rate_field(page, "Service charge"), svc)
+        support.replace_text(page, rate_field(page, "SST"), sst)
+        page.locator("#chargesBtn").click()
+        holds = ["#i-warning-circle", "span.sec-txt"] if bad else ["span.sec-txt"]
+&gt;       assert charges_summary(page) == {"bad": bad, "holds": holds, "text": text}
+E       AssertionError: assert {'bad': False...], 'text': ''} == {'bad': True,...rvice charge'}
+E         
+E         Differing items:
+E         {'text': ''} != {'text': 'Check service charge'}
+E         {'holds': ['span.sec-txt']} != {'holds': ['#i-warning-circle', 'span.sec-txt']}
+E         {'bad': False} != {'bad': True}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3293: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_charges_summary_names_a_rate_that_blocks[sst-too-high]" time="0.758"><failure message="AssertionError: assert {'bad': False...], 'text': ''} == {'bad': True,...: 'Check SST'}&#10;  &#10;  Differing items:&#10;  {'text': ''} != {'text': 'Check SST'}&#10;  {'holds': ['span.sec-txt']} != {'holds': ['#i-warning-circle', 'span.sec-txt']}&#10;  {'bad': False} != {'bad': True}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1E3CEDA0&gt;
+svc = '10', sst = '25', bad = True, text = 'Check SST'
+
+    @pytest.mark.parametrize("svc, sst, bad, text", [
+        ("10", "6", False, "Service 10%, SST 6%"),
+        ("", "6", True, "Check service charge"),
+        ("10", "25", True, "Check SST"),
+        ("31", "", True, "Check both rates"),
+        ("12.50", "6.25", False, "Service 12.5%, SST 6.25%"),
+    ], ids=["valid", "service-blank", "sst-too-high", "both", "fractions"])
+    def test_R48_the_charges_summary_names_a_rate_that_blocks(open_app, svc, sst, bad, text):
+        # RULINGS-v1.1.0: a blank rate shows the marker too and never reads as 0.
+        page = open_app(seed=seeds.S1).page
+        open_charges_first(page)
+        support.replace_text(page, rate_field(page, "Service charge"), svc)
+        support.replace_text(page, rate_field(page, "SST"), sst)
+        page.locator("#chargesBtn").click()
+        holds = ["#i-warning-circle", "span.sec-txt"] if bad else ["span.sec-txt"]
+&gt;       assert charges_summary(page) == {"bad": bad, "holds": holds, "text": text}
+E       AssertionError: assert {'bad': False...], 'text': ''} == {'bad': True,...: 'Check SST'}
+E         
+E         Differing items:
+E         {'text': ''} != {'text': 'Check SST'}
+E         {'holds': ['span.sec-txt']} != {'holds': ['#i-warning-circle', 'span.sec-txt']}
+E         {'bad': False} != {'bad': True}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3293: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_charges_summary_names_a_rate_that_blocks[both]" time="0.701"><failure message="AssertionError: assert {'bad': False...], 'text': ''} == {'bad': True,...k both rates'}&#10;  &#10;  Differing items:&#10;  {'text': ''} != {'text': 'Check both rates'}&#10;  {'holds': ['span.sec-txt']} != {'holds': ['#i-warning-circle', 'span.sec-txt']}&#10;  {'bad': False} != {'bad': True}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1E39F320&gt;
+svc = '31', sst = '', bad = True, text = 'Check both rates'
+
+    @pytest.mark.parametrize("svc, sst, bad, text", [
+        ("10", "6", False, "Service 10%, SST 6%"),
+        ("", "6", True, "Check service charge"),
+        ("10", "25", True, "Check SST"),
+        ("31", "", True, "Check both rates"),
+        ("12.50", "6.25", False, "Service 12.5%, SST 6.25%"),
+    ], ids=["valid", "service-blank", "sst-too-high", "both", "fractions"])
+    def test_R48_the_charges_summary_names_a_rate_that_blocks(open_app, svc, sst, bad, text):
+        # RULINGS-v1.1.0: a blank rate shows the marker too and never reads as 0.
+        page = open_app(seed=seeds.S1).page
+        open_charges_first(page)
+        support.replace_text(page, rate_field(page, "Service charge"), svc)
+        support.replace_text(page, rate_field(page, "SST"), sst)
+        page.locator("#chargesBtn").click()
+        holds = ["#i-warning-circle", "span.sec-txt"] if bad else ["span.sec-txt"]
+&gt;       assert charges_summary(page) == {"bad": bad, "holds": holds, "text": text}
+E       AssertionError: assert {'bad': False...], 'text': ''} == {'bad': True,...k both rates'}
+E         
+E         Differing items:
+E         {'text': ''} != {'text': 'Check both rates'}
+E         {'holds': ['span.sec-txt']} != {'holds': ['#i-warning-circle', 'span.sec-txt']}
+E         {'bad': False} != {'bad': True}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3293: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_charges_summary_names_a_rate_that_blocks[fractions]" time="0.690"><failure message="AssertionError: assert {'bad': False...], 'text': ''} == {'bad': False...%, SST 6.25%'}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'text': ''} != {'text': 'Service 12.5%, SST 6.25%'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1F57B530&gt;
+svc = '12.50', sst = '6.25', bad = False, text = 'Service 12.5%, SST 6.25%'
+
+    @pytest.mark.parametrize("svc, sst, bad, text", [
+        ("10", "6", False, "Service 10%, SST 6%"),
+        ("", "6", True, "Check service charge"),
+        ("10", "25", True, "Check SST"),
+        ("31", "", True, "Check both rates"),
+        ("12.50", "6.25", False, "Service 12.5%, SST 6.25%"),
+    ], ids=["valid", "service-blank", "sst-too-high", "both", "fractions"])
+    def test_R48_the_charges_summary_names_a_rate_that_blocks(open_app, svc, sst, bad, text):
+        # RULINGS-v1.1.0: a blank rate shows the marker too and never reads as 0.
+        page = open_app(seed=seeds.S1).page
+        open_charges_first(page)
+        support.replace_text(page, rate_field(page, "Service charge"), svc)
+        support.replace_text(page, rate_field(page, "SST"), sst)
+        page.locator("#chargesBtn").click()
+        holds = ["#i-warning-circle", "span.sec-txt"] if bad else ["span.sec-txt"]
+&gt;       assert charges_summary(page) == {"bad": bad, "holds": holds, "text": text}
+E       AssertionError: assert {'bad': False...], 'text': ''} == {'bad': False...%, SST 6.25%'}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'text': ''} != {'text': 'Service 12.5%, SST 6.25%'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3293: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_charges_summary_follows_each_keystroke_not_the_error_timing" time="0.503"><failure message="AssertionError: assert '' == 'Check SST'&#10;  &#10;  - Check SST">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1F579900&gt;
+
+    def test_R48_the_charges_summary_follows_each_keystroke_not_the_error_timing(open_app):
+        page = open_app(seed=seeds.S1).page
+        open_charges_first(page)
+        sst = type_25_into_sst(page)
+&gt;       assert (charges_summary(page) or {}).get("text") == "Check SST"
+E       AssertionError: assert '' == 'Check SST'
+E         
+E         - Check SST
+
+tests\browser\test_app.py:3308: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_charges_summary_reads_check_sst_while_its_error_paragraph_is_hidden" time="0.533"><skipped type="pytest.xfail" message="task A6" /></testcase><testcase classname="test_app" name="test_R48_only_the_header_row_and_start_new_bill_open_or_fold_a_section" time="0.391"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]&#10;  &#10;  At index 1 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1F3C7D70&gt;
+
+    def test_R48_only_the_header_row_and_start_new_bill_open_or_fold_a_section(open_app):
+        page = open_app(seed=seeds.S1).page
+        open_people_first(page)
+&gt;       assert section_state(page) == [OPEN, FOLDED]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]
+E         
+E         At index 1 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3327: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_on_the_desktop_both_sections_show" time="0.415"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]&#10;  &#10;  At index 0 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1F322770&gt;
+
+    def test_R48_on_the_desktop_both_sections_show(open_app):
+        page = open_app(seed=seeds.S1).page
+        page.set_viewport_size({"width": 1280, "height": 800})
+        assert displayed(page, "#peopleBody", "#chargesBody", "#peopleBtn", "#chargesBtn") == [True, True, False, False]
+&gt;       assert section_state(page) == [FOLDED, FOLDED]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['false', 'f...se', 'false']]
+E         
+E         At index 0 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3343: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_on_the_desktop_both_sections_show_their_own_headings" time="0.345"><skipped type="pytest.xfail" message="task A6" /></testcase><testcase classname="test_app" name="test_R48_opening_reveals_the_body_through_one_web_animation_and_folding_is_instant" time="2.345"><failure message="AssertionError: assert ([] == [('peopleBody', 200)]&#10;  &#10;  Right contains one more item: ('peopleBody', 200)&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1EC961F0&gt;
+
+    def test_R48_opening_reveals_the_body_through_one_web_animation_and_folding_is_instant(open_app):
+        # R48 (3) and the reveal lines of the R36 scenario "With motion allowed nothing loops" (PD-22).
+        page = open_app(seed=seeds.S1, reduced_motion="no-preference").page
+        assert nothing_runs_within(page, 3000)  # the strip's foil sweep on load has run out
+        row = page.locator("#peopleBtn")
+        row.click()
+        reveals, has_style = page.evaluate(REVEALS_JS), page.evaluate(HAS_STYLE_JS)
+&gt;       assert [(reveal["target"], reveal["duration"]) for reveal in reveals] == [("peopleBody", 200)] and has_style is False
+E       AssertionError: assert ([] == [('peopleBody', 200)]
+E         
+E         Right contains one more item: ('peopleBody', 200)
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:3379: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_under_reduced_motion_a_section_opens_at_once" time="0.468" /><testcase classname="test_app" name="test_R48_start_new_bill_opens_people_and_folds_charges" time="0.663"><failure message="AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]&#10;  &#10;  At index 1 diff: ['true', 'true'] != ['false', 'false']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018C1EF7DFE0&gt;
+
+    def test_R48_start_new_bill_opens_people_and_folds_charges(open_app):
+        # R48 (1) with R31, the open state is reset as at load. The RE seed opens Charges at load (R10 b), so the fold shows.
+        page = open_app(seed=seeds.RE).page
+        start_over(page)
+&gt;       assert section_state(page) == [OPEN, FOLDED]
+E       AssertionError: assert [['true', 'tr...rue', 'true']] == [['true', 'tr...se', 'false']]
+E         
+E         At index 1 diff: ['true', 'true'] != ['false', 'false']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3399: AssertionError</failure></testcase></testsuite></testsuites>

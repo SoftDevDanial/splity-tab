@@ -16,6 +16,7 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 import pytest
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
 import rig
 import seeds
@@ -378,7 +379,6 @@ def style_write_problems(name, text):
                     if match.group(2) not in STYLE_TARGETS]
 
 
-@pytest.mark.xfail(strict=True, reason="task A4")
 def test_R38_code_writes_style_only_to_the_four_allowed_targets(tmp_path):
     scripts = {name: text for name, text in support.shipped_text().items() if name.startswith("src/") and name.endswith(".js")}
     assert [problem for name, text in scripts.items() for problem in style_write_problems(name, text)] == []
@@ -699,6 +699,15 @@ def test_R9_subtotal_field_has_its_unit_label_and_input_mode(open_app):
     assert field.input_value() == "100.00"
 
 
+def opened_rate_field(label):
+    """A field_of for a rate row of an outline: Charges opened first (qa.md, it is folded below 1024 px since task A4,
+    R48), then the rate field. Opening is a click only when Charges is folded, so calling it again changes nothing."""
+    def field_of(page):
+        open_charges_first(page)
+        return rate_field(page, label)
+    return field_of
+
+
 # The three inline error texts (spec, Copy), each exact. A case that showed another field's text must fail.
 AMOUNT_MESSAGE, SERVICE_MESSAGE, SST_MESSAGE = "Enter an amount like 12.50", "Enter a rate from 0 to 30", "Enter a rate from 0 to 20"
 
@@ -706,8 +715,8 @@ AMOUNT_MESSAGE, SERVICE_MESSAGE, SST_MESSAGE = "Enter an amount like 12.50", "En
 ERROR_CASES = [
     pytest.param(lambda page: None, lambda page: page.locator("#subtotal"), "0", AMOUNT_MESSAGE, "subtotal-error", "12.50", id="subtotal"),
     pytest.param(lambda page: build_s1(page), lambda page: item_price(page, 2), "13.505", AMOUNT_MESSAGE, "price-error-i5", "13.50", id="item-price"),
-    pytest.param(lambda page: None, lambda page: rate_field(page, "Service charge"), "31", SERVICE_MESSAGE, "rate-service-error", "10", id="service"),
-    pytest.param(lambda page: None, lambda page: rate_field(page, "SST"), "20.01", SST_MESSAGE, "rate-sst-error", "6", id="sst"),
+    pytest.param(lambda page: None, opened_rate_field("Service charge"), "31", SERVICE_MESSAGE, "rate-service-error", "10", id="service"),
+    pytest.param(lambda page: None, opened_rate_field("SST"), "20.01", SST_MESSAGE, "rate-sst-error", "6", id="sst"),
 ]
 
 
@@ -945,6 +954,7 @@ def rate_field(page, label):
 
 def test_R15_charges_block_and_its_defaults(open_app):
     page = open_app().page
+    open_charges_first(page)
     for label, value in (("Service charge", "10"), ("SST", "6")):
         field = rate_field(page, label)
         assert field.input_value() == value and field.get_attribute("aria-describedby") == "charges-hint"
@@ -969,6 +979,7 @@ def test_R15_a_rate_error_names_both_ids_and_its_range(open_app, plain_context):
 
 def test_R10_an_empty_rate_never_shows_an_error(open_app):
     page = open_app().page
+    open_charges_first(page)
     support.replace_text(page, rate_field(page, "Service charge"), "")
     page.keyboard.press("Tab")
     assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
@@ -1045,9 +1056,9 @@ def test_R16_the_status_is_the_only_live_element_and_only_while_the_table_is(ope
 
 
 BLOCKED_CASES = [
-    pytest.param(lambda page: (build_s2(page), support.replace_text(page, rate_field(page, "Service charge"), "")),
+    pytest.param(lambda page: (build_s2(page), support.replace_text(page, opened_rate_field("Service charge")(page), "")),
                  "Check the charges to see the shares.", id="rate-empty"),
-    pytest.param(lambda page: (build_s1(page), support.replace_text(page, rate_field(page, "SST"), "25")),
+    pytest.param(lambda page: (build_s1(page), support.replace_text(page, opened_rate_field("SST")(page), "25")),
                  "Check the charges to see the shares.", id="rate-too-high"),
     pytest.param(lambda page: (build_s2(page), support.replace_text(page, subtotal_field(page), "")),
                  "Enter the subtotal to see the shares.", id="subtotal-empty"),
@@ -1104,6 +1115,7 @@ def test_R19_the_bill_summary_shows_its_working(open_app, build, expected):
 def test_R19_a_charge_of_zero_is_allowed_and_still_shown(open_app):
     page = open_app().page
     build_s2(page)
+    open_charges_first(page)
     support.replace_text(page, rate_field(page, "Service charge"), "0")
     assert page.locator("p.error").count() == 0
     rows = summary_rows(page)
@@ -1331,7 +1343,7 @@ def snapshot(page):
     (lambda page: switch_to(page, "By item"), lambda bill: bill["mode"] == "item"),
     (lambda page: (switch_to(page, "By item"), page.get_by_role("button", name="Add item").click()),
      lambda bill: bill["items"] == [{"id": "i3", "name": "", "priceText": "", "who": []}]),
-    (lambda page: rate_field(page, "SST").fill("8"), lambda bill: bill["sstText"] == "8"),
+    (lambda page: opened_rate_field("SST")(page).fill("8"), lambda bill: bill["sstText"] == "8"),
     # A removal is a change too (WR-05, mutant RM: it updated the screen and forgot to save). The id counter never goes back.
     (lambda page: (page.get_by_role("button", name="Add person").click(), remove_button(page, "Person 3").click()),
      lambda bill: [p["id"] for p in bill["people"]] == ["p1", "p2"] and bill["nextId"] == 4),
@@ -1407,6 +1419,7 @@ def test_R26_come_back_later(open_app):
     again = session.new_page()
     session.open("/", page=again)
     assert snapshot(again) == before and again.locator("#mode-item").is_checked()
+    assert section_state(again) == [FOLDED, FOLDED]  # R26, sections fold by R48 on a reload (task A4)
     assert table_cells(again, "tbody") == S1_ROWS and table_cells(again, "tfoot") == S1_CHECK
     switch_to(again, "Even")
     assert subtotal_field(again).input_value() == "100.00"
@@ -1665,12 +1678,20 @@ EMPTY_STORAGE_JS = """() => Object.keys(localStorage).filter((key) => key.starts
   .forEach((key) => localStorage.removeItem(key))"""
 
 
-def open_people_first(page):
-    """qa.md "Open People first": below 1024 px, a click on People's header row when it is folded. The row exists
-    from task A4 (R48). Until then People is never folded and the step does nothing."""
-    row = page.locator("#peopleBtn")
+def open_first(page, key):
+    """qa.md "Open People first" and "open Charges first": below 1024 px, a click on the header row of the section
+    `key` ("people" or "charges") when it is folded. From 1024 px the row is not shown and the step does nothing."""
+    row = page.locator(f"#{key}Btn")
     if row.count() and row.is_visible() and row.get_attribute("aria-expanded") == "false":
         row.click()
+
+
+def open_people_first(page):
+    open_first(page, "people")
+
+
+def open_charges_first(page):
+    open_first(page, "charges")
 
 
 def test_R46_a_real_full_storage_shows_the_warning_and_room_again_clears_it(open_app):
@@ -1793,6 +1814,7 @@ def test_R30_a_click_inside_the_dialog_box_keeps_it_open(open_app):
 @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop-corner", "backdrop-over-a-field"])
 def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
     page = open_app(seed=seeds.S2).page
+    open_people_first(page)  # so a field is drawn under the backdrop (R48)
     first_name = person_field(page, 1).bounding_box()
     open_dialog(page)
     if close == "cancel":
@@ -1813,13 +1835,16 @@ def test_R31_start_over(open_app):
     open_dialog(page)
     page.get_by_role("button", name="Start new bill").click()
     assert page.locator("dialog#newDlg").evaluate("(d) => d.open") is False and focused(page) == "New bill"
+    assert section_state(page) == [OPEN, FOLDED]  # People open, Charges folded, as at load (R48, task A4)
     assert [f.input_value() for f in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
     assert page.locator("#mode-even").is_checked() and subtotal_field(page).input_value() == ""
+    open_charges_first(page)  # the rate fields sit in the folded Charges section below 1024 px
     assert (rate_field(page, "Service charge").input_value(), rate_field(page, "SST").input_value()) == ("10", "6")
     # The bill-empty card of R2, which task A2 builds (BUILD.md, A2, judgment call on the 1.0 tests).
     assert card_text(page) == BLOCKED_CARD["subtotal"] and stored_text(page) == NEW_BILL_DRAFT
     page.reload()
     assert card_text(page) == BLOCKED_CARD["subtotal"] and page.locator("li.person").count() == 2
+    assert section_state(page) == [OPEN, FOLDED]  # an untouched new bill opens People again (CG-P4)
 
 
 @pytest.mark.xfail(strict=True, reason="task A16")
@@ -1842,8 +1867,9 @@ START_OVER_CASES = [
     pytest.param(seeds.with_bill(seeds.S2, subtotalText="0"), None, lambda page: subtotal_field(page), id="subtotal"),
     # Item i5 of S1 gets a bad price. After the start over, three new items get the ids i3, i4 and i5 again.
     pytest.param(changed_price(seeds.S1, "i5", "13.505"), "three-items", lambda page: item_price(page, 3), id="item-price"),
-    pytest.param(seeds.with_bill(seeds.S2, serviceText="31"), None, lambda page: rate_field(page, "Service charge"), id="service"),
-    pytest.param(seeds.with_bill(seeds.S2, sstText="25"), None, lambda page: rate_field(page, "SST"), id="sst"),
+    # Start new bill folds Charges (R48, R31), so the rate rows open it first.
+    pytest.param(seeds.with_bill(seeds.S2, serviceText="31"), None, opened_rate_field("Service charge"), id="service"),
+    pytest.param(seeds.with_bill(seeds.S2, sstText="25"), None, opened_rate_field("SST"), id="sst"),
 ]
 
 
@@ -1869,18 +1895,23 @@ def test_R31_start_over_clears_the_error_flags(open_app, seed, prepare, field_of
 # ---------------------------------------------------------------- RD-3: a press below a field that is being left (R10, CG-3)
 # Leaving a bad amount or rate shows its error, which pushes everything under it down by one line. When the
 # field is left by a press on a control under it, the press must still land on that control (RD-3, 2026-10-09).
+# A click is recorded by the button it falls in, or else by its target, so a press on a header row counts as that row
+# whichever of its spans is under the point. A target with no id is recorded by its tag.
 RECORD_CLICKS_JS = """() => {
   window.testClicks = [];
-  document.addEventListener('click', (event) => window.testClicks.push(event.target.id || event.target.tagName.toLowerCase()), true);
+  document.addEventListener('click', (event) => { const hit = event.target.closest('button') || event.target;
+    window.testClicks.push(hit.id || hit.tagName.toLowerCase()); }, true);
 }"""
 PRESS_CASES = [  # (seed, field, bad text, the control pressed under it, error id, the click's target, the error's text)
-    pytest.param(None, lambda page: page.locator("#subtotal"), "0", lambda page: page.locator("#rate-service"),
-                 "subtotal-error", "rate-service", AMOUNT_MESSAGE, id="subtotal"),
+    # Since task A4 nothing sits under the Subtotal, and the target is the Charges header row above it, which the error
+    # does not move (the v1.1.0 qa.md row). The click reaches it once and the error shows after.
+    pytest.param(None, lambda page: page.locator("#subtotal"), "0", lambda page: page.locator("#chargesBtn"),
+                 "subtotal-error", "chargesBtn", AMOUNT_MESSAGE, id="subtotal"),
     pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", lambda page: toggle(page, "Char kuey teow", "Aisyah"),
                  "price-error-i5", "button", AMOUNT_MESSAGE, id="item-price"),
-    pytest.param(None, lambda page: rate_field(page, "Service charge"), "31", lambda page: page.locator("#charges-hint"),
+    pytest.param(None, opened_rate_field("Service charge"), "31", lambda page: page.locator("#charges-hint"),
                  "rate-service-error", "charges-hint", SERVICE_MESSAGE, id="service"),
-    pytest.param(None, lambda page: rate_field(page, "SST"), "25", lambda page: page.locator("#charges-hint"),
+    pytest.param(None, opened_rate_field("SST"), "25", lambda page: page.locator("#charges-hint"),
                  "rate-sst-error", "charges-hint", SST_MESSAGE, id="sst"),
 ]
 
@@ -1964,7 +1995,7 @@ def test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press(open_app
 
 def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
     page = open_app().page
-    support.replace_text(page, rate_field(page, "SST"), "25")
+    support.replace_text(page, opened_rate_field("SST")(page), "25")
     box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)  # blank header space
     page.mouse.down()
@@ -1998,7 +2029,7 @@ def test_R10_a_secondary_button_press_does_not_hold_the_error_back(open_app):
     # WR-03: a right click opens the context menu and on macOS and Linux the page gets no mouseup, so only the
     # primary button, the one that can produce a click, may hold a blur back.
     page = open_app().page
-    support.replace_text(page, rate_field(page, "SST"), "25")
+    support.replace_text(page, opened_rate_field("SST")(page), "25")
     box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
     page.mouse.down(button="right")
@@ -2010,7 +2041,7 @@ def test_R10_a_cancelled_press_releases_the_waiting_error(open_app):
     # A drag that the browser turns into a native drag ends with pointercancel and no mouseup. Playwright cannot start
     # one, so the event is dispatched on the document as the browser would (a read-only stand-in, no app hook).
     page = open_app().page
-    support.replace_text(page, rate_field(page, "SST"), "25")
+    support.replace_text(page, opened_rate_field("SST")(page), "25")
     box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
     page.mouse.down()
@@ -2196,6 +2227,8 @@ REMOVE_CASES = [  # (seed, the remove button, the row selector, rows before)
 def test_R7_a_double_click_or_double_tap_on_remove_removes_one_row(open_app, seed, button, rows, before, how):
     # WR-01: the row below slides under the pointer after the first click, and the second click removed that one too.
     page = open_app(seed=seed, touch=how == "touch").page
+    if rows == "li.person":
+        open_people_first(page)  # folded on a restored bill below 1024 px (R48)
     assert page.locator(rows).count() == before
     activate_twice(page, how, centre_of(page.get_by_role("button", name=button, exact=True)))
     assert page.locator(rows).count() == before - 1
@@ -2204,6 +2237,8 @@ def test_R7_a_double_click_or_double_tap_on_remove_removes_one_row(open_app, see
 @pytest.mark.parametrize("seed, button, rows, before", REMOVE_CASES)
 def test_R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each(open_app, seed, button, rows, before):
     page = open_app(seed=seed).page
+    if rows == "li.person":
+        open_people_first(page)  # folded on a restored bill below 1024 px (R48)
     x, y = centre_of(page.get_by_role("button", name=button, exact=True))
     page.mouse.click(x, y)
     page.mouse.click(x, y)  # a click of its own (count 1), not the tail of a double click
@@ -2260,6 +2295,8 @@ def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
     # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
     # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
     page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+    if rows == "li.person":
+        open_people_first(page)  # folded on a restored bill below 1024 px (R48)
     before = page.locator(rows).count()
     page.evaluate(RECORD_BODY_CLICKS_JS)
     gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
@@ -2275,6 +2312,8 @@ def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
 def test_R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it(open_app, seed, button, rows, before, how):
     # The repeat press used to land on the next row's Remove button and move focus there (or to the body). Cancelled, it moves nothing.
     page = open_app(seed=seed, touch=how == "touch").page
+    if rows == "li.person":
+        open_people_first(page)  # folded on a restored bill below 1024 px (R48)
     activate_twice(page, how, centre_of(page.get_by_role("button", name=button, exact=True)))
     assert support.active_label(page) == ("Item 2 name" if rows == "li.item" else "Person 2 name")
 
@@ -2309,6 +2348,7 @@ def test_R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word
     # The user-visible side of the same lifetime (RG-CR-02). The first press of this double click has count 1 and ends the
     # guard; a guard that kept its press listener would cancel the second press, and the word would not be selected.
     page = open_app(seed=seeds.S2).page
+    open_people_first(page)  # folded on a restored bill below 1024 px (R48)
     page.get_by_role("button", name="Remove Chen", exact=True).click()
     person_field(page, 1).dblclick()
     selected = page.evaluate("() => { const i = document.activeElement; return i.value.slice(i.selectionStart, i.selectionEnd); }")
@@ -2364,6 +2404,7 @@ def test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it(open_app, 
     # The "centre" rows are the control: the repeat press misses the new Remove button there, on every tree.
     seed = people_bill(people)
     page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+    open_people_first(page)  # folded on a restored bill below 1024 px (R48)
     page.evaluate(RECORD_BODY_CLICKS_JS)
     gesture_at(page, gesture, press_point(page.get_by_role("button", name="Add person", exact=True), place))
     assert page.locator("li.person").count() == people + 1
@@ -2686,7 +2727,7 @@ def test_R32_the_ring_check_has_teeth():
 
 @pytest.mark.parametrize("seed, field_of, text", [
     (seeds.S2, subtotal_field, "100.00"),
-    (seeds.S1, lambda page: rate_field(page, "Service charge"), "12.5"),
+    (seeds.S1, opened_rate_field("Service charge"), "12.5"),
 ], ids=["subtotal", "service-charge"])
 def test_R33_typing_in_an_amount_or_a_rate_keeps_focus_and_caret(open_app, seed, field_of, text):
     page = open_app(seed=seed).page
@@ -3122,6 +3163,269 @@ def test_R58_the_rig_launches_headless_with_the_arguments_of_its_engine():
     assert playwright.webkit.calls == [{"headless": True, "args": rig.LAUNCH_ARGS["webkit"]}] and playwright.chromium.calls == []
     with pytest.raises(ValueError):
         rig.launch(playwright, "firefox")
+
+
+# ---------------------------------------------------------------- v1.1.0 task A4: sections, header rows, folds and the reveal (R48, R26)
+# Each read is one page.evaluate that gives null for an element the page does not hold, so a missing part fails on the
+# assertion that names it and never on a wait.
+SECTION_STATE_JS = """() => ['people', 'charges'].map((key) => [
+  document.getElementById(`${key}Blk`)?.getAttribute('data-open') ?? null,
+  document.getElementById(`${key}Btn`)?.getAttribute('aria-expanded') ?? null])"""
+FOLDED, OPEN = ["false", "false"], ["true", "true"]
+
+
+def section_state(page):
+    """[data-open, aria-expanded] of People, then of Charges (R48). A pair of equal values is a row that says what its
+    section is."""
+    return page.evaluate(SECTION_STATE_JS)
+
+
+def displayed(page, *selectors):
+    """For each selector, whether its element is rendered (it has a box, so neither it nor an ancestor has display
+    none), or None when the page has no such element."""
+    return page.evaluate("(selectors) => selectors.map((s) => { const el = document.querySelector(s); "
+                         "return el ? el.getClientRects().length > 0 : null; })", list(selectors))
+
+
+VISIBLE_TEXT_JS = "(s) => { const el = document.querySelector(s); return el ? el.innerText.replace(/\\s+/g, ' ').trim() : null; }"
+
+
+def visible_text(page, selector):
+    """qa.md "the visible text of X", its innerText with every run of white space made one space, or None."""
+    return page.evaluate(VISIBLE_TEXT_JS, selector)
+
+
+def settled_text(page, selector, expected, timeout_ms=2000):
+    """The visible text of `selector` once it reads `expected`, or what it reads after `timeout_ms`. The wait is bounded,
+    so a refit that never comes fails on the text it left, not on a timeout."""
+    try:
+        page.wait_for_function(f"([s, t]) => ({VISIBLE_TEXT_JS})(s) === t", arg=[selector, expected], timeout=timeout_ms)
+    except PlaywrightTimeoutError:
+        pass
+    return visible_text(page, selector)
+
+
+def start_over(page):
+    """New bill, then Start new bill (R31)."""
+    open_dialog(page)
+    page.get_by_role("button", name="Start new bill").click()
+
+
+def k1_started_over_and_reloaded(open_app):
+    page = open_app(seed=seeds.S1).page
+    start_over(page)
+    page.reload()
+    return page
+
+
+def cold_boot_renamed_and_reloaded(open_app):
+    page = open_app().page
+    support.replace_text(page, person_field(page, 1), "A")
+    page.reload()
+    return page
+
+
+# qa.md "Which section is open on load": the setup, then the data-open of People and of Charges at 390 x 844.
+OPEN_ON_LOAD = [
+    pytest.param(lambda open_app: open_app().page, "true", "false", id="cold-boot"),
+    pytest.param(lambda open_app: open_app(seed=seeds.S1).page, "false", "false", id="K1"),
+    pytest.param(lambda open_app: open_app(seed=seeds.RE).page, "false", "true", id="RE"),
+    pytest.param(lambda open_app: open_app(seed=seeds.UNREADABLE["B1"]).page, "true", "false", id="B1"),
+    pytest.param(k1_started_over_and_reloaded, "true", "false", id="K1-started-over-and-reloaded"),
+    pytest.param(cold_boot_renamed_and_reloaded, "false", "false", id="cold-boot-renamed-and-reloaded"),
+    pytest.param(lambda open_app: open_app(seed=seeds.with_bill(seeds.S2, serviceText="")).page, "false", "false",
+                 id="K2-blank-rate"),
+]
+
+
+@pytest.mark.parametrize("setup, people, charges", OPEN_ON_LOAD)
+def test_R48_which_section_is_open_on_load(open_app, setup, people, charges):
+    # R26: a restored bill opens or folds its sections by R48, and nothing about them is saved.
+    page = setup(open_app)
+    assert section_state(page) == [[people, people], [charges, charges]]
+
+
+SUMMARY_BOX_JS = """(el) => { const style = getComputedStyle(el);
+  return { visibility: style.visibility, opacity: style.opacity, width: el.getBoundingClientRect().width }; }"""
+ROW_WIRING_JS = """() => ['peopleBtn', 'chargesBtn'].map((id) => { const row = document.getElementById(id);
+  return row && ['aria-controls', 'aria-labelledby', 'aria-describedby'].map((name) => row.getAttribute(name)); })"""
+
+
+def test_R48_a_header_row_toggles_by_click_enter_and_space(open_app, plain_context):
+    page = open_app(seed=seeds.S1).page
+    assert page.evaluate(ROW_WIRING_JS) == [["peopleBody", "peopleName", "peopleSum"], ["chargesBody", "chargesName", "chargesSum"]]
+    stored_before = stored_text(page)
+    row = page.locator("#peopleBtn")
+    row.click()
+    assert section_state(page)[0] == OPEN and displayed(page, "#peopleBody") == [True]
+    summary = page.locator("#peopleSum").evaluate(SUMMARY_BOX_JS)
+    golden = open_golden(plain_context, "bill-items-open").locator("#peopleSum").evaluate(SUMMARY_BOX_JS)
+    assert summary["visibility"] == golden["visibility"] == "hidden" and summary["opacity"] == golden["opacity"]
+    assert abs(summary["width"] - golden["width"]) <= 0.5, (summary, golden)  # it keeps its box
+    row.press("Enter")
+    assert section_state(page)[0] == FOLDED and displayed(page, "#peopleBody") == [False]
+    row.press("Space")
+    assert section_state(page)[0] == OPEN and displayed(page, "#peopleBody") == [True]
+    assert stored_text(page) == stored_before  # a fold is not a change, so nothing is saved
+
+
+SUMMARY_FITS_JS = "() => { const sum = document.getElementById('peopleSum'); return sum ? sum.scrollWidth <= sum.clientWidth : null; }"
+
+
+@pytest.mark.parametrize("seed, size, text", [
+    pytest.param(seeds.S1, (390, 844), "Aisyah, Ben, Chen", id="K1-390"),
+    pytest.param(seeds.T12, (390, 844), "Aisyah, Ben, Chen, Person 4 and 8 more", id="T12-390"),
+    pytest.param(seeds.T12, (360, 780), "Aisyah, Ben, Chen and 9 more", id="T12-360"),
+    pytest.param(seeds.T12W, (360, 780), "12 people", id="T12W-360"),
+])
+def test_R48_the_people_summary_fits_its_row(open_app, seed, size, text):
+    page = open_app(seed=seed, viewport=size).page
+    assert visible_text(page, "#peopleSum") == text
+    assert page.evaluate(SUMMARY_FITS_JS) is True  # it shows whole, with no ellipsis
+
+
+def test_R48_the_people_summary_refits_when_its_rows_width_changes(open_app):
+    page = open_app(seed=seeds.T12).page
+    assert visible_text(page, "#peopleSum") == "Aisyah, Ben, Chen, Person 4 and 8 more"
+    page.set_viewport_size({"width": 360, "height": 780})
+    assert settled_text(page, "#peopleSum", "Aisyah, Ben, Chen and 9 more") == "Aisyah, Ben, Chen and 9 more"
+
+
+CHARGES_SUMMARY_JS = """() => { const row = document.getElementById('chargesBtn'), sum = document.getElementById('chargesSum');
+  if (!row || !sum) return null;
+  return { bad: row.classList.contains('is-bad'),
+    holds: [...sum.children].map((el) => el.matches('svg.ic') ? el.querySelector('use')?.getAttribute('href') : `${el.localName}.${el.className}`),
+    text: sum.querySelector('span.sec-txt')?.textContent ?? null }; }"""
+
+
+def charges_summary(page):
+    """The Charges row's is-bad class, what #chargesSum holds in order (an icon by its href) and the text of its
+    span.sec-txt (R48 (2)), or None."""
+    return page.evaluate(CHARGES_SUMMARY_JS)
+
+
+@pytest.mark.parametrize("svc, sst, bad, text", [
+    ("10", "6", False, "Service 10%, SST 6%"),
+    ("", "6", True, "Check service charge"),
+    ("10", "25", True, "Check SST"),
+    ("31", "", True, "Check both rates"),
+    ("12.50", "6.25", False, "Service 12.5%, SST 6.25%"),
+], ids=["valid", "service-blank", "sst-too-high", "both", "fractions"])
+def test_R48_the_charges_summary_names_a_rate_that_blocks(open_app, svc, sst, bad, text):
+    # RULINGS-v1.1.0: a blank rate shows the marker too and never reads as 0.
+    page = open_app(seed=seeds.S1).page
+    open_charges_first(page)
+    support.replace_text(page, rate_field(page, "Service charge"), svc)
+    support.replace_text(page, rate_field(page, "SST"), sst)
+    page.locator("#chargesBtn").click()
+    holds = ["#i-warning-circle", "span.sec-txt"] if bad else ["span.sec-txt"]
+    assert charges_summary(page) == {"bad": bad, "holds": holds, "text": text}
+
+
+def type_25_into_sst(page):
+    """qa.md: replace the text of "SST" with "2" and then type "5", with the field still focused."""
+    sst = rate_field(page, "SST")
+    support.replace_text(page, sst, "2")
+    page.keyboard.type("5")
+    return sst
+
+
+def test_R48_the_charges_summary_follows_each_keystroke_not_the_error_timing(open_app):
+    page = open_app(seed=seeds.S1).page
+    open_charges_first(page)
+    sst = type_25_into_sst(page)
+    assert (charges_summary(page) or {}).get("text") == "Check SST"
+    assert sst.get_attribute("aria-invalid") != "true"  # the field still has focus, so its error waits (R10)
+    page.keyboard.press("Backspace")
+    assert (charges_summary(page) or {}).get("text") == "Service 10%, SST 2%"
+
+
+@pytest.mark.xfail(strict=True, reason="task A6")
+def test_R48_the_charges_summary_reads_check_sst_while_its_error_paragraph_is_hidden(open_app):
+    # The qa.md line "while p.err#sstErr still carries hidden", on the v1.1.0 Charges markup that task A6 builds.
+    page = open_app(seed=seeds.S1).page
+    open_charges_first(page)
+    type_25_into_sst(page)
+    assert (charges_summary(page) or {}).get("text") == "Check SST"
+    assert page.evaluate("() => document.querySelector('p.err#sstErr')?.hidden ?? null") is True
+
+
+def test_R48_only_the_header_row_and_start_new_bill_open_or_fold_a_section(open_app):
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
+    assert section_state(page) == [OPEN, FOLDED]
+    type_into(page, item_price(page, 1), "abc")  # "Nasi lemak ayam price in RM" once task A8 names the price by its item (R11)
+    page.keyboard.press("Tab")
+    switch_to(page, "Even")
+    switch_to(page, "By item")
+    page.set_viewport_size({"width": 1280, "height": 800})
+    page.set_viewport_size({"width": 390, "height": 844})
+    assert section_state(page) == [OPEN, FOLDED]
+    page.reload()
+    assert section_state(page) == [FOLDED, FOLDED]  # the open state is never saved
+
+
+def test_R48_on_the_desktop_both_sections_show(open_app):
+    page = open_app(seed=seeds.S1).page
+    page.set_viewport_size({"width": 1280, "height": 800})
+    assert displayed(page, "#peopleBody", "#chargesBody", "#peopleBtn", "#chargesBtn") == [True, True, False, False]
+    assert section_state(page) == [FOLDED, FOLDED]
+
+
+@pytest.mark.xfail(strict=True, reason="task A6")
+def test_R48_on_the_desktop_both_sections_show_their_own_headings(open_app):
+    # h2#peopleH comes with task A5 and h2#chargesH with task A6.
+    page = open_app(seed=seeds.S1).page
+    page.set_viewport_size({"width": 1280, "height": 800})
+    assert displayed(page, "h2#peopleH", "h2#chargesH") == [True, True]
+
+
+REVEALS_JS = """() => document.getAnimations()
+  .filter((animation) => !(animation instanceof CSSAnimation) && !(animation instanceof CSSTransition))
+  .map((animation) => ({ target: animation.effect.target?.id ?? null, duration: animation.effect.getTiming().duration,
+    frames: animation.effect.getKeyframes().map((frame) => [frame.height ?? null, String(frame.opacity ?? null)]) }))"""
+HAS_STYLE_JS = "() => document.getElementById('peopleBody')?.hasAttribute('style') ?? null"
+
+
+def nothing_runs_within(page, timeout_ms):
+    """True once no animation of document.getAnimations() is running, False when one still is after `timeout_ms` (a
+    bounded wait). Finished ones may stay listed: the foil sweep's fill is "both" in system.css, so its CSSAnimation is
+    still there, finished, long after load (measured in both engines, BUILD.md, task A4)."""
+    try:
+        page.wait_for_function("() => document.getAnimations().every((a) => a.playState !== 'running')", timeout=timeout_ms)
+        return True
+    except PlaywrightTimeoutError:
+        return False
+
+
+def test_R48_opening_reveals_the_body_through_one_web_animation_and_folding_is_instant(open_app):
+    # R48 (3) and the reveal lines of the R36 scenario "With motion allowed nothing loops" (PD-22).
+    page = open_app(seed=seeds.S1, reduced_motion="no-preference").page
+    assert nothing_runs_within(page, 3000)  # the strip's foil sweep on load has run out
+    row = page.locator("#peopleBtn")
+    row.click()
+    reveals, has_style = page.evaluate(REVEALS_JS), page.evaluate(HAS_STYLE_JS)
+    assert [(reveal["target"], reveal["duration"]) for reveal in reveals] == [("peopleBody", 200)] and has_style is False
+    start, end = reveals[0]["frames"][0], reveals[0]["frames"][-1]
+    assert start == ["0px", "0"] and end[1] == "1"
+    assert nothing_runs_within(page, 1000) and page.evaluate(REVEALS_JS) == []  # nothing loops, and the reveal is gone
+    full = page.locator("#peopleBody").evaluate("(el) => el.getBoundingClientRect().height")
+    assert abs(float(end[0].removesuffix("px")) - full) <= 0.5 and page.evaluate(HAS_STYLE_JS) is False
+    row.click()
+    assert page.evaluate(REVEALS_JS) == [] and displayed(page, "#peopleBody") == [False]  # folding is instant
+
+
+def test_R48_under_reduced_motion_a_section_opens_at_once(open_app):
+    page = open_app(seed=seeds.S1).page  # reduced motion "reduce", the default context
+    page.locator("#peopleBtn").click()
+    assert page.evaluate("() => document.getAnimations().length") == 0 and displayed(page, "#peopleBody") == [True]
+
+
+def test_R48_start_new_bill_opens_people_and_folds_charges(open_app):
+    # R48 (1) with R31, the open state is reset as at load. The RE seed opens Charges at load (R10 b), so the fold shows.
+    page = open_app(seed=seeds.RE).page
+    start_over(page)
+    assert section_state(page) == [OPEN, FOLDED]
 
 
 # ===== END OF TESTS (new tests go above this line) =====

@@ -1,0 +1,4 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R48_opening_reveals_the_body_through_one_web_animation_and_folding_is_instant (2.80s)
+FAILED   call     test_app.py::test_R48_under_reduced_motion_a_section_opens_at_once (0.50s)
+exit status 1

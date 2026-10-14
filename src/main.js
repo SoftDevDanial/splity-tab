@@ -15,6 +15,7 @@ import { createMode } from "./ui/mode.js";
 import { createSubtotal } from "./ui/subtotal.js";
 import { createItems } from "./ui/items.js";
 import { createCharges } from "./ui/charges.js";
+import { createPeopleSection, createChargesSection } from "./ui/sections.js";
 import { icon } from "./ui/icons.js";
 import { createPanel, hasShares } from "./ui/panel.js";
 import { blockedReceipt } from "./ui/receipt.js";
@@ -22,16 +23,27 @@ import { reconcileChildren, watchPointerClicks } from "./ui/dom.js";
 
 watchPointerClicks(); // R57 (b): every repeat check reads what these window listeners record from the first press on
 
-// Boot (R2, R26 to R28, R46). A cold boot is a new bill and writes nothing. A readable draft is shown as it was.
+// Boot (R2, R26 to R28, R46, R48). A cold boot is a new bill and writes nothing. A readable draft is shown as it was.
 // An unreadable one starts a new bill, saves it at once so a reload does not show the note again, and shows the note.
 // A failed boot read shows the save warning in the first render. `storage` is null while the getter fails.
 let storage = getStorage();
 const loaded = loadDraft(storage);
 let bill = loaded.state === "ok" ? loaded.bill : newBill();
+const errorShown = flagsFor(bill);
 const view = {
-  errorShown: flagsFor(bill), status: null, noteShown: loaded.state === "unreadable", saveFailing: loaded.state === "failed",
+  errorShown, status: null, noteShown: loaded.state === "unreadable", saveFailing: loaded.state === "failed",
+  open: openAsAtLoad(bill, errorShown),
 };
 if (view.noteShown) save();
+
+/**
+ * R48 (1): which sections are open when a bill is loaded, and again after Start new bill (R31). People for a bill that
+ * is still `newBill()` (CG-P4), Charges when a rate shows its error (R10 (b)). Never saved.
+ */
+function openAsAtLoad(loadedBill, errorShown) {
+  // Equal bills give equal JSON here, because the decoder builds every bill in core's key order (D12).
+  return { people: JSON.stringify(loadedBill) === JSON.stringify(newBill()), charges: errorShown.service || errorShown.sst };
+}
 
 /**
  * R46, R47: one save attempt, and the latest attempt decides whether the warning shows. While the storage object
@@ -138,10 +150,12 @@ const receipt = document.getElementById("rbody");
 const panel = createPanel(receipt, { onCopy: copySummary });
 createDialog(document.getElementById("newDlg"), newBillButton, {
   onConfirm() {
-    // The view state is reset with the bill (R31): a stale error flag or copy status must not outlive it.
+    // The view state is reset with the bill (R31): a stale error flag, copy status or open state must not outlive it.
+    const fresh = newBill();
     view.errorShown = newErrorFlags();
+    view.open = openAsAtLoad(fresh, view.errorShown);
     setStatus(null);
-    commit(newBill());
+    commit(fresh);
   },
 });
 const notes = createNotes(document.getElementById("notes"), {
@@ -151,11 +165,20 @@ const notes = createNotes(document.getElementById("notes"), {
     newBillButton.focus(); // rule 12
   },
 });
-document.getElementById("work").append(people.el, mode.el, subtotal.el, items.el, charges.el);
+// R48 (1): after load only a header row (and Start new bill) opens or folds a section. A fold is not a change, so nothing is saved.
+function toggleSection(key) {
+  view.open[key] = !view.open[key];
+  render();
+}
+const peopleSection = createPeopleSection([people.el], () => toggleSection("people"));
+const chargesSection = createChargesSection([charges.el], () => toggleSection("charges"));
+document.getElementById("work").append(peopleSection.el, chargesSection.el, mode.el, subtotal.el, items.el);
 
 function render() {
   const errors = visibleErrors(view.errorShown, bill);
   const result = computeResult(bill);
+  peopleSection.update(bill, view.open.people);
+  chargesSection.update(bill, view.open.charges);
   people.update(bill);
   mode.update(bill);
   subtotal.update(bill, errors);

@@ -51,6 +51,7 @@ T12 = dump({"version": 2, "bill": {
     "mode": "even", "people": [{"id": f"p{n}", "name": name} for n, name in enumerate(["Aisyah", "Ben", "Chen"] + [""] * 9, start=1)],
     "subtotalText": "100.00", "items": [], "serviceText": "10", "sstText": "6", "spare": {"rule": "top"}, "nextId": 13,
 }})  # [T12]
+T12W = changed(T12, lambda d: [person.update(name="W" * 20) for person in d["bill"]["people"]])  # [T12W] no one name fits at 360
 
 _TWELVE = ["Aisyah", "Ben", "Chen", "Devi", "Farid", "Grace", "Hafiz", "Indra", "Jia Hui", "Kumar", "Lina", "Mei Ling"]
 S8 = dump({"version": 2, "bill": {

@@ -1,0 +1,6267 @@
+{
+ "K1-folded-390": {
+  "differences": {},
+  "app": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     234.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     358,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     218.17,
+     134,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  },
+  "golden": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     234.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     358,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     218.17,
+     134,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  }
+ },
+ "K1-folded-360": {
+  "differences": {},
+  "app": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     239.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     204.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     326,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     328,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     231.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     188.17,
+     134,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     326,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  },
+  "golden": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     239.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     204.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     326,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     328,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     231.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     188.17,
+     134,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     326,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  }
+ },
+ "K1-1280": {
+  "differences": {
+   "peopleBlk": {
+    "app": {
+     "box": [
+      678,
+      84,
+      548,
+      238
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    },
+    "golden": {
+     "box": [
+      678,
+      84,
+      548,
+      98
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    }
+   },
+   "peopleBody": {
+    "app": {
+     "box": [
+      678,
+      84,
+      548,
+      222
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    },
+    "golden": {
+     "box": [
+      678,
+      84,
+      548,
+      98
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    }
+   },
+   "chargesBlk": {
+    "app": {
+     "box": [
+      678,
+      338,
+      548,
+      201
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    },
+    "golden": {
+     "box": [
+      678,
+      198,
+      548,
+      121
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    }
+   },
+   "chargesBody": {
+    "app": {
+     "box": [
+      678,
+      355,
+      548,
+      184
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    },
+    "golden": {
+     "box": [
+      678,
+      215,
+      548,
+      104
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    }
+   }
+  },
+  "app": {
+   "peopleBlk": {
+    "box": [
+     678,
+     84,
+     548,
+     238
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": null,
+   "peopleName": null,
+   "peopleSum": null,
+   "peopleTxt": null,
+   "peopleCaret": null,
+   "peopleBody": {
+    "box": [
+     678,
+     84,
+     548,
+     222
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   },
+   "chargesBlk": {
+    "box": [
+     678,
+     338,
+     548,
+     201
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": null,
+   "chargesName": null,
+   "chargesSum": null,
+   "chargesIcon": null,
+   "chargesTxt": null,
+   "chargesCaret": null,
+   "chargesBody": {
+    "box": [
+     678,
+     355,
+     548,
+     184
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   }
+  },
+  "golden": {
+   "peopleBlk": {
+    "box": [
+     678,
+     84,
+     548,
+     98
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": null,
+   "peopleName": null,
+   "peopleSum": null,
+   "peopleTxt": null,
+   "peopleCaret": null,
+   "peopleBody": {
+    "box": [
+     678,
+     84,
+     548,
+     98
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   },
+   "chargesBlk": {
+    "box": [
+     678,
+     198,
+     548,
+     121
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": null,
+   "chargesName": null,
+   "chargesSum": null,
+   "chargesIcon": null,
+   "chargesTxt": null,
+   "chargesCaret": null,
+   "chargesBody": {
+    "box": [
+     678,
+     215,
+     548,
+     104
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   }
+  }
+ },
+ "K1-open-390": {
+  "differences": {
+   "peopleBlk": {
+    "app": {
+     "box": [
+      16,
+      65,
+      358,
+      314
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    },
+    "golden": {
+     "box": [
+      16,
+      65,
+      358,
+      232
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    }
+   },
+   "peopleBody": {
+    "app": {
+     "box": [
+      16,
+      117,
+      358,
+      262
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    },
+    "golden": {
+     "box": [
+      16,
+      117,
+      358,
+      180
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    }
+   },
+   "chargesBlk": {
+    "app": {
+     "box": [
+      16,
+      379,
+      358,
+      261
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    },
+    "golden": {
+     "box": [
+      16,
+      297,
+      358,
+      183
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    }
+   },
+   "chargesRow": {
+    "app": {
+     "box": [
+      16,
+      380,
+      358,
+      52
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-btn"
+    },
+    "golden": {
+     "box": [
+      16,
+      298,
+      358,
+      52
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-btn"
+    }
+   },
+   "chargesName": {
+    "app": {
+     "box": [
+      16,
+      396,
+      54.78,
+      20
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "15px",
+      "fontWeight": "600",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-name"
+    },
+    "golden": {
+     "box": [
+      16,
+      314,
+      54.78,
+      20
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "15px",
+      "fontWeight": "600",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-name"
+    }
+   },
+   "chargesSum": {
+    "app": {
+     "box": [
+      82.78,
+      396,
+      261.22,
+      20
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "hidden",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-sum"
+    },
+    "golden": {
+     "box": [
+      82.78,
+      314,
+      261.22,
+      20
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "hidden",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-sum"
+    }
+   },
+   "chargesTxt": {
+    "app": {
+     "box": [
+      218.17,
+      396,
+      125.83,
+      19
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "hidden",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": "",
+     "cls": "sec-txt"
+    },
+    "golden": {
+     "box": [
+      218.17,
+      314,
+      125.83,
+      19
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "hidden",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": "",
+     "cls": "sec-txt"
+    }
+   },
+   "chargesCaret": {
+    "app": {
+     "box": [
+      356,
+      397,
+      18,
+      18
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+      "fill": "rgb(232, 235, 242)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "ic sec-caret"
+    },
+    "golden": {
+     "box": [
+      356,
+      315,
+      18,
+      18
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+      "fill": "rgb(167, 175, 191)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "ic sec-caret"
+    }
+   },
+   "chargesBody": {
+    "app": {
+     "box": [
+      16,
+      432,
+      358,
+      208
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    },
+    "golden": {
+     "box": [
+      16,
+      350,
+      358,
+      130
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    }
+   }
+  },
+  "app": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     314
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     234.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": {
+    "box": [
+     16,
+     117,
+     358,
+     262
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   },
+   "chargesBlk": {
+    "box": [
+     16,
+     379,
+     358,
+     261
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     380,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     396,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     396,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     218.17,
+     396,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     397,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": {
+    "box": [
+     16,
+     432,
+     358,
+     208
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   }
+  },
+  "golden": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     232
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     234.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": {
+    "box": [
+     16,
+     117,
+     358,
+     180
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   },
+   "chargesBlk": {
+    "box": [
+     16,
+     297,
+     358,
+     183
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     298,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     314,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     314,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     218.17,
+     314,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     315,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": {
+    "box": [
+     16,
+     350,
+     358,
+     130
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   }
+  }
+ },
+ "K1-open-360": {
+  "differences": {
+   "peopleBlk": {
+    "app": {
+     "box": [
+      16,
+      65,
+      328,
+      314
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    },
+    "golden": {
+     "box": [
+      16,
+      65,
+      328,
+      232
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    }
+   },
+   "peopleBody": {
+    "app": {
+     "box": [
+      16,
+      117,
+      328,
+      262
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    },
+    "golden": {
+     "box": [
+      16,
+      117,
+      328,
+      180
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    }
+   },
+   "chargesBlk": {
+    "app": {
+     "box": [
+      16,
+      379,
+      328,
+      261
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    },
+    "golden": {
+     "box": [
+      16,
+      297,
+      328,
+      183
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    }
+   },
+   "chargesRow": {
+    "app": {
+     "box": [
+      16,
+      380,
+      328,
+      52
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-btn"
+    },
+    "golden": {
+     "box": [
+      16,
+      298,
+      328,
+      52
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-btn"
+    }
+   },
+   "chargesName": {
+    "app": {
+     "box": [
+      16,
+      396,
+      54.78,
+      20
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "15px",
+      "fontWeight": "600",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-name"
+    },
+    "golden": {
+     "box": [
+      16,
+      314,
+      54.78,
+      20
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "15px",
+      "fontWeight": "600",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-name"
+    }
+   },
+   "chargesSum": {
+    "app": {
+     "box": [
+      82.78,
+      396,
+      231.22,
+      20
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "hidden",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-sum"
+    },
+    "golden": {
+     "box": [
+      82.78,
+      314,
+      231.22,
+      20
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "hidden",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-sum"
+    }
+   },
+   "chargesTxt": {
+    "app": {
+     "box": [
+      188.17,
+      396,
+      125.83,
+      19
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "hidden",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": "",
+     "cls": "sec-txt"
+    },
+    "golden": {
+     "box": [
+      188.17,
+      314,
+      125.83,
+      19
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "hidden",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": "",
+     "cls": "sec-txt"
+    }
+   },
+   "chargesCaret": {
+    "app": {
+     "box": [
+      326,
+      397,
+      18,
+      18
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+      "fill": "rgb(232, 235, 242)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "ic sec-caret"
+    },
+    "golden": {
+     "box": [
+      326,
+      315,
+      18,
+      18
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+      "fill": "rgb(167, 175, 191)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "ic sec-caret"
+    }
+   },
+   "chargesBody": {
+    "app": {
+     "box": [
+      16,
+      432,
+      328,
+      208
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    },
+    "golden": {
+     "box": [
+      16,
+      350,
+      328,
+      130
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    }
+   }
+  },
+  "app": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     328,
+     314
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     239.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     204.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     326,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": {
+    "box": [
+     16,
+     117,
+     328,
+     262
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   },
+   "chargesBlk": {
+    "box": [
+     16,
+     379,
+     328,
+     261
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     380,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     396,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     396,
+     231.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     188.17,
+     396,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     326,
+     397,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": {
+    "box": [
+     16,
+     432,
+     328,
+     208
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   }
+  },
+  "golden": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     328,
+     232
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     239.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     204.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     326,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": {
+    "box": [
+     16,
+     117,
+     328,
+     180
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   },
+   "chargesBlk": {
+    "box": [
+     16,
+     297,
+     328,
+     183
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     298,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     314,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     314,
+     231.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     188.17,
+     314,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     326,
+     315,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": {
+    "box": [
+     16,
+     350,
+     328,
+     130
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   }
+  }
+ },
+ "RE-390": {
+  "differences": {
+   "chargesBlk": {
+    "app": {
+     "box": [
+      16,
+      117,
+      358,
+      285
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    },
+    "golden": {
+     "box": [
+      16,
+      117,
+      358,
+      231
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    }
+   },
+   "chargesBody": {
+    "app": {
+     "box": [
+      16,
+      170,
+      358,
+      232
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    },
+    "golden": {
+     "box": [
+      16,
+      170,
+      358,
+      178
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    }
+   }
+  },
+  "app": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     234.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     358,
+     285
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn is-bad"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": {
+    "box": [
+     189.11,
+     136,
+     16,
+     16
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(255, 138, 143)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "ic"
+   },
+   "chargesTxt": {
+    "box": [
+     211.11,
+     134,
+     132.89,
+     19
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": {
+    "box": [
+     16,
+     170,
+     358,
+     232
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   }
+  },
+  "golden": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     234.97,
+     81,
+     109.03,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     358,
+     231
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn is-bad"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": {
+    "box": [
+     189.11,
+     136,
+     16,
+     16
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(255, 138, 143)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "ic"
+   },
+   "chargesTxt": {
+    "box": [
+     211.11,
+     134,
+     132.89,
+     19
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": {
+    "box": [
+     16,
+     170,
+     358,
+     178
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   }
+  }
+ },
+ "T12-390": {
+  "differences": {},
+  "app": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     100.34,
+     81,
+     243.66,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen, Person 4 and 8 more",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     358,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     218.17,
+     134,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  },
+  "golden": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     100.34,
+     81,
+     243.66,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen, Person 4 and 8 more",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     358,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     218.17,
+     134,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  }
+ },
+ "T12-360": {
+  "differences": {},
+  "app": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     239.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     130.17,
+     81,
+     183.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen and 9 more",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     326,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     328,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     231.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     188.17,
+     134,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     326,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  },
+  "golden": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     239.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     130.17,
+     81,
+     183.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Aisyah, Ben, Chen and 9 more",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     326,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": null,
+   "chargesBlk": {
+    "box": [
+     16,
+     117,
+     328,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     328,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     231.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     188.17,
+     134,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     326,
+     135,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  }
+ },
+ "empty-390": {
+  "differences": {
+   "peopleBlk": {
+    "app": {
+     "box": [
+      16,
+      65,
+      358,
+      268
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    },
+    "golden": {
+     "box": [
+      16,
+      65,
+      358,
+      178
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    }
+   },
+   "peopleBody": {
+    "app": {
+     "box": [
+      16,
+      117,
+      358,
+      216
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    },
+    "golden": {
+     "box": [
+      16,
+      117,
+      358,
+      126
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-body"
+    }
+   },
+   "chargesBlk": {
+    "app": {
+     "box": [
+      16,
+      333,
+      358,
+      53
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    },
+    "golden": {
+     "box": [
+      16,
+      243,
+      358,
+      53
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "start",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "blk sec"
+    }
+   },
+   "chargesRow": {
+    "app": {
+     "box": [
+      16,
+      334,
+      358,
+      52
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-btn"
+    },
+    "golden": {
+     "box": [
+      16,
+      244,
+      358,
+      52
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "sec-btn"
+    }
+   },
+   "chargesName": {
+    "app": {
+     "box": [
+      16,
+      350,
+      54.78,
+      20
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "15px",
+      "fontWeight": "600",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-name"
+    },
+    "golden": {
+     "box": [
+      16,
+      260,
+      54.78,
+      20
+     ],
+     "styles": {
+      "color": "rgb(232, 235, 242)",
+      "fontSize": "15px",
+      "fontWeight": "600",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "left",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-name"
+    }
+   },
+   "chargesSum": {
+    "app": {
+     "box": [
+      82.78,
+      350,
+      261.22,
+      20
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-sum"
+    },
+    "golden": {
+     "box": [
+      82.78,
+      260,
+      261.22,
+      20
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": null,
+     "cls": "sec-sum"
+    }
+   },
+   "chargesTxt": {
+    "app": {
+     "box": [
+      218.17,
+      350,
+      125.83,
+      19
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": "Service 10%, SST 6%",
+     "cls": "sec-txt"
+    },
+    "golden": {
+     "box": [
+      218.17,
+      260,
+      125.83,
+      19
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "20px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(0, 0, 0)",
+      "textAlign": "right",
+      "whiteSpace": "nowrap"
+     },
+     "text": "Service 10%, SST 6%",
+     "cls": "sec-txt"
+    }
+   },
+   "chargesCaret": {
+    "app": {
+     "box": [
+      356,
+      351,
+      18,
+      18
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(167, 175, 191)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "ic sec-caret"
+    },
+    "golden": {
+     "box": [
+      356,
+      261,
+      18,
+      18
+     ],
+     "styles": {
+      "color": "rgb(167, 175, 191)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "visibility": "visible",
+      "transform": "none",
+      "fill": "rgb(167, 175, 191)",
+      "textAlign": "left",
+      "whiteSpace": "normal"
+     },
+     "text": null,
+     "cls": "ic sec-caret"
+    }
+   }
+  },
+  "app": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     268
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     231.2,
+     81,
+     112.8,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": {
+    "box": [
+     16,
+     117,
+     358,
+     216
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   },
+   "chargesBlk": {
+    "box": [
+     16,
+     333,
+     358,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     334,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     350,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     350,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     218.17,
+     350,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     351,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  },
+  "golden": {
+   "peopleBlk": {
+    "box": [
+     16,
+     65,
+     358,
+     178
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "peopleRow": {
+    "box": [
+     16,
+     65,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "peopleName": {
+    "box": [
+     16,
+     81,
+     46.13,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "peopleSum": {
+    "box": [
+     74.13,
+     81,
+     269.88,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "peopleTxt": {
+    "box": [
+     231.2,
+     81,
+     112.8,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "hidden",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "",
+    "cls": "sec-txt"
+   },
+   "peopleCaret": {
+    "box": [
+     356,
+     82,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "peopleBody": {
+    "box": [
+     16,
+     117,
+     358,
+     126
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-body"
+   },
+   "chargesBlk": {
+    "box": [
+     16,
+     243,
+     358,
+     53
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "start",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "blk sec"
+   },
+   "chargesRow": {
+    "box": [
+     16,
+     244,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     260,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     260,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": null,
+   "chargesTxt": {
+    "box": [
+     218.17,
+     260,
+     125.83,
+     19
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Service 10%, SST 6%",
+    "cls": "sec-txt"
+   },
+   "chargesCaret": {
+    "box": [
+     356,
+     261,
+     18,
+     18
+    ],
+    "styles": {
+     "color": "rgb(167, 175, 191)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(167, 175, 191)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "ic sec-caret"
+   },
+   "chargesBody": null
+  }
+ },
+ "RE-folded-390-vs-specimen": {
+  "styles_equal": {
+   "chargesRow": true,
+   "chargesSum": true,
+   "chargesIcon": true,
+   "chargesTxt": true,
+   "chargesName": true
+  },
+  "sizes": {
+   "chargesIcon": [
+    [
+     16,
+     16
+    ],
+    [
+     16,
+     16
+    ]
+   ]
+  },
+  "text": [
+   "Check service charge",
+   "Check service charge"
+  ],
+  "app": {
+   "chargesRow": {
+    "box": [
+     16,
+     118,
+     358,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn is-bad"
+   },
+   "chargesSum": {
+    "box": [
+     82.78,
+     134,
+     261.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": {
+    "box": [
+     189.11,
+     136,
+     16,
+     16
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(255, 138, 143)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "ic"
+   },
+   "chargesTxt": {
+    "box": [
+     211.11,
+     134,
+     132.89,
+     19
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Check service charge",
+    "cls": "sec-txt"
+   },
+   "chargesName": {
+    "box": [
+     16,
+     134,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   }
+  },
+  "specimen": {
+   "chargesRow": {
+    "box": [
+     29,
+     675,
+     332,
+     52
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "normal"
+    },
+    "text": null,
+    "cls": "sec-btn is-bad"
+   },
+   "chargesSum": {
+    "box": [
+     95.78,
+     691,
+     235.22,
+     20
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-sum"
+   },
+   "chargesIcon": {
+    "box": [
+     176.11,
+     693,
+     16,
+     16
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(255, 138, 143)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "ic"
+   },
+   "chargesTxt": {
+    "box": [
+     198.11,
+     691,
+     132.89,
+     19
+    ],
+    "styles": {
+     "color": "rgb(255, 138, 143)",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "right",
+     "whiteSpace": "nowrap"
+    },
+    "text": "Check service charge",
+    "cls": "sec-txt"
+   },
+   "chargesName": {
+    "box": [
+     29,
+     691,
+     54.78,
+     20
+    ],
+    "styles": {
+     "color": "rgb(232, 235, 242)",
+     "fontSize": "15px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "visibility": "visible",
+     "transform": "none",
+     "fill": "rgb(0, 0, 0)",
+     "textAlign": "left",
+     "whiteSpace": "nowrap"
+    },
+    "text": null,
+    "cls": "sec-name"
+   }
+  }
+ }
+}

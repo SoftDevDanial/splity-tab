@@ -1,0 +1,4 @@
+engine chromium, browser version 149.0.7827.55
+test_app.py::test_R48_the_charges_summary_reads_check_sst_while_its_error_paragraph_is_hidden | xfail task A6
+test_app.py::test_R48_on_the_desktop_both_sections_show_their_own_headings | xfail task A6
+count 2
