@@ -1,0 +1,47 @@
+{
+ "chromium": {
+  "browser_version": "149.0.7827.55",
+  "none": {
+   "seen": null,
+   "active": "body",
+   "svcErrShows": true
+  },
+  "window-capture": {
+   "seen": [
+    "mousedown:chargeHint",
+    "click:chargeHint"
+   ],
+   "active": "body",
+   "svcErrShows": true
+  },
+  "body-bubble": {
+   "seen": [
+    "mousedown:chargeHint",
+    "click:chargeHint"
+   ],
+   "active": "body",
+   "svcErrShows": true
+  }
+ },
+ "webkit": {
+  "browser_version": "26.5",
+  "none": {
+   "seen": null,
+   "active": "svc",
+   "svcErrShows": false
+  },
+  "window-capture": {
+   "seen": [],
+   "active": "svc",
+   "svcErrShows": false
+  },
+  "body-bubble": {
+   "seen": [
+    "mousedown:chargeHint",
+    "click:chargeHint"
+   ],
+   "active": "body",
+   "svcErrShows": true
+  }
+ }
+}

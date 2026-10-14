@@ -171,7 +171,7 @@ function toggleSection(key) {
   render();
 }
 const peopleSection = createPeopleSection(people.content, () => toggleSection("people"));
-const chargesSection = createChargesSection([charges.el], () => toggleSection("charges"));
+const chargesSection = createChargesSection(charges.content, () => toggleSection("charges"));
 document.getElementById("work").append(peopleSection.el, chargesSection.el, mode.el, subtotal.el, items.el);
 
 function render() {

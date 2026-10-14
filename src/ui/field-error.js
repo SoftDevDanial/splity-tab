@@ -1,30 +1,55 @@
 // The inline error under an amount or rate field (R10, R14, R15), shared by Subtotal, item prices and
-// the two rates so their markup cannot drift apart.
+// the two rates so their markup cannot drift apart. createFieldError is the v1.1.0 form of the goldens, which the
+// rates use since task A6. createErrorSlot is the 1.0 form that Subtotal and the prices keep until tasks A7 and A8
+// move them to createFieldError, and it goes with the last of them.
 import { el, setAttr } from "./dom.js";
+import { icon } from "./icons.js";
 
 export const AMOUNT_ERROR = "Enter an amount like 12.50";
 
 /**
+ * The v1.1.0 error (R10, rule 13). `p.err` holds the warning-circle icon and the message, stays in the DOM and carries
+ * `hidden` while no error shows. While one shows, the field's wrapper has class `is-bad` and the input `aria-invalid`
+ * "true", otherwise "false".
+ * @param {HTMLElement} wrapper the field's `div.field`
+ * @param {HTMLInputElement} input the field it describes
+ * @param {{ id: string, message: string, hint?: string }} options with a `hint` id the input names the error only
+ *   while it shows, after the hint (the rates, rule 13). Without one it names the error at all times (CG-P6).
+ * @returns {{ el: HTMLParagraphElement, set(shown: boolean): void }} `el` is the paragraph, for the caller to place
+ */
+export function createFieldError(wrapper, input, { id, message, hint }) {
+  const paragraph = el("p", { class: "err", id }, icon("warning-circle"), message);
+
+  function set(shown) {
+    setAttr(paragraph, "hidden", shown ? null : "");
+    wrapper.classList.toggle("is-bad", shown);
+    setAttr(input, "aria-invalid", String(shown));
+    setAttr(input, "aria-describedby", hint === undefined ? id : [hint, ...(shown ? [id] : [])].join(" "));
+  }
+
+  set(false);
+  return { el: paragraph, set };
+}
+
+/**
+ * The 1.0 error (Subtotal and the prices until tasks A7 and A8).
  * @param {HTMLElement} host the element the paragraph is the last child of
  * @param {HTMLInputElement} input the field it describes
- * @param {{ id: string, message: string, describedBy?: string[] }} options `describedBy` ids stay on the
- *   input after the error id, and alone when no error shows (the rates keep pointing at the hint)
+ * @param {{ id: string, message: string }} options
  * @returns {{ set(shown: boolean): void }} shows or removes `p.error` and sets `aria-invalid` and
- *   `aria-describedby`. With no error the paragraph is not in the DOM.
+ *   `aria-describedby` to its id. With no error the paragraph is not in the DOM and neither attribute is set.
  */
-export function createErrorSlot(host, input, { id, message, describedBy = [] }) {
+export function createErrorSlot(host, input, { id, message }) {
   const paragraph = el("p", { class: "error", id }, message);
 
   function set(shown) {
     if (shown) {
       if (host.lastElementChild !== paragraph) host.append(paragraph);
-      setAttr(input, "aria-invalid", "true");
-      setAttr(input, "aria-describedby", [id, ...describedBy].join(" "));
     } else {
       paragraph.remove();
-      setAttr(input, "aria-invalid", null);
-      setAttr(input, "aria-describedby", describedBy.length > 0 ? describedBy.join(" ") : null);
     }
+    setAttr(input, "aria-invalid", shown ? "true" : null);
+    setAttr(input, "aria-describedby", shown ? id : null);
   }
 
   return { set };

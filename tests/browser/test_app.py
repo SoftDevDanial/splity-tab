@@ -805,17 +805,86 @@ def opened_rate_field(label):
 # The three inline error texts (spec, Copy), each exact. A case that showed another field's text must fail.
 AMOUNT_MESSAGE, SERVICE_MESSAGE, SST_MESSAGE = "Enter an amount like 12.50", "Enter a rate from 0 to 30", "Enter a rate from 0 to 20"
 
-# Rows are added with the field's own task: item prices (task 5), Service charge and SST (task 6).
+# The v1.1.0 inline error of one field (R10, R15), read in one evaluate on the input: p.err#<id> (null when the page holds
+# no p.err of that id, so a missing part fails on the assertion and never on a wait), the input and its div.field.
+FIELD_ERROR_JS = """(input, id) => { const p = document.getElementById(id), err = p && p.matches('p.err') ? p : null;
+  const first = err?.firstElementChild;
+  return { hidden: err ? err.hidden : null, text: err ? err.textContent : null,
+    icon: first?.matches('svg.ic') ? first.querySelector('use')?.getAttribute('href') ?? null : null,
+    invalid: input.getAttribute('aria-invalid'), describedBy: input.getAttribute('aria-describedby'),
+    bad: input.closest('div.field')?.classList.contains('is-bad') ?? null }; }"""
+
+
+def field_error(field, error_id):
+    """What R10 says of one field: p.err#error_id's hidden, text and leading icon, the input's aria-invalid and
+    aria-describedby, and whether its div.field has is-bad."""
+    return field.evaluate(FIELD_ERROR_JS, error_id)
+
+
+def error_state(message, described, shown):
+    """The field_error of a field whose error shows or not, as spec R10 and the goldens give it."""
+    return {"hidden": not shown, "text": message, "icon": "#i-warning-circle", "invalid": str(shown).lower(),
+            "describedBy": described, "bad": shown}
+
+
+SHOWN_ERRORS_JS = "() => [...document.querySelectorAll('p.err:not([hidden]), p.error')].map((p) => p.id)"
+
+
+def shown_errors(page):
+    """The ids of every inline error that shows, in the v1.1.0 markup (p.err without hidden) or in the 1.0 markup that
+    Subtotal and the prices keep until tasks A7 and A8 (p.error, in the DOM only while it shows)."""
+    return page.evaluate(SHOWN_ERRORS_JS)
+
+
+def invalid_fields(page):
+    return page.locator("[aria-invalid=true]").count()
+
+
+# The 1.0 rows, Subtotal and the item price in the 1.0 markup (p.error added and removed, aria-invalid removed). Tasks A7 and
+# A8 move each row to the v1.1.0 outline below, and this test and the next one go with the last of them.
 ERROR_CASES = [
     pytest.param(lambda page: None, lambda page: page.locator("#subtotal"), "0", AMOUNT_MESSAGE, "subtotal-error", "12.50", id="subtotal"),
     pytest.param(lambda page: build_s1(page), lambda page: item_price(page, 2), "13.505", AMOUNT_MESSAGE, "price-error-i5", "13.50", id="item-price"),
-    pytest.param(lambda page: None, opened_rate_field("Service charge"), "31", SERVICE_MESSAGE, "rate-service-error", "10", id="service"),
-    pytest.param(lambda page: None, opened_rate_field("SST"), "20.01", SST_MESSAGE, "rate-sst-error", "6", id="sst"),
+]
+# The v1.1.0 rows of qa.md "An inline error waits for the field to be left" (task A6 the rates, rule 13).
+RATE_ERROR_CASES = [
+    pytest.param(opened_rate_field("Service charge"), "31", SERVICE_MESSAGE, "svcErr", "chargeHint", "chargeHint svcErr", "10", id="service"),
+    pytest.param(opened_rate_field("SST"), "20.01", SST_MESSAGE, "sstErr", "chargeHint", "chargeHint sstErr", "6", id="sst"),
 ]
 
 
+@pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, field_of, bad, message, error_id, described,
+                                                            shown_described, good):
+    page = open_app().page
+    field = field_of(page)
+    support.replace_text(page, field, bad)
+    assert field_error(field, error_id) == error_state(message, described, shown=False)
+    page.keyboard.press("Tab")
+    assert field_error(field, error_id) == error_state(message, shown_described, shown=True)
+    support.replace_text(page, field, good[0])  # the first key that makes the text valid, with the field still focused
+    assert field_error(field, error_id) == error_state(message, described, shown=False)
+    page.keyboard.type(good[1:])
+    assert field.input_value() == good
+
+
+@pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again(
+        open_app, field_of, bad, message, error_id, described, shown_described, good):
+    # WR-03 / K1: (c) says the error goes at valid text and "does not come back until the field next loses focus".
+    page = open_app().page
+    field = field_of(page)
+    support.replace_text(page, field, bad)
+    page.keyboard.press("Tab")
+    support.replace_text(page, field, good[0])
+    page.keyboard.type("x")  # bad again, and the field still has focus
+    assert field_error(field, error_id) == error_state(message, described, shown=False)
+    page.keyboard.press("Tab")
+    assert field_error(field, error_id) == error_state(message, shown_described, shown=True)
+
+
 @pytest.mark.parametrize("setup, field_of, bad, message, error_id, good", ERROR_CASES)
-def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, setup, field_of, bad, message, error_id, good):
+def test_R10_an_inline_error_waits_for_the_field_to_be_left_in_the_1_0_markup(open_app, setup, field_of, bad, message, error_id, good):
     page = open_app().page
     setup(page)
     field = field_of(page)
@@ -833,7 +902,7 @@ def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, setup, fie
 
 
 @pytest.mark.parametrize("setup, field_of, bad, message, error_id, good", ERROR_CASES)
-def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again(
+def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again_in_the_1_0_markup(
         open_app, setup, field_of, bad, message, error_id, good):
     # WR-03 / K1: (c) says the error goes at valid text and "does not come back until the field next loses focus".
     page = open_app().page
@@ -850,12 +919,29 @@ def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again(
     assert page.locator(f"p.error#{error_id}").inner_text() == message and field.get_attribute("aria-invalid") == "true"
 
 
-def test_R10_an_empty_field_never_shows_an_error(open_app):
-    page = open_app().page
+def leave_subtotal_and_service_charge_empty(page):
+    """qa.md "An empty field never shows an error", its two When lines."""
     subtotal_field(page).click()
     page.keyboard.press("Tab")
-    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
-    assert card_text(page) == BLOCKED_CARD["subtotal"]  # the v1.1.0 card since task A2 (BUILD.md, A2, Q-A2-3)
+    support.replace_text(page, opened_rate_field("Service charge")(page), "")
+    page.keyboard.press("Tab")
+
+
+def test_R10_an_empty_field_never_shows_an_error(open_app):
+    # The v1.1.0 scenario (task A6). Its strip line is the next test, for task A11.
+    page = open_app().page
+    leave_subtotal_and_service_charge_empty(page)
+    assert page.locator("p.err").count() >= 2 and shown_errors(page) == [] and invalid_fields(page) == 0
+    assert card_text(page) == BLOCKED_CARD["rates"]
+    page.locator("#chargesBtn").click()
+    assert charges_summary(page) == {"bad": True, "holds": ["#i-warning-circle", "span.sec-txt"], "text": "Check service charge"}
+
+
+@pytest.mark.xfail(strict=True, reason="task A11")
+def test_R10_an_empty_rate_leaves_the_strip_reading_check_the_charges(open_app):
+    page = open_app().page
+    leave_subtotal_and_service_charge_empty(page)
+    assert visible_text(page, "#stripInfo") == BLOCKED_CARD["rates"]
 
 
 def test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early(open_app):
@@ -1062,43 +1148,52 @@ def test_R33_typing_in_an_item_field_keeps_focus_and_caret(open_app, field_of, t
     type_and_watch(page, field_of(page), text)
 
 
-# ---------------------------------------------------------------- Task 6: charges (R15, R10)
+# ---------------------------------------------------------------- Task 6: charges (R15, R10), v1.1.0 task A6
 def rate_field(page, label):
-    return page.get_by_role("textbox", name=f"{label} in percent", exact=True)
+    """The rate field named by its label.lbl, "Service charge" or "SST" (R15, no hidden ending since v1.1.0)."""
+    return page.get_by_role("textbox", name=label, exact=True)
 
 
-def test_R15_charges_block_and_its_defaults(open_app):
+# qa.md "The Charges block and its defaults", read in one evaluate (null for a part the page does not hold).
+CHARGES_BLOCK_JS = """() => { const one = (s) => document.querySelector(s);
+  const cell = (id) => { const input = one(`input#${id}`); if (!input) return null;
+    const unit = input.nextElementSibling;
+    return { label: one(`label.lbl[for=${id}]`)?.textContent ?? null, value: input.value, field: input.parentElement.className,
+      attrs: ['type', 'inputmode', 'autocomplete', 'aria-invalid', 'aria-describedby'].map((n) => input.getAttribute(n)),
+      unit: unit?.matches('span.unit[aria-hidden=true]') ? unit.textContent : null }; };
+  const err = (id) => { const p = one(`p.err#${id}`), first = p?.firstElementChild;
+    return p && { text: p.textContent, hidden: p.hidden,
+      icon: first?.matches('svg.ic') ? first.querySelector('use')?.getAttribute('href') ?? null : null }; };
+  return { heading: one('h2.blk-h.solo#chargesH')?.textContent ?? null, svc: cell('svc'), sst: cell('sst'),
+    svcErr: err('svcErr'), sstErr: err('sstErr'), hint: one('p.hint#chargeHint')?.textContent ?? null }; }"""
+RATE_ATTRS = ["text", "decimal", "off", "false", "chargeHint"]
+
+
+def test_R15_the_charges_block_and_its_defaults(open_app):
     page = open_app().page
     open_charges_first(page)
-    for label, value in (("Service charge", "10"), ("SST", "6")):
-        field = rate_field(page, label)
-        assert field.input_value() == value and field.get_attribute("aria-describedby") == "charges-hint"
-        assert [field.get_attribute(a) for a in ("inputmode", "autocomplete", "type")] == ["decimal", "off", "text"]
-        wrapper = page.locator(f"span.field.percent:has(#{field.get_attribute('id')})")
-        assert wrapper.locator("input + .unit").inner_text() == "%"
-    assert page.locator("p.hint#charges-hint").inner_text() == "Set a charge to 0 if your bill already includes it."
+    assert page.evaluate(CHARGES_BLOCK_JS) == {
+        "heading": "Charges",
+        "svc": {"label": "Service charge", "value": "10", "field": "field pct", "attrs": RATE_ATTRS, "unit": "%"},
+        "sst": {"label": "SST", "value": "6", "field": "field pct", "attrs": RATE_ATTRS, "unit": "%"},
+        "svcErr": {"text": SERVICE_MESSAGE, "hidden": True, "icon": "#i-warning-circle"},
+        "sstErr": {"text": SST_MESSAGE, "hidden": True, "icon": "#i-warning-circle"},
+        "hint": "Set a charge to 0 if your bill already includes it."}
+    assert displayed(page, "h2#chargesH") == [False]  # below 1024 px the header row names the section
+    # Each label names its input, with no hidden " in percent" ending.
+    for label, input_id in (("Service charge", "svc"), ("SST", "sst")):
+        assert rate_field(page, label).evaluate_all("(els) => els.map((el) => el.id)") == [input_id]
 
 
-@pytest.mark.xfail(strict=True, reason="task A6")
-def test_R15_a_rate_error_names_both_ids_and_its_range(open_app, plain_context):
+def test_R15_a_rate_error_names_the_hint_first_and_then_its_error(open_app):
+    # 1.0 put the error id first. Rule 13 puts the hint first. It rewrites the 1.0 test that read states.html (B1).
     page = open_app().page
-    support.replace_text(page, rate_field(page, "Service charge"), "31")
+    field = opened_rate_field("Service charge")(page)
+    support.replace_text(page, field, "31")
     page.keyboard.press("Tab")
-    error = page.locator("p.error#rate-service-error")
-    assert error.inner_text() == "Enter a rate from 0 to 30"
-    assert error.evaluate("(e) => e === e.parentElement.lastElementChild && e.parentElement.querySelector('label').textContent") == "Service charge in percent"
-    assert rate_field(page, "Service charge").get_attribute("aria-describedby") == "rate-service-error charges-hint"
-    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator("#s4-subtotal-error")  # ST-10: styled as ST-01
-    assert support.specimen_props(error, ["marginTop"]) == support.specimen_props(specimen, ["marginTop"])
-
-
-def test_R10_an_empty_rate_never_shows_an_error(open_app):
-    page = open_app().page
-    open_charges_first(page)
-    support.replace_text(page, rate_field(page, "Service charge"), "")
-    page.keyboard.press("Tab")
-    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
-    assert card_text(page) == BLOCKED_CARD["rates"]  # the v1.1.0 card since task A2 (BUILD.md, A2, Q-A2-3)
+    assert field_error(field, "svcErr") == error_state(SERVICE_MESSAGE, "chargeHint svcErr", shown=True)
+    in_cell = "() => document.querySelector('p.err#svcErr')?.parentElement.querySelector('label.lbl')?.getAttribute('for') ?? null"
+    assert page.evaluate(in_cell) == "svc"
 
 
 # ---------------------------------------------------------------- Task 7: the bill panel (R3, R16 to R21)
@@ -1232,7 +1327,7 @@ def test_R19_a_charge_of_zero_is_allowed_and_still_shown(open_app):
     build_s2(page)
     open_charges_first(page)
     support.replace_text(page, rate_field(page, "Service charge"), "0")
-    assert page.locator("p.error").count() == 0
+    assert shown_errors(page) == []
     rows = summary_rows(page)
     assert rows[1] == ["+Service charge", "RM 0.00", "0% of RM 100.00"] and rows[2] == ["+SST", "RM 6.00", "6% of RM 100.00"]
     assert [row[1] for row in table_cells(page, "tbody")] == ["RM 35.34", "RM 35.33", "RM 35.33"]
@@ -1434,7 +1529,7 @@ SNAPSHOT_JS = """() => ({
   subtotal: document.querySelector('#subtotal').value,
   items: [...document.querySelectorAll('li.item')].map((li) => [...li.querySelectorAll('input')].map((i) => i.value)
     .concat([...li.querySelectorAll('.tap')].map((b) => b.getAttribute('aria-pressed')))),
-  rates: [document.querySelector('#rate-service').value, document.querySelector('#rate-sst').value],
+  rates: [document.querySelector('#svc').value, document.querySelector('#sst').value],
 })"""
 
 
@@ -1854,9 +1949,9 @@ def test_R47_the_app_reads_no_error_name_and_probes_nothing(tmp_path):
 
 def test_R10_a_restored_bad_field_shows_its_error_at_once(open_app):
     page = open_app(seed=seeds.with_bill(seeds.S2, subtotalText="0", serviceText="31")).page
-    assert page.locator("p.error#subtotal-error").inner_text() == "Enter an amount like 12.50"
-    assert page.locator("p.error#rate-service-error").inner_text() == "Enter a rate from 0 to 30"
-    assert page.locator("p.error#rate-sst-error").count() == 0
+    assert page.locator("p.error#subtotal-error").inner_text() == "Enter an amount like 12.50"  # the 1.0 markup until task A7
+    assert field_error(page.locator("#svc"), "svcErr") == error_state(SERVICE_MESSAGE, "chargeHint svcErr", shown=True)
+    assert field_error(page.locator("#sst"), "sstErr") == error_state(SST_MESSAGE, "chargeHint", shown=False)
 
 
 @pytest.mark.xfail(strict=True, reason="task A10")
@@ -1992,19 +2087,19 @@ START_OVER_CASES = [
 def test_R31_start_over_clears_the_error_flags(open_app, seed, prepare, field_of):
     # The restored bad text shows its error at once (R10 b), so each case starts with the error on screen.
     page = open_app(seed=seed).page
-    assert page.locator("p.error").count() == 1
+    assert len(shown_errors(page)) == 1
     open_dialog(page)
     page.get_by_role("button", name="Start new bill").click()
     if prepare == "three-items":  # the new items get the ids i3, i4 and i5 again
         switch_to(page, "By item")
         for _ in range(3):
             page.get_by_role("button", name="Add item").click()
-    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
+    assert shown_errors(page) == [] and invalid_fields(page) == 0
     field = field_of(page)
     support.replace_text(page, field, "abc")
-    assert page.locator("p.error").count() == 0 and page.locator("[aria-invalid]").count() == 0
+    assert shown_errors(page) == [] and invalid_fields(page) == 0
     page.keyboard.press("Tab")
-    assert page.locator("p.error").count() == 1 and field.get_attribute("aria-invalid") == "true"
+    assert len(shown_errors(page)) == 1 and field.get_attribute("aria-invalid") == "true"
 
 
 # ---------------------------------------------------------------- RD-3: a press below a field that is being left (R10, CG-3)
@@ -2020,14 +2115,18 @@ RECORD_CLICKS_JS = """() => {
 PRESS_CASES = [  # (seed, field, bad text, the control pressed under it, error id, the click's target, the error's text)
     # Since task A4 nothing sits under the Subtotal, and the target is the Charges header row above it, which the error
     # does not move (the v1.1.0 qa.md row). The click reaches it once and the error shows after.
+    # These two rows keep the 1.0 markup until tasks A7 and A8 move each to the v1.1.0 outline below.
     pytest.param(None, lambda page: page.locator("#subtotal"), "0", lambda page: page.locator("#chargesBtn"),
                  "subtotal-error", "chargesBtn", AMOUNT_MESSAGE, id="subtotal"),
     pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", lambda page: toggle(page, "Char kuey teow", "Aisyah"),
                  "price-error-i5", "button", AMOUNT_MESSAGE, id="item-price"),
-    pytest.param(None, opened_rate_field("Service charge"), "31", lambda page: page.locator("#charges-hint"),
-                 "rate-service-error", "charges-hint", SERVICE_MESSAGE, id="service"),
-    pytest.param(None, opened_rate_field("SST"), "25", lambda page: page.locator("#charges-hint"),
-                 "rate-sst-error", "charges-hint", SST_MESSAGE, id="sst"),
+]
+# The v1.1.0 rows on p.hint#chargeHint, pressed with the mouse only. Their touch tap is the @per_engine scenario
+# (test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate), since WebKit sends no mouse event and no click to text
+# that is not a control (spec R59 (3), task A6).
+RATE_PRESS_CASES = [  # (rate, bad text, error id, the error's text, aria-describedby while it shows)
+    pytest.param("Service charge", "31", "svcErr", SERVICE_MESSAGE, "chargeHint svcErr", "mouse", id="service-mouse"),
+    pytest.param("SST", "25", "sstErr", SST_MESSAGE, "chargeHint sstErr", "mouse", id="sst-mouse"),
 ]
 
 
@@ -2046,9 +2145,22 @@ def press(page, how, point):
         page.mouse.click(*point)
 
 
+@pytest.mark.parametrize("label, bad, error_id, message, shown_described, how", RATE_PRESS_CASES)
+def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
+        open_app, label, bad, error_id, message, shown_described, how):
+    page = open_app().page
+    field = opened_rate_field(label)(page)
+    support.replace_text(page, field, bad)
+    assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)  # not showing yet (CG-3)
+    page.evaluate(RECORD_CLICKS_JS)
+    press(page, how, centre_of(page.locator("#chargeHint")))
+    assert page.evaluate("window.testClicks") == ["chargeHint"]
+    assert field_error(field, error_id) == error_state(message, shown_described, shown=True)
+
+
 @pytest.mark.parametrize("how", ["mouse", "touch"])
 @pytest.mark.parametrize("seed, field_of, bad, below_of, error_id, lands_on, message", PRESS_CASES)
-def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
+def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on_in_the_1_0_markup(
         open_app, how, seed, field_of, bad, below_of, error_id, lands_on, message):
     page = open_app(seed=seed, touch=how == "touch").page
     support.replace_text(page, field_of(page), bad)
@@ -2058,6 +2170,40 @@ def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
     assert page.evaluate("window.testClicks") == [lands_on]
     assert page.locator(f"p.error#{error_id}").inner_text() == message
     assert field_of(page).get_attribute("aria-invalid") == "true"
+
+
+# qa.md "A touch tap on the charges hint below an invalid rate" (@per_engine, spec R59 (3), the A0 measurement tap_on_hint).
+# The recorder listens on window in the capture phase, the half of qa.md's "A body recorder" that sees every event first.
+# Listeners on body make WebKit send a tap's mouse events to the plain text under it (BUILD.md, A17 judgment call 6, and A6),
+# so the body half would change what this scenario measures.
+HINT_TAP_JS = """() => { window.testHintTap = [];
+  for (const type of ['mousedown', 'click']) {
+    window.addEventListener(type, (event) => window.testHintTap.push(`${type}:${event.target.id || event.target.localName}`), true);
+  } }"""
+TAP_SETTLE_MS = 300  # the A0 measurement's own wait after the tap, so "no click came" is read after the same time
+
+
+@pytest.mark.parametrize("label, bad, input_id, error_id, message, shown_described", [
+    pytest.param("Service charge", "31", "svc", "svcErr", SERVICE_MESSAGE, "chargeHint svcErr", id="service"),
+    pytest.param("SST", "25", "sst", "sstErr", SST_MESSAGE, "chargeHint sstErr", id="sst"),
+])
+def test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate(open_app, engine, label, bad, input_id, error_id,
+                                                                   message, shown_described):
+    page = open_app(touch=True).page
+    field = opened_rate_field(label)(page)
+    support.replace_text(page, field, bad)
+    assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)  # not showing yet
+    page.evaluate(HINT_TAP_JS)
+    page.touchscreen.tap(*centre_of(page.locator("#chargeHint")))
+    page.wait_for_timeout(TAP_SETTLE_MS)
+    seen = page.evaluate("window.testHintTap")
+    has_focus = page.evaluate("document.activeElement.id") == input_id
+    if engine == "chromium":  # the hint gets the mouse events and a click, the field is left (R10 (a))
+        assert ([event for event in seen if event.startswith("click:")], has_focus) == (["click:chargeHint"], False)
+        assert field_error(field, error_id) == error_state(message, shown_described, shown=True)
+    else:  # WebKit sends pointer and touch events only, the field keeps focus and is not left
+        assert (seen, has_focus) == ([], True)
+        assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)
 
 
 @pytest.mark.parametrize("how", ["mouse", "touch"])
@@ -2108,15 +2254,25 @@ def test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press(open_app
         assert page.locator("p.error#price-error-i5").count() == 1
 
 
+SST_HIDDEN, SST_SHOWN = error_state(SST_MESSAGE, "chargeHint", shown=False), error_state(SST_MESSAGE, "chargeHint sstErr", shown=True)
+
+
+def sst_holding_25(page):
+    """qa.md: "SST" holding "25", with Charges opened first, the field still focused. Returns the field."""
+    sst = opened_rate_field("SST")(page)
+    support.replace_text(page, sst, "25")
+    return sst
+
+
 def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
     page = open_app().page
-    support.replace_text(page, opened_rate_field("SST")(page), "25")
+    sst = sst_holding_25(page)
     box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)  # blank header space
     page.mouse.down()
-    assert page.locator("p.error").count() == 0
+    assert field_error(sst, "sstErr") == SST_HIDDEN
     page.mouse.up()
-    assert page.locator("p.error#rate-sst-error").count() == 1
+    assert field_error(sst, "sstErr") == SST_SHOWN
 
 
 def test_R10_a_press_that_ends_runs_each_waiting_handler_once(open_app):
@@ -2144,11 +2300,11 @@ def test_R10_a_secondary_button_press_does_not_hold_the_error_back(open_app):
     # WR-03: a right click opens the context menu and on macOS and Linux the page gets no mouseup, so only the
     # primary button, the one that can produce a click, may hold a blur back.
     page = open_app().page
-    support.replace_text(page, opened_rate_field("SST")(page), "25")
+    sst = sst_holding_25(page)
     box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
     page.mouse.down(button="right")
-    assert page.locator("p.error#rate-sst-error").count() == 1  # before any release
+    assert field_error(sst, "sstErr") == SST_SHOWN  # before any release
     page.mouse.up(button="right")
 
 
@@ -2156,13 +2312,13 @@ def test_R10_a_cancelled_press_releases_the_waiting_error(open_app):
     # A drag that the browser turns into a native drag ends with pointercancel and no mouseup. Playwright cannot start
     # one, so the event is dispatched on the document as the browser would (a read-only stand-in, no app hook).
     page = open_app().page
-    support.replace_text(page, opened_rate_field("SST")(page), "25")
+    sst = sst_holding_25(page)
     box = page.locator("h1.word").bounding_box()
     page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
     page.mouse.down()
-    assert page.locator("p.error").count() == 0
+    assert field_error(sst, "sstErr") == SST_HIDDEN
     page.evaluate("() => document.dispatchEvent(new PointerEvent('pointercancel', { bubbles: true }))")
-    assert page.locator("p.error#rate-sst-error").count() == 1  # before the button comes up
+    assert field_error(sst, "sstErr") == SST_SHOWN  # before the button comes up
     page.mouse.up()
 
 
@@ -3467,7 +3623,6 @@ def test_R48_the_charges_summary_follows_each_keystroke_not_the_error_timing(ope
     assert (charges_summary(page) or {}).get("text") == "Service 10%, SST 2%"
 
 
-@pytest.mark.xfail(strict=True, reason="task A6")
 def test_R48_the_charges_summary_reads_check_sst_while_its_error_paragraph_is_hidden(open_app):
     # The qa.md line "while p.err#sstErr still carries hidden", on the v1.1.0 Charges markup that task A6 builds.
     page = open_app(seed=seeds.S1).page
@@ -3499,7 +3654,6 @@ def test_R48_on_the_desktop_both_sections_show(open_app):
     assert section_state(page) == [FOLDED, FOLDED]
 
 
-@pytest.mark.xfail(strict=True, reason="task A6")
 def test_R48_on_the_desktop_both_sections_show_their_own_headings(open_app):
     # h2#peopleH comes with task A5 and h2#chargesH with task A6.
     page = open_app(seed=seeds.S1).page

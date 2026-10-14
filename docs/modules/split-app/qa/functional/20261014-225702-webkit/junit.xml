@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="3.944" timestamp="2026-10-14T22:57:02.866767+08:00" hostname="{host}"><testcase classname="test_app" name="test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate[service]" time="2.324"><failure message="AssertionError: assert (['mousedown:...Hint'], False) == ([], True)&#10;  &#10;  At index 0 diff: ['mousedown:chargeHint', 'click:chargeHint'] != []&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000026F4374CCA0&gt;
+engine = 'webkit', label = 'Service charge', bad = '31', input_id = 'svc'
+error_id = 'svcErr', message = 'Enter a rate from 0 to 30'
+shown_described = 'chargeHint svcErr'
+
+    @pytest.mark.parametrize("label, bad, input_id, error_id, message, shown_described", [
+        pytest.param("Service charge", "31", "svc", "svcErr", SERVICE_MESSAGE, "chargeHint svcErr", id="service"),
+        pytest.param("SST", "25", "sst", "sstErr", SST_MESSAGE, "chargeHint sstErr", id="sst"),
+    ])
+    def test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate(open_app, engine, label, bad, input_id, error_id,
+                                                                       message, shown_described):
+        page = open_app(touch=True).page
+        field = opened_rate_field(label)(page)
+        support.replace_text(page, field, bad)
+        assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)  # not showing yet
+        page.evaluate(HINT_TAP_JS)
+        page.touchscreen.tap(*centre_of(page.locator("#chargeHint")))
+        page.wait_for_timeout(TAP_SETTLE_MS)
+        seen = page.evaluate("window.testHintTap")
+        has_focus = page.evaluate("document.activeElement.id") == input_id
+        if engine == "chromium":  # the hint gets the mouse events and a click, the field is left (R10 (a))
+            assert ([event for event in seen if event.startswith("click:")], has_focus) == (["click:chargeHint"], False)
+            assert field_error(field, error_id) == error_state(message, shown_described, shown=True)
+        else:  # WebKit sends pointer and touch events only, the field keeps focus and is not left
+&gt;           assert (seen, has_focus) == ([], True)
+E           AssertionError: assert (['mousedown:...Hint'], False) == ([], True)
+E             
+E             At index 0 diff: ['mousedown:chargeHint', 'click:chargeHint'] != []
+E             Use -v to get more diff
+
+tests\browser\test_app.py:2205: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate[sst]" time="1.081"><failure message="AssertionError: assert (['mousedown:...Hint'], False) == ([], True)&#10;  &#10;  At index 0 diff: ['mousedown:chargeHint', 'click:chargeHint'] != []&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000026F436B41A0&gt;
+engine = 'webkit', label = 'SST', bad = '25', input_id = 'sst'
+error_id = 'sstErr', message = 'Enter a rate from 0 to 20'
+shown_described = 'chargeHint sstErr'
+
+    @pytest.mark.parametrize("label, bad, input_id, error_id, message, shown_described", [
+        pytest.param("Service charge", "31", "svc", "svcErr", SERVICE_MESSAGE, "chargeHint svcErr", id="service"),
+        pytest.param("SST", "25", "sst", "sstErr", SST_MESSAGE, "chargeHint sstErr", id="sst"),
+    ])
+    def test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate(open_app, engine, label, bad, input_id, error_id,
+                                                                       message, shown_described):
+        page = open_app(touch=True).page
+        field = opened_rate_field(label)(page)
+        support.replace_text(page, field, bad)
+        assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)  # not showing yet
+        page.evaluate(HINT_TAP_JS)
+        page.touchscreen.tap(*centre_of(page.locator("#chargeHint")))
+        page.wait_for_timeout(TAP_SETTLE_MS)
+        seen = page.evaluate("window.testHintTap")
+        has_focus = page.evaluate("document.activeElement.id") == input_id
+        if engine == "chromium":  # the hint gets the mouse events and a click, the field is left (R10 (a))
+            assert ([event for event in seen if event.startswith("click:")], has_focus) == (["click:chargeHint"], False)
+            assert field_error(field, error_id) == error_state(message, shown_described, shown=True)
+        else:  # WebKit sends pointer and touch events only, the field keeps focus and is not left
+&gt;           assert (seen, has_focus) == ([], True)
+E           AssertionError: assert (['mousedown:...Hint'], False) == ([], True)
+E             
+E             At index 0 diff: ['mousedown:chargeHint', 'click:chargeHint'] != []
+E             Use -v to get more diff
+
+tests\browser\test_app.py:2205: AssertionError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="18" skipped="0" tests="23" time="10.693" timestamp="2026-10-14T22:54:34.822759+08:00" hostname="{host}"><testcase classname="test_app" name="test_R10_an_inline_error_waits_for_the_field_to_be_left[service]" time="2.072"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 30'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B580D316F0&gt;
+field_of = &lt;function opened_rate_field.&lt;locals&gt;.field_of at 0x000002B580F25FE0&gt;
+bad = '31', message = 'Enter a rate from 0 to 30', error_id = 'svcErr'
+described = 'chargeHint', shown_described = 'chargeHint svcErr', good = '10'
+
+    @pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+    def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, field_of, bad, message, error_id, described,
+                                                                shown_described, good):
+        page = open_app().page
+        field = field_of(page)
+        support.replace_text(page, field, bad)
+&gt;       assert field_error(field, error_id) == error_state(message, described, shown=False)
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 30'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:862: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_an_inline_error_waits_for_the_field_to_be_left[sst]" time="0.269"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 20'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5809196F0&gt;
+field_of = &lt;function opened_rate_field.&lt;locals&gt;.field_of at 0x000002B580F26090&gt;
+bad = '20.01', message = 'Enter a rate from 0 to 20', error_id = 'sstErr'
+described = 'chargeHint', shown_described = 'chargeHint sstErr', good = '6'
+
+    @pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+    def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, field_of, bad, message, error_id, described,
+                                                                shown_described, good):
+        page = open_app().page
+        field = field_of(page)
+        support.replace_text(page, field, bad)
+&gt;       assert field_error(field, error_id) == error_state(message, described, shown=False)
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 20'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:862: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again[service]" time="0.316"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 30'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B580A76770&gt;
+field_of = &lt;function opened_rate_field.&lt;locals&gt;.field_of at 0x000002B580F25FE0&gt;
+bad = '31', message = 'Enter a rate from 0 to 30', error_id = 'svcErr'
+described = 'chargeHint', shown_described = 'chargeHint svcErr', good = '10'
+
+    @pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+    def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again(
+            open_app, field_of, bad, message, error_id, described, shown_described, good):
+        # WR-03 / K1: (c) says the error goes at valid text and "does not come back until the field next loses focus".
+        page = open_app().page
+        field = field_of(page)
+        support.replace_text(page, field, bad)
+        page.keyboard.press("Tab")
+        support.replace_text(page, field, good[0])
+        page.keyboard.type("x")  # bad again, and the field still has focus
+&gt;       assert field_error(field, error_id) == error_state(message, described, shown=False)
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 30'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:881: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again[sst]" time="0.352"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 20'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B580A75900&gt;
+field_of = &lt;function opened_rate_field.&lt;locals&gt;.field_of at 0x000002B580F26090&gt;
+bad = '20.01', message = 'Enter a rate from 0 to 20', error_id = 'sstErr'
+described = 'chargeHint', shown_described = 'chargeHint sstErr', good = '6'
+
+    @pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+    def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again(
+            open_app, field_of, bad, message, error_id, described, shown_described, good):
+        # WR-03 / K1: (c) says the error goes at valid text and "does not come back until the field next loses focus".
+        page = open_app().page
+        field = field_of(page)
+        support.replace_text(page, field, bad)
+        page.keyboard.press("Tab")
+        support.replace_text(page, field, good[0])
+        page.keyboard.type("x")  # bad again, and the field still has focus
+&gt;       assert field_error(field, error_id) == error_state(message, described, shown=False)
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 20'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:881: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_an_empty_field_never_shows_an_error" time="0.312"><failure message="AssertionError: assert (0 &gt;= 2)&#10; +  where 0 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:8590/'&gt; selector='p.err'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:8590/'&gt; selector='p.err'&gt; = locator('p.err')&#10; +        where locator = &lt;Page url='http://127.0.0.1:8590/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B58086B480&gt;
+
+    def test_R10_an_empty_field_never_shows_an_error(open_app):
+        # The v1.1.0 scenario (task A6). Its strip line is the next test, for task A11.
+        page = open_app().page
+        leave_subtotal_and_service_charge_empty(page)
+&gt;       assert page.locator("p.err").count() &gt;= 2 and shown_errors(page) == [] and invalid_fields(page) == 0
+E       AssertionError: assert (0 &gt;= 2)
+E        +  where 0 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:8590/'&gt; selector='p.err'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:8590/'&gt; selector='p.err'&gt; = locator('p.err')
+E        +        where locator = &lt;Page url='http://127.0.0.1:8590/'&gt;.locator
+
+tests\browser\test_app.py:934: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_an_empty_rate_leaves_the_strip_reading_check_the_charges" time="0.313"><failure message="AssertionError: assert '' == 'Total Check ...e the splits.'&#10;  &#10;  - Total Check the charges to see the splits.">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B58021B110&gt;
+
+    @pytest.mark.xfail(strict=True, reason="task A11")
+    def test_R10_an_empty_rate_leaves_the_strip_reading_check_the_charges(open_app):
+        page = open_app().page
+        leave_subtotal_and_service_charge_empty(page)
+&gt;       assert visible_text(page, "#stripInfo") == BLOCKED_CARD["rates"]
+E       AssertionError: assert '' == 'Total Check ...e the splits.'
+E         
+E         - Total Check the charges to see the splits.
+
+tests\browser\test_app.py:944: AssertionError</failure></testcase><testcase classname="test_app" name="test_R15_the_charges_block_and_its_defaults" time="0.217"><failure message="AssertionError: assert {'heading': N...r': None, ...} == {'heading': '...circle'}, ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'svcErr': None} != {'svcErr': {'text': 'Enter a rate from 0 to 30', 'hidden': True, 'icon': '#i-warning-circle'}}&#10;  {'svc': {'label': None, 'value': '10', 'field': 'field percent', 'attrs': ['text', 'decimal', 'off', None, 'chargeHint'], ...}} != {'svc': {'label': 'Service charge', 'value': '10', 'field': 'field pct', 'attrs': ['text', 'decimal', 'off', 'false', 'chargeHint'], ...}}&#10;  {'sst': {'label': None, 'value': '6', 'field': 'field percent', 'attrs': ['text', 'decimal', 'off', None, 'chargeHint'], ...}} != {'ss...&#10;  &#10;  ...Full output truncated (4 lines hidden), use '-vv' to show">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B580739D20&gt;
+
+    def test_R15_the_charges_block_and_its_defaults(open_app):
+        page = open_app().page
+        open_charges_first(page)
+&gt;       assert page.evaluate(CHARGES_BLOCK_JS) == {
+            "heading": "Charges",
+            "svc": {"label": "Service charge", "value": "10", "field": "field pct", "attrs": RATE_ATTRS, "unit": "%"},
+            "sst": {"label": "SST", "value": "6", "field": "field pct", "attrs": RATE_ATTRS, "unit": "%"},
+            "svcErr": {"text": SERVICE_MESSAGE, "hidden": True, "icon": "#i-warning-circle"},
+            "sstErr": {"text": SST_MESSAGE, "hidden": True, "icon": "#i-warning-circle"},
+            "hint": "Set a charge to 0 if your bill already includes it."}
+E       AssertionError: assert {'heading': N...r': None, ...} == {'heading': '...circle'}, ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'svcErr': None} != {'svcErr': {'text': 'Enter a rate from 0 to 30', 'hidden': True, 'icon': '#i-warning-circle'}}
+E         {'svc': {'label': None, 'value': '10', 'field': 'field percent', 'attrs': ['text', 'decimal', 'off', None, 'chargeHint'], ...}} != {'svc': {'label': 'Service charge', 'value': '10', 'field': 'field pct', 'attrs': ['text', 'decimal', 'off', 'false', 'chargeHint'], ...}}
+E         {'sst': {'label': None, 'value': '6', 'field': 'field percent', 'attrs': ['text', 'decimal', 'off', None, 'chargeHint'], ...}} != {'ss...
+E         
+E         ...Full output truncated (4 lines hidden), use '-vv' to show
+
+tests\browser\test_app.py:1175: AssertionError</failure></testcase><testcase classname="test_app" name="test_R15_a_rate_error_names_the_hint_first_and_then_its_error" time="0.283"><failure message="AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': True}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 30'}&#10;  {'describedBy': 'svcErr chargeHint'} != {'describedBy': 'chargeHint svcErr'}&#10;  {'hidden': None} != {'hidden': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5FF4683B0&gt;
+
+    def test_R15_a_rate_error_names_the_hint_first_and_then_its_error(open_app):
+        # 1.0 put the error id first. Rule 13 puts the hint first. It rewrites the 1.0 test that read states.html (B1).
+        page = open_app().page
+        field = opened_rate_field("Service charge")(page)
+        support.replace_text(page, field, "31")
+        page.keyboard.press("Tab")
+&gt;       assert field_error(field, "svcErr") == error_state(SERVICE_MESSAGE, "chargeHint svcErr", shown=True)
+E       AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': True}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 30'}
+E         {'describedBy': 'svcErr chargeHint'} != {'describedBy': 'chargeHint svcErr'}
+E         {'hidden': None} != {'hidden': False}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1194: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_restored_bad_field_shows_its_error_at_once" time="0.243"><failure message="AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': True}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 30'}&#10;  {'describedBy': 'svcErr chargeHint'} != {'describedBy': 'chargeHint svcErr'}&#10;  {'hidden': None} != {'hidden': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5FF46BA00&gt;
+
+    def test_R10_a_restored_bad_field_shows_its_error_at_once(open_app):
+        page = open_app(seed=seeds.with_bill(seeds.S2, subtotalText="0", serviceText="31")).page
+        assert page.locator("p.error#subtotal-error").inner_text() == "Enter an amount like 12.50"  # the 1.0 markup until task A7
+&gt;       assert field_error(page.locator("#svc"), "svcErr") == error_state(SERVICE_MESSAGE, "chargeHint svcErr", shown=True)
+E       AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': True}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 30'}
+E         {'describedBy': 'svcErr chargeHint'} != {'describedBy': 'chargeHint svcErr'}
+E         {'hidden': None} != {'hidden': False}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1953: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[service-mouse]" time="0.269"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 30'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5FF5A3B60&gt;
+label = 'Service charge', bad = '31', error_id = 'svcErr'
+message = 'Enter a rate from 0 to 30', shown_described = 'chargeHint svcErr'
+how = 'mouse'
+
+    @pytest.mark.parametrize("label, bad, error_id, message, shown_described, how", RATE_PRESS_CASES)
+    def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
+            open_app, label, bad, error_id, message, shown_described, how):
+        page = open_app().page
+        field = opened_rate_field(label)(page)
+        support.replace_text(page, field, bad)
+&gt;       assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)  # not showing yet (CG-3)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 30'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2154: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[sst-mouse]" time="0.293"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 20'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5FF5AB530&gt;
+label = 'SST', bad = '25', error_id = 'sstErr'
+message = 'Enter a rate from 0 to 20', shown_described = 'chargeHint sstErr'
+how = 'mouse'
+
+    @pytest.mark.parametrize("label, bad, error_id, message, shown_described, how", RATE_PRESS_CASES)
+    def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
+            open_app, label, bad, error_id, message, shown_described, how):
+        page = open_app().page
+        field = opened_rate_field(label)(page)
+        support.replace_text(page, field, bad)
+&gt;       assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)  # not showing yet (CG-3)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 20'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2154: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate[service]" time="0.281"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 30'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5FEC4E820&gt;
+engine = 'chromium', label = 'Service charge', bad = '31', input_id = 'svc'
+error_id = 'svcErr', message = 'Enter a rate from 0 to 30'
+shown_described = 'chargeHint svcErr'
+
+    @pytest.mark.parametrize("label, bad, input_id, error_id, message, shown_described", [
+        pytest.param("Service charge", "31", "svc", "svcErr", SERVICE_MESSAGE, "chargeHint svcErr", id="service"),
+        pytest.param("SST", "25", "sst", "sstErr", SST_MESSAGE, "chargeHint sstErr", id="sst"),
+    ])
+    def test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate(open_app, engine, label, bad, input_id, error_id,
+                                                                       message, shown_described):
+        page = open_app(touch=True).page
+        field = opened_rate_field(label)(page)
+        support.replace_text(page, field, bad)
+&gt;       assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)  # not showing yet
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 30'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2195: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate[sst]" time="0.279"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 20'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5FF955B10&gt;
+engine = 'chromium', label = 'SST', bad = '25', input_id = 'sst'
+error_id = 'sstErr', message = 'Enter a rate from 0 to 20'
+shown_described = 'chargeHint sstErr'
+
+    @pytest.mark.parametrize("label, bad, input_id, error_id, message, shown_described", [
+        pytest.param("Service charge", "31", "svc", "svcErr", SERVICE_MESSAGE, "chargeHint svcErr", id="service"),
+        pytest.param("SST", "25", "sst", "sstErr", SST_MESSAGE, "chargeHint sstErr", id="sst"),
+    ])
+    def test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate(open_app, engine, label, bad, input_id, error_id,
+                                                                       message, shown_described):
+        page = open_app(touch=True).page
+        field = opened_rate_field(label)(page)
+        support.replace_text(page, field, bad)
+&gt;       assert field_error(field, error_id) == error_state(message, "chargeHint", shown=False)  # not showing yet
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 20'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2195: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_pressing_empty_space_also_waits_for_the_release" time="0.299"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 20'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5FF7B4EB0&gt;
+
+    def test_R10_pressing_empty_space_also_waits_for_the_release(open_app):
+        page = open_app().page
+        sst = sst_holding_25(page)
+        box = page.locator("h1.word").bounding_box()
+        page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)  # blank header space
+        page.mouse.down()
+&gt;       assert field_error(sst, "sstErr") == SST_HIDDEN
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 20'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2273: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_secondary_button_press_does_not_hold_the_error_back" time="0.283"><failure message="AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': True}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 20'}&#10;  {'describedBy': 'sstErr chargeHint'} != {'describedBy': 'chargeHint sstErr'}&#10;  {'hidden': None} != {'hidden': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5FF887690&gt;
+
+    def test_R10_a_secondary_button_press_does_not_hold_the_error_back(open_app):
+        # WR-03: a right click opens the context menu and on macOS and Linux the page gets no mouseup, so only the
+        # primary button, the one that can produce a click, may hold a blur back.
+        page = open_app().page
+        sst = sst_holding_25(page)
+        box = page.locator("h1.word").bounding_box()
+        page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
+        page.mouse.down(button="right")
+&gt;       assert field_error(sst, "sstErr") == SST_SHOWN  # before any release
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': True}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 20'}
+E         {'describedBy': 'sstErr chargeHint'} != {'describedBy': 'chargeHint sstErr'}
+E         {'hidden': None} != {'hidden': False}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2307: AssertionError</failure></testcase><testcase classname="test_app" name="test_R10_a_cancelled_press_releases_the_waiting_error" time="0.284"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'bad': None} != {'bad': False}&#10;  {'text': None} != {'text': 'Enter a rate from 0 to 20'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B5FF6775E0&gt;
+
+    def test_R10_a_cancelled_press_releases_the_waiting_error(open_app):
+        # A drag that the browser turns into a native drag ends with pointercancel and no mouseup. Playwright cannot start
+        # one, so the event is dispatched on the document as the browser would (a read-only stand-in, no app hook).
+        page = open_app().page
+        sst = sst_holding_25(page)
+        box = page.locator("h1.word").bounding_box()
+        page.mouse.move(box["x"] + box["width"] + 40, box["y"] + box["height"] / 2)
+        page.mouse.down()
+&gt;       assert field_error(sst, "sstErr") == SST_HIDDEN
+E       AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'bad': None} != {'bad': False}
+E         {'text': None} != {'text': 'Enter a rate from 0 to 20'}
+E         {'hidden': None} != {'hidden': True}
+E         {'invalid': None} != {'invalid': 'false'}
+E         {'icon': None} != {'icon': '#i-warning-circle'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2319: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_the_charges_summary_reads_check_sst_while_its_error_paragraph_is_hidden" time="0.328"><failure message="assert None is True&#10; +  where None = evaluate(&quot;() =&gt; document.querySelector('p.err#sstErr')?.hidden ?? null&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:8590/'&gt;.evaluate">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B58045F690&gt;
+
+    def test_R48_the_charges_summary_reads_check_sst_while_its_error_paragraph_is_hidden(open_app):
+        # The qa.md line "while p.err#sstErr still carries hidden", on the v1.1.0 Charges markup that task A6 builds.
+        page = open_app(seed=seeds.S1).page
+        open_charges_first(page)
+        type_25_into_sst(page)
+        assert (charges_summary(page) or {}).get("text") == "Check SST"
+&gt;       assert page.evaluate("() =&gt; document.querySelector('p.err#sstErr')?.hidden ?? null") is True
+E       assert None is True
+E        +  where None = evaluate("() =&gt; document.querySelector('p.err#sstErr')?.hidden ?? null")
+E        +    where evaluate = &lt;Page url='http://127.0.0.1:8590/'&gt;.evaluate
+
+tests\browser\test_app.py:3632: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_on_the_desktop_both_sections_show_their_own_headings" time="0.289"><failure message="assert [True, None] == [True, True]&#10;  &#10;  At index 1 diff: None != True&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002B580029A60&gt;
+
+    def test_R48_on_the_desktop_both_sections_show_their_own_headings(open_app):
+        # h2#peopleH comes with task A5 and h2#chargesH with task A6.
+        page = open_app(seed=seeds.S1).page
+        page.set_viewport_size({"width": 1280, "height": 800})
+&gt;       assert displayed(page, "h2#peopleH", "h2#chargesH") == [True, True]
+E       assert [True, None] == [True, True]
+E         
+E         At index 1 diff: None != True
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3661: AssertionError</failure></testcase><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[subtotal]" time="0.340" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[item-price]" time="0.481" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[service]" time="0.381" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[sst]" time="0.402" /><testcase classname="test_app" name="test_R19_a_charge_of_zero_is_allowed_and_still_shown" time="0.391" /></testsuite></testsuites>
