@@ -1,0 +1,102 @@
+✖ @R57 b count 2, a mouse, 5000 ms after a click at (100, 100), at (300, 300): repeat (point 1) (1.7314ms)
+✖ @R57 b count 3, a tap, 0 ms after a click at (100, 100), at (100, 100): repeat (point 1) (0.2983ms)
+✔ @R57 b count 1, a mouse, 10 ms after a click at (100, 100), at (100, 100): not a repeat (a mouse goes by its count only) (0.1617ms)
+✔ @R57 b count 0, a tap, 10 ms after a click at (100, 100), at (100, 100): not a repeat (a key press) (0.0983ms)
+✖ @R57 b count 1, a tap, 0 ms after a click at (100, 100), at (100, 100): repeat (point 2) (0.1188ms)
+✖ @R57 b count 1, a tap, 499.9 ms after a click at (100, 100), at (122, 78): repeat (point 2, every edge inside) (0.0867ms)
+✔ @R57 b count 1, a tap, 500 ms after a click at (100, 100), at (100, 100): not a repeat (500 ms is not less than 500) (0.0555ms)
+✔ @R57 b count 1, a tap, 10 ms after a click at (100, 100), at (122.5, 100): not a repeat (more than 22 px across) (0.0436ms)
+✔ @R57 b count 1, a tap, 10 ms after a click at (100, 100), at (100, 123): not a repeat (more than 22 px down) (0.0903ms)
+✔ @R57 b count 1, a tap, no previous click, at (100, 100): not a repeat (no previous pointer click) (0.1039ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 6
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61.5549
+
+✖ failing tests:
+
+test at tests\repeat.test.js:28:3
+✖ @R57 b count 2, a mouse, 5000 ms after a click at (100, 100), at (300, 300): repeat (point 1) (1.7314ms)
+  AssertionError [ERR_ASSERTION]: repeat (point 1)
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/repeat.test.js:30:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\repeat.test.js:28:3
+✖ @R57 b count 3, a tap, 0 ms after a click at (100, 100), at (100, 100): repeat (point 1) (0.2983ms)
+  AssertionError [ERR_ASSERTION]: repeat (point 1)
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/repeat.test.js:30:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\repeat.test.js:28:3
+✖ @R57 b count 1, a tap, 0 ms after a click at (100, 100), at (100, 100): repeat (point 2) (0.1188ms)
+  AssertionError [ERR_ASSERTION]: repeat (point 2)
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/repeat.test.js:30:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\repeat.test.js:28:3
+✖ @R57 b count 1, a tap, 499.9 ms after a click at (100, 100), at (122, 78): repeat (point 2, every edge inside) (0.0867ms)
+  AssertionError [ERR_ASSERTION]: repeat (point 2, every edge inside)
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///{workspace}/examples/split/tests/repeat.test.js:30:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

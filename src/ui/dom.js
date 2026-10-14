@@ -4,6 +4,7 @@
 // R33 (typing never loses its place) rests on reconcileChildren: it never re-inserts a node that is already
 // in place, and re-inserting a focused input drops its focus and its IME state. The setters also skip a write
 // of an equal value, which is belt and braces (measured in Chromium: writing an equal value moves nothing).
+import { isRepeatPress } from "./repeat.js";
 
 /**
  * Creates an element. `attrs` maps names to strings.
@@ -31,13 +32,41 @@ export function setAttr(node, name, value) {
   }
 }
 
+// What the window saw of the pointer (R57 (b)), written by watchPointerClicks and read by isRepeatClick.
+let lastPressWasTap = false;
+let lastClick = null; // { event, place: { timeStamp, x, y } }
+let clickBeforeLast = null;
+
 /**
- * True for the second and later press of a double click, triple click or double tap. `detail` is the click
- * count (0 for a key press), so a slow second click is an ordinary one: there is no timer.
+ * Called once at boot (src/main.js). Records the pointer type of the last pointerdown and the last two clicks with a
+ * click count above 0, for isRepeatClick. On window in the capture phase, so both run before the guard below can cancel
+ * an event: a click the guard cancels still counts as the previous pointer click.
+ */
+export function watchPointerClicks() {
+  // Read from pointerdown, not from the click, because WebKit gives a tap's click the pointerType "mouse" (spec R57 (b)).
+  window.addEventListener("pointerdown", (event) => { lastPressWasTap = event.pointerType !== "mouse"; }, true);
+  window.addEventListener("click", (event) => {
+    if (event.detail < 1) return;
+    clickBeforeLast = lastClick;
+    lastClick = { event, place: { timeStamp: event.timeStamp, x: event.clientX, y: event.clientY } };
+  }, true);
+}
+
+/**
+ * True for the second and later press of a double click, triple click or double tap: the mousedown or click `event`
+ * by the one rule `isRepeatPress` (R57 (b)). A key press (count 0) and a mouse click of its own (count 1) never are.
  * A Remove button tests it itself, whether or not a guard is armed (RG-CR-08): the error line a price field shows when
  * it is left pushes the chips down, and the repeat press of a double click on a chip then lands on that item's Remove.
  */
-export const isRepeatClick = (event) => event.detail > 1;
+export function isRepeatClick(event) {
+  // The window listener records a click before anyone judges it, so a click must not be compared with itself.
+  const previous = lastClick?.event === event ? clickBeforeLast : lastClick;
+  const press = { detail: event.detail, tap: lastPressWasTap, timeStamp: event.timeStamp, x: event.clientX, y: event.clientY };
+  return isRepeatPress(press, previous && previous.place);
+}
+
+const GUARDED = ["mousedown", "click", "keydown"];
+const isRepeat = (event) => (event.type === "keydown" ? event.repeat : isRepeatClick(event));
 
 /**
  * A click that moves the layout under the pointer arms this guard, because the rest of its double click, triple
@@ -51,21 +80,20 @@ export const isRepeatClick = (event) => event.detail > 1;
  * ignores a repeat press itself (`isRepeatClick`), and the guard covers everything else, Add person included, which has no
  * count test. "Dismiss note" moves the rows and arms nothing, its repeat press lands on a heading or a div (BUILD.md, call 18).
  * The guard cancels the repeat presses and clicks at the document, in the capture phase, before any control sees
- * them. A cancelled press also keeps focus where the app put it. It is gone at the first press that is not a
- * repeat, so a click or key press of its own (count 1 or 0) is never held back. No timer.
+ * them. A cancelled press also keeps focus where the app put it. It also cancels a held key's repeats (a keydown with
+ * `repeat` true, R57 (a)), so a held Enter cannot press the control that the click moved focus to. It is gone at the
+ * first press that is not a repeat, so a press of its own is never held back. Nothing is scheduled.
  */
 export function swallowRepeatClicks() {
   const guard = (event) => {
-    if (!isRepeatClick(event)) {
-      document.removeEventListener("mousedown", guard, true);
-      document.removeEventListener("click", guard, true);
+    if (!isRepeat(event)) {
+      for (const type of GUARDED) document.removeEventListener(type, guard, true);
       return;
     }
     event.stopPropagation();
     event.preventDefault();
   };
-  document.addEventListener("mousedown", guard, true);
-  document.addEventListener("click", guard, true);
+  for (const type of GUARDED) document.addEventListener(type, guard, true);
 }
 
 export function setText(node, text) {

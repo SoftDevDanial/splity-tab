@@ -1,0 +1,15 @@
+RED-first run 3 for task A17 (R57 (b), the @R57 @node table), 2026-10-14, frontend developer role.
+
+Stub. src/ui/repeat.js put into the working tree with the Write tool for this run only, never committed.
+No press is a repeat, which the four "repeat" rows must reject.
+
+  export function isRepeatPress(press, previous) {
+    return false;
+  }
+
+Command, run from the project root, the runner writing its own output beside this file.
+node --test --test-reporter=spec --test-reporter-destination=docs/modules/split-app/qa/unit/20261014-205012-red/node-test.txt tests/repeat.test.js
+
+Result. 10 tests, 4 fail, each on its AssertionError (both point 1 rows and both point 2 rows).
+Across runs 1 to 3 (20261014-204951-red, 20261014-205002-red, this one) every one of the 10 rows was seen
+failing on its own assertion at least once.

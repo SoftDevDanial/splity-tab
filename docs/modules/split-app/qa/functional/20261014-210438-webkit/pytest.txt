@@ -1,0 +1,5 @@
+engine webkit, browser version 26.5
+PASSED   call     test_app.py::test_R57_a_held_enter_on_the_only_items_remove_removes_that_item_only (1.33s)
+PASSED   call     test_app.py::test_R57_a_held_enter_on_new_bill_leaves_the_dialog_open_on_cancel (0.99s)
+FAILED   call     test_app.py::test_R57_separate_presses_still_act_and_a_held_letter_still_types (1.19s)
+exit status 1

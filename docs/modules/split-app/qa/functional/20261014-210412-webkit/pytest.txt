@@ -1,0 +1,16 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R7_a_double_click_or_double_tap_on_remove_removes_one_row[item-2-of-4-touch] (0.60s)
+FAILED   call     test_app.py::test_R7_a_double_click_or_double_tap_on_remove_removes_one_row[person-2-of-5-touch] (0.50s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x640-touch-double] (0.58s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-touch-double] (0.54s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-touch-double] (0.59s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x640-touch-double] (0.59s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-touch-double] (0.55s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-touch-double] (0.64s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-360x640-touch-double] (0.62s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-390x844-touch-double] (0.66s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-1280x800-touch-double] (0.58s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x640-touch-double] (0.55s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-touch-double] (0.57s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-touch-double] (0.59s)
+exit status 1

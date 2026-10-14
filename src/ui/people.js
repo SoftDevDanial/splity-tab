@@ -14,7 +14,7 @@ export function createPeople({ onName, onAdd, onRemove }) {
     const remove = el("button", { class: "icon-btn", type: "button" }, icon("x"));
     input.addEventListener("input", () => onName(id, input.value));
     // Removing a row slides the next control under the pointer (the next row's Remove, or Add person for the last
-    // row), so the rest of a double click must not reach it (swallowRepeatClicks). The count test is the backstop for a
+    // row), so the rest of a double click must not reach it (swallowRepeatClicks). The repeat test is the backstop for a
     // layout move no click armed, the same line as in items.js (RG-CR-08).
     remove.addEventListener("click", (event) => { swallowRepeatClicks(); if (!isRepeatClick(event)) onRemove(id); });
     return { el: el("li", { class: "field person" }, input, remove), input, remove };

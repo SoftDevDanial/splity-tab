@@ -1,0 +1,14 @@
+RED-first run 2 for task A17 (R57 (b), the @R57 @node table), 2026-10-14, frontend developer role.
+
+Stub. src/ui/repeat.js put into the working tree with the Write tool for this run only, never committed.
+Every press is a repeat, which the six "not a repeat" rows must reject.
+
+  export function isRepeatPress(press, previous) {
+    return true;
+  }
+
+Command, run from the project root, the runner writing its own output beside this file.
+node --test --test-reporter=spec --test-reporter-destination=docs/modules/split-app/qa/unit/20261014-205002-red/node-test.txt tests/repeat.test.js
+
+Result. 10 tests, 6 fail, each on its AssertionError (every "not a repeat" row). The two point 1 rows, which
+runs 1 and 2 both pass, are covered by run 3, the folder 20261014-*-red after this one.

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="14" skipped="0" tests="14" time="10.939" timestamp="2026-10-14T21:04:12.805446+08:00" hostname="{host}"><testcase classname="test_app" name="test_R7_a_double_click_or_double_tap_on_remove_removes_one_row[item-2-of-4-touch]" time="1.769"><failure message="AssertionError: assert 4 == (4 - 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C082F81A0&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+button = 'Remove Char kuey teow', rows = 'li.item', before = 4, how = 'touch'
+
+    @pytest.mark.parametrize("how", ["mouse", "touch"])
+    @pytest.mark.parametrize("seed, button, rows, before", REMOVE_CASES)
+    def test_R7_a_double_click_or_double_tap_on_remove_removes_one_row(open_app, seed, button, rows, before, how):
+        # WR-01: the row below slides under the pointer after the first click, and the second click removed that one too.
+        page = open_app(seed=seed, touch=how == "touch").page
+        assert page.locator(rows).count() == before
+        activate_twice(page, how, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 4 == (4 - 1)
+E        +  where 4 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2200: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_double_click_or_double_tap_on_remove_removes_one_row[person-2-of-5-touch]" time="0.527"><failure message="AssertionError: assert 5 == (5 - 1)&#10; +  where 5 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C08084930&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"P1"},{"id":"p2","name":"P2"},{"id":"p3","name":"P3"},...,"name":"P5"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":6}}'
+button = 'Remove P2', rows = 'li.person', before = 5, how = 'touch'
+
+    @pytest.mark.parametrize("how", ["mouse", "touch"])
+    @pytest.mark.parametrize("seed, button, rows, before", REMOVE_CASES)
+    def test_R7_a_double_click_or_double_tap_on_remove_removes_one_row(open_app, seed, button, rows, before, how):
+        # WR-01: the row below slides under the pointer after the first click, and the second click removed that one too.
+        page = open_app(seed=seed, touch=how == "touch").page
+        assert page.locator(rows).count() == before
+        activate_twice(page, how, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 5 == (5 - 1)
+E        +  where 5 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2200: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-360x640-touch-double]" time="0.609"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C08002C40&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+button = 'Remove Chen', rows = 'li.person', focus_after = 'Person 2 name'
+viewport = (360, 640), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 3 == (3 - 1)
+E        +  where 3 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-390x844-touch-double]" time="0.564"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C06F01010&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+button = 'Remove Chen', rows = 'li.person', focus_after = 'Person 2 name'
+viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 3 == (3 - 1)
+E        +  where 3 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S2-person-3-of-3-1280x800-touch-double]" time="0.662"><failure message="AssertionError: assert 3 == (3 - 1)&#10; +  where 3 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C07EF4E00&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+button = 'Remove Chen', rows = 'li.person', focus_after = 'Person 2 name'
+viewport = (1280, 800), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 3 == (3 - 1)
+E        +  where 3 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-360x640-touch-double]" time="0.621"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C07F08670&gt;
+seed = '{"version":2,"bill":{"mode":"even","subtotalText":"","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top...,{"id":"p9","name":"Jia Hui"},{"id":"p10","name":"Kumar"},{"id":"p11","name":"Lina"},{"id":"p12","name":"Mei Ling"}]}}'
+button = 'Remove Mei Ling', rows = 'li.person', focus_after = 'Person 11 name'
+viewport = (360, 640), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 12 == (12 - 1)
+E        +  where 12 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-390x844-touch-double]" time="0.580"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C07C8B740&gt;
+seed = '{"version":2,"bill":{"mode":"even","subtotalText":"","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top...,{"id":"p9","name":"Jia Hui"},{"id":"p10","name":"Kumar"},{"id":"p11","name":"Lina"},{"id":"p12","name":"Mei Ling"}]}}'
+button = 'Remove Mei Ling', rows = 'li.person', focus_after = 'Person 11 name'
+viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 12 == (12 - 1)
+E        +  where 12 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S8-person-12-of-12-1280x800-touch-double]" time="0.686"><failure message="AssertionError: assert 12 == (12 - 1)&#10; +  where 12 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C079F19B0&gt;
+seed = '{"version":2,"bill":{"mode":"even","subtotalText":"","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top...,{"id":"p9","name":"Jia Hui"},{"id":"p10","name":"Kumar"},{"id":"p11","name":"Lina"},{"id":"p12","name":"Mei Ling"}]}}'
+button = 'Remove Mei Ling', rows = 'li.person', focus_after = 'Person 11 name'
+viewport = (1280, 800), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 12 == (12 - 1)
+E        +  where 12 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.person'&gt; = locator('li.person')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-360x640-touch-double]" time="0.649"><failure message="AssertionError: assert 4 == (4 - 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C07700EB0&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+button = 'Remove Satay, 10 sticks', rows = 'li.item'
+focus_after = 'Item 3 name', viewport = (360, 640), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 4 == (4 - 1)
+E        +  where 4 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-390x844-touch-double]" time="0.685"><failure message="AssertionError: assert 4 == (4 - 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C076FE820&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+button = 'Remove Satay, 10 sticks', rows = 'li.item'
+focus_after = 'Item 3 name', viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 4 == (4 - 1)
+E        +  where 4 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-1280x800-touch-double]" time="0.649"><failure message="AssertionError: assert 4 == (4 - 1)&#10; +  where 4 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C07B4FCC0&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+button = 'Remove Satay, 10 sticks', rows = 'li.item'
+focus_after = 'Item 3 name', viewport = (1280, 800), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 4 == (4 - 1)
+E        +  where 4 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x640-touch-double]" time="0.582"><failure message="AssertionError: assert 1 == (1 - 1)&#10; +  where 1 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C0786E770&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+button = 'Remove Satay, 10 sticks', rows = 'li.item', focus_after = 'Add item'
+viewport = (360, 640), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 1 == (1 - 1)
+E        +  where 1 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-touch-double]" time="0.600"><failure message="AssertionError: assert 1 == (1 - 1)&#10; +  where 1 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C07C2D0C0&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+button = 'Remove Satay, 10 sticks', rows = 'li.item', focus_after = 'Add item'
+viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 1 == (1 - 1)
+E        +  where 1 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-touch-double]" time="0.692"><failure message="AssertionError: assert 1 == (1 - 1)&#10; +  where 1 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count&#10; +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')&#10; +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000029C07BE6820&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+button = 'Remove Satay, 10 sticks', rows = 'li.item', focus_after = 'Add item'
+viewport = (1280, 800), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+    @pytest.mark.parametrize("seed, button, rows, focus_after", LAST_ROW_CASES)
+    def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
+            open_app, seed, button, rows, focus_after, viewport, gesture):
+        # SEC-01: the second click landed on "Add person" (people) and saved a blank person. The last item's second click
+        # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
+        page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+        before = page.locator(rows).count()
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
+&gt;       assert page.locator(rows).count() == before - 1
+E       AssertionError: assert 1 == (1 - 1)
+E        +  where 1 = count()
+E        +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt;.count
+E        +      where &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:59401/'&gt; selector='li.item'&gt; = locator('li.item')
+E        +        where locator = &lt;Page url='http://127.0.0.1:59401/'&gt;.locator
+
+tests\browser\test_app.py:2265: AssertionError</failure></testcase></testsuite></testsuites>

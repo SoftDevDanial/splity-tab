@@ -24,7 +24,7 @@ export function createItems({ onName, onPrice, onPriceLeave, onToggle, onAdd, on
     name.addEventListener("input", () => onName(id, name.value));
     price.addEventListener("input", () => onPrice(id, price.value));
     onFieldLeave(price, (text) => onPriceLeave(id, text));
-    // The count test is for a layout move no click armed: a price error line pushes the chips over this button (RG-CR-08).
+    // The repeat test is for a layout move no click armed: a price error line pushes the chips over this button (RG-CR-08).
     remove.addEventListener("click", (event) => { swallowRepeatClicks(); if (!isRepeatClick(event)) onRemove(id); }); // as in people.js
     const makeToggle = (personId) => {
       const tap = el("button", { class: "tap", type: "button" });

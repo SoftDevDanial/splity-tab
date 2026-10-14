@@ -18,7 +18,9 @@ import { createCharges } from "./ui/charges.js";
 import { icon } from "./ui/icons.js";
 import { createPanel, hasShares } from "./ui/panel.js";
 import { blockedReceipt } from "./ui/receipt.js";
-import { reconcileChildren } from "./ui/dom.js";
+import { reconcileChildren, watchPointerClicks } from "./ui/dom.js";
+
+watchPointerClicks(); // R57 (b): every repeat check reads what these window listeners record from the first press on
 
 // Boot (R2, R26 to R28, R46). A cold boot is a new bill and writes nothing. A readable draft is shown as it was.
 // An unreadable one starts a new bill, saves it at once so a reload does not show the note again, and shows the note.

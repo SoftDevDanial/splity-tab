@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="4.252" timestamp="2026-10-14T21:04:52.297262+08:00" hostname="{host}"><testcase classname="test_app" name="test_R57_a_held_enter_on_the_only_items_remove_removes_that_item_only" time="2.146" /><testcase classname="test_app" name="test_R57_a_held_enter_on_new_bill_leaves_the_dialog_open_on_cancel" time="1.032" /><testcase classname="test_app" name="test_R57_separate_presses_still_act_and_a_held_letter_still_types" time="0.696"><failure message="AssertionError: assert [] == [{'id': 'i8',...', 'who': []}]&#10;  &#10;  Right contains one more item: {'id': 'i8', 'name': '', 'priceText': '', 'who': []}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000026F323E10C0&gt;
+
+    def test_R57_separate_presses_still_act_and_a_held_letter_still_types(open_app):
+        page = open_app(seed=ONE_ITEM).page
+        next_id = stored(page)["bill"]["nextId"]
+        tab_until(page, page.get_by_role("button", name="Remove Satay, 10 sticks", exact=True))
+        page.keyboard.press("Enter")
+        assert has_focus(page.get_by_role("button", name="Add item", exact=True))
+        page.keyboard.press("Enter")
+&gt;       assert stored(page)["bill"]["items"] == [{"id": f"i{next_id}", "name": "", "priceText": "", "who": []}]
+E       AssertionError: assert [] == [{'id': 'i8',...', 'who': []}]
+E         
+E         Right contains one more item: {'id': 'i8', 'name': '', 'priceText': '', 'who': []}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2563: AssertionError</failure></testcase></testsuite></testsuites>

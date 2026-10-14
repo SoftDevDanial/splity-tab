@@ -1,0 +1,4 @@
+engine webkit, browser version 26.5
+test_app.py::test_R57_after_a_held_enter_on_the_only_remove_the_strip_reads_the_empty_message | xfail task A11
+test_app.py::test_R57_a_slow_second_tap_and_a_quick_tap_elsewhere_change_the_draft_as_two_presses | xfail task A5
+count 2

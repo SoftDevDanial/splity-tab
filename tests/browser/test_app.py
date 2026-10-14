@@ -2022,16 +2022,27 @@ def test_R10_a_cancelled_press_releases_the_waiting_error(open_app):
 
 # ---------------------------------------------------------------- Code review CR-01, WR-01, WR-06: ghost clicks and the backdrop
 # A double click or a double tap is two clicks. The first can close the dialog or remove a row, so the second lands on
-# whatever is drawn under the pointer afterwards. `event.detail` is the click count: 1 for the first, 2 for the second.
+# whatever is drawn under the pointer afterwards. `event.detail` is the click count: 1 for the first, 2 for the second,
+# except that WebKit gives each tap of a double tap 1, which spec R57 (b) catches by time and place.
 PHONES = [(375, 667), (360, 640), (412, 732)]  # the sizes where QA and the code review reproduced it, with the S1 bill
-# The click counts of the clicks and of the mouse presses that reach the page. The guard cancels both kinds (RG-CR-02), so a
-# test of how long it lasts has to watch both: a guard that kept only its press listener changes no click.
+# qa.md "A body recorder", two halves. The body half keeps the click counts of the clicks and of the mouse presses that reach
+# the page. The guard cancels both kinds (RG-CR-02), so a test of how long it lasts has to watch both: a guard that kept only
+# its press listener changes no click. The window half (R57 (b), task A17) keeps every pointerdown, mousedown and click
+# before the app's guard can cancel it, so the proof that a repeat was cancelled reads the events themselves, whatever lies
+# under the point (19 WebKit cases passed at A2 only because the layout had moved). Resetting the arrays restarts both.
 RECORD_BODY_CLICKS_JS = """() => {
   window.testBodyClicks = [];
   window.testBodyPresses = [];
+  window.testGesture = [];
   document.body.addEventListener('click', (event) => window.testBodyClicks.push(event.detail), false);
   document.body.addEventListener('mousedown', (event) => window.testBodyPresses.push(event.detail), false);
+  for (const type of ['pointerdown', 'mousedown', 'click']) window.addEventListener(type, (event) => window.testGesture.push(event), true);
 }"""
+RESET_RECORDER_JS = "() => { window.testBodyClicks = []; window.testBodyPresses = []; window.testGesture = []; }"
+# Read after the gesture, so defaultPrevented is each event's state once its dispatch is over.
+GESTURE_JS = """() => window.testGesture.map((event) => ({ type: event.type, pointerType: event.pointerType ?? null,
+  detail: event.detail, timeStamp: event.timeStamp, x: event.clientX, y: event.clientY, prevented: event.defaultPrevented }))"""
+GESTURE_PRESSES = {"single": 1, "mouse-double": 2, "mouse-triple": 3, "touch-double": 2}
 
 
 def settle(page):
@@ -2045,6 +2056,31 @@ WHOLE_DOUBLE_CLICK = {"presses": [1, 2], "clicks": [1, 2]}  # what the page sees
 def seen_by_the_page(page):
     """The click counts of the presses and clicks that reached the body since RECORD_BODY_CLICKS_JS. A cancelled one is missing."""
     return page.evaluate("({ presses: window.testBodyPresses, clicks: window.testBodyClicks })")
+
+
+def presses_and_clicks(page):
+    """The mousedown and the click events the window half of the recorder kept, in order, as two lists."""
+    events = page.evaluate(GESTURE_JS)
+    return [e for e in events if e["type"] == "mousedown"], [e for e in events if e["type"] == "click"]
+
+
+def assert_only_press_1_and_click_1_reached_the_page(page, presses, tapped=False):
+    """qa.md "Only press 1 and click 1 reached the page" for a gesture of `presses` presses (spec R57 (b)). The body
+    counted one press and one click, the window saw every press and click of the gesture, and each one after the first
+    was cancelled. For a double tap (`tapped`), its second click also came less than 500 ms after the first and within
+    22 px, or the case fails and names the gap, because it did not test a double tap."""
+    downs, clicks = presses_and_clicks(page)
+    assert (len(downs), len(clicks)) == (presses, presses), (
+        f"the window saw {len(downs)} presses and {len(clicks)} clicks, not {presses} of each")
+    if tapped:
+        gap = clicks[1]["timeStamp"] - clicks[0]["timeStamp"]
+        across, down = abs(clicks[1]["x"] - clicks[0]["x"]), abs(clicks[1]["y"] - clicks[0]["y"])
+        assert gap < 500 and across <= 22 and down <= 22, (
+            f"not a double tap: the second click came {gap:.1f} ms after the first, {across} px across and {down} px down")
+    uncancelled = [f"{kind} {number}" for kind, events in (("mousedown", downs), ("click", clicks))
+                   for number, event in enumerate(events, start=1) if number > 1 and not event["prevented"]]
+    assert uncancelled == [], f"a repeat reached the page uncancelled: {', '.join(uncancelled)}"
+    assert seen_by_the_page(page) == {"presses": [1], "clicks": [1]}
 
 
 def activate_twice(page, how, point):
@@ -2068,9 +2104,12 @@ def test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing(open_app, vi
     page = open_app(seed=seeds.S1, viewport=viewport, touch=how == "touch").page
     before = snapshot(page)
     open_dialog(page)
+    page.evaluate(RECORD_BODY_CLICKS_JS)
     activate_twice(page, how, centre_of(page.get_by_role("button", name="Cancel", exact=True)))
     assert dialog_is_open(page) is False and focused(page) == "New bill"
     assert stored_text(page) == seeds.S1 and snapshot(page) == before
+    # R57 (b): the end state alone passes at 360 x 640 in WebKit by layout, the recorder proves the second tap was cancelled.
+    assert_only_press_1_and_click_1_reached_the_page(page, 2, tapped=how == "touch")
 
 
 @pytest.mark.parametrize("how", ["mouse", "touch"])
@@ -2084,7 +2123,7 @@ def test_R30_the_second_click_of_a_double_activation_never_reaches_the_page(open
     point = (12, 12) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
     activate_twice(page, how, point)
     assert dialog_is_open(page) is False
-    assert page.evaluate("window.testBodyClicks") == [1]
+    assert_only_press_1_and_click_1_reached_the_page(page, 2, tapped=how == "touch")
 
 
 def test_R30_a_triple_click_on_cancel_changes_nothing_either(open_app):
@@ -2222,10 +2261,13 @@ def test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing(
     # lands on inert space, so for items the focus check is what shows the guard: the press must not move focus to the body.
     page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
     before = page.locator(rows).count()
+    page.evaluate(RECORD_BODY_CLICKS_JS)
     gesture_at(page, gesture, centre_of(page.get_by_role("button", name=button, exact=True)))
     assert page.locator(rows).count() == before - 1
     assert stored(page)["bill"] == bill_without_last(seed, rows)  # no blank row, and the id counter did not move
     assert support.active_label(page) == focus_after
+    # R57 (b): for S2 and S8 the end state alone passes in WebKit by layout, the recorder proves the repeat was cancelled.
+    assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
 
 
 @pytest.mark.parametrize("how", ["mouse", "touch"])
@@ -2322,10 +2364,13 @@ def test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it(open_app, 
     # The "centre" rows are the control: the repeat press misses the new Remove button there, on every tree.
     seed = people_bill(people)
     page = open_app(seed=seed, viewport=viewport, touch=gesture == "touch-double").page
+    page.evaluate(RECORD_BODY_CLICKS_JS)
     gesture_at(page, gesture, press_point(page.get_by_role("button", name="Add person", exact=True), place))
     assert page.locator("li.person").count() == people + 1
     assert stored(page)["bill"] == bill_after_one_add(seed, "people")  # the blank row stayed, and one id was spent, not two
     assert support.active_label(page) == f"Person {people + 1} name"  # R34
+    # R57 (b): the end state alone passes in WebKit by layout, the recorder proves the repeat was cancelled.
+    assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
 
 
 @pytest.mark.parametrize("place", PRESS_PLACES)
@@ -2342,7 +2387,7 @@ def test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page
     assert page.locator("li.item").count() == items + 1
     assert stored(page)["bill"] == bill_after_one_add(seed, "items")
     assert support.active_label(page) == f"Item {items + 1} name"  # R34
-    assert seen_by_the_page(page) == {"presses": [1], "clicks": [1]}
+    assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
 
 
 # ---------------------------------------------------------------- Regression RG-CR-08: the repeat press on a chip under a price error (R7, R12)
@@ -2402,8 +2447,8 @@ def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewpor
     page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
     page.evaluate(RECORD_BODY_CLICKS_JS)
     gesture_at(page, gesture, centre_of(new_bill_button(page)))
-    assert dialog_is_open(page) is True and focused(page) == "Cancel"
-    assert page.evaluate("window.testBodyClicks") == [1] and stored_text(page) == seeds.S1
+    assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+    assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
 
 
 @pytest.mark.parametrize("close", ["cancel", "backdrop", "escape"])
@@ -2444,6 +2489,134 @@ def test_R29_the_guard_of_opening_ends_at_the_next_press(open_app):
     # unpressed too.
     assert seen_by_the_page(page) == WHOLE_DOUBLE_CLICK
     assert ben.get_attribute("aria-pressed") == "false" and stored_text(page) == seeds.S1
+
+
+# ---------------------------------------------------------------- v1.1.0 task A17: held keys and double taps (R57)
+# (a) A held key sends keydown after keydown with `repeat` true. The click that removes the only item moves focus to
+# "Add item", so each repeat of a held Enter added a blank item (SEC-04 of 1.0). (b) A double tap is one press in both
+# engines. The double tap rows of R6, R7, R12, R29 and R30 above prove (b) through the body recorder, the Node table in
+# tests/repeat.test.js pins its edges, and the last scenario here is its other side: a slow tap or a tap elsewhere acts.
+def has_focus(locator):
+    return locator.evaluate("(el) => el === document.activeElement")
+
+
+def tab_until(page, locator, limit=60):
+    """qa.md "press Tab until X has focus", at most `limit` presses."""
+    for _ in range(limit):
+        if has_focus(locator):
+            return
+        page.keyboard.press("Tab")
+    assert has_focus(locator), f"Tab did not reach {locator} in {limit} presses"
+
+
+def hold(page, key):
+    """qa.md "hold": keyboard.down, 520 ms, four more keyboard.down (a key already down sends keydown with repeat true), keyboard.up."""
+    page.keyboard.down(key)
+    page.wait_for_timeout(520)
+    for _ in range(4):
+        page.keyboard.down(key)
+    page.keyboard.up(key)
+    settle(page)
+
+
+def hold_enter_on_the_only_remove(open_app):
+    """The first scenario's gesture on K1 with only its last item. Returns the page and the nextId noted before it."""
+    page = open_app(seed=ONE_ITEM).page
+    next_id = stored(page)["bill"]["nextId"]
+    tab_until(page, page.get_by_role("button", name="Remove Satay, 10 sticks", exact=True))
+    hold(page, "Enter")
+    return page, next_id
+
+
+def test_R57_a_held_enter_on_the_only_items_remove_removes_that_item_only(open_app):
+    page, next_id = hold_enter_on_the_only_remove(open_app)
+    bill = stored(page)["bill"]
+    assert (len(bill["items"]), bill["nextId"]) == (0, next_id), "the held key's repeats added blank items"
+    assert has_focus(page.get_by_role("button", name="Add item", exact=True))
+    assert card_text(page) == BLOCKED_CARD["no-prices"]
+
+
+@pytest.mark.xfail(strict=True, reason="task A11")
+def test_R57_after_a_held_enter_on_the_only_remove_the_strip_reads_the_empty_message(open_app):
+    # The strip half of the first scenario's last line. The strip's message is task A11's (R49).
+    page, _ = hold_enter_on_the_only_remove(open_app)
+    assert page.locator("#stripInfo").inner_text() == "Add each item and tap who had it to see the splits."
+
+
+def test_R57_a_held_enter_on_new_bill_leaves_the_dialog_open_on_cancel(open_app):
+    page = open_app(seed=seeds.S1).page
+    tab_until(page, new_bill_button(page))
+    # Four repeats on 1.0 closed and opened the dialog twice and ended open on Cancel, so the end state alone cannot
+    # tell. The dialog must never close while the key is held.
+    page.locator("dialog#newDlg").evaluate("(d) => { window.testCloses = 0; d.addEventListener('close', () => { window.testCloses += 1; }); }")
+    hold(page, "Enter")
+    assert page.evaluate("window.testCloses") == 0, "a repeat of the held Enter closed the dialog"
+    assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+
+
+def test_R57_separate_presses_still_act_and_a_held_letter_still_types(open_app):
+    page = open_app(seed=ONE_ITEM).page
+    next_id = stored(page)["bill"]["nextId"]
+    tab_until(page, page.get_by_role("button", name="Remove Satay, 10 sticks", exact=True))
+    page.keyboard.press("Enter")
+    assert has_focus(page.get_by_role("button", name="Add item", exact=True))
+    page.keyboard.press("Enter")
+    assert stored(page)["bill"]["items"] == [{"id": f"i{next_id}", "name": "", "priceText": "", "who": []}]
+    name = page.get_by_role("textbox", name="Item 1 name", exact=True)
+    assert has_focus(name)
+    hold(page, "a")
+    assert name.input_value() == "aaaaa"
+
+
+def slow_tap_then_tap_elsewhere(open_app):
+    """The gestures of qa.md "A slow second tap, or a quick tap elsewhere, is never held back", on K2 with touch at
+    390 x 844. Returns what each part saw: the gap or the two points, the body's counts, whether the second tap's
+    mousedown and click were cancelled, where focus is and the names in the draft after the part."""
+    page = open_app(seed=seeds.S2, touch=True).page
+    open_people_first(page)
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    add_person = page.get_by_role("button", name="Add person", exact=True)
+    first_name = page.get_by_role("textbox", name="Person 1 name", exact=True)
+
+    def part(first, second, wait):
+        page.evaluate(RESET_RECORDER_JS)
+        page.touchscreen.tap(*first)
+        if wait:
+            page.wait_for_timeout(wait)
+        page.touchscreen.tap(*second)
+        settle(page)
+        downs, clicks = presses_and_clicks(page)
+        seen = seen_by_the_page(page)
+        return {"gap": clicks[1]["timeStamp"] - clicks[0]["timeStamp"], "first": first, "second": second,
+                "counted": (len(seen["presses"]), len(seen["clicks"])),
+                "cancelled": (downs[1]["prevented"], clicks[1]["prevented"]), "first_name_focused": has_focus(first_name),
+                "names": [person["name"] for person in stored(page)["bill"]["people"]]}
+
+    point = centre_of(add_person)
+    slow = part(point, point, 600)
+    elsewhere = part(centre_of(add_person), centre_of(first_name), 0)
+    return slow, elsewhere
+
+
+def test_R57_a_slow_second_tap_or_a_quick_tap_elsewhere_is_never_held_back(open_app):
+    # The draft lines of the scenario need Add person to stay under the point, which task A5 builds (the next test).
+    slow, elsewhere = slow_tap_then_tap_elsewhere(open_app)
+    assert slow["gap"] >= 500, f"the second tap came {slow['gap']:.1f} ms after the first, so it was not a slow second tap"
+    assert slow["counted"] == (2, 2), f"the body counted {slow['counted']} presses and clicks"
+    assert slow["cancelled"] == (False, False), "the slow second tap was held back"
+    (ax, ay), (bx, by) = elsewhere["first"], elsewhere["second"]
+    assert abs(bx - ax) > 22 or abs(by - ay) > 22, f"Add person {(ax, ay)} and Person 1 name {(bx, by)} lie within 22 px"
+    assert elsewhere["counted"] == (2, 2), f"the body counted {elsewhere['counted']} presses and clicks"
+    assert elsewhere["cancelled"] == (False, False), "the quick tap elsewhere was held back"
+    assert elsewhere["first_name_focused"] is True
+
+
+@pytest.mark.xfail(strict=True, reason="task A5")
+def test_R57_a_slow_second_tap_and_a_quick_tap_elsewhere_change_the_draft_as_two_presses(open_app):
+    # On the 1.0 People block the first tap moves Add person a cell down, so the slow second tap lands on the new name.
+    slow, elsewhere = slow_tap_then_tap_elsewhere(open_app)
+    assert slow["names"] == ["Aisyah", "Ben", "Chen", "", ""]
+    assert len(elsewhere["names"]) == 6
 
 
 # ---------------------------------------------------------------- Task 11: cross-cutting checks (R32, R33, R35, R36, R37, R39)

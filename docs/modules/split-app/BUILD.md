@@ -349,6 +349,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 | C2 (split-core) | `ad0436b` | Committed with the app tests C2 breaks marked for A1, listed in `docs/modules/split-core/BUILD.md`, section C2 |
 | A1 | `4231563` | `feat(split-app): draft version 2 with the spare choice (task A1, R61, R25, R26)`, recorded by the A2 section |
 | A2 | `d62c270` | `feat(split-app): shell and head, the sprite, the mark and the tab icon, cold boot into the blocked card (task A2, ...)`, recorded by the A3 section |
+| A3 | `695bff5` | `feat(split-app): the notes and the save warning, storage failures kept in memory, the storage drivers and the dark reduce test context (task A3, ...)`, recorded by the A17 section |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -576,3 +577,82 @@ Built by the frontend developer role from `spec.md` (task A3, R27, R28, R46, R47
 - The limit SW8 (private browsing and Safari's 7-day clean-up lose data with no failure the page can see) is the orchestrator's README line (R47).
 
 **How to view.** Serve as above. The unreadable note shows with a stored `split.draft` of `not json`. The save warning shows when the browser refuses storage, for example Safari with "Block All Cookies".
+
+## v1.1.0 task A17, the held-key guard and the tap-safe repeat rule (2026-10-14)
+Built by the frontend developer role from `spec.md` (task A17, R57 (a) and (b), R6, R7, R12, R29, R30, the Gesture to action rows of R57) and `qa.md` (Phrases "A body recorder", the three "Held keys" scenarios, "Double taps" with the `@R57 @node` table and "A slow second tap, or a quick tap elsewhere, is never held back"), resumed from `docs/progress/handoff/handoff-2026-10-14-execute-split-A17.md`.
+
+**Status. Committed with this section.** Node, Chromium and WebKit run on the commit's tree. No H-04 failure is left in WebKit. The next section or the commit table records the hash.
+
+**Phase skills (design row of `docs/phase-skills.md`).** Read from disk, `taste-skill` (`taste-skill/1.0.0/skills/taste-skill/SKILL.md`) and `frontend-design` (`frontend-design/8d392c816966/skills/frontend-design/SKILL.md`). A17 changes behaviour only, no markup, style or copy, so what transferred is narrow.
+- Nothing changes silently (taste-skill 11.F). No element, class, string or style is added or changed, and the goldens are not read for A17.
+- The full cycle of an interactive state (taste-skill 4.5), read as behaviour. A press the user meant still acts (a slow second tap, a tap elsewhere, a second key press), and only the repeat of one gesture is dropped.
+- Existing accessibility wins are kept (taste-skill 11.C). Keyboard use is as in 1.0 apart from a held key's repeats while the guard is armed, and a cancelled press keeps focus where the app put it.
+- The quality floor and restraint (frontend-design) are untouched. Nothing is scheduled, so no timer and no animation frame.
+- No em dash (taste-skill 9.G), checked in every file written.
+- Not transferred, because A17 draws nothing. The design read, the dials, palette, type, layout, motion and libraries.
+
+**What changed** (cite by symbol).
+- `src/ui/repeat.js` (new). `isRepeatPress(press, previous)`, the one rule of R57 (b). Pure, and its import touches no DOM. A click count above 1 is a repeat (point 1). A tap with click count 1 is a repeat when it comes less than 500 ms after the previous pointer click and within 22 px of it on each axis (point 2).
+- `src/ui/dom.js`. `watchPointerClicks()` adds the two `window` capture listeners, which keep the last `pointerdown`'s type and the last two clicks with a click count above 0. `isRepeatClick(event)` builds the press record and asks `isRepeatPress`, and skips the click being judged when it picks the previous one (the handoff's trap). `swallowRepeatClicks` also listens to `keydown`, cancels one whose `repeat` is true (R57 (a)), and ends at the first `mousedown`, `click` or `keydown` that is not a repeat (`isRepeat`).
+- `src/main.js`. Calls `watchPointerClicks()` once, first at boot.
+- `src/ui/people.js`, `src/ui/items.js`. One comment word each, "count test" became "repeat test".
+- `tests/repeat.test.js` (new). The `@R57 @node` table, ten rows, one test each.
+- `tests/browser/test_app.py`. See Tests.
+
+**Comments written.** The module header and the `isRepeatPress` doc in `src/ui/repeat.js`. In `src/ui/dom.js` the docs of `watchPointerClicks`, `isRepeatClick` and `swallowRepeatClicks`, and two "looks wrong but is not" lines (the tap flag is read from `pointerdown`, a click is never compared with itself). The boot line in `src/main.js`. The recorder comment, the CR-01 header line on WebKit's tap count and the helper docstrings in the test file.
+
+**Tests.**
+- The body recorder (qa.md Phrases) gains its window half in `RECORD_BODY_CLICKS_JS`. Every `pointerdown`, `mousedown` and `click` is kept as the event itself and read by `GESTURE_JS` once the gesture is over. `assert_only_press_1_and_click_1_reached_the_page(page, presses, tapped)` is the one home of the phrase. The window saw every press and click, each after the first has `defaultPrevented` true, a double tap's second click came less than 500 ms after the first and within 22 px (or the case names the gap), and the body counted one press and one click.
+- The recorder check is added to every row of the three 1.0 tests that carry the 19, `test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it`, `test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing` and `test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing`. The three 1.0 tests that read "only press 1 and click 1" from the body half alone now use the helper, `test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page`, `test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open` and `test_R30_the_second_click_of_a_double_activation_never_reaches_the_page`.
+- New. `test_R57_a_held_enter_on_the_only_items_remove_removes_that_item_only`, `test_R57_after_a_held_enter_on_the_only_remove_the_strip_reads_the_empty_message` (xfail A11), `test_R57_a_held_enter_on_new_bill_leaves_the_dialog_open_on_cancel`, `test_R57_separate_presses_still_act_and_a_held_letter_still_types`, `test_R57_a_slow_second_tap_or_a_quick_tap_elsewhere_is_never_held_back` and `test_R57_a_slow_second_tap_and_a_quick_tap_elsewhere_change_the_draft_as_two_presses` (xfail A5).
+- Marks added 2 (`task A11` 1, `task A5` 1), removed 0.
+
+**RED first.**
+- Node, by the stub method of `split-core/qa.md`. `docs/modules/split-app/qa/unit/20261014-204951-red/` (the 1.0 rule `detail > 1` as the stub, 2 of 10 failed), `20261014-205002-red/` (always true, 6 failed), `20261014-205012-red/` (always false, 4 failed). Each folder holds the runner's own `node-test.txt` and `stub.txt`. Every row was seen failing on its own `AssertionError` at least once. The stub file was removed before the browser RED and no commit holds it.
+- Browser, the tests above against the tree before the build. Chromium `docs/modules/split-app/qa/functional/20261014-205544-chromium/`, 2 failed (the two held Enter scenarios, each on its assertion), 193 passed, 2 xfailed. The double tap rows pass in Chromium before the build, because Chromium gives a double tap's second tap click count 2 and the 1.0 rule catches it. WebKit `20261014-205653-webkit/`, 63 failed, 132 passed, 2 xfailed. Every failure is an `AssertionError` on its asserted property ("a repeat reached the page uncancelled, mousedown 2, click 2", a removed row, a removed item, the dialog closed, focus moved, a blank item added). All 49 ids of the three groups below are among the 63.
+- `20261014-205330-chromium/` is the first draft's Chromium run, kept as the record of judgment call 1 (the held Enter on New bill passed on the 1.0 tree).
+- Teeth, each against a stub put in and taken out with the Edit tool, in WebKit. The two "never held back" scenarios pass before the build, because 1.0 holds nothing back, so they are shown failing here. A, a time only rule, `20261014-210343-webkit/`, fails on the quick tap elsewhere (the body counted 1 press of 2). B, a place only rule, `20261014-210354-webkit/`, fails on the slow second tap (1 of 2). C, `isRepeatClick` comparing a click with itself (the handoff's trap), `20261014-210412-webkit/`, 14 of 14 touch Remove rows fail with no row removed. D, a guard that no keydown ends, `20261014-210438-webkit/`, fails "a held letter still types" ("a" for "aaaaa"). E, a guard that cancels every keydown, `20261014-210452-webkit/`, fails "separate presses still act" (no item added). `grep STUB src/` finds nothing after.
+
+**Proof** (each folder listed on disk after its run).
+- Node `docs/modules/split-app/qa/unit/20261014-210527/node-test.txt`, 379 of 379 pass (A3's 369 and the 10 rows).
+- Chromium `docs/modules/split-app/qa/functional/20261014-210531-chromium/`, 406 passed, 101 xfailed, 0 failed, 148 s. A3 had 402 and 99. The difference is the 4 new A17 tests that pass and the 2 new marks.
+- WebKit `docs/modules/split-app/qa/functional/20261014-210807-webkit/`, 401 passed, 4 failed, 1 skipped (the IME test), 101 xfailed, 298 s.
+- `git hash-object --no-filters src/system.css` is `bf30ddadb8c756dc5d462243c642c218597ae0ac`, unchanged. `docs/design/` was never written.
+
+**WebKit by id against A3's `20261014-202809-webkit/`.**
+- Still failing, 4, the class (b) ids A6 and A16 own. `test_R29_the_dialog_opens_with_the_safe_choice_focused` (843.984375 against 844, A16), `test_R30_leaving_the_dialog_without_starting_over[escape]` (focus read before WebKit's close, A16), `test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[service-touch]` and `[sst-touch]` (a tap on the hint sends no click, A6).
+- Failing at A3 and passing now, 31. The 30 H-04 ids of A3 and F-A3-1, `test_R30_leaving_the_dialog_without_starting_over[cancel]`, which did not show in this run (it stays A16's).
+- New failures, 0. Ids only in this run, 6, the new R57 tests (4 passed, 2 xfailed).
+
+**The H-04 family by id, three groups.** Every id below failed in the WebKit RED `20261014-205653-webkit/` and passes in `20261014-210807-webkit/`, each in its 1.0 test (with A17 right after A3 no later task had rewritten one).
+1. The 43 of A0 (`qa/functional/20261014-125604-webkit/`).
+   - `test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it`, `[N-WxH-touch-double-right-edge]` for N 2, 3, 4, 5 and WxH 360x640, 390x844, 1280x800 (12).
+   - `test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page`, `[N-WxH-touch-double-P]` for N 1 and 4, the three sizes and P centre and right-edge (12).
+   - `test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing`, `[S2-person-3-of-3-WxH-touch-double]` and `[S8-person-12-of-12-WxH-touch-double]` at the three sizes (6).
+   - `test_R7_a_double_click_or_double_tap_on_remove_removes_one_row[item-2-of-4-touch]` and `[person-2-of-5-touch]` (2).
+   - `test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-touch-double]` and `[390-touch-double]` (2), fixed by a Remove's own repeat check.
+   - `test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[WxH-touch-double]` at the three sizes (3).
+   - `test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing[375x667-touch]`, `[360x640-touch]` and `[412x732-touch]` (3).
+   - `test_R30_the_second_click_of_a_double_activation_never_reaches_the_page[Cancel-touch]`, `[Start new bill-touch]` and `[backdrop-touch]` (3).
+2. Among them the 19 that passed in WebKit at A2 and A3 only by layout. The 12 R6 right-edge ids, the 6 R7 S2 and S8 ids, and `test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing[360x640-touch]`. Each now counts through the recorder's proof (every press after the first has `defaultPrevented` true), and each failed in the RED on its assertion (R6 and R30 on "a repeat reached the page uncancelled", R7 S2 and S8 on the focus line, judgment call 6).
+3. The 6 new at A2, `test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-item-4-of-4-WxH-touch-double]` and `[S1-only-item-WxH-touch-double]` at the three sizes.
+
+**Judgment calls.**
+1. The held Enter on New bill. The scenario's end state (the dialog open, Cancel focused, the stored text unchanged) passes on the 1.0 tree, because four repeats close, open, close and open the dialog (measured in Chromium, 2 closes, `20261014-205544-chromium/`). The test also counts the dialog's `close` events during the hold and requires 0, which is R57's "leaves the dialog open". Recommended for qa.md at the next planner touch, "and the dialog never closed while the key was held".
+2. The draft lines of the slow tap scenario ("five people, the last two blank" and "six people") need Add person to stay under the point. On the 1.0 People block the first tap moves Add person one cell down and the slow second tap lands on the new name field (measured, 4 people). So the recorder and focus lines are `test_R57_a_slow_second_tap_or_a_quick_tap_elsewhere_is_never_held_back` and the draft lines are `test_R57_a_slow_second_tap_and_a_quick_tap_elsewhere_change_the_draft_as_two_presses`, xfail A5. Both run the one gesture helper `slow_tap_then_tap_elsewhere`.
+3. The strip half of "the card and the strip read ..." is its own test, xfail A11 (the A3 precedent, judgment call 1).
+4. "#addItem has focus" is read as the button named "Add item" having focus, because 1.0's Add item has no id until A8. The name check holds before and after A8.
+5. The recorder helper also serves the three 1.0 tests that read "only press 1 and click 1" from the body half alone (R12, R29, R30 second click), so the phrase has one implementation. Their rows pass in both engines.
+6. The body half of the recorder changes what a WebKit tap does. With click and mousedown listeners on `body`, WebKit sends mouse events for a tap on plain content, where it otherwise sends `pointerdown` only (R59 (3)). A scratch probe on S2 at 390 x 844 (a double tap on "Remove Chen") measured that the second tap lands on the empty Add person cell `li` and sends `pointerdown` alone, with or without a `window` listener. So the app's `window` listeners do not change WebKit's taps, and in the 19 the recorder makes the second tap reach the guard, which must then cancel it. That is why the S2 and S8 rows failed in the RED on the focus line (focus went to `body`) before they reached the recorder line.
+7. Names and places. The rule is `isRepeatPress` in `src/ui/repeat.js` and the Node table `tests/repeat.test.js`. The recorder sits in `src/ui/dom.js` beside `isRepeatClick` and `swallowRepeatClicks`, so their importers are unchanged. The two thresholds are module constants, not exports.
+
+**Deviations.** None. The engineering principles hold. `isRepeatPress` is the one definition of a repeat (DRY), the pure rule is apart from the DOM state that feeds it (separation of concerns), and `watchPointerClicks` is the one writer of that state.
+
+**Non-goals honoured.** No timer, interval or animation frame (R57 (b), nothing is scheduled). The rule reads neither the engine nor the user agent. No change to markup, CSS or copy. No hook in the app. Nothing under `docs/design/`.
+
+**For the README reconcile** (symbols).
+- A repeat press has one definition, `isRepeatPress` in `src/ui/repeat.js` (R57 (b), time and place for a tap, click count for a mouse). `isRepeatClick` in `src/ui/dom.js` asks it with the records that `watchPointerClicks` keeps (two `window` capture listeners, added once in `src/main.js`).
+- `swallowRepeatClicks` also cancels a held key's repeats while armed (R57 (a)).
+- Tests. `tests/repeat.test.js` holds the `@R57 @node` table. The body recorder's window half and `assert_only_press_1_and_click_1_reached_the_page` are in `tests/browser/test_app.py`.
+
+**How to view.** Serve as above. With touch (a phone, or touch emulation), a quick double tap on Add person adds one person, and a second tap 500 ms or more later acts as a press of its own. With the keyboard, holding Enter on the Remove of the only item removes it and adds nothing.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="3.011" timestamp="2026-10-14T21:03:54.662549+08:00" hostname="{host}"><testcase classname="test_app" name="test_R57_a_slow_second_tap_or_a_quick_tap_elsewhere_is_never_held_back" time="2.631"><failure message="AssertionError: the body counted (1, 1) presses and clicks&#10;assert (1, 1) == (2, 2)&#10;  &#10;  At index 0 diff: 1 != 2&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x00000261814BC1A0&gt;
+
+    def test_R57_a_slow_second_tap_or_a_quick_tap_elsewhere_is_never_held_back(open_app):
+        # The draft lines of the scenario need Add person to stay under the point, which task A5 builds (the next test).
+        slow, elsewhere = slow_tap_then_tap_elsewhere(open_app)
+        assert slow["gap"] &gt;= 500, f"the second tap came {slow['gap']:.1f} ms after the first, so it was not a slow second tap"
+&gt;       assert slow["counted"] == (2, 2), f"the body counted {slow['counted']} presses and clicks"
+E       AssertionError: the body counted (1, 1) presses and clicks
+E       assert (1, 1) == (2, 2)
+E         
+E         At index 0 diff: 1 != 2
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2604: AssertionError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,3 @@
+engine chromium, browser version 149.0.7827.55
+test_app.py::test_R57_after_a_held_enter_on_the_only_remove_the_strip_reads_the_empty_message | xfail task A11
+count 1
