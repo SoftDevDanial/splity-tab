@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="0.424" timestamp="2026-10-14T12:50:53.292266+08:00" hostname="{host}"><testcase classname="test_app" name="test_R58_the_engine_option_and_the_one_launch_place" time="0.003"><failure message="AssertionError: conftest.py adds --engine&#10;assert False&#10; +  where False = callable(None)&#10; +    where None = getattr(&lt;module 'conftest' from '{workspace}\\examples\\split\\tests\\browser\\conftest.py'&gt;, 'pytest_addoption', None)">request = &lt;FixtureRequest for &lt;Function test_R58_the_engine_option_and_the_one_launch_place&gt;&gt;
+pytestconfig = &lt;_pytest.config.Config object at 0x0000018674B46A50&gt;
+
+    def test_R58_the_engine_option_and_the_one_launch_place(request, pytestconfig):
+        import conftest
+        import live_e2e
+&gt;       assert callable(getattr(conftest, "pytest_addoption", None)), "conftest.py adds --engine"
+E       AssertionError: conftest.py adds --engine
+E       assert False
+E        +  where False = callable(None)
+E        +    where None = getattr(&lt;module 'conftest' from '{workspace}\\examples\\split\\tests\\browser\\conftest.py'&gt;, 'pytest_addoption', None)
+
+tests\browser\test_app.py:2359: AssertionError</failure></testcase><testcase classname="test_app" name="test_R58_only_the_rig_launches_a_browser" time="0.035"><failure message="AssertionError: assert ['conftest.py....py: .launch'] == []&#10;  &#10;  Left contains 2 more items, first extra item: 'conftest.py: .launch'&#10;  Use -v to get more diff">def test_R58_only_the_rig_launches_a_browser():
+        offenders = []
+        for path in python_files_beside_the_rig():
+            for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
+                is_rig_launch = isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id == "rig"
+                if isinstance(node, ast.Attribute) and node.attr in BROWSER_ENTRY_POINTS and not is_rig_launch:
+                    offenders.append(f"{path.relative_to(BROWSER_DIR).as_posix()}: .{node.attr}")
+&gt;       assert offenders == []
+E       AssertionError: assert ['conftest.py....py: .launch'] == []
+E         
+E         Left contains 2 more items, first extra item: 'conftest.py: .launch'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2383: AssertionError</failure></testcase><testcase classname="test_app" name="test_R58_the_rig_launches_headless_with_the_arguments_of_its_engine" time="0.000"><failure message="AssertionError: rig.launch(playwright, engine) is the one launch place&#10;assert False&#10; +  where False = callable(None)&#10; +    where None = getattr(rig, 'launch', None)">def test_R58_the_rig_launches_headless_with_the_arguments_of_its_engine():
+&gt;       assert callable(getattr(rig, "launch", None)), "rig.launch(playwright, engine) is the one launch place"
+E       AssertionError: rig.launch(playwright, engine) is the one launch place
+E       assert False
+E        +  where False = callable(None)
+E        +    where None = getattr(rig, 'launch', None)
+
+tests\browser\test_app.py:2387: AssertionError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,3 @@
+engine webkit, browser version 26.5
+test_app.py::test_R33_ime_composition_survives_a_render | Needs a CDP session (Input.imeSetComposition, Input.insertText), which Playwright gives in Chromium only.
+count 1

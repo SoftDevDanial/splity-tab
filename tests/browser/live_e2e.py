@@ -1,15 +1,18 @@
-"""Cold-boot live gate (qa.md, "Cold-boot live-e2e gate"). Run from the project root: python tests/browser/live_e2e.py
+"""Cold-boot live gate (qa.md, "Cold-boot live-e2e gate"). Run from the project root:
+python tests/browser/live_e2e.py [--engine chromium|webkit]   (Chromium when no engine is named, R58)
 
 A person's first session, end to end, against the shipped index.html served by python -m http.server, in a fresh
-headless Chromium with a new context: no storage_state, no bypass_csp (so the strict policy is live for the whole
-run) and one init script, the clipboard recorder (CG-7), so the operating system clipboard is never touched, not
-even to read it. Only real gestures change the app (mouse clicks, typing, key presses, a reload). page.evaluate
-is used to read, never to change anything.
+headless browser launched by rig.launch with a new context: no storage_state, no bypass_csp (so the strict policy
+is live for the whole run) and one init script, the clipboard recorder (CG-7), so the operating system clipboard is
+never touched, not even to read it. Only real gestures change the app (mouse clicks, typing, key presses, a
+reload). page.evaluate is used to read, never to change anything.
 
-Evidence goes to docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>/: one NN-<step>.png per step, steps.log
-(one line per step, "NN | gesture: ... | assertion: ... | PASS or FAIL"), console.log, network.log,
-clipboard-s2.txt, clipboard-s1.txt and summary.json. Exit status 0 when every step passes, 1 otherwise.
+Evidence goes to docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>/: one NN-<step>.png per step,
+steps.log (one line per step, "NN | gesture: ... | assertion: ... | PASS or FAIL"), console.log, network.log,
+clipboard-s2.txt, clipboard-s1.txt and summary.json (with the engine and the browser version). Exit status 0 when
+every step passes, 1 otherwise.
 """
+import argparse
 import datetime
 import json
 import sys
@@ -232,9 +235,16 @@ def write_logs(gate):
     (gate.folder / "network.log").write_text("\n".join(gate.requests) + "\n", encoding="utf-8")
 
 
-def main():
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(description="Cold-boot live gate of split-app.")
+    parser.add_argument("--engine", choices=list(rig.ENGINES), default=rig.DEFAULT_ENGINE, help="browser engine (R58)")
+    return parser.parse_args(argv)
+
+
+def main(argv=None):
+    engine = parse_args(argv).engine
     started = datetime.datetime.now()
-    folder = EVIDENCE_ROOT / started.strftime("%Y%m%d-%H%M%S")
+    folder = EVIDENCE_ROOT / f"{started.strftime('%Y%m%d-%H%M%S')}-{engine}"
     folder.mkdir(parents=True, exist_ok=True)
     server_lines = []
 
@@ -244,14 +254,14 @@ def main():
 
     server = rig.StaticServer(rig.ROOT, say=say)
     gate = Gate(folder, None)
-    facts = {"chromium": None, "port": None, "server_pid": None}
+    facts = {"engine": engine, "browser_version": None, "port": None, "server_pid": None}
     try:
         server.start()
         facts.update(port=server.port, server_pid=server.process.pid)
         gate.base = server.base
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=True)
-            facts["chromium"] = browser.version
+            browser = rig.launch(playwright, engine)
+            facts["browser_version"] = browser.version
             context = rig.new_context(browser, viewport=VIEWPORT, device_scale_factor=1, color_scheme="light")
             context.on("page", gate.watch)
             gate.page = context.new_page()

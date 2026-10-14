@@ -1,10 +1,14 @@
-"""Fixtures for the functional suite: a loopback static server, headless Chromium, and a capturing session.
+"""Fixtures for the functional suite: a loopback static server, one headless browser, and a capturing session.
 
+The browser is the engine of --engine (chromium, the default, or webkit), launched by rig.launch (R58). A test
+marked chromium_only(reason=...) is a skip with that reason in any other engine, and every skip is listed and
+counted, never reported as a pass.
 Every scenario gets a new context (rig.new_context, with the clipboard recorder unless it names another
 script), records console messages, page errors and requests, and fails at teardown on a console error, a CSP
 violation, a page error or a request that is not a same-origin GET for the page's own files (qa.md,
-"Console and network"). A failed scenario leaves a screenshot in the evidence folder.
-Set SPLIT_EVIDENCE=1 to also write pytest.txt and junit.xml there.
+"Console and network"). A failed scenario leaves a screenshot in the evidence folder, <stamp>-<engine>.
+Set SPLIT_EVIDENCE=1 to also write pytest.txt, junit.xml and skips.txt there, each naming the engine and the
+browser version.
 """
 import datetime
 import os
@@ -18,31 +22,76 @@ from playwright.sync_api import sync_playwright
 import rig
 
 EVIDENCE_ROOT = rig.ROOT / "docs" / "modules" / "split-app" / "qa" / "functional"
-_evidence = {"dir": None, "lines": []}
+_evidence = {"dir": None, "engine": rig.DEFAULT_ENGINE, "browser_version": None, "lines": [], "skips": []}
 
 
 def evidence_dir():
-    """The run's evidence folder, made on first use (a failure screenshot, or SPLIT_EVIDENCE=1)."""
+    """The run's evidence folder, <stamp>-<engine> (R58), made on first use (a failure screenshot, or SPLIT_EVIDENCE=1)."""
     if _evidence["dir"] is None:
         stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-        _evidence["dir"] = EVIDENCE_ROOT / stamp
+        _evidence["dir"] = EVIDENCE_ROOT / f"{stamp}-{_evidence['engine']}"
         _evidence["dir"].mkdir(parents=True, exist_ok=True)
     return _evidence["dir"]
 
 
+def pytest_addoption(parser):
+    parser.addoption("--engine", choices=list(rig.ENGINES), default=rig.DEFAULT_ENGINE,
+                     help="browser engine of this run (R58)")
+
+
 def pytest_configure(config):
+    _evidence["engine"] = config.getoption("engine")
+    config.addinivalue_line("markers", "chromium_only(reason): runs in Chromium only, and is a counted skip "
+                                       "with that reason in any other engine (R58)")
     if os.environ.get("SPLIT_EVIDENCE"):
         config.option.xmlpath = str(evidence_dir() / "junit.xml")
 
 
+def pytest_collection_modifyitems(config, items):
+    """Turns chromium_only into a skip with its own reason outside Chromium. A mark without a reason stops the run."""
+    for item in items:
+        marker = item.get_closest_marker("chromium_only")
+        if marker is None:
+            continue
+        reason = marker.kwargs.get("reason")
+        if not reason:
+            raise pytest.UsageError(f"{item.nodeid}: chromium_only needs reason=...")
+        if config.getoption("engine") != "chromium":
+            item.add_marker(pytest.mark.skip(reason=reason))
+
+
+def skip_reason(report):
+    """The reason of a skipped or xfailed report, as junit.xml counts both as skipped."""
+    if hasattr(report, "wasxfail"):
+        return f"xfail {report.wasxfail}".strip()
+    longrepr = report.longrepr
+    return longrepr[2].removeprefix("Skipped: ") if isinstance(longrepr, tuple) else str(longrepr)
+
+
 def pytest_runtest_logreport(report):
-    if os.environ.get("SPLIT_EVIDENCE") and (report.when == "call" or report.failed):
+    if report.skipped:
+        _evidence["skips"].append(f"{report.nodeid} | {skip_reason(report)}")
+    if os.environ.get("SPLIT_EVIDENCE") and (report.when == "call" or report.failed or report.skipped):
         _evidence["lines"].append(f"{report.outcome.upper():8} {report.when:8} {report.nodeid} ({report.duration:.2f}s)")
+
+
+def run_header():
+    return f"engine {_evidence['engine']}, browser version {_evidence['browser_version']}"
+
+
+def pytest_terminal_summary(terminalreporter):
+    terminalreporter.write_line(f"{run_header()}, skipped {len(_evidence['skips'])}")
+    for line in _evidence["skips"]:
+        terminalreporter.write_line(f"  skipped: {line}")
 
 
 def pytest_sessionfinish(session, exitstatus):
     if os.environ.get("SPLIT_EVIDENCE"):
-        (evidence_dir() / "pytest.txt").write_text("\n".join(_evidence["lines"]) + f"\nexit status {exitstatus}\n", encoding="utf-8")
+        folder = evidence_dir()
+        (folder / "pytest.txt").write_text("\n".join([run_header(), *_evidence["lines"]]) + f"\nexit status {exitstatus}\n",
+                                           encoding="utf-8")
+        (folder / "skips.txt").write_text("\n".join([run_header(), *_evidence["skips"]]) + f"\ncount {len(_evidence['skips'])}\n",
+                                          encoding="utf-8")
 
 
 @pytest.hookimpl(hookwrapper=True)
@@ -98,11 +147,18 @@ def server(request):
 
 
 @pytest.fixture(scope="session")
-def browser():
+def engine(request):
+    """The engine of this run, from --engine (R58). A test that asserts each engine's own result asks for it."""
+    return request.config.getoption("engine")
+
+
+@pytest.fixture(scope="session")
+def browser(engine):
     with sync_playwright() as playwright:
-        chromium = playwright.chromium.launch(headless=True)
-        yield chromium
-        chromium.close()
+        launched = rig.launch(playwright, engine)
+        _evidence["browser_version"] = launched.version
+        yield launched
+        launched.close()
 
 
 @pytest.fixture

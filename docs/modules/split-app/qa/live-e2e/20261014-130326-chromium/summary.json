@@ -1,0 +1,24 @@
+{
+  "started": "2026-10-14T13:03:26",
+  "ended": "2026-10-14T13:03:29",
+  "engine": "chromium",
+  "browser_version": "149.0.7827.55",
+  "port": 47030,
+  "server_pid": 21420,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "init_scripts": [
+    "tests/browser/clipboard/recorder.js"
+  ],
+  "storage_state": null,
+  "bypass_csp": false,
+  "steps": 7,
+  "failure": null,
+  "server_log": [
+    "server STARTED pid 21420 port 47030 root {workspace}\\examples\\split",
+    "server STOPPED pid 21420 port 47030, exited True, port free again True"
+  ],
+  "result": "PASS"
+}

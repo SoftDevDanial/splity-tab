@@ -1,0 +1,199 @@
+{
+  "started": "2026-10-14T13:00:11",
+  "engine": "webkit",
+  "browser_version": "26.5",
+  "launched_by": "rig.launch",
+  "contexts_by": "rig.new_context",
+  "probes": {
+    "taps": {
+      "stand_in_before_first_gesture": {
+        "writes": 0,
+        "native": false
+      },
+      "one_tap_order": [
+        "pointerdown",
+        "touchstart",
+        "pointerup",
+        "touchend",
+        "mousedown",
+        "mouseup",
+        "click"
+      ],
+      "one_tap_events": [
+        {
+          "type": "pointerdown",
+          "detail": 0
+        },
+        {
+          "type": "touchstart",
+          "detail": 0
+        },
+        {
+          "type": "pointerup",
+          "detail": 0
+        },
+        {
+          "type": "touchend",
+          "detail": 0
+        },
+        {
+          "type": "mousedown",
+          "detail": 1
+        },
+        {
+          "type": "mouseup",
+          "detail": 1
+        },
+        {
+          "type": "click",
+          "detail": 1
+        }
+      ],
+      "quick_double_tap_click_details": [
+        1,
+        1
+      ],
+      "quick_double_tap_events": [
+        {
+          "type": "pointerdown",
+          "detail": 0
+        },
+        {
+          "type": "touchstart",
+          "detail": 0
+        },
+        {
+          "type": "pointerup",
+          "detail": 0
+        },
+        {
+          "type": "touchend",
+          "detail": 0
+        },
+        {
+          "type": "mousedown",
+          "detail": 1
+        },
+        {
+          "type": "mouseup",
+          "detail": 1
+        },
+        {
+          "type": "click",
+          "detail": 1
+        },
+        {
+          "type": "pointerdown",
+          "detail": 0
+        },
+        {
+          "type": "touchstart",
+          "detail": 0
+        },
+        {
+          "type": "pointerup",
+          "detail": 0
+        },
+        {
+          "type": "touchend",
+          "detail": 0
+        },
+        {
+          "type": "mousedown",
+          "detail": 1
+        },
+        {
+          "type": "mouseup",
+          "detail": 1
+        },
+        {
+          "type": "click",
+          "detail": 1
+        }
+      ]
+    },
+    "focus_after_mouse_click": {
+      "click_on_label_of_radio": {
+        "stand_in_before_first_gesture": {
+          "writes": 0,
+          "native": false
+        },
+        "clicked": "label[for=item]",
+        "active_element": {
+          "tag": "body",
+          "id": ""
+        },
+        "item_checked": true
+      },
+      "click_on_radio": {
+        "stand_in_before_first_gesture": {
+          "writes": 0,
+          "native": false
+        },
+        "clicked": "#item",
+        "active_element": {
+          "tag": "body",
+          "id": ""
+        },
+        "item_checked": true
+      }
+    },
+    "secure_context_on_127_0_0_1": {
+      "url": "http://127.0.0.1:3021/",
+      "isSecureContext": true,
+      "typeofClipboard": "function",
+      "typeofNavigatorClipboard": "object",
+      "writeTextIsStandIn": true
+    },
+    "init_script_redefines_localStorage": {
+      "control_no_driver": {
+        "redefined": null,
+        "read": {
+          "threw": false
+        }
+      },
+      "with_driver": {
+        "redefined": true,
+        "read": {
+          "threw": true,
+          "name": "SecurityError",
+          "message": "probe denied"
+        }
+      }
+    },
+    "csp_violation_console": {
+      "console": [
+        {
+          "type": "error",
+          "text": "Refused to execute a script because its hash, its nonce, or 'unsafe-inline' does not appear in the script-src directive of the Content Security Policy."
+        }
+      ],
+      "page_errors": [],
+      "violations": [
+        {
+          "violatedDirective": "script-src-elem",
+          "blockedURI": "inline"
+        }
+      ],
+      "inline_script_ran": false
+    },
+    "denied_localStorage_console": {
+      "console": [],
+      "page_errors": [],
+      "stored_on_the_served_page": "1"
+    },
+    "svg_content_type": {
+      "path": "/docs/brand/mark.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    }
+  },
+  "failure": null,
+  "port": 3021,
+  "server_pid": 9800,
+  "ended": "2026-10-14T13:00:14",
+  "server_log": [
+    "server STARTED pid 9800 port 3021 root {workspace}\\examples\\split",
+    "server STOPPED pid 9800 port 3021, exited True, port free again True"
+  ]
+}

@@ -296,3 +296,48 @@ function form (`"() => ..."`): a bare expression is evaluated with `eval` and th
 `inner_text()` with blank lines between paragraphs, use `support.panel_text`. A failed test writes a screenshot under
 `docs/modules/split-app/qa/functional/<ts>/`, remove dev folders before staging (stage by path, never `git add -A`).
 `git` warns about LF to CRLF on every add (`core.autocrlf`), which is harmless here.
+
+## v1.1.0 task A0, the engine switch and the WebKit baseline (2026-10-14)
+Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fixtures", R58, R59) and `qa.md`, with `src/` unchanged.
+
+**Status. Built and run, NOT committed, A0 not closed.** Parts 1 and 2 are done and verified. Part 3 ran in full, but 43 WebKit failures cannot be sorted on this machine (blocker B-A0-1 in the sorting record), so the role returned to the orchestrator before the commit, as its brief requires.
+
+**Status, corrected 2026-10-14 after the rulings. Committed with this section (a commit cannot hold its own hash, the A1 section records it).** No suite was re-run for the commit.
+- B-A0-1 (USER, H-04, "Fix it in v1.1.0"). The 43 touch double activation failures are class (a), an app defect (`isRepeatClick` reads only `event.detail > 1`, WebKit gives each tap `detail` 1). The planner writes a tap-safe repeat rule for the owner's ruling and task A17 builds it. Nothing is fixed in A0.
+- Q-A0-3 (ORCH, H-05). The WebKit live gate's screenshot CSP errors are decided for A20 (a capture that adds no stylesheet, an exact-line WebKit allowance only if none exists). The gate is unchanged here.
+- The 5 class (b) failures wait for spec lines from the planner and stay as recorded.
+- Q-A0-2 (ORCH). The sorting record names the WebKit run's folder, no copy. Deviation 1 below (fixtures written with the Write tool) is accepted.
+- The WebKit baseline later tasks compare against is 381 passed, 48 failed, 1 skipped.
+
+**Phase skills.** None loaded. A0 writes no UI (test fixtures, test code, a probe script and evidence only), so the design row of `docs/phase-skills.md` does not apply.
+
+**What changed** (all test-side, cite by symbol).
+- `tests/fixtures/design-v1.0.0/` (new). The seven 1.0 goldens, byte copies of tag `v1.0.0`, and a `.gitattributes` holding `* -text`. Each file's `git hash-object --no-filters` equals its blob id in spec "The 1.0 golden fixtures" (7 of 7 MATCH, sizes 18102, 22057, 24848, 29994, 28240, 25342, 36400 bytes). `docs/design/` was never written.
+- `tests/browser/support.py`. `GOLDEN_V1_DIR` beside `GOLDEN_DIR`. `open_golden` and `golden_walk` take `folder`, default `GOLDEN_DIR`.
+- `tests/browser/test_app.py`. The ten reader calls pass `folder=GOLDEN_V1_DIR`, and `test_R1_entry_point_loads_only_its_own_files` reads `GOLDEN_V1_DIR / "system.css"`. `test_R33_ime_composition_survives_a_render` carries `chromium_only` with the qa.md reason. Three new A0 tests, `test_R58_the_engine_option_and_the_one_launch_place` (the `@R58 @static` scenario), `test_R58_only_the_rig_launches_a_browser` (the launch meta test) and `test_R58_the_rig_launches_headless_with_the_arguments_of_its_engine`.
+- `tests/browser/rig.py`. `ENGINES`, `DEFAULT_ENGINE`, `LAUNCH_ARGS` (empty for both engines) and `launch(playwright, engine)`, the one launch place, headless always.
+- `tests/browser/conftest.py`. `pytest_addoption` (`--engine`), the session `engine` fixture, `browser` through `rig.launch`, the `chromium_only(reason)` marker registered in `pytest_configure` and turned into a skip by `pytest_collection_modifyitems` (a mark without a reason stops the run), `skip_reason`, the skip list in the terminal summary, and the evidence folder `<stamp>-<engine>` with `pytest.txt`, `junit.xml` and `skips.txt`, each headed by the engine and the browser version.
+- `tests/browser/live_e2e.py`. `parse_args` (`--engine`), `rig.launch`, the folder `<stamp>-<engine>`, and `"engine"` and `"browser_version"` in `summary.json` in place of 1.0's `"chromium"`.
+- `tests/browser/probe_webkit.py` (new). The R59 probes, `--engine` required, writes `probes.json` into `qa/webkit-baseline/<stamp>/`.
+
+**Comments written.** Module docstrings of `rig.py`, `conftest.py`, `live_e2e.py` and `probe_webkit.py` (what, how to run, why), the docstrings of `rig.launch`, `evidence_dir`, `pytest_collection_modifyitems`, `skip_reason` and the `engine` fixture, the `LAUNCH_ARGS` line (why per engine), and the `GOLDEN_V1_DIR` comment (why it exists, when it goes). For the README reconcile, the commands are `python -m pytest tests/browser -q --engine webkit`, `python tests/browser/live_e2e.py --engine webkit` and `python tests/browser/probe_webkit.py --engine webkit`, and functional and live gate folders now end in the engine name.
+
+**Counts and evidence** (each folder listed on disk after its run).
+- Controls, RED first. `qa/functional/20261014-125053/` holds the three A0 tests failing on their assertions against the 1.0 rig and conftest. `qa/functional/20261014-125042/` is an earlier RED run of the same tests in which the first one failed on an AttributeError instead of an assertion. It was fixed and re-run, and the folder is kept, not deleted. Both predate the engine suffix, which is why their names have none.
+- Chromium suite `qa/functional/20261014-125352-chromium/`. 430 passed in 112.6 s, the 427 sealed 1.0 cases (every function of the `v1.0.0` `test_app.py`) plus the 3 A0 cases. 0 skipped, and the IME test ran.
+- WebKit suite `qa/functional/20261014-125604-webkit/`. 381 passed, 48 failed, 1 skipped (the IME test, listed with its reason in `skips.txt`, count 1, equal to `junit.xml`), 239 s.
+- Live gate 1.0. Chromium `qa/live-e2e/20261014-130326-chromium/` PASS 7 of 7. WebKit `qa/live-e2e/20261014-130333-webkit/` FAIL at step 7 on seven CSP console errors that Playwright's WebKit screenshots cause, one per step (Q-A0-3).
+- Probes and sorting `qa/webkit-baseline/20261014-130011/` with `probes.json`, `sorting.md` and `diagnostics/` (`sorting_diagnostics.py` and its `sorting_diagnostics.json`).
+- Node unit tests 275 passed.
+
+**Sorting** (detail in `qa/webkit-baseline/20261014-130011/sorting.md`). 5 tests sorted (b). They are the R29 `.app` height, 843.984375 against 844, the two R30 Escape tests, where WebKit closes the dialog a task after keyup, and the two R10 touch taps on the charges hint, where WebKit sends no mouse event and no click to text. 43 touch double activation tests are not sorted (B-A0-1). WebKit gives `detail` 1 to each tap of a quick double tap, so `isRepeatClick` never fires. Whether an iPhone does the same decides (a) against a tool artefact.
+
+**Deviations.**
+1. The spec says the fixtures are written by a one-off Python run. This lane's brief allows writes only through the Write and Edit tools, so each fixture was written with the Write tool from the blob's text, and the same proof holds (`git hash-object --no-filters` equals the blob id, 7 of 7).
+2. `diagnostics/sorting_diagnostics.py` in the A0 evidence folder is an evidence script beyond the probe list of R59. It measures the three behaviours the probes do not cover, which the sorting needed. It is not part of the suite.
+
+**Judgment calls.** `skips.txt` lists xfailed tests too, as `xfail <reason>`, because `junit.xml` counts both as skipped and the R58 gate compares the two counts. `probe_webkit.py` makes `--engine` required instead of defaulting to Chromium, since a WebKit probe run with no engine named would measure the wrong engine.
+
+**Non-goals honoured.** No UI, no change under `src/` or `docs/design/`, nothing installed, no fidelity engine option.
+
+**How to run.** `python -m pytest tests/browser -q [--engine webkit]` (set `SPLIT_EVIDENCE=1` for the evidence files), `python tests/browser/live_e2e.py [--engine webkit]`, `python tests/browser/probe_webkit.py --engine webkit`.

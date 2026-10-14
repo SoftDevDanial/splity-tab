@@ -1,8 +1,8 @@
-"""Shared test rig: the static server lifecycle and the only way to make a browser context.
+"""Shared test rig: the static server lifecycle, the only way to launch a browser and the only way to make a context.
 
-Used by conftest.py (the functional suite), live_e2e.py and fidelity/run.py, so all three start and stop
-the server the same way (qa.md, "Server lifecycle") and no context can exist without a clipboard script.
-Test-side only. Never loaded by index.html.
+Used by conftest.py (the functional suite), live_e2e.py, probe_webkit.py and fidelity/run.py, so all of them start
+and stop the server the same way (qa.md, "Server lifecycle"), launch every browser the same way (R58) and no
+context can exist without a clipboard script. Test-side only. Never loaded by index.html.
 """
 import socket
 import subprocess
@@ -17,6 +17,10 @@ CLIPBOARD_SCRIPTS = ("recorder", "reject", "missing")
 READY_TRIES = 50
 READY_WAIT_SECONDS = 0.1
 STOP_WAIT_SECONDS = 10
+ENGINES = ("chromium", "webkit")
+DEFAULT_ENGINE = "chromium"
+# Kept per engine because a Chromium switch must never reach WebKit. None is needed by either today (R58).
+LAUNCH_ARGS = {"chromium": [], "webkit": []}
 
 
 def free_port():
@@ -82,6 +86,17 @@ class StaticServer:
         self.say(f"server STOPPED pid {pid} port {port}, exited {self.process.poll() is not None}, "
                  f"port free again {port_is_free(port)}")
         self.process = None
+
+
+def launch(playwright, engine):
+    """The one place a browser is launched (R58). Returns a headless Browser of `engine`, one of ENGINES.
+
+    `playwright` is the object sync_playwright() gives. Contexts still come only from new_context below, and no
+    caller passes is_mobile, which breaks mouse.wheel in WebKit (test_R58_the_engine_option_and_the_one_launch_place).
+    """
+    if engine not in ENGINES:
+        raise ValueError(f"unknown engine {engine!r}")
+    return getattr(playwright, engine).launch(headless=True, args=LAUNCH_ARGS[engine])
 
 
 def clipboard_script(name):

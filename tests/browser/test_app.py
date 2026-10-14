@@ -19,7 +19,7 @@ import seeds
 import support
 from expected import (EVEN_MESSAGE, S1_CHECK, S1_COPY, S1_ITEMS, S1_ROWS, S1_SUMMARY, S2_CHECK, S2_COPY, S2_ROWS,
                       S2_SUMMARY)
-from support import CSP, ROOT, dom_walk, first_diff, golden_walk, open_golden, panel_text, person_field
+from support import CSP, GOLDEN_V1_DIR, ROOT, dom_walk, first_diff, golden_walk, open_golden, panel_text, person_field
 
 
 # ---------------------------------------------------------------- Task 1: the rig (R1, R39)
@@ -134,7 +134,7 @@ def test_R1_entry_point_loads_only_its_own_files(open_app):
         ["script", {"type": "module", "src": "src/main.js"}, ""],
     ]
     assert session.page.evaluate("document.documentElement.lang") == "en"
-    golden = (ROOT / "docs" / "design" / "system.css").read_bytes()
+    golden = (GOLDEN_V1_DIR / "system.css").read_bytes()
     # RC-5: the shipped stylesheet is the golden's bytes plus one trailing rule, so hidden elements stay hidden.
     assert (ROOT / "src" / "system.css").read_bytes() == golden + b"\n[hidden] { display: none !important; }\n"
     assert session.problems() == []
@@ -182,7 +182,7 @@ def test_R2_no_sample_data_ships():
 @pytest.mark.parametrize("state, seed, golden", [("S3", None, "bill-empty")])
 def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, state, seed, golden):
     app = dom_walk(open_app(seed=seed).page)
-    assert first_diff(app, golden_walk(plain_context, golden)) is None, state
+    assert first_diff(app, golden_walk(plain_context, golden, folder=GOLDEN_V1_DIR)) is None, state
 
 
 def test_R3_the_walk_sees_every_rendered_element_and_flags_a_change(open_app):
@@ -277,7 +277,7 @@ def test_R6_add_person_until_the_limit(open_app, plain_context):
     for _ in range(9):
         add.click()
     assert page.locator("li.person").count() == 12 and add.is_disabled()
-    specimen = support.open_golden(plain_context, "states").locator('section[aria-labelledby="spec-s8a"] button[disabled]')
+    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator('section[aria-labelledby="spec-s8a"] button[disabled]')
     assert support.specimen_props(add, ["cursor"]) == support.specimen_props(specimen, ["cursor"])
     assert add.evaluate("(el) => getComputedStyle(el).cursor") == "not-allowed"
     box = add.bounding_box()
@@ -291,7 +291,7 @@ def test_R6_a_restored_twelve_person_bill_shows_the_limit_state(open_app, plain_
     add = page.get_by_role("button", name="Add person")
     assert page.locator("li.person").count() == 12 and add.is_disabled()
     assert person_field(page, 12).input_value() == "Mei Ling" and stored_text(page) == seeds.S8  # a restore writes nothing
-    specimen = support.open_golden(plain_context, "states").locator('section[aria-labelledby="spec-s8a"] button[disabled]')
+    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator('section[aria-labelledby="spec-s8a"] button[disabled]')
     assert support.specimen_props(add, ["cursor"]) == support.specimen_props(specimen, ["cursor"])
     cells = page.eval_on_selector_all(
         "section[aria-labelledby=h-people] ul.cells > li",
@@ -340,6 +340,8 @@ def test_R33_typing_in_a_person_name_keeps_focus_and_caret(open_app):
     type_and_watch(page, person_field(page, 1), "Aisyah")
 
 
+@pytest.mark.chromium_only(reason="Needs a CDP session (Input.imeSetComposition, Input.insertText), "
+                                  "which Playwright gives in Chromium only.")
 def test_R33_ime_composition_survives_a_render(open_app):
     page = open_app().page
     field = person_field(page, 1)
@@ -585,7 +587,7 @@ def test_R12_add_an_item_remove_one_and_reach_the_limit(open_app, plain_context)
     for _ in range(49):
         add.click()
     assert page.locator("li.item").count() == 50 and add.is_disabled()
-    specimen = support.open_golden(plain_context, "states").locator('section[aria-labelledby="spec-s8a"] button[disabled]')
+    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator('section[aria-labelledby="spec-s8a"] button[disabled]')
     assert support.specimen_props(add, ["cursor"]) == support.specimen_props(specimen, ["cursor"])
     page.locator("li.item").nth(1).get_by_role("button", name="Remove Item 2").click()
     assert page.locator("li.item").count() == 49 and add.is_enabled()
@@ -615,7 +617,7 @@ def test_R14_a_price_error_sits_in_the_item_line(open_app, plain_context):
     error = page.locator("p.error#price-error-i5")
     assert error.evaluate("(e) => e === e.parentElement.lastElementChild && e.parentElement.className") == "item-line"
     assert item_price(page, 2).get_attribute("aria-describedby") == "price-error-i5"
-    specimen = support.open_golden(plain_context, "states").locator("#s4-price-error")
+    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator("#s4-price-error")
     extra = ["textAlign", "marginTop"]
     assert support.specimen_props(error, extra) == support.specimen_props(specimen, extra)
     assert error.evaluate("(e) => getComputedStyle(e).textAlign") == "right"
@@ -669,7 +671,7 @@ def test_R15_a_rate_error_names_both_ids_and_its_range(open_app, plain_context):
     assert error.inner_text() == "Enter a rate from 0 to 30"
     assert error.evaluate("(e) => e === e.parentElement.lastElementChild && e.parentElement.querySelector('label').textContent") == "Service charge in percent"
     assert rate_field(page, "Service charge").get_attribute("aria-describedby") == "rate-service-error charges-hint"
-    specimen = support.open_golden(plain_context, "states").locator("#s4-subtotal-error")  # ST-10: styled as ST-01
+    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator("#s4-subtotal-error")  # ST-10: styled as ST-01
     assert support.specimen_props(error, ["marginTop"]) == support.specimen_props(specimen, ["marginTop"])
 
 
@@ -714,7 +716,7 @@ def build_s5(page):
 def test_R3_rendered_markup_matches_its_golden_by_gestures(open_app, plain_context, state, build, golden):
     page = open_app().page
     build(page)
-    assert first_diff(dom_walk(page), golden_walk(plain_context, golden)) is None, state
+    assert first_diff(dom_walk(page), golden_walk(plain_context, golden, folder=GOLDEN_V1_DIR)) is None, state
 
 
 def test_R9_a_subtotal_drives_the_even_split(open_app):
@@ -1087,14 +1089,14 @@ def test_R26_a_restored_bill_looks_like_the_one_built_by_gestures(open_app, seed
 @pytest.mark.parametrize("seed, golden", [(seeds.S2, "bill-even"), (seeds.S1, "bill-items"), (seeds.S5, "bill-unassigned")],
                          ids=["S2", "S1", "S5"])
 def test_R3_a_restored_bill_matches_its_golden(open_app, plain_context, seed, golden):
-    assert first_diff(dom_walk(open_app(seed=seed).page), golden_walk(plain_context, golden)) is None
+    assert first_diff(dom_walk(open_app(seed=seed).page), golden_walk(plain_context, golden, folder=GOLDEN_V1_DIR)) is None
 
 
 def test_R3_the_note_matches_its_specimen(open_app, plain_context):
     # WR-05 (mutant LIVE2: a stray aria-live on the wrapper and aria-pressed on the button). S7 is walked as a part of
     # the page, because the specimen frame in states.html carries specimen-only markup around it (allowed difference 6).
     app = dom_walk(open_app(seed=seeds.UNREADABLE["B1"]).page, "div.note-wrap")
-    golden = golden_walk(plain_context, "states", selector='section[aria-labelledby="spec-s7"] div.note-wrap')
+    golden = golden_walk(plain_context, "states", selector='section[aria-labelledby="spec-s7"] div.note-wrap', folder=GOLDEN_V1_DIR)
     assert first_diff(app, golden) is None
 
 
@@ -1103,7 +1105,7 @@ def test_R3_the_open_dialog_and_the_page_behind_it_match_their_golden(open_app, 
     # dialog and the page behind it, the two parts that are the same markup in both.
     page = open_app(seed=seeds.S2).page
     open_dialog(page)
-    golden = open_golden(plain_context, "new-bill-dialog")
+    golden = open_golden(plain_context, "new-bill-dialog", folder=GOLDEN_V1_DIR)
     for part in ("dialog.dialog", "div.app"):
         assert first_diff(dom_walk(page, part), dom_walk(golden, part)) is None, part
 
@@ -2332,6 +2334,75 @@ def test_R41_the_gate_uses_real_gestures_and_reads_only():
     seen = [node.args[0].id if isinstance(node.args[0], ast.Name) else node.args[0].value for node in ast.walk(tree)
             if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == "evaluate"]
     assert seen and all(item in READS_ONLY | READ_EXPRESSIONS for item in seen), sorted(set(seen) - READS_ONLY - READ_EXPRESSIONS)
+
+
+# ---------------------------------------------------------------- v1.1.0 task A0: the engine switch (R58)
+BROWSER_DIR = ROOT / "tests" / "browser"
+BROWSER_ENTRY_POINTS = {"launch", "launch_persistent" + "_context", "launch_server", "connect", "connect_over_cdp"}
+
+
+class OptionRecorder:
+    """Stands in for pytest's parser, so conftest.pytest_addoption can be called and its options read."""
+
+    def __init__(self):
+        self.options = {}
+
+    def addoption(self, *names, **settings):
+        self.options.update({name: settings for name in names})
+
+
+def python_files_beside_the_rig():
+    return [path for path in BROWSER_DIR.rglob("*.py") if path.name != "rig.py"]
+
+
+def test_R58_the_engine_option_and_the_one_launch_place(request, pytestconfig):
+    import conftest
+    import live_e2e
+    assert callable(getattr(conftest, "pytest_addoption", None)), "conftest.py adds --engine"
+    parser = OptionRecorder()
+    conftest.pytest_addoption(parser)
+    engine_option = parser.options.get("--engine", {})
+    assert list(engine_option.get("choices", ())) == ["chromium", "webkit"] and engine_option.get("default") == "chromium"
+    assert request.getfixturevalue("engine") == pytestconfig.getoption("engine")
+    assert any(line.startswith("chromium_only(reason") for line in pytestconfig.getini("markers"))
+    assert live_e2e.parse_args([]).engine == "chromium" and live_e2e.parse_args(["--engine", "webkit"]).engine == "webkit"
+    with pytest.raises(SystemExit):
+        live_e2e.parse_args(["--engine", "firefox"])
+    assert "--engine" not in (BROWSER_DIR / "fidelity" / "run.py").read_text(encoding="utf-8")  # fidelity is Chromium only
+    passed = [f"{path.name}: {node.arg}" for path in python_files_beside_the_rig()
+              for node in ast.walk(ast.parse(path.read_text(encoding="utf-8")))
+              if isinstance(node, ast.keyword) and node.arg in ("is_mobile", "bypass_csp")]
+    assert passed == []
+
+
+def test_R58_only_the_rig_launches_a_browser():
+    offenders = []
+    for path in python_files_beside_the_rig():
+        for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
+            is_rig_launch = isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id == "rig"
+            if isinstance(node, ast.Attribute) and node.attr in BROWSER_ENTRY_POINTS and not is_rig_launch:
+                offenders.append(f"{path.relative_to(BROWSER_DIR).as_posix()}: .{node.attr}")
+    assert offenders == []
+
+
+def test_R58_the_rig_launches_headless_with_the_arguments_of_its_engine():
+    assert callable(getattr(rig, "launch", None)), "rig.launch(playwright, engine) is the one launch place"
+
+    class BrowserType:
+        def __init__(self):
+            self.calls = []
+
+        def launch(self, **settings):
+            self.calls.append(settings)
+            return "a browser"
+
+    playwright = type("Playwright", (), {})()
+    playwright.chromium, playwright.webkit = BrowserType(), BrowserType()
+    assert rig.ENGINES == ("chromium", "webkit") and set(rig.LAUNCH_ARGS) == set(rig.ENGINES)
+    assert rig.launch(playwright, "webkit") == "a browser"
+    assert playwright.webkit.calls == [{"headless": True, "args": rig.LAUNCH_ARGS["webkit"]}] and playwright.chromium.calls == []
+    with pytest.raises(ValueError):
+        rig.launch(playwright, "firefox")
 
 
 # ===== END OF TESTS (new tests go above this line) =====

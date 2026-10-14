@@ -1,0 +1,24 @@
+{
+  "started": "2026-10-14T13:03:33",
+  "ended": "2026-10-14T13:03:37",
+  "engine": "webkit",
+  "browser_version": "26.5",
+  "port": 38309,
+  "server_pid": 18948,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "init_scripts": [
+    "tests/browser/clipboard/recorder.js"
+  ],
+  "storage_state": null,
+  "bypass_csp": false,
+  "steps": 7,
+  "failure": "step 07: AssertionError: console errors, page errors, CSP violations and foreign requests: expected [], got [\"console: error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.\", \"console: error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.\", \"console: error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.\", \"console: error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.\", \"console: error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.\", \"console: error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.\"]",
+  "server_log": [
+    "server STARTED pid 18948 port 38309 root {workspace}\\examples\\split",
+    "server STOPPED pid 18948 port 38309, exited True, port free again True"
+  ],
+  "result": "FAIL"
+}

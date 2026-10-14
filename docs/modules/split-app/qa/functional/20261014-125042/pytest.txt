@@ -1,0 +1,4 @@
+FAILED   call     test_app.py::test_R58_the_engine_option_and_the_one_launch_place (0.00s)
+FAILED   call     test_app.py::test_R58_only_the_rig_launches_a_browser (0.04s)
+FAILED   call     test_app.py::test_R58_the_rig_launches_headless_with_the_arguments_of_its_engine (0.00s)
+exit status 1

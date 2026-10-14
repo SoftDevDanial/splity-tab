@@ -1,0 +1,75 @@
+{
+ "started": "2026-10-14T13:06:01",
+ "server_log": [
+  "server STARTED pid 15636 port 33958 root {workspace}\\examples\\split",
+  "server STOPPED pid 15636 port 33958, exited True, port free again True"
+ ],
+ "chromium": {
+  "browser_version": "149.0.7827.55",
+  "tap_on_hint": {
+   "events": [
+    "pointerdown:charges-hint",
+    "touchstart:charges-hint",
+    "pointerup:charges-hint",
+    "touchend:charges-hint",
+    "mousedown:charges-hint",
+    "focusout:rate-service",
+    "mouseup:charges-hint",
+    "click:charges-hint"
+   ],
+   "active": "BODY",
+   "error_shown": 1
+  },
+  "escape_transitions": {
+   "states_after_escape_in_order": [
+    {
+     "open": false,
+     "active": "button:New bill"
+    }
+   ],
+   "reads": 61
+  },
+  "screenshot_console": {
+   "before_any_screenshot": [],
+   "after_two_screenshots": []
+  }
+ },
+ "webkit": {
+  "browser_version": "26.5",
+  "tap_on_hint": {
+   "events": [
+    "pointerdown:charges-hint",
+    "touchstart:charges-hint",
+    "pointerup:charges-hint",
+    "touchend:charges-hint"
+   ],
+   "active": "rate-service",
+   "error_shown": 0
+  },
+  "escape_transitions": {
+   "states_after_escape_in_order": [
+    {
+     "open": true,
+     "active": "button:Cancel"
+    },
+    {
+     "open": false,
+     "active": "body:Split\n    Ne"
+    },
+    {
+     "open": false,
+     "active": "button:New bill"
+    }
+   ],
+   "reads": 61
+  },
+  "screenshot_console": {
+   "before_any_screenshot": [],
+   "after_two_screenshots": [
+    "error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+   ]
+  }
+ },
+ "ended": "2026-10-14T13:06:06"
+}
