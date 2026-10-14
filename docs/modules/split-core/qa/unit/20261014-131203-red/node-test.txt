@@ -1,0 +1,33 @@
+RED-first run for task C1 (R4, R34, R24), 2026-10-14, split-core builder.
+Command: node --test tests/money.test.js tests/summary.test.js
+Condensed to the failing tests, their actual and expected values, and the counts. Passing lines left out.
+The 1.0 formatMoney (no thousands comma) was in src/core/money.js both times. Only the stub of formatAmount differed.
+
+=== Run 1, stub 1: formatAmount without a comma (a near miss that passes every figure below RM 1,000) ===
+tests 111, pass 101, fail 10
+FAIL @R4 formatMoney(100000) is "RM 1,000.00"                 actual 'RM 1000.00'
+FAIL @R4 formatMoney(119387) is "RM 1,193.87"                 actual 'RM 1193.87'
+FAIL @R4 formatMoney(15599999) is "RM 155,999.99"             actual 'RM 155999.99'
+FAIL @R4 formatMoney(779999922) is "RM 7,799,999.22"          actual 'RM 7799999.22'
+FAIL @R34 formatAmount(100000) is "1,000.00"                  actual '1000.00'
+FAIL @R34 formatAmount(102390) is "1,023.90"                  actual '1023.90'
+FAIL @R34 formatAmount(119387) is "1,193.87"                  actual '1193.87'
+FAIL @R34 formatAmount(100000000) is "1,000,000.00"           actual '1000000.00'
+FAIL @R34 formatAmount(779999922) is "7,799,999.22"           actual '7799999.22'
+FAIL @R24 summary text for W1 four figure bill, thousands comma is exact
+     actual line 2 'Total RM 1193.87 (subtotal RM 1023.90, service 10% RM 102.39, SST 6% RM 67.58)', line 3 'Aisyah RM 1153.65',
+     last line 'Adds up to RM 1193.87'
+Passed with this stub, so run 2 covers it: @R34 @R4 formatMoney is RM, a space and formatAmount, for 1000 seeded values
+(the 1.0 formatMoney and this stub agree, both without a comma).
+
+=== Run 2, stub 2: formatAmount correct, formatMoney still 1.0 ===
+tests 111, pass 105, fail 6
+FAIL @R4 formatMoney(100000) is "RM 1,000.00"                 actual 'RM 1000.00'
+FAIL @R4 formatMoney(119387) is "RM 1,193.87"                 actual 'RM 1193.87'
+FAIL @R4 formatMoney(15599999) is "RM 155,999.99"             actual 'RM 155999.99'
+FAIL @R4 formatMoney(779999922) is "RM 7,799,999.22"          actual 'RM 7799999.22'
+FAIL @R34 @R4 formatMoney is RM, a space and formatAmount, for 1000 seeded values
+     actual 'RM 599055.12', expected 'RM 599,055.12'
+FAIL @R24 summary text for W1 four figure bill, thousands comma is exact
+     actual 'Bill split\nTotal RM 1193.87 (subtotal RM 1023.90, ...)\nAisyah RM 1153.65 ...\nAdds up to RM 1193.87'
+Every @R34 formatAmount case passed in run 2, and failed in run 1, so each new or changed case was seen failing on its own assertion once.

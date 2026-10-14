@@ -61,14 +61,29 @@ export function parseRate(text, maxPercent) {
   return read.ok ? { ok: true, bp: read.hundredths } : read;
 }
 
+// A comma before every group of three digits that runs to the end of the ringgit, so it is written by
+// hand (the locale APIs are banned, R25) and the same in every browser.
+const THOUSANDS_GAP = /\B(?=(?:\d{3})+$)/g;
+
 /**
- * Writes cents the way the brief shows money. No group separator (ruled CG-5), so the largest
- * bill reads "RM 7799999.22" and stays locale-independent.
+ * The money figure without a currency, for the places the page writes "RM" in its own span or shows a
+ * working such as "24.90 + 4.14". Money is formatted only here and in `formatMoney`.
  * @param {number} cents non-negative integer
- * @returns {string} e.g. "RM 38.87"
+ * @returns {string} e.g. "24.90", "1,193.87"
+ */
+export function formatAmount(cents) {
+  const ringgit = String(wholePart(cents)).replace(THOUSANDS_GAP, ",");
+  return `${ringgit}.${String(cents % 100).padStart(2, "0")}`;
+}
+
+/**
+ * Writes cents the way the brief shows money, with a thousands comma from RM 1,000 (v1.1.0 design
+ * system, replacing CG-5).
+ * @param {number} cents non-negative integer
+ * @returns {string} e.g. "RM 38.87", "RM 1,193.87"
  */
 export function formatMoney(cents) {
-  return `RM ${wholePart(cents)}.${String(cents % 100).padStart(2, "0")}`;
+  return `RM ${formatAmount(cents)}`;
 }
 
 /**

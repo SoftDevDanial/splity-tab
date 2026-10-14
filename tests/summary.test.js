@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { summaryText } from "../src/core/summary.js";
 import { computeResult } from "../src/core/result.js";
 import { setPersonName } from "../src/core/bill.js";
-import { S1, S2, S5, E2, E3, I2, D1, D2, deepFreeze } from "./support/bills.js";
+import { S1, S2, S5, E2, E3, I2, W1, D1, D2, deepFreeze } from "./support/bills.js";
 
 const block = (...lines) => lines.join("\n");
 
@@ -46,6 +46,14 @@ const blocks = [
     "Ben RM 14.59",
     "Chen RM 2.91",
     "Adds up to RM 17.50",
+  )],
+  ["W1 four figure bill, thousands comma", W1, block(
+    "Bill split",
+    "Total RM 1,193.87 (subtotal RM 1,023.90, service 10% RM 102.39, SST 6% RM 67.58)",
+    "Aisyah RM 1,153.65",
+    "Ben RM 15.74",
+    "Chen RM 24.48",
+    "Adds up to RM 1,193.87",
   )],
   ["D1 equal names, even", D1, block(
     "Bill split",

@@ -1,0 +1,8 @@
+Throwaway stubs of formatAmount, added to src/core/money.js for the RED runs only. Never committed.
+The working tree was not committed between the stubs and the real code, and the real code replaced the stub line.
+
+Stub 1 (no thousands comma):
+export function formatAmount(cents) { return `${wholePart(cents)}.${String(cents % 100).padStart(2, "0")}`; }
+
+Stub 2 (comma by regex, formatMoney untouched):
+export function formatAmount(cents) { return `${String(wholePart(cents)).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}.${String(cents % 100).padStart(2, "0")}`; }

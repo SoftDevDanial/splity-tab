@@ -387,6 +387,7 @@ function runEveryExport({ money, allocate, bill, result, summary }) {
   money.parseAmount(" 12.50 ");
   money.parseRate("6.25", 20);
   money.formatMoney(779999922);
+  money.formatAmount(779999922);
   money.formatRate(625);
   allocate.allocateEvenly(10, 3);
   allocate.allocateByWeight(10, [1, 2, 3]);

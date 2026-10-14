@@ -54,6 +54,12 @@ const s1Items = () => [
 
 export const S2 = fixture({ names: TRIO, subtotal: "100.00" });
 export const S1 = fixture({ mode: "item", names: TRIO, items: s1Items() });
+// S1 plus one RM 964.50 item for Aisyah, so the bill passes RM 1,000 (bill-large golden, thousands comma).
+export const W1 = fixture({
+  mode: "item",
+  names: TRIO,
+  items: [...s1Items(), { price: "964.50", who: ["p1"] }],
+});
 export const S5 = fixture({
   mode: "item",
   names: TRIO,

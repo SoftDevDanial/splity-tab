@@ -97,3 +97,16 @@ the same file (`trapped`, `runEveryExport`), see spec R25.]
 ## Boot
 Nothing to boot. This module has no server or UI. `split-app` imports it with relative ES module paths such
 as `./core/money.js`.
+
+## v1.1.0 build record
+Built by the backend developer role. Each task is one commit, `node --test "tests/**/*.test.js"` green on it.
+
+### C1 (2026-10-14) formatAmount and the thousands comma. R34, R4, R24
+- **Commit.** Subject `feat(split-core): formatAmount and the thousands comma in formatMoney (task C1, R4, R34, R24)`, hash in the C2 row below.
+- **Files.** `src/core/money.js` (new export `formatAmount`, `formatMoney` is now "RM " plus `formatAmount`, private `THOUSANDS_GAP`), `tests/money.test.js`, `tests/summary.test.js`, `tests/support/bills.js` (fixture W1), `tests/hygiene.test.js`.
+- **Tests.** 289 pass, 0 fail (275 before). New or changed cases: the R4 table (four rows with a comma, two new), the R34 table (9 rows), the R34 and R4 seeded equivalence sweep (1000 values, mulberry32 seed 20261013), the R24 W1 summary block.
+- **RED first.** Two stubs of `formatAmount` against the 1.0 `formatMoney`. Stub 1 (no comma) failed the 4 R4 rows, 5 R34 rows and the W1 summary. Stub 2 (correct figure, 1.0 `formatMoney`) failed the 4 R4 rows, the sweep and the W1 summary. Output and stub source in `qa/unit/20261014-131203-red/`.
+- **R24.** `summaryText` needed no code change, it already prints money through `formatMoney`. The W1 block is the proof (CG-P1, ruled).
+- **Deviation, one line.** `tests/hygiene.test.js` `runEveryExport` gained one call, `money.formatAmount(779999922)`. The runtime trap fails on any export the workload does not run, so without it the commit would be red. The rest of C6 (the `spare.js` workload, the negative control) is not started.
+- **Comments.** `formatMoney` doc rewritten (the CG-5 text was false now), `formatAmount` doc and the `THOUSANDS_GAP` note added.
+- **Non-goals.** No locale API, no other currency, no spare sen line in the summary.

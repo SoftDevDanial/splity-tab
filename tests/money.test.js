@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  parseAmount, parseRate, formatMoney, formatRate, AMOUNT_MIN_CENTS, AMOUNT_MAX_CENTS,
+  parseAmount, parseRate, formatMoney, formatRate, formatAmount, AMOUNT_MIN_CENTS, AMOUNT_MAX_CENTS,
 } from "../src/core/money.js";
 import { mulberry32, randomInt } from "./support/rng.js";
 
@@ -156,14 +156,42 @@ const money = [
   [100, "RM 1.00"],
   [3887, "RM 38.87"],
   [11660, "RM 116.60"],
-  [15599999, "RM 155999.99"],
-  [779999922, "RM 7799999.22"],
+  [99999, "RM 999.99"],
+  [100000, "RM 1,000.00"],
+  [119387, "RM 1,193.87"],
+  [15599999, "RM 155,999.99"],
+  [779999922, "RM 7,799,999.22"],
 ];
 for (const [cents, text] of money) {
   test(`@R4 formatMoney(${cents}) is ${JSON.stringify(text)}`, () => {
     assert.equal(formatMoney(cents), text);
   });
 }
+
+const amounts = [
+  [0, "0.00"],
+  [2490, "24.90"],
+  [98940, "989.40"],
+  [99999, "999.99"],
+  [100000, "1,000.00"],
+  [102390, "1,023.90"],
+  [119387, "1,193.87"],
+  [100000000, "1,000,000.00"],
+  [779999922, "7,799,999.22"],
+];
+for (const [cents, text] of amounts) {
+  test(`@R34 formatAmount(${cents}) is ${JSON.stringify(text)}`, () => {
+    assert.equal(formatAmount(cents), text);
+  });
+}
+
+test("@R34 @R4 formatMoney is RM, a space and formatAmount, for 1000 seeded values", () => {
+  const next = mulberry32(20261013);
+  for (let n = 0; n < 1000; n += 1) {
+    const cents = randomInt(next, 0, 779999922);
+    assert.equal(formatMoney(cents), `RM ${formatAmount(cents)}`, String(cents));
+  }
+});
 
 const rates = [
   [0, "0%"],
