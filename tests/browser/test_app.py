@@ -1581,20 +1581,38 @@ ROW_EDGES_JS = """(root) => [...document.querySelectorAll(root + ' > ul.r-splits
   const box = li.getBoundingClientRect(); return [box.left, box.top]; })"""
 
 
+def in_two_columns(edges, rows):
+    """Whether the splits rows at `edges` (ROW_EDGES_JS) stand in two columns with `rows` in the first: those share one
+    left edge, the rest share another further right, and the first of the second column is level with row 1 (PD-17)."""
+    def level(a, b):
+        return abs(a - b) <= 0.5
+
+    first, second = edges[:rows], edges[rows:]
+    return (all(level(left, first[0][0]) for left, _ in first) and all(level(left, second[0][0]) for left, _ in second)
+            and second[0][0] > first[0][0] + 0.5 and level(second[0][1], first[0][1]))
+
+
 def test_R20_more_than_six_people_list_in_two_columns_on_the_desktop(open_app):
     # [v1.1.0] qa.md on T12 at 1280 x 800 (PD-17). The sheet's line is test_R20_the_sheet_lists_the_splits_as_the_card_does.
     page = open_app(seed=seeds.T12, viewport=VIEWPORTS[1280]).page
     found = receipt(page)["list"]
     assert found and [found["cls"], found["rowsVar"], len(found["rows"])] == ["r-splits many", "6", 12], found
     edges = page.evaluate(ROW_EDGES_JS, "#rbody")
-
-    def level(a, b):
-        return abs(a - b) <= 0.5
-
-    assert all(level(left, edges[0][0]) for left, _ in edges[:6]) and all(level(left, edges[6][0]) for left, _ in edges[6:])
-    assert edges[6][0] > edges[0][0] + 0.5 and level(edges[6][1], edges[0][1]), edges
+    assert in_two_columns(edges, 6), edges
     for seed in (seeds.S2, seeds.T12I):
         assert receipt(open_app(seed=seed, viewport=VIEWPORTS[1280]).page)["list"]["cls"] == "r-splits"
+
+
+@pytest.mark.parametrize("count", [7, 8, 9, 10, 11], ids=lambda count: f"{count}-people")
+def test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop(open_app, count):
+    # R20 sets --rows to ceil(people / 2). Only an odd count tells that from a floor, which makes the grid open a third
+    # column (code review CR-S5-7). T12 is the test above. The bill is T12 cut to its first `count` people.
+    seed = seeds.changed(seeds.T12, lambda d: d["bill"].update(people=d["bill"]["people"][:count], nextId=count + 1))
+    page = open_app(seed=seed, viewport=VIEWPORTS[1280]).page
+    found, rows = receipt(page)["list"], (count + 1) // 2
+    assert found and [found["cls"], found["rowsVar"], len(found["rows"])] == ["r-splits many", str(rows), count], found
+    edges = page.evaluate(ROW_EDGES_JS, "#rbody")
+    assert in_two_columns(edges, rows), edges
 
 
 def test_R21_the_by_item_split_from_gestures(open_app):
