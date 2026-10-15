@@ -213,26 +213,25 @@ VIEWPORTS = {390: (390, 844), 360: (360, 780), 1280: (1280, 800)}
 SHEET_SPARE_CHIP = "#splitsDlg .r-spare-acts button[aria-haspopup=dialog]"
 SPARE_OPENERS = {"phone": ("#splitsBtn", SHEET_SPARE_CHIP), "desktop": ("#spareBtn",)}
 # qa.md, "The rendered markup matches its golden": golden -> (seed, the clicks after load below and from 1024 px,
-# and per width the task that completes the state, the reason of its xfail until that task removes it).
+# the widths of its row).
+EVERY_WIDTH = (390, 360, 1280)
 R3_STATES = {
-    "bill-items": (seeds.S1, {}, {390: None, 360: None, 1280: None}),
-    "bill-items-open": (seeds.S1, {"phone": ("#peopleBtn", "#chargesBtn")}, {390: None, 360: None}),
-    "bill-even": (seeds.S2, {}, {390: None, 360: None, 1280: None}),
-    "spare-sen": (seeds.S1, SPARE_OPENERS, {390: None, 360: None, 1280: None}),
-    "spare-sen-one": (seeds.ONE, SPARE_OPENERS, {390: None, 360: None, 1280: None}),
-    "spare-sen-random": (seeds.RND, SPARE_OPENERS, {390: None, 360: None, 1280: None}),
-    "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, {390: None, 360: None}),
-    "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: None, 360: None, 1280: None}),
-    "bill-empty": (None, {}, {390: None, 360: None, 1280: None}),
-    "rate-error": (seeds.RE, {}, {390: None, 360: None, 1280: None}),
-    "bill-unassigned": (seeds.S5, {}, {390: None, 360: None, 1280: None}),
-    "bill-unreadable": (seeds.UNREADABLE["B1"], {}, {390: None, 360: None, 1280: None}),
-    "bill-twelve": (seeds.T12, {}, {390: None, 360: None, 1280: None}),
-    "bill-large": (seeds.W1, {}, {390: None, 360: None, 1280: None}),
+    "bill-items": (seeds.S1, {}, EVERY_WIDTH),
+    "bill-items-open": (seeds.S1, {"phone": ("#peopleBtn", "#chargesBtn")}, (390, 360)),
+    "bill-even": (seeds.S2, {}, EVERY_WIDTH),
+    "spare-sen": (seeds.S1, SPARE_OPENERS, EVERY_WIDTH),
+    "spare-sen-one": (seeds.ONE, SPARE_OPENERS, EVERY_WIDTH),
+    "spare-sen-random": (seeds.RND, SPARE_OPENERS, EVERY_WIDTH),
+    "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, (390, 360)),
+    "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, EVERY_WIDTH),
+    "bill-empty": (None, {}, EVERY_WIDTH),
+    "rate-error": (seeds.RE, {}, EVERY_WIDTH),
+    "bill-unassigned": (seeds.S5, {}, EVERY_WIDTH),
+    "bill-unreadable": (seeds.UNREADABLE["B1"], {}, EVERY_WIDTH),
+    "bill-twelve": (seeds.T12, {}, EVERY_WIDTH),
+    "bill-large": (seeds.W1, {}, EVERY_WIDTH),
 }
-R3_PAIRS = [pytest.param(golden, width, id=f"{golden}-{width}",
-                         marks=() if task is None else pytest.mark.xfail(strict=True, reason=f"task {task}"))
-            for golden, (_, _, tasks) in R3_STATES.items() for width, task in tasks.items()]  # None, the pair is complete
+R3_PAIRS = [pytest.param(golden, width, id=f"{golden}-{width}") for golden, (_, _, widths) in R3_STATES.items() for width in widths]
 
 
 def click_after_load(page, selectors):
@@ -296,13 +295,13 @@ STYLE_OUTSIDE_TARGETS_JS = """() => [...document.querySelectorAll('[style]')].fl
   return extra.length ? [`${el.localName}#${el.id}.${el.className}: ${extra.join(' ')}`] : [];
 })"""
 K1_SPLITS = ["RM 29.04", "RM 15.74", "RM 24.48", "RM 69.26"]
-# (state, golden of that state, seed, width, the clicks after load, the proof the module ran, the task that completes it)
+# (state, golden of that state, seed, width, the clicks after load, the proof the module ran)
 POLICY_STATES = [
-    ("cold-boot", "bill-empty", None, 390, (), "card-blocked", None),
-    ("K1", "bill-items", seeds.S1, 390, (), "card-K1", None),
-    ("K1-new-bill", "new-bill-dialog", seeds.S1, 390, ("#newBill",), "dialog-open", None),
-    ("K1-sheet-P1", "spare-sen", seeds.S1, 390, ("#splitsBtn", SHEET_SPARE_CHIP), "sheet-padding", None),
-    ("K2-P1-desktop", "bill-even", seeds.S2, 1280, ("#spareBtn",), "spare-place", None),
+    ("cold-boot", "bill-empty", None, 390, (), "card-blocked"),
+    ("K1", "bill-items", seeds.S1, 390, (), "card-K1"),
+    ("K1-new-bill", "new-bill-dialog", seeds.S1, 390, ("#newBill",), "dialog-open"),
+    ("K1-sheet-P1", "spare-sen", seeds.S1, 390, ("#splitsBtn", SHEET_SPARE_CHIP), "sheet-padding"),
+    ("K2-P1-desktop", "bill-even", seeds.S2, 1280, ("#spareBtn",), "spare-place"),
 ]
 POLICY_PROOFS = {  # proof -> (what the page shows, what it must show)
     "card-blocked": (card_text, BLOCKED_CARD["subtotal"]),
@@ -316,9 +315,7 @@ POLICY_PROOFS = {  # proof -> (what the page shows, what it must show)
 }
 
 
-@pytest.mark.parametrize("state, golden, seed, width, clicks, proof", [
-    pytest.param(*row[:6], id=row[0], marks=[pytest.mark.xfail(strict=True, reason=f"task {row[6]}")] if row[6] else [])
-    for row in POLICY_STATES])
+@pytest.mark.parametrize("state, golden, seed, width, clicks, proof", [pytest.param(*row, id=row[0]) for row in POLICY_STATES])
 def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app, plain_context, state, golden, seed, width, clicks, proof):
     session = open_app(seed=seed, viewport=VIEWPORTS[width])
     page = session.page
