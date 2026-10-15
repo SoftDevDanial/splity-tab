@@ -18,6 +18,7 @@ import { createCharges } from "./ui/charges.js";
 import { createPeopleSection, createChargesSection } from "./ui/sections.js";
 import { icon } from "./ui/icons.js";
 import { CARD_IDS, createReceipt, hasSplits } from "./ui/receipt.js";
+import { showCopyStatus } from "./ui/copy-status.js";
 import { watchPointerClicks } from "./ui/dom.js";
 
 watchPointerClicks(); // R57 (b): every repeat check reads what these window listeners record from the first press on
@@ -54,17 +55,14 @@ function save() {
 }
 
 /**
- * R24: the copy status lives only while the splits do. This is the one place that writes
- * `view.status`, so the three ways it can go stale (a bill change that removes the splits, a clipboard answer
- * that arrives after that, Start new bill) cannot bring it back with the splits.
+ * R22, R23: copy the summary of the bill as it is now, then show how it went in every status line. A missing clipboard
+ * or writeText throws inside the try, so every refusal is the one failure and nothing else changes. An answer that comes
+ * after a change to the bill shows nothing (R24), because the change cleared the status and the summary the browser
+ * copied is no longer the one on screen.
  */
-function setStatus(next) {
-  view.status = hasSplits(computeResult(bill)) ? next : null;
-}
-
-/** R22, R23: copy the summary of the bill as it is now. Any refusal is shown as a failure, nothing else changes. */
 async function copySummary() {
-  const result = computeResult(bill);
+  const copied = bill;
+  const result = computeResult(copied);
   if (!hasSplits(result)) return;
   let outcome = "ok";
   try {
@@ -72,15 +70,16 @@ async function copySummary() {
   } catch {
     outcome = "fail";
   }
-  setStatus(outcome);
+  if (bill !== copied) return;
+  view.status = outcome;
   render();
 }
 
 function commit(next) {
   if (next === bill) return;
   bill = next;
+  view.status = null; // rule 10 (R24), the next change to the bill clears the copy status, and nothing else does
   save();
-  setStatus(view.status);
   render();
 }
 
@@ -144,15 +143,18 @@ const charges = createCharges({ onInput: (kind, text) => amountTyped(kind, text)
 const newBillButton = document.getElementById("newBill");
 newBillButton.prepend(icon("plus"));
 document.getElementById("splitsBtn").append(icon("caret", "caret-up"));
-document.getElementById("stripCopy").prepend(icon("copy"));
+const stripCopy = document.getElementById("stripCopy");
+stripCopy.prepend(icon("copy"));
+stripCopy.addEventListener("click", copySummary);
+const stripStatus = document.getElementById("stripStatus");
 const card = createReceipt(document.getElementById("rbody"), { ids: CARD_IDS, onCopy: copySummary });
 createDialog(document.getElementById("newDlg"), newBillButton, {
   onConfirm() {
-    // The view state is reset with the bill (R31): a stale error flag, copy status or open state must not outlive it.
+    // The view state is reset with the bill (R31): a stale error flag or open state must not outlive it. The copy
+    // status goes in commit, as with every change to the bill.
     const fresh = newBill();
     view.errorShown = newErrorFlags();
     view.open = openAsAtLoad(fresh, view.errorShown);
-    setStatus(null);
     commit(fresh);
   },
 });
@@ -195,6 +197,7 @@ function render() {
   items.update(bill, errors);
   charges.update(bill, errors);
   card.update(result, view.status);
+  showCopyStatus(stripStatus, view.status);
   notes.update(view);
   items.markFrame(); // last, so it measures the frame with every block above it in its new state (R56)
 }

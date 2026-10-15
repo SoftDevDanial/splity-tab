@@ -1,0 +1,497 @@
+{
+ "card-copied": {
+  "walk_first_diff": null,
+  "differences": {
+   "/iconInP[0]": [
+    139.23,
+    75.23
+   ]
+  },
+  "app": {
+   "compared": {
+    "pStyles": {
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "columnGap": "8px",
+     "rowGap": "8px",
+     "marginTop": "12px",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+     "letterSpacing": "normal",
+     "color": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal",
+     "paddingTop": "0px",
+     "paddingBottom": "0px"
+    },
+    "svgStyles": {
+     "width": "16px",
+     "height": "16px",
+     "fill": "rgb(163, 170, 255)",
+     "flexShrink": "0",
+     "verticalAlign": "baseline",
+     "marginTop": "0px",
+     "display": "block"
+    },
+    "iconSize": [
+     16,
+     16
+    ],
+    "iconInP": [
+     139.23,
+     2
+    ],
+    "iconToText": 8,
+    "firstLineTopInP": 0,
+    "lines": 1,
+    "pHeight": 20,
+    "offCentre": -0.02,
+    "belowCopy": 12
+   },
+   "recorded": {
+    "pWidth": 410,
+    "aroundWidth": 410,
+    "pBox": [
+     123,
+     580.8,
+     410,
+     20
+    ],
+    "around": "div.rbody"
+   }
+  },
+  "golden": {
+   "compared": {
+    "pStyles": {
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "columnGap": "8px",
+     "rowGap": "8px",
+     "marginTop": "12px",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+     "letterSpacing": "normal",
+     "color": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal",
+     "paddingTop": "0px",
+     "paddingBottom": "0px"
+    },
+    "svgStyles": {
+     "width": "16px",
+     "height": "16px",
+     "fill": "rgb(163, 170, 255)",
+     "flexShrink": "0",
+     "verticalAlign": "baseline",
+     "marginTop": "0px",
+     "display": "block"
+    },
+    "iconSize": [
+     16,
+     16
+    ],
+    "iconInP": [
+     75.23,
+     2
+    ],
+    "iconToText": 8,
+    "firstLineTopInP": 0,
+    "lines": 1,
+    "pHeight": 20,
+    "offCentre": -0.02,
+    "belowCopy": 12
+   },
+   "recorded": {
+    "pWidth": 282,
+    "aroundWidth": 282,
+    "pBox": [
+     881,
+     342,
+     282,
+     20
+    ],
+    "around": "div.rbody"
+   }
+  }
+ },
+ "card-blocked": {
+  "walk_first_diff": null,
+  "differences": {
+   "/iconInP[0]": [
+    26.83,
+    0
+   ],
+   "/iconInP[1]": [
+    2,
+    12
+   ],
+   "/lines": [
+    1,
+    2
+   ],
+   "/offCentre": [
+    0,
+    -17.14
+   ],
+   "/pHeight": [
+    20,
+    40
+   ]
+  },
+  "app": {
+   "compared": {
+    "pStyles": {
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "columnGap": "8px",
+     "rowGap": "8px",
+     "marginTop": "12px",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+     "letterSpacing": "normal",
+     "color": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal",
+     "paddingTop": "0px",
+     "paddingBottom": "0px"
+    },
+    "svgStyles": {
+     "width": "16px",
+     "height": "16px",
+     "fill": "rgb(255, 138, 143)",
+     "flexShrink": "0",
+     "verticalAlign": "baseline",
+     "marginTop": "0px",
+     "display": "block"
+    },
+    "iconSize": [
+     16,
+     16
+    ],
+    "iconInP": [
+     26.83,
+     2
+    ],
+    "iconToText": 8,
+    "firstLineTopInP": 0,
+    "lines": 1,
+    "pHeight": 20,
+    "offCentre": 0,
+    "belowCopy": 12
+   },
+   "recorded": {
+    "pWidth": 410,
+    "aroundWidth": 410,
+    "pBox": [
+     123,
+     580.8,
+     410,
+     20
+    ],
+    "around": "div.rbody"
+   }
+  },
+  "golden": {
+   "compared": {
+    "pStyles": {
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "columnGap": "8px",
+     "rowGap": "8px",
+     "marginTop": "12px",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+     "letterSpacing": "normal",
+     "color": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal",
+     "paddingTop": "0px",
+     "paddingBottom": "0px"
+    },
+    "svgStyles": {
+     "width": "16px",
+     "height": "16px",
+     "fill": "rgb(255, 138, 143)",
+     "flexShrink": "0",
+     "verticalAlign": "baseline",
+     "marginTop": "0px",
+     "display": "block"
+    },
+    "iconSize": [
+     16,
+     16
+    ],
+    "iconInP": [
+     0,
+     12
+    ],
+    "iconToText": 8,
+    "firstLineTopInP": 0,
+    "lines": 2,
+    "pHeight": 40,
+    "offCentre": -17.14,
+    "belowCopy": 12
+   },
+   "recorded": {
+    "pWidth": 282,
+    "aroundWidth": 282,
+    "pBox": [
+     881,
+     483,
+     282,
+     40
+    ],
+    "around": "div.rbody"
+   }
+  }
+ },
+ "strip-copied": {
+  "walk_first_diff": null,
+  "differences": {},
+  "app": {
+   "compared": {
+    "pStyles": {
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "flex-start",
+     "columnGap": "8px",
+     "rowGap": "8px",
+     "marginTop": "0px",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+     "letterSpacing": "normal",
+     "color": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal",
+     "paddingTop": "0px",
+     "paddingBottom": "0px"
+    },
+    "svgStyles": {
+     "width": "16px",
+     "height": "16px",
+     "fill": "rgb(163, 170, 255)",
+     "flexShrink": "0",
+     "verticalAlign": "baseline",
+     "marginTop": "0px",
+     "display": "block"
+    },
+    "iconSize": [
+     16,
+     16
+    ],
+    "iconInP": [
+     0,
+     2
+    ],
+    "iconToText": 8,
+    "firstLineTopInP": 0,
+    "lines": 1,
+    "pHeight": 20,
+    "offCentre": 0,
+    "belowCopy": null
+   },
+   "recorded": {
+    "pWidth": 131.52,
+    "aroundWidth": 356,
+    "pBox": [
+     241.48,
+     750,
+     131.52,
+     20
+    ],
+    "around": "div.strip-top"
+   }
+  },
+  "golden": {
+   "compared": {
+    "pStyles": {
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "flex-start",
+     "columnGap": "8px",
+     "rowGap": "8px",
+     "marginTop": "0px",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+     "letterSpacing": "normal",
+     "color": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal",
+     "paddingTop": "0px",
+     "paddingBottom": "0px"
+    },
+    "svgStyles": {
+     "width": "16px",
+     "height": "16px",
+     "fill": "rgb(163, 170, 255)",
+     "flexShrink": "0",
+     "verticalAlign": "baseline",
+     "marginTop": "0px",
+     "display": "block"
+    },
+    "iconSize": [
+     16,
+     16
+    ],
+    "iconInP": [
+     0,
+     2
+    ],
+    "iconToText": 8,
+    "firstLineTopInP": 0,
+    "lines": 1,
+    "pHeight": 20,
+    "offCentre": 0,
+    "belowCopy": null
+   },
+   "recorded": {
+    "pWidth": 131.52,
+    "aroundWidth": 322,
+    "pBox": [
+     224.48,
+     950,
+     131.52,
+     20
+    ],
+    "around": "div.strip-top"
+   }
+  }
+ },
+ "strip-blocked": {
+  "walk_first_diff": null,
+  "differences": {
+   "/offCentre": [
+    -66.66,
+    -32.66
+   ]
+  },
+  "app": {
+   "compared": {
+    "pStyles": {
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "flex-start",
+     "columnGap": "8px",
+     "rowGap": "8px",
+     "marginTop": "0px",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+     "letterSpacing": "normal",
+     "color": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal",
+     "paddingTop": "0px",
+     "paddingBottom": "0px"
+    },
+    "svgStyles": {
+     "width": "16px",
+     "height": "16px",
+     "fill": "rgb(255, 138, 143)",
+     "flexShrink": "0",
+     "verticalAlign": "baseline",
+     "marginTop": "0px",
+     "display": "block"
+    },
+    "iconSize": [
+     16,
+     16
+    ],
+    "iconInP": [
+     0,
+     12
+    ],
+    "iconToText": 8,
+    "firstLineTopInP": 0,
+    "lines": 2,
+    "pHeight": 40,
+    "offCentre": -66.66,
+    "belowCopy": null
+   },
+   "recorded": {
+    "pWidth": 356,
+    "aroundWidth": 356,
+    "pBox": [
+     17,
+     740,
+     356,
+     40
+    ],
+    "around": "div.strip-top"
+   }
+  },
+  "golden": {
+   "compared": {
+    "pStyles": {
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "flex-start",
+     "columnGap": "8px",
+     "rowGap": "8px",
+     "marginTop": "0px",
+     "fontSize": "14px",
+     "fontWeight": "600",
+     "lineHeight": "20px",
+     "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+     "letterSpacing": "normal",
+     "color": "rgb(232, 235, 242)",
+     "textAlign": "left",
+     "whiteSpace": "normal",
+     "paddingTop": "0px",
+     "paddingBottom": "0px"
+    },
+    "svgStyles": {
+     "width": "16px",
+     "height": "16px",
+     "fill": "rgb(255, 138, 143)",
+     "flexShrink": "0",
+     "verticalAlign": "baseline",
+     "marginTop": "0px",
+     "display": "block"
+    },
+    "iconSize": [
+     16,
+     16
+    ],
+    "iconInP": [
+     0,
+     12
+    ],
+    "iconToText": 8,
+    "firstLineTopInP": 0,
+    "lines": 2,
+    "pHeight": 40,
+    "offCentre": -32.66,
+    "belowCopy": null
+   },
+   "recorded": {
+    "pWidth": 322,
+    "aroundWidth": 322,
+    "pBox": [
+     34,
+     1101,
+     322,
+     40
+    ],
+    "around": "div.strip-top"
+   }
+  }
+ }
+}

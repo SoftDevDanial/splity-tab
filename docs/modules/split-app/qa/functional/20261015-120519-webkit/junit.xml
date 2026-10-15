@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.618" timestamp="2026-10-15T12:05:19.138844+08:00" hostname="{host}"><testcase classname="test_app" name="test_R24_the_status_lasts_until_the_next_change_to_the_bill" time="2.253"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'card': ['status', 'status', []]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'card': ['status', 'status', []]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+      {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

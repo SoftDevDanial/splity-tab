@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="12" skipped="4" tests="17" time="12.705" timestamp="2026-10-15T12:03:13.633591+08:00" hostname="{host}"><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-1280-card]" time="1.729"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  {'card': ['status', 'status', ['Summary copied']]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+      {'card': ['status', 'status', ['Summary copied']]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-390-sheet]" time="0.503"><skipped type="pytest.xfail" message="task A12" /></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-390-strip]" time="0.542"><failure message="AssertionError: assert [None, 0] == ['Bill split\...RM 116.60', 1]&#10;  &#10;  At index 0 diff: None != 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60'&#10;  Use -v to get more diff">E   AssertionError: assert [None, 0] == ['Bill split\...RM 116.60', 1]
+      
+      At index 0 diff: None != 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-1280-card]" time="0.627"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  {'card': ['status', 'status', ['Summary copied']]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+      {'card': ['status', 'status', ['Summary copied']]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-390-sheet]" time="0.510"><skipped type="pytest.xfail" message="task A12" /></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-390-strip]" time="0.547"><failure message="AssertionError: assert [None, 0] == ['Bill split\... RM 69.26', 1]&#10;  &#10;  At index 0 diff: None != 'Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\nAisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26'&#10;  Use -v to get more diff">E   AssertionError: assert [None, 0] == ['Bill split\... RM 69.26', 1]
+      
+      At index 0 diff: None != 'Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\nAisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R22_a_bill_from_rm_1000_copies_with_thousands_commas" time="0.566" /><testcase classname="test_app" name="test_R23_the_browser_blocks_the_clipboard" time="0.533"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', []]} != {'strip': ['status is-fail', 'status', [['svg.ic', '#i-warning-circle'], 'Could not copy. Your browser blocked the clipboard.']]}&#10;  {'card': ['status', 'status', []]} != {'card': ['status is-fail', 'status', [['svg.ic', '#i-warning-circle'], 'Could not copy. Your browser blocked the clipboard.']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'strip': ['status', 'status', []]} != {'strip': ['status is-fail', 'status', [['svg.ic', '#i-warning-circle'], 'Could not copy. Your browser blocked the clipboard.']]}
+      {'card': ['status', 'status', []]} != {'card': ['status is-fail', 'status', [['svg.ic', '#i-warning-circle'], 'Could not copy. Your browser blocked the clipboard.']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R23_a_blocked_copy_grows_the_strip" time="0.527"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R23_the_clipboard_api_is_missing" time="0.538"><failure message="AssertionError: assert (['status', 'status', []] == ['status is-f... clipboard.']]&#10;  &#10;  At index 0 diff: 'status' != 'status is-fail'&#10;  Use -v to get more diff)">E   AssertionError: assert (['status', 'status', []] == ['status is-f... clipboard.']]
+      
+      At index 0 diff: 'status' != 'status is-fail'
+      Use -v to get more diff)</failure></testcase><testcase classname="test_app" name="test_R24_the_status_lasts_until_the_next_change_to_the_bill" time="0.571"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  {'card': ['status', 'status', []]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+      {'card': ['status', 'status', []]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R24_the_sheet_shows_the_status_while_it_is_open" time="0.628"><skipped type="pytest.xfail" message="task A12" /></testcase><testcase classname="test_app" name="test_R22_a_failed_copy_is_replaced_by_the_next_attempt" time="0.539"><failure message="AssertionError: assert ['status', 'status', []] == ['status is-f... clipboard.']]&#10;  &#10;  At index 0 diff: 'status' != 'status is-fail'&#10;  Use -v to get more diff">E   AssertionError: assert ['status', 'status', []] == ['status is-f... clipboard.']]
+      
+      At index 0 diff: 'status' != 'status is-fail'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R24_an_answer_that_comes_after_a_change_sets_no_status[splits-left]" time="0.540"><failure message="AssertionError: the copy is not waiting for its answer&#10;assert 'undefined' == 'function'&#10;  &#10;  - function&#10;  + undefined">E   AssertionError: the copy is not waiting for its answer
+    assert 'undefined' == 'function'
+      
+      - function
+      + undefined</failure></testcase><testcase classname="test_app" name="test_R24_an_answer_that_comes_after_a_change_sets_no_status[name-typed]" time="0.544"><failure message="AssertionError: the copy is not waiting for its answer&#10;assert 'undefined' == 'function'&#10;  &#10;  - function&#10;  + undefined">E   AssertionError: the copy is not waiting for its answer
+    assert 'undefined' == 'function'
+      
+      - function
+      + undefined</failure></testcase><testcase classname="test_app" name="test_R5_a_new_name_reaches_the_copied_text" time="1.820"><failure message="AssertionError: assert [] == ['Chen Wei RM 24.48']&#10;  &#10;  Right contains one more item: 'Chen Wei RM 24.48'&#10;  Use -v to get more diff">E   AssertionError: assert [] == ['Chen Wei RM 24.48']
+      
+      Right contains one more item: 'Chen Wei RM 24.48'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R42_duplicate_names_through_the_whole_flow" time="1.064"><failure message="AssertionError: assert [] == ['Ben RM 38.8...Ben RM 38.87']&#10;  &#10;  Right contains 2 more items, first extra item: 'Ben RM 38.87'&#10;  Use -v to get more diff">E   AssertionError: assert [] == ['Ben RM 38.8...Ben RM 38.87']
+      
+      Right contains 2 more items, first extra item: 'Ben RM 38.87'
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,6 @@
+engine webkit, browser version 26.5
+test_app.py::test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-390-sheet] | xfail task A12
+test_app.py::test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-390-sheet] | xfail task A12
+test_app.py::test_R23_a_blocked_copy_grows_the_strip | xfail task A11
+test_app.py::test_R24_the_sheet_shows_the_status_while_it_is_open | xfail task A12
+count 4

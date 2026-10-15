@@ -21,7 +21,7 @@ from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 import rig
 import seeds
 import support
-from expected import (BLOCKED_CARD, EVEN_MESSAGE, S1_COPY, S1_ITEMS, S1_LINES, S1_PROOF, S1_SPLITS, S2_CHECK, S2_COPY,
+from expected import (BLOCKED_CARD, EVEN_MESSAGE, S1_COPY, S1_ITEMS, S1_LINES, S1_PROOF, S1_SPLITS, S2_COPY,
                       S2_LINES, S2_PROOF, S2_SPLITS)
 from support import (CSP, GOLDEN_DIR, ROOT, card_text, dom_walk, first_diff, golden_walk, open_golden,
                      panel_text, person_field, walk_entries)
@@ -1426,8 +1426,8 @@ STRIP_MESSAGE_JS = """() => { const message = document.querySelector('#stripInfo
 
 
 def table_cells(page, part):
-    """Cell texts of the 1.0 table.shares thead, tbody or tfoot, one list per row. Read only by tests marked for a later
-    task (A10, A18), which rewrite them to the receipt."""
+    """Cell texts of the 1.0 table.shares thead, tbody or tfoot, one list per row. Read only by a test marked for a later
+    task (A18), which rewrites it to the receipt."""
     return page.evaluate(
         "(part) => [...document.querySelectorAll(`table.shares ${part} tr`)].map((tr) => [...tr.children].map((c) => c.textContent.trim()))",
         part)
@@ -1658,94 +1658,214 @@ def test_R8_the_receipt_follows_each_mode(open_app):
     assert card_figures(page)[0] == "RM 116.60"
 
 
-# ---------------------------------------------------------------- Task 8: copy summary (R22 to R24, R5, R42)
+# ---------------------------------------------------------------- v1.1.0 task A10: copy summary and the status (R22 to R24, R5, R42)
 FAILED_COPY = "Could not copy. Your browser blocked the clipboard."
+# Every status paragraph the page holds (spec R24), the card's #cardStatus, the strip's #stripStatus and the sheet's
+# p.status (task A12), each as whether it is displayed and its line, the class list, the role and the child nodes in
+# order (an element as its tag and classes with the href of its use, a text node as its text). Null where the page
+# holds none, so a paragraph that is not built fails on the assertion that names it, never on a wait.
+STATUS_JS = """() => {
+  const read = (el) => el && { shown: el.checkVisibility(), line: [el.className, el.getAttribute('role'),
+    [...el.childNodes].map((node) => node instanceof Element
+      ? [node.localName + [...node.classList].map((name) => '.' + name).join(''), node.querySelector('use')?.getAttribute('href') ?? null]
+      : node.textContent)] };
+  return { card: read(document.querySelector('#cardStatus')), strip: read(document.querySelector('#stripStatus')),
+           sheet: read(document.querySelector('#splitsDlg p.status')) };
+}"""
+COPIED = ["status", "status", [["svg.ic", "#i-check"], "Summary copied"]]
+COPY_REFUSED = ["status is-fail", "status", [["svg.ic", "#i-warning-circle"], FAILED_COPY]]
+NO_STATUS = ["status", "status", []]
+
+
+def status_lines(page):
+    """The line of each status paragraph (STATUS_JS) by place, card, strip and sheet, None where the page holds none."""
+    return {place: found and found["line"] for place, found in page.evaluate(STATUS_JS).items()}
+
+
+def statuses_shown(page):
+    """Whether each status paragraph is displayed (STATUS_JS) by place, None where the page holds none."""
+    return {place: found and found["shown"] for place, found in page.evaluate(STATUS_JS).items()}
+
+
+def click_copy(page, selector):
+    """Click the Copy summary at `selector` and wait two frames, so the clipboard's answer is on screen. A button the
+    page does not hold fails here on its count, never on a wait."""
+    button = page.locator(selector)
+    assert button.count() == 1, f"no {selector}"
+    button.click()
+    settle(page)
 
 
 def copy_summary(page):
+    """The one Copy summary shown at this width (the card's from 1024 px, the strip's below), as a 1.0 test pressed it."""
     page.get_by_role("button", name="Copy summary").click()
+    settle(page)
 
 
 def status_of(page):
+    """The 1.0 read of the one p.status. Only test_R31_start_over_clears_the_copy_status (task A16) still reads it."""
     status = page.locator("p.status")
     return status.inner_text() if status.count() else None, status.get_attribute("class") if status.count() else None
 
 
-@pytest.mark.xfail(strict=True, reason="task A10")
-@pytest.mark.parametrize("build, expected", [(build_s2, S2_COPY), (build_s1, S1_COPY)], ids=["S2", "S1"])
-def test_R22_copy_summary_puts_the_exact_text_on_the_clipboard(open_app, build, expected):
-    page = open_app().page
-    build(page)
-    copy_summary(page)
-    assert status_of(page) == ("Summary copied", "status")
-    assert page.evaluate("window.testClipboardText") == expected and page.evaluate("window.testClipboardWrites") == 1
+COPY_BUTTON = {"card": "#copyBtn", "strip": "#stripCopy", "sheet": "#splitsDlg .r-copy"}
+COPY_CASES = [  # qa.md "Copy summary puts the exact text on the clipboard": seed, width, the Copy summary clicked, the text
+    pytest.param(seeds.S2, 1280, "card", S2_COPY, id="K2-1280-card"),
+    pytest.param(seeds.S2, 390, "sheet", S2_COPY, id="K2-390-sheet", marks=pytest.mark.xfail(strict=True, reason="task A12")),
+    pytest.param(seeds.S2, 390, "strip", S2_COPY, id="K2-390-strip"),
+    pytest.param(seeds.S1, 1280, "card", S1_COPY, id="K1-1280-card"),
+    pytest.param(seeds.S1, 390, "sheet", S1_COPY, id="K1-390-sheet", marks=pytest.mark.xfail(strict=True, reason="task A12")),
+    pytest.param(seeds.S1, 390, "strip", S1_COPY, id="K1-390-strip"),
+]
 
 
-@pytest.mark.xfail(strict=True, reason="task A10")
+@pytest.mark.parametrize("seed, width, place, text", COPY_CASES)
+def test_R22_copy_summary_puts_the_exact_text_on_the_clipboard(open_app, seed, width, place, text):
+    # [v1.1.0] Every status paragraph present shows it, the card's at any width (it is in the DOM below 1024 px), the
+    # strip's at any width, and the sheet's while the sheet is open.
+    page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+    if place == "sheet":
+        page.locator("#splitsBtn").click()
+    click_copy(page, COPY_BUTTON[place])
+    assert page.evaluate("[window.testClipboardText, window.testClipboardWrites]") == [text, 1]
+    assert status_lines(page) == {"card": COPIED, "strip": COPIED, "sheet": COPIED if place == "sheet" else None}
+
+
+def test_R22_a_bill_from_rm_1000_copies_with_thousands_commas(open_app):
+    # [v1.1.0] qa.md on W1 at 1280 x 800. CG-P1 ruled by the owner, the comma is in the copied summary too (core R24).
+    page = open_app(seed=seeds.W1, viewport=VIEWPORTS[1280]).page
+    click_copy(page, "#copyBtn")
+    assert page.evaluate("window.testClipboardText") == "\n".join([
+        "Bill split", "Total RM 1,193.87 (subtotal RM 1,023.90, service 10% RM 102.39, SST 6% RM 67.58)",
+        "Aisyah RM 1,153.65", "Ben RM 15.74", "Chen RM 24.48", "Adds up to RM 1,193.87"])
+
+
 def test_R23_the_browser_blocks_the_clipboard(open_app):
-    page = open_app(clipboard="reject").page
-    build_s2(page)
-    before = panel_text(page)
-    copy_summary(page)
-    assert status_of(page) == (FAILED_COPY, "status status-failure")
-    assert panel_text(page).replace(FAILED_COPY, "").strip() == before.strip()
+    # [v1.1.0] qa.md on K2 with reject.js. Its strip height line is test_R23_a_blocked_copy_grows_the_strip (task A11).
+    session = open_app(seed=seeds.S2, clipboard="reject")
+    page = session.page
+    click_copy(page, "#stripCopy")
+    assert status_lines(page) == {"card": COPY_REFUSED, "strip": COPY_REFUSED, "sheet": None}
+    assert session.problems() == [] and stored_text(page) == seeds.S2
 
 
-@pytest.mark.xfail(strict=True, reason="task A10")
+@pytest.mark.xfail(strict=True, reason="task A11")
+def test_R23_a_blocked_copy_grows_the_strip(open_app):
+    # The strip line of qa.md "The browser blocks the clipboard". The strip's height and --strip-h are task A11's (R49).
+    page = open_app(seed=seeds.S2, clipboard="reject").page
+    click_copy(page, "#stripCopy")
+    height, strip_h = page.evaluate("() => [document.querySelector('#strip').getBoundingClientRect().height, "
+                                    "getComputedStyle(document.documentElement).getPropertyValue('--strip-h').trim()]")
+    assert abs(height - 153) <= 0.5 and strip_h == "153px", (height, strip_h)
+
+
 def test_R23_the_clipboard_api_is_missing(open_app):
-    page = open_app(clipboard="missing").page
-    build_s2(page)
-    copy_summary(page)
-    assert status_of(page) == (FAILED_COPY, "status status-failure")
+    # [v1.1.0] qa.md on K2 with missing.js.
+    session = open_app(seed=seeds.S2, clipboard="missing")
+    page = session.page
+    click_copy(page, "#stripCopy")
+    assert status_lines(page)["strip"] == COPY_REFUSED and session.problems() == []
 
 
-@pytest.mark.xfail(strict=True, reason="task A10")
-def test_R24_the_status_lives_as_long_as_the_table(open_app):
-    page = open_app().page
-    build_s2(page)
-    status = page.locator("p.status")
-    assert status.count() == 1 and status.inner_text() == "" and not status.is_visible()
-    copy_summary(page)
-    assert status.inner_text() == "Summary copied"
-    person_field(page, 1).click()
-    page.keyboard.press("End")
-    page.keyboard.type("x")
-    assert status_of(page)[0] == "Summary copied"
-    support.replace_text(page, subtotal_field(page), "")
-    assert page.locator("p.status").count() == 0
-    subtotal_field(page).fill("100.00")
-    assert status_of(page) == ("", "status")
+# A point of the top bar where only the bar itself or the empty #notes lies, for qa.md "click empty space in the top bar".
+EMPTY_TOP_BAR_POINT_JS = """() => { const bar = document.querySelector('header.top'), box = bar.getBoundingClientRect();
+  const y = box.top + box.height / 2;
+  for (let x = Math.ceil(box.left) + 1; x < box.right - 1; x += 1) {
+    const hit = document.elementFromPoint(x, y);
+    if (hit === bar || hit?.id === 'notes') return [x, y];
+  }
+  return null; }"""
+# qa.md "Press Escape" while a dialog is open: a close listener goes on the open dialog before the key press.
+WATCH_DIALOG_CLOSE_JS = """() => { const open = document.querySelector('dialog[open]'); if (!open) return false;
+  window.testDialogClosed = false; open.addEventListener('close', () => { window.testDialogClosed = true; }, { once: true });
+  return true; }"""
 
 
-@pytest.mark.xfail(strict=True, reason="task A10")
+def press_escape(page):
+    """qa.md "Press Escape": with a dialog open, press Escape and wait for its close event, at most 2 s. With none
+    open (the Splits sheet before task A12), only the key press."""
+    watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+    page.keyboard.press("Escape")
+    if watching:
+        try:
+            page.wait_for_function("() => window.testDialogClosed", timeout=2000)
+        except PlaywrightTimeoutError:
+            pytest.fail("dialog still open after 2 s")
+
+
+def test_R24_the_status_lasts_until_the_next_change_to_the_bill(open_app):
+    # [v1.1.0] qa.md on K2 at 390 x 844. Rule 10 replaces 1.0's PD-5. The sheet's line ("the sheet's p.status read it too
+    # while the sheet was open") is test_R24_the_sheet_shows_the_status_while_it_is_open (task A12).
+    page = open_app(seed=seeds.S2).page
+    assert status_lines(page) == {"card": NO_STATUS, "strip": NO_STATUS, "sheet": None}
+    assert statuses_shown(page) == {"card": False, "strip": False, "sheet": None}
+    click_copy(page, "#stripCopy")
+    assert status_lines(page) == {"card": COPIED, "strip": COPIED, "sheet": None}
+    point = page.evaluate(EMPTY_TOP_BAR_POINT_JS)
+    assert point, "no empty point in the top bar"
+    page.mouse.click(*point)
+    page.locator("#peopleBtn").click()
+    page.locator("#peopleBtn").click()
+    page.locator("#splitsBtn").click()
+    press_escape(page)
+    open_dialog(page)
+    page.get_by_role("button", name="Cancel").click()
+    page.set_viewport_size({"width": 400, "height": 844})
+    assert status_lines(page) == {"card": COPIED, "strip": COPIED, "sheet": None}
+    open_people_first(page)
+    type_at_end(page, person_field(page, 1), "x")
+    assert status_lines(page) == {"card": NO_STATUS, "strip": NO_STATUS, "sheet": None}
+    assert statuses_shown(page) == {"card": False, "strip": False, "sheet": None}
+    click_copy(page, "#stripCopy")
+    assert status_lines(page)["strip"] == COPIED
+    page.reload()
+    assert status_lines(page) == {"card": NO_STATUS, "strip": NO_STATUS, "sheet": None}
+
+
+@pytest.mark.xfail(strict=True, reason="task A12")
+def test_R24_the_sheet_shows_the_status_while_it_is_open(open_app):
+    # The sheet's line of qa.md "The status lasts until the next change to the bill". The sheet is task A12's (R50).
+    page = open_app(seed=seeds.S2).page
+    click_copy(page, "#stripCopy")
+    page.locator("#splitsBtn").click()
+    assert status_lines(page) == {"card": COPIED, "strip": COPIED, "sheet": COPIED}
+    press_escape(page)
+    assert status_lines(page) == {"card": COPIED, "strip": COPIED, "sheet": None}
+
+
 def test_R22_a_failed_copy_is_replaced_by_the_next_attempt(open_app):
-    page = open_app(clipboard="reject").page
-    build_s2(page)
-    copy_summary(page)
-    page.evaluate("Clipboard.prototype.writeText = () => Promise.resolve()")
-    copy_summary(page)
-    assert status_of(page) == ("Summary copied", "status")
+    # [v1.1.0] Spec R24, each attempt replaces the previous text and class.
+    page = open_app(seed=seeds.S2, clipboard="reject").page
+    click_copy(page, "#stripCopy")
+    assert status_lines(page)["strip"] == COPY_REFUSED
+    page.evaluate("() => { Clipboard.prototype.writeText = () => Promise.resolve(); }")
+    click_copy(page, "#stripCopy")
+    assert status_lines(page) == {"card": COPIED, "strip": COPIED, "sheet": None}
 
 
-@pytest.mark.xfail(strict=True, reason="task A10")
-def test_R24_a_copy_that_finishes_after_the_table_left_sets_no_status(open_app):
-    # The browser may take a while to decide (a permission prompt). If the panel turns into a message meanwhile, the
-    # late answer must not leave a status behind for the table that comes back.
-    page = open_app().page
-    build_s2(page)
-    # The function form: Playwright calls a function that a string expression evaluates to, and would wait for this one.
-    page.evaluate("() => { Clipboard.prototype.writeText = () => new Promise((resolve) => { window.finishCopy = resolve; }); }")
-    copy_summary(page)
-    support.replace_text(page, subtotal_field(page), "")
-    assert page.locator("p.status").count() == 0 and panel_text(page) == EVEN_MESSAGE
-    page.evaluate("window.finishCopy()")
+# The clipboard's answer waits until the test calls window.finishCopy, as a permission prompt would make it wait.
+WAITING_CLIPBOARD_JS = "() => { Clipboard.prototype.writeText = () => new Promise((resolve) => { window.finishCopy = resolve; }); }"
+WHILE_THE_COPY_WAITS = [  # a change to the bill made while the copy waits, and the card's status line after the answer
+    pytest.param(lambda page: support.replace_text(page, subtotal_field(page), ""), None, id="splits-left"),
+    pytest.param(lambda page: (open_people_first(page), type_at_end(page, person_field(page, 1), "x")), NO_STATUS,
+                 id="name-typed"),
+]
+
+
+@pytest.mark.parametrize("change, card", WHILE_THE_COPY_WAITS)
+def test_R24_an_answer_that_comes_after_a_change_sets_no_status(open_app, change, card):
+    # [v1.1.0] The 1.0 test of a late answer, with rule 10. The change cleared the status, and the summary the browser
+    # copied is not the one on screen any more, so the late answer shows nothing (BUILD.md, task A10, judgment call 2).
+    page = open_app(seed=seeds.S2).page
+    page.evaluate(WAITING_CLIPBOARD_JS)
+    click_copy(page, "#stripCopy")
+    assert page.evaluate("typeof window.finishCopy") == "function", "the copy is not waiting for its answer"
+    change(page)
+    page.evaluate("() => window.finishCopy()")
     settle(page)
-    assert page.locator("p.status").count() == 0
-    subtotal_field(page).fill("100.00")
-    assert status_of(page) == ("", "status")
+    assert status_lines(page) == {"card": card, "strip": NO_STATUS, "sheet": None}
 
 
-@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R5_a_new_name_reaches_the_copied_text(open_app):
     page = open_app().page
     build_s1(page)
@@ -1753,32 +1873,37 @@ def test_R5_a_new_name_reaches_the_copied_text(open_app):
     page.keyboard.press("End")
     page.keyboard.type(" Wei")
     copy_summary(page)
-    assert page.evaluate("window.testClipboardText").splitlines()[4] == "Chen Wei RM 24.48"
+    assert (page.evaluate("window.testClipboardText") or "").splitlines()[4:5] == ["Chen Wei RM 24.48"]
 
 
-@pytest.mark.xfail(strict=True, reason="task A10")
 def test_R42_duplicate_names_through_the_whole_flow(open_app):
+    # [v1.1.0] qa.md "Two people may have the same name", from a cold boot at 390 x 844, where People is open.
     page = open_app().page
-    person_field(page, 1).fill("Ben")
-    person_field(page, 2).fill("Ben")
-    add_person_named(page, "Chen")
-    subtotal_field(page).fill("100.00")
-    assert page.locator("p.error, div.note").count() == 0
-    assert table_cells(page, "tbody") == [["Ben", "RM 38.87"], ["Ben", "RM 38.87"], ["Chen", "RM 38.86"]]
-    assert table_cells(page, "tfoot") == S2_CHECK and remove_button(page, "Ben").count() == 2
-    copy_summary(page)
-    assert page.evaluate("window.testClipboardText").splitlines()[2:4] == ["Ben RM 38.87", "Ben RM 38.87"]
+    support.replace_text(page, person_field(page, 1), "Ben")
+    support.replace_text(page, person_field(page, 2), "Ben")
+    page.get_by_role("button", name="Add person").click()
+    type_into(page, person_field(page, 3), "Chen")
+    type_into(page, subtotal_field(page), "100.00")
+    shown = "() => [document.querySelectorAll('p.err:not([hidden])').length, document.querySelectorAll('#notes div.note').length]"
+    assert page.evaluate(shown) == [0, 0]
+    assert [person_field(page, number).input_value() for number in (1, 2)] == ["Ben", "Ben"]
+    assert card_rows(page) == [[["Ben", "RM 38.87", None], ["Ben", "RM 38.87", None], ["Chen", "RM 38.86", None]],
+                               ["RM 116.60", None]]
+    assert remove_button(page, "Ben").count() == 2
+    click_copy(page, "#stripCopy")
+    assert (page.evaluate("window.testClipboardText") or "").splitlines()[2:4] == ["Ben RM 38.87", "Ben RM 38.87"]
     switch_to(page, "By item")
-    add_item_named(page, "Tea", "10.00")
+    page.get_by_role("button", name="Add item", exact=True).click()
+    type_into(page, item_name(page, 1), "Tea")
+    type_into(page, page.get_by_label("Tea price in RM", exact=True), "10.00")
     who_group(page, "Tea").get_by_role("button", name="Ben", exact=True).nth(1).click()
     assert [b.get_attribute("aria-pressed") for b in who_group(page, "Tea").get_by_role("button").all()] == ["false", "true", "false"]
-    assert table_cells(page, "tbody") == [["Ben", "RM 0.00", "RM 0.00", "RM 0.00"],
-                                          ["Ben", "RM 10.00", "RM 1.66", "RM 11.66"],
-                                          ["Chen", "RM 0.00", "RM 0.00", "RM 0.00"]]
-    assert table_cells(page, "tfoot") == [["Adds up to", "RM 10.00", "RM 1.66", "RM 11.66"]]
+    assert card_rows(page) == [[["Ben", "RM 0.00", "0.00 + 0.00"], ["Ben", "RM 11.66", "10.00 + 1.66"],
+                                ["Chen", "RM 0.00", "0.00 + 0.00"]], ["RM 11.66", "10.00 + 1.66"]]
     remove_button(page, "Ben").nth(1).click()
-    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Ben", "Chen"]
-    assert panel_text(page).splitlines()[-1] == "1 item still needs a person. Tap who had it to see the shares."
+    assert [field.input_value() for field in page.locator("li.person input").all()] == ["Ben", "Chen"]
+    assert receipt(page)["note"] == ["div.r-msg", ["svg.ic", "#i-warning-circle"], ["p", ONE_NEEDS]]
+    assert [(person["id"], person["name"]) for person in stored(page)["bill"]["people"]] == [("p1", "Ben"), ("p3", "Chen")]
 
 
 # ---------------------------------------------------------------- Task 9: the draft (R25 to R28, with R3, R8, R10, R24, R26, R42)
@@ -2215,15 +2340,6 @@ def test_R10_a_restored_bad_field_shows_its_error_at_once(open_app):
     assert field_error(subtotal_field(page), "evenErr") == error_state(AMOUNT_MESSAGE, "evenErr", shown=True)
     assert field_error(page.locator("#svc"), "svcErr") == error_state(SERVICE_MESSAGE, "chargeHint svcErr", shown=True)
     assert field_error(page.locator("#sst"), "sstErr") == error_state(SST_MESSAGE, "chargeHint", shown=False)
-
-
-@pytest.mark.xfail(strict=True, reason="task A10")
-def test_R24_the_status_is_not_saved(open_app):
-    page = open_app(seed=seeds.S2).page
-    copy_summary(page)
-    assert status_of(page)[0] == "Summary copied"
-    page.reload()
-    assert status_of(page) == ("", "status")
 
 
 def test_R42_the_draft_keeps_both_people_with_the_same_name(open_app):

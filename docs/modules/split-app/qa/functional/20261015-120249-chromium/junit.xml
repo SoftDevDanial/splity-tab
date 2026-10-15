@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="12" skipped="4" tests="17" time="7.855" timestamp="2026-10-15T12:02:49.344345+08:00" hostname="{host}"><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-1280-card]" time="1.792"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  {'card': ['status', 'status', ['Summary copied']]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7C502090&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+width = 1280, place = 'card'
+text = 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60'
+
+    @pytest.mark.parametrize("seed, width, place, text", COPY_CASES)
+    def test_R22_copy_summary_puts_the_exact_text_on_the_clipboard(open_app, seed, width, place, text):
+        # [v1.1.0] Every status paragraph present shows it, the card's at any width (it is in the DOM below 1024 px), the
+        # strip's at any width, and the sheet's while the sheet is open.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if place == "sheet":
+            page.locator("#splitsBtn").click()
+        click_copy(page, COPY_BUTTON[place])
+        assert page.evaluate("[window.testClipboardText, window.testClipboardWrites]") == [text, 1]
+&gt;       assert status_lines(page) == {"card": COPIED, "strip": COPIED, "sheet": COPIED if place == "sheet" else None}
+E       AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+E         {'card': ['status', 'status', ['Summary copied']]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1731: AssertionError</failure></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-390-sheet]" time="0.203"><skipped type="pytest.xfail" message="task A12" /></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-390-strip]" time="0.260"><failure message="AssertionError: assert [None, 0] == ['Bill split\...RM 116.60', 1]&#10;  &#10;  At index 0 diff: None != 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7C2AEC40&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+width = 390, place = 'strip'
+text = 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60'
+
+    @pytest.mark.parametrize("seed, width, place, text", COPY_CASES)
+    def test_R22_copy_summary_puts_the_exact_text_on_the_clipboard(open_app, seed, width, place, text):
+        # [v1.1.0] Every status paragraph present shows it, the card's at any width (it is in the DOM below 1024 px), the
+        # strip's at any width, and the sheet's while the sheet is open.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if place == "sheet":
+            page.locator("#splitsBtn").click()
+        click_copy(page, COPY_BUTTON[place])
+&gt;       assert page.evaluate("[window.testClipboardText, window.testClipboardWrites]") == [text, 1]
+E       AssertionError: assert [None, 0] == ['Bill split\...RM 116.60', 1]
+E         
+E         At index 0 diff: None != 'Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.87\nBen RM 38.87\nChen RM 38.86\nAdds up to RM 116.60'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1730: AssertionError</failure></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-1280-card]" time="0.314"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  {'card': ['status', 'status', ['Summary copied']]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7C32D4E0&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 1280, place = 'card'
+text = 'Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\nAisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26'
+
+    @pytest.mark.parametrize("seed, width, place, text", COPY_CASES)
+    def test_R22_copy_summary_puts_the_exact_text_on_the_clipboard(open_app, seed, width, place, text):
+        # [v1.1.0] Every status paragraph present shows it, the card's at any width (it is in the DOM below 1024 px), the
+        # strip's at any width, and the sheet's while the sheet is open.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if place == "sheet":
+            page.locator("#splitsBtn").click()
+        click_copy(page, COPY_BUTTON[place])
+        assert page.evaluate("[window.testClipboardText, window.testClipboardWrites]") == [text, 1]
+&gt;       assert status_lines(page) == {"card": COPIED, "strip": COPIED, "sheet": COPIED if place == "sheet" else None}
+E       AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+E         {'card': ['status', 'status', ['Summary copied']]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1731: AssertionError</failure></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-390-sheet]" time="0.185"><skipped type="pytest.xfail" message="task A12" /></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-390-strip]" time="0.256"><failure message="AssertionError: assert [None, 0] == ['Bill split\... RM 69.26', 1]&#10;  &#10;  At index 0 diff: None != 'Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\nAisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7C20F3D0&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 390, place = 'strip'
+text = 'Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\nAisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26'
+
+    @pytest.mark.parametrize("seed, width, place, text", COPY_CASES)
+    def test_R22_copy_summary_puts_the_exact_text_on_the_clipboard(open_app, seed, width, place, text):
+        # [v1.1.0] Every status paragraph present shows it, the card's at any width (it is in the DOM below 1024 px), the
+        # strip's at any width, and the sheet's while the sheet is open.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if place == "sheet":
+            page.locator("#splitsBtn").click()
+        click_copy(page, COPY_BUTTON[place])
+&gt;       assert page.evaluate("[window.testClipboardText, window.testClipboardWrites]") == [text, 1]
+E       AssertionError: assert [None, 0] == ['Bill split\... RM 69.26', 1]
+E         
+E         At index 0 diff: None != 'Bill split\nTotal RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)\nAisyah RM 29.04\nBen RM 15.74\nChen RM 24.48\nAdds up to RM 69.26'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1730: AssertionError</failure></testcase><testcase classname="test_app" name="test_R22_a_bill_from_rm_1000_copies_with_thousands_commas" time="0.234" /><testcase classname="test_app" name="test_R23_the_browser_blocks_the_clipboard" time="0.249"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', []]} != {'strip': ['status is-fail', 'status', [['svg.ic', '#i-warning-circle'], 'Could not copy. Your browser blocked the clipboard.']]}&#10;  {'card': ['status', 'status', []]} != {'card': ['status is-fail', 'status', [['svg.ic', '#i-warning-circle'], 'Could not copy. Your browser blocked the clipboard.']]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7BF9BA00&gt;
+
+    def test_R23_the_browser_blocks_the_clipboard(open_app):
+        # [v1.1.0] qa.md on K2 with reject.js. Its strip height line is test_R23_a_blocked_copy_grows_the_strip (task A11).
+        session = open_app(seed=seeds.S2, clipboard="reject")
+        page = session.page
+        click_copy(page, "#stripCopy")
+&gt;       assert status_lines(page) == {"card": COPY_REFUSED, "strip": COPY_REFUSED, "sheet": None}
+E       AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'strip': ['status', 'status', []]} != {'strip': ['status is-fail', 'status', [['svg.ic', '#i-warning-circle'], 'Could not copy. Your browser blocked the clipboard.']]}
+E         {'card': ['status', 'status', []]} != {'card': ['status is-fail', 'status', [['svg.ic', '#i-warning-circle'], 'Could not copy. Your browser blocked the clipboard.']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1748: AssertionError</failure></testcase><testcase classname="test_app" name="test_R23_a_blocked_copy_grows_the_strip" time="0.225"><skipped type="pytest.xfail" message="task A11" /></testcase><testcase classname="test_app" name="test_R23_the_clipboard_api_is_missing" time="0.265"><failure message="AssertionError: assert (['status', 'status', []] == ['status is-f... clipboard.']]&#10;  &#10;  At index 0 diff: 'status' != 'status is-fail'&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7B9B8BF0&gt;
+
+    def test_R23_the_clipboard_api_is_missing(open_app):
+        # [v1.1.0] qa.md on K2 with missing.js.
+        session = open_app(seed=seeds.S2, clipboard="missing")
+        page = session.page
+        click_copy(page, "#stripCopy")
+&gt;       assert status_lines(page)["strip"] == COPY_REFUSED and session.problems() == []
+E       AssertionError: assert (['status', 'status', []] == ['status is-f... clipboard.']]
+E         
+E         At index 0 diff: 'status' != 'status is-fail'
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:1767: AssertionError</failure></testcase><testcase classname="test_app" name="test_R24_the_status_lasts_until_the_next_change_to_the_bill" time="0.256"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  {'card': ['status', 'status', []]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7BA56B90&gt;
+
+    def test_R24_the_status_lasts_until_the_next_change_to_the_bill(open_app):
+        # [v1.1.0] qa.md on K2 at 390 x 844. Rule 10 replaces 1.0's PD-5. The sheet's line ("the sheet's p.status read it too
+        # while the sheet was open") is test_R24_the_sheet_shows_the_status_while_it_is_open (task A12).
+        page = open_app(seed=seeds.S2).page
+        assert status_lines(page) == {"card": NO_STATUS, "strip": NO_STATUS, "sheet": None}
+        assert statuses_shown(page) == {"card": False, "strip": False, "sheet": None}
+        click_copy(page, "#stripCopy")
+&gt;       assert status_lines(page) == {"card": COPIED, "strip": COPIED, "sheet": None}
+E       AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'strip': ['status', 'status', []]} != {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+E         {'card': ['status', 'status', []]} != {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1803: AssertionError</failure></testcase><testcase classname="test_app" name="test_R24_the_sheet_shows_the_status_while_it_is_open" time="0.256"><skipped type="pytest.xfail" message="task A12" /></testcase><testcase classname="test_app" name="test_R22_a_failed_copy_is_replaced_by_the_next_attempt" time="0.246"><failure message="AssertionError: assert ['status', 'status', []] == ['status is-f... clipboard.']]&#10;  &#10;  At index 0 diff: 'status' != 'status is-fail'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7BC52560&gt;
+
+    def test_R22_a_failed_copy_is_replaced_by_the_next_attempt(open_app):
+        # [v1.1.0] Spec R24, each attempt replaces the previous text and class.
+        page = open_app(seed=seeds.S2, clipboard="reject").page
+        click_copy(page, "#stripCopy")
+&gt;       assert status_lines(page)["strip"] == COPY_REFUSED
+E       AssertionError: assert ['status', 'status', []] == ['status is-f... clipboard.']]
+E         
+E         At index 0 diff: 'status' != 'status is-fail'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1840: AssertionError</failure></testcase><testcase classname="test_app" name="test_R24_an_answer_that_comes_after_a_change_sets_no_status[splits-left]" time="0.237"><failure message="AssertionError: the copy is not waiting for its answer&#10;assert 'undefined' == 'function'&#10;  &#10;  - function&#10;  + undefined">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7B203740&gt;
+change = &lt;function &lt;lambda&gt; at 0x0000016C7C5973D0&gt;, card = None
+
+    @pytest.mark.parametrize("change, card", WHILE_THE_COPY_WAITS)
+    def test_R24_an_answer_that_comes_after_a_change_sets_no_status(open_app, change, card):
+        # [v1.1.0] The 1.0 test of a late answer, with rule 10. The change cleared the status, and the summary the browser
+        # copied is not the one on screen any more, so the late answer shows nothing (BUILD.md, task A10, judgment call 2).
+        page = open_app(seed=seeds.S2).page
+        page.evaluate(WAITING_CLIPBOARD_JS)
+        click_copy(page, "#stripCopy")
+&gt;       assert page.evaluate("typeof window.finishCopy") == "function", "the copy is not waiting for its answer"
+E       AssertionError: the copy is not waiting for its answer
+E       assert 'undefined' == 'function'
+E         
+E         - function
+E         + undefined
+
+tests\browser\test_app.py:1862: AssertionError</failure></testcase><testcase classname="test_app" name="test_R24_an_answer_that_comes_after_a_change_sets_no_status[name-typed]" time="0.236"><failure message="AssertionError: the copy is not waiting for its answer&#10;assert 'undefined' == 'function'&#10;  &#10;  - function&#10;  + undefined">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7B832A30&gt;
+change = &lt;function &lt;lambda&gt; at 0x0000016C7C597480&gt;
+card = ['status', 'status', []]
+
+    @pytest.mark.parametrize("change, card", WHILE_THE_COPY_WAITS)
+    def test_R24_an_answer_that_comes_after_a_change_sets_no_status(open_app, change, card):
+        # [v1.1.0] The 1.0 test of a late answer, with rule 10. The change cleared the status, and the summary the browser
+        # copied is not the one on screen any more, so the late answer shows nothing (BUILD.md, task A10, judgment call 2).
+        page = open_app(seed=seeds.S2).page
+        page.evaluate(WAITING_CLIPBOARD_JS)
+        click_copy(page, "#stripCopy")
+&gt;       assert page.evaluate("typeof window.finishCopy") == "function", "the copy is not waiting for its answer"
+E       AssertionError: the copy is not waiting for its answer
+E       assert 'undefined' == 'function'
+E         
+E         - function
+E         + undefined
+
+tests\browser\test_app.py:1862: AssertionError</failure></testcase><testcase classname="test_app" name="test_R5_a_new_name_reaches_the_copied_text" time="0.723"><failure message="AssertionError: assert [] == ['Chen Wei RM 24.48']&#10;  &#10;  Right contains one more item: 'Chen Wei RM 24.48'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7BC71FE0&gt;
+
+    def test_R5_a_new_name_reaches_the_copied_text(open_app):
+        page = open_app().page
+        build_s1(page)
+        person_field(page, 3).click()
+        page.keyboard.press("End")
+        page.keyboard.type(" Wei")
+        copy_summary(page)
+&gt;       assert (page.evaluate("window.testClipboardText") or "").splitlines()[4:5] == ["Chen Wei RM 24.48"]
+E       AssertionError: assert [] == ['Chen Wei RM 24.48']
+E         
+E         Right contains one more item: 'Chen Wei RM 24.48'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1876: AssertionError</failure></testcase><testcase classname="test_app" name="test_R42_duplicate_names_through_the_whole_flow" time="0.491"><failure message="AssertionError: assert [] == ['Ben RM 38.8...Ben RM 38.87']&#10;  &#10;  Right contains 2 more items, first extra item: 'Ben RM 38.87'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000016C7A50E400&gt;
+
+    def test_R42_duplicate_names_through_the_whole_flow(open_app):
+        # [v1.1.0] qa.md "Two people may have the same name", from a cold boot at 390 x 844, where People is open.
+        page = open_app().page
+        support.replace_text(page, person_field(page, 1), "Ben")
+        support.replace_text(page, person_field(page, 2), "Ben")
+        page.get_by_role("button", name="Add person").click()
+        type_into(page, person_field(page, 3), "Chen")
+        type_into(page, subtotal_field(page), "100.00")
+        shown = "() =&gt; [document.querySelectorAll('p.err:not([hidden])').length, document.querySelectorAll('#notes div.note').length]"
+        assert page.evaluate(shown) == [0, 0]
+        assert [person_field(page, number).input_value() for number in (1, 2)] == ["Ben", "Ben"]
+        assert card_rows(page) == [[["Ben", "RM 38.87", None], ["Ben", "RM 38.87", None], ["Chen", "RM 38.86", None]],
+                                   ["RM 116.60", None]]
+        assert remove_button(page, "Ben").count() == 2
+        click_copy(page, "#stripCopy")
+&gt;       assert (page.evaluate("window.testClipboardText") or "").splitlines()[2:4] == ["Ben RM 38.87", "Ben RM 38.87"]
+E       AssertionError: assert [] == ['Ben RM 38.8...Ben RM 38.87']
+E         
+E         Right contains 2 more items, first extra item: 'Ben RM 38.87'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1894: AssertionError</failure></testcase></testsuite></testsuites>

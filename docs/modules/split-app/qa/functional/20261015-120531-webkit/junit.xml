@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="3.077" timestamp="2026-10-15T12:05:31.545247+08:00" hostname="{host}"><testcase classname="test_app" name="test_R24_an_answer_that_comes_after_a_change_sets_no_status[splits-left]" time="1.810"><failure message="AssertionError: assert {'card': None...'sheet': None} == {'card': None...'sheet': None}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]} != {'strip': ['status', 'status', []]}&#10;  Use -v to get more diff">E   AssertionError: assert {'card': None...'sheet': None} == {'card': None...'sheet': None}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]} != {'strip': ['status', 'status', []]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R24_an_answer_that_comes_after_a_change_sets_no_status[name-typed]" time="0.909"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]} != {'strip': ['status', 'status', []]}&#10;  {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]} != {'card': ['status', 'status', []]}&#10;  Use -v to get more diff">E   AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...'sheet': None}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'strip': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]} != {'strip': ['status', 'status', []]}
+      {'card': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]} != {'card': ['status', 'status', []]}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

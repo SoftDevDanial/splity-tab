@@ -5,7 +5,8 @@
 // Every figure comes from split-core, formatted by split-core. Text only, and quiet: the status paragraph is the one live
 // element in it (R16).
 import { formatAmount, formatMoney, formatRate } from "../core/money.js";
-import { el, setAttr, setText, reconcileChildren } from "./dom.js";
+import { showCopyStatus } from "./copy-status.js";
+import { el, reconcileChildren } from "./dom.js";
 import { icon, seal } from "./icons.js";
 
 export const CARD_IDS = { total: "rTotal", head: "splitsH", list: "splits", proof: "addsUp", copy: "copyBtn", status: "cardStatus" };
@@ -16,13 +17,6 @@ const BLOCKED_MESSAGE = {
   "no-prices": "Add each item and tap who had it to see the splits.",
   prices: "Give every item a price to see the splits.",
 };
-
-// The 1.0 copy status. Task A10 gives it the icon and the v1.1.0 class (R22 to R24).
-const COPY_STATUS = {
-  ok: { text: "Summary copied", className: "status" },
-  fail: { text: "Could not copy. Your browser blocked the clipboard.", className: "status status-failure" },
-};
-const NO_STATUS = { text: "", className: "status" };
 
 // PD-17: from seven people an even list takes two columns from 1024 px (the CSS), with half the rows in each.
 const MOST_ROWS_IN_ONE_COLUMN = 6;
@@ -75,8 +69,8 @@ function splitsAndProof(result, ids) {
 }
 
 export function createReceipt(rbody, { ids, onCopy }) {
-  // Copy summary and its status are made once and kept while there are splits, so the button keeps keyboard focus when
-  // the figures change and the status survives edits (R24). Everything else is drawn anew on each update.
+  // Copy summary and its status paragraph are made once and kept, so the button keeps keyboard focus when the figures
+  // change and the live paragraph is the same node for as long as there are splits. Everything else is drawn anew.
   const copy = el("button", withId({ type: "button", class: "btn btn-primary btn-block r-copy" }, ids.copy), icon("copy"), "Copy summary");
   copy.addEventListener("click", onCopy);
   const status = el("p", withId({ class: "status", role: "status" }, ids.status));
@@ -89,9 +83,7 @@ export function createReceipt(rbody, { ids, onCopy }) {
       reconcileChildren(rbody, [...totalAndLines(result.charges, ids),
         el("div", { class: "r-msg" }, icon("warning-circle"), el("p", {}, unassignedMessage(result.count)))]);
     } else {
-      const shown = COPY_STATUS[copyStatus] ?? NO_STATUS;
-      setText(status, shown.text);
-      setAttr(status, "class", shown.className);
+      showCopyStatus(status, copyStatus);
       reconcileChildren(rbody, [...totalAndLines(result.charges, ids), ...splitsAndProof(result, ids), copy, status]);
     }
   }

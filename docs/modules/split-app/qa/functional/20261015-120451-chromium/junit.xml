@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="1.729" timestamp="2026-10-15T12:04:51.675404+08:00" hostname="{host}"><testcase classname="test_app" name="test_R22_a_bill_from_rm_1000_copies_with_thousands_commas" time="1.384"><failure message="AssertionError: assert 'Bill split\n...to RM 1193.87' == 'Bill split\n...o RM 1,193.87'&#10;  &#10;    Bill split&#10;  - Total RM 1,193.87 (subtotal RM 1,023.90, service 10% RM 102.39, SST 6% RM 67.58)&#10;  ?           -                     -      -                      -&#10;  + Total RM 1193.87 (subtotal RM 1023.90 service 10% RM 102.39 SST 6% RM 67.58)&#10;  - Aisyah RM 1,153.65&#10;  ?            -...&#10;  &#10;  ...Full output truncated (6 lines hidden), use '-vv' to show">E   AssertionError: assert 'Bill split\n...to RM 1193.87' == 'Bill split\n...o RM 1,193.87'
+      
+        Bill split
+      - Total RM 1,193.87 (subtotal RM 1,023.90, service 10% RM 102.39, SST 6% RM 67.58)
+      ?           -                     -      -                      -
+      + Total RM 1193.87 (subtotal RM 1023.90 service 10% RM 102.39 SST 6% RM 67.58)
+      - Aisyah RM 1,153.65
+      ?            -...
+      
+      ...Full output truncated (6 lines hidden), use '-vv' to show</failure></testcase></testsuite></testsuites>

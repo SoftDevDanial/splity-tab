@@ -1,0 +1,4 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R24_an_answer_that_comes_after_a_change_sets_no_status[splits-left] (0.34s)
+FAILED   call     test_app.py::test_R24_an_answer_that_comes_after_a_change_sets_no_status[name-typed] (0.34s)
+exit status 1

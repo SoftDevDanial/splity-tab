@@ -1,0 +1,4 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R24_an_answer_that_comes_after_a_change_sets_no_status[splits-left] (0.79s)
+FAILED   call     test_app.py::test_R24_an_answer_that_comes_after_a_change_sets_no_status[name-typed] (0.85s)
+exit status 1
