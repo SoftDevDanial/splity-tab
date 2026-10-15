@@ -370,6 +370,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 | A21 proofs | `d905f85` | `docs(split-app): the proof runs of A21 on the committed tree, Node 379 of 379, Chromium 603 passed and 21 xfailed, WebKit 602 passed with no failure by id ... (task A21, R49)`, recorded by the A18 section |
 | A18 | `101e842` | `feat(split-app): the cross-cutting checks of v1.1.0 written as tests in both engines, Tab order and the one ring, no overflow in any golden state ... each seen failing first by a stub in both engines, no app file changed, proof runs owed by handoff A18b (task A18, ...)`, tests only, recorded by the A18 proof commit |
 | A18 proofs | `59b21d6` | `docs(split-app): the proof runs of A18 on the committed tree, Node 379 of 379, Chromium 689 passed and 6 xfailed, WebKit 688 passed with 1 skipped and 6 xfailed, no failure and no other change by id against A21's runs, A18 ticked in spec.md, ... and the handoff for A19 (task A18, ...)`, recorded by the A19 section |
+| A19 | `af782d0` | `feat(split-app): the fidelity gate of v1.1.0 in Chromium, nine version 2 seed scripts each led by the clipboard stand-in, four after-load scripts that throw before their first click without it, run.py with the two controls first and the 40 pairs of qa.md, ... and a green run with both controls as written and 40 of 40 pairs at 0 mismatching pixels, no app file changed (task A19, R40, R3)`, tooling and tests, recorded by the A19 proof commit |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -1869,7 +1870,7 @@ A probe, read only, from the session scratch folder, a page of its own through `
 ## v1.1.0 task A19, the fidelity gate in Chromium (2026-10-15)
 Built by the frontend developer role from `spec.md` (task A19, R40, R3, the threat model row on the human's clipboard, R59 (4)), `qa.md` ("Seed drafts", "Fidelity gate" whole, the four `@R40` scenarios), `docs/design/MANIFEST.md` and `docs/design/LINKS.json` (read only), on the tree of `037cb8c`, with `docs/progress/handoff/handoff-2026-10-15-execute-split-A19.md` and the "Traps worth knowing" of the A18 handoff.
 
-**Status. Built, the gate run green (2 controls as written, 40 of 40 pairs at 0 mismatching pixels), committed with its RED record. The proof runs on the committed tree are recorded by the docs commit above it.**
+**Status. Built, committed (`af782d0`) with its RED record and the gate run, proven on the committed tree, ticked in `spec.md`.** The fidelity gate has both controls as written and 40 of 40 pairs at 0 mismatching pixels. Node 379 of 379, Chromium 703 passed, WebKit 701 passed and 2 skipped (the IME test and the after-load test of A19, both `chromium_only`), 0 failed and 0 xfailed in both engines (see "Proof on the committed tree" below).
 
 **Phase skills (design row of `docs/phase-skills.md`).** Not loaded. A19 changed no file under `src/` or `index.html` and no UI. It is gate tooling (scripts that run in the test browser only, the runner and tests), which the brief names as not needing the row.
 
@@ -1914,7 +1915,17 @@ In RED-1 the boot cases of `seed-s1.js` and `seed-s5.js` also carry a teardown e
 - The candidate side is the app. In each of the 13 pairs with an open dialog the golden's `styles.json` lists its `div.backdrop` stand-ins (1 or 2) and the candidate's lists none (allowed difference 3).
 - The run used the files this commit holds. No file under `src/`, `index.html` or `tests/browser/fidelity/` is newer than the run's start (`find ... -newermt "2026-10-15 19:37:38"` lists nothing).
 
-**R3.** The DOM walk at the 40 pairs is `test_R3_rendered_markup_matches_its_golden` (40 cases, reached with real clicks, passing in the A18 proof runs). A19 adds no R3 test. The pixel gate reaches the same 40 states through the seed and after-load scripts.
+**Proof on the committed tree** (`af782d0`, `git diff --quiet HEAD -- src/ tests/ index.html docs/design/` exit 0 before the first run and again after the last, each folder listed on disk after its run, one job at a time with no Chromium job beside WebKit, counts read from each run's `junit.xml`).
+- Node `docs/modules/split-app/qa/unit/20261015-194336/node-test.txt`, 379 of 379 (tests 379, pass 379, fail 0, cancelled 0, skipped 0).
+- Chromium `docs/modules/split-app/qa/functional/20261015-194344-chromium/`, `junit.xml` tests 703, failures 0, errors 0, skipped 0, so 703 passed, 207.3 s, `skips.txt` count 0, Chromium 149.0.7827.55.
+- WebKit `docs/modules/split-app/qa/functional/20261015-194724-webkit/`, `junit.xml` tests 703, failures 0, errors 0, skipped 2, so 701 passed, 409.3 s, WebKit 26.5. `skips.txt` count 2, the IME test and `test_R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in`, each with its `chromium_only` reason.
+- By id against A18's proof runs (`20261015-190624-chromium/` and `20261015-191005-webkit/`), the same result in each engine. Old 695 ids, new 703, shared 690. Still failing 0, new failures among the shared ids 0, any change besides the six below 0. Xfailed to passed 6, the six of task A19 (`test_R40_fidelity_seeds_match` and `test_R40_a_seed_script_boots_the_app_through_its_own_load_path`, for `seed-s1.js`, `seed-s2.js` and `seed-s5.js` each). Only in the old runs 5, the five 1.0 cases of `test_R40_the_runner_builds_the_documented_command` (passed). Only in the new runs 13, all passed in Chromium, and in WebKit 12 passed and the `chromium_only` test skipped. 695 - 5 + 13 = 703.
+- The fidelity run `qa/fidelity/20261015-193738/` used the files `af782d0` holds. Nothing under `src/`, `index.html` or `tests/browser/fidelity/` is newer than its start, and the commit left the tree equal to HEAD.
+- `git hash-object --no-filters src/system.css` is `bf30ddadb8c756dc5d462243c642c218597ae0ac`, unchanged, and `find src index.html tests -newermt "2026-10-15 19:43:36"` lists nothing (bytecode caches aside).
+- The sweep after the runs (by name, command line and listening port, since 19:29, shells included) found only its own shell chain, no Python, Node, browser or server process of A19 and no port of it.
+- These runs are A20's baseline.
+
+**R3.** The DOM walk at the 40 pairs is `test_R3_rendered_markup_matches_its_golden` (40 cases, reached with real clicks, passing in the A18 proof runs and in the runs above). A19 adds no R3 test. The pixel gate reaches the same 40 states through the seed and after-load scripts.
 
 **Not A19's.** The FE element checklist half of R40 and the verdict in `findings/fidelity.md` belong to the fidelity finder (qa.md, "Per-element check").
 
