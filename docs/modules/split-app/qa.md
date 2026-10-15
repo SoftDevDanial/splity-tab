@@ -15,6 +15,8 @@ Changed 2026-10-13 after the plan re-check (`docs/modules/PLAN-CHECK.md`, F11, F
 
 Changed 2026-10-14 in execute, by the planner pass the plan owed before A17 and A20 (ledger H-04, H-05, S5 rows 4, 5 and 7, S7 rows 17 to 19). "The card reads" is every text node joined with a space (Q-A2-1). "A body recorder" also proves that a repeat was cancelled, whatever lies under the second press, and checks that a double tap was one. "Press Escape" on a dialog waits for its close (R59 (2)). New scenarios are the touch tap on the charges hint (`@per_engine`, R59 (3)), the second press after a double activation closed M1 (R30), the repeat rule's Node table and two tap scenarios (R57 (b), ~~awaiting the owner's ruling~~ ruled USER 2026-10-14 20:00, "Time + place (Recommended)"). The live gate captures screencast frames (R41, H-05). Each change carries its own dated line. [Changed 2026-10-14 in execute after the owner's H-04 ruling. A17 builds right after A3 (ORCH), the A0 record scenario names the WebKit run's own folder (ORCH, Q-A0-2).]
 
+Changed 2026-10-15 in execute, planner touch before A18 (ledger S4 row 4, S5 row 10, S7 rows 20, 22, 24, 26 and 28 to 32, H-08). Lines the build measured as untrue are corrected with the old text struck. The R47 scan bans ".removeItem(" (Q-A3-1), the held Enter on New bill also counts the dialog's close events (S5 row 10), R36 asks that no animation is running (F-A4-1), the hint tap uses the window recorder (Q-A6-1), the price error is placed by `justify-self` (F-A8-1, R14 and ST-02), ST-12 is one line on the desktop card (F-A10-1), and "Press Escape" names M1's click closes (F-A16-1). New scenarios are the second press of a double activation that closed the sheet (R50, F-A12-1) or P1 (R52, F-A13-1), Pick again in the Splits sheet (R54, F-A15-1), and where the app scrolls a focused control (R49, H-08, ruled USER 2026-10-15 16:20, option (1), task A21). The R49 Tab scenario stays `@both`. Each change carries its own dated line.
+
 ## How to run
 - **Functional suite.** `python -m pytest tests/browser -q` runs Chromium (the default, as in 1.0). `python -m pytest tests/browser -q --engine webkit` runs WebKit. Test functions are named `test_R<n>_<what>`, so a grep maps each one to its tag. `split-core`'s unit tests and this module's Node tests (`tests/draft.test.js`, `tests/errors.test.js`) run with `node --test "tests/**/*.test.js"`.
 - **Fidelity gate.** `python tests/browser/fidelity/run.py`, Chromium only. It has no engine option (R58).
@@ -50,7 +52,7 @@ Changed 2026-10-14 in execute, by the planner pass the plan owed before A17 and 
 - "Open People first" and "open Charges first" mean, below 1024 px, a click on that section's header row (`#peopleBtn`, `#chargesBtn`) when it is folded. From 1024 px both sections are always open and the step does nothing.
 - "The card reads" means ~~the `textContent` of `#rbody` with every run of white space made one space~~ every text node inside `#rbody`, in document order, joined with one space, then every run of white space made one space and the ends trimmed (`support.card_text`). [Changed 2026-10-14 in execute, ledger S7 rows 17 and 19, Q-A2-1, ruled ORCH. `textContent` joins text nodes with nothing between them, so a card built by script read "TotalEnter the subtotal ..." where the golden's markup reads "Total Enter the subtotal ...", a white-space difference that allowed difference 4 permits.] It can be read at any width, because the card is in the DOM below 1024 px though not displayed. "The sheet reads" is the same for `#splitsDlg .rbody` after a click on Splits. "The strip reads" is the visible text of `#stripInfo`.
 - "A body recorder" is a test-side listener, added with `page.evaluate` before the gesture, that counts the `mousedown` and `click` events reaching `document.body` in the bubble phase, with their `detail`. "Only press 1 and click 1 reached the page" means it counted one of each. [Changed 2026-10-14 in execute, ledger H-04 and S5 row 7.] It is two listeners. The second sits on `window` in the capture phase, so it runs before the app's guard, and keeps every `pointerdown`, `mousedown` and `click` of the gesture with its `pointerType`, `detail`, `timeStamp`, `clientX` and `clientY`, and the event itself. "Only press 1 and click 1 reached the page" also means that the `window` listener saw every press and click of the gesture, and that each one after the first has `defaultPrevented` true once its dispatch is over. The proof that a repeat was cancelled then does not depend on what lies under the point, because 19 WebKit cases passed at A2 only since the layout had moved. For a touch double tap it also means that the second tap's `click` came less than 500 ms after the first and within 22 px of it by those records. Otherwise the case fails and names the gap, because it did not test a double tap (spec R57 (b)).
-- "Press Escape", while a dialog is open (M1, the Splits sheet or P1), means press Escape and then wait for that dialog's `close` event before anything is read, at most 2 s, failing with "dialog still open after 2 s" when it has not fired by then (a listener added before the key press catches a close that came first). [Added 2026-10-14 in execute, ledger S5 rows 4 and 5, class (b).] WebKit closes the dialog in a task after keyup, Chromium before the key press returns (spec R59 (2)). The end state is the same, so these scenarios stay `@both`.
+- "Press Escape", while a dialog is open (M1, the Splits sheet or P1), means press Escape and then wait for that dialog's `close` event before anything is read, at most 2 s, failing with "dialog still open after 2 s" when it has not fired by then (a listener added before the key press catches a close that came first). [Added 2026-10-14 in execute, ledger S5 rows 4 and 5, class (b).] WebKit closes the dialog in a task after keyup, Chromium before the key press returns (spec R59 (2)). The end state is the same, so these scenarios stay `@both`. [Added 2026-10-15 in execute, planner touch before A18 (ledger S7 row 32, F-A16-1).] The same wait for M1's `close` event, at most 2 s, follows every close of M1 by a click (Cancel, Start new bill, the backdrop) before focus or the screen is read, because M1 gives focus back to New bill in its `close` event, a task after the click (spec R59 (2), "M1's click closes"). The tests do it through `closing` (A16). A click close of the Splits sheet or P1 focuses its control in the click itself.
 - "Equal to the golden" (replaces 1.0's "equal to the specimen"). These computed properties are read on the app element and on the named golden element, both rendered in the engine of the run at the same width, the golden opened as a file and never written. `color`, `background-color`, `font-size`, `font-weight`, `line-height`, the width, style and colour of each border side, `box-shadow`, the four `padding-*` values and the four corner radii. A row that needs another property names it. Width, height and position are compared only where the row names them.
 - "The draft" means the parsed value of `localStorage["split.draft"]`. "Stored text" means its raw string.
 - Sizes are CSS px, positions are `getBoundingClientRect()` values, and a measured number matches within 0.5 px.
@@ -497,7 +499,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     # Added 2026-10-14 in execute (ledger S5 rows 4 and 5, sorting.md, tap_on_hint in diagnostics/sorting_diagnostics.json). Both results follow R10 (a), the error shows when the field is left. Whether an iPhone does the same is a UAT case.
     Given a cold boot in a has_touch context, Charges opened first
     When I replace the text of <field> with "<bad>" and the error is not showing yet
-    And a body recorder is added, and I tap p.hint#chargeHint once at its middle, found before the tap
+    # Changed 2026-10-15 in execute, planner touch before A18 (ledger S7 row 22, Q-A6-1). The line read "a body recorder is added". A body listener makes WebKit send the hint mousedown and click, so the WebKit line could not hold (spec R59 (3), A6's probe qa/hint-tap/20261014-225644/probe.json). The window half sees every event first and changes nothing.
+    And ~~a body recorder is added~~ a window recorder is added (the window half of "A body recorder", Phrases), and I tap p.hint#chargeHint once at its middle, found before the tap
     Then In Chromium the click event reached p.hint#chargeHint exactly once, <field> no longer has focus, p.err#<error> shows and the input has aria-invalid "true"
     And In WebKit the recorder saw no mousedown and no click, <field> still has focus, p.err#<error> carries hidden and the input has aria-invalid "false"
     Examples:
@@ -565,7 +568,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Given the K1 seed
     When I replace the text of "Char kuey teow price in RM" with "13.505" and leave the field
     Then p.err#ie2 is the last child of that item's div.item-row and shows
-    And p.err#ie2 is equal to the golden's p.err#ie2 in states.html (the S2 price piece), plus text-align "right"
+    # Changed 2026-10-15 in execute, planner touch before A18 (ledger S7 row 24, F-A8-1). The golden CSS sets no text-align on p.err, so it computes "start" in the piece and in the app, and "right aligned" is .item-row .err { justify-self: end } (spec R14).
+    And p.err#ie2 is equal to the golden's p.err#ie2 in states.html (the S2 price piece), plus ~~text-align "right"~~ justify-self "end", its right edge at the price field's right edge (within 0.5 px)
     And the price's div.field.money has class "is-bad" and is equal to the golden's wrapper in the same piece
     And the price input has aria-describedby "ie2"
 
@@ -1099,13 +1103,14 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
   @R36 @both
   Scenario: With motion allowed nothing loops
     # [Changed 2026-10-13, v1.1.0, S7] The foil runs once, and the section reveal is one Web Animation (PD-22).
+    # Changed 2026-10-15 in execute, planner touch before A18 (ledger S7 row 20, F-A4-1). "Empty" cannot hold, because the foil sweeps have fill "both" in system.css and a finished one stays in the list (A4 measured it in both engines). "No animation is running" means no animation in document.getAnimations() has playState "running". The strip is not displayed at 1280, so the resize to 390 starts its sweep (0.15 s delay, 1.8 s), hence the 3 s wait before the click.
     Given the K1 seed at 1280 x 800 with reduced motion "no-preference"
-    Then right after load document.getAnimations() holds at least one CSSAnimation (the foil sweep and the light across the card), and 3 s after load it is empty
-    When the viewport becomes 390 x 844 and I click #peopleBtn to open People
+    Then right after load document.getAnimations() holds at least one CSSAnimation (the foil sweep and the light across the card), and 3 s after load ~~it is empty~~ no animation is running
+    When the viewport becomes 390 x 844, 3 s pass, and I click #peopleBtn to open People
     Then document.getAnimations() holds exactly one animation that is neither a CSSAnimation nor a CSSTransition, its target is div.sec-body#peopleBody and its duration is 200 ms, and #peopleBody has no style attribute
-    And 1 s after the click document.getAnimations() is empty
+    And 1 s after the click ~~document.getAnimations() is empty~~ no animation is running and the reveal is no longer in document.getAnimations()
     When I click a toggle, click Splits, click the sheet's spare chip, press Escape and press Escape again
-    Then 1 s after each of these document.getAnimations() is empty
+    Then 1 s after each of these ~~document.getAnimations() is empty~~ no animation is running
 
   # ---------- Security ----------
   @R37 @both
@@ -1399,7 +1404,8 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
   @R47 @static
   Scenario: The app reads no error name and probes nothing
     Given the static scan of src/
-    Then it holds none of "QuotaExceededError", "SecurityError", "DOMException", "setTimeout", "setInterval" or "removeItem("
+    # Changed 2026-10-15 in execute, planner touch before A18 (ledger S4 row 4, Q-A3-1, ruled ORCH). The last banned text read "removeItem(", which also matches split-core's own removeItem(bill, itemId) that the app imports (spec Contracts). The scan bans the storage method, ".removeItem(", as the test has since A3.
+    Then it holds none of "QuotaExceededError", "SecurityError", "DOMException", "setTimeout", "setInterval" or ~~"removeItem("~~ ".removeItem("
     And "getItem(" appears exactly once (the boot read in loadDraft) and "setItem(" exactly once (in saveDraft)
     # Added 2026-10-13 after the plan check (F6). The scan has teeth, as R38's and R39's do.
     And a planted copy of src/draft.js with a line that reads e.name === "QuotaExceededError", one with a second getItem( call (a read back) and one with a setTimeout( call, each scanned in a pytest temporary folder, are each reported
@@ -1502,10 +1508,24 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
 
   @R49 @both
   Scenario: No control the user tabs to is left under the strip
+    # Changed 2026-10-15 in execute, planner touch before A18 (ledger H-08, ruled USER 2026-10-15 16:20, option (1), S7 row 27, F-A11-1). The scenario stays @both. In WebKit it fails on today's tree, because WebKit's own focus scroll leaves a control that is already on screen where it is and does not read scroll-padding-bottom (the A16 proof run qa/functional/20261015-163654-webkit/, its one failure). Task A21 builds the focus scroll of spec R49, which makes it pass. In Chromium the browser's own focus scroll already clears the strip, so A21 shows this test's teeth there with a stub that defeats the clearing.
     Given the K1 seed at 390 x 844 with both sections opened first
     When I press Tab through every control from the top of the page up to Splits
     Then each focused control's bottom edge is at most the strip's top edge once the browser has scrolled it into view
     And at the end of the page the last toggle's bottom edge is above the strip's top edge
+
+  @R49 @both
+  Scenario: The app scrolls a focused control only below 1024 px and only when the strip covers it
+    # Added 2026-10-15 in execute, planner touch before A18 (ledger H-08, ruled USER 2026-10-15 16:20, option (1)). Spec R49, "The focus scroll". The browser's own focus scroll never calls the script method, so the counter sees only the app's calls. It passes before task A21, so A21 gets its RED from three stubs of the handler.
+    Given the RND seed at 1280 x 800 and a test-side counter, added with page.evaluate before any gesture, that wraps Element.prototype.scrollIntoView, adds 1 to window.testScrollIntoViewCalls on each call and then calls the original
+    When New bill is focused by script and I press Tab through every control up to Subtotal in RM
+    Then window.testScrollIntoViewCalls is 0, because nothing happens from 1024 px
+    When the viewport becomes 390 x 844, New bill is focused by script and I press Tab once
+    Then #peopleBtn has focus, its bottom edge is above the strip's top edge, and window.testScrollIntoViewCalls is still 0, because a control clear of the strip is left alone
+    When #splitsBtn and then #stripCopy are focused by script
+    Then window.testScrollIntoViewCalls is still 0, because the strip's own controls are part of the strip
+    When I click Splits
+    Then div.sheet has focus and its bottom edge is below the strip's top edge (otherwise the case fails and names both edges), and window.testScrollIntoViewCalls is still 0, because a dialog sits above the strip
 
   @R50 @both
   Scenario: The Splits sheet opens with the card's receipt
@@ -1545,6 +1565,19 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Examples:
       | size                 | gesture                               |
       | 390 x 844, 360 x 780 | touch double tap, mouse double click  |
+
+  @R50 @both
+  Scenario Outline: The second press of a double activation that closed the sheet never reaches the page
+    # Added 2026-10-15 in execute, planner touch before A18 (ledger S7 row 28, F-A12-1). PD-21, the close half of the guard, which no scenario drove, shaped like the R30 outline of M1. The body recorder proves the cancel, whatever lies under the second press. It passes on today's tree, so A18 shows its teeth with a stub that leaves the guard out of the sheet's click close.
+    Given the K1 seed at 390 x 844, the stored text noted, the sheet opened by a click on Splits, and a body recorder
+    When I <gesture> at <point>
+    Then #splitsDlg is closed and has no child element, #splitsBtn has aria-expanded "false" and focus, and only press 1 and click 1 reached the page
+    And window.testClipboardWrites is 0 and the stored text is unchanged
+    Examples:
+      | point                     | gesture                              |
+      | the centre of "Close"     | mouse double click, touch double tap |
+      | the backdrop at (195, 80) | mouse double click, touch double tap |
+    # The backdrop point is the one of "Closing the sheet returns focus to Splits" (docs/design/LINKS.json).
 
   @R50 @both
   Scenario: The sheet closes itself when the window reaches 1024 px
@@ -1720,6 +1753,21 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Then P1 is open, the "top" radio has focus, and only press 1 and click 1 reached the page
 
   @R52 @both
+  Scenario Outline: The second press of a double activation that closed P1 never reaches the page
+    # Added 2026-10-15 in execute, planner touch before A18 (ledger S7 row 29, F-A13-1). PD-21, the close half of the guard on P1, which no scenario drove, shaped like the R30 outline of M1. Points from docs/design/LINKS.json, as in "Closing P1 returns focus to the chip shown at that moment". Below 1024 px the second press would land on the Splits sheet, which stays open. It passes on today's tree, so A18 shows its teeth with a stub that leaves the guard out of P1's click close.
+    Given the K1 seed at <size>, the stored text noted, P1 opened by a click on <chip>, and a body recorder
+    When I <gesture> at <point>
+    Then #spareDlg is closed, <focus> has focus, and only press 1 and click 1 reached the page
+    And <after>, window.testClipboardWrites is 0 and the stored text is unchanged
+    Examples:
+      | size       | chip                                | point                     | focus                  | after                          |
+      | 1280 x 800 | #spareBtn                           | the centre of "Close"     | #spareBtn              | nothing else changed           |
+      | 1280 x 800 | #spareBtn                           | the backdrop at (200, 60) | #spareBtn              | nothing else changed           |
+      | 390 x 844  | Splits, then the sheet's spare chip | "Close" at (359, 622)     | the sheet's spare chip | the Splits sheet is still open |
+      | 390 x 844  | Splits, then the sheet's spare chip | the backdrop at (195, 30) | the sheet's spare chip | the Splits sheet is still open |
+    # Gestures, a mouse double click and a touch double tap on every row.
+
+  @R52 @both
   Scenario: P1 follows the width when it crosses 1024 px
     # PD-23.
     Given the K1 seed at 390 x 844, Splits open and P1 open from the sheet's chip
@@ -1802,6 +1850,15 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     When I press Tab until #pickAgain has focus and press Enter
     Then the splits still read Aisyah RM 0.01, Ben RM 0.01, Chen RM 0.00, window.testSetItemCalls is 0, the stored text is unchanged, #pickAgain has focus, and no page error or console error was logged
 
+  @R54 @both
+  Scenario: Pick again in the Splits sheet draws again
+    # Added 2026-10-15 in execute, planner touch before A18 (ledger S7 row 31, F-A15-1). The sheet's Pick again chip comes from the card's renderer (PD-20), and no scenario pressed it, so losing its listener failed no test. A15's probe drove it in both engines (qa/sheet-pick-again-probe/). It passes on today's tree, so A18 shows its teeth with a stub that leaves the sheet's chip without its click handler.
+    Given the RND seed at 390 x 844, the sheet opened by a click on Splits, and the person on RM 38.86 in the sheet noted
+    When I click the Pick again chip in the sheet's div.r-spare-acts (the button.chip-btn before the spare chip)
+    Then the person on RM 38.86 in the sheet is a different person, the sheet's proof still reads RM 116.60, the draft's order changed, and the sheet is still open
+    When I press Tab until that chip has focus and press Enter
+    Then the person on RM 38.86 changes again, the proof reads RM 116.60, and the chip still has focus
+
   @R54 @static
   Scenario: Math.random goes only to the two draws
     # PD-19.
@@ -1841,9 +1898,11 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
 
   @R57 @both
   Scenario: A held Enter on New bill leaves the dialog open on Cancel
+    # Changed 2026-10-15 in execute, planner touch before A18 (ledger S5 row 10). The end state alone passed on 1.0 code, where the four repeats close, open, close and open the dialog (A17 measured 2 closes in Chromium, qa/functional/20261014-205544-chromium/), so the scenario also counts the dialog's close events, as the A17 test does.
     Given the K1 seed and the stored text noted
     When I press Tab until #newBill has focus and hold Enter as above
     Then the dialog is open, "Cancel" has focus, and the stored text is unchanged
+    And the dialog never closed while the key was held (a listener on #newDlg added before the key went down counted 0 close events)
 
   @R57 @both
   Scenario: Separate presses still act, and a held letter still types
@@ -2230,7 +2289,7 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
 | Id | State | Expected on the app |
 |---|---|---|
 | ST-01 | Subtotal error (S2 on an amount, Even) | K2 with Subtotal "100,00" left. `#evenField.is-bad`, `aria-invalid` "true", `#evenErr` shown 8 px below, 14/20 600 error red with a 16 px warning circle, wrapper and paragraph equal to the piece's. The card and the strip read "Enter the subtotal to see the splits." |
-| ST-02 | Price error (S2 on an amount, By item) | K1 with "Char kuey teow price in RM" "13,50" left. `p.err#ie2` last in `div.item-row`, equal to the piece's plus `text-align` right, spanning the name and price columns, the toggles 8 px below. The card reads "Give every item a price to see the splits." |
+| ST-02 | Price error (S2 on an amount, By item) | K1 with "Char kuey teow price in RM" "13,50" left. `p.err#ie2` last in `div.item-row`, equal to the piece's plus ~~`text-align` right~~ `justify-self` end, its right edge at the price field's right edge, spanning the name and price columns, the toggles 8 px below. The card reads "Give every item a price to see the splits." Changed 2026-10-15 in execute, planner touch before A18 (ledger S7 row 24, F-A8-1). The golden CSS sets no `text-align` on `p.err`, so it computes `start` in the piece and in the app (spec R14) |
 | ST-03 | Rate error, SST | K1 with Charges opened first and SST "25" left. `aria-describedby` "chargeHint sstErr", the message on two even lines with the icon on the first, the hint still under both fields |
 | ST-04 | Folded "Check service charge" | the RE seed with Charges folded by a click. `button.sec-btn.is-bad`, the summary 14/20 600 error red with a 16 px warning circle 6 px before the words, right aligned beside the caret, the name still "Charges" |
 | ST-05 | Folded "Check SST" | as ST-03, then Charges folded, as ST-04 |
@@ -2240,7 +2299,7 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
 | ST-09 | By item, nothing to work out (phone) | a cold boot and "By item". The strip's `p.s-msg` "Add each item and tap who had it to see the splits." in place of the Total, on two lines where the strip is narrower than the sentence, Copy summary disabled |
 | ST-10 | Save warning (S5) | a cold boot with D-a and one change. `div.note.is-warn` in the top bar, `--warn-bg`, an amber edge at 45%, a 20 px amber `#i-warning`, 14/20 text, 16 px right padding, no dismiss, two lines at 390. At 1280 centred in the top bar, 44 px tall, one line |
 | ST-11 | Card copied (S4, 1280) | K2 after a click on `#copyBtn`. `#cardStatus` centred 12 px under Copy summary with the indigo check |
-| ST-12 | Card blocked (S4, 1280) | K2 with reject.js after a click on `#copyBtn`. `#cardStatus.is-fail` on two lines, left aligned beside the icon |
+| ST-12 | Card blocked (S4, 1280) | K2 with reject.js after a click on `#copyBtn`. `#cardStatus.is-fail` ~~on two lines, left aligned beside the icon~~ on one line at 1280 x 800, centred like the copied line of ST-11, with the red warning circle before the text, where the S4 piece wraps it to two lines at its 282 px card width. Changed 2026-10-15 in execute, planner touch before A18 (ledger S7 row 26, F-A10-1). The app's card at 1280 x 800 is the card of `bill-even.html`, whose body is 410 px wide, and the golden CSS fits the line on one line there, 20 px tall. The markup, the look, the icon and the place under Copy summary equal the piece. `states.md` says "On the card it wraps to two lines", true of the piece only, and stays as written (goldens are immutable) |
 | ST-13 | Two items still need a person (card, 1280) | K1 with Chen untapped from Mee goreng mamak and Ben from Char kuey teow. "2 items still need a person. Tap who had each one to see the splits." styled as BU-05 |
 | ST-14 | Plural on the strip (not drawn) | the same bill at 390. The strip says the same with its amber icon, styled as BU-07 |
 | ST-15 | Error field with focus (not drawn, `system.md` Focus) | RE with `#svc` focused by Tab. The red edge stays and the ring is added |
