@@ -1,9 +1,14 @@
-# Lifecycle: Split v1.0.0
+# Lifecycle, Split (Danial's Splity Tab)
 
-How this version went from an idea to a reviewed build, phase by phase. Written at review on 2026-10-10 from
-`docs/progress/STATE-LOG.md`, the CHANGE-LEDGER and the findings files. The owner delegated the run on
-2026-10-08 ("Auto create with lifecycles for 2 projects"), so decisions inside it are tagged ORCH and stay
-reversible. The human test column and the seal are the owner's.
+How each version went from an idea to a reviewed build, phase by phase. The v1.0.0 part was written at its review on
+2026-10-10 and is kept as it was. The v1.1.0 part was written at its review on 2026-10-16 from
+`docs/progress/STATE-LOG.md`, `docs/v1.1.0/CHANGE-LEDGER.md`, the handoffs in `docs/progress/handoff/` and the
+findings files. The human test column and the seal are the owner's.
+
+## v1.0.0 (sealed 2026-10-10, tag `v1.0.0`)
+
+The owner delegated the run on 2026-10-08 ("Auto create with lifecycles for 2 projects"), so decisions inside it are
+tagged ORCH and stay reversible.
 
 | Phase | When | What happened | Key decisions |
 |---|---|---|---|
@@ -15,9 +20,11 @@ reversible. The human test column and the seal are the owner's.
 | Execute, split-app | 2026-10-09 15:10 to 21:56 | Built in two parts (the owner stopped the second builder once and resumed it). QA PASS 145 of 145. Code review: a double click on Cancel could change the bill (BLOCKER), fixed with 12 warnings. Security: a double click on the last Remove saved a blank person, fixed; publish scope written down. Pixel gate 10 of 10 at 0 px, live gate 7 of 7. Closed at `22ac9af` | One repeat-press guard for every control that moves the layout under the pointer (ORCH, from QA, code review and security). The 360 px overflow on big bills (H-02) and a held Enter on the only item's Remove (SEC-04) accepted for v1.0, the owner chose to fix both in v1.1.0 (USER) |
 | Regression | 2026-10-09 21:57 to 2026-10-10 14:30 | `--full` under an economy ruling. The code review of the delta caught two regressions the guard itself had caused (RG-CR-01 a double click on Add person added then removed a person, RG-CR-08 a double press on a chip under a price error removed the item), both fixed in two solver rounds. The orchestrator found the fidelity finder had never run on split-app and ran it: 157 of 157 element checks. QA 340 of 341. Cold boot 7 of 7. 427 browser and 275 unit tests | Verdicts on byte-identical code stand (ORCH). A regression of verified behaviour stays a BLOCKER, never accepted. The owner chose a second version per app to show versioning (USER) |
 | Brand | 2026-10-10 | Logo, README redesign, static badges, a showcase image from real pixel-gate captures. Docs only, no app change | Logo in the repo now, the favicon in v1.1.0 through the design phase (USER) |
-| Review | 2026-10-10 | Drove every brainstorm flow and rule on a cold boot with real gestures: 80 of 80 checks pass, and the accepted 360 px limit measured again. See the verdict below | Shippable for the owner's test |
+| Review | 2026-10-10 | Drove every brainstorm flow and rule on a cold boot with real gestures: 80 of 80 checks pass, and the accepted 360 px limit measured again. Verdict below | Shippable for the owner's test |
+| UAT | 2026-10-10 15:02 to 15:58 | One sitting, 8 cases, the tester's pre-run and the owner's verdicts 8 of 8 PASS. His requests became v1.1.0 (the spare sen chosen by the user, UAT-F1). UAT-F3 investigated, not a bug | Script rule from UAT-F2, every expected line lists every figure on screen (USER) |
+| Seal | 2026-10-10 16:35 | `docs/v1.0.0/SEAL.md`, tag `v1.0.0`, residuals listed as ruled | "1. Seal both apps" (USER) |
 
-## Review verdict (stakeholder seat, 2026-10-10)
+### v1.0.0 review verdict (stakeholder seat, 2026-10-10)
 
 **Shippable for UAT.** Every capability C1 to C8 works on a cold boot with no seed. The four key flows hold
 word for word: the even split copies the brainstorm's own example summary exactly, the by-item split shares the
@@ -45,3 +52,28 @@ Deviations from the brainstorm and the design, with their cause:
 
 No requirement was dropped and nothing was built that no spec asked for. Compliance review is skipped (personal direction).
 No out-of-project artifacts are logged (`docs/progress/out-of-project-artifacts.md` does not exist).
+
+## v1.1.0 (in review, not sealed)
+
+Not delegated. The owner ran the design round with the orchestrator and ruled every product question himself
+(USER). Decisions the orchestrator took in between are ORCH and reversible. The ledger is the record of each one.
+
+| Phase | When | What happened | Key decisions |
+|---|---|---|---|
+| Opened | 2026-10-10 16:37 | The v1.1.0 ledger opened at the seal with nine scopes, S1 the spare sen chosen by the user (UAT-F1), S2 the by-item table at 360 px (H-02), S3 a held Enter on Remove (SEC-04), S4 the save warning, S5 tests in WebKit, S6 the logo in the app, S7 a livelier look, S8 a free name, S9 several bills as a document only | Scopes from his UAT words and his D-01 answers ("i agree with all") (USER) |
+| Brainstorm delta | 2026-10-10 16:42 | His answers turned into the v1.1.0 delta of `docs/brainstorm/brainstorm.md`, C9 spare sen choice, C10 save warning, C3 changed (fits 360 px), C0 a new look, the name, and `docs/future/several-bills.md` | Name "Danial's Splity Tab", the logo and header show "Splity Tab" (USER). One spare sen rule for the whole bill, a random draw kept in the draft, the save warning copy, one dark theme, still no web fonts (ORCH) |
+| Design | 2026-10-10 16:46 to 2026-10-13 | Round 1, five clickable directions by five designer agents. He asked for a mix. Direction F was built on D from the orchestrator's reading, then withdrawn when he corrected the base to B Glass Receipt (the orchestrator's misread, ledger S7 row 4). G Glass Console, then G2 after his phone note (People and Charges fold, "Shares" becomes "Splits"). Composer agent, 15 goldens, the locked system. Flow check found one golden defect in the accessible names, fixed. Logo rounds, ten marks drawn and reviewed, he kept the 1.0 mark with his own tweak (S12). The UAT sheet layout was designed in the same round. Finalize copy into `docs/design/` on 2026-10-13 after his "Yes, but later" | G2 and S12 (USER). A bad rate or price blocks the receipt as in 1.0 (ORCH, told to him). Copy list and thirteen interaction rules approved (USER, `docs/design/RULINGS-v1.1.0.md`) |
+| Plan | 2026-10-13 18:20 to 23:05 | Constitution updated to the sdlc 2.6.0 copy. Two researchers (WebKit testing, the save warning and the tab icon). Clarify gate part 1 (show the warning at boot, the icon as a file, header and tab only, install WebKit, suites and live gates in WebKit, pixel gate Chromium only) and part 2 (CG-P1 to CG-P8). Delta contracts, split-core 34 R# and split-app 61 R#. Plan check BLOCK (4 block), one fix pass, re-check PASS, a touch-up. Done at `853afe1` | Every clarify item ruled as recommended (USER). The 1.0 test files go by `git rm`, kept in the tag (USER) |
+| Execute | 2026-10-14 11:54 to 2026-10-16 03:20 | WebKit 26.5 installed. A0 ran the 1.0 suite in WebKit, 48 failures. Core C1 to C6, then app A1 to A21 one task per builder, each seen failing first and committed with its proof runs. The owner stopped the build once ("HOLD EVERYTHING") when the A0 baseline showed the 1.0 page in his pane, resolved by a check of the goldens. Step 5 finders on both modules, QA (one missing test), code review (14 items), security (SEC-S5-1, a bidi character in a name flips the People line), fidelity (one-to-one, 0 findings). One solver round. The H-10 build (C7, A22). The step 5 re-check found a double click on Dismiss note folding People (CR-R1), built as A23 with a fix pass. Both modules closed at `b0992b4`, Node 406, Chromium 742 and WebKit 742 with 0 failures | H-04, a double tap in WebKit counts as one press by time and place, 500 ms and 22 px (USER). H-05, the WebKit live gate captures by screencast frames (ORCH, his no preference). H-06 the amber bar on a new item, H-07 no status for a late clipboard answer (USER, keep). H-08, the focus scroll that keeps a Tab stop clear of the strip in WebKit (USER). H-09, keep the amount hint as built, a VoiceOver case at UAT (USER). H-10, remove control and bidi characters from names (USER). A23 and the minor calls of the night under his word on minor calls (ORCH) |
+| Regression | 2026-10-16 03:25 to 04:25 | `--full`, the step 5 re-check's QA and security folded in. QA PASS both modules (73 and 181 scenarios), pixel gate 40 of 40 at 0 px with both controls, cold boot 9 of 9 in Chromium and WebKit with red controls, security PASS both, code review 0 BLOCKER with the consistency sweep. No solver round | CS-1 (a name input of only removed characters saves the same text and clears the copy status) and SEC-R1 (an IME composition holding a bidi control is cut short) accepted as residuals, both to the v1.2.0 plan (ORCH). README fixes RG-CR-1, RG-CR-2, CS-7 |
+| Review | 2026-10-16 04:27 to 05:00 | The stakeholder drive on a cold boot with real gestures, Chromium at 1280 x 800, 390 x 844 and 360 x 780, WebKit at 390 x 844 and 360 x 780. 303 checks pass, 0 fail, 44 recorded as information. Every money figure worked out by the script from the brainstorm's rules. The app equals its golden to 0 px in WebKit at the first visit, K1 and W1 | Shippable to UAT. D1 (WebKit draws a focus ring after a tap that opens a popup or closes the sheet, an engine difference recorded in part), D2 (README header at 1.0 until the seal, ORCH) and O1 (a 99,999.99 price does not show whole at 360 px) go to the owner. Next `sdlc:uat` |
+
+### v1.1.0 review verdict (stakeholder seat, 2026-10-16)
+
+**Shippable to UAT.** Every capability of the brainstorm and its v1.1.0 delta works on a cold boot with no seed in
+both engines, the four key flows hold, and the copied summary of the even split is the brainstorm's own example word
+for word. No requirement was dropped and nothing was built that no spec or ruling asked for. The full record, the
+deviations with their causes, the behaviour ruled beyond the brainstorm's words and the candidate UAT cases are in
+`docs/review/20261016-042713/review.md`. Compliance review is skipped (personal direction). No out-of-project
+artifacts are logged (`docs/progress/out-of-project-artifacts.md` does not exist), and one stray named in the state
+log is listed there for the owner.

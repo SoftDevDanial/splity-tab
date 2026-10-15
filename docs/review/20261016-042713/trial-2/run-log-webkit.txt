@@ -1,0 +1,137 @@
+server STARTED pid 22892 port 24956
+webkit 26.5
+PASS webkit | main 390x844 | clipboard stand-in and CSP listener in place before the first gesture | {'writes': 0, 'nativeWrite': False, 'csp': True}
+PASS webkit | main 390x844 | tab title is the full name | Danial's Splity Tab
+PASS webkit | main 390x844 | header shows the mark then 'Splity Tab' only, no Danial and no D | ['Splity Tab', ['Splity Tab']]
+PASS webkit | main 390x844 | header mark path equals the golden's S12 mark | M2,21V4A3,3,0,0,1,5,1H23A3,3,0,0,1,26,4V
+PASS webkit | main 390x844 | tab icon links src/icon.svg as SVG | ['src/icon.svg', 'image/svg+xml']
+PASS webkit | main 390x844 | cold boot is the empty new bill, nothing stored | [['Person 1', 'Person 2'], [True, True], '', '10', '6', None, 'Enter the subtotal to see the splits.']
+PASS webkit | main 390x844 | phone, People open and Charges folded on a new bill | ['true', 'false']
+PASS webkit | main 390x844 | phone, the strip shows the message with Copy summary disabled | {'shown': True, 'total': None, 'msg': 'Enter the subtotal to see the splits.', 'copy': 'disabled', 'status': '', 'statusClass': 'status', 'splitsExpanded': 'false'}
+INFO webkit | look 390x844 | pixels differing between the app and bill-empty.html at this state (same engine, eye check in the captures) | 0
+PASS webkit | main 390x844 | Add person puts focus on the new empty name | Person 3 name
+FAIL webkit | main 390x844 | strip Total | {'shown': True, 'total': 'TotalRM 116.60', 'msg': None, 'copy': 'enabled', 'status': '', 'statusClass': 'status', 'splitsExpanded': 'false'}
+PASS webkit | main 390x844 | even, Total and bill lines | ['RM 116.60', [['Subtotal', 'RM 100.00'], ['Service 10%', 'RM 10.00'], ['SST 6%', 'RM 6.60']]]
+PASS webkit | main 390x844 | even, splits to the sen, top of the list | [['Aisyah', 'RM 38.87', None], ['Ben', 'RM 38.87', None], ['Chen', 'RM 38.86', None]]
+PASS webkit | main 390x844 | even, 'Adds up to' and the spare sen line with Top of the list | ['RM 116.60', '2 sen left over', 'Spare sen: Top of the list. Change']
+PASS webkit | main 390x844 | Splits sheet open, focus on the sheet, aria-expanded true | ['div.sheet', 'true']
+PASS webkit | main 390x844 | sheet Close gives focus back to Splits | #splitsBtn
+PASS webkit | main 390x844 | Copy summary gives the brainstorm's own example text | Bill split
+Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)
+Aisyah RM 38.87
+Ben RM 38.87
+Chen RM 38.86
+Adds up to RM 116.60
+PASS webkit | main 390x844 | status says 'Summary copied' | ['Summary copied', 'status']
+PASS webkit | main 390x844 | draft saved as version 2 with the bill | {'version': 2, 'bill': {'mode': 'even', 'people': [{'id': 'p1', 'name': 'Aisyah'}, {'id': 'p2', 'name': 'Ben'}, {'id': 'p3', 'name': 'Chen'}], 'subtotalText': '100', 'items': [], 'serviceText': '10', 'sstText': '6', 'spa
+PASS webkit | main 390x844 | subtotal '100,00' shows the error on leaving | [True, 'Enter an amount like 12.50', 'true', True]
+PASS webkit | main 390x844 | a bad subtotal blocks the receipt | Enter the subtotal to see the splits.
+PASS webkit | main 390x844 | subtotal '12' accepted | [False, 'Enter an amount like 12.50', 'false', False]
+PASS webkit | main 390x844 | subtotal '12.5' accepted | [False, 'Enter an amount like 12.50', 'false', False]
+PASS webkit | main 390x844 | subtotal '12.50' accepted | [False, 'Enter an amount like 12.50', 'false', False]
+PASS webkit | main 390x844 | subtotal '0' shows the error on leaving | [True, 'Enter an amount like 12.50', 'true', True]
+PASS webkit | main 390x844 | subtotal '99999.99' accepted | [False, 'Enter an amount like 12.50', 'false', False]
+PASS webkit | main 390x844 | subtotal '100000' shows the error on leaving | [True, 'Enter an amount like 12.50', 'true', True]
+PASS webkit | main 390x844 | subtotal '1.234' shows the error on leaving | [True, 'Enter an amount like 12.50', 'true', True]
+PASS webkit | main 390x844 | P1 opens with title, count and three choices, Top of the list checked | {'open': True, 'title': 'Spare sen', 'sub': '2 sen left over', 'choices': [['Top of the list', True], ['One person', False], ['At random', False]], 'pills': [], 'pickAgain': False, 'box': {'x': 0, 'y': 597, 'width': 390,
+PASS webkit | main 390x844 | P1 focus on the checked choice | radio spareRule=top
+PASS webkit | main 390x844 | One person picks the first person at once | [[['Aisyah', True], ['Ben', False], ['Chen', False]], [['Aisyah', 'RM 38.88', None], ['Ben', 'RM 38.86', None], ['Chen', 'RM 38.86', None]]]
+PASS webkit | main 390x844 | Ben pays both spare sen (38.86, 38.88, 38.86) | [[['Aisyah', 'RM 38.86', None], ['Ben', 'RM 38.88', None], ['Chen', 'RM 38.86', None]], 'Spare sen: One person, Ben. Change']
+INFO webkit | look 390x844 | pixels differing between the app and spare-sen-one.html at this state (same engine, eye check in the captures) | 9140
+FAIL webkit | main 390x844 | Escape closes P1 and focus goes back to the chip | div.sheet
+PASS webkit | main 390x844 | copied summary follows the choice | ['Aisyah RM 38.86', 'Ben RM 38.88', 'Chen RM 38.86']
+PASS webkit | main 390x844 | At random gives two different people one spare sen each, still adds up | [['RM 38.87', 'RM 38.86', 'RM 38.87'], True, 'Spare sen: At random. Change']
+PASS webkit | main 390x844 | Pick again in P1 (Tab to it, Enter) draws a different split | [['RM 38.87', 'RM 38.86', 'RM 38.87'], ['RM 38.86', 'RM 38.87', 'RM 38.87'], 2]
+PASS webkit | main 390x844 | focus stays on Pick again after a key press on it | #pickAgainSheet
+PASS webkit | main 390x844 | Pick again on the receipt draws again | [['RM 38.86', 'RM 38.87', 'RM 38.87'], ['RM 38.87', 'RM 38.87', 'RM 38.86']]
+PASS webkit | main 390x844 | the drawn order is kept, a reload shows the same splits | [[['Aisyah', 'RM 38.87', None], ['Ben', 'RM 38.87', None], ['Chen', 'RM 38.86', None]], ['RM 38.87', 'RM 38.87', 'RM 38.86']]
+PASS webkit | main 390x844 | back to Top of the list gives the 1.0 split | [['Aisyah', 'RM 38.87', None], ['Ben', 'RM 38.87', None], ['Chen', 'RM 38.86', None]]
+PASS webkit | main 390x844 | a click on P1's backdrop closes it, focus on the chip | [True, 'Spare sen: Top of the list. Change']
+PASS webkit | main 390x844 | By item, Subtotal block gone, no item yet blocks with its message | [True, 'Add each item and tap who had it to see the splits.']
+PASS webkit | main 390x844 | an item with nobody tapped blocks: '1 item still needs a person...' and the amber marker | ['1 item still needs a person. Tap who had it to see the splits.', [['Nasi lemak ayam', '15.90', [], True]]]
+PASS webkit | main 390x844 | a new item with no price: 'Give every item a price to see the splits.' | Give every item a price to see the splits.
+PASS webkit | main 390x844 | two untapped items: '2 items still need a person...' | 2 items still need a person. Tap who had each one to see the splits.
+FAIL webkit | main 390x844 | strip Total RM 69.26 | TotalRM 69.26
+PASS webkit | main 390x844 | K1 Total and bill lines | ['RM 69.26', [['Subtotal', 'RM 59.40'], ['Service 10%', 'RM 5.94'], ['SST 6%', 'RM 3.92']]]
+PASS webkit | main 390x844 | K1 splits with items + charges working (satay shared, charges in proportion) | [['Aisyah', 'RM 29.04', 'Items 24.90 + charges 4.14'], ['Ben', 'RM 15.74', 'Items 13.50 + charges 2.24'], ['Chen', 'RM 24.48', 'Items 21.00 + charges 3.48']]
+PASS webkit | main 390x844 | K1 proof and '1 sen left over' | ['RM 69.26', '59.40 + 9.86', '1 sen left over']
+PASS webkit | main 390x844 | K1 copied summary in the 1.0 format | Bill split
+Total RM 69.26 (subtotal RM 59.40, service 10% RM 5.94, SST 6% RM 3.92)
+Aisyah RM 29.04
+Ben RM 15.74
+Chen RM 24.48
+Adds up to RM 69.26
+PASS webkit | main 390x844 | switch to Even keeps the subtotal and its splits | ['100', 'RM 116.60']
+PASS webkit | main 390x844 | switch back keeps every item and tap | [['Nasi lemak ayam', '15.90', ['Aisyah'], False], ['Char kuey teow', '13.50', ['Ben'], False], ['Mee goreng mamak', '12.00', ['Chen'], False], ['Satay, 10 sticks', '18.00', ['Aisyah', 'Chen'], False]]
+INFO webkit | look 390x844 | pixels differing between the app and bill-items.html at this state (same engine, eye check in the captures) | 0
+PASS webkit | main 390x844 | folded People summary 'Aisyah, Ben, Chen', Charges 'Service 10%, SST 6%' | ['Aisyah, Ben, Chen', 'Service 10%, SST 6%']
+PASS webkit | main 390x844 | a header row opens with Enter and folds with Space | [['true', 'true'], ['false', 'false']]
+PASS webkit | main 390x844 | a person on no item is listed with RM 0.00 | ['Dan', 'RM 0.00', 'Items 0.00 + charges 0.00']
+PASS webkit | main 390x844 | the picker lists only people on an item (no Dan) | [['Aisyah', True], ['Ben', False], ['Chen', False]]
+PASS webkit | main 390x844 | By item, Ben takes the spare sen (15.75, Aisyah 29.03) | [['Aisyah', 'RM 29.03', 'Items 24.90 + charges 4.13'], ['Ben', 'RM 15.75', 'Items 13.50 + charges 2.25'], ['Chen', 'RM 24.48', 'Items 21.00 + charges 3.48'], ['Dan', 'RM 0.00', 'Items 0.00 + charges 0.00']]
+PASS webkit | main 390x844 | removing the last person puts focus on the name before it | Person 3 name
+PASS webkit | main 390x844 | service 35 shows 'Enter a rate from 0 to 30' and blocks the receipt | [[True, 'Enter a rate from 0 to 30', 'true'], 'Check the charges to see the splits.']
+PASS webkit | main 390x844 | strip Copy summary disabled while blocked | disabled
+PASS webkit | main 390x844 | folded Charges says 'Check service charge' with the marker | ['Check service charge', True]
+PASS webkit | main 390x844 | service 0 turns it off (Service 0% RM 0.00) | [[['Subtotal', 'RM 59.40'], ['Service 0%', 'RM 0.00'], ['SST 6%', 'RM 3.56']], 'RM 62.96']
+PASS webkit | main 390x844 | SST 25 shows 'Enter a rate from 0 to 20' | [True, 'Enter a rate from 0 to 20']
+PASS webkit | main 390x844 | Charges summary 'Check SST' | Check SST
+PASS webkit | main 390x844 | a blank rate shows no inline error but blocks, summary 'Check both rates' | Check both rates
+PASS webkit | main 390x844 | the hint reads 'Set a charge to 0 if your bill already includes it.' | Set a charge to 0 if your bill already includes it.
+PASS webkit | main 390x844 | a bad price shows 'Enter an amount like 12.50' and 'Give every item a price to see the splits.' | [[True, 'Enter an amount like 12.50'], 'Give every item a price to see the splits.']
+PASS webkit | main 390x844 | reload shows the bill as it was | [['Aisyah', 'Ben', 'Chen'], [['Nasi lemak ayam', '15.90', ['Aisyah'], False], ['Char kuey teow', '13.50', ['Ben'], False], ['Mee goreng mamak', '12.00', ['Chen'], False], ['Satay, 10 sticks', '18.00', ['Aisyah', 'Chen'],
+PASS webkit | main 390x844 | nothing is written at boot | True
+PASS webkit | main 390x844 | phone, a saved bill opens with People and Charges folded | ['false', 'false']
+PASS webkit | main 390x844 | a closed tab opened again shows the same bill | [['Nasi lemak ayam', '15.90', ['Aisyah'], False], ['Char kuey teow', '13.50', ['Ben'], False], ['Mee goreng mamak', '12.00', ['Chen'], False], ['Satay, 10 sticks', '18.00', ['Aisyah', 'Chen'], False]]
+PASS webkit | main 390x844 | phone K1 Tab order, 31 stops from New bill to Copy summary | [31, ['#newBill', '#peopleBtn', '#chargesBtn', '#modeItem', '#addItem'], ['#splitsBtn', '#stripCopy']]
+INFO webkit | main 390x844 | outline on the last Tab stop (ring is drawn by the system's focus rule) | ['#stripCopy', ['solid', '2px', '2px']]
+INFO webkit | look 390x844 | pixels differing between the app and splits-sheet.html at this state (same engine, eye check in the captures) | 61867
+INFO webkit | main 390x844 | after the sheet closes by a tap on Close: focus and :focus-visible on Splits (QA-S5-4) | ['splitsBtn', True]
+PASS webkit | main 390x844 | Escape closes the sheet, focus on Splits, aria-expanded false | [[True, 'glass dense sheet'], True, True, '#splitsBtn', 'false']
+PASS webkit | main 390x844 | a tap on the sheet's backdrop closes it, focus on Splits | #splitsBtn
+PASS webkit | main 390x844 | a double tap on Splits opens the sheet once and the second tap reaches nothing under it | [[True, 0], 0]
+PASS webkit | main 390x844 | New bill asks 'Start a new bill? This clears the people, items and amounts.' with focus on Cancel | [['Start a new bill?', 'This clears the people, items and amounts.', ['Start new bill', 'Cancel']], 'button:Cancel']
+INFO webkit | look 390x844 | pixels differing between the app and new-bill-dialog.html at this state (same engine, eye check in the captures) | 45779
+PASS webkit | main 390x844 | Cancel changes nothing, focus on New bill | #newBill
+PASS webkit | main 390x844 | Start new bill returns to two people, even, 10% and 6%, Top of the list, focus New bill | [['Person 1', 'Person 2'], {'version': 2, 'bill': {'mode': 'even', 'people': [{'id': 'p1', 'name': 'Person 1'}, {'id': 'p2', 'name': 'Person 2'}], 'subtotalText': '', 'items': [], 'serviceText': '10', 'sstText': '6', 'sp
+PASS webkit | main 390x844 | phone, after Start new bill People open and Charges folded | ['true', 'false']
+PASS webkit | main 390x844 | a double press on Add person adds one person (R57 (b) for a tap) | [3, 'Person 3 name']
+PASS webkit | main 390x844 | 12 people, Add person disabled | [12, True]
+INFO webkit | main 390x844 | folded People summary at 12 blank names | Person 1, Person 2, Person 3 and 9 more
+PASS webkit | main 390x844 | duplicate names are allowed, two 'Remove Ben' buttons | 2
+PASS webkit | main 390x844 | a blank name shows its placeholder 'Person 2' | Person 2
+PASS webkit | main 390x844 | removing a person takes them off every item | [[['Tea', '3', [], True]], '1 item still needs a person. Tap who had it to see the splits.']
+PASS webkit | main 390x844 | Remove disabled at two people | [True, True]
+PASS webkit | main 390x844 | held Enter on the only item's Remove removes it and adds no blank item | ['Remove Tea', 0, 14, 14, '#addItem']
+PASS webkit | main 390x844 | pasted bidi and line separator characters are removed from names (field, draft) | ["'Ben'", "'Aisyah'", "'Tehtarik'"]
+PASS webkit | main 390x844 | People summary holds no control, separator or bidi character | 'Ben, Aisyah'
+PASS webkit | main 390x844 | the copied summary reads the same plain names | 'Bill split\nTotal RM 5.25 (subtotal RM 4.50, service 10% RM 0.45, SST 6% RM 0.30)\nBen RM 2.63\nAisyah RM 2.62\nAdds up to RM 5.25'
+FAIL webkit | big bill 360x780 | W1 at 360: no sideways scroll, 964.50 whole in its field, strip 'Total RM 1,193.87' | [{'page': [360, 360], 'clipped': []}, ['964.50', 76, 76], 'TotalRM 1,193.87']
+INFO webkit | big bill 360x780 | W1 frame data-up, data-down | [True, False]
+INFO webkit | big bill 360x780 | W1 frame data-up, data-down after scrolling the frame back to its top | [False, True]
+INFO webkit | look 360x780 | pixels differing between the app and bill-large.html at this state (same engine, eye check in the captures) | 0
+PASS webkit | big bill 360x780 | W1 sheet splits (Aisyah RM 1,153.65) and every figure fits | [[['Aisyah', 'RM 1,153.65', 'Items 989.40 + charges 164.25'], ['Ben', 'RM 15.74', 'Items 13.50 + charges 2.24'], ['Chen', 'RM 24.48', 'Items 21.00 + charges 3.48']], {'page': [360, 360], 'clipped': []}]
+FAIL webkit | big bill 360x780 | five items at RM 99,999.99 (RM 582,999.95): no sideways scroll, no clipped figure on the page or strip | [{'page': [360, 360], 'clipped': []}, 'TotalRM 582,999.95']
+INFO webkit | big bill 360x780 | a price field holding 99999.99 at this width: value, scrollWidth, clientWidth (R60 promises 964.50 whole, not this) | ['99999.99', 92, 76]
+PASS webkit | big bill 360x780 | the same bill in the sheet, splits right and every figure fits | [[['Aisyah', 'RM 291,499.99', 'Items 249,999.98 + charges 41,500.01'], ['Ben', 'RM 116,599.99', 'Items 99,999.99 + charges 16,600.00'], ['Chen', 'RM 174,899.97', 'Items 149,999.98 + charges 24,899.99']], []]
+PASS webkit | save warning 390x844 | storage that reads but cannot write: no warning at boot | []
+PASS webkit | save warning 390x844 | the first failed save shows the warning, exact copy, no dismiss control | [['note is-warn', 'This bill is not being saved on this device. It will be lost when you close this tab.', False]]
+PASS webkit | save warning 390x844 | the app keeps working in memory | [['Aisyah', 'RM 58.30', None], ['Person 2', 'RM 58.30', None]]
+PASS webkit | save warning 390x844 | the warning goes after the next save works, and the store holds the bill on screen | [[], {'version': 2, 'bill': {'mode': 'even', 'people': [{'id': 'p1', 'name': 'Aisyah'}, {'id': 'p2', 'name': 'Ben'}], 'subtotalText': '100', 'items': [], 'serviceText': '10', 'sstText': '6', 'spare': {'rule': 'top'}, 'ne
+PASS webkit | save warning 390x844 | storage refused from boot: the warning in the first render | [['note is-warn', 'This bill is not being saved on this device. It will be lost when you close this tab.']]
+PASS webkit | save warning 390x844 | storage that comes back clears the warning without a reload | []
+PASS webkit | unreadable 390x844 | a draft that cannot be read: the note with Dismiss, a new bill saved | [['note', 'Your saved bill could not be read, so a new one was started.', True]]
+PASS webkit | unreadable 390x844 | phone, People opens (the bill is new) | ['true', 'false']
+PASS webkit | unreadable 390x844 | a double press on Dismiss note acts once (A23): note gone, focus New bill, sections as they were | [[], '#newBill', 'true', 'false']
+PASS webkit | unreadable 390x844 | Dismiss note is the first Tab stop, a held Enter on it opens no dialog | ['#dismissNote', [], '#newBill']
+PASS webkit | blocked clipboard 390x844 | a blocked clipboard says 'Could not copy. Your browser blocked the clipboard.' | ['Could not copy. Your browser blocked the clipboard.', 'status is-fail']
+PASS webkit | blocked clipboard 390x844 | the next change clears the status | 
+PASS webkit | tab icon | src/icon.svg equals the golden's tab icon byte for byte | [470, 470]
+PASS webkit | tab icon | the icon draws in #A3AAFF under dark | [(163, 170, 255), 1521]
+PASS webkit | tab icon | the icon draws in #1E2140 under light | [(30, 33, 64), 1521]
+server STOPPED pid 22892 port 24956, exited True, port refuses True
+PASS webkit | the whole run | every request of the app pages is a same-origin GET for the page, src/ or favicon.ico | [330, []]
+PASS webkit | the whole run | no console error or warning from the app, no page error | [[], []]
+INFO webkit | the whole run | WebKit screenshot stylesheet lines (R59 (4), the tool), against screenshots taken | [19, 19]
+PASS webkit | the whole run | no CSP violation from the app | [19, []]
+TOTAL webkit pass 105 fail 5 info 13 in 89 s
