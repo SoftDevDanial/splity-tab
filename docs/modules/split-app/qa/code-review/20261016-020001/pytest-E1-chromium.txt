@@ -1,0 +1,34 @@
+F
+================================== FAILURES ===================================
+_____ test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make _____
+
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-116/test_R58_a_run_never_writes_in0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002313CF14D60>
+
+    def test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make(tmp_path, monkeypatch):
+        # Two runs of one engine in the same second get the same <stamp>-<engine> name. The second must not write into the
+        # first one's folder (constitution, Gates and evidence, each run writes its own capture; code review CR-S5-14).
+        import conftest
+        moment = types.SimpleNamespace(strftime=lambda pattern: "20261015-235959")
+        monkeypatch.setattr(conftest, "datetime", types.SimpleNamespace(datetime=types.SimpleNamespace(now=lambda: moment)))
+        monkeypatch.setattr(conftest, "EVIDENCE_ROOT", tmp_path)
+        monkeypatch.setitem(conftest._evidence, "dir", None)
+        first = conftest.evidence_dir()
+        monkeypatch.setitem(conftest._evidence, "dir", None)  # the second run's first call, in the same second
+        try:
+            second = conftest.evidence_dir()
+        except FileExistsError:
+            second = None
+>       assert first.is_dir() and first.parent == tmp_path and second != first
+E       AssertionError: assert (True and WindowsPath('{temp}/pytest-of-{user}/pytest-116/test_R58_a_run_never_writes_in0') == WindowsPath('{temp}/pytest-of-{user}/pytest-116/test_R58_a_run_never_writes_in0') and WindowsPath('{temp}/pytest-of-{user}/pytest-116/test_R58_a_run_never_writes_in0/20261015-235959-chromium') != WindowsPath('{temp}/pytest-of-{user}/pytest-116/test_R58_a_run_never_writes_in0/20261015-235959-chromium'))
+E        +  where True = is_dir()
+E        +    where is_dir = WindowsPath('{temp}/pytest-of-{user}/pytest-116/test_R58_a_run_never_writes_in0/20261015-235959-chromium').is_dir
+E        +  and   WindowsPath('{temp}/pytest-of-{user}/pytest-116/test_R58_a_run_never_writes_in0') = WindowsPath('{temp}/pytest-of-{user}/pytest-116/test_R58_a_run_never_writes_in0/20261015-235959-chromium').parent
+
+tests\browser\test_app.py:5516: AssertionError
+engine chromium, browser version None, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make
+1 failed, 727 deselected in 0.66s
+
+----- stderr -----

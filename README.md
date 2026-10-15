@@ -55,7 +55,7 @@ flowchart LR
 ```
 
 Every decision, finding and fix is dated in its version's ledger, [`docs/v1.0.0/CHANGE-LEDGER.md`](docs/v1.0.0/CHANGE-LEDGER.md)
-and [`docs/v1.1.0/CHANGE-LEDGER.md`](docs/v1.1.0/CHANGE-LEDGER.md), with who made it. Some of what the reviews caught on the way to 1.0.0:
+and [`docs/v1.1.0/CHANGE-LEDGER.md`](docs/v1.1.0/CHANGE-LEDGER.md), with who made it. The table shows some of what the reviews caught on the way to 1.0.0.
 
 | Found by | What it was | What happened |
 |---|---|---|
@@ -112,7 +112,7 @@ Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no
 - `parseAmount`, `parseRate`, `formatMoney`, `formatAmount`, `formatRate` read and write ringgit text.
 - `allocateByWeight` shares an amount by weight so the parts always add up to the whole, and is the one place that uses `BigInt`. `allocateEvenly` is no longer called by the page. The tests keep it as the reference for Top of the list.
 - `billCharges` applies service charge and then SST on top, each with half-up rounding. `computeResult` builds the even split or the by-item split from the typed bill. It splits each division into floor parts (`floorParts`) and hands out the spare sen by the bill's own rule (`bill.spare`, read by `spareRule`), and returns `spare` with the result.
-- `newBill`, `addPerson`, `removePerson`, `addItem`, `toggleItemPerson` and the other actions return a new bill and never change the old one. `sparePeople` lists who can take a spare sen.
+- `newBill`, `addPerson`, `removePerson`, `addItem`, `toggleItemPerson` and the other actions return a new bill and never change the old one. `sparePeople` lists who can take a spare sen. Every copy of a bill takes its fields from `BILL_FIELDS`, the keys of `newBill()`, so `bill.js` and `spare.js` cannot drift apart.
 - `src/core/spare.js` holds the spare sen choice. `chooseSpareRule` sets Top of the list, One person or At random, `chooseSparePerson` names the one person, and `pickAgain` draws a new order with the random source it is given.
 - `NAME_CONTROLS` is the one class of control, line and paragraph separator and bidi control characters, written once in `bill.js`. `plainName` returns a name with every character of that class deleted. No core action calls it, the app does.
 - `summaryText` writes the copy summary, one line per row, with any character of `NAME_CONTROLS` in a name turned into a space.
@@ -121,7 +121,7 @@ Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no
 - `src/main.js` boots the page, keeps the one bill, and routes every change to the bill through `commit`. The caller runs a core action (for example `commit(addPerson(bill))`), and `commit` takes the bill it returned, saves the draft and calls `render`. `render` reads the view state and never writes it. `commit` clears the copy status on every change to the bill, and `copySummary` drops a clipboard answer that arrives after the bill changed. `showCopyStatus` (`src/ui/copy-status.js`) draws the status into every status paragraph, the card's, the strip's and the Splits sheet's.
 - `src/draft.js` saves and loads the draft (`getStorage`, `loadDraft`, `saveDraft`, `encodeDraft`, `decodeDraft`).
 - `src/errors.js` holds the rules for when a field error shows, with their own unit tests. `newErrorFlags`, `flagsFor` and `visibleErrors` build or read the flags, and `typedInto`, `leftField` and `forgetPrice` update the flags they are given.
-- `src/ui/` builds one block per section. Each `create...` factory takes its handlers (and the element it fills, for `createReceipt`, `createStrip`, `createSheet`, `createSpareChoice` and `createNotes`), returns its node or `content` with an `update`, and states its exact signature in its file's header comment. Blocks write the DOM and report gestures. They never change the bill.
+- `src/ui/` builds the page in blocks, one `create...` factory each. Each file's header comment gives its factory's exact arguments and what it returns. Blocks write the DOM and report gestures. They never change the bill.
 - `createPeopleSection` and `createChargesSection` fold People and Charges into one row each below 1024 px. `main.js` keeps the open state.
 - `createNotes` shows the save warning while the latest save failed (`saveFailing`, from `saveDraft`), and the note about a draft it could not read.
 - `placeModeBlocks` keeps the Subtotal block in the DOM only in Even and the Items block only in By item (`MODE_BLOCKS`). A block is put back only when it is missing, because moving the block that holds the focused field would drop its focus.
@@ -132,7 +132,7 @@ Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no
 - `createSpareLine` keeps the spare line on the card and in the sheet, with the spare chip naming the rule in effect and Pick again. `createSpareChoice` runs P1, the spare sen choice. It opens from either chip with focus on the stored rule, applies and saves a choice at once (`chooseSpareRule` in `main.js`), sits beside the card from 1024 px (`DESKTOP` in `src/ui/media.js`) and rises as a bottom sheet below that, where `makeRoom` pads the Splits sheet so the splits stay in view. Every close returns focus to the chip shown, or to Splits. Under One person, `createPicker` shows one pill per person who can take a sen (`drawPills`, in list order), and a pill applies and saves at once (`chooseSparePerson` in `main.js`). `setChecked` in `dom.js` sets a radio's checked state for both groups in P1. Under At random, `createRandWrap` adds Pick again after the At random choice (`choicesFor` places it), made once per opening so a key press keeps focus on it. Pick again in P1 and on both receipts (`createSpareLine`) calls `onPickAgain` in `main.js`, which commits `pickAgain(bill, Math.random)`. A draw saves and renders, and a Pick again that can change nothing writes nothing. `Math.random` goes only to `chooseSpareRule` and `pickAgain`.
 - `closeOnBackdropClick` is the one backdrop rule for the New bill dialog, the Splits sheet and P1. A click on the backdrop closes only if the press began on the backdrop too.
 - `reconcileChildren` updates lists without re-inserting a node that is already in place, so typing never loses focus.
-- `plainNameField` keeps names plain as they are typed or pasted. The person and item name fields call it from their `input` listeners. It removes the class with core's `plainName`, writes the field back only when a character of the class came in, and keeps the caret where it was.
+- `plainNameField` keeps names plain as they are typed or pasted. The person and item name fields call it from their `input` listeners. It removes the class with core's `plainName`, writes the field back only when a character of the class came in, and puts the caret where the text went in.
 - `onFieldLeave` holds a field's error back until a press ends, so a tap on the button below an invalid field is never lost.
 - `swallowRepeatClicks` cancels the repeat press of a double click, triple click or double tap, so it never lands on a control that moved under the pointer, and while armed it also cancels a held key's repeats. It protects only the controls that arm it. Every Remove button, Add person, Add item, and the New bill dialog, the Splits sheet and P1 on open and close arm it. A Remove button also ignores a repeat press itself (`isRepeatClick`), so when a price error moves the rows and the second press of a double click lands on a Remove, nothing is removed. What counts as a repeat is written once, `isRepeatPress` in `src/ui/repeat.js`, a tap less than 500 ms after the previous click and within 22 px of it included, fed by `watchPointerClicks`.
 - `createDialog` runs the New bill dialog. Cancel, Esc and Start new bill close it. A click on the backdrop closes it only if the press began on the backdrop too.
@@ -148,7 +148,7 @@ added or changed.
 | What | Command | Evidence |
 |---|---|---|
 | Unit tests | `node --test "tests/**/*.test.js"` | none |
-| Browser tests, Chromium | `python -m pytest tests/browser -q` | a failure screenshot in `docs/modules/split-app/qa/functional/<ts>/` |
+| Browser tests, Chromium | `python -m pytest tests/browser -q` | `docs/modules/split-app/qa/functional/<ts>/` (a failure screenshot, and every run's `accessible-description.txt`) |
 | Browser tests, WebKit | `python -m pytest tests/browser -q --engine webkit` (tests marked `chromium_only` are skipped with a reason and counted) | the same |
 | Looks right (fidelity gate) | `python tests/browser/fidelity/run.py` | `docs/modules/split-app/qa/fidelity/<ts>/` |
 | Works right (live gate) | `python tests/browser/live_e2e.py --engine <chromium or webkit>`, counted per engine as a `--control seeded` run that stops red at step 1 and then a green run against one server (`--base-url`, see `CLAUDE.md`) | `docs/modules/split-app/qa/live-e2e/<ts>-<engine>/` and `<ts>-<engine>-control/` |
@@ -178,7 +178,8 @@ of the list.
 `docs/modules/split-app/spec.md` (Persistence) holds. Those rules cover the JSON shape, the version, the mode,
 2 to 12 people, 0 to 50 items, unique ids, names within their length, the id counter and the spare choice
 (`readSpare`). It rebuilds every person and item name with `plainName` (`readName`, D8), so a draft saved with a
-control or bidi character in a name loads with that character removed, while a line break still rejects the draft.
+control or bidi character in a name loads with that character removed. Only LF and CR still reject the draft, as
+in 1.0.
 It builds the bill from known fields only and never throws. A draft it cannot read gives a new bill
 and a short note saying so. If storage is blocked or full, the page keeps working in memory and shows the save
 warning while saving fails. Private browsing and Safari's 7-day clean-up lose the bill without any failure the page

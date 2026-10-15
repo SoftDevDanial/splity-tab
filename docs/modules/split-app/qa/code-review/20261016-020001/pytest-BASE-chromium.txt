@@ -1,0 +1,40 @@
+server STARTED pid 5636 port 45351 root {temp}\claude\{project-id}\2398866f-bd86-44e4-b91f-3d2709393151\scratchpad\split-cr-recheck\app-runs\BASE-chromium
+...............................server STOPPED pid 5636 port 45351, exited True, port free again True
+
+=================================== PASSES ====================================
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+PASSED tests\browser\test_app.py::test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported
+PASSED tests\browser\test_app.py::test_R20_the_even_split_from_a_cold_boot
+PASSED tests\browser\test_app.py::test_R20_the_sheet_lists_the_splits_as_the_card_does
+PASSED tests\browser\test_app.py::test_R20_more_than_six_people_list_in_two_columns_on_the_desktop
+PASSED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[7-people]
+PASSED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[8-people]
+PASSED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[9-people]
+PASSED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[10-people]
+PASSED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[11-people]
+PASSED tests\browser\test_app.py::test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields
+PASSED tests\browser\test_app.py::test_R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else
+PASSED tests\browser\test_app.py::test_R41_the_gate_uses_real_gestures_and_reads_only
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[storage-state-without-a-condition]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[else-branch-is-the-k2-state]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[bypass-csp-false]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[page-screenshot-in-the-step-helper]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[cold-boot-js-clears-the-storage]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[replace-text-fills-the-field]
+PASSED tests\browser\test_app.py::test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202E]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202Ex]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[aU+2028b]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0000]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0009Lee]
+PASSED tests\browser\test_app.py::test_R62_a_removal_in_the_middle_of_a_name_keeps_the_caret_where_the_text_went_in
+PASSED tests\browser\test_app.py::test_R62_each_kind_of_character_in_the_class_is_removed_from_a_name_field
+PASSED tests\browser\test_app.py::test_R62_characters_outside_the_class_stay_in_a_name
+PASSED tests\browser\test_app.py::test_R62_typing_that_brings_no_character_of_the_class_writes_nothing_into_the_field
+PASSED tests\browser\test_app.py::test_R62_an_item_name_loses_the_class_too
+PASSED tests\browser\test_app.py::test_R62_a_name_made_only_of_removed_characters_falls_back_to_its_position
+PASSED tests\browser\test_app.py::test_R62_a_saved_name_with_bidi_controls_loads_plain_and_the_people_line_reads_left_to_right
+31 passed, 697 deselected in 9.27s
+
+----- stderr -----

@@ -1,0 +1,57 @@
+.......FF
+================================== FAILURES ===================================
+_ test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[cold-boot-js-clears-the-storage] _
+
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-117/test_R41_a_planted_copy_of_a_h0')
+fault = 'cold-boot-js-clears-the-storage'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_HELPER_FAULTS))
+    def test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported(tmp_path, fault):
+        # The gate's Rules ("page.evaluate only reads", "Only real gestures change the app") hold for what it runs from
+        # support.py too, so the guard follows the helpers the gate calls (code review CR-S5-6).
+        source, tree = gate_script(SUPPORT_SCRIPT)
+        planted = tmp_path / "support.py"
+        planted.write_text(planted_helper_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+>       assert live_gate_problems(LIVE_SCRIPT, helpers=planted) == PLANTED_HELPER_FAULTS[fault]
+E       AssertionError: assert [] == ['COLD_BOOT_J...s not a read']
+E         
+E         Right contains one more item: 'COLD_BOOT_JS calls clear(), which is not a read'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5460: AssertionError
+_ test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[replace-text-fills-the-field] _
+
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-117/test_R41_a_planted_copy_of_a_h1')
+fault = 'replace-text-fills-the-field'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_HELPER_FAULTS))
+    def test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported(tmp_path, fault):
+        # The gate's Rules ("page.evaluate only reads", "Only real gestures change the app") hold for what it runs from
+        # support.py too, so the guard follows the helpers the gate calls (code review CR-S5-6).
+        source, tree = gate_script(SUPPORT_SCRIPT)
+        planted = tmp_path / "support.py"
+        planted.write_text(planted_helper_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+>       assert live_gate_problems(LIVE_SCRIPT, helpers=planted) == PLANTED_HELPER_FAULTS[fault]
+E       AssertionError: assert [] == ['.fill is used']
+E         
+E         Right contains one more item: '.fill is used'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5460: AssertionError
+=================================== PASSES ====================================
+engine chromium, browser version None, skipped 0
+=========================== short test summary info ===========================
+PASSED tests\browser\test_app.py::test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields
+PASSED tests\browser\test_app.py::test_R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else
+PASSED tests\browser\test_app.py::test_R41_the_gate_uses_real_gestures_and_reads_only
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[storage-state-without-a-condition]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[else-branch-is-the-k2-state]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[bypass-csp-false]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[page-screenshot-in-the-step-helper]
+FAILED tests\browser\test_app.py::test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[cold-boot-js-clears-the-storage]
+FAILED tests\browser\test_app.py::test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[replace-text-fills-the-field]
+2 failed, 7 passed, 719 deselected in 1.01s
+
+----- stderr -----

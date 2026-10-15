@@ -1,0 +1,21 @@
+server STARTED pid 24308 port 18189 root {temp}\claude\{project-id}\2398866f-bd86-44e4-b91f-3d2709393151\scratchpad\split-cr-recheck\app-runs\BASE62-webkit
+............server STOPPED pid 24308 port 18189, exited True, port free again True
+
+=================================== PASSES ====================================
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202E]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202Ex]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[aU+2028b]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0000]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0009Lee]
+PASSED tests\browser\test_app.py::test_R62_a_removal_in_the_middle_of_a_name_keeps_the_caret_where_the_text_went_in
+PASSED tests\browser\test_app.py::test_R62_each_kind_of_character_in_the_class_is_removed_from_a_name_field
+PASSED tests\browser\test_app.py::test_R62_characters_outside_the_class_stay_in_a_name
+PASSED tests\browser\test_app.py::test_R62_typing_that_brings_no_character_of_the_class_writes_nothing_into_the_field
+PASSED tests\browser\test_app.py::test_R62_an_item_name_loses_the_class_too
+PASSED tests\browser\test_app.py::test_R62_a_name_made_only_of_removed_characters_falls_back_to_its_position
+PASSED tests\browser\test_app.py::test_R62_a_saved_name_with_bidi_controls_loads_plain_and_the_people_line_reads_left_to_right
+12 passed, 716 deselected in 13.01s
+
+----- stderr -----

@@ -7,6 +7,7 @@ date: 2026-10-15
 head: d58f4ce
 scope: "git diff v1.0.0..HEAD -- src/core (bill.js, money.js, result.js, spare.js new) and the Node tests of v1.1.0 tasks C1 to C6 (bill, money, result, spare, invariants, hygiene, summary, support/bills.js, support/rng.js), judged against spec.md v1.1.0 (R1 to R34, Contracts, Non-goals, threat model), qa.md, constitution.md and README.md"
 evidence: docs/modules/split-core/qa/code-review/20261015-212541/
+recheck: { date: 2026-10-16, head: 6cddc66, status: issues_found, counts: { blocker: 0, warning: 1, info: 3 }, evidence: docs/modules/split-core/qa/code-review/20261016-020001/ }
 ---
 # Code review: split-core (v1.1.0, step 5)
 
@@ -64,4 +65,65 @@ None.
 The At random cursor reset (K03) and membership (K15), One person only inside its divisions (K04) and its fallback (K05), charges members with no items (K06), Pick again comparing shares only (K07), 63 draws (K08), redrawing the rule already set (K09), `sparePeople` ignoring items (K10), the order short after `addPerson` (K11), the choice kept after its person is removed (K12), one draw too many (K13), 1.0's row (c) (K14), One person with nobody (K17), `formatMoney` without the comma (K18). The draft decoder (D01 to D04) and the repeat rule (R01, R02) mutants were run in the same copy and are reported in split-app's verdict.
 
 ## Not done
+Nothing in scope was left out. No browser run was needed for this module.
+
+## v1.1.0 step 5 re-check, 2026-10-16
+
+Role. Code-review finder (read-only), the one step 5 re-check under the stop rule. HEAD `6cddc66`, `git status` clean for `src/`, `tests/` and `index.html`. Scope `798f17f..HEAD` for this module, the step 5 solver round (`042c359`, `9277412`), the H-10 core build (`abfbe3e`, task C7, R35, R24, R25), its records (`4b0e915`) and the README reconcile (`6cddc66`). Judged against `spec.md` (R35, R24, R25, task C7, Contracts, Non-goals), `qa.md`, `constitution.md` and `README.md`. Evidence `docs/modules/split-core/qa/code-review/20261016-020001/` (`run-notes.txt` says what each file is).
+
+**Verdict. 0 BLOCKER, 1 WARNING, 3 INFO.** No wrong share, no hallucinated code, no non-goal built, no contract drift. Every new symbol maps to an R# (`NAME_CONTROLS` and `plainName` to R35 and R24, `BILL_FIELDS` to the threat model row "Object integrity" and CR-S5-2). No core action calls `plainName` (R15 kept, grep). `\p{Bidi_Control}` is on one line under `src/`. The Contracts table lists exactly the two new exports. The tests have teeth, 16 of 16 mutants killed (measured, below). The one WARNING is the house writing rule in comments.
+
+### The solver round, per finding (on today's tree)
+- **CR-S5-1. HOLDS.** Measured. Mutant K02 (a float `floorParts`) on a fresh copy of HEAD fails exactly the new "@R21 @R8 a by-item bill whose charges division is an R8 trap row gets the exact charges", 399 pass 1 fail (`mutation-summary.json`, `node-test-K02.tap`). The qa.md row is the planner's, as the solver line says.
+- **CR-S5-2. HOLDS.** Measured. One field list in code, `BILL_FIELDS = Object.keys(newBill())` in `bill.js` and `spare.js`, no spread, no new export. A spread `withSpare` (5 fail), a spread `billWith` (13 fail) and a `withSpare` that drops `nextId` (7 fail) are all killed today. The new comment overclaims a little, see CR-R2.
+- **CR-S5-3 (README). CLOSED.** By grep and reading. The split-core bullets name `formatAmount`, `sparePeople`, `src/core/spare.js` with `chooseSpareRule`, `chooseSparePerson` and `pickAgain`, `floorParts`, `spareRule`, `bill.spare`, the `spare` of the result, `allocateEvenly` as the Top of the list reference of the tests, and since H-10 `NAME_CONTROLS` and `plainName`. Every symbol exists (grep of `export` and of each name in `src/core/`). "`allocateByWeight` ... is the one place that uses `BigInt`" is true (the only `BigInt(` calls are in `allocate.js`). What is still owed is in CR-R4.
+- **CR-S5-4.** Planner's, PD-25 (R7 says why `allocateEvenly` stays). No code change, none expected.
+
+### The H-10 build (C7), what was checked
+- The shared `g` flag. `NAME_CONTROLS` is read only through `String.prototype.replace` (`plainName` and `summaryText`). No `.test`, `.exec` or `.match` call on it in `src/` or `tests/` (grep). Measured with a read-only probe, `plainName` gives "ABC" for "A" U+202E "B" U+2028 "C" even after `lastIndex` was set to 3, and leaves `lastIndex` at 0, five calls in a row give the same text, while `.test` on the same object alternates true and false (`run-notes.txt`, item 3). Safe today, see CR-R3.
+- `summary.js` imports `NAME_CONTROLS` and keeps one code line. No import cycle (`bill.js` imports neither `summary.js` nor `result.js`).
+- Mutants of C7, all killed (`mutation-summary.json`). No `g` flag (5 fail), no `\p{Bidi_Control}` (12 fail), a space in place of the deletion (13 fail), Cf deleted too (3 fail), `summary.js` keeping the import but printing only Cc as a space (7 fail, the every-code-point test among them, so a second class without the property name is caught by behaviour though the text scan misses it, as its comment says), and a first-match-only `plainName` (4 fail).
+- The unmutated copy and the project tree each run 400 of 400 (`node-test-HEAD.txt`).
+
+## BLOCKER (re-check)
+None.
+
+## WARNING (re-check)
+
+### CR-R1. Comment lines changed in the range break the house writing rule (colons in prose)   (house rule, `{claude-root}\CLAUDE.md` Writing, constitution Writing style)
+- **Symbol.** In `src/core/bill.js`, the comment above `BILL_FIELDS` and the comment above `NAME_CONTROLS`. In `tests/bill.test.js`, the comment above the test "@R35 @R24 plainName and summaryText read one class, 79 code points, for every code point". In `tests/hygiene.test.js`, the comment above `SRC_DIR` and `oneClassProblems`, and the comment inside the test "@R35 @R25 the class is written once, in core/bill.js, and summary.js reads it from there".
+- **What is wrong.** Each has a colon inside a prose sentence. The text, as committed.
+  1. `BILL_FIELDS` (from `9277412`, not in the H-10 solver's list), "every copy takes it: billWith here and withSpare in spare.js, which reads the same keys because the Contracts"
+  2. `NAME_CONTROLS`, "The characters no name keeps (R35) and the summary prints as a space (R24): the C0 and C1 controls, the line and"
+  3. `tests/bill.test.js`, "The proof that the names on screen and the copied summary cannot drift apart (spec R35 point 2): for every code"
+  4. `tests/hygiene.test.js`, above `SRC_DIR`, "R35 point 2: the class that names lose and the class the summary prints as a space are one definition, so the"
+  5. `tests/hygiene.test.js`, in the test, "The scan has teeth: summary.js back on a class of its own, scanned in a temporary folder beside the real bill.js."
+  No em dash or en dash was added anywhere in `src/` or `tests/` in the range (grep, 0 lines).
+- **Why it matters.** The rule binds every artifact, and the ledger (S7 row 45) routes these to one comment-only pass before `sdlc:regression --full`. The solver's list named two of these five, so a pass that follows it would leave three.
+- **Evidence.** Read and grep of the added lines of `git diff -U0 798f17f..HEAD -- src tests`. The split-app findings file lists the rest of the range (CR-R5 there).
+- **Fix.** A period or a comma in place of each colon, for example "so a new field is added there once and every copy takes it, billWith here and withSpare in spare.js." Comments only, no code line.
+- **Route.** Dev Solver, the one comment-only pass ruled ORCH in S7 row 45.
+
+## INFO (re-check)
+
+### CR-R2. The `BILL_FIELDS` comment says `newBill` is the one place that lists the Bill fields   (doc precision, CR-S5-2 follow-up)
+- **Symbol.** The comment above `BILL_FIELDS` in `src/core/bill.js` ("newBill is the one place that lists them, so a new field is added there once and every copy takes it").
+- **What.** From reading. True for core's two copies (`billWith`, `withSpare`). The Bill typedef in `bill.js` lists the fields too, and split-app's `decode` in `src/draft.js` rebuilds the Bill from its own hand list (D12), by design, because each field needs its own check. A builder who adds a ninth field only in `newBill`, as the comment invites, gets a decoder that drops it on reload.
+- **Suggestion.** "newBill is the one list that core's copies read (billWith here, withSpare in spare.js). The Bill typedef above and split-app's decoder (decode in draft.js, D12) list the fields too, so a new field goes in all three." Dev Solver, in the same comment-only pass.
+
+### CR-R3. `NAME_CONTROLS` is a shared, stateful `g` regex, and nothing stops a future `.test` call on it   (latent defect, spec R35 point 2)
+- **Symbol.** `NAME_CONTROLS` in `src/core/bill.js`, and the "class is written once" scan `oneClassProblems` in `tests/hygiene.test.js`.
+- **What.** The contract asks for the exported object with flags `gu` and says it is used only through `replace`. Today that holds (grep, probe above). `NAME_CONTROLS.test(name)` by a later caller would alternate true and false on the same text (measured, `run-notes.txt` item 3), and no test would see it unless that caller's own tests did.
+- **Suggestion.** For the planner and Dev Solver. One line in the existing scan that every use of `NAME_CONTROLS` under `src/` is the first argument of `.replace(`, so the comment's "Read only through String.prototype.replace" becomes a checked rule. No code change in `src/`.
+
+### CR-R4. The README does not mention the one Bill field list, which ledger S7 row 43 names as owed   (README reconcile, fallback owner)
+- **Symbol.** `README.md`, "How it is built", the `split-core` bullets.
+- **What.** Row 43 says "The orchestrator owes the README (CR-S5-3, -5, `BILL_FIELDS`)", and `BUILD.md` (step 5 round) gives the line, "`billWith` and `withSpare` copy the keys of `newBill()` (one field list)". The README names neither `billWith`, `withSpare` nor `BILL_FIELDS`. Nothing in it is false. Private helpers need not be in the README, so the orchestrator may also close this by a ledger line that says so.
+- **Suggestion.** Either one clause on the actions bullet ("each builds its copy from the fields of `newBill`, never a spread, so a stray key in a parsed bill is not copied"), or a ledger note that the item is dropped. Orchestrator.
+
+### Noted, no finding
+- The C7 RED stubs, the DRY run before and after and the planted `summary.js` copy are the solver's (BUILD.md, task C7). Not re-run. The 16 mutants above are this review's own runs.
+- The qa.md wording item "plainName gives AB exactly when Chen's row reads A B" (C7 Deviation 2) stays with the planner, as row 45 routes it.
+
+## Not done (re-check)
 Nothing in scope was left out. No browser run was needed for this module.

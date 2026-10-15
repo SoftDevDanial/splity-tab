@@ -1,0 +1,271 @@
+[
+  {
+    "id": "BASE",
+    "why": "the unmutated copy",
+    "applied": true,
+    "exit": 0,
+    "pass": 400,
+    "fail": 0,
+    "killed": false,
+    "failed": []
+  },
+  {
+    "id": "K02",
+    "why": "CR-S5-1, a float floorParts",
+    "applied": true,
+    "exit": 1,
+    "pass": 399,
+    "fail": 1,
+    "killed": true,
+    "failed": [
+      "@R21 @R8 a by-item bill whose charges division is an R8 trap row gets the exact charges"
+    ]
+  },
+  {
+    "id": "S2a",
+    "why": "CR-S5-2, a spread withSpare",
+    "applied": true,
+    "exit": 1,
+    "pass": 395,
+    "fail": 5,
+    "killed": true,
+    "failed": [
+      "@R16 chooseSpareRule one on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule random on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule top on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSparePerson on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 pickAgain on a parsed bill builds the bill and the spare choice from known fields"
+    ]
+  },
+  {
+    "id": "S2b",
+    "why": "CR-S5-2, a spread billWith",
+    "applied": true,
+    "exit": 1,
+    "pass": 387,
+    "fail": 13,
+    "killed": true,
+    "failed": [
+      "@R16 setMode on a parsed bill builds only known fields",
+      "@R16 setSubtotalText on a parsed bill builds only known fields",
+      "@R16 setServiceText on a parsed bill builds only known fields",
+      "@R16 setSstText on a parsed bill builds only known fields",
+      "@R16 addPerson on a parsed bill builds only known fields",
+      "@R16 addItem on a parsed bill builds only known fields",
+      "@R16 removeItem on a parsed bill builds only known fields",
+      "@R16 setPersonName on a parsed bill builds only known fields",
+      "@R16 setPersonName (person with a __proto__ key) on a parsed bill builds only known fields",
+      "@R16 removePerson on a parsed bill builds only known fields",
+      "@R16 setItemName on a parsed bill builds only known fields",
+      "@R16 setItemPriceText on a parsed bill builds only known fields"
+    ]
+  },
+  {
+    "id": "S2c",
+    "why": "CR-S5-2, withSpare drops nextId",
+    "applied": true,
+    "exit": 1,
+    "pass": 393,
+    "fail": 7,
+    "killed": true,
+    "failed": [
+      "@R16 no action mutates a deep-frozen bill and changes return new objects",
+      "@R16 @R31 pickAgain and the spare choices leave a deep-frozen bill alone and return a new bill",
+      "@R16 chooseSpareRule one on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule random on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule top on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSparePerson on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 pickAgain on a parsed bill builds the bill and the spare choice from known fields"
+    ]
+  },
+  {
+    "id": "N1",
+    "why": "C7, NAME_CONTROLS without the g flag",
+    "applied": true,
+    "exit": 1,
+    "pass": 395,
+    "fail": 5,
+    "killed": true,
+    "failed": [
+      "@R35 plainName of \"BeU+202ExU+2067n\" is \"Bexn\"",
+      "@R35 plainName of \"AU+2028BU+2029C\" is \"ABC\"",
+      "@R35 plainName of \"xU+001BU+007FU+0085U+009Fy\" is \"xy\"",
+      "@R35 plainName of \"U+061CU+200EU+200FU+202AU+202BU+202CU+202DU+2066U+2068U+2069\" is \"\"",
+      "@R24 every member of the class in one name is replaced, one space each"
+    ]
+  },
+  {
+    "id": "N2",
+    "why": "C7, NAME_CONTROLS without Bidi_Control",
+    "applied": true,
+    "exit": 1,
+    "pass": 388,
+    "fail": 12,
+    "killed": true,
+    "failed": [
+      "@R35 plainName of \"BenU+202E\" is \"Ben\"",
+      "@R35 plainName of \"BeU+202ExU+2067n\" is \"Bexn\"",
+      "@R35 plainName of \"U+061CU+200EU+200FU+202AU+202BU+202CU+202DU+2066U+2068U+2069\" is \"\"",
+      "@R35 @R24 plainName and summaryText read one class, 79 code points, for every code point",
+      "@R62 @R61 decodeDraft of G8 keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G9 keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G10, the K1 draft keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of K1 with i4 renamed 40 letters and U+202E keeps the draft and rebuilds every name without the class",
+      "@R35 @R25 the class is written once, in core/bill.js, and summary.js reads it from there",
+      "@R24 a right-to-left override in a name cannot reorder the share",
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed",
+      "@R24 every member of the class in one name is replaced, one space each"
+    ]
+  },
+  {
+    "id": "N3",
+    "why": "C7, plainName replaces with a space",
+    "applied": true,
+    "exit": 1,
+    "pass": 387,
+    "fail": 13,
+    "killed": true,
+    "failed": [
+      "@R35 plainName of \"BenU+202E\" is \"Ben\"",
+      "@R35 plainName of \"BeU+202ExU+2067n\" is \"Bexn\"",
+      "@R35 plainName of \"AU+2028BU+2029C\" is \"ABC\"",
+      "@R35 plainName of \"U+0000Adds up to RM 0.00\" is \"Adds up to RM 0.00\"",
+      "@R35 plainName of \"AnnU+0009Lee\" is \"AnnLee\"",
+      "@R35 plainName of \"xU+001BU+007FU+0085U+009Fy\" is \"xy\"",
+      "@R35 plainName of \"U+061CU+200EU+200FU+202AU+202BU+202CU+202DU+2066U+2068U+2069\" is \"\"",
+      "@R35 @R24 plainName and summaryText read one class, 79 code points, for every code point",
+      "@R62 @R61 decodeDraft of G8 keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G9 keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G10, the K1 draft keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G10, the S1_V1 draft keeps the draft and rebuilds every name without the class"
+    ]
+  },
+  {
+    "id": "N4",
+    "why": "C7, plainName also deletes Cf",
+    "applied": true,
+    "exit": 1,
+    "pass": 397,
+    "fail": 3,
+    "killed": true,
+    "failed": [
+      "@R35 plainName of \"AU+200BBU+00A0CU+FEFFU+00ADU+3000\" is \"AU+200BBU+00A0CU+FEFFU+00ADU+3000\"",
+      "@R35 plainName of \"U+1F468U+200DU+1F469U+200DU+1F467\" is \"U+1F468U+200DU+1F469U+200DU+1F467\"",
+      "@R35 @R24 plainName and summaryText read one class, 79 code points, for every code point"
+    ]
+  },
+  {
+    "id": "N5",
+    "why": "C7, summary.js keeps the import and prints only Cc as a space (no Bidi_Control literal)",
+    "applied": true,
+    "exit": 1,
+    "pass": 393,
+    "fail": 7,
+    "killed": true,
+    "failed": [
+      "@R35 @R24 plainName and summaryText read one class, 79 code points, for every code point",
+      "@R24 a LS inside a name prints as a space, so it cannot forge a line",
+      "@R24 a PS inside a name prints as a space, so it cannot forge a line",
+      "@R24 a right-to-left override in a name cannot reorder the share",
+      "@R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed",
+      "@R24 every member of the class in one name is replaced, one space each",
+      "@R24 by-item rows get the same line-break guard"
+    ]
+  },
+  {
+    "id": "N6",
+    "why": "C7, plainName deletes only the first match (replace without g semantics via a fresh non-g copy)",
+    "applied": true,
+    "exit": 1,
+    "pass": 396,
+    "fail": 4,
+    "killed": true,
+    "failed": [
+      "@R35 plainName of \"BeU+202ExU+2067n\" is \"Bexn\"",
+      "@R35 plainName of \"AU+2028BU+2029C\" is \"ABC\"",
+      "@R35 plainName of \"xU+001BU+007FU+0085U+009Fy\" is \"xy\"",
+      "@R35 plainName of \"U+061CU+200EU+200FU+202AU+202BU+202CU+202DU+2066U+2068U+2069\" is \"\""
+    ]
+  },
+  {
+    "id": "D1",
+    "why": "A22 D8, the count is of the stored name",
+    "applied": true,
+    "exit": 1,
+    "pass": 398,
+    "fail": 2,
+    "killed": true,
+    "failed": [
+      "@R62 @R61 decodeDraft of G9 keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of K1 with i4 renamed 40 letters and U+202E keeps the draft and rebuilds every name without the class"
+    ]
+  },
+  {
+    "id": "D2",
+    "why": "A22 D8, no LF and CR check",
+    "applied": true,
+    "exit": 1,
+    "pass": 398,
+    "fail": 2,
+    "killed": true,
+    "failed": [
+      "@R26 D8 counts grapheme clusters and refuses line breaks",
+      "@R62 @R61 decodeDraft of B19, and K2 with Aisyah renamed Ai U+202E U+000D syah, so LF and CR are still rejected (D8 (a))"
+    ]
+  },
+  {
+    "id": "D3",
+    "why": "A22 D8, an empty decoded name rejects",
+    "applied": true,
+    "exit": 1,
+    "pass": 399,
+    "fail": 1,
+    "killed": true,
+    "failed": [
+      "@R62 @R61 decodeDraft of G8 keeps the draft and rebuilds every name without the class"
+    ]
+  },
+  {
+    "id": "D4",
+    "why": "A22 D8, the name is not rebuilt",
+    "applied": true,
+    "exit": 1,
+    "pass": 395,
+    "fail": 5,
+    "killed": true,
+    "failed": [
+      "@R62 @R61 decodeDraft of G8 keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G9 keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G10, the K1 draft keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G10, the S1_V1 draft keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of K1 with i4 renamed 40 letters and U+202E keeps the draft and rebuilds every name without the class"
+    ]
+  },
+  {
+    "id": "D5",
+    "why": "A22 D8, readPerson keeps raw.name",
+    "applied": true,
+    "exit": 1,
+    "pass": 397,
+    "fail": 3,
+    "killed": true,
+    "failed": [
+      "@R62 @R61 decodeDraft of G8 keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G9 keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of G10, the S1_V1 draft keeps the draft and rebuilds every name without the class"
+    ]
+  },
+  {
+    "id": "D6",
+    "why": "A22 D8, readItem keeps raw.name",
+    "applied": true,
+    "exit": 1,
+    "pass": 398,
+    "fail": 2,
+    "killed": true,
+    "failed": [
+      "@R62 @R61 decodeDraft of G10, the K1 draft keeps the draft and rebuilds every name without the class",
+      "@R62 @R61 decodeDraft of K1 with i4 renamed 40 letters and U+202E keeps the draft and rebuilds every name without the class"
+    ]
+  }
+]

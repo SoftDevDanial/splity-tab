@@ -1,0 +1,229 @@
+server STARTED pid 27796 port 60657 root {temp}\claude\{project-id}\2398866f-bd86-44e4-b91f-3d2709393151\scratchpad\split-cr-recheck\app-runs\UC5-chromium
+FFFFFFF..FF.server STOPPED pid 27796 port 60657, exited True, port free again True
+
+================================== FAILURES ===================================
+_ test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202E] _
+
+open_app = <function open_app.<locals>.factory at 0x0000014CB78E5380>
+text = '\u202e', value = 'Ben', caret = 3
+
+    @pytest.mark.parametrize("text, value, caret", PLAIN_INSERTS, ids=[spelled(text) for text, _, _ in PLAIN_INSERTS])
+    def test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once(open_app, text, value, caret):
+        # qa.md "Copy summary on the card" at 390 x 844: the card is not displayed below 1024 px, so the one Copy summary
+        # shown there (the strip's) is pressed, whose text R22 proves equal to the card's (BUILD.md, task A22).
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)
+        page.evaluate(RECORD_INPUT_JS)
+        field = person_field(page, 2)
+        handle = field.element_handle()
+        field.click()
+        page.keyboard.press("End")
+        assert insert(page, text) == []
+>       assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, caret, caret]
+E       AssertionError: assert [True, 'Ben\u202e', 4, 4] == [True, 'Ben', 3, 3]
+E         
+E         At index 1 diff: 'Ben\u202e' != 'Ben'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5866: AssertionError
+_ test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202Ex] _
+
+open_app = <function open_app.<locals>.factory at 0x0000014CB7752350>
+text = '\u202ex', value = 'Benx', caret = 4
+
+    @pytest.mark.parametrize("text, value, caret", PLAIN_INSERTS, ids=[spelled(text) for text, _, _ in PLAIN_INSERTS])
+    def test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once(open_app, text, value, caret):
+        # qa.md "Copy summary on the card" at 390 x 844: the card is not displayed below 1024 px, so the one Copy summary
+        # shown there (the strip's) is pressed, whose text R22 proves equal to the card's (BUILD.md, task A22).
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)
+        page.evaluate(RECORD_INPUT_JS)
+        field = person_field(page, 2)
+        handle = field.element_handle()
+        field.click()
+        page.keyboard.press("End")
+        assert insert(page, text) == []
+>       assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, caret, caret]
+E       AssertionError: assert [True, 'Ben\u202ex', 5, 5] == [True, 'Benx', 4, 4]
+E         
+E         At index 1 diff: 'Ben\u202ex' != 'Benx'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5866: AssertionError
+_ test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[aU+2028b] _
+
+open_app = <function open_app.<locals>.factory at 0x0000014CB2996CF0>
+text = 'a\u2028b', value = 'Benab', caret = 5
+
+    @pytest.mark.parametrize("text, value, caret", PLAIN_INSERTS, ids=[spelled(text) for text, _, _ in PLAIN_INSERTS])
+    def test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once(open_app, text, value, caret):
+        # qa.md "Copy summary on the card" at 390 x 844: the card is not displayed below 1024 px, so the one Copy summary
+        # shown there (the strip's) is pressed, whose text R22 proves equal to the card's (BUILD.md, task A22).
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)
+        page.evaluate(RECORD_INPUT_JS)
+        field = person_field(page, 2)
+        handle = field.element_handle()
+        field.click()
+        page.keyboard.press("End")
+        assert insert(page, text) == []
+>       assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, caret, caret]
+E       AssertionError: assert [True, 'Bena\u2028b', 6, 6] == [True, 'Benab', 5, 5]
+E         
+E         At index 1 diff: 'Bena\u2028b' != 'Benab'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5866: AssertionError
+_ test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0000] _
+
+open_app = <function open_app.<locals>.factory at 0x0000014CB71E66C0>
+text = '\x00', value = 'Ben', caret = 3
+
+    @pytest.mark.parametrize("text, value, caret", PLAIN_INSERTS, ids=[spelled(text) for text, _, _ in PLAIN_INSERTS])
+    def test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once(open_app, text, value, caret):
+        # qa.md "Copy summary on the card" at 390 x 844: the card is not displayed below 1024 px, so the one Copy summary
+        # shown there (the strip's) is pressed, whose text R22 proves equal to the card's (BUILD.md, task A22).
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)
+        page.evaluate(RECORD_INPUT_JS)
+        field = person_field(page, 2)
+        handle = field.element_handle()
+        field.click()
+        page.keyboard.press("End")
+        assert insert(page, text) == []
+>       assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, caret, caret]
+E       AssertionError: assert [True, 'Ben\x00', 4, 4] == [True, 'Ben', 3, 3]
+E         
+E         At index 1 diff: 'Ben\x00' != 'Ben'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5866: AssertionError
+_ test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0009Lee] _
+
+open_app = <function open_app.<locals>.factory at 0x0000014CB720AB90>
+text = '\tLee', value = 'BenLee', caret = 6
+
+    @pytest.mark.parametrize("text, value, caret", PLAIN_INSERTS, ids=[spelled(text) for text, _, _ in PLAIN_INSERTS])
+    def test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once(open_app, text, value, caret):
+        # qa.md "Copy summary on the card" at 390 x 844: the card is not displayed below 1024 px, so the one Copy summary
+        # shown there (the strip's) is pressed, whose text R22 proves equal to the card's (BUILD.md, task A22).
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)
+        page.evaluate(RECORD_INPUT_JS)
+        field = person_field(page, 2)
+        handle = field.element_handle()
+        field.click()
+        page.keyboard.press("End")
+        assert insert(page, text) == []
+>       assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, caret, caret]
+E       AssertionError: assert [True, 'Ben\tLee', 7, 7] == [True, 'BenLee', 6, 6]
+E         
+E         At index 1 diff: 'Ben\tLee' != 'BenLee'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5866: AssertionError
+_ test_R62_a_removal_in_the_middle_of_a_name_keeps_the_caret_where_the_text_went_in _
+
+open_app = <function open_app.<locals>.factory at 0x0000014CB705E610>
+
+    def test_R62_a_removal_in_the_middle_of_a_name_keeps_the_caret_where_the_text_went_in(open_app):
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)
+        page.evaluate(RECORD_INPUT_JS)
+        field = person_field(page, 2)
+        handle = field.element_handle()
+        field.click()
+        page.keyboard.press("End")
+        page.keyboard.press("ArrowLeft")  # the caret after "Be"
+        assert insert(page, "\u202ex\u2067") == []
+>       assert page.evaluate(FIELD_STATE_JS, handle) == [True, "Bexn", 3, 3]
+E       AssertionError: assert [True, 'Be\u2...u2067n', 6, 6] == [True, 'Bexn', 3, 3]
+E         
+E         At index 1 diff: 'Be\u202ex\u2067n' != 'Bexn'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5887: AssertionError
+__ test_R62_each_kind_of_character_in_the_class_is_removed_from_a_name_field __
+
+open_app = <function open_app.<locals>.factory at 0x0000014CB3D9EB90>
+
+    def test_R62_each_kind_of_character_in_the_class_is_removed_from_a_name_field(open_app):
+        # The ends of each range through the real field. The whole class is proved once in Node (split-core, R35).
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)
+        page.evaluate(RECORD_INPUT_JS)
+        field = person_field(page, 1)
+        handle = field.element_handle()
+        wrong = []
+        for code_point in EVERY_KIND:
+            field.click()
+            page.keyboard.press("Control+A")
+            page.keyboard.type("A")
+            missing = insert(page, f"B{chr(code_point)}C")
+            found = [*page.evaluate(FIELD_STATE_JS, handle)[1:], people_names(page)[0]]
+            if missing or found != ["ABC", 3, 3, "ABC"]:
+                wrong.append(f"U+{code_point:04X}: not inserted {missing}" if missing else f"U+{code_point:04X}: {spelled(str(found))}")
+>       assert wrong == []
+E       assert ["U+0001: ['A...\x80C']", ...] == []
+E         
+E         Left contains 22 more items, first extra item: "U+0001: ['AB\\x01C', 4, 4, 'AB\\x01C']"
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5912: AssertionError
+__________________ test_R62_an_item_name_loses_the_class_too __________________
+
+open_app = <function open_app.<locals>.factory at 0x0000014CB6E3EB90>
+
+    def test_R62_an_item_name_loses_the_class_too(open_app):
+        page = open_app(seed=seeds.S1).page
+        page.evaluate(RECORD_INPUT_JS)
+        field = item_name(page, 2)
+        handle = field.element_handle()
+        field.click()
+        page.keyboard.press("End")
+        assert insert(page, "\u202ex") == []
+        value = "Char kuey teowx"
+>       assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, 15, 15]
+E       AssertionError: assert [True, 'Char ...02ex', 16, 16] == [True, 'Char ...eowx', 15, 15]
+E         
+E         At index 1 diff: 'Char kuey teow\u202ex' != 'Char kuey teowx'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5967: AssertionError
+_ test_R62_a_name_made_only_of_removed_characters_falls_back_to_its_position __
+
+open_app = <function open_app.<locals>.factory at 0x0000014CB5D33270>
+
+    def test_R62_a_name_made_only_of_removed_characters_falls_back_to_its_position(open_app):
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)
+        page.evaluate(RECORD_INPUT_JS)
+        field = person_field(page, 2)
+        field.click()
+        page.keyboard.press("Control+A")
+        assert insert(page, "\u202e") == []
+>       assert [field.input_value(), field.get_attribute("placeholder"), people_names(page)[1]] == ["", "Person 2", ""]
+E       AssertionError: assert ['\u202e', 'P... 2', '\u202e'] == ['', 'Person 2', '']
+E         
+E         At index 0 diff: '\u202e' != ''
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5980: AssertionError
+=================================== PASSES ====================================
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+PASSED tests\browser\test_app.py::test_R62_characters_outside_the_class_stay_in_a_name
+PASSED tests\browser\test_app.py::test_R62_typing_that_brings_no_character_of_the_class_writes_nothing_into_the_field
+PASSED tests\browser\test_app.py::test_R62_a_saved_name_with_bidi_controls_loads_plain_and_the_people_line_reads_left_to_right
+FAILED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202E]
+FAILED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202Ex]
+FAILED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[aU+2028b]
+FAILED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0000]
+FAILED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0009Lee]
+FAILED tests\browser\test_app.py::test_R62_a_removal_in_the_middle_of_a_name_keeps_the_caret_where_the_text_went_in
+FAILED tests\browser\test_app.py::test_R62_each_kind_of_character_in_the_class_is_removed_from_a_name_field
+FAILED tests\browser\test_app.py::test_R62_an_item_name_loses_the_class_too
+FAILED tests\browser\test_app.py::test_R62_a_name_made_only_of_removed_characters_falls_back_to_its_position
+9 failed, 3 passed, 716 deselected in 7.38s
+
+----- stderr -----

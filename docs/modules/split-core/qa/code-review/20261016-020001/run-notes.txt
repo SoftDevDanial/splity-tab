@@ -1,0 +1,33 @@
+Code-review finder (read-only), split-core, v1.1.0 step 5 re-check, 2026-10-16. HEAD 6cddc66, src/ tests/ index.html clean (git status).
+
+1. node-test-HEAD.txt
+   node --test --test-reporter=spec "tests/**/*.test.js" on the project tree at HEAD, Node v24.11.1.
+   tests 400, pass 400, fail 0. Exit 0.
+
+2. mutation-summary.json (runner mutate.mjs, in the session scratchpad, one fresh copy of src and tests per mutant)
+   BASE  the unmutated copy                                   400 of 400 pass
+   K02   CR-S5-1, a float floorParts                          killed, 1 fail, the @R21 @R8 trap case (node-test-K02.tap)
+   S2a   CR-S5-2, a spread withSpare                          killed, 5 fail
+   S2b   CR-S5-2, a spread billWith                           killed, 13 fail
+   S2c   CR-S5-2, withSpare drops nextId                      killed, 7 fail
+   N1    C7, NAME_CONTROLS without the g flag                 killed, 5 fail
+   N2    C7, NAME_CONTROLS without Bidi_Control               killed, 12 fail
+   N3    C7, plainName replaces with a space                  killed, 13 fail
+   N4    C7, plainName also deletes Cf                        killed, 3 fail
+   N5    C7, summary.js keeps the import, prints only Cc      killed, 7 fail (the one-class test among them)
+   N6    C7, plainName deletes only the first match           killed, 4 fail
+   D1    A22 D8, the count is of the stored name              killed, 2 fail
+   D2    A22 D8, no LF and CR check                           killed, 2 fail
+   D3    A22 D8, an empty decoded name rejects                killed, 1 fail
+   D4    A22 D8, the name is not rebuilt                      killed, 5 fail
+   D5    A22 D8, readPerson keeps raw.name                    killed, 3 fail
+   D6    A22 D8, readItem keeps raw.name                      killed, 2 fail
+   16 of 16 mutants killed. D1 to D6 are split-app's decoder, run here because the decoder's tests are Node tests.
+
+3. The shared g flag of NAME_CONTROLS, a read-only Node probe on the project tree (node --input-type=module -e, output below as printed)
+   flags gu, lastIndex at import 0
+   plainName("A<U+202E>B<U+2028>C") after lastIndex=3 -> "ABC", lastIndex after 0
+   five calls in a row -> ["X","X","X","X","X"]
+   hazard if a future caller used .test on the shared g regex, four calls on the same text -> [true,false,true,false]
+   Reading. replace with a g regex sets lastIndex to 0 before it searches and leaves it at 0, so plainName and summaryText
+   share the object safely. No .test, .exec or .match call on NAME_CONTROLS exists in src/ or tests/ (grep).

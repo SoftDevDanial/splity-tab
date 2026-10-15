@@ -1,0 +1,60 @@
+Code-review finder (read-only), split-app, v1.1.0 step 5 re-check, 2026-10-16. HEAD 6cddc66, src/ tests/ index.html clean (git status).
+Every browser run below is headless, in a scratch copy of src, tests and index.html (the session scratchpad), through the
+copy's own conftest (its clipboard stand-in, its own server started and stopped, its own evidence folder inside the copy).
+
+1. Collection. python -m pytest tests/browser -q --collect-only in the base copy: 728 tests collected.
+
+2. Browser runs (runner mutate_app.mjs, one fresh copy per run, pytest -k as listed). Output pytest-<id>-<engine>.txt.
+   BASE   chromium  -k "R62 or R41 or R58_a_run or R20 or R9_the_accessible"   31 passed
+   BASE62 webkit    -k R62                                                     12 passed
+   UC1    chromium  caret at the end of the plain text                         killed, the middle-caret test
+   UC2    chromium  caret = selectionStart less every removed unit             SURVIVED, 12 of 12 R62 pass
+   UC3    chromium  no setSelectionRange after the write                       killed, the middle-caret test
+   UC4    chromium  the item name field reports the raw value                  killed, the item name test
+   UC5    chromium  plainNameField returns the typed text                      killed, 9 of 12
+   U4     chromium  CR-S5-7, a floor for --rows                                killed, 7, 9 and 11 people
+   E1     chromium  CR-S5-14, evidence_dir with exist_ok=True                  killed, the R58 folder test
+   G1     chromium  CR-S5-6, the guard follows no helper                       killed, both planted helper copies
+   accessible-description-BASE-chromium.txt is the R9 test's record from the BASE run (QA-S5-1). The passing run made
+   its evidence folder for it.
+
+3. Known limits probe (probe_known_limit.py, PROBE runs). page.mouse.click and page.mouse.dblclick at the centre of
+   #dismissNote (seed UNREADABLE B1) and of each mode label (seed S1), at 390 x 844, 360 x 780 and 1280 x 800.
+   The PROBE-BEGIN to PROBE-END lines of pytest-PROBE-chromium.txt and pytest-PROBE-webkit.txt are the record.
+   Dismiss note, double click, below 1024 px, both engines: the second press lands on #peopleBtn, People goes from
+   open to folded, the stored draft is unchanged. Focus ends on #peopleBtn in Chromium and on body in WebKit.
+   A single click leaves People open and focus on #newBill (rule 12).
+   Dismiss note, double click, 1280 x 800, both engines: focus on body, under the pointer header.top, nothing else.
+   Mode labels, Chromium: focus on the radio after a click and after a double click, at all three sizes.
+   Mode labels, WebKit: focus on body after a click and after a double click, at all three sizes.
+   Every mode case leaves the same stored mode after a double click as after a click.
+
+4. Literal characters in the changed source (scan_invisible.py, read-only, prints only). Output as printed.
+tests/browser/seeds.py:163:62 U+202E CLASS RIGHT-TO-LEFT OVERRIDE
+tests/browser/seeds.py:163:93 U+2067 CLASS RIGHT-TO-LEFT ISOLATE
+tests/browser/seeds.py:164:28 U+2028 CLASS LINE SEPARATOR
+tests/browser/seeds.py:164:56 U+202E CLASS RIGHT-TO-LEFT OVERRIDE
+tests/browser/test_app.py:5850:20 U+202E CLASS RIGHT-TO-LEFT OVERRIDE
+tests/browser/test_app.py:5850:37 U+202E CLASS RIGHT-TO-LEFT OVERRIDE
+tests/browser/test_app.py:5850:57 U+2028 CLASS LINE SEPARATOR
+tests/browser/test_app.py:5886:26 U+202E CLASS RIGHT-TO-LEFT OVERRIDE
+tests/browser/test_app.py:5886:28 U+2067 CLASS RIGHT-TO-LEFT ISOLATE
+tests/browser/test_app.py:5919:21 U+200B Cf ZERO WIDTH SPACE
+tests/browser/test_app.py:5919:23 U+00A0 Zs NO-BREAK SPACE
+tests/browser/test_app.py:5919:25 U+FEFF Cf ZERO WIDTH NO-BREAK SPACE
+tests/browser/test_app.py:5919:40 U+200D Cf ZERO WIDTH JOINER
+tests/browser/test_app.py:5919:51 U+200D Cf ZERO WIDTH JOINER
+tests/browser/test_app.py:5965:26 U+202E CLASS RIGHT-TO-LEFT OVERRIDE
+tests/browser/test_app.py:5979:26 U+202E CLASS RIGHT-TO-LEFT OVERRIDE
+   Files scanned: src/core/bill.js, summary.js, spare.js, src/draft.js, src/ui/dom.js, items.js, people.js,
+   tests/bill.test.js, draft.test.js, hygiene.test.js, result.test.js, tests/browser/seeds.py, support.py, conftest.py,
+   test_app.py. None in src/ and none in the Node tests (they write \u{...} escapes).
+
+5. Which line breaks reject a draft, a read-only Node probe of decodeDraft on the project tree. Output as printed.
+LF U+000A -> rejected
+CR U+000D -> rejected
+VT U+000B -> loads, name "AB"
+FF U+000C -> loads, name "AB"
+NEL U+0085 -> loads, name "AB"
+LS U+2028 -> loads, name "AB"
+PS U+2029 -> loads, name "AB"

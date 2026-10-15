@@ -1,0 +1,31 @@
+server STARTED pid 27256 port 44327 root {temp}\claude\{project-id}\2398866f-bd86-44e4-b91f-3d2709393151\scratchpad\split-cr-recheck\app-runs\PROBE-chromium
+
+PROBE-BEGIN
+dismiss-note 390x844 click: before {"active": "body", "under": "use.[object SVGAnimatedString]", "sections": ["true", "false"], "note": true} after {"active": "#newBill", "under": "#peopleBtn", "sections": ["true", "false"], "note": false} stored-unchanged True
+dismiss-note 390x844 dblclick: before {"active": "body", "under": "use.[object SVGAnimatedString]", "sections": ["true", "false"], "note": true} after {"active": "#peopleBtn", "under": "#peopleBtn", "sections": ["false", "false"], "note": false} stored-unchanged True
+mode-label modeEven 390x844 click: active #modeEven under label mode even stored-unchanged False
+mode-label modeEven 390x844 dblclick: active #modeEven under label mode even stored-unchanged False
+mode-label modeItem 390x844 click: active #modeItem under label mode item stored-unchanged True
+mode-label modeItem 390x844 dblclick: active #modeItem under label mode item stored-unchanged True
+dismiss-note 360x780 click: before {"active": "body", "under": "use.[object SVGAnimatedString]", "sections": ["true", "false"], "note": true} after {"active": "#newBill", "under": "#peopleBtn", "sections": ["true", "false"], "note": false} stored-unchanged True
+dismiss-note 360x780 dblclick: before {"active": "body", "under": "use.[object SVGAnimatedString]", "sections": ["true", "false"], "note": true} after {"active": "#peopleBtn", "under": "#peopleBtn", "sections": ["false", "false"], "note": false} stored-unchanged True
+mode-label modeEven 360x780 click: active #modeEven under label mode even stored-unchanged False
+mode-label modeEven 360x780 dblclick: active #modeEven under label mode even stored-unchanged False
+mode-label modeItem 360x780 click: active #modeItem under label mode item stored-unchanged True
+mode-label modeItem 360x780 dblclick: active #modeItem under label mode item stored-unchanged True
+dismiss-note 1280x800 click: before {"active": "body", "under": "use.[object SVGAnimatedString]", "sections": ["hidden", "hidden"], "note": true} after {"active": "#newBill", "under": "header.top", "sections": ["hidden", "hidden"], "note": false} stored-unchanged True
+dismiss-note 1280x800 dblclick: before {"active": "body", "under": "use.[object SVGAnimatedString]", "sections": ["hidden", "hidden"], "note": true} after {"active": "body", "under": "header.top", "sections": ["hidden", "hidden"], "note": false} stored-unchanged True
+mode-label modeEven 1280x800 click: active #modeEven under label mode even stored-unchanged False
+mode-label modeEven 1280x800 dblclick: active #modeEven under label mode even stored-unchanged False
+mode-label modeItem 1280x800 click: active #modeItem under label mode item stored-unchanged True
+mode-label modeItem 1280x800 dblclick: active #modeItem under label mode item stored-unchanged True
+PROBE-END
+.server STOPPED pid 27256 port 44327, exited True, port free again True
+
+=================================== PASSES ====================================
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+PASSED tests\browser\test_probe_known_limit.py::test_probe_known_limit
+1 passed in 6.34s
+
+----- stderr -----

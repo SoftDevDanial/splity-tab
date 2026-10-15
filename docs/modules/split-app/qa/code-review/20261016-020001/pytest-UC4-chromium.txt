@@ -1,0 +1,42 @@
+server STARTED pid 27788 port 22433 root {temp}\claude\{project-id}\2398866f-bd86-44e4-b91f-3d2709393151\scratchpad\split-cr-recheck\app-runs\UC4-chromium
+.........F..server STOPPED pid 27788 port 22433, exited True, port free again True
+
+================================== FAILURES ===================================
+__________________ test_R62_an_item_name_loses_the_class_too __________________
+
+open_app = <function open_app.<locals>.factory at 0x0000018E8006F480>
+
+    def test_R62_an_item_name_loses_the_class_too(open_app):
+        page = open_app(seed=seeds.S1).page
+        page.evaluate(RECORD_INPUT_JS)
+        field = item_name(page, 2)
+        handle = field.element_handle()
+        field.click()
+        page.keyboard.press("End")
+        assert insert(page, "\u202ex") == []
+        value = "Char kuey teowx"
+>       assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, 15, 15]
+E       AssertionError: assert [True, 'Char ...02ex', 16, 16] == [True, 'Char ...eowx', 15, 15]
+E         
+E         At index 1 diff: 'Char kuey teow\u202ex' != 'Char kuey teowx'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5967: AssertionError
+=================================== PASSES ====================================
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202E]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202Ex]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[aU+2028b]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0000]
+PASSED tests\browser\test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0009Lee]
+PASSED tests\browser\test_app.py::test_R62_a_removal_in_the_middle_of_a_name_keeps_the_caret_where_the_text_went_in
+PASSED tests\browser\test_app.py::test_R62_each_kind_of_character_in_the_class_is_removed_from_a_name_field
+PASSED tests\browser\test_app.py::test_R62_characters_outside_the_class_stay_in_a_name
+PASSED tests\browser\test_app.py::test_R62_typing_that_brings_no_character_of_the_class_writes_nothing_into_the_field
+PASSED tests\browser\test_app.py::test_R62_a_name_made_only_of_removed_characters_falls_back_to_its_position
+PASSED tests\browser\test_app.py::test_R62_a_saved_name_with_bidi_controls_loads_plain_and_the_people_line_reads_left_to_right
+FAILED tests\browser\test_app.py::test_R62_an_item_name_loses_the_class_too
+1 failed, 11 passed, 716 deselected in 6.78s
+
+----- stderr -----

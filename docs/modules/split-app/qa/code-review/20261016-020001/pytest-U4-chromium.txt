@@ -1,0 +1,76 @@
+server STARTED pid 20400 port 15361 root {temp}\claude\{project-id}\2398866f-bd86-44e4-b91f-3d2709393151\scratchpad\split-cr-recheck\app-runs\U4-chromium
+...F.F.Fserver STOPPED pid 20400 port 15361, exited True, port free again True
+
+================================== FAILURES ===================================
+_ test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[7-people] _
+
+open_app = <function open_app.<locals>.factory at 0x0000020BD186D9B0>, count = 7
+
+    @pytest.mark.parametrize("count", [7, 8, 9, 10, 11], ids=lambda count: f"{count}-people")
+    def test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop(open_app, count):
+        # R20 sets --rows to ceil(people / 2). Only an odd count tells that from a floor, which makes the grid open a third
+        # column (code review CR-S5-7). T12 is the test above. The bill is T12 cut to its first `count` people.
+        seed = seeds.changed(seeds.T12, lambda d: d["bill"].update(people=d["bill"]["people"][:count], nextId=count + 1))
+        page = open_app(seed=seed, viewport=VIEWPORTS[1280]).page
+        found, rows = receipt(page)["list"], (count + 1) // 2
+>       assert found and [found["cls"], found["rowsVar"], len(found["rows"])] == ["r-splits many", str(rows), count], found
+E       AssertionError: {'id': 'splits', 'cls': 'r-splits many', 'labelledBy': 'splitsH', 'rowsVar': '3', ...}
+E       assert ({'id': 'splits', 'cls': 'r-splits many', 'labelledBy': 'splitsH', 'rowsVar': '3', ...} and ['r-splits many', '3', 7] == ['r-splits many', '4', 7]
+E         
+E         At index 1 diff: '3' != '4'
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:1610: AssertionError
+_ test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[9-people] _
+
+open_app = <function open_app.<locals>.factory at 0x0000020BCE540EB0>, count = 9
+
+    @pytest.mark.parametrize("count", [7, 8, 9, 10, 11], ids=lambda count: f"{count}-people")
+    def test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop(open_app, count):
+        # R20 sets --rows to ceil(people / 2). Only an odd count tells that from a floor, which makes the grid open a third
+        # column (code review CR-S5-7). T12 is the test above. The bill is T12 cut to its first `count` people.
+        seed = seeds.changed(seeds.T12, lambda d: d["bill"].update(people=d["bill"]["people"][:count], nextId=count + 1))
+        page = open_app(seed=seed, viewport=VIEWPORTS[1280]).page
+        found, rows = receipt(page)["list"], (count + 1) // 2
+>       assert found and [found["cls"], found["rowsVar"], len(found["rows"])] == ["r-splits many", str(rows), count], found
+E       AssertionError: {'id': 'splits', 'cls': 'r-splits many', 'labelledBy': 'splitsH', 'rowsVar': '4', ...}
+E       assert ({'id': 'splits', 'cls': 'r-splits many', 'labelledBy': 'splitsH', 'rowsVar': '4', ...} and ['r-splits many', '4', 9] == ['r-splits many', '5', 9]
+E         
+E         At index 1 diff: '4' != '5'
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:1610: AssertionError
+_ test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[11-people] _
+
+open_app = <function open_app.<locals>.factory at 0x0000020BCE1F85C0>
+count = 11
+
+    @pytest.mark.parametrize("count", [7, 8, 9, 10, 11], ids=lambda count: f"{count}-people")
+    def test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop(open_app, count):
+        # R20 sets --rows to ceil(people / 2). Only an odd count tells that from a floor, which makes the grid open a third
+        # column (code review CR-S5-7). T12 is the test above. The bill is T12 cut to its first `count` people.
+        seed = seeds.changed(seeds.T12, lambda d: d["bill"].update(people=d["bill"]["people"][:count], nextId=count + 1))
+        page = open_app(seed=seed, viewport=VIEWPORTS[1280]).page
+        found, rows = receipt(page)["list"], (count + 1) // 2
+>       assert found and [found["cls"], found["rowsVar"], len(found["rows"])] == ["r-splits many", str(rows), count], found
+E       AssertionError: {'id': 'splits', 'cls': 'r-splits many', 'labelledBy': 'splitsH', 'rowsVar': '5', ...}
+E       assert ({'id': 'splits', 'cls': 'r-splits many', 'labelledBy': 'splitsH', 'rowsVar': '5', ...} and ['r-splits many', '5', 11] == ['r-splits many', '6', 11]
+E         
+E         At index 1 diff: '5' != '6'
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:1610: AssertionError
+=================================== PASSES ====================================
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+PASSED tests\browser\test_app.py::test_R20_the_even_split_from_a_cold_boot
+PASSED tests\browser\test_app.py::test_R20_the_sheet_lists_the_splits_as_the_card_does
+PASSED tests\browser\test_app.py::test_R20_more_than_six_people_list_in_two_columns_on_the_desktop
+PASSED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[8-people]
+PASSED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[10-people]
+FAILED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[7-people]
+FAILED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[9-people]
+FAILED tests\browser\test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[11-people]
+3 failed, 5 passed, 720 deselected in 4.50s
+
+----- stderr -----
