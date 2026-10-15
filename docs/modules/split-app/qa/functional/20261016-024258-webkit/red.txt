@@ -1,0 +1,23 @@
+Dev solver, task A23 RED in WebKit 26.5, 2026-10-16. Not a suite run, the two A23 scenarios only.
+
+Tree. Commit 6b9b093 (Dismiss note arms nothing), plus the two new tests of qa.md "Dismiss note arms the repeat guard"
+in tests/browser/test_app.py (14 ids). git diff --quiet src/ exit 0 before the run, so the app is today's.
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -p no:cacheprovider -k "repeat_press_on_dismiss_note or held_enter_on_dismiss_note" --engine webkit --tb=no
+Result. 14 selected, 11 failed, 3 passed (pytest.txt, junit.xml, one screenshot per failure). Each failure is on the
+asserted property (the differing items of the end state, read at once, from junit.xml).
+
+"A repeat press on Dismiss note acts as one press at every width", seed UNREADABLE B1.
+- single, 360x780, 390x844, 1280x800. Passed. The control, as qa.md says.
+- mouse-double, 360x780 and 390x844. People folded ([false, false] in place of [true, true]), focus on the page (no
+  id), the body saw presses [1, 2] and clicks [1, 2].
+- mouse-triple, 360x780 and 390x844. Focus on the page, presses [1, 2, 3] and clicks [1, 2, 3]. People ends open
+  (the third press opened it again), so the row fails on focus and on the recorder.
+- touch-double, 360x780 and 390x844. People folded, focus on the page, presses [1, 1] and clicks [1, 1] (WebKit gives
+  each tap count 1, spec R57 (b)).
+- mouse-double, mouse-triple and touch-double at 1280x800. Focus on the page, and the second (and third) press and
+  click reached the page.
+"A held Enter on Dismiss note reaches nothing", 390x844 and 1280x800. The window recorder saw clicks
+['dismissNote', 'newBill'], so one repeat of Enter pressed New bill. dialog#newDlg is open and focus is off New bill.
+
+Rows that pass on today's tree. Only the three single click rows (the control). The triple click, double tap and held
+Enter rows, written by the planner unmeasured, all fail on today's tree.

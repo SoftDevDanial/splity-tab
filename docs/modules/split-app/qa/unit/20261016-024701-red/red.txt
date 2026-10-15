@@ -1,0 +1,18 @@
+Dev solver, code review CR-R6 RED, 2026-10-16. The @R62 @R33 @node outline "plainNameField puts the caret where the
+text went in" (qa.md), as tests/dom.test.js, run on three scratch copies of src/ with one mutant each. Never in src/.
+
+Copies. {temp}/claude/{project-id}/2398866f-bd86-44e4-b91f-3d2709393151/scratchpad/split-a23/<id>/,
+each a fresh copy of src/ at 1f1eb97 and of the new tests/dom.test.js, then one exact text edit of plainNameField in
+src/ui/dom.js with the Edit tool, the code review's mutant text (qa/code-review/20261016-020001/mutate_app.mjs).
+- UC1, the caret at the end of the plain text. "const caret = plain.length;"
+- UC2, the caret is selectionStart less every removed unit. "const caret = input.selectionStart - (typed.length - plain.length);"
+- UC3, no setSelectionRange after the write. The line "input.setSelectionRange(caret, caret);" removed.
+Command, per copy. node --test --test-reporter=tap --test-reporter-destination=<this folder>/node-test-<id>.txt --test-reporter=dot --test-reporter-destination=stdout <copy>/tests/dom.test.js
+Result. Each failure is on the asserted property, the setSelectionRange calls (the returned text and the value hold).
+- UC1, 4 of 6 fail (rows 1, 3, 4 and 5, caret 3 or 4 in place of 2 or 3). Rows 2 and 6 pass, where the plain text ends
+  at the caret. As qa.md says.
+- UC2, 5 of 6 fail (rows 1, 2, 3, 4 and 6, caret 1, 2, 1, 0 and -1 in place of 2, 3, 2, 2 and 0). Row 5 passes, where
+  no removed character lies after the caret, so both rules agree. As qa.md says. The mutant that survived all 12 R62
+  browser ids in the review (pytest-UC2-chromium.txt) is killed.
+- UC3, 6 of 6 fail (calls [] in place of one call).
+On the real code the six rows pass, 20261016-024714-green/.

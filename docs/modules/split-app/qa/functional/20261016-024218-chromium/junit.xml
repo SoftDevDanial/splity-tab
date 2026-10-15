@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="11" skipped="0" tests="14" time="6.982" timestamp="2026-10-16T02:42:18.844787+08:00" hostname="{host}"><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-single]" time="1.636" /><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-mouse-double]" time="0.362"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+      {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+      {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-mouse-triple]" time="0.259"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+      {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-touch-double]" time="0.350"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+      {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+      {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-single]" time="0.237" /><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-mouse-double]" time="0.313"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+      {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+      {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-mouse-triple]" time="0.265"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+      {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-touch-double]" time="0.330"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+      {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+      {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-single]" time="0.233" /><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-mouse-double]" time="0.297"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+      {'focus': ''} != {'focus': 'newBill'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-mouse-triple]" time="0.266"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+      {'focus': ''} != {'focus': 'newBill'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-touch-double]" time="0.331"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+      {'focus': ''} != {'focus': 'newBill'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_held_enter_on_dismiss_note_reaches_nothing[390x844]" time="0.781"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'dialog open': True} != {'dialog open': False}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  {'clicks': ['dismissNote', 'newBill']} != {'clicks': ['dismissNote']}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'dialog open': True} != {'dialog open': False}
+      {'focus': ''} != {'focus': 'newBill'}
+      {'clicks': ['dismissNote', 'newBill']} != {'clicks': ['dismissNote']}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R27_a_held_enter_on_dismiss_note_reaches_nothing[1280x800]" time="0.867"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'dialog open': True} != {'dialog open': False}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  {'clicks': ['dismissNote', 'newBill']} != {'clicks': ['dismissNote']}&#10;  Use -v to get more diff">E   AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'dialog open': True} != {'dialog open': False}
+      {'focus': ''} != {'focus': 'newBill'}
+      {'clicks': ['dismissNote', 'newBill']} != {'clicks': ['dismissNote']}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

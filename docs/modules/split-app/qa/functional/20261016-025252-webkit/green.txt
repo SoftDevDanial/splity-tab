@@ -1,0 +1,7 @@
+Dev solver, code review CR-R3 check in WebKit 26.5, 2026-10-16. Not a suite run, the R62 ids only.
+
+Tree. The same working tree as 20261016-025245-chromium/ (commit d989d32 plus the CR-R3 escapes in
+tests/browser/seeds.py and tests/browser/test_app.py). git diff --quiet src/ exit 0.
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -p no:cacheprovider -k R62 --engine webkit --tb=short
+Result. 12 selected, 12 passed. By id against the A22 GREEN run 20261016-012029-webkit/, 12 ids, the same outcome,
+new 0, missing 0, changed 0. The checks of the edit itself are in 20261016-025245-chromium/green.txt.

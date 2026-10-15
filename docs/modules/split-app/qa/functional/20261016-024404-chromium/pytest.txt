@@ -1,0 +1,17 @@
+engine chromium, browser version 149.0.7827.55
+PASSED   call     test_app.py::test_R27_dismissing_the_note (0.37s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-single] (0.23s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-mouse-double] (0.28s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-mouse-triple] (0.26s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-touch-double] (0.29s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-single] (0.23s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-mouse-double] (0.26s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-mouse-triple] (0.24s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-touch-double] (0.29s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-single] (0.22s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-mouse-double] (0.26s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-mouse-triple] (0.23s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-touch-double] (0.29s)
+PASSED   call     test_app.py::test_R27_a_held_enter_on_dismiss_note_reaches_nothing[390x844] (0.74s)
+PASSED   call     test_app.py::test_R27_a_held_enter_on_dismiss_note_reaches_nothing[1280x800] (0.74s)
+exit status 0

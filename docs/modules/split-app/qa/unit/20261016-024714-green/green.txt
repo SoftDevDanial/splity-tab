@@ -1,0 +1,7 @@
+Dev solver, code review CR-R6 GREEN, 2026-10-16.
+
+Tree. Commit 1f1eb97 (task A23) plus the new tests/dom.test.js, the file that became the CR-R6 commit. git diff
+--quiet src/ exit 0, so plainNameField is the shipped code.
+Command. node --test --test-reporter=tap --test-reporter-destination=<this folder>/node-test.txt "tests/**/*.test.js"
+Result. 406 tests, 406 pass, 0 fail. The six "@R62 @R33 plainNameField of ..." cases pass. The other 400 are the ids of
+split-core/qa/unit/20261016-012221/ (400 of 400 on 4a19b4d).

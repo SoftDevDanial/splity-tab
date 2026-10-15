@@ -103,6 +103,7 @@ None.
 - **Evidence.** Read and grep of the added lines of `git diff -U0 798f17f..HEAD -- src tests`. The split-app findings file lists the rest of the range (CR-R5 there).
 - **Fix.** A period or a comma in place of each colon, for example "so a new field is added there once and every copy takes it, billWith here and withSpare in spare.js." Comments only, no code line.
 - **Route.** Dev Solver, the one comment-only pass ruled ORCH in S7 row 45.
+- **Solver, 2026-10-16 (dev solver, A23 pass). RESOLVED in `b0992b4`, comments only.** The five lines are written without a colon in prose (line 1 by the CR-R2 rewrite). Every changed `.js` line of the commit is a comment line, and no added line holds `Bidi_Control`. Node 406 of 406 on `b0992b4` (`qa/unit/20261016-030139/`), by id against `20261016-012221/` 0 missing, 0 changed, 6 new (the app's CR-R6 cases).
 
 ## INFO (re-check)
 
@@ -110,6 +111,7 @@ None.
 - **Symbol.** The comment above `BILL_FIELDS` in `src/core/bill.js` ("newBill is the one place that lists them, so a new field is added there once and every copy takes it").
 - **What.** From reading. True for core's two copies (`billWith`, `withSpare`). The Bill typedef in `bill.js` lists the fields too, and split-app's `decode` in `src/draft.js` rebuilds the Bill from its own hand list (D12), by design, because each field needs its own check. A builder who adds a ninth field only in `newBill`, as the comment invites, gets a decoder that drops it on reload.
 - **Suggestion.** "newBill is the one list that core's copies read (billWith here, withSpare in spare.js). The Bill typedef above and split-app's decoder (decode in draft.js, D12) list the fields too, so a new field goes in all three." Dev Solver, in the same comment-only pass.
+- **Solver, 2026-10-16 (dev solver, A23 pass). RESOLVED in `b0992b4`, comments only.** The comment says `newBill` is the one list core's copies read (`billWith` here, `withSpare` in `spare.js`), and that the Bill typedef above and split-app's decoder (`decode` in `draft.js`, D12) list the fields too, so a new field goes in all three. The `BILL_FIELDS` comment in `spare.js` said "the one list" and now says "the one list core's copies read".
 
 ### CR-R3. `NAME_CONTROLS` is a shared, stateful `g` regex, and nothing stops a future `.test` call on it   (latent defect, spec R35 point 2)
 - **Symbol.** `NAME_CONTROLS` in `src/core/bill.js`, and the "class is written once" scan `oneClassProblems` in `tests/hygiene.test.js`.

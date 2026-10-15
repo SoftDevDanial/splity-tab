@@ -1,0 +1,7 @@
+Dev solver, task A23 GREEN in WebKit 26.5, 2026-10-16. Not a suite run.
+
+Tree. Commit 6b9b093 plus the A23 build in the working tree (src/ui/note.js, the dismiss click calls
+swallowRepeatClicks() before onDismiss) and the two new tests, the same files that became the A23 commit.
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -p no:cacheprovider -k "repeat_press_on_dismiss_note or held_enter_on_dismiss_note or R27_dismissing_the_note" --engine webkit --tb=short
+Result. 15 selected, 15 passed. The 11 rows that were red in 20261016-024258-webkit/ pass, the 3 single click
+controls still pass, and the 1.0 scenario test_R27_dismissing_the_note still passes.

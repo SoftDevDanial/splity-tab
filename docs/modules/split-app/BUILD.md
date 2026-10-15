@@ -2115,3 +2115,64 @@ Each gate server was started by the solver and stopped by exact PID with `taskki
 
 **For the README reconcile.** `src/ui/dom.js` exports `plainNameField(input)`, which both name fields call on every `input` event, so a name never holds a control, separator or bidi character (R62). `decodeDraft` rebuilds every stored name the same way (D8, `readName`) after refusing LF and CR, and counts the length of the rebuilt name. The README's security paragraph ("names within their length") does not say this, and no README line is false.
 
+## v1.1.0 task A23 and the step 5 re-check items (2026-10-16, dev solver)
+Built from `spec.md` (task A23, R27, R7, R57, R62 (1), the threat row "The bill, as the user left it", the Non-goals line of ledger S7 row 46), `qa.md` (the outlines "A repeat press on Dismiss note acts as one press at every width" and "A held Enter on Dismiss note reaches nothing", the `@node` outline "plainNameField puts the caret where the text went in"), the planner commits `4e3267a` and `a084b14`, and `findings/code-review.md`, section "v1.1.0 step 5 re-check, 2026-10-16" (CR-R1 to CR-R6 as routed by ledger S7 row 46, ORCH). The split-core items (CR-R1, CR-R2) are in `split-core/BUILD.md`, same pass. The README points of CR-R4 are the orchestrator's.
+
+**Commits, one per item.** The records are in the docs commit above them.
+| Commit | Item | What |
+|---|---|---|
+| `1f1eb97` | A23 (CR-R1) | `createNotes` arms the guard on the dismiss click, the two qa.md scenarios as 14 browser ids, the now false JSDoc line on Dismiss note dropped |
+| `d989d32` | CR-R6 | `tests/dom.test.js`, six cases of `plainNameField` with a stand-in input |
+| `62cf3c5` | CR-R3 | the 16 literal characters of `seeds.py` and `test_app.py` written as `\u` escapes |
+| `b0992b4` | comments | core CR-R1 and CR-R2, app CR-R2, the code parts of CR-R4, CR-R5, comments and docstrings only |
+
+**Phase skills (design row of `docs/phase-skills.md`).** Read from disk before the `src/ui/` edit, `frontend-design` (`frontend-design/8f814f49002f/skills/frontend-design/SKILL.md`, all 71 lines) and `taste-skill` (`taste-skill/1.0.0/skills/taste-skill/SKILL.md`, all 1206 lines, the appendices included). Design read (taste-skill 0.B), a behaviour fix inside the approved phone first bill splitter, redesign that preserves (11.A), with no visible output of its own. What transferred.
+- The brief's own words win (frontend-design) and nothing changes silently (taste-skill 11.F). The click does what A23 says and nothing else. No markup, class, copy, style or listener count changed, and `src/system.css` and `index.html` are untouched.
+- Existing accessibility wins kept (taste-skill 11.C) and visible keyboard focus as a floor (frontend-design, "Restraint and self-critique"). After any repeat press and after a held Enter, focus is on New bill, where rule 12 puts it, proved in both engines.
+- Motion only where it answers an action (frontend-design) and reduced motion (taste-skill 6.B). Nothing new moves, and the guard schedules nothing.
+- The em dash ban (taste-skill 9.G), applied to the comments, the tests and these records.
+- Not transferred, because A23 draws nothing and the goldens and the locked stack decide them. The dials, palette, type, layout, icons, images, dark mode, the block library and the pre-flight items on heroes, CTAs and sections.
+
+**What changed, by symbol (for the README reconcile).**
+- `src/ui/note.js`. In `createNotes` the click on `dismiss` calls `swallowRepeatClicks()` and then `onDismiss()`, with a why comment. `swallowRepeatClicks` is imported from `dom.js`.
+- `src/ui/dom.js`, comments only. The JSDoc of `swallowRepeatClicks` lost its line on Dismiss note (`1f1eb97`) and states the rule its callers follow (`b0992b4`). The JSDoc of `plainNameField` without the prose colon.
+- `src/draft.js`, comment only. The JSDoc of `readName` (only LF and CR reject).
+- `src/core/bill.js` and `src/core/spare.js`, comments only (`split-core/BUILD.md`).
+- `tests/browser/test_app.py`. The section "v1.1.0 task A23" with `after_dismiss`, `one_dismiss`, `CLICK_TARGETS_JS`, `test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width` (`V11_SIZES` by `GESTURES`, 12 ids) and `test_R27_a_held_enter_on_dismiss_note_reaches_nothing` (390 x 844 and 1280 x 800). They reuse `RECORD_BODY_CLICKS_JS`, `gesture_at`, `assert_only_press_1_and_click_1_reached_the_page`, `tab_until`, `hold`, `dialog_is_open`, `section_state` and `notes`. `PLAIN_INSERTS` and four R62 tests write their characters as escapes. Twelve comment lines rewritten (CR-R5 items 5 to 16).
+- `tests/browser/seeds.py`. `G8` written with escapes, the same text.
+- `tests/browser/conftest.py`. The docstrings of `evidence_dir` and `evidence_folder`.
+- `tests/dom.test.js`. New, the six rows of the `@R62 @R33 @node` outline.
+
+**Comments written or changed.** `note.js`, why the dismiss click arms the guard first. `dom.js`, the `swallowRepeatClicks` rule and why, and the `plainNameField` JSDoc. `draft.js`, `readName`. `conftest.py`, the two docstrings. `test_app.py`, the A23 section's comments and docstrings and the twelve listed lines. `dom.test.js`, its header (why the cases live in Node). The banners of `test_app.py` keep the "Task N: ..." heading form every older banner uses, the new "v1.1.0 task A23: ..." included (CR-R5 item 12).
+
+**Readings made, for the orchestrator (ORCH, reversible).**
+- Rule 6 and the order of the items. A23 made the last line of the `swallowRepeatClicks` JSDoc false, so `1f1eb97` drops that line in the same patch (constitution, comment rule 6), and the rule itself is restated in the comment commit `b0992b4`, as the order of the work put it.
+- CR-R6's RED. qa.md says three stubs put in and taken out with the Edit tool. The routing said scratch copies and never `src/`, so the three mutants ran on scratch copies outside the project.
+- The end state is read at once into one dict, the body recorder's counts included, so one run names every property that differs. The shared `assert_only_press_1_and_click_1_reached_the_page` then checks the window half and, for a tap, the gap.
+- The held Enter scenario's note in qa.md says four repeats that reached New bill would open, close, open and close M1. Measured on the tree before A23, only the first repeat reached New bill, because New bill's own click arms the guard, which then cancelled the other three, so M1 stayed open with focus off New bill. The click count is still the proof. A wording item for the planner.
+- `spare.js`'s `BILL_FIELDS` comment ("the one list") made the same claim as CR-R2 and is changed with it.
+- Older comments outside the review's 21 lines still hold a prose colon (for example the `D13:` JSDoc in `draft.js`, the headers of `draft.js` and `spare.js`). Not routed, not touched.
+- The longest line of `tests/dom.test.js` (the `spelled` helper, 126 columns) is code of `d989d32`, left out of the comment-only pass.
+
+**RED first** (each run its own folder, its `red.txt` says what tree and what failed).
+| Run | Folder | Result |
+|---|---|---|
+| Browser RED, the tree before A23 (`6b9b093` plus the new tests), Chromium | `qa/functional/20261016-024218-chromium/` | 14 ids, 11 fail on the asserted property, the 3 single click controls pass |
+| Browser RED, the same tree, WebKit | `qa/functional/20261016-024258-webkit/` | 14 ids, 11 fail on the asserted property, the 3 single click controls pass |
+| Node RED, `tests/dom.test.js` on three scratch copies with the review's mutants UC1, UC2, UC3 | `qa/unit/20261016-024701-red/` | UC1 4 of 6 fail, UC2 5 of 6, UC3 6 of 6, each on the `setSelectionRange` calls |
+
+Rows of the RED that passed on the tree before A23, as asked. Only the three single click rows, which are the control. The triple click, double tap and held Enter rows the planner wrote unmeasured all fail in both engines. Below 1024 px a double click and a double tap fold People and take focus to `#peopleBtn` (Chromium) or the page (WebKit). A triple click ends with People open, because its third press opens it again, and fails on focus and on the recorder. From 1024 px every repeat gesture takes focus to the page. A held Enter presses New bill once and leaves M1 open, in both engines at both sizes.
+
+**GREEN.** Browser `qa/functional/20261016-024404-chromium/` and `20261016-024426-webkit/`, 15 of 15 (the 14 ids and `test_R27_dismissing_the_note`). Node `qa/unit/20261016-024714-green/`, 406 of 406. CR-R3, the 12 R62 ids in `qa/functional/20261016-025245-chromium/` and `20261016-025252-webkit/`, the same ids and outcome as the A22 GREEN runs, with the checks of the edit in the first one's `green.txt`.
+
+**Proof on the committed tree (`b0992b4`), one run after the other, nothing under `src/` or `tests/` uncommitted.**
+| Run | Result | By id |
+|---|---|---|
+| Node, `split-core/qa/unit/20261016-030139/node-test.txt` | 406 of 406 | against `20261016-012221/`, 400 ids with the same outcome, 6 new (CR-R6), 0 missing, 0 changed |
+| Chromium 149.0.7827.55, `qa/functional/20261016-030148-chromium/` | 742 passed, 0 failed, 0 skipped, 215.1 s | against `20261016-012252-chromium/`, its 728 ids all passed again, 14 new (A23) passed, 0 missing, 0 changed |
+| WebKit 26.5, `qa/functional/20261016-030547-webkit/` (in the background, bounded at 20 minutes) | 739 passed, 3 skipped, 0 failed, 427.1 s | against `20261016-012652-webkit/`, its 728 ids with the same outcome (725 passed, the 3 counted skips of `skips.txt`), 14 new (A23) passed, 0 missing, 0 changed |
+
+The fidelity gate and the live gate are not re-run, as A23 says (no markup, class, text or style of a golden state changes), and the regression covers both. `git hash-object --no-filters src/system.css` is `bf30ddadb8c756dc5d462243c642c218597ae0ac`, and `git diff --stat 6b9b093 -- docs/design index.html src/system.css` is empty. Credential gate exit 0 before each commit.
+
+**For the README reconcile.** Dismiss note now arms the repeat guard like the other clicks that add or remove a row or open or close a dialog, so a double click, triple click or double tap on it, or a held Enter, acts as one press at every width in both engines. The Known limits row "A double click on Dismiss note or a mode label moves keyboard focus to the page. No data changes" no longer holds for Dismiss note. For the mode labels the review measured that a double click leaves the same mode as one click and changes no other data, with focus on the radio in Chromium and on the page in WebKit after a click and after a double click alike. `decodeDraft` rejects only LF and CR, the other separators load removed. A passing browser run makes its evidence folder too (the R9, R45 and R50 records).
+

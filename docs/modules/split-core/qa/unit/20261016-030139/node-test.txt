@@ -1,0 +1,2446 @@
+TAP version 13
+# Subtest: @R7 allocateEvenly(11660, 3)
+ok 1 - @R7 allocateEvenly(11660, 3)
+  ---
+  duration_ms: 1.257
+  type: 'test'
+  ...
+# Subtest: @R7 allocateEvenly(1800, 2)
+ok 2 - @R7 allocateEvenly(1800, 2)
+  ---
+  duration_ms: 0.1111
+  type: 'test'
+  ...
+# Subtest: @R7 allocateEvenly(1001, 3)
+ok 3 - @R7 allocateEvenly(1001, 3)
+  ---
+  duration_ms: 0.0693
+  type: 'test'
+  ...
+# Subtest: @R7 allocateEvenly(1, 3)
+ok 4 - @R7 allocateEvenly(1, 3)
+  ---
+  duration_ms: 0.0754
+  type: 'test'
+  ...
+# Subtest: @R7 allocateEvenly(0, 2)
+ok 5 - @R7 allocateEvenly(0, 2)
+  ---
+  duration_ms: 0.0854
+  type: 'test'
+  ...
+# Subtest: @R7 allocateEvenly(10221, 4)
+ok 6 - @R7 allocateEvenly(10221, 4)
+  ---
+  duration_ms: 0.0589
+  type: 'test'
+  ...
+# Subtest: @R7 allocateEvenly(15599999, 12)
+ok 7 - @R7 allocateEvenly(15599999, 12)
+  ---
+  duration_ms: 0.0553
+  type: 'test'
+  ...
+# Subtest: @R8 allocateByWeight(986, [2490,1350,2100])
+ok 8 - @R8 allocateByWeight(986, [2490,1350,2100])
+  ---
+  duration_ms: 0.1865
+  type: 'test'
+  ...
+# Subtest: @R8 allocateByWeight(10, [0,1,1,1])
+ok 9 - @R8 allocateByWeight(10, [0,1,1,1])
+  ---
+  duration_ms: 0.0938
+  type: 'test'
+  ...
+# Subtest: @R8 allocateByWeight(0, [5,7])
+ok 10 - @R8 allocateByWeight(0, [5,7])
+  ---
+  duration_ms: 0.1138
+  type: 'test'
+  ...
+# Subtest: @R8 allocateByWeight(249, [0,1251,250])
+ok 11 - @R8 allocateByWeight(249, [0,1251,250])
+  ---
+  duration_ms: 0.1106
+  type: 'test'
+  ...
+# Subtest: @R8 BigInt trap: allocateByWeight(236419679, [314963010,157876348])
+ok 12 - @R8 BigInt trap: allocateByWeight(236419679, [314963010,157876348])
+  ---
+  duration_ms: 0.2358
+  type: 'test'
+  ...
+# Subtest: @R8 BigInt trap: allocateByWeight(61846725, [49676084,322894546])
+ok 13 - @R8 BigInt trap: allocateByWeight(61846725, [49676084,322894546])
+  ---
+  duration_ms: 0.0553
+  type: 'test'
+  ...
+# Subtest: @R8 BigInt trap: allocateByWeight(178450942, [111531837,207130558])
+ok 14 - @R8 BigInt trap: allocateByWeight(178450942, [111531837,207130558])
+  ---
+  duration_ms: 0.6792
+  type: 'test'
+  ...
+# Subtest: @R8 @R23 allocateByWeight gives the MAX-I charges split exactly, with products past 2^53
+ok 15 - @R8 @R23 allocateByWeight gives the MAX-I charges split exactly, with products past 2^53
+  ---
+  duration_ms: 0.1032
+  type: 'test'
+  ...
+# Subtest: @R8 a zero weight always gets 0 and a single weight gets everything
+ok 16 - @R8 a zero weight always gets 0 and a single weight gets everything
+  ---
+  duration_ms: 0.057
+  type: 'test'
+  ...
+# Subtest: @R16 allocateByWeight leaves frozen weights alone
+ok 17 - @R16 allocateByWeight leaves frozen weights alone
+  ---
+  duration_ms: 0.0729
+  type: 'test'
+  ...
+# Subtest: @R7 @R8 results are plain numbers, not BigInt
+ok 18 - @R7 @R8 results are plain numbers, not BigInt
+  ---
+  duration_ms: 0.0786
+  type: 'test'
+  ...
+# Subtest: @R9 allocateEvenly(10, 0) throws RangeError
+ok 19 - @R9 allocateEvenly(10, 0) throws RangeError
+  ---
+  duration_ms: 0.2497
+  type: 'test'
+  ...
+# Subtest: @R9 allocateEvenly(10, 1.5) throws RangeError
+ok 20 - @R9 allocateEvenly(10, 1.5) throws RangeError
+  ---
+  duration_ms: 0.0483
+  type: 'test'
+  ...
+# Subtest: @R9 allocateEvenly(-1, 2) throws RangeError
+ok 21 - @R9 allocateEvenly(-1, 2) throws RangeError
+  ---
+  duration_ms: 0.0397
+  type: 'test'
+  ...
+# Subtest: @R9 allocateEvenly(0.5, 2) throws RangeError
+ok 22 - @R9 allocateEvenly(0.5, 2) throws RangeError
+  ---
+  duration_ms: 0.0341
+  type: 'test'
+  ...
+# Subtest: @R9 allocateEvenly(2 ** 53, 2) throws RangeError
+ok 23 - @R9 allocateEvenly(2 ** 53, 2) throws RangeError
+  ---
+  duration_ms: 0.0424
+  type: 'test'
+  ...
+# Subtest: @R9 allocateByWeight(10, []) throws RangeError
+ok 24 - @R9 allocateByWeight(10, []) throws RangeError
+  ---
+  duration_ms: 0.034
+  type: 'test'
+  ...
+# Subtest: @R9 allocateByWeight(10, [0, 0]) throws RangeError
+ok 25 - @R9 allocateByWeight(10, [0, 0]) throws RangeError
+  ---
+  duration_ms: 0.0434
+  type: 'test'
+  ...
+# Subtest: @R9 allocateByWeight(10, [1, -1]) throws RangeError
+ok 26 - @R9 allocateByWeight(10, [1, -1]) throws RangeError
+  ---
+  duration_ms: 0.0323
+  type: 'test'
+  ...
+# Subtest: @R9 allocateByWeight(10, [1.5, 1]) throws RangeError
+ok 27 - @R9 allocateByWeight(10, [1.5, 1]) throws RangeError
+  ---
+  duration_ms: 0.0391
+  type: 'test'
+  ...
+# Subtest: @R9 allocateByWeight(10, [2 ** 53, 1]) throws RangeError
+ok 28 - @R9 allocateByWeight(10, [2 ** 53, 1]) throws RangeError
+  ---
+  duration_ms: 0.0363
+  type: 'test'
+  ...
+# Subtest: @R9 allocateByWeight(-1, [1]) throws RangeError
+ok 29 - @R9 allocateByWeight(-1, [1]) throws RangeError
+  ---
+  duration_ms: 0.0333
+  type: 'test'
+  ...
+# Subtest: @R10 a new bill has two people, even mode, the default rates and Top of the list
+ok 30 - @R10 a new bill has two people, even mode, the default rates and Top of the list
+  ---
+  duration_ms: 2.0056
+  type: 'test'
+  ...
+# Subtest: @R10 every call returns a fresh bill, never a shared one
+ok 31 - @R10 every call returns a fresh bill, never a shared one
+  ---
+  duration_ms: 0.2023
+  type: 'test'
+  ...
+# Subtest: @R10 the limits constant matches the contract and is frozen
+ok 32 - @R10 the limits constant matches the contract and is frozen
+  ---
+  duration_ms: 0.1753
+  type: 'test'
+  ...
+# Subtest: @R11 adding a person appends an empty-named person with the next id
+ok 33 - @R11 adding a person appends an empty-named person with the next id
+  ---
+  duration_ms: 0.1566
+  type: 'test'
+  ...
+# Subtest: @R11 a new person's id comes from nextId, so it never reuses a removed id
+ok 34 - @R11 a new person's id comes from nextId, so it never reuses a removed id
+  ---
+  duration_ms: 0.2989
+  type: 'test'
+  ...
+# Subtest: @R11 the twelfth person is accepted and the thirteenth does nothing
+ok 35 - @R11 the twelfth person is accepted and the thirteenth does nothing
+  ---
+  duration_ms: 0.2233
+  type: 'test'
+  ...
+# Subtest: @R12 removing a person removes them from every item
+ok 36 - @R12 removing a person removes them from every item
+  ---
+  duration_ms: 0.2524
+  type: 'test'
+  ...
+# Subtest: @R27 @R11 adding a person extends the drawn order and keeps the people already drawn in place
+ok 37 - @R27 @R11 adding a person extends the drawn order and keeps the people already drawn in place
+  ---
+  duration_ms: 0.4272
+  type: 'test'
+  ...
+# Subtest: @R27 @R12 removing p3 from spare {"rule":"random","order":["p2","p3","p1"]} leaves {"rule":"random","order":["p2","p1"]}
+ok 38 - @R27 @R12 removing p3 from spare {"rule":"random","order":["p2","p3","p1"]} leaves {"rule":"random","order":["p2","p1"]}
+  ---
+  duration_ms: 0.2139
+  type: 'test'
+  ...
+# Subtest: @R27 @R12 removing p2 from spare {"rule":"one","personId":"p2"} leaves {"rule":"top"}
+ok 39 - @R27 @R12 removing p2 from spare {"rule":"one","personId":"p2"} leaves {"rule":"top"}
+  ---
+  duration_ms: 0.2243
+  type: 'test'
+  ...
+# Subtest: @R27 @R12 removing p3 from spare {"rule":"one","personId":"p2"} leaves {"rule":"one","personId":"p2"}
+ok 40 - @R27 @R12 removing p3 from spare {"rule":"one","personId":"p2"} leaves {"rule":"one","personId":"p2"}
+  ---
+  duration_ms: 0.1395
+  type: 'test'
+  ...
+# Subtest: @R27 @R12 removing p1 from spare {"rule":"top"} leaves {"rule":"top"}
+ok 41 - @R27 @R12 removing p1 from spare {"rule":"top"} leaves {"rule":"top"}
+  ---
+  duration_ms: 0.0969
+  type: 'test'
+  ...
+# Subtest: @R27 @R12 a refused removal keeps the spare choice as it was
+ok 42 - @R27 @R12 a refused removal keeps the spare choice as it was
+  ---
+  duration_ms: 0.201
+  type: 'test'
+  ...
+# Subtest: @R27 @R15 a mode switch, the setters and the item actions never touch the spare choice
+ok 43 - @R27 @R15 a mode switch, the setters and the item actions never touch the spare choice
+  ---
+  duration_ms: 0.3565
+  type: 'test'
+  ...
+# Subtest: @R28 sparePeople of S2 is ["p1","p2","p3"]
+ok 44 - @R28 sparePeople of S2 is ["p1","p2","p3"]
+  ---
+  duration_ms: 0.1409
+  type: 'test'
+  ...
+# Subtest: @R28 sparePeople of S1 is ["p1","p2","p3"]
+ok 45 - @R28 sparePeople of S1 is ["p1","p2","p3"]
+  ---
+  duration_ms: 0.13
+  type: 'test'
+  ...
+# Subtest: @R28 sparePeople of I2 is ["p2","p3"]
+ok 46 - @R28 sparePeople of I2 is ["p2","p3"]
+  ---
+  duration_ms: 0.0458
+  type: 'test'
+  ...
+# Subtest: @R28 sparePeople of I3 (tapped Chen first, still list order) is ["p1","p3"]
+ok 47 - @R28 sparePeople of I3 (tapped Chen first, still list order) is ["p1","p3"]
+  ---
+  duration_ms: 0.0922
+  type: 'test'
+  ...
+# Subtest: @R28 sparePeople of I2 switched to even mode is ["p1","p2","p3"]
+ok 48 - @R28 sparePeople of I2 switched to even mode is ["p1","p2","p3"]
+  ---
+  duration_ms: 0.0675
+  type: 'test'
+  ...
+# Subtest: @R28 sparePeople of D2 is ["p2"]
+ok 49 - @R28 sparePeople of D2 is ["p2"]
+  ---
+  duration_ms: 0.0473
+  type: 'test'
+  ...
+# Subtest: @R28 sparePeople of a new bill switched to by-item mode is []
+ok 50 - @R28 sparePeople of a new bill switched to by-item mode is []
+  ---
+  duration_ms: 0.0275
+  type: 'test'
+  ...
+# Subtest: @R28 @R16 sparePeople leaves a deep-frozen bill alone and lists a person once
+ok 51 - @R28 @R16 sparePeople leaves a deep-frozen bill alone and lists a person once
+  ---
+  duration_ms: 0.1726
+  type: 'test'
+  ...
+# Subtest: @R12 removing is refused at 2 people or for an unknown id
+ok 52 - @R12 removing is refused at 2 people or for an unknown id
+  ---
+  duration_ms: 0.1084
+  type: 'test'
+  ...
+# Subtest: @R13 adding an item appends an empty, unassigned item
+ok 53 - @R13 adding an item appends an empty, unassigned item
+  ---
+  duration_ms: 0.1083
+  type: 'test'
+  ...
+# Subtest: @R13 the 51st item is refused and removing works at any time
+ok 54 - @R13 the 51st item is refused and removing works at any time
+  ---
+  duration_ms: 0.2007
+  type: 'test'
+  ...
+# Subtest: @R13 removing an unknown item returns the same bill
+ok 55 - @R13 removing an unknown item returns the same bill
+  ---
+  duration_ms: 0.0729
+  type: 'test'
+  ...
+# Subtest: @R14 tapping toggles a person on an item
+ok 56 - @R14 tapping toggles a person on an item
+  ---
+  duration_ms: 0.133
+  type: 'test'
+  ...
+# Subtest: @R14 an unknown item or person id returns the same bill
+ok 57 - @R14 an unknown item or person id returns the same bill
+  ---
+  duration_ms: 0.0861
+  type: 'test'
+  ...
+# Subtest: @R15 switching modes keeps both sets of input
+ok 58 - @R15 switching modes keeps both sets of input
+  ---
+  duration_ms: 0.0687
+  type: 'test'
+  ...
+# Subtest: @R15 setters store text exactly as typed
+ok 59 - @R15 setters store text exactly as typed
+  ---
+  duration_ms: 0.0443
+  type: 'test'
+  ...
+# Subtest: @R15 each setter changes only its own field
+ok 60 - @R15 each setter changes only its own field
+  ---
+  duration_ms: 0.9014
+  type: 'test'
+  ...
+# Subtest: @R15 setters with an unknown id return the same bill
+ok 61 - @R15 setters with an unknown id return the same bill
+  ---
+  duration_ms: 0.0562
+  type: 'test'
+  ...
+# Subtest: @R16 no action mutates a deep-frozen bill and changes return new objects
+ok 62 - @R16 no action mutates a deep-frozen bill and changes return new objects
+  ---
+  duration_ms: 0.4054
+  type: 'test'
+  ...
+# Subtest: @R16 @R31 pickAgain and the spare choices leave a deep-frozen bill alone and return a new bill
+ok 63 - @R16 @R31 pickAgain and the spare choices leave a deep-frozen bill alone and return a new bill
+  ---
+  duration_ms: 0.8029
+  type: 'test'
+  ...
+# Subtest: @R16 setMode on a parsed bill builds only known fields
+ok 64 - @R16 setMode on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.149
+  type: 'test'
+  ...
+# Subtest: @R16 setSubtotalText on a parsed bill builds only known fields
+ok 65 - @R16 setSubtotalText on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0507
+  type: 'test'
+  ...
+# Subtest: @R16 setServiceText on a parsed bill builds only known fields
+ok 66 - @R16 setServiceText on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0417
+  type: 'test'
+  ...
+# Subtest: @R16 setSstText on a parsed bill builds only known fields
+ok 67 - @R16 setSstText on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0341
+  type: 'test'
+  ...
+# Subtest: @R16 addPerson on a parsed bill builds only known fields
+ok 68 - @R16 addPerson on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0639
+  type: 'test'
+  ...
+# Subtest: @R16 addItem on a parsed bill builds only known fields
+ok 69 - @R16 addItem on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0417
+  type: 'test'
+  ...
+# Subtest: @R16 removeItem on a parsed bill builds only known fields
+ok 70 - @R16 removeItem on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0347
+  type: 'test'
+  ...
+# Subtest: @R16 setPersonName on a parsed bill builds only known fields
+ok 71 - @R16 setPersonName on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0403
+  type: 'test'
+  ...
+# Subtest: @R16 setPersonName (person with a __proto__ key) on a parsed bill builds only known fields
+ok 72 - @R16 setPersonName (person with a __proto__ key) on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0648
+  type: 'test'
+  ...
+# Subtest: @R16 removePerson on a parsed bill builds only known fields
+ok 73 - @R16 removePerson on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0731
+  type: 'test'
+  ...
+# Subtest: @R16 setItemName on a parsed bill builds only known fields
+ok 74 - @R16 setItemName on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0377
+  type: 'test'
+  ...
+# Subtest: @R16 setItemPriceText on a parsed bill builds only known fields
+ok 75 - @R16 setItemPriceText on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0299
+  type: 'test'
+  ...
+# Subtest: @R16 toggleItemPerson on a parsed bill builds only known fields
+ok 76 - @R16 toggleItemPerson on a parsed bill builds only known fields
+  ---
+  duration_ms: 0.0331
+  type: 'test'
+  ...
+# Subtest: @R27 @R16 addPerson on a parsed bill builds the spare choice from known fields
+ok 77 - @R27 @R16 addPerson on a parsed bill builds the spare choice from known fields
+  ---
+  duration_ms: 0.0645
+  type: 'test'
+  ...
+# Subtest: @R27 @R16 removePerson (random) on a parsed bill builds the spare choice from known fields
+ok 78 - @R27 @R16 removePerson (random) on a parsed bill builds the spare choice from known fields
+  ---
+  duration_ms: 0.0393
+  type: 'test'
+  ...
+# Subtest: @R27 @R16 removePerson (the chosen one) on a parsed bill builds the spare choice from known fields
+ok 79 - @R27 @R16 removePerson (the chosen one) on a parsed bill builds the spare choice from known fields
+  ---
+  duration_ms: 0.0319
+  type: 'test'
+  ...
+# Subtest: @R16 chooseSpareRule one on a parsed bill builds the bill and the spare choice from known fields
+ok 80 - @R16 chooseSpareRule one on a parsed bill builds the bill and the spare choice from known fields
+  ---
+  duration_ms: 0.0605
+  type: 'test'
+  ...
+# Subtest: @R16 chooseSpareRule random on a parsed bill builds the bill and the spare choice from known fields
+ok 81 - @R16 chooseSpareRule random on a parsed bill builds the bill and the spare choice from known fields
+  ---
+  duration_ms: 0.0596
+  type: 'test'
+  ...
+# Subtest: @R16 chooseSpareRule top on a parsed bill builds the bill and the spare choice from known fields
+ok 82 - @R16 chooseSpareRule top on a parsed bill builds the bill and the spare choice from known fields
+  ---
+  duration_ms: 0.0528
+  type: 'test'
+  ...
+# Subtest: @R16 chooseSparePerson on a parsed bill builds the bill and the spare choice from known fields
+ok 83 - @R16 chooseSparePerson on a parsed bill builds the bill and the spare choice from known fields
+  ---
+  duration_ms: 0.0427
+  type: 'test'
+  ...
+# Subtest: @R16 pickAgain on a parsed bill builds the bill and the spare choice from known fields
+ok 84 - @R16 pickAgain on a parsed bill builds the bill and the spare choice from known fields
+  ---
+  duration_ms: 0.1815
+  type: 'test'
+  ...
+# Subtest: @R27 @R16 addPerson and removePerson leave a deep-frozen random choice alone
+ok 85 - @R27 @R16 addPerson and removePerson leave a deep-frozen random choice alone
+  ---
+  duration_ms: 0.1217
+  type: 'test'
+  ...
+# Subtest: @R17 person named "Aisyah" at index 0 is "Aisyah"
+ok 86 - @R17 person named "Aisyah" at index 0 is "Aisyah"
+  ---
+  duration_ms: 0.0433
+  type: 'test'
+  ...
+# Subtest: @R17 person named " Ben " at index 1 is "Ben"
+ok 87 - @R17 person named " Ben " at index 1 is "Ben"
+  ---
+  duration_ms: 0.0238
+  type: 'test'
+  ...
+# Subtest: @R17 person named "   " at index 2 is "Person 3"
+ok 88 - @R17 person named "   " at index 2 is "Person 3"
+  ---
+  duration_ms: 0.0184
+  type: 'test'
+  ...
+# Subtest: @R17 person named "" at index 0 is "Person 1"
+ok 89 - @R17 person named "" at index 0 is "Person 1"
+  ---
+  duration_ms: 0.0162
+  type: 'test'
+  ...
+# Subtest: @R17 item named "Satay" at index 3 is "Satay"
+ok 90 - @R17 item named "Satay" at index 3 is "Satay"
+  ---
+  duration_ms: 0.0278
+  type: 'test'
+  ...
+# Subtest: @R17 item named "" at index 0 is "Item 1"
+ok 91 - @R17 item named "" at index 0 is "Item 1"
+  ---
+  duration_ms: 0.0164
+  type: 'test'
+  ...
+# Subtest: @R16 @R17 the labels leave a frozen person or item alone
+ok 92 - @R16 @R17 the labels leave a frozen person or item alone
+  ---
+  duration_ms: 0.0401
+  type: 'test'
+  ...
+# Subtest: @R17 the fallback follows the position after a removal
+ok 93 - @R17 the fallback follows the position after a removal
+  ---
+  duration_ms: 0.1167
+  type: 'test'
+  ...
+# Subtest: @R26 equal names are stored as typed and nobody is merged
+ok 94 - @R26 equal names are stored as typed and nobody is merged
+  ---
+  duration_ms: 0.0677
+  type: 'test'
+  ...
+# Subtest: @R26 tapping and removing address a person by id, not by name
+ok 95 - @R26 tapping and removing address a person by id, not by name
+  ---
+  duration_ms: 0.0874
+  type: 'test'
+  ...
+# Subtest: @R11 @R12 the twelve-person bill refuses a thirteenth and still removes by id
+ok 96 - @R11 @R12 the twelve-person bill refuses a thirteenth and still removes by id
+  ---
+  duration_ms: 0.0905
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "BenU+202E" is "Ben"
+ok 97 - @R35 plainName of "BenU+202E" is "Ben"
+  ---
+  duration_ms: 0.1803
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "BeU+202ExU+2067n" is "Bexn"
+ok 98 - @R35 plainName of "BeU+202ExU+2067n" is "Bexn"
+  ---
+  duration_ms: 0.0546
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "AU+2028BU+2029C" is "ABC"
+ok 99 - @R35 plainName of "AU+2028BU+2029C" is "ABC"
+  ---
+  duration_ms: 0.021
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "U+0000Adds up to RM 0.00" is "Adds up to RM 0.00"
+ok 100 - @R35 plainName of "U+0000Adds up to RM 0.00" is "Adds up to RM 0.00"
+  ---
+  duration_ms: 0.103
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "AnnU+0009Lee" is "AnnLee"
+ok 101 - @R35 plainName of "AnnU+0009Lee" is "AnnLee"
+  ---
+  duration_ms: 0.0228
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "xU+001BU+007FU+0085U+009Fy" is "xy"
+ok 102 - @R35 plainName of "xU+001BU+007FU+0085U+009Fy" is "xy"
+  ---
+  duration_ms: 0.0171
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "U+061CU+200EU+200FU+202AU+202BU+202CU+202DU+2066U+2068U+2069" is ""
+ok 103 - @R35 plainName of "U+061CU+200EU+200FU+202AU+202BU+202CU+202DU+2066U+2068U+2069" is ""
+  ---
+  duration_ms: 0.0225
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "AU+200BBU+00A0CU+FEFFU+00ADU+3000" is "AU+200BBU+00A0CU+FEFFU+00ADU+3000"
+ok 104 - @R35 plainName of "AU+200BBU+00A0CU+FEFFU+00ADU+3000" is "AU+200BBU+00A0CU+FEFFU+00ADU+3000"
+  ---
+  duration_ms: 0.0224
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "U+1F468U+200DU+1F469U+200DU+1F467" is "U+1F468U+200DU+1F469U+200DU+1F467"
+ok 105 - @R35 plainName of "U+1F468U+200DU+1F469U+200DU+1F467" is "U+1F468U+200DU+1F469U+200DU+1F467"
+  ---
+  duration_ms: 0.0194
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "U+0639U+0644U+064A Lina" is "U+0639U+0644U+064A Lina"
+ok 106 - @R35 plainName of "U+0639U+0644U+064A Lina" is "U+0639U+0644U+064A Lina"
+  ---
+  duration_ms: 0.0193
+  type: 'test'
+  ...
+# Subtest: @R35 plainName of "" is ""
+ok 107 - @R35 plainName of "" is ""
+  ---
+  duration_ms: 0.0176
+  type: 'test'
+  ...
+# Subtest: @R35 @R24 plainName and summaryText read one class, 79 code points, for every code point
+ok 108 - @R35 @R24 plainName and summaryText read one class, 79 code points, for every code point
+  ---
+  duration_ms: 1983.057
+  type: 'test'
+  ...
+# Subtest: @R62 @R33 plainNameField of "BeU+202En" with the caret at 2, a removed character after the caret only, none before it
+ok 109 - @R62 @R33 plainNameField of "BeU+202En" with the caret at 2, a removed character after the caret only, none before it
+  ---
+  duration_ms: 1.3438
+  type: 'test'
+  ...
+# Subtest: @R62 @R33 plainNameField of "BenU+202E" with the caret at 3, the same at the end of the text
+ok 110 - @R62 @R33 plainNameField of "BenU+202E" with the caret at 3, the same at the end of the text
+  ---
+  duration_ms: 0.168
+  type: 'test'
+  ...
+# Subtest: @R62 @R33 plainNameField of "U+202EBeU+202En" with the caret at 3, one removed character before the caret and one after it
+ok 111 - @R62 @R33 plainNameField of "U+202EBeU+202En" with the caret at 3, one removed character before the caret and one after it
+  ---
+  duration_ms: 0.1755
+  type: 'test'
+  ...
+# Subtest: @R62 @R33 plainNameField of "U+2028U+2029BeU+0000nU+200E" with the caret at 4, two removed characters before the caret and two after it
+ok 112 - @R62 @R33 plainNameField of "U+2028U+2029BeU+0000nU+200E" with the caret at 4, two removed characters before the caret and two after it
+  ---
+  duration_ms: 0.0799
+  type: 'test'
+  ...
+# Subtest: @R62 @R33 plainNameField of "BeU+202ExU+2067n" with the caret at 5, what an insert at the caret leaves, the caret after the x
+ok 113 - @R62 @R33 plainNameField of "BeU+202ExU+2067n" with the caret at 5, what an insert at the caret leaves, the caret after the x
+  ---
+  duration_ms: 0.066
+  type: 'test'
+  ...
+# Subtest: @R62 @R33 plainNameField of "U+202EU+2067" with the caret at 1, a name made only of removed characters, the plain text is empty
+ok 114 - @R62 @R33 plainNameField of "U+202EU+2067" with the caret at 1, a name made only of removed characters, the plain text is empty
+  ---
+  duration_ms: 0.0598
+  type: 'test'
+  ...
+# Subtest: @R25 encodeDraft and decodeDraft round-trip a new bill and an item bill
+ok 115 - @R25 encodeDraft and decodeDraft round-trip a new bill and an item bill
+  ---
+  duration_ms: 2.6782
+  type: 'test'
+  ...
+# Subtest: @R26 D1 to D4 reject text, shapes and versions that are not a draft
+ok 116 - @R26 D1 to D4 reject text, shapes and versions that are not a draft
+  ---
+  duration_ms: 0.3136
+  type: 'test'
+  ...
+# Subtest: @R26 D5 rejects an unknown mode
+ok 117 - @R26 D5 rejects an unknown mode
+  ---
+  duration_ms: 0.2726
+  type: 'test'
+  ...
+# Subtest: @R26 D6 takes 2 to 12 people with unique ids of the form p<digits>
+ok 118 - @R26 D6 takes 2 to 12 people with unique ids of the form p<digits>
+  ---
+  duration_ms: 0.5374
+  type: 'test'
+  ...
+# Subtest: @R26 D7 takes 0 to 50 items whose who is a duplicate-free list of known people
+ok 119 - @R26 D7 takes 0 to 50 items whose who is a duplicate-free list of known people
+  ---
+  duration_ms: 1.4991
+  type: 'test'
+  ...
+# Subtest: @R26 D8 counts grapheme clusters and refuses line breaks
+ok 120 - @R26 D8 counts grapheme clusters and refuses line breaks
+  ---
+  duration_ms: 0.467
+  type: 'test'
+  ...
+# Subtest: @R26 D9 wants the three text fields as strings
+ok 121 - @R26 D9 wants the three text fields as strings
+  ---
+  duration_ms: 0.3716
+  type: 'test'
+  ...
+# Subtest: @R26 D10 wants nextId an integer above every id and at most 1,000,000,000
+ok 122 - @R26 D10 wants nextId an integer above every id and at most 1,000,000,000
+  ---
+  duration_ms: 0.422
+  type: 'test'
+  ...
+# Subtest: @R26 D11 and D12 drop unknown keys and build new objects from known fields
+ok 123 - @R26 D11 and D12 drop unknown keys and build new objects from known fields
+  ---
+  duration_ms: 0.3665
+  type: 'test'
+  ...
+# Subtest: @R28 getStorage, loadDraft and saveDraft never throw
+ok 124 - @R28 getStorage, loadDraft and saveDraft never throw
+  ---
+  duration_ms: 0.3937
+  type: 'test'
+  ...
+# Subtest: @R61 D3 and D13 read a version 2 draft with its spare choice as stored
+ok 125 - @R61 D3 and D13 read a version 2 draft with its spare choice as stored
+  ---
+  duration_ms: 0.5231
+  type: 'test'
+  ...
+# Subtest: @R61 D14 reads a version 1 draft with spare Top of the list, whatever spare key it holds
+ok 126 - @R61 D14 reads a version 1 draft with spare Top of the list, whatever spare key it holds
+  ---
+  duration_ms: 0.3934
+  type: 'test'
+  ...
+# Subtest: @R61 D13 keeps a One person choice whose person is on no item, and keeps only the fields a rule needs
+ok 127 - @R61 D13 keeps a One person choice whose person is on no item, and keeps only the fields a rule needs
+  ---
+  duration_ms: 0.3335
+  type: 'test'
+  ...
+# Subtest: @R61 D3 and D13 reject another version and every spare choice outside core R27
+ok 128 - @R61 D3 and D13 reject another version and every spare choice outside core R27
+  ---
+  duration_ms: 0.3451
+  type: 'test'
+  ...
+# Subtest: @R61 encodeDraft writes version 2, and loadDraft and saveDraft report a storage that fails
+ok 129 - @R61 encodeDraft writes version 2, and loadDraft and saveDraft report a storage that fails
+  ---
+  duration_ms: 0.4309
+  type: 'test'
+  ...
+# Subtest: @R62 @R61 decodeDraft of G8 keeps the draft and rebuilds every name without the class
+ok 130 - @R62 @R61 decodeDraft of G8 keeps the draft and rebuilds every name without the class
+  ---
+  duration_ms: 0.5712
+  type: 'test'
+  ...
+# Subtest: @R62 @R61 decodeDraft of G9 keeps the draft and rebuilds every name without the class
+ok 131 - @R62 @R61 decodeDraft of G9 keeps the draft and rebuilds every name without the class
+  ---
+  duration_ms: 0.2912
+  type: 'test'
+  ...
+# Subtest: @R62 @R61 decodeDraft of G10, the K1 draft keeps the draft and rebuilds every name without the class
+ok 132 - @R62 @R61 decodeDraft of G10, the K1 draft keeps the draft and rebuilds every name without the class
+  ---
+  duration_ms: 0.2579
+  type: 'test'
+  ...
+# Subtest: @R62 @R61 decodeDraft of G10, the S1_V1 draft keeps the draft and rebuilds every name without the class
+ok 133 - @R62 @R61 decodeDraft of G10, the S1_V1 draft keeps the draft and rebuilds every name without the class
+  ---
+  duration_ms: 0.3049
+  type: 'test'
+  ...
+# Subtest: @R62 @R61 decodeDraft of K1 with i4 renamed 40 letters and U+202E keeps the draft and rebuilds every name without the class
+ok 134 - @R62 @R61 decodeDraft of K1 with i4 renamed 40 letters and U+202E keeps the draft and rebuilds every name without the class
+  ---
+  duration_ms: 0.2781
+  type: 'test'
+  ...
+# Subtest: @R62 @R61 decodeDraft of B19, and K2 with Aisyah renamed Ai U+202E U+000D syah, so LF and CR are still rejected (D8 (a))
+ok 135 - @R62 @R61 decodeDraft of B19, and K2 with Aisyah renamed Ai U+202E U+000D syah, so LF and CR are still rejected (D8 (a))
+  ---
+  duration_ms: 0.192
+  type: 'test'
+  ...
+# Subtest: @R62 @R61 decodeDraft of B18 and B20, still too long after the rebuild
+ok 136 - @R62 @R61 decodeDraft of B18 and B20, still too long after the rebuild
+  ---
+  duration_ms: 0.1439
+  type: 'test'
+  ...
+# Subtest: @R27 loadDraft tells none, ok and unreadable apart, and saveDraft writes the encoded draft
+ok 137 - @R27 loadDraft tells none, ok and unreadable apart, and saveDraft writes the encoded draft
+  ---
+  duration_ms: 0.2498
+  type: 'test'
+  ...
+# Subtest: @R10 newErrorFlags starts with nothing flagged, and every call is a new object
+ok 138 - @R10 newErrorFlags starts with nothing flagged, and every call is a new object
+  ---
+  duration_ms: 1.5595
+  type: 'test'
+  ...
+# Subtest: @R10 b flagsFor flags a restored field only when its text is not empty and fails its parser
+ok 139 - @R10 b flagsFor flags a restored field only when its text is not empty and fails its parser
+  ---
+  duration_ms: 0.6175
+  type: 'test'
+  ...
+# Subtest: @R10 a leftField sets the flag for bad text, and for nothing else
+ok 140 - @R10 a leftField sets the flag for bad text, and for nothing else
+  ---
+  duration_ms: 0.2806
+  type: 'test'
+  ...
+# Subtest: @R10 a leftField sets only the flag of its own kind, and of its own item
+ok 141 - @R10 a leftField sets only the flag of its own kind, and of its own item
+  ---
+  duration_ms: 0.214
+  type: 'test'
+  ...
+# Subtest: @R10 c typing text that is valid or empty clears a flag, for every kind of field
+ok 142 - @R10 c typing text that is valid or empty clears a flag, for every kind of field
+  ---
+  duration_ms: 0.254
+  type: 'test'
+  ...
+# Subtest: @R10 c typing bad text keeps a flag that is already set, and never sets one
+ok 143 - @R10 c typing bad text keeps a flag that is already set, and never sets one
+  ---
+  duration_ms: 0.2064
+  type: 'test'
+  ...
+# Subtest: @R10 c a cleared error does not come back until the field is left again
+ok 144 - @R10 c a cleared error does not come back until the field is left again
+  ---
+  duration_ms: 0.589
+  type: 'test'
+  ...
+# Subtest: @R10 visibleErrors shows an error only while its flag is set and its text is still bad
+ok 145 - @R10 visibleErrors shows an error only while its flag is set and its text is still bad
+  ---
+  duration_ms: 0.2228
+  type: 'test'
+  ...
+# Subtest: @R10 visibleErrors reports every field, and a price flag belongs to its item alone
+ok 146 - @R10 visibleErrors reports every field, and a price flag belongs to its item alone
+  ---
+  duration_ms: 0.2059
+  type: 'test'
+  ...
+# Subtest: @R10 forgetPrice drops the flag of a removed item, so a later item with that id starts clean
+ok 147 - @R10 forgetPrice drops the flag of a removed item, so a later item with that id starts clean
+  ---
+  duration_ms: 0.2632
+  type: 'test'
+  ...
+# Subtest: @R25 the scan sees the core files
+ok 148 - @R25 the scan sees the core files
+  ---
+  duration_ms: 1.7885
+  type: 'test'
+  ...
+# Subtest: @R25 the scanner catches what it should (negative control)
+ok 149 - @R25 the scanner catches what it should (negative control)
+  ---
+  duration_ms: 1.7364
+  type: 'test'
+  ...
+# Subtest: @R25 the code-only scan reads code, and skips comments, strings, template text and regex bodies
+ok 150 - @R25 the code-only scan reads code, and skips comments, strings, template text and regex bodies
+  ---
+  duration_ms: 0.7206
+  type: 'test'
+  ...
+# Subtest: @R25 const run = (text) => eval(text); served into each core file goes red as eval
+ok 151 - @R25 const run = (text) => eval(text); served into each core file goes red as eval
+  ---
+  duration_ms: 4.9394
+  type: 'test'
+  ...
+# Subtest: @R25 const make = (body) => Function(body); served into each core file goes red as Function
+ok 152 - @R25 const make = (body) => Function(body); served into each core file goes red as Function
+  ---
+  duration_ms: 3.1987
+  type: 'test'
+  ...
+# Subtest: @R25 const build = (body) => new Function(body); served into each core file goes red as Function
+ok 153 - @R25 const build = (body) => new Function(body); served into each core file goes red as Function
+  ---
+  duration_ms: 3.3499
+  type: 'test'
+  ...
+# Subtest: @R25 const load = (name) => import(name); served into each core file goes red as import(
+ok 154 - @R25 const load = (name) => import(name); served into each core file goes red as import(
+  ---
+  duration_ms: 3.4747
+  type: 'test'
+  ...
+# Subtest: @R25 const soon = (fn) => queueMicrotask(fn); served into each core file goes red as queueMicrotask
+ok 155 - @R25 const soon = (fn) => queueMicrotask(fn); served into each core file goes red as queueMicrotask
+  ---
+  duration_ms: 3.2774
+  type: 'test'
+  ...
+# Subtest: @R25 const later = (fn) => setImmediate(fn); served into each core file goes red as setImmediate
+ok 156 - @R25 const later = (fn) => setImmediate(fn); served into each core file goes red as setImmediate
+  ---
+  duration_ms: 2.5978
+  type: 'test'
+  ...
+# Subtest: @R25 const now = () => performance.now(); served into each core file goes red as performance
+ok 157 - @R25 const now = () => performance.now(); served into each core file goes red as performance
+  ---
+  duration_ms: 2.6595
+  type: 'test'
+  ...
+# Subtest: @R25 const pick = () => crypto.getRandomValues(new Uint32Array(1))[0]; served into each core file goes red as crypto
+ok 158 - @R25 const pick = () => crypto.getRandomValues(new Uint32Array(1))[0]; served into each core file goes red as crypto
+  ---
+  duration_ms: 2.8494
+  type: 'test'
+  ...
+# Subtest: @R25 const open = (url) => new WebSocket(url); served into each core file goes red as WebSocket
+ok 159 - @R25 const open = (url) => new WebSocket(url); served into each core file goes red as WebSocket
+  ---
+  duration_ms: 2.6308
+  type: 'test'
+  ...
+# Subtest: @R25 const env = () => process.env.SPLIT; served into each core file goes red as process
+ok 160 - @R25 const env = () => process.env.SPLIT; served into each core file goes red as process
+  ---
+  duration_ms: 2.2617
+  type: 'test'
+  ...
+# Subtest: @R25 const load = (name) => require(name); served into each core file goes red as require
+ok 161 - @R25 const load = (name) => require(name); served into each core file goes red as require
+  ---
+  duration_ms: 2.9821
+  type: 'test'
+  ...
+# Subtest: @R25 allocate.js uses no banned name
+ok 162 - @R25 allocate.js uses no banned name
+  ---
+  duration_ms: 0.2552
+  type: 'test'
+  ...
+# Subtest: @R25 allocate.js imports only from src/core/
+ok 163 - @R25 allocate.js imports only from src/core/
+  ---
+  duration_ms: 0.1668
+  type: 'test'
+  ...
+# Subtest: @R25 bill.js uses no banned name
+ok 164 - @R25 bill.js uses no banned name
+  ---
+  duration_ms: 0.7355
+  type: 'test'
+  ...
+# Subtest: @R25 bill.js imports only from src/core/
+ok 165 - @R25 bill.js imports only from src/core/
+  ---
+  duration_ms: 0.1088
+  type: 'test'
+  ...
+# Subtest: @R25 money.js uses no banned name
+ok 166 - @R25 money.js uses no banned name
+  ---
+  duration_ms: 0.2463
+  type: 'test'
+  ...
+# Subtest: @R25 money.js imports only from src/core/
+ok 167 - @R25 money.js imports only from src/core/
+  ---
+  duration_ms: 0.0885
+  type: 'test'
+  ...
+# Subtest: @R25 result.js uses no banned name
+ok 168 - @R25 result.js uses no banned name
+  ---
+  duration_ms: 0.4296
+  type: 'test'
+  ...
+# Subtest: @R25 result.js imports only from src/core/
+ok 169 - @R25 result.js imports only from src/core/
+  ---
+  duration_ms: 0.2974
+  type: 'test'
+  ...
+# Subtest: @R25 spare.js uses no banned name
+ok 170 - @R25 spare.js uses no banned name
+  ---
+  duration_ms: 0.243
+  type: 'test'
+  ...
+# Subtest: @R25 spare.js imports only from src/core/
+ok 171 - @R25 spare.js imports only from src/core/
+  ---
+  duration_ms: 0.2193
+  type: 'test'
+  ...
+# Subtest: @R25 summary.js uses no banned name
+ok 172 - @R25 summary.js uses no banned name
+  ---
+  duration_ms: 0.1326
+  type: 'test'
+  ...
+# Subtest: @R25 summary.js imports only from src/core/
+ok 173 - @R25 summary.js imports only from src/core/
+  ---
+  duration_ms: 0.1246
+  type: 'test'
+  ...
+# Subtest: @R25 the core files do import each other (the import scan is not blind)
+ok 174 - @R25 the core files do import each other (the import scan is not blind)
+  ---
+  duration_ms: 0.2626
+  type: 'test'
+  ...
+# Subtest: @R35 @R25 the class is written once, in core/bill.js, and summary.js reads it from there
+ok 175 - @R35 @R25 the class is written once, in core/bill.js, and summary.js reads it from there
+  ---
+  duration_ms: 29.5078
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap: the core touches no banned global or method while it loads and while every export runs
+ok 176 - @R25 runtime trap: the core touches no banned global or method while it loads and while every export runs
+  ---
+  duration_ms: 21.2333
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap: every trap fires for core code and not for test code (negative control)
+ok 177 - @R25 runtime trap: every trap fires for core code and not for test code (negative control)
+  ---
+  duration_ms: 43.5852
+  type: 'test'
+  ...
+# Subtest: @R25 a Math.random planted in spare.js is caught by the scan (negative control)
+ok 178 - @R25 a Math.random planted in spare.js is caught by the scan (negative control)
+  ---
+  duration_ms: 1.1073
+  type: 'test'
+  ...
+# Subtest: @R25 a Math.random planted in spare.js is caught by the runtime trap at load and when an export runs (negative control)
+ok 179 - @R25 a Math.random planted in spare.js is caught by the runtime trap at load and when an export runs (negative control)
+  ---
+  duration_ms: 8.6106
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap: the trap lists are exactly the pinned ones, so no trap is dropped unseen
+ok 180 - @R25 runtime trap: the trap lists are exactly the pinned ones, so no trap is dropped unseen
+  ---
+  duration_ms: 0.1465
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap: every name the source scan bans has a trap
+ok 181 - @R25 runtime trap: every name the source scan bans has a trap
+  ---
+  duration_ms: 0.1562
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap: every trap is put back after a run, also after a body that throws
+ok 182 - @R25 runtime trap: every trap is put back after a run, also after a body that throws
+  ---
+  duration_ms: 2.1788
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap: every run loads its own copy of the core
+ok 183 - @R25 runtime trap: every run loads its own copy of the core
+  ---
+  duration_ms: 6.8505
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap: a run whose body throws leaves no hits for the next run
+ok 184 - @R25 runtime trap: a run whose body throws leaves no hits for the next run
+  ---
+  duration_ms: 0.8956
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap: a stack that cannot be read does not leave the recorder stuck
+ok 185 - @R25 runtime trap: a stack that cannot be read does not leave the recorder stuck
+  ---
+  duration_ms: 0.1179
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F1 plant in every core file
+ok 186 - @R25 runtime trap catches the security re-check's F1 plant in every core file
+  ---
+  duration_ms: 8.3147
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F2 plant in every core file
+ok 187 - @R25 runtime trap catches the security re-check's F2 plant in every core file
+  ---
+  duration_ms: 9.082
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F3 plant in every core file
+ok 188 - @R25 runtime trap catches the security re-check's F3 plant in every core file
+  ---
+  duration_ms: 8.377
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F4 plant in every core file
+ok 189 - @R25 runtime trap catches the security re-check's F4 plant in every core file
+  ---
+  duration_ms: 8.4662
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F4b plant in every core file
+ok 190 - @R25 runtime trap catches the security re-check's F4b plant in every core file
+  ---
+  duration_ms: 8.8919
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F5 plant in every core file
+ok 191 - @R25 runtime trap catches the security re-check's F5 plant in every core file
+  ---
+  duration_ms: 8.8322
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F6 plant in every core file
+ok 192 - @R25 runtime trap catches the security re-check's F6 plant in every core file
+  ---
+  duration_ms: 8.5169
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F6b plant in every core file
+ok 193 - @R25 runtime trap catches the security re-check's F6b plant in every core file
+  ---
+  duration_ms: 8.9672
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F7 plant in every core file
+ok 194 - @R25 runtime trap catches the security re-check's F7 plant in every core file
+  ---
+  duration_ms: 8.9715
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F8 plant in every core file
+ok 195 - @R25 runtime trap catches the security re-check's F8 plant in every core file
+  ---
+  duration_ms: 11.0513
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F9 plant in every core file
+ok 196 - @R25 runtime trap catches the security re-check's F9 plant in every core file
+  ---
+  duration_ms: 8.3697
+  type: 'test'
+  ...
+# Subtest: @R25 runtime trap catches the security re-check's F10 plant in every core file
+ok 197 - @R25 runtime trap catches the security re-check's F10 plant in every core file
+  ---
+  duration_ms: 7.877
+  type: 'test'
+  ...
+# Subtest: @R22 generated bills always add up, under every spare rule
+ok 198 - @R22 generated bills always add up, under every spare rule
+  ---
+  duration_ms: 313.1373
+  type: 'test'
+  ...
+# Subtest: @R1 amount bounds are exported as the contract says
+ok 199 - @R1 amount bounds are exported as the contract says
+  ---
+  duration_ms: 1.1998
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("12") is 1200 cents
+ok 200 - @R1 parseAmount("12") is 1200 cents
+  ---
+  duration_ms: 0.5733
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("12.5") is 1250 cents
+ok 201 - @R1 parseAmount("12.5") is 1250 cents
+  ---
+  duration_ms: 0.1114
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("12.50") is 1250 cents
+ok 202 - @R1 parseAmount("12.50") is 1250 cents
+  ---
+  duration_ms: 0.0576
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("0.01") is 1 cents
+ok 203 - @R1 parseAmount("0.01") is 1 cents
+  ---
+  duration_ms: 0.0543
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("99999.99") is 9999999 cents
+ok 204 - @R1 parseAmount("99999.99") is 9999999 cents
+  ---
+  duration_ms: 0.073
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("1.15") is 115 cents
+ok 205 - @R1 parseAmount("1.15") is 115 cents
+  ---
+  duration_ms: 0.0572
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("4.35") is 435 cents
+ok 206 - @R1 parseAmount("4.35") is 435 cents
+  ---
+  duration_ms: 0.0533
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("0.29") is 29 cents
+ok 207 - @R1 parseAmount("0.29") is 29 cents
+  ---
+  duration_ms: 0.0596
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount(" 12.50 ") is 1250 cents
+ok 208 - @R1 parseAmount(" 12.50 ") is 1250 cents
+  ---
+  duration_ms: 0.1059
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("007") is 700 cents
+ok 209 - @R1 parseAmount("007") is 700 cents
+  ---
+  duration_ms: 0.0591
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("12.") is 1200 cents
+ok 210 - @R1 parseAmount("12.") is 1200 cents
+  ---
+  duration_ms: 0.0404
+  type: 'test'
+  ...
+# Subtest: @R1 parseAmount("0000000012.50") is 1250 cents
+ok 211 - @R1 parseAmount("0000000012.50") is 1250 cents
+  ---
+  duration_ms: 0.0298
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("0") is invalid, not empty
+ok 212 - @R1 @R2 parseAmount("0") is invalid, not empty
+  ---
+  duration_ms: 0.0513
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("0.00") is invalid, not empty
+ok 213 - @R1 @R2 parseAmount("0.00") is invalid, not empty
+  ---
+  duration_ms: 0.0259
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("100000") is invalid, not empty
+ok 214 - @R1 @R2 parseAmount("100000") is invalid, not empty
+  ---
+  duration_ms: 0.0287
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("99999.991") is invalid, not empty
+ok 215 - @R1 @R2 parseAmount("99999.991") is invalid, not empty
+  ---
+  duration_ms: 0.0417
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("12.505") is invalid, not empty
+ok 216 - @R1 @R2 parseAmount("12.505") is invalid, not empty
+  ---
+  duration_ms: 0.0535
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("13.505") is invalid, not empty
+ok 217 - @R1 @R2 parseAmount("13.505") is invalid, not empty
+  ---
+  duration_ms: 0.034
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("-5") is invalid, not empty
+ok 218 - @R1 @R2 parseAmount("-5") is invalid, not empty
+  ---
+  duration_ms: 0.0308
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("+5") is invalid, not empty
+ok 219 - @R1 @R2 parseAmount("+5") is invalid, not empty
+  ---
+  duration_ms: 0.0208
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("1,000") is invalid, not empty
+ok 220 - @R1 @R2 parseAmount("1,000") is invalid, not empty
+  ---
+  duration_ms: 0.0215
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount(".5") is invalid, not empty
+ok 221 - @R1 @R2 parseAmount(".5") is invalid, not empty
+  ---
+  duration_ms: 0.0302
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("1e3") is invalid, not empty
+ok 222 - @R1 @R2 parseAmount("1e3") is invalid, not empty
+  ---
+  duration_ms: 0.018
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("0x10") is invalid, not empty
+ok 223 - @R1 @R2 parseAmount("0x10") is invalid, not empty
+  ---
+  duration_ms: 0.017
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("Infinity") is invalid, not empty
+ok 224 - @R1 @R2 parseAmount("Infinity") is invalid, not empty
+  ---
+  duration_ms: 0.0289
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("NaN") is invalid, not empty
+ok 225 - @R1 @R2 parseAmount("NaN") is invalid, not empty
+  ---
+  duration_ms: 0.0285
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("abc") is invalid, not empty
+ok 226 - @R1 @R2 parseAmount("abc") is invalid, not empty
+  ---
+  duration_ms: 0.0224
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("12 50") is invalid, not empty
+ok 227 - @R1 @R2 parseAmount("12 50") is invalid, not empty
+  ---
+  duration_ms: 0.02
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 parseAmount("１２") is invalid, not empty
+ok 228 - @R1 @R2 parseAmount("１２") is invalid, not empty
+  ---
+  duration_ms: 0.0868
+  type: 'test'
+  ...
+# Subtest: @R1 @R2 a 401-character amount is invalid and does not throw
+ok 229 - @R1 @R2 a 401-character amount is invalid and does not throw
+  ---
+  duration_ms: 0.08
+  type: 'test'
+  ...
+# Subtest: @R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion
+ok 230 - @R1 @R3 a whole part longer than the ceiling's is refused before any numeric conversion
+  ---
+  duration_ms: 0.3052
+  type: 'test'
+  ...
+# Subtest: @R2 "" is reported as empty by both parsers
+ok 231 - @R2 "" is reported as empty by both parsers
+  ---
+  duration_ms: 0.0906
+  type: 'test'
+  ...
+# Subtest: @R2 "   " is reported as empty by both parsers
+ok 232 - @R2 "   " is reported as empty by both parsers
+  ---
+  duration_ms: 0.0575
+  type: 'test'
+  ...
+# Subtest: @R2 the parsers never throw and always return a well-formed result
+ok 233 - @R2 the parsers never throw and always return a well-formed result
+  ---
+  duration_ms: 1.475
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("0", 30) is 0 bp
+ok 234 - @R3 parseRate("0", 30) is 0 bp
+  ---
+  duration_ms: 0.1479
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("10", 30) is 1000 bp
+ok 235 - @R3 parseRate("10", 30) is 1000 bp
+  ---
+  duration_ms: 0.0392
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("6", 20) is 600 bp
+ok 236 - @R3 parseRate("6", 20) is 600 bp
+  ---
+  duration_ms: 0.0617
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("6.5", 20) is 650 bp
+ok 237 - @R3 parseRate("6.5", 20) is 650 bp
+  ---
+  duration_ms: 0.0263
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("6.25", 20) is 625 bp
+ok 238 - @R3 parseRate("6.25", 20) is 625 bp
+  ---
+  duration_ms: 0.0374
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("30", 30) is 3000 bp
+ok 239 - @R3 parseRate("30", 30) is 3000 bp
+  ---
+  duration_ms: 0.0466
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("30.00", 30) is 3000 bp
+ok 240 - @R3 parseRate("30.00", 30) is 3000 bp
+  ---
+  duration_ms: 0.0262
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("20", 20) is 2000 bp
+ok 241 - @R3 parseRate("20", 20) is 2000 bp
+  ---
+  duration_ms: 0.0197
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("0.01", 30) is 1 bp
+ok 242 - @R3 parseRate("0.01", 30) is 1 bp
+  ---
+  duration_ms: 0.0269
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("6.", 20) is 600 bp
+ok 243 - @R3 parseRate("6.", 20) is 600 bp
+  ---
+  duration_ms: 0.0305
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("06", 20) is 600 bp
+ok 244 - @R3 parseRate("06", 20) is 600 bp
+  ---
+  duration_ms: 0.0252
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("30.01", 30) is invalid
+ok 245 - @R3 parseRate("30.01", 30) is invalid
+  ---
+  duration_ms: 0.0396
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("20.01", 20) is invalid
+ok 246 - @R3 parseRate("20.01", 20) is invalid
+  ---
+  duration_ms: 0.0341
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("25", 20) is invalid
+ok 247 - @R3 parseRate("25", 20) is invalid
+  ---
+  duration_ms: 0.0257
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("-1", 30) is invalid
+ok 248 - @R3 parseRate("-1", 30) is invalid
+  ---
+  duration_ms: 0.0183
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("6.255", 20) is invalid
+ok 249 - @R3 parseRate("6.255", 20) is invalid
+  ---
+  duration_ms: 0.0222
+  type: 'test'
+  ...
+# Subtest: @R3 parseRate("10%", 30) is invalid
+ok 250 - @R3 parseRate("10%", 30) is invalid
+  ---
+  duration_ms: 0.016
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(0) is "RM 0.00"
+ok 251 - @R4 formatMoney(0) is "RM 0.00"
+  ---
+  duration_ms: 0.7079
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(1) is "RM 0.01"
+ok 252 - @R4 formatMoney(1) is "RM 0.01"
+  ---
+  duration_ms: 0.0693
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(10) is "RM 0.10"
+ok 253 - @R4 formatMoney(10) is "RM 0.10"
+  ---
+  duration_ms: 0.0803
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(100) is "RM 1.00"
+ok 254 - @R4 formatMoney(100) is "RM 1.00"
+  ---
+  duration_ms: 0.0533
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(3887) is "RM 38.87"
+ok 255 - @R4 formatMoney(3887) is "RM 38.87"
+  ---
+  duration_ms: 0.0287
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(11660) is "RM 116.60"
+ok 256 - @R4 formatMoney(11660) is "RM 116.60"
+  ---
+  duration_ms: 0.0199
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(99999) is "RM 999.99"
+ok 257 - @R4 formatMoney(99999) is "RM 999.99"
+  ---
+  duration_ms: 0.0163
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(100000) is "RM 1,000.00"
+ok 258 - @R4 formatMoney(100000) is "RM 1,000.00"
+  ---
+  duration_ms: 0.0157
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(119387) is "RM 1,193.87"
+ok 259 - @R4 formatMoney(119387) is "RM 1,193.87"
+  ---
+  duration_ms: 0.0228
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(15599999) is "RM 155,999.99"
+ok 260 - @R4 formatMoney(15599999) is "RM 155,999.99"
+  ---
+  duration_ms: 0.0337
+  type: 'test'
+  ...
+# Subtest: @R4 formatMoney(779999922) is "RM 7,799,999.22"
+ok 261 - @R4 formatMoney(779999922) is "RM 7,799,999.22"
+  ---
+  duration_ms: 0.0277
+  type: 'test'
+  ...
+# Subtest: @R34 formatAmount(0) is "0.00"
+ok 262 - @R34 formatAmount(0) is "0.00"
+  ---
+  duration_ms: 0.092
+  type: 'test'
+  ...
+# Subtest: @R34 formatAmount(2490) is "24.90"
+ok 263 - @R34 formatAmount(2490) is "24.90"
+  ---
+  duration_ms: 0.0314
+  type: 'test'
+  ...
+# Subtest: @R34 formatAmount(98940) is "989.40"
+ok 264 - @R34 formatAmount(98940) is "989.40"
+  ---
+  duration_ms: 0.0235
+  type: 'test'
+  ...
+# Subtest: @R34 formatAmount(99999) is "999.99"
+ok 265 - @R34 formatAmount(99999) is "999.99"
+  ---
+  duration_ms: 0.0234
+  type: 'test'
+  ...
+# Subtest: @R34 formatAmount(100000) is "1,000.00"
+ok 266 - @R34 formatAmount(100000) is "1,000.00"
+  ---
+  duration_ms: 0.0281
+  type: 'test'
+  ...
+# Subtest: @R34 formatAmount(102390) is "1,023.90"
+ok 267 - @R34 formatAmount(102390) is "1,023.90"
+  ---
+  duration_ms: 0.0838
+  type: 'test'
+  ...
+# Subtest: @R34 formatAmount(119387) is "1,193.87"
+ok 268 - @R34 formatAmount(119387) is "1,193.87"
+  ---
+  duration_ms: 0.0366
+  type: 'test'
+  ...
+# Subtest: @R34 formatAmount(100000000) is "1,000,000.00"
+ok 269 - @R34 formatAmount(100000000) is "1,000,000.00"
+  ---
+  duration_ms: 0.0266
+  type: 'test'
+  ...
+# Subtest: @R34 formatAmount(779999922) is "7,799,999.22"
+ok 270 - @R34 formatAmount(779999922) is "7,799,999.22"
+  ---
+  duration_ms: 0.026
+  type: 'test'
+  ...
+# Subtest: @R34 @R4 formatMoney is RM, a space and formatAmount, for 1000 seeded values
+ok 271 - @R34 @R4 formatMoney is RM, a space and formatAmount, for 1000 seeded values
+  ---
+  duration_ms: 1.7126
+  type: 'test'
+  ...
+# Subtest: @R5 formatRate(0) is "0%"
+ok 272 - @R5 formatRate(0) is "0%"
+  ---
+  duration_ms: 0.1719
+  type: 'test'
+  ...
+# Subtest: @R5 formatRate(600) is "6%"
+ok 273 - @R5 formatRate(600) is "6%"
+  ---
+  duration_ms: 0.0763
+  type: 'test'
+  ...
+# Subtest: @R5 formatRate(1000) is "10%"
+ok 274 - @R5 formatRate(1000) is "10%"
+  ---
+  duration_ms: 0.0691
+  type: 'test'
+  ...
+# Subtest: @R5 formatRate(650) is "6.5%"
+ok 275 - @R5 formatRate(650) is "6.5%"
+  ---
+  duration_ms: 0.0258
+  type: 'test'
+  ...
+# Subtest: @R5 formatRate(625) is "6.25%"
+ok 276 - @R5 formatRate(625) is "6.25%"
+  ---
+  duration_ms: 0.0278
+  type: 'test'
+  ...
+# Subtest: @R5 formatRate(605) is "6.05%"
+ok 277 - @R5 formatRate(605) is "6.05%"
+  ---
+  duration_ms: 0.0184
+  type: 'test'
+  ...
+# Subtest: @R5 formatRate(3000) is "30%"
+ok 278 - @R5 formatRate(3000) is "30%"
+  ---
+  duration_ms: 0.0151
+  type: 'test'
+  ...
+# Subtest: @R5 a typed 10.00 round-trips to 10%
+ok 279 - @R5 a typed 10.00 round-trips to 10%
+  ---
+  duration_ms: 0.0431
+  type: 'test'
+  ...
+# Subtest: @R57 b count 2, a mouse, 5000 ms after a click at (100, 100), at (300, 300): repeat (point 1)
+ok 280 - @R57 b count 2, a mouse, 5000 ms after a click at (100, 100), at (300, 300): repeat (point 1)
+  ---
+  duration_ms: 1.3089
+  type: 'test'
+  ...
+# Subtest: @R57 b count 3, a tap, 0 ms after a click at (100, 100), at (100, 100): repeat (point 1)
+ok 281 - @R57 b count 3, a tap, 0 ms after a click at (100, 100), at (100, 100): repeat (point 1)
+  ---
+  duration_ms: 0.0877
+  type: 'test'
+  ...
+# Subtest: @R57 b count 1, a mouse, 10 ms after a click at (100, 100), at (100, 100): not a repeat (a mouse goes by its count only)
+ok 282 - @R57 b count 1, a mouse, 10 ms after a click at (100, 100), at (100, 100): not a repeat (a mouse goes by its count only)
+  ---
+  duration_ms: 0.0569
+  type: 'test'
+  ...
+# Subtest: @R57 b count 0, a tap, 10 ms after a click at (100, 100), at (100, 100): not a repeat (a key press)
+ok 283 - @R57 b count 0, a tap, 10 ms after a click at (100, 100), at (100, 100): not a repeat (a key press)
+  ---
+  duration_ms: 0.0463
+  type: 'test'
+  ...
+# Subtest: @R57 b count 1, a tap, 0 ms after a click at (100, 100), at (100, 100): repeat (point 2)
+ok 284 - @R57 b count 1, a tap, 0 ms after a click at (100, 100), at (100, 100): repeat (point 2)
+  ---
+  duration_ms: 0.0573
+  type: 'test'
+  ...
+# Subtest: @R57 b count 1, a tap, 499.9 ms after a click at (100, 100), at (122, 78): repeat (point 2, every edge inside)
+ok 285 - @R57 b count 1, a tap, 499.9 ms after a click at (100, 100), at (122, 78): repeat (point 2, every edge inside)
+  ---
+  duration_ms: 0.0446
+  type: 'test'
+  ...
+# Subtest: @R57 b count 1, a tap, 500 ms after a click at (100, 100), at (100, 100): not a repeat (500 ms is not less than 500)
+ok 286 - @R57 b count 1, a tap, 500 ms after a click at (100, 100), at (100, 100): not a repeat (500 ms is not less than 500)
+  ---
+  duration_ms: 0.0629
+  type: 'test'
+  ...
+# Subtest: @R57 b count 1, a tap, 10 ms after a click at (100, 100), at (122.5, 100): not a repeat (more than 22 px across)
+ok 287 - @R57 b count 1, a tap, 10 ms after a click at (100, 100), at (122.5, 100): not a repeat (more than 22 px across)
+  ---
+  duration_ms: 0.0553
+  type: 'test'
+  ...
+# Subtest: @R57 b count 1, a tap, 10 ms after a click at (100, 100), at (100, 123): not a repeat (more than 22 px down)
+ok 288 - @R57 b count 1, a tap, 10 ms after a click at (100, 100), at (100, 123): not a repeat (more than 22 px down)
+  ---
+  duration_ms: 0.0672
+  type: 'test'
+  ...
+# Subtest: @R57 b count 1, a tap, no previous click, at (100, 100): not a repeat (no previous pointer click)
+ok 289 - @R57 b count 1, a tap, no previous click, at (100, 100): not a repeat (no previous pointer click)
+  ---
+  duration_ms: 0.096
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(10000, 1000, 600) totals 11660
+ok 290 - @R6 billCharges(10000, 1000, 600) totals 11660
+  ---
+  duration_ms: 1.881
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(5940, 1000, 600) totals 6926
+ok 291 - @R6 billCharges(5940, 1000, 600) totals 6926
+  ---
+  duration_ms: 0.1315
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(8765, 1000, 600) totals 10221
+ok 292 - @R6 billCharges(8765, 1000, 600) totals 10221
+  ---
+  duration_ms: 0.068
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(5, 1000, 0) totals 6
+ok 293 - @R6 billCharges(5, 1000, 0) totals 6
+  ---
+  duration_ms: 0.0823
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(25, 1000, 0) totals 28
+ok 294 - @R6 billCharges(25, 1000, 0) totals 28
+  ---
+  duration_ms: 0.145
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(4, 1000, 0) totals 4
+ok 295 - @R6 billCharges(4, 1000, 0) totals 4
+  ---
+  duration_ms: 0.1017
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(1000, 0, 0) totals 1000
+ok 296 - @R6 billCharges(1000, 0, 0) totals 1000
+  ---
+  duration_ms: 0.0971
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(5000, 1250, 625) totals 5977
+ok 297 - @R6 billCharges(5000, 1250, 625) totals 5977
+  ---
+  duration_ms: 0.0685
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(9999999, 3000, 2000) totals 15599999
+ok 298 - @R6 billCharges(9999999, 3000, 2000) totals 15599999
+  ---
+  duration_ms: 0.0846
+  type: 'test'
+  ...
+# Subtest: @R6 billCharges(499999950, 3000, 2000) totals 779999922
+ok 299 - @R6 billCharges(499999950, 3000, 2000) totals 779999922
+  ---
+  duration_ms: 0.1214
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 1 is "rates"
+ok 300 - @R18 blocking row 1 is "rates"
+  ---
+  duration_ms: 0.3826
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 2 is "rates"
+ok 301 - @R18 blocking row 2 is "rates"
+  ---
+  duration_ms: 0.1071
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 3 is "rates"
+ok 302 - @R18 blocking row 3 is "rates"
+  ---
+  duration_ms: 0.0626
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 4 is "subtotal"
+ok 303 - @R18 blocking row 4 is "subtotal"
+  ---
+  duration_ms: 0.1642
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 5 is "subtotal"
+ok 304 - @R18 blocking row 5 is "subtotal"
+  ---
+  duration_ms: 0.0906
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 6 is "subtotal"
+ok 305 - @R18 blocking row 6 is "subtotal"
+  ---
+  duration_ms: 0.0638
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 7 is "no-prices"
+ok 306 - @R18 blocking row 7 is "no-prices"
+  ---
+  duration_ms: 0.1611
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 8 is "no-prices"
+ok 307 - @R18 blocking row 8 is "no-prices"
+  ---
+  duration_ms: 0.0749
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 9 is "no-prices"
+ok 308 - @R18 blocking row 9 is "no-prices"
+  ---
+  duration_ms: 0.0473
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 10 is "prices"
+ok 309 - @R18 blocking row 10 is "prices"
+  ---
+  duration_ms: 0.0601
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 11 is "prices"
+ok 310 - @R18 blocking row 11 is "prices"
+  ---
+  duration_ms: 0.0415
+  type: 'test'
+  ...
+# Subtest: @R18 blocking row 12 is "rates"
+ok 311 - @R18 blocking row 12 is "rates"
+  ---
+  duration_ms: 0.0414
+  type: 'test'
+  ...
+# Subtest: @R18 rates outrank every other rule and a rate of 0 is not a block
+ok 312 - @R18 rates outrank every other rule and a rate of 0 is not a block
+  ---
+  duration_ms: 0.3909
+  type: 'test'
+  ...
+# Subtest: @R18 @R20 even mode ignores broken items
+ok 313 - @R18 @R20 even mode ignores broken items
+  ---
+  duration_ms: 0.2637
+  type: 'test'
+  ...
+# Subtest: @R18 @R21 by-item mode ignores a broken subtotal
+ok 314 - @R18 @R21 by-item mode ignores a broken subtotal
+  ---
+  duration_ms: 0.2605
+  type: 'test'
+  ...
+# Subtest: @R19 unassigned items are counted and the charges are still known
+ok 315 - @R19 unassigned items are counted and the charges are still known
+  ---
+  duration_ms: 0.0866
+  type: 'test'
+  ...
+# Subtest: @R19 two unassigned items give a count of 2
+ok 316 - @R19 two unassigned items give a count of 2
+  ---
+  duration_ms: 0.1486
+  type: 'test'
+  ...
+# Subtest: @R20 @R23 even result for S2
+ok 317 - @R20 @R23 even result for S2
+  ---
+  duration_ms: 0.2104
+  type: 'test'
+  ...
+# Subtest: @R20 @R23 even result for E1
+ok 318 - @R20 @R23 even result for E1
+  ---
+  duration_ms: 0.0863
+  type: 'test'
+  ...
+# Subtest: @R20 @R23 even result for E2
+ok 319 - @R20 @R23 even result for E2
+  ---
+  duration_ms: 0.1096
+  type: 'test'
+  ...
+# Subtest: @R20 @R23 even result for E3
+ok 320 - @R20 @R23 even result for E3
+  ---
+  duration_ms: 0.0862
+  type: 'test'
+  ...
+# Subtest: @R20 @R23 even result for MAX-E
+ok 321 - @R20 @R23 even result for MAX-E
+  ---
+  duration_ms: 0.0805
+  type: 'test'
+  ...
+# Subtest: @R21 @R23 by-item result for S1
+ok 322 - @R21 @R23 by-item result for S1
+  ---
+  duration_ms: 0.171
+  type: 'test'
+  ...
+# Subtest: @R21 @R23 by-item result for I2
+ok 323 - @R21 @R23 by-item result for I2
+  ---
+  duration_ms: 0.0623
+  type: 'test'
+  ...
+# Subtest: @R21 @R23 by-item result for I3
+ok 324 - @R21 @R23 by-item result for I3
+  ---
+  duration_ms: 0.0615
+  type: 'test'
+  ...
+# Subtest: @R21 @R23 by-item result for I4
+ok 325 - @R21 @R23 by-item result for I4
+  ---
+  duration_ms: 0.0862
+  type: 'test'
+  ...
+# Subtest: @R21 @R23 by-item result for MAX-I
+ok 326 - @R21 @R23 by-item result for MAX-I
+  ---
+  duration_ms: 1.0598
+  type: 'test'
+  ...
+# Subtest: @R21 a shared item's leftover sen follow the people list, not the tap order
+ok 327 - @R21 a shared item's leftover sen follow the people list, not the tap order
+  ---
+  duration_ms: 0.1436
+  type: 'test'
+  ...
+# Subtest: @R21 a person on no item gets a row of zeros
+ok 328 - @R21 a person on no item gets a row of zeros
+  ---
+  duration_ms: 0.0794
+  type: 'test'
+  ...
+# Subtest: @R23 MAX-I charges are exact at the bound
+ok 329 - @R23 MAX-I charges are exact at the bound
+  ---
+  duration_ms: 0.1903
+  type: 'test'
+  ...
+# Subtest: @R21 @R8 a by-item bill whose charges division is an R8 trap row gets the exact charges
+ok 330 - @R21 @R8 a by-item bill whose charges division is an R8 trap row gets the exact charges
+  ---
+  duration_ms: 0.5446
+  type: 'test'
+  ...
+# Subtest: @R26 D1: two people called Ben give two even rows
+ok 331 - @R26 D1: two people called Ben give two even rows
+  ---
+  duration_ms: 0.0958
+  type: 'test'
+  ...
+# Subtest: @R26 D2: two people called Ben give two by-item rows, only the tapped one pays
+ok 332 - @R26 D2: two people called Ben give two by-item rows, only the tapped one pays
+  ---
+  duration_ms: 0.0711
+  type: 'test'
+  ...
+# Subtest: @R16 computeResult leaves a deep-frozen bill alone
+ok 333 - @R16 computeResult leaves a deep-frozen bill alone
+  ---
+  duration_ms: 0.4569
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 S2 with spare {"rule":"top"} gives [3887,3887,3886] and 2 spare sen
+ok 334 - @R32 @R20 @R21 S2 with spare {"rule":"top"} gives [3887,3887,3886] and 2 spare sen
+  ---
+  duration_ms: 0.1425
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 S2 with spare {"rule":"one","personId":"p2"} gives [3886,3888,3886] and 2 spare sen
+ok 335 - @R32 @R20 @R21 S2 with spare {"rule":"one","personId":"p2"} gives [3886,3888,3886] and 2 spare sen
+  ---
+  duration_ms: 0.1418
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 S2 with spare {"rule":"random","order":["p2","p3","p1"]} gives [3886,3887,3887] and 2 spare sen
+ok 336 - @R32 @R20 @R21 S2 with spare {"rule":"random","order":["p2","p3","p1"]} gives [3886,3887,3887] and 2 spare sen
+  ---
+  duration_ms: 0.13
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 S1 with spare {"rule":"top"} gives [[2490,414,2904],[1350,224,1574],[2100,348,2448]] and 1 spare sen
+ok 337 - @R32 @R20 @R21 S1 with spare {"rule":"top"} gives [[2490,414,2904],[1350,224,1574],[2100,348,2448]] and 1 spare sen
+  ---
+  duration_ms: 0.0786
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 S1 with spare {"rule":"one","personId":"p2"} gives [[2490,413,2903],[1350,225,1575],[2100,348,2448]] and 1 spare sen
+ok 338 - @R32 @R20 @R21 S1 with spare {"rule":"one","personId":"p2"} gives [[2490,413,2903],[1350,225,1575],[2100,348,2448]] and 1 spare sen
+  ---
+  duration_ms: 0.0837
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 S1 with spare {"rule":"random","order":["p3","p1","p2"]} gives [[2490,413,2903],[1350,224,1574],[2100,349,2449]] and 1 spare sen
+ok 339 - @R32 @R20 @R21 S1 with spare {"rule":"random","order":["p3","p1","p2"]} gives [[2490,413,2903],[1350,224,1574],[2100,349,2449]] and 1 spare sen
+  ---
+  duration_ms: 0.0755
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 I3 with spare {"rule":"top"} gives [[501,84,585],[0,0,0],[500,82,582]] and 2 spare sen
+ok 340 - @R32 @R20 @R21 I3 with spare {"rule":"top"} gives [[501,84,585],[0,0,0],[500,82,582]] and 2 spare sen
+  ---
+  duration_ms: 0.0437
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 I3 with spare {"rule":"one","personId":"p3"} gives [[500,82,582],[0,0,0],[501,84,585]] and 2 spare sen
+ok 341 - @R32 @R20 @R21 I3 with spare {"rule":"one","personId":"p3"} gives [[500,82,582],[0,0,0],[501,84,585]] and 2 spare sen
+  ---
+  duration_ms: 0.0797
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 I3 with spare {"rule":"random","order":["p2","p3","p1"]} gives [[500,83,583],[0,0,0],[501,83,584]] and 2 spare sen
+ok 342 - @R32 @R20 @R21 I3 with spare {"rule":"random","order":["p2","p3","p1"]} gives [[500,83,583],[0,0,0],[501,83,584]] and 2 spare sen
+  ---
+  duration_ms: 0.0626
+  type: 'test'
+  ...
+# Subtest: @R32 @R20 @R21 W1 with spare {"rule":"top"} gives [[98940,16425,115365],[1350,224,1574],[2100,348,2448]] and 1 spare sen
+ok 343 - @R32 @R20 @R21 W1 with spare {"rule":"top"} gives [[98940,16425,115365],[1350,224,1574],[2100,348,2448]] and 1 spare sen
+  ---
+  duration_ms: 0.0624
+  type: 'test'
+  ...
+# Subtest: @R32 Top of the list leaves every 1.0 result as it was (the allocators are the reference)
+ok 344 - @R32 Top of the list leaves every 1.0 result as it was (the allocators are the reference)
+  ---
+  duration_ms: 0.1423
+  type: 'test'
+  ...
+# Subtest: @R32 One person also takes the spare sen of an item they did not have
+ok 345 - @R32 One person also takes the spare sen of an item they did not have
+  ---
+  duration_ms: 0.1619
+  type: 'test'
+  ...
+# Subtest: @R32 At random walks the drawn order once across the whole bill and wraps round its end
+ok 346 - @R32 At random walks the drawn order once across the whole bill and wraps round its end
+  ---
+  duration_ms: 0.132
+  type: 'test'
+  ...
+# Subtest: @R32 @R33 One person falls back to Top of the list while the chosen person has nothing, and the choice is kept
+ok 347 - @R32 @R33 One person falls back to Top of the list while the chosen person has nothing, and the choice is kept
+  ---
+  duration_ms: 0.1282
+  type: 'test'
+  ...
+# Subtest: @R33 the result of S2 with spare {"rule":"top"} names {"count":2,"rule":"top","personId":null}
+ok 348 - @R33 the result of S2 with spare {"rule":"top"} names {"count":2,"rule":"top","personId":null}
+  ---
+  duration_ms: 0.0576
+  type: 'test'
+  ...
+# Subtest: @R33 the result of S2 with spare {"rule":"one","personId":"p2"} names {"count":2,"rule":"one","personId":"p2"}
+ok 349 - @R33 the result of S2 with spare {"rule":"one","personId":"p2"} names {"count":2,"rule":"one","personId":"p2"}
+  ---
+  duration_ms: 0.062
+  type: 'test'
+  ...
+# Subtest: @R33 the result of S2 with spare {"rule":"random","order":["p2","p3","p1"]} names {"count":2,"rule":"random","personId":null}
+ok 350 - @R33 the result of S2 with spare {"rule":"random","order":["p2","p3","p1"]} names {"count":2,"rule":"random","personId":null}
+  ---
+  duration_ms: 0.041
+  type: 'test'
+  ...
+# Subtest: @R33 the result of E2 with spare {"rule":"top"} names {"count":1,"rule":"top","personId":null}
+ok 351 - @R33 the result of E2 with spare {"rule":"top"} names {"count":1,"rule":"top","personId":null}
+  ---
+  duration_ms: 0.0303
+  type: 'test'
+  ...
+# Subtest: @R33 a blocked result and an unassigned result carry no spare
+ok 352 - @R33 a blocked result and an unassigned result carry no spare
+  ---
+  duration_ms: 0.0729
+  type: 'test'
+  ...
+# Subtest: @R29 choosing "one" on S2 with spare {"rule":"top"} gives {"rule":"one","personId":"p1"}
+ok 353 - @R29 choosing "one" on S2 with spare {"rule":"top"} gives {"rule":"one","personId":"p1"}
+  ---
+  duration_ms: 1.6444
+  type: 'test'
+  ...
+# Subtest: @R29 choosing "one" on I2 with spare {"rule":"top"} gives {"rule":"one","personId":"p2"}
+ok 354 - @R29 choosing "one" on I2 with spare {"rule":"top"} gives {"rule":"one","personId":"p2"}
+  ---
+  duration_ms: 0.2258
+  type: 'test'
+  ...
+# Subtest: @R29 choosing "random" on S2 with spare {"rule":"top"} gives {"rule":"random","order":["p2","p1","p3"]}
+ok 355 - @R29 choosing "random" on S2 with spare {"rule":"top"} gives {"rule":"random","order":["p2","p1","p3"]}
+  ---
+  duration_ms: 0.3035
+  type: 'test'
+  ...
+# Subtest: @R29 choosing "random" on S2 with spare {"rule":"top"} gives {"rule":"random","order":["p2","p3","p1"]}
+ok 356 - @R29 choosing "random" on S2 with spare {"rule":"top"} gives {"rule":"random","order":["p2","p3","p1"]}
+  ---
+  duration_ms: 0.1439
+  type: 'test'
+  ...
+# Subtest: @R29 choosing "top" on S2 with spare {"rule":"one","personId":"p2"} gives {"rule":"top"}
+ok 357 - @R29 choosing "top" on S2 with spare {"rule":"one","personId":"p2"} gives {"rule":"top"}
+  ---
+  duration_ms: 0.1154
+  type: 'test'
+  ...
+# Subtest: @R29 the draw is a Fisher and Yates shuffle that takes one number for each step, from the end
+ok 358 - @R29 the draw is a Fisher and Yates shuffle that takes one number for each step, from the end
+  ---
+  duration_ms: 0.3046
+  type: 'test'
+  ...
+# Subtest: @R29 a number just under 1 stays inside the list (no swap)
+ok 359 - @R29 a number just under 1 stays inside the list (no swap)
+  ---
+  duration_ms: 0.1322
+  type: 'test'
+  ...
+# Subtest: @R29 the drawn order holds every person once, also a person on no item
+ok 360 - @R29 the drawn order holds every person once, also a person on no item
+  ---
+  duration_ms: 1.0639
+  type: 'test'
+  ...
+# Subtest: @R29 choosing the rule already set, an unknown rule or One person with nobody to pick changes nothing
+ok 361 - @R29 choosing the rule already set, an unknown rule or One person with nobody to pick changes nothing
+  ---
+  duration_ms: 0.2852
+  type: 'test'
+  ...
+# Subtest: @R30 choosing p2 on S2 with spare {"rule":"one","personId":"p1"} gives {"rule":"one","personId":"p2"}
+ok 362 - @R30 choosing p2 on S2 with spare {"rule":"one","personId":"p1"} gives {"rule":"one","personId":"p2"}
+  ---
+  duration_ms: 0.2621
+  type: 'test'
+  ...
+# Subtest: @R30 choosing p3 on S2 with spare {"rule":"top"} gives {"rule":"one","personId":"p3"}
+ok 363 - @R30 choosing p3 on S2 with spare {"rule":"top"} gives {"rule":"one","personId":"p3"}
+  ---
+  duration_ms: 0.1411
+  type: 'test'
+  ...
+# Subtest: @R30 choosing p1 on S2 with spare {"rule":"random","order":["p2","p3","p1"]} gives {"rule":"one","personId":"p1"}
+ok 364 - @R30 choosing p1 on S2 with spare {"rule":"random","order":["p2","p3","p1"]} gives {"rule":"one","personId":"p1"}
+  ---
+  duration_ms: 0.0854
+  type: 'test'
+  ...
+# Subtest: @R30 a person who cannot take spare sen, is already chosen or is unknown changes nothing
+ok 365 - @R30 a person who cannot take spare sen, is already chosen or is unknown changes nothing
+  ---
+  duration_ms: 0.2614
+  type: 'test'
+  ...
+# Subtest: @R31 Pick again draws until the splits change
+ok 366 - @R31 Pick again draws until the splits change
+  ---
+  duration_ms: 0.8433
+  type: 'test'
+  ...
+# Subtest: @R31 a new order that moves money between items and charges counts as a change, even at equal shares
+ok 367 - @R31 a new order that moves money between items and charges counts as a change, even at equal shares
+  ---
+  duration_ms: 0.5568
+  type: 'test'
+  ...
+# Subtest: @R31 the S2 bill with spare top: Pick again returns the same bill and draws nothing
+ok 368 - @R31 the S2 bill with spare top: Pick again returns the same bill and draws nothing
+  ---
+  duration_ms: 0.0736
+  type: 'test'
+  ...
+# Subtest: @R31 the S2 bill with spare one p2: Pick again returns the same bill and draws nothing
+ok 369 - @R31 the S2 bill with spare one p2: Pick again returns the same bill and draws nothing
+  ---
+  duration_ms: 0.0328
+  type: 'test'
+  ...
+# Subtest: @R31 the S2 bill with spare random and an empty subtotal (blocked): Pick again returns the same bill and draws nothing
+ok 370 - @R31 the S2 bill with spare random and an empty subtotal (blocked): Pick again returns the same bill and draws nothing
+  ---
+  duration_ms: 0.092
+  type: 'test'
+  ...
+# Subtest: @R31 an unassigned item blocks Pick again like any result without shares
+ok 371 - @R31 an unassigned item blocks Pick again like any result without shares
+  ---
+  duration_ms: 0.1317
+  type: 'test'
+  ...
+# Subtest: @R31 with no spare sen no order can change the splits: 64 draws, then the same bill
+ok 372 - @R31 with no spare sen no order can change the splits: 64 draws, then the same bill
+  ---
+  duration_ms: 0.8573
+  type: 'test'
+  ...
+# Subtest: @R31 a source that always gives the same number cannot change a bill whose order it reproduces, and stops at 64 draws
+ok 373 - @R31 a source that always gives the same number cannot change a bill whose order it reproduces, and stops at 64 draws
+  ---
+  duration_ms: 0.6125
+  type: 'test'
+  ...
+# Subtest: @R31 the first order that changes the rows is taken, and no number is drawn after it
+ok 374 - @R31 the first order that changes the rows is taken, and no number is drawn after it
+  ---
+  duration_ms: 0.1119
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for S2 is exact
+ok 375 - @R24 summary text for S2 is exact
+  ---
+  duration_ms: 0.8186
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for S1 is exact
+ok 376 - @R24 summary text for S1 is exact
+  ---
+  duration_ms: 0.3381
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for E2 zero rates is exact
+ok 377 - @R24 summary text for E2 zero rates is exact
+  ---
+  duration_ms: 0.147
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for E3 decimal rates is exact
+ok 378 - @R24 summary text for E3 decimal rates is exact
+  ---
+  duration_ms: 0.1313
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for I2 zero share is exact
+ok 379 - @R24 summary text for I2 zero share is exact
+  ---
+  duration_ms: 0.1376
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for W1 four figure bill, thousands comma is exact
+ok 380 - @R24 summary text for W1 four figure bill, thousands comma is exact
+  ---
+  duration_ms: 0.139
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for S2-ONE, spare sen to Ben is exact
+ok 381 - @R24 summary text for S2-ONE, spare sen to Ben is exact
+  ---
+  duration_ms: 0.1929
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for S2-RANDOM, order p2 p3 p1 is exact
+ok 382 - @R24 summary text for S2-RANDOM, order p2 p3 p1 is exact
+  ---
+  duration_ms: 0.1723
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for D1 equal names, even is exact
+ok 383 - @R24 summary text for D1 equal names, even is exact
+  ---
+  duration_ms: 0.2229
+  type: 'test'
+  ...
+# Subtest: @R24 summary text for D2 equal names, by item is exact
+ok 384 - @R24 summary text for D2 equal names, by item is exact
+  ---
+  duration_ms: 0.229
+  type: 'test'
+  ...
+# Subtest: @R26 equal names print one line each
+ok 385 - @R26 equal names print one line each
+  ---
+  duration_ms: 0.251
+  type: 'test'
+  ...
+# Subtest: @R24 a blank name prints as its position
+ok 386 - @R24 a blank name prints as its position
+  ---
+  duration_ms: 0.147
+  type: 'test'
+  ...
+# Subtest: @R24 a LF inside a name prints as a space, so it cannot forge a line
+ok 387 - @R24 a LF inside a name prints as a space, so it cannot forge a line
+  ---
+  duration_ms: 0.2582
+  type: 'test'
+  ...
+# Subtest: @R24 a CR inside a name prints as a space, so it cannot forge a line
+ok 388 - @R24 a CR inside a name prints as a space, so it cannot forge a line
+  ---
+  duration_ms: 0.1254
+  type: 'test'
+  ...
+# Subtest: @R24 a VT inside a name prints as a space, so it cannot forge a line
+ok 389 - @R24 a VT inside a name prints as a space, so it cannot forge a line
+  ---
+  duration_ms: 0.0681
+  type: 'test'
+  ...
+# Subtest: @R24 a FF inside a name prints as a space, so it cannot forge a line
+ok 390 - @R24 a FF inside a name prints as a space, so it cannot forge a line
+  ---
+  duration_ms: 0.0874
+  type: 'test'
+  ...
+# Subtest: @R24 a NEL inside a name prints as a space, so it cannot forge a line
+ok 391 - @R24 a NEL inside a name prints as a space, so it cannot forge a line
+  ---
+  duration_ms: 0.0757
+  type: 'test'
+  ...
+# Subtest: @R24 a LS inside a name prints as a space, so it cannot forge a line
+ok 392 - @R24 a LS inside a name prints as a space, so it cannot forge a line
+  ---
+  duration_ms: 0.2058
+  type: 'test'
+  ...
+# Subtest: @R24 a PS inside a name prints as a space, so it cannot forge a line
+ok 393 - @R24 a PS inside a name prints as a space, so it cannot forge a line
+  ---
+  duration_ms: 0.0635
+  type: 'test'
+  ...
+# Subtest: @R24 a NUL inside a name prints as a space, so no reader can cut the summary there
+ok 394 - @R24 a NUL inside a name prints as a space, so no reader can cut the summary there
+  ---
+  duration_ms: 0.1056
+  type: 'test'
+  ...
+# Subtest: @R24 a FS inside a name prints as a space, so no reader can cut the summary there
+ok 395 - @R24 a FS inside a name prints as a space, so no reader can cut the summary there
+  ---
+  duration_ms: 0.0561
+  type: 'test'
+  ...
+# Subtest: @R24 a GS inside a name prints as a space, so no reader can cut the summary there
+ok 396 - @R24 a GS inside a name prints as a space, so no reader can cut the summary there
+  ---
+  duration_ms: 0.0598
+  type: 'test'
+  ...
+# Subtest: @R24 a RS inside a name prints as a space, so no reader can cut the summary there
+ok 397 - @R24 a RS inside a name prints as a space, so no reader can cut the summary there
+  ---
+  duration_ms: 0.0638
+  type: 'test'
+  ...
+# Subtest: @R24 a ESC inside a name prints as a space, so no reader can cut the summary there
+ok 398 - @R24 a ESC inside a name prints as a space, so no reader can cut the summary there
+  ---
+  duration_ms: 0.0441
+  type: 'test'
+  ...
+# Subtest: @R24 a right-to-left override in a name cannot reorder the share
+ok 399 - @R24 a right-to-left override in a name cannot reorder the share
+  ---
+  duration_ms: 0.0981
+  type: 'test'
+  ...
+# Subtest: @R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed
+ok 400 - @R24 exactly the R24 class prints as a space, every other code point up to U+2069 as typed
+  ---
+  duration_ms: 46.2345
+  type: 'test'
+  ...
+# Subtest: @R24 every code point above U+2069 prints as typed
+ok 401 - @R24 every code point above U+2069 prints as typed
+  ---
+  duration_ms: 108.3066
+  type: 'test'
+  ...
+# Subtest: @R24 every member of the class in one name is replaced, one space each
+ok 402 - @R24 every member of the class in one name is replaced, one space each
+  ---
+  duration_ms: 0.23
+  type: 'test'
+  ...
+# Subtest: @R24 a lone surrogate is not in the class, so it prints as typed
+ok 403 - @R24 a lone surrogate is not in the class, so it prints as typed
+  ---
+  duration_ms: 0.2545
+  type: 'test'
+  ...
+# Subtest: @R24 by-item rows get the same line-break guard
+ok 404 - @R24 by-item rows get the same line-break guard
+  ---
+  duration_ms: 0.1829
+  type: 'test'
+  ...
+# Subtest: @R16 summaryText leaves a deep-frozen result alone
+ok 405 - @R16 summaryText leaves a deep-frozen result alone
+  ---
+  duration_ms: 0.1911
+  type: 'test'
+  ...
+# Subtest: @R24 results without shares are refused with TypeError
+ok 406 - @R24 results without shares are refused with TypeError
+  ---
+  duration_ms: 0.4225
+  type: 'test'
+  ...
+1..406
+# tests 406
+# suites 0
+# pass 406
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2078.9604

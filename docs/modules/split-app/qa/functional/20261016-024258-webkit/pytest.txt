@@ -1,0 +1,16 @@
+engine webkit, browser version 26.5
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-single] (0.65s)
+FAILED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-mouse-double] (0.62s)
+FAILED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-mouse-triple] (0.56s)
+FAILED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-touch-double] (0.64s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-single] (0.57s)
+FAILED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-mouse-double] (0.58s)
+FAILED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-mouse-triple] (0.56s)
+FAILED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-touch-double] (0.57s)
+PASSED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-single] (0.57s)
+FAILED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-mouse-double] (0.55s)
+FAILED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-mouse-triple] (0.56s)
+FAILED   call     test_app.py::test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-touch-double] (0.61s)
+FAILED   call     test_app.py::test_R27_a_held_enter_on_dismiss_note_reaches_nothing[390x844] (1.02s)
+FAILED   call     test_app.py::test_R27_a_held_enter_on_dismiss_note_reaches_nothing[1280x800] (1.01s)
+exit status 1

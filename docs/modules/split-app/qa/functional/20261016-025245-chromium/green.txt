@@ -1,0 +1,18 @@
+Dev solver, code review CR-R3 check in Chromium 149.0.7827.55, 2026-10-16. Not a suite run, the R62 ids only.
+
+Tree. Commit d989d32 plus the CR-R3 edit in the working tree (tests/browser/seeds.py G8, and in test_app.py
+PLAIN_INSERTS and four R62 tests, every literal bidi, separator and invisible character written as a \u escape), the
+files that became the CR-R3 commit. git diff --quiet src/ exit 0.
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -p no:cacheprovider -k R62 --tb=short
+Result. 12 selected, 12 passed. By id against the A22 GREEN run 20261016-012022-chromium/, 12 ids, the same outcome,
+new 0, missing 0, changed 0 (the ids spell the inserted text, so equal ids also mean equal PLAIN_INSERTS).
+
+Checks of the edit, read-only, printed output.
+- Same strings at run time (scratchpad same_strings.py, every str constant of the parsed file at HEAD d989d32 and in
+  the working tree, in order).
+  tests/browser/seeds.py: 398 str constants at HEAD, 398 now, identical True, literal characters 4 at HEAD, 0 now
+  tests/browser/test_app.py: 4927 str constants at HEAD, 4927 now, identical True, literal characters 12 at HEAD, 0 now
+  Its control, against 4a19b4d~1 (before G8), says identical False, so the comparison can fail.
+- The code review's scan (qa/code-review/20261016-020001/scan_invisible.py), on its 15 files plus src/ui/note.js and
+  tests/dom.test.js, printed no line (16 lines before the edit). On every tracked .js, .py, .css, .html, .json, .txt
+  and .md file under src/ and tests/ (73 files) it also printed no line.
