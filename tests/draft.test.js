@@ -195,6 +195,60 @@ test("@R61 encodeDraft writes version 2, and loadDraft and saveDraft report a st
   assert.equal(working.getItem(DRAFT_KEY), encodeDraft(k1));
 });
 
+// ---- R62 (3), D8 rebuilds every name without the class (H-10). The rows of qa.md "The decoder rebuilds names
+// without the class", seeds G8 to G10. The class is written out here, so the test does not read the code's own copy.
+const NAME_CLASS = /[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/u;
+// The seed tables write each such character as its JSON escape, as a hand-made or older draft may hold it.
+const asciiJson = (value) => JSON.stringify(value)
+  .replace(/[^\x20-\x7e]/g, (char) => `\\u${char.charCodeAt(0).toString(16).padStart(4, "0")}`);
+const rebuilt = (text, edit) => {
+  const value = JSON.parse(text);
+  edit(value.bill);
+  return asciiJson(value);
+};
+const named = (bill, names) => ({ ...bill, people: bill.people.map((entry, index) => ({ ...entry, name: names[index] })) });
+const G8 = rebuilt(K2, (bill) => {
+  bill.people = [person(1, "Aisyah"), person(2, "Ben\u{202E}"), person(3, "Chen\u{2067}"), person(4, "A\u{2028}B"), person(5, "\u{202E}")];
+  bill.nextId = 6;
+});
+const G9 = rebuilt(K2, (bill) => { bill.people[0].name = "ABCDEFGHIJKLMNOPQRST\u{202E}"; });
+const G10_K1 = rebuilt(K1, (bill) => { bill.items[1].name = "Char\u{200F} kuey teow"; });
+const G10_S1_V1 = rebuilt(S1_V1, (bill) => { bill.people[1].name = "Ben\u{0000}"; });
+const FORTY = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN";
+const K1_LONG_ITEM = rebuilt(K1, (bill) => { bill.items[0].name = `${FORTY}\u{202E}`; });
+const withItemName = (bill, index, name) => ({ ...bill, items: bill.items.map((item, i) => (i === index ? { ...item, name } : item)) });
+const READABLE_PLAIN = [
+  ["G8", G8, named(billOf(G8), ["Aisyah", "Ben", "Chen", "AB", ""])],
+  ["G9", G9, named(billOf(G9), ["ABCDEFGHIJKLMNOPQRST", "Ben", "Chen"])],
+  ["G10, the K1 draft", G10_K1, withItemName(billOf(G10_K1), 1, "Char kuey teow")],
+  ["G10, the S1_V1 draft", G10_S1_V1, { ...named(billOf(G10_S1_V1), ["Aisyah", "Ben", "Chen"]), spare: TOP }],
+  ["K1 with i4 renamed 40 letters and U+202E", K1_LONG_ITEM, withItemName(billOf(K1_LONG_ITEM), 0, FORTY)],
+];
+for (const [name, text, bill] of READABLE_PLAIN) {
+  test(`@R62 @R61 decodeDraft of ${name} keeps the draft and rebuilds every name without the class`, () => {
+    const decoded = decodeDraft(text);
+    assert.deepEqual(decoded, { ok: true, bill });
+    const names = [...decoded.bill.people, ...decoded.bill.items].map((entry) => entry.name);
+    assert.deepEqual(names.filter((entry) => NAME_CLASS.test(entry)), []);
+    assert.deepEqual(decodeDraft(encodeDraft(decoded.bill)), decoded);
+  });
+}
+const STILL_UNREADABLE = [
+  ["B19, and K2 with Aisyah renamed Ai U+202E U+000D syah, so LF and CR are still rejected (D8 (a))", [
+    edited(K2, (value) => { value.bill.people[0].name = "Ai\nsyah"; }),
+    rebuilt(K2, (bill) => { bill.people[0].name = "Ai\u{202E}\u{000D}syah"; }),
+  ]],
+  ["B18 and B20, still too long after the rebuild", [
+    edited(K2, (value) => { value.bill.people[0].name = "ABCDEFGHIJKLMNOPQRSTU"; }),
+    edited(K1, (value) => { value.bill.items[0].name = "x".repeat(41); }),
+  ]],
+];
+for (const [name, texts] of STILL_UNREADABLE) {
+  test(`@R62 @R61 decodeDraft of ${name}`, () => {
+    for (const text of texts) assert.deepEqual(decodeDraft(text), { ok: false }, text);
+  });
+}
+
 test("@R27 loadDraft tells none, ok and unreadable apart, and saveDraft writes the encoded draft", () => {
   const memory = new Map();
   const storage = { getItem: (key) => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, value) };

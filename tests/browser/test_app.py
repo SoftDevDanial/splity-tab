@@ -5808,4 +5808,218 @@ def test_R48_start_new_bill_opens_people_and_folds_charges(open_app):
     assert section_state(page) == [OPEN, FOLDED]
 
 
+# ---------------------------------------------------------------- Task A22: names stay plain (R62, R4, R5, R11, R26, R33)
+# The class of core R35 written out, because Python's re has no \p{...}: the C0 and C1 controls (Cc, 65), LS, PS and
+# the 12 bidi controls (qa.md, Plain names, "Python's equivalent list of the 79 code points").
+NAME_CLASS = frozenset([*range(0x00, 0x20), *range(0x7F, 0xA0), 0x2028, 0x2029, 0x061C, 0x200E, 0x200F,
+                        *range(0x202A, 0x202F), *range(0x2066, 0x206A)])
+assert len(NAME_CLASS) == 79
+
+
+def class_free(text):
+    return not any(ord(char) in NAME_CLASS for char in text)
+
+
+def spelled(text):
+    """`text` with every code point outside printable ASCII written U+XXXX, for ids and messages."""
+    return "".join(char if 0x20 <= ord(char) <= 0x7E else f"U+{ord(char):04X}" for char in text)
+
+
+# A test-side recorder of what each input event left in its field before the app's listener ran (window, capture
+# phase), so a character the tool cannot insert fails its case with its code point instead of passing unseen.
+RECORD_INPUT_JS = """() => { window.testInputValues = [];
+  window.addEventListener('input', (event) => window.testInputValues.push(event.target.value), true); }"""
+FIELD_STATE_JS = "(el) => [el === document.activeElement, el.value, el.selectionStart, el.selectionEnd]"
+PEOPLE_SUMMARY_JS = "() => document.querySelector('#peopleSum .sec-txt')?.textContent ?? null"
+
+
+def insert(page, text):
+    """qa.md "insert T": page.keyboard.insert_text(T) on the focused field, one input event with the text, which is how
+    a paste or a drop arrives. Returns the characters of T the tool did not put into the field, spelled (RECORD_INPUT_JS
+    must be on the page)."""
+    page.evaluate("() => { window.testInputValues = []; }")
+    page.keyboard.insert_text(text)
+    seen = page.evaluate("() => window.testInputValues")
+    return [spelled(char) for char in text if not seen or char not in seen[-1]]
+
+
+def people_names(page):
+    return [person["name"] for person in stored(page)["bill"]["people"]]
+
+
+PLAIN_INSERTS = [("‮", "Ben", 3), ("‮x", "Benx", 4), ("a b", "Benab", 5), ("\u0000", "Ben", 3),
+                 ("\u0009Lee", "BenLee", 6)]
+
+
+@pytest.mark.parametrize("text, value, caret", PLAIN_INSERTS, ids=[spelled(text) for text, _, _ in PLAIN_INSERTS])
+def test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once(open_app, text, value, caret):
+    # qa.md "Copy summary on the card" at 390 x 844: the card is not displayed below 1024 px, so the one Copy summary
+    # shown there (the strip's) is pressed, whose text R22 proves equal to the card's (BUILD.md, task A22).
+    page = open_app(seed=seeds.S2).page
+    open_people_first(page)
+    page.evaluate(RECORD_INPUT_JS)
+    field = person_field(page, 2)
+    handle = field.element_handle()
+    field.click()
+    page.keyboard.press("End")
+    assert insert(page, text) == []
+    assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, caret, caret]
+    names = people_names(page)
+    assert names[1] == value and all(class_free(name) for name in names)
+    rows, _ = card_rows(page)
+    summary = page.evaluate(PEOPLE_SUMMARY_JS)
+    assert [rows[1][0], person_rows(page)[1]["remove"][1]] == [value, f"Remove {value}"]
+    assert value in summary and class_free(summary)
+    copy_summary(page)
+    assert page.evaluate("window.testClipboardText").split("\n")[3] == f"{value} RM 38.87"
+
+
+def test_R62_a_removal_in_the_middle_of_a_name_keeps_the_caret_where_the_text_went_in(open_app):
+    page = open_app(seed=seeds.S2).page
+    open_people_first(page)
+    page.evaluate(RECORD_INPUT_JS)
+    field = person_field(page, 2)
+    handle = field.element_handle()
+    field.click()
+    page.keyboard.press("End")
+    page.keyboard.press("ArrowLeft")  # the caret after "Be"
+    assert insert(page, "‮x⁧") == []
+    assert page.evaluate(FIELD_STATE_JS, handle) == [True, "Bexn", 3, 3]
+    page.keyboard.type("y")
+    assert page.evaluate(FIELD_STATE_JS, handle)[:2] == [True, "Bexyn"] and people_names(page)[1] == "Bexyn"
+
+
+EVERY_KIND = [0x0001, 0x0009, 0x001B, 0x001F, 0x007F, 0x0080, 0x0085, 0x009F, 0x2028, 0x2029, 0x061C, 0x200E, 0x200F,
+              0x202A, 0x202B, 0x202C, 0x202D, 0x202E, 0x2066, 0x2067, 0x2068, 0x2069]
+
+
+def test_R62_each_kind_of_character_in_the_class_is_removed_from_a_name_field(open_app):
+    # The ends of each range through the real field. The whole class is proved once in Node (split-core, R35).
+    page = open_app(seed=seeds.S2).page
+    open_people_first(page)
+    page.evaluate(RECORD_INPUT_JS)
+    field = person_field(page, 1)
+    handle = field.element_handle()
+    wrong = []
+    for code_point in EVERY_KIND:
+        field.click()
+        page.keyboard.press("Control+A")
+        page.keyboard.type("A")
+        missing = insert(page, f"B{chr(code_point)}C")
+        found = [*page.evaluate(FIELD_STATE_JS, handle)[1:], people_names(page)[0]]
+        if missing or found != ["ABC", 3, 3, "ABC"]:
+            wrong.append(f"U+{code_point:04X}: not inserted {missing}" if missing else f"U+{code_point:04X}: {spelled(str(found))}")
+    assert wrong == []
+
+
+def test_R62_characters_outside_the_class_stay_in_a_name(open_app):
+    page = open_app(seed=seeds.S2).page
+    open_people_first(page)
+    page.evaluate(RECORD_INPUT_JS)
+    kept, emoji = "A​B C﻿", "\U0001F468‍\U0001F469‍\U0001F467"
+    for number, text in ((2, kept), (3, emoji)):
+        person_field(page, number).click()
+        page.keyboard.press("End")
+        assert insert(page, text) == []
+    values = [person_field(page, number).input_value() for number in (2, 3)]
+    assert values == people_names(page)[1:3] == ["Ben" + kept, "Chen" + emoji]
+
+
+# A test-side spy on "Person 2 name" alone: every call of the value setter of HTMLInputElement.prototype and of
+# setSelectionRange on that element adds 1 (qa.md, "Typing that brings no character of the class writes nothing").
+FIELD_WRITES_SPY_JS = """(el) => { window.testFieldWrites = 0; const proto = HTMLInputElement.prototype;
+  const value = Object.getOwnPropertyDescriptor(proto, 'value'), select = proto.setSelectionRange;
+  Object.defineProperty(proto, 'value', { ...value,
+    set(text) { if (this === el) window.testFieldWrites += 1; value.set.call(this, text); } });
+  proto.setSelectionRange = function (...args) { if (this === el) window.testFieldWrites += 1; return select.apply(this, args); }; }"""
+
+
+def test_R62_typing_that_brings_no_character_of_the_class_writes_nothing_into_the_field(open_app):
+    page = open_app(seed=seeds.S2).page
+    field = person_field(page, 2)
+    handle = field.element_handle()
+    page.evaluate(FIELD_WRITES_SPY_JS, handle)
+    open_people_first(page)
+    field.click()
+    page.keyboard.press("End")
+    page.keyboard.type("abc")
+    page.keyboard.press("Home")
+    page.keyboard.type("X")
+    page.keyboard.press("Backspace")
+    assert page.evaluate("window.testFieldWrites") == 0
+    assert page.evaluate(FIELD_STATE_JS, handle) == [True, "Benabc", 0, 0]
+
+
+ITEM_NAMES_JS = """(index) => { const li = document.querySelectorAll('li.item')[index];
+  return li && [li.querySelector('.field.money input').getAttribute('aria-label'),
+    li.querySelector('button.icon-btn').getAttribute('aria-label'), li.querySelector('div.taps').getAttribute('aria-label')]; }"""
+
+
+def test_R62_an_item_name_loses_the_class_too(open_app):
+    page = open_app(seed=seeds.S1).page
+    page.evaluate(RECORD_INPUT_JS)
+    field = item_name(page, 2)
+    handle = field.element_handle()
+    field.click()
+    page.keyboard.press("End")
+    assert insert(page, "‮x") == []
+    value = "Char kuey teowx"
+    assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, 15, 15]
+    assert stored(page)["bill"]["items"][1]["name"] == value
+    assert page.evaluate(ITEM_NAMES_JS, 1) == [f"{value} price in RM", f"Remove {value}", f"Who had {value}"]
+
+
+def test_R62_a_name_made_only_of_removed_characters_falls_back_to_its_position(open_app):
+    page = open_app(seed=seeds.S2).page
+    open_people_first(page)
+    page.evaluate(RECORD_INPUT_JS)
+    field = person_field(page, 2)
+    field.click()
+    page.keyboard.press("Control+A")
+    assert insert(page, "‮") == []
+    assert [field.input_value(), field.get_attribute("placeholder"), people_names(page)[1]] == ["", "Person 2", ""]
+    rows, _ = card_rows(page)
+    assert [rows[1][0], person_rows(page)[1]["remove"][1]] == ["Person 2", "Remove Person 2"]
+    assert "Person 2" in page.evaluate(PEOPLE_SUMMARY_JS)
+
+
+# One box per character of the People summary's text node (a Range over each code point), the zero-width ones left
+# out, as [left, top, bottom], so the order they are drawn in can be read (SEC-S5-1, SEC-S5-3).
+CHARACTER_BOXES_JS = """(selector) => { const node = document.querySelector(selector)?.firstChild; if (!node) return null;
+  const boxes = []; let at = 0;
+  for (const char of node.data) { const range = document.createRange(); range.setStart(node, at); range.setEnd(node, at + char.length);
+    const box = range.getBoundingClientRect(); if (box.width > 0) boxes.push([box.left, box.top, box.bottom]); at += char.length; }
+  return boxes; }"""
+
+
+def people_summaries(labels):
+    """Every summary R48 (2) lets the People row show for `labels`, longest first, as peopleSummaries writes them."""
+    fewer = [f"{', '.join(labels[:shown])} and {len(labels) - shown} more" for shown in range(len(labels) - 1, 0, -1)]
+    return [", ".join(labels), *fewer, f"{len(labels)} people"]
+
+
+def test_R62_a_saved_name_with_bidi_controls_loads_plain_and_the_people_line_reads_left_to_right(open_app):
+    page = open_app(seed=seeds.G8, init_scripts=[support.storage_driver("count-set")]).page
+    fields = page.locator("li.person input")
+    summary = page.evaluate(PEOPLE_SUMMARY_JS)
+    boxes = page.evaluate(CHARACTER_BOXES_JS, "#peopleSum .sec-txt") or []
+    lefts = [box[0] for box in boxes]
+    found = {  # every property of the load at once, so one run shows each that fails
+        "notes": notes(page), "people": section_state(page)[0],
+        "fields": [fields.nth(index).input_value() for index in range(5)], "placeholder": fields.nth(4).get_attribute("placeholder"),
+        "summary": [class_free(summary), summary in people_summaries(["Aisyah", "Ben", "Chen", "AB", "Person 5"])],
+        "left to right": bool(boxes) and all(right > left for left, right in zip(lefts, lefts[1:])),
+        "one band": bool(boxes) and max(box[1] for box in boxes) < min(box[2] for box in boxes),
+        "stored": [stored_text(page) == seeds.G8, page.evaluate("window.testSetItemCalls")],
+    }
+    assert found == {"notes": [], "people": FOLDED, "fields": ["Aisyah", "Ben", "Chen", "AB", ""], "placeholder": "Person 5",
+                     "summary": [True, True], "left to right": True, "one band": True, "stored": [True, 0]}, spelled(summary)
+    open_people_first(page)
+    type_at_end(page, person_field(page, 1), "x")
+    assert people_names(page) == ["Aisyahx", "Ben", "Chen", "AB", ""]
+    copy_summary(page)  # the strip's at 390 x 844, as in the outline above
+    rows, _ = card_rows(page)
+    assert page.evaluate("window.testClipboardText").split("\n")[2:-1] == [f"{name} {amount}" for name, amount, _ in rows]
+
+
 # ===== END OF TESTS (new tests go above this line) =====

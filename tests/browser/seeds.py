@@ -156,3 +156,9 @@ ODD_READABLE.update({
     "G6": with_bill(S2, spare={"rule": "top", "extra": 1}),
     "G7": S1_V1,
 })
+
+# [G8] K2 with bidi and separator characters in four names (qa.md, R62, H-10), each one written as its JSON escape,
+# as a draft written by hand or by another page may hold it. Not in ODD_READABLE, its own scenario reads it.
+G8 = json.dumps(json.loads(changed(S2, lambda d: d["bill"].update(nextId=6, people=[
+    {"id": "p1", "name": "Aisyah"}, {"id": "p2", "name": "Ben‮"}, {"id": "p3", "name": "Chen⁧"},
+    {"id": "p4", "name": "A B"}, {"id": "p5", "name": "‮"}]))), separators=(",", ":"), ensure_ascii=True)

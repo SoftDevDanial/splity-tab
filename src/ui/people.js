@@ -3,7 +3,7 @@
 // createPeople({ onName(id, text), onAdd(), onRemove(id) }) returns { content, update(bill), focusName(index) }, where
 // content is that list of nodes. It writes DOM and reports gestures; the bill is changed by the caller.
 import { LIMITS, personLabel } from "../core/bill.js";
-import { el, isRepeatClick, swallowRepeatClicks, setAttr, setValue, rowsFor, reconcileChildren } from "./dom.js";
+import { el, isRepeatClick, swallowRepeatClicks, setAttr, setValue, plainNameField, rowsFor, reconcileChildren } from "./dom.js";
 import { icon } from "./icons.js";
 
 export function createPeople({ onName, onAdd, onRemove }) {
@@ -13,7 +13,7 @@ export function createPeople({ onName, onAdd, onRemove }) {
   function createRow(id) {
     const input = el("input", { type: "text", maxlength: String(LIMITS.personNameMax), autocomplete: "off" });
     const remove = el("button", { type: "button", class: "icon-btn" }, icon("x"));
-    input.addEventListener("input", () => onName(id, input.value));
+    input.addEventListener("input", () => onName(id, plainNameField(input)));
     // Removing a row moves the rows after it, so the next row's Remove can slide under the pointer and the rest of a
     // double click must not reach it (swallowRepeatClicks). The repeat test is the backstop for a layout move no click
     // armed, the same line as in items.js (RG-CR-08).

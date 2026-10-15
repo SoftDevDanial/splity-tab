@@ -5,7 +5,9 @@
 // { el, update(bill, errors), markFrame(), focusName(index), focusAdd() }. It writes DOM and reports gestures; the bill is
 // changed by the caller.
 import { LIMITS, itemLabel, personLabel } from "../core/bill.js";
-import { el, isRepeatClick, swallowRepeatClicks, setAttr, setText, setValue, rowsFor, reconcileChildren } from "./dom.js";
+import {
+  el, isRepeatClick, swallowRepeatClicks, setAttr, setText, setValue, plainNameField, rowsFor, reconcileChildren,
+} from "./dom.js";
 import { AMOUNT_ERROR, createFieldError } from "./field-error.js";
 import { onFieldLeave } from "./field-leave.js";
 import { icon } from "./icons.js";
@@ -22,7 +24,7 @@ export function createItems({ onName, onPrice, onPriceLeave, onToggle, onAdd, on
     const error = createFieldError(priceField, price, { id: "", message: AMOUNT_ERROR });
     const remove = el("button", { type: "button", class: "icon-btn" }, icon("x"));
     const taps = el("div", { class: "taps", role: "group" });
-    name.addEventListener("input", () => onName(id, name.value));
+    name.addEventListener("input", () => onName(id, plainNameField(name)));
     price.addEventListener("input", () => onPrice(id, price.value));
     onFieldLeave(price, (text) => onPriceLeave(id, text));
     // A Remove ignores a repeat press whether or not a click armed the guard (R7, RG-CR-08), as in people.js.

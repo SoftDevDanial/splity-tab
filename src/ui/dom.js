@@ -4,6 +4,7 @@
 // R33 (typing never loses its place) rests on reconcileChildren: it never re-inserts a node that is already
 // in place, and re-inserting a focused input drops its focus and its IME state. The setters also skip a write
 // of an equal value, which is belt and braces (measured in Chromium: writing an equal value moves nothing).
+import { plainName } from "../core/bill.js";
 import { isRepeatPress } from "./repeat.js";
 
 /**
@@ -114,6 +115,25 @@ export function setText(node, text) {
 
 export function setValue(input, text) {
   if (input.value !== text) input.value = text;
+}
+
+/**
+ * R62 (1), for the `input` listener of a person or item name field: the field's text without core's NAME_CONTROLS
+ * class, however it came in (a key, a paste, a drop, autofill). Only when that removed something does it write the
+ * field, the plain text and then a collapsed caret where the text went in less what was removed before it. That is
+ * the one write into the field being typed in that R33 allows, so ordinary typing and IME composition stay untouched.
+ * @param {HTMLInputElement} input the name field, as the input event left it
+ * @returns {string} the text for setPersonName or setItemName
+ */
+export function plainNameField(input) {
+  const typed = input.value;
+  const plain = plainName(typed);
+  if (plain !== typed) {
+    const caret = plainName(typed.slice(0, input.selectionStart)).length;
+    input.value = plain;
+    input.setSelectionRange(caret, caret);
+  }
+  return plain;
 }
 
 export function setChecked(input, checked) {

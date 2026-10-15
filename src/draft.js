@@ -2,10 +2,11 @@
 // localStorage is untrusted input (another page of the same origin can write it), so decodeDraft is an
 // all-or-nothing gate. split-core shares untouched people and items by reference and treats any mode that
 // is not "even" as by-item, so everything split-core relies on is checked here (D1 to D14), and the Bill is
-// rebuilt as new objects from known fields only (D12), never copied from the parsed value.
+// rebuilt as new objects from known fields only (D12), never copied from the parsed value. Each name is rebuilt too,
+// without the characters of app R62's class (D8), so a draft saved before that rule still loads with readable names.
 // A version 1 draft, saved by 1.0, still loads, with the spare choice Top of the list (D14).
 // Only the storage object passed in is touched, except getStorage, which reads window.localStorage. No function here throws.
-import { LIMITS } from "./core/bill.js";
+import { LIMITS, plainName } from "./core/bill.js";
 
 export const DRAFT_KEY = "split.draft";
 
@@ -19,23 +20,31 @@ const graphemes = new Intl.Segmenter(undefined, { granularity: "grapheme" });
 const isObject = (value) => typeof value === "object" && value !== null && !Array.isArray(value);
 const isString = (value) => typeof value === "string";
 
-/** D8: at most `max` grapheme clusters, and no line break (a name is one line in the clipboard text). */
-function nameFits(name, max) {
-  return isString(name) && !/[\r\n]/.test(name) && [...graphemes.segment(name)].length <= max;
+/**
+ * D8: the name the bill gets, or null to reject the draft. A line break rejects it before anything is removed, as
+ * since 1.0 (the text input strips LF and CR, so the app never saved one). Every other character of the class goes
+ * through core's plainName, and the count of at most `max` grapheme clusters is of what is left.
+ */
+function readName(name, max) {
+  if (!isString(name) || /[\r\n]/.test(name)) return null;
+  const plain = plainName(name);
+  return [...graphemes.segment(plain)].length <= max ? plain : null;
 }
 
 function readPerson(raw) {
-  if (!isObject(raw) || !isString(raw.id) || !PERSON_ID.test(raw.id) || !nameFits(raw.name, LIMITS.personNameMax)) return null;
-  return { id: raw.id, name: raw.name };
+  if (!isObject(raw) || !isString(raw.id) || !PERSON_ID.test(raw.id)) return null;
+  const name = readName(raw.name, LIMITS.personNameMax);
+  return name === null ? null : { id: raw.id, name };
 }
 
 function readItem(raw, personIds) {
   if (!isObject(raw) || !isString(raw.id) || !ITEM_ID.test(raw.id)) return null;
-  if (!nameFits(raw.name, LIMITS.itemNameMax) || !isString(raw.priceText)) return null;
+  const name = readName(raw.name, LIMITS.itemNameMax);
+  if (name === null || !isString(raw.priceText)) return null;
   const { who } = raw;
   const known = Array.isArray(who) && who.every((id) => isString(id) && personIds.has(id));
   if (!known || new Set(who).size !== who.length) return null;
-  return { id: raw.id, name: raw.name, priceText: raw.priceText, who: [...who] };
+  return { id: raw.id, name, priceText: raw.priceText, who: [...who] };
 }
 
 const hasDuplicates = (ids) => new Set(ids).size !== ids.length;
