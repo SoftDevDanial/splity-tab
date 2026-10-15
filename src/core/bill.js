@@ -24,18 +24,14 @@ export const LIMITS = Object.freeze({
   serviceMaxPercent: 30, sstMaxPercent: 20,
 });
 
-/** One place that lists the Bill fields, so no action can forget one when copying. */
+// The Bill fields in Bill order. newBill is the one place that lists them, so a new field is added there once and
+// every copy takes it: billWith here and withSpare in spare.js, which reads the same keys because the Contracts
+// keep billWith private.
+const BILL_FIELDS = Object.keys(newBill());
+
+/** The bill with `changes` applied, built from BILL_FIELDS only, so no action can forget a field when copying. */
 function billWith(bill, changes) {
-  return {
-    mode: changes.mode ?? bill.mode,
-    people: changes.people ?? bill.people,
-    subtotalText: changes.subtotalText ?? bill.subtotalText,
-    items: changes.items ?? bill.items,
-    serviceText: changes.serviceText ?? bill.serviceText,
-    sstText: changes.sstText ?? bill.sstText,
-    spare: changes.spare ?? bill.spare,
-    nextId: changes.nextId ?? bill.nextId,
-  };
+  return Object.fromEntries(BILL_FIELDS.map((field) => [field, changes[field] ?? bill[field]]));
 }
 
 function personWith(person, changes) {

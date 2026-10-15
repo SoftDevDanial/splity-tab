@@ -1,7 +1,7 @@
 // Choosing who takes the spare sen (R29 to R31). It sits beside bill.js and not in it because Pick again needs
 // computeResult, and result.js already imports bill.js, so the same functions in bill.js would be an import cycle.
 // The random source is an argument the caller passes: core has no random source of its own (R25).
-import { sparePeople } from "./bill.js";
+import { newBill, sparePeople } from "./bill.js";
 import { computeResult } from "./result.js";
 
 /** @typedef {() => number} RandomSource a number from 0 up to but not including 1 */
@@ -9,21 +9,15 @@ import { computeResult } from "./result.js";
 // Pick again stops here (R31, ruled CG-P3): on a bill where no order can change the rows a loop would never end.
 const MAX_DRAWS = 64;
 
+// The Bill fields as newBill lists them, the one list (bill.js), read here because billWith stays private.
+const BILL_FIELDS = Object.keys(newBill());
+
 /**
- * The bill with another spare choice. The Bill's fields are listed out, never spread, so a stray or __proto__
- * key on a parsed bill is not copied (threat model, object integrity). bill.js keeps its own field list private.
+ * The bill with another spare choice, built from BILL_FIELDS only and never spread, so a stray or __proto__ key on
+ * a parsed bill is not copied (threat model, object integrity).
  */
 function withSpare(bill, spare) {
-  return {
-    mode: bill.mode,
-    people: bill.people,
-    subtotalText: bill.subtotalText,
-    items: bill.items,
-    serviceText: bill.serviceText,
-    sstText: bill.sstText,
-    spare,
-    nextId: bill.nextId,
-  };
+  return Object.fromEntries(BILL_FIELDS.map((field) => [field, field === "spare" ? spare : bill[field]]));
 }
 
 /** Fisher and Yates over every person's id in list order, one number from `random` for each step (R29). */
