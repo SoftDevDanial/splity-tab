@@ -100,6 +100,73 @@ def card_text(page):
     return reads(page, "#rbody")
 
 
+# R2's first render, read in one pass so a part that is not built yet fails at once instead of waiting for it. Compared
+# with expected.COLD_BOOT by test_R2_cold_boot_is_a_new_bill_with_no_seed and by the live gate's steps 1 and 8.
+COLD_BOOT_JS = """() => {
+  const one = (selector) => document.querySelector(selector);
+  const attr = (selector, name) => one(selector)?.getAttribute(name) ?? null;
+  const field = (selector) => one(selector) ? [one(selector).value, one(selector).placeholder] : null;
+  const copy = one('#stripCopy');
+  return {
+    names: [...document.querySelectorAll('li.field.person input')].map((input) => input.value),
+    removesDisabled: [...document.querySelectorAll('li.field.person button')].map((button) => button.disabled),
+    evenChecked: one('#modeEven')?.checked ?? null,
+    subtotal: field('#evenSub'),
+    subtotalErrorHidden: one('p.err#evenErr')?.hidden ?? null,
+    rates: [one('#svc')?.value ?? null, one('#sst')?.value ?? null],
+    open: [attr('#peopleBlk', 'data-open'), attr('#peopleBtn', 'aria-expanded'), attr('#chargesBlk', 'data-open')],
+    totalHolds: [...(one('#rbody > div.r-total')?.children ?? [])].map((el) => `${el.localName}.${el.className}`),
+    emptyIcon: attr('#rbody > div.r-empty > svg.ic > use', 'href'),
+    strip: one('#stripInfo')?.innerText.trim() ?? null,
+    stripCopy: copy ? { shown: copy.checkVisibility(), disabled: copy.disabled } : null,
+  };
+}"""
+
+
+def cold_boot_state(page):
+    """What the page shows of R2's first render, in the shape of expected.COLD_BOOT."""
+    return {**page.evaluate(COLD_BOOT_JS), "card": card_text(page)}
+
+
+# The receipt of one div.rbody in one evaluate (the card's #rbody, or the sheet's from task A12), so a part the tree does
+# not draw reads as null or empty and fails on its assertion at once, never on a wait. A row and the proof give their
+# span.wk without its span.sr children (qa.md, before the scenarios), and null where there is none.
+RECEIPT_JS = """(root) => {
+  const rbody = document.querySelector(root);
+  if (!rbody) return null;
+  const label = (el) => el.localName + [...el.classList].map((name) => '.' + name).join('');
+  const part = (selector) => rbody.querySelector(':scope > ' + selector);
+  const child = (el, selector) => el.querySelector(':scope > ' + selector);
+  const working = (el) => el && [...el.childNodes].filter((node) => !(node instanceof Element && node.matches('span.sr')))
+    .map((node) => node.textContent).join('');
+  const icon = (svg) => svg && [label(svg), svg.querySelector('use')?.getAttribute('href') ?? null];
+  const total = part('div.r-total'), amount = part('div.r-total > p.r-amount'), head = part('div.r-head');
+  const note = part('div.r-empty') ?? part('div.r-msg'), list = part('ul.r-splits'), check = part('div.r-check');
+  const copy = part('button.r-copy'), status = part('p.status');
+  return {
+    blocks: [...rbody.children].map(label),
+    total: total && [...total.children].map((el) => [label(el), el.id, el.textContent]),
+    amount: amount && [...amount.childNodes].map((node) => node instanceof Element ? `${label(node)} ${node.textContent}` : node.textContent),
+    lines: [...rbody.querySelectorAll(':scope > dl.r-lines > div')].map((row) => [...row.children].map((el) => el.textContent)),
+    rule: part('div.r-rule')?.getAttribute('aria-hidden') ?? null,
+    note: note && [label(note), ...[...note.children].map((el) => el.localName === 'svg' ? icon(el) : [label(el), el.textContent])],
+    head: head && [...head.children].map((el) => [label(el), el.id, el.getAttribute('aria-hidden'), el.textContent]),
+    list: list && { id: list.id, cls: list.className, labelledBy: list.getAttribute('aria-labelledby'),
+      rowsVar: list.style.getPropertyValue('--rows'), rows: [...list.children].map((li) =>
+        [child(li, 'span.nm')?.textContent ?? null, child(li, 'span.amt')?.textContent ?? null, working(child(li, 'span.wk'))]) },
+    proof: check && { parts: [...check.children].map(label), seal: icon(child(check, 'svg')), id: child(check, 'span.amt')?.id ?? null,
+      amount: child(check, 'span.amt')?.textContent ?? null, working: working(child(check, 'span.wk')) },
+    copy: copy && [copy.id, copy.className, copy.textContent, icon(child(copy, 'svg'))],
+    status: status && [status.id, status.className, status.getAttribute('role'), status.textContent],
+  };
+}"""
+
+
+def receipt(page, root="#rbody"):
+    """The receipt of the div.rbody at `root` (RECEIPT_JS), or None when the page has none."""
+    return page.evaluate(RECEIPT_JS, root)
+
+
 def open_golden(plain_context, name, viewport=(390, 844)):
     """A page on one golden of GOLDEN_DIR, opened read-only as a file, in the default context of qa.md How to run, so
     the app and the golden it is compared with share one context (task A3)."""
@@ -161,10 +228,3 @@ def shipped_text(include_core=True):
 
 def person_field(page, number):
     return page.get_by_label(f"Person {number} name", exact=True)
-
-
-def panel_text(page):
-    """The visible text of the bill panel, one line per block, without the blank lines paragraphs add. The panel
-    sits in the card's #rbody since the v1.1.0 shell (task A2)."""
-    lines = page.locator("#rbody").inner_text().splitlines()
-    return "\n".join(line.strip() for line in lines if line.strip())

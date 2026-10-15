@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="7" skipped="0" tests="7" time="1.232" timestamp="2026-10-15T20:13:22.060634+08:00" hostname="{host}"><testcase classname="test_app" name="test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields" time="0.007"><failure message="AssertionError: assert [1, 2, 3, 4, 5, 6, ...] == [1, 2, 3, 4, 5, 6, ...]&#10;  &#10;  Right contains 2 more items, first extra item: 8&#10;  &#10;  Full diff:&#10;    [&#10;        1,&#10;        2,...&#10;  &#10;  ...Full output truncated (8 lines hidden), use '-vv' to show">def test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields():
+        # [v1.1.0] The steps 1 to 9 of qa.md's flow, with the 1.0 action words unchanged (task A20 item 2).
+        import live_e2e
+        assert live_e2e.format_step(3, "click it", "it is open", "PASS") == "03 | gesture: click it | assertion: it is open | PASS"
+        steps = live_gate_steps()
+&gt;       assert [call.args[0].value for call in steps] == list(range(1, 10))  # one call per numbered step of qa.md
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert [1, 2, 3, 4, 5, 6, ...] == [1, 2, 3, 4, 5, 6, ...]
+E         
+E         Right contains 2 more items, first extra item: 8
+E         
+E         Full diff:
+E           [
+E               1,
+E               2,...
+E         
+E         ...Full output truncated (8 lines hidden), use '-vv' to show
+
+tests\browser\test_app.py:5312: AssertionError</failure></testcase><testcase classname="test_app" name="test_R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else" time="0.000"><failure message="AssertionError: assert ['tests/brows.../recorder.js'] == ['tests/brows.../listener.js']&#10;  &#10;  Right contains one more item: 'tests/browser/csp/listener.js'&#10;  &#10;  Full diff:&#10;    [&#10;        'tests/browser/clipboard/recorder.js',&#10;  -     'tests/browser/csp/listener.js',&#10;    ]">def test_R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else():
+        # [v1.1.0] qa.md, Rules. The recorder (CG-7 of 1.0), then the engine-neutral CSP detector (task A20 item 3).
+        import live_e2e
+&gt;       assert live_e2e.INIT_SCRIPTS == ["tests/browser/clipboard/recorder.js", "tests/browser/csp/listener.js"]
+E       AssertionError: assert ['tests/brows.../recorder.js'] == ['tests/brows.../listener.js']
+E         
+E         Right contains one more item: 'tests/browser/csp/listener.js'
+E         
+E         Full diff:
+E           [
+E               'tests/browser/clipboard/recorder.js',
+E         -     'tests/browser/csp/listener.js',
+E           ]
+
+tests\browser\test_app.py:5324: AssertionError</failure></testcase><testcase classname="test_app" name="test_R41_the_gate_uses_real_gestures_and_reads_only" time="0.010"><failure message="AssertionError: assert ['.screenshot...ly list', ...] == []&#10;  &#10;  Left contains 22 more items, first extra item: '.screenshot is used'&#10;  &#10;  Full diff:&#10;  - []&#10;  + [&#10;  +     '.screenshot is used',...&#10;  &#10;  ...Full output truncated (23 lines hidden), use '-vv' to show">def test_R41_the_gate_uses_real_gestures_and_reads_only():
+        # [v1.1.0] The @R41 @static scenario up to its INIT_SCRIPTS line, and its capture lines (task A20 items 1 and 4).
+&gt;       assert live_gate_problems(LIVE_SCRIPT) == []
+E       AssertionError: assert ['.screenshot...ly list', ...] == []
+E         
+E         Left contains 22 more items, first extra item: '.screenshot is used'
+E         
+E         Full diff:
+E         - []
+E         + [
+E         +     '.screenshot is used',...
+E         
+E         ...Full output truncated (23 lines hidden), use '-vv' to show
+
+tests\browser\test_app.py:5329: AssertionError</failure></testcase><testcase classname="test_app" name="test_R41_a_planted_copy_of_the_gate_script_is_reported[storage-state-without-a-condition]" time="0.007"><failure message="AttributeError: 'NoneType' object has no attribute 'body'">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-92/test_R41_a_planted_copy_of_the0')
+fault = 'storage-state-without-a-condition'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_GATE_FAULTS))
+    def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
+        source, tree = gate_script()
+        planted = tmp_path / "live_e2e.py"
+&gt;       planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\browser\test_app.py:5362: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = '"""Cold-boot live gate (qa.md, "Cold-boot live-e2e gate"). Run from the project root:\npython tests/browser/live_e2e....n folder.iterdir())))\n    return 0 if result == "PASS" else 1\n\n\nif __name__ == "__main__":\n    sys.exit(main())\n'
+tree = Module(body=[Expr(value=Constant(value='Cold-boot live gate (qa.md, "Cold-boot live-e2e gate"). Run from the project r...eft=Name(...), ops=[Eq(...)], comparators=[Constant(...)]), body=[Expr(value=Call(...))], orelse=[])], type_ignores=[])
+fault = 'storage-state-without-a-condition'
+
+    def planted_gate_copy(source, tree, fault):
+        """The text of the gate script with `fault` planted, cut from the script's own syntax tree so it follows its edits."""
+        [context] = rig_contexts(tree)
+        value, segment = keyword_of(context, "storage_state"), lambda node: ast.get_source_segment(source, node)
+        if fault == "storage-state-without-a-condition":
+&gt;           return source.replace(segment(value), segment(value.body), 1)
+                                                          ^^^^^^^^^^
+E           AttributeError: 'NoneType' object has no attribute 'body'
+
+tests\browser\test_app.py:5346: AttributeError</failure></testcase><testcase classname="test_app" name="test_R41_a_planted_copy_of_the_gate_script_is_reported[else-branch-is-the-k2-state]" time="0.004"><failure message="AttributeError: 'NoneType' object has no attribute 'body'">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-92/test_R41_a_planted_copy_of_the1')
+fault = 'else-branch-is-the-k2-state'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_GATE_FAULTS))
+    def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
+        source, tree = gate_script()
+        planted = tmp_path / "live_e2e.py"
+&gt;       planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\browser\test_app.py:5362: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = '"""Cold-boot live gate (qa.md, "Cold-boot live-e2e gate"). Run from the project root:\npython tests/browser/live_e2e....n folder.iterdir())))\n    return 0 if result == "PASS" else 1\n\n\nif __name__ == "__main__":\n    sys.exit(main())\n'
+tree = Module(body=[Expr(value=Constant(value='Cold-boot live gate (qa.md, "Cold-boot live-e2e gate"). Run from the project r...eft=Name(...), ops=[Eq(...)], comparators=[Constant(...)]), body=[Expr(value=Call(...))], orelse=[])], type_ignores=[])
+fault = 'else-branch-is-the-k2-state'
+
+    def planted_gate_copy(source, tree, fault):
+        """The text of the gate script with `fault` planted, cut from the script's own syntax tree so it follows its edits."""
+        [context] = rig_contexts(tree)
+        value, segment = keyword_of(context, "storage_state"), lambda node: ast.get_source_segment(source, node)
+        if fault == "storage-state-without-a-condition":
+            return source.replace(segment(value), segment(value.body), 1)
+        if fault == "else-branch-is-the-k2-state":
+&gt;           return source.replace(segment(value), f"{segment(value.body)} if {segment(value.test)} else {segment(value.body)}", 1)
+                                                             ^^^^^^^^^^
+E           AttributeError: 'NoneType' object has no attribute 'body'
+
+tests\browser\test_app.py:5348: AttributeError</failure></testcase><testcase classname="test_app" name="test_R41_a_planted_copy_of_the_gate_script_is_reported[bypass-csp-false]" time="0.022"><failure message="AssertionError: assert ['bypass_csp ...ly list', ...] == ['bypass_csp ...ord argument']&#10;  &#10;  Left contains 22 more items, first extra item: '.screenshot is used'&#10;  &#10;  Full diff:&#10;    [&#10;        'bypass_csp is a keyword argument',&#10;  +     '.screenshot is used',...&#10;  &#10;  ...Full output truncated (23 lines hidden), use '-vv' to show">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-92/test_R41_a_planted_copy_of_the2')
+fault = 'bypass-csp-false'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_GATE_FAULTS))
+    def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
+        source, tree = gate_script()
+        planted = tmp_path / "live_e2e.py"
+        planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+&gt;       assert live_gate_problems(planted) == PLANTED_GATE_FAULTS[fault]
+E       AssertionError: assert ['bypass_csp ...ly list', ...] == ['bypass_csp ...ord argument']
+E         
+E         Left contains 22 more items, first extra item: '.screenshot is used'
+E         
+E         Full diff:
+E           [
+E               'bypass_csp is a keyword argument',
+E         +     '.screenshot is used',...
+E         
+E         ...Full output truncated (23 lines hidden), use '-vv' to show
+
+tests\browser\test_app.py:5364: AssertionError</failure></testcase><testcase classname="test_app" name="test_R41_a_planted_copy_of_the_gate_script_is_reported[page-screenshot-in-the-step-helper]" time="0.021"><failure message="AssertionError: assert ['.screenshot...ly list', ...] == ['.screenshot is used']&#10;  &#10;  Left contains 21 more items, first extra item: 'storage_state is not a keyword exactly once, on the rig.new_context call'&#10;  &#10;  Full diff:&#10;    [&#10;        '.screenshot is used',&#10;  +     'storage_state is not a keyword exactly once, on the rig.new_context call',...&#10;  &#10;  ...Full output truncated (22 lines hidden), use '-vv' to show">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-92/test_R41_a_planted_copy_of_the3')
+fault = 'page-screenshot-in-the-step-helper'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_GATE_FAULTS))
+    def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
+        source, tree = gate_script()
+        planted = tmp_path / "live_e2e.py"
+        planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+&gt;       assert live_gate_problems(planted) == PLANTED_GATE_FAULTS[fault]
+E       AssertionError: assert ['.screenshot...ly list', ...] == ['.screenshot is used']
+E         
+E         Left contains 21 more items, first extra item: 'storage_state is not a keyword exactly once, on the rig.new_context call'
+E         
+E         Full diff:
+E           [
+E               '.screenshot is used',
+E         +     'storage_state is not a keyword exactly once, on the rig.new_context call',...
+E         
+E         ...Full output truncated (22 lines hidden), use '-vv' to show
+
+tests\browser\test_app.py:5364: AssertionError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,82 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields tests/browser/test_app.py::test_R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else tests/browser/test_app.py::test_R41_the_gate_uses_real_gestures_and_reads_only tests/browser/test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported
+...FFFF                                                                  [100%]
+================================== FAILURES ===================================
+_ test_R41_a_planted_copy_of_the_gate_script_is_reported[storage-state-without-a-condition] _
+
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-95/test_R41_a_planted_copy_of_the0')
+fault = 'storage-state-without-a-condition'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_GATE_FAULTS))
+    def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
+        source, tree = gate_script()
+        planted = tmp_path / "live_e2e.py"
+        planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+>       assert live_gate_problems(planted) == PLANTED_GATE_FAULTS[fault]
+E       AssertionError: assert [] == ['storage_sta...l expression']
+E         
+E         Right contains one more item: 'storage_state is not a conditional expression'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5297: AssertionError
+_ test_R41_a_planted_copy_of_the_gate_script_is_reported[else-branch-is-the-k2-state] _
+
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-95/test_R41_a_planted_copy_of_the1')
+fault = 'else-branch-is-the-k2-state'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_GATE_FAULTS))
+    def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
+        source, tree = gate_script()
+        planted = tmp_path / "live_e2e.py"
+        planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+>       assert live_gate_problems(planted) == PLANTED_GATE_FAULTS[fault]
+E       AssertionError: assert [] == ['the else br... is not None']
+E         
+E         Right contains one more item: 'the else branch of storage_state is not None'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5297: AssertionError
+__ test_R41_a_planted_copy_of_the_gate_script_is_reported[bypass-csp-false] ___
+
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-95/test_R41_a_planted_copy_of_the2')
+fault = 'bypass-csp-false'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_GATE_FAULTS))
+    def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
+        source, tree = gate_script()
+        planted = tmp_path / "live_e2e.py"
+        planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+>       assert live_gate_problems(planted) == PLANTED_GATE_FAULTS[fault]
+E       AssertionError: assert [] == ['bypass_csp ...ord argument']
+E         
+E         Right contains one more item: 'bypass_csp is a keyword argument'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5297: AssertionError
+_ test_R41_a_planted_copy_of_the_gate_script_is_reported[page-screenshot-in-the-step-helper] _
+
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-95/test_R41_a_planted_copy_of_the3')
+fault = 'page-screenshot-in-the-step-helper'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_GATE_FAULTS))
+    def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
+        source, tree = gate_script()
+        planted = tmp_path / "live_e2e.py"
+        planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+>       assert live_gate_problems(planted) == PLANTED_GATE_FAULTS[fault]
+E       AssertionError: assert [] == ['.screenshot is used']
+E         
+E         Right contains one more item: '.screenshot is used'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5297: AssertionError
+engine webkit, browser version None, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[storage-state-without-a-condition]
+FAILED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[else-branch-is-the-k2-state]
+FAILED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[bypass-csp-false]
+FAILED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[page-screenshot-in-the-step-helper]
+4 failed, 3 passed in 1.04s

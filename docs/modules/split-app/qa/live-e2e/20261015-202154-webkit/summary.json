@@ -1,0 +1,51 @@
+{
+  "started": "2026-10-15T20:21:54",
+  "ended": "2026-10-15T20:22:04",
+  "engine": "webkit",
+  "browser_version": "26.5",
+  "control": null,
+  "base_url": "http://127.0.0.1:26864",
+  "port": 26864,
+  "server_pid": null,
+  "server": "served by the caller (--base-url)",
+  "server_log": [],
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "device_scale_factor": 1,
+  "color_scheme": "dark",
+  "reduced_motion": "reduce",
+  "init_scripts": [
+    "tests/browser/clipboard/recorder.js",
+    "tests/browser/csp/listener.js"
+  ],
+  "storage_state": null,
+  "bypass_csp": false,
+  "capture": "the page's newest screencast frame per step (JPEG), never a screenshot",
+  "captures": [
+    "01-cold-boot.jpg",
+    "02-even-split.jpg",
+    "03-splits-sheet.jpg",
+    "04-one-person.jpg",
+    "05-at-random.jpg",
+    "06-by-item.jpg",
+    "07-come-back.jpg",
+    "08-start-over.jpg",
+    "09-throughout.jpg"
+  ],
+  "steps_planned": 9,
+  "steps_run": 9,
+  "steps_passed": 9,
+  "first_failing_step": null,
+  "failure": null,
+  "requests": 90,
+  "requests_outside_the_rule": 0,
+  "console_errors": 0,
+  "page_errors": 0,
+  "csp_violations": 0,
+  "clipboard_stand_in": true,
+  "clipboard_writes": 3,
+  "pass": true,
+  "result": "PASS"
+}

@@ -1,0 +1,6 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields tests/browser/test_app.py::test_R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else tests/browser/test_app.py::test_R41_the_gate_uses_real_gestures_and_reads_only tests/browser/test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported tests/browser/test_app.py::test_R58_the_engine_option_and_the_one_launch_place tests/browser/test_app.py::test_R58_only_the_rig_launches_a_browser tests/browser/test_app.py::test_R39_only_the_rig_makes_browser_contexts tests/browser/test_app.py::test_R2_cold_boot_is_a_new_bill_with_no_seed tests/browser/test_app.py::test_R1_page_works_from_a_sub_path
+..........server STARTED pid 12072 port 30179 root {workspace}\examples\split
+..server STOPPED pid 12072 port 30179, exited True, port free again True
+                                                                         [100%]
+engine webkit, browser version 26.5, skipped 0
+12 passed in 2.87s

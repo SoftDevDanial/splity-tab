@@ -23,10 +23,10 @@ from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 import rig
 import seeds
 import support
-from expected import (BLOCKED_CARD, S1_COPY, S1_ITEMS, S1_LINES, S1_PROOF, S1_SPLITS, S2_COPY,
+from expected import (BLOCKED_CARD, COLD_BOOT, S1_COPY, S1_ITEMS, S1_LINES, S1_PROOF, S1_SPLITS, S2_COPY,
                       S2_LINES, S2_PROOF, S2_SPLITS)
-from support import (CSP, GOLDEN_DIR, ROOT, card_text, dom_walk, first_diff, golden_walk, open_golden,
-                     person_field, walk_entries)
+from support import (CSP, GOLDEN_DIR, ROOT, card_text, cold_boot_state, dom_walk, first_diff, golden_walk, open_golden,
+                     person_field, receipt, walk_entries)
 
 
 # ---------------------------------------------------------------- Task 1: the rig (R1, R39)
@@ -195,39 +195,8 @@ def test_R1_page_works_from_a_sub_path(open_app):
         parent.stop()
 
 
-# R2's first render, read in one pass so a part that is not built yet fails at once instead of waiting for it.
-COLD_BOOT_JS = """() => {
-  const one = (selector) => document.querySelector(selector);
-  const attr = (selector, name) => one(selector)?.getAttribute(name) ?? null;
-  const field = (selector) => one(selector) ? [one(selector).value, one(selector).placeholder] : null;
-  const copy = one('#stripCopy');
-  return {
-    names: [...document.querySelectorAll('li.field.person input')].map((input) => input.value),
-    removesDisabled: [...document.querySelectorAll('li.field.person button')].map((button) => button.disabled),
-    evenChecked: one('#modeEven')?.checked ?? null,
-    subtotal: field('#evenSub'),
-    subtotalErrorHidden: one('p.err#evenErr')?.hidden ?? null,
-    rates: [one('#svc')?.value ?? null, one('#sst')?.value ?? null],
-    open: [attr('#peopleBlk', 'data-open'), attr('#peopleBtn', 'aria-expanded'), attr('#chargesBlk', 'data-open')],
-    totalHolds: [...(one('#rbody > div.r-total')?.children ?? [])].map((el) => `${el.localName}.${el.className}`),
-    emptyIcon: attr('#rbody > div.r-empty > svg.ic > use', 'href'),
-    strip: one('#stripInfo')?.innerText.trim() ?? null,
-    stripCopy: copy ? { shown: copy.checkVisibility(), disabled: copy.disabled } : null,
-  };
-}"""
-COLD_BOOT = {
-    "names": ["Person 1", "Person 2"], "removesDisabled": [True, True], "evenChecked": True, "subtotal": ["", "0.00"],
-    "subtotalErrorHidden": True, "rates": ["10", "6"], "open": ["true", "true", "false"],
-    "card": BLOCKED_CARD["subtotal"], "totalHolds": ["span.r-label"], "emptyIcon": "#i-mark",
-    "strip": "Enter the subtotal to see the splits.", "stripCopy": {"shown": True, "disabled": True},
-}
-
-
-def cold_boot_state(page):
-    return {**page.evaluate(COLD_BOOT_JS), "card": card_text(page)}
-
-
 def test_R2_cold_boot_is_a_new_bill_with_no_seed(open_app):
+    # COLD_BOOT (expected.py) and cold_boot_state (support.py) are shared with the live gate's steps 1 and 8 (task A20).
     page = open_app().page
     assert cold_boot_state(page) == COLD_BOOT
     assert page.evaluate("localStorage.getItem('split.draft')") is None
@@ -1358,46 +1327,10 @@ def test_R15_a_rate_error_names_the_hint_first_and_then_its_error(open_app):
 
 
 # ---------------------------------------------------------------- v1.1.0 task A9: the receipt and the card (R16 to R21)
-# The receipt of one div.rbody in one evaluate (the card's #rbody, or the sheet's from task A12), so a part the tree does
-# not draw reads as null or empty and fails on its assertion at once, never on a wait. A row and the proof give their
-# span.wk without its span.sr children (qa.md, before the scenarios), and null where there is none.
-RECEIPT_JS = """(root) => {
-  const rbody = document.querySelector(root);
-  if (!rbody) return null;
-  const label = (el) => el.localName + [...el.classList].map((name) => '.' + name).join('');
-  const part = (selector) => rbody.querySelector(':scope > ' + selector);
-  const child = (el, selector) => el.querySelector(':scope > ' + selector);
-  const working = (el) => el && [...el.childNodes].filter((node) => !(node instanceof Element && node.matches('span.sr')))
-    .map((node) => node.textContent).join('');
-  const icon = (svg) => svg && [label(svg), svg.querySelector('use')?.getAttribute('href') ?? null];
-  const total = part('div.r-total'), amount = part('div.r-total > p.r-amount'), head = part('div.r-head');
-  const note = part('div.r-empty') ?? part('div.r-msg'), list = part('ul.r-splits'), check = part('div.r-check');
-  const copy = part('button.r-copy'), status = part('p.status');
-  return {
-    blocks: [...rbody.children].map(label),
-    total: total && [...total.children].map((el) => [label(el), el.id, el.textContent]),
-    amount: amount && [...amount.childNodes].map((node) => node instanceof Element ? `${label(node)} ${node.textContent}` : node.textContent),
-    lines: [...rbody.querySelectorAll(':scope > dl.r-lines > div')].map((row) => [...row.children].map((el) => el.textContent)),
-    rule: part('div.r-rule')?.getAttribute('aria-hidden') ?? null,
-    note: note && [label(note), ...[...note.children].map((el) => el.localName === 'svg' ? icon(el) : [label(el), el.textContent])],
-    head: head && [...head.children].map((el) => [label(el), el.id, el.getAttribute('aria-hidden'), el.textContent]),
-    list: list && { id: list.id, cls: list.className, labelledBy: list.getAttribute('aria-labelledby'),
-      rowsVar: list.style.getPropertyValue('--rows'), rows: [...list.children].map((li) =>
-        [child(li, 'span.nm')?.textContent ?? null, child(li, 'span.amt')?.textContent ?? null, working(child(li, 'span.wk'))]) },
-    proof: check && { parts: [...check.children].map(label), seal: icon(child(check, 'svg')), id: child(check, 'span.amt')?.id ?? null,
-      amount: child(check, 'span.amt')?.textContent ?? null, working: working(child(check, 'span.wk')) },
-    copy: copy && [copy.id, copy.className, copy.textContent, icon(child(copy, 'svg'))],
-    status: status && [status.id, status.className, status.getAttribute('role'), status.textContent],
-  };
-}"""
+# The receipt is read by support.receipt (RECEIPT_JS), shared with the live gate since task A20.
 CARD_COPY = ["copyBtn", "btn btn-primary btn-block r-copy", "Copy summary", ["svg.ic", "#i-copy"]]
 ONE_NEEDS = "1 item still needs a person. Tap who had it to see the splits."
 TWO_NEED = "2 items still need a person. Tap who had each one to see the splits."
-
-
-def receipt(page, root="#rbody"):
-    """The receipt of the div.rbody at `root` (RECEIPT_JS), or None when the page has none."""
-    return page.evaluate(RECEIPT_JS, root)
 
 
 def card_figures(page):
@@ -5170,25 +5103,146 @@ def test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair(mon
         assert f"{40 - len(failing)} of 40 pairs pass" in log[-1]
 
 
-# ---------------------------------------------------------------- Task 13: the cold-boot live gate (R41)
-# The gate itself is `python tests/browser/live_e2e.py` (a few seconds, writes qa/live-e2e/<ts>/). These tests keep its
-# script honest without running a second browser inside this one: what it expects, how it labels its steps, and that
-# it uses real gestures only.
+# ---------------------------------------------------------------- v1.1.0 task A20: the cold-boot live gate (R41)
+# The gate itself is `python tests/browser/live_e2e.py` (writes qa/live-e2e/<stamp>-<engine>/, or -<engine>-control/ for
+# its control). These tests keep its script honest without running a second browser inside this one, as the @R41 @static
+# scenario "The gate script makes a cold context except on its control path" says: what it expects, how it labels its
+# steps, that it uses real gestures and reads only, and that only its control path gets a stored bill.
 LIVE_SCRIPT = ROOT / "tests" / "browser" / "live_e2e.py"
 ACTION_WORDS = {"open", "replace", "click", "close", "type", "press", "tap", "reload", "no"}
+BANNED_KEYWORDS = ("bypass_csp", "permissions")  # the strict policy stays live and no permission is granted
+# No shortcut that is not a gesture, and no screenshot, which adds a stylesheet that WebKit's policy refuses (R59 (4)).
+BANNED_ATTRIBUTES = ("fill", "dispatch_event", "check", "set_checked", "select_option", "route", "add_init_script",
+                     "launch_persistent" + "_context", "screenshot")
+# The read-only list. Every page.evaluate and wait_for_function argument of the script is one of these, and each only
+# reads. TWO_FRAMES_JS waits two animation frames and FOCUS_ON_NEW_BILL_JS is a condition, so neither changes anything.
+READS_ONLY = {"STAND_IN_JS", "TWO_FRAMES_JS", "OPEN_DIALOGS_JS", "PICKED_JS", "SECTIONS_JS", "ITEMS_JS", "FOCUS_ON_NEW_BILL_JS"}
+READ_EXPRESSIONS = {"window.testClipboardText", "window.testClipboardWrites", "window.testCspViolations",
+                    "Array.isArray(window.testCspViolations)", "localStorage.getItem('split.draft')"}
 
 
-def live_gate_steps():
-    tree = ast.parse(LIVE_SCRIPT.read_text(encoding="utf-8"))
+def gate_script(path=LIVE_SCRIPT):
+    """The text and the syntax tree of the gate script at `path`, the one way these tests read it, so a planted copy in a
+    temporary folder goes through the same code as the real script (task A20 item 1)."""
+    source = path.read_text(encoding="utf-8")
+    return source, ast.parse(source)
+
+
+def method_calls(tree, name):
     return [node for node in ast.walk(tree) if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
-            and node.func.attr == "step" and isinstance(node.func.value, ast.Name) and node.func.value.id == "gate"]
+            and node.func.attr == name]
+
+
+def is_name(node, *parts):
+    """Whether `node` spells the dotted name `parts`, as is_name(node, "rig", "storage_state") for rig.storage_state."""
+    for part in reversed(parts[1:]):
+        if not (isinstance(node, ast.Attribute) and node.attr == part):
+            return False
+        node = node.value
+    return isinstance(node, ast.Name) and node.id == parts[0]
+
+
+def keyword_of(call, name):
+    return next((keyword.value for keyword in call.keywords if keyword.arg == name), None)
+
+
+def is_control(node):
+    """The parsed --control value, the namespace's attribute (args.control) or a name bound to it."""
+    return (isinstance(node, ast.Attribute) and node.attr == "control") or (isinstance(node, ast.Name) and node.id == "control")
+
+
+def live_gate_steps(path=LIVE_SCRIPT):
+    _, tree = gate_script(path)
+    return [call for call in method_calls(tree, "step") if is_name(call.func.value, "gate")]
+
+
+def rig_contexts(tree):
+    return [call for call in method_calls(tree, "new" + "_context") if is_name(call.func.value, "rig")]
+
+
+def storage_state_problems(tree, context):
+    """storage_state is a keyword exactly once, on the one rig.new_context call, and reads
+    `rig.storage_state(..., seeds.S2) if <the parsed --control value> == "seeded" else None` (qa.md, Control mode)."""
+    given = [node for node in ast.walk(tree) if isinstance(node, ast.keyword) and node.arg == "storage_state"]
+    value = keyword_of(context, "storage_state")
+    if len(given) != 1 or value is None:
+        return ["storage_state is not a keyword exactly once, on the rig.new_context call"]
+    if not isinstance(value, ast.IfExp):
+        return ["storage_state is not a conditional expression"]
+    test, problems = value.test, []
+    sides = [test.left, *test.comparators] if isinstance(test, ast.Compare) else []
+    if not (sides and [type(op) for op in test.ops] == [ast.Eq] and any(is_control(side) for side in sides)
+            and any(isinstance(side, ast.Constant) and side.value == "seeded" for side in sides)):
+        problems.append('the test of storage_state is not the parsed --control value == "seeded"')
+    if not (isinstance(value.body, ast.Call) and is_name(value.body.func, "rig", "storage_state")
+            and any(is_name(argument, "seeds", "S2") for argument in value.body.args)):
+        problems.append("storage_state does not give the K2 state when its test holds")
+    if not (isinstance(value.orelse, ast.Constant) and value.orelse.value is None):
+        problems.append("the else branch of storage_state is not None")
+    return problems
+
+
+def control_option_problems(tree):
+    """The one add_argument("--control", ...) call has the choices ["seeded"] and the default None (qa.md, Control mode)."""
+    options = [call for call in method_calls(tree, "add_argument")
+               if call.args and isinstance(call.args[0], ast.Constant) and call.args[0].value == "--control"]
+    if len(options) != 1:
+        return ["there is not exactly one --control option"]
+    choices, default = keyword_of(options[0], "choices"), keyword_of(options[0], "default")
+    problems = [] if isinstance(choices, ast.List) and ast.literal_eval(choices) == ["seeded"] else [
+        'the choices of --control are not ["seeded"]']
+    if not (isinstance(default, ast.Constant) and default.value is None):
+        problems.append("the default of --control is not None")
+    return problems
+
+
+def screencast_problems(tree, context):
+    """page.screencast.start is called exactly once, with on_frame and a size equal to the context's viewport (R41)."""
+    starts = [call for call in method_calls(tree, "start")
+              if isinstance(call.func.value, ast.Attribute) and call.func.value.attr == "screencast"]
+    if len(starts) != 1:
+        return ["page.screencast.start is not called exactly once"]
+    size, viewport = keyword_of(starts[0], "size"), keyword_of(context, "viewport")
+    problems = [] if keyword_of(starts[0], "on_frame") is not None else ["page.screencast.start has no on_frame"]
+    if size is None or viewport is None or ast.dump(size) != ast.dump(viewport):
+        problems.append("the size of page.screencast.start is not the context's viewport")
+    return problems
+
+
+def read_argument(call):
+    """The first argument of an evaluate or wait_for_function call, as its name, its text or its source."""
+    first = call.args[0] if call.args else None
+    if isinstance(first, ast.Name):
+        return first.id
+    return first.value if isinstance(first, ast.Constant) else ast.unparse(first) if first is not None else "no argument"
+
+
+def live_gate_problems(path):
+    """What keeps the gate script at `path` from qa.md "Cold-boot live-e2e gate" (Rules, Control mode) and from R41's
+    capture, one line each, [] when nothing does. The real script and every planted copy go through it (task A20)."""
+    source, tree = gate_script(path)
+    problems = [f"{node.arg} is a keyword argument" for node in ast.walk(tree)
+                if isinstance(node, ast.keyword) and node.arg in BANNED_KEYWORDS]
+    used = {node.attr for node in ast.walk(tree) if isinstance(node, ast.Attribute)}
+    problems += [f".{name} is used" for name in BANNED_ATTRIBUTES if name in used]
+    made = "new" + "_context("  # spelled in two parts so test_R39_only_the_rig_makes_browser_contexts does not flag this file
+    contexts = rig_contexts(tree)
+    if source.count("rig." + made) != 1 or source.count(made) != 1 or len(contexts) != 1:
+        return problems + ["the one context does not come from one rig.new_context call"]
+    problems += storage_state_problems(tree, contexts[0])
+    problems += control_option_problems(tree)
+    problems += screencast_problems(tree, contexts[0])
+    seen = [read_argument(call) for call in method_calls(tree, "evaluate") + method_calls(tree, "wait_for_function")]
+    problems += [f"{item} is not on the read-only list" for item in seen if item not in READS_ONLY | READ_EXPRESSIONS]
+    return problems if seen else problems + ["the script reads nothing with page.evaluate"]
 
 
 def test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields():
+    # [v1.1.0] The steps 1 to 9 of qa.md's flow, with the 1.0 action words unchanged (task A20 item 2).
     import live_e2e
     assert live_e2e.format_step(3, "click it", "it is open", "PASS") == "03 | gesture: click it | assertion: it is open | PASS"
     steps = live_gate_steps()
-    assert [call.args[0].value for call in steps] == [1, 2, 3, 4, 5, 6, 7]  # one call per numbered step of qa.md
+    assert [call.args[0].value for call in steps] == list(range(1, 10))  # one call per numbered step of qa.md
     for call in steps:
         fields = {keyword.arg: keyword.value.value if isinstance(keyword.value, ast.Constant) else None for keyword in call.keywords}
         gesture, assertion = fields["gesture"], fields["assertion"]
@@ -5197,30 +5251,50 @@ def test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields():
         assert assertion.split()[0] not in ACTION_WORDS, f"step {call.args[0].value}: the assertion field holds {assertion!r}"
 
 
-def test_R41_the_gate_installs_the_clipboard_recorder_and_nothing_else():
+def test_R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else():
+    # [v1.1.0] qa.md, Rules. The recorder (CG-7 of 1.0), then the engine-neutral CSP detector (task A20 item 3).
     import live_e2e
-    assert live_e2e.INIT_SCRIPTS == ["tests/browser/clipboard/recorder.js"]  # the recorder is the one init script (CG-7)
-
-
-READS_ONLY = {"STATE_JS", "ITEMS_JS", "SUMMARY_JS", "TABLE_JS", "ACTIVE_JS"}
-READ_EXPRESSIONS = {"window.testClipboardText", "window.testClipboardWrites", "localStorage.getItem('split.draft')",
-                    "() => !Clipboard.prototype.writeText.toString().includes('[native code]')",
-                    "(d) => d.matches(':modal')", "(d) => d.open"}
+    assert live_e2e.INIT_SCRIPTS == ["tests/browser/clipboard/recorder.js", "tests/browser/csp/listener.js"]
 
 
 def test_R41_the_gate_uses_real_gestures_and_reads_only():
-    source = LIVE_SCRIPT.read_text(encoding="utf-8")
-    tree = ast.parse(source)
-    keywords = {node.arg for node in ast.walk(tree) if isinstance(node, ast.keyword)}
-    attributes = {node.attr for node in ast.walk(tree) if isinstance(node, ast.Attribute)}
-    assert not keywords & {"storage_state", "bypass_csp", "permissions"}  # a cold context, the strict policy live, no permission
-    assert not attributes & {"fill", "dispatch_event", "check", "set_checked", "select_option", "route", "add_init_script",
-                             "launch_persistent" + "_context"}  # no shortcut that is not a gesture
-    made = "new" + "_context("  # spelled in two parts so test_R39_only_the_rig_makes_browser_contexts does not flag this file
-    assert source.count("rig." + made) == 1 and source.count(made) == 1  # the one context comes from the rig
-    seen = [node.args[0].id if isinstance(node.args[0], ast.Name) else node.args[0].value for node in ast.walk(tree)
-            if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == "evaluate"]
-    assert seen and all(item in READS_ONLY | READ_EXPRESSIONS for item in seen), sorted(set(seen) - READS_ONLY - READ_EXPRESSIONS)
+    # [v1.1.0] The @R41 @static scenario up to its INIT_SCRIPTS line, and its capture lines (task A20 items 1 and 4).
+    assert live_gate_problems(LIVE_SCRIPT) == []
+
+
+# Each planted copy is the real script with one fault (the @R41 @static scenario), and the one line the guard reports.
+PLANTED_GATE_FAULTS = {
+    "storage-state-without-a-condition": ["storage_state is not a conditional expression"],
+    "else-branch-is-the-k2-state": ["the else branch of storage_state is not None"],
+    "bypass-csp-false": ["bypass_csp is a keyword argument"],
+    "page-screenshot-in-the-step-helper": [".screenshot is used"],
+}
+
+
+def planted_gate_copy(source, tree, fault):
+    """The text of the gate script with `fault` planted, cut from the script's own syntax tree so it follows its edits."""
+    [context] = rig_contexts(tree)
+    value, segment = keyword_of(context, "storage_state"), lambda node: ast.get_source_segment(source, node)
+    if fault == "storage-state-without-a-condition":
+        return source.replace(segment(value), segment(value.body), 1)
+    if fault == "else-branch-is-the-k2-state":
+        return source.replace(segment(value), f"{segment(value.body)} if {segment(value.test)} else {segment(value.body)}", 1)
+    if fault == "bypass-csp-false":
+        call = segment(context)
+        return source.replace(call, call[:-1].rstrip().rstrip(",") + ", bypass_csp=False)", 1)
+    step = next(node for node in ast.walk(tree) if isinstance(node, ast.FunctionDef) and node.name == "step")
+    lines = source.splitlines(keepends=True)
+    lines.insert(step.body[-1].lineno - 1, " " * step.body[-1].col_offset + 'self.page.screenshot(path="planted.png")\n')
+    return "".join(lines)
+
+
+@pytest.mark.parametrize("fault", list(PLANTED_GATE_FAULTS))
+def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
+    source, tree = gate_script()
+    planted = tmp_path / "live_e2e.py"
+    planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
+    assert planted.read_text(encoding="utf-8") != source
+    assert live_gate_problems(planted) == PLANTED_GATE_FAULTS[fault]
 
 
 # ---------------------------------------------------------------- v1.1.0 task A0: the engine switch (R58)
