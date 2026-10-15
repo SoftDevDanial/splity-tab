@@ -41,3 +41,12 @@ Spec task A18. "Cross-cutting checks in both engines. Tab order and rings, overf
 
 ## Processes
 None of A16's alive at writing, by the closing sweep recorded in A16's return to the orchestrator.
+
+## Added 2026-10-15 18:24 by the frontend developer role at the end of A21. A18's new baseline
+A21 (the focus scroll, R49, H-08) is committed, `b8b332e` (build) and a second docs commit with the proof record (`BUILD.md`, A21). The text above stays as written. Where it names the A16 proof run as A18's WebKit baseline, or F-A11-1 as the one WebKit failure allowed, read this section instead (spec A18 line of 2026-10-15).
+- Node 379 of 379 (`docs/modules/split-app/qa/unit/20261015-181242/node-test.txt`).
+- Chromium `docs/modules/split-app/qa/functional/20261015-181252-chromium/`, 624 tests, 603 passed, 21 xfailed, 0 failed.
+- WebKit `docs/modules/split-app/qa/functional/20261015-181625-webkit/`, 624 tests, 602 passed, 0 failed, 1 skipped (the IME test), 21 xfailed. This run is A18's WebKit baseline by id. No WebKit failure is allowed now, F-A11-1 passes.
+- The 21 xfails are the same ids as listed above (`task A18` 15, `task A19` 6). The one new id is `test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it`, passed in both engines.
+- New in `src/`. `focusScroll` in `createStrip` (`src/ui/strip.js`) is the document's one `focusin` listener. Below 1024 px it scrolls a control in `div.app` outside `#strip` whose bottom edge is under the strip's top with `scrollIntoView({ block: "nearest" })`. A18 tests that read scroll positions or Tab stops below 1024 px in WebKit now see each covered control end 12 px above the strip (bottom edge 721 at 390 x 844 with the 111 px strip, `qa/focus-scroll-probe/20261015-180501-webkit/result.json`). In Chromium the app makes no call on a Tab walk (`-180503-chromium/`).
+- New test helpers in `tests/browser/test_app.py`, `COUNT_SCROLL_INTO_VIEW_JS` (counts the app's `scrollIntoView` calls) and `FOCUSED_AGAINST_STRIP_JS`.
