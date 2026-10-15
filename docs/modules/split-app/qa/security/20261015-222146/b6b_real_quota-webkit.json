@@ -1,0 +1,31 @@
+{
+ "facts": {
+  "engine": "webkit",
+  "started": "2026-10-15T22:39:15",
+  "root": "{workspace}\\examples\\split",
+  "server_pid": 10656,
+  "port": 45276,
+  "browser_version": "26.5",
+  "ended": "2026-10-15T22:39:17",
+  "server_log": [
+   "server STARTED pid 10656 port 45276 root {workspace}\\examples\\split",
+   "server STOPPED pid 10656 port 45276, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "driver": "real quota, tight fill",
+   "filler_keys": 18,
+   "warning_at_boot": false,
+   "warning_after_typing": true,
+   "stored_draft_after_failed_write": null,
+   "warning_after_storage_back": false,
+   "stored_service_text": "1012",
+   "service_on_screen": "1012",
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "off_rule_requests": []
+  }
+ ]
+}

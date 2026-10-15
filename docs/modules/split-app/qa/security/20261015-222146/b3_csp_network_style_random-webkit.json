@@ -1,0 +1,588 @@
+{
+ "facts": {
+  "engine": "webkit",
+  "started": "2026-10-15T22:33:47",
+  "server_pid": 26364,
+  "port": 49841,
+  "browser_version": "26.5",
+  "ended": "2026-10-15T22:33:53",
+  "server_log": [
+   "server STARTED pid 26364 port 49841 root {workspace}\\examples\\split",
+   "server STOPPED pid 26364 port 49841, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "A": {
+    "stand_in": {
+     "writes": 0,
+     "hasClipboard": true,
+     "native": false
+    },
+    "strip_total": "RM 116.60",
+    "styles_p1_over_sheet": [
+     "html. => --strip-h: 111px;",
+     "#sheetScroll => padding-bottom: 271px;"
+    ],
+    "styles_p1_random": [
+     "html. => --strip-h: 111px;",
+     "#sheetScroll => padding-bottom: 325px;"
+    ],
+    "styles_end_a": [
+     "html. => --strip-h: 108px;"
+    ],
+    "flow": "completed",
+    "csp": [],
+    "random_calls": [
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | chooseSpareRule@http://127.0.0.1:49841/src/core/spare.js:54:83 | onRule@http://127.0.0.1:49841/src/main.js:167:44 | @http://127.0.0.1:49841/src/ui/spare-choice.js:145:50",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | chooseSpareRule@http://127.0.0.1:49841/src/core/spare.js:54:83 | onRule@http://127.0.0.1:49841/src/main.js:167:44 | @http://127.0.0.1:49841/src/ui/spare-choice.js:145:50",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43"
+    ],
+    "clipboard_writes": 2,
+    "clipboard_refused": 0,
+    "console": [],
+    "page_errors": [],
+    "dialogs": [],
+    "requests": [
+     [
+      "GET",
+      "http://127.0.0.1:49841/",
+      "document"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/system.css",
+      "stylesheet"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/main.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/bill.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/result.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/spare.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/summary.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/draft.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/errors.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/dialog.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/note.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/people.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/mode.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/subtotal.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/items.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/charges.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/sections.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/icons.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/receipt.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/strip.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/sheet.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/spare-choice.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/media.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/dom.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/money.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/allocate.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/field-error.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/field-leave.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/copy-status.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/repeat.js",
+      "script"
+     ]
+    ],
+    "off_rule_requests": []
+   },
+   "B": {
+    "styles_p1_desktop": [
+     "html. => --strip-h: 0px;",
+     "#spareDlg => left: 574px; bottom: 239.203125px;"
+    ],
+    "styles_p1_after_narrowing": [
+     "html. => --strip-h: 111px;",
+     "#spareDlg => "
+    ],
+    "styles_end_b": [
+     "html. => --strip-h: 0px;",
+     "#spareDlg => "
+    ],
+    "flow": "completed",
+    "csp": [],
+    "random_calls": [
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43",
+     "drawOrder@http://127.0.0.1:49841/src/core/spare.js:33:32 | pickAgain@http://127.0.0.1:49841/src/core/spare.js:87:73 | onPickAgain@http://127.0.0.1:49841/src/main.js:159:43"
+    ],
+    "clipboard_writes": 1,
+    "clipboard_refused": 0,
+    "console": [],
+    "page_errors": [],
+    "dialogs": [],
+    "requests": [
+     [
+      "GET",
+      "http://127.0.0.1:49841/",
+      "document"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/system.css",
+      "stylesheet"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/main.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/bill.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/result.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/spare.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/summary.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/draft.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/errors.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/dialog.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/note.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/people.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/mode.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/subtotal.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/items.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/charges.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/sections.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/icons.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/receipt.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/strip.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/sheet.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/spare-choice.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/media.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/dom.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/money.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/allocate.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/field-error.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/field-leave.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/copy-status.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/repeat.js",
+      "script"
+     ]
+    ],
+    "off_rule_requests": []
+   },
+   "C": {
+    "styles_many": [
+     "html. => --strip-h: 0px;",
+     "#splits => --rows: 6;"
+    ],
+    "flow": "completed",
+    "csp": [],
+    "random_calls": [],
+    "clipboard_writes": 0,
+    "clipboard_refused": 0,
+    "console": [
+     "error: Refused to execute a script because its hash, its nonce, or 'unsafe-inline' does not appear in the script-src directive of the Content Security Policy.",
+     "error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+     "error: Refused to connect to http://127.0.0.1:49841/ because it appears in neither the connect-src directive nor the default-src directive of the Content Security Policy.",
+     "error: Refused to load http://127.0.0.1:9/x.png because it does not appear in the img-src directive of the Content Security Policy."
+    ],
+    "page_errors": [],
+    "dialogs": [],
+    "requests": [
+     [
+      "GET",
+      "http://127.0.0.1:49841/",
+      "document"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/system.css",
+      "stylesheet"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/main.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/bill.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/result.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/spare.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/summary.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/draft.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/errors.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/dialog.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/note.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/people.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/mode.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/subtotal.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/items.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/charges.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/sections.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/icons.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/receipt.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/strip.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/sheet.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/spare-choice.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/media.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/dom.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/money.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/core/allocate.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/field-error.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/field-leave.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/copy-status.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:49841/src/ui/repeat.js",
+      "script"
+     ]
+    ],
+    "off_rule_requests": [],
+    "positive_controls": {
+     "inlineRan": null,
+     "fetched": "rejected",
+     "added": [
+      "script-src-elem",
+      "style-src-attr",
+      "connect-src",
+      "img-src"
+     ]
+    },
+    "off_rule_requests_after_controls": []
+   },
+   "style_lines_distinct": [
+    "#sheetScroll => padding-bottom: 271px;",
+    "#sheetScroll => padding-bottom: 325px;",
+    "#spareDlg => ",
+    "#spareDlg => left: 574px; bottom: 239.203125px;",
+    "#splits => --rows: 6;",
+    "html. => --strip-h: 0px;",
+    "html. => --strip-h: 108px;",
+    "html. => --strip-h: 111px;"
+   ],
+   "style_props_outside_r38": [],
+   "random_calls_total": 16,
+   "random_calls_outside_spare_js": [],
+   "pass": false
+  }
+ ]
+}

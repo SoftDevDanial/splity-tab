@@ -1,0 +1,63 @@
+{
+ "facts": {
+  "engine": "webkit",
+  "started": "2026-10-15T22:35:42",
+  "root": "{temp}/claude/{project-id}/9f7a7bfa-f87d-4692-bcb6-d8869bc1b359/scratchpad/split-sec-step5/v100",
+  "server_pid": 20940,
+  "port": 64903,
+  "browser_version": "26.5",
+  "tag": "v100-control",
+  "ended": "2026-10-15T22:36:00",
+  "server_log": [
+   "server STARTED pid 20940 port 64903 root {temp}\\claude\\{project-id}\\9f7a7bfa-f87d-4692-bcb6-d8869bc1b359\\scratchpad\\split-sec-step5\\v100",
+   "server STOPPED pid 20940 port 64903, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "case": "held Enter on Remove of the only item (SEC-04)",
+   "before": {
+    "items": [
+     [
+      "i7",
+      "Nasi lemak ayam"
+     ]
+    ],
+    "nextId": 8,
+    "people": 3,
+    "spare": null
+   },
+   "focus_before": "button Remove Nasi lemak ayam",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "after": {
+    "items": [
+     [
+      "i8",
+      ""
+     ]
+    ],
+    "nextId": 9,
+    "people": 3,
+    "spare": null
+   },
+   "focus_after": "input Item 1 name",
+   "dialogs_open": [],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "FAILS"
+  },
+  {
+   "case": "held Enter on New bill",
+   "error": "TimeoutError: Locator.wait_for: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"#newBill\") to be visible\n",
+   "verdict": "ERROR"
+  }
+ ]
+}

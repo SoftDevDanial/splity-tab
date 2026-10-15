@@ -1,0 +1,23 @@
+# Evidence index, security finder (read-only), step 5 of v1.1.0, split-app
+
+Run 2026-10-15 22:21 to 22:41, HEAD `21a7bd2` (no `src/` or `index.html` change since `d58f4ce`). Node v24.11.1, Playwright 1.61.0, Chromium 149.0.7827.55, WebKit 26.5, headless only. Every context came from `rig.new_context` with the clipboard stand-in (`recorder.js`) first, then `csp/listener.js` and a guard that rejects clipboard reads. No permission, no `bypass_csp`. Each probe checked the stand-in before its first gesture. The operating system clipboard was never touched.
+
+| File | What it is | Result |
+|---|---|---|
+| `n1_decoder.mjs`, `n1_decoder-results.json` | 101 hostile drafts through `decodeDraft` in Node, each decoded bill through core and back through `encodeDraft` | 101 of 101, prototypes unchanged |
+| `b1_hostile_boot.py`, `b1_hostile_boot-chromium.json` | First form of B1. Kept as history. Its JSON used `\u` escapes, so two long-name seeds hit the quota, and its keystroke went into a name field already past `maxlength`, so two rows waited for a save that could not come (a probe fault, not an app hang) | superseded by B1b |
+| `b1b_hostile_boot.py`, `b1b_hostile_boot-<engine>.json` | 28 hostile drafts booted in the app, then one real keystroke | Chromium 28 of 28, WebKit 27 of 27 and 1 skipped (the 4.5M seed exceeds WebKit's quota) |
+| `b2_injection.py`, `b2_injection-<engine>.json` | Markup, NUL, LS and bidi names restored, P1 and pills, At random, Pick again, copy from card, sheet and strip, layout reads of the People summary | text stays text and the clipboard holds in both engines. SEC-S5-1 is the People summary |
+| `b3_csp_network_style_random.py`, `b3_csp_network_style_random-<engine>.json` | Three real-gesture flows over the v1.1.0 surfaces, every `style` attribute, every `Math.random` call with its stack, then four positive controls | flows clean in both engines, see the note below |
+| `b4_held_enter.py`, `b4_held_enter-v100-control-<engine>.json`, `b4_held_enter-head-<engine>.json` | SEC-04 of 1.0. The control is the v1.0.0 tree (`git archive v1.0.0 index.html src`, unpacked in the session scratchpad), the green run is HEAD | control RED in both engines (blank `i8`, `nextId` 9), HEAD 4 of 4 HOLDS in both |
+| `b5_publish_scope.py`, `b5_publish_scope.json` | The publish set (`index.html`, `src/`), tracked, untracked and ignored files, references, requests, and a search for local paths, addresses, hosts and schemes | 31 files, all tracked, none untracked or ignored. The only scheme hits are the two exempt SVG namespaces (the "windows path" hits are the `p:/` inside `http://`) |
+| `b6_save_warning.py`, `b6_save_warning-<engine>.json` | Drivers D-b, D-a and D-c of the suite, and a real quota | the three drivers hold in both engines. The real-quota row left about 1 KB free, so the draft still fitted. Superseded by B6b |
+| `b6b_real_quota.py`, `b6b_real_quota-<engine>.json` | Real quota filled in shrinking chunks down to 1 character | warning after the failed write, cleared after the storage came back, both engines |
+| `pytest-r41-static.xml` | The six R41 static guard tests (`test_R41_the_gate_uses_real_gestures_and_reads_only`, the four planted copies, the init scripts test) | 6 passed |
+| `g0_credential_gate.py`, `credential-gate.txt` | The credential gate, foreground, its output kept | exit 0, both controls pass, 9721 files |
+| `common.py` | The probes' shared helper. Gained an optional `root` and a new seed page (`/src/system.css`) for B4 after B1 to B3 ran. B1 to B3 used `/src/icon.svg`, a same-origin document that does not run the app either | |
+
+Notes.
+- B3's `"pass": false` comes from my own pass rule, which also counted page C's console lines. Every one of those lines comes from the four positive controls run at the end of page C: an inline script, a `style` attribute, a same-origin `fetch` and an image from `127.0.0.1:9`. The JSON shows the same four directives in `positive_controls.added`. Pages A and B have no console line. All three flows ended `completed` with 0 CSP violations, 0 page errors and no request outside the rule. In Chromium the blocked control image shows as a request event, and its URL is a loopback discard port.
+- The first credential gate run of this session was also exit 0, on 9689 files (console only). `credential-gate.txt` is the second run, on 9721 files, after this folder was written.
+- Every server was `python -m http.server <port> --bind 127.0.0.1` from `rig.StaticServer`, started and stopped by its probe, each logged `STOPPED ... exited True, port free again True` in its JSON `facts.server_log`.

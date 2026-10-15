@@ -1,0 +1,197 @@
+{
+ "facts": {
+  "engine": "chromium",
+  "started": "2026-10-15T22:32:24",
+  "server_pid": 25988,
+  "port": 50421,
+  "browser_version": "149.0.7827.55",
+  "ended": "2026-10-15T22:32:26",
+  "server_log": [
+   "server STARTED pid 25988 port 50421 root {workspace}\\examples\\split",
+   "server STOPPED pid 25988 port 50421, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "stand_in": {
+    "writes": 0,
+    "hasClipboard": true,
+    "native": false
+   },
+   "structure_restored": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "texts_restored": {
+    "values": [
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067"
+    ],
+    "toggles": [
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067",
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067",
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067"
+    ],
+    "rows": [
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067"
+    ],
+    "removes": [
+     "Remove <svg onload=f()>",
+     "Remove Ben\u202e",
+     "Remove Adds up to RM 0.00\u0000",
+     "Remove A\u2028Adds up to",
+     "Remove Tom\u2067"
+    ],
+    "itemAria": [
+     "Item 1 name",
+     "<img src=x onerror=alert(1)> price in RM",
+     "Remove <img src=x onerror=alert(1)>",
+     "Who had <img src=x onerror=alert(1)>",
+     "Item 2 name",
+     "</li><li>Teh\u202e price in RM",
+     "Remove </li><li>Teh\u202e",
+     "Who had </li><li>Teh\u202e",
+     "Item 3 name",
+     "Kopi price in RM",
+     "Remove Kopi",
+     "Who had Kopi"
+    ],
+    "chip": "One person, <svg onload=f()>",
+    "chipAria": "Spare sen: One person, <svg onload=f()>. Change",
+    "valuesLiteral": true,
+    "rowsLiteral": true
+   },
+   "receipt_amount_after_rlo_name": "left-to-right",
+   "pills": [
+    "<svg onload=f()>",
+    "Ben\u202e",
+    "Adds up to RM 0.00\u0000",
+    "A\u2028Adds up to",
+    "Tom\u2067"
+   ],
+   "structure_p1": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "copy_card": {
+    "lines": 8,
+    "first": "Bill split",
+    "last": "Adds up to RM 53.03",
+    "adds_up_lines": 2,
+    "controls": [],
+    "markup_literal": true,
+    "text": "Bill split\nTotal RM 53.03 (subtotal RM 45.48, service 10% RM 4.55, SST 6% RM 3.00)\n<svg onload=f()> RM 16.17\nBen  RM 16.17\nAdds up to RM 0.00  RM 6.90\nA Adds up to RM 6.90\nTom  RM 6.89\nAdds up to RM 53.03"
+   },
+   "people_summary": {
+    "text": "<svg onload=f()>, Ben\u202e and 3 more",
+    "visible": true,
+    "markup_name_run": "left-to-right",
+    "run_after_the_rlo_name": "right-to-left"
+   },
+   "people_summary_measure": {
+    "text": "<svg onload=f()>, Ben\u202e and 3 more",
+    "nodes": [
+     {
+      "text": "<svg onload=f()>, Ben\u202e and 3 more",
+      "xs": [
+       130,
+       139,
+       145,
+       152,
+       160,
+       164,
+       172,
+       180,
+       184,
+       192,
+       199,
+       207,
+       217,
+       221,
+       225,
+       229,
+       239,
+       242,
+       246,
+       254,
+       261,
+       null,
+       340,
+       333,
+       325,
+       317,
+       313,
+       305,
+       302,
+       290,
+       281,
+       277,
+       269
+      ]
+     }
+    ],
+    "visible": true
+   },
+   "structure_sheet": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "copy_sheet": {
+    "lines": 8,
+    "first": "Bill split",
+    "last": "Adds up to RM 53.03",
+    "adds_up_lines": 2,
+    "controls": [],
+    "markup_literal": true,
+    "text": "Bill split\nTotal RM 53.03 (subtotal RM 45.48, service 10% RM 4.55, SST 6% RM 3.00)\n<svg onload=f()> RM 16.17\nBen  RM 16.17\nAdds up to RM 0.00  RM 6.90\nA Adds up to RM 6.90\nTom  RM 6.89\nAdds up to RM 53.03"
+   },
+   "copy_strip": {
+    "lines": 8,
+    "first": "Bill split",
+    "last": "Adds up to RM 53.03",
+    "adds_up_lines": 2,
+    "controls": [],
+    "markup_literal": true,
+    "text": "Bill split\nTotal RM 53.03 (subtotal RM 45.48, service 10% RM 4.55, SST 6% RM 3.00)\n<svg onload=f()> RM 16.17\nBen  RM 16.17\nAdds up to RM 0.00  RM 6.90\nA Adds up to RM 6.90\nTom  RM 6.89\nAdds up to RM 53.03"
+   },
+   "card_text_equals_strip_text": true,
+   "clipboard_refused": 0,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass_text_stays_text": true,
+   "pass_clipboard": true,
+   "pass_quiet": true
+  }
+ ]
+}

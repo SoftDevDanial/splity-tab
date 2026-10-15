@@ -1,0 +1,2312 @@
+{
+ "facts": {
+  "engine": "chromium",
+  "started": "2026-10-15T22:29:58",
+  "server_pid": 20292,
+  "port": 1166,
+  "browser_version": "149.0.7827.55",
+  "ended": "2026-10-15T22:30:20",
+  "server_log": [
+   "server STARTED pid 20292 port 1166 root {workspace}\\examples\\split",
+   "server STOPPED pid 20292 port 1166, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "case": "readable S2 random",
+   "chars": 256,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 96,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "At random",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 71,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "random",
+     "order": [
+      "p2",
+      "p3",
+      "p1"
+     ]
+    },
+    "version": 2,
+    "name_lengths": [
+     6,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "readable spare top with own __proto__ and extra",
+   "chars": 261,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 89,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 43,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     6,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "readable person with own __proto__ and admin",
+   "chars": 268,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 93,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 41,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     6,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "readable v1 with hostile spare (D14)",
+   "chars": 246,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 91,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 44,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     6,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 3,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "readable one p1 on no item, item mode (fallback)",
+   "chars": 306,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 97,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 49,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [
+     [
+      "id",
+      "name",
+      "priceText",
+      "who"
+     ]
+    ],
+    "spare": {
+     "rule": "one",
+     "personId": "p1"
+    },
+    "version": 2,
+    "name_lengths": [
+     6,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 3,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "spare one __proto__",
+   "chars": 251,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 81,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 36,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 3,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "order invents an id",
+   "chars": 256,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 79,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 44,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "order repeats an id",
+   "chars": 256,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 84,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 49,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "rule constructor",
+   "chars": 236,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 80,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 50,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 3,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "v2 without spare",
+   "chars": 205,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 78,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 33,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 4,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "version 3",
+   "chars": 228,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 80,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 33,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "who __proto__",
+   "chars": 286,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 83,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 37,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "duplicate person ids",
+   "chars": 195,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 89,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 47,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "stale nextId",
+   "chars": 228,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 76,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 47,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "unknown mode",
+   "chars": 229,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 84,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 73,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "no people, even mode",
+   "chars": 150,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 103,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 44,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "name with CR",
+   "chars": 243,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 76,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 48,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "BOM prefix",
+   "chars": 229,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 79,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 49,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 3,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "the text null",
+   "chars": 4,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 77,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 44,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "2M-char subtotalText",
+   "chars": 2000222,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 255,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 124,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     6,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 3,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "2M-char ascii name",
+   "chars": 2000222,
+   "want": "unreadable",
+   "seeded": true,
+   "ready_ms": 323,
+   "unreadableNote": true,
+   "saveWarning": false,
+   "people": 2,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": false,
+   "stored_after_boot": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "got": "unreadable",
+   "keystroke_ms": 45,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     8,
+     8
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "20k combining marks, one grapheme name",
+   "chars": 20223,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 93,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 52,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     20001,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "200k combining marks, one grapheme name",
+   "chars": 200223,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 160,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 91,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     200001,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "1M combining marks, one grapheme name",
+   "chars": 1000223,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 556,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 231,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     1000001,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "2M combining marks, one grapheme name",
+   "chars": 2000223,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 931,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 598,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     2000001,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 4,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "1M nesting in an unknown key",
+   "chars": 2000236,
+   "want": "any",
+   "seeded": true,
+   "ready_ms": 189,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 115,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     6,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 2,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "4.5M-char subtotalText",
+   "chars": 4500222,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 423,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": null,
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 267,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     6,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 3,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  },
+  {
+   "case": "4.5M combining marks, one grapheme name",
+   "chars": 4500223,
+   "want": "ok",
+   "seeded": true,
+   "ready_ms": 2365,
+   "unreadableNote": false,
+   "saveWarning": false,
+   "people": 3,
+   "proto": 12,
+   "polluted": null,
+   "admin": null,
+   "chip": "Top of the list",
+   "proto_changed": false,
+   "stored_unchanged_at_boot": true,
+   "stored_after_boot": "same as seeded",
+   "got": "ok",
+   "keystroke_ms": 2158,
+   "stored_after_keystroke": {
+    "top": [
+     "bill",
+     "version"
+    ],
+    "bill": [
+     "mode",
+     "people",
+     "subtotalText",
+     "items",
+     "serviceText",
+     "sstText",
+     "spare",
+     "nextId"
+    ],
+    "people": [
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ],
+     [
+      "id",
+      "name"
+     ]
+    ],
+    "items": [],
+    "spare": {
+     "rule": "top"
+    },
+    "version": 2,
+    "name_lengths": [
+     4500001,
+     3,
+     4
+    ]
+   },
+   "idle_eval_ms": 4,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "off_rule_requests": [],
+   "pass": true
+  }
+ ]
+}

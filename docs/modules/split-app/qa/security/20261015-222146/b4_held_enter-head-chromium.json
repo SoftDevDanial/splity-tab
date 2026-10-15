@@ -1,0 +1,151 @@
+{
+ "facts": {
+  "engine": "chromium",
+  "started": "2026-10-15T22:35:35",
+  "root": "{workspace}\\examples\\split",
+  "server_pid": 20708,
+  "port": 39144,
+  "browser_version": "149.0.7827.55",
+  "tag": "head",
+  "ended": "2026-10-15T22:35:42",
+  "server_log": [
+   "server STARTED pid 20708 port 39144 root {workspace}\\examples\\split",
+   "server STOPPED pid 20708 port 39144, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "case": "held Enter on Remove of the only item (SEC-04)",
+   "before": {
+    "items": [
+     [
+      "i7",
+      "Nasi lemak ayam"
+     ]
+    ],
+    "nextId": 8,
+    "people": 3,
+    "spare": null
+   },
+   "focus_before": "button Remove Nasi lemak ayam",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 8,
+    "people": 3,
+    "spare": {
+     "rule": "top"
+    }
+   },
+   "focus_after": "button#addItem Add item",
+   "dialogs_open": [],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "held Enter on New bill",
+   "before": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null
+   },
+   "focus_before": "button#newBill New bill",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null
+   },
+   "focus_after": "button Cancel",
+   "dialogs_open": [
+    "newDlg"
+   ],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "held Enter on Splits (R50)",
+   "before": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null
+   },
+   "focus_before": "button#splitsBtn Splits",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null
+   },
+   "focus_after": "div TotalRM 116.60SubtotalRM 100.0",
+   "dialogs_open": [
+    "splitsDlg"
+   ],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "held Enter on the spare chip (R52)",
+   "before": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null
+   },
+   "focus_before": "button#spareBtn Spare sen: Top of the list. Change",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null
+   },
+   "focus_after": "input ",
+   "dialogs_open": [
+    "spareDlg"
+   ],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  }
+ ]
+}

@@ -1,0 +1,101 @@
+{
+ "integrity": {
+  "chooseTop": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "chooseOne": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "chooseSame": {
+   "sameReference": true,
+   "keys": "input returned",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  },
+  "choosePerson": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "pickAgain": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "addPerson": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "removePerson": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "setMode": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  },
+  "addItem": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  },
+  "toggle": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  }
+ },
+ "integrity_note": "chooseSame returns the input (rule already random), so its keys are the parsed object's, by design (R29 same reference)",
+ "pickAgain_no_change": {
+  "sameReference": true,
+  "draws": 64,
+  "ms": 1
+ },
+ "pickAgain_constant_source": {
+  "sameReference": false,
+  "draws": 11,
+  "ms": 0
+ },
+ "pickAgain_max_bill_constant_source": {
+  "draws": 11,
+  "ms": 2
+ },
+ "precision": {
+  "bills": 40000,
+  "compared_top": 40000,
+  "mismatches_vs_bigint": 0,
+  "sum_failures_all_rules": 0,
+  "top_bills_with_products_past_2_53": 950,
+  "firstFails": []
+ },
+ "pollution": {
+  "objectProtoUnchanged": true,
+  "polluted": null
+ }
+}
