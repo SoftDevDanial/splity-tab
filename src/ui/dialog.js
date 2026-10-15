@@ -3,7 +3,7 @@
 // The dialog opens with showModal() (the page behind goes inert), focus starts on Cancel, and every way
 // out (Cancel, Esc, a click on the backdrop, Start new bill) ends with focus back on `opener`.
 
-import { swallowRepeatClicks } from "./dom.js";
+import { closeOnBackdropClick, swallowRepeatClicks } from "./dom.js";
 
 export function createDialog(dialog, opener, { onConfirm }) {
   const [start, cancel] = dialog.querySelectorAll(".acts .btn");
@@ -44,20 +44,5 @@ export function createDialog(dialog, opener, { onConfirm }) {
     }
   });
 
-  // Native showModal() ignores a click on the backdrop (CG-8 makes it Cancel). The backdrop belongs to the
-  // dialog element, so a press on the dialog element at a point outside its box is a press on the backdrop.
-  // A click goes to the common ancestor of where the press began and ended, so selecting the dialog text and
-  // letting go over the backdrop also targets the dialog: only a press that began on the backdrop counts.
-  const onBackdrop = (event) => {
-    const box = dialog.getBoundingClientRect();
-    return event.target === dialog
-      && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom);
-  };
-  let pressBeganOnBackdrop = false;
-  dialog.addEventListener("mousedown", (event) => { pressBeganOnBackdrop = onBackdrop(event); });
-  dialog.addEventListener("click", (event) => {
-    const began = pressBeganOnBackdrop;
-    pressBeganOnBackdrop = false;
-    if (began && onBackdrop(event)) closeByClick();
-  });
+  closeOnBackdropClick(dialog, closeByClick); // CG-8 makes a backdrop click Cancel
 }

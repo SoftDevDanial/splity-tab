@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="14" time="10.021" timestamp="2026-10-15T13:09:52.261441+08:00" hostname="{host}"><testcase classname="test_app" name="test_R50_the_splits_sheet_opens_with_the_cards_receipt" time="1.621" /><testcase classname="test_app" name="test_R50_closing_the_sheet_returns_focus_to_splits[390-close]" time="0.717"><failure message="AssertionError: assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...: 'splitsBtn'}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'children': ['div.glass.dense.sheet']} != {'children': []}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...: 'splitsBtn'}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'children': ['div.glass.dense.sheet']} != {'children': []}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R50_closing_the_sheet_returns_focus_to_splits[390-escape]" time="0.547"><failure message="AssertionError: assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...: 'splitsBtn'}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'children': ['div.glass.dense.sheet']} != {'children': []}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...: 'splitsBtn'}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'children': ['div.glass.dense.sheet']} != {'children': []}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R50_closing_the_sheet_returns_focus_to_splits[390-backdrop]" time="0.551"><failure message="AssertionError: assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...: 'splitsBtn'}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'children': ['div.glass.dense.sheet']} != {'children': []}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...: 'splitsBtn'}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'children': ['div.glass.dense.sheet']} != {'children': []}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R50_closing_the_sheet_returns_focus_to_splits[360-backdrop]" time="0.541"><failure message="AssertionError: assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...: 'splitsBtn'}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'children': ['div.glass.dense.sheet']} != {'children': []}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...: 'splitsBtn'}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'children': ['div.glass.dense.sheet']} != {'children': []}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R50_a_press_that_starts_in_the_sheet_and_ends_on_the_backdrop_does_not_close_it" time="0.681" /><testcase classname="test_app" name="test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[390x844-touch-double]" time="0.546" /><testcase classname="test_app" name="test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[390x844-mouse-double]" time="0.635" /><testcase classname="test_app" name="test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[360x780-touch-double]" time="0.607" /><testcase classname="test_app" name="test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[360x780-mouse-double]" time="0.580" /><testcase classname="test_app" name="test_R50_the_sheet_closes_itself_when_the_window_reaches_1024_px" time="0.628"><failure message="AssertionError: assert {'open': Fals...ded': 'false'} == {'open': Fals...ded': 'false'}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'children': ['div.glass.dense.sheet']} != {'children': []}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...ded': 'false'} == {'open': Fals...ded': 'false'}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'children': ['div.glass.dense.sheet']} != {'children': []}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-390-sheet]" time="0.616" /><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-390-sheet]" time="0.651" /><testcase classname="test_app" name="test_R24_the_sheet_shows_the_status_while_it_is_open" time="0.740"><failure message="AssertionError: assert {'card': ['st...ary copied']]} == {'card': ['st...'sheet': None}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'sheet': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]} != {'sheet': None}&#10;  Use -v to get more diff">E   AssertionError: assert {'card': ['st...ary copied']]} == {'card': ['st...'sheet': None}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'sheet': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]} != {'sheet': None}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

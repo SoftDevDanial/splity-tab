@@ -70,8 +70,9 @@ const isRepeat = (event) => (event.type === "keydown" ? event.repeat : isRepeatC
  * the person row that pushed "Add person" down (below 1024 px it sits under the list), the backdrop of the dialog that
  * had just opened (it shut again), or whatever was under a dialog that has closed.
  * The armers are the click on every Remove, on Add person and on Add item (nothing slides under that one, it arms so
- * the rule stays one rule), and the clicks that open and close the dialog. The guard protects only what arms it, and no
- * click can arm it for a layout move that is not a click (the error line of a price field, RG-CR-08). So a Remove also
+ * the rule stays one rule), and the clicks that open and close the New bill dialog and the Splits sheet. The guard
+ * protects only what arms it, and no click can arm it for a layout move that is not a click (the error line of a price
+ * field, RG-CR-08). So a Remove also
  * ignores a repeat press itself (`isRepeatClick`), and the guard covers everything else, Add person included, which has no
  * count test. "Dismiss note" moves the rows and arms nothing, its repeat press lands on a heading or a div (BUILD.md, call 18).
  * The guard cancels the repeat presses and clicks at the document, in the capture phase, before any control sees
@@ -89,6 +90,27 @@ export function swallowRepeatClicks() {
     event.preventDefault();
   };
   for (const type of GUARDED) document.addEventListener(type, guard, true);
+}
+
+/**
+ * Calls `close` for a click on the backdrop of the modal `dialog`, which native showModal() ignores (R30, R50, R52).
+ * The backdrop belongs to the dialog element, so a press on the dialog element at a point outside its box is a press on
+ * the backdrop. A click goes to the common ancestor of where the press began and ended, so selecting the dialog's text
+ * and letting go over the backdrop also targets the dialog. Only a press that began on the backdrop counts.
+ */
+export function closeOnBackdropClick(dialog, close) {
+  const onBackdrop = (event) => {
+    const box = dialog.getBoundingClientRect();
+    return event.target === dialog
+      && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom);
+  };
+  let pressBeganOnBackdrop = false;
+  dialog.addEventListener("mousedown", (event) => { pressBeganOnBackdrop = onBackdrop(event); });
+  dialog.addEventListener("click", (event) => {
+    const began = pressBeganOnBackdrop;
+    pressBeganOnBackdrop = false;
+    if (began && onBackdrop(event)) close();
+  });
 }
 
 export function setText(node, text) {

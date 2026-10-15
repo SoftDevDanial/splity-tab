@@ -285,7 +285,6 @@ def edited_walk(walk, matches, edit):
     return copy
 
 
-@pytest.mark.xfail(strict=True, reason="task A12")
 def test_R3_the_walk_sees_every_rendered_element_and_flags_each_kind_of_change(open_app):
     page = open_app(seed=seeds.S1).page
     walk = dom_walk(page)
@@ -302,7 +301,7 @@ def test_R3_the_walk_sees_every_rendered_element_and_flags_each_kind_of_change(o
     assert re.search(r"ul\.frame\[\d+\]: children ", found), found
     page.locator("#splitsBtn").click()
     found = first_diff(walk, dom_walk(page))
-    assert found.startswith("body: children ") and "dialog.sheet-dlg" in found, found
+    assert found is not None and found.startswith("body: children ") and "dialog.sheet-dlg" in found, found
 
 
 def test_R38_policy_is_exact_and_nothing_inline():
@@ -633,6 +632,7 @@ def test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills(open_app):
     assert names == ["Aisyah", "Ben", "Chen Wei"], names
     page.locator("#splitsDlg .r-copy").click()
     assert page.evaluate("window.testClipboardText").splitlines()[4] == "Chen Wei RM 24.48"
+    assert page.locator(SHEET_SPARE_CHIP).count() == 1, "the sheet holds no spare chip"  # task A13
     page.locator(SHEET_SPARE_CHIP).click()
     page.locator("#spareDlg label.choice", has_text="One person").click()
     pills = page.evaluate("() => [...document.querySelectorAll('#pickList label.pill .pill-face')].map((el) => el.textContent.trim())")
@@ -1465,9 +1465,8 @@ def test_R16_the_receipt_follows_every_keystroke_and_stays_quiet(open_app):
     assert page.evaluate(LIVE_JS, "body") == ["#cardStatus", "#stripStatus"]
 
 
-@pytest.mark.xfail(strict=True, reason="task A12")
 def test_R16_the_sheet_holds_one_live_element(open_app):
-    # The sheet's line of qa.md "The receipt follows every keystroke and stays quiet". The sheet is task A12's (R50).
+    # The sheet's line of qa.md "The receipt follows every keystroke and stays quiet" (R50, task A12).
     page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
     page.set_viewport_size({"width": 390, "height": 844})
     page.locator("#splitsBtn").click()
@@ -1501,11 +1500,9 @@ def test_R17_when_the_splits_cannot_be_worked_out(open_app, seed, setup, message
     assert {key: found[key] for key in ("blocks", "total", "note")} == blocked_card(message)
 
 
-@pytest.mark.xfail(strict=True, reason="task A12")
 @pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
 def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
-    # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
-    # the sheet A12's (R50), so the mark names the later one.
+    # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out" (R49 task A11, R50 task A12).
     page = open_app(seed=seed).page
     setup(page)
     assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
@@ -1584,10 +1581,9 @@ def test_R20_the_even_split_from_a_cold_boot(open_app):
     assert visible_text(page, "#stripInfo") == "Total RM 116.60"  # the strip reads (task A11, R49)
 
 
-@pytest.mark.xfail(strict=True, reason="task A12")
 def test_R20_the_sheet_lists_the_splits_as_the_card_does(open_app):
     # The sheet's lines of qa.md key flow 1 (its bill is K2) and of "More than six people list in two columns on the
-    # desktop". The sheet is task A12's (R50), and in it only the heading carries an id (PD-20).
+    # desktop" (R50, task A12). In the sheet only the heading carries an id (PD-20).
     page = open_app(seed=seeds.S2).page
     page.locator("#splitsBtn").click()
     found = receipt(page, "#splitsDlg .rbody")
@@ -1708,10 +1704,10 @@ def status_of(page):
 COPY_BUTTON = {"card": "#copyBtn", "strip": "#stripCopy", "sheet": "#splitsDlg .r-copy"}
 COPY_CASES = [  # qa.md "Copy summary puts the exact text on the clipboard": seed, width, the Copy summary clicked, the text
     pytest.param(seeds.S2, 1280, "card", S2_COPY, id="K2-1280-card"),
-    pytest.param(seeds.S2, 390, "sheet", S2_COPY, id="K2-390-sheet", marks=pytest.mark.xfail(strict=True, reason="task A12")),
+    pytest.param(seeds.S2, 390, "sheet", S2_COPY, id="K2-390-sheet"),
     pytest.param(seeds.S2, 390, "strip", S2_COPY, id="K2-390-strip"),
     pytest.param(seeds.S1, 1280, "card", S1_COPY, id="K1-1280-card"),
-    pytest.param(seeds.S1, 390, "sheet", S1_COPY, id="K1-390-sheet", marks=pytest.mark.xfail(strict=True, reason="task A12")),
+    pytest.param(seeds.S1, 390, "sheet", S1_COPY, id="K1-390-sheet"),
     pytest.param(seeds.S1, 390, "strip", S1_COPY, id="K1-390-strip"),
 ]
 
@@ -1818,9 +1814,8 @@ def test_R24_the_status_lasts_until_the_next_change_to_the_bill(open_app):
     assert status_lines(page) == {"card": NO_STATUS, "strip": NO_STATUS, "sheet": None}
 
 
-@pytest.mark.xfail(strict=True, reason="task A12")
 def test_R24_the_sheet_shows_the_status_while_it_is_open(open_app):
-    # The sheet's line of qa.md "The status lasts until the next change to the bill". The sheet is task A12's (R50).
+    # The sheet's line of qa.md "The status lasts until the next change to the bill" (R50, task A12).
     page = open_app(seed=seeds.S2).page
     click_copy(page, "#stripCopy")
     page.locator("#splitsBtn").click()
@@ -2003,6 +1998,133 @@ def test_R49_no_control_the_user_tabs_to_is_left_under_the_strip(open_app):
     assert under == [] and sum(is_toggle for _, is_toggle in stops) == 12, (under, stops)
     toggle_bottom, strip_top = page.evaluate(LAST_TOGGLE_OVER_STRIP_JS)
     assert toggle_bottom < strip_top, (toggle_bottom, strip_top)
+
+
+# ---------------------------------------------------------------- v1.1.0 task A12: the Splits sheet (R50)
+# The Splits sheet in one evaluate (spec R50): the dialog, its sheet with the parts R50 names in order, where focus is,
+# Splits' aria-expanded and every id inside the dialog. A part the dialog does not hold reads as null, so a sheet that is
+# not built fails on the assertion that names it, never on a wait.
+SHEET_JS = """() => {
+  const dialog = document.querySelector('#splitsDlg'), sheet = dialog.querySelector(':scope > div.sheet');
+  const label = (el) => el.localName + [...el.classList].map((name) => '.' + name).join('');
+  const kids = (el) => el ? [...el.children].map(label) : null;
+  const top = sheet?.querySelector(':scope > div.sheet-top'), close = top?.querySelector(':scope > button') ?? null;
+  const active = document.activeElement;
+  return {
+    open: dialog.open, modal: dialog.matches(':modal'), name: dialog.getAttribute('aria-label'), children: kids(dialog),
+    sheet: sheet && { tabindex: sheet.getAttribute('tabindex'), children: kids(sheet),
+      foil: sheet.querySelector(':scope > div.foil')?.getAttribute('aria-hidden') ?? null,
+      top: kids(top), grab: top?.querySelector(':scope > span.grab')?.getAttribute('aria-hidden') ?? null,
+      close: close && [close.getAttribute('type'), close.getAttribute('aria-label'), close.querySelector('use')?.getAttribute('href') ?? null],
+      scroll: kids(sheet.querySelector(':scope > div.sheet-scroll#sheetScroll')) },
+    focus: active === sheet ? 'the sheet' : active.id || active.localName,
+    expanded: document.querySelector('#splitsBtn').getAttribute('aria-expanded'),
+    ids: [...dialog.querySelectorAll('[id]')].map((el) => el.id),
+  };
+}"""
+SHEET_OPEN = {
+    "open": True, "modal": True, "name": "Splits", "children": ["div.glass.dense.sheet"],
+    "sheet": {"tabindex": "-1", "children": ["div.foil", "div.sheet-top", "div.sheet-scroll"], "foil": "true",
+              "top": ["span.grab", "button.icon-btn"], "grab": "true", "close": ["button", "Close", "#i-x"], "scroll": ["div.rbody"]},
+    "focus": "the sheet", "expanded": "true", "ids": ["sheetScroll", "sheetSplitsH"],
+}
+# qa.md "#splitsDlg is closed and has no child element, and #splitsBtn has aria-expanded 'false' and focus".
+SHEET_CLOSED = {"open": False, "children": [], "expanded": "false", "focus": "splitsBtn"}
+
+
+def sheet_state(page, keys=None):
+    """SHEET_JS, or only its `keys`."""
+    found = page.evaluate(SHEET_JS)
+    return found if keys is None else {key: found[key] for key in keys}
+
+
+def open_sheet(page):
+    """Click Splits and check that the sheet opened, so a later step fails on this assertion and never waits for a part."""
+    page.locator("#splitsBtn").click()
+    assert page.evaluate("() => document.querySelector('#splitsDlg').open"), "the sheet did not open"
+
+
+def test_R50_the_splits_sheet_opens_with_the_cards_receipt(open_app):
+    # qa.md on K1 at 390 x 844. "Is named" is read as the role and name a screen reader gets, and the receipt by "reads".
+    page = open_app(seed=seeds.S1).page
+    assert sheet_state(page, ("open", "children")) == {"open": False, "children": []}
+    page.locator("#splitsBtn").click()
+    assert sheet_state(page) == SHEET_OPEN
+    assert page.get_by_role("dialog", name="Splits", exact=True).count() == 1
+    assert support.reads(page, "#splitsDlg .rbody") == card_text(page)
+
+
+@pytest.mark.parametrize("size, close", [((390, 844), "close"), ((390, 844), "escape"), ((390, 844), (195, 80)),
+                                         ((360, 780), (180, 80))],
+                         ids=["390-close", "390-escape", "390-backdrop", "360-backdrop"])
+def test_R50_closing_the_sheet_returns_focus_to_splits(open_app, size, close):
+    # qa.md on K1. The backdrop points are docs/design/LINKS.json's, above the sheet, on its ::backdrop.
+    page = open_app(seed=seeds.S1, viewport=size).page
+    open_sheet(page)
+    if close == "close":
+        button = page.locator("#splitsDlg button[aria-label=Close]")
+        assert button.count() == 1, "the sheet holds no Close"
+        button.click()
+    elif close == "escape":
+        press_escape(page)
+    else:
+        page.mouse.click(*close)
+    assert sheet_state(page, SHEET_CLOSED) == SHEET_CLOSED
+
+
+def test_R50_a_press_that_starts_in_the_sheet_and_ends_on_the_backdrop_does_not_close_it(open_app):
+    # qa.md on K1 at 390 x 844. The click goes to the dialog, the common ancestor, at a point on the backdrop (R30 (1)).
+    page = open_app(seed=seeds.S1).page
+    open_sheet(page)
+    drag(page, centre_of(page.locator("#splitsDlg .r-amount")), (195, 80))
+    assert sheet_state(page, ("open", "children")) == {"open": True, "children": ["div.glass.dense.sheet"]}
+
+
+@pytest.mark.parametrize("gesture", ["touch-double", "mouse-double"])
+@pytest.mark.parametrize("size", [(390, 844), (360, 780)], ids=["390x844", "360x780"])
+def test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing(open_app, size, gesture):
+    # qa.md (PD-21). The sheet rises under the second press, and its Copy summary is there.
+    page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    gesture_at(page, gesture, centre_of(page.locator("#splitsBtn")))
+    assert sheet_state(page, ("open",)) == {"open": True} and page.evaluate("window.testClipboardWrites") == 0
+    assert_only_press_1_and_click_1_reached_the_page(page, 2, tapped=gesture == "touch-double")
+
+
+FOCUSIN_RECORDER_JS = """() => { window.testFocusins = [];
+  document.addEventListener('focusin', (event) => window.testFocusins.push(event.target.id || event.target.localName), true); }"""
+
+
+def test_R50_the_sheet_closes_itself_when_the_window_reaches_1024_px(open_app, request):
+    # qa.md on K1 (PD-18, the app moves no focus). The browser's own dialog close step may return focus to Splits, so a
+    # focusin there is allowed, and where focus ends is recorded per engine in the run's evidence folder.
+    page = open_app(seed=seeds.S1).page
+    open_sheet(page)
+    page.evaluate(FOCUSIN_RECORDER_JS)
+    page.set_viewport_size({"width": 1024, "height": 768})
+    try:
+        page.wait_for_function("() => !document.querySelector('#splitsDlg').open", timeout=2000)
+    except PlaywrightTimeoutError:
+        pass  # gave up after 2 s, and the assertion below names the sheet that is still open
+    settle(page)  # a focus that the close event would move comes a task later
+    found, focusins = sheet_state(page, ("open", "children", "expanded", "focus")), page.evaluate("window.testFocusins")
+    record = request.getfixturevalue("evidence_folder") / "R50-sheet-closed-at-1024.txt"
+    record.write_text(json.dumps({"focusins": focusins, "focused afterwards": found["focus"]}) + "\n", encoding="utf-8")
+    assert {key: found[key] for key in ("open", "children", "expanded")} == {"open": False, "children": [], "expanded": "false"}
+    assert [target for target in focusins if target != "splitsBtn"] == [], focusins
+
+
+@pytest.mark.xfail(strict=True, reason="task A13")
+def test_R50_the_sheet_follows_the_bill_while_it_is_open(open_app):
+    # qa.md on K2 at 390 x 844. The spare chip and P1 are task A13's (R51, R52), so the chip's count fails first until then.
+    page = open_app(seed=seeds.S2).page
+    open_sheet(page)
+    chip = page.locator(SHEET_SPARE_CHIP)
+    assert chip.count() == 1, "the sheet holds no spare chip"
+    chip.click()
+    page.locator("#spareDlg label.choice", has_text="One person").click()
+    assert page.evaluate("() => document.querySelector('#spareDlg').open") is True
+    assert [row[1] for row in receipt(page, "#splitsDlg .rbody")["list"]["rows"]] == ["RM 38.88", "RM 38.86", "RM 38.86"]
 
 
 # ---------------------------------------------------------------- Task 9: the draft (R25 to R28, with R3, R8, R10, R24, R26, R42)

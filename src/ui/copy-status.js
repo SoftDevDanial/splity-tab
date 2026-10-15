@@ -1,5 +1,5 @@
 // The copy status line (C6, R22 to R24). The status is one value in src/main.js, null, "ok" or "fail", and every status
-// paragraph present shows it the same way: the card's #cardStatus, the sheet's p.status (task A12) and the strip's
+// paragraph present shows it the same way: the card's #cardStatus, the sheet's p.status and the strip's
 // #stripStatus. This module is that one way, so the three lines cannot drift apart.
 import { setAttr } from "./dom.js";
 import { icon } from "./icons.js";

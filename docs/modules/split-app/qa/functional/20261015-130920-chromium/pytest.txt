@@ -1,0 +1,16 @@
+engine chromium, browser version 149.0.7827.55
+PASSED   call     test_app.py::test_R50_the_splits_sheet_opens_with_the_cards_receipt (0.25s)
+FAILED   call     test_app.py::test_R50_closing_the_sheet_returns_focus_to_splits[390-close] (0.23s)
+FAILED   call     test_app.py::test_R50_closing_the_sheet_returns_focus_to_splits[390-escape] (0.21s)
+FAILED   call     test_app.py::test_R50_closing_the_sheet_returns_focus_to_splits[390-backdrop] (0.20s)
+FAILED   call     test_app.py::test_R50_closing_the_sheet_returns_focus_to_splits[360-backdrop] (0.20s)
+PASSED   call     test_app.py::test_R50_a_press_that_starts_in_the_sheet_and_ends_on_the_backdrop_does_not_close_it (0.36s)
+PASSED   call     test_app.py::test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[390x844-touch-double] (0.30s)
+PASSED   call     test_app.py::test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[390x844-mouse-double] (0.29s)
+PASSED   call     test_app.py::test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[360x780-touch-double] (0.29s)
+PASSED   call     test_app.py::test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[360x780-mouse-double] (0.31s)
+PASSED   call     test_app.py::test_R50_the_sheet_closes_itself_when_the_window_reaches_1024_px (0.27s)
+PASSED   call     test_app.py::test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-390-sheet] (0.27s)
+PASSED   call     test_app.py::test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-390-sheet] (0.28s)
+PASSED   call     test_app.py::test_R24_the_sheet_shows_the_status_while_it_is_open (0.29s)
+exit status 1

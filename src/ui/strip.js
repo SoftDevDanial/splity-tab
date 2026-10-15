@@ -3,7 +3,7 @@
 // disabled unless there are splits (rule 5, disabled and never hidden), and keeps the root's --strip-h at the strip's
 // height, so the page's bottom padding and scroll-padding-bottom clear it (system.css).
 // createStrip(strip, { onCopy }) takes #strip and returns { update(result, copyStatus) }. `result` is what computeResult
-// gives, `copyStatus` is null, "ok" or "fail". #splitsBtn is the sheet's (task A12).
+// gives, `copyStatus` is null, "ok" or "fail". #splitsBtn is the sheet's (createSheet).
 import { formatAmount } from "../core/money.js";
 import { showCopyStatus } from "./copy-status.js";
 import { el, reconcileChildren } from "./dom.js";

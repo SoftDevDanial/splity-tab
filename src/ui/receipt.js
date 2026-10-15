@@ -1,7 +1,7 @@
 // The receipt (C2, C3, C5, R16 to R21): what computeResult(bill) gives, drawn into a div.rbody. One renderer serves the
-// card's #rbody and, from task A12, the Splits sheet's (PD-20), which is why the ids are a parameter.
+// card's #rbody and the Splits sheet's (PD-20), which is why the ids are a parameter.
 // createReceipt(rbody, { ids, onCopy }) fills `rbody` and returns { update(result, copyStatus) }. `ids` names the parts
-// that carry an id (CARD_IDS on the card, the sheet gives only its heading's), `copyStatus` is null, "ok" or "fail".
+// that carry an id (CARD_IDS on the card, SHEET_IDS in the sheet), `copyStatus` is null, "ok" or "fail".
 // Every figure comes from split-core, formatted by split-core. Text only, and quiet: the status paragraph is the one live
 // element in it (R16).
 import { formatAmount, formatMoney, formatRate } from "../core/money.js";
@@ -10,6 +10,8 @@ import { el, reconcileChildren } from "./dom.js";
 import { icon, seal } from "./icons.js";
 
 export const CARD_IDS = { total: "rTotal", head: "splitsH", list: "splits", proof: "addsUp", copy: "copyBtn", status: "cardStatus" };
+// PD-20. The card stays in the DOM while the sheet is open, so in the sheet only the heading has an id, for its list.
+export const SHEET_IDS = { head: "sheetSplitsH" };
 
 // R17 and R18's messages are also the strip's (R49), so they live here once.
 export const BLOCKED_MESSAGE = {

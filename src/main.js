@@ -19,6 +19,7 @@ import { createPeopleSection, createChargesSection } from "./ui/sections.js";
 import { icon } from "./ui/icons.js";
 import { CARD_IDS, createReceipt, hasSplits } from "./ui/receipt.js";
 import { createStrip } from "./ui/strip.js";
+import { createSheet } from "./ui/sheet.js";
 import { watchPointerClicks } from "./ui/dom.js";
 
 watchPointerClicks(); // R57 (b): every repeat check reads what these window listeners record from the first press on
@@ -139,13 +140,13 @@ const items = createItems({
   },
 });
 const charges = createCharges({ onInput: (kind, text) => amountTyped(kind, text), onLeave: (kind, text) => amountLeft(kind, text) });
-// New bill and Splits get their icons here (the strip's Copy summary in createStrip), because every icon but the sprite and
-// the mark is built at run time (R44).
+// New bill gets its icon here (Copy summary on the strip in createStrip, Splits in createSheet), because every icon but the
+// sprite and the mark is built at run time (R44).
 const newBillButton = document.getElementById("newBill");
 newBillButton.prepend(icon("plus"));
-document.getElementById("splitsBtn").append(icon("caret", "caret-up"));
 const strip = createStrip(document.getElementById("strip"), { onCopy: copySummary });
 const card = createReceipt(document.getElementById("rbody"), { ids: CARD_IDS, onCopy: copySummary });
+const sheet = createSheet(document.getElementById("splitsDlg"), document.getElementById("splitsBtn"), { onCopy: copySummary });
 createDialog(document.getElementById("newDlg"), newBillButton, {
   onConfirm() {
     // The view state is reset with the bill (R31): a stale error flag or open state must not outlive it. The copy
@@ -196,6 +197,7 @@ function render() {
   charges.update(bill, errors);
   card.update(result, view.status);
   strip.update(result, view.status);
+  sheet.update(result, view.status); // R50, an open sheet follows the bill and the status
   notes.update(view);
   items.markFrame(); // last, so it measures the frame with every block above it in its new state (R56)
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="26" skipped="0" tests="26" time="8.444" timestamp="2026-10-15T13:05:08.974822+08:00" hostname="{host}"><testcase classname="test_app" name="test_R50_the_splits_sheet_opens_with_the_cards_receipt" time="1.288"><failure message="AssertionError: assert {'open': Fals...ren': [], ...} == {'open': True....sheet'], ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'open': False} != {'open': True}&#10;  {'ids': []} != {'ids': ['sheetScroll', 'sheetSplitsH']}&#10;  {'modal': False} != {'modal': True}&#10;  {'expanded': 'false'} != {'expanded': 'true'}...&#10;  &#10;  ...Full output truncated (4 lines hidden), use '-vv' to show">E   AssertionError: assert {'open': Fals...ren': [], ...} == {'open': True....sheet'], ...}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'open': False} != {'open': True}
+      {'ids': []} != {'ids': ['sheetScroll', 'sheetSplitsH']}
+      {'modal': False} != {'modal': True}
+      {'expanded': 'false'} != {'expanded': 'true'}...
+      
+      ...Full output truncated (4 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R50_closing_the_sheet_returns_focus_to_splits[390-close]" time="0.227"><failure message="AssertionError: the sheet did not open&#10;assert False&#10; +  where False = evaluate(&quot;() =&gt; document.querySelector('#splitsDlg').open&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate">E   AssertionError: the sheet did not open
+    assert False
+     +  where False = evaluate("() =&gt; document.querySelector('#splitsDlg').open")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R50_closing_the_sheet_returns_focus_to_splits[390-escape]" time="0.232"><failure message="AssertionError: the sheet did not open&#10;assert False&#10; +  where False = evaluate(&quot;() =&gt; document.querySelector('#splitsDlg').open&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate">E   AssertionError: the sheet did not open
+    assert False
+     +  where False = evaluate("() =&gt; document.querySelector('#splitsDlg').open")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R50_closing_the_sheet_returns_focus_to_splits[390-backdrop]" time="0.229"><failure message="AssertionError: the sheet did not open&#10;assert False&#10; +  where False = evaluate(&quot;() =&gt; document.querySelector('#splitsDlg').open&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate">E   AssertionError: the sheet did not open
+    assert False
+     +  where False = evaluate("() =&gt; document.querySelector('#splitsDlg').open")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R50_closing_the_sheet_returns_focus_to_splits[360-backdrop]" time="0.234"><failure message="AssertionError: the sheet did not open&#10;assert False&#10; +  where False = evaluate(&quot;() =&gt; document.querySelector('#splitsDlg').open&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate">E   AssertionError: the sheet did not open
+    assert False
+     +  where False = evaluate("() =&gt; document.querySelector('#splitsDlg').open")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R50_a_press_that_starts_in_the_sheet_and_ends_on_the_backdrop_does_not_close_it" time="0.228"><failure message="AssertionError: the sheet did not open&#10;assert False&#10; +  where False = evaluate(&quot;() =&gt; document.querySelector('#splitsDlg').open&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate">E   AssertionError: the sheet did not open
+    assert False
+     +  where False = evaluate("() =&gt; document.querySelector('#splitsDlg').open")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[390x844-touch-double]" time="0.332"><failure message="AssertionError: assert ({'open': False} == {'open': True}&#10;  &#10;  Differing items:&#10;  {'open': False} != {'open': True}&#10;  Use -v to get more diff)">E   AssertionError: assert ({'open': False} == {'open': True}
+      
+      Differing items:
+      {'open': False} != {'open': True}
+      Use -v to get more diff)</failure></testcase><testcase classname="test_app" name="test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[390x844-mouse-double]" time="0.299"><failure message="AssertionError: assert ({'open': False} == {'open': True}&#10;  &#10;  Differing items:&#10;  {'open': False} != {'open': True}&#10;  Use -v to get more diff)">E   AssertionError: assert ({'open': False} == {'open': True}
+      
+      Differing items:
+      {'open': False} != {'open': True}
+      Use -v to get more diff)</failure></testcase><testcase classname="test_app" name="test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[360x780-touch-double]" time="0.347"><failure message="AssertionError: assert ({'open': False} == {'open': True}&#10;  &#10;  Differing items:&#10;  {'open': False} != {'open': True}&#10;  Use -v to get more diff)">E   AssertionError: assert ({'open': False} == {'open': True}
+      
+      Differing items:
+      {'open': False} != {'open': True}
+      Use -v to get more diff)</failure></testcase><testcase classname="test_app" name="test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing[360x780-mouse-double]" time="0.315"><failure message="AssertionError: assert ({'open': False} == {'open': True}&#10;  &#10;  Differing items:&#10;  {'open': False} != {'open': True}&#10;  Use -v to get more diff)">E   AssertionError: assert ({'open': False} == {'open': True}
+      
+      Differing items:
+      {'open': False} != {'open': True}
+      Use -v to get more diff)</failure></testcase><testcase classname="test_app" name="test_R50_the_sheet_closes_itself_when_the_window_reaches_1024_px" time="0.233"><failure message="AssertionError: the sheet did not open&#10;assert False&#10; +  where False = evaluate(&quot;() =&gt; document.querySelector('#splitsDlg').open&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate">E   AssertionError: the sheet did not open
+    assert False
+     +  where False = evaluate("() =&gt; document.querySelector('#splitsDlg').open")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R50_the_sheet_follows_the_bill_while_it_is_open" time="0.210"><failure message="AssertionError: the sheet did not open&#10;assert False&#10; +  where False = evaluate(&quot;() =&gt; document.querySelector('#splitsDlg').open&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate">E   AssertionError: the sheet did not open
+    assert False
+     +  where False = evaluate("() =&gt; document.querySelector('#splitsDlg').open")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:17408/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R3_the_walk_sees_every_rendered_element_and_flags_each_kind_of_change" time="0.251"><failure message="AssertionError: None&#10;assert (None is not None)">E   AssertionError: None
+    assert (None is not None)</failure></testcase><testcase classname="test_app" name="test_R16_the_sheet_holds_one_live_element" time="0.229"><failure message="AssertionError: assert [] == ['p.status']&#10;  &#10;  Right contains one more item: 'p.status'&#10;  Use -v to get more diff">E   AssertionError: assert [] == ['p.status']
+      
+      Right contains one more item: 'p.status'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K2-service-emptied]" time="0.314"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">E   AssertionError: the sheet holds no div.rbody
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K1-sst-25]" time="0.319"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">E   AssertionError: the sheet holds no div.rbody
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K2-subtotal-emptied]" time="0.283"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">E   AssertionError: the sheet holds no div.rbody
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[cold-boot]" time="0.194"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">E   AssertionError: the sheet holds no div.rbody
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[by-item]" time="0.212"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">E   AssertionError: the sheet holds no div.rbody
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[by-item-add-item]" time="0.285"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">E   AssertionError: the sheet holds no div.rbody
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K1-one-price-abc]" time="0.352"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">E   AssertionError: the sheet holds no div.rbody
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K1-every-price-abc]" time="0.445"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">E   AssertionError: the sheet holds no div.rbody
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R20_the_sheet_lists_the_splits_as_the_card_does" time="0.210"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">E   AssertionError: the sheet holds no div.rbody
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-390-sheet]" time="0.200"><failure message="AssertionError: no #splitsDlg .r-copy&#10;assert 0 == 1&#10; +  where 0 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:17408/'&gt; selector='#splitsDlg .r-copy'&gt;.count">E   AssertionError: no #splitsDlg .r-copy
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:17408/'&gt; selector='#splitsDlg .r-copy'&gt;.count</failure></testcase><testcase classname="test_app" name="test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-390-sheet]" time="0.235"><failure message="AssertionError: no #splitsDlg .r-copy&#10;assert 0 == 1&#10; +  where 0 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:17408/'&gt; selector='#splitsDlg .r-copy'&gt;.count">E   AssertionError: no #splitsDlg .r-copy
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:17408/'&gt; selector='#splitsDlg .r-copy'&gt;.count</failure></testcase><testcase classname="test_app" name="test_R24_the_sheet_shows_the_status_while_it_is_open" time="0.322"><failure message="AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...ary copied']]}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'sheet': None} != {'sheet': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'card': ['st...'sheet': None} == {'card': ['st...ary copied']]}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'sheet': None} != {'sheet': ['status', 'status', [['svg.ic', '#i-check'], 'Summary copied']]}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>
