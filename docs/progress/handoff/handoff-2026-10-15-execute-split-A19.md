@@ -1,0 +1,48 @@
+# Handoff. Split v1.1.0 execute, task A19 (fidelity gate, Chromium), not started
+
+Written 2026-10-15 by the frontend developer role at the end of A18. A18 is committed (`101e842`, tests only, no app file changed) and its proof runs on the committed tree are recorded by the docs commit above it, the one whose message starts `docs(split-app): the proof runs of A18` (read its hash with `git log`). The orchestrator may run a planner touch before A19, so read whatever it changed in `spec.md`, `qa.md` and `ROADMAP.md` first, then this file. Nothing of A19 is written.
+
+## Where it stands
+- A0 to A18, A21 and C1 to C6 done. Build order A19 next (A20 is the one after, then the QA phase, none of them this role's until the orchestrator says).
+- Baselines of A18's proof, all on the committed tree (`git diff --quiet HEAD -- src/ tests/ index.html` exit 0 before and after):
+  - Node `docs/modules/split-app/qa/unit/20261015-190616/node-test.txt`, 379 of 379.
+  - Chromium `docs/modules/split-app/qa/functional/20261015-190624-chromium/`, 695 tests, 689 passed, 6 xfailed, 0 failed, 0 skipped, 207.8 s.
+  - WebKit `docs/modules/split-app/qa/functional/20261015-191005-webkit/`, 695 tests, 688 passed, 1 skipped (the IME test, `chromium_only`), 6 xfailed, 0 failed, 409.0 s. This run is A19's WebKit baseline by id, although A19 changes only Chromium-run fidelity files, so a WebKit full run is a check that nothing else moved.
+  - By id against A21's proof runs, no failure before or now and no change besides the A18 rewrite. 14 ids only in the old runs, 85 only in the new runs (all passed), and 3 ids that kept their names went from xfailed to passed. The sums are 17 cases removed and 88 added (BUILD.md, A18, "Proof on the committed tree").
+- The 6 xfails left are A19's. In `tests/browser/test_app.py`, under "Task 12: the fidelity setup and runner (R40)", `@pytest.mark.xfail(strict=True, reason="task A19")` marks `test_R40_fidelity_seeds_match` and `test_R40_a_seed_script_boots_the_app_through_its_own_load_path`, 3 cases each (`seed-s1.js`, `seed-s2.js`, `seed-s5.js` against `seeds.S1`, `seeds.S2`, `seeds.S5`). They fail because the three seed scripts in `tests/browser/fidelity/` still hold the version 1 draft texts, `seeds.py` is version 2. The skips file of each run lists them. A19 rewrites the scripts and removes both marks.
+- Nothing in `src/`, `index.html` or `docs/design/` changed in A18. `git hash-object --no-filters src/system.css` is `bf30ddadb8c756dc5d462243c642c218597ae0ac`.
+
+## What A19 is
+Spec task A19, `docs/modules/ROADMAP.md` row A19. "Fidelity gate, Chromium. Version 2 seeds, each led by the clipboard stand-in, after-load scripts that check for it before their first click, `run.py` with the 40 pairs, and a passing run with evidence. -> R40, R3." Read R40 (spec, Gates), R3, `qa.md` "Fidelity gate" and its scenarios, the FE element checklist, and `tests/browser/fidelity/run.py` (the docstring says how it runs, `python tests/browser/fidelity/run.py` from the project root, the harness path from `SDLC_HARNESS`, default `{sdlc}/harness/fidelity.py`, run with `sys.executable`). Today `run.py` holds the 1.0 shape, 5 screens by 2 viewports. R40 asks for 40 pairs (twelve goldens at 390 x 844, 360 x 780 and 1280 x 800, and `bill-items-open` and `splits-sheet` at 390 and 360) after two controls, Chromium only. The gate is UI-adjacent evidence work, so read the task's own line in `spec.md` before deciding whether the design row of `docs/phase-skills.md` applies, and declare what you loaded in BUILD.md.
+- The gate script files are in `tests/browser/fidelity/` (`seed-s1.js`, `seed-s2.js`, `seed-s5.js`, `open-new-bill.js`, `run.py`). The seeds are `tests/browser/seeds.py`. The R40 tests that already pass are `test_R40_the_open_new_bill_script_leaves_the_dialog_open_without_a_ring`, `test_R40_the_runner_uses_the_python_that_runs_pytest` and `test_R40_the_runner_takes_the_harness_from_the_environment_and_has_a_default`, and they must keep passing.
+- Evidence goes to `docs/modules/split-app/qa/fidelity/<YYYYMMDD-HHMMSS>/<screen>-<viewport>/` (the six folders there now are from 2026-10-09 and 2026-10-10, before v1.1.0). A diff is a finding for the human, never hidden with a higher threshold, and a golden is never edited.
+
+## Where things are
+- Scratch runners from A18b, `{temp}/claude/{project-id}/34019cfb-f1a7-415f-a7eb-c47e4619e819/scratchpad/split-a18b/` (the first set is in `split-a18/` beside it). `run_pytest.py <engine> [@file | node ids]` (no `-k`, writes `stdout.txt` into the run folder, prints counts and failing ids, `A18_ALL_MESSAGES=1` prints every failing case), `run_node.py`, `compare_runs.py <old> <new>`, `wait_for_run.py <engine> <after stamp>` (540 s cap), `verify_a18.py <run folders>` (junit attributes and the A18 case count, read only), `lines.py <run folders>`, `sweep.ps1 -Since "<time>"` (read-only process sweep). A fresh builder copies them into a folder of its own if that one is gone.
+- The A18 tests are in `tests/browser/test_app.py` under "v1.1.0 task A18". Helpers an A19 test may reuse, `closing`, `tab_until`, `has_focus`, `ring_by_tab`, `layout_problems`, `box_of`, `close_to`, `COUNT_SCROLL_INTO_VIEW_JS`, `FOCUSED_AGAINST_STRIP_JS`. `MAX_E` and `MAX_I` are new in `tests/browser/seeds.py`.
+
+## Traps
+- RED on the asserted property before any change, each run in its own folder. A scenario that already passes gets its RED from a stub put in and taken out with the Edit tool, never committed (`git diff --quiet src/` and `grep -rn STUB src/` before the commit).
+- Never touch the system clipboard. Every context the gate or a test drives gets `tests/browser/clipboard/recorder.js` (or `reject.js`, `missing.js`) before the page loads, and R40 makes every seed script begin with the stand-in and every after-load script throw before its first click when it is missing. A render-only capture that presses nothing needs none, an after-load script that presses a control does.
+- Headless only. No window is touched. Never write into `docs/design/`, and the harness gets throwaway output folders only under `docs/modules/split-app/qa/fidelity/<stamp>/`.
+- No shell redirection of any kind (`>`, `>>`, `2>&1`, `| tee`, heredoc, `cat >`, `python open(..., 'w')`), no pipe after a test runner or git. Write every file with the Edit or Write tools, keep each run's output in its run folder through a scratch runner.
+- Long test names make failure screenshot paths longer than 260 characters. `git add` then fails with "Filename too long". Stage with `git -c core.longpaths=true add <exact paths>` (a per-command setting, the repo config is unchanged).
+- WebKit computes some px values with a tail (`48.000008px`), so compare numbers within 0.5 px (R59 (1)). WebKit does not focus a button, a label or a radio on a mouse click (R59), and Escape closes a dialog a task later in WebKit (R59 (2), use `closing`). The fidelity gate itself does not run in WebKit (ledger S5 row 2).
+- The full WebKit suite takes about 7 minutes. Run it as a background job and wait on its exit notice with a bounded wait, and never a Chromium job beside it.
+- Another agent works in `examples/streaks` and runs its own browser jobs. Its processes are not yours. A `python -m http.server 4610 --bind 127.0.0.1 --directory .` whose parent is the Claude desktop app belongs to the desktop preview, leave it.
+- The commit table in `docs/modules/split-app/BUILD.md` ("v1.1.0 commits so far") has the A18 row (`101e842`). Add the row of A18's proof commit (the docs commit named above) with the A19 section, as A16's and A21's proof rows were added by the next section.
+
+## Open items carried
+- Two wording observations for the planner, BUILD.md A18 "Findings". BR-02's "44 px tall" is the note's inner height (the border box is 46 px in the golden and the app). K1-56 gives `#stripTotal` 24/30 and its line box is 33 px with the 14 px "RM", so R60's "one line box tall" is not a 30 px height.
+- F-A16-1 (BUILD.md A16, M1 returns focus only in its `close` event, the sheet and P1 at once on a click close, for the planner) and Q-A14-1 (BUILD.md A14, for the planner). F-A12-1, F-A13-1 and F-A15-1 are now tests (A18), the scenarios `qa.md` gained for them.
+- Q-A10-1 (H-07), open with the owner. F-A10-1, Q-A9-1, F-A8-1, Q-A6-1, F-A4-1, Q-A3-1 and the judgment calls of A5 to A18 (see their BUILD.md sections). Q-A8-1 is ruled (USER, H-06, keep as written). H-08 (Q-A11-1, F-A11-1) is ruled and closed by A21.
+- `tests/browser/live_e2e.py` still reads the 1.0 panel (`support.panel_text`, `expected.EVEN_MESSAGE`). A20 rewrites the gate.
+
+## Resume here
+1. Read what the planner touch changed (if any), then the A19 sources above. Decide the design-row question from the task line and declare it.
+2. RED. The 6 R40 xfails fail today on the asserted property (the seed script text against `seeds.py`, the booted page against the seeded page). Run them without their marks, in their own folder, to see the assertion, and see the new 40-pair behaviour of `run.py` fail before building it (the two controls first, as the spec's line and `qa.md` say).
+3. Build, then Node, Chromium and WebKit on the committed tree with WebKit compared by id with `20261015-191005-webkit/`, and the fidelity run itself with its evidence folder.
+4. BUILD.md A19 section (with the A18 proofs row), tick A19 in `spec.md`, credential sweep `--staged`, commit `feat(split-app): ... (task A19, R40, R3)`, proof runs on the committed tree.
+
+## Processes
+None of A18b's alive at writing. Every pytest run was a foreground child of the runner, bounded at 1800 s, and each exited before its output printed. The sweep at return is in the A18b return to the orchestrator.

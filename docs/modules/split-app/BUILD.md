@@ -368,6 +368,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 | A16 proofs | `9bdb9ee` | `docs(split-app): the proof runs of A16 on the committed tree, Node 379 of 379, Chromium 602 passed and 21 xfailed, WebKit 600 passed with only F-A11-1 failing by id, ... (task A16, R29, R30, R31, R59)`, recorded by the A21 section |
 | A21 | `b8b332e` | `feat(split-app): below 1024 px a control focused in the page whose bottom edge is under the strip is scrolled clear of it with scrollIntoView nearest, ... (task A21, R49)`, recorded by the A21 proof commit |
 | A21 proofs | `d905f85` | `docs(split-app): the proof runs of A21 on the committed tree, Node 379 of 379, Chromium 603 passed and 21 xfailed, WebKit 602 passed with no failure by id ... (task A21, R49)`, recorded by the A18 section |
+| A18 | `101e842` | `feat(split-app): the cross-cutting checks of v1.1.0 written as tests in both engines, Tab order and the one ring, no overflow in any golden state ... each seen failing first by a stub in both engines, no app file changed, proof runs owed by handoff A18b (task A18, ...)`, tests only, recorded by the A18 proof commit |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -1776,7 +1777,7 @@ Built by the frontend developer role from `spec.md` (task A21 and the Tasks prea
 ## v1.1.0 task A18, cross-cutting checks in both engines (2026-10-15)
 Built by the frontend developer role from `spec.md` (task A18 with its line of 2026-10-15 and the Tasks preamble, R32, R35 to R39, R50, R52, R54, R55, R59 with its four engine differences, R60), `qa.md` (every scenario tagged with those ids, the FE checklist rows the R35 note names, Phrases) and `docs/design/system.md` (Focus, Motion), on the tree of `a7cfe0e`, with `docs/progress/handoff/handoff-2026-10-15-execute-split-A18.md` and its section of 18:24.
 
-**Status. Tests only, committed with this section. The proof runs on the committed tree are not run yet.** The builder stopped at about 40 percent of its context, as the brief asks, after the RED record and the green check of the A18 tests. A fresh builder resumes from `docs/progress/handoff/handoff-2026-10-15-execute-split-A18b.md` (Node, Chromium and WebKit full suites on the committed tree, WebKit by id against A21's run, the proof docs commit, the A18 tick in `spec.md`, the A19 handoff).
+**Status. Tests only, committed (`101e842`), proven on the committed tree, ticked in `spec.md`.** Node 379 of 379, Chromium 689 passed and 6 xfailed (the two R40 tests of task A19), WebKit 688 passed, 1 skipped (the IME test) and 6 xfailed, 0 failed in both engines. The first builder stopped at about 40 percent of its context after the RED record and the green check of the A18 tests, and a second builder ran the proofs from `docs/progress/handoff/handoff-2026-10-15-execute-split-A18b.md` (see "Proof on the committed tree" below).
 
 **Phase skills (design row of `docs/phase-skills.md`).** Not loaded. A18 changed no file under `src/` and no UI (markup, CSS, copy, motion or focus look). Every scenario already held on the tree of `a7cfe0e`, so only tests changed, which the brief names as not needing the row. The stubs below were put in and taken out and are not UI work that ships.
 
@@ -1833,6 +1834,18 @@ Built by the frontend developer role from `spec.md` (task A18 with its line of 2
 
 A probe, read only, from the session scratch folder, a page of its own through `rig.new_context` (clipboard stand-in checked), showed that an input's `scrollWidth` grows past its `clientWidth` when its text does not fit, in both engines (45 against 6, 39 against 6), so R60's price line can fail. It wrote nothing.
 
+**Proof on the committed tree** (`101e842`, records only above it, `git diff --quiet HEAD -- src/ tests/ index.html` exit 0 before the first run and again after the last, each folder listed on disk after its run, one job at a time with no Chromium job beside WebKit, counts read from each run's `junit.xml`, run by the second builder on 2026-10-15).
+- Node `docs/modules/split-app/qa/unit/20261015-190616/node-test.txt`, 379 of 379 (tests 379, pass 379, fail 0, cancelled 0, skipped 0, no Node file changed).
+- Chromium `docs/modules/split-app/qa/functional/20261015-190624-chromium/`, `junit.xml` tests 695, failures 0, errors 0, 689 passed, 6 xfailed, 0 skipped, 207.8 s, `skips.txt` count 6 (the two R40 tests of task A19, 3 cases each, all `xfail task A19`).
+- WebKit `docs/modules/split-app/qa/functional/20261015-191005-webkit/`, `junit.xml` tests 695, failures 0, errors 0, 688 passed, 1 skipped (the IME test, `chromium_only`), 6 xfailed, 409.0 s, `skips.txt` count 7 (the IME test and the same 6).
+- The 17 A18 test functions have 88 cases in each of the two runs and all 88 passed in each (the old A21 runs hold 3 of the 17 names, as xfails).
+- WebKit by id against A21's proof run `20261015-181625-webkit/` (old 624 ids, new 695, shared 610). Still failing 0, new failures among the shared ids 0, failed before and passing now 0, any change besides the three below 0. Passed before and gone, 2 (`test_R32_the_ring_check_has_teeth`, `test_R36_motion_follows_the_users_setting[reduce-0s]`). Xfailed before and gone, 12 (`test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring` 3, `test_R35_no_horizontal_overflow_and_the_layout_of_each_size` 8, `test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s]` 1). Only in the new run 85, every one passed. Xfailed before and passed now 3, ids that kept their names when they were rewritten (`test_R35_sizes_the_design_gives_at_360_by_780`, `test_R35_content_width_of_the_header_and_the_note_at_1280_by_800`, `test_R37_names_are_shown_as_text_and_never_as_markup`).
+- Chromium by id against A21's proof run `20261015-181252-chromium/`. The same result, 610 shared ids, no failure before or now, the same 14 ids only in the old run (12 xfailed, 2 passed), the same 85 only in the new run (all passed) and the same 3 xfailed to passed.
+- The sums agree with the table above. The 17 cases A18 removed are the 14 ids only in the old runs and the 3 ids that kept their names (15 xfails and the 2 passing 1.0 cases). The 88 cases it added are the 85 ids only in the new runs and the 3 that kept their names. 624 - 14 + 85 = 695.
+- No file under `src/` or `index.html` is newer than the first proof run (`find src index.html -newermt "2026-10-15 19:06:16"` lists nothing). `git hash-object --no-filters src/system.css` is `bf30ddadb8c756dc5d462243c642c218597ae0ac`, unchanged, and `git status --short docs/design/ src/ index.html tests/` is empty. Beside the three run folders no path was new.
+- The sweep after the runs (by name, command line and listening port, shells included) found only its own shell chain, no Python, Node or browser process, no port.
+- These two runs are A19's baseline. The 6 xfails are the ones A19 removes.
+
 **Judgment calls.**
 1. A Tab stop's name is computed test-side by `ACCESSIBLE_NAME_JS` from the four sources the app's controls use, in accname's order. qa.md names stops by accessible name and no engine gives it to a page script.
 2. "Exactly this order" also counts the controls Tab can reach in the same scope (`TABBABLE_COUNT_JS`), so a control left out of the list fails. Its teeth were shown on the four page rows only.
@@ -1848,6 +1861,6 @@ A probe, read only, from the session scratch folder, a page of its own through `
 
 **Non-goals honoured.** No file under `src/`, `index.html` or `docs/design/` changed (`src/system.css` blob `bf30dda`), no hook in the app, headless only, and the system clipboard never touched (every context had a stand-in).
 
-**Process note.** Every file was written with the Edit or Write tools. The runners live in the session scratch folder `split-a18/`.
+**Process note.** Every file was written with the Edit or Write tools. The runners live in the session scratch folder `split-a18/`, and the second builder's copies for the proof runs in `split-a18b/`. The second builder broke the brief's shell rule once, a read-only `git status --short` piped into `head` before the runs. It wrote nothing.
 
 **For the README reconcile.** No app change. Tests of A18 in `tests/browser/test_app.py` under "v1.1.0 task A18", seeds `MAX_E` and `MAX_I` in `tests/browser/seeds.py`.
