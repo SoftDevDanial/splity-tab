@@ -1,0 +1,9 @@
+engine chromium, browser version 149.0.7827.55
+PASSED   call     test_app.py::test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills (0.42s)
+PASSED   call     test_app.py::test_R52_a_choice_applies_at_once_and_p1_stays_open (0.27s)
+PASSED   call     test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio (0.25s)
+PASSED   call     test_app.py::test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it (0.36s)
+PASSED   call     test_app.py::test_R53_only_people_on_an_item_can_be_chosen_in_by_item (0.28s)
+FAILED   call     test_app.py::test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen (0.20s)
+PASSED   call     test_app.py::test_R53_removing_the_chosen_person_sets_the_rule_back_to_top_of_the_list (0.21s)
+exit status 1

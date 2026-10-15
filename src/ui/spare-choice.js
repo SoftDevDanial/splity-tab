@@ -1,13 +1,15 @@
-// P1, the spare sen choice (R52, PD-21, PD-23, CG-P7, CG-P8). index.html holds the empty dialog.pop#spareDlg, and a
+// P1, the spare sen choice (R52, R53, PD-21, PD-23, CG-P7, CG-P8). index.html holds the empty dialog.pop#spareDlg, and a
 // spare chip on the card or in the Splits sheet opens it.
-// createSpareChoice(dialog, { onRule, card, shownChip, splits, makeRoom }) returns { open(), update(bill, result) }.
-//   onRule(value) applies a choice, "top", "one" or "random". `card` is the card, P1 sits beside it from 1024 px.
-//   shownChip() gives the spare chip shown at that moment or null, and `splits` is Splits, where focus goes when no chip
-//   is shown. makeRoom(height) makes room in the Splits sheet under a P1 that tall, and makeRoom(null) gives it back.
+// createSpareChoice(dialog, { onRule, onPerson, card, shownChip, splits, makeRoom }) returns { open(), update(bill, result) }.
+//   onRule(value) applies a choice, "top", "one" or "random", and onPerson(id) the person a pill names. `card` is the
+//   card, P1 sits beside it from 1024 px. shownChip() gives the spare chip shown at that moment or null, and `splits` is
+//   Splits, where focus goes when no chip is shown. makeRoom(height) makes room in the Splits sheet under a P1 that tall,
+//   and makeRoom(null) gives it back.
 // Call update at every render with the bill and computeResult(bill). P1 fills itself from the latest pair when it
 // opens, follows it while open (rule 7) and is empty while closed, as the Splits sheet is. Its controls are kept while
-// it is open, so an arrow key on a radio, which applies the choice and renders, leaves focus on that radio.
-import { closeOnBackdropClick, el, setText, swallowRepeatClicks } from "./dom.js";
+// it is open, so an arrow key on a radio or a pill, which applies the choice and renders, leaves focus where it was.
+import { personLabel, sparePeople } from "../core/bill.js";
+import { closeOnBackdropClick, el, reconcileChildren, rowsFor, setChecked, setText, setValue, swallowRepeatClicks } from "./dom.js";
 import { icon } from "./icons.js";
 import { DESKTOP } from "./media.js";
 
@@ -15,9 +17,9 @@ import { DESKTOP } from "./media.js";
 export const RULE_NAMES = { top: "Top of the list", one: "One person", random: "At random" };
 const GAP_TO_CARD = 16; // px between the card's right edge and P1 (spare-sen.md, left 574 at 1280)
 
-export function createSpareChoice(dialog, { onRule, card, shownChip, splits, makeRoom }) {
+export function createSpareChoice(dialog, { onRule, onPerson, card, shownChip, splits, makeRoom }) {
   let latest = null; // [bill, result] of the last render
-  let shown = null; // { count, radios } while open
+  let shown = null; // { count, radios, choices, list, picker } while open
 
   function fill() {
     const close = el("button", { type: "button", class: "icon-btn", "aria-label": "Close" }, icon("x"));
@@ -26,19 +28,52 @@ export function createSpareChoice(dialog, { onRule, card, shownChip, splits, mak
     const radios = Object.keys(RULE_NAMES).map((value) => el("input", { type: "radio", name: "spareRule", value }));
     const choices = radios.map((radio) => el("label", { class: "choice" }, radio, el("span", { class: "dot", "aria-hidden": "true" }),
       el("span", {}, RULE_NAMES[radio.value])));
+    const list = el("div", { class: "choices" }, ...choices);
     dialog.append(el("div", { class: "in" }, el("div", { class: "pop-head" }, el("h2", { id: "spareTitle" }, "Spare sen"), close),
-      count, el("div", { class: "choices" }, ...choices)));
-    return { count, radios };
+      count, list));
+    return { count, radios, choices, list, picker: createPicker() };
   }
 
-  /** The count and the checked radio, the stored choice (CG-P7), from the latest render. */
+  /** R53's fieldset, empty until drawn. `pills` keeps one pill per person id for as long as P1 is open. */
+  function createPicker() {
+    const pickList = el("div", { class: "pick-list", id: "pickList" });
+    const wrap = el("fieldset", { class: "pick", id: "pickWrap" }, el("legend", { class: "sr" }, "Who pays the spare sen"), pickList);
+    return { wrap, pickList, pills: new Map() };
+  }
+
+  function createPill(personId) {
+    const input = el("input", { type: "radio", name: "spareWho" });
+    input.addEventListener("change", () => onPerson(personId));
+    const name = document.createTextNode("");
+    return { el: el("label", { class: "pill" }, input, el("span", { class: "pill-face" }, icon("check"), name)), input, name };
+  }
+
+  /**
+   * The pills of R53, one per person who can take the spare sen (`sparePeople`, CG-P2) in list order. Each value is the
+   * person's 1-based place in the people list, and no pill is checked while the stored person cannot take one (CG-P7).
+   * A pill lives as long as its person, so the render that a pill's own change starts never re-creates it (R33).
+   */
+  function drawPills(bill) {
+    const { pickList, pills } = shown.picker;
+    const ids = sparePeople(bill);
+    const current = rowsFor(pills, ids, createPill);
+    current.forEach((pill, index) => {
+      const place = bill.people.findIndex((person) => person.id === ids[index]);
+      setValue(pill.input, String(place + 1));
+      setText(pill.name, personLabel(bill.people[place], place));
+      setChecked(pill.input, ids[index] === bill.spare.personId);
+    });
+    reconcileChildren(pickList, current.map((pill) => pill.el));
+  }
+
+  /** The count, the checked radio (the stored choice, CG-P7) and, while that is One person, the picker after it (R53). */
   function draw() {
     const [bill, result] = latest;
     setText(shown.count, `${result.spare.count} sen left over`);
-    for (const radio of shown.radios) {
-      const chosen = radio.value === bill.spare.rule;
-      if (radio.checked !== chosen) radio.checked = chosen;
-    }
+    for (const radio of shown.radios) setChecked(radio, radio.value === bill.spare.rule);
+    const [top, one, random] = shown.choices;
+    if (bill.spare.rule === "one") drawPills(bill);
+    reconcileChildren(shown.list, bill.spare.rule === "one" ? [top, one, shown.picker.wrap, random] : shown.choices);
   }
 
   /**

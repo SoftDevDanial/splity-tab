@@ -248,7 +248,7 @@ R3_STATES = {
     "bill-items-open": (seeds.S1, {"phone": ("#peopleBtn", "#chargesBtn")}, {390: None, 360: None}),
     "bill-even": (seeds.S2, {}, {390: None, 360: None, 1280: None}),
     "spare-sen": (seeds.S1, SPARE_OPENERS, {390: None, 360: None, 1280: None}),
-    "spare-sen-one": (seeds.ONE, SPARE_OPENERS, {390: "A14", 360: "A14", 1280: "A14"}),
+    "spare-sen-one": (seeds.ONE, SPARE_OPENERS, {390: None, 360: None, 1280: None}),
     "spare-sen-random": (seeds.RND, SPARE_OPENERS, {390: "A15", 360: "A15", 1280: "A15"}),
     "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, {390: None, 360: None}),
     "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: None, 360: None, 1280: None}),
@@ -622,10 +622,9 @@ def test_R5_renaming_a_person_updates_every_place_on_each_keystroke(open_app):
     assert person_field(page, 3).input_value() == "Chen Wei"
 
 
-@pytest.mark.xfail(strict=True, reason="task A14")
 def test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills(open_app):
     # The rest of qa.md "Renaming a person updates every place on each keystroke". The sheet is task A12's, its Copy
-    # summary A10 and A12, the spare chip in it A13 and the pills A14. Each read fails on its assertion, never on a wait.
+    # summary A10 and A12, the spare chip in it A13 and the pills A14 (R53). Each read fails on its assertion, never on a wait.
     page = open_app(seed=seeds.S1).page
     open_people_first(page)
     rename_chen_to_chen_wei(page)
@@ -2282,27 +2281,30 @@ def test_R52_a_choice_applies_at_once_and_p1_stays_open(open_app):
     page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
     open_p1(page, "desktop")
     choose(page, "One person")
-    assert p1_state(page, ("open", "checked")) == {"open": True, "checked": "one"}
+    assert p1_state(page, ("open", "checked", "pickers")) == {"open": True, "checked": "one", "pickers": ["pickWrap"]}
     assert card_figures(page)[1] == ["RM 38.88", "RM 38.86", "RM 38.86"]
     assert spare_line(page)["chips"] == [spare_chip("One person, Aisyah")]
     assert stored(page)["bill"]["spare"] == {"rule": "one", "personId": "p1"}
     choose(page, "Top of the list")
-    assert p1_state(page, ("open", "checked")) == {"open": True, "checked": "top"}
+    assert p1_state(page, ("open", "checked", "pickers")) == {"open": True, "checked": "top", "pickers": []}
     assert card_figures(page)[1] == ["RM 38.87", "RM 38.87", "RM 38.86"]
 
 
 def test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio(open_app):
     # qa.md on K2 at 1280 x 800. An arrow key fires change, which applies the rule and renders P1 again, so the render
-    # must keep the focused radio. Its #pickWrap and #randWrap lines are R53's and R54's (tasks A14, A15).
+    # must keep the focused radio. Its #pickWrap lines are R53's (task A14), its #randWrap line R54's (task A15), so the
+    # second step asserts only that #pickWrap is gone.
     page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
     open_p1(page, "desktop")
     assert p1_state(page, ("focus",)) == {"focus": "radio top"}
     page.keyboard.press("ArrowDown")
-    assert p1_state(page, ("checked", "focus")) == {"checked": "one", "focus": "radio one"}
+    assert p1_state(page, ("checked", "focus", "pickers")) == {"checked": "one", "focus": "radio one", "pickers": ["pickWrap"]}
+    assert picker(page, ("pills",)) == {"pills": k2_pills("Aisyah")}
     assert card_figures(page)[1] == ["RM 38.88", "RM 38.86", "RM 38.86"]
     assert spare_line(page)["chips"] == [spare_chip("One person, Aisyah")]
     page.keyboard.press("ArrowDown")
     assert p1_state(page, ("checked", "focus")) == {"checked": "random", "focus": "radio random"}
+    assert "pickWrap" not in p1_state(page, ("pickers",))["pickers"]
     assert sorted(card_figures(page)[1]) == ["RM 38.86", "RM 38.87", "RM 38.87"]
     assert spare_line(page)["chips"] == [PICK_AGAIN_CHIP, spare_chip("At random")]
     spare = stored(page)["bill"]["spare"]
@@ -2324,8 +2326,7 @@ PLACE_JS = """() => { const card = document.querySelector('#card').getBoundingCl
 @pytest.mark.parametrize("seed, size, place", [
     pytest.param(seeds.S1, (1280, 800), {"left": 574, "bottom": 632.8, "width": 340}, id="K1-1280"),
     pytest.param(seeds.S2, (1280, 800), {"left": 574, "bottom": 560.8}, id="K2-1280"),
-    pytest.param(seeds.ONE, (1280, 800), {"bottom": 560.8, "height": 310}, id="ONE-1280",
-                 marks=pytest.mark.xfail(strict=True, reason="task A14")),
+    pytest.param(seeds.ONE, (1280, 800), {"bottom": 560.8, "height": 310}, id="ONE-1280"),
     pytest.param(seeds.S1, (1024, 768), {}, id="K1-1024x768"),
 ])
 def test_R52_p1_sits_beside_the_card_on_the_desktop(open_app, seed, size, place):
@@ -2347,7 +2348,7 @@ def test_R52_p1_sits_beside_the_card_on_the_desktop(open_app, seed, size, place)
 @pytest.mark.parametrize("seed, size, height, pad", [
     pytest.param(seeds.S1, (390, 844), 255, "271px", id="K1-390"),
     pytest.param(seeds.S1, (360, 780), 255, "271px", id="K1-360"),
-    pytest.param(seeds.ONE, (390, 844), 309, "325px", id="ONE-390", marks=pytest.mark.xfail(strict=True, reason="task A14")),
+    pytest.param(seeds.ONE, (390, 844), 309, "325px", id="ONE-390"),
     pytest.param(seeds.RND, (390, 844), 309, "325px", id="RND-390", marks=pytest.mark.xfail(strict=True, reason="task A15")),
 ])
 def test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room(open_app, seed, size, height, pad):
@@ -2453,6 +2454,127 @@ def test_R52_p1_opened_on_the_desktop_and_closed_below_1024_px(open_app):
     assert near(found["box"][3], 800) and near(found["box"][4], 560), found  # a bottom sheet, 560 px wide at most
     press_escape(page)
     assert p1_state(page, ("focus",)) == {"focus": "splitsBtn"}
+
+
+# The picker of R53 in one evaluate, null while P1 holds no #pickWrap. Where it sits (its tag and classes, its parent's
+# class and the value of the choice before it), its parts, its legend, each pill as [tag and classes, the radio's type,
+# name, value and checked, the face's nodes with an icon as "classes href"], and the text of the pill that has focus.
+PICKER_JS = """() => {
+  const wrap = document.querySelector('#spareDlg #pickWrap');
+  if (!wrap) return null;
+  const label = (el) => el.localName + [...el.classList].map((name) => '.' + name).join('');
+  const legend = wrap.querySelector(':scope > legend'), list = wrap.querySelector(':scope > div.pick-list#pickList');
+  const focused = wrap.contains(document.activeElement) ? document.activeElement.closest('label.pill') : null;
+  return {
+    place: [label(wrap), wrap.parentElement.className, wrap.previousElementSibling?.querySelector(':scope > input')?.value ?? null],
+    parts: [...wrap.children].map(label),
+    legend: legend && [label(legend), legend.textContent],
+    pills: list && [...list.children].map((pill) => {
+      const input = pill.querySelector(':scope > input'), face = pill.querySelector(':scope > span.pill-face');
+      return [label(pill), input && [input.type, input.name, input.value, input.checked],
+        face && [...face.childNodes].map((node) => node instanceof Element
+          ? `${label(node)} ${node.querySelector('use')?.getAttribute('href')}` : node.textContent)];
+    }),
+    focus: focused && focused.textContent,
+  };
+}"""
+PICKER_PARTS = ("place", "parts", "legend", "pills")
+
+
+def picker(page, keys):
+    """PICKER_JS with only its `keys`, or None when P1 holds no picker."""
+    found = page.evaluate(PICKER_JS)
+    return found and {key: found[key] for key in keys}
+
+
+def pill(value, name, checked=False):
+    """A pill as PICKER_JS reads it (spec R53), its radio, then the check icon and the name as a text node."""
+    return ["label.pill", ["radio", "spareWho", value, checked], ["svg.ic #i-check", name]]
+
+
+def picker_with(*pills):
+    """PICKER_PARTS of a picker after the One person choice inside div.choices, holding `pills` (spec R53)."""
+    return {"place": ["fieldset.pick", "choices", "one"], "parts": ["legend.sr", "div.pick-list"],
+            "legend": ["legend.sr", "Who pays the spare sen"], "pills": list(pills)}
+
+
+def k2_pills(checked=None):
+    """The three pills of K2, Aisyah, Ben and Chen with values 1 to 3, the one named `checked` checked."""
+    return [pill(str(value), name, name == checked) for value, name in enumerate(["Aisyah", "Ben", "Chen"], start=1)]
+
+
+def click_pill(page, name):
+    """Click the pill that reads `name`, counted first, so a missing pill fails here and never waits."""
+    found = page.locator("#pickList label.pill", has_text=name)
+    assert found.count() == 1, f"no pill reads {name}"
+    found.click()
+
+
+def test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it(open_app):
+    # qa.md on K2 at 1280 x 800. The arrow key fires change on the pill, which applies the choice and renders P1 again,
+    # so the render must keep the focused pill (native radios, R33).
+    page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+    open_p1(page, "desktop")
+    choose(page, "One person")
+    assert picker(page, PICKER_PARTS) == picker_with(*k2_pills("Aisyah"))
+    assert card_figures(page)[1] == ["RM 38.88", "RM 38.86", "RM 38.86"]
+    assert spare_line(page)["chips"] == [spare_chip("One person, Aisyah")]
+    click_pill(page, "Ben")
+    assert picker(page, ("pills",)) == {"pills": k2_pills("Ben")}
+    assert card_figures(page)[1] == ["RM 38.86", "RM 38.88", "RM 38.86"]
+    assert spare_line(page)["chips"] == [spare_chip("One person, Ben")]
+    assert stored(page)["bill"]["spare"] == {"rule": "one", "personId": "p2"}
+    press_escape(page)
+    page.locator("#spareBtn").click()
+    assert p1_state(page, ("checked", "focus")) == {"checked": "one", "focus": "radio one"}
+    page.keyboard.press("Tab")
+    assert picker(page, ("focus",)) == {"focus": "Ben"}
+    page.keyboard.press("ArrowRight")
+    assert picker(page, ("pills", "focus")) == {"pills": k2_pills("Chen"), "focus": "Chen"}
+    assert card_figures(page)[1] == ["RM 38.86", "RM 38.86", "RM 38.88"]
+
+
+def test_R53_only_people_on_an_item_can_be_chosen_in_by_item(open_app):
+    # qa.md on I2 at 1280 x 800 (CG-P2, ruled by the owner). A pill's value is its person's place in the people list, so
+    # Ben and Chen keep 2 and 3 while Aisyah, who had nothing, has no pill.
+    page = open_app(seed=seeds.I2, viewport=VIEWPORTS[1280]).page
+    open_p1(page, "desktop")
+    choose(page, "One person")
+    assert picker(page, ("pills",)) == {"pills": [pill("2", "Ben", True), pill("3", "Chen")]}
+    assert [row[:2] for row in card_rows(page)[0]] == [["Aisyah", "RM 0.00"], ["Ben", "RM 14.59"], ["Chen", "RM 2.91"]]
+    click_pill(page, "Chen")
+    assert card_rows(page) == [[["Aisyah", "RM 0.00", "0.00 + 0.00"], ["Ben", "RM 14.57", "12.50 + 2.07"],
+                                ["Chen", "RM 2.93", "2.51 + 0.42"]], ["RM 17.50", "15.01 + 2.49"]]
+
+
+def test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen(open_app):
+    # qa.md on G4 at 1280 x 800 (CG-P7 and CG-P2, ruled by the owner). The chip names the rule in effect and P1 the
+    # stored choice with no pill checked, so a click on a pill applies at once.
+    page = open_app(seed=seeds.ODD_READABLE["G4"], viewport=VIEWPORTS[1280]).page
+    assert card_figures(page)[1] == ["RM 44.78", "RM 0.00", "RM 24.48"]
+    assert spare_line(page)["chips"] == [spare_chip("Top of the list")]
+    open_p1(page, "desktop")
+    assert p1_state(page, ("checked", "focus")) == {"checked": "one", "focus": "radio one"}
+    assert picker(page, ("pills",)) == {"pills": [pill("1", "Aisyah"), pill("3", "Chen")]}
+    click_pill(page, "Chen")
+    assert card_figures(page)[1] == ["RM 44.77", "RM 0.00", "RM 24.49"]
+    assert spare_line(page)["chips"] == [spare_chip("One person, Chen")]
+    assert stored(page)["bill"]["spare"] == {"rule": "one", "personId": "p3"}
+
+
+ONE_WITH_DEVI = seeds.changed(seeds.ONE, lambda d: (d["bill"]["people"].append({"id": "p4", "name": "Devi"}),
+                                                     d["bill"].update(nextId=5)))
+
+
+def test_R53_removing_the_chosen_person_sets_the_rule_back_to_top_of_the_list(open_app):
+    # qa.md on the ONE seed with a fourth person, Devi, at 1280 x 800 (core R12, interaction rule 8).
+    page = open_app(seed=ONE_WITH_DEVI, viewport=VIEWPORTS[1280]).page
+    remove = remove_button(page, "Ben")
+    assert remove.count() == 1, "no Remove Ben"
+    remove.click()
+    assert stored(page)["bill"]["spare"] == {"rule": "top"}
+    assert [row[:2] for row in card_rows(page)[0]] == [["Aisyah", "RM 38.87"], ["Chen", "RM 38.87"], ["Devi", "RM 38.86"]]
+    assert spare_line(page)["chips"] == [spare_chip("Top of the list")]
 
 
 # ---------------------------------------------------------------- Task 9: the draft (R25 to R28, with R3, R8, R10, R24, R26, R42)

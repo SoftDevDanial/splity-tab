@@ -121,6 +121,10 @@ export function setValue(input, text) {
   if (input.value !== text) input.value = text;
 }
 
+export function setChecked(input, checked) {
+  if (input.checked !== checked) input.checked = checked;
+}
+
 /**
  * Returns one row per key, in key order. Rows for keys that are gone are dropped from `rows`, and a new
  * row is made by `create(key)` for a key not seen before, so a row (and the input in it) lives as long as

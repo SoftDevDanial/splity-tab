@@ -1,0 +1,14 @@
+engine webkit, browser version 26.5
+PASSED   call     test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-390] (0.81s)
+PASSED   call     test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-360] (0.78s)
+PASSED   call     test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280] (0.62s)
+PASSED   call     test_app.py::test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills (1.12s)
+PASSED   call     test_app.py::test_R52_a_choice_applies_at_once_and_p1_stays_open (0.78s)
+PASSED   call     test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio (0.55s)
+PASSED   call     test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] (0.52s)
+PASSED   call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] (0.66s)
+PASSED   call     test_app.py::test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it (0.93s)
+PASSED   call     test_app.py::test_R53_only_people_on_an_item_can_be_chosen_in_by_item (0.79s)
+PASSED   call     test_app.py::test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen (0.66s)
+PASSED   call     test_app.py::test_R53_removing_the_chosen_person_sets_the_rule_back_to_top_of_the_list (0.44s)
+exit status 0

@@ -1,0 +1,22 @@
+engine chromium, browser version 149.0.7827.55
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-390] | xfail task A15
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-360] | xfail task A15
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280] | xfail task A15
+test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+test_app.py::test_R31_start_over_clears_the_copy_status | xfail task A16
+test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S3] | xfail task A18
+test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S1] | xfail task A18
+test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S7] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-360] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S2-360] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-360] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S5-360] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-390] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-1280] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-1280] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[M1-360] | xfail task A18
+test_app.py::test_R35_sizes_the_design_gives_at_360_by_780 | xfail task A18
+test_app.py::test_R35_content_width_of_the_header_and_the_note_at_1280_by_800 | xfail task A18
+test_app.py::test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s] | xfail task A18
+test_app.py::test_R37_names_are_shown_as_text_and_never_as_markup | xfail task A18
+count 20

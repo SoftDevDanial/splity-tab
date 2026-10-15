@@ -1,0 +1,248 @@
+{
+ "390": {
+  "walk_first_diff": {
+   "body": null,
+   "#spareDlg": null
+  },
+  "differences": {
+   "#spareDlg": {},
+   "#splitsDlg": {}
+  },
+  "p1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "325px",
+    "sheetScrollTop": 0,
+    "box": [
+     0,
+     535,
+     390,
+     309,
+     844
+    ],
+    "pills": [
+     [
+      "1",
+      false,
+      "Aisyah"
+     ],
+     [
+      "2",
+      true,
+      "Ben"
+     ],
+     [
+      "3",
+      false,
+      "Chen"
+     ]
+    ],
+    "focus": "spareRule one"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "325px",
+    "sheetScrollTop": 0,
+    "box": [
+     0,
+     535,
+     390,
+     309,
+     844
+    ],
+    "pills": [
+     [
+      "1",
+      false,
+      "Aisyah"
+     ],
+     [
+      "2",
+      true,
+      "Ben"
+     ],
+     [
+      "3",
+      false,
+      "Chen"
+     ]
+    ],
+    "focus": "body"
+   }
+  },
+  "chip": {
+   "app": [
+    "One person, Ben",
+    "Spare sen: One person, Ben. Change"
+   ],
+   "golden": [
+    "One person, Ben",
+    "Spare sen: One person, Ben. Change"
+   ]
+  }
+ },
+ "360": {
+  "walk_first_diff": {
+   "body": null,
+   "#spareDlg": null
+  },
+  "differences": {
+   "#spareDlg": {},
+   "#splitsDlg": {}
+  },
+  "p1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "325px",
+    "sheetScrollTop": 0,
+    "box": [
+     0,
+     471,
+     360,
+     309,
+     780
+    ],
+    "pills": [
+     [
+      "1",
+      false,
+      "Aisyah"
+     ],
+     [
+      "2",
+      true,
+      "Ben"
+     ],
+     [
+      "3",
+      false,
+      "Chen"
+     ]
+    ],
+    "focus": "spareRule one"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "325px",
+    "sheetScrollTop": 0,
+    "box": [
+     0,
+     471,
+     360,
+     309,
+     780
+    ],
+    "pills": [
+     [
+      "1",
+      false,
+      "Aisyah"
+     ],
+     [
+      "2",
+      true,
+      "Ben"
+     ],
+     [
+      "3",
+      false,
+      "Chen"
+     ]
+    ],
+    "focus": "body"
+   }
+  },
+  "chip": {
+   "app": [
+    "One person, Ben",
+    "Spare sen: One person, Ben. Change"
+   ],
+   "golden": [
+    "One person, Ben",
+    "Spare sen: One person, Ben. Change"
+   ]
+  }
+ },
+ "1280": {
+  "walk_first_diff": {
+   "body": null,
+   "#spareDlg": null
+  },
+  "differences": {
+   "#spareDlg": {},
+   "#card": {}
+  },
+  "p1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": null,
+    "sheetScrollTop": null,
+    "box": [
+     574,
+     250.8,
+     340,
+     310,
+     560.8
+    ],
+    "pills": [
+     [
+      "1",
+      false,
+      "Aisyah"
+     ],
+     [
+      "2",
+      true,
+      "Ben"
+     ],
+     [
+      "3",
+      false,
+      "Chen"
+     ]
+    ],
+    "focus": "spareRule one"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "20px",
+    "sheetScrollTop": 0,
+    "box": [
+     574,
+     250.81,
+     340,
+     310,
+     560.81
+    ],
+    "pills": [
+     [
+      "1",
+      false,
+      "Aisyah"
+     ],
+     [
+      "2",
+      true,
+      "Ben"
+     ],
+     [
+      "3",
+      false,
+      "Chen"
+     ]
+    ],
+    "focus": "body"
+   }
+  },
+  "chip": {
+   "app": [
+    "One person, Ben",
+    "Spare sen: One person, Ben. Change"
+   ],
+   "golden": [
+    "One person, Ben",
+    "Spare sen: One person, Ben. Change"
+   ]
+  }
+ }
+}

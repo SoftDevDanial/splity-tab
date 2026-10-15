@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="7" time="4.204" timestamp="2026-10-15T14:41:54.968405+08:00" hostname="{host}"><testcase classname="test_app" name="test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills" time="1.851" /><testcase classname="test_app" name="test_R52_a_choice_applies_at_once_and_p1_stays_open" time="0.298" /><testcase classname="test_app" name="test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio" time="0.267" /><testcase classname="test_app" name="test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it" time="0.365" /><testcase classname="test_app" name="test_R53_only_people_on_an_item_can_be_chosen_in_by_item" time="0.370"><failure message="AssertionError: assert {'pills': [['...k', 'Chen']]]} == {'pills': [['...k', 'Chen']]]}&#10;  &#10;  Differing items:&#10;  {'pills': [['label.pill', ['radio', 'spareWho', '1', False], ['svg.ic #i-check', 'Aisyah']], ['label.pill', ['radio', ...', True], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]} != {'pills': [['label.pill', ['radio', 'spareWho', '2', True], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002BB123617A0&gt;
+
+    def test_R53_only_people_on_an_item_can_be_chosen_in_by_item(open_app):
+        # qa.md on I2 at 1280 x 800 (CG-P2, ruled by the owner). A pill's value is its person's place in the people list, so
+        # Ben and Chen keep 2 and 3 while Aisyah, who had nothing, has no pill.
+        page = open_app(seed=seeds.I2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        choose(page, "One person")
+&gt;       assert picker(page, ("pills",)) == {"pills": [pill("2", "Ben", True), pill("3", "Chen")]}
+E       AssertionError: assert {'pills': [['...k', 'Chen']]]} == {'pills': [['...k', 'Chen']]]}
+E         
+E         Differing items:
+E         {'pills': [['label.pill', ['radio', 'spareWho', '1', False], ['svg.ic #i-check', 'Aisyah']], ['label.pill', ['radio', ...', True], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]} != {'pills': [['label.pill', ['radio', 'spareWho', '2', True], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2543: AssertionError</failure></testcase><testcase classname="test_app" name="test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen" time="0.275"><failure message="AssertionError: assert {'pills': [['...k', 'Chen']]]} == {'pills': [['...k', 'Chen']]]}&#10;  &#10;  Differing items:&#10;  {'pills': [['label.pill', ['radio', 'spareWho', '1', False], ['svg.ic #i-check', 'Aisyah']], ['label.pill', ['radio', ...', True], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]} != {'pills': [['label.pill', ['radio', 'spareWho', '1', False], ['svg.ic #i-check', 'Aisyah']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002BB126038A0&gt;
+
+    def test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen(open_app):
+        # qa.md on G4 at 1280 x 800 (CG-P7 and CG-P2, ruled by the owner). The chip names the rule in effect and P1 the
+        # stored choice with no pill checked, so a click on a pill applies at once.
+        page = open_app(seed=seeds.ODD_READABLE["G4"], viewport=VIEWPORTS[1280]).page
+        assert card_figures(page)[1] == ["RM 44.78", "RM 0.00", "RM 24.48"]
+        assert spare_line(page)["chips"] == [spare_chip("Top of the list")]
+        open_p1(page, "desktop")
+        assert p1_state(page, ("checked", "focus")) == {"checked": "one", "focus": "radio one"}
+&gt;       assert picker(page, ("pills",)) == {"pills": [pill("1", "Aisyah"), pill("3", "Chen")]}
+E       AssertionError: assert {'pills': [['...k', 'Chen']]]} == {'pills': [['...k', 'Chen']]]}
+E         
+E         Differing items:
+E         {'pills': [['label.pill', ['radio', 'spareWho', '1', False], ['svg.ic #i-check', 'Aisyah']], ['label.pill', ['radio', ...', True], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]} != {'pills': [['label.pill', ['radio', 'spareWho', '1', False], ['svg.ic #i-check', 'Aisyah']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2558: AssertionError</failure></testcase><testcase classname="test_app" name="test_R53_removing_the_chosen_person_sets_the_rule_back_to_top_of_the_list" time="0.248" /></testsuite></testsuites>

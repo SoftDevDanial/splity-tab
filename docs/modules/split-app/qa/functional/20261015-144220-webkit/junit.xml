@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="7" time="7.079" timestamp="2026-10-15T14:42:21.022946+08:00" hostname="{host}"><testcase classname="test_app" name="test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills" time="2.190" /><testcase classname="test_app" name="test_R52_a_choice_applies_at_once_and_p1_stays_open" time="0.746" /><testcase classname="test_app" name="test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio" time="0.562" /><testcase classname="test_app" name="test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it" time="0.926"><failure message="AssertionError: assert ['RM 38.88', ...', 'RM 38.86'] == ['RM 38.86', ...', 'RM 38.86']&#10;  &#10;  At index 0 diff: 'RM 38.88' != 'RM 38.86'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000022D22CB1430&gt;
+
+    def test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it(open_app):
+        # qa.md on K2 at 1280 x 800. The arrow key fires change on the pill, which applies the choice and renders P1 again,
+        # so the render must keep the focused pill (native radios, R33).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        choose(page, "One person")
+        assert picker(page, PICKER_PARTS) == picker_with(*k2_pills("Aisyah"))
+        assert card_figures(page)[1] == ["RM 38.88", "RM 38.86", "RM 38.86"]
+        assert spare_line(page)["chips"] == [spare_chip("One person, Aisyah")]
+        click_pill(page, "Ben")
+        assert picker(page, ("pills",)) == {"pills": k2_pills("Ben")}
+&gt;       assert card_figures(page)[1] == ["RM 38.86", "RM 38.88", "RM 38.86"]
+E       AssertionError: assert ['RM 38.88', ...', 'RM 38.86'] == ['RM 38.86', ...', 'RM 38.86']
+E         
+E         At index 0 diff: 'RM 38.88' != 'RM 38.86'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2524: AssertionError</failure></testcase><testcase classname="test_app" name="test_R53_only_people_on_an_item_can_be_chosen_in_by_item" time="0.823"><failure message="AssertionError: assert [[['Aisyah', ...5.01 + 2.49']] == [[['Aisyah', ...5.01 + 2.49']]&#10;  &#10;  At index 0 diff: [['Aisyah', 'RM 0.00', '0.00 + 0.00'], ['Ben', 'RM 14.59', '12.51 + 2.08'], ['Chen', 'RM 2.91', '2.50 + 0.41']] != [['Aisyah', 'RM 0.00', '0.00 + 0.00'], ['Ben', 'RM 14.57', '12.50 + 2.07'], ['Chen', 'RM 2.93', '2.51 + 0.42']]&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000022D248EE400&gt;
+
+    def test_R53_only_people_on_an_item_can_be_chosen_in_by_item(open_app):
+        # qa.md on I2 at 1280 x 800 (CG-P2, ruled by the owner). A pill's value is its person's place in the people list, so
+        # Ben and Chen keep 2 and 3 while Aisyah, who had nothing, has no pill.
+        page = open_app(seed=seeds.I2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        choose(page, "One person")
+        assert picker(page, ("pills",)) == {"pills": [pill("2", "Ben", True), pill("3", "Chen")]}
+        assert [row[:2] for row in card_rows(page)[0]] == [["Aisyah", "RM 0.00"], ["Ben", "RM 14.59"], ["Chen", "RM 2.91"]]
+        click_pill(page, "Chen")
+&gt;       assert card_rows(page) == [[["Aisyah", "RM 0.00", "0.00 + 0.00"], ["Ben", "RM 14.57", "12.50 + 2.07"],
+                                    ["Chen", "RM 2.93", "2.51 + 0.42"]], ["RM 17.50", "15.01 + 2.49"]]
+E       AssertionError: assert [[['Aisyah', ...5.01 + 2.49']] == [[['Aisyah', ...5.01 + 2.49']]
+E         
+E         At index 0 diff: [['Aisyah', 'RM 0.00', '0.00 + 0.00'], ['Ben', 'RM 14.59', '12.51 + 2.08'], ['Chen', 'RM 2.91', '2.50 + 0.41']] != [['Aisyah', 'RM 0.00', '0.00 + 0.00'], ['Ben', 'RM 14.57', '12.50 + 2.07'], ['Chen', 'RM 2.93', '2.51 + 0.42']]
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2546: AssertionError</failure></testcase><testcase classname="test_app" name="test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen" time="0.712"><failure message="AssertionError: assert ['RM 44.78', ...', 'RM 24.48'] == ['RM 44.77', ...', 'RM 24.49']&#10;  &#10;  At index 0 diff: 'RM 44.78' != 'RM 44.77'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000022D24E2D380&gt;
+
+    def test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen(open_app):
+        # qa.md on G4 at 1280 x 800 (CG-P7 and CG-P2, ruled by the owner). The chip names the rule in effect and P1 the
+        # stored choice with no pill checked, so a click on a pill applies at once.
+        page = open_app(seed=seeds.ODD_READABLE["G4"], viewport=VIEWPORTS[1280]).page
+        assert card_figures(page)[1] == ["RM 44.78", "RM 0.00", "RM 24.48"]
+        assert spare_line(page)["chips"] == [spare_chip("Top of the list")]
+        open_p1(page, "desktop")
+        assert p1_state(page, ("checked", "focus")) == {"checked": "one", "focus": "radio one"}
+        assert picker(page, ("pills",)) == {"pills": [pill("1", "Aisyah"), pill("3", "Chen")]}
+        click_pill(page, "Chen")
+&gt;       assert card_figures(page)[1] == ["RM 44.77", "RM 0.00", "RM 24.49"]
+E       AssertionError: assert ['RM 44.78', ...', 'RM 24.48'] == ['RM 44.77', ...', 'RM 24.49']
+E         
+E         At index 0 diff: 'RM 44.78' != 'RM 44.77'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2560: AssertionError</failure></testcase><testcase classname="test_app" name="test_R53_removing_the_chosen_person_sets_the_rule_back_to_top_of_the_list" time="0.520" /></testsuite></testsuites>

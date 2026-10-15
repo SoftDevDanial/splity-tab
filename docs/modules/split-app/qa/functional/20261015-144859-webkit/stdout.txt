@@ -1,0 +1,138 @@
+-m pytest tests/browser -q --engine webkit
+server STARTED pid 15436 port 42019 root {workspace}\examples\split
+.............................xxx........................................ [ 11%]
+........s............................................................... [ 23%]
+.................................F.............................x........ [ 34%]
+........................................................................ [ 46%]
+....................F..F...x............................................ [ 57%]
+........................................................................ [ 69%]
+........................................................................ [ 81%]
+..............................................xxx...xxxxxxxxxx.xx......x [ 92%]
+xxxxx........................................server STOPPED pid 15436 port 42019, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+________ test_R49_no_control_the_user_tabs_to_is_left_under_the_strip _________
+
+open_app = <function open_app.<locals>.factory at 0x00000245A73AD220>
+
+    def test_R49_no_control_the_user_tabs_to_is_left_under_the_strip(open_app):
+        # qa.md on K1 at 390 x 844 with both sections opened first. Tab starts after New bill, the first control of the page,
+        # and stops at Splits, the strip's own first control. All 12 toggles must be among the stops, so a walk that skipped
+        # the bottom of the page cannot pass. It fails in WebKit, whose focus scroll leaves a control that is inside the
+        # viewport where it is, under the strip, and does not read scroll-padding-bottom (BUILD.md, A11, F-A11-1).
+        page = open_app(seed=seeds.S1).page
+        open_people_first(page)
+        open_charges_first(page)
+        new_bill_button(page).focus()
+        stops, under = [], []
+        for _ in range(80):
+            page.keyboard.press("Tab")
+            name, is_toggle, bottom, strip_top = page.evaluate(FOCUS_OVER_STRIP_JS)
+            if name == "splitsBtn":
+                break
+            stops.append([name, is_toggle])
+            if bottom > strip_top + 0.5:
+                under.append([name, bottom, strip_top])
+        else:
+            pytest.fail(f"Tab gave up after 80 presses without reaching Splits, the last stops were {stops[-3:]}")
+>       assert under == [] and sum(is_toggle for _, is_toggle in stops) == 12, (under, stops)
+E       AssertionError: ([['Aisyah', 743, 733], ['Ben', 743, 733], ['Item 2 name', 791, 733], ['Aisyah', 786, 733], ['Aisyah', 774, 733], ['Be...on', False], ['Person 1 name', False], ['Remove Aisyah', False], ['Person 2 name', False], ['Remove Ben', False], ...])
+E       assert ([['Aisyah', 7...74, 733], ...] == []
+E         
+E         Left contains 8 more items, first extra item: ['Aisyah', 743, 733]
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:2005: AssertionError
+___________ test_R29_the_dialog_opens_with_the_safe_choice_focused ____________
+
+open_app = <function open_app.<locals>.factory at 0x00000245B06F5B10>
+
+    def test_R29_the_dialog_opens_with_the_safe_choice_focused(open_app):
+        page = open_app(seed=seeds.S2).page
+        dialog = open_dialog(page)
+        assert dialog.evaluate("(d) => d.matches(':modal')") and dialog.get_attribute("aria-describedby") == "newBody"
+        assert dialog.get_attribute("aria-labelledby") == "newTitle"
+        assert page.locator("#newBody").inner_text() == "This clears the people, items and amounts."
+        assert [b.get_attribute("class") for b in dialog.get_by_role("button").all()] == ["btn btn-danger btn-lg", "btn btn-ghost btn-lg"]
+        assert focused(page) == "Cancel"
+        page.keyboard.press("Tab")
+        assert focused(page) == "Start new bill"
+        page.keyboard.press("Tab")
+        assert focused(page) == "Cancel"
+        page.keyboard.press("Shift+Tab")
+        page.keyboard.press("Shift+Tab")
+        assert focused(page) == "Cancel"
+>       assert page.locator(".app").evaluate("(e) => e.getBoundingClientRect().height") == 844
+E       AssertionError: assert 843.984375 == 844
+E        +  where 843.984375 = evaluate('(e) => e.getBoundingClientRect().height')
+E        +    where evaluate = <Locator frame=<Frame name= url='http://127.0.0.1:42019/'> selector='.app'>.evaluate
+E        +      where <Locator frame=<Frame name= url='http://127.0.0.1:42019/'> selector='.app'> = locator('.app')
+E        +        where locator = <Page url='http://127.0.0.1:42019/'>.locator
+
+tests\browser\test_app.py:3090: AssertionError
+__________ test_R30_leaving_the_dialog_without_starting_over[escape] __________
+
+open_app = <function open_app.<locals>.factory at 0x00000245B006AAE0>
+close = 'escape'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop-corner", "backdrop-over-a-field"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)  # so a field is drawn under the backdrop (R48)
+        first_name = person_field(page, 1).bounding_box()
+        open_dialog(page)
+        if close == "cancel":
+            page.get_by_role("button", name="Cancel").click()
+        elif close == "escape":
+            page.keyboard.press("Escape")
+        elif close == "backdrop-corner":
+            page.mouse.click(10, 10)
+        else:
+            page.mouse.click(first_name["x"] + first_name["width"] / 2, first_name["y"] + first_name["height"] / 2)
+        assert page.locator("dialog#newDlg").evaluate("(d) => d.open") is False
+>       assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+E       AssertionError: assert ('Splity Tab\n...n      Cancel' == 'New bill'
+E         
+E         + Splity Tab
+E         +     
+E         +     
+E         - New bill
+E         +     New bill
+E         ? ++++        +...
+E         
+E         ...Full output truncated (36 lines hidden), use '-vv' to show)
+
+tests\browser\test_app.py:3124: AssertionError
+engine webkit, browser version 26.5, skipped 27
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-390] | xfail task A15
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-360] | xfail task A15
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280] | xfail task A15
+  skipped: test_app.py::test_R33_ime_composition_survives_a_render | Needs a CDP session (Input.imeSetComposition, Input.insertText), which Playwright gives in Chromium only.
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+  skipped: test_app.py::test_R31_start_over_clears_the_copy_status | xfail task A16
+  skipped: test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S3] | xfail task A18
+  skipped: test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S1] | xfail task A18
+  skipped: test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S7] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S2-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S5-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-390] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-1280] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-1280] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[M1-360] | xfail task A18
+  skipped: test_app.py::test_R35_sizes_the_design_gives_at_360_by_780 | xfail task A18
+  skipped: test_app.py::test_R35_content_width_of_the_header_and_the_note_at_1280_by_800 | xfail task A18
+  skipped: test_app.py::test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s] | xfail task A18
+  skipped: test_app.py::test_R37_names_are_shown_as_text_and_never_as_markup | xfail task A18
+  skipped: test_app.py::test_R40_fidelity_seeds_match[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+  skipped: test_app.py::test_R40_fidelity_seeds_match[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}] | xfail task A19
+  skipped: test_app.py::test_R40_fidelity_seeds_match[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+  skipped: test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+  skipped: test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}] | xfail task A19
+  skipped: test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R49_no_control_the_user_tabs_to_is_left_under_the_strip
+FAILED tests\browser\test_app.py::test_R29_the_dialog_opens_with_the_safe_choice_focused
+FAILED tests\browser\test_app.py::test_R30_leaving_the_dialog_without_starting_over[escape]
+3 failed, 591 passed, 1 skipped, 26 xfailed in 415.25s (0:06:55)

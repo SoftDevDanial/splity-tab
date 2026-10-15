@@ -1,0 +1,262 @@
+-m pytest tests/browser -q --engine chromium tests/browser/test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-390] tests/browser/test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-360] tests/browser/test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280] tests/browser/test_app.py::test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills tests/browser/test_app.py::test_R52_a_choice_applies_at_once_and_p1_stays_open tests/browser/test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio tests/browser/test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] tests/browser/test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] -k R3 or R5 or R52 or R53 tests/browser/test_app.py::test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it tests/browser/test_app.py::test_R53_only_people_on_an_item_can_be_chosen_in_by_item tests/browser/test_app.py::test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen tests/browser/test_app.py::test_R53_removing_the_chosen_person_sets_the_rule_back_to_top_of_the_list
+server STARTED pid 11732 port 27957 root {workspace}\examples\split
+.................FFFxxx................................F................ [ 37%]
+........................FF..F...Fx...........FFF.........x.............. [ 75%]
+....................xxx...xxxxxxxxxx.xx.........server STOPPED pid 11732 port 27957, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+________ test_R3_rendered_markup_matches_its_golden[spare-sen-one-390] ________
+
+open_app = <function open_app.<locals>.factory at 0x0000020F5CE45010>
+plain_context = <function plain_context.<locals>.factory at 0x0000020F5CE46AE0>
+golden = 'spare-sen-one', width = 390
+
+    @pytest.mark.parametrize("golden, width", R3_PAIRS)
+    def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width >= 1024 else "phone", ()))
+>       assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+E       assert "body>dialog.pop[3]>div.in[0]>div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']" is None
+E        +  where "body>dialog.pop[3]>div.in[0]>div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+E        +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(<Page url='http://127.0.0.1:27957/'>)
+E        +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(<function plain_context.<locals>.factory at 0x0000020F5CE46AE0>, 'spare-sen-one', (390, 844))
+
+tests\browser\test_app.py:280: AssertionError
+________ test_R3_rendered_markup_matches_its_golden[spare-sen-one-360] ________
+
+open_app = <function open_app.<locals>.factory at 0x0000020F5CBEF530>
+plain_context = <function plain_context.<locals>.factory at 0x0000020F5CBEFA00>
+golden = 'spare-sen-one', width = 360
+
+    @pytest.mark.parametrize("golden, width", R3_PAIRS)
+    def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width >= 1024 else "phone", ()))
+>       assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+E       assert "body>dialog.pop[3]>div.in[0]>div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']" is None
+E        +  where "body>dialog.pop[3]>div.in[0]>div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+E        +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(<Page url='http://127.0.0.1:27957/'>)
+E        +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(<function plain_context.<locals>.factory at 0x0000020F5CBEFA00>, 'spare-sen-one', (360, 780))
+
+tests\browser\test_app.py:280: AssertionError
+_______ test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280] ________
+
+open_app = <function open_app.<locals>.factory at 0x0000020F60194720>
+plain_context = <function plain_context.<locals>.factory at 0x0000020F60196610>
+golden = 'spare-sen-one', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R3_PAIRS)
+    def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width >= 1024 else "phone", ()))
+>       assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+E       assert "body>dialog.pop[2]>div.in[0]>div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']" is None
+E        +  where "body>dialog.pop[2]>div.in[0]>div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+E        +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(<Page url='http://127.0.0.1:27957/'>)
+E        +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(<function plain_context.<locals>.factory at 0x0000020F60196610>, 'spare-sen-one', (1280, 800))
+
+tests\browser\test_app.py:280: AssertionError
+_________ test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills _________
+
+open_app = <function open_app.<locals>.factory at 0x0000020F5D1A35E0>
+
+    def test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills(open_app):
+        # The rest of qa.md "Renaming a person updates every place on each keystroke". The sheet is task A12's, its Copy
+        # summary A10 and A12, the spare chip in it A13 and the pills A14 (R53). Each read fails on its assertion, never on a wait.
+        page = open_app(seed=seeds.S1).page
+        open_people_first(page)
+        rename_chen_to_chen_wei(page)
+        page.locator("#splitsBtn").click()
+        names = page.evaluate("() => [...document.querySelectorAll('#splitsDlg ul.r-splits > li > span.nm')].map((el) => el.textContent)")
+        assert names == ["Aisyah", "Ben", "Chen Wei"], names
+        page.locator("#splitsDlg .r-copy").click()
+        assert page.evaluate("window.testClipboardText").splitlines()[4] == "Chen Wei RM 24.48"
+        assert page.locator(SHEET_SPARE_CHIP).count() == 1, "the sheet holds no spare chip"  # task A13
+        page.locator(SHEET_SPARE_CHIP).click()
+        page.locator("#spareDlg label.choice", has_text="One person").click()
+        pills = page.evaluate("() => [...document.querySelectorAll('#pickList label.pill .pill-face')].map((el) => el.textContent.trim())")
+>       assert pills == ["Aisyah", "Ben", "Chen Wei"], pills
+E       AssertionError: []
+E       assert [] == ['Aisyah', 'Ben', 'Chen Wei']
+E         
+E         Right contains 3 more items, first extra item: 'Aisyah'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:640: AssertionError
+_____________ test_R52_a_choice_applies_at_once_and_p1_stays_open _____________
+
+open_app = <function open_app.<locals>.factory at 0x0000020F61478A90>
+
+    def test_R52_a_choice_applies_at_once_and_p1_stays_open(open_app):
+        # qa.md on K2 at 1280 x 800. Its #pickWrap lines are R53's (task A14).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        choose(page, "One person")
+>       assert p1_state(page, ("open", "checked", "pickers")) == {"open": True, "checked": "one", "pickers": ["pickWrap"]}
+E       AssertionError: assert {'open': True...'pickers': []} == {'open': True... ['pickWrap']}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'pickers': []} != {'pickers': ['pickWrap']}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2284: AssertionError
+_ test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio _
+
+open_app = <function open_app.<locals>.factory at 0x0000020F629FD0C0>
+
+    def test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio(open_app):
+        # qa.md on K2 at 1280 x 800. An arrow key fires change, which applies the rule and renders P1 again, so the render
+        # must keep the focused radio. Its #pickWrap lines are R53's (task A14), its #randWrap line R54's (task A15), so the
+        # second step asserts only that #pickWrap is gone.
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        assert p1_state(page, ("focus",)) == {"focus": "radio top"}
+        page.keyboard.press("ArrowDown")
+>       assert p1_state(page, ("checked", "focus", "pickers")) == {"checked": "one", "focus": "radio one", "pickers": ["pickWrap"]}
+E       AssertionError: assert {'checked': '...'pickers': []} == {'checked': '... ['pickWrap']}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'pickers': []} != {'pickers': ['pickWrap']}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2301: AssertionError
+__________ test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] __________
+
+open_app = <function open_app.<locals>.factory at 0x0000020F63411B10>
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"one","personId":"p2"},"nextId":4}}'
+size = (1280, 800), place = {'bottom': 560.8, 'height': 310}
+
+    @pytest.mark.parametrize("seed, size, place", [
+        pytest.param(seeds.S1, (1280, 800), {"left": 574, "bottom": 632.8, "width": 340}, id="K1-1280"),
+        pytest.param(seeds.S2, (1280, 800), {"left": 574, "bottom": 560.8}, id="K2-1280"),
+        pytest.param(seeds.ONE, (1280, 800), {"bottom": 560.8, "height": 310}, id="ONE-1280"),
+        pytest.param(seeds.S1, (1024, 768), {}, id="K1-1024x768"),
+    ])
+    def test_R52_p1_sits_beside_the_card_on_the_desktop(open_app, seed, size, place):
+        # qa.md. Its left is the card's right edge plus 16 and its bottom is level with #spareBtn's bottom, set through the
+        # CSSOM (R38). The ONE row is 310 px tall with the picker of R53 (task A14).
+        page = open_app(seed=seed, viewport=size).page
+        open_p1(page, "desktop")
+        left, top, right, bottom, width, height = p1_state(page, ("box",))["box"]
+        around = page.evaluate(PLACE_JS)
+        assert near(left, around["cardRight"] + 16) and near(bottom, around["chipBottom"]), (left, bottom, around)
+        assert left >= 0 and top >= 0 and right <= around["width"] and bottom <= around["height"], (left, top, right, bottom)
+        for key, value in {"left": left, "bottom": bottom, "width": width, "height": height}.items():
+>           assert key not in place or near(value, place[key]), (key, value)
+E           AssertionError: ('height', 256)
+E           assert ('height' not in {'bottom': 560.8, 'height': 310} or False)
+E            +  where False = near(256, 310)
+
+tests\browser\test_app.py:2342: AssertionError
+_ test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] _
+
+open_app = <function open_app.<locals>.factory at 0x0000020F6368EFB0>
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"one","personId":"p2"},"nextId":4}}'
+size = (390, 844), height = 309, pad = '325px'
+
+    @pytest.mark.parametrize("seed, size, height, pad", [
+        pytest.param(seeds.S1, (390, 844), 255, "271px", id="K1-390"),
+        pytest.param(seeds.S1, (360, 780), 255, "271px", id="K1-360"),
+        pytest.param(seeds.ONE, (390, 844), 309, "325px", id="ONE-390"),
+        pytest.param(seeds.RND, (390, 844), 309, "325px", id="RND-390", marks=pytest.mark.xfail(strict=True, reason="task A15")),
+    ])
+    def test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room(open_app, seed, size, height, pad):
+        # qa.md. The ONE and RND rows are 309 px tall with the picker of R53 and Pick again of R54 (tasks A14, A15).
+        page = open_app(seed=seed, viewport=size).page
+        open_p1(page, "phone")
+        found = p1_state(page, ("box", "style"))
+>       assert near(found["box"][3], size[1]) and near(found["box"][5], height) and found["style"] == ["", ""], found
+E       AssertionError: {'box': [0, 589, 390, 844, 390, 255], 'style': ['', '']}
+E       assert (True and False)
+E        +  where True = near(844, 844)
+E        +  and   False = near(255, 309)
+
+tests\browser\test_app.py:2359: AssertionError
+_ test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it _
+
+open_app = <function open_app.<locals>.factory at 0x0000020F62F36CF0>
+
+    def test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it(open_app):
+        # qa.md on K2 at 1280 x 800. The arrow key fires change on the pill, which applies the choice and renders P1 again,
+        # so the render must keep the focused pill (native radios, R33).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        choose(page, "One person")
+>       assert picker(page, PICKER_PARTS) == picker_with(*k2_pills("Aisyah"))
+E       AssertionError: assert None == {'place': ['fieldset.pick', 'choices', 'one'], 'parts': ['legend.sr', 'div.pick-list'], 'legend': ['legend.sr', 'Who p..., False], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]}
+E        +  where None = picker(<Page url='http://127.0.0.1:27957/'>, ('place', 'parts', 'legend', 'pills'))
+E        +  and   {'place': ['fieldset.pick', 'choices', 'one'], 'parts': ['legend.sr', 'div.pick-list'], 'legend': ['legend.sr', 'Who p..., False], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]} = picker_with(*[['label.pill', ['radio', 'spareWho', '1', True], ['svg.ic #i-check', 'Aisyah']], ['label.pill', ['radio', 'spareWho', '2', False], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]])
+E        +    where [['label.pill', ['radio', 'spareWho', '1', True], ['svg.ic #i-check', 'Aisyah']], ['label.pill', ['radio', 'spareWho', '2', False], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]] = k2_pills('Aisyah')
+
+tests\browser\test_app.py:2519: AssertionError
+__________ test_R53_only_people_on_an_item_can_be_chosen_in_by_item ___________
+
+open_app = <function open_app.<locals>.factory at 0x0000020F6302F7F0>
+
+    def test_R53_only_people_on_an_item_can_be_chosen_in_by_item(open_app):
+        # qa.md on I2 at 1280 x 800 (CG-P2, ruled by the owner). A pill's value is its person's place in the people list, so
+        # Ben and Chen keep 2 and 3 while Aisyah, who had nothing, has no pill.
+        page = open_app(seed=seeds.I2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        choose(page, "One person")
+>       assert picker(page, ("pills",)) == {"pills": [pill("2", "Ben", True), pill("3", "Chen")]}
+E       AssertionError: assert None == {'pills': [['label.pill', ['radio', 'spareWho', '2', True], ['svg.ic #i-check', 'Ben']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]}
+E        +  where None = picker(<Page url='http://127.0.0.1:27957/'>, ('pills',))
+
+tests\browser\test_app.py:2543: AssertionError
+_ test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen _
+
+open_app = <function open_app.<locals>.factory at 0x0000020F61A40CA0>
+
+    def test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen(open_app):
+        # qa.md on G4 at 1280 x 800 (CG-P7 and CG-P2, ruled by the owner). The chip names the rule in effect and P1 the
+        # stored choice with no pill checked, so a click on a pill applies at once.
+        page = open_app(seed=seeds.ODD_READABLE["G4"], viewport=VIEWPORTS[1280]).page
+        assert card_figures(page)[1] == ["RM 44.78", "RM 0.00", "RM 24.48"]
+        assert spare_line(page)["chips"] == [spare_chip("Top of the list")]
+        open_p1(page, "desktop")
+        assert p1_state(page, ("checked", "focus")) == {"checked": "one", "focus": "radio one"}
+>       assert picker(page, ("pills",)) == {"pills": [pill("1", "Aisyah"), pill("3", "Chen")]}
+E       AssertionError: assert None == {'pills': [['label.pill', ['radio', 'spareWho', '1', False], ['svg.ic #i-check', 'Aisyah']], ['label.pill', ['radio', 'spareWho', '3', False], ['svg.ic #i-check', 'Chen']]]}
+E        +  where None = picker(<Page url='http://127.0.0.1:27957/'>, ('pills',))
+
+tests\browser\test_app.py:2558: AssertionError
+engine chromium, browser version 149.0.7827.55, skipped 20
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-390] | xfail task A15
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-360] | xfail task A15
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280] | xfail task A15
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+  skipped: test_app.py::test_R31_start_over_clears_the_copy_status | xfail task A16
+  skipped: test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S3] | xfail task A18
+  skipped: test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S1] | xfail task A18
+  skipped: test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S7] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S2-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S5-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-390] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-1280] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-1280] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[M1-360] | xfail task A18
+  skipped: test_app.py::test_R35_sizes_the_design_gives_at_360_by_780 | xfail task A18
+  skipped: test_app.py::test_R35_content_width_of_the_header_and_the_note_at_1280_by_800 | xfail task A18
+  skipped: test_app.py::test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s] | xfail task A18
+  skipped: test_app.py::test_R37_names_are_shown_as_text_and_never_as_markup | xfail task A18
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-390]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-360]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280]
+FAILED tests\browser\test_app.py::test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills
+FAILED tests\browser\test_app.py::test_R52_a_choice_applies_at_once_and_p1_stays_open
+FAILED tests\browser\test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio
+FAILED tests\browser\test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280]
+FAILED tests\browser\test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390]
+FAILED tests\browser\test_app.py::test_R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it
+FAILED tests\browser\test_app.py::test_R53_only_people_on_an_item_can_be_chosen_in_by_item
+FAILED tests\browser\test_app.py::test_R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen
+11 failed, 161 passed, 429 deselected, 20 xfailed in 91.34s (0:01:31)
