@@ -19,7 +19,7 @@ Changed 2026-10-15 in execute, planner touch before A18 (ledger S4 row 4, S5 row
 
 Changed 2026-10-16 in execute, planner pass for H-10 and the step 5 wording (ledger H-10, S7 rows 39 to 43). New scenarios for R62 sit at the end of the Gherkin block under "Plain names" (H-10, ruled USER 2026-10-16 00:07, option (1), task A22), with the seeds G8 to G10. Scenarios are added for three tests the step 5 solver round wrote without one (R20 seven to eleven people, CR-S5-7. R41 the guard follows `support.py`, CR-S5-6. R58 one folder per run, CR-S5-14). How to run names the live gate's one-server pair. Lines the finders measured as untrue or open to two readings are corrected with the old text struck, "The strip reads" (QA-S5-2), `browser_version` (QA-S5-3), R60's line box (A18, K1-56) and the checklist rows K1-01, K1-02, K1-10, K1-40, K1-44 (O-1), K1-54, W1-02 (O-2), BR-02 and ST-10 (fidelity O-4, A18). Each change carries its own dated line.
 
-Changed 2026-10-16 in execute, planner touch after the step 5 re-check (ledger S7 rows 45 and 46, code review CR-R1 and CR-R6, ORCH under the owner's word on minor calls). Two scenarios are added. The outline "A repeat press on Dismiss note acts as one press at every width" (R27, R7, task A23) sits at the end of the Gherkin block under "Dismiss note arms the repeat guard", and the `@R62 @node` outline "plainNameField puts the caret where the text went in" (CR-R6) sits at the end of "Plain names". The first fails on today's tree on its asserted property in both engines, apart from its single click rows, which are its control. The second passes on today's tree and gets its RED from stubs of the helper. "Dismissing the note" is unchanged and carries a pointer line. Each change carries its own dated line.
+Changed 2026-10-16 in execute, planner touch after the step 5 re-check (ledger S7 rows 45 and 46, code review CR-R1 and CR-R6, ORCH under the owner's word on minor calls). ~~Two scenarios are added.~~ Three scenarios are added, the third by a follow-up the same day (see the last sentence). The outline "A repeat press on Dismiss note acts as one press at every width" (R27, R7, task A23) sits at the end of the Gherkin block under "Dismiss note arms the repeat guard", and the `@R62 @node` outline "plainNameField puts the caret where the text went in" (CR-R6) sits at the end of "Plain names". The first fails on today's tree on its asserted property in both engines, apart from its single click rows, which are its control. The second passes on today's tree and gets its RED from stubs of the helper. "Dismissing the note" is unchanged and carries a pointer line. Each change carries its own dated line. [Added 2026-10-16 in execute, follow-up to CR-R1, ORCH. The third is the outline "A held Enter on Dismiss note reaches nothing" (R27, R57), under the repeat press outline at 390 x 844 and 1280 x 800. Today's code is unmeasured for it and the RED run of task A23 measures it.]
 
 ## How to run
 - **Functional suite.** `python -m pytest tests/browser -q` runs Chromium (the default, as in 1.0). `python -m pytest tests/browser -q --engine webkit` runs WebKit. Test functions are named `test_R<n>_<what>`, so a grep maps each one to its tag. `split-core`'s unit tests and this module's Node tests (`tests/draft.test.js`, `tests/errors.test.js`) run with `node --test "tests/**/*.test.js"`.
@@ -2210,6 +2210,22 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
       | 1280 x 800 | touch double tap           |
     # The single click rows pass on today's tree by design. They are the control that fixes the end state the other rows must equal. The double click rows fail on today's tree on the asserted property, People folded below 1024 px, focus not on #newBill, and a second press and click that reached the page. The triple click and touch rows are measured by the RED run of task A23, and one that passes on today's tree is reported to the orchestrator.
     # The touch double tap is proven by the recorder as "A body recorder" says (Phrases), so a second tap more than 500 ms after the first or more than 22 px from it fails the case and names the gap. A tap less than 500 ms after the Dismiss tap and within 22 px of it is its repeat by spec R57 (b), the accepted residual, so no row taps People straight after.
+
+  @R27 @R57 @both
+  Scenario Outline: A held Enter on Dismiss note reaches nothing
+    # Added 2026-10-16 in execute, follow-up to code review CR-R1 (ORCH, ledger S7 row 46), task A23. The armed guard also cancels a held key's repeats (spec R57 (a)), so the repeats of Enter cannot press the control that the click moved focus to.
+    # Today's code is unmeasured for this scenario, since the review probed no key. The RED run of task A23 measures it, and a row that passes on today's tree is reported to the orchestrator.
+    Given the B1 seed at <size>, the stored text noted, and a click recorder on window in the capture phase (the window half of "A body recorder", Phrases, which sees every click before the guard can cancel it, the clicks that Enter makes included)
+    When I press Tab until "Dismiss note" has focus, then keyboard.down("Enter"), wait 520 ms, send four more keyboard.down("Enter") and keyboard.up("Enter")
+    Then the note is no longer in the DOM and #newBill has focus
+    And the recorder counted one click, on #dismissNote, and none on #newBill, and dialog#newDlg does not have the open attribute
+    And below 1024 px #peopleBtn has aria-expanded "true" and #chargesBtn has aria-expanded "false"
+    And the stored text is the one noted
+    Examples:
+      | size       |
+      | 390 x 844  |
+      | 1280 x 800 |
+    # The click count is the proof and the end state alone is not. If the four repeats reached New bill they would open, close, open and close the dialog, which leaves it closed with focus back on New bill, as the R57 scenario "A held Enter on New bill leaves the dialog open on Cancel" notes for its own count.
 ```
 
 ## FE element checklist
