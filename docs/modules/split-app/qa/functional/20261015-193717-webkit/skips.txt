@@ -1,0 +1,3 @@
+engine webkit, browser version 26.5
+test_app.py::test_R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in | The after-load scripts serve the fidelity gate, which runs in Chromium only (ledger S5 row 2).
+count 1

@@ -1,7 +1,7 @@
 """Seed drafts for the browser tests (qa.md, "Seed drafts"). This file is the one source.
 
-The fidelity setup scripts in fidelity/ repeat S1, S2 and S5, and a test keeps them equal. Since task A1 the seeds
-here are version 2 and the scripts still hold the version 1 texts, so that test waits for task A19, which rewrites them.
+The fidelity seed scripts in fidelity/ repeat S1, S2, S5, RE, W1, T12, ONE, RND and UNREADABLE["B1"] after the
+clipboard stand-in, and test_R40_fidelity_seeds_match keeps them equal (task A19).
 Test-side only: nothing here is loaded by the app, and no seed lives under src/.
 """
 import copy

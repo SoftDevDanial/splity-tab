@@ -1,0 +1,24 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported
+F                                                                        [100%]
+================================== FAILURES ===================================
+_ test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported __
+
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-83/test_R40_there_is_one_seed_scr0')
+
+    def test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported(tmp_path):
+        assert sorted(path.name for path in FIDELITY_DIR.glob("seed-*.js")) == sorted(FIDELITY_SEEDS)
+        statement = lf_bytes(FIDELITY_DIR / "seed-s1.js").decode("utf-8").removeprefix(RECORDER_JS)
+        planted = {"seed-s1-cut.js": statement, "seed-s1-twice.js": RECORDER_JS + statement + statement}
+        for name, text in planted.items():
+            (tmp_path / name).write_bytes(text.encode("utf-8"))
+>       assert seed_script_problems(tmp_path / "seed-s1-cut.js", seeds.S1) == ["seed-s1-cut.js does not start with recorder.js"]
+E       AssertionError: assert [] == ['seed-s1-cut... recorder.js']
+E         
+E         Right contains one more item: 'seed-s1-cut.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4982: AssertionError
+engine chromium, browser version None, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported
+1 failed in 0.65s

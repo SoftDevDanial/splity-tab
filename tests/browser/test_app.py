@@ -9,7 +9,9 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
+import types
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -4932,11 +4934,18 @@ def test_R39_a_whole_session_makes_only_same_origin_gets(open_app):
     assert session.problems() == []
 
 
-# ---------------------------------------------------------------- Task 12: the fidelity setup and runner (R40)
-# The gate itself is `python tests/browser/fidelity/run.py` (it takes about a minute and writes its evidence). These tests keep
-# its inputs honest: the seed scripts equal the seeds, they boot the app through its own load path, and the runner follows CG-11.
+# ---------------------------------------------------------------- v1.1.0 task A19: the fidelity gate (R40)
+# The gate itself is `python tests/browser/fidelity/run.py` (two controls and 40 pairs, several minutes, writes its
+# evidence). These tests keep its inputs honest. The seed scripts carry the clipboard stand-in and equal the seeds, they
+# boot the app through its own load path, the after-load scripts press nothing without the stand-in, and the runner
+# follows CG-11 and the table, the command and the controls of qa.md "Fidelity gate".
 FIDELITY_DIR = ROOT / "tests" / "browser" / "fidelity"
-SEED_SCRIPT = re.compile(r"""\AlocalStorage\.setItem\("split\.draft", '([^'\\]*)'\);\n\Z""")
+RECORDER_JS = lf_bytes(ROOT / "tests" / "browser" / "clipboard" / "recorder.js").decode("utf-8")
+SEED_STATEMENT = re.compile(r"""\AlocalStorage\.setItem\("split\.draft", '([^'\\]*)'\);\n\Z""")
+FIDELITY_SEEDS = {  # qa.md "Seed scripts", each file and the seed of seeds.py it repeats
+    "seed-s1.js": seeds.S1, "seed-s2.js": seeds.S2, "seed-s5.js": seeds.S5, "seed-re.js": seeds.RE, "seed-w1.js": seeds.W1,
+    "seed-t12.js": seeds.T12, "seed-one.js": seeds.ONE, "seed-rnd.js": seeds.RND, "seed-b1.js": seeds.UNREADABLE["B1"],
+}
 
 
 def load_runner():
@@ -4947,15 +4956,34 @@ def load_runner():
     return module
 
 
-@pytest.mark.xfail(strict=True, reason="task A19")
-@pytest.mark.parametrize("name, seed", [("seed-s1.js", seeds.S1), ("seed-s2.js", seeds.S2), ("seed-s5.js", seeds.S5)])
+def seed_script_problems(path, seed):
+    """What keeps the file at `path` from being recorder.js and then one setItem of `seed`, [] when nothing does.
+    Line ends are compared as LF on both sides, as R1 compares the stylesheet, so any checkout gives the same answer."""
+    text = lf_bytes(path).decode("utf-8")
+    if not text.startswith(RECORDER_JS):
+        return [f"{path.name} does not start with recorder.js"]
+    match = SEED_STATEMENT.match(text[len(RECORDER_JS):])
+    if not match:
+        return [f"{path.name} holds more than one localStorage.setItem statement after the stand-in, or something else"]
+    return [] if match.group(1) == seed else [f"{path.name} seeds {match.group(1)[:80]}, not its seed"]
+
+
+@pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
 def test_R40_fidelity_seeds_match(name, seed):
-    match = SEED_SCRIPT.match((FIDELITY_DIR / name).read_text(encoding="utf-8"))
-    assert match, f"{name} must be exactly one localStorage.setItem statement"
-    assert match.group(1) == seed  # the very text of seeds.py, byte for byte
+    assert seed_script_problems(FIDELITY_DIR / name, seed) == []
 
 
-@pytest.mark.xfail(strict=True, reason="task A19")
+def test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported(tmp_path):
+    assert sorted(path.name for path in FIDELITY_DIR.glob("seed-*.js")) == sorted(FIDELITY_SEEDS)
+    statement = lf_bytes(FIDELITY_DIR / "seed-s1.js").decode("utf-8").removeprefix(RECORDER_JS)
+    planted = {"seed-s1-cut.js": statement, "seed-s1-twice.js": RECORDER_JS + statement + statement}
+    for name, text in planted.items():
+        (tmp_path / name).write_bytes(text.encode("utf-8"))
+    assert seed_script_problems(tmp_path / "seed-s1-cut.js", seeds.S1) == ["seed-s1-cut.js does not start with recorder.js"]
+    assert seed_script_problems(tmp_path / "seed-s1-twice.js", seeds.S1) == [
+        "seed-s1-twice.js holds more than one localStorage.setItem statement after the stand-in, or something else"]
+
+
 @pytest.mark.parametrize("name, seed", [("seed-s1.js", seeds.S1), ("seed-s2.js", seeds.S2), ("seed-s5.js", seeds.S5)])
 def test_R40_a_seed_script_boots_the_app_through_its_own_load_path(open_app, name, seed):
     session = open_app(init_scripts=[(FIDELITY_DIR / name).read_text(encoding="utf-8")], allow_problems=True)
@@ -4979,10 +5007,57 @@ def test_R40_the_open_new_bill_script_leaves_the_dialog_open_without_a_ring(open
     assert stored_text(page) == seeds.S2  # opening the dialog changes nothing
 
 
+AFTER_LOAD_SCRIPTS = ("open-sections.js", "open-splits.js", "open-spare.js", "open-new-bill.js")
+OPENED_JS = """() => ({ open: [...document.querySelectorAll('#peopleBlk, #chargesBlk')].map((block) => block.dataset.open),
+  dialogs: [...document.querySelectorAll('dialog')].filter((dialog) => dialog.open).map((dialog) => dialog.id) })"""
+
+
+def run_after_load(page, name):
+    """Runs a fidelity after-load script inside an async function, as the harness runs it. Gives "resolved", or what it
+    rejected with as [whether it is an Error, its message]."""
+    source = (FIDELITY_DIR / name).read_text(encoding="utf-8")
+    return page.evaluate(f"""() => (async () => {{ {source}\n }})().then(
+      () => "resolved", (reason) => [reason instanceof Error, String(reason?.message ?? reason)])""")
+
+
+@pytest.mark.chromium_only(reason="The after-load scripts serve the fidelity gate, which runs in Chromium only (ledger S5 row 2).")
+def test_R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in(open_app):
+    page = open_app(seed=seeds.S1, clipboard="missing").page
+    folded = page.evaluate(OPENED_JS)
+    assert folded == {"open": ["false", "false"], "dialogs": []}
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    for name in AFTER_LOAD_SCRIPTS:
+        assert run_after_load(page, name) == [True, "clipboard stand-in missing"], name
+        assert seen_by_the_page(page) == {"presses": [], "clicks": []} and presses_and_clicks(page) == ([], []), name
+        assert page.evaluate(OPENED_JS) == folded, name
+    page = open_app(seed=seeds.S1).page
+    assert run_after_load(page, "open-splits.js") == "resolved"
+    assert page.locator("#splitsDlg").evaluate("(dialog) => dialog.matches(':modal')")
+    assert page.evaluate("window.testClipboardWrites") == 0
+    assert page.evaluate("document.activeElement === document.body && document.querySelectorAll(':focus-visible').length === 0")
+
+
+# qa.md "Fidelity gate", the table, in its order: golden, seed script, after-load script, viewports. 40 pairs.
+WIDE, PHONE = ("390x844", "360x780", "1280x800"), ("390x844", "360x780")
+FIDELITY_TABLE = [
+    ("bill-items", "seed-s1.js", None, WIDE), ("bill-items-open", "seed-s1.js", "open-sections.js", PHONE),
+    ("bill-even", "seed-s2.js", None, WIDE), ("spare-sen", "seed-s1.js", "open-spare.js", WIDE),
+    ("spare-sen-one", "seed-one.js", "open-spare.js", WIDE), ("spare-sen-random", "seed-rnd.js", "open-spare.js", WIDE),
+    ("splits-sheet", "seed-s1.js", "open-splits.js", PHONE), ("new-bill-dialog", "seed-s1.js", "open-new-bill.js", WIDE),
+    ("bill-empty", None, None, WIDE), ("rate-error", "seed-re.js", None, WIDE), ("bill-unassigned", "seed-s5.js", None, WIDE),
+    ("bill-unreadable", "seed-b1.js", None, WIDE), ("bill-twelve", "seed-t12.js", None, WIDE),
+    ("bill-large", "seed-w1.js", None, WIDE),
+]
+FIDELITY_PAIRS = [(golden, seed, after_load, viewport) for golden, seed, after_load, viewports in FIDELITY_TABLE
+                  for viewport in viewports]
+
+
 def test_R40_the_runner_uses_the_python_that_runs_pytest():
     source = (FIDELITY_DIR / "run.py").read_text(encoding="utf-8")
     assert "[sys.executable, str(HARNESS)" in source
     assert not re.search(r"\bpip\b|ensurepip|\bvenv\b|\.sdlc-harness|virtualenv", source)  # no environment, no installer
+    assert "--engine" not in source  # Chromium only (R58)
+    assert len(FIDELITY_PAIRS) == 40 and list(load_runner().PAIRS) == FIDELITY_PAIRS
     import importlib
     for module in ("playwright", "PIL", "numpy"):  # the harness needs these, and the Python that runs this test has them
         importlib.import_module(module)
@@ -4996,23 +5071,103 @@ def test_R40_the_runner_takes_the_harness_from_the_environment_and_has_a_default
     assert runner.HARNESS == runner.harness_path(os.environ)  # what the module picked at import
 
 
-@pytest.mark.parametrize("screen, seed, after_load", [
-    ("bill-empty", None, None), ("bill-even", "seed-s2.js", None), ("bill-items", "seed-s1.js", None),
-    ("bill-unassigned", "seed-s5.js", None), ("new-bill-dialog", "seed-s2.js", "open-new-bill.js")])
-def test_R40_the_runner_builds_the_documented_command(screen, seed, after_load):
+def documented_command(harness, golden, candidate, viewport, seed, after_load, out):
+    """qa.md "Fidelity gate", Command, for one render pair, with sys.executable for `python`."""
+    cmd = [sys.executable, str(harness), "--golden", f"./docs/design/{golden}.html", "--candidate", candidate,
+           "--viewport", viewport, "--dpr", "1", "--color-scheme", "dark", "--browser-arg=--disable-lcd-text",
+           "--fixed-time", "2026-10-13T09:00:00", "--threshold", "0.01"]
+    cmd += ["--candidate-init-script", f"./tests/browser/fidelity/{seed}"] if seed else []
+    cmd += ["--candidate-after-load", f"./tests/browser/fidelity/{after_load}"] if after_load else []
+    return cmd + ["--out", str(out)]
+
+
+def test_R40_the_runner_builds_the_documented_command():
     runner = load_runner()
-    cmd = runner.command("http://127.0.0.1:1", screen, seed, after_load, "390x844", Path("out"))
-    assert cmd[:2] == [sys.executable, str(runner.HARNESS)]
-    assert cmd[cmd.index("--golden") + 1] == f"./docs/design/{screen}.html" and cmd[cmd.index("--candidate") + 1] == "http://127.0.0.1:1/"
-    for flag, value in (("--viewport", "390x844"), ("--dpr", "1"), ("--color-scheme", "light"),
-                        ("--fixed-time", "2026-10-08T09:00:00"), ("--threshold", "0.01")):
-        assert cmd[cmd.index(flag) + 1] == value, flag
-    assert "--browser-arg=--disable-lcd-text" in cmd
-    assert ("--candidate-init-script" in cmd) == bool(seed) and ("--candidate-after-load" in cmd) == bool(after_load)
-    if seed:
-        assert cmd[cmd.index("--candidate-init-script") + 1] == f"./tests/browser/fidelity/{seed}"
-    assert "--no-full-page" not in cmd
-    assert len(runner.SCREENS) * len(runner.VIEWPORTS) == 10 and runner.VIEWPORTS == ("390x844", "1280x800")
+    wrong = [pair for pair in FIDELITY_PAIRS if runner.command("http://127.0.0.1:1", *pair, Path("out"))
+             != documented_command(runner.HARNESS, pair[0], "http://127.0.0.1:1/", pair[3], pair[1], pair[2], "out")]
+    assert wrong == []
+    named = {name for _, seed, after_load, _ in FIDELITY_PAIRS for name in (seed, after_load) if name}
+    assert sorted(name for name in named if not (FIDELITY_DIR / name).is_file()) == []
+
+
+class FakeServer:
+    """Stands in for rig.StaticServer in the runner's own test. No process is started."""
+    base = "http://127.0.0.1:1"
+
+    def __init__(self, root, say=print):
+        self.say = say
+
+    def start(self):
+        self.say("server STARTED (fake)")
+        return self
+
+    def stop(self):
+        self.say("server STOPPED (fake)")
+
+
+def fake_harness(report_for, commands):
+    """Stands in for subprocess.run of the harness. Records each command, writes report_for(its --out folder name) as
+    report.json there and exits 0, or exits 1 and writes nothing when that gives None."""
+    def run(cmd, **_):
+        commands.append(cmd)
+        out = Path(cmd[cmd.index("--out") + 1])
+        report = report_for(out.name)
+        if report is not None:
+            out.mkdir(parents=True)
+            (out / "report.json").write_text(json.dumps(report), encoding="utf-8")
+        return subprocess.CompletedProcess(cmd, 0 if report is not None else 1, stdout="", stderr="")
+    return run
+
+
+def harness_report(pixels, dimensions_match=True):
+    return {"mismatch_pixels": pixels, "mismatch_pct": round(100 * pixels / (390 * 844), 4), "dimensions_match": dimensions_match,
+            "golden_size": [390, 844], "candidate_size": [390, 844] if dimensions_match else [390, 900]}
+
+
+# Each case: reports that differ from a clean run (by --out folder name, None for a harness that wrote none), the
+# CONTROL lines of run.log, the pairs that FAIL (None when a control stops the run before any pair) and the exit status.
+RUNNER_CASES = {
+    "clean": ({}, ["CONTROL PASS control-self", "CONTROL PASS control-noseed"], [], 0),
+    "self-compare-noisy": ({"control-self-390x844": harness_report(3)}, ["CONTROL FAIL control-self"], None, 1),
+    "no-seed-blind": ({"control-noseed-390x844": harness_report(0)},
+                      ["CONTROL PASS control-self", "CONTROL FAIL control-noseed"], None, 1),
+    "pairs-at-fault": ({"bill-large-360x780": harness_report(12), "bill-twelve-1280x800": harness_report(0, False),
+                        "splits-sheet-390x844": None},
+                       ["CONTROL PASS control-self", "CONTROL PASS control-noseed"],
+                       ["splits-sheet 390x844", "bill-twelve 1280x800", "bill-large 360x780"], 1),
+}
+
+
+@pytest.mark.parametrize("case", list(RUNNER_CASES))
+def test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair(monkeypatch, tmp_path, case):
+    changed, control_lines, failing, status = RUNNER_CASES[case]
+    clean = lambda name: harness_report(5000 if name == "control-noseed-390x844" else 0)  # the cold app is not bill-items
+    runner, commands = load_runner(), []
+    harness = tmp_path / "fidelity.py"
+    harness.write_bytes(b"")
+    monkeypatch.setattr(runner, "HARNESS", harness)
+    monkeypatch.setattr(runner, "EVIDENCE_ROOT", tmp_path / "evidence")
+    monkeypatch.setattr(runner, "rig", types.SimpleNamespace(ROOT=ROOT, StaticServer=FakeServer))
+    monkeypatch.setattr(runner, "subprocess", types.SimpleNamespace(
+        run=fake_harness(lambda name: changed[name] if name in changed else clean(name), commands),
+        TimeoutExpired=subprocess.TimeoutExpired))
+    assert runner.main() == status
+    [run_folder] = (tmp_path / "evidence").iterdir()
+    log = (run_folder / "run.log").read_text(encoding="utf-8").splitlines()
+    assert [" ".join(line.split()[:3]) for line in log if line.startswith("CONTROL ")] == control_lines
+    base = FakeServer.base
+    controls = [documented_command(harness, "bill-items", base + path, "390x844", None, None, run_folder / f"{name}-390x844")
+                for name, path in (("control-self", "/docs/design/bill-items.html"), ("control-noseed", "/"))]
+    pairs = [documented_command(harness, golden, base + "/", viewport, seed, after_load, run_folder / f"{golden}-{viewport}")
+             for golden, seed, after_load, viewport in FIDELITY_PAIRS]
+    verdicts = [line.split()[:3] for line in log if line.startswith(("PASS ", "FAIL "))]
+    if failing is None:
+        assert commands == controls[:len(control_lines)] and verdicts == [] and any(line.startswith("NOT RUN") for line in log)
+    else:
+        assert commands == controls + pairs
+        assert [" ".join(verdict[1:]) for verdict in verdicts if verdict[0] == "FAIL"] == failing
+        assert sum(verdict[0] == "PASS" for verdict in verdicts) == 40 - len(failing)
+        assert f"{40 - len(failing)} of 40 pairs pass" in log[-1]
 
 
 # ---------------------------------------------------------------- Task 13: the cold-boot live gate (R41)

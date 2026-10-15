@@ -369,6 +369,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 | A21 | `b8b332e` | `feat(split-app): below 1024 px a control focused in the page whose bottom edge is under the strip is scrolled clear of it with scrollIntoView nearest, ... (task A21, R49)`, recorded by the A21 proof commit |
 | A21 proofs | `d905f85` | `docs(split-app): the proof runs of A21 on the committed tree, Node 379 of 379, Chromium 603 passed and 21 xfailed, WebKit 602 passed with no failure by id ... (task A21, R49)`, recorded by the A18 section |
 | A18 | `101e842` | `feat(split-app): the cross-cutting checks of v1.1.0 written as tests in both engines, Tab order and the one ring, no overflow in any golden state ... each seen failing first by a stub in both engines, no app file changed, proof runs owed by handoff A18b (task A18, ...)`, tests only, recorded by the A18 proof commit |
+| A18 proofs | `59b21d6` | `docs(split-app): the proof runs of A18 on the committed tree, Node 379 of 379, Chromium 689 passed and 6 xfailed, WebKit 688 passed with 1 skipped and 6 xfailed, no failure and no other change by id against A21's runs, A18 ticked in spec.md, ... and the handoff for A19 (task A18, ...)`, recorded by the A19 section |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -1864,3 +1865,73 @@ A probe, read only, from the session scratch folder, a page of its own through `
 **Process note.** Every file was written with the Edit or Write tools. The runners live in the session scratch folder `split-a18/`, and the second builder's copies for the proof runs in `split-a18b/`. The second builder broke the brief's shell rule once, a read-only `git status --short` piped into `head` before the runs. It wrote nothing.
 
 **For the README reconcile.** No app change. Tests of A18 in `tests/browser/test_app.py` under "v1.1.0 task A18", seeds `MAX_E` and `MAX_I` in `tests/browser/seeds.py`.
+
+## v1.1.0 task A19, the fidelity gate in Chromium (2026-10-15)
+Built by the frontend developer role from `spec.md` (task A19, R40, R3, the threat model row on the human's clipboard, R59 (4)), `qa.md` ("Seed drafts", "Fidelity gate" whole, the four `@R40` scenarios), `docs/design/MANIFEST.md` and `docs/design/LINKS.json` (read only), on the tree of `037cb8c`, with `docs/progress/handoff/handoff-2026-10-15-execute-split-A19.md` and the "Traps worth knowing" of the A18 handoff.
+
+**Status. Built, the gate run green (2 controls as written, 40 of 40 pairs at 0 mismatching pixels), committed with its RED record. The proof runs on the committed tree are recorded by the docs commit above it.**
+
+**Phase skills (design row of `docs/phase-skills.md`).** Not loaded. A19 changed no file under `src/` or `index.html` and no UI. It is gate tooling (scripts that run in the test browser only, the runner and tests), which the brief names as not needing the row.
+
+**What changed** (cite by symbol). No file under `src/`, `index.html` or `docs/design/`.
+- `tests/browser/fidelity/seed-s1.js`, `seed-s2.js` and `seed-s5.js` rewritten, `seed-re.js`, `seed-w1.js`, `seed-t12.js`, `seed-one.js`, `seed-rnd.js` and `seed-b1.js` new. Each is the text of `tests/browser/clipboard/recorder.js` byte for byte and then one `localStorage.setItem("split.draft", '<seed>')` statement with the version 2 seed of `seeds.py` (`S1`, `S2`, `S5`, `RE`, `W1`, `T12`, `ONE`, `RND`, `UNREADABLE["B1"]`).
+- `tests/browser/fidelity/open-new-bill.js` rewritten, `open-sections.js`, `open-splits.js` and `open-spare.js` new. Each first throws `new Error("clipboard stand-in missing")` when `window.testClipboardWrites` is not the number 0, or when `navigator.clipboard.writeText` exists and its source text holds "[native code]". Then its `press` clicks each control with `element.click()`, waits two animation frames, blurs and waits two more (1.0 PD-16). `open-sections.js` presses `#peopleBtn` and then `#chargesBtn`, `open-splits.js` presses `#splitsBtn`, `open-spare.js` presses `#splitsBtn` and then the sheet's spare chip below 1024 px and `#spareBtn` from 1024 px, and `open-new-bill.js` presses `#newBill` (it clicked `header .btn`).
+- `tests/browser/fidelity/run.py`. `SCREENS` is the table of qa.md with its viewports, `PAIRS` its 40 pairs and `CONTROLS` the self-compare and the no-seed render. `run_control` and `run_pair` share `run_harness`. `main` runs the controls first and stops at the first that does not behave (a `CONTROL FAIL` line, "NOT RUN", exit 1), then the pairs. `command` passes `--color-scheme dark` and `--fixed-time 2026-10-13T09:00:00` (qa.md, Command) and takes the candidate path the self-compare needs. The run folder is made without `exist_ok`. `DEFAULT_HARNESS` and `harness_path` are unchanged.
+- `tests/browser/seeds.py`. The docstring names the nine seeds the scripts repeat. It said the scripts still held the version 1 texts.
+- `tests/browser/test_app.py`. The 1.0 block "Task 12" is now "v1.1.0 task A19". New `RECORDER_JS`, `SEED_STATEMENT` (was `SEED_SCRIPT`), `FIDELITY_SEEDS`, `seed_script_problems`, `AFTER_LOAD_SCRIPTS`, `OPENED_JS`, `run_after_load`, `FIDELITY_TABLE`, `FIDELITY_PAIRS`, `documented_command`, `FakeServer`, `fake_harness`, `harness_report` and `RUNNER_CASES`. Imports `subprocess` and `types`.
+
+**Tests** (the 6 `task A19` xfails lose their marks and pass).
+| Test | Cases | qa.md | Before A19 |
+|---|---|---|---|
+| `test_R40_fidelity_seeds_match` | 9 | "The fidelity seeds equal seeds.py and carry the clipboard stand-in", one case per file | 3 xfails. The same 3 ids pass now, 6 ids are new |
+| `test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported` | 1 | the same scenario, the nine files and the two planted copies | new |
+| `test_R40_a_seed_script_boots_the_app_through_its_own_load_path` | 3 | Seed scripts, "the app boots into that bill through its real load path" | 3 xfails, the mark removed, the body unchanged |
+| `test_R40_the_open_new_bill_script_leaves_the_dialog_open_without_a_ring` | 1 | After-load scripts | unchanged, passing |
+| `test_R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in` | 1, `chromium_only` | "An after-load script presses nothing without the clipboard stand-in" | new |
+| `test_R40_the_runner_uses_the_python_that_runs_pytest` | 1 | "The runner uses the Python that runs pytest and stays Chromium only" | gains the `--engine` line and the 40 pairs, same id |
+| `test_R40_the_runner_takes_the_harness_from_the_environment_and_has_a_default` | 1 | Harness | unchanged, passing |
+| `test_R40_the_runner_builds_the_documented_command` | 1 | Command and Flags for every pair, and every script it names exists | 5 cases of the 1.0 command (`light`, 2026-10-08, 10 pairs), now one case over the 40 pairs |
+| `test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair` | 4 | Controls and Threshold, the runner's own verdict | new |
+
+So the suite goes from 695 to 703 cases (5 ids gone, 13 new) and from 6 xfails to none.
+
+**RED first**, each run in its own folder under `docs/modules/split-app/qa/functional/`. The stubs were files and names A19 creates, put in and replaced with the Edit and Write tools, never committed (`grep -rn STUB tests/ src/ index.html` exit 1 before the commit).
+| Run | In place | Tests | Chromium | WebKit | Seen failing |
+|---|---|---|---|---|---|
+| RED-1 | today's three seed files (version 1 texts) and `open-new-bill.js` (no check), six seed stubs holding only the `setItem` statement, three after-load stubs that click without the check, and a `PAIRS` stub in the 1.0 `run.py` (its ten pairs) | the 9 functions, 22 cases | `20261015-193408-chromium/` (21 failed, 3 passed) | `20261015-193433-webkit/` (20 failed, 3 passed, 1 skipped) | every seed file "does not start with recorder.js" (9), the boot test on the stored text, version 1 where the seed is version 2 (3), the after-load test "resolved" where it must reject with the Error (Chromium), the runner's pairs (the ten of 1.0 against the 40), the command (40 of 40 wrong), and the controls test (no `CONTROL` line, and exit 0 where a misbehaving control or a bad pair must give 1, 4 of 4) |
+| RED-2, first try | `seed_script_problems` without its recorder check, on today's `seed-s1.js` | the planted test | `20261015-193455-chromium/` | `20261015-193456-webkit/` | failed, but on the version 1 seed of `seed-s1.js`, not on the cut stand-in, so it was repeated on the built seeds |
+| RED-2a | the same stub on the built seed files | the planted test | `20261015-193651-chromium/` | `20261015-193653-webkit/` | the copy with the stand-in cut not reported |
+| RED-2b | the recorder check kept, the statement pattern without its end anchor | the planted test | `20261015-193701-chromium/` | `20261015-193702-webkit/` | the copy with a second statement not reported |
+
+The planted test passed in RED-1 by design, since its checker is test side, and RED-2a and RED-2b are its RED. Green, `20261015-193640-chromium/` (22 passed, before RED-2a), then `20261015-193713-chromium/` (22 passed) and `20261015-193717-webkit/` (21 passed, 1 skipped, the `chromium_only` test) with the stubs gone.
+In RED-1 the boot cases of `seed-s1.js` and `seed-s5.js` also carry a teardown error, `OSError: [Errno 22]` on the failure screenshot, whose name made from the long parametrized id passes 260 characters. The call failure beside each is the stored text. It is the screenshot naming of `open_app` in `tests/browser/conftest.py`, met only by a failing case with a long id, and A19 did not change it.
+
+**The fidelity run**, `docs/modules/split-app/qa/fidelity/20261015-193738/` (`run.log`, `control-self-390x844/`, `control-noseed-390x844/` and the 40 pair folders, each with `golden.png`, `candidate.png`, `diff.png`, `styles.json` and `report.json`).
+- Harness `{sdlc}/harness/fidelity.py` (sdlc plugin 2.6.0, frozen mode, unmodified, SHA-256 `630d10b41c350ba88fe6aaf21ef45382b87d3963ae5d119750a362c3d2dd71a3`), named by `SDLC_HARNESS`. Python 3.14.0 (`C:\Python314\python.exe`, `sys.executable`), Playwright 1.61.0, Pillow 12.3.0, numpy 2.4.6. Headless Chromium launched by the harness. Threshold 0.01 and the flags of qa.md, unchanged. 160 s. Server pid 24184 on port 19553, STOPPED, exited True, port free again True (`run.log`).
+- `control-self` 0 mismatching pixels, sizes [390, 950] on both sides, CONTROL PASS. `control-noseed` 184588 mismatching pixels (56.0785 %), [390, 950] against [390, 844], CONTROL PASS, so the gate can fail.
+- 40 of 40 pairs PASS, each with 0 mismatching pixels and `dimensions_match` true. Every golden at 390 x 844, 360 x 780 and 1280 x 800, and `bill-items-open` and `splits-sheet` at 390 and 360.
+- 38 of the 42 image pairs are byte-identical. The passing pairs that are not, with every pixel below the threshold, are `bill-unreadable-390x844` (19 pixels one colour level apart, on one line at y 243 to 244), `new-bill-dialog-390x844` (77 pixels) and `new-bill-dialog-1280x800` (84 pixels), at most 2 levels apart, inside the dialog. For the fidelity finder, not a finding of A19.
+- The candidate side is the app. In each of the 13 pairs with an open dialog the golden's `styles.json` lists its `div.backdrop` stand-ins (1 or 2) and the candidate's lists none (allowed difference 3).
+- The run used the files this commit holds. No file under `src/`, `index.html` or `tests/browser/fidelity/` is newer than the run's start (`find ... -newermt "2026-10-15 19:37:38"` lists nothing).
+
+**R3.** The DOM walk at the 40 pairs is `test_R3_rendered_markup_matches_its_golden` (40 cases, reached with real clicks, passing in the A18 proof runs). A19 adds no R3 test. The pixel gate reaches the same 40 states through the seed and after-load scripts.
+
+**Not A19's.** The FE element checklist half of R40 and the verdict in `findings/fidelity.md` belong to the fidelity finder (qa.md, "Per-element check").
+
+**Judgment calls.**
+1. The four `@R40` scenarios are the tests above. `test_R40_fidelity_seeds_match` keeps its name and its argument names, so its three ids stand and the six new files add six. The boot test keeps its three cases, as no scenario widens it and `seed-b1.js` boots into the note on purpose. The fidelity run boots the other six.
+2. `test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair` is not a qa.md scenario. It checks the runner's verdict rules that qa.md states (Controls, Threshold, a harness exit other than 0 or a missing `report.json` is FAIL) through a fake harness and a fake server, because a green gate run takes only the passing branch. It opens no browser and writes only into its pytest temporary folder.
+3. The command test is one case over the 40 pairs, an exact list compare with qa.md's Command, where the 1.0 test had five cases checking one flag at a time.
+4. Each after-load script carries the stand-in check and `press` itself, because the harness takes one file per render, as each seed file carries `recorder.js`.
+5. `press` throws "`<selector>` is not on the page" for a missing control, so a broken script names its selector in `run.log`. It adds no click and no state.
+6. The "[native code]" check reads `Function.prototype.toString.call(writeText)`, which a replaced `toString` cannot change.
+7. The run named the 2.6.0 cache copy through `SDLC_HARNESS`, as the brief asked. `DEFAULT_HARNESS` stays the path qa.md names.
+8. `seed_script_problems` compares with every CRLF turned into LF on both sides, as R1 does, since `core.autocrlf=true` would check these files out with CRLF.
+
+**Deviations.** Principle 1 (DRY) in the four after-load scripts, judgment call 4. None else.
+
+**Non-goals honoured.** No file under `src/`, `index.html` or `docs/design/` changed (`src/system.css` blob `bf30dda`), no golden written (the harness opens them as files, the self-compare read `bill-items.html` through the test server), the threshold and the budget unchanged, no engine option, headless only, and the system clipboard never touched (every candidate that presses a control boots with `recorder.js`, every test context has its stand-in).
+
+**Process note.** Every file was written with the Edit or Write tools. The runners are in the session scratch folder `split-a19/` (`run_pytest.py`, `run_node.py`, `compare_runs.py`, `wait_for_run.py`, `run_fidelity.py`, `sweep.ps1`). One slip of the brief's shell rule, a read-only `sed` of `open-spare.js` sent to `/dev/null` while the gate ran. It wrote nothing.
+
+**For the README reconcile.** No app change. The gate is `python tests/browser/fidelity/run.py` (two controls, then 40 pairs, about 3 minutes, `SDLC_HARNESS` names the harness), its scripts are in `tests/browser/fidelity/`, the tests in `tests/browser/test_app.py` under "v1.1.0 task A19".

@@ -1,0 +1,6 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R40_fidelity_seeds_match tests/browser/test_app.py::test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported tests/browser/test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path tests/browser/test_app.py::test_R40_the_open_new_bill_script_leaves_the_dialog_open_without_a_ring tests/browser/test_app.py::test_R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in tests/browser/test_app.py::test_R40_the_runner_uses_the_python_that_runs_pytest tests/browser/test_app.py::test_R40_the_runner_takes_the_harness_from_the_environment_and_has_a_default tests/browser/test_app.py::test_R40_the_runner_builds_the_documented_command tests/browser/test_app.py::test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair
+..........server STARTED pid 24840 port 15823 root {workspace}\examples\split
+............server STOPPED pid 24840 port 15823, exited True, port free again True
+                                                                         [100%]
+engine chromium, browser version 149.0.7827.55, skipped 0
+22 passed in 3.70s

@@ -1,0 +1,585 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R40_fidelity_seeds_match tests/browser/test_app.py::test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported tests/browser/test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path tests/browser/test_app.py::test_R40_the_open_new_bill_script_leaves_the_dialog_open_without_a_ring tests/browser/test_app.py::test_R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in tests/browser/test_app.py::test_R40_the_runner_uses_the_python_that_runs_pytest tests/browser/test_app.py::test_R40_the_runner_takes_the_harness_from_the_environment_and_has_a_default tests/browser/test_app.py::test_R40_the_runner_builds_the_documented_command tests/browser/test_app.py::test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair
+FFFFFFFFF.server STARTED pid 21516 port 60557 root {workspace}\examples\split
+FEFFE.sF.FFFFFserver STOPPED pid 21516 port 60557, exited True, port free again True
+                                                                         [100%]
+=================================== ERRORS ====================================
+_ ERROR at teardown of test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] _
+
+server = <rig.StaticServer object at 0x00000162E392D400>
+browser = <Browser type=<BrowserType name=webkit executable_path={home}\AppData\Local\ms-playwright\webkit-2311\Playwright.exe> version=26.5>
+request = <SubRequest 'open_app' for <Function test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s1.js-{"versi...sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}]>>
+
+    @pytest.fixture
+    def open_app(server, browser, request):
+        """open_app(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+        path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark") -> Session
+    
+        The defaults are the default context of qa.md How to run (task A3). A scenario that names "no-preference" or a
+        light colour scheme passes it. Every context also gets csp/listener.js, so a policy violation fails the scenario
+        in either engine (R38)."""
+        sessions = []
+    
+        def factory(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+                    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark"):
+            target = base_server or server
+            options = {"viewport": {"width": viewport[0], "height": viewport[1]},
+                       "device_scale_factor": 1, "color_scheme": color_scheme, "reduced_motion": reduced_motion}
+            if touch:  # page.touchscreen.tap needs a context that has touch (RD-3)
+                options["has_touch"] = True
+            if seed is not None:
+                options["storage_state"] = rig.storage_state(target.base, seed)
+            context = rig.new_context(browser, clipboard=clipboard, init_scripts=(CSP_LISTENER, *init_scripts), **options)
+            session = Session(context, target.base, prefix)
+            session.allow_problems = allow_problems
+            sessions.append(session)
+            if goto:
+                session.open(path)
+            return session
+    
+        yield factory
+        failed = getattr(request.node, "rep_call", None) is not None and request.node.rep_call.failed
+        leftovers = []
+        for number, session in enumerate(sessions, start=1):
+            if failed:
+                name = re.sub(r"[^A-Za-z0-9_.-]+", "_", request.node.nodeid)
+>               session.page.screenshot(path=str(evidence_dir() / f"{name}-{number}.png"))
+
+tests\browser\conftest.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:10754: in screenshot
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:834: in screenshot
+    await async_writefile(path, decoded_binary)
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_helper.py:534: in async_writefile
+    await loop.run_in_executor(None, inner)
+C:\Python314\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def inner() -> None:
+>       with open(file, "w" if isinstance(data, str) else "wb") as fh:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       OSError: [Errno 22] Invalid argument: '{workspace}\\examples\\split\\docs\\modules\\split-app\\qa\\functional\\20261015-193433-webkit\\test_app.py_test_R40_a_seed_script_boots_the_app_through_its_own_load_path_seed-s1.js-_version_2_bill_mode_item_people_id_p1_name_Aisyah_id_p2_name_Ben_id_p3_name_Chen_subtotalText_items_id_i4_name_Nasi_lemak_ayam_priceText_15.90_who_p1_id_i5_name_Char_kuey_teow_priceText_13.50_who_p2_id_i6_name_Mee_goreng_mamak_priceText_12.00_who_p3_id_i7_name_Satay_10_sticks_priceText_18.00_who_p1_p3_serviceText_10_sstText_6_spare_rule_top_nextId_8_-1.png'
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_helper.py:530: OSError
+_ ERROR at teardown of test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] _
+
+server = <rig.StaticServer object at 0x00000162E392D400>
+browser = <Browser type=<BrowserType name=webkit executable_path={home}\AppData\Local\ms-playwright\webkit-2311\Playwright.exe> version=26.5>
+request = <SubRequest 'open_app' for <Function test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s5.js-{"versi...sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}]>>
+
+    @pytest.fixture
+    def open_app(server, browser, request):
+        """open_app(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+        path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark") -> Session
+    
+        The defaults are the default context of qa.md How to run (task A3). A scenario that names "no-preference" or a
+        light colour scheme passes it. Every context also gets csp/listener.js, so a policy violation fails the scenario
+        in either engine (R38)."""
+        sessions = []
+    
+        def factory(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+                    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark"):
+            target = base_server or server
+            options = {"viewport": {"width": viewport[0], "height": viewport[1]},
+                       "device_scale_factor": 1, "color_scheme": color_scheme, "reduced_motion": reduced_motion}
+            if touch:  # page.touchscreen.tap needs a context that has touch (RD-3)
+                options["has_touch"] = True
+            if seed is not None:
+                options["storage_state"] = rig.storage_state(target.base, seed)
+            context = rig.new_context(browser, clipboard=clipboard, init_scripts=(CSP_LISTENER, *init_scripts), **options)
+            session = Session(context, target.base, prefix)
+            session.allow_problems = allow_problems
+            sessions.append(session)
+            if goto:
+                session.open(path)
+            return session
+    
+        yield factory
+        failed = getattr(request.node, "rep_call", None) is not None and request.node.rep_call.failed
+        leftovers = []
+        for number, session in enumerate(sessions, start=1):
+            if failed:
+                name = re.sub(r"[^A-Za-z0-9_.-]+", "_", request.node.nodeid)
+>               session.page.screenshot(path=str(evidence_dir() / f"{name}-{number}.png"))
+
+tests\browser\conftest.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:10754: in screenshot
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:834: in screenshot
+    await async_writefile(path, decoded_binary)
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_helper.py:534: in async_writefile
+    await loop.run_in_executor(None, inner)
+C:\Python314\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def inner() -> None:
+>       with open(file, "w" if isinstance(data, str) else "wb") as fh:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       OSError: [Errno 22] Invalid argument: '{workspace}\\examples\\split\\docs\\modules\\split-app\\qa\\functional\\20261015-193433-webkit\\test_app.py_test_R40_a_seed_script_boots_the_app_through_its_own_load_path_seed-s5.js-_version_2_bill_mode_item_people_id_p1_name_Aisyah_id_p2_name_Ben_id_p3_name_Chen_subtotalText_items_id_i4_name_Nasi_lemak_ayam_priceText_15.90_who_p1_id_i5_name_Char_kuey_teow_priceText_13.50_who_p2_id_i6_name_Mee_goreng_mamak_priceText_12.00_who_id_i7_name_Satay_10_sticks_priceText_18.00_who_p1_p3_serviceText_10_sstText_6_spare_rule_top_nextId_8_-1.png'
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_helper.py:530: OSError
+================================== FAILURES ===================================
+_ test_R40_fidelity_seeds_match[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] _
+
+name = 'seed-s1.js'
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+
+    @pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
+    def test_R40_fidelity_seeds_match(name, seed):
+>       assert seed_script_problems(FIDELITY_DIR / name, seed) == []
+E       AssertionError: assert ['seed-s1.js ... recorder.js'] == []
+E         
+E         Left contains one more item: 'seed-s1.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4973: AssertionError
+_ test_R40_fidelity_seeds_match[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}] _
+
+name = 'seed-s2.js'
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+
+    @pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
+    def test_R40_fidelity_seeds_match(name, seed):
+>       assert seed_script_problems(FIDELITY_DIR / name, seed) == []
+E       AssertionError: assert ['seed-s2.js ... recorder.js'] == []
+E         
+E         Left contains one more item: 'seed-s2.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4973: AssertionError
+_ test_R40_fidelity_seeds_match[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] _
+
+name = 'seed-s5.js'
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+
+    @pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
+    def test_R40_fidelity_seeds_match(name, seed):
+>       assert seed_script_problems(FIDELITY_DIR / name, seed) == []
+E       AssertionError: assert ['seed-s5.js ... recorder.js'] == []
+E         
+E         Left contains one more item: 'seed-s5.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4973: AssertionError
+_ test_R40_fidelity_seeds_match[seed-re.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"35","sstText":"6","spare":{"rule":"top"},"nextId":8}}] _
+
+name = 'seed-re.js'
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"35","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+
+    @pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
+    def test_R40_fidelity_seeds_match(name, seed):
+>       assert seed_script_problems(FIDELITY_DIR / name, seed) == []
+E       AssertionError: assert ['seed-re.js ... recorder.js'] == []
+E         
+E         Left contains one more item: 'seed-re.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4973: AssertionError
+_ test_R40_fidelity_seeds_match[seed-w1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]},{"id":"i8","name":"","priceText":"964.50","who":["p1"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":9}}] _
+
+name = 'seed-w1.js'
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...i8","name":"","priceText":"964.50","who":["p1"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":9}}'
+
+    @pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
+    def test_R40_fidelity_seeds_match(name, seed):
+>       assert seed_script_problems(FIDELITY_DIR / name, seed) == []
+E       AssertionError: assert ['seed-w1.js ... recorder.js'] == []
+E         
+E         Left contains one more item: 'seed-w1.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4973: AssertionError
+_ test_R40_fidelity_seeds_match[seed-t12.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"},{"id":"p4","name":""},{"id":"p5","name":""},{"id":"p6","name":""},{"id":"p7","name":""},{"id":"p8","name":""},{"id":"p9","name":""},{"id":"p10","name":""},{"id":"p11","name":""},{"id":"p12","name":""}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":13}}] _
+
+name = 'seed-t12.js'
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...","name":""}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":13}}'
+
+    @pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
+    def test_R40_fidelity_seeds_match(name, seed):
+>       assert seed_script_problems(FIDELITY_DIR / name, seed) == []
+E       AssertionError: assert ['seed-t12.js... recorder.js'] == []
+E         
+E         Left contains one more item: 'seed-t12.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4973: AssertionError
+_ test_R40_fidelity_seeds_match[seed-one.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"one","personId":"p2"},"nextId":4}}] _
+
+name = 'seed-one.js'
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"one","personId":"p2"},"nextId":4}}'
+
+    @pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
+    def test_R40_fidelity_seeds_match(name, seed):
+>       assert seed_script_problems(FIDELITY_DIR / name, seed) == []
+E       AssertionError: assert ['seed-one.js... recorder.js'] == []
+E         
+E         Left contains one more item: 'seed-one.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4973: AssertionError
+_ test_R40_fidelity_seeds_match[seed-rnd.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"random","order":["p2","p3","p1"]},"nextId":4}}] _
+
+name = 'seed-rnd.js'
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"random","order":["p2","p3","p1"]},"nextId":4}}'
+
+    @pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
+    def test_R40_fidelity_seeds_match(name, seed):
+>       assert seed_script_problems(FIDELITY_DIR / name, seed) == []
+E       AssertionError: assert ['seed-rnd.js... recorder.js'] == []
+E         
+E         Left contains one more item: 'seed-rnd.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4973: AssertionError
+_____________ test_R40_fidelity_seeds_match[seed-b1.js-not json] ______________
+
+name = 'seed-b1.js', seed = 'not json'
+
+    @pytest.mark.parametrize("name, seed", list(FIDELITY_SEEDS.items()))
+    def test_R40_fidelity_seeds_match(name, seed):
+>       assert seed_script_problems(FIDELITY_DIR / name, seed) == []
+E       AssertionError: assert ['seed-b1.js ... recorder.js'] == []
+E         
+E         Left contains one more item: 'seed-b1.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4973: AssertionError
+_ test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] _
+
+open_app = <function open_app.<locals>.factory at 0x00000162E0E75590>
+name = 'seed-s1.js'
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+
+    @pytest.mark.parametrize("name, seed", [("seed-s1.js", seeds.S1), ("seed-s2.js", seeds.S2), ("seed-s5.js", seeds.S5)])
+    def test_R40_a_seed_script_boots_the_app_through_its_own_load_path(open_app, name, seed):
+        session = open_app(init_scripts=[(FIDELITY_DIR / name).read_text(encoding="utf-8")], allow_problems=True)
+        scripted = session.page
+        assert snapshot(scripted) == snapshot(open_app(seed=seed).page)
+>       assert page_has_no_note(scripted) and stored_text(scripted) == seed  # read as it is, never rewritten
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert (True and '{"version":1...,"nextId":8}}' == '{"version":2...,"nextId":8}}'
+E        +  where True = page_has_no_note(<Page url='http://127.0.0.1:60557/'>)
+E         
+E         - {"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}
+E         ?            ^                                                     ...
+E         
+E         ...Full output truncated (3 lines hidden), use '-vv' to show)
+
+tests\browser\test_app.py:4992: AssertionError
+_ test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}] _
+
+open_app = <function open_app.<locals>.factory at 0x00000162E336ECF0>
+name = 'seed-s2.js'
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+
+    @pytest.mark.parametrize("name, seed", [("seed-s1.js", seeds.S1), ("seed-s2.js", seeds.S2), ("seed-s5.js", seeds.S5)])
+    def test_R40_a_seed_script_boots_the_app_through_its_own_load_path(open_app, name, seed):
+        session = open_app(init_scripts=[(FIDELITY_DIR / name).read_text(encoding="utf-8")], allow_problems=True)
+        scripted = session.page
+        assert snapshot(scripted) == snapshot(open_app(seed=seed).page)
+>       assert page_has_no_note(scripted) and stored_text(scripted) == seed  # read as it is, never rewritten
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert (True and '{"version":1...,"nextId":4}}' == '{"version":2...,"nextId":4}}'
+E        +  where True = page_has_no_note(<Page url='http://127.0.0.1:60557/'>)
+E         
+E         - {"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}
+E         ?            ^                                                                                                                                                                                      -----------------------
+E         + {"version":1,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show)
+
+tests\browser\test_app.py:4992: AssertionError
+_ test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] _
+
+open_app = <function open_app.<locals>.factory at 0x00000162E0E08BF0>
+name = 'seed-s5.js'
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+
+    @pytest.mark.parametrize("name, seed", [("seed-s1.js", seeds.S1), ("seed-s2.js", seeds.S2), ("seed-s5.js", seeds.S5)])
+    def test_R40_a_seed_script_boots_the_app_through_its_own_load_path(open_app, name, seed):
+        session = open_app(init_scripts=[(FIDELITY_DIR / name).read_text(encoding="utf-8")], allow_problems=True)
+        scripted = session.page
+        assert snapshot(scripted) == snapshot(open_app(seed=seed).page)
+>       assert page_has_no_note(scripted) and stored_text(scripted) == seed  # read as it is, never rewritten
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert (True and '{"version":1...,"nextId":8}}' == '{"version":2...,"nextId":8}}'
+E        +  where True = page_has_no_note(<Page url='http://127.0.0.1:60557/'>)
+E         
+E         - {"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}
+E         ?            ^                                                         ...
+E         
+E         ...Full output truncated (3 lines hidden), use '-vv' to show)
+
+tests\browser\test_app.py:4992: AssertionError
+____________ test_R40_the_runner_uses_the_python_that_runs_pytest _____________
+
+    def test_R40_the_runner_uses_the_python_that_runs_pytest():
+        source = (FIDELITY_DIR / "run.py").read_text(encoding="utf-8")
+        assert "[sys.executable, str(HARNESS)" in source
+        assert not re.search(r"\bpip\b|ensurepip|\bvenv\b|\.sdlc-harness|virtualenv", source)  # no environment, no installer
+        assert "--engine" not in source  # Chromium only (R58)
+>       assert len(FIDELITY_PAIRS) == 40 and list(load_runner().PAIRS) == FIDELITY_PAIRS
+E       AssertionError: assert (40 == 40 and [('bill-empty...80x800'), ...] == [('bill-items...90x844'), ...]
+E        +  where 40 = len([('bill-items', 'seed-s1.js', None, '390x844'), ('bill-items', 'seed-s1.js', None, '360x780'), ('bill-items', 'seed-s1...), ('bill-items-open', 'seed-s1.js', 'open-sections.js', '360x780'), ('bill-even', 'seed-s2.js', None, '390x844'), ...])
+E         
+E         At index 0 diff: ('bill-empty', None, None, '390x844') != ('bill-items', 'seed-s1.js', None, '390x844')
+E         Right contains 30 more items, first extra item: ('spare-sen', 'seed-s1.js', 'open-spare.js', '1280x800')
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:5060: AssertionError
+______________ test_R40_the_runner_builds_the_documented_command ______________
+
+    def test_R40_the_runner_builds_the_documented_command():
+        runner = load_runner()
+        wrong = [pair for pair in FIDELITY_PAIRS if runner.command("http://127.0.0.1:1", *pair, Path("out"))
+                 != documented_command(runner.HARNESS, pair[0], "http://127.0.0.1:1/", pair[3], pair[1], pair[2], "out")]
+>       assert wrong == []
+E       AssertionError: assert [('bill-items...90x844'), ...] == []
+E         
+E         Left contains 40 more items, first extra item: ('bill-items', 'seed-s1.js', None, '390x844')
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5088: AssertionError
+_ test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair[clean] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000162E0E25480>
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-79/test_R40_the_runner_runs_its_c0')
+case = 'clean'
+
+    @pytest.mark.parametrize("case", list(RUNNER_CASES))
+    def test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair(monkeypatch, tmp_path, case):
+        changed, control_lines, failing, status = RUNNER_CASES[case]
+        clean = lambda name: harness_report(5000 if name == "control-noseed-390x844" else 0)  # the cold app is not bill-items
+        runner, commands = load_runner(), []
+        harness = tmp_path / "fidelity.py"
+        harness.write_bytes(b"")
+        monkeypatch.setattr(runner, "HARNESS", harness)
+        monkeypatch.setattr(runner, "EVIDENCE_ROOT", tmp_path / "evidence")
+        monkeypatch.setattr(runner, "rig", types.SimpleNamespace(ROOT=ROOT, StaticServer=FakeServer))
+        monkeypatch.setattr(runner, "subprocess", types.SimpleNamespace(
+            run=fake_harness(lambda name: changed[name] if name in changed else clean(name), commands),
+            TimeoutExpired=subprocess.TimeoutExpired))
+        assert runner.main() == status
+        [run_folder] = (tmp_path / "evidence").iterdir()
+        log = (run_folder / "run.log").read_text(encoding="utf-8").splitlines()
+>       assert [" ".join(line.split()[:3]) for line in log if line.startswith("CONTROL ")] == control_lines
+E       AssertionError: assert [] == ['CONTROL PAS...ntrol-noseed']
+E         
+E         Right contains 2 more items, first extra item: 'CONTROL PASS control-self'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5157: AssertionError
+---------------------------- Captured stdout call -----------------------------
+fidelity gate 20261015-193438, python C:\Python314\python.exe, harness {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py
+server STARTED (fake)
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/bill-empty.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\bill-empty-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/bill-empty.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\bill-empty-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/bill-even.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\bill-even-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/bill-even.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\bill-even-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/bill-items.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s1.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\bill-items-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/bill-items.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s1.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\bill-items-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/bill-unassigned.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s5.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\bill-unassigned-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/bill-unassigned.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s5.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\bill-unassigned-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/new-bill-dialog.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --candidate-after-load ./tests/browser/fidelity/open-new-bill.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\new-bill-dialog-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\fidelity.py --golden ./docs/design/new-bill-dialog.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --candidate-after-load ./tests/browser/fidelity/open-new-bill.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438\new-bill-dialog-1280x800
+server STOPPED (fake)
+
+PASS  bill-empty       390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-empty       1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-even        390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-even        1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-items       390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-items       1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-unassigned  390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-unassigned  1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  new-bill-dialog  390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  new-bill-dialog  1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+10 of 10 pairs pass, evidence in {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c0\evidence\20261015-193438
+_ test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair[self-compare-noisy] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000162E0E25810>
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-79/test_R40_the_runner_runs_its_c1')
+case = 'self-compare-noisy'
+
+    @pytest.mark.parametrize("case", list(RUNNER_CASES))
+    def test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair(monkeypatch, tmp_path, case):
+        changed, control_lines, failing, status = RUNNER_CASES[case]
+        clean = lambda name: harness_report(5000 if name == "control-noseed-390x844" else 0)  # the cold app is not bill-items
+        runner, commands = load_runner(), []
+        harness = tmp_path / "fidelity.py"
+        harness.write_bytes(b"")
+        monkeypatch.setattr(runner, "HARNESS", harness)
+        monkeypatch.setattr(runner, "EVIDENCE_ROOT", tmp_path / "evidence")
+        monkeypatch.setattr(runner, "rig", types.SimpleNamespace(ROOT=ROOT, StaticServer=FakeServer))
+        monkeypatch.setattr(runner, "subprocess", types.SimpleNamespace(
+            run=fake_harness(lambda name: changed[name] if name in changed else clean(name), commands),
+            TimeoutExpired=subprocess.TimeoutExpired))
+>       assert runner.main() == status
+E       AssertionError: assert 0 == 1
+E        +  where 0 = <function main at 0x00000162E3986140>()
+E        +    where <function main at 0x00000162E3986140> = <module 'fidelity_run' from '{workspace}\\examples\\split\\tests\\browser\\fidelity\\run.py'>.main
+
+tests\browser\test_app.py:5154: AssertionError
+---------------------------- Captured stdout call -----------------------------
+fidelity gate 20261015-193438, python C:\Python314\python.exe, harness {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py
+server STARTED (fake)
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/bill-empty.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\bill-empty-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/bill-empty.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\bill-empty-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/bill-even.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\bill-even-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/bill-even.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\bill-even-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/bill-items.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s1.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\bill-items-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/bill-items.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s1.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\bill-items-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/bill-unassigned.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s5.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\bill-unassigned-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/bill-unassigned.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s5.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\bill-unassigned-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/new-bill-dialog.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --candidate-after-load ./tests/browser/fidelity/open-new-bill.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\new-bill-dialog-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\fidelity.py --golden ./docs/design/new-bill-dialog.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --candidate-after-load ./tests/browser/fidelity/open-new-bill.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438\new-bill-dialog-1280x800
+server STOPPED (fake)
+
+PASS  bill-empty       390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-empty       1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-even        390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-even        1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-items       390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-items       1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-unassigned  390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-unassigned  1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  new-bill-dialog  390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  new-bill-dialog  1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+10 of 10 pairs pass, evidence in {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c1\evidence\20261015-193438
+_ test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair[no-seed-blind] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000162E3259130>
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-79/test_R40_the_runner_runs_its_c2')
+case = 'no-seed-blind'
+
+    @pytest.mark.parametrize("case", list(RUNNER_CASES))
+    def test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair(monkeypatch, tmp_path, case):
+        changed, control_lines, failing, status = RUNNER_CASES[case]
+        clean = lambda name: harness_report(5000 if name == "control-noseed-390x844" else 0)  # the cold app is not bill-items
+        runner, commands = load_runner(), []
+        harness = tmp_path / "fidelity.py"
+        harness.write_bytes(b"")
+        monkeypatch.setattr(runner, "HARNESS", harness)
+        monkeypatch.setattr(runner, "EVIDENCE_ROOT", tmp_path / "evidence")
+        monkeypatch.setattr(runner, "rig", types.SimpleNamespace(ROOT=ROOT, StaticServer=FakeServer))
+        monkeypatch.setattr(runner, "subprocess", types.SimpleNamespace(
+            run=fake_harness(lambda name: changed[name] if name in changed else clean(name), commands),
+            TimeoutExpired=subprocess.TimeoutExpired))
+>       assert runner.main() == status
+E       AssertionError: assert 0 == 1
+E        +  where 0 = <function main at 0x00000162E32B4EB0>()
+E        +    where <function main at 0x00000162E32B4EB0> = <module 'fidelity_run' from '{workspace}\\examples\\split\\tests\\browser\\fidelity\\run.py'>.main
+
+tests\browser\test_app.py:5154: AssertionError
+---------------------------- Captured stdout call -----------------------------
+fidelity gate 20261015-193439, python C:\Python314\python.exe, harness {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py
+server STARTED (fake)
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/bill-empty.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\bill-empty-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/bill-empty.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\bill-empty-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/bill-even.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\bill-even-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/bill-even.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\bill-even-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/bill-items.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s1.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\bill-items-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/bill-items.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s1.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\bill-items-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/bill-unassigned.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s5.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\bill-unassigned-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/bill-unassigned.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s5.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\bill-unassigned-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/new-bill-dialog.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --candidate-after-load ./tests/browser/fidelity/open-new-bill.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\new-bill-dialog-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\fidelity.py --golden ./docs/design/new-bill-dialog.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --candidate-after-load ./tests/browser/fidelity/open-new-bill.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439\new-bill-dialog-1280x800
+server STOPPED (fake)
+
+PASS  bill-empty       390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-empty       1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-even        390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-even        1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-items       390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-items       1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-unassigned  390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-unassigned  1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  new-bill-dialog  390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  new-bill-dialog  1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+10 of 10 pairs pass, evidence in {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c2\evidence\20261015-193439
+_ test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair[pairs-at-fault] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000162E3A0F790>
+tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-79/test_R40_the_runner_runs_its_c3')
+case = 'pairs-at-fault'
+
+    @pytest.mark.parametrize("case", list(RUNNER_CASES))
+    def test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair(monkeypatch, tmp_path, case):
+        changed, control_lines, failing, status = RUNNER_CASES[case]
+        clean = lambda name: harness_report(5000 if name == "control-noseed-390x844" else 0)  # the cold app is not bill-items
+        runner, commands = load_runner(), []
+        harness = tmp_path / "fidelity.py"
+        harness.write_bytes(b"")
+        monkeypatch.setattr(runner, "HARNESS", harness)
+        monkeypatch.setattr(runner, "EVIDENCE_ROOT", tmp_path / "evidence")
+        monkeypatch.setattr(runner, "rig", types.SimpleNamespace(ROOT=ROOT, StaticServer=FakeServer))
+        monkeypatch.setattr(runner, "subprocess", types.SimpleNamespace(
+            run=fake_harness(lambda name: changed[name] if name in changed else clean(name), commands),
+            TimeoutExpired=subprocess.TimeoutExpired))
+>       assert runner.main() == status
+E       AssertionError: assert 0 == 1
+E        +  where 0 = <function main at 0x00000162E32B5900>()
+E        +    where <function main at 0x00000162E32B5900> = <module 'fidelity_run' from '{workspace}\\examples\\split\\tests\\browser\\fidelity\\run.py'>.main
+
+tests\browser\test_app.py:5154: AssertionError
+---------------------------- Captured stdout call -----------------------------
+fidelity gate 20261015-193439, python C:\Python314\python.exe, harness {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py
+server STARTED (fake)
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/bill-empty.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\bill-empty-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/bill-empty.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\bill-empty-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/bill-even.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\bill-even-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/bill-even.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\bill-even-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/bill-items.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s1.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\bill-items-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/bill-items.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s1.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\bill-items-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/bill-unassigned.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s5.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\bill-unassigned-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/bill-unassigned.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s5.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\bill-unassigned-1280x800
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/new-bill-dialog.html --candidate http://127.0.0.1:1/ --viewport 390x844 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --candidate-after-load ./tests/browser/fidelity/open-new-bill.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\new-bill-dialog-390x844
+$ C:\Python314\python.exe {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\fidelity.py --golden ./docs/design/new-bill-dialog.html --candidate http://127.0.0.1:1/ --viewport 1280x800 --dpr 1 --color-scheme light --browser-arg=--disable-lcd-text --fixed-time 2026-10-08T09:00:00 --threshold 0.01 --candidate-init-script ./tests/browser/fidelity/seed-s2.js --candidate-after-load ./tests/browser/fidelity/open-new-bill.js --out {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439\new-bill-dialog-1280x800
+server STOPPED (fake)
+
+PASS  bill-empty       390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-empty       1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-even        390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-even        1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-items       390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-items       1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-unassigned  390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  bill-unassigned  1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  new-bill-dialog  390x844   0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+PASS  new-bill-dialog  1280x800  0 mismatching pixels (0.0%), sizes [390, 844] / [390, 844]
+10 of 10 pairs pass, evidence in {temp}\pytest-of-{user}\pytest-79\test_R40_the_runner_runs_its_c3\evidence\20261015-193439
+engine webkit, browser version 26.5, skipped 1
+  skipped: test_app.py::test_R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in | The after-load scripts serve the fidelity gate, which runs in Chromium only (ledger S5 row 2).
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R40_fidelity_seeds_match[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}]
+FAILED tests\browser\test_app.py::test_R40_fidelity_seeds_match[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}]
+FAILED tests\browser\test_app.py::test_R40_fidelity_seeds_match[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}]
+FAILED tests\browser\test_app.py::test_R40_fidelity_seeds_match[seed-re.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"35","sstText":"6","spare":{"rule":"top"},"nextId":8}}]
+FAILED tests\browser\test_app.py::test_R40_fidelity_seeds_match[seed-w1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]},{"id":"i8","name":"","priceText":"964.50","who":["p1"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":9}}]
+FAILED tests\browser\test_app.py::test_R40_fidelity_seeds_match[seed-t12.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"},{"id":"p4","name":""},{"id":"p5","name":""},{"id":"p6","name":""},{"id":"p7","name":""},{"id":"p8","name":""},{"id":"p9","name":""},{"id":"p10","name":""},{"id":"p11","name":""},{"id":"p12","name":""}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":13}}]
+FAILED tests\browser\test_app.py::test_R40_fidelity_seeds_match[seed-one.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"one","personId":"p2"},"nextId":4}}]
+FAILED tests\browser\test_app.py::test_R40_fidelity_seeds_match[seed-rnd.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"random","order":["p2","p3","p1"]},"nextId":4}}]
+FAILED tests\browser\test_app.py::test_R40_fidelity_seeds_match[seed-b1.js-not json]
+FAILED tests\browser\test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}]
+FAILED tests\browser\test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}]
+FAILED tests\browser\test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}]
+FAILED tests\browser\test_app.py::test_R40_the_runner_uses_the_python_that_runs_pytest
+FAILED tests\browser\test_app.py::test_R40_the_runner_builds_the_documented_command
+FAILED tests\browser\test_app.py::test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair[clean]
+FAILED tests\browser\test_app.py::test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair[self-compare-noisy]
+FAILED tests\browser\test_app.py::test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair[no-seed-blind]
+FAILED tests\browser\test_app.py::test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair[pairs-at-fault]
+ERROR tests\browser\test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}]
+ERROR tests\browser\test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}]
+18 failed, 3 passed, 1 skipped, 2 errors in 5.53s

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.538" timestamp="2026-10-15T19:34:55.838335+08:00" hostname="{host}"><testcase classname="test_app" name="test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported" time="0.006"><failure message="assert ['seed-s1-cut...not its seed'] == ['seed-s1-cut... recorder.js']&#10;  &#10;  At index 0 diff: 'seed-s1-cut.js seeds {&quot;version&quot;:1,&quot;bill&quot;:{&quot;mode&quot;:&quot;item&quot;,&quot;people&quot;:[{&quot;id&quot;:&quot;p1&quot;,&quot;name&quot;:&quot;Aisyah&quot;},{&quot;id&quot;:&quot;, not its seed' != 'seed-s1-cut.js does not start with recorder.js'&#10;  Use -v to get more diff">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-80/test_R40_there_is_one_seed_scr0')
+
+    def test_R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported(tmp_path):
+        assert sorted(path.name for path in FIDELITY_DIR.glob("seed-*.js")) == sorted(FIDELITY_SEEDS)
+        statement = lf_bytes(FIDELITY_DIR / "seed-s1.js").decode("utf-8").removeprefix(RECORDER_JS)
+        planted = {"seed-s1-cut.js": statement, "seed-s1-twice.js": RECORDER_JS + statement + statement}
+        for name, text in planted.items():
+            (tmp_path / name).write_bytes(text.encode("utf-8"))
+&gt;       assert seed_script_problems(tmp_path / "seed-s1-cut.js", seeds.S1) == ["seed-s1-cut.js does not start with recorder.js"]
+E       assert ['seed-s1-cut...not its seed'] == ['seed-s1-cut... recorder.js']
+E         
+E         At index 0 diff: 'seed-s1-cut.js seeds {"version":1,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":", not its seed' != 'seed-s1-cut.js does not start with recorder.js'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4982: AssertionError</failure></testcase></testsuite></testsuites>
