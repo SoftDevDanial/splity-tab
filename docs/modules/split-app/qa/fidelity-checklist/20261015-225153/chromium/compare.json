@@ -1,0 +1,10479 @@
+{
+ "engine": "chromium",
+ "started": "2026-10-15 22:51:54",
+ "server_pid": 26440,
+ "port": 10358,
+ "pairs": {
+  "bill-items-390x844": {
+   "golden_elements": 136,
+   "app_elements": 136,
+   "paired": 136,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-items-360x780": {
+   "golden_elements": 136,
+   "app_elements": 136,
+   "paired": 136,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-items-1280x800": {
+   "golden_elements": 201,
+   "app_elements": 201,
+   "paired": 201,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-items-open-390x844": {
+   "golden_elements": 172,
+   "app_elements": 172,
+   "paired": 172,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 69,
+     "app_index": 69,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 1260,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 1260,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-items-open-360x780": {
+   "golden_elements": 172,
+   "app_elements": 172,
+   "paired": 172,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 69,
+     "app_index": 69,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 1260,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 1260,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-even-390x844": {
+   "golden_elements": 55,
+   "app_elements": 55,
+   "paired": 55,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 31,
+     "app_index": 31,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-even-360x780": {
+   "golden_elements": 55,
+   "app_elements": 55,
+   "paired": 55,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 31,
+     "app_index": 31,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-even-1280x800": {
+   "golden_elements": 109,
+   "app_elements": 109,
+   "paired": 109,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 100,
+     "app_index": 100,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "spare-sen-390x844": {
+   "golden_elements": 219,
+   "app_elements": 219,
+   "paired": 219,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#splitsDlg.sheet-dlg[Splits]",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "41",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.glass.dense.sheet",
+     "golden_index": 137,
+     "app_index": 137,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.foil",
+     "golden_index": 138,
+     "app_index": 138,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.sheet-top",
+     "golden_index": 139,
+     "app_index": 139,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.grab",
+     "golden_index": 140,
+     "app_index": 140,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 141,
+     "app_index": 141,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 142,
+     "app_index": 142,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 143,
+     "app_index": 143,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#sheetScroll.sheet-scroll",
+     "golden_index": 144,
+     "app_index": 144,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.rbody",
+     "golden_index": 145,
+     "app_index": 145,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-total",
+     "golden_index": 146,
+     "app_index": 146,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.r-label('Total')",
+     "golden_index": 147,
+     "app_index": 147,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p.r-amount('69.26')",
+     "golden_index": 148,
+     "app_index": 148,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.cur('RM')",
+     "golden_index": 149,
+     "app_index": 149,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dl.r-lines",
+     "golden_index": 150,
+     "app_index": 150,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 151,
+     "app_index": 151,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Subtotal')",
+     "golden_index": 152,
+     "app_index": 152,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 59.40')",
+     "golden_index": 153,
+     "app_index": 153,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 154,
+     "app_index": 154,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Service 10%')",
+     "golden_index": 155,
+     "app_index": 155,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 5.94')",
+     "golden_index": 156,
+     "app_index": 156,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 157,
+     "app_index": 157,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('SST 6%')",
+     "golden_index": 158,
+     "app_index": 158,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 3.92')",
+     "golden_index": 159,
+     "app_index": 159,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-rule",
+     "golden_index": 160,
+     "app_index": 160,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-head",
+     "golden_index": 161,
+     "app_index": 161,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#sheetSplitsH('Splits')",
+     "golden_index": 162,
+     "app_index": 162,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('items + charges')",
+     "golden_index": 163,
+     "app_index": 163,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "ul.r-splits",
+     "golden_index": 164,
+     "app_index": 164,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 165,
+     "app_index": 165,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Aisyah')",
+     "golden_index": 166,
+     "app_index": 166,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 29.04')",
+     "golden_index": 167,
+     "app_index": 167,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('24.90 + 4.14')",
+     "golden_index": 168,
+     "app_index": 168,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 169,
+     "app_index": 169,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 170,
+     "app_index": 170,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 171,
+     "app_index": 171,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Ben')",
+     "golden_index": 172,
+     "app_index": 172,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 15.74')",
+     "golden_index": 173,
+     "app_index": 173,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('13.50 + 2.24')",
+     "golden_index": 174,
+     "app_index": 174,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 175,
+     "app_index": 175,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 176,
+     "app_index": 176,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 177,
+     "app_index": 177,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Chen')",
+     "golden_index": 178,
+     "app_index": 178,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 24.48')",
+     "golden_index": 179,
+     "app_index": 179,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('21.00 + 3.48')",
+     "golden_index": 180,
+     "app_index": 180,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 181,
+     "app_index": 181,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 182,
+     "app_index": 182,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-check",
+     "golden_index": 183,
+     "app_index": 183,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.seal",
+     "golden_index": 184,
+     "app_index": 184,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 185,
+     "app_index": 185,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.lbl-proof('Adds up to')",
+     "golden_index": 186,
+     "app_index": 186,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 69.26')",
+     "golden_index": 187,
+     "app_index": 187,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('59.40 + 9.86')",
+     "golden_index": 188,
+     "app_index": 188,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare",
+     "golden_index": 189,
+     "app_index": 189,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p('1 sen left over')",
+     "golden_index": 190,
+     "app_index": 190,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare-acts",
+     "golden_index": 191,
+     "app_index": 191,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn[Spare sen: Top of the list. Change]",
+     "golden_index": 192,
+     "app_index": 192,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 193,
+     "app_index": 193,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 194,
+     "app_index": 194,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-primary.btn-block.r-copy('Copy summary')",
+     "golden_index": 195,
+     "app_index": 195,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 196,
+     "app_index": 196,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 197,
+     "app_index": 197,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dialog#spareDlg.pop",
+     "golden_index": 198,
+     "app_index": 198,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 199,
+     "app_index": 199,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.pop-head",
+     "golden_index": 200,
+     "app_index": 200,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#spareTitle('Spare sen')",
+     "golden_index": 201,
+     "app_index": 201,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 202,
+     "app_index": 202,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 203,
+     "app_index": 203,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 204,
+     "app_index": 204,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#spareSub.pop-sub('1 sen left over')",
+     "golden_index": 205,
+     "app_index": 205,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.choices",
+     "golden_index": 206,
+     "app_index": 206,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 207,
+     "app_index": 207,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 208,
+     "app_index": 208,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 209,
+     "app_index": 209,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('Top of the list')",
+     "golden_index": 210,
+     "app_index": 210,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 211,
+     "app_index": 211,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 212,
+     "app_index": 212,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 213,
+     "app_index": 213,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('One person')",
+     "golden_index": 214,
+     "app_index": 214,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 215,
+     "app_index": 215,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 216,
+     "app_index": 216,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 217,
+     "app_index": 217,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('At random')",
+     "golden_index": 218,
+     "app_index": 218,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "spare-sen-360x780": {
+   "golden_elements": 219,
+   "app_elements": 219,
+   "paired": 219,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#splitsDlg.sheet-dlg[Splits]",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "41",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.glass.dense.sheet",
+     "golden_index": 137,
+     "app_index": 137,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.foil",
+     "golden_index": 138,
+     "app_index": 138,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.sheet-top",
+     "golden_index": 139,
+     "app_index": 139,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.grab",
+     "golden_index": 140,
+     "app_index": 140,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 141,
+     "app_index": 141,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 142,
+     "app_index": 142,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 143,
+     "app_index": 143,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#sheetScroll.sheet-scroll",
+     "golden_index": 144,
+     "app_index": 144,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.rbody",
+     "golden_index": 145,
+     "app_index": 145,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-total",
+     "golden_index": 146,
+     "app_index": 146,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.r-label('Total')",
+     "golden_index": 147,
+     "app_index": 147,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p.r-amount('69.26')",
+     "golden_index": 148,
+     "app_index": 148,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.cur('RM')",
+     "golden_index": 149,
+     "app_index": 149,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dl.r-lines",
+     "golden_index": 150,
+     "app_index": 150,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 151,
+     "app_index": 151,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Subtotal')",
+     "golden_index": 152,
+     "app_index": 152,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 59.40')",
+     "golden_index": 153,
+     "app_index": 153,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 154,
+     "app_index": 154,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Service 10%')",
+     "golden_index": 155,
+     "app_index": 155,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 5.94')",
+     "golden_index": 156,
+     "app_index": 156,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 157,
+     "app_index": 157,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('SST 6%')",
+     "golden_index": 158,
+     "app_index": 158,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 3.92')",
+     "golden_index": 159,
+     "app_index": 159,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-rule",
+     "golden_index": 160,
+     "app_index": 160,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-head",
+     "golden_index": 161,
+     "app_index": 161,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#sheetSplitsH('Splits')",
+     "golden_index": 162,
+     "app_index": 162,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('items + charges')",
+     "golden_index": 163,
+     "app_index": 163,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "ul.r-splits",
+     "golden_index": 164,
+     "app_index": 164,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 165,
+     "app_index": 165,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Aisyah')",
+     "golden_index": 166,
+     "app_index": 166,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 29.04')",
+     "golden_index": 167,
+     "app_index": 167,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('24.90 + 4.14')",
+     "golden_index": 168,
+     "app_index": 168,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 169,
+     "app_index": 169,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 170,
+     "app_index": 170,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 171,
+     "app_index": 171,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Ben')",
+     "golden_index": 172,
+     "app_index": 172,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 15.74')",
+     "golden_index": 173,
+     "app_index": 173,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('13.50 + 2.24')",
+     "golden_index": 174,
+     "app_index": 174,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 175,
+     "app_index": 175,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 176,
+     "app_index": 176,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 177,
+     "app_index": 177,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Chen')",
+     "golden_index": 178,
+     "app_index": 178,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 24.48')",
+     "golden_index": 179,
+     "app_index": 179,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('21.00 + 3.48')",
+     "golden_index": 180,
+     "app_index": 180,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 181,
+     "app_index": 181,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 182,
+     "app_index": 182,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-check",
+     "golden_index": 183,
+     "app_index": 183,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.seal",
+     "golden_index": 184,
+     "app_index": 184,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 185,
+     "app_index": 185,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.lbl-proof('Adds up to')",
+     "golden_index": 186,
+     "app_index": 186,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 69.26')",
+     "golden_index": 187,
+     "app_index": 187,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('59.40 + 9.86')",
+     "golden_index": 188,
+     "app_index": 188,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare",
+     "golden_index": 189,
+     "app_index": 189,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p('1 sen left over')",
+     "golden_index": 190,
+     "app_index": 190,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare-acts",
+     "golden_index": 191,
+     "app_index": 191,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn[Spare sen: Top of the list. Change]",
+     "golden_index": 192,
+     "app_index": 192,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 193,
+     "app_index": 193,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 194,
+     "app_index": 194,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-primary.btn-block.r-copy('Copy summary')",
+     "golden_index": 195,
+     "app_index": 195,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 196,
+     "app_index": 196,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 197,
+     "app_index": 197,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dialog#spareDlg.pop",
+     "golden_index": 198,
+     "app_index": 198,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 199,
+     "app_index": 199,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.pop-head",
+     "golden_index": 200,
+     "app_index": 200,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#spareTitle('Spare sen')",
+     "golden_index": 201,
+     "app_index": 201,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 202,
+     "app_index": 202,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 203,
+     "app_index": 203,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 204,
+     "app_index": 204,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#spareSub.pop-sub('1 sen left over')",
+     "golden_index": 205,
+     "app_index": 205,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.choices",
+     "golden_index": 206,
+     "app_index": 206,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 207,
+     "app_index": 207,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 208,
+     "app_index": 208,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 209,
+     "app_index": 209,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('Top of the list')",
+     "golden_index": 210,
+     "app_index": 210,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 211,
+     "app_index": 211,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 212,
+     "app_index": 212,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 213,
+     "app_index": 213,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('One person')",
+     "golden_index": 214,
+     "app_index": 214,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 215,
+     "app_index": 215,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 216,
+     "app_index": 216,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 217,
+     "app_index": 217,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('At random')",
+     "golden_index": 218,
+     "app_index": 218,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "spare-sen-1280x800": {
+   "golden_elements": 222,
+   "app_elements": 222,
+   "paired": 222,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#spareDlg.pop",
+     "golden_index": 201,
+     "app_index": 201,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 202,
+     "app_index": 202,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.pop-head",
+     "golden_index": 203,
+     "app_index": 203,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#spareTitle('Spare sen')",
+     "golden_index": 204,
+     "app_index": 204,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 205,
+     "app_index": 205,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 206,
+     "app_index": 206,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 207,
+     "app_index": 207,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#spareSub.pop-sub('1 sen left over')",
+     "golden_index": 208,
+     "app_index": 208,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.choices",
+     "golden_index": 209,
+     "app_index": 209,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 210,
+     "app_index": 210,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 211,
+     "app_index": 211,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 212,
+     "app_index": 212,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('Top of the list')",
+     "golden_index": 213,
+     "app_index": 213,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 214,
+     "app_index": 214,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 215,
+     "app_index": 215,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 216,
+     "app_index": 216,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('One person')",
+     "golden_index": 217,
+     "app_index": 217,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 218,
+     "app_index": 218,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 219,
+     "app_index": 219,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 220,
+     "app_index": 220,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('At random')",
+     "golden_index": 221,
+     "app_index": 221,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "spare-sen-one-390x844": {
+   "golden_elements": 141,
+   "app_elements": 141,
+   "paired": 141,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 31,
+     "app_index": 31,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#splitsDlg.sheet-dlg[Splits]",
+     "golden_index": 55,
+     "app_index": 55,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "41",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.glass.dense.sheet",
+     "golden_index": 56,
+     "app_index": 56,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.foil",
+     "golden_index": 57,
+     "app_index": 57,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.sheet-top",
+     "golden_index": 58,
+     "app_index": 58,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.grab",
+     "golden_index": 59,
+     "app_index": 59,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 60,
+     "app_index": 60,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 61,
+     "app_index": 61,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 62,
+     "app_index": 62,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#sheetScroll.sheet-scroll",
+     "golden_index": 63,
+     "app_index": 63,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.rbody",
+     "golden_index": 64,
+     "app_index": 64,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-total",
+     "golden_index": 65,
+     "app_index": 65,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.r-label('Total')",
+     "golden_index": 66,
+     "app_index": 66,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p.r-amount('116.60')",
+     "golden_index": 67,
+     "app_index": 67,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.cur('RM')",
+     "golden_index": 68,
+     "app_index": 68,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dl.r-lines",
+     "golden_index": 69,
+     "app_index": 69,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 70,
+     "app_index": 70,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Subtotal')",
+     "golden_index": 71,
+     "app_index": 71,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 100.00')",
+     "golden_index": 72,
+     "app_index": 72,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 73,
+     "app_index": 73,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Service 10%')",
+     "golden_index": 74,
+     "app_index": 74,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 10.00')",
+     "golden_index": 75,
+     "app_index": 75,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 76,
+     "app_index": 76,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('SST 6%')",
+     "golden_index": 77,
+     "app_index": 77,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 6.60')",
+     "golden_index": 78,
+     "app_index": 78,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-rule",
+     "golden_index": 79,
+     "app_index": 79,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-head",
+     "golden_index": 80,
+     "app_index": 80,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#sheetSplitsH('Splits')",
+     "golden_index": 81,
+     "app_index": 81,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "ul.r-splits",
+     "golden_index": 82,
+     "app_index": 82,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 83,
+     "app_index": 83,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Aisyah')",
+     "golden_index": 84,
+     "app_index": 84,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.86')",
+     "golden_index": 85,
+     "app_index": 85,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 86,
+     "app_index": 86,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Ben')",
+     "golden_index": 87,
+     "app_index": 87,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.88')",
+     "golden_index": 88,
+     "app_index": 88,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 89,
+     "app_index": 89,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Chen')",
+     "golden_index": 90,
+     "app_index": 90,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.86')",
+     "golden_index": 91,
+     "app_index": 91,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-check",
+     "golden_index": 92,
+     "app_index": 92,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.seal",
+     "golden_index": 93,
+     "app_index": 93,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 94,
+     "app_index": 94,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.lbl-proof('Adds up to')",
+     "golden_index": 95,
+     "app_index": 95,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 116.60')",
+     "golden_index": 96,
+     "app_index": 96,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare",
+     "golden_index": 97,
+     "app_index": 97,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p('2 sen left over')",
+     "golden_index": 98,
+     "app_index": 98,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare-acts",
+     "golden_index": 99,
+     "app_index": 99,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn[Spare sen: One person, Ben. Change]",
+     "golden_index": 100,
+     "app_index": 100,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 101,
+     "app_index": 101,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 102,
+     "app_index": 102,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-primary.btn-block.r-copy('Copy summary')",
+     "golden_index": 103,
+     "app_index": 103,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 104,
+     "app_index": 104,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 105,
+     "app_index": 105,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dialog#spareDlg.pop",
+     "golden_index": 106,
+     "app_index": 106,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 107,
+     "app_index": 107,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.pop-head",
+     "golden_index": 108,
+     "app_index": 108,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#spareTitle('Spare sen')",
+     "golden_index": 109,
+     "app_index": 109,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 110,
+     "app_index": 110,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 111,
+     "app_index": 111,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 112,
+     "app_index": 112,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#spareSub.pop-sub('2 sen left over')",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.choices",
+     "golden_index": 114,
+     "app_index": 114,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 115,
+     "app_index": 115,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 116,
+     "app_index": 116,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 117,
+     "app_index": 117,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('Top of the list')",
+     "golden_index": 118,
+     "app_index": 118,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 119,
+     "app_index": 119,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 120,
+     "app_index": 120,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 121,
+     "app_index": 121,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('One person')",
+     "golden_index": 122,
+     "app_index": 122,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "fieldset#pickWrap.pick",
+     "golden_index": 123,
+     "app_index": 123,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "legend.sr('Who pays the spare sen')",
+     "golden_index": 124,
+     "app_index": 124,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#pickList.pick-list",
+     "golden_index": 125,
+     "app_index": 125,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.pill",
+     "golden_index": 126,
+     "app_index": 126,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 127,
+     "app_index": 127,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.pill-face('Aisyah')",
+     "golden_index": 128,
+     "app_index": 128,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.pill",
+     "golden_index": 129,
+     "app_index": 129,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 130,
+     "app_index": 130,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.pill-face('Ben')",
+     "golden_index": 131,
+     "app_index": 131,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 132,
+     "app_index": 132,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 133,
+     "app_index": 133,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.pill",
+     "golden_index": 134,
+     "app_index": 134,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 135,
+     "app_index": 135,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.pill-face('Chen')",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 137,
+     "app_index": 137,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 138,
+     "app_index": 138,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 139,
+     "app_index": 139,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('At random')",
+     "golden_index": 140,
+     "app_index": 140,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "spare-sen-one-360x780": {
+   "golden_elements": 141,
+   "app_elements": 141,
+   "paired": 141,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 31,
+     "app_index": 31,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#splitsDlg.sheet-dlg[Splits]",
+     "golden_index": 55,
+     "app_index": 55,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "41",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.glass.dense.sheet",
+     "golden_index": 56,
+     "app_index": 56,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.foil",
+     "golden_index": 57,
+     "app_index": 57,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.sheet-top",
+     "golden_index": 58,
+     "app_index": 58,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.grab",
+     "golden_index": 59,
+     "app_index": 59,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 60,
+     "app_index": 60,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 61,
+     "app_index": 61,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 62,
+     "app_index": 62,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#sheetScroll.sheet-scroll",
+     "golden_index": 63,
+     "app_index": 63,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.rbody",
+     "golden_index": 64,
+     "app_index": 64,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-total",
+     "golden_index": 65,
+     "app_index": 65,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.r-label('Total')",
+     "golden_index": 66,
+     "app_index": 66,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p.r-amount('116.60')",
+     "golden_index": 67,
+     "app_index": 67,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.cur('RM')",
+     "golden_index": 68,
+     "app_index": 68,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dl.r-lines",
+     "golden_index": 69,
+     "app_index": 69,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 70,
+     "app_index": 70,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Subtotal')",
+     "golden_index": 71,
+     "app_index": 71,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 100.00')",
+     "golden_index": 72,
+     "app_index": 72,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 73,
+     "app_index": 73,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Service 10%')",
+     "golden_index": 74,
+     "app_index": 74,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 10.00')",
+     "golden_index": 75,
+     "app_index": 75,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 76,
+     "app_index": 76,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('SST 6%')",
+     "golden_index": 77,
+     "app_index": 77,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 6.60')",
+     "golden_index": 78,
+     "app_index": 78,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-rule",
+     "golden_index": 79,
+     "app_index": 79,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-head",
+     "golden_index": 80,
+     "app_index": 80,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#sheetSplitsH('Splits')",
+     "golden_index": 81,
+     "app_index": 81,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "ul.r-splits",
+     "golden_index": 82,
+     "app_index": 82,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 83,
+     "app_index": 83,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Aisyah')",
+     "golden_index": 84,
+     "app_index": 84,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.86')",
+     "golden_index": 85,
+     "app_index": 85,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 86,
+     "app_index": 86,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Ben')",
+     "golden_index": 87,
+     "app_index": 87,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.88')",
+     "golden_index": 88,
+     "app_index": 88,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 89,
+     "app_index": 89,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Chen')",
+     "golden_index": 90,
+     "app_index": 90,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.86')",
+     "golden_index": 91,
+     "app_index": 91,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-check",
+     "golden_index": 92,
+     "app_index": 92,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.seal",
+     "golden_index": 93,
+     "app_index": 93,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 94,
+     "app_index": 94,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.lbl-proof('Adds up to')",
+     "golden_index": 95,
+     "app_index": 95,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 116.60')",
+     "golden_index": 96,
+     "app_index": 96,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare",
+     "golden_index": 97,
+     "app_index": 97,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p('2 sen left over')",
+     "golden_index": 98,
+     "app_index": 98,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare-acts",
+     "golden_index": 99,
+     "app_index": 99,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn[Spare sen: One person, Ben. Change]",
+     "golden_index": 100,
+     "app_index": 100,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 101,
+     "app_index": 101,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 102,
+     "app_index": 102,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-primary.btn-block.r-copy('Copy summary')",
+     "golden_index": 103,
+     "app_index": 103,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 104,
+     "app_index": 104,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 105,
+     "app_index": 105,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dialog#spareDlg.pop",
+     "golden_index": 106,
+     "app_index": 106,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 107,
+     "app_index": 107,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.pop-head",
+     "golden_index": 108,
+     "app_index": 108,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#spareTitle('Spare sen')",
+     "golden_index": 109,
+     "app_index": 109,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 110,
+     "app_index": 110,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 111,
+     "app_index": 111,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 112,
+     "app_index": 112,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#spareSub.pop-sub('2 sen left over')",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.choices",
+     "golden_index": 114,
+     "app_index": 114,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 115,
+     "app_index": 115,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 116,
+     "app_index": 116,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 117,
+     "app_index": 117,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('Top of the list')",
+     "golden_index": 118,
+     "app_index": 118,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 119,
+     "app_index": 119,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 120,
+     "app_index": 120,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 121,
+     "app_index": 121,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('One person')",
+     "golden_index": 122,
+     "app_index": 122,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "fieldset#pickWrap.pick",
+     "golden_index": 123,
+     "app_index": 123,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "legend.sr('Who pays the spare sen')",
+     "golden_index": 124,
+     "app_index": 124,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#pickList.pick-list",
+     "golden_index": 125,
+     "app_index": 125,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.pill",
+     "golden_index": 126,
+     "app_index": 126,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 127,
+     "app_index": 127,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.pill-face('Aisyah')",
+     "golden_index": 128,
+     "app_index": 128,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.pill",
+     "golden_index": 129,
+     "app_index": 129,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 130,
+     "app_index": 130,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.pill-face('Ben')",
+     "golden_index": 131,
+     "app_index": 131,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 132,
+     "app_index": 132,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 133,
+     "app_index": 133,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.pill",
+     "golden_index": 134,
+     "app_index": 134,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 135,
+     "app_index": 135,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.pill-face('Chen')",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 137,
+     "app_index": 137,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 138,
+     "app_index": 138,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 139,
+     "app_index": 139,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('At random')",
+     "golden_index": 140,
+     "app_index": 140,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "spare-sen-one-1280x800": {
+   "golden_elements": 144,
+   "app_elements": 144,
+   "paired": 144,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 100,
+     "app_index": 100,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#spareDlg.pop",
+     "golden_index": 109,
+     "app_index": 109,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 110,
+     "app_index": 110,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.pop-head",
+     "golden_index": 111,
+     "app_index": 111,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#spareTitle('Spare sen')",
+     "golden_index": 112,
+     "app_index": 112,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 114,
+     "app_index": 114,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 115,
+     "app_index": 115,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#spareSub.pop-sub('2 sen left over')",
+     "golden_index": 116,
+     "app_index": 116,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.choices",
+     "golden_index": 117,
+     "app_index": 117,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 118,
+     "app_index": 118,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 119,
+     "app_index": 119,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 120,
+     "app_index": 120,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('Top of the list')",
+     "golden_index": 121,
+     "app_index": 121,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 122,
+     "app_index": 122,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 123,
+     "app_index": 123,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 124,
+     "app_index": 124,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('One person')",
+     "golden_index": 125,
+     "app_index": 125,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "fieldset#pickWrap.pick",
+     "golden_index": 126,
+     "app_index": 126,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "legend.sr('Who pays the spare sen')",
+     "golden_index": 127,
+     "app_index": 127,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#pickList.pick-list",
+     "golden_index": 128,
+     "app_index": 128,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.pill",
+     "golden_index": 129,
+     "app_index": 129,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 130,
+     "app_index": 130,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.pill-face('Aisyah')",
+     "golden_index": 131,
+     "app_index": 131,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.pill",
+     "golden_index": 132,
+     "app_index": 132,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 133,
+     "app_index": 133,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.pill-face('Ben')",
+     "golden_index": 134,
+     "app_index": 134,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 135,
+     "app_index": 135,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.pill",
+     "golden_index": 137,
+     "app_index": 137,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 138,
+     "app_index": 138,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.pill-face('Chen')",
+     "golden_index": 139,
+     "app_index": 139,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 140,
+     "app_index": 140,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 141,
+     "app_index": 141,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 142,
+     "app_index": 142,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('At random')",
+     "golden_index": 143,
+     "app_index": 143,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "spare-sen-random-390x844": {
+   "golden_elements": 134,
+   "app_elements": 134,
+   "paired": 134,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 31,
+     "app_index": 31,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#splitsDlg.sheet-dlg[Splits]",
+     "golden_index": 55,
+     "app_index": 55,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "41",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.glass.dense.sheet",
+     "golden_index": 56,
+     "app_index": 56,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.foil",
+     "golden_index": 57,
+     "app_index": 57,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.sheet-top",
+     "golden_index": 58,
+     "app_index": 58,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.grab",
+     "golden_index": 59,
+     "app_index": 59,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 60,
+     "app_index": 60,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 61,
+     "app_index": 61,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 62,
+     "app_index": 62,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#sheetScroll.sheet-scroll",
+     "golden_index": 63,
+     "app_index": 63,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.rbody",
+     "golden_index": 64,
+     "app_index": 64,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-total",
+     "golden_index": 65,
+     "app_index": 65,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.r-label('Total')",
+     "golden_index": 66,
+     "app_index": 66,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p.r-amount('116.60')",
+     "golden_index": 67,
+     "app_index": 67,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.cur('RM')",
+     "golden_index": 68,
+     "app_index": 68,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dl.r-lines",
+     "golden_index": 69,
+     "app_index": 69,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 70,
+     "app_index": 70,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Subtotal')",
+     "golden_index": 71,
+     "app_index": 71,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 100.00')",
+     "golden_index": 72,
+     "app_index": 72,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 73,
+     "app_index": 73,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Service 10%')",
+     "golden_index": 74,
+     "app_index": 74,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 10.00')",
+     "golden_index": 75,
+     "app_index": 75,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 76,
+     "app_index": 76,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('SST 6%')",
+     "golden_index": 77,
+     "app_index": 77,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 6.60')",
+     "golden_index": 78,
+     "app_index": 78,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-rule",
+     "golden_index": 79,
+     "app_index": 79,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-head",
+     "golden_index": 80,
+     "app_index": 80,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#sheetSplitsH('Splits')",
+     "golden_index": 81,
+     "app_index": 81,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "ul.r-splits",
+     "golden_index": 82,
+     "app_index": 82,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 83,
+     "app_index": 83,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Aisyah')",
+     "golden_index": 84,
+     "app_index": 84,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.86')",
+     "golden_index": 85,
+     "app_index": 85,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 86,
+     "app_index": 86,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Ben')",
+     "golden_index": 87,
+     "app_index": 87,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.87')",
+     "golden_index": 88,
+     "app_index": 88,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 89,
+     "app_index": 89,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Chen')",
+     "golden_index": 90,
+     "app_index": 90,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.87')",
+     "golden_index": 91,
+     "app_index": 91,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-check",
+     "golden_index": 92,
+     "app_index": 92,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.seal",
+     "golden_index": 93,
+     "app_index": 93,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 94,
+     "app_index": 94,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.lbl-proof('Adds up to')",
+     "golden_index": 95,
+     "app_index": 95,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 116.60')",
+     "golden_index": 96,
+     "app_index": 96,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare",
+     "golden_index": 97,
+     "app_index": 97,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p('2 sen left over')",
+     "golden_index": 98,
+     "app_index": 98,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare-acts",
+     "golden_index": 99,
+     "app_index": 99,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn('Pick again')",
+     "golden_index": 100,
+     "app_index": 100,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 101,
+     "app_index": 101,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 102,
+     "app_index": 102,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn[Spare sen: At random. Change]",
+     "golden_index": 103,
+     "app_index": 103,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 104,
+     "app_index": 104,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 105,
+     "app_index": 105,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-primary.btn-block.r-copy('Copy summary')",
+     "golden_index": 106,
+     "app_index": 106,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 107,
+     "app_index": 107,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 108,
+     "app_index": 108,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dialog#spareDlg.pop",
+     "golden_index": 109,
+     "app_index": 109,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 110,
+     "app_index": 110,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.pop-head",
+     "golden_index": 111,
+     "app_index": 111,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#spareTitle('Spare sen')",
+     "golden_index": 112,
+     "app_index": 112,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 114,
+     "app_index": 114,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 115,
+     "app_index": 115,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#spareSub.pop-sub('2 sen left over')",
+     "golden_index": 116,
+     "app_index": 116,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.choices",
+     "golden_index": 117,
+     "app_index": 117,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 118,
+     "app_index": 118,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 119,
+     "app_index": 119,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 120,
+     "app_index": 120,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('Top of the list')",
+     "golden_index": 121,
+     "app_index": 121,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 122,
+     "app_index": 122,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 123,
+     "app_index": 123,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 124,
+     "app_index": 124,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('One person')",
+     "golden_index": 125,
+     "app_index": 125,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 126,
+     "app_index": 126,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 127,
+     "app_index": 127,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 128,
+     "app_index": 128,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('At random')",
+     "golden_index": 129,
+     "app_index": 129,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#randWrap.pick",
+     "golden_index": 130,
+     "app_index": 130,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button#pickAgainSheet.btn.btn-ghost('Pick again')",
+     "golden_index": 131,
+     "app_index": 131,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 132,
+     "app_index": 132,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 133,
+     "app_index": 133,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "spare-sen-random-360x780": {
+   "golden_elements": 134,
+   "app_elements": 134,
+   "paired": 134,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 31,
+     "app_index": 31,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#splitsDlg.sheet-dlg[Splits]",
+     "golden_index": 55,
+     "app_index": 55,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "41",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.glass.dense.sheet",
+     "golden_index": 56,
+     "app_index": 56,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.foil",
+     "golden_index": 57,
+     "app_index": 57,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.sheet-top",
+     "golden_index": 58,
+     "app_index": 58,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.grab",
+     "golden_index": 59,
+     "app_index": 59,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 60,
+     "app_index": 60,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 61,
+     "app_index": 61,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 62,
+     "app_index": 62,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#sheetScroll.sheet-scroll",
+     "golden_index": 63,
+     "app_index": 63,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.rbody",
+     "golden_index": 64,
+     "app_index": 64,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-total",
+     "golden_index": 65,
+     "app_index": 65,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.r-label('Total')",
+     "golden_index": 66,
+     "app_index": 66,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p.r-amount('116.60')",
+     "golden_index": 67,
+     "app_index": 67,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.cur('RM')",
+     "golden_index": 68,
+     "app_index": 68,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dl.r-lines",
+     "golden_index": 69,
+     "app_index": 69,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 70,
+     "app_index": 70,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Subtotal')",
+     "golden_index": 71,
+     "app_index": 71,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 100.00')",
+     "golden_index": 72,
+     "app_index": 72,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 73,
+     "app_index": 73,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Service 10%')",
+     "golden_index": 74,
+     "app_index": 74,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 10.00')",
+     "golden_index": 75,
+     "app_index": 75,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 76,
+     "app_index": 76,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('SST 6%')",
+     "golden_index": 77,
+     "app_index": 77,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 6.60')",
+     "golden_index": 78,
+     "app_index": 78,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-rule",
+     "golden_index": 79,
+     "app_index": 79,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-head",
+     "golden_index": 80,
+     "app_index": 80,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#sheetSplitsH('Splits')",
+     "golden_index": 81,
+     "app_index": 81,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "ul.r-splits",
+     "golden_index": 82,
+     "app_index": 82,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 83,
+     "app_index": 83,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Aisyah')",
+     "golden_index": 84,
+     "app_index": 84,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.86')",
+     "golden_index": 85,
+     "app_index": 85,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 86,
+     "app_index": 86,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Ben')",
+     "golden_index": 87,
+     "app_index": 87,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.87')",
+     "golden_index": 88,
+     "app_index": 88,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 89,
+     "app_index": 89,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Chen')",
+     "golden_index": 90,
+     "app_index": 90,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 38.87')",
+     "golden_index": 91,
+     "app_index": 91,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-check",
+     "golden_index": 92,
+     "app_index": 92,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.seal",
+     "golden_index": 93,
+     "app_index": 93,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 94,
+     "app_index": 94,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.lbl-proof('Adds up to')",
+     "golden_index": 95,
+     "app_index": 95,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 116.60')",
+     "golden_index": 96,
+     "app_index": 96,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare",
+     "golden_index": 97,
+     "app_index": 97,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p('2 sen left over')",
+     "golden_index": 98,
+     "app_index": 98,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare-acts",
+     "golden_index": 99,
+     "app_index": 99,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn('Pick again')",
+     "golden_index": 100,
+     "app_index": 100,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 101,
+     "app_index": 101,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 102,
+     "app_index": 102,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn[Spare sen: At random. Change]",
+     "golden_index": 103,
+     "app_index": 103,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 104,
+     "app_index": 104,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 105,
+     "app_index": 105,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-primary.btn-block.r-copy('Copy summary')",
+     "golden_index": 106,
+     "app_index": 106,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 107,
+     "app_index": 107,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 108,
+     "app_index": 108,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dialog#spareDlg.pop",
+     "golden_index": 109,
+     "app_index": 109,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 110,
+     "app_index": 110,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.pop-head",
+     "golden_index": 111,
+     "app_index": 111,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#spareTitle('Spare sen')",
+     "golden_index": 112,
+     "app_index": 112,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 114,
+     "app_index": 114,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 115,
+     "app_index": 115,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#spareSub.pop-sub('2 sen left over')",
+     "golden_index": 116,
+     "app_index": 116,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.choices",
+     "golden_index": 117,
+     "app_index": 117,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 118,
+     "app_index": 118,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 119,
+     "app_index": 119,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 120,
+     "app_index": 120,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('Top of the list')",
+     "golden_index": 121,
+     "app_index": 121,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 122,
+     "app_index": 122,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 123,
+     "app_index": 123,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 124,
+     "app_index": 124,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('One person')",
+     "golden_index": 125,
+     "app_index": 125,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 126,
+     "app_index": 126,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 127,
+     "app_index": 127,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 128,
+     "app_index": 128,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('At random')",
+     "golden_index": 129,
+     "app_index": 129,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#randWrap.pick",
+     "golden_index": 130,
+     "app_index": 130,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button#pickAgainSheet.btn.btn-ghost('Pick again')",
+     "golden_index": 131,
+     "app_index": 131,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 132,
+     "app_index": 132,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 133,
+     "app_index": 133,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "spare-sen-random-1280x800": {
+   "golden_elements": 137,
+   "app_elements": 137,
+   "paired": 137,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 103,
+     "app_index": 103,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#spareDlg.pop",
+     "golden_index": 112,
+     "app_index": 112,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.pop-head",
+     "golden_index": 114,
+     "app_index": 114,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#spareTitle('Spare sen')",
+     "golden_index": 115,
+     "app_index": 115,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 116,
+     "app_index": 116,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 117,
+     "app_index": 117,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 118,
+     "app_index": 118,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#spareSub.pop-sub('2 sen left over')",
+     "golden_index": 119,
+     "app_index": 119,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.choices",
+     "golden_index": 120,
+     "app_index": 120,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 121,
+     "app_index": 121,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 122,
+     "app_index": 122,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 123,
+     "app_index": 123,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('Top of the list')",
+     "golden_index": 124,
+     "app_index": 124,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 125,
+     "app_index": 125,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 126,
+     "app_index": 126,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 127,
+     "app_index": 127,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('One person')",
+     "golden_index": 128,
+     "app_index": 128,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "label.choice",
+     "golden_index": 129,
+     "app_index": 129,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "input",
+     "golden_index": 130,
+     "app_index": 130,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.dot",
+     "golden_index": 131,
+     "app_index": 131,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('At random')",
+     "golden_index": 132,
+     "app_index": 132,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#randWrap.pick",
+     "golden_index": 133,
+     "app_index": 133,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button#pickAgainSheet.btn.btn-ghost('Pick again')",
+     "golden_index": 134,
+     "app_index": 134,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 135,
+     "app_index": 135,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "splits-sheet-390x844": {
+   "golden_elements": 198,
+   "app_elements": 198,
+   "paired": 198,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#splitsDlg.sheet-dlg[Splits]",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "41",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.glass.dense.sheet",
+     "golden_index": 137,
+     "app_index": 137,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.foil",
+     "golden_index": 138,
+     "app_index": 138,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.sheet-top",
+     "golden_index": 139,
+     "app_index": 139,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.grab",
+     "golden_index": 140,
+     "app_index": 140,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 141,
+     "app_index": 141,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 142,
+     "app_index": 142,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 143,
+     "app_index": 143,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#sheetScroll.sheet-scroll",
+     "golden_index": 144,
+     "app_index": 144,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.rbody",
+     "golden_index": 145,
+     "app_index": 145,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-total",
+     "golden_index": 146,
+     "app_index": 146,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.r-label('Total')",
+     "golden_index": 147,
+     "app_index": 147,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p.r-amount('69.26')",
+     "golden_index": 148,
+     "app_index": 148,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.cur('RM')",
+     "golden_index": 149,
+     "app_index": 149,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dl.r-lines",
+     "golden_index": 150,
+     "app_index": 150,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 151,
+     "app_index": 151,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Subtotal')",
+     "golden_index": 152,
+     "app_index": 152,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 59.40')",
+     "golden_index": 153,
+     "app_index": 153,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 154,
+     "app_index": 154,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Service 10%')",
+     "golden_index": 155,
+     "app_index": 155,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 5.94')",
+     "golden_index": 156,
+     "app_index": 156,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 157,
+     "app_index": 157,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('SST 6%')",
+     "golden_index": 158,
+     "app_index": 158,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 3.92')",
+     "golden_index": 159,
+     "app_index": 159,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-rule",
+     "golden_index": 160,
+     "app_index": 160,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-head",
+     "golden_index": 161,
+     "app_index": 161,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#sheetSplitsH('Splits')",
+     "golden_index": 162,
+     "app_index": 162,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('items + charges')",
+     "golden_index": 163,
+     "app_index": 163,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "ul.r-splits",
+     "golden_index": 164,
+     "app_index": 164,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 165,
+     "app_index": 165,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Aisyah')",
+     "golden_index": 166,
+     "app_index": 166,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 29.04')",
+     "golden_index": 167,
+     "app_index": 167,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('24.90 + 4.14')",
+     "golden_index": 168,
+     "app_index": 168,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 169,
+     "app_index": 169,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 170,
+     "app_index": 170,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 171,
+     "app_index": 171,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Ben')",
+     "golden_index": 172,
+     "app_index": 172,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 15.74')",
+     "golden_index": 173,
+     "app_index": 173,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('13.50 + 2.24')",
+     "golden_index": 174,
+     "app_index": 174,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 175,
+     "app_index": 175,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 176,
+     "app_index": 176,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 177,
+     "app_index": 177,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Chen')",
+     "golden_index": 178,
+     "app_index": 178,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 24.48')",
+     "golden_index": 179,
+     "app_index": 179,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('21.00 + 3.48')",
+     "golden_index": 180,
+     "app_index": 180,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 181,
+     "app_index": 181,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 182,
+     "app_index": 182,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-check",
+     "golden_index": 183,
+     "app_index": 183,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.seal",
+     "golden_index": 184,
+     "app_index": 184,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 185,
+     "app_index": 185,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.lbl-proof('Adds up to')",
+     "golden_index": 186,
+     "app_index": 186,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 69.26')",
+     "golden_index": 187,
+     "app_index": 187,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('59.40 + 9.86')",
+     "golden_index": 188,
+     "app_index": 188,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare",
+     "golden_index": 189,
+     "app_index": 189,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p('1 sen left over')",
+     "golden_index": 190,
+     "app_index": 190,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare-acts",
+     "golden_index": 191,
+     "app_index": 191,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn[Spare sen: Top of the list. Change]",
+     "golden_index": 192,
+     "app_index": 192,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 193,
+     "app_index": 193,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 194,
+     "app_index": 194,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-primary.btn-block.r-copy('Copy summary')",
+     "golden_index": 195,
+     "app_index": 195,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 196,
+     "app_index": 196,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 197,
+     "app_index": 197,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "splits-sheet-360x780": {
+   "golden_elements": 198,
+   "app_elements": 198,
+   "paired": 198,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#splitsDlg.sheet-dlg[Splits]",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "41",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.glass.dense.sheet",
+     "golden_index": 137,
+     "app_index": 137,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.foil",
+     "golden_index": 138,
+     "app_index": 138,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.sheet-top",
+     "golden_index": 139,
+     "app_index": 139,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.grab",
+     "golden_index": 140,
+     "app_index": 140,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.icon-btn[Close]",
+     "golden_index": 141,
+     "app_index": 141,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 142,
+     "app_index": 142,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 143,
+     "app_index": 143,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div#sheetScroll.sheet-scroll",
+     "golden_index": 144,
+     "app_index": 144,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.rbody",
+     "golden_index": 145,
+     "app_index": 145,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-total",
+     "golden_index": 146,
+     "app_index": 146,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.r-label('Total')",
+     "golden_index": 147,
+     "app_index": 147,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p.r-amount('69.26')",
+     "golden_index": 148,
+     "app_index": 148,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.cur('RM')",
+     "golden_index": 149,
+     "app_index": 149,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dl.r-lines",
+     "golden_index": 150,
+     "app_index": 150,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 151,
+     "app_index": 151,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Subtotal')",
+     "golden_index": 152,
+     "app_index": 152,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 59.40')",
+     "golden_index": 153,
+     "app_index": 153,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 154,
+     "app_index": 154,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('Service 10%')",
+     "golden_index": 155,
+     "app_index": 155,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 5.94')",
+     "golden_index": 156,
+     "app_index": 156,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div",
+     "golden_index": 157,
+     "app_index": 157,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dt('SST 6%')",
+     "golden_index": 158,
+     "app_index": 158,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "dd('RM 3.92')",
+     "golden_index": 159,
+     "app_index": 159,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-rule",
+     "golden_index": 160,
+     "app_index": 160,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-head",
+     "golden_index": 161,
+     "app_index": 161,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#sheetSplitsH('Splits')",
+     "golden_index": 162,
+     "app_index": 162,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span('items + charges')",
+     "golden_index": 163,
+     "app_index": 163,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "ul.r-splits",
+     "golden_index": 164,
+     "app_index": 164,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 165,
+     "app_index": 165,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Aisyah')",
+     "golden_index": 166,
+     "app_index": 166,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 29.04')",
+     "golden_index": 167,
+     "app_index": 167,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('24.90 + 4.14')",
+     "golden_index": 168,
+     "app_index": 168,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 169,
+     "app_index": 169,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 170,
+     "app_index": 170,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 171,
+     "app_index": 171,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Ben')",
+     "golden_index": 172,
+     "app_index": 172,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 15.74')",
+     "golden_index": 173,
+     "app_index": 173,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('13.50 + 2.24')",
+     "golden_index": 174,
+     "app_index": 174,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 175,
+     "app_index": 175,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 176,
+     "app_index": 176,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "li",
+     "golden_index": 177,
+     "app_index": 177,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.nm('Chen')",
+     "golden_index": 178,
+     "app_index": 178,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 24.48')",
+     "golden_index": 179,
+     "app_index": 179,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('21.00 + 3.48')",
+     "golden_index": 180,
+     "app_index": 180,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('Items')",
+     "golden_index": 181,
+     "app_index": 181,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.sr('charges')",
+     "golden_index": 182,
+     "app_index": 182,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-check",
+     "golden_index": 183,
+     "app_index": 183,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.seal",
+     "golden_index": 184,
+     "app_index": 184,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 185,
+     "app_index": 185,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.lbl-proof('Adds up to')",
+     "golden_index": 186,
+     "app_index": 186,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.amt('RM 69.26')",
+     "golden_index": 187,
+     "app_index": 187,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "span.wk('59.40 + 9.86')",
+     "golden_index": 188,
+     "app_index": 188,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare",
+     "golden_index": 189,
+     "app_index": 189,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p('1 sen left over')",
+     "golden_index": 190,
+     "app_index": 190,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.r-spare-acts",
+     "golden_index": 191,
+     "app_index": 191,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.chip-btn[Spare sen: Top of the list. Change]",
+     "golden_index": 192,
+     "app_index": 192,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 193,
+     "app_index": 193,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 194,
+     "app_index": 194,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-primary.btn-block.r-copy('Copy summary')",
+     "golden_index": 195,
+     "app_index": 195,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "svg.ic",
+     "golden_index": 196,
+     "app_index": 196,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "use",
+     "golden_index": 197,
+     "app_index": 197,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "new-bill-dialog-390x844": {
+   "golden_elements": 143,
+   "app_elements": 143,
+   "paired": 143,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#newDlg.modal",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "allowed-3 max-height",
+       "none",
+       "calc(100% - 38px)"
+      ],
+      [
+       "allowed-3 overflow-x",
+       "visible",
+       "auto"
+      ],
+      [
+       "allowed-3 overflow-y",
+       "visible",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 137,
+     "app_index": 137,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#newTitle('Start a new bill?')",
+     "golden_index": 138,
+     "app_index": 138,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#newBody('This clears the people, items ')",
+     "golden_index": 139,
+     "app_index": 139,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.acts",
+     "golden_index": 140,
+     "app_index": 140,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button#startNew.btn.btn-danger.btn-lg('Start new bill')",
+     "golden_index": 141,
+     "app_index": 141,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-ghost.btn-lg('Cancel')",
+     "golden_index": 142,
+     "app_index": 142,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "new-bill-dialog-360x780": {
+   "golden_elements": 143,
+   "app_elements": 143,
+   "paired": 143,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#newDlg.modal",
+     "golden_index": 136,
+     "app_index": 136,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "allowed-3 max-height",
+       "none",
+       "calc(100% - 38px)"
+      ],
+      [
+       "allowed-3 overflow-x",
+       "visible",
+       "auto"
+      ],
+      [
+       "allowed-3 overflow-y",
+       "visible",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 137,
+     "app_index": 137,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#newTitle('Start a new bill?')",
+     "golden_index": 138,
+     "app_index": 138,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#newBody('This clears the people, items ')",
+     "golden_index": 139,
+     "app_index": 139,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.acts",
+     "golden_index": 140,
+     "app_index": 140,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button#startNew.btn.btn-danger.btn-lg('Start new bill')",
+     "golden_index": 141,
+     "app_index": 141,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-ghost.btn-lg('Cancel')",
+     "golden_index": 142,
+     "app_index": 142,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 950,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "new-bill-dialog-1280x800": {
+   "golden_elements": 208,
+   "app_elements": 208,
+   "paired": 208,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "element": "dialog#newDlg.modal",
+     "golden_index": 201,
+     "app_index": 201,
+     "diffs": [
+      [
+       "allowed-3 z-index",
+       "43",
+       "auto"
+      ],
+      [
+       "allowed-3 max-height",
+       "none",
+       "calc(100% - 38px)"
+      ],
+      [
+       "allowed-3 overflow-x",
+       "visible",
+       "auto"
+      ],
+      [
+       "allowed-3 overflow-y",
+       "visible",
+       "auto"
+      ],
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.in",
+     "golden_index": 202,
+     "app_index": 202,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "h2#newTitle('Start a new bill?')",
+     "golden_index": 203,
+     "app_index": 203,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "p#newBody('This clears the people, items ')",
+     "golden_index": 204,
+     "app_index": 204,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "div.acts",
+     "golden_index": 205,
+     "app_index": 205,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button#startNew.btn.btn-danger.btn-lg('Start new bill')",
+     "golden_index": 206,
+     "app_index": 206,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    },
+    {
+     "element": "button.btn.btn-ghost.btn-lg('Cancel')",
+     "golden_index": 207,
+     "app_index": 207,
+     "diffs": [
+      [
+       "user-select",
+       "auto",
+       "text"
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-empty-390x844": {
+   "golden_elements": 70,
+   "app_elements": 70,
+   "paired": 70,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 48,
+     "app_index": 48,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-empty-360x780": {
+   "golden_elements": 70,
+   "app_elements": 70,
+   "paired": 70,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 48,
+     "app_index": 48,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-empty-1280x800": {
+   "golden_elements": 69,
+   "app_elements": 69,
+   "paired": 69,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 60,
+     "app_index": 60,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "rate-error-390x844": {
+   "golden_elements": 153,
+   "app_elements": 153,
+   "paired": 153,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 52,
+     "app_index": 52,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 1125,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 1125,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "rate-error-360x780": {
+   "golden_elements": 153,
+   "app_elements": 153,
+   "paired": 153,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 52,
+     "app_index": 52,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 1125,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 1125,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "rate-error-1280x800": {
+   "golden_elements": 158,
+   "app_elements": 158,
+   "paired": 158,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 70,
+     "app_index": 70,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-unassigned-390x844": {
+   "golden_elements": 134,
+   "app_elements": 134,
+   "paired": 134,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 967,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 967,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-unassigned-360x780": {
+   "golden_elements": 134,
+   "app_elements": 134,
+   "paired": 134,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 967,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 967,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-unassigned-1280x800": {
+   "golden_elements": 166,
+   "app_elements": 166,
+   "paired": 166,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 80,
+     "app_index": 80,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-unreadable-390x844": {
+   "golden_elements": 78,
+   "app_elements": 78,
+   "paired": 78,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 56,
+     "app_index": 56,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-unreadable-360x780": {
+   "golden_elements": 78,
+   "app_elements": 78,
+   "paired": 78,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 56,
+     "app_index": 56,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-unreadable-1280x800": {
+   "golden_elements": 77,
+   "app_elements": 77,
+   "paired": 77,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 68,
+     "app_index": 68,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-twelve-390x844": {
+   "golden_elements": 56,
+   "app_elements": 55,
+   "paired": 55,
+   "unmatched": [
+    {
+     "op": "delete",
+     "golden": [
+      "span.fit-wide('Aisyah, Ben, Chen, Person 4 an')"
+     ],
+     "app": []
+    }
+   ],
+   "diffs": [
+    {
+     "element": "span.sec-txt('Aisyah, Ben, Chen, Person 4 an')",
+     "golden_index": 17,
+     "app_index": 17,
+     "diffs": [
+      [
+       "text",
+       "",
+       "Aisyah, Ben, Chen, Person 4 and 8 more"
+      ]
+     ]
+    },
+    {
+     "element": "input#modeEven",
+     "golden_index": 32,
+     "app_index": 31,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 844,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-twelve-360x780": {
+   "golden_elements": 56,
+   "app_elements": 55,
+   "paired": 55,
+   "unmatched": [
+    {
+     "op": "delete",
+     "golden": [
+      "span.fit-narrow('Aisyah, Ben, Chen and 9 more')"
+     ],
+     "app": []
+    }
+   ],
+   "diffs": [
+    {
+     "element": "span.sec-txt('Aisyah, Ben, Chen and 9 more')",
+     "golden_index": 17,
+     "app_index": 17,
+     "diffs": [
+      [
+       "text",
+       "",
+       "Aisyah, Ben, Chen and 9 more"
+      ]
+     ]
+    },
+    {
+     "element": "input#modeEven",
+     "golden_index": 32,
+     "app_index": 31,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 780,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-twelve-1280x800": {
+   "golden_elements": 181,
+   "app_elements": 181,
+   "paired": 181,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeEven",
+     "golden_index": 172,
+     "app_index": 172,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-large-390x844": {
+   "golden_elements": 155,
+   "app_elements": 155,
+   "paired": 155,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 390,
+     "scrollHeight": 1073,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 390,
+     "scrollHeight": 1073,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-large-360x780": {
+   "golden_elements": 155,
+   "app_elements": 155,
+   "paired": 155,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 33,
+     "app_index": 33,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 360,
+     "scrollHeight": 1040,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 360,
+     "scrollHeight": 1040,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  },
+  "bill-large-1280x800": {
+   "golden_elements": 220,
+   "app_elements": 220,
+   "paired": 220,
+   "unmatched": [],
+   "diffs": [
+    {
+     "element": "input#modeItem",
+     "golden_index": 113,
+     "app_index": 113,
+     "diffs": [
+      [
+       "attr checked",
+       "",
+       null
+      ]
+     ]
+    }
+   ],
+   "problems": [],
+   "doc": {
+    "golden": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": []
+    },
+    "app": {
+     "scrollWidth": 1280,
+     "scrollHeight": 800,
+     "active": "body",
+     "focusVisible": null,
+     "animations": [],
+     "icon": "http://127.0.0.1:10358/src/icon.svg",
+     "title": "Danial's Splity Tab"
+    }
+   }
+  }
+ },
+ "browser_version": "149.0.7827.55",
+ "ended": "2026-10-15 22:53:03"
+}

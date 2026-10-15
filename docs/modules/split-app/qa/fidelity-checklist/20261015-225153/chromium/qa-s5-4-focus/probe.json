@@ -1,0 +1,43 @@
+{
+ "engine": "chromium",
+ "variants": {
+  "autofocus": {
+   "focus_before_open": {
+    "el": "button#newBill.btn.btn-ghost",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   },
+   "after_open": {
+    "el": "button.btn.btn-ghost.btn-lg",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   }
+  },
+  "script focus": {
+   "focus_before_open": {
+    "el": "button#newBill.btn.btn-ghost",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   },
+   "after_open": {
+    "el": "button.btn.btn-ghost.btn-lg",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   }
+  },
+  "script focus, focusVisible false": {
+   "focus_before_open": {
+    "el": "button#newBill.btn.btn-ghost",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   },
+   "after_open": {
+    "el": "button.btn.btn-ghost.btn-lg",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   }
+  }
+ },
+ "browser_version": "149.0.7827.55",
+ "ended": "2026-10-15 23:19:25"
+}

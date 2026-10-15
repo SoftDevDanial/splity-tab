@@ -1,0 +1,43 @@
+{
+ "engine": "webkit",
+ "variants": {
+  "autofocus": {
+   "focus_before_open": {
+    "el": "body",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   },
+   "after_open": {
+    "el": "button.btn.btn-ghost.btn-lg",
+    "fv": true,
+    "outline": "solid 2px rgb(163, 170, 255) 2px"
+   }
+  },
+  "script focus": {
+   "focus_before_open": {
+    "el": "body",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   },
+   "after_open": {
+    "el": "button.btn.btn-ghost.btn-lg",
+    "fv": true,
+    "outline": "solid 2px rgb(163, 170, 255) 2px"
+   }
+  },
+  "script focus, focusVisible false": {
+   "focus_before_open": {
+    "el": "body",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   },
+   "after_open": {
+    "el": "button.btn.btn-ghost.btn-lg",
+    "fv": false,
+    "outline": "none 3px rgb(232, 235, 242) 0px"
+   }
+  }
+ },
+ "browser_version": "26.5",
+ "ended": "2026-10-15 23:19:28"
+}

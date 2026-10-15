@@ -1,0 +1,465 @@
+{
+ "reduce-390x844": {
+  "load": [],
+  "transitions": {
+   ".btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".chip-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".tap": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".icon-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".mode-sw label": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".sec-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   }
+  },
+  "golden_transitions": {
+   ".btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".chip-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".tap": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".icon-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".mode-sw label": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".sec-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   }
+  },
+  "after_3s": [],
+  "section_open": [],
+  "section_open_1s": [],
+  "sheet_open": [],
+  "sheet_open_1s": [],
+  "p1_open": [],
+  "m1_open": [],
+  "m1_open_1s": []
+ },
+ "reduce-1280x800": {
+  "load": [],
+  "transitions": {
+   ".btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".chip-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".tap": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".icon-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".mode-sw label": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".sec-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   }
+  },
+  "golden_transitions": {
+   ".btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".chip-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".tap": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".icon-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".mode-sw label": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   },
+   ".sec-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   }
+  },
+  "after_3s": [],
+  "m1_open": [],
+  "m1_open_1s": []
+ },
+ "no-preference-390x844": {
+  "load": [
+   {
+    "name": "foil",
+    "state": "running",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   }
+  ],
+  "transitions": {
+   ".btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".chip-btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".tap": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".icon-btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".mode-sw label": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".sec-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   }
+  },
+  "golden_transitions": {
+   ".btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".chip-btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".tap": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".icon-btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".mode-sw label": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".sec-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   }
+  },
+  "after_3s": [
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   }
+  ],
+  "section_open": [
+   {
+    "name": "transform",
+    "state": "running",
+    "duration": 200,
+    "delay": 0,
+    "iterations": 1,
+    "target": {}
+   },
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   },
+   {
+    "name": "Animation",
+    "state": "running",
+    "duration": 200,
+    "delay": 0,
+    "iterations": 1,
+    "target": "peopleBody"
+   }
+  ],
+  "section_open_1s": [
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   }
+  ],
+  "sheet_open": [
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   },
+   {
+    "name": "lift",
+    "state": "running",
+    "duration": 240,
+    "delay": 0,
+    "iterations": 1,
+    "target": "glass dense sheet"
+   }
+  ],
+  "sheet_open_1s": [
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   }
+  ],
+  "p1_open": [
+   {
+    "name": "background-color",
+    "state": "running",
+    "duration": 120,
+    "delay": 0,
+    "iterations": 1,
+    "target": "chip-btn"
+   },
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   },
+   {
+    "name": "rise",
+    "state": "running",
+    "duration": 200,
+    "delay": 0,
+    "iterations": 1,
+    "target": "spareDlg"
+   }
+  ],
+  "m1_open": [
+   {
+    "name": "background-color",
+    "state": "running",
+    "duration": 120,
+    "delay": 0,
+    "iterations": 1,
+    "target": "newBill"
+   },
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   },
+   {
+    "name": "fade",
+    "state": "running",
+    "duration": 160,
+    "delay": 0,
+    "iterations": 1,
+    "target": "newDlg"
+   }
+  ],
+  "m1_open_1s": [
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   }
+  ]
+ },
+ "no-preference-1280x800": {
+  "load": [
+   {
+    "name": "sheen",
+    "state": "running",
+    "duration": 1400,
+    "delay": 300,
+    "iterations": 1,
+    "target": "card"
+   },
+   {
+    "name": "foil",
+    "state": "running",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   }
+  ],
+  "transitions": {
+   ".btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".chip-btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".tap": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".icon-btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".mode-sw label": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".sec-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   }
+  },
+  "golden_transitions": {
+   ".btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".chip-btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".tap": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".icon-btn": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".mode-sw label": {
+    "transition-duration": "0.12s, 0.12s, 0.12s",
+    "transition-property": "background-color, border-color, color"
+   },
+   ".sec-btn": {
+    "transition-duration": "0s",
+    "transition-property": "all"
+   }
+  },
+  "after_3s": [
+   {
+    "name": "sheen",
+    "state": "finished",
+    "duration": 1400,
+    "delay": 300,
+    "iterations": 1,
+    "target": "card"
+   },
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   }
+  ],
+  "m1_open": [
+   {
+    "name": "background-color",
+    "state": "running",
+    "duration": 120,
+    "delay": 0,
+    "iterations": 1,
+    "target": "newBill"
+   },
+   {
+    "name": "sheen",
+    "state": "finished",
+    "duration": 1400,
+    "delay": 300,
+    "iterations": 1,
+    "target": "card"
+   },
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   },
+   {
+    "name": "fade",
+    "state": "running",
+    "duration": 160,
+    "delay": 0,
+    "iterations": 1,
+    "target": "newDlg"
+   }
+  ],
+  "m1_open_1s": [
+   {
+    "name": "sheen",
+    "state": "finished",
+    "duration": 1400,
+    "delay": 300,
+    "iterations": 1,
+    "target": "card"
+   },
+   {
+    "name": "foil",
+    "state": "finished",
+    "duration": 1800,
+    "delay": 150,
+    "iterations": 1,
+    "target": "foil"
+   }
+  ]
+ }
+}

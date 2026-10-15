@@ -1,0 +1,117 @@
+{
+ "engine": "webkit",
+ "server_pid": 23408,
+ "port": 12888,
+ "browser_version": "26.5",
+ "golden": {
+  "support": {
+   "backdrop": true,
+   "webkitBackdrop": true,
+   "reducedTransparency": false
+  },
+  "glass": {
+   "background-color": "rgba(27, 33, 43, 0.92)",
+   "background-image": "linear-gradient(155deg, rgba(200, 206, 255, 0.1) 0%, rgba(150, 158, 235, 0.04) 40%, rgba(8, 10, 14, 0.34) 100%), none",
+   "backdrop-filter": "blur(24px) saturate(1.4)",
+   "-webkit-backdrop-filter": "blur(24px) saturate(1.4)",
+   "opacity": "1",
+   "box-shadow": "rgba(232, 235, 255, 0.18) 0px 1px 0px 0px inset, rgba(163, 170, 255, 0.06) 0px 0px 0px 1px inset, rgba(4, 6, 10, 0.9) 0px 40px 80px -32px, rgba(4, 6, 10, 0.7) 0px 14px 28px -14px"
+  },
+  "sheet_modal": false,
+  "show_through": {
+   "region": [
+    2,
+    236,
+    388,
+    842
+   ],
+   "mean_level": 0.236,
+   "max_level": 4.3,
+   "share_of_pixels_over_2_levels": 0.0212,
+   "mean_edge": 0.1139
+  }
+ },
+ "app": {
+  "support": {
+   "backdrop": true,
+   "webkitBackdrop": true,
+   "reducedTransparency": false
+  },
+  "glass": {
+   "background-color": "rgba(27, 33, 43, 0.92)",
+   "background-image": "linear-gradient(155deg, rgba(200, 206, 255, 0.1) 0%, rgba(150, 158, 235, 0.04) 40%, rgba(8, 10, 14, 0.34) 100%), none",
+   "backdrop-filter": "blur(24px) saturate(1.4)",
+   "-webkit-backdrop-filter": "blur(24px) saturate(1.4)",
+   "opacity": "1",
+   "box-shadow": "rgba(232, 235, 255, 0.18) 0px 1px 0px 0px inset, rgba(163, 170, 255, 0.06) 0px 0px 0px 1px inset, rgba(4, 6, 10, 0.9) 0px 40px 80px -32px, rgba(4, 6, 10, 0.7) 0px 14px 28px -14px"
+  },
+  "sheet_modal": true,
+  "focus_after_mouse_open": {
+   "el": "div.glass.dense.sheet",
+   "fv": true,
+   "outline": "none 3px rgb(232, 235, 242) 2px"
+  },
+  "show_through": {
+   "region": [
+    2,
+    236,
+    388,
+    842
+   ],
+   "mean_level": 0.236,
+   "max_level": 4.3,
+   "share_of_pixels_over_2_levels": 0.0212,
+   "mean_edge": 0.1139
+  },
+  "focus_after_mouse_close": {
+   "el": "button#splitsBtn.btn.btn-ghost",
+   "fv": true,
+   "outline": "solid 2px rgb(163, 170, 255) 2px"
+  },
+  "focus_after_escape_close": {
+   "el": "button#splitsBtn.btn.btn-ghost",
+   "fv": true,
+   "outline": "solid 2px rgb(163, 170, 255) 2px"
+  },
+  "m1_focus_after_mouse_open": {
+   "el": "button.btn.btn-ghost.btn-lg",
+   "fv": true,
+   "outline": "solid 2px rgb(163, 170, 255) 2px"
+  },
+  "m1_focus_after_mouse_cancel": {
+   "el": "button#newBill.btn.btn-ghost",
+   "fv": false,
+   "outline": "none 3px rgb(232, 235, 242) 0px"
+  },
+  "csp_violations": [
+   {
+    "violatedDirective": "style-src-elem",
+    "blockedURI": "inline"
+   },
+   {
+    "violatedDirective": "style-src-elem",
+    "blockedURI": "inline"
+   },
+   {
+    "violatedDirective": "style-src-elem",
+    "blockedURI": "inline"
+   },
+   {
+    "violatedDirective": "style-src-elem",
+    "blockedURI": "inline"
+   },
+   {
+    "violatedDirective": "style-src-elem",
+    "blockedURI": "inline"
+   }
+  ]
+ },
+ "problems": [
+  "console error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+  "console error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+  "console error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+  "console error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+  "console error: Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+ ],
+ "ended": "2026-10-15 23:17:54"
+}

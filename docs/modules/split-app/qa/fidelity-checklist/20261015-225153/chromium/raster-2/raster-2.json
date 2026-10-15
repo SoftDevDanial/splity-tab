@@ -1,0 +1,51 @@
+{
+ "server_pid": 9256,
+ "port": 39457,
+ "browser_version": "149.0.7827.55",
+ "golden_vs_app": {
+  "pixels": 19,
+  "max_delta": 1,
+  "bbox": [
+   22,
+   243,
+   367,
+   244
+  ]
+ },
+ "golden_put_back_vs_app": {
+  "pixels": 43,
+  "max_delta": 1,
+  "bbox": [
+   16,
+   243,
+   373,
+   426
+  ]
+ },
+ "golden_vs_golden_put_back": {
+  "pixels": 24,
+  "max_delta": 1,
+  "bbox": [
+   16,
+   263,
+   373,
+   426
+  ]
+ },
+ "app_vs_app_put_back": {
+  "pixels": 43,
+  "max_delta": 1,
+  "bbox": [
+   16,
+   243,
+   373,
+   426
+  ]
+ },
+ "golden_put_back_vs_app_put_back": {
+  "pixels": 0,
+  "max_delta": 0,
+  "bbox": null
+ },
+ "ended": "2026-10-15 23:20:00"
+}

@@ -1,0 +1,18 @@
+{
+ "engine": "chromium",
+ "started": "2026-10-15 22:55:08",
+ "server_pid": 6356,
+ "port": 56130,
+ "browser_version": "149.0.7827.55",
+ "k1_64": {
+  "app_icon_href": "http://127.0.0.1:56130/src/icon.svg",
+  "served_content_type": "image/svg+xml",
+  "served_len": 470,
+  "served_sha256": "7b5e4176a6182d23f06073ff181f01bbb73e2ac562f78d58a930ffb80fe7fef2",
+  "golden_hrefs_distinct": 1,
+  "golden_len": 470,
+  "golden_sha256": "7b5e4176a6182d23f06073ff181f01bbb73e2ac562f78d58a930ffb80fe7fef2",
+  "equal": true
+ },
+ "ended": "2026-10-15 22:56:08"
+}

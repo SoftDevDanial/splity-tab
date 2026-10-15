@@ -1,0 +1,37 @@
+{
+ "rows": 715,
+ "pass": 713,
+ "fail": 2,
+ "fail_rows": [
+  [
+   "K1-44",
+   "bill-items",
+   "1280x800",
+   [
+    {
+     "what": "20 px under the hairline",
+     "expected": 20,
+     "app": 16.0,
+     "golden": 16.0,
+     "ok": false,
+     "golden_ok": false
+    }
+   ]
+  ],
+  [
+   "W1-02",
+   "bill-large",
+   "1280x800",
+   [
+    {
+     "what": "card body 412 px",
+     "expected": 412,
+     "app": 410,
+     "golden": 410,
+     "ok": false,
+     "golden_ok": false
+    }
+   ]
+  ]
+ ]
+}

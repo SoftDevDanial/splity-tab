@@ -1,0 +1,2830 @@
+{
+ "engine": "chromium",
+ "started": "2026-10-15 23:14:18",
+ "server_pid": 5912,
+ "port": 58272,
+ "browser_version": "149.0.7827.55",
+ "ended": "2026-10-15 23:15:37",
+ "problems": [],
+ "rows": [
+  {
+   "row": "ST-01",
+   "vp": "390x844",
+   "state": "K2, Subtotal 100,00 left",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "#evenField classes",
+     "expected": "field money sub-field is-bad",
+     "app": "field money sub-field is-bad",
+     "ok": true
+    },
+    {
+     "what": "aria-invalid",
+     "expected": "true",
+     "app": "true",
+     "ok": true
+    },
+    {
+     "what": "#evenErr shown",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "8 px below the field",
+     "expected": 8,
+     "app": 8,
+     "ok": true
+    },
+    {
+     "what": "text",
+     "expected": "Enter an amount like 12.50",
+     "app": "Enter an amount like 12.50",
+     "ok": true
+    },
+    {
+     "what": "16 px warning circle",
+     "expected": [
+      16,
+      "#i-warning-circle"
+     ],
+     "app": [
+      16,
+      "#i-warning-circle"
+     ],
+     "ok": true
+    },
+    {
+     "what": "wrapper equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "paragraph equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "the card reads",
+     "expected": "Total Enter the subtotal to see the splits.",
+     "app": "Total Enter the subtotal to see the splits.",
+     "ok": true
+    },
+    {
+     "what": "the strip reads",
+     "expected": "Enter the subtotal to see the splits.",
+     "app": "Enter the subtotal to see the splits.",
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-02",
+   "vp": "390x844",
+   "state": "K1, Char kuey teow price 13,50 left",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "p.err#ie2 last in div.item-row",
+     "expected": "ie2",
+     "app": "ie2",
+     "ok": true
+    },
+    {
+     "what": "shown",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "paragraph equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "justify-self end, text-align start",
+     "expected": [
+      "end",
+      "start"
+     ],
+     "app": [
+      "end",
+      "start"
+     ],
+     "ok": true
+    },
+    {
+     "what": "right edge at the price field's right edge",
+     "expected": 0,
+     "app": 0.0,
+     "ok": true
+    },
+    {
+     "what": "spans the name and price columns",
+     "expected": [
+      "1",
+      "3"
+     ],
+     "app": [
+      "1",
+      "3"
+     ],
+     "ok": true
+    },
+    {
+     "what": "toggles 8 px below",
+     "expected": 8,
+     "app": 8,
+     "ok": true
+    },
+    {
+     "what": "the card reads",
+     "expected": "Total Give every item a price to see the splits.",
+     "app": "Total Give every item a price to see the splits.",
+     "ok": true
+    },
+    {
+     "what": "wrapper is-bad",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "price wrapper equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-03",
+   "vp": "390x844",
+   "state": "K1, Charges opened, SST 25 left",
+   "verdict": "FAIL",
+   "checks": [
+    {
+     "what": "aria-describedby",
+     "expected": "chargeHint sstErr",
+     "app": "chargeHint sstErr",
+     "ok": true
+    },
+    {
+     "what": "message",
+     "expected": "Enter a rate from 0 to 20",
+     "app": "Enter a rate from 0 to 20",
+     "ok": true
+    },
+    {
+     "what": "two lines",
+     "expected": 2.0,
+     "app": 2,
+     "ok": true
+    },
+    {
+     "what": "icon on the first line",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "hint under both fields",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "SST wrapper equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "SST error equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "error width equal to the piece's (the half cell)",
+     "expected": 160,
+     "app": 173,
+     "ok": false
+    }
+   ]
+  },
+  {
+   "row": "ST-05",
+   "vp": "390x844",
+   "state": "ST-03, then Charges folded",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "is-bad",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "summary",
+     "expected": "Check SST",
+     "app": "Check SST",
+     "ok": true
+    },
+    {
+     "what": "summary equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "row equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "name still Charges",
+     "expected": "Charges",
+     "app": "Charges",
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-04",
+   "vp": "390x844",
+   "state": "RE seed, Charges folded by a click",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "button.sec-btn.is-bad",
+     "expected": "sec-btn is-bad",
+     "app": "sec-btn is-bad",
+     "ok": true
+    },
+    {
+     "what": "summary",
+     "expected": "Check service charge",
+     "app": "Check service charge",
+     "ok": true
+    },
+    {
+     "what": "summary 14/20 600 error red",
+     "expected": [
+      "14px",
+      "20px",
+      "600",
+      "rgb(255, 138, 143)"
+     ],
+     "app": [
+      "14px",
+      "20px",
+      "600",
+      "rgb(255, 138, 143)"
+     ],
+     "ok": true
+    },
+    {
+     "what": "16 px warning circle",
+     "expected": [
+      16,
+      "#i-warning-circle"
+     ],
+     "app": [
+      16,
+      "#i-warning-circle"
+     ],
+     "ok": true
+    },
+    {
+     "what": "6 px before the words",
+     "expected": 6,
+     "app": 6.0,
+     "ok": true
+    },
+    {
+     "what": "right aligned beside the caret",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "name still Charges",
+     "expected": [
+      "chargesName",
+      "Charges"
+     ],
+     "app": [
+      "chargesName",
+      "Charges"
+     ],
+     "ok": true
+    },
+    {
+     "what": "summary equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "row equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "icon equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-06",
+   "vp": "390x844",
+   "state": "K1, Service 35 and SST 25, Charges folded",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "summary",
+     "expected": "Check both rates",
+     "app": "Check both rates",
+     "ok": true
+    },
+    {
+     "what": "summary equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "row equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-07",
+   "vp": "390x844",
+   "state": "K2, click on Copy summary, recorder.js",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "text",
+     "expected": "Summary copied",
+     "app": "Summary copied",
+     "ok": true
+    },
+    {
+     "what": "16 px indigo check",
+     "expected": [
+      16,
+      "#i-check",
+      "rgb(163, 170, 255)"
+     ],
+     "app": [
+      16,
+      "#i-check",
+      "rgb(163, 170, 255)"
+     ],
+     "ok": true
+    },
+    {
+     "what": "beside the Total on the same line",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "strip 111 px",
+     "expected": 111,
+     "app": 111,
+     "ok": true
+    },
+    {
+     "what": "status equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "clipboard stand-in writes",
+     "expected": 1,
+     "app": 1,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-08",
+   "vp": "390x844",
+   "state": "K2, click on Copy summary, reject.js",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "p.status.is-fail",
+     "expected": "status is-fail",
+     "app": "status is-fail",
+     "ok": true
+    },
+    {
+     "what": "text",
+     "expected": "Could not copy. Your browser blocked the clipboard.",
+     "app": "Could not copy. Your browser blocked the clipboard.",
+     "ok": true
+    },
+    {
+     "what": "red warning circle",
+     "expected": [
+      "#i-warning-circle",
+      "rgb(255, 138, 143)"
+     ],
+     "app": [
+      "#i-warning-circle",
+      "rgb(255, 138, 143)"
+     ],
+     "ok": true
+    },
+    {
+     "what": "own line under the Total",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "two lines",
+     "expected": 2.0,
+     "app": 2,
+     "ok": true
+    },
+    {
+     "what": "strip 153 px",
+     "expected": 153,
+     "app": 153,
+     "ok": true
+    },
+    {
+     "what": "status equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "clipboard stand-in writes",
+     "expected": 0,
+     "app": 0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-09",
+   "vp": "390x844",
+   "state": "cold boot, By item",
+   "verdict": "FAIL",
+   "checks": [
+    {
+     "what": "message in place of the Total",
+     "expected": [
+      "Add each item and tap who had it to see the splits.",
+      0
+     ],
+     "app": [
+      "Add each item and tap who had it to see the splits.",
+      0
+     ],
+     "ok": true
+    },
+    {
+     "what": "two lines",
+     "expected": 2.0,
+     "app": 1,
+     "ok": false
+    },
+    {
+     "what": "Copy summary disabled",
+     "expected": "",
+     "app": "",
+     "ok": true
+    },
+    {
+     "what": "message equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "Copy summary equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-10",
+   "vp": "390x844",
+   "state": "cold boot with D-a, one change",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "in the top bar",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "--warn-bg, amber edge at 45%",
+     "expected": [
+      "rgb(42, 36, 20)",
+      "rgba(242, 192, 99, 0.45)"
+     ],
+     "app": [
+      "rgb(42, 36, 20)",
+      "rgba(242, 192, 99, 0.45)"
+     ],
+     "ok": true
+    },
+    {
+     "what": "20 px amber #i-warning",
+     "expected": [
+      20,
+      "#i-warning",
+      "rgb(242, 192, 99)"
+     ],
+     "app": [
+      20,
+      "#i-warning",
+      "rgb(242, 192, 99)"
+     ],
+     "ok": true
+    },
+    {
+     "what": "14/20 text",
+     "expected": [
+      "14px",
+      "20px"
+     ],
+     "app": [
+      "14px",
+      "20px"
+     ],
+     "ok": true
+    },
+    {
+     "what": "16 px right padding",
+     "expected": "16px",
+     "app": "16px",
+     "ok": true
+    },
+    {
+     "what": "no dismiss",
+     "expected": 0,
+     "app": 0,
+     "ok": true
+    },
+    {
+     "what": "text",
+     "expected": "This bill is not being saved on this device. It will be lost when you close this tab.",
+     "app": "This bill is not being saved on this device. It will be lost when you close this tab.",
+     "ok": true
+    },
+    {
+     "what": "two lines at 390",
+     "expected": 2.0,
+     "app": 2,
+     "ok": true
+    },
+    {
+     "what": "note equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "text equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-10",
+   "vp": "1280x800",
+   "state": "cold boot with D-a, one change",
+   "verdict": "FAIL",
+   "checks": [
+    {
+     "what": "in the top bar",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "--warn-bg, amber edge at 45%",
+     "expected": [
+      "rgb(42, 36, 20)",
+      "rgba(242, 192, 99, 0.45)"
+     ],
+     "app": [
+      "rgb(42, 36, 20)",
+      "rgba(242, 192, 99, 0.45)"
+     ],
+     "ok": true
+    },
+    {
+     "what": "20 px amber #i-warning",
+     "expected": [
+      20,
+      "#i-warning",
+      "rgb(242, 192, 99)"
+     ],
+     "app": [
+      20,
+      "#i-warning",
+      "rgb(242, 192, 99)"
+     ],
+     "ok": true
+    },
+    {
+     "what": "14/20 text",
+     "expected": [
+      "14px",
+      "20px"
+     ],
+     "app": [
+      "14px",
+      "20px"
+     ],
+     "ok": true
+    },
+    {
+     "what": "16 px right padding",
+     "expected": "16px",
+     "app": "16px",
+     "ok": true
+    },
+    {
+     "what": "no dismiss",
+     "expected": 0,
+     "app": 0,
+     "ok": true
+    },
+    {
+     "what": "text",
+     "expected": "This bill is not being saved on this device. It will be lost when you close this tab.",
+     "app": "This bill is not being saved on this device. It will be lost when you close this tab.",
+     "ok": true
+    },
+    {
+     "what": "centred between the brand and New bill",
+     "expected": 0,
+     "app": -0.016,
+     "ok": true
+    },
+    {
+     "what": "44 px tall (less the 1 px edges)",
+     "expected": 44,
+     "app": 42,
+     "ok": false
+    },
+    {
+     "what": "one line",
+     "expected": 1.0,
+     "app": 1,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-11",
+   "vp": "1280x800",
+   "state": "K2, click on the card's Copy summary, recorder.js",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "12 px under Copy summary",
+     "expected": 12,
+     "app": 12.0,
+     "ok": true
+    },
+    {
+     "what": "content centred in the card body",
+     "expected": 0,
+     "app": -0.016,
+     "ok": true
+    },
+    {
+     "what": "indigo check",
+     "expected": [
+      "#i-check",
+      "rgb(163, 170, 255)",
+      16
+     ],
+     "app": [
+      "#i-check",
+      "rgb(163, 170, 255)",
+      16
+     ],
+     "ok": true
+    },
+    {
+     "what": "text",
+     "expected": "Summary copied",
+     "app": "Summary copied",
+     "ok": true
+    },
+    {
+     "what": "status equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-12",
+   "vp": "1280x800",
+   "state": "K2, click on the card's Copy summary, reject.js",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "12 px under Copy summary",
+     "expected": 12,
+     "app": 12.0,
+     "ok": true
+    },
+    {
+     "what": "content centred in the card body",
+     "expected": 0,
+     "app": 0.0,
+     "ok": true
+    },
+    {
+     "what": "is-fail",
+     "expected": "status is-fail",
+     "app": "status is-fail",
+     "ok": true
+    },
+    {
+     "what": "red warning circle before the text",
+     "expected": [
+      "#i-warning-circle",
+      "rgb(255, 138, 143)"
+     ],
+     "app": [
+      "#i-warning-circle",
+      "rgb(255, 138, 143)"
+     ],
+     "ok": true
+    },
+    {
+     "what": "one line",
+     "expected": 1.0,
+     "app": 1,
+     "ok": true
+    },
+    {
+     "what": "text",
+     "expected": "Could not copy. Your browser blocked the clipboard.",
+     "app": "Could not copy. Your browser blocked the clipboard.",
+     "ok": true
+    },
+    {
+     "what": "status equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-13",
+   "vp": "1280x800",
+   "state": "K1, Chen untapped from Mee goreng mamak, Ben from Char kuey teow",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "card message",
+     "expected": "2 items still need a person. Tap who had each one to see the splits.",
+     "app": "2 items still need a person. Tap who had each one to see the splits.",
+     "ok": true
+    },
+    {
+     "what": "message equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "icon equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "text equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-14",
+   "vp": "390x844",
+   "state": "K1, Chen untapped from Mee goreng mamak, Ben from Char kuey teow",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "strip message",
+     "expected": "2 items still need a person. Tap who had each one to see the splits.",
+     "app": "2 items still need a person. Tap who had each one to see the splits.",
+     "ok": true
+    },
+    {
+     "what": "message equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "icon equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "strip height as BU-07 (a sentence one line longer may differ)",
+     "expected": 128,
+     "app": 128,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-16",
+   "vp": "1280x800",
+   "state": "card message in the form of BE-09",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "message",
+     "expected": "Add each item and tap who had it to see the splits.",
+     "app": "Add each item and tap who had it to see the splits.",
+     "ok": true
+    },
+    {
+     "what": "div.r-total equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "div.r-empty equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "div.r-empty svg.ic equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "div.r-empty p equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "card height as BE-09",
+     "expected": 161,
+     "app": 161,
+     "ok": true
+    },
+    {
+     "what": "no lines, splits or Copy summary",
+     "expected": [
+      0,
+      0,
+      0
+     ],
+     "app": [
+      0,
+      0,
+      0
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-17",
+   "vp": "1280x800",
+   "state": "card message in the form of BE-09",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "message",
+     "expected": "Give every item a price to see the splits.",
+     "app": "Give every item a price to see the splits.",
+     "ok": true
+    },
+    {
+     "what": "div.r-total equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "div.r-empty equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "div.r-empty svg.ic equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "div.r-empty p equal to the piece (property list of Equal to the golden)",
+     "expected": {},
+     "app": {},
+     "ok": true
+    },
+    {
+     "what": "card height as BE-09",
+     "expected": 161,
+     "app": 161,
+     "ok": true
+    },
+    {
+     "what": "no lines, splits or Copy summary",
+     "expected": [
+      0,
+      0,
+      0
+     ],
+     "app": [
+      0,
+      0,
+      0
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R32 ring",
+   "vp": "390x844",
+   "state": "K1 (bill-items), Tab from the top, the ring at each stop against the golden's",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "stops",
+     "expected": [
+      "button#newBill.btn.btn-ghost New bill",
+      "button#peopleBtn.sec-btn PeopleAisyah, Ben, Chen",
+      "button#chargesBtn.sec-btn ChargesService 10%, SST 6%",
+      "input#modeItem ",
+      "button#addItem.btn.btn-ghost Add item",
+      "input Item 1 name",
+      "input Nasi lemak ayam price in RM",
+      "button.icon-btn Remove Nasi lemak ayam",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 2 name",
+      "input Char kuey teow price in RM",
+      "button.icon-btn Remove Char kuey teow",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 3 name",
+      "input Mee goreng mamak price in RM",
+      "button.icon-btn Remove Mee goreng mamak",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 4 name",
+      "input Satay, 10 sticks price in RM",
+      "button.icon-btn Remove Satay, 10 sticks",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "button#splitsBtn.btn.btn-ghost Splits",
+      "button#stripCopy.btn.btn-primary Copy summary"
+     ],
+     "app": [
+      "button#newBill.btn.btn-ghost New bill",
+      "button#peopleBtn.sec-btn PeopleAisyah, Ben, Chen",
+      "button#chargesBtn.sec-btn ChargesService 10%, SST 6%",
+      "input#modeItem ",
+      "button#addItem.btn.btn-ghost Add item",
+      "input Item 1 name",
+      "input Nasi lemak ayam price in RM",
+      "button.icon-btn Remove Nasi lemak ayam",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 2 name",
+      "input Char kuey teow price in RM",
+      "button.icon-btn Remove Char kuey teow",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 3 name",
+      "input Mee goreng mamak price in RM",
+      "button.icon-btn Remove Mee goreng mamak",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 4 name",
+      "input Satay, 10 sticks price in RM",
+      "button.icon-btn Remove Satay, 10 sticks",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "button#splitsBtn.btn.btn-ghost Splits",
+      "button#stripCopy.btn.btn-primary Copy summary"
+     ],
+     "ok": true
+    },
+    {
+     "what": "ring at every stop equal to the golden's",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "every stop matches :focus-visible",
+     "expected": true,
+     "app": true,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R32 ring",
+   "vp": "1280x800",
+   "state": "K1 (bill-items), Tab from the top, the ring at each stop against the golden's",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "stops",
+     "expected": [
+      "button#newBill.btn.btn-ghost New bill",
+      "button#spareBtn.chip-btn Spare sen: Top of the list. Change",
+      "button#copyBtn.btn.btn-primary.btn-block.r-copy Copy summary",
+      "button#addPerson.btn.btn-ghost Add person",
+      "input Person 1 name",
+      "button.icon-btn Remove Aisyah",
+      "input Person 2 name",
+      "button.icon-btn Remove Ben",
+      "input Person 3 name",
+      "button.icon-btn Remove Chen",
+      "input#svc ",
+      "input#sst ",
+      "input#modeItem ",
+      "button#addItem.btn.btn-ghost Add item",
+      "input Item 1 name",
+      "input Nasi lemak ayam price in RM",
+      "button.icon-btn Remove Nasi lemak ayam",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 2 name",
+      "input Char kuey teow price in RM",
+      "button.icon-btn Remove Char kuey teow",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 3 name",
+      "input Mee goreng mamak price in RM",
+      "button.icon-btn Remove Mee goreng mamak",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 4 name",
+      "input Satay, 10 sticks price in RM",
+      "button.icon-btn Remove Satay, 10 sticks",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen"
+     ],
+     "app": [
+      "button#newBill.btn.btn-ghost New bill",
+      "button#spareBtn.chip-btn Spare sen: Top of the list. Change",
+      "button#copyBtn.btn.btn-primary.btn-block.r-copy Copy summary",
+      "button#addPerson.btn.btn-ghost Add person",
+      "input Person 1 name",
+      "button.icon-btn Remove Aisyah",
+      "input Person 2 name",
+      "button.icon-btn Remove Ben",
+      "input Person 3 name",
+      "button.icon-btn Remove Chen",
+      "input#svc ",
+      "input#sst ",
+      "input#modeItem ",
+      "button#addItem.btn.btn-ghost Add item",
+      "input Item 1 name",
+      "input Nasi lemak ayam price in RM",
+      "button.icon-btn Remove Nasi lemak ayam",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 2 name",
+      "input Char kuey teow price in RM",
+      "button.icon-btn Remove Char kuey teow",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 3 name",
+      "input Mee goreng mamak price in RM",
+      "button.icon-btn Remove Mee goreng mamak",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 4 name",
+      "input Satay, 10 sticks price in RM",
+      "button.icon-btn Remove Satay, 10 sticks",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen"
+     ],
+     "ok": true
+    },
+    {
+     "what": "ring at every stop equal to the golden's",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "every stop matches :focus-visible",
+     "expected": true,
+     "app": true,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R32 ring",
+   "vp": "390x844",
+   "state": "KO (bill-items-open), Tab from the top, the ring at each stop against the golden's",
+   "verdict": "FAIL",
+   "checks": [
+    {
+     "what": "stops",
+     "expected": [
+      "button#newBill.btn.btn-ghost New bill",
+      "button#peopleBtn.sec-btn PeopleAisyah, Ben, Chen",
+      "button#addPerson.btn.btn-ghost Add person",
+      "input Person 1 name",
+      "button.icon-btn Remove Aisyah",
+      "input Person 2 name",
+      "button.icon-btn Remove Ben",
+      "input Person 3 name",
+      "button.icon-btn Remove Chen",
+      "button#chargesBtn.sec-btn ChargesService 10%, SST 6%",
+      "input#svc ",
+      "input#sst ",
+      "input#modeItem ",
+      "button#addItem.btn.btn-ghost Add item",
+      "input Item 1 name",
+      "input Nasi lemak ayam price in RM",
+      "button.icon-btn Remove Nasi lemak ayam",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 2 name",
+      "input Char kuey teow price in RM",
+      "button.icon-btn Remove Char kuey teow",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 3 name",
+      "input Mee goreng mamak price in RM",
+      "button.icon-btn Remove Mee goreng mamak",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 4 name",
+      "input Satay, 10 sticks price in RM",
+      "button.icon-btn Remove Satay, 10 sticks",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "button#splitsBtn.btn.btn-ghost Splits",
+      "button#stripCopy.btn.btn-primary Copy summary"
+     ],
+     "app": [
+      "input#svc ",
+      "input#sst ",
+      "input#modeItem ",
+      "button#addItem.btn.btn-ghost Add item",
+      "input Item 1 name",
+      "input Nasi lemak ayam price in RM",
+      "button.icon-btn Remove Nasi lemak ayam",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 2 name",
+      "input Char kuey teow price in RM",
+      "button.icon-btn Remove Char kuey teow",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 3 name",
+      "input Mee goreng mamak price in RM",
+      "button.icon-btn Remove Mee goreng mamak",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 4 name",
+      "input Satay, 10 sticks price in RM",
+      "button.icon-btn Remove Satay, 10 sticks",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "button#splitsBtn.btn.btn-ghost Splits",
+      "button#stripCopy.btn.btn-primary Copy summary"
+     ],
+     "ok": false
+    },
+    {
+     "what": "ring at every stop equal to the golden's",
+     "expected": [],
+     "app": [
+      [
+       "input#svc ",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input#svc ",
+       "wrap",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "input#sst ",
+       "self",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input#sst ",
+       "wrap",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "input#sst ",
+       "after",
+       "none | rgb(232, 235, 242) | none | 2px -8px",
+       null
+      ],
+      [
+       "input#modeItem ",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input#modeItem ",
+       "wrap",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "button#addItem.btn.btn-ghost Add item",
+       "self",
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "button#addItem.btn.btn-ghost Add item",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input Item 1 name",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) -3px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       },
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "button.icon-btn Remove Nasi lemak ayam",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) -3px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       }
+      ],
+      [
+       "button.icon-btn Remove Nasi lemak ayam",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "button.tap Aisyah",
+       "self",
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(124, 133, 247)"
+       }
+      ],
+      [
+       "button.tap Aisyah",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "button.tap Ben",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) -3px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "button.tap Ben",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "button.tap Chen",
+       "self",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "button.tap Chen",
+       "after",
+       "none | rgb(232, 235, 242) | none | 2px -8px",
+       null
+      ],
+      [
+       "button.icon-btn Remove Char kuey teow",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       }
+      ],
+      [
+       "button.icon-btn Remove Char kuey teow",
+       "wrap",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "button.tap Ben",
+       "self",
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(124, 133, 247)"
+       }
+      ],
+      [
+       "button.tap Ben",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "button.tap Chen",
+       "self",
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "button.tap Chen",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input Item 3 name",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       },
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input Item 3 name",
+       "wrap",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "input Mee goreng mamak price in RM",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(124, 133, 247)"
+       },
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input Mee goreng mamak price in RM",
+       "wrap",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "button.icon-btn Remove Mee goreng mamak",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       }
+      ],
+      [
+       "button.tap Ben",
+       "self",
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "button.tap Ben",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "button.tap Chen",
+       "self",
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(124, 133, 247)"
+       }
+      ],
+      [
+       "button.tap Chen",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input Item 4 name",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       },
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input Item 4 name",
+       "wrap",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "input Satay, 10 sticks price in RM",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "input Satay, 10 sticks price in RM",
+       "wrap",
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "button.icon-btn Remove Satay, 10 sticks",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(124, 133, 247)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       }
+      ],
+      [
+       "button.tap Aisyah",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(124, 133, 247)"
+       }
+      ],
+      [
+       "button.tap Ben",
+       "self",
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       }
+      ],
+      [
+       "button.tap Ben",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "button.tap Chen",
+       "self",
+       {
+        "outline": "none 0px rgb(232, 235, 242) 2px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(124, 133, 247)"
+       }
+      ],
+      [
+       "button.tap Chen",
+       "wrap",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "none 3px rgb(232, 235, 242) 0px",
+        "shadow": "none",
+        "border": "rgb(232, 235, 242)"
+       }
+      ],
+      [
+       "button#splitsBtn.btn.btn-ghost Splits",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(167, 175, 191)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(122, 132, 160)"
+       }
+      ],
+      [
+       "button#stripCopy.btn.btn-primary Copy summary",
+       "self",
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgb(110, 120, 145)"
+       },
+       {
+        "outline": "solid 2px rgb(163, 170, 255) 2px",
+        "shadow": "none",
+        "border": "rgba(0, 0, 0, 0)"
+       }
+      ]
+     ],
+     "ok": false
+    },
+    {
+     "what": "every stop matches :focus-visible",
+     "expected": true,
+     "app": true,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "KO-08",
+   "vp": "390x844",
+   "state": "bill-items-open, every control while focused by Tab",
+   "verdict": "FAIL",
+   "checks": [
+    {
+     "what": "controls reached in the working",
+     "expected": 37,
+     "app": 28,
+     "ok": false
+    },
+    {
+     "what": "none under the strip while focused",
+     "expected": [],
+     "app": [],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R32 ring",
+   "vp": "390x844",
+   "state": "BE (bill-empty), Tab from the top, the ring at each stop against the golden's",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "stops",
+     "expected": [
+      "button#newBill.btn.btn-ghost New bill",
+      "button#peopleBtn.sec-btn PeoplePerson 1, Person 2",
+      "button#addPerson.btn.btn-ghost Add person",
+      "input Person 1 name",
+      "input Person 2 name",
+      "button#chargesBtn.sec-btn ChargesService 10%, SST 6%",
+      "input#modeEven ",
+      "input#evenSub Subtotal in RM",
+      "button#splitsBtn.btn.btn-ghost Splits"
+     ],
+     "app": [
+      "button#newBill.btn.btn-ghost New bill",
+      "button#peopleBtn.sec-btn PeoplePerson 1, Person 2",
+      "button#addPerson.btn.btn-ghost Add person",
+      "input Person 1 name",
+      "input Person 2 name",
+      "button#chargesBtn.sec-btn ChargesService 10%, SST 6%",
+      "input#modeEven ",
+      "input#evenSub Subtotal in RM",
+      "button#splitsBtn.btn.btn-ghost Splits"
+     ],
+     "ok": true
+    },
+    {
+     "what": "ring at every stop equal to the golden's",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "every stop matches :focus-visible",
+     "expected": true,
+     "app": true,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R32 ring",
+   "vp": "390x844",
+   "state": "RE (rate-error), Tab from the top, the ring at each stop against the golden's",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "stops",
+     "expected": [
+      "button#newBill.btn.btn-ghost New bill",
+      "button#peopleBtn.sec-btn PeopleAisyah, Ben, Chen",
+      "button#chargesBtn.sec-btn.is-bad ChargesCheck service charge",
+      "input#svc ",
+      "input#sst ",
+      "input#modeItem ",
+      "button#addItem.btn.btn-ghost Add item",
+      "input Item 1 name",
+      "input Nasi lemak ayam price in RM",
+      "button.icon-btn Remove Nasi lemak ayam",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 2 name",
+      "input Char kuey teow price in RM",
+      "button.icon-btn Remove Char kuey teow",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 3 name",
+      "input Mee goreng mamak price in RM",
+      "button.icon-btn Remove Mee goreng mamak",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 4 name",
+      "input Satay, 10 sticks price in RM",
+      "button.icon-btn Remove Satay, 10 sticks",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "button#splitsBtn.btn.btn-ghost Splits"
+     ],
+     "app": [
+      "button#newBill.btn.btn-ghost New bill",
+      "button#peopleBtn.sec-btn PeopleAisyah, Ben, Chen",
+      "button#chargesBtn.sec-btn.is-bad ChargesCheck service charge",
+      "input#svc ",
+      "input#sst ",
+      "input#modeItem ",
+      "button#addItem.btn.btn-ghost Add item",
+      "input Item 1 name",
+      "input Nasi lemak ayam price in RM",
+      "button.icon-btn Remove Nasi lemak ayam",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 2 name",
+      "input Char kuey teow price in RM",
+      "button.icon-btn Remove Char kuey teow",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 3 name",
+      "input Mee goreng mamak price in RM",
+      "button.icon-btn Remove Mee goreng mamak",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "input Item 4 name",
+      "input Satay, 10 sticks price in RM",
+      "button.icon-btn Remove Satay, 10 sticks",
+      "button.tap Aisyah",
+      "button.tap Ben",
+      "button.tap Chen",
+      "button#splitsBtn.btn.btn-ghost Splits"
+     ],
+     "ok": true
+    },
+    {
+     "what": "ring at every stop equal to the golden's",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "every stop matches :focus-visible",
+     "expected": true,
+     "app": true,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "ST-15",
+   "vp": "390x844",
+   "state": "RE with #svc focused by Tab",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "#svc reached by Tab",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "red edge stays on the wrapper",
+     "expected": "rgb(255, 138, 143)",
+     "app": "rgb(255, 138, 143)",
+     "ok": true
+    },
+    {
+     "what": "ring added on the wrapper (outline 2 px --focus, 2 px offset)",
+     "expected": "solid 2px rgb(163, 170, 255) 2px",
+     "app": "solid 2px rgb(163, 170, 255) 2px",
+     "ok": true
+    },
+    {
+     "what": "wrapper equal to the golden's focused wrapper",
+     "expected": {
+      "outline": "solid 2px rgb(163, 170, 255) 2px",
+      "shadow": "rgb(255, 138, 143) 0px 0px 0px 1px inset",
+      "border": "rgb(255, 138, 143)"
+     },
+     "app": {
+      "outline": "solid 2px rgb(163, 170, 255) 2px",
+      "shadow": "rgb(255, 138, 143) 0px 0px 0px 1px inset",
+      "border": "rgb(255, 138, 143)"
+     },
+     "ok": true
+    },
+    {
+     "what": "wrapper inset kept (box-shadow)",
+     "expected": true,
+     "app": true,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R32 ring",
+   "vp": "390x844",
+   "state": "BR (bill-unreadable), Tab from the top, the ring at each stop against the golden's",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "stops",
+     "expected": [
+      "button#dismissNote.icon-btn Dismiss note",
+      "button#newBill.btn.btn-ghost New bill",
+      "button#peopleBtn.sec-btn PeoplePerson 1, Person 2",
+      "button#addPerson.btn.btn-ghost Add person",
+      "input Person 1 name",
+      "input Person 2 name",
+      "button#chargesBtn.sec-btn ChargesService 10%, SST 6%",
+      "input#modeEven ",
+      "input#evenSub Subtotal in RM",
+      "button#splitsBtn.btn.btn-ghost Splits"
+     ],
+     "app": [
+      "button#dismissNote.icon-btn Dismiss note",
+      "button#newBill.btn.btn-ghost New bill",
+      "button#peopleBtn.sec-btn PeoplePerson 1, Person 2",
+      "button#addPerson.btn.btn-ghost Add person",
+      "input Person 1 name",
+      "input Person 2 name",
+      "button#chargesBtn.sec-btn ChargesService 10%, SST 6%",
+      "input#modeEven ",
+      "input#evenSub Subtotal in RM",
+      "button#splitsBtn.btn.btn-ghost Splits"
+     ],
+     "ok": true
+    },
+    {
+     "what": "ring at every stop equal to the golden's",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "every stop matches :focus-visible",
+     "expected": true,
+     "app": true,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "P2-09",
+   "vp": "390x844",
+   "state": "K1, Splits opened by a mouse click",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "the sheet has focus",
+     "expected": "div.glass.dense.sheet",
+     "app": "div.glass.dense.sheet",
+     "ok": true
+    },
+    {
+     "what": "no ring (not :focus-visible)",
+     "expected": false,
+     "app": false,
+     "ok": true
+    },
+    {
+     "what": "outline and shadow equal to the unfocused golden sheet",
+     "expected": {
+      "outline-style": "none",
+      "outline-width": "3px",
+      "box-shadow": "rgba(232, 235, 255, 0.18) 0px 1px 0px 0px inset, rgba(163, 170, 255, 0.06) 0px 0px 0px 1px inset, rgba(4, 6, 10, 0.9) 0px 40px 80px -32px, rgba(4, 6, 10, 0.7) 0px 14px 28px -14px"
+     },
+     "app": {
+      "outline-style": "none",
+      "outline-width": "3px",
+      "box-shadow": "rgba(232, 235, 255, 0.18) 0px 1px 0px 0px inset, rgba(163, 170, 255, 0.06) 0px 0px 0px 1px inset, rgba(4, 6, 10, 0.9) 0px 40px 80px -32px, rgba(4, 6, 10, 0.7) 0px 14px 28px -14px"
+     },
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "P2-09",
+   "vp": "360x780",
+   "state": "K1, Splits opened by a mouse click",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "the sheet has focus",
+     "expected": "div.glass.dense.sheet",
+     "app": "div.glass.dense.sheet",
+     "ok": true
+    },
+    {
+     "what": "no ring (not :focus-visible)",
+     "expected": false,
+     "app": false,
+     "ok": true
+    },
+    {
+     "what": "outline and shadow equal to the unfocused golden sheet",
+     "expected": {
+      "outline-style": "none",
+      "outline-width": "3px",
+      "box-shadow": "rgba(232, 235, 255, 0.18) 0px 1px 0px 0px inset, rgba(163, 170, 255, 0.06) 0px 0px 0px 1px inset, rgba(4, 6, 10, 0.9) 0px 40px 80px -32px, rgba(4, 6, 10, 0.7) 0px 14px 28px -14px"
+     },
+     "app": {
+      "outline-style": "none",
+      "outline-width": "3px",
+      "box-shadow": "rgba(232, 235, 255, 0.18) 0px 1px 0px 0px inset, rgba(163, 170, 255, 0.06) 0px 0px 0px 1px inset, rgba(4, 6, 10, 0.9) 0px 40px 80px -32px, rgba(4, 6, 10, 0.7) 0px 14px 28px -14px"
+     },
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "M1-08",
+   "vp": "390x844",
+   "state": "K1, New bill opened by a mouse click",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "Cancel has focus",
+     "expected": [
+      "button.btn.btn-ghost.btn-lg",
+      "Cancel"
+     ],
+     "app": [
+      "button.btn.btn-ghost.btn-lg",
+      "Cancel"
+     ],
+     "ok": true
+    },
+    {
+     "what": "no ring (not :focus-visible)",
+     "expected": false,
+     "app": false,
+     "ok": true
+    },
+    {
+     "what": "Cancel equal to the unfocused golden Cancel",
+     "expected": {
+      "color": "rgb(232, 235, 242)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "font-size": "16px",
+      "font-weight": "600",
+      "line-height": "20px",
+      "box-shadow": "none",
+      "border-top-width": "1px",
+      "border-top-style": "solid",
+      "border-top-color": "rgb(110, 120, 145)",
+      "border-right-width": "1px",
+      "border-right-style": "solid",
+      "border-right-color": "rgb(110, 120, 145)",
+      "border-bottom-width": "1px",
+      "border-bottom-style": "solid",
+      "border-bottom-color": "rgb(110, 120, 145)",
+      "border-left-width": "1px",
+      "border-left-style": "solid",
+      "border-left-color": "rgb(110, 120, 145)",
+      "padding-top": "0px",
+      "padding-right": "20px",
+      "padding-bottom": "0px",
+      "padding-left": "20px",
+      "border-top-left-radius": "10px",
+      "border-top-right-radius": "10px",
+      "border-bottom-right-radius": "10px",
+      "border-bottom-left-radius": "10px",
+      "outline-style": "none"
+     },
+     "app": {
+      "color": "rgb(232, 235, 242)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "font-size": "16px",
+      "font-weight": "600",
+      "line-height": "20px",
+      "box-shadow": "none",
+      "border-top-width": "1px",
+      "border-top-style": "solid",
+      "border-top-color": "rgb(110, 120, 145)",
+      "border-right-width": "1px",
+      "border-right-style": "solid",
+      "border-right-color": "rgb(110, 120, 145)",
+      "border-bottom-width": "1px",
+      "border-bottom-style": "solid",
+      "border-bottom-color": "rgb(110, 120, 145)",
+      "border-left-width": "1px",
+      "border-left-style": "solid",
+      "border-left-color": "rgb(110, 120, 145)",
+      "padding-top": "0px",
+      "padding-right": "20px",
+      "padding-bottom": "0px",
+      "padding-left": "20px",
+      "border-top-left-radius": "10px",
+      "border-top-right-radius": "10px",
+      "border-bottom-right-radius": "10px",
+      "border-bottom-left-radius": "10px",
+      "outline-style": "none"
+     },
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "M1-08",
+   "vp": "360x780",
+   "state": "K1, New bill opened by a mouse click",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "Cancel has focus",
+     "expected": [
+      "button.btn.btn-ghost.btn-lg",
+      "Cancel"
+     ],
+     "app": [
+      "button.btn.btn-ghost.btn-lg",
+      "Cancel"
+     ],
+     "ok": true
+    },
+    {
+     "what": "no ring (not :focus-visible)",
+     "expected": false,
+     "app": false,
+     "ok": true
+    },
+    {
+     "what": "Cancel equal to the unfocused golden Cancel",
+     "expected": {
+      "color": "rgb(232, 235, 242)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "font-size": "16px",
+      "font-weight": "600",
+      "line-height": "20px",
+      "box-shadow": "none",
+      "border-top-width": "1px",
+      "border-top-style": "solid",
+      "border-top-color": "rgb(110, 120, 145)",
+      "border-right-width": "1px",
+      "border-right-style": "solid",
+      "border-right-color": "rgb(110, 120, 145)",
+      "border-bottom-width": "1px",
+      "border-bottom-style": "solid",
+      "border-bottom-color": "rgb(110, 120, 145)",
+      "border-left-width": "1px",
+      "border-left-style": "solid",
+      "border-left-color": "rgb(110, 120, 145)",
+      "padding-top": "0px",
+      "padding-right": "20px",
+      "padding-bottom": "0px",
+      "padding-left": "20px",
+      "border-top-left-radius": "10px",
+      "border-top-right-radius": "10px",
+      "border-bottom-right-radius": "10px",
+      "border-bottom-left-radius": "10px",
+      "outline-style": "none"
+     },
+     "app": {
+      "color": "rgb(232, 235, 242)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "font-size": "16px",
+      "font-weight": "600",
+      "line-height": "20px",
+      "box-shadow": "none",
+      "border-top-width": "1px",
+      "border-top-style": "solid",
+      "border-top-color": "rgb(110, 120, 145)",
+      "border-right-width": "1px",
+      "border-right-style": "solid",
+      "border-right-color": "rgb(110, 120, 145)",
+      "border-bottom-width": "1px",
+      "border-bottom-style": "solid",
+      "border-bottom-color": "rgb(110, 120, 145)",
+      "border-left-width": "1px",
+      "border-left-style": "solid",
+      "border-left-color": "rgb(110, 120, 145)",
+      "padding-top": "0px",
+      "padding-right": "20px",
+      "padding-bottom": "0px",
+      "padding-left": "20px",
+      "border-top-left-radius": "10px",
+      "border-top-right-radius": "10px",
+      "border-bottom-right-radius": "10px",
+      "border-bottom-left-radius": "10px",
+      "outline-style": "none"
+     },
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "M1-08",
+   "vp": "1280x800",
+   "state": "K1, New bill opened by a mouse click",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "Cancel has focus",
+     "expected": [
+      "button.btn.btn-ghost.btn-lg",
+      "Cancel"
+     ],
+     "app": [
+      "button.btn.btn-ghost.btn-lg",
+      "Cancel"
+     ],
+     "ok": true
+    },
+    {
+     "what": "no ring (not :focus-visible)",
+     "expected": false,
+     "app": false,
+     "ok": true
+    },
+    {
+     "what": "Cancel equal to the unfocused golden Cancel",
+     "expected": {
+      "color": "rgb(232, 235, 242)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "font-size": "16px",
+      "font-weight": "600",
+      "line-height": "20px",
+      "box-shadow": "none",
+      "border-top-width": "1px",
+      "border-top-style": "solid",
+      "border-top-color": "rgb(110, 120, 145)",
+      "border-right-width": "1px",
+      "border-right-style": "solid",
+      "border-right-color": "rgb(110, 120, 145)",
+      "border-bottom-width": "1px",
+      "border-bottom-style": "solid",
+      "border-bottom-color": "rgb(110, 120, 145)",
+      "border-left-width": "1px",
+      "border-left-style": "solid",
+      "border-left-color": "rgb(110, 120, 145)",
+      "padding-top": "0px",
+      "padding-right": "20px",
+      "padding-bottom": "0px",
+      "padding-left": "20px",
+      "border-top-left-radius": "10px",
+      "border-top-right-radius": "10px",
+      "border-bottom-right-radius": "10px",
+      "border-bottom-left-radius": "10px",
+      "outline-style": "none"
+     },
+     "app": {
+      "color": "rgb(232, 235, 242)",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "font-size": "16px",
+      "font-weight": "600",
+      "line-height": "20px",
+      "box-shadow": "none",
+      "border-top-width": "1px",
+      "border-top-style": "solid",
+      "border-top-color": "rgb(110, 120, 145)",
+      "border-right-width": "1px",
+      "border-right-style": "solid",
+      "border-right-color": "rgb(110, 120, 145)",
+      "border-bottom-width": "1px",
+      "border-bottom-style": "solid",
+      "border-bottom-color": "rgb(110, 120, 145)",
+      "border-left-width": "1px",
+      "border-left-style": "solid",
+      "border-left-color": "rgb(110, 120, 145)",
+      "padding-top": "0px",
+      "padding-right": "20px",
+      "padding-bottom": "0px",
+      "padding-left": "20px",
+      "border-top-left-radius": "10px",
+      "border-top-right-radius": "10px",
+      "border-bottom-right-radius": "10px",
+      "border-bottom-left-radius": "10px",
+      "outline-style": "none"
+     },
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "BT-07",
+   "vp": "390x844",
+   "state": "T12, the Splits sheet open",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "ul.r-splits.many in the sheet",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "one column",
+     "expected": 1,
+     "app": 1,
+     "ok": true
+    },
+    {
+     "what": "twelve rows, one x",
+     "expected": [
+      12,
+      1
+     ],
+     "app": [
+      12,
+      1
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R36 motion",
+   "vp": "390x844",
+   "state": "reduced motion reduce",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "no animation at load or after any gesture",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "every listed transition 0s",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "transitions equal to the golden's",
+     "expected": {
+      ".btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".chip-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".tap": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".icon-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".mode-sw label": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".sec-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      }
+     },
+     "app": {
+      ".btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".chip-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".tap": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".icon-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".mode-sw label": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".sec-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      }
+     },
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R36 motion",
+   "vp": "1280x800",
+   "state": "reduced motion reduce",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "no animation at load or after any gesture",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "every listed transition 0s",
+     "expected": true,
+     "app": true,
+     "ok": true
+    },
+    {
+     "what": "transitions equal to the golden's",
+     "expected": {
+      ".btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".chip-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".tap": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".icon-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".mode-sw label": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".sec-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      }
+     },
+     "app": {
+      ".btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".chip-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".tap": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".icon-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".mode-sw label": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      },
+      ".sec-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      }
+     },
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R36 motion",
+   "vp": "390x844",
+   "state": "reduced motion no-preference",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "nothing running 3 s after load",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "nothing running 1 s after a gesture",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "no infinite animation",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "transitions equal to the golden's",
+     "expected": {
+      ".btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".chip-btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".tap": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".icon-btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".mode-sw label": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".sec-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      }
+     },
+     "app": {
+      ".btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".chip-btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".tap": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".icon-btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".mode-sw label": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".sec-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      }
+     },
+     "ok": true
+    }
+   ]
+  },
+  {
+   "row": "R36 motion",
+   "vp": "1280x800",
+   "state": "reduced motion no-preference",
+   "verdict": "PASS",
+   "checks": [
+    {
+     "what": "nothing running 3 s after load",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "nothing running 1 s after a gesture",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "no infinite animation",
+     "expected": [],
+     "app": [],
+     "ok": true
+    },
+    {
+     "what": "transitions equal to the golden's",
+     "expected": {
+      ".btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".chip-btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".tap": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".icon-btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".mode-sw label": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".sec-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      }
+     },
+     "app": {
+      ".btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".chip-btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".tap": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".icon-btn": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".mode-sw label": {
+       "transition-duration": "0.12s, 0.12s, 0.12s",
+       "transition-property": "background-color, border-color, color"
+      },
+      ".sec-btn": {
+       "transition-duration": "0s",
+       "transition-property": "all"
+      }
+     },
+     "ok": true
+    }
+   ]
+  }
+ ]
+}

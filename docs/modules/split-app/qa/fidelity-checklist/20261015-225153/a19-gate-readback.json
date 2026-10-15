@@ -1,0 +1,864 @@
+{
+ "pairs": [
+  {
+   "folder": "bill-empty-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": null,
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-empty.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-empty-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    780
+   ],
+   "candidate_size": [
+    360,
+    780
+   ],
+   "init": null,
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-empty.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-empty-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    844
+   ],
+   "candidate_size": [
+    390,
+    844
+   ],
+   "init": null,
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-empty.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-even-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-s2.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-even.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-even-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    780
+   ],
+   "candidate_size": [
+    360,
+    780
+   ],
+   "init": "./tests/browser/fidelity/seed-s2.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-even.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-even-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    844
+   ],
+   "candidate_size": [
+    390,
+    844
+   ],
+   "init": "./tests/browser/fidelity/seed-s2.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-even.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-items-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-items.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-items-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    950
+   ],
+   "candidate_size": [
+    360,
+    950
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-items.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-items-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    950
+   ],
+   "candidate_size": [
+    390,
+    950
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-items.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-items-open-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    1260
+   ],
+   "candidate_size": [
+    360,
+    1260
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-sections.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-items-open.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-items-open-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    1260
+   ],
+   "candidate_size": [
+    390,
+    1260
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-sections.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-items-open.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-large-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-w1.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-large.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-large-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    1040
+   ],
+   "candidate_size": [
+    360,
+    1040
+   ],
+   "init": "./tests/browser/fidelity/seed-w1.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-large.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-large-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    1073
+   ],
+   "candidate_size": [
+    390,
+    1073
+   ],
+   "init": "./tests/browser/fidelity/seed-w1.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-large.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-twelve-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-t12.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-twelve.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-twelve-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    780
+   ],
+   "candidate_size": [
+    360,
+    780
+   ],
+   "init": "./tests/browser/fidelity/seed-t12.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-twelve.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-twelve-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    844
+   ],
+   "candidate_size": [
+    390,
+    844
+   ],
+   "init": "./tests/browser/fidelity/seed-t12.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-twelve.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-unassigned-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-s5.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-unassigned.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-unassigned-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    967
+   ],
+   "candidate_size": [
+    360,
+    967
+   ],
+   "init": "./tests/browser/fidelity/seed-s5.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-unassigned.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-unassigned-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    967
+   ],
+   "candidate_size": [
+    390,
+    967
+   ],
+   "init": "./tests/browser/fidelity/seed-s5.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-unassigned.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-unreadable-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-b1.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-unreadable.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-unreadable-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    780
+   ],
+   "candidate_size": [
+    360,
+    780
+   ],
+   "init": "./tests/browser/fidelity/seed-b1.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-unreadable.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "bill-unreadable-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    844
+   ],
+   "candidate_size": [
+    390,
+    844
+   ],
+   "init": "./tests/browser/fidelity/seed-b1.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-unreadable.html",
+   "png_byte_identical": false,
+   "pixels_differing_any_level": 19,
+   "max_channel_delta": 1,
+   "diff_bbox": [
+    22,
+    243,
+    367,
+    244
+   ]
+  },
+  {
+   "folder": "control-noseed-390x844",
+   "mismatch_pixels": 184588,
+   "dimensions_match": false,
+   "golden_size": [
+    390,
+    950
+   ],
+   "candidate_size": [
+    390,
+    844
+   ],
+   "init": null,
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/bill-items.html",
+   "png_byte_identical": false
+  },
+  {
+   "folder": "control-self-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    950
+   ],
+   "candidate_size": [
+    390,
+    950
+   ],
+   "init": null,
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/docs/design/bill-items.html",
+   "golden": "./docs/design/bill-items.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "new-bill-dialog-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-new-bill.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/new-bill-dialog.html",
+   "png_byte_identical": false,
+   "pixels_differing_any_level": 84,
+   "max_channel_delta": 2,
+   "diff_bbox": [
+    725,
+    416,
+    814,
+    463
+   ]
+  },
+  {
+   "folder": "new-bill-dialog-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    950
+   ],
+   "candidate_size": [
+    360,
+    950
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-new-bill.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/new-bill-dialog.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "new-bill-dialog-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    950
+   ],
+   "candidate_size": [
+    390,
+    950
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-new-bill.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/new-bill-dialog.html",
+   "png_byte_identical": false,
+   "pixels_differing_any_level": 77,
+   "max_channel_delta": 2,
+   "diff_bbox": [
+    41,
+    466,
+    348,
+    513
+   ]
+  },
+  {
+   "folder": "rate-error-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-re.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/rate-error.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "rate-error-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    1125
+   ],
+   "candidate_size": [
+    360,
+    1125
+   ],
+   "init": "./tests/browser/fidelity/seed-re.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/rate-error.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "rate-error-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    1125
+   ],
+   "candidate_size": [
+    390,
+    1125
+   ],
+   "init": "./tests/browser/fidelity/seed-re.js",
+   "after": null,
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/rate-error.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "spare-sen-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-spare.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/spare-sen.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "spare-sen-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    950
+   ],
+   "candidate_size": [
+    360,
+    950
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-spare.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/spare-sen.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "spare-sen-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    950
+   ],
+   "candidate_size": [
+    390,
+    950
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-spare.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/spare-sen.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "spare-sen-one-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-one.js",
+   "after": "./tests/browser/fidelity/open-spare.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/spare-sen-one.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "spare-sen-one-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    780
+   ],
+   "candidate_size": [
+    360,
+    780
+   ],
+   "init": "./tests/browser/fidelity/seed-one.js",
+   "after": "./tests/browser/fidelity/open-spare.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/spare-sen-one.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "spare-sen-one-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    844
+   ],
+   "candidate_size": [
+    390,
+    844
+   ],
+   "init": "./tests/browser/fidelity/seed-one.js",
+   "after": "./tests/browser/fidelity/open-spare.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/spare-sen-one.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "spare-sen-random-1280x800",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    1280,
+    800
+   ],
+   "candidate_size": [
+    1280,
+    800
+   ],
+   "init": "./tests/browser/fidelity/seed-rnd.js",
+   "after": "./tests/browser/fidelity/open-spare.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/spare-sen-random.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "spare-sen-random-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    780
+   ],
+   "candidate_size": [
+    360,
+    780
+   ],
+   "init": "./tests/browser/fidelity/seed-rnd.js",
+   "after": "./tests/browser/fidelity/open-spare.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/spare-sen-random.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "spare-sen-random-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    844
+   ],
+   "candidate_size": [
+    390,
+    844
+   ],
+   "init": "./tests/browser/fidelity/seed-rnd.js",
+   "after": "./tests/browser/fidelity/open-spare.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/spare-sen-random.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "splits-sheet-360x780",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    360,
+    950
+   ],
+   "candidate_size": [
+    360,
+    950
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-splits.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/splits-sheet.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  },
+  {
+   "folder": "splits-sheet-390x844",
+   "mismatch_pixels": 0,
+   "dimensions_match": true,
+   "golden_size": [
+    390,
+    950
+   ],
+   "candidate_size": [
+    390,
+    950
+   ],
+   "init": "./tests/browser/fidelity/seed-s1.js",
+   "after": "./tests/browser/fidelity/open-splits.js",
+   "candidate": "http://127.0.0.1:19553/",
+   "golden": "./docs/design/splits-sheet.html",
+   "png_byte_identical": true,
+   "pixels_differing_any_level": 0,
+   "max_channel_delta": 0
+  }
+ ],
+ "problems": [],
+ "pair_count": 40,
+ "byte_identical": 38,
+ "image_pairs": 42
+}
