@@ -949,6 +949,47 @@ def test_R10_an_error_survives_a_mode_switch(open_app):
     assert field_error(subtotal_field(page), "evenErr") == error_state(AMOUNT_MESSAGE, "evenErr", shown=True)
 
 
+def accessible_description(page, selector):
+    """The computed accessible description of the element at `selector`, as Chromium's accessibility tree gives it to a
+    screen reader (CDP Accessibility.getPartialAXTree), "" when it has none."""
+    cdp = page.context.new_cdp_session(page)
+    try:
+        cdp.send("DOM.enable")
+        cdp.send("Accessibility.enable")
+        root = cdp.send("DOM.getDocument", {"depth": 0})["root"]["nodeId"]
+        node = cdp.send("DOM.querySelector", {"nodeId": root, "selector": selector})["nodeId"]
+        found = cdp.send("Accessibility.getPartialAXTree", {"nodeId": node, "fetchRelatives": False})["nodes"][0]
+        return found.get("description", {}).get("value", "")
+    finally:
+        cdp.detach()
+
+
+# The seed, the field's accessible name and the text that makes it invalid, one row per page of the scenario (CG-P6).
+DESCRIBED_FIELDS = [(seeds.S1, "Char kuey teow price in RM", "13.505"), (seeds.S2, "Subtotal in RM", "0")]
+
+
+@pytest.mark.chromium_only(reason="Needs a CDP session (Accessibility.getPartialAXTree) to read the computed description, "
+                                  "which Playwright gives in Chromium only.")
+def test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported(open_app, evidence_folder):
+    # CG-P6, ruled by the owner (USER, 2026-10-13): built to the golden, the description is measured and reported to the
+    # owner. So the lines name what was read and the test asserts only that the four exist (QA-S5-1).
+    lines = []
+    for seed, name, bad in DESCRIBED_FIELDS:
+        page = open_app(seed=seed).page
+        selector, field = f'input[aria-label="{name}"]', page.get_by_role("textbox", name=name, exact=True)
+        for when in ("as loaded", f"after {bad!r} and Tab"):
+            if when != "as loaded":
+                support.replace_text(page, field, bad)
+                page.keyboard.press("Tab")
+            state = "error shown" if field.get_attribute("aria-invalid") == "true" else "error hidden"
+            lines.append(f"{name} | {state} | description {accessible_description(page, selector)!r} | {when} | "
+                         f"aria-describedby {field.get_attribute('aria-describedby')!r}")
+    record = evidence_folder / "accessible-description.txt"
+    record.write_text("".join(f"{line}\n" for line in lines), encoding="utf-8")
+    written = [line.split(" | ")[:2] for line in record.read_text(encoding="utf-8").splitlines()]
+    assert written == [[name, state] for _, name, _ in DESCRIBED_FIELDS for state in ("error hidden", "error shown")]
+
+
 # ---------------------------------------------------------------- Task 5: items (R7, R11 to R14, R10, R34)
 
 def item_name(page, number):
