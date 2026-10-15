@@ -88,9 +88,14 @@ READS_JS = """(el) => { const walker = document.createTreeWalker(el, NodeFilter.
   return parts.join(' ').replace(/\\s+/g, ' ').trim(); }"""
 
 
+# READS_JS on the element at a selector. Named, like every page script the live gate runs here, so its guard
+# (test_app.live_gate_problems) holds it on the read-only list and checks its text.
+READS_AT_JS = f"(selector) => {{ const el = document.querySelector(selector); return el ? ({READS_JS})(el) : null; }}"
+
+
 def reads(page, selector):
     """What the element at `selector` reads, or None when the page has no such element."""
-    return page.evaluate(f"(selector) => {{ const el = document.querySelector(selector); return el ? ({READS_JS})(el) : null; }}", selector)
+    return page.evaluate(READS_AT_JS, selector)
 
 
 def card_text(page):
@@ -208,10 +213,13 @@ def replace_text(page, locator, text):
         page.keyboard.press("Backspace")
 
 
+ACTIVE_LABEL_JS = ("document.activeElement.getAttribute('aria-label') || document.activeElement.id "
+                   "|| document.activeElement.textContent.trim()")  # named for the live gate's guard, as READS_AT_JS
+
+
 def active_label(page):
     """The aria-label (or id) of the focused element, to say where focus is."""
-    return page.evaluate("document.activeElement.getAttribute('aria-label') || document.activeElement.id "
-                         "|| document.activeElement.textContent.trim()")
+    return page.evaluate(ACTIVE_LABEL_JS)
 
 
 def shipped_files():

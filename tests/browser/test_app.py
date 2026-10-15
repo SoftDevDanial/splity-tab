@@ -5109,16 +5109,32 @@ def test_R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair(mon
 # scenario "The gate script makes a cold context except on its control path" says: what it expects, how it labels its
 # steps, that it uses real gestures and reads only, and that only its control path gets a stored bill.
 LIVE_SCRIPT = ROOT / "tests" / "browser" / "live_e2e.py"
+SUPPORT_SCRIPT = ROOT / "tests" / "browser" / "support.py"  # the helpers the gate reads and types through
 ACTION_WORDS = {"open", "replace", "click", "close", "type", "press", "tap", "reload", "no"}
 BANNED_KEYWORDS = ("bypass_csp", "permissions")  # the strict policy stays live and no permission is granted
 # No shortcut that is not a gesture, and no screenshot, which adds a stylesheet that WebKit's policy refuses (R59 (4)).
 BANNED_ATTRIBUTES = ("fill", "dispatch_event", "check", "set_checked", "select_option", "route", "add_init_script",
                      "launch_persistent" + "_context", "screenshot")
-# The read-only list. Every page.evaluate and wait_for_function argument of the script is one of these, and each only
-# reads. TWO_FRAMES_JS waits two animation frames and FOCUS_ON_NEW_BILL_JS is a condition, so neither changes anything.
-READS_ONLY = {"STAND_IN_JS", "TWO_FRAMES_JS", "OPEN_DIALOGS_JS", "PICKED_JS", "SECTIONS_JS", "ITEMS_JS", "FOCUS_ON_NEW_BILL_JS"}
+# The read-only list. Every page.evaluate and wait_for_function argument of the script and of the support.py helpers it
+# runs is one of these, and each only reads. TWO_FRAMES_JS waits two animation frames and FOCUS_ON_NEW_BILL_JS is a
+# condition, so neither changes anything. page_script_writes checks that each text still only reads.
+READS_ONLY = {"STAND_IN_JS", "TWO_FRAMES_JS", "OPEN_DIALOGS_JS", "PICKED_JS", "SECTIONS_JS", "ITEMS_JS", "FOCUS_ON_NEW_BILL_JS",
+              "COLD_BOOT_JS", "RECEIPT_JS", "READS_AT_JS", "ACTIVE_LABEL_JS"}
 READ_EXPRESSIONS = {"window.testClipboardText", "window.testClipboardWrites", "window.testCspViolations",
                     "Array.isArray(window.testCspViolations)", "localStorage.getItem('split.draft')"}
+# What a page script of the gate may call: reads of the page, of the stand-in's records and of the draft's text, the
+# methods that shape what was read, and the helpers the script declares itself (const name = (...) =>). The scan reads
+# the text, it does not parse it, so it catches a plain write (localStorage.clear(), an assignment, ++ or --) and not
+# one hidden on purpose.
+READ_CALLS = {"querySelector", "querySelectorAll", "getAttribute", "matches", "checkVisibility", "getPropertyValue",
+              "createTreeWalker", "nextNode", "getItem", "isArray", "call", "includes", "map", "filter", "slice", "concat",
+              "join", "push", "replace", "trim", "requestAnimationFrame", "Promise"}
+JS_STRING = re.compile(r"'(?:\\.|[^'\\])*'" + r'|"(?:\\.|[^"\\])*"')  # blanked first, so '--rows' is no step
+JS_CALL = re.compile(r"([A-Za-z_$][\w$]*)\s*\(")
+JS_NOT_CALLS = {"if", "for", "while", "switch", "catch", "return", "typeof", "function"}
+JS_HELPER = re.compile(r"(?:\bconst|,)\s*([A-Za-z_$][\w$]*)\s*=\s*\(")
+JS_WRITE = re.compile(r"(?<![=!<>])=(?![=>])|\+\+|--")
+JS_DECLARED = re.compile(r"(?:\bconst|,)\s*[A-Za-z_$][\w$]*\s*$")  # what comes before the = of a const declaration
 
 
 def gate_script(path=LIVE_SCRIPT):
@@ -5217,13 +5233,66 @@ def read_argument(call):
     return first.value if isinstance(first, ast.Constant) else ast.unparse(first) if first is not None else "no argument"
 
 
-def live_gate_problems(path):
+def string_value(node, strings):
+    """The text of a string expression: a literal, a name in `strings`, or an f-string of those. None for anything else."""
+    if isinstance(node, ast.Constant) and isinstance(node.value, str):
+        return node.value
+    if isinstance(node, ast.Name):
+        return strings.get(node.id)
+    if isinstance(node, ast.JoinedStr):
+        parts = [string_value(part.value if isinstance(part, ast.FormattedValue) else part, strings) for part in node.values]
+        return None if None in parts else "".join(parts)
+    return None
+
+
+def module_strings(tree):
+    """The module-level string constants of `tree` by name, so an evaluate argument such as COLD_BOOT_JS has a text."""
+    strings = {}
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            text = string_value(node.value, strings)
+            if text is not None:
+                strings[node.targets[0].id] = text
+    return strings
+
+
+def gate_helpers(tree, helper_tree):
+    """The functions of support.py the gate runs: those it calls as support.<name>, and those these call in turn."""
+    functions = {node.name: node for node in helper_tree.body if isinstance(node, ast.FunctionDef)}
+    names = [call.func.attr for call in ast.walk(tree) if isinstance(call, ast.Call)
+             and isinstance(call.func, ast.Attribute) and is_name(call.func.value, "support")]
+    found = {}
+    while names:
+        name = names.pop()
+        if name in functions and name not in found:
+            found[name] = functions[name]
+            names += [call.func.id for call in ast.walk(found[name]) if isinstance(call, ast.Call) and isinstance(call.func, ast.Name)]
+    return list(found.values())
+
+
+def page_script_writes(name, script):
+    """What makes the page script `script` (named `name`) more than a read, one line each, [] for a read."""
+    code = JS_STRING.sub("''", script)
+    own = set(JS_HELPER.findall(code))
+    found = [f"{name} calls {call}(), which is not a read" for call in dict.fromkeys(JS_CALL.findall(code))
+             if call not in READ_CALLS | JS_NOT_CALLS | own]
+    if any(write.group() != "=" or not JS_DECLARED.search(code[:write.start()]) for write in JS_WRITE.finditer(code)):
+        found.append(f"{name} assigns or steps a value")
+    return found
+
+
+def live_gate_problems(path, helpers=SUPPORT_SCRIPT):
     """What keeps the gate script at `path` from qa.md "Cold-boot live-e2e gate" (Rules, Control mode) and from R41's
-    capture, one line each, [] when nothing does. The real script and every planted copy go through it (task A20)."""
+    capture, one line each, [] when nothing does. The real script and every planted copy go through it (task A20). The
+    Rules on gestures and reads also cover the functions of `helpers` (support.py) that the gate runs (CR-S5-6)."""
     source, tree = gate_script(path)
-    problems = [f"{node.arg} is a keyword argument" for node in ast.walk(tree)
+    _, helper_tree = gate_script(helpers)
+    helper_strings = module_strings(helper_tree)
+    run = [(tree, module_strings(tree)), *((function, helper_strings) for function in gate_helpers(tree, helper_tree))]
+    nodes = [node for part, _ in run for node in ast.walk(part)]
+    problems = [f"{node.arg} is a keyword argument" for node in nodes
                 if isinstance(node, ast.keyword) and node.arg in BANNED_KEYWORDS]
-    used = {node.attr for node in ast.walk(tree) if isinstance(node, ast.Attribute)}
+    used = {node.attr for node in nodes if isinstance(node, ast.Attribute)}
     problems += [f".{name} is used" for name in BANNED_ATTRIBUTES if name in used]
     made = "new" + "_context("  # spelled in two parts so test_R39_only_the_rig_makes_browser_contexts does not flag this file
     contexts = rig_contexts(tree)
@@ -5232,8 +5301,14 @@ def live_gate_problems(path):
     problems += storage_state_problems(tree, contexts[0])
     problems += control_option_problems(tree)
     problems += screencast_problems(tree, contexts[0])
-    seen = [read_argument(call) for call in method_calls(tree, "evaluate") + method_calls(tree, "wait_for_function")]
+    reads = [(call, strings) for part, strings in run
+             for call in method_calls(part, "evaluate") + method_calls(part, "wait_for_function")]
+    seen = [read_argument(call) for call, _ in reads]
     problems += [f"{item} is not on the read-only list" for item in seen if item not in READS_ONLY | READ_EXPRESSIONS]
+    texts = dict.fromkeys((read_argument(call), string_value(call.args[0], strings) if call.args else None)
+                          for call, strings in reads)
+    for item, script in texts:
+        problems += [f"{item} has no text this test can read"] if script is None else page_script_writes(item, script)
     return problems if seen else problems + ["the script reads nothing with page.evaluate"]
 
 
@@ -5295,6 +5370,38 @@ def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
     planted.write_text(planted_gate_copy(source, tree, fault), encoding="utf-8")
     assert planted.read_text(encoding="utf-8") != source
     assert live_gate_problems(planted) == PLANTED_GATE_FAULTS[fault]
+
+
+# Each planted copy is the real support.py with one write in a helper the gate runs, and the one line the guard
+# reports (code review CR-S5-6: the gate reads the cold boot through COLD_BOOT_JS and types through replace_text).
+PLANTED_HELPER_FAULTS = {
+    "cold-boot-js-clears-the-storage": ["COLD_BOOT_JS calls clear(), which is not a read"],
+    "replace-text-fills-the-field": [".fill is used"],
+}
+
+
+def planted_helper_copy(source, tree, fault):
+    """The text of support.py with `fault` planted, cut from its own syntax tree so it follows its edits."""
+    if fault == "cold-boot-js-clears-the-storage":
+        [script] = [node.value for node in tree.body if isinstance(node, ast.Assign) and is_name(node.targets[0], "COLD_BOOT_JS")]
+        text = ast.get_source_segment(source, script)
+        return source.replace(text, text.replace("{", "{ localStorage.clear();", 1), 1)
+    function = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == "replace_text")
+    first = function.body[1]  # the first statement after the docstring
+    lines = source.splitlines(keepends=True)
+    lines.insert(first.lineno - 1, " " * first.col_offset + 'locator.fill("")\n')
+    return "".join(lines)
+
+
+@pytest.mark.parametrize("fault", list(PLANTED_HELPER_FAULTS))
+def test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported(tmp_path, fault):
+    # The gate's Rules ("page.evaluate only reads", "Only real gestures change the app") hold for what it runs from
+    # support.py too, so the guard follows the helpers the gate calls (code review CR-S5-6).
+    source, tree = gate_script(SUPPORT_SCRIPT)
+    planted = tmp_path / "support.py"
+    planted.write_text(planted_helper_copy(source, tree, fault), encoding="utf-8")
+    assert planted.read_text(encoding="utf-8") != source
+    assert live_gate_problems(LIVE_SCRIPT, helpers=planted) == PLANTED_HELPER_FAULTS[fault]
 
 
 # ---------------------------------------------------------------- v1.1.0 task A0: the engine switch (R58)
