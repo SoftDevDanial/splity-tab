@@ -28,11 +28,14 @@ _evidence = {"dir": None, "engine": rig.DEFAULT_ENGINE, "browser_version": None,
 
 
 def evidence_dir():
-    """The run's evidence folder, <stamp>-<engine> (R58), made on first use (a failure screenshot, or SPLIT_EVIDENCE=1)."""
+    """The run's evidence folder, <stamp>-<engine> (R58), made on first use (a failure screenshot, or SPLIT_EVIDENCE=1).
+    Never exist_ok: a second run of the engine in the same second stops with FileExistsError rather than write into the
+    first run's folder, as the live gate does."""
     if _evidence["dir"] is None:
         stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-        _evidence["dir"] = EVIDENCE_ROOT / f"{stamp}-{_evidence['engine']}"
-        _evidence["dir"].mkdir(parents=True, exist_ok=True)
+        folder = EVIDENCE_ROOT / f"{stamp}-{_evidence['engine']}"
+        folder.mkdir(parents=True)
+        _evidence["dir"] = folder
     return _evidence["dir"]
 
 

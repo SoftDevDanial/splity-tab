@@ -5502,6 +5502,23 @@ def test_R58_the_engine_option_and_the_one_launch_place(request, pytestconfig):
     assert passed == []
 
 
+def test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make(tmp_path, monkeypatch):
+    # Two runs of one engine in the same second get the same <stamp>-<engine> name. The second must not write into the
+    # first one's folder (constitution, Gates and evidence, each run writes its own capture; code review CR-S5-14).
+    import conftest
+    moment = types.SimpleNamespace(strftime=lambda pattern: "20261015-235959")
+    monkeypatch.setattr(conftest, "datetime", types.SimpleNamespace(datetime=types.SimpleNamespace(now=lambda: moment)))
+    monkeypatch.setattr(conftest, "EVIDENCE_ROOT", tmp_path)
+    monkeypatch.setitem(conftest._evidence, "dir", None)
+    first = conftest.evidence_dir()
+    monkeypatch.setitem(conftest._evidence, "dir", None)  # the second run's first call, in the same second
+    try:
+        second = conftest.evidence_dir()
+    except FileExistsError:
+        second = None
+    assert first.is_dir() and first.parent == tmp_path and second != first
+
+
 def test_R58_only_the_rig_launches_a_browser():
     offenders = []
     for path in python_files_beside_the_rig():
