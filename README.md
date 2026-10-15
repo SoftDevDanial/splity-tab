@@ -91,7 +91,7 @@ Each was found and accepted on purpose. The reasoning is in the ledgers, `docs/m
 |---|---|---|
 | On a big bill (from about RM 650 of items) the by-item table is wider than a 360 px phone, so the page scrolls sideways (H-02) | 1.0.0 | fixed in 1.1.0 |
 | Holding Enter on Remove of the only item adds one blank item, which one click removes (SEC-04) | 1.0.0 | fixed in 1.1.0 by the repeat guard, which also cancels a held key's repeats |
-| A double click on Dismiss note or a mode label moves keyboard focus to the page. No data changes | 1.0.0 | kept |
+| A double click on Dismiss note or a mode label moves keyboard focus to the page. No data changes | 1.0.0 | Dismiss note fixed in 1.1.0, a double click, triple click, double tap or held Enter on it acts as one press. A double click on a mode label still acts as one click with no data change, and focus stays on the radio in Chromium and on the page in WebKit, as after one click |
 | Another page on the same `github.io` origin can read the draft, and the page can be framed | 1.0.0 | kept, no way to isolate it on that host |
 | Two tabs of one browser editing the bill overwrite each other, last save wins | 1.0.0 | kept, one draft per browser by design |
 | A hand-edited draft can push the id counter to its ceiling, and the next save is unreadable | 1.0.0 | kept, only a page that can already overwrite the draft can do it |
@@ -134,7 +134,7 @@ Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no
 - `reconcileChildren` updates lists without re-inserting a node that is already in place, so typing never loses focus.
 - `plainNameField` keeps names plain as they are typed or pasted. The person and item name fields call it from their `input` listeners. It removes the class with core's `plainName`, writes the field back only when a character of the class came in, and puts the caret where the text went in.
 - `onFieldLeave` holds a field's error back until a press ends, so a tap on the button below an invalid field is never lost.
-- `swallowRepeatClicks` cancels the repeat press of a double click, triple click or double tap, so it never lands on a control that moved under the pointer, and while armed it also cancels a held key's repeats. It protects only the controls that arm it. Every Remove button, Add person, Add item, and the New bill dialog, the Splits sheet and P1 on open and close arm it. A Remove button also ignores a repeat press itself (`isRepeatClick`), so when a price error moves the rows and the second press of a double click lands on a Remove, nothing is removed. What counts as a repeat is written once, `isRepeatPress` in `src/ui/repeat.js`, a tap less than 500 ms after the previous click and within 22 px of it included, fed by `watchPointerClicks`.
+- `swallowRepeatClicks` cancels the repeat press of a double click, triple click or double tap, so it never lands on a control that moved under the pointer, and while armed it also cancels a held key's repeats. It protects only the controls that arm it. Every Remove button, Add person, Add item, Dismiss note, and the New bill dialog, the Splits sheet and P1 on open and close arm it. A Remove button also ignores a repeat press itself (`isRepeatClick`), so when a price error moves the rows and the second press of a double click lands on a Remove, nothing is removed. What counts as a repeat is written once, `isRepeatPress` in `src/ui/repeat.js`, a tap less than 500 ms after the previous click and within 22 px of it included, fed by `watchPointerClicks`.
 - `createDialog` runs the New bill dialog. Cancel, Esc and Start new bill close it. A click on the backdrop closes it only if the press began on the backdrop too.
 
 **The look.** `src/system.css` is an exact byte copy of the approved design's `docs/design/system.css`. No CSS is
@@ -162,8 +162,8 @@ The tests never touch the system clipboard. Every browser context gets a stand-i
 `navigator.clipboard.writeText` (a recorder by default, a rejecting or missing one for the failure tests),
 and no clipboard permission is ever granted.
 
-At v1.0.0, 427 browser tests and 275 unit tests pass. During the v1.1.0 build (2026-10-16, after the names fix), 400 unit
-tests pass, and 728 browser tests run in each engine, all passing in Chromium and 725 passing with 3 skipped in WebKit.
+At v1.0.0, 427 browser tests and 275 unit tests pass. During the v1.1.0 build (2026-10-16, at the module close), 406 unit
+tests pass, and 742 browser tests run in each engine, all passing in Chromium and 739 passing with 3 skipped in WebKit.
 
 </details>
 
