@@ -17,10 +17,12 @@ Changed 2026-10-14 in execute, by the planner pass the plan owed before A17 and 
 
 Changed 2026-10-15 in execute, planner touch before A18 (ledger S4 row 4, S5 row 10, S7 rows 20, 22, 24, 26 and 28 to 32, H-08). Lines the build measured as untrue are corrected with the old text struck. The R47 scan bans ".removeItem(" (Q-A3-1), the held Enter on New bill also counts the dialog's close events (S5 row 10), R36 asks that no animation is running (F-A4-1), the hint tap uses the window recorder (Q-A6-1), the price error is placed by `justify-self` (F-A8-1, R14 and ST-02), ST-12 is one line on the desktop card (F-A10-1), and "Press Escape" names M1's click closes (F-A16-1). New scenarios are the second press of a double activation that closed the sheet (R50, F-A12-1) or P1 (R52, F-A13-1), Pick again in the Splits sheet (R54, F-A15-1), and where the app scrolls a focused control (R49, H-08, ruled USER 2026-10-15 16:20, option (1), task A21). The R49 Tab scenario stays `@both`. Each change carries its own dated line.
 
+Changed 2026-10-16 in execute, planner pass for H-10 and the step 5 wording (ledger H-10, S7 rows 39 to 43). New scenarios for R62 sit at the end of the Gherkin block under "Plain names" (H-10, ruled USER 2026-10-16 00:07, option (1), task A22), with the seeds G8 to G10. Scenarios are added for three tests the step 5 solver round wrote without one (R20 seven to eleven people, CR-S5-7. R41 the guard follows `support.py`, CR-S5-6. R58 one folder per run, CR-S5-14). How to run names the live gate's one-server pair. Lines the finders measured as untrue or open to two readings are corrected with the old text struck, "The strip reads" (QA-S5-2), `browser_version` (QA-S5-3), R60's line box (A18, K1-56) and the checklist rows K1-01, K1-02, K1-10, K1-40, K1-44 (O-1), K1-54, W1-02 (O-2), BR-02 and ST-10 (fidelity O-4, A18). Each change carries its own dated line.
+
 ## How to run
 - **Functional suite.** `python -m pytest tests/browser -q` runs Chromium (the default, as in 1.0). `python -m pytest tests/browser -q --engine webkit` runs WebKit. Test functions are named `test_R<n>_<what>`, so a grep maps each one to its tag. `split-core`'s unit tests and this module's Node tests (`tests/draft.test.js`, `tests/errors.test.js`) run with `node --test "tests/**/*.test.js"`.
 - **Fidelity gate.** `python tests/browser/fidelity/run.py`, Chromium only. It has no engine option (R58).
-- **Live gate.** `python tests/browser/live_e2e.py` (Chromium) and `python tests/browser/live_e2e.py --engine webkit`.
+- **Live gate.** `python tests/browser/live_e2e.py` (Chromium) and `python tests/browser/live_e2e.py --engine webkit`. [Added 2026-10-16 in execute, wording as built (A20) and as `CLAUDE.md` has it.] Without `--base-url` the script serves the project root itself. A run that counts for the gate is a pair per engine against one server. Serve the project root (`python -m http.server <port> --bind 127.0.0.1`), run `python tests/browser/live_e2e.py --engine <engine> --control seeded --base-url http://127.0.0.1:<port>/`, which must stop red at step 1 (folder `<stamp>-<engine>-control`), then the same command without `--control` (the green run, folder `<stamp>-<engine>`), then stop the server by its PID ("Control and baseline" in the gate section below).
 - **Before the first WebKit run.** The orchestrator installs WebKit with `python -m playwright install webkit` (ledger S5 row 2). No test, script or task in this module installs anything.
 - **Server lifecycle (every run).** The harness picks a free port by binding port 0, starts `python -m http.server <port> --bind 127.0.0.1` with the project root as working directory, waits for `GET /` to answer (at most 50 tries 100 ms apart, then it gives up and fails the run with "server gave up after 50 tries"), and in a `finally` block kills the server by PID, waits for it to exit (10 s cap) and re-checks that the port binds again. It prints the PID and port at start and STOPPED with the port re-check at the end, so the orchestrator can ledger it.
 - **Browser.** Every browser is launched by `rig.launch(playwright, engine)` and every context is made by `rig.new_context` (meta tests under R58). Headless always. The default context has a 390 x 844 viewport, device scale factor 1, colour scheme `dark` and reduced motion `reduce`, unless a scenario names another size or `no-preference`. No context is ever made with `is_mobile` or `bypass_csp`, so the shipped policy is live in every scenario. A scenario that taps makes its context with `has_touch` and taps with `page.touchscreen.tap`.
@@ -50,7 +52,7 @@ Changed 2026-10-15 in execute, planner touch before A18 (ledger S4 row 4, S5 row
 ### Phrases used below
 - "Replace the text of X with Y" means click X, press Control+A, then type Y key by key. "Leave the field" means press Tab.
 - "Open People first" and "open Charges first" mean, below 1024 px, a click on that section's header row (`#peopleBtn`, `#chargesBtn`) when it is folded. From 1024 px both sections are always open and the step does nothing.
-- "The card reads" means ~~the `textContent` of `#rbody` with every run of white space made one space~~ every text node inside `#rbody`, in document order, joined with one space, then every run of white space made one space and the ends trimmed (`support.card_text`). [Changed 2026-10-14 in execute, ledger S7 rows 17 and 19, Q-A2-1, ruled ORCH. `textContent` joins text nodes with nothing between them, so a card built by script read "TotalEnter the subtotal ..." where the golden's markup reads "Total Enter the subtotal ...", a white-space difference that allowed difference 4 permits.] It can be read at any width, because the card is in the DOM below 1024 px though not displayed. "The sheet reads" is the same for `#splitsDlg .rbody` after a click on Splits. "The strip reads" is the visible text of `#stripInfo`.
+- "The card reads" means ~~the `textContent` of `#rbody` with every run of white space made one space~~ every text node inside `#rbody`, in document order, joined with one space, then every run of white space made one space and the ends trimmed (`support.card_text`). [Changed 2026-10-14 in execute, ledger S7 rows 17 and 19, Q-A2-1, ruled ORCH. `textContent` joins text nodes with nothing between them, so a card built by script read "TotalEnter the subtotal ..." where the golden's markup reads "Total Enter the subtotal ...", a white-space difference that allowed difference 4 permits.] It can be read at any width, because the card is in the DOM below 1024 px though not displayed. "The sheet reads" is the same for `#splitsDlg .rbody` after a click on Splits. "The strip reads" is the visible text of `#stripInfo`. [Added 2026-10-16 in execute, QA-S5-2, wording as built.] The visible text is `innerText`, which keeps a line break between the label and the figure (`'Total\nRM 116.60'`), so every run of white space, line breaks included, is made one space and the ends trimmed before it is compared. "Total RM 116.60" is that text. The live gate reads it so (`strip_reads` in `tests/browser/live_e2e.py`), and a failing line may print the raw `innerText`.
 - "A body recorder" is a test-side listener, added with `page.evaluate` before the gesture, that counts the `mousedown` and `click` events reaching `document.body` in the bubble phase, with their `detail`. "Only press 1 and click 1 reached the page" means it counted one of each. [Changed 2026-10-14 in execute, ledger H-04 and S5 row 7.] It is two listeners. The second sits on `window` in the capture phase, so it runs before the app's guard, and keeps every `pointerdown`, `mousedown` and `click` of the gesture with its `pointerType`, `detail`, `timeStamp`, `clientX` and `clientY`, and the event itself. "Only press 1 and click 1 reached the page" also means that the `window` listener saw every press and click of the gesture, and that each one after the first has `defaultPrevented` true once its dispatch is over. The proof that a repeat was cancelled then does not depend on what lies under the point, because 19 WebKit cases passed at A2 only since the layout had moved. For a touch double tap it also means that the second tap's `click` came less than 500 ms after the first and within 22 px of it by those records. Otherwise the case fails and names the gap, because it did not test a double tap (spec R57 (b)).
 - "Press Escape", while a dialog is open (M1, the Splits sheet or P1), means press Escape and then wait for that dialog's `close` event before anything is read, at most 2 s, failing with "dialog still open after 2 s" when it has not fired by then (a listener added before the key press catches a close that came first). [Added 2026-10-14 in execute, ledger S5 rows 4 and 5, class (b).] WebKit closes the dialog in a task after keyup, Chromium before the key press returns (spec R59 (2)). The end state is the same, so these scenarios stay `@both`. [Added 2026-10-15 in execute, planner touch before A18 (ledger S7 row 32, F-A16-1).] The same wait for M1's `close` event, at most 2 s, follows every close of M1 by a click (Cancel, Start new bill, the backdrop) before focus or the screen is read, because M1 gives focus back to New bill in its `close` event, a task after the click (spec R59 (2), "M1's click closes"). The tests do it through `closing` (A16). A click close of the Splits sheet or P1 focuses its control in the click itself.
 - "Equal to the golden" (replaces 1.0's "equal to the specimen"). These computed properties are read on the app element and on the named golden element, both rendered in the engine of the run at the same width, the golden opened as a file and never written. `color`, `background-color`, `font-size`, `font-weight`, `line-height`, the width, style and colour of each border side, `box-shadow`, the four `padding-*` values and the four corner radii. A row that needs another property names it. Width, height and position are compared only where the row names them.
@@ -103,7 +105,7 @@ Helpers in `seeds.py` build the derived bills named in scenarios ("K1 cut to its
 | B16 | K1 with two items both id `"i4"` | D7 |
 | B17 | K1 with i4 `"priceText":15.9` (a number) | D7 |
 | B18 | K2 with Aisyah renamed `ABCDEFGHIJKLMNOPQRSTU` (21 characters) | D8 |
-| B19 | K2 with Aisyah renamed `"Ai\nsyah"` | D8 |
+| B19 | K2 with Aisyah renamed `"Ai\nsyah"` | D8 (still rejected after H-10, D8 (a), noted 2026-10-16) |
 | B20 | K1 with i4 named 41 characters | D8 |
 | B21 | K2 with `"subtotalText":100` | D9 |
 | B22 | K2 with `"nextId":3` (not above p3) | D10 |
@@ -128,6 +130,9 @@ Helpers in `seeds.py` build the derived bills named in scenarios ("K1 cut to its
 | G5 | S2_V1 with `"spare":{"rule":"random","order":["p1"]}` inside `bill` | loads as K2 with spare Top of the list (D14). After one change the draft is version 2 with `"spare":{"rule":"top"}` |
 | G6 | K2 with `"spare":{"rule":"top","extra":1}` | loads as K2. After one change the draft's `spare` is exactly `{"rule":"top"}` |
 | G7 | S1_V1 unchanged (a draft saved by 1.0) | loads as K1 with spare Top of the list and both sections folded below 1024 px. After one change the draft is version 2 |
+| G8 | K2 with five people, p1 `"Aisyah"`, p2 "Ben" + U+202E, p3 "Chen" + U+2067, p4 "A" + U+2028 + "B", p5 U+202E alone, and `"nextId":6`, each character written in the seed as its JSON escape (added 2026-10-16 in execute, H-10, the security finder's bill cut to its bidi and separator names) | loads with the names "Aisyah", "Ben", "Chen", "AB" and "" (labels Aisyah, Ben, Chen, AB, Person 5). The stored text is unchanged until the first change (R25), and after one change every stored name is plain (R62, D8) |
+| G9 | K2 with Aisyah renamed "ABCDEFGHIJKLMNOPQRST" + U+202E (21 grapheme clusters as stored, added 2026-10-16 in execute, H-10) | loads with the name "ABCDEFGHIJKLMNOPQRST", because D8 counts the decoded name (D8 (c)) |
+| G10 | K1 with i5 renamed "Char" + U+200F + " kuey teow" and S1_V1 with Ben renamed "Ben" + U+0000 (two drafts, added 2026-10-16 in execute, H-10) | each loads, the item as "Char kuey teow" and, in the version 1 draft, Ben as "Ben" |
 
 ## Functional test cases (Gherkin)
 A table cell written in double quotes is literal text, spaces included. A splits row that "reads Aisyah RM 29.04 with "24.90 + 4.14"" has that `span.nm`, that `span.amt` and that `span.wk` with its `span.sr` children left out. "The proof reads RM 69.26 with "59.40 + 9.86"" is the same for the `span.amt` and `span.wk` of `div.r-check`. "The splits are" lists the `span.amt` of the rows in list order.
@@ -678,6 +683,22 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     When the viewport becomes 390 x 844 and I click Splits
     Then the sheet's twelve rows share one left edge
     And with the K2 seed #splits has no class "many", and with the T12I seed (by item, twelve people) it has none either
+
+  @R20 @both
+  # [Added 2026-10-16 in execute, code review CR-S5-7, the test is d728076, test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop.]
+  # Only an odd count tells ceil(n / 2) from a floor, which would open a third column. Seen failing first on the
+  # reviewer's mutant U4 (a floor) at 7, 9 and 11 people.
+  Scenario Outline: Seven to eleven people list in two columns on the desktop
+    Given the T12 seed cut to its first <n> people, with "nextId" <n> + 1, at 1280 x 800
+    Then #splits has class list "r-splits many", its style property "--rows" reads "<rows>" and it holds <n> rows
+    And rows 1 to <rows> share one left edge, the rest share another one further right, and the first of the second column is level with row 1
+    Examples:
+      | n  | rows |
+      | 7  | 4    |
+      | 8  | 4    |
+      | 9  | 5    |
+      | 10 | 5    |
+      | 11 | 6    |
 
   @R21 @both
   Scenario: The by-item split from gestures (key flow 2)
@@ -1245,7 +1266,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     When the script makes its one context through rig.new_context with storage_state holding the K2 seed, and runs its steps from step 1
     Then the run stops at step 1 with pass false, and steps.log names step 1's failed assertions, the screen is not bill-empty (#peopleBlk has data-open "false" and the strip reads "Total RM 116.60", not "Enter the subtotal to see the splits.") and split.draft is present
     And step 1's check that navigator.clipboard.writeText is the stand-in passed, so the RED comes from the cold-boot property and not from the clipboard check
-    And summary.json records "control": "seeded", the engine, browser.version and pass false
+    And summary.json records "control": "seeded", the engine, ~~browser.version~~ "browser_version" (Playwright's browser.version, wording as built, QA-S5-3, changed 2026-10-16 in execute) and pass false
     And the evidence folder name ends in "-<engine>-control", it holds no earlier run's files, and it is listed after the run and never overwritten
     Examples:
       | engine   |
@@ -1266,6 +1287,10 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     # Added 2026-10-14 in execute (ledger H-05, spec R41 and R59 (4)). A WebKit screenshot adds a stylesheet the policy refuses, so the capture is a screencast frame.
     And no attribute in it is screenshot, and page.screencast.start is called exactly once, with on_frame and a size equal to the context's viewport
     And a fourth planted copy that calls page.screenshot in its step helper is reported
+    # [Added 2026-10-16 in execute, code review CR-S5-6, the test is 8b7b7d4, test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported.]
+    # The gate runs functions of tests/browser/support.py, so a guard that read live_e2e.py alone could not see a write there.
+    And the guard also reads every function of tests/browser/support.py that the gate calls as support.<name>, and those these call in turn, with the same keyword, attribute and page.evaluate checks as the gate's own code, and the text of every page script on the read-only list (READS_AT_JS and ACTIVE_LABEL_JS among them, named in support.py) holds no write, that is no call that is not a read, no assignment, no ++ and no --
+    And two planted copies of support.py checked in a pytest temporary folder are each reported, one with localStorage.clear() in COLD_BOOT_JS and one that calls locator.fill in replace_text (seen failing first on the guard that read live_e2e.py only)
     # Watched failing first. Before A20 changes the script, the rewritten tests run against the live_e2e.py of that moment (the 1.0 flow with A0's --engine) and fail on the missing control path, the seven steps and the one init script. That RED run keeps its own qa/functional/<stamp>-<engine>/ folder (How to run, Controls). The planted copies keep the guard's own RED in every later run.
 
   # ---------- The name and the logo (v1.1.0, S8, S6) ----------
@@ -1886,6 +1911,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     Given the W1 seed at 360 x 780
     Then "Item 5 price in RM" holds "964.50" and its scrollWidth is at most its clientWidth
     And the strip reads "Total RM 1,193.87" on one line (#stripTotal is one line box tall)
+    # [Added 2026-10-16 in execute, A18 Findings (K1-56), wording as built.] "One line box tall" is not a fixed height. The 14 px "RM" beside the 24/30 figure makes #stripTotal's line box 33 px, not the 30 px of its line-height. One line means every box of its text shares one band, the highest top of its text boxes above the lowest bottom (STRIP_TOTAL_JS in tests/browser/test_app.py).
 
   # ---------- Held keys (v1.1.0, S3) ----------
   @R57 @both
@@ -1964,10 +1990,18 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     And the R33 IME test is listed there with a reason that starts "Needs a CDP session"
     And no skipped test is counted as passed, and the Chromium folder's name ends in "-chromium" and shows the chromium_only tests run
 
+  @R58 @static
+  # [Added 2026-10-16 in execute, code review CR-S5-14, the test is 6ffecf7, test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make.]
+  # Constitution, Gates and evidence, each run writes its own capture. Seen failing first on mkdir with exist_ok=True.
+  Scenario: A suite run never writes into an evidence folder it did not make
+    Given conftest.evidence_dir with its clock frozen at one second and its evidence root in a pytest temporary folder
+    When a first run makes its folder <stamp>-<engine> and a second run of the same engine asks for its folder in the same second
+    Then the first folder exists under that root, and the second run does not get it (evidence_dir stops with FileExistsError, as the live gate's folder does)
+
   @R58 @R41 @gate
   Scenario: The live gate records its engine
     When live_e2e.py runs with --engine webkit
-    Then its evidence folder is docs/modules/split-app/qa/live-e2e/<stamp>-webkit/ and its summary.json records "engine" "webkit" and the browser's version
+    Then its evidence folder is docs/modules/split-app/qa/live-e2e/<stamp>-webkit/ and its summary.json records "engine" "webkit" and the browser's version (under the key "browser_version", QA-S5-3, noted 2026-10-16 in execute)
     And run with no option it uses Chromium and its folder ends in "-chromium"
 
   @R59 @per_engine
@@ -2029,6 +2063,103 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     And loadDraft of a storage whose getItem returns null is { state: "none" }, of B1 is { state: "unreadable" }, and of K2 is { state: "ok", bill }
     And saveDraft(null, bill) is false, saveDraft of a storage whose setItem throws is false, and saveDraft of a working storage is true
     And neither function throws for any of these
+
+  # ---------- Plain names (v1.1.0, H-10, added 2026-10-16 in execute) ----------
+  # Ruled USER 2026-10-16 00:07, option (1) (ledger H-10, security SEC-S5-1 LOW and SEC-S5-3 INFO). Spec R62, D8, task A22.
+  # "The class" is [\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}], the 79 code points of core R35. A character is written here
+  # as U+XXXX and given to the page as that one character. "Insert T" means page.keyboard.insert_text(T) on the focused
+  # field, one input event with the text, which is how a paste or a drop arrives. A real paste would need the system
+  # clipboard, which no test touches (How to run, Clipboard). "Holds no character of the class" is checked with
+  # /[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/u in the page or in Python's equivalent list of the 79 code points.
+  @R62 @R5 @both
+  Scenario Outline: A control or bidi character put into a person's name is removed at once
+    Given the K2 seed
+    When I click "Person 2 name", press End and insert <text>
+    Then "Person 2 name" is the same element and has focus, its value is "<value>" and its selection is collapsed at <caret>
+    And the draft's p2 name is "<value>", and no name in the draft holds a character of the class
+    And Ben's splits row on the card reads "<value>", "Remove <value>" is the second Remove's name, and the People summary text holds "<value>" and no character of the class
+    And Copy summary on the card gives a text whose line 4 is "<value> RM 38.87"
+    Examples:
+      | text                     | value  | caret |
+      | U+202E                   | Ben    | 3     |
+      | U+202E "x"               | Benx   | 4     |
+      | "a" U+2028 "b"           | Benab  | 5     |
+      | U+0000                   | Ben    | 3     |
+      | U+0009 "Lee"             | BenLee | 6     |
+
+  @R62 @R33 @both
+  Scenario: A removal in the middle of a name keeps the caret where the text went in
+    Given the K2 seed
+    When I click "Person 2 name", press End, press ArrowLeft once (the caret after "Be") and insert U+202E "x" U+2067
+    Then "Person 2 name" is the same element and has focus, its value is "Bexn" and its selection is collapsed at 3
+    When I type "y"
+    Then its value is "Bexyn" and the draft's p2 name is "Bexyn"
+
+  @R62 @both
+  Scenario: Each kind of character in the class is removed from a name field
+    # The full class is proved once in Node (split-core qa, "plainName and summaryText read one class"). This walks the
+    # ends of each range through the real field in both engines.
+    Given the K2 seed
+    When, for each character c of U+0001, U+0009, U+001B, U+001F, U+007F, U+0080, U+0085, U+009F, U+2028, U+2029, U+061C, U+200E, U+200F, U+202A, U+202B, U+202C, U+202D, U+202E, U+2066, U+2067, U+2068 and U+2069 in turn, I click "Person 1 name", press Control+A, type "A" and insert "B" c "C"
+    Then after each insert the value of "Person 1 name" is "ABC", its selection is collapsed at 3 and the draft's p1 name is "ABC"
+    # U+0000 is in the outline above. A character the tool cannot insert fails the case with its code point, never a skip.
+
+  @R62 @both
+  Scenario: Characters outside the class stay in a name
+    Given the K2 seed
+    When I click "Person 2 name", press End and insert "A" U+200B "B" U+00A0 "C" U+FEFF
+    And I click "Person 3 name", press End and insert U+1F468 U+200D U+1F469 U+200D U+1F467
+    Then the values are "Ben" followed by exactly what was inserted, and "Chen" followed by the one emoji, and the draft holds the same two names
+    # Passes before task A22. Its RED is a stub helper that also deletes \p{Cf} (spec task A22).
+
+  @R62 @R33 @both
+  Scenario: Typing that brings no character of the class writes nothing into the field
+    Given the K2 seed and, added by page.evaluate before the gestures, a test-side spy that counts calls of the value setter of HTMLInputElement.prototype and of setSelectionRange on "Person 2 name"
+    When I click "Person 2 name", press End, type "abc", press Home, type "X" and press Backspace
+    Then the spy counted 0 calls, the value is "Benabc", and the selection is collapsed at 0
+    # Passes before task A22. Its RED is a stub helper that writes the value and the caret on every input event (spec task A22).
+
+  @R62 @R11 @both
+  Scenario: An item name loses the class too
+    Given the K1 seed
+    When I click "Item 2 name", press End and insert U+202E "x"
+    Then "Item 2 name" has focus, its value is "Char kuey teowx" and its selection is collapsed at 15
+    And the draft's i5 name is "Char kuey teowx", the price field is named "Char kuey teowx price in RM", its Remove is "Remove Char kuey teowx" and its toggle group is "Who had Char kuey teowx"
+
+  @R62 @R4 @both
+  Scenario: A name made only of removed characters falls back to its position
+    Given the K2 seed
+    When I click "Person 2 name", press Control+A and insert U+202E
+    Then "Person 2 name" is empty and shows its placeholder "Person 2", and the draft's p2 name is ""
+    And the second splits row reads "Person 2", the second Remove is named "Remove Person 2", and the People summary text holds "Person 2"
+
+  @R62 @R26 @R48 @both
+  Scenario: A saved name with bidi controls loads plain and the People line reads left to right
+    # SEC-S5-1 and SEC-S5-3, measured by the security finder on 2026-10-15 (qa/security/20261015-222146/, b2_injection-<engine>.json).
+    Given the G8 seed at 390 x 844 with the write counter
+    Then no note shows, People is folded, and the five name fields hold "Aisyah", "Ben", "Chen", "AB" and "" (placeholder "Person 5")
+    And the text of #peopleSum .sec-txt holds no character of the class and is one of the R48 summaries of the labels Aisyah, Ben, Chen, AB, Person 5
+    And every character box of that text (one Range rect per character, the zero-width ones left out) has a left edge greater than the one before it, and all of them share one band (the highest top above the lowest bottom), so the line runs left to right on one line
+    And the stored text is still the G8 text, and window.testSetItemCalls is 0 (nothing is written at boot)
+    When I open People first and type "x" at the end of "Person 1 name"
+    Then the draft's names are "Aisyahx", "Ben", "Chen", "AB" and ""
+    And Copy summary on the card gives one row per splits row, and the name in each row is exactly the span.nm text of that splits row on the card
+
+  @R62 @R61 @node
+  Scenario Outline: The decoder rebuilds names without the class
+    Given the stored text <draft> from the seed tables above
+    When decodeDraft is called in tests/draft.test.js
+    Then the result is <result>
+    And for every ok result, no name in the bill holds a character of the class, and encodeDraft of that bill decodes to the same bill
+    Examples:
+      | draft                                         | result                                                                    |
+      | G8                                            | ok, names "Aisyah", "Ben", "Chen", "AB" and "", everything else as stored  |
+      | G9                                            | ok, Aisyah's name is "ABCDEFGHIJKLMNOPQRST"                                |
+      | G10, the K1 draft                             | ok, i5's name is "Char kuey teow"                                         |
+      | G10, the S1_V1 draft                          | ok, version 1 read with spare {"rule":"top"}, Ben's name is "Ben"         |
+      | K1 with i4 renamed 40 letters + U+202E        | ok, i4's name is the 40 letters                                           |
+      | B19, and K2 with Aisyah renamed "Ai" U+202E U+000D "syah" | { ok: false }, LF and CR are still rejected (D8 (a))          |
+      | B18, B20                                      | { ok: false }, still too long after the rebuild                           |
 ```
 
 ## FE element checklist
@@ -2037,8 +2168,8 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 ### K1 `docs/design/bill-items.html` (inventory K1) at 390 x 844, 360 x 780 and 1280 x 800
 | Id | Element | Expected |
 |---|---|---|
-| K1-01 | Top bar `header.top` | 60 px tall at 390 and 360, 64 px at 1280. `--l1` fill and a hairline under it. 16 px sides on a phone, 48 px at 1280 |
-| K1-02 | Mark `svg.mark` in `div.brand` | 28 x 28, the colour of `--accent-ink` (computed `color` and `fill` equal), the path of R44, 10 px left of the wordmark |
+| K1-01 | Top bar `header.top` | 60 px tall at 390 and 360, 64 px at 1280. `--l1` fill and a hairline under it. 16 px sides on a phone, 48 px at 1280. [Added 2026-10-16 in execute, fidelity O-4, the golden is the truth.] On a phone 60 px is the bar less its 1 px hairline (border box 61), at 1280 64 px is the border box (63 and the 1 px hairline), in the golden and the app |
+| K1-02 | Mark `svg.mark` in `div.brand` | 28 x 28, the colour of `--accent-ink` (computed `color` and `fill` equal), the path of R44, 10 px left of the wordmark. [Added 2026-10-16 in execute, fidelity O-4.] "Equal" means equal to the golden's, not to each other. The computed `fill` is `--accent-ink` and the computed `color` is `--text`, on both sides |
 | K1-03 | Wordmark `h1.word` | "Splity Tab", 19/24 700, letter-spacing equal |
 | K1-04 | Notes `div.notes#notes` | present, empty, takes no space |
 | K1-05 | New bill `#newBill` | `button.btn.btn-ghost`, an 18 px plus icon then "New bill", 15/20 600, clear fill, `--line-strong` border, 10 px radius, at the right end of the top bar, `aria-haspopup` "dialog" |
@@ -2046,7 +2177,7 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | K1-07 | Card `article.glass.card#card` (1280) | 460 x 642 at (98, 84), 24 px padding, 22 px radius, the glass background, edge and `--shadow-card` (plus `background-image` and `backdrop-filter`) |
 | K1-08 | Card foil `div.foil` (1280) | a 3 px indigo sheen along the card's top edge, `aria-hidden` "true" (plus `background-image`) |
 | K1-09 | Total label `span.r-label` | "Total", 14/20 600 |
-| K1-10 | Total figure `p.r-amount#rTotal` | `span.cur` "RM " then "69.26", 48 px at 1280, monospace, tracking -0.03em, "RM" in body text at 0.42 of the figure (plus `letter-spacing` and `font-family`) |
+| K1-10 | Total figure `p.r-amount#rTotal` | `span.cur` "RM " then "69.26", 48 px at 1280, monospace, tracking -0.03em, "RM" in body text at 0.42 of the figure (plus `letter-spacing` and `font-family`). [Added 2026-10-16 in execute, fidelity O-4.] "In body text" is the colour, `--text`, where the figure is `--total-ink`. The family of "RM" is monospace on both sides |
 | K1-11 | Bill lines `dl.r-lines` | three rows, "Subtotal" RM 59.40, "Service 10%" RM 5.94, "SST 6%" RM 3.92, 15/22, muted labels, monospace figures right aligned, 6 px apart |
 | K1-12 | Dashed rule `div.r-rule` | dashed indigo, 20 px under the lines and 16 px above Splits, `aria-hidden` "true" |
 | K1-13 | Splits heading `div.r-head` | `h2#splitsH` "Splits" 14/20 600 muted, and "items + charges" 13/18 at the right with `aria-hidden` "true" |
@@ -2076,11 +2207,11 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | K1-37 | SST label and field | as K1-34 and K1-35, "SST", `#sst` "6" |
 | K1-38 | SST error | `p.err#sstErr` present with `hidden`, not displayed |
 | K1-39 | Hint `p.hint#chargeHint` | "Set a charge to 0 if your bill already includes it.", 14/20 400 muted. At 1280 in a third cell 28 px down, so it lines up with the fields |
-| K1-40 | Split block | `div.blk.split#splitBlk` with `role` "group" and `h2.blk-h#splitH` "Split" 15/20 600. On a phone 12 px under the Charges hairline, and Split starts at 229 at 390 |
+| K1-40 | Split block | `div.blk.split#splitBlk` with `role` "group" and `h2.blk-h#splitH` "Split" 15/20 600. On a phone 12 px under the Charges hairline, and ~~Split starts at 229 at 390~~ the Split block ends at 229 at 390 (it starts at 170), as BE-14 and KO-07 use "ends" [changed 2026-10-16 in execute, fidelity O-4, the golden is the truth] |
 | K1-41 | Split switch `div.mode-sw` | two equal 44 px halves, `--field` track, `--line-strong` frame and divider, 10 px radius, at most 280 px wide, right of the heading |
 | K1-42 | Even half | the label for "modeEven", unchecked, muted text |
 | K1-43 | By item half | the label for "modeItem", checked, indigo tint with an inset indigo edge, text colour |
-| K1-44 | Items heading row | `div.blk-head` 44 px with `h2.blk-h#itemsH` "Items" and `#addItem` (ghost, plus icon, "Add item") at the right, 20 px under a hairline, 8 px above the frame |
+| K1-44 | Items heading row | `div.blk-head` 44 px with `h2.blk-h#itemsH` "Items" and `#addItem` (ghost, plus icon, "Add item") at the right, ~~20 px under a hairline~~ 20 px under a hairline at 390 and 360 and 16 px at 1280, 8 px above the frame. [Changed 2026-10-16 in execute, fidelity O-1, the golden is the truth. At 1280 the golden has 16 px (margin 16, border 1, padding 16), and the app the same.] |
 | K1-45 | Item frame `div.frame-wrap#frameWrap` | `--l1` fill, 16 px radius, `--line-frame` edge, 10 px left and 8 px right padding on a phone. At 390 and 360 the four items fit with neither `data-up` nor `data-down`. At 1280 it is 291 px tall with the bottom fade and `data-down` |
 | K1-46 | Item 1 name | value "Nasi lemak ayam", named "Item 1 name", maxlength 40, styled as K1-28 |
 | K1-47 | Item 1 price | `div.field.money`, `span.unit` "RM" 14 px monospace muted 10 px from the left, value "15.90" monospace right aligned with 6 px left and 10 px right padding, named "Nasi lemak ayam price in RM", 104 px wide at 390 and 360, 128 px at 1280 |
@@ -2090,9 +2221,9 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | K1-51 | Item 2 | as K1-46 to K1-50, "Char kuey teow", "13.50", "Remove Char kuey teow", `#ie2` hidden, Ben on only |
 | K1-52 | Item 3 | as K1-46 to K1-50, "Mee goreng mamak", "12.00", Chen on only, no class "needs" |
 | K1-53 | Item 4 | as K1-46 to K1-50, "Satay, 10 sticks", "18.00", Aisyah and Chen on, Ben off |
-| K1-54 | Item rows | 12 px top and bottom padding, the row `minmax(0, 1fr) 104px 44px` with 6 px gaps on a phone and 8 px at 1280, a hairline above items 2 to 4 only |
+| K1-54 | Item rows | 12 px top and bottom padding, the row `minmax(0, 1fr) 104px 44px` with 6 px gaps on a phone and 8 px at 1280, a hairline above items 2 to 4 only. [Added 2026-10-16 in execute, fidelity O-4.] The price column is 104 px on a phone and 128 px at 1280, in the golden and the app, as K1-47 says |
 | K1-55 | Strip `div.strip.glass.dense#strip` (390, 360) | fixed at the bottom, 111 px, dense glass, the foil, 22 px top corners, `--shadow-up`, its top at 733 at 390 and 669 at 360. Not displayed at 1280 |
-| K1-56 | Strip Total | `span.s-label` "Total" 14/20 600, `span.s-fig#stripTotal` "RM 69.26" 24/30 600 with "RM" at 14 px |
+| K1-56 | Strip Total | `span.s-label` "Total" 14/20 600, `span.s-fig#stripTotal` "RM 69.26" 24/30 600 with "RM" at 14 px. [Added 2026-10-16 in execute, A18 Findings.] Its line box is 33 px tall with the 14 px "RM" on the figure's line, in the golden and the app, not the 30 px of the line-height |
 | K1-57 | Strip status `#stripStatus` | `role` "status", present, empty, not displayed |
 | K1-58 | Splits `#splitsBtn` | ghost on the strip (dark fill at 50%, the glass border, 12 px sides), "Splits" then the caret turned up (`ic caret-up`), `aria-expanded` "false" |
 | K1-59 | Strip Copy summary `#stripCopy` | primary, copy icon, "Copy summary", enabled. Splits and Copy summary share the row 1 to 1.3 with an 8 px gap |
@@ -2255,7 +2386,7 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | Id | Element | Expected |
 |---|---|---|
 | BR-01 | Note on a phone (390, 360) | `div.note` with `role` "status" as a second row of the top bar, full width, 16 px radius, `--info-bg`, an indigo edge at 38%, a 20 px indigo warning circle, the text 14/20 on two lines at 390, padding 4 px top, right and bottom and 16 px left. It adds 78 px to the top bar |
-| BR-02 | Note at 1280 | centred in the top bar between the brand and New bill, 44 px tall, no padding top or bottom |
+| BR-02 | Note at 1280 | centred in the top bar between the brand and New bill, 44 px tall, no padding top or bottom. [Added 2026-10-16 in execute, fidelity O-4 and A18 Findings.] 44 px is the note's inner height, the 44 px Dismiss note inside it. Its border box is 46 px, in the golden and the app |
 | BR-03 | Dismiss note | `button.icon-btn#dismissNote` "Dismiss note", 44 x 44, the X |
 | BR-04 | Below | as BE-01 to BE-13, People open on a phone |
 | BR-05 | Positions at 390 | People ends at 321, Charges at 374, Split at 433, no page scroll |
@@ -2276,7 +2407,7 @@ Each row passes or fails on its own. A row is checked on the app in the state th
 | Id | Element | Expected |
 |---|---|---|
 | W1-01 | Item 5 | a blank name with the placeholder "Item 5", the price "964.50" whole in the 104 px field at 390 and 360, Aisyah on, the names "Item 5 name", "Item 5 price in RM", "Remove Item 5" and "Who had Item 5" |
-| W1-02 | Total | "RM 1,193.87", 48 px at 1280 inside the 412 px card body, one line on the strip at 360 |
+| W1-02 | Total | "RM 1,193.87", 48 px at 1280 inside the ~~412 px~~ 410 px card body (`#rbody`, the 460 px card less 2 px of edge and 48 px of padding, in the golden and the app, fidelity O-2, changed 2026-10-16 in execute), one line on the strip at 360 |
 | W1-03 | Lines | RM 1,023.90, RM 102.39, RM 67.58 |
 | W1-04 | Aisyah | RM 1,153.65 with "989.40 + 164.25", Ben and Chen as K1 |
 | W1-05 | Proof and spare line | RM 1,193.87 with "1,023.90 + 169.97", "1 sen left over" with "Top of the list" |
@@ -2297,7 +2428,7 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
 | ST-07 | Strip copied (S4) | K2 after a click on `#stripCopy`. "Summary copied" with a 16 px indigo check, 14/20 600, beside the Total on the same line, the strip 111 px |
 | ST-08 | Strip blocked (S4) | K2 with reject.js after a click on `#stripCopy`. `p.status.is-fail` with a red warning circle on its own line under the Total, on two lines, the strip 153 px |
 | ST-09 | By item, nothing to work out (phone) | a cold boot and "By item". The strip's `p.s-msg` "Add each item and tap who had it to see the splits." in place of the Total, on two lines where the strip is narrower than the sentence, Copy summary disabled |
-| ST-10 | Save warning (S5) | a cold boot with D-a and one change. `div.note.is-warn` in the top bar, `--warn-bg`, an amber edge at 45%, a 20 px amber `#i-warning`, 14/20 text, 16 px right padding, no dismiss, two lines at 390. At 1280 centred in the top bar, 44 px tall, one line |
+| ST-10 | Save warning (S5) | a cold boot with D-a and one change. `div.note.is-warn` in the top bar, `--warn-bg`, an amber edge at 45%, a 20 px amber `#i-warning`, 14/20 text, 16 px right padding, no dismiss, two lines at 390. At 1280 centred in the top bar, 44 px tall, one line. [Added 2026-10-16 in execute, fidelity O-4.] Here 44 px is the border box, since the save warning has no Dismiss note (BR-02's 44 px is the inner height of the note with one), as `system.md` Banner gives 44 on the desktop |
 | ST-11 | Card copied (S4, 1280) | K2 after a click on `#copyBtn`. `#cardStatus` centred 12 px under Copy summary with the indigo check |
 | ST-12 | Card blocked (S4, 1280) | K2 with reject.js after a click on `#copyBtn`. `#cardStatus.is-fail` ~~on two lines, left aligned beside the icon~~ on one line at 1280 x 800, centred like the copied line of ST-11, with the red warning circle before the text, where the S4 piece wraps it to two lines at its 282 px card width. Changed 2026-10-15 in execute, planner touch before A18 (ledger S7 row 26, F-A10-1). The app's card at 1280 x 800 is the card of `bill-even.html`, whose body is 410 px wide, and the golden CSS fits the line on one line there, 20 px tall. The markup, the look, the icon and the place under Copy summary equal the piece. `states.md` says "On the card it wraps to two lines", true of the piece only, and stays as written (goldens are immutable) |
 | ST-13 | Two items still need a person (card, 1280) | K1 with Chen untapped from Mee goreng mamak and Ben from Char kuey teow. "2 items still need a person. Tap who had each one to see the splits." styled as BU-05 |
@@ -2376,7 +2507,7 @@ Checked on the app at 390 x 844, the card pieces at 1280 x 800. "Equal to the pi
   7. Reload in a new page of the same context. Assert the K1 screen with both sections folded. Click Even and assert Subtotal "100.00" and the splits RM 38.87, RM 38.87, RM 38.86.
   8. Click New bill. Assert the dialog with Cancel focused. Click Start new bill. Assert `bill-empty` with People open and focus on New bill. Reload and assert `bill-empty` with People open again (CG-P4).
   9. Throughout, assert zero console errors, zero page errors and zero recorded CSP violations (in Chromium also no console text holding "Content Security Policy"), and only same-origin GETs.
-- **Evidence artifact.** `docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>/` with ~~`01-*.png`~~ `01-*.jpg` onwards (one per step, the viewport's screencast frame, changed 2026-10-14 in execute, H-05), `steps.log`, `console.log`, `network.log`, `clipboard-s2.txt`, `clipboard-s1.txt` and `summary.json` (start and end time, engine, `browser.version`, port, server PID, the init scripts used, `control` null or "seeded", result). A run stops at its first failed step and still writes the ~~screenshots~~ captures taken so far, `steps.log`, `console.log`, `network.log` and `summary.json`. After each run, list the folder to prove the files landed there. **No artifact means not done**, and a WebKit failure blocks the seal (ledger S5 row 2). A green run with no control capture of the same engine beside it does not meet the gate (B3).
+- **Evidence artifact.** `docs/modules/split-app/qa/live-e2e/<YYYYMMDD-HHMMSS>-<engine>/` with ~~`01-*.png`~~ `01-*.jpg` onwards (one per step, the viewport's screencast frame, changed 2026-10-14 in execute, H-05), `steps.log`, `console.log`, `network.log`, `clipboard-s2.txt`, `clipboard-s1.txt` and `summary.json` (start and end time, engine, ~~`browser.version`~~ `browser_version` (the value of Playwright's `browser.version`, the flat key every run writes, QA-S5-3, changed 2026-10-16 in execute), port, server PID, the init scripts used, `control` null or "seeded", result). A run stops at its first failed step and still writes the ~~screenshots~~ captures taken so far, `steps.log`, `console.log`, `network.log` and `summary.json`. After each run, list the folder to prove the files landed there. **No artifact means not done**, and a WebKit failure blocks the seal (ledger S5 row 2). A green run with no control capture of the same engine beside it does not meet the gate (B3).
 
 ## Regression
 - Re-run the functional suite in Chromium and in WebKit, the fidelity gate in Chromium and the live gate in both engines in the final all-modules pass, together with `node --test "tests/**/*.test.js"`. The WebKit rows of `docs/regression/REGRESSION.md` are an orchestrator action (ROADMAP, section v1.1.0).

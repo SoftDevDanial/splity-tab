@@ -31,7 +31,7 @@
 |---|---|
 | `tests/money.test.js` | R1, R2, R3, R4, R5, R34 |
 | `tests/allocate.test.js` | R7, R8, R9 |
-| `tests/bill.test.js` | R10 to R17, R26, R27, R28 |
+| `tests/bill.test.js` | R10 to R17, R26, R27, R28, and R35 (added 2026-10-16, H-10) |
 | `tests/result.test.js` | R6, R18 to R21, R23, R26, R32, R33 |
 | `tests/invariants.test.js` | R22 |
 | `tests/summary.test.js` | R24, R26 |
@@ -39,6 +39,8 @@
 | `tests/spare.test.js` (v1.1.0, new) | R29, R30, R31 |
 
 **v1.1.0 delta (2026-10-13, planner, solutions architect role).** New scenarios for R27 to R34 sit at the end of the Gherkin block under "Spare sen" and "Formatting". Scenarios whose expected result changed carry a `# [Changed 2026-10-13, v1.1.0, <scope>]` line saying what changed, and keep their tag. The R27, R28 and R32 cases live in `tests/bill.test.js` and `tests/result.test.js` beside the 1.0 cases of the same functions, R34 in `tests/money.test.js`. Every 1.0 case not marked here keeps its expected result, which is the proof that Top of the list is the 1.0 rule. The random source in every test is scripted (a list of numbers returned in turn), never `Math.random`.
+
+Changed 2026-10-16 in execute, planner pass for H-10 and the step 5 wording. Three `@R35` scenarios for `plainName` sit at the end of the Gherkin block under "Names" (H-10, ruled USER 2026-10-16 00:07, option (1), task C7). The `@R21 @R8` scenario for the trap bill of code review CR-S5-1 (test `042c359`) sits after the R8 trap rows.
 
 ## Named example bills
 Used by the scenarios. Rates are `serviceText` / `sstText`. People are listed in order with their ids.
@@ -258,6 +260,18 @@ Feature: split-core money, maths, state rules and summary text
     # Their test titles start "@R8 BigInt trap:", and each test also checks that a float allocator
     # (Math.floor of a x w / W, then the leftover rule) gives a different result. The 61846725 and
     # 178450942 rows were added 2026-10-09.
+
+  @R21 @R8
+  # [Added 2026-10-16 in execute, code review CR-S5-1, the test is 042c359.] Since C4, computeResult splits the
+  # charges with its own floor step (floorParts in result.js), so the trap rows above no longer guard the result
+  # path. This bill drives computeResult through the 61846725 trap row. A float floorParts (mutant K02) gives
+  # [8246231, 53600494] with every sum still adding up, and fails here.
+  Scenario: A by-item bill whose charges division is an R8 trap row gets the exact charges
+    Given a by-item bill with two people at rates 10 and 6, p1 alone on items worth 49676084 cents in all and p2 alone on items worth 322894546 cents in all, each item at most 9999999 cents
+    When computeResult is called
+    Then service plus SST is 61846725, the rows' items are [49676084, 322894546] and the rows' charges are exactly [8246230, 53600495]
+    And allocateByWeight(61846725, [49676084, 322894546]) gives the same [8246230, 53600495]
+    And Math.floor(61846725 x 322894546 / 372570630) is not 53600495 (a float floor misses this bill)
 
   @R8 @R23
   # [Changed 2026-10-09, ORCH, code-review WR-01] Old title "allocateByWeight stays exact when amount
@@ -853,6 +867,44 @@ Feature: split-core money, maths, state rules and summary text
   Scenario: formatMoney is RM, a space and formatAmount, for every cents value
     Given 1000 cents values from 0 to 779999922 drawn by a mulberry32 generator seeded with 20261013
     Then formatMoney of each equals "RM " followed by formatAmount of the same value
+
+  # ---------- Names (v1.1.0, H-10, added 2026-10-16 in execute) ----------
+  # Ruled USER 2026-10-16 00:07, option (1) (ledger H-10, security SEC-S5-1 and SEC-S5-3). Task C7. Each case is
+  # seen failing first against the two stubs of spec task C7 (one returns its input, one also deletes \p{Cf}).
+  @R35
+  Scenario Outline: plainName deletes the class and keeps everything else
+    Given the text <text>
+    When plainName is called
+    Then it returns <result>
+    Examples:
+      | text                                                   | result                                   |
+      | "Ben" U+202E                                           | "Ben"                                    |
+      | "Be" U+202E "x" U+2067 "n"                             | "Bexn"                                   |
+      | "A" U+2028 "B" U+2029 "C"                              | "ABC"                                    |
+      | U+0000 "Adds up to RM 0.00"                            | "Adds up to RM 0.00"                     |
+      | "Ann" U+0009 "Lee"                                     | "AnnLee"                                 |
+      | "x" U+001B U+007F U+0085 U+009F "y"                    | "xy"                                     |
+      | U+061C U+200E U+200F U+202A U+202B U+202C U+202D U+2066 U+2068 U+2069 | ""                         |
+      | "A" U+200B "B" U+00A0 "C" U+FEFF U+00AD U+3000          | the same text, unchanged                 |
+      | U+1F468 U+200D U+1F469 U+200D U+1F467 (one emoji)      | the same text, unchanged                 |
+      | "علي" " " "Lina"                                        | the same text, unchanged                 |
+      | ""                                                     | ""                                       |
+
+  @R35 @R24
+  Scenario: plainName and summaryText read one class
+    # The proof that the screen and the copied summary cannot drift apart (spec R35 point 2).
+    Given every code point from U+0000 to U+10FFFF except the surrogates U+D800 to U+DFFF
+    When plainName is called on "A" + c + "B" for each code point c, and summaryText on the S2 result with Chen's name set to "A" + c + "B"
+    Then plainName gives "AB" for exactly 79 code points and "A" + c + "B" for every other
+    And for every code point, plainName gives "AB" exactly when Chen's row of summaryText reads "A B RM 38.86"
+    And plainName(plainName(t)) equals plainName(t) for each of these texts, and no call throws
+
+  @R35 @R25
+  Scenario: The class is written once
+    Given every file under src/
+    Then "Bidi_Control" appears on exactly one line, in src/core/bill.js, and src/core/summary.js imports NAME_CONTROLS from "./bill.js"
+    And the runtime trap's workload calls plainName, and the trap sees no banned name while it runs
+    And a planted copy of summary.js with its own class literal, scanned in a temporary folder, is reported (the scan has teeth)
 ```
 
 ### Expected summary blocks
