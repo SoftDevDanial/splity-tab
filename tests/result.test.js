@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { billCharges, computeResult } from "../src/core/result.js";
 import { allocateEvenly, allocateByWeight } from "../src/core/allocate.js";
+import { AMOUNT_MAX_CENTS } from "../src/core/money.js";
 import { toggleItemPerson, setMode, setSubtotalText } from "../src/core/bill.js";
 import {
   buildBill, deepFreeze, withSpare, S1, S2, S5, W1, E1, E2, E3, I2, I3, I4, MAX_E, MAX_I, D1, D2,
@@ -169,6 +170,29 @@ test("@R23 MAX-I charges are exact at the bound", () => {
   const rows = computeResult(MAX_I).rows;
   assert.equal(rows[0].charges, 27999998);
   assert.equal(rows[11].charges, 22399997);
+});
+
+/** Items of at most the largest price (R1) that add up to `cents`, each tapped by `who` only. */
+function itemsWorth(cents, who) {
+  const items = [];
+  for (let rest = cents; rest > 0; rest -= AMOUNT_MAX_CENTS) {
+    const price = Math.min(AMOUNT_MAX_CENTS, rest);
+    items.push({ price: `${Math.floor(price / 100)}.${String(price % 100).padStart(2, "0")}`, who: [who] });
+  }
+  return items;
+}
+
+// The result path splits the charges in its own floor step (floorParts), so the R8 trap rows of allocate.test.js
+// do not guard it. This bill's charges division is the trap row 61846725 over [49676084, 322894546], where a float
+// floor moves one sen from Person 2 to Person 1 and every sum still adds up (code review CR-S5-1).
+test("@R21 @R8 a by-item bill whose charges division is an R8 trap row gets the exact charges", () => {
+  const items = [...itemsWorth(49676084, "p1"), ...itemsWorth(322894546, "p2")];
+  const result = computeResult(buildBill({ mode: "item", items }));
+  assert.equal(result.charges.service + result.charges.sst, 61846725);
+  assert.deepEqual(result.rows.map((row) => row.items), [49676084, 322894546]);
+  assert.deepEqual(result.rows.map((row) => row.charges), [8246230, 53600495]);
+  assert.deepEqual(allocateByWeight(61846725, [49676084, 322894546]), [8246230, 53600495]);
+  assert.notEqual(Math.floor((61846725 * 322894546) / 372570630), 53600495, "a float floor must miss this bill");
 });
 
 test("@R26 D1: two people called Ben give two even rows", () => {
