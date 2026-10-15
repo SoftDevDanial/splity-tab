@@ -1,0 +1,102 @@
+01 | gesture: open / in the run's one new context | assertion: the clipboard stand-in is in place, the screen is bill-empty with People open and the strip reading Enter the subtotal to see the splits., and split.draft is absent | PASS
+    PASS the clipboard stand-in is in place, writeText is not native and nothing was written
+    PASS the CSP listener is in place
+    PASS cold boot: bill-empty names
+    PASS cold boot: bill-empty removesDisabled
+    PASS cold boot: bill-empty evenChecked
+    PASS cold boot: bill-empty subtotal
+    PASS cold boot: bill-empty subtotalErrorHidden
+    PASS cold boot: bill-empty rates
+    PASS cold boot: bill-empty open
+    PASS cold boot: bill-empty card
+    PASS cold boot: bill-empty totalHolds
+    PASS cold boot: bill-empty emptyIcon
+    PASS cold boot: bill-empty strip
+    PASS cold boot: bill-empty stripCopy
+    PASS split.draft is absent
+02 | gesture: replace Person 1 with Aisyah and Person 2 with Ben, click Add person, type Chen, type 100.00 in Subtotal | assertion: the strip reads Total RM 116.60 | PASS
+    PASS focus after Add person
+    PASS the strip reads
+03 | gesture: click Splits, then Copy summary in the sheet | assertion: the splits RM 38.87, RM 38.87, RM 38.86, 2 sen left over and the proof RM 116.60, then Summary copied and the stand-in holds the S2 block exactly | PASS
+    PASS the open dialogs
+    PASS the sheet's splits
+    PASS the sheet's spare line
+    PASS the sheet's proof
+    PASS the sheet's status
+    PASS the text the stand-in received
+    PASS the writes the stand-in counted
+04 | gesture: click the sheet's spare chip, then One person, then tap the Ben pill | assertion: the Aisyah pill checked with RM 38.88, RM 38.86, RM 38.86, then RM 38.86, RM 38.88, RM 38.86 | PASS
+    PASS the open dialogs
+    PASS the checked pill
+    PASS the sheet's splits
+    PASS the checked pill
+    PASS the sheet's splits
+05 | gesture: click At random and Pick again in P1, close P1, click Copy summary in the sheet, open P1 from the chip, click Top of the list, close P1 and the sheet | assertion: the splits changed and add up to RM 116.60, lines 3 to 5 of the copied text are the sheet's splits rows, then RM 38.87, RM 38.87, RM 38.86 | PASS
+    PASS the splits after Pick again differ from the draw before it, ['RM 38.86', 'RM 38.87', 'RM 38.87']
+    PASS the splits after Pick again add up to RM 116.60, in sen
+    PASS the sheet's proof
+    PASS the open dialogs
+    PASS lines 3 to 5 of the copied text are the sheet's splits rows
+    PASS the writes the stand-in counted
+    PASS the sheet's splits
+    PASS the open dialogs
+06 | gesture: click By item, add the four K1 items by typing their names and prices and tapping their people, click Splits and Copy summary in the sheet, close the sheet | assertion: the strip reads Total RM 69.26, the K1 rows with their working and the proof RM 69.26, and the stand-in holds the S1 block exactly | PASS
+    PASS focus after Add item 1
+    PASS focus after Tab from item 1's name
+    PASS focus after Add item 2
+    PASS focus after Tab from item 2's name
+    PASS focus after Add item 3
+    PASS focus after Tab from item 3's name
+    PASS focus after Add item 4
+    PASS focus after Tab from item 4's name
+    PASS the strip reads
+    PASS the sheet's splits with their working
+    PASS the sheet's proof
+    PASS the sheet's status
+    PASS the text the stand-in received
+    PASS the writes the stand-in counted
+    PASS the open dialogs
+07 | gesture: reload in a new page of the same context, then click Even | assertion: the K1 screen with both sections folded, then Subtotal 100.00 and RM 38.87, RM 38.87, RM 38.86 | PASS
+    PASS By item is checked
+    PASS the items, their prices and who had them
+    PASS the sections, People and Charges
+    PASS the card's splits with their working
+    PASS the card's proof
+    PASS the strip reads
+    PASS the Subtotal
+    PASS the card's splits
+08 | gesture: click New bill, then Start new bill, then reload | assertion: the dialog with Cancel focused, then bill-empty with People open and focus on New bill, and bill-empty with People open again after the reload | PASS
+    PASS the open dialogs
+    PASS focus when the dialog opens
+    PASS the open dialogs
+    PASS focus after Start new bill
+    PASS after Start new bill: bill-empty names
+    PASS after Start new bill: bill-empty removesDisabled
+    PASS after Start new bill: bill-empty evenChecked
+    PASS after Start new bill: bill-empty subtotal
+    PASS after Start new bill: bill-empty subtotalErrorHidden
+    PASS after Start new bill: bill-empty rates
+    PASS after Start new bill: bill-empty open
+    PASS after Start new bill: bill-empty card
+    PASS after Start new bill: bill-empty totalHolds
+    PASS after Start new bill: bill-empty emptyIcon
+    PASS after Start new bill: bill-empty strip
+    PASS after Start new bill: bill-empty stripCopy
+    PASS after the reload: bill-empty names
+    PASS after the reload: bill-empty removesDisabled
+    PASS after the reload: bill-empty evenChecked
+    PASS after the reload: bill-empty subtotal
+    PASS after the reload: bill-empty subtotalErrorHidden
+    PASS after the reload: bill-empty rates
+    PASS after the reload: bill-empty open
+    PASS after the reload: bill-empty card
+    PASS after the reload: bill-empty totalHolds
+    PASS after the reload: bill-empty emptyIcon
+    PASS after the reload: bill-empty strip
+    PASS after the reload: bill-empty stripCopy
+09 | gesture: no gesture, the records of steps 1 to 8 are read | assertion: zero console errors, zero page errors, zero CSP violations and only same-origin GETs | PASS
+    PASS console errors and console text naming the Content Security Policy
+    PASS page errors
+    PASS CSP violations the listener recorded in every document
+    PASS requests that are not same-origin GETs for the page's own files
+    PASS the request log recorded the run

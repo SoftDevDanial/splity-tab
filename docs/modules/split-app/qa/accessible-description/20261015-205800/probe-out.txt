@@ -1,0 +1,7 @@
+server STARTED pid 17560 port 1939 root {workspace}\examples\split
+server STOPPED pid 17560 port 1939, exited True, port free again True
+Char kuey teow price in RM (K1 seed) | error hidden | name 'Char kuey teow price in RM' | description 'Enter an amount like 12.50' | aria-describedby 'ie2'
+Char kuey teow price in RM (K1 seed) | error shown after '13.505' and Tab (aria-invalid 'true') | name 'Char kuey teow price in RM' | description 'Enter an amount like 12.50'
+Subtotal in RM (K2 seed) | error hidden | name 'Subtotal in RM' | description 'Enter an amount like 12.50' | aria-describedby 'evenErr'
+Subtotal in RM (K2 seed) | error shown after '0' and Tab (aria-invalid 'true') | name 'Subtotal in RM' | description 'Enter an amount like 12.50'
+console/page errors: []

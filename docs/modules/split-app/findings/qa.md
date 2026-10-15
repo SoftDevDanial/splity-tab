@@ -3,189 +3,251 @@ module: split-app
 kind: qa
 ran_against: running-app
 status: issues_found
-counts: { pass: 145, fail: 0, blocked: 0 }
-findings_outside_contract: { fail: 1, observation: 2 }
-head: 9249ef9
-evidence: docs/modules/split-app/qa/qa/20261009-174214/
+counts: { pass: 165, fail: 1, blocked: 0, not_run: 1 }
+date: 2026-10-15
+head: d58f4ce
+node_run: docs/modules/split-core/qa/unit/20261015-204618/node-test.txt
+chromium_run: docs/modules/split-app/qa/functional/20261015-204624-chromium/
+webkit_run: docs/modules/split-app/qa/functional/20261015-205019-webkit/
+live_gate_runs: docs/modules/split-app/qa/live-e2e/20261015-205837-chromium-control/, 20261015-205844-chromium/, 20261015-205925-webkit-control/, 20261015-205931-webkit/, 20261015-205954-chromium/
+accessible_description_run: docs/modules/split-app/qa/accessible-description/20261015-205800/
 ---
-# QA findings: split-app
+# QA findings: split-app (v1.1.0, step 5)
 
-## Verdict
+**Verdict: ISSUES.** 165 of 167 qa.md scenarios pass, 1 fails (QA-S5-1), 1 is not run (the fidelity pixel gate, out of this finder's lane). No browser test failed in either engine. The one fail is a scenario with no test behind it, not an app defect.
 
-**PASS against the qa.md contract.** All 69 scenarios (145 once the outlines are expanded) pass, none fail, none are untested. Every R1 to R42 has at least one passing scenario.
+Run by the QA finder (read-only) on 2026-10-15 at HEAD `d58f4ce`. `git diff --stat HEAD` on `src/`, `index.html`, `tests/`, `docs/design/` and both `spec.md` and `qa.md` files is empty. `src/system.css` hashes to `bf30ddadb8c756dc5d462243c642c218597ae0ac` (git) and to SHA-256 `66807273...3c08` after CRLF to LF, 33070 bytes, equal to `docs/design/system.css` (qa.md R1). Every run below is fresh, in its own new timestamped folder.
 
-**One failure found outside the qa.md scenario set: F-1 (Medium).** A double click or double tap on the dialog's **Cancel** button lets the second click reach the control drawn under the dialog and change the bill. The destructive side is safe: a double click or double tap on **New bill** never wipes the bill, and a double click on **Start new bill** never changes the fresh bill (details in section 4). F-1 is in the Dev Solver's lane if the owner wants it fixed. Two observations (O-1, I-1) need no routing.
+| Run | Result | Against the A20 baseline on the same code |
+|---|---|---|
+| Node `node --test "tests/**/*.test.js"`, `docs/modules/split-core/qa/unit/20261015-204618/node-test.txt` | 379 of 379, 0 fail, 0 skipped | A20 `qa/unit/20261015-202558/`: 379 of 379 |
+| Chromium 149.0.7827.55, `python -m pytest tests/browser -q`, `qa/functional/20261015-204624-chromium/` (`pytest.txt`, `junit.xml`, `skips.txt`, `stdout.txt`, `R50-sheet-closed-at-1024.txt`) | 707 passed, 0 failed, 0 skipped, 219.9 s | A20 `20261015-202607-chromium/`: 707 passed. By id: 707 ids in both, 0 only in one, 0 with a different outcome |
+| WebKit 26.5, `python -m pytest tests/browser -q --engine webkit`, `qa/functional/20261015-205019-webkit/` (`pytest.txt`, `junit.xml`, `skips.txt`, `stdout.txt`, `icon-colour.txt`, `R50-sheet-closed-at-1024.txt`) | 705 passed, 2 skipped, 0 failed, 430.6 s. No failure screenshot was written | A20 `20261015-202952-webkit/`: 705 passed, 2 skipped. By id: 707 ids in both, 0 only in one, 0 different. `skips.txt` is identical to the baseline's (R33 IME and R40 after-load, each with its reason) |
+| Live gate, Chromium, control then green on one server (port 53462) | control RED at step 1, green 9 of 9 | A20 `20261015-202120-chromium-control/`, `-202122-chromium/`: same figures |
+| Live gate, WebKit, control then green on one server (port 31316) | control RED at step 1, green 9 of 9 | A20 `20261015-202153-webkit-control/`, `-202154-webkit/`: same figures |
+| Live gate, bare `python tests/browser/live_e2e.py` (serves itself) | 9 of 9, folder ends `-chromium` | A20 `20261015-202220-chromium/` |
 
-| Run | Result |
-|---|---|
-| `python -m pytest tests/browser -q` (run with `-v -rA --junitxml`) | 205 passed, 0 failed, 0 skipped, 85 s. `junit-browser.xml` |
-| `node --test "tests/**/*.test.js"` | 265 passed, 0 failed. `junit-node.xml` |
-| My own driver `qa_drive.py` (14 flows, own server, own headless Chromium 149) | 515 checks pass, 2 fail (both are F-1) |
-| Differential run against split-core (90 random bills, seed 20261009) | 0 mismatches (31 even, 20 by item, 38 blocked, 1 unassigned) |
-| Fidelity gate re-run through the project's own runner, evidence in my folder | 10 of 10 pairs at 0 mismatching pixels |
-| Static scans (my own Grep) | R2, R37, R38, R39 clean (section 5) |
+Pytest ran with `SPLIT_EVIDENCE=1`. The two runs were one after the other, never together. The by-id comparison used `junit.xml` classname and test name, parametrized ids included.
 
-Evidence folder (relative to the project root): `docs/modules/split-app/qa/qa/20261009-174214/`. It holds the two junit files, `qa_drive.py`, `oracle.mjs` (split-core in Node), `driver-results-all.json`, `scan_ghost.py` with `scan-ghost-results.json`, `probe_360.py`, `shot_overflow.py`, `run_fidelity.py` with `fidelity/20261009-175825/`, and `shots/` (25 screenshots).
+## Findings
+| id | R# | verdict | what I saw | capture |
+|---|---|---|---|---|
+| QA-S5-1 | R9, R11 | FAIL (Medium, a missing test, not an app defect) | The scenario "The accessible description of the amount fields is measured and reported" (`@chromium_only`, qa.md line 2002) has no test. `grep` for `accessible-description` and `getPartialAXTree` in `tests/` finds nothing, and neither the A20 Chromium run folder nor my own holds `accessible-description.txt`, which the Then line puts in the run's evidence folder. ROADMAP orchestrator action 9 (report CG-P6 to the owner) depends on that file. To close the gap I ran the measurement myself through CDP, see QA-S5-5 for the four lines. Route to the Dev Solver, to add the Chromium test that writes the four lines into the suite's evidence folder. | `docs/modules/split-app/qa/accessible-description/20261015-205800/accessible-description.txt`, `ax_probe.py`, `probe-out.txt` |
 
-## 1. Scenario table
+Observations. They change no verdict and no Then line is broken by them.
+- **QA-S5-2.** In both control runs the failing assertion line reads `got 'Total\nRM 116.60'` for the strip (a line break between the two parts, from `innerText`), where the scenario text writes "Total RM 116.60". The green runs pass the same read at step 2. A20 already noted this. Capture: `qa/live-e2e/20261015-205837-chromium-control/steps.log`, `20261015-205925-webkit-control/steps.log`.
+- **QA-S5-3.** qa.md writes `browser.version` for `summary.json`. Every gate run (these five, A20's, and the A0 runs of 1.0) records the flat key `browser_version`. Wording only. Capture: `qa/live-e2e/20261015-205844-chromium/summary.json`.
+- **QA-S5-4.** WebKit's screencast frames of the Splits sheet show the page behind it faintly through the glass (`20261015-205931-webkit/03-splits-sheet.jpg`, `04-one-person.jpg`), and frame `06-by-item.jpg` shows a focus ring on the Splits button after the sheet closed. The Chromium frames (`20261015-205844-chromium/03-splits-sheet.jpg`, `06-by-item.jpg`) show neither. No scenario asserts either, `system.css` uses `backdrop-filter` for the glass, and the fidelity gate is Chromium only. Worth a look on a real iPhone at UAT.
+- **QA-S5-5 (the CG-P6 measurement, for the owner).** Chromium, CDP `Accessibility.getPartialAXTree`: the Char kuey teow price field and the Subtotal both have the computed description "Enter an amount like 12.50" with the error hidden and again after "13.505" or "0" and Tab (the error shown). The hidden error paragraph is named by `aria-describedby` at all times (`ie2`, `evenErr`), as the goldens do, so the hint text is read before any error shows. VoiceOver and TalkBack were not measured (UNVERIFIED, a device check). Capture: `qa/accessible-description/20261015-205800/accessible-description.txt`.
 
-PT is the pytest function in `tests/browser/test_app.py` (the `test_` prefix is dropped). D is one of my driver flows: F1 even split, F2 by item, F3 charges, F4 copy, F5 reload, F6 unreadable draft, F7 New bill dialog, F8 double click, F9 keyboard only, F10 360 px, F11 RD-3, F12 injection, F13 differential run, F14 storage. W marks a test that is weaker than its Then line (section 3).
+## Not run
+- **#86 "Looks right" (`@R40 @gate`, line 1197).** The fidelity pixel gate and the FE element checklist are not this finder's. A19 ran the gate (`docs/modules/split-app/qa/fidelity/20261015-193738/`, per the handoff, not re-run here) and the fidelity finder takes the checklist. No verdict from me.
 
-| # | R# | Scenario | Verdict | Evidence |
-|---|----|----------|---------|----------|
-| 1 | R1 | The entry point loads only its own files | PASS | PT R1_entry_point_loads_only_its_own_files. Mine: head order and CSP read from `index.html`, `src/system.css` is the golden's 18102 bytes plus the 40 byte `[hidden]` rule (cmp), 0 console and page errors in 112 checked sessions |
-| 2 | R1 | The page works from a sub-path | PASS | PT R1_page_works_from_a_sub_path (second server rooted at the parent folder) |
-| 3 | R2 | Cold boot is a new bill with no seed | PASS | PT R2_cold_boot_is_a_new_bill_with_no_seed. D F1 (people, Even, 10 and 6, only the Shares message, no `split.draft`, no `__` property) |
-| 4 | R2 | No sample data ships | PASS | PT R2_no_sample_data_ships. Mine: Grep of the 16 sample words over `index.html` and `src/`, 0 matches |
-| 5 | R3 | The rendered markup matches its golden (4 rows) | PASS | PT R3_rendered_markup_matches_its_golden[S3], R3_a_restored_bill_matches_its_golden[S2,S1,S5], R3_rendered_markup_matches_its_golden_by_gestures[S2,S1,S5], R3_the_walk_sees_every_rendered_element_and_flags_a_change (the walk has teeth). Corroborated by 10 of 10 fidelity pairs at 0 px |
-| 6 | R4 | Person rows carry their names and labels | PASS | PT R4_person_rows_carry_their_names_and_labels |
-| 7 | R4 R5 | A blank name falls back to its position | PASS | PT R4_a_blank_name_falls_back..., R5_a_person_label_follows_the_name_into_every_toggle, R5_a_blank_name_reads_as_its_position_in_the_shares_row |
-| 8 | R5 | Renaming a person updates every place | PASS (W1) | PT R5_renaming_a_person_updates_the_remove_name_on_each_keystroke, R5_a_person_label_follows..., R5_a_new_name_reaches_the_copied_text. D F4 (copy line 5 is `Chen Wei RM 24.48`) |
-| 9 | R5 | Renaming an item updates its accessible names | PASS | PT R5_renaming_an_item_updates_its_accessible_names |
-| 10 | R6 | Add person until the limit | PASS (W4) | PT R6_add_person_until_the_limit (disabled look equals the S8 specimen incl. `not-allowed`). D F1 (12 people, Add person disabled, 12-way even split equals split-core) |
-| 11 | R7 | Remove a person and they leave every item | PASS | PT R7_remove_a_person, R7_removing_a_person_takes_them_off_every_item, R7_removing_a_person_can_leave_an_item_without_anyone. D F2 |
-| 12 | R42 | Two people may have the same name | PASS | PT R42_duplicate_names_are_accepted_and_act_on_their_own_row, R42_duplicate_names_through_the_whole_flow, R42_the_draft_keeps_both_people_with_the_same_name. D F13 (random bills carry duplicate and blank names) |
-| 13 | R8 | Switching modes keeps both sets of input | PASS | PT R8_switching_modes_keeps_the_subtotal, R8_switching_modes_keeps_both_sets_of_input, R8_both_sets_of_input_survive_a_reload, R8_the_panel_follows_each_mode. D F5 |
-| 14 | R8 | Arrow keys move between the modes | PASS | PT R8_arrow_keys_move_between_the_modes. D F9 |
-| 15 | R9 | The subtotal field drives the even split | PASS | PT R9_subtotal_field_has_its_unit_label_and_input_mode, R9_a_subtotal_drives_the_even_split. D F1 (panel checked against split-core after each of the six keystrokes of `100.00`) |
-| 16 | R10 | An inline error waits for the field to be left (4 rows) | PASS (W2) | PT R10_an_inline_error_waits_for_the_field_to_be_left[subtotal,item-price,service,sst]. D F3 (Control+A then one valid key removes the error, both rates), F1 (11 subtotal texts, error shown after Tab iff split-core calls the text invalid) |
-| 17 | R10 | An empty field never shows an error | PASS | PT R10_an_empty_field_never_shows_an_error, R10_an_empty_rate_never_shows_an_error. D F3 |
-| 18 | R10 | Typing invalid text does not show the error early | PASS | PT R10_typing_bad_text_in_a_focused_field_shows_no_error_early. D F1, F3 |
-| 19 | R10 | A restored invalid field shows its error at once | PASS | PT R10_a_restored_bad_field_shows_its_error_at_once. D F5, F13 (displayed error set equals split-core's invalid fields for 90 bills) |
-| 20 | R10 | An error survives a mode switch | PASS | PT R10_an_error_survives_a_mode_switch |
-| 21 | R10 R13 | A press below an invalid field lands on its control (RD-3, 4 rows) | PASS | PT R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on (4 rows x mouse and touch, 8 tests). D F11 (6 cases x mouse and touch, 54 checks: one click reached the control, the error shows afterwards, toggle flipped once, Remove removed once, Add item added once) |
-| 22 | R13 | A tap on a person below an invalid, unflagged price | PASS | PT R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error[mouse,touch]. D F11 |
-| 23 | R10 | The error waits for the release, and only a press holds it back | PASS | PT R10_the_error_waits_for_the_mouse_button_to_come_up, R10_pressing_empty_space_also_waits_for_the_release, R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[mouse,touch] |
-| 24 | R11 | Item rows carry their names and labels | PASS | PT R11_item_rows_carry_their_names_and_labels |
-| 25 | R12 | Add an item, remove one, reach the limit | PASS (W4) | PT R12_add_an_item_remove_one_and_reach_the_limit. D F10 (a 50 item bill loads and its panel equals split-core) |
-| 26 | R13 | Tapping a person on an item | PASS | PT R13_tapping_a_person_on_an_item, R13_tapping_a_person_changes_the_shares. D F2 (Ben joins Satay: 21.90/3.64/25.54, 19.50/3.24/22.74, 18.00/2.98/20.98), F9 (Space and Enter) |
-| 27 | R14 | A price error sits in the item line | PASS | PT R14_a_price_error_sits_in_the_item_line (last child of `div.item-line`, equals `#s4-price-error`). D F11, F13 |
-| 28 | R15 | The Charges block and its defaults | PASS | PT R15_charges_block_and_its_defaults. D F3 |
-| 29 | R15 | A rate error names both ids and its range | PASS | PT R15_a_rate_error_names_both_ids_and_its_range. D F3 (`rate-service-error charges-hint`, last child of the cell) |
-| 30 | R15 R19 | A charge of 0 is allowed and still shown | PASS | PT R19_a_charge_of_zero_is_allowed_and_still_shown. D F3 (RM 0.00 with "0% of RM 100.00", SST RM 6.00, shares 35.34, 35.33, 35.33) |
-| 31 | R16 | The panel follows every keystroke and stays quiet | PASS (W7) | PT R16_the_panel_follows_every_keystroke_and_stays_quiet, R16_the_status_is_the_only_live_element_and_only_while_the_table_is (RD-2). D F1 |
-| 32 | R17 | When the shares cannot be worked out (6 rows) | PASS | PT R17_when_the_shares_cannot_be_worked_out x6. D F2 (all six, each also checked against split-core's `reason`) |
-| 33 | R18 | Items that still need a person | PASS | PT R18_items_that_still_need_a_person. D F2 (summary kept, 1 then 2 items message, no table, no copy, no status, no error styling) |
-| 34 | R19 | The bill summary shows its working (2 rows) | PASS | PT R19_the_bill_summary_shows_its_working[S2,S1]. D F1, F2, F3 (every summary row against split-core) |
-| 35 | R20 | The even split from a cold boot | PASS | PT R20_the_even_split_from_a_cold_boot. D F1 (38.87, 38.87, 38.86, check 116.60, draft equals the S2 seed exactly) |
-| 36 | R21 | The by-item split from gestures | PASS | PT R21_the_by_item_split_from_gestures. D F2, F9 (S1 rows and check row 59.40, 9.86, 69.26) |
-| 37 | R21 | Someone who had nothing is still listed | PASS | PT R21_someone_who_had_nothing_is_still_listed. D F2 (I2 bill, hand typed and split-core) |
-| 38 | R22 | Copy summary puts the exact text on the clipboard (2 rows) | PASS | PT R22_copy_summary_puts_the_exact_text_on_the_clipboard[S2,S1]. D F4 (text equals the qa.md block and split-core `summaryText`, 1 write) |
-| 39 | R23 | The browser blocks the clipboard | PASS | PT R23_the_browser_blocks_the_clipboard. D F4 (reject.js) |
-| 40 | R23 | The clipboard API is missing | PASS | PT R23_the_clipboard_api_is_missing. D F4 (missing.js) |
-| 41 | R24 | The status lives as long as the table | PASS | PT R24_the_status_lives_as_long_as_the_table, R24_the_status_is_not_saved, R22_a_failed_copy_is_replaced_by_the_next_attempt. D F4 |
-| 42 | R25 | Every change is saved (6 rows) | PASS | PT R25_every_change_is_saved x6, R25_a_bill_built_by_gestures_is_stored_like_its_seed x2. D F1 |
-| 43 | R25 | Leaving a field or copying does not save | PASS | PT R25_leaving_a_field_or_copying_does_not_save, R25_a_cold_boot_and_a_reload_write_nothing. D F1, F4, F5 (a restore rewrites nothing) |
-| 44 | R26 | Come back later (key flow 3) | PASS | PT R26_come_back_later, R26_a_restored_bill_looks_like_the_one_built_by_gestures[S2,S1,S5]. D F5 |
-| 45 | R26 | Odd but readable drafts load (3 rows) | PASS | PT R26_odd_but_readable_drafts_load[G1,G2,G3]. D F6 (G2 and G3) |
-| 46 | R27 | An unreadable draft starts a new bill with a note (24 rows) | PASS | PT R27_an_unreadable_draft_starts_a_new_bill_with_a_note[B1..B24]. D F6 (10 variants: note text, role, dismiss button, S3 under it, draft rewritten to split-core `newBill()`, no note after reload) |
-| 47 | R27 | Dismissing the note | PASS | PT R27_dismissing_the_note_moves_focus_to_the_first_name, R27_the_note_is_not_touched_by_start_over. D F6 |
-| 48 | R28 | The app works without storage (3 rows) | PASS | PT R28_the_app_works_without_storage x3. D F14 (same three breakers, total RM 116.60, no note, 0 console errors) |
-| 49 | R29 | The dialog opens with the safe choice focused | PASS | PT R29_the_dialog_opens_with_the_safe_choice_focused. D F7, F9 (Tab and Shift+Tab never leave the two buttons over 11 presses) |
-| 50 | R30 | Leaving the dialog without starting over (4 rows) | PASS | PT R30_leaving_the_dialog_without_starting_over x4. D F7 (8 ways: Cancel, Esc, backdrop at the corner, over Person 1 name, over a toggle, over Add person, bottom right, over New bill itself; a click inside the box keeps it open; draft, screen and focus unchanged) |
-| 51 | R31 | Start over (key flow 4) | PASS | PT R31_start_over. D F7, F9 (draft equals split-core `newBill()`) |
-| 52 | R31 | Start over clears the copy status | PASS | PT R31_start_over_clears_the_copy_status. D F7 |
-| 53 | R31 | Start over clears the error flags (4 rows) | PASS | PT R31_start_over_clears_the_error_flags x4. D F7 (subtotal and SST) |
-| 54 | R32 | Tab order follows the golden (3 rows) | PASS (W4) | PT R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S3,S1,S7], R32_the_ring_check_has_teeth. D F9 (22 sampled stops, all `:focus-visible` with a ring) |
-| 55 | R33 | Typing never loses its place (5 rows) | PASS | PT R33 person name, item name, item price, subtotal, service charge. D F9 (whole bill typed by keyboard) |
-| 56 | R33 | IME composition survives a render | PASS | PT R33_ime_composition_survives_a_render |
-| 57 | R34 | Focus after adding or removing (7 rows) | PASS | PT R34_focus_moves_to_the_name_field_at_the_removed_position x2, R34_focus_after_adding_or_removing_an_item x3, R34_removing_the_last_item_focuses_add_item, and Add person inside the first. D F1 and F9 (Add person, Add item) |
-| 58 | R35 | No horizontal overflow at phone and desktop sizes (8 rows) | PASS | PT R35_no_horizontal_overflow_and_the_layout_of_each_size x8. D F10 (S3, S2, S1, S5 at 360: 2 columns, panel after Charges, panel figures equal split-core) |
-| 59 | R35 | Sizes the design gives at 360 x 780 | PASS | PT R35_sizes_the_design_gives_at_360_by_780. D F10 (160 px field, 40 px two line status, 328 px dialog, 48 px text) |
-| 60 | R35 | Content width at 1280 x 800 | PASS | PT R35_content_width_of_the_header_and_the_note_at_1280_by_800 |
-| 61 | R36 | Motion follows the user's setting (2 rows) | PASS | PT R36_motion_follows_the_users_setting[reduce,no-preference] |
-| 62 | R37 | Names are shown as text, never as markup | PASS | PT R37_names_are_shown_as_text_and_never_as_markup, R37_no_banned_api_in_the_shipped_files, R37_the_banned_api_scan_has_teeth. D F12 (same payloads, 0 alerts). Mine: Grep for the banned tokens, 0 hits |
-| 63 | R38 | The CSP is exact and never violated | PASS | PT R38_policy_is_exact_and_nothing_inline. Mine: the meta in `index.html` is the spec's, character for character, with no inline script, style attribute or style element |
-| 64 | R38 | The strict policy blocks nothing the app needs (3 rows) | PASS (W3) | PT R38_strict_policy_blocks_nothing_the_app_needs (S3). The S1 and S2-with-dialog rows ride on the suite-wide CSP console rule. Mine: 0 CSP lines in 112 checked sessions that covered S1, S2, S5, the open dialog and every error state |
-| 65 | R39 | Nothing leaves the device | PASS | PT R39_nothing_leaves_the_device_by_the_static_scan, R39_the_network_scan_has_teeth, R39_a_whole_session_makes_only_same_origin_gets. Mine: Grep finds one scheme string in `src/`, the namespace argument of `createElementNS` at `src/ui/icons.js:14`. Every checked session of mine logged only same-origin GETs |
-| 66 | R39 | The SVG icons come from createElementNS | PASS | PT R39_icons_come_from_createElementNS_and_the_page_holds_eleven |
-| 67 | R40 | Looks right | PASS | Fidelity gate: 10 of 10 pairs, 0 mismatching pixels, dimensions equal. Re-run by me through the project runner (`fidelity/20261009-175825/run.log`) and equal to the committed run `qa/fidelity/20261009-172737`. The per-row FE element checklist verdict belongs to the fidelity finder |
-| 68 | R40 | The runner uses the Python that runs pytest | PASS (W5) | PT R40_the_runner_uses_the_python_that_runs_pytest, R40_the_runner_builds_the_documented_command x5, R40_fidelity_seeds_match x3, R40_a_seed_script_boots_the_app_through_its_own_load_path x3 |
-| 69 | R41 | Works right | PASS (W5) | Committed artifact `qa/live-e2e/20261009-173415/` (7 of 7 steps, empty `console.log`, `network.log` only same-origin GETs, `clipboard-s1.txt`, `clipboard-s2.txt`, `summary.json` result PASS). I did not re-run `live_e2e.py`, which writes into `qa/live-e2e/`. I replayed its steps 1 to 6 myself in F1, F2, F4, F5, F7 against split-core and the qa.md blocks, all pass. No source changed since the artifact (`git diff dbab928 HEAD` over `src`, `index.html`, `tests` is empty) |
+## The `@R41 @gate` scenarios, judged on the live runs
+All five folders below were listed on disk after their runs. Each `summary.json` was read, each `steps.log`, and the frames were viewed.
 
-## 2. R# coverage table
+| Run folder | summary.json | steps.log | Captures |
+|---|---|---|---|
+| `qa/live-e2e/20261015-205837-chromium-control/` (files `01-cold-boot.jpg`, `console.log`, `network.log`, `steps.log`, `summary.json`) | `control` "seeded", engine chromium, `browser_version` 149.0.7827.55, `pass` false, `steps_run` 1, `first_failing_step` 1, `storage_state` the K2 bill, `bypass_csp` false, `control_red_on_its_property` true | Step 1 FAIL. PASS on the stand-in line ("the clipboard stand-in is in place, writeText is not native and nothing was written"), so the RED comes from the cold boot. FAIL on names, removesDisabled, subtotal, open (got false, false, false), card, totalHolds, emptyIcon, strip, stripCopy and `split.draft is absent` (got the K2 draft). | `01-cold-boot.jpg` shows People and Charges folded, "Aisyah, Ben, Chen", Subtotal 100.00, strip "Total RM 116.60", not bill-empty |
+| `qa/live-e2e/20261015-205844-chromium/` | `control` null, `pass` true, 9 of 9, `requests` 90, outside the rule 0, console errors 0, page errors 0, CSP violations 0, `clipboard_writes` 3, `bypass_csp` false, `storage_state` null, the two init scripts only | 9 step lines PASS, 93 assertion lines PASS, 0 FAIL. `console.log` is empty. Every one of the 90 `network.log` lines is a same-origin GET inside the rule (checked by script). `clipboard-s2.txt` is the S2 block and `clipboard-s1.txt` the S1 block, exact | 9 frames `01-cold-boot.jpg` to `09-throughout.jpg`. Viewed 01, 03, 04, 05, 06, 08: bill-empty with People open and the strip "Enter the subtotal to see the splits." (01), the sheet with 38.87, 38.87, 38.86, "2 sen left over", "Adds up to RM 116.60", "Summary copied" (03), P1 with One person, Ben checked and 38.86, 38.88, 38.86 (04), the K1 items and "Total RM 69.26" with "Summary copied" (06), bill-empty again (08) |
+| `qa/live-e2e/20261015-205925-webkit-control/` | as the Chromium control, engine webkit, `browser_version` 26.5, `control_red_on_its_property` true | the same 10 FAIL assertion lines and the same PASS on the stand-in | `01-cold-boot.jpg` the K2 screen, not bill-empty |
+| `qa/live-e2e/20261015-205931-webkit/` | as the Chromium green, engine webkit, 26.5, 9 of 9, 0 console errors, 0 page errors, 0 CSP violations, 90 requests, 3 writes. No refused-stylesheet line | 9 PASS, 93 assertion PASS, 0 FAIL. `steps.log` equals the Chromium one except the random Pick again draw line. Clipboard texts equal the Chromium ones | Viewed 01, 03, 04, 06, 07, 08, the same screens as Chromium (see QA-S5-4) |
+| `qa/live-e2e/20261015-205954-chromium/` (bare run, server pid 3324 port 31423 started and stopped by the script) | `control` null, 9 of 9, `server` "served by this run", same figures | 9 PASS | same frames |
 
-Every requirement has at least one passing scenario. **R# without coverage: none.**
+- **#90 Works right.** PASS. Green in both engines, each evidence folder exists and was listed, each green `summary.json` records `"control": null`, and the two control summaries record `"control": "seeded"` with `pass` false, so neither counts as green.
+- **#91 control (Outline, 2 rows).** PASS in both engines. Each stopped at step 1 with `pass` false, `steps.log` names the failed assertions, the screen is not bill-empty (data-open false, strip not the empty message) and `split.draft` is present, the stand-in check passed, `summary.json` has `control` "seeded", the engine, the version and `pass` false, the folder ends `-<engine>-control`, holds only its own five files and was never written over.
+- **#162 The live gate records its engine.** PASS. `20261015-205931-webkit/summary.json` has engine "webkit" and version 26.5. The bare run's folder `20261015-205954-chromium` is Chromium.
+- **#92 and the R41 static tests.** PASS in both engines (test ids in the table).
+- Servers. Both shared servers were stopped by exact PID (24688 on 53462, 19616 on 31316) and each port then refused a connection (curl exit 7). The suite runs stopped their own servers (pids 20160 and 22360, each logged "STOPPED ... port free again True").
 
-| R# | Scenarios (table 1) | R# | Scenarios | R# | Scenarios |
-|----|---------------------|----|-----------|----|-----------|
-| R1 | 1, 2 | R15 | 28, 29, 30 | R29 | 49 |
-| R2 | 3, 4 | R16 | 31 | R30 | 50 |
-| R3 | 5 | R17 | 32 | R31 | 51, 52, 53 |
-| R4 | 6, 7 | R18 | 33 | R32 | 54 |
-| R5 | 7, 8, 9 | R19 | 30, 34 | R33 | 55, 56 |
-| R6 | 10 | R20 | 35 | R34 | 57 |
-| R7 | 11 | R21 | 36, 37 | R35 | 58, 59, 60 |
-| R8 | 13, 14 | R22 | 38 | R36 | 61 |
-| R9 | 15 | R23 | 39, 40 | R37 | 62 |
-| R10 | 16 to 20, 21, 23 | R24 | 41 | R38 | 63, 64 |
-| R11 | 24 | R25 | 42, 43 | R39 | 65, 66 |
-| R12 | 25 | R26 | 44, 45 | R40 | 67, 68 |
-| R13 | 21, 22, 26 | R27 | 46, 47 | R41 | 69 |
-| R14 | 27 | R28 | 48 | R42 | 12 |
+## Per-scenario evidence notes
+- **#161 A Chromium-only test is a counted skip in WebKit.** PASS. The WebKit folder name ends `-webkit`. `skips.txt` lists both skipped tests with their reasons and `count 2`, equal to `junit.xml` `skipped="2"`. The R33 IME test's reason starts "Needs a CDP session". `junit.xml` shows 705 passed and 2 skipped, so no skip counts as a pass. The Chromium folder ends `-chromium`, and its `pytest.txt` has `PASSED` for both `chromium_only` tests (`test_R33_ime_composition_survives_a_render`, `test_R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in`).
+- **#164 The A0 baseline record is complete.** PASS, a record check on disk, no browser run. In `qa/webkit-baseline/20261014-130011/`: `sorting.md` names the WebKit run's own folder `qa/functional/20261014-125604-webkit/` (it holds `pytest.txt`, `junit.xml`, `skips.txt`) and the Chromium folder `20261014-125352-chromium/` (`junit.xml` 430 tests, 0 failures, 427 sealed plus 3 new counted apart), and the 1.0 gate folders `20261014-130326-chromium` and `20261014-130333-webkit`. `probes.json` records `launched_by` "rig.launch", `contexts_by` "rig.new_context", the stand-in before the first gesture, the touch double tap click counts [1, 1], the event order, `isSecureContext` true and `typeof Clipboard` "function", the localStorage redefinition, the CSP and denied-storage console text, `activeElement` after a click on a radio label and on a radio, and the svg `Content-Type` `image/svg+xml`. `sorting.md` accounts for all 48 failed ids of the WebKit `junit.xml` exactly once (5 sorted, 43 touch double taps ruled class (a)), which I recounted from that `junit.xml`.
+- **#158, #166, #167 (`@node`).** PASS from the Node run (10 `@R57 b ...` tests, 4 `@R61 D3/D13/D14` tests, 2 save and load tests). The run folder is under split-core's `qa/unit/`.
+- **#165.** See QA-S5-1.
+- **Counts that match the Examples.** `test_R3_rendered_markup_matches_its_golden` 40 cases (40 pairs), `test_R35_no_horizontal_overflow_in_any_golden_state` 40, `test_R6_a_repeat_press_on_add_person...` 72, `test_R7_a_repeat_press_on_the_last_remove...` 48, `test_R12_a_repeat_press_on_add_item...` 36, `test_R27_an_unreadable_draft...` 32 (B1 to B32). Each is the same in both engines.
+- **Static scenarios, my own greps.** No sample name from #4 in `index.html` or `src/`. No `innerHTML`, `outerHTML`, `insertAdjacentHTML`, `document.write`, `eval`, `new Function`, `srcdoc` or `on*` attribute in either (#79). No `fetch`, `XMLHttpRequest`, `WebSocket`, `sendBeacon`, `EventSource` or absolute URL, except the SVG namespace string `http://www.w3.org/2000/svg` in `src/icon.svg` and `src/ui/icons.js` (#83). All agree with the tests.
 
-Covered by pytest alone (I did not re-drive them): the R3 DOM walk, R32 ring geometry (offset and colour values), R33 caret positions and IME, R35 sizes at 390 and 1280, R36 reduced motion. I read each test against its Given, When and Then. They assert what the Then says, apart from the W items below.
+## Supporting tests with no scenario row of their own
+54 of the 239 test functions (for example `test_R39_clipboard_recorder_keeps_the_text_and_never_reaches_the_system`, `test_R46_the_storage_drivers_do_what_how_to_run_says`, `test_R35_layout_problems_has_teeth`, `test_R48_on_the_desktop_both_sections_show`) back the scenarios above or the harness rules of "How to run". All of them pass in both engines. They are in `junit.xml`.
 
-## 3. Test strength (assertions weaker than their Then line, tests that cannot fail)
+## Method and limits
+A scenario is PASS when the test or tests named for it passed in this run in each engine it names (a `@chromium_only` scenario in Chromium, with the WebKit skip counted), or when I observed the run directly (the gates, the records, the greps, the CDP probe). The scenario to test mapping is by test name (the qa.md rule "functions are named `test_R<n>_<what>`"), checked by similarity and set by hand for 26 scenarios. I did not read each test body against every clause of its Then lines, which is the code review finder's work. `C n/m` means n of m cases passed in Chromium and `W n/m` the same in WebKit.
 
-No test that cannot fail was found. The four custom scanners and walkers each have a self test that proves they fail on bad input (`R3_the_walk_..._flags_a_change`, `R32_the_ring_check_has_teeth`, `R37_the_banned_api_scan_has_teeth`, `R39_the_network_scan_has_teeth`). The weaker spots, none of which hides a failure I could find:
+## Not done
+- The fidelity pixel gate and the FE element checklist (not this finder's).
+- Any device check (an iPhone or Android phone, a screen reader). See QA-S5-4 and QA-S5-5.
+- The README and BUILD.md reconciles (the orchestrator's).
 
-| Id | R# | Weak spot | What I did |
-|----|----|-----------|------------|
-| W1 | R5 | The qa.md Then says the toggles, the shares row and the remove name show the text typed so far after each key. The test checks the remove name after each key, and the toggles and the shares row (through the copy line) only after the whole text is typed | The app updates all of them in one render pass. I checked the end state in D F4 |
-| W2 | R10 | The Outline's "type the good text" step goes through Backspace (empty) first, so the invalid to valid transition by typing over a selection is never what is asserted. The error also disappears on empty, so the assertion cannot tell the two apart | D F3 does Control+A then one valid key for both rates and the error is gone. In `src/errors.js`, `typedInto` clears the flag when the text is not bad, and subtotal and price use the same function |
-| W3 | R38 | The Outline has three rows (S3, S1 seed, S2 seed with the dialog open). The test asserts the stylesheet, the module and the absence of `style` attributes for S3 only | Other states rely on the suite-wide CSP console rule. My runs checked 0 CSP lines in every state |
-| W4 | R6, R12, R32 | "Skipped by Tab" for the disabled Add person (12 people) and Add item (50 items) is not asserted. R32 covers only S3, S1 and S7, where those buttons are enabled | A disabled button cannot take focus in Chromium, and R32 does assert that the disabled remove buttons are skipped at 2 people |
-| W5 | R40, R41 | The pytest tests for R40 and R41 check the gates' inputs and scripts (seeds, command line, step labels, real gestures only). They do not run the gates. A green 205 says nothing by itself about pixel fidelity or the live flow | Covered by the gate artifacts and my own re-run and replay (rows 67 to 69) |
-| W6 | R30 | No scenario drives a double click or double tap on any dialog button, so F-1 had no test | Section 4 |
-| W7 | R16 | "The only live regions on the page" is asserted for `div.tape` only | `src/` holds `role: "status"` in exactly two places, `ui/note.js` and `ui/panel.js`, and no `aria-live`, so the page-wide claim is true |
+## Scenario table
+Columns are the scenario number in order of `qa.md`, the line of its `Scenario`, its tags, its title, the test function (without `test_`) with its cases passed in Chromium (C) and WebKit (W), and the verdict.
 
-## 4. Failures outside the qa.md scenario set
-
-### F-1. Double click or double tap on Cancel changes the bill. Severity: Medium
-
-The same class as the Streaks delete dialog defect, on the safe button. The first click closes the dialog (`dialog.close()` runs synchronously in the Cancel handler). The second click of the double click is then an ordinary click on whatever is drawn under Cancel. On a by-item bill that is often a person's toggle, which flips. The bill, the draft and the screen change, against R30 "Cancel changes nothing".
-
-Reproduction (the numbers are in `scan-ghost-results.json`, and `qa_drive.py` flow F8 reproduces it as its 2 failed checks):
-1. Serve the project, open a context at 375 x 667 and seed the S1 bill (`docs/modules/split-app/qa.md` seed list). It opens in By item mode.
-2. Click **New bill**.
-3. Double click **Cancel** (Playwright `mouse.dblclick` on its centre), or tap it twice (`touchscreen.tap` twice in a `has_touch` context).
-4. Expected: dialog closed, bill unchanged. Observed: dialog closed, and the **Chen** toggle of "Nasi lemak ayam" went from `aria-pressed="false"` to `"true"`. The draft changed (`i4.who` gained `p3`), so Aisyah's and Chen's shares moved.
-
-Exposure, measured over 4 seeds x 16 viewports (64 cases, mouse): 10 hit, every one in a by-item state (S1 and S5) at 360x640, 375x667, 412x732, 412x915 and 430x932. 0 of 32 hit in even mode (S2, S3). In every hit the element under Cancel is `button "Chen"`. At 360x800, 375x812, 390x844 and 393x852 the element under Cancel is an item name input, so a double click there only focuses it and selects a word (the bill is unchanged, but focus ends in that input instead of on New bill). At 360x740, 360x780 and 414x896 it is empty row space. What sits under Cancel depends on the bill, so a longer or shorter bill moves other controls under it at other sizes.
-
-What is safe, so the failure the caller asked about does not happen:
-- **Double click or double tap on New bill: the bill is never wiped.** 15 combinations (390x844, 360x780 and 1280x800, each with mouse dblclick, two clicks 80 ms and 250 ms apart, two taps 60 ms and 200 ms apart): the draft and the screen are identical afterwards in all 15. The first click opens the dialog, the second lands on the backdrop and acts as Cancel (R30, CG-8), so the dialog ends **closed** in all 15 (see I-1). A scan of 21 viewport sizes from 320x568 to 1280x200 and 360x200 found that the centre of New bill is never under Cancel or Start new bill, and a second click there never changed the draft.
-- **Double click or double tap on Start new bill: the fresh bill is never changed.** 64 cases, 0 changes. Under the Start position on the fresh S3 screen there is only a heading, a section or a `div`, nothing clickable.
-
-Route: Dev Solver, if the owner wants Cancel to ignore the tail of a double click (for example by not acting on a click that lands within a short time after the dialog closed). It needs no design change.
-
-### Observations (no routing needed)
-
-**O-1. The by-item table overflows at 360 px for bigger bills. Severity: Low.** Outside the qa.md scenarios, which cover S1, S2, S3 and S5 only (S1 totals RM 69.26 and fits). With S1's four items scaled up, at 360 x 780 the page first scrolls sideways at an item total of RM 653.40 (check row RM 653.40, RM 108.46, RM 761.86): `scrollWidth` 365 against 360, and the Share column touches the edge (`shots/overflow-full-360-x12.png`). At an item total of RM 1188 it is 383. At 390 x 844 the first overflow in my steps was the bill with an item total of RM 17,820. A stress bill (12 people with 20 character names, 50 items at RM 99999.99) reaches 466 px at 360. At 320 x 640 S1 itself overflows (342), below the 360 floor. Numbers stay readable. The cause is the golden CSS, which is immutable (CLAUDE.md, and the non-goal "any CSS change"), so a fix is a design decision for the owner. Even mode fit in my probes (3 and 12 people with 20 character names, subtotal RM 99999.99).
-
-**I-1. A double click or double tap on New bill ends with the dialog closed.** The dialog opens on the first click and the second click, landing on the backdrop, closes it as Cancel. A user sees a flash and has to click once more. It follows R30 and CG-8 as written. No data effect.
-
-## 5. How I checked, and what I did not
-
-- **CG-7.** Every context I created installed `tests/browser/clipboard/recorder.js` (or `reject.js` or `missing.js` for the failure scenarios), plus my own guard that rejects `Clipboard.readText` and `read`. The driver checked that the stub was in place after every page load and would have exited if not (`Session.guard`). No permission was granted. The operating system clipboard was never read or written.
-- **Servers and browsers.** Headless Chromium 149 only. Every server I started was killed and its port re-checked (PIDs below). I did not touch the Streaks suite that was running at the same time: its `chrome-headless-shell` processes 42076 and 50052, node 48044 and python 46336 and 32700 were alive when I finished and are not mine.
-- **Static checks I ran myself.** `index.html` head order, the exact CSP meta, `lang="en"`. `src/system.css` equals `docs/design/system.css` (18102 bytes) plus 40 bytes, the `[hidden]` rule. 0 matches for the 16 sample names. 0 matches for the banned DOM, network and namespace tokens except the one allowed `createElementNS` namespace. No `.style`, timers, `unload` or global hooks in `src/`.
-- **Every money figure on screen was compared** with split-core computed in Node (`oracle.mjs`, which imports `src/core`) or with the hand typed values of qa.md: 515 driver checks, among them the S1, S2, S5 and I2 bills, the charges edits (0, 12.5, 30, 20, 7.25, 3.5), subtotals from 0.01 to 99999.99 and invalid texts, 12 people, the copy text, and the 90 random bills.
-- **Not run.** `python tests/browser/live_e2e.py` (it writes into `qa/live-e2e/`, outside my folder), which I replayed instead. The per-row FE checklist (fidelity finder). Browsers other than Chromium (out of scope per CLAUDE.md).
-- **Process note.** I broke the "no heredoc" rule once: a throwaway `python - <<'EOF'` with `print("noop")` while looking for an edit tool. It read and wrote no file. Every source file in the evidence folder and this verdict were written with the Write tool. The junit XML, screenshots, `driver-results-all.json`, `scan-ghost-results.json` and the fidelity folder were written by pytest, node, Playwright and my scripts themselves.
-
-PROCESSES (all started by me, all stopped, none alive): pytest server pid 1808 port 39773, pytest sub-path server pid 32412 port 18163, driver servers pid 28524, 15348, 25844 and 40268, `probe_360.py` server 44548, `scan_ghost.py` server 49712, fidelity runner server 46876 (the harness and its Chromium exited with it), `shot_overflow.py` server 49900. Each script printed STOPPED with the port free again, and `tasklist` showed none of these PIDs afterwards.
-
----
-
-## Solver update (2026-10-09), additive: the QA finder's text above is unchanged
-Dev Solver. Detail and proof: `findings/code-review.md`, section "Solver (2026-10-09)", and `qa/solver/20261009-190119/red-green.md`.
-- **F-1: RESOLVED** in `d09d8d6`. A double click or double tap on Cancel, on Start new bill or on the backdrop no longer lets the second
-  press or click reach the page under the closed dialog. Measured on the fixed code with a 384-case scan (4 bills x 16 viewports x mouse
-  and touch x 3 targets): 0 fail; the same scan on the sources of `044800e` fails 202 (the draft changed or focus left "New bill"). The
-  tests are `test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing` and its neighbours in `tests/browser/test_app.py`.
-- **W2** (R10 c, typing a valid value then an invalid one): pinned by `tests/errors.test.js` and the K1 scenario (`2408d40`).
-- **W5 and W7** (the S7 note and the open dialog had no markup walk): pinned by two R3 walks (`7bdc368`).
-- **W6** (no scenario for a double click on a dialog button): same fix as F-1.
-- **O-1** (overflow at 360 px for bills above about RM 760): not a code finding, with the owner as H-02.
+| # | line | tags | scenario | tests | verdict |
+|---|---|---|---|---|---|
+| 1 | 140 | @R1 @both | The entry point loads only its own files | R1_entry_point_loads_only_its_own_files C 1/1 W 1/1 | PASS |
+| 2 | 152 | @R1 @both | The page works from a sub-path, as on GitHub Pages | R1_page_works_from_a_sub_path C 1/1 W 1/1 | PASS |
+| 3 | 161 | @R2 @both | Cold boot is a new bill with no seed | R2_cold_boot_is_a_new_bill_with_no_seed C 1/1 W 1/1 | PASS |
+| 4 | 174 | @R2 @static | No sample data ships | R2_no_sample_data_ships C 1/1 W 1/1 | PASS |
+| 5 | 179 | @R3 @both | The rendered markup matches its golden | R3_rendered_markup_matches_its_golden C 40/40 W 40/40 | PASS |
+| 6 | 205 | @R3 @both | The walk sees every rendered element and flags each kind of change | R3_the_walk_sees_every_rendered_element_and_flags_each_kind_of_change C 1/1 W 1/1 | PASS |
+| 7 | 220 | @R4 @both | Person rows carry their names and labels | R4_person_rows_carry_their_names_and_labels C 1/1 W 1/1 | PASS |
+| 8 | 228 | @R4 @R5 @both | A blank name falls back to its position everywhere but the field | R4_a_blank_name_falls_back_to_its_position_everywhere_but_the_field C 1/1 W 1/1 | PASS |
+| 9 | 238 | @R5 @both | Renaming a person updates every place on each keystroke | R5_renaming_a_person_updates_every_place_on_each_keystroke C 1/1 W 1/1 | PASS |
+| 10 | 252 | @R5 @both | Renaming an item updates its accessible names | R5_renaming_an_item_updates_its_accessible_names C 1/1 W 1/1 | PASS |
+| 11 | 259 | @R6 @both | Add person until the limit | R6_add_person_until_the_limit C 1/1 W 1/1 | PASS |
+| 12 | 273 | @R6 @both | Removing anyone from twelve turns Add person back on | R6_removing_anyone_from_twelve_turns_add_person_back_on C 1/1 W 1/1 | PASS |
+| 13 | 284 | @R7 @both | Remove a person and they leave every item | R7_removing_a_person_takes_them_off_every_item C 1/1 W 1/1; R7_remove_a_person C 1/1 W 1/1; R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip C 1/1 W 1/1 | PASS |
+| 14 | 296 | @R7 @both | A repeat press on the last Remove removes that row and adds nothing | R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing C 48/48 W 48/48 | PASS |
+| 15 | 312 | @R34 @both | After a double click or double tap on a middle Remove, focus is where one click puts it | R34_after_a_double_click_on_remove_focus_is_where_one_click_puts_it C 4/4 W 4/4; R7_a_double_click_or_double_tap_on_remove_removes_one_row C 4/4 W 4/4 | PASS |
+| 16 | 323 | @R7 @both | A press of its own is never held back | R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each C 2/2 W 2/2; R7_a_separate_click_on_the_same_point_is_a_press_of_its_own C 1/1 W 1/1; R7_the_guard_of_a_remove_click_ends_at_the_next_press C 1/1 W 1/1; R7_after_a_remove_click_a_double_click_on_a_name_still_selects_the_word C 1/1 W 1/1 | PASS |
+| 17 | 336 | @R6 @both | A repeat press on Add person adds one person and keeps it | R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it C 72/72 W 72/72 | PASS |
+| 18 | 350 | @R12 @both | A repeat press on Add item adds one item and never reaches the page | R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page C 36/36 W 36/36 | PASS |
+| 19 | 366 | @R7 @R12 @both | A repeat press on a chip under a pending price error never removes the item | R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item C 6/6 W 6/6 | PASS |
+| 20 | 382 | @R42 @both | Two people may have the same name | R42_duplicate_names_are_accepted_and_act_on_their_own_row C 1/1 W 1/1; R42_duplicate_names_through_the_whole_flow C 1/1 W 1/1; R42_the_draft_keeps_both_people_with_the_same_name C 1/1 W 1/1 | PASS |
+| 21 | 401 | @R8 @both | Switching modes keeps both sets of input | R8_switching_modes_keeps_both_sets_of_input C 1/1 W 1/1 | PASS |
+| 22 | 415 | @R8 @both | Arrow keys move between the modes | R8_arrow_keys_move_between_the_modes C 1/1 W 1/1 | PASS |
+| 23 | 422 | @R9 @both | The subtotal field drives the even split | R9_the_subtotal_field_drives_the_even_split C 1/1 W 1/1 | PASS |
+| 24 | 431 | @R10 @both | An inline error waits for the field to be left | R10_an_inline_error_waits_for_the_field_to_be_left C 4/4 W 4/4 | PASS |
+| 25 | 448 | @R10 @both | An empty field never shows an error | R10_an_empty_field_never_shows_an_error C 1/1 W 1/1 | PASS |
+| 26 | 459 | @R10 @both | Typing invalid text in a focused field does not show the error early | R10_typing_bad_text_in_a_focused_field_shows_no_error_early C 1/1 W 1/1 | PASS |
+| 27 | 466 | @R10 @both | A restored invalid field shows its error at once | R10_a_restored_bad_field_shows_its_error_at_once C 1/1 W 1/1 | PASS |
+| 28 | 473 | @R10 @both | An error survives a mode switch | R10_an_error_survives_a_mode_switch C 1/1 W 1/1 | PASS |
+| 29 | 481 | @R10 @R13 @both | A press below an invalid field lands on the control it started on | R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on C 6/6 W 6/6 | PASS |
+| 30 | 498 | @R10 @R59 @per_engine | A touch tap on the charges hint below an invalid rate | R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate C 2/2 W 2/2 | PASS |
+| 31 | 512 | @R13 @both | A tap on a person below an invalid, unflagged price toggles them and then shows the error | R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error C 2/2 W 2/2 | PASS |
+| 32 | 520 | @R10 @both | The error waits for the release, and only a press holds it back | R10_the_error_waits_for_the_mouse_button_to_come_up C 1/1 W 1/1; R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press C 3/3 W 3/3; R10_pressing_empty_space_also_waits_for_the_release C 1/1 W 1/1; R10_a_press_that_ends_runs_each_waiting_handler_once C 1/1 W 1/1; R10_a_secondary_button_press_does_not_hold_the_error_back C 1/1 W 1/1; R10_a_cancelled_press_releases_the_waiting_error C 1/1 W 1/1 | PASS |
+| 33 | 532 | @R11 @both | Item rows carry their names and labels | R11_item_rows_carry_their_names_and_labels C 1/1 W 1/1 | PASS |
+| 34 | 542 | @R12 @both | Add an item, remove one, and reach the limit | R12_add_an_item_remove_one_and_reach_the_limit C 1/1 W 1/1 | PASS |
+| 35 | 555 | @R13 @both | Tapping a person on an item | R13_tapping_a_person_on_an_item C 1/1 W 1/1 | PASS |
+| 36 | 566 | @R14 @both | A price error sits in the item row | R14_a_price_error_sits_in_the_item_row C 1/1 W 1/1 | PASS |
+| 37 | 578 | @R15 @both | The Charges block and its defaults | R15_the_charges_block_and_its_defaults C 1/1 W 1/1 | PASS |
+| 38 | 588 | @R15 @both | A rate error names the hint first and then its error | R15_a_rate_error_names_the_hint_first_and_then_its_error C 1/1 W 1/1 | PASS |
+| 39 | 596 | @R15 @R19 @both | A charge of 0 is allowed and still shown | R19_a_charge_of_zero_is_allowed_and_still_shown C 1/1 W 1/1 | PASS |
+| 40 | 605 | @R16 @both | The receipt follows every keystroke and stays quiet | R16_the_receipt_follows_every_keystroke_and_stays_quiet C 1/1 W 1/1 | PASS |
+| 41 | 617 | @R17 @both | When the splits cannot be worked out | R17_when_the_splits_cannot_be_worked_out C 8/8 W 8/8 | PASS |
+| 42 | 636 | @R18 @both | Items that still need a person | R18_items_that_still_need_a_person C 1/1 W 1/1 | PASS |
+| 43 | 649 | @R19 @both | Total and bill lines | R19_total_and_bill_lines C 2/2 W 2/2 | PASS |
+| 44 | 661 | @R20 @both | The even split from a cold boot (key flow 1) | R20_the_even_split_from_a_cold_boot C 1/1 W 1/1 | PASS |
+| 45 | 673 | @R20 @both | More than six people list in two columns on the desktop | R20_more_than_six_people_list_in_two_columns_on_the_desktop C 1/1 W 1/1 | PASS |
+| 46 | 683 | @R21 @both | The by-item split from gestures (key flow 2) | R21_the_by_item_split_from_gestures C 1/1 W 1/1 | PASS |
+| 47 | 693 | @R21 @both | Someone who had nothing is still listed | R21_someone_who_had_nothing_is_still_listed C 1/1 W 1/1 | PASS |
+| 48 | 701 | @R22 @both | Copy summary puts the exact text on the clipboard | R22_copy_summary_puts_the_exact_text_on_the_clipboard C 6/6 W 6/6 | PASS |
+| 49 | 717 | @R22 @both | A bill from RM 1,000 copies with thousands commas | R22_a_bill_from_rm_1000_copies_with_thousands_commas C 1/1 W 1/1 | PASS |
+| 50 | 724 | @R23 @both | The browser blocks the clipboard | R23_the_browser_blocks_the_clipboard C 1/1 W 1/1 | PASS |
+| 51 | 733 | @R23 @both | The clipboard API is missing | R23_the_clipboard_api_is_missing C 1/1 W 1/1 | PASS |
+| 52 | 740 | @R24 @both | The status lasts until the next change to the bill | R24_the_status_lasts_until_the_next_change_to_the_bill C 1/1 W 1/1 | PASS |
+| 53 | 755 | @R25 @both | Every change is saved | R25_every_change_is_saved C 9/9 W 9/9 | PASS |
+| 54 | 771 | @R25 @both | Leaving a field, copying, folding and the sheet do not save | R25_leaving_a_field_copying_folding_and_the_sheet_do_not_save C 1/1 W 1/1 | PASS |
+| 55 | 778 | @R26 @both | Come back later (key flow 3) | R26_come_back_later C 1/1 W 1/1 | PASS |
+| 56 | 788 | @R26 @both | A drawn order comes back after a reload | R26_a_drawn_order_comes_back_after_a_reload C 1/1 W 1/1 | PASS |
+| 57 | 796 | @R26 @R61 @both | Odd but readable drafts load | R26_odd_but_readable_drafts_load C 7/7 W 7/7 | PASS |
+| 58 | 813 | @R27 @R61 @both | An unreadable draft starts a new bill with a note | R27_an_unreadable_draft_starts_a_new_bill_with_a_note C 32/32 W 32/32 | PASS |
+| 59 | 858 | @R27 @both | Dismissing the note | R27_dismissing_the_note C 1/1 W 1/1 | PASS |
+| 60 | 868 | @R28 @both | The app works without storage | R28_the_app_works_without_storage C 3/3 W 3/3 | PASS |
+| 61 | 882 | @R29 @both | The dialog opens with the safe choice focused | R29_the_dialog_opens_with_the_safe_choice_focused C 1/1 W 1/1 | PASS |
+| 62 | 899 | @R30 @both | Leaving the dialog without starting over | R30_leaving_the_dialog_without_starting_over C 4/4 W 4/4 | PASS |
+| 63 | 916 | @R29 @both | A repeat press on New bill leaves the dialog open | R29_a_repeat_press_on_new_bill_leaves_the_dialog_open C 9/9 W 9/9 | PASS |
+| 64 | 926 | @R30 @both | After a double click on New bill one deliberate click still closes it | R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it C 3/3 W 3/3 | PASS |
+| 65 | 939 | @R30 @both | The second press of a double activation that closed the dialog never reaches the page | R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page C 13/13 W 13/13 | PASS |
+| 66 | 953 | @R29 @both | The keyboard and the next press are not held back | R29_the_keyboard_and_the_next_press_are_not_held_back C 1/1 W 1/1 | PASS |
+| 67 | 962 | @R31 @both | Start over (key flow 4) | R31_start_over C 1/1 W 1/1 | PASS |
+| 68 | 973 | @R31 @both | Start over clears the copy status and the spare choice | R31_start_over_clears_the_copy_status_and_the_spare_choice C 1/1 W 1/1 | PASS |
+| 69 | 985 | @R31 @both | Start over clears the error flags | R31_start_over_clears_the_error_flags C 4/4 W 4/4 | PASS |
+| 70 | 1005 | @R32 @both | Tab order follows the golden | R32_tab_order_follows_the_golden C 9/9 W 9/9 | PASS |
+| 71 | 1024 | @R32 @both | Every focused control shows the one ring | R32_every_focused_control_shows_the_one_ring C 2/2 W 2/2 | PASS |
+| 72 | 1033 | @R33 @both | Typing never loses its place | R33_typing_in_a_person_name_keeps_focus_and_caret C 1/1 W 1/1; R33_typing_in_an_item_field_keeps_focus_and_caret C 2/2 W 2/2; R33_typing_in_an_amount_or_a_rate_keeps_focus_and_caret C 2/2 W 2/2 | PASS |
+| 73 | 1050 | @R33 @chromium_only | IME composition survives a render | R33_ime_composition_survives_a_render C 1/1, W 0 pass 1 skip (counted, reason in skips.txt) | PASS |
+| 74 | 1057 | @R34 @both | Focus after adding or removing | R34_focus_after_adding_or_removing_a_person C 3/3 W 3/3; R34_focus_after_adding_or_removing_an_item C 4/4 W 4/4 | PASS |
+| 75 | 1073 | @R35 @both | No horizontal overflow in any golden state | R35_no_horizontal_overflow_in_any_golden_state C 40/40 W 40/40 | PASS |
+| 76 | 1097 | @R36 @both | Reduced motion moves nothing | R36_reduced_motion_moves_nothing C 1/1 W 1/1 | PASS |
+| 77 | 1104 | @R36 @both | With motion allowed nothing loops | R36_with_motion_allowed_nothing_loops C 1/1 W 1/1 | PASS |
+| 78 | 1117 | @R37 @both | Names are shown as text, never as markup | R37_names_are_shown_as_text_and_never_as_markup C 1/1 W 1/1 | PASS |
+| 79 | 1133 | @R37 @static | No HTML sink in the source | R37_no_banned_api_in_the_shipped_files C 1/1 W 1/1; R37_the_banned_api_scan_has_teeth C 1/1 W 1/1 | PASS |
+| 80 | 1139 | @R38 @both | The Content Security Policy is exact and never violated | R38_policy_is_exact_and_nothing_inline C 1/1 W 1/1 | PASS |
+| 81 | 1146 | @R38 @both | The strict policy blocks nothing the app needs | R38_strict_policy_blocks_nothing_the_app_needs C 5/5 W 5/5 | PASS |
+| 82 | 1162 | @R38 @static | Code writes style only to the four allowed targets | R38_code_writes_style_only_to_the_four_allowed_targets C 1/1 W 1/1 | PASS |
+| 83 | 1172 | @R39 @static | Nothing leaves the device | R39_nothing_leaves_the_device_by_the_static_scan C 1/1 W 1/1; R39_the_network_scan_has_teeth C 1/1 W 1/1 | PASS |
+| 84 | 1182 | @R39 @both | Every request stays on the device | R39_a_whole_session_makes_only_same_origin_gets C 1/1 W 1/1; R39_the_request_log_flags_anything_but_same_origin_gets C 1/1 W 1/1 | PASS |
+| 85 | 1188 | @R39 @R44 @both | The run-time icons come from createElementNS | R39_the_run_time_icons_come_from_createElementNS C 1/1 W 1/1 | PASS |
+| 86 | 1197 | @R40 @gate | Looks right | fidelity pixel gate, not this finder's (A19 ran it) | NOT RUN |
+| 87 | 1203 | @R40 @static | The runner uses the Python that runs pytest and stays Chromium only | R40_the_runner_uses_the_python_that_runs_pytest C 1/1 W 1/1; R40_the_runner_takes_the_harness_from_the_environment_and_has_a_default C 1/1 W 1/1; R40_the_runner_builds_the_documented_command C 1/1 W 1/1; R40_the_runner_runs_its_controls_first_and_passes_only_a_clean_pair C 4/4 W 4/4 | PASS |
+| 88 | 1212 | @R40 @static | The fidelity seeds equal seeds.py and carry the clipboard stand-in | R40_fidelity_seeds_match C 9/9 W 9/9; R40_there_is_one_seed_script_per_seed_and_a_planted_fault_is_reported C 1/1 W 1/1; R40_a_seed_script_boots_the_app_through_its_own_load_path C 3/3 W 3/3; R40_the_open_new_bill_script_leaves_the_dialog_open_without_a_ring C 1/1 W 1/1 | PASS |
+| 89 | 1223 | @R40 @chromium_only | An after-load script presses nothing without the clipboard stand-in | R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in C 1/1, W 0 pass 1 skip (counted, reason in skips.txt) | PASS |
+| 90 | 1233 | @R41 @gate | Works right | live gate runs 20261015-205844-chromium and 20261015-205931-webkit (9 of 9 each, control null), see the gate section | PASS |
+| 91 | 1242 | @R41 @gate | The live gate fails when the app starts from a saved bill (control) | 20261015-205837-chromium-control and 20261015-205925-webkit-control, red at step 1 | PASS |
+| 92 | 1256 | @R41 @static | The gate script makes a cold context except on its control path | R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields C 1/1 W 1/1; R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else C 1/1 W 1/1; R41_the_gate_uses_real_gestures_and_reads_only C 1/1 W 1/1; R41_a_planted_copy_of_the_gate_script_is_reported C 4/4 W 4/4 | PASS |
+| 93 | 1273 | @R43 @both | The name in the title and the top bar | R43_the_name_in_the_title_and_the_top_bar C 1/1 W 1/1 | PASS |
+| 94 | 1280 | @R44 @static | The sprite and the mark are the golden's bytes | R44_the_sprite_and_the_mark_are_the_goldens_bytes C 1/1 W 1/1 | PASS |
+| 95 | 1287 | @R44 @both | The sprite comes first and the empty receipt uses the mark | R44_the_sprite_comes_first_and_the_empty_receipt_uses_the_mark C 1/1 W 1/1 | PASS |
+| 96 | 1294 | @R45 @static | The tab icon file is the golden's icon | R45_the_tab_icon_file_is_the_goldens_icon C 1/1 W 1/1 | PASS |
+| 97 | 1302 | @R45 @both | The tab icon loads under the live policy | R45_the_tab_icon_loads_under_the_live_policy C 1/1 W 1/1 | PASS |
+| 98 | 1309 | @R45 @per_engine | The tab icon's colour follows the colour scheme | R45_the_tab_icon_colour_follows_the_colour_scheme C 1/1 W 1/1 (WebKit `icon-colour.txt` equals the baseline's) | PASS |
+| 99 | 1318 | @R46 @both | (a) A cold boot with working storage shows no warning | R46_a_cold_boot_with_working_storage_shows_no_warning C 1/1 W 1/1 | PASS |
+| 100 | 1324 | @R46 @both | (b) The first failed save shows the warning | R46_the_first_failed_save_shows_the_warning C 1/1 W 1/1 | PASS |
+| 101 | 1333 | @R46 @both | (c) The warning stays while saves fail, and a reload starts without it | R46_the_warning_stays_while_saves_fail_and_a_reload_starts_without_it C 1/1 W 1/1 | PASS |
+| 102 | 1342 | @R47 @both | (d) The first save that works removes the warning | R47_the_first_save_that_works_removes_the_warning C 1/1 W 1/1 | PASS |
+| 103 | 1350 | @R46 @both | (e) A failed boot read shows the warning in the first render | R46_a_failed_boot_read_shows_the_warning_in_the_first_render C 2/2 W 2/2 | PASS |
+| 104 | 1362 | @R46 @R27 @both | (f) An unreadable draft whose reset save fails shows both notes, the warning first | R46_an_unreadable_draft_whose_reset_save_fails_shows_both_notes_the_warning_first C 1/1 W 1/1 | PASS |
+| 105 | 1371 | @R47 @both | SW6. A storage object that comes back clears the warning without a reload | R47_a_storage_object_that_comes_back_clears_the_warning_without_a_reload C 1/1 W 1/1 | PASS |
+| 106 | 1379 | @R47 @both | SW4. Only a save attempt decides, so a change that writes nothing leaves the warning | R47_a_change_that_writes_nothing_leaves_the_warning C 1/1 W 1/1 | PASS |
+| 107 | 1388 | @R46 @both | SW7. The warning's live region is not touched on every keystroke | R46_the_warnings_live_region_is_not_touched_on_every_keystroke C 1/1 W 1/1 | PASS |
+| 108 | 1395 | @R46 @R47 @both | D-d. A real full storage shows the warning, and room again clears it | R46_a_real_full_storage_shows_the_warning_and_room_again_clears_it C 1/1 W 1/1 | PASS |
+| 109 | 1405 | @R47 @static | The app reads no error name and probes nothing | R47_the_app_reads_no_error_name_and_probes_nothing C 1/1 W 1/1 | PASS |
+| 110 | 1415 | @R48 @both | Which section is open on load | R48_which_section_is_open_on_load C 7/7 W 7/7 | PASS |
+| 111 | 1429 | @R48 @both | A header row toggles by click, Enter and Space | R48_a_header_row_toggles_by_click_enter_and_space C 1/1 W 1/1 | PASS |
+| 112 | 1441 | @R48 @both | The People summary fits its row | R48_the_people_summary_fits_its_row C 4/4 W 4/4 | PASS |
+| 113 | 1452 | @R48 @both | The People summary refits when its row's width changes | R48_the_people_summary_refits_when_its_rows_width_changes C 1/1 W 1/1 | PASS |
+| 114 | 1458 | @R48 @both | The Charges summary names a rate that blocks | R48_the_charges_summary_names_a_rate_that_blocks C 5/5 W 5/5 | PASS |
+| 115 | 1472 | @R48 @both | The Charges summary follows each keystroke, not the error timing | R48_the_charges_summary_follows_each_keystroke_not_the_error_timing C 1/1 W 1/1 | PASS |
+| 116 | 1480 | @R48 @both | Only the header row and Start new bill open or fold a section | R48_only_the_header_row_and_start_new_bill_open_or_fold_a_section C 1/1 W 1/1 | PASS |
+| 117 | 1488 | @R48 @both | On the desktop both sections show with their own headings | R48_on_the_desktop_both_sections_show_their_own_headings C 1/1 W 1/1 | PASS |
+| 118 | 1494 | @R49 @both | The strip for each result | R49_the_strip_for_each_result C 7/7 W 7/7 | PASS |
+| 119 | 1510 | @R49 @both | No control the user tabs to is left under the strip | R49_no_control_the_user_tabs_to_is_left_under_the_strip C 1/1 W 1/1 | PASS |
+| 120 | 1518 | @R49 @both | The app scrolls a focused control only below 1024 px and only when the strip covers it | R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it C 1/1 W 1/1 | PASS |
+| 121 | 1531 | @R50 @both | The Splits sheet opens with the card's receipt | R50_the_splits_sheet_opens_with_the_cards_receipt C 1/1 W 1/1 | PASS |
+| 122 | 1541 | @R50 @both | Closing the sheet returns focus to Splits | R50_closing_the_sheet_returns_focus_to_splits C 4/4 W 4/4 | PASS |
+| 123 | 1554 | @R50 @both | A press that starts in the sheet and ends on the backdrop does not close it | R50_a_press_that_starts_in_the_sheet_and_ends_on_the_backdrop_does_not_close_it C 1/1 W 1/1 | PASS |
+| 124 | 1560 | @R50 @both | A repeat press on Splits leaves the sheet open and copies nothing | R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing C 4/4 W 4/4 | PASS |
+| 125 | 1570 | @R50 @both | The second press of a double activation that closed the sheet never reaches the page | R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page C 4/4 W 4/4 | PASS |
+| 126 | 1583 | @R50 @both | The sheet closes itself when the window reaches 1024 px | R50_the_sheet_closes_itself_when_the_window_reaches_1024_px C 1/1 W 1/1 | PASS |
+| 127 | 1591 | @R50 @both | The sheet follows the bill while it is open | R50_the_sheet_follows_the_bill_while_it_is_open C 1/1 W 1/1 | PASS |
+| 128 | 1597 | @R55 @both | The desktop layout at 1280 and at 1024 | R55_the_desktop_layout_at_1280_and_at_1024 C 1/1 W 1/1 | PASS |
+| 129 | 1606 | @R55 @both | The page never scrolls at 1280 x 800 | R55_the_page_never_scrolls_at_1280_by_800 C 12/12 W 12/12 | PASS |
+| 130 | 1625 | @R56 @both | The item frame marks what lies above and below | R56_the_item_frame_marks_what_lies_above_and_below C 4/4 W 4/4 | PASS |
+| 131 | 1636 | @R56 @both | Scrolling the frame moves the marks | R56_scrolling_the_frame_moves_the_marks C 1/1 W 1/1 | PASS |
+| 132 | 1647 | @R51 @both | The spare sen line and chip | R51_the_spare_sen_line_and_chip C 5/5 W 5/5 | PASS |
+| 133 | 1660 | @R51 @both | No spare sen, no line | R51_no_spare_sen_no_line C 1/1 W 1/1 | PASS |
+| 134 | 1668 | @R52 @both | P1 opens from either chip with focus on the chosen rule | R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule C 2/2 W 2/2 | PASS |
+| 135 | 1680 | @R52 @both | A choice applies at once and P1 stays open | R52_a_choice_applies_at_once_and_p1_stays_open C 1/1 W 1/1 | PASS |
+| 136 | 1689 | @R52 @both | Arrow keys move between the three choices and focus stays on the radio | R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio C 1/1 W 1/1 | PASS |
+| 137 | 1701 | @R52 @both | P1 sits beside the card on the desktop | R52_p1_sits_beside_the_card_on_the_desktop C 4/4 W 4/4 | PASS |
+| 138 | 1712 | @R52 @both | On a phone P1 is a bottom sheet over the Splits sheet, and the sheet makes room | R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room C 4/4 W 4/4 | PASS |
+| 139 | 1726 | @R52 @both | The sheet scrolls so the splits stay in view above P1 | R52_the_sheet_scrolls_so_the_splits_stay_in_view_above_p1 C 1/1 W 1/1 | PASS |
+| 140 | 1733 | @R52 @both | Closing P1 returns focus to the chip shown at that moment | R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment C 7/7 W 7/7 | PASS |
+| 141 | 1749 | @R52 @both | A repeat click on the desktop chip leaves P1 open | R52_a_repeat_click_on_the_desktop_chip_leaves_p1_open C 1/1 W 1/1 | PASS |
+| 142 | 1756 | @R52 @both | The second press of a double activation that closed P1 never reaches the page | R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page C 8/8 W 8/8 | PASS |
+| 143 | 1771 | @R52 @both | P1 follows the width when it crosses 1024 px | R52_p1_follows_the_width_when_it_crosses_1024_px C 1/1 W 1/1 | PASS |
+| 144 | 1780 | @R52 @both | P1 opened on the desktop and closed below 1024 px | R52_p1_opened_on_the_desktop_and_closed_below_1024_px C 1/1 W 1/1 | PASS |
+| 145 | 1790 | @R53 @both | One person picks the first eligible person at once, and a pill changes it | R53_one_person_picks_the_first_eligible_person_at_once_and_a_pill_changes_it C 1/1 W 1/1 | PASS |
+| 146 | 1802 | @R53 @both | Only people on an item can be chosen in By item | R53_only_people_on_an_item_can_be_chosen_in_by_item C 1/1 W 1/1 | PASS |
+| 147 | 1812 | @R53 @both | A chosen person who has nothing falls back to Top of the list and stays chosen | R53_a_chosen_person_who_has_nothing_falls_back_to_top_of_the_list_and_stays_chosen C 1/1 W 1/1 | PASS |
+| 148 | 1824 | @R53 @both | Removing the chosen person sets the rule back to Top of the list | R53_removing_the_chosen_person_sets_the_rule_back_to_top_of_the_list C 1/1 W 1/1 | PASS |
+| 149 | 1831 | @R54 @both | At random gives the spare sen to different people, and Pick again draws again | R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again C 1/1 W 1/1 | PASS |
+| 150 | 1847 | @R54 @both | Pick again that can change nothing does nothing | R54_pick_again_that_can_change_nothing_does_nothing C 1/1 W 1/1 | PASS |
+| 151 | 1854 | @R54 @both | Pick again in the Splits sheet draws again | R54_pick_again_in_the_splits_sheet_draws_again C 1/1 W 1/1 | PASS |
+| 152 | 1863 | @R54 @static | Math.random goes only to the two draws | R54_math_random_goes_only_to_the_two_draws C 1/1 W 1/1 | PASS |
+| 153 | 1872 | @R60 @both | Large bills fit a 360 px phone | R60_large_bills_fit_a_360_px_phone C 3/3 W 3/3 | PASS |
+| 154 | 1885 | @R60 @both | The large price shows whole | R60_the_large_price_shows_whole C 1/1 W 1/1 | PASS |
+| 155 | 1892 | @R57 @both | A held Enter on the only item's Remove removes that item only | R57_a_held_enter_on_the_only_items_remove_removes_that_item_only C 1/1 W 1/1 | PASS |
+| 156 | 1900 | @R57 @both | A held Enter on New bill leaves the dialog open on Cancel | R57_a_held_enter_on_new_bill_leaves_the_dialog_open_on_cancel C 1/1 W 1/1 | PASS |
+| 157 | 1908 | @R57 @both | Separate presses still act, and a held letter still types | R57_separate_presses_still_act_and_a_held_letter_still_types C 1/1 W 1/1 | PASS |
+| 158 | 1921 | @R57 @node | The repeat rule reads the click count, the pointer, the time and the place | Node run 20261015-204618, 10 of 10 `@R57 b ...` tests (tests/repeat.test.js) | PASS |
+| 159 | 1940 | @R57 @both | A slow second tap, or a quick tap elsewhere, is never held back | R57_a_slow_second_tap_or_a_quick_tap_elsewhere_is_never_held_back C 1/1 W 1/1 | PASS |
+| 160 | 1950 | @R58 @static | The engine option and the one launch place | R58_the_engine_option_and_the_one_launch_place C 1/1 W 1/1 | PASS |
+| 161 | 1960 | @R58 @gate | A Chromium-only test is a counted skip in WebKit | run folders checked on disk (notes above) | PASS |
+| 162 | 1968 | @R58 @R41 @gate | The live gate records its engine | live gate summary.json and folder names (gate section) | PASS |
+| 163 | 1974 | @R59 @per_engine | Focus after a mouse click is the engine's own | R59_focus_after_a_mouse_click_is_the_engines_own C 1/1 W 1/1 | PASS |
+| 164 | 1986 | @R59 @gate | The A0 baseline record is complete | `qa/webkit-baseline/20261014-130011/` checked on disk (notes above) | PASS |
+| 165 | 2002 | @R9 @R11 @chromium_only | The accessible description of the amount fields is measured and reported | no test, no `accessible-description.txt` in a run folder. QA-S5-1. My own measurement in `qa/accessible-description/20261015-205800/` | FAIL |
+| 166 | 2011 | @R61 @node | The decoder accepts versions 1 and 2 and checks the spare choice | Node run 20261015-204618, 4 `@R61 D3/D13/D14` tests (tests/draft.test.js) | PASS |
+| 167 | 2025 | @R61 @node | Saving writes version 2, and load and save report failures | Node run 20261015-204618, `@R61 encodeDraft writes version 2 ...` and `@R27 loadDraft tells none ...` (tests/draft.test.js) | PASS |

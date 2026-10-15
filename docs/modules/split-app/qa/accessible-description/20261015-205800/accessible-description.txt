@@ -1,0 +1,9 @@
+QA finder (read-only), step 5 of v1.1.0. qa.md scenario "The accessible description of the amount fields is measured and reported" (R9, R11, chromium_only, CG-P6). Chromium 149.0.7827.55 through a CDP session (DOM.querySelector, Accessibility.getPartialAXTree), 390 x 844, the shipped app served by rig.StaticServer, K1 and K2 seeds through storage_state, the error raised by typing then pressing Tab. Probe source and raw output are beside this file.
+
+Char kuey teow price in RM (K1 seed) | error hidden | name 'Char kuey teow price in RM' | description 'Enter an amount like 12.50' | aria-describedby 'ie2'
+Char kuey teow price in RM (K1 seed) | error shown after '13.505' and Tab (aria-invalid 'true') | name 'Char kuey teow price in RM' | description 'Enter an amount like 12.50'
+Subtotal in RM (K2 seed) | error hidden | name 'Subtotal in RM' | description 'Enter an amount like 12.50' | aria-describedby 'evenErr'
+Subtotal in RM (K2 seed) | error shown after '0' and Tab (aria-invalid 'true') | name 'Subtotal in RM' | description 'Enter an amount like 12.50'
+
+Reading for the owner (CG-P6). With the error hidden, the field's computed accessible description is already "Enter an amount like 12.50" in Chromium, because aria-describedby names the hidden error paragraph at all times (as the goldens do). A screen reader can therefore read the error text before any error shows. The description is the same in the shown state. Whether VoiceOver or TalkBack reads a hidden description is not measured here (UNVERIFIED, a device check).
+Console errors and page errors during the probe: none.

@@ -1,0 +1,16 @@
+01 | gesture: open / in the run's one new context | assertion: the clipboard stand-in is in place, the screen is bill-empty with People open and the strip reading Enter the subtotal to see the splits., and split.draft is absent | FAIL
+    PASS the clipboard stand-in is in place, writeText is not native and nothing was written
+    PASS the CSP listener is in place
+    FAIL cold boot: bill-empty names: expected ['Person 1', 'Person 2'], got ['Aisyah', 'Ben', 'Chen']
+    FAIL cold boot: bill-empty removesDisabled: expected [True, True], got [False, False, False]
+    PASS cold boot: bill-empty evenChecked
+    FAIL cold boot: bill-empty subtotal: expected ['', '0.00'], got ['100.00', '0.00']
+    PASS cold boot: bill-empty subtotalErrorHidden
+    PASS cold boot: bill-empty rates
+    FAIL cold boot: bill-empty open: expected ['true', 'true', 'false'], got ['false', 'false', 'false']
+    FAIL cold boot: bill-empty card: expected 'Total Enter the subtotal to see the splits.', got 'Total RM 116.60 Subtotal RM 100.00 Service 10% RM 10.00 SST 6% RM 6.60 Splits Aisyah RM 38.87 Ben RM 38.87 Chen RM 38.86 Adds up to RM 116.60 2 sen left over Top of the list Copy summary'
+    FAIL cold boot: bill-empty totalHolds: expected ['span.r-label'], got ['span.r-label', 'p.r-amount']
+    FAIL cold boot: bill-empty emptyIcon: expected '#i-mark', got None
+    FAIL cold boot: bill-empty strip: expected 'Enter the subtotal to see the splits.', got 'Total\nRM 116.60'
+    FAIL cold boot: bill-empty stripCopy: expected {'shown': True, 'disabled': True}, got {'shown': True, 'disabled': False}
+    FAIL split.draft is absent: expected None, got '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
