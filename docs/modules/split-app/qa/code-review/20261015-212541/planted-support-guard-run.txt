@@ -1,0 +1,40 @@
+Code-review finder (read-only), 2026-10-15, HEAD d58f4ce. The live gate's static guard against a planted tests/browser/support.py.
+
+Setup. A scratch copy (index.html, src/, tests/) of the project in <scratch>/split-cr-step5/planted-support/. In the copy's
+tests/browser/support.py two edits, nothing else (live_e2e.py and test_app.py unchanged):
+1. COLD_BOOT_JS (read by support.cold_boot_state, which live_e2e.py calls at steps 1 and 8) gains a write:
+     const field = (selector) => one(selector) ? [one(selector).value, one(selector).placeholder] : null;
+     localStorage.clear();
+     const copy = one('#stripCopy');
+2. replace_text (called by live_e2e.py 3 times, step 2) gains a gesture shortcut that the guard bans by name in live_e2e.py:
+     locator.fill("")
+     locator.click()
+
+The gate script calls these support helpers (grep -oE "support\.[a-z_]+\(" tests/browser/live_e2e.py | sort | uniq -c):
+      5 support.active_label(
+      1 support.cold_boot_state(
+      2 support.person_field(
+      2 support.reads(
+      1 support.receipt(
+      3 support.replace_text(
+
+Command, from the copy's root: python -m pytest tests/browser/test_app.py -p no:cacheprovider -rA
+  -k "test_R41_the_gate_uses_real_gestures_and_reads_only or test_R41_a_planted_copy"
+Output (tail, as printed):
+
+collected 707 items / 702 deselected / 5 selected
+
+tests\browser\test_app.py .....                                          [100%]
+
+=================================== PASSES ====================================
+engine chromium, browser version None, skipped 0
+=========================== short test summary info ===========================
+PASSED tests\browser\test_app.py::test_R41_the_gate_uses_real_gestures_and_reads_only
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[storage-state-without-a-condition]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[else-branch-is-the-k2-state]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[bypass-csp-false]
+PASSED tests\browser\test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[page-screenshot-in-the-step-helper]
+====================== 5 passed, 702 deselected in 0.62s ======================
+
+Reading. The guard (live_gate_problems) parses only the path it is given, live_e2e.py, so a write or a fill reached
+through a support helper the gate calls is not seen. No browser and no server were started by these static tests.

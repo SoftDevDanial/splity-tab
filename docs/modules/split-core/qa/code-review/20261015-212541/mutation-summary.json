@@ -1,0 +1,330 @@
+[
+  {
+    "id": "K01",
+    "file": "src/core/spare.js",
+    "what": "withSpare drops nextId",
+    "tests": 379,
+    "pass": 372,
+    "fail": 7,
+    "killed": true,
+    "failing": [
+      "@R16 no action mutates a deep-frozen bill and changes return new objects",
+      "@R16 @R31 pickAgain and the spare choices leave a deep-frozen bill alone and return a new bill",
+      "@R16 chooseSpareRule one on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule random on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule top on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSparePerson on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 pickAgain on a parsed bill builds the bill and the spare choice from known fields"
+    ]
+  },
+  {
+    "id": "K02",
+    "file": "src/core/result.js",
+    "what": "floorParts in float, BigInt path bypassed",
+    "tests": 379,
+    "pass": 379,
+    "fail": 0,
+    "killed": false,
+    "failing": []
+  },
+  {
+    "id": "K03",
+    "file": "src/core/result.js",
+    "what": "At random cursor restarts at every division",
+    "tests": 379,
+    "pass": 376,
+    "fail": 3,
+    "killed": true,
+    "failing": [
+      "@R32 @R20 @R21 I3 with spare {\"rule\":\"random\",\"order\":[\"p2\",\"p3\",\"p1\"]} gives [[500,83,583],[0,0,0],[501,83,584]] and 2 spare sen",
+      "@R32 At random walks the drawn order once across the whole bill and wraps round its end",
+      "@R31 a new order that moves money between items and charges counts as a change, even at equal shares"
+    ]
+  },
+  {
+    "id": "K04",
+    "file": "src/core/result.js",
+    "what": "One person takes only spare sen of divisions it is in",
+    "tests": 379,
+    "pass": 377,
+    "fail": 2,
+    "killed": true,
+    "failing": [
+      "@R22 generated bills always add up, under every spare rule",
+      "@R32 One person also takes the spare sen of an item they did not have"
+    ]
+  },
+  {
+    "id": "K05",
+    "file": "src/core/result.js",
+    "what": "One person never falls back",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R32 @R33 One person falls back to Top of the list while the chosen person has nothing, and the choice is kept"
+    ]
+  },
+  {
+    "id": "K06",
+    "file": "src/core/result.js",
+    "what": "charges division members include people with no items",
+    "tests": 379,
+    "pass": 374,
+    "fail": 5,
+    "killed": true,
+    "failing": [
+      "@R22 generated bills always add up, under every spare rule",
+      "@R21 @R23 by-item result for I2",
+      "@R21 a person on no item gets a row of zeros",
+      "@R32 Top of the list leaves every 1.0 result as it was (the allocators are the reference)",
+      "@R24 summary text for I2 zero share is exact"
+    ]
+  },
+  {
+    "id": "K07",
+    "file": "src/core/spare.js",
+    "what": "Pick again compares shares only",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R31 a new order that moves money between items and charges counts as a change, even at equal shares"
+    ]
+  },
+  {
+    "id": "K08",
+    "file": "src/core/spare.js",
+    "what": "63 draws",
+    "tests": 379,
+    "pass": 377,
+    "fail": 2,
+    "killed": true,
+    "failing": [
+      "@R31 with no spare sen no order can change the splits: 64 draws, then the same bill",
+      "@R31 a source that always gives the same number cannot change a bill whose order it reproduces, and stops at 64 draws"
+    ]
+  },
+  {
+    "id": "K09",
+    "file": "src/core/spare.js",
+    "what": "choosing the rule already set redraws",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R29 choosing the rule already set, an unknown rule or One person with nobody to pick changes nothing"
+    ]
+  },
+  {
+    "id": "K10",
+    "file": "src/core/bill.js",
+    "what": "sparePeople ignores items",
+    "tests": 379,
+    "pass": 370,
+    "fail": 9,
+    "killed": true,
+    "failing": [
+      "@R28 sparePeople of I2 is [\"p2\",\"p3\"]",
+      "@R28 sparePeople of I3 (tapped Chen first, still list order) is [\"p1\",\"p3\"]",
+      "@R28 sparePeople of D2 is [\"p2\"]",
+      "@R28 sparePeople of a new bill switched to by-item mode is []",
+      "@R22 generated bills always add up, under every spare rule",
+      "@R32 @R33 One person falls back to Top of the list while the chosen person has nothing, and the choice is kept",
+      "@R29 choosing \"one\" on I2 with spare {\"rule\":\"top\"} gives {\"rule\":\"one\",\"personId\":\"p2\"}",
+      "@R29 choosing the rule already set, an unknown rule or One person with nobody to pick changes nothing"
+    ]
+  },
+  {
+    "id": "K11",
+    "file": "src/core/bill.js",
+    "what": "addPerson leaves the order short",
+    "tests": 379,
+    "pass": 377,
+    "fail": 2,
+    "killed": true,
+    "failing": [
+      "@R27 @R11 adding a person extends the drawn order and keeps the people already drawn in place",
+      "@R27 @R16 addPerson on a parsed bill builds the spare choice from known fields"
+    ]
+  },
+  {
+    "id": "K12",
+    "file": "src/core/bill.js",
+    "what": "removing the chosen person keeps the choice",
+    "tests": 379,
+    "pass": 377,
+    "fail": 2,
+    "killed": true,
+    "failing": [
+      "@R27 @R12 removing p2 from spare {\"rule\":\"one\",\"personId\":\"p2\"} leaves {\"rule\":\"top\"}",
+      "@R27 @R16 removePerson (the chosen one) on a parsed bill builds the spare choice from known fields"
+    ]
+  },
+  {
+    "id": "K13",
+    "file": "src/core/spare.js",
+    "what": "one extra draw",
+    "tests": 379,
+    "pass": 368,
+    "fail": 11,
+    "killed": true,
+    "failing": [
+      "@R16 @R31 pickAgain and the spare choices leave a deep-frozen bill alone and return a new bill",
+      "@R16 pickAgain on a parsed bill builds the bill and the spare choice from known fields",
+      "@R29 choosing \"random\" on S2 with spare {\"rule\":\"top\"} gives {\"rule\":\"random\",\"order\":[\"p2\",\"p1\",\"p3\"]}",
+      "@R29 choosing \"random\" on S2 with spare {\"rule\":\"top\"} gives {\"rule\":\"random\",\"order\":[\"p2\",\"p3\",\"p1\"]}",
+      "@R29 the draw is a Fisher and Yates shuffle that takes one number for each step, from the end",
+      "@R29 a number just under 1 stays inside the list (no swap)",
+      "@R31 Pick again draws until the splits change",
+      "@R31 a new order that moves money between items and charges counts as a change, even at equal shares"
+    ]
+  },
+  {
+    "id": "K14",
+    "file": "src/core/result.js",
+    "what": "1.0 row (c)",
+    "tests": 379,
+    "pass": 377,
+    "fail": 2,
+    "killed": true,
+    "failing": [
+      "@R18 blocking row 8 is \"no-prices\"",
+      "@R18 blocking row 9 is \"no-prices\""
+    ]
+  },
+  {
+    "id": "K15",
+    "file": "src/core/result.js",
+    "what": "At random ignores membership",
+    "tests": 379,
+    "pass": 376,
+    "fail": 3,
+    "killed": true,
+    "failing": [
+      "@R22 generated bills always add up, under every spare rule",
+      "@R32 @R20 @R21 I3 with spare {\"rule\":\"random\",\"order\":[\"p2\",\"p3\",\"p1\"]} gives [[500,83,583],[0,0,0],[501,83,584]] and 2 spare sen",
+      "@R32 At random walks the drawn order once across the whole bill and wraps round its end"
+    ]
+  },
+  {
+    "id": "K16",
+    "file": "src/core/spare.js",
+    "what": "withSpare spreads the parsed bill (threat model, object integrity)",
+    "tests": 379,
+    "pass": 374,
+    "fail": 5,
+    "killed": true,
+    "failing": [
+      "@R16 chooseSpareRule one on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule random on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule top on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSparePerson on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 pickAgain on a parsed bill builds the bill and the spare choice from known fields"
+    ]
+  },
+  {
+    "id": "K17",
+    "file": "src/core/spare.js",
+    "what": "One person with nobody stores undefined",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R29 choosing the rule already set, an unknown rule or One person with nobody to pick changes nothing"
+    ]
+  },
+  {
+    "id": "K18",
+    "file": "src/core/money.js",
+    "what": "formatMoney without the comma (1.0)",
+    "tests": 379,
+    "pass": 373,
+    "fail": 6,
+    "killed": true,
+    "failing": [
+      "@R4 formatMoney(100000) is \"RM 1,000.00\"",
+      "@R4 formatMoney(119387) is \"RM 1,193.87\"",
+      "@R4 formatMoney(15599999) is \"RM 155,999.99\"",
+      "@R4 formatMoney(779999922) is \"RM 7,799,999.22\"",
+      "@R34 @R4 formatMoney is RM, a space and formatAmount, for 1000 seeded values",
+      "@R24 summary text for W1 four figure bill, thousands comma is exact"
+    ]
+  },
+  {
+    "id": "D01",
+    "file": "src/draft.js",
+    "what": "D13 order may leave a person out",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R61 D3 and D13 reject another version and every spare choice outside core R27"
+    ]
+  },
+  {
+    "id": "D02",
+    "file": "src/draft.js",
+    "what": "D13 one person unchecked",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R61 D3 and D13 reject another version and every spare choice outside core R27"
+    ]
+  },
+  {
+    "id": "D03",
+    "file": "src/draft.js",
+    "what": "D14 v1 reads spare, v2 bad spare falls back",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R61 D3 and D13 reject another version and every spare choice outside core R27"
+    ]
+  },
+  {
+    "id": "D04",
+    "file": "src/draft.js",
+    "what": "D13 spare copied wholesale",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R61 D13 keeps a One person choice whose person is on no item, and keeps only the fields a rule needs"
+    ]
+  },
+  {
+    "id": "R01",
+    "file": "src/ui/repeat.js",
+    "what": "500 ms inclusive",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R57 b count 1, a tap, 500 ms after a click at (100, 100), at (100, 100): not a repeat (500 ms is not less than 500)"
+    ]
+  },
+  {
+    "id": "R02",
+    "file": "src/ui/repeat.js",
+    "what": "a tap of count 0 may repeat",
+    "tests": 379,
+    "pass": 378,
+    "fail": 1,
+    "killed": true,
+    "failing": [
+      "@R57 b count 0, a tap, 10 ms after a click at (100, 100), at (100, 100): not a repeat (a key press)"
+    ]
+  }
+]

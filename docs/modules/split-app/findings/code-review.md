@@ -2,207 +2,105 @@
 module: split-app
 kind: code-review
 status: issues_found
-counts: { blocker: 1, warning: 12 }
+counts: { blocker: 0, warning: 4, info: 6 }
+date: 2026-10-15
+head: d58f4ce
+scope: "git diff v1.0.0..HEAD -- index.html src (outside src/core, 24 files, src/ui/panel.js deleted) and -- tests (A0 to A21 test side, with A20's live_e2e.py rewrite, the COLD_BOOT_JS, cold_boot_state, RECEIPT_JS and receipt move into support.py, COLD_BOOT into expected.py, and the A20 guard helpers in test_app.py), judged against spec.md v1.1.0 (R1 to R61, D1 to D14, Contracts, Gesture to action, Non-goals, threat model), qa.md, BUILD.md, constitution.md, CLAUDE.md and README.md"
+evidence: docs/modules/split-app/qa/code-review/20261015-212541/
 ---
-# Code review: split-app
+# Code review: split-app (v1.1.0, step 5)
 
-Role: code-review finder (read-only). Date: 2026-10-09. Head `fcd5a78`.
-Scope: `git diff 329679e..HEAD` over `index.html`, `src/main.js`, `src/draft.js`, `src/errors.js`, `src/system.css`, `src/ui/*.js`, `tests/browser/` and `tests/draft.test.js`. `src/core/` and its unit tests were read as the contract only. `src/errors.js` was not on the caller's list but is in the diff, so it was reviewed.
-Judged against `spec.md` (R1 to R42, Contracts, D1 to D12, RD-1 to RD-4, threat model, Non-goals), `qa.md`, `BUILD.md` (judgment calls 1 to 17), `findings/qa.md`, `CLAUDE.md` and the constitution.
+Role. Code-review finder (read-only). Date 2026-10-15, HEAD `d58f4ce`, working tree clean for `src/`, `tests/`, `index.html` and `docs/design/` (`git diff --stat HEAD` on those paths empty, `src/system.css` is the golden blob `bf30dda`).
 
-**Verdict: ISSUES FOUND. 1 BLOCKER, 12 WARNING. Fix CR-01, then re-check.**
-- The shipped code is sound. No hallucinated code, no non-goal built, no money computed or formatted outside split-core, no banned API, no timer, no global hook. `src/system.css` is the golden plus the RC-5 rule and nothing else (byte-exact). 720 random real-gesture steps broke no invariant.
-- **CR-01** is QA's F-1 confirmed on the code, and it breaks the R30 sentence "Cancel ... leave the bill, the draft and the screen unchanged". A verified fix is in `02-fix-proposals.md`.
-- The tests are strong against the structural risks (a mutant that re-inserts nodes fails 5 of the 16 focus and status tests I ran on it, a CSP violation fails the R29 test, stray markup fails 7 R3 walks) and weak where QA's W2 and W6 pointed. Ten mutants survived 205 of 205 browser tests. Each one has a killing scenario that passes on the shipped code and fails on the mutant (`probe-kill-*.json`, `kill_decoder.mjs`). That is WR-02 to WR-05.
-- A second code defect in the same class as CR-01 turned up that QA did not test: a double click or double tap on a Remove button deletes two rows (WR-01).
+**Verdict. 0 BLOCKER, 4 WARNING, 6 INFO.** No defect in the shipped behaviour found, no hallucinated code, no non-goal built. The four warnings are two tests that cannot see what they guard (the live gate's reads-only guard stops at `live_e2e.py`, and R20's `--rows` has no odd-count case), one comment that lists the guard's armers and has lost P1, and the README, which is stale well beyond the header that STATE already names.
 
-## Evidence
-All under `docs/modules/split-app/qa/code-review/20261009-181036/`.
-- `01-mutants.md`: 14 mutants and 2 fix trees with their suite results, the kill scenarios and every behaviour probe.
-- `02-fix-proposals.md`: the two fixes tried in a scratch copy. Both leave the 205 browser tests green.
-- `03-css-and-scope-check.txt`: the CSS byte check, the scope list and the static scans.
-- `probe-*.json`, `fuzz-seed-*.json`: raw results. `scripts/`: every script that produced them.
-- All mutants and probes ran in a throwaway copy in the session scratchpad. The copy equals the repo (`diff -r`). Baseline in the copy: 205 browser tests pass, 265 node tests pass. The repo was not written to apart from the evidence folder and this file (`git status` shows only `docs/modules/split-app/qa/code-review/` and this verdict).
-- CG-7: every context came from `rig.new_context` (recorder on, `permissions` and `bypass_csp` refused) plus a guard that rejects `Clipboard.readText`, `read` and `write`. The OS clipboard was never touched.
-- Not run: `live_e2e.py` and `fidelity/run.py`, because they write into `qa/live-e2e/` and `qa/fidelity/`, outside my folder. `git diff c55f9a4 HEAD -- src index.html` is empty, so their artifacts still describe the shipped code.
+QA's verdict for this module today is ISSUES with QA-S5-1 (no test for the `@R9 @R11` accessible description scenario) and the observations QA-S5-2 to QA-S5-5. None is repeated here.
 
-## Rulings on QA's W1 to W7, F-1 and O-1
-| Id | Ruling | Why |
-|---|---|---|
-| W1 | **Accepted.** No finding. | `render()` in `src/main.js` updates every block from the same `bill` in one pass, so a lag shows up in the end state, which the tests do check. Only a transient glitch that corrects itself on the next key would slip, and nothing in `src/` can produce one. |
-| W2 | **Real, and wider than QA wrote.** WR-02. | Mutant A1 (clear only on empty) and mutant A2 (never clear) both pass 205 of 205. R10 (c) says the error "does not come back until the field next loses focus". No test types a valid value and then an invalid one in a focused field. Scenario K1 kills both. |
-| W3 | **Accepted.** | The suite-wide console rule works. Mutant CSP (an inline style on opening the dialog) fails `test_R29_the_dialog_opens_with_the_safe_choice_focused` with the CSP console line. |
-| W4 | **Accepted.** | Mutant AD (Add person given `aria-disabled` instead of `disabled` at 12) fails `test_R6_add_person_until_the_limit`: the cursor and border colour differ from the specimen. The CSS is keyed on `:disabled`, so "skipped by Tab" is covered transitively. |
-| W5 | **Partly real.** WR-05. | The gates run outside pytest by design, and the 0 px result stands on 10 of 10 pairs with the CSS byte check on top. The in-suite proxies are the R3 DOM walks, and they do catch class, aria and structure changes in S3, S2, S1 and S5. They do not walk S7 (the note) or the open dialog M1. Mutant LIVE2 (stray `aria-live` and `aria-pressed` on the note) survives. |
-| W6 | **A defect, not only a test gap.** CR-01. | Reproduced 6 of 6 (mouse and touch, three phone sizes). |
-| W7 | **Mitigated for four states, open for S7.** WR-05. | Mutant LIVE (`aria-live` on the People section) fails 7 R3 walk tests. Mutant LIVE2 on the note survives. |
-| F-1 | **BLOCKER CR-01.** | See below. |
-| O-1 | **Confirmed, not a code defect.** WR-12. | Reproduced: 5 px at 360 px from a total of RM 761.86 (`probe-overflow.json`). The cause is the golden CSS, which this module may not change. |
-| I-1 | No routing. | A double click on New bill ends with the dialog closed. That follows R30 and CG-8. |
-
-## Reverse audit
-Every non-trivial function in the scope maps to an R#, a ruling or a recorded judgment call. `src/errors.js` is R10. `src/ui/field-leave.js` is RD-3 (the `keydown` end is BUILD.md judgment call 11, not the spec text, see WR-07). `src/ui/dialog.js` is R29 to R31, CG-8 and PD-14. `src/ui/icons.js` is CG-10. `src/ui/field-error.js` serves R10, R14 and R15. `tests/browser/rig.py`, `support.py` and `pytest.ini` are judgment call 8. Non-goals: no payment, account, sync, OCR, history, 5-sen rounding, tip, theme, favicon, service worker, timer, save on unload, toast, undo, "saved" indicator or CSS change exists. The only code that maps to no requirement is dead code (WR-09).
+## Method
+- Read every changed line of `index.html`, `src/main.js`, `src/draft.js`, `src/errors.js` and `src/ui/*.js` and the functions they call, the BUILD.md records of A0 to A21 where a judgment call touched the code, and the A20 test side named in the handoff (`live_e2e.py` whole, `support.py`, `expected.py`, `conftest.py`, the A20 block of `test_app.py`). The rest of `test_app.py` (5,631 lines in all) was read by grep and by the tests the mutants select, not line by line.
+- Reverse audit by symbol. `watchPointerClicks`, `isRepeatClick`, `isRepeatPress` (R57 (b), R7), `swallowRepeatClicks` with `keydown` (R57 (a)), `closeOnBackdropClick` (R30, R50, R52), `DESKTOP` (R50, R52, R49), `createReceipt`, `createSpareLine`, `CARD_IDS`, `SHEET_IDS`, `BLOCKED_MESSAGE`, `unassignedMessage`, `hasSplits` (R16 to R21, R51), `showCopyStatus` (R22 to R24), `createStrip`, `fit`, `focusScroll` (R49), `createSheet`, `makeRoom` (R50, R52), `createSpareChoice`, `createPicker`, `createPill`, `drawPills`, `createRandWrap`, `choicesFor`, `place`, `RULE_NAMES` (R52 to R54), `createPeopleSection`, `createChargesSection`, `peopleSummaries`, `chargesSummary`, `reveal` (R48), `createNotes` (R27, R46), `createFieldError` (R10, R14, R15), `markFrame` (R56), `readSpare`, the version 2 envelope and `loadDraft`'s `failed` (R61, R46), `openAsAtLoad`, `save`, `copySummary`, `personName`, `onPickAgain` (R48, R46, R47, R22, R51, R54). Nothing maps to no R#. Not built, as the Non-goals require. No timer, no scroll call besides `focusScroll` and `makeRoom`, no Tab wrap in the sheet or P1, no `autofocus`, no `innerHTML`, no `Math.random` outside the two draws, no hook for an engine.
+- Comment rule. No `file:line` citation, no TODO, no commented-out code in `src/` (grep). One stale comment (CR-S5-8).
+- Runs, all on scratch copies (`app-mutation-run.txt`). Four app mutants in headless Chromium through the copy's own conftest, 2 killed and 2 survived. The draft and repeat-rule mutants D01 to D04, R01 and R02 ran with the core set and were all killed (split-core's `mutation-run.txt`). Two read-only probes (`probe-rows-output.txt`, `probe-sheet-scroll-output.txt`) and one planted copy of `support.py` (`planted-support-guard-run.txt`).
 
 ## BLOCKER
-
-### CR-01: The second click of a double click on Cancel lands on the page under the closed dialog   (bug, R30)
-- **File:** `src/ui/dialog.js:13` (Cancel), `:14-17` (Start new bill) and `:37-42` (backdrop). All three call `dialog.close()` synchronously from the first click.
-- **Issue:** R30 says Cancel, Esc and a backdrop click "leave the bill, the draft and the screen unchanged". After the first click closes the dialog, the second click of a double click or double tap is an ordinary click on whatever is drawn under the pointer. On a by-item bill that is often a person's toggle. I reproduced it on the S1 bill: a double click (`mouse.dblclick`) and a double tap (two `touchscreen.tap`) on Cancel changed the saved draft in **6 of 6** cases (375x667, 360x640, 412x732). The Chen toggle of "Nasi lemak ayam" flips and the shares move. `probe-dialog.json`. QA measured 10 of 64 seed and viewport combinations exposed. A double click on Start new bill and a double click on the backdrop changed nothing in 12 of 12 cases, because nothing clickable sits there after the reset or at the corner, but they use the same close path and have the same exposure on other layouts.
-- **Fix:** swallow the second click once, with no timer. `UIEvent.detail` is the click count: `mouse.dblclick` sends 1 then 2, a double tap within 200 ms sends 1 then 2 (`probe-detail*.json`).
-  ```js
-  function swallowSecondClick() {
-    document.addEventListener("click", (event) => {
-      if (event.detail > 1) { event.stopPropagation(); event.preventDefault(); }
-    }, { capture: true, once: true });
-  }
-  const closeByClick = () => { swallowSecondClick(); dialog.close(); };
-  // cancel click, start click (before onConfirm) and the backdrop click call closeByClick()
-  ```
-  Tried in a scratch copy: the 6 failing cases pass, a single click on Cancel still closes with focus on New bill, a later double click on a toggle still flips it twice (the one-shot guard does not linger), and the 205 browser tests stay green (`02-fix-proposals.md`). Add the test: S1 seed at 375x667, open the dialog, `dblclick` and a double tap on Cancel, assert the stored draft equals the seed text, the dialog is closed and focus is on New bill. It is red on the shipped code.
+None.
 
 ## WARNING
 
-### WR-01: A double click or double tap on a Remove button deletes two rows   (bug, same class as CR-01, not an R# violation)
-- **File:** `src/ui/people.js:16`, `src/ui/items.js:27`.
-- **Issue:** The first click removes the row, the next row slides under the pointer, the second click removes that one too. Measured with mouse and touch: `Remove Char kuey teow` on 4 items leaves 2, `Remove P2` on 5 people leaves 3 (`probe-double.json`). The change is saved at once and there is no undo (a non-goal). The spec never asks for protection, so this is a WARNING. If the owner treats ghost clicks as one class, promote it with CR-01. The same fix serves both.
-- **Fix:** `remove.addEventListener("click", (event) => { if (event.detail <= 1) onRemove(id); });` in both files. A keyboard activation has detail 0, so Enter and Space still work. Tried: both double cases leave one row removed, a single click removes one, a click 700 ms later removes another, 205 tests green. Add the two double-activation tests.
+### CR-S5-5. The README describes the 1.0 app in several places, not only in its header   (doc rot, fallback owner of the README)
+- **Symbol.** `README.md`, sections "How it is built", "Test it" and "The saved draft and security".
+- **What is wrong.** STATE already names the header (the Versions row and the mermaid) as owed, which is known and not counted. The lines below are stale on top of it, each checked against the code by grep.
+  1. `src/system.css` is "a byte copy ... plus one rule at the end, `[hidden] { display: none !important; }`". It is now an exact byte copy of the golden (blob `bf30dda`, spec R1). The extra rule is gone.
+  2. The draft is "`{ "version": 1, "bill": ... }`" and the decoder applies "every rule D1 to D12". `encodeDraft` writes version 2 and `decodeDraft` applies D1 to D14 (`readSpare`). The section does not mention the save warning (R46, R47) and does not state the SW8 limit (private browsing and Safari's 7-day clean-up lose the bill with no failure the page can see), which R47 says "is written in the README by the orchestrator".
+  3. `swallowRepeatClicks` is armed by "Every Remove button, Add person, Add item, and the New bill dialog on open and close". The Splits sheet (`createSheet`) and P1 (`createSpareChoice`) also arm it on open and close, it cancels a held key's repeats (R57 (a)), and a repeat is now `isRepeatPress` in `src/ui/repeat.js` fed by `watchPointerClicks` (R57 (b)). None of these is named.
+  4. `closeOnBackdropClick` is "the one backdrop rule for the New bill dialog and the sheet". P1 uses it too.
+  5. `showCopyStatus` draws "every status paragraph, the card's and the strip's". The sheet's is the third.
+  6. "`createX(handlers)` returns `{ el, update }`". `createPeople` and `createCharges` return `content`, `createReceipt(rbody, handlers)` returns `{ update, spareChip }`, `createStrip(strip, handlers)` and `createSheet(dialog, opener, handlers)` take their element.
+  7. "Test it" says "headless Chromium" and lists no WebKit command for the suite (`--engine webkit`, CLAUDE.md), and says "Each browser command starts and stops its own local server", which the live gate does not do with `--base-url` (the same table names that option).
+  8. "What it does" has no spare sen choice (R51 to R54), save warning or folding sections. This may be part of the owed header pass.
+- **Why it matters.** The README is the human's and the next agent's map. Point 1 tells a reader to look for a CSS rule that is not there, point 2 describes a draft format the app no longer writes, and the spec's one README duty for this module (SW8) is missing.
+- **Evidence.** From reading `README.md` against `src/` and `spec.md`. `git hash-object --no-filters src/system.css` equals `git rev-parse HEAD:docs/design/system.css`. `grep -n "Private" README.md` finds nothing.
+- **Fix.** Rewrite the eight points by symbol as above, and add the SW8 limit (and the other v1.1.0 residuals of the spec's threat model, if the owner wants them in "Known limits").
+- **Route.** Orchestrator (README reconcile), this finder as fallback.
 
-### WR-02: R10 (c) "does not come back until the field next loses focus" is not pinned, and the pure R10 rules have no unit test   (test strength, QA W2)
-- **File:** `src/errors.js:44-46` (`typedInto`). `tests/browser/test_app.py:399-414` (the outline goes through Backspace and so through "empty" before it types the good text). No `tests/errors.test.js` exists.
-- **Issue:** Mutant A1 (`typedInto` clears only on empty text) and mutant A2 (`typedInto` never clears) both pass 205 of 205 browser tests and 265 of 265 node tests. With A2 the error shows again while the user is still typing, which is the defect (c) rules out. `src/errors.js` is a pure module of about 60 lines that holds the whole R10 matrix, and it is tested only through a browser.
-- **Fix:** add `tests/errors.test.js` (node, no browser) for `flagsFor`, `typedInto`, `leftField`, `forgetPrice` and `visibleErrors`, including: flagged and bad, typed valid, flag is false; typed bad again, `visibleErrors` still false until `leftField`. Add browser scenario K1 (`scripts/probe_kill.py`): bad text, Tab, error shown; Control+A and one valid key, error gone; one more key making it bad, **no error**; Tab, error back. Kills A1 and A2.
+### CR-S5-6. The live gate's "reads only, real gestures" guard reads only `live_e2e.py`, while the gate reads and types through `support.py`   (a control narrower than its rule, R41)
+- **Symbol.** `live_gate_problems`, `READS_ONLY`, `READ_EXPRESSIONS` and `BANNED_ATTRIBUTES` in `tests/browser/test_app.py`. The helpers it cannot see are `support.cold_boot_state` (`COLD_BOOT_JS`), `support.receipt` (`RECEIPT_JS`), `support.reads`, `support.active_label` and `support.replace_text`.
+- **What is wrong.** qa.md's Rules say "`page.evaluate` only reads" and "Only real gestures change the app" for the gate. The guard checks the evaluate arguments and the banned attributes of the one file it parses. The gate makes 14 calls into `support.py` (`grep -oE "support\.[a-z_]+\(" tests/browser/live_e2e.py`), 9 of them through four helpers that run their own `page.evaluate` (`active_label`, `cold_boot_state`, `reads`, `receipt`) and 3 through `replace_text`, which sends the gestures of step 2. The gap is older than A20, since the 1.0 gate also read through a helper (`support.panel_text`). A20 made the gate lean on more of them, because it now reads the cold boot and the receipt through `COLD_BOOT_JS` and `RECEIPT_JS`, two of its largest page scripts, both outside the guard.
+- **Why it matters.** A write added to `COLD_BOOT_JS`, or a `fill` in `replace_text`, would change what the gate proves (a cold boot, real typing) and every guard test would stay green.
+- **Evidence (run).** In a scratch copy, `support.py` gained `localStorage.clear();` inside `COLD_BOOT_JS` and `locator.fill("")` inside `replace_text`, with `live_e2e.py` and `test_app.py` unchanged. `test_R41_the_gate_uses_real_gestures_and_reads_only` and the four `test_R41_a_planted_copy_of_the_gate_script_is_reported` cases all passed, 5 of 5 (`planted-support-guard-run.txt`).
+- **Fix.** Make the guard follow the helpers. For each `support.<name>(` call in the gate's syntax tree, parse that function in `support.py`, check its `evaluate` arguments against the read-only list (adding `COLD_BOOT_JS`, `RECEIPT_JS`, `READS_JS` and the `active_label` expression by name) and its attributes against `BANNED_ATTRIBUTES`, and add a fifth planted copy that plants a write in a helper. qa.md's `@R41 @static` scenario names only `tests/browser/live_e2e.py`, so it needs one line for the helpers.
+- **Route.** Planner (the qa.md line), Dev Solver (the guard and its planted copy).
 
-### WR-03: The RD-3 helper's "once", `keydown` end and `pointercancel` end are unpinned, and one test cannot fail for the behaviour it names   (test strength, control that cannot fail)
-- **File:** `src/ui/field-leave.js:18-27`. `tests/browser/test_app.py:1345-1353` (`test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press`).
-- **Issue:** (a) Mutant P1 (the queue is never emptied, so every press end re-runs every old handler) survives. With it, a click inside a focused field shows a stale error (K2: `errors=1` on the mutant where the shipped code gives 0). (b) Mutant P56 (the `keydown` and `pointercancel` ends removed) survives. The test at `:1345` is named for a press that "never reported its end", but it finishes the press with a real release first, so `pressed` is already false. It passes with the `keydown` clause deleted. (c) `:24` sets `pressed` for any mouse button. On macOS and Linux a right click opens the context menu and the page gets no `mouseup`, so `pressed` stays true until the next release or key and a blurred field's error waits. That is observed by reading the code only. On this machine (Windows) `mouseup` is delivered, so I could not reproduce it.
-- **Fix:** add K2 and K3 from `scripts/probe_kill.py`. K3: bad text in the field, `mouse.down()` on the same field (focus stays), `keyboard.press("Tab")`, assert the error is shown **before** `mouse.up()`. Kills P56. For (c) guard the listener: `(event) => { if (event.button === 0) pressed = true; }`.
+### CR-S5-7. R20's `--rows` is tested only at 12 people, so a floor in place of the ceiling breaks the desktop list for 7, 9 and 11 people and passes   (test gap, R20, PD-17)
+- **Symbol.** `splitsAndProof` in `src/ui/receipt.js` (`list.style.setProperty("--rows", String(Math.ceil(result.rows.length / 2)))`) and the R20 and R38 tests that read `--rows`.
+- **What is wrong.** Every test that reads `--rows` uses an even count (T12, "6"). With `Math.floor` the value is the same for every even count, so only an odd count above six can tell the two apart, and none is tested.
+- **Why it matters.** `.r-splits.many` lays the rows out in columns with `grid-auto-flow: column` and `grid-template-rows: repeat(var(--rows), auto)`. A `--rows` one short makes the grid open a third column. The shipped code is right, but nothing would notice a regression.
+- **Evidence (run).** Mutant U4 (floor in place of ceil) passed all 10 tests of `-k "R20 or R38"` (`app-mutation-run.txt`). `probe_rows.py` on a 7-person even bill at 1280 x 800 gives `--rows` "4" and 2 columns on the project and `--rows` "3" and 3 columns on the U4 copy (`probe-rows-output.txt`).
+- **Fix.** Add a case with 7 people (or 9 or 11) in even mode at 1280 x 800 that asserts `--rows` "4" and two distinct column positions, and its row in qa.md beside the T12 line.
+- **Route.** Dev Solver (the test), planner (the qa.md row).
 
-### WR-04: Two decoder rules are exercised for person names only   (test strength)
-- **File:** `tests/draft.test.js:56-65` (D8) and `:73-77` (D10).
-- **Issue:** Mutant D (D10 compares `nextId` with person ids only, and an item name may hold a line feed) passes 265 of 265 node tests and 205 of 205 browser tests. The shipped decoder rejects all three inputs in `scripts/kill_decoder.mjs`. The mutant accepts them. A stale `nextId` against an item id would hand out `i3` twice.
-- **Fix:** add to `tests/draft.test.js`:
-  ```js
-  rejects(draft({ items: [{ id: "i3", name: "Tea", priceText: "5", who: [] }], nextId: 3 })); // D10 against an item id
-  for (const name of ["Te\na", "Te\ra"]) rejects(draft({ items: [{ id: "i3", name, priceText: "5", who: [] }], nextId: 4 })); // D8 item names
-  ```
-  Observation, no change needed unless the owner wants it: D8 counts grapheme clusters and sets no UTF-16 ceiling. A name of one letter plus 1,000,000 combining marks is accepted and the page still loads in 0.37 s (`probe-zalgo.json`). It is spec-conformant. Chromium's `maxlength` would never let a user type it, so a ceiling such as `name.length <= 200` costs nothing.
+### CR-S5-8. `swallowRepeatClicks`' comment lists who arms the guard, and the list has lost P1   (doc rot, comment rule)
+- **Symbol.** The JSDoc of `swallowRepeatClicks` in `src/ui/dom.js` ("the clicks that open and close the New bill dialog and the Splits sheet"), and the JSDoc of `isRepeatClick` in the same file.
+- **What is wrong.** P1 arms the guard on open and on a click close (`open` and `closeByClick` in `src/ui/spare-choice.js`, R52, PD-21), and the comment does not say so. The comment is 16 lines and keeps a list of callers that a grep for `swallowRepeatClicks()` gives exactly (ten calls in five files), so it will rot again with the next caller. `isRepeatClick`'s JSDoc also carries a history paragraph ("In 1.0 the error line ... Since v1.1.0 ... (task A8)") that belongs in BUILD.md.
+- **Why it matters.** A reader trusting the list would think P1's double click is unguarded, which is the kind of false claim the constitution's comment rule exists to stop.
+- **Evidence.** From reading, and `grep -rn "swallowRepeatClicks()" src`.
+- **Fix.** Replace the list of armers with the rule and the why ("every click that moves the layout under the pointer arms it, see the callers of swallowRepeatClicks"), keep the two lines on why it runs at the document in the capture phase, and move the 1.0 history out of `isRepeatClick`'s JSDoc.
+- **Route.** Dev Solver.
 
-### WR-05: Three UI contract points have no test   (test strength, QA W5 and W7)
-- **File:** `tests/browser/test_app.py:1186-1201` (R30), `:1090-1102` and `:1166-1183` (R27 and R29 markup), `:985-993` (R25 table).
-- **Issue:** (a) Mutant J (every click on the dialog element closes it, the box test deleted) survives: no test clicks inside the dialog box. (b) Mutant LIVE2 (an extra `aria-live` on `div.note-wrap` and `aria-pressed` on the dismiss button) survives: S7 and the open dialog are checked by selector, not walked against `states.html` S7 and `new-bill-dialog.html`. (c) Mutant RM (removing an item updates the screen but does not save) survives: the R25 table has no remove row.
-- **Fix:** K5 (click at the dialog's padding, the dialog stays open), K6 (the note's attributes), K4 (remove an item, parse `split.draft`). For (b) run the R3 walk on S7 and on the dialog opened, against the S7 specimen and `new-bill-dialog.html`, with the same skip rules.
+## INFO
 
-### WR-06: A press that starts inside the dialog and is released on the backdrop closes it   (bug, low)
-- **File:** `src/ui/dialog.js:37-42`.
-- **Issue:** A click event is sent to the common ancestor of the press and the release. Selecting the dialog text and releasing over the backdrop gives `event.target === dialog` with a point outside the box, so it counts as a backdrop click (`probe-dialog.json`: dialog closed). No data is lost, because close is Cancel, but the user did not click the backdrop.
-- **Fix:** remember where the press began. `dialog.addEventListener("mousedown", (e) => { pressBeganOutside = e.target === dialog && outsideBox(e); })` and close only when `pressBeganOutside` is true too. Move the rectangle test into `outsideBox`.
+### CR-S5-9. The cancel of a running reveal on a fold is untested and has no visible effect   (R48 (3), KISS)
+- **Symbol.** `if (!open) revealing?.cancel();` in `createSection`'s `setOpen` (`src/ui/sections.js`).
+- **What.** Mutant U3 removes the line and all 26 R48 tests pass (`app-mutation-run.txt`). The only fold test folds after the reveal has ended. Below 1024 px the CSS hides a folded body, so a reveal that keeps running for its last few ms draws nothing either way.
+- **Suggestion.** Either a test that folds within 200 ms of opening under `no-preference` and asserts no running animation on `#peopleBody`, or drop the line as speculative. Dev Solver's choice.
 
-### WR-07: Comments and docs that the code or the tests refute, and derivations kept in two or three places   (doc rot, DRY across the code and docs boundary)
-- **File:** (a) `tests/browser/live_e2e.py:103`. (b) `src/ui/dom.js:4-6` and the BUILD.md Code map line "That pair is how R33 holds". (c) `src/ui/field-leave.js:10-14`, `spec.md` R10 builder note, BUILD.md judgment call 11. (d) `src/draft.js:6`. (e) `tests/browser/fidelity/run.py:3` and `:11`, `tests/browser/test_app.py:1612`.
-- **Issue:** (a) the docstring cites `test_R41_every_step_has_its_gesture_and_its_assertion_in_the_right_field`. That test does not exist. The real one is `test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields`. (b) the comment says the write-skipping setters are "what keeps a block from touching the input the user is typing in (R33)". Mutant SV (`setValue` always writes) passes 205 of 205, because in Chromium writing an equal value moves nothing. Mutant RC (`reconcileChildren` re-inserts every node) fails 5 of the 16 tests I ran on it (the R33, R34, R16 and R24 ones). `reconcileChildren` is the load-bearing half, the setter guard is belt and braces. (c) the touch-tap reason for ending the press at `mouseup` and not `pointerup` is written three times, and the Tab-wrap measurement twice (`dialog.js:22-23`, spec R29, ROADMAP PD-14). The constitution calls this a divergence waiting to happen. The spec R10 note lists `mouseup` and `pointercancel` as the ends. The code also ends on `keydown` (judgment call 11), so the spec text is incomplete. (d) `draft.js:6` says "Only the storage object passed in is touched". `getStorage()` reads `window.localStorage`. The line was copied from the spec's Files table, which says "Pure apart from the storage object passed in" and lists `getStorage` in the same row. (e) absolute counts: "ten runs" and "ten pairs" in the runner docstring, the test name `..._holds_eleven`.
-- **Fix:** (a) correct the name. (b) say what is true: "reconcileChildren never re-inserts a node already in place, which keeps focus and IME state (R33). The setters skip equal writes." Drop "That pair is how R33 holds" from BUILD.md. (c) keep the measured reason in one place, `field-leave.js`, and point to it from spec R10 and BUILD.md by symbol (`onFieldLeave`). Add the `keydown` end to the R10 note. Do the same for the Tab wrap (`createDialog`). (d) "Only the storage object passed in is touched, except `getStorage`, which reads `window.localStorage`", and fix the spec row. (e) say "one run per screen and width" and rename the test `..._and_the_page_holds_its_icons`.
+### CR-S5-10. R52's sheet scroll goes up when the sheet is already scrolled past its Splits heading   (R52, spec silent, inherited from g2)
+- **Symbol.** `makeRoom` in `src/ui/sheet.js`, `scroll.scrollTop += Math.min(overlap, headBelowTop)`.
+- **What.** When P1 opens over a sheet whose heading is above the scroll area, `headBelowTop` is negative and the sheet scrolls up to put the heading at the top. On T12I at 360 x 780 the sheet went from scrollTop 424 to 199 and 5 of 12 rows ended under P1, the same as when it starts from the top. A person has to scroll that far to reach the chip, so this is the common path for a 12-person by-item bill on a small phone. The build copies g2's `keepSplitsInView` exactly, and the R52 test uses T12 at 390 x 844, where the sheet scrolls at most 135 px and the case cannot arise (`probe-sheet-scroll-output.txt`).
+- **Suggestion.** For the planner. Say in R52 whether the heading cap may scroll the sheet up, or whether the scroll is downward only (`Math.max(0, Math.min(overlap, headBelowTop))`).
 
-### WR-08: There is no README for the module or the project   (doc ownership, fallback owner)
-- **File:** none exists. `docs/modules/split-app/README.md` or `./README.md`.
-- **Issue:** The constitution lists "the module's README is reconciled" in the definition of done and makes the reviewer the fallback owner. The code is complete and no README describes how to run, test or gate it. BUILD.md has a "Code map (for the README reconcile)" that is ready to use.
-- **Fix:** the orchestrator writes it from BUILD.md's code map, citing symbols (`createDialog`, `onFieldLeave`, `decodeDraft`, `commit`, `render`) and never `file:line`. Cover: run, the three test commands, the two gates and their evidence folders, the draft format and its decoder rules, the CSP, and the RC-5 rule in `system.css`.
+### CR-S5-11. `import re` in `tests/browser/support.py` is unused   (dead code)
+- **Symbol.** The first import of `tests/browser/support.py`.
+- **What.** No `re.` in the file. A20 noted it and left it. Delete it.
 
-### WR-09: Dead and speculative code   (quality)
-- **File:** `src/ui/dom.js:12-19` and `:22-29`, `src/main.js:41`, `tests/browser/seeds.py:44-48`.
-- **Issue:** (a) `el()` handles attribute values `true`, `false` and `null`, and `setAttr()` handles `true` and `false`. No caller passes any of them (every attribute is a string, `setAttr` gets `null` or a string). (b) The re-check after the `await` in `copySummary` is redundant: `render()` already sets `view.status = null` when no table shows. Mutant O (guard removed) passes 205 of 205. (c) Seed S8 (twelve people) is defined, `qa.md` lists it for the 12 people state ST-08, and it is never booted. The R6 test reaches 12 people by clicking, and the only use of S8 is a check that it parses.
-- **Fix:** delete the unused branches in `el` and `setAttr` and fix their doc line. Delete `main.js:41` (or keep it and drop the status reset in `render`, but not both). Delete S8, or boot it in the R6 test and in a 12 people layout check.
+### CR-S5-12. The xfail plumbing outlived the last xfail   (dead code, test side)
+- **Symbol.** `R3_STATES` (every per-width task is `None`) with `R3_PAIRS`' conditional `xfail`, and `POLICY_STATES` (its seventh column is `None` in every row) in `tests/browser/test_app.py`.
+- **What.** No xfail is left in the suite (the step 5 handoff), so the task columns and the conditional marks can go, which makes the two tables plain lists of cases.
 
-### WR-10: Repeated handler triples, a status rule in three places, and fixtures kept equal by a test   (smells)
-- **File:** `src/main.js:67-76`, `:77-99`, `:101-110`, `:33`, `:41`, `:137`; `src/ui/panel.js:89-91`; `tests/browser/test_app.py:646-655`, `:858-861`, `:1741-1747`; `tests/browser/live_e2e.py:31-48`.
-- **Issue:** The R10 wiring is the same two-line pair six times: `typedInto(...)` then `commit(set...)` on input, `leftField(...)` then `render()` on leave. The rule "the copy status exists only while the table does" lives in `copySummary` (twice), `render` and `panel.update`. `render()` writes to `view`, so a view function changes state. The four people, items, subtotal and charges blocks repeat the same `section.block` plus `h2.block-title` scaffold. `S1_COPY`, `S2_COPY`, the row tables and the check rows are written in both `test_app.py` and `live_e2e.py`, and a test (`test_R41_the_gate_expects_what_the_suite_expects`) exists only to keep the copies equal. `test_app.py` is one 1,771-line file ordered by build task, so one requirement (R10) is spread over five sections. The file name is in the spec, the ordering is not.
-- **Fix:** a `fieldHandlers(kind, setter, id)` helper that returns `{ onInput, onLeave }`. Move the status reset out of `render()` into the one place that sets or clears `view.status`. A small `block(id, title, ...children)` helper in `dom.js`. Move the expected values to `tests/browser/expected.py` and import them in both files, then delete the equality test. Group the tests by block when the file is next touched.
+### CR-S5-13. A second copy attempt with the same outcome is not announced again   (R24, spec silent)
+- **Symbol.** `showCopyStatus` in `src/ui/copy-status.js` (`if (paragraph.textContent !== shown.text)`).
+- **What.** From reading. After "Could not copy ..." a second failed attempt leaves the `role=status` paragraph untouched, so a screen reader says nothing the second time. The skip is there so that a render that is not a copy attempt stays quiet, which is right. Whether a repeat attempt must speak again is not in R24. For the planner.
 
-### WR-11: Test rig reach and portability   (hygiene)
-- **File:** `tests/browser/test_app.py:142`, `tests/browser/fidelity/run.py:23`, `tests/browser/test_app.py:1699` and `:1315`.
-- **Issue:** (a) the sub-path test starts a server on `ROOT.parent`, which is `examples/` and so also serves the sibling Streaks project on loopback while it runs. (b) `HARNESS` is the absolute path `{sdlc}/harness/fidelity.py` with no override, so nobody else can run the gate, and the test at `:1699` asserts the constant against the same literal. (c) `:1315` accepts any of the three error messages for every case, so a subtotal case that showed the SST message would pass.
-- **Fix:** (a) build the sub-path layout in a temp folder with a copy or a junction of the project and serve that. (b) read `SDLC_HARNESS` first and fall back to the path; assert in the test that the runner honours the variable. (c) add the expected message to `PRESS_CASES` and compare for equality.
+### CR-S5-14. The suite's evidence folder may be shared by two runs of one engine in the same second   (constitution, Gates and evidence)
+- **Symbol.** `evidence_dir` in `tests/browser/conftest.py` (`mkdir(parents=True, exist_ok=True)`).
+- **What.** The live gate makes its folder without `exist_ok` so that a run can never write into another run's folder. The suite does not. Low risk, since a run takes minutes, but the rule is "each run writes its own capture". Drop `exist_ok` or add a suffix on collision.
 
-### WR-12: The by-item table overflows a 360 px screen for bills above about RM 760   (design, QA O-1 confirmed)
-- **File:** `src/system.css` (the golden, do not edit). `docs/modules/split-app/spec.md` R35 and the Residual risks list.
-- **Issue:** `probe-overflow.json`: at 360 px an S1-shaped bill overflows by 5 px from a total of RM 761.86 and by 23 px from RM 1385.21. At 390 px it fits up to RM 6926. A dinner for a big group passes RM 760. No code change can fix it, because the cause is the golden's table and CSS changes are a non-goal. R35 names S1, S2, S3 and S5 only, and the spec records no residual for larger bills.
-- **Fix:** an owner ruling. Either send it to the design phase (a table that wraps or scrolls inside its own box) or add it to the spec's accepted residuals with the size where it starts.
+## Checked and found sound (for the record, no finding)
+- The repeat rule. `isRepeatPress`, `isRepeatClick` and the self-compare of a click. Mutant U1 killed by 14 touch double-tap cases. R01 and R02 killed by the `@R57 @node` table.
+- P1's focus return. Mutant U2 killed, but only by the width-crossing case. In the other R52 close cases the browser's own dialog focus return already lands on the chip, so those cases pass with or without the app's line (`app-mutation-run.txt`, U2 note). Not a gap, since the crossing case covers the line, but worth knowing before trusting those cases alone.
+- The decoder's D13 and D14. Mutants D01 to D04 killed.
+- `openAsAtLoad` compares JSON text. It relies on `decodeDraft` building the Bill in core's key order, which its comment says and the R48 load cases exercise.
+- The live gate script. The control path, the capture loop with its 5 s bound, `leave_document` across the close and the reload, and the `pass` rule in `main` read right, and the A20 control and green captures exist per engine (QA judged them).
 
-## Checked and found clean
-- **R10 timing and RD-3**: restore flags, mode-switch survival, `forgetPrice` on removal, the queue is emptied once per press (K2 passes on the shipped code), a blur from the keyboard runs at once, every blur caused by a press waits for the release (the 14 RD-3 tests pass, and K1 to K3 pass on the shipped code). No flag leaks across fields.
-- **Decoder D1 to D12**: only known fields are read, every output object is built from literals, `who` is copied as an array of checked strings, ids are digit-only so nothing reaches a prototype, a `__proto__` key in the draft is never read, the whole decode sits in one `try`, and `nextId` is checked against both lists. A 4 MB hostile name is rejected in 480 ms.
-- **Restore and save failure**: `getStorage`, `loadDraft` and `saveDraft` never throw, an unreadable draft is replaced and saved once, a cold boot and a restore write nothing. A `getItem` that throws means no note.
-- **Copy status**: set after the await only while a table shows, cleared when the table leaves and on Start new bill, never saved. The one remaining race (a slow clipboard that resolves after an edit) shows "Summary copied" for the earlier text. It is a few milliseconds wide and needs no change.
-- **Focus after add and remove (R34)**: in 720 random gesture steps every add and remove was checked against the expected field, no failure. The note's dismiss moves focus to Person 1.
-- **Dialog**: Tab and Shift+Tab stay on the two buttons, also after a click on the title. In the random sessions every Cancel, Esc, backdrop and Start closed the dialog and put focus on New bill.
-- **Money**: nothing is computed or formatted outside `src/core/`. `formatMoney`, `formatRate`, `parseAmount` and `parseRate` are called from the core.
-- **CSS**: byte-exact golden plus the RC-5 rule, never edited after the first copy, goldens untouched by this module.
-
-## Process note
-One `find ... -exec rm -rf` on `__pycache__` folders ran inside my own scratch copy (outside the project root) right after I copied the project, against the "never delete outside the project root" rule. It touched only copies I had just made. Mutant trees were assembled with `cp -rn` inside the scratchpad. Every edited source file and every file in the project was written with the Write tool. The JSON results in the evidence folder were written by my scripts with relative paths and listed afterwards.
-
-PROCESSES: none alive. All started by me, all stopped. Static servers (`python -m http.server` through `rig.StaticServer`, each printed STARTED and STOPPED with `exited True, port free again True`): the baseline and mutant pytest runs, `probe_dialog`, `probe_detail`, `probe_detail2`, `probe_kill` (8 runs), `probe_zalgo`, `probe_double`, `probe_overflow`, `probe_fix` (4 runs), `fuzz` (4 seeds). Headless Chromium instances were closed with `browser.close()` by each script. A final sweep with `Get-CimInstance Win32_Process` by command line (scratchpad path, `probe_`, `fuzz.py`, `kill_decoder`, `time_decoder`) found none of mine, and `Get-Process` by name (python, node, chrome-headless-shell, sh, cmd) found no such process at all, so the Streaks run seen in an earlier sweep (`probe_02_second_click_on_controls.py`, `http.server ... streaks`) had ended on its own. I did not touch it.
-
----
-
-# Solver (2026-10-09)
-
-Role: Dev Solver. Start HEAD `044800e`. Orders: the ORCH rulings of 2026-10-09 for CR-01, QA F-1 and WR-01 to WR-11 (WR-08 and WR-12 are not mine).
-Evidence: `docs/modules/split-app/qa/solver/20261009-190119/` (`red-green.md` has the red and green runs of every item; `junit-browser.xml`,
-`junit-node.xml`; the 384-case F-1 scan and its script; `live-gate-check/`; `red-cr01-screenshots/`) and the fidelity run
-`docs/modules/split-app/qa/fidelity/20261009-200000/`. The frontmatter and verdict above are the finder's and are left as they were; the
-finder re-run decides whether the verdict changes.
-
-## Status per finding
-| Id | Status | Commit | Red | Green |
-|---|---|---|---|---|
-| CR-01 and QA F-1 | RESOLVED | `d09d8d6` | 13 of 14 new tests fail on the shipped code (the draft changed, focus on "Chen", a second click reaches the page); the 384-case scan fails 202 | 14 of 14 pass; the scan fails 0 of 384 |
-| WR-01 | RESOLVED | `9636e84` | the 4 double-activation cases remove two rows | all 6 pass |
-| WR-02 | RESOLVED | `2408d40` | mutants A1 and A2 fail 2 unit tests and the 4 K1 rows each | `tests/errors.test.js` 10 of 10, K1 4 of 4 |
-| WR-03 | RESOLVED | `e1d9ee7` | the right-click test fails on the shipped code; mutant P1 fails K2; mutant P56 fails the `held` keyboard-blur case and the cancelled-press test | all pass with the `event.button === 0` guard |
-| WR-04 | RESOLVED | `eae083c` | mutants D(B) and D(C) fail one unit test each | 11 of 11 in `tests/draft.test.js`; the D8 UTF-16 residual is a dated note in the spec |
-| WR-05 | RESOLVED | `7bdc368` | mutants J, LIVE2 (note and dialog) and RM (item and person) each fail their new test | all pass |
-| WR-06 | RESOLVED | `5f5d4d9` | the press-from-text-to-backdrop test fails (dialog closed) | passes; the backdrop-as-Cancel tests stay green, also for a tap |
-| WR-07 | RESOLVED | `7edfe0b` | (documents) | `src/` changed in comments only; suites green |
-| WR-09 | RESOLVED | `d0aca98` | with the status reset removed the new late-copy test fails | seed S8 is booted by a test (qa.md ST-08 names it); dead branches and the re-check gone |
-| WR-10 | RESOLVED | `842af5a` (handlers), `dafeef4` (status rule, `render()` pure), `138904e` (`block`), `14f8d3e` (`expected.py`) | mutants "no clamp in `commit`" and "`copySummary` writes the status" each fail a test | suites green before and after each; live gate 7 of 7 with the refactored script |
-| WR-11 | RESOLVED | `b73c9fe` | mutant "the subtotal shows the SST text" fails the 2 subtotal press rows | the `:1315` test compares one exact message; `SDLC_HARNESS` honoured; the sub-path test carries its reason |
-| WR-08 | NOT MINE | | | the orchestrator writes the README at module close |
-| WR-12 | NOT MINE | | | with the owner as H-02 |
-
-Final counts: browser suite 244 passed (205 at the start), unit suite 275 passed (265 at the start, the 10 added are `tests/errors.test.js`).
-Fidelity: 10 of 10 pairs at 0 mismatching pixels, dimensions equal.
-
-## What went beyond the letter of a ruling (reversible, for the orchestrator)
-1. **CR-01 guard.** The ruled one-shot capture listener on `click` alone fails: with touch the second press (a `mousedown`) still takes focus
-   from "New bill" to the control under it (4 of the new tests failed), and a triple click lets its third click through. The guard in
-   `createDialog` (`swallowRepeatClicks`) therefore cancels the repeat `mousedown` and `click` (`event.detail` above 1) and removes itself at
-   the first press that is not a repeat. It is still timer-free and armed only by a click that closes the dialog. Revert: replace it by
-   the 6-line listener in `02-fix-proposals.md`; 3 touch cases and the triple click test then go red.
-2. **WR-03 right click.** The guard is on `mousedown` (`event.button === 0`) as ruled. The test uses `mouse.down(button="right")`
-   and asserts the error is shown before the release. It was red before the guard.
-3. **WR-03 pointercancel.** Playwright cannot start a native drag, so `test_R10_a_cancelled_press_releases_the_waiting_error` dispatches a
-   `pointercancel` on the document. It is the one test in the suite that is not a real gesture, and it says so.
-
-## Left for the orchestrator
-- **Reconcile the README** (WR-08) from `BUILD.md`, whose Code map I brought up to date: `isRepeatClick`, `block`, `setStatus`, `amountTyped`,
-  `amountLeft`, `hasShares`, `swallowRepeatClicks`, the `field-leave.js` ends (`mouseup`, `pointercancel`, `keydown`, primary button only),
-  `tests/errors.test.js`, `tests/browser/expected.py`, `SDLC_HARNESS`.
-- **`docs/modules/ROADMAP.md` PD-14** still repeats the Tab-wrap measurement that now has its one home in `createDialog`. It is a shared
-  file, so I did not edit it.
-- **`qa.md`** has no scenario for the double click or double tap, the backdrop press rule, or the right-click rule. The spec carries dated
-  notes (R7, R30, R10 builder note, Files table, residual risks); the tests are in `test_app.py` under "Code review CR-01, WR-01, WR-06".
-- **Observation, not fixed (not in the rulings):** a double click or double tap on "Dismiss note" never changed the draft in 10 cases, but the
-  second press moves focus from "Person 1 name" to the page body (`probe_dismiss_note.py`). Same class as CR-01, no data effect.
-- **Not measured:** real touch devices. The tests use Playwright's `touchscreen.tap`, whose `detail` is 1 then 2 for a double tap (the
-  review measured the same).
-
-## Process note
-One Python heredoc through Bash applied a throwaway mutant to `src/ui/dialog.js` (against "Write and Edit only"); it was reverted with Edit and
-checked equal to a prior copy. Two runs hung on a test of mine and were killed by exact PID with their process trees. Details in `red-green.md`.
-
-PROCESSES: none alive. Started and stopped by me: pytest static servers (each run printed STARTED and STOPPED with the port free again,
-for example pid 12392 port 64289 and pid 49372 port 41608), the fidelity runner server pid 28424 port 6816, the live gate server pid 46192 port 41634,
-the F-1 scan servers pid 26452 (baseline) and pid 48544 (fixed), the dismiss probe server pid 53252, and the two killed runs: pytest 38244
-(its server 47036, the Playwright node 36932 and the Chromium processes under 50592) and the scratch script 46148 (its server 51368).
-Headless Chromium instances were closed by each script or died with their killed parent. The final sweep by command line is in the
-report that returned this section.
+## Not done
+Nothing in scope was left out. Not run, by choice, the full browser suites, the fidelity gate and the live gate (QA ran them today on the same tree, and this review needed only targeted runs).

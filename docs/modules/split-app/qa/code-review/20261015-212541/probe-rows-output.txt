@@ -1,0 +1,9 @@
+Code-review finder (read-only), 2026-10-15, HEAD d58f4ce, headless Chromium 149.0.7827.55.
+Commands: python probe_rows.py <project> <project> 7, then python probe_rows.py <project> <scratch>/app-mutants/U4 7
+Output as printed (one JSON line each):
+
+{"app": "{workspace}\\examples\\split", "people": 7, "found": {"cls": "r-splits many", "rows": "4", "columns": 2, "listRight": 533, "cardRight": 558, "overflow": false}, "server": ["server STARTED pid 23528 port 13920 root {workspace}\\examples\\split", "server STOPPED pid 23528 port 13920, exited True, port free again True"], "port_refuses_after_stop": true}
+{"app": "{temp}\\claude\\{project-id}\\9f7a7bfa-f87d-4692-bcb6-d8869bc1b359\\scratchpad\\split-cr-step5\\app-mutants\\U4", "people": 7, "found": {"cls": "r-splits many", "rows": "3", "columns": 3, "listRight": 533, "cardRight": 558, "overflow": false}, "server": ["server STARTED pid 7076 port 12535 root {temp}\\claude\\{project-id}\\9f7a7bfa-f87d-4692-bcb6-d8869bc1b359\\scratchpad\\split-cr-step5\\app-mutants\\U4", "server STOPPED pid 7076 port 12535, exited True, port free again True"], "port_refuses_after_stop": true}
+
+Reading. The real code gives --rows 4 and two columns (R20, PD-17). The U4 mutant gives --rows 3, and the grid's column
+auto-flow then opens a third column for the seventh row. The mutant passes every R20 and R38 test (app-mutation-run.txt).

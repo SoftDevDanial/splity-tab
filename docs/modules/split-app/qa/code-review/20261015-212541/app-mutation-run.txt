@@ -1,0 +1,21 @@
+Code-review finder (read-only), 2026-10-15, HEAD d58f4ce, headless Chromium 149.0.7827.55, pytest through the copy's own
+conftest (pytest -q -q -p no:cacheprovider -k <selection>). Each mutant lives in its own scratch copy. Nothing ran in the
+project. Selections were counted first on the project with --collect-only (no test run): 147, 31, 26 and 10 tests.
+
+| Mutant | Edit | Selection | Result | Failed tests |
+|---|---|---|---|---|
+| U1 | src/ui/dom.js `isRepeatClick`, `const previous = lastClick;` (a click compared with itself) | R57 or R7_ or R6_ (147) | KILLED, exit 1 | 14, all touch double-tap rows of test_R7_a_double_click_or_double_tap_on_remove_removes_one_row and test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing |
+| U2 | src/ui/spare-choice.js `emptied`, `splits.focus();` (P1 always gives focus to Splits) | R52 (31) | KILLED, exit 1 | 1, test_R52_p1_follows_the_width_when_it_crosses_1024_px, `{'focus': 'body'} != {'focus': 'spareBtn'}` |
+| U3 | src/ui/sections.js `createSection`, the line `if (!open) revealing?.cancel();` removed | R48 (26) | SURVIVED, exit 0 | none, 26 passed |
+| U4 | src/ui/receipt.js `splitsAndProof`, `--rows` as Math.floor(rows / 2) in place of Math.ceil | R20 or R38 (10) | SURVIVED, exit 0 | none, 10 passed |
+
+Servers, each started and stopped by the copy's conftest (rig.StaticServer), as printed in each pytest output:
+- U1 pid 5328 port 2050, STOPPED, exited True, port free again True
+- U2 pid 12864 port 59064, STOPPED, exited True, port free again True
+- U3 pid 5084 port 1858, STOPPED, exited True, port free again True
+- U4 pid 6336 port 8132, STOPPED, exited True, port free again True
+
+U2 note. Only the width-crossing case catches it. In the other R52 close cases the browser's own dialog focus return
+puts focus back on the chip that opened P1, and `splits.focus()` on a hidden or inert Splits does nothing, so those
+cases pass with or without the app's focus line.
+U4 note. probe-rows-output.txt shows what the surviving mutant does on a 7-person even bill at 1280 x 800.

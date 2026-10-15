@@ -1,0 +1,23 @@
+Code-review finder (read-only), 2026-10-15, HEAD d58f4ce, headless Chromium 149.0.7827.55.
+Run 1: python probe_sheet_scroll.py <project> chromium            (T12, 12 people even, 390 x 844, the bill of test_R52_the_sheet_scrolls_so_the_splits_stay_in_view_above_p1)
+Run 2: python probe_sheet_scroll.py <project> chromium T12I 360x780 (T12I, 12 people by item, 360 x 780)
+In both cases page.click on the sheet's spare chip first scrolls the chip into view (Playwright), as a person scrolls to reach it.
+Values as printed, condensed to one line per state (px from the viewport top unless named).
+
+Run 1, T12 390 x 844. Server pid 9880 port 25046, STOPPED, exited True, port free again True, port refuses after stop true.
+- from-the-top, sheet open: scrollTop 0, maxScroll 135, areaTop 119.5, headTop 321.7, lastRowBottom 773.7
+- from-the-top, P1 open: scrollTop 197, maxScroll 386, headTop 124.7, lastRowBottom 576.7, P1 top 589, rows under P1 0, padding 271px
+- scrolled-to-the-bottom-first, after the wheel: scrollTop 135, headTop 186.7, lastRowBottom 638.7
+- scrolled-to-the-bottom-first, P1 open: scrollTop 197, headTop 124.7, lastRowBottom 576.7, P1 top 589, rows under P1 0, padding 271px
+
+Run 2, T12I 360 x 780. Server pid 2756 port 54333, STOPPED, exited True, port free again True, port refuses after stop true.
+- from-the-top, sheet open: scrollTop 0, maxScroll 424, areaTop 114.4, headTop 313.0, lastRowBottom 981.0
+- from-the-top, P1 open: scrollTop 199, maxScroll 675, headTop 114.0, lastRowBottom 782.0, P1 top 525, rows under P1 5, padding 271px
+- scrolled-to-the-bottom-first, after the wheel: scrollTop 424, headTop -111.0 (above the scroll area), lastRowBottom 557.0
+- scrolled-to-the-bottom-first, P1 open: scrollTop 199, headTop 114.0, lastRowBottom 782.0, P1 top 525, rows under P1 5, padding 271px
+
+Reading. In run 2 the sheet was at scrollTop 424 with its heading 225 px above the scroll area when P1 opened. makeRoom
+computed a positive overlap and a negative "headBelowTop", so `scroll.scrollTop += Math.min(overlap, headBelowTop)`
+scrolled the sheet UP by 225 px to put the heading at the top, and 5 of the 12 rows ended under P1. The rule is g2's
+`keepSplitsInView` as written (round-2/g2.html). Run 1 never reaches that case (maxScroll 135 keeps the heading below the
+area top), and it is the only bill the R52 test uses.

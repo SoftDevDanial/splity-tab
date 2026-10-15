@@ -1,0 +1,32 @@
+Code-review finder (read-only), 2026-10-15, HEAD d58f4ce, Node v24.11.1.
+Baseline. The unmutated copy of src/ and the Node tests in scratch: tests 379, pass 379, fail 0 (duration_ms 414.3).
+Command: node mutate.mjs {workspace}/examples/split <scratch>/split-cr-step5/mutants
+Each mutant ran node --test --test-reporter=tap "tests/**/*.test.js" in its own copy. Console output of the run, as printed:
+
+K01 KILLED   pass 372 fail 7 withSpare drops nextId
+K02 SURVIVED pass 379 fail 0 floorParts in float, BigInt path bypassed
+K03 KILLED   pass 376 fail 3 At random cursor restarts at every division
+K04 KILLED   pass 377 fail 2 One person takes only spare sen of divisions it is in
+K05 KILLED   pass 378 fail 1 One person never falls back
+K06 KILLED   pass 374 fail 5 charges division members include people with no items
+K07 KILLED   pass 378 fail 1 Pick again compares shares only
+K08 KILLED   pass 377 fail 2 63 draws
+K09 KILLED   pass 378 fail 1 choosing the rule already set redraws
+K10 KILLED   pass 370 fail 9 sparePeople ignores items
+K11 KILLED   pass 377 fail 2 addPerson leaves the order short
+K12 KILLED   pass 377 fail 2 removing the chosen person keeps the choice
+K13 KILLED   pass 368 fail 11 one extra draw
+K14 KILLED   pass 377 fail 2 1.0 row (c)
+K15 KILLED   pass 376 fail 3 At random ignores membership
+K16 KILLED   pass 374 fail 5 withSpare spreads the parsed bill (threat model, object integrity)
+K17 KILLED   pass 378 fail 1 One person with nobody stores undefined
+K18 KILLED   pass 373 fail 6 formatMoney without the comma (1.0)
+D01 KILLED   pass 378 fail 1 D13 order may leave a person out
+D02 KILLED   pass 378 fail 1 D13 one person unchecked
+D03 KILLED   pass 378 fail 1 D14 v1 reads spare, v2 bad spare falls back
+D04 KILLED   pass 378 fail 1 D13 spare copied wholesale
+R01 KILLED   pass 378 fail 1 500 ms inclusive
+R02 KILLED   pass 378 fail 1 a tap of count 0 may repeat
+
+24 mutants, 23 killed, 1 survived (K02). The failing test titles per mutant are in mutation-summary.json.
+D01 to D04 (src/draft.js) and R01, R02 (src/ui/repeat.js) are split-app files covered by Node tests, run here with the core.

@@ -1,0 +1,10 @@
+Code-review finder (read-only), 2026-10-15, HEAD d58f4ce, Node v24.11.1.
+Command: node probe_trap.mjs {workspace}/examples/split <scratch>/split-cr-step5/mutants/K02
+First line is the project's src/ (real code), second line the K02 mutant copy (floorParts in float). Output as printed:
+
+{"root":"{workspace}/examples/split","items":38,"kind":"item","subtotal":372570630,"chargesTotal":61846725,"rowsItems":[49676084,322894546],"rowsCharges":[8246230,53600495],"allocateByWeight":[8246230,53600495],"equalToR21Point4":true,"checkShare":434417355,"total":434417355}
+{"root":"{temp}/claude/{project-id}/9f7a7bfa-f87d-4692-bcb6-d8869bc1b359/scratchpad/split-cr-step5/mutants/K02","items":38,"kind":"item","subtotal":372570630,"chargesTotal":61846725,"rowsItems":[49676084,322894546],"rowsCharges":[8246231,53600494],"allocateByWeight":[8246230,53600495],"equalToR21Point4":false,"checkShare":434417355,"total":434417355}
+
+Reading. The real computeResult gives the exact R8 split [8246230, 53600495] on this bill. The mutant gives
+[8246231, 53600494], one sen moved, with check.share still equal to the total, and it passes all 379 Node tests
+(mutation-summary.json, K02).
