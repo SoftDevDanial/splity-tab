@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="23" skipped="0" tests="47" time="18.369" timestamp="2026-10-15T16:19:50.374325+08:00" hostname="{host}"><testcase classname="test_app" name="test_R29_the_dialog_opens_with_the_safe_choice_focused" time="2.205" /><testcase classname="test_app" name="test_R30_a_click_inside_the_dialog_box_keeps_it_open" time="0.314" /><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[cancel]" time="0.401"><failure message="AssertionError: assert ('Splits' == 'New bill'&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73B005E80&gt;
+close = 'cancel'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop", "backdrop-over-by-item"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        # [v1.1.0] qa.md over K2. The backdrop point is (20, 20) and the control under the backdrop is the By item half of the
+        # Split switch. Each close waits for the dialog's close event before focus is read (`closing`, spec R59 (2), F-A3-1).
+        page = open_app(seed=seeds.S2).page
+        by_item = centre_of(page.locator("label[for=modeItem]"))
+        open_dialog(page)
+        box = page.locator("dialog#newDlg").bounding_box()
+        assert outside(box, (20, 20)) and outside(box, by_item), "a backdrop point lies on the dialog"
+        closing(page, m1_closer(page, close, by_item))
+        assert dialog_is_open(page) is False
+&gt;       assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+E       AssertionError: assert ('Splits' == 'New bill'
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3288: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[escape]" time="0.286"><failure message="AssertionError: assert ('Splits' == 'New bill'&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73AE1B3D0&gt;
+close = 'escape'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop", "backdrop-over-by-item"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        # [v1.1.0] qa.md over K2. The backdrop point is (20, 20) and the control under the backdrop is the By item half of the
+        # Split switch. Each close waits for the dialog's close event before focus is read (`closing`, spec R59 (2), F-A3-1).
+        page = open_app(seed=seeds.S2).page
+        by_item = centre_of(page.locator("label[for=modeItem]"))
+        open_dialog(page)
+        box = page.locator("dialog#newDlg").bounding_box()
+        assert outside(box, (20, 20)) and outside(box, by_item), "a backdrop point lies on the dialog"
+        closing(page, m1_closer(page, close, by_item))
+        assert dialog_is_open(page) is False
+&gt;       assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+E       AssertionError: assert ('Splits' == 'New bill'
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3288: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[backdrop]" time="0.291"><failure message="AssertionError: assert ('Splits' == 'New bill'&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A8E8A90&gt;
+close = 'backdrop'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop", "backdrop-over-by-item"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        # [v1.1.0] qa.md over K2. The backdrop point is (20, 20) and the control under the backdrop is the By item half of the
+        # Split switch. Each close waits for the dialog's close event before focus is read (`closing`, spec R59 (2), F-A3-1).
+        page = open_app(seed=seeds.S2).page
+        by_item = centre_of(page.locator("label[for=modeItem]"))
+        open_dialog(page)
+        box = page.locator("dialog#newDlg").bounding_box()
+        assert outside(box, (20, 20)) and outside(box, by_item), "a backdrop point lies on the dialog"
+        closing(page, m1_closer(page, close, by_item))
+        assert dialog_is_open(page) is False
+&gt;       assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+E       AssertionError: assert ('Splits' == 'New bill'
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3288: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[backdrop-over-by-item]" time="0.295"><failure message="AssertionError: assert ('Splits' == 'New bill'&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A8D0E00&gt;
+close = 'backdrop-over-by-item'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop", "backdrop-over-by-item"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        # [v1.1.0] qa.md over K2. The backdrop point is (20, 20) and the control under the backdrop is the By item half of the
+        # Split switch. Each close waits for the dialog's close event before focus is read (`closing`, spec R59 (2), F-A3-1).
+        page = open_app(seed=seeds.S2).page
+        by_item = centre_of(page.locator("label[for=modeItem]"))
+        open_dialog(page)
+        box = page.locator("dialog#newDlg").bounding_box()
+        assert outside(box, (20, 20)) and outside(box, by_item), "a backdrop point lies on the dialog"
+        closing(page, m1_closer(page, close, by_item))
+        assert dialog_is_open(page) is False
+&gt;       assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+E       AssertionError: assert ('Splits' == 'New bill'
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3288: AssertionError</failure></testcase><testcase classname="test_app" name="test_R31_start_over" time="0.287"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A1ACEB0&gt;
+
+    def test_R31_start_over(open_app):
+        # [v1.1.0] qa.md "Start over (key flow 4)" from K1. The open state is reset as at load (CG-P4), the draft is version 2.
+        page = open_app(seed=seeds.S1).page
+        start_over(page)
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3315: AssertionError</failure></testcase><testcase classname="test_app" name="test_R31_start_over_clears_the_copy_status_and_the_spare_choice" time="0.352" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[subtotal]" time="0.342" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[item-price]" time="0.496" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[service]" time="0.384" /><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[sst]" time="0.400" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-mouse-double]" time="0.361"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A86CD50&gt;
+target = 'Cancel', viewport = (360, 640), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-touch-double]" time="0.377"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73ACB81A0&gt;
+target = 'Cancel', viewport = (360, 640), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-375x667-mouse-double]" time="0.358"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73AC37D70&gt;
+target = 'Cancel', viewport = (375, 667), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-375x667-touch-double]" time="0.372"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A273A00&gt;
+target = 'Cancel', viewport = (375, 667), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-412x732-mouse-double]" time="0.344"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A5783B0&gt;
+target = 'Cancel', viewport = (412, 732), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-412x732-touch-double]" time="0.376"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A53F110&gt;
+target = 'Cancel', viewport = (412, 732), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-390x844-mouse-double]" time="0.359"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F738E45B10&gt;
+target = 'Cancel', viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-390x844-touch-double]" time="0.392"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73AAA66C0&gt;
+target = 'Cancel', viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-mouse-triple]" time="0.324"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A77B320&gt;
+target = 'Cancel', viewport = (360, 640), gesture = 'mouse-triple'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-mouse-double]" time="0.361"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F739BDB060&gt;
+target = 'Start new bill', viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-touch-double]" time="0.377"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F7390CBE20&gt;
+target = 'Start new bill', viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[backdrop-390x844-mouse-double]" time="0.313"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F739567A00&gt;
+target = 'backdrop', viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[backdrop-390x844-touch-double]" time="0.343"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A32B8A0&gt;
+target = 'backdrop', viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3717: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_held_back" time="0.288"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F7391CADA0&gt;
+
+    def test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_held_back(open_app):
+        page = open_app(seed=seeds.S1, viewport=PHONES[0]).page
+        open_dialog(page)
+        closing(page, m1_closer(page, "cancel"))  # focus comes back in the close event (F-A3-1, task A16)
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3729: AssertionError</failure></testcase><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x780-mouse-double]" time="0.302" /><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x780-mouse-triple]" time="0.265" /><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x780-touch-double]" time="0.300" /><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-double]" time="0.285" /><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-triple]" time="0.253" /><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-touch-double]" time="0.311" /><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-double]" time="0.316" /><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-triple]" time="0.250" /><testcase classname="test_app" name="test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-touch-double]" time="0.301" /><testcase classname="test_app" name="test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[cancel]" time="0.356"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F7396D6980&gt;
+close = 'cancel'
+
+    @pytest.mark.parametrize("close", ["cancel", "backdrop", "escape"])
+    def test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it(open_app, close):
+        # [v1.1.0] The backdrop point is (20, 20). Each close waits for the dialog's close event before focus is read
+        # (`closing`, spec R59 (2) for Escape, F-A5-1, and F-A3-1 for the clicks).
+        page = open_app(seed=seeds.S1).page
+        gesture_at(page, "mouse-double", centre_of(new_bill_button(page)))
+        assert dialog_is_open(page) is True
+        closing(page, m1_closer(page, close))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill" and stored_text(page) == seeds.S1
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:4075: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[backdrop]" time="0.309"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73C966AE0&gt;
+close = 'backdrop'
+
+    @pytest.mark.parametrize("close", ["cancel", "backdrop", "escape"])
+    def test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it(open_app, close):
+        # [v1.1.0] The backdrop point is (20, 20). Each close waits for the dialog's close event before focus is read
+        # (`closing`, spec R59 (2) for Escape, F-A5-1, and F-A3-1 for the clicks).
+        page = open_app(seed=seeds.S1).page
+        gesture_at(page, "mouse-double", centre_of(new_bill_button(page)))
+        assert dialog_is_open(page) is True
+        closing(page, m1_closer(page, close))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill" and stored_text(page) == seeds.S1
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:4075: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]" time="0.340"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A072090&gt;
+close = 'escape'
+
+    @pytest.mark.parametrize("close", ["cancel", "backdrop", "escape"])
+    def test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it(open_app, close):
+        # [v1.1.0] The backdrop point is (20, 20). Each close waits for the dialog's close event before focus is read
+        # (`closing`, spec R59 (2) for Escape, F-A5-1, and F-A3-1 for the clicks).
+        page = open_app(seed=seeds.S1).page
+        gesture_at(page, "mouse-double", centre_of(new_bill_button(page)))
+        assert dialog_is_open(page) is True
+        closing(page, m1_closer(page, close))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill" and stored_text(page) == seeds.S1
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:4075: AssertionError</failure></testcase><testcase classname="test_app" name="test_R29_the_keyboard_and_the_next_press_are_not_held_back" time="0.249"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001F73A1AFE20&gt;
+
+    def test_R29_the_keyboard_and_the_next_press_are_not_held_back(open_app):
+        # [v1.1.0] qa.md over K1 with the body recorder, the v1.1.0 form of the 1.0 tests
+        # test_R29_opening_by_keyboard_and_opening_again_straight_away_is_not_held_back and
+        # test_R29_the_guard_of_opening_ends_at_the_next_press. A key press activates with click count 0, which no guard holds
+        # back, and the guard that a click on New bill arms is gone by the next press.
+        page = open_app(seed=seeds.S1).page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        tab_until(page, new_bill_button(page))
+        page.keyboard.press("Enter")
+        assert dialog_is_open(page) is True and focused(page) == "Cancel"
+        closing(page, lambda: page.keyboard.press("Enter"))
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:31717/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:4089: AssertionError</failure></testcase><testcase classname="test_app" name="test_R48_start_new_bill_opens_people_and_folds_charges" time="0.237" /><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[cold-boot]" time="0.100" /><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[K1]" time="0.154" /><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[RE]" time="0.162" /><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[B1]" time="0.145" /><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[K1-started-over-and-reloaded]" time="0.249" /><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[cold-boot-renamed-and-reloaded]" time="0.159" /><testcase classname="test_app" name="test_R48_which_section_is_open_on_load[K2-blank-rate]" time="0.193" /></testsuite></testsuites>

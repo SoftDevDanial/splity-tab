@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="20" time="20.297" timestamp="2026-10-15T16:21:00.338452+08:00" hostname="{host}"><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[cancel]" time="1.884" /><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[escape]" time="0.434" /><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[backdrop]" time="2.335"><failure message="Failed: dialog still open after 2 s">page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function m1_closer.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019226B36DA0&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+&gt;               page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+
+tests\browser\test_app.py:1786: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:12594: in wait_for_function
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:1144: in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_frame.py:932: in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000192272E6660&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x00000192269B10C0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 2000ms exceeded.
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000019226A0F1C0&gt;
+close = 'backdrop'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop", "backdrop-over-by-item"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        # [v1.1.0] qa.md over K2. The backdrop point is (20, 20) and the control under the backdrop is the By item half of the
+        # Split switch. Each close waits for the dialog's close event before focus is read (`closing`, spec R59 (2), F-A3-1).
+        page = open_app(seed=seeds.S2).page
+        by_item = centre_of(page.locator("label[for=modeItem]"))
+        open_dialog(page)
+        box = page.locator("dialog#newDlg").bounding_box()
+        assert outside(box, (20, 20)) and outside(box, by_item), "a backdrop point lies on the dialog"
+&gt;       closing(page, m1_closer(page, close, by_item))
+
+tests\browser\test_app.py:3286: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function m1_closer.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019226B36DA0&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+                page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+            except PlaywrightTimeoutError:
+&gt;               pytest.fail("dialog still open after 2 s")
+E               Failed: dialog still open after 2 s
+
+tests\browser\test_app.py:1788: Failed</failure></testcase><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[backdrop-over-by-item]" time="2.285"><failure message="Failed: dialog still open after 2 s">page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function m1_closer.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019226BD7480&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+&gt;               page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+
+tests\browser\test_app.py:1786: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:12594: in wait_for_function
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:1144: in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_frame.py:932: in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000192272E6660&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019226BD7C10&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 2000ms exceeded.
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000019226C6E400&gt;
+close = 'backdrop-over-by-item'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop", "backdrop-over-by-item"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        # [v1.1.0] qa.md over K2. The backdrop point is (20, 20) and the control under the backdrop is the By item half of the
+        # Split switch. Each close waits for the dialog's close event before focus is read (`closing`, spec R59 (2), F-A3-1).
+        page = open_app(seed=seeds.S2).page
+        by_item = centre_of(page.locator("label[for=modeItem]"))
+        open_dialog(page)
+        box = page.locator("dialog#newDlg").bounding_box()
+        assert outside(box, (20, 20)) and outside(box, by_item), "a backdrop point lies on the dialog"
+&gt;       closing(page, m1_closer(page, close, by_item))
+
+tests\browser\test_app.py:3286: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function m1_closer.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019226BD7480&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+                page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+            except PlaywrightTimeoutError:
+&gt;               pytest.fail("dialog still open after 2 s")
+E               Failed: dialog still open after 2 s
+
+tests\browser\test_app.py:1788: Failed</failure></testcase><testcase classname="test_app" name="test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[cancel]" time="0.332" /><testcase classname="test_app" name="test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[backdrop]" time="2.334"><failure message="Failed: dialog still open after 2 s">page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function m1_closer.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019224C20720&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+&gt;               page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+
+tests\browser\test_app.py:1786: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:12594: in wait_for_function
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:1144: in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_frame.py:932: in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000192272E6660&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019224CEE820&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 2000ms exceeded.
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000019224CFD170&gt;
+close = 'backdrop'
+
+    @pytest.mark.parametrize("close", ["cancel", "backdrop", "escape"])
+    def test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it(open_app, close):
+        # [v1.1.0] The backdrop point is (20, 20). Each close waits for the dialog's close event before focus is read
+        # (`closing`, spec R59 (2) for Escape, F-A5-1, and F-A3-1 for the clicks).
+        page = open_app(seed=seeds.S1).page
+        gesture_at(page, "mouse-double", centre_of(new_bill_button(page)))
+        assert dialog_is_open(page) is True
+&gt;       closing(page, m1_closer(page, close))
+
+tests\browser\test_app.py:4074: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function m1_closer.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019224C20720&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+                page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+            except PlaywrightTimeoutError:
+&gt;               pytest.fail("dialog still open after 2 s")
+E               Failed: dialog still open after 2 s
+
+tests\browser\test_app.py:1788: Failed</failure></testcase><testcase classname="test_app" name="test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it[escape]" time="0.332" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-mouse-double]" time="0.359" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-touch-double]" time="0.395" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-375x667-mouse-double]" time="0.401" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-375x667-touch-double]" time="0.366" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-412x732-mouse-double]" time="0.347" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-412x732-touch-double]" time="0.384" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-390x844-mouse-double]" time="0.347" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-390x844-touch-double]" time="0.365" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-mouse-triple]" time="0.337" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-mouse-double]" time="0.371" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-touch-double]" time="0.363" /><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[backdrop-390x844-mouse-double]" time="2.307"><failure message="Failed: dialog still open after 2 s">page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019225EB7E20&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+&gt;               page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+
+tests\browser\test_app.py:1786: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:12594: in wait_for_function
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:1144: in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_frame.py:932: in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000192272E6660&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019225EB4040&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 2000ms exceeded.
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000019226815850&gt;
+target = 'backdrop', viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+&gt;       closing(page, lambda: gesture_at(page, gesture, point))
+
+tests\browser\test_app.py:3716: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019225EB7E20&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+                page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+            except PlaywrightTimeoutError:
+&gt;               pytest.fail("dialog still open after 2 s")
+E               Failed: dialog still open after 2 s
+
+tests\browser\test_app.py:1788: Failed</failure></testcase><testcase classname="test_app" name="test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[backdrop-390x844-touch-double]" time="2.401"><failure message="Failed: dialog still open after 2 s">page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019225BD3530&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+&gt;               page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+
+tests\browser\test_app.py:1786: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:12594: in wait_for_function
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:1144: in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_frame.py:932: in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x00000192272E6660&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019225C78EB0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 2000ms exceeded.
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000019225BD14E0&gt;
+target = 'backdrop', viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+&gt;       closing(page, lambda: gesture_at(page, gesture, point))
+
+tests\browser\test_app.py:3716: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = &lt;Page url='http://127.0.0.1:18745/'&gt;
+gesture = &lt;function test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page.&lt;locals&gt;.&lt;lambda&gt; at 0x0000019225BD3530&gt;
+
+    def closing(page, gesture):
+        """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+        With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+        queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+        same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
+        watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
+        gesture()
+        if watching:
+            try:
+                page.wait_for_function("() =&gt; window.testDialogClosed", timeout=2000)
+            except PlaywrightTimeoutError:
+&gt;               pytest.fail("dialog still open after 2 s")
+E               Failed: dialog still open after 2 s
+
+tests\browser\test_app.py:1788: Failed</failure></testcase></testsuite></testsuites>

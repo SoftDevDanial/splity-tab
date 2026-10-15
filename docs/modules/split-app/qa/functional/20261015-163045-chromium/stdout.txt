@@ -1,0 +1,25 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R30_a_tap_on_the_backdrop_acts_as_cancel
+server STARTED pid 6356 port 45673 root {workspace}\examples\split
+Fserver STOPPED pid 6356 port 45673, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+________________ test_R30_a_tap_on_the_backdrop_acts_as_cancel ________________
+
+open_app = <function open_app.<locals>.factory at 0x000002D683AC75E0>
+
+    def test_R30_a_tap_on_the_backdrop_acts_as_cancel(open_app):
+        page = open_app(seed=seeds.S2, touch=True).page  # a tap sends its mouse events after touchend, the press is still known
+        open_dialog(page)
+        closing(page, lambda: page.touchscreen.tap(10, 10))  # focus comes back in the close event (F-A3-1, task A16)
+>       assert dialog_is_open(page) is False and focused(page) == "New bill" and stored_text(page) == seeds.S2
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(<Page url='http://127.0.0.1:45673/'>)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3768: AssertionError
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R30_a_tap_on_the_backdrop_acts_as_cancel
+1 failed in 2.30s

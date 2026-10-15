@@ -1,0 +1,28 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R31_start_over_clears_the_copy_status_and_the_spare_choice
+server STARTED pid 5212 port 29738 root {workspace}\examples\split
+Fserver STOPPED pid 5212 port 29738, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+_______ test_R31_start_over_clears_the_copy_status_and_the_spare_choice _______
+
+open_app = <function open_app.<locals>.factory at 0x00000178BB727270>
+
+    def test_R31_start_over_clears_the_copy_status_and_the_spare_choice(open_app):
+        # [v1.1.0] qa.md on the RND seed, whose drawn order shows the spare choice going back to Top of the list. The card of a
+        # blocked bill holds no p.status (R17), the strip always holds #stripStatus (R49). "The card reads" is the whole card,
+        # its bare Total and then the message (qa.md, Phrases).
+        page = open_app(seed=seeds.RND).page
+        click_copy(page, "#stripCopy")
+        assert support.reads(page, "#stripStatus") == "Summary copied"
+        start_over(page)
+>       assert status_lines(page)["strip"] == NO_STATUS and statuses_shown(page)["strip"] is False
+E       AssertionError: assert (['status', 's...mary copied']] == ['status', 'status', []]
+E         
+E         At index 2 diff: [['svg.ic', '#i-check'], 'Summary copied'] != []
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:3330: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R31_start_over_clears_the_copy_status_and_the_spare_choice
+1 failed in 2.46s

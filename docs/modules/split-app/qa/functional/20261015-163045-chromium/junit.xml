@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.278" timestamp="2026-10-15T16:30:45.245661+08:00" hostname="{host}"><testcase classname="test_app" name="test_R30_a_tap_on_the_backdrop_acts_as_cancel" time="1.814"><failure message="AssertionError: assert (False is False and 'Splits' == 'New bill'&#10; +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:45673/'&gt;)&#10;  &#10;  - New bill&#10;  + Splits)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002D683AC75E0&gt;
+
+    def test_R30_a_tap_on_the_backdrop_acts_as_cancel(open_app):
+        page = open_app(seed=seeds.S2, touch=True).page  # a tap sends its mouse events after touchend, the press is still known
+        open_dialog(page)
+        closing(page, lambda: page.touchscreen.tap(10, 10))  # focus comes back in the close event (F-A3-1, task A16)
+&gt;       assert dialog_is_open(page) is False and focused(page) == "New bill" and stored_text(page) == seeds.S2
+E       AssertionError: assert (False is False and 'Splits' == 'New bill'
+E        +  where False = dialog_is_open(&lt;Page url='http://127.0.0.1:45673/'&gt;)
+E         
+E         - New bill
+E         + Splits)
+
+tests\browser\test_app.py:3768: AssertionError</failure></testcase></testsuite></testsuites>

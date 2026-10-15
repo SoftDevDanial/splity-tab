@@ -1,0 +1,35 @@
+-m pytest tests/browser -q --engine chromium
+server STARTED pid 25592 port 50963 root {workspace}\examples\split
+........................................................................ [ 11%]
+........................................................................ [ 23%]
+........................................................................ [ 34%]
+........................................................................ [ 46%]
+........................................................................ [ 57%]
+........................................................................ [ 69%]
+........................................................................ [ 80%]
+................................................xxx...xxxxxxxxxx.xx..... [ 92%]
+.xxxxxx........................................server STOPPED pid 25592 port 50963, exited True, port free again True
+                                                                         [100%]
+engine chromium, browser version 149.0.7827.55, skipped 21
+  skipped: test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S3] | xfail task A18
+  skipped: test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S1] | xfail task A18
+  skipped: test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S7] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S2-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S5-360] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-390] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-1280] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-1280] | xfail task A18
+  skipped: test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[M1-360] | xfail task A18
+  skipped: test_app.py::test_R35_sizes_the_design_gives_at_360_by_780 | xfail task A18
+  skipped: test_app.py::test_R35_content_width_of_the_header_and_the_note_at_1280_by_800 | xfail task A18
+  skipped: test_app.py::test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s] | xfail task A18
+  skipped: test_app.py::test_R37_names_are_shown_as_text_and_never_as_markup | xfail task A18
+  skipped: test_app.py::test_R40_fidelity_seeds_match[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+  skipped: test_app.py::test_R40_fidelity_seeds_match[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}] | xfail task A19
+  skipped: test_app.py::test_R40_fidelity_seeds_match[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+  skipped: test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+  skipped: test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}] | xfail task A19
+  skipped: test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+602 passed, 21 xfailed in 207.23s (0:03:27)

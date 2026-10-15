@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.434" timestamp="2026-10-15T16:22:59.653503+08:00" hostname="{host}"><testcase classname="test_app" name="test_R31_start_over_clears_the_copy_status_and_the_spare_choice" time="1.982"><failure message="AssertionError: assert (['status', 's...mary copied']] == ['status', 'status', []]&#10;  &#10;  At index 2 diff: [['svg.ic', '#i-check'], 'Summary copied'] != []&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x00000178BB727270&gt;
+
+    def test_R31_start_over_clears_the_copy_status_and_the_spare_choice(open_app):
+        # [v1.1.0] qa.md on the RND seed, whose drawn order shows the spare choice going back to Top of the list. The card of a
+        # blocked bill holds no p.status (R17), the strip always holds #stripStatus (R49). "The card reads" is the whole card,
+        # its bare Total and then the message (qa.md, Phrases).
+        page = open_app(seed=seeds.RND).page
+        click_copy(page, "#stripCopy")
+        assert support.reads(page, "#stripStatus") == "Summary copied"
+        start_over(page)
+&gt;       assert status_lines(page)["strip"] == NO_STATUS and statuses_shown(page)["strip"] is False
+E       AssertionError: assert (['status', 's...mary copied']] == ['status', 'status', []]
+E         
+E         At index 2 diff: [['svg.ic', '#i-check'], 'Summary copied'] != []
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:3330: AssertionError</failure></testcase></testsuite></testsuites>

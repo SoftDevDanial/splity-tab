@@ -21,10 +21,10 @@ from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 import rig
 import seeds
 import support
-from expected import (BLOCKED_CARD, EVEN_MESSAGE, S1_COPY, S1_ITEMS, S1_LINES, S1_PROOF, S1_SPLITS, S2_COPY,
+from expected import (BLOCKED_CARD, S1_COPY, S1_ITEMS, S1_LINES, S1_PROOF, S1_SPLITS, S2_COPY,
                       S2_LINES, S2_PROOF, S2_SPLITS)
 from support import (CSP, GOLDEN_DIR, ROOT, card_text, dom_walk, first_diff, golden_walk, open_golden,
-                     panel_text, person_field, walk_entries)
+                     person_field, walk_entries)
 
 
 # ---------------------------------------------------------------- Task 1: the rig (R1, R39)
@@ -1701,12 +1701,6 @@ def copy_summary(page):
     settle(page)
 
 
-def status_of(page):
-    """The 1.0 read of the one p.status. Only test_R31_start_over_clears_the_copy_status (task A16) still reads it."""
-    status = page.locator("p.status")
-    return status.inner_text() if status.count() else None, status.get_attribute("class") if status.count() else None
-
-
 COPY_BUTTON = {"card": "#copyBtn", "strip": "#stripCopy", "sheet": "#splitsDlg .r-copy"}
 COPY_CASES = [  # qa.md "Copy summary puts the exact text on the clipboard": seed, width, the Copy summary clicked, the text
     pytest.param(seeds.S2, 1280, "card", S2_COPY, id="K2-1280-card"),
@@ -1780,16 +1774,24 @@ WATCH_DIALOG_CLOSE_JS = """() => { const open = [...document.querySelectorAll('d
   return true; }"""
 
 
-def press_escape(page):
-    """qa.md "Press Escape": with a dialog open, press Escape and wait for its close event, at most 2 s. With none
-    open (the Splits sheet before task A12), only the key press."""
+def closing(page, gesture):
+    """Run `gesture`, a callable that should close the open dialog, and wait for that dialog's close event, at most 2 s.
+    With none open, only the gesture. M1 gives focus back to New bill in its close event, which the HTML close steps
+    queue a task after the close, so every M1 close a test reads focus after waits here (spec R59 (2) for Escape, the
+    same race for Cancel, Start new bill and the backdrop, F-A3-1, task A16)."""
     watching = page.evaluate(WATCH_DIALOG_CLOSE_JS)
-    page.keyboard.press("Escape")
+    gesture()
     if watching:
         try:
             page.wait_for_function("() => window.testDialogClosed", timeout=2000)
         except PlaywrightTimeoutError:
             pytest.fail("dialog still open after 2 s")
+
+
+def press_escape(page):
+    """qa.md "Press Escape": with a dialog open, press Escape and wait for its close event, at most 2 s. With none
+    open (the Splits sheet before task A12), only the key press."""
+    closing(page, lambda: page.keyboard.press("Escape"))
 
 
 def test_R24_the_status_lasts_until_the_next_change_to_the_bill(open_app):
@@ -3197,13 +3199,37 @@ def focused(page):
     return page.evaluate("document.activeElement.textContent.trim() || document.activeElement.id")
 
 
+# dialog.modal#newDlg as R29 names it, null when the page holds none: whether it is modal, the text of the elements its
+# aria-labelledby and aria-describedby point at, and each button as its id, classes and text.
+NEW_DIALOG_JS = """() => { const d = document.querySelector('dialog.modal#newDlg'); if (!d) return null;
+  const text = (ids) => (ids || '').split(' ').map((id) => document.getElementById(id)?.textContent ?? null).join(' ');
+  return { modal: d.matches(':modal'), name: text(d.getAttribute('aria-labelledby')), description: text(d.getAttribute('aria-describedby')),
+           buttons: [...d.querySelectorAll('button')].map((b) => [b.id, b.className, b.textContent]) }; }"""
+NEW_DIALOG = {"modal": True, "name": "Start a new bill?", "description": "This clears the people, items and amounts.",
+              "buttons": [["startNew", "btn btn-danger btn-lg", "Start new bill"], ["", "btn btn-ghost btn-lg", "Cancel"]]}
+
+
+def scrolled_by_wheel(page, point, pixels):
+    """How far window.scrollY moved after a mouse wheel of `pixels` at `point`, waiting at most 500 ms for a move."""
+    before = page.evaluate("window.scrollY")
+    page.mouse.move(*point)
+    page.mouse.wheel(0, pixels)
+    try:
+        page.wait_for_function("(y) => window.scrollY !== y", arg=before, timeout=500)
+    except PlaywrightTimeoutError:
+        pass
+    return page.evaluate("window.scrollY") - before
+
+
 def test_R29_the_dialog_opens_with_the_safe_choice_focused(open_app):
-    page = open_app(seed=seeds.S2).page
-    dialog = open_dialog(page)
-    assert dialog.evaluate("(d) => d.matches(':modal')") and dialog.get_attribute("aria-describedby") == "newBody"
-    assert dialog.get_attribute("aria-labelledby") == "newTitle"
-    assert page.locator("#newBody").inner_text() == "This clears the people, items and amounts."
-    assert [b.get_attribute("class") for b in dialog.get_by_role("button").all()] == ["btn btn-danger btn-lg", "btn btn-ghost btn-lg"]
+    # [v1.1.0] qa.md over K1. The 1.0 test also read the .app height as exactly 844, which WebKit lays out at 843.984375
+    # (spec R59 (1)). The scenario reads no height, so that line went with the rewrite (task A16).
+    page = open_app(seed=seeds.S1).page
+    # The page itself can scroll, so a wheel that leaves window.scrollY where it was shows the scroll was held.
+    assert page.evaluate("document.scrollingElement.scrollHeight - innerHeight") > 0
+    new_bill_button(page).click()
+    assert page.evaluate(NEW_DIALOG_JS) == NEW_DIALOG
+    assert page.get_by_role("dialog", name="Start a new bill?").count() == 1
     assert focused(page) == "Cancel"
     page.keyboard.press("Tab")
     assert focused(page) == "Start new bill"
@@ -3212,10 +3238,9 @@ def test_R29_the_dialog_opens_with_the_safe_choice_focused(open_app):
     page.keyboard.press("Shift+Tab")
     page.keyboard.press("Shift+Tab")
     assert focused(page) == "Cancel"
-    assert page.locator(".app").evaluate("(e) => e.getBoundingClientRect().height") == 844
-    page.mouse.move(195, 100)
-    page.mouse.wheel(0, 600)
-    assert page.evaluate("window.scrollY") == 0
+    box = page.locator("dialog#newDlg").bounding_box()
+    over_the_scrim = (box["x"] + box["width"] / 2, box["y"] / 2)  # above the dialog's box
+    assert scrolled_by_wheel(page, over_the_scrim, 400) == 0
 
 
 def test_R30_a_click_inside_the_dialog_box_keeps_it_open(open_app):
@@ -3231,86 +3256,139 @@ def test_R30_a_click_inside_the_dialog_box_keeps_it_open(open_app):
     assert stored_text(page) == seeds.S2
 
 
-@pytest.mark.parametrize("close", ["cancel", "escape", "backdrop-corner", "backdrop-over-a-field"])
+def outside(box, point):
+    """Whether `point` falls outside the bounding `box`, so a click there lands on the backdrop."""
+    x, y = point
+    return not (box["x"] <= x <= box["x"] + box["width"] and box["y"] <= y <= box["y"] + box["height"])
+
+
+def m1_closer(page, close, by_item=None):
+    """The gesture of one way out of M1 by its id, as a callable for `closing`. The backdrop is clicked at (20, 20), the
+    point of LINKS.json, or at `by_item`, the centre of the By item label measured before the dialog opened."""
+    return {"cancel": lambda: page.get_by_role("button", name="Cancel", exact=True).click(),
+            "escape": lambda: page.keyboard.press("Escape"),
+            "backdrop": lambda: page.mouse.click(20, 20),
+            "backdrop-over-by-item": lambda: page.mouse.click(*by_item)}[close]
+
+
+MODE_STATE_JS = "() => [document.querySelector('#modeEven')?.checked ?? null, document.activeElement?.id === 'modeItem']"
+
+
+@pytest.mark.parametrize("close", ["cancel", "escape", "backdrop", "backdrop-over-by-item"])
 def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+    # [v1.1.0] qa.md over K2. The backdrop point is (20, 20) and the control under the backdrop is the By item half of the
+    # Split switch. Each close waits for the dialog's close event before focus is read (`closing`, spec R59 (2), F-A3-1).
     page = open_app(seed=seeds.S2).page
-    open_people_first(page)  # so a field is drawn under the backdrop (R48)
-    first_name = person_field(page, 1).bounding_box()
+    by_item = centre_of(page.locator("label[for=modeItem]"))
     open_dialog(page)
-    if close == "cancel":
-        page.get_by_role("button", name="Cancel").click()
-    elif close == "escape":
-        page.keyboard.press("Escape")
-    elif close == "backdrop-corner":
-        page.mouse.click(10, 10)
-    else:
-        page.mouse.click(first_name["x"] + first_name["width"] / 2, first_name["y"] + first_name["height"] / 2)
-    assert page.locator("dialog#newDlg").evaluate("(d) => d.open") is False
+    box = page.locator("dialog#newDlg").bounding_box()
+    assert outside(box, (20, 20)) and outside(box, by_item), "a backdrop point lies on the dialog"
+    closing(page, m1_closer(page, close, by_item))
+    assert dialog_is_open(page) is False
     assert focused(page) == "New bill" and stored_text(page) == seeds.S2
     assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page)
     assert receipt(page)["lines"] == S2_LINES and card_rows(page) == [S2_SPLITS, S2_PROOF]  # the card since task A9
+    assert page.evaluate(MODE_STATE_JS) == [True, False]  # "Even" still checked and #modeItem without focus
+
+
+# The bill-empty screen of qa.md "Start over (key flow 4)", read in one evaluate, null for a part the page does not hold:
+# [data-open, aria-expanded] of People and of Charges, the person names, the Split radios and blocks, the Subtotal and
+# the two rates (their value property, so a folded Charges need not open), and what the card reads.
+BILL_EMPTY_JS = """() => ({ people: [...document.querySelectorAll('li.person input')].map((input) => input.value),
+  subtotal: document.querySelector('#evenSub')?.value ?? null,
+  rates: ['#svc', '#sst'].map((s) => document.querySelector(s)?.value ?? null) })"""
+BILL_EMPTY = {"sections": [["true", "true"], ["false", "false"]],  # People open, Charges folded (section_state)
+              "split": EVEN_SHOWN, "people": ["Person 1", "Person 2"], "subtotal": "", "rates": ["10", "6"],
+              "card": BLOCKED_CARD["subtotal"]}
+
+
+def bill_empty_screen(page):
+    """What the screen shows of a new bill, in the shape of BILL_EMPTY. People open and Charges folded below 1024 px."""
+    return {"sections": section_state(page), "split": split_state(page), **page.evaluate(BILL_EMPTY_JS),
+            "card": card_text(page)}
 
 
 def test_R31_start_over(open_app):
+    # [v1.1.0] qa.md "Start over (key flow 4)" from K1. The open state is reset as at load (CG-P4), the draft is version 2.
     page = open_app(seed=seeds.S1).page
-    open_dialog(page)
-    page.get_by_role("button", name="Start new bill").click()
-    assert page.locator("dialog#newDlg").evaluate("(d) => d.open") is False and focused(page) == "New bill"
-    assert section_state(page) == [OPEN, FOLDED]  # People open, Charges folded, as at load (R48, task A4)
-    assert [f.input_value() for f in page.locator("li.person input").all()] == ["Person 1", "Person 2"]
-    assert split_state(page) == EVEN_SHOWN and subtotal_field(page).input_value() == ""
-    open_charges_first(page)  # the rate fields sit in the folded Charges section below 1024 px
-    assert (rate_field(page, "Service charge").input_value(), rate_field(page, "SST").input_value()) == ("10", "6")
-    # The bill-empty card of R2, which task A2 builds (BUILD.md, A2, judgment call on the 1.0 tests).
-    assert card_text(page) == BLOCKED_CARD["subtotal"] and stored_text(page) == NEW_BILL_DRAFT
+    start_over(page)
+    assert dialog_is_open(page) is False and focused(page) == "New bill"
+    assert bill_empty_screen(page) == BILL_EMPTY
+    assert stored_text(page) == NEW_BILL_DRAFT and stored(page)["bill"]["spare"] == {"rule": "top"}
     page.reload()
-    assert card_text(page) == BLOCKED_CARD["subtotal"] and page.locator("li.person").count() == 2
-    assert section_state(page) == [OPEN, FOLDED]  # an untouched new bill opens People again (CG-P4)
+    assert bill_empty_screen(page) == BILL_EMPTY  # an untouched new bill opens People again (CG-P4)
 
 
-@pytest.mark.xfail(strict=True, reason="task A16")
-def test_R31_start_over_clears_the_copy_status(open_app):
-    page = open_app(seed=seeds.S2).page
-    copy_summary(page)
-    assert status_of(page)[0] == "Summary copied"
-    open_dialog(page)
-    page.get_by_role("button", name="Start new bill").click()
-    assert page.locator("p.status").count() == 0 and panel_text(page) == EVEN_MESSAGE
-    subtotal_field(page).fill("100.00")
-    assert status_of(page) == ("", "status")
+def test_R31_start_over_clears_the_copy_status_and_the_spare_choice(open_app):
+    # [v1.1.0] qa.md on the RND seed, whose drawn order shows the spare choice going back to Top of the list. The card of a
+    # blocked bill holds no p.status (R17), the strip always holds #stripStatus (R49). "The card reads" is the whole card,
+    # its bare Total and then the message (qa.md, Phrases).
+    page = open_app(seed=seeds.RND).page
+    click_copy(page, "#stripCopy")
+    assert support.reads(page, "#stripStatus") == "Summary copied"
+    start_over(page)
+    assert status_lines(page)["strip"] == NO_STATUS and statuses_shown(page)["strip"] is False
+    assert page.locator("#rbody p.status").count() == 0
+    assert card_text(page) == BLOCKED_CARD["subtotal"] and visible_text(page, "#stripInfo") == "Enter the subtotal to see the splits."
+    assert stored(page)["bill"]["spare"] == {"rule": "top"}
+    subtotal_field(page).click()
+    page.keyboard.type("100.00")
+    assert status_lines(page)["card"] == NO_STATUS and status_lines(page)["strip"] == NO_STATUS
 
 
-def changed_price(seed, item_id, text):
-    return seeds.changed(seed, lambda d: [i.update(priceText=text) for i in d["bill"]["items"] if i["id"] == item_id])
+# Every inline error mark the page shows (R10): the ids of the p.err without hidden, how many inputs have aria-invalid
+# "true" and how many div.field have is-bad.
+ERROR_MARKS_JS = """() => ({ shown: [...document.querySelectorAll('p.err:not([hidden])')].map((p) => p.id),
+  invalid: document.querySelectorAll('input[aria-invalid=true]').length, bad: document.querySelectorAll('div.field.is-bad').length })"""
+NO_ERROR_MARKS = {"shown": [], "invalid": 0, "bad": 0}
 
 
-START_OVER_CASES = [
-    pytest.param(seeds.with_bill(seeds.S2, subtotalText="0"), None, lambda page: subtotal_field(page), id="subtotal"),
-    # Item i5 of S1 gets a bad price. After the start over, three new items get the ids i3, i4 and i5 again.
-    pytest.param(changed_price(seeds.S1, "i5", "13.505"), "three-items", lambda page: item_price(page, 3), id="item-price"),
-    # Start new bill folds Charges (R48, R31), so the rate rows open it first.
-    pytest.param(seeds.with_bill(seeds.S2, serviceText="31"), None, opened_rate_field("Service charge"), id="service"),
-    pytest.param(seeds.with_bill(seeds.S2, sstText="25"), None, opened_rate_field("SST"), id="sst"),
+def error_marks(page):
+    return page.evaluate(ERROR_MARKS_JS)
+
+
+def error_shown(error_id):
+    """The error marks of one field whose error shows, with the id of its p.err."""
+    return {"shown": [error_id], "invalid": 1, "bad": 1}
+
+
+def add_three_items(page):
+    """qa.md: click "By item" and click "Add item" 3 times. The new items get the ids i3, i4 and i5."""
+    switch_to(page, "By item")
+    for _ in range(3):
+        page.get_by_role("button", name="Add item", exact=True).click()
+
+
+START_OVER_CASES = [  # qa.md "Start over clears the error flags": seed (None for a cold boot), the field made bad, its text
+    # and its error id, what is done after the start over, the field typed into then and its error id
+    pytest.param(seeds.S2, subtotal_field, "0", "evenErr", None, subtotal_field, "evenErr", id="subtotal"),
+    # Item 2 of K1 is i5. After the start over the third new item is i5 again, which a stale flag would mark at once.
+    pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", "ie2", add_three_items, lambda page: item_price(page, 3),
+                 "ie3", id="item-price"),
+    # A cold boot and Start new bill both fold Charges below 1024 px, so it is opened first each time.
+    pytest.param(None, opened_rate_field("Service charge"), "31", "svcErr", open_charges_first,
+                 opened_rate_field("Service charge"), "svcErr", id="service"),
+    pytest.param(None, opened_rate_field("SST"), "25", "sstErr", open_charges_first, opened_rate_field("SST"), "sstErr", id="sst"),
 ]
 
 
-@pytest.mark.parametrize("seed, prepare, field_of", START_OVER_CASES)
-def test_R31_start_over_clears_the_error_flags(open_app, seed, prepare, field_of):
-    # The restored bad text shows its error at once (R10 b), so each case starts with the error on screen.
+@pytest.mark.parametrize("seed, bad_field, bad_text, bad_id, prepare, field_of, error_id", START_OVER_CASES)
+def test_R31_start_over_clears_the_error_flags(open_app, seed, bad_field, bad_text, bad_id, prepare, field_of, error_id):
+    # [v1.1.0] qa.md: the error is made on screen by typing and leaving the field, then Start new bill, then the rule is
+    # seen to start again (R10 a): typing "abc" shows nothing until the field is left.
     page = open_app(seed=seed).page
-    assert len(shown_errors(page)) == 1
-    open_dialog(page)
-    page.get_by_role("button", name="Start new bill").click()
-    if prepare == "three-items":  # the new items get the ids i3, i4 and i5 again
-        switch_to(page, "By item")
-        for _ in range(3):
-            page.get_by_role("button", name="Add item").click()
-    assert shown_errors(page) == [] and invalid_fields(page) == 0
+    support.replace_text(page, bad_field(page), bad_text)
+    page.keyboard.press("Tab")
+    assert error_marks(page) == error_shown(bad_id)
+    start_over(page)
+    if prepare:
+        prepare(page)
+    assert error_marks(page) == NO_ERROR_MARKS
     field = field_of(page)
     support.replace_text(page, field, "abc")
-    assert shown_errors(page) == [] and invalid_fields(page) == 0
+    assert error_marks(page) == NO_ERROR_MARKS
     page.keyboard.press("Tab")
-    assert len(shown_errors(page)) == 1 and field.get_attribute("aria-invalid") == "true"
+    assert error_marks(page) == error_shown(error_id) and field.get_attribute("aria-invalid") == "true"
 
 
 # ---------------------------------------------------------------- RD-3: a press below a field that is being left (R10, CG-3)
@@ -3610,49 +3688,44 @@ def dialog_is_open(page):
     return page.locator("dialog#newDlg").evaluate("(d) => d.open")
 
 
-@pytest.mark.parametrize("how", ["mouse", "touch"])
-@pytest.mark.parametrize("viewport", PHONES, ids=[f"{w}x{h}" for w, h in PHONES])
-def test_R30_a_double_click_or_double_tap_on_cancel_changes_nothing(open_app, viewport, how):
-    # CR-01 (QA F-1). On a by-item bill the control under Cancel is often a person's toggle.
-    page = open_app(seed=seeds.S1, viewport=viewport, touch=how == "touch").page
+# qa.md "The second press of a double activation that closed the dialog never reaches the page", the v1.1.0 form of the 1.0
+# CR-01 tests (a double click or double tap on Cancel, the second click of a double activation, a triple click on Cancel).
+# Rows: the point pressed, the size and the gesture. Cancel at four phone sizes, where the control under it is often a
+# person's toggle, Start new bill, and the backdrop at (20, 20), each with a mouse double click and a touch double tap, and
+# a mouse triple click on Cancel at 360 x 640.
+DOUBLE_CLOSE_CASES = [
+    *(pytest.param("Cancel", size, gesture, id=f"cancel-{size[0]}x{size[1]}-{gesture}")
+      for size in [(360, 640), (375, 667), (412, 732), (390, 844)] for gesture in ["mouse-double", "touch-double"]),
+    pytest.param("Cancel", (360, 640), "mouse-triple", id="cancel-360x640-mouse-triple"),
+    *(pytest.param(target, (390, 844), gesture, id=f"{name}-390x844-{gesture}")
+      for target, name in [("Start new bill", "start-new-bill"), ("backdrop", "backdrop")]
+      for gesture in ["mouse-double", "touch-double"]),
+]
+
+
+@pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+        open_app, target, viewport, gesture):
+    # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+    # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+    page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
     before = snapshot(page)
     open_dialog(page)
     page.evaluate(RECORD_BODY_CLICKS_JS)
-    activate_twice(page, how, centre_of(page.get_by_role("button", name="Cancel", exact=True)))
+    point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+    closing(page, lambda: gesture_at(page, gesture, point))
     assert dialog_is_open(page) is False and focused(page) == "New bill"
-    assert stored_text(page) == seeds.S1 and snapshot(page) == before
-    # R57 (b): the end state alone passes at 360 x 640 in WebKit by layout, the recorder proves the second tap was cancelled.
-    assert_only_press_1_and_click_1_reached_the_page(page, 2, tapped=how == "touch")
-
-
-@pytest.mark.parametrize("how", ["mouse", "touch"])
-@pytest.mark.parametrize("target", ["Cancel", "Start new bill", "backdrop"])
-def test_R30_the_second_click_of_a_double_activation_never_reaches_the_page(open_app, target, how):
-    # The same close path serves all three clicks, and what sits under each depends on the bill and the size, so this
-    # asks the question directly: of the two clicks, only the one that closed the dialog may reach the page.
-    page = open_app(seed=seeds.S1, touch=how == "touch").page
-    open_dialog(page)
-    page.evaluate(RECORD_BODY_CLICKS_JS)
-    point = (12, 12) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
-    activate_twice(page, how, point)
-    assert dialog_is_open(page) is False
-    assert_only_press_1_and_click_1_reached_the_page(page, 2, tapped=how == "touch")
-
-
-def test_R30_a_triple_click_on_cancel_changes_nothing_either(open_app):
-    page = open_app(seed=seeds.S1, viewport=PHONES[0]).page
-    open_dialog(page)
-    page.evaluate(RECORD_BODY_CLICKS_JS)
-    x, y = centre_of(page.get_by_role("button", name="Cancel", exact=True))
-    page.mouse.click(x, y, click_count=3)
-    settle(page)
-    assert page.evaluate("window.testBodyClicks") == [1] and stored_text(page) == seeds.S1
+    assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+    if target == "Start new bill":
+        assert bill_empty_screen(page) == BILL_EMPTY and stored(page) == json.loads(NEW_BILL_DRAFT)
+    else:
+        assert snapshot(page) == before and stored_text(page) == seeds.S1
 
 
 def test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_held_back(open_app):
     page = open_app(seed=seeds.S1, viewport=PHONES[0]).page
     open_dialog(page)
-    page.get_by_role("button", name="Cancel", exact=True).click()
+    closing(page, m1_closer(page, "cancel"))  # focus comes back in the close event (F-A3-1, task A16)
     assert dialog_is_open(page) is False and focused(page) == "New bill"
     aisyah = toggle(page, "Char kuey teow", "Aisyah")
     assert aisyah.get_attribute("aria-pressed") == "false"
@@ -3691,8 +3764,7 @@ def test_R30_a_press_that_starts_on_the_backdrop_and_ends_in_the_dialog_keeps_it
 def test_R30_a_tap_on_the_backdrop_acts_as_cancel(open_app):
     page = open_app(seed=seeds.S2, touch=True).page  # a tap sends its mouse events after touchend, the press is still known
     open_dialog(page)
-    page.touchscreen.tap(10, 10)
-    settle(page)
+    closing(page, lambda: page.touchscreen.tap(10, 10))  # focus comes back in the close event (F-A3-1, task A16)
     assert dialog_is_open(page) is False and focused(page) == "New bill" and stored_text(page) == seeds.S2
 
 
@@ -3736,10 +3808,8 @@ def test_R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each(open_app
 # blank person was saved (SEC-01). One guard, swallowRepeatClicks, cancels the repeat presses at the document whatever is
 # under them, once the click that moved the layout has armed it. These rows name the gesture, the size and the bill, and
 # check the rows, the draft and the focus.
-SIZES = [(360, 640), (390, 844), (1280, 800)]
-SIZE_IDS = [f"{w}x{h}" for w, h in SIZES]
-# The v1.1.0 sizes of these outlines (qa.md). The R6 and R7 rows use them since task A5 and R12 since task A8. R29 moves
-# with task A16, and SIZES goes with it.
+# The v1.1.0 sizes of these outlines (qa.md). The R6 and R7 rows use them since task A5, R12 since task A8 and R29 since
+# task A16, which retired the 1.0 sizes (360 x 640 in place of 360 x 780).
 V11_SIZES = [(360, 780), (390, 844), (1280, 800)]
 V11_SIZE_IDS = [f"{w}x{h}" for w, h in V11_SIZES]
 GESTURES = ["single", "mouse-double", "mouse-triple", "touch-double"]  # "single" is the control: what one click does
@@ -3983,8 +4053,9 @@ def test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_t
 # Opening the dialog puts its backdrop under the pointer, so the second click of a double click, triple click or double tap
 # on "New bill" closed it again: the dialog flashed open and shut. Opening arms the same guard as closing does.
 @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
-@pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+@pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
 def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+    # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
     page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
     page.evaluate(RECORD_BODY_CLICKS_JS)
     gesture_at(page, gesture, centre_of(new_bill_button(page)))
@@ -3994,36 +4065,36 @@ def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewpor
 
 @pytest.mark.parametrize("close", ["cancel", "backdrop", "escape"])
 def test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it(open_app, close):
+    # [v1.1.0] The backdrop point is (20, 20). Each close waits for the dialog's close event before focus is read
+    # (`closing`, spec R59 (2) for Escape, F-A5-1, and F-A3-1 for the clicks).
     page = open_app(seed=seeds.S1).page
     gesture_at(page, "mouse-double", centre_of(new_bill_button(page)))
     assert dialog_is_open(page) is True
-    if close == "cancel":
-        page.get_by_role("button", name="Cancel", exact=True).click()
-    elif close == "backdrop":
-        page.mouse.click(10, 10)
-    else:
-        page.keyboard.press("Escape")
+    closing(page, m1_closer(page, close))
     assert dialog_is_open(page) is False and focused(page) == "New bill" and stored_text(page) == seeds.S1
 
 
-def test_R29_opening_by_keyboard_and_opening_again_straight_away_is_not_held_back(open_app):
-    page = open_app(seed=seeds.S2).page
-    new_bill_button(page).focus()
-    page.keyboard.press("Enter")  # a key press activates with click count 0, which the guard lets through
-    assert dialog_is_open(page) is True and focused(page) == "Cancel"
+def test_R29_the_keyboard_and_the_next_press_are_not_held_back(open_app):
+    # [v1.1.0] qa.md over K1 with the body recorder, the v1.1.0 form of the 1.0 tests
+    # test_R29_opening_by_keyboard_and_opening_again_straight_away_is_not_held_back and
+    # test_R29_the_guard_of_opening_ends_at_the_next_press. A key press activates with click count 0, which no guard holds
+    # back, and the guard that a click on New bill arms is gone by the next press.
+    page = open_app(seed=seeds.S1).page
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    tab_until(page, new_bill_button(page))
     page.keyboard.press("Enter")
+    assert dialog_is_open(page) is True and focused(page) == "Cancel"
+    closing(page, lambda: page.keyboard.press("Enter"))
     assert dialog_is_open(page) is False and focused(page) == "New bill"
     page.keyboard.press("Enter")
     assert dialog_is_open(page) is True and focused(page) == "Cancel"
-
-
-def test_R29_the_guard_of_opening_ends_at_the_next_press(open_app):
-    page = open_app(seed=seeds.S1, viewport=PHONES[0]).page
+    assert seen_by_the_page(page) == {"presses": [], "clicks": [0, 0, 0]}  # the three key clicks, each count 0
+    press_escape(page)
     open_dialog(page)
-    page.keyboard.press("Escape")
+    press_escape(page)
     ben = toggle(page, "Nasi lemak ayam", "Ben")
     assert ben.get_attribute("aria-pressed") == "false"
-    page.evaluate(RECORD_BODY_CLICKS_JS)
+    page.evaluate(RESET_RECORDER_JS)
     ben.dblclick()  # two real clicks on a toggle flip it twice: nothing is left of the guard
     settle(page)
     # Both presses and both clicks reached the page. The toggle alone cannot show it: swallowing both would leave it
@@ -4705,9 +4776,10 @@ def settled_text(page, selector, expected, timeout_ms=2000):
 
 
 def start_over(page):
-    """New bill, then Start new bill (R31)."""
+    """New bill, then Start new bill (R31), and wait for the dialog's close event (`closing`), which is where focus goes
+    back to New bill (task A16)."""
     open_dialog(page)
-    page.get_by_role("button", name="Start new bill").click()
+    closing(page, lambda: page.get_by_role("button", name="Start new bill", exact=True).click())
 
 
 def k1_started_over_and_reloaded(open_app):

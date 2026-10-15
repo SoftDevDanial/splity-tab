@@ -1,0 +1,511 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open tests/browser/test_app.py::test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it tests/browser/test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page tests/browser/test_app.py::test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_held_back tests/browser/test_app.py::test_R29_the_keyboard_and_the_next_press_are_not_held_back
+server STARTED pid 532 port 30885 root {workspace}\examples\split
+............FFFFFFFFFFFFF..server STOPPED pid 532 port 30885, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177ADE50250>
+target = 'Cancel', viewport = (360, 640), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+>       assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+
+tests\browser\test_app.py:3718: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = <Page url='http://127.0.0.1:30885/'>, presses = 2, tapped = False
+
+    def assert_only_press_1_and_click_1_reached_the_page(page, presses, tapped=False):
+        """qa.md "Only press 1 and click 1 reached the page" for a gesture of `presses` presses (spec R57 (b)). The body
+        counted one press and one click, the window saw every press and click of the gesture, and each one after the first
+        was cancelled. For a double tap (`tapped`), its second click also came less than 500 ms after the first and within
+        22 px, or the case fails and names the gap, because it did not test a double tap."""
+        downs, clicks = presses_and_clicks(page)
+        assert (len(downs), len(clicks)) == (presses, presses), (
+            f"the window saw {len(downs)} presses and {len(clicks)} clicks, not {presses} of each")
+        if tapped:
+            gap = clicks[1]["timeStamp"] - clicks[0]["timeStamp"]
+            across, down = abs(clicks[1]["x"] - clicks[0]["x"]), abs(clicks[1]["y"] - clicks[0]["y"])
+            assert gap < 500 and across <= 22 and down <= 22, (
+                f"not a double tap: the second click came {gap:.1f} ms after the first, {across} px across and {down} px down")
+        uncancelled = [f"{kind} {number}" for kind, events in (("mousedown", downs), ("click", clicks))
+                       for number, event in enumerate(events, start=1) if number > 1 and not event["prevented"]]
+>       assert uncancelled == [], f"a repeat reached the page uncancelled: {', '.join(uncancelled)}"
+E       AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+E       assert ['mousedown 2', 'click 2'] == []
+E         
+E         Left contains 2 more items, first extra item: 'mousedown 2'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3673: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AF6EC880>
+target = 'Cancel', viewport = (360, 640), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+>       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splity Tab\n...n      Cancel' == 'New bill'
+E        +  where False = dialog_is_open(<Page url='http://127.0.0.1:30885/'>)
+E         
+E         + Splity Tab
+E         +     
+E         +     
+E         - New bill
+E         +     New bill
+E         ? ++++        +...
+E         
+E         ...Full output truncated (36 lines hidden), use '-vv' to show)
+
+tests\browser\test_app.py:3717: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-375x667-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AF6B4CA0>
+target = 'Cancel', viewport = (375, 667), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+>       assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+
+tests\browser\test_app.py:3718: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = <Page url='http://127.0.0.1:30885/'>, presses = 2, tapped = False
+
+    def assert_only_press_1_and_click_1_reached_the_page(page, presses, tapped=False):
+        """qa.md "Only press 1 and click 1 reached the page" for a gesture of `presses` presses (spec R57 (b)). The body
+        counted one press and one click, the window saw every press and click of the gesture, and each one after the first
+        was cancelled. For a double tap (`tapped`), its second click also came less than 500 ms after the first and within
+        22 px, or the case fails and names the gap, because it did not test a double tap."""
+        downs, clicks = presses_and_clicks(page)
+        assert (len(downs), len(clicks)) == (presses, presses), (
+            f"the window saw {len(downs)} presses and {len(clicks)} clicks, not {presses} of each")
+        if tapped:
+            gap = clicks[1]["timeStamp"] - clicks[0]["timeStamp"]
+            across, down = abs(clicks[1]["x"] - clicks[0]["x"]), abs(clicks[1]["y"] - clicks[0]["y"])
+            assert gap < 500 and across <= 22 and down <= 22, (
+                f"not a double tap: the second click came {gap:.1f} ms after the first, {across} px across and {down} px down")
+        uncancelled = [f"{kind} {number}" for kind, events in (("mousedown", downs), ("click", clicks))
+                       for number, event in enumerate(events, start=1) if number > 1 and not event["prevented"]]
+>       assert uncancelled == [], f"a repeat reached the page uncancelled: {', '.join(uncancelled)}"
+E       AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+E       assert ['mousedown 2', 'click 2'] == []
+E         
+E         Left contains 2 more items, first extra item: 'mousedown 2'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3673: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-375x667-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AE7DA400>
+target = 'Cancel', viewport = (375, 667), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+>       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splity Tab\n...n      Cancel' == 'New bill'
+E        +  where False = dialog_is_open(<Page url='http://127.0.0.1:30885/'>)
+E         
+E         + Splity Tab
+E         +     
+E         +     
+E         - New bill
+E         +     New bill
+E         ? ++++        +...
+E         
+E         ...Full output truncated (36 lines hidden), use '-vv' to show)
+
+tests\browser\test_app.py:3717: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-412x732-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AF47F060>
+target = 'Cancel', viewport = (412, 732), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+>       assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+
+tests\browser\test_app.py:3718: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = <Page url='http://127.0.0.1:30885/'>, presses = 2, tapped = False
+
+    def assert_only_press_1_and_click_1_reached_the_page(page, presses, tapped=False):
+        """qa.md "Only press 1 and click 1 reached the page" for a gesture of `presses` presses (spec R57 (b)). The body
+        counted one press and one click, the window saw every press and click of the gesture, and each one after the first
+        was cancelled. For a double tap (`tapped`), its second click also came less than 500 ms after the first and within
+        22 px, or the case fails and names the gap, because it did not test a double tap."""
+        downs, clicks = presses_and_clicks(page)
+        assert (len(downs), len(clicks)) == (presses, presses), (
+            f"the window saw {len(downs)} presses and {len(clicks)} clicks, not {presses} of each")
+        if tapped:
+            gap = clicks[1]["timeStamp"] - clicks[0]["timeStamp"]
+            across, down = abs(clicks[1]["x"] - clicks[0]["x"]), abs(clicks[1]["y"] - clicks[0]["y"])
+            assert gap < 500 and across <= 22 and down <= 22, (
+                f"not a double tap: the second click came {gap:.1f} ms after the first, {across} px across and {down} px down")
+        uncancelled = [f"{kind} {number}" for kind, events in (("mousedown", downs), ("click", clicks))
+                       for number, event in enumerate(events, start=1) if number > 1 and not event["prevented"]]
+>       assert uncancelled == [], f"a repeat reached the page uncancelled: {', '.join(uncancelled)}"
+E       AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+E       assert ['mousedown 2', 'click 2'] == []
+E         
+E         Left contains 2 more items, first extra item: 'mousedown 2'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3673: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-412x732-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AE67BED0>
+target = 'Cancel', viewport = (412, 732), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+>       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'Splity Tab\n...n      Cancel' == 'New bill'
+E        +  where False = dialog_is_open(<Page url='http://127.0.0.1:30885/'>)
+E         
+E         + Splity Tab
+E         +     
+E         +     
+E         - New bill
+E         +     New bill
+E         ? ++++        +...
+E         
+E         ...Full output truncated (36 lines hidden), use '-vv' to show)
+
+tests\browser\test_app.py:3717: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-390x844-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AEBEE4B0>
+target = 'Cancel', viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+>       assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+
+tests\browser\test_app.py:3718: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = <Page url='http://127.0.0.1:30885/'>, presses = 2, tapped = False
+
+    def assert_only_press_1_and_click_1_reached_the_page(page, presses, tapped=False):
+        """qa.md "Only press 1 and click 1 reached the page" for a gesture of `presses` presses (spec R57 (b)). The body
+        counted one press and one click, the window saw every press and click of the gesture, and each one after the first
+        was cancelled. For a double tap (`tapped`), its second click also came less than 500 ms after the first and within
+        22 px, or the case fails and names the gap, because it did not test a double tap."""
+        downs, clicks = presses_and_clicks(page)
+        assert (len(downs), len(clicks)) == (presses, presses), (
+            f"the window saw {len(downs)} presses and {len(clicks)} clicks, not {presses} of each")
+        if tapped:
+            gap = clicks[1]["timeStamp"] - clicks[0]["timeStamp"]
+            across, down = abs(clicks[1]["x"] - clicks[0]["x"]), abs(clicks[1]["y"] - clicks[0]["y"])
+            assert gap < 500 and across <= 22 and down <= 22, (
+                f"not a double tap: the second click came {gap:.1f} ms after the first, {across} px across and {down} px down")
+        uncancelled = [f"{kind} {number}" for kind, events in (("mousedown", downs), ("click", clicks))
+                       for number, event in enumerate(events, start=1) if number > 1 and not event["prevented"]]
+>       assert uncancelled == [], f"a repeat reached the page uncancelled: {', '.join(uncancelled)}"
+E       AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+E       assert ['mousedown 2', 'click 2'] == []
+E         
+E         Left contains 2 more items, first extra item: 'mousedown 2'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3673: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-390x844-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177ADC93110>
+target = 'Cancel', viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+>       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and '' == 'New bill'
+E        +  where False = dialog_is_open(<Page url='http://127.0.0.1:30885/'>)
+E         
+E         - New bill)
+
+tests\browser\test_app.py:3717: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-mouse-triple] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AEA0EA30>
+target = 'Cancel', viewport = (360, 640), gesture = 'mouse-triple'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+>       assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+
+tests\browser\test_app.py:3718: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = <Page url='http://127.0.0.1:30885/'>, presses = 3, tapped = False
+
+    def assert_only_press_1_and_click_1_reached_the_page(page, presses, tapped=False):
+        """qa.md "Only press 1 and click 1 reached the page" for a gesture of `presses` presses (spec R57 (b)). The body
+        counted one press and one click, the window saw every press and click of the gesture, and each one after the first
+        was cancelled. For a double tap (`tapped`), its second click also came less than 500 ms after the first and within
+        22 px, or the case fails and names the gap, because it did not test a double tap."""
+        downs, clicks = presses_and_clicks(page)
+        assert (len(downs), len(clicks)) == (presses, presses), (
+            f"the window saw {len(downs)} presses and {len(clicks)} clicks, not {presses} of each")
+        if tapped:
+            gap = clicks[1]["timeStamp"] - clicks[0]["timeStamp"]
+            across, down = abs(clicks[1]["x"] - clicks[0]["x"]), abs(clicks[1]["y"] - clicks[0]["y"])
+            assert gap < 500 and across <= 22 and down <= 22, (
+                f"not a double tap: the second click came {gap:.1f} ms after the first, {across} px across and {down} px down")
+        uncancelled = [f"{kind} {number}" for kind, events in (("mousedown", downs), ("click", clicks))
+                       for number, event in enumerate(events, start=1) if number > 1 and not event["prevented"]]
+>       assert uncancelled == [], f"a repeat reached the page uncancelled: {', '.join(uncancelled)}"
+E       AssertionError: a repeat reached the page uncancelled: mousedown 2, mousedown 3, click 2, click 3
+E       assert ['mousedown 2...2', 'click 3'] == []
+E         
+E         Left contains 4 more items, first extra item: 'mousedown 2'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3673: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AE54B110>
+target = 'Start new bill', viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+>       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'evenSub' == 'New bill'
+E        +  where False = dialog_is_open(<Page url='http://127.0.0.1:30885/'>)
+E         
+E         - New bill
+E         + evenSub)
+
+tests\browser\test_app.py:3717: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AF64AA30>
+target = 'Start new bill', viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+>       assert dialog_is_open(page) is False and focused(page) == "New bill"
+E       AssertionError: assert (False is False and 'evenSub' == 'New bill'
+E        +  where False = dialog_is_open(<Page url='http://127.0.0.1:30885/'>)
+E         
+E         - New bill
+E         + evenSub)
+
+tests\browser\test_app.py:3717: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[backdrop-390x844-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177ADF53320>
+target = 'backdrop', viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+>       assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+
+tests\browser\test_app.py:3718: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = <Page url='http://127.0.0.1:30885/'>, presses = 2, tapped = False
+
+    def assert_only_press_1_and_click_1_reached_the_page(page, presses, tapped=False):
+        """qa.md "Only press 1 and click 1 reached the page" for a gesture of `presses` presses (spec R57 (b)). The body
+        counted one press and one click, the window saw every press and click of the gesture, and each one after the first
+        was cancelled. For a double tap (`tapped`), its second click also came less than 500 ms after the first and within
+        22 px, or the case fails and names the gap, because it did not test a double tap."""
+        downs, clicks = presses_and_clicks(page)
+        assert (len(downs), len(clicks)) == (presses, presses), (
+            f"the window saw {len(downs)} presses and {len(clicks)} clicks, not {presses} of each")
+        if tapped:
+            gap = clicks[1]["timeStamp"] - clicks[0]["timeStamp"]
+            across, down = abs(clicks[1]["x"] - clicks[0]["x"]), abs(clicks[1]["y"] - clicks[0]["y"])
+            assert gap < 500 and across <= 22 and down <= 22, (
+                f"not a double tap: the second click came {gap:.1f} ms after the first, {across} px across and {down} px down")
+        uncancelled = [f"{kind} {number}" for kind, events in (("mousedown", downs), ("click", clicks))
+                       for number, event in enumerate(events, start=1) if number > 1 and not event["prevented"]]
+>       assert uncancelled == [], f"a repeat reached the page uncancelled: {', '.join(uncancelled)}"
+E       AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+E       assert ['mousedown 2', 'click 2'] == []
+E         
+E         Left contains 2 more items, first extra item: 'mousedown 2'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3673: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[backdrop-390x844-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000177AE4380F0>
+target = 'backdrop', viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+>       assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+
+tests\browser\test_app.py:3718: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = <Page url='http://127.0.0.1:30885/'>, presses = 2, tapped = True
+
+    def assert_only_press_1_and_click_1_reached_the_page(page, presses, tapped=False):
+        """qa.md "Only press 1 and click 1 reached the page" for a gesture of `presses` presses (spec R57 (b)). The body
+        counted one press and one click, the window saw every press and click of the gesture, and each one after the first
+        was cancelled. For a double tap (`tapped`), its second click also came less than 500 ms after the first and within
+        22 px, or the case fails and names the gap, because it did not test a double tap."""
+        downs, clicks = presses_and_clicks(page)
+        assert (len(downs), len(clicks)) == (presses, presses), (
+            f"the window saw {len(downs)} presses and {len(clicks)} clicks, not {presses} of each")
+        if tapped:
+            gap = clicks[1]["timeStamp"] - clicks[0]["timeStamp"]
+            across, down = abs(clicks[1]["x"] - clicks[0]["x"]), abs(clicks[1]["y"] - clicks[0]["y"])
+            assert gap < 500 and across <= 22 and down <= 22, (
+                f"not a double tap: the second click came {gap:.1f} ms after the first, {across} px across and {down} px down")
+        uncancelled = [f"{kind} {number}" for kind, events in (("mousedown", downs), ("click", clicks))
+                       for number, event in enumerate(events, start=1) if number > 1 and not event["prevented"]]
+>       assert uncancelled == [], f"a repeat reached the page uncancelled: {', '.join(uncancelled)}"
+E       AssertionError: a repeat reached the page uncancelled: mousedown 2, click 2
+E       assert ['mousedown 2', 'click 2'] == []
+E         
+E         Left contains 2 more items, first extra item: 'mousedown 2'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3673: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-mouse-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-touch-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-375x667-mouse-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-375x667-touch-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-412x732-mouse-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-412x732-touch-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-390x844-mouse-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-390x844-touch-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[cancel-360x640-mouse-triple]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-mouse-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-touch-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[backdrop-390x844-mouse-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[backdrop-390x844-touch-double]
+13 failed, 14 passed in 21.25s

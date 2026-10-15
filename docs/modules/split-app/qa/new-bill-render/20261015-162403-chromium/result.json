@@ -1,0 +1,272 @@
+{
+ "390": {
+  "walk_first_diff": {
+   "body": null,
+   "#newDlg": null
+  },
+  "differences": {
+   "root": {
+    "look": {
+     "overflowY": [
+      "auto",
+      "visible"
+     ],
+     "maxHeight": [
+      "calc(100% - 38px)",
+      "none"
+     ]
+    },
+    "box": null
+   }
+  },
+  "m1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "rootOverflow": "hidden",
+    "box": [
+     16,
+     305,
+     358,
+     234
+    ],
+    "bodyBelowTitle": 8,
+    "actsBelowBody": 24,
+    "buttons": [
+     [
+      "Start new bill",
+      "rgb(196, 49, 60)",
+      "rgb(255, 245, 245)",
+      48,
+      41,
+      410,
+      308
+     ],
+     [
+      "Cancel",
+      "rgba(0, 0, 0, 0)",
+      "rgb(232, 235, 242)",
+      48,
+      41,
+      466,
+      308
+     ]
+    ],
+    "focus": "Cancel"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "rootOverflow": "hidden",
+    "box": [
+     16,
+     305,
+     358,
+     234
+    ],
+    "bodyBelowTitle": 8,
+    "actsBelowBody": 24,
+    "buttons": [
+     [
+      "Start new bill",
+      "rgb(196, 49, 60)",
+      "rgb(255, 245, 245)",
+      48,
+      41,
+      410,
+      308
+     ],
+     [
+      "Cancel",
+      "rgba(0, 0, 0, 0)",
+      "rgb(232, 235, 242)",
+      48,
+      41,
+      466,
+      308
+     ]
+    ],
+    "focus": "body"
+   }
+  },
+  "screenshots_equal": false
+ },
+ "360": {
+  "walk_first_diff": {
+   "body": null,
+   "#newDlg": null
+  },
+  "differences": {
+   "root": {
+    "look": {
+     "overflowY": [
+      "auto",
+      "visible"
+     ],
+     "maxHeight": [
+      "calc(100% - 38px)",
+      "none"
+     ]
+    },
+    "box": null
+   }
+  },
+  "m1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "rootOverflow": "hidden",
+    "box": [
+     16,
+     261,
+     328,
+     258
+    ],
+    "bodyBelowTitle": 8,
+    "actsBelowBody": 24,
+    "buttons": [
+     [
+      "Start new bill",
+      "rgb(196, 49, 60)",
+      "rgb(255, 245, 245)",
+      48,
+      41,
+      390,
+      278
+     ],
+     [
+      "Cancel",
+      "rgba(0, 0, 0, 0)",
+      "rgb(232, 235, 242)",
+      48,
+      41,
+      446,
+      278
+     ]
+    ],
+    "focus": "Cancel"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "rootOverflow": "hidden",
+    "box": [
+     16,
+     261,
+     328,
+     258
+    ],
+    "bodyBelowTitle": 8,
+    "actsBelowBody": 24,
+    "buttons": [
+     [
+      "Start new bill",
+      "rgb(196, 49, 60)",
+      "rgb(255, 245, 245)",
+      48,
+      41,
+      390,
+      278
+     ],
+     [
+      "Cancel",
+      "rgba(0, 0, 0, 0)",
+      "rgb(232, 235, 242)",
+      48,
+      41,
+      446,
+      278
+     ]
+    ],
+    "focus": "body"
+   }
+  },
+  "screenshots_equal": true
+ },
+ "1280": {
+  "walk_first_diff": {
+   "body": null,
+   "#newDlg": null
+  },
+  "differences": {
+   "root": {
+    "look": {
+     "overflowY": [
+      "auto",
+      "visible"
+     ],
+     "maxHeight": [
+      "calc(100% - 38px)",
+      "none"
+     ]
+    },
+    "box": null
+   }
+  },
+  "m1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "rootOverflow": "hidden",
+    "box": [
+     440,
+     311,
+     400,
+     178
+    ],
+    "bodyBelowTitle": 8,
+    "actsBelowBody": 24,
+    "buttons": [
+     [
+      "Start new bill",
+      "rgb(196, 49, 60)",
+      "rgb(255, 245, 245)",
+      48,
+      579.7,
+      416,
+      137.47
+     ],
+     [
+      "Cancel",
+      "rgba(0, 0, 0, 0)",
+      "rgb(232, 235, 242)",
+      48,
+      725.17,
+      416,
+      89.83
+     ]
+    ],
+    "focus": "Cancel"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "rootOverflow": "hidden",
+    "box": [
+     440,
+     311,
+     400,
+     178
+    ],
+    "bodyBelowTitle": 8,
+    "actsBelowBody": 24,
+    "buttons": [
+     [
+      "Start new bill",
+      "rgb(196, 49, 60)",
+      "rgb(255, 245, 245)",
+      48,
+      579.7,
+      416,
+      137.47
+     ],
+     [
+      "Cancel",
+      "rgba(0, 0, 0, 0)",
+      "rgb(232, 235, 242)",
+      48,
+      725.17,
+      416,
+      89.83
+     ]
+    ],
+    "focus": "body"
+   }
+  },
+  "screenshots_equal": false
+ }
+}

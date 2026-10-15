@@ -1,0 +1,237 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R31_start_over tests/browser/test_app.py::test_R31_start_over_clears_the_copy_status_and_the_spare_choice tests/browser/test_app.py::test_R31_start_over_clears_the_error_flags tests/browser/test_app.py::test_R48_start_new_bill_opens_people_and_folds_charges tests/browser/test_app.py::test_R48_which_section_is_open_on_load tests/browser/test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page
+server STARTED pid 7836 port 6912 root {workspace}\examples\split
+F.FFFFF................FF..server STOPPED pid 7836 port 6912, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+_____________________________ test_R31_start_over _____________________________
+
+open_app = <function open_app.<locals>.factory at 0x00000294809FF5E0>
+
+    def test_R31_start_over(open_app):
+        # [v1.1.0] qa.md "Start over (key flow 4)" from K1. The open state is reset as at load (CG-P4), the draft is version 2.
+        page = open_app(seed=seeds.S1).page
+        start_over(page)
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+>       assert bill_empty_screen(page) == BILL_EMPTY
+E       AssertionError: assert {'sections': ...tal': '', ...} == {'sections': ...tal': '', ...}
+E         
+E         Omitting 5 identical items, use -vv to show
+E         Differing items:
+E         {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3316: AssertionError
+____________ test_R31_start_over_clears_the_error_flags[subtotal] _____________
+
+open_app = <function open_app.<locals>.factory at 0x00000294FDE44E00>
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+bad_field = <function subtotal_field at 0x000002948099CCA0>, bad_text = '0'
+bad_id = 'evenErr', prepare = None
+field_of = <function subtotal_field at 0x000002948099CCA0>, error_id = 'evenErr'
+
+    @pytest.mark.parametrize("seed, bad_field, bad_text, bad_id, prepare, field_of, error_id", START_OVER_CASES)
+    def test_R31_start_over_clears_the_error_flags(open_app, seed, bad_field, bad_text, bad_id, prepare, field_of, error_id):
+        # [v1.1.0] qa.md: the error is made on screen by typing and leaving the field, then Start new bill, then the rule is
+        # seen to start again (R10 a): typing "abc" shows nothing until the field is left.
+        page = open_app(seed=seed).page
+        support.replace_text(page, bad_field(page), bad_text)
+        page.keyboard.press("Tab")
+        assert error_marks(page) == error_shown(bad_id)
+        start_over(page)
+        if prepare:
+            prepare(page)
+        assert error_marks(page) == NO_ERROR_MARKS
+        field = field_of(page)
+        support.replace_text(page, field, "abc")
+>       assert error_marks(page) == NO_ERROR_MARKS
+E       AssertionError: assert {'shown': ['e...: 1, 'bad': 1} == {'shown': [],...: 0, 'bad': 0}
+E         
+E         Differing items:
+E         {'invalid': 1} != {'invalid': 0}
+E         {'shown': ['evenErr']} != {'shown': []}
+E         {'bad': 1} != {'bad': 0}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3389: AssertionError
+___________ test_R31_start_over_clears_the_error_flags[item-price] ____________
+
+open_app = <function open_app.<locals>.factory at 0x0000029480320040>
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+bad_field = <function <lambda> at 0x00000294809A6DA0>, bad_text = '13.505'
+bad_id = 'ie2', prepare = <function add_three_items at 0x00000294809A6CF0>
+field_of = <function <lambda> at 0x00000294809A6E50>, error_id = 'ie3'
+
+    @pytest.mark.parametrize("seed, bad_field, bad_text, bad_id, prepare, field_of, error_id", START_OVER_CASES)
+    def test_R31_start_over_clears_the_error_flags(open_app, seed, bad_field, bad_text, bad_id, prepare, field_of, error_id):
+        # [v1.1.0] qa.md: the error is made on screen by typing and leaving the field, then Start new bill, then the rule is
+        # seen to start again (R10 a): typing "abc" shows nothing until the field is left.
+        page = open_app(seed=seed).page
+        support.replace_text(page, bad_field(page), bad_text)
+        page.keyboard.press("Tab")
+        assert error_marks(page) == error_shown(bad_id)
+        start_over(page)
+        if prepare:
+            prepare(page)
+        assert error_marks(page) == NO_ERROR_MARKS
+        field = field_of(page)
+        support.replace_text(page, field, "abc")
+>       assert error_marks(page) == NO_ERROR_MARKS
+E       AssertionError: assert {'shown': ['i...: 1, 'bad': 1} == {'shown': [],...: 0, 'bad': 0}
+E         
+E         Differing items:
+E         {'invalid': 1} != {'invalid': 0}
+E         {'shown': ['ie3']} != {'shown': []}
+E         {'bad': 1} != {'bad': 0}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3389: AssertionError
+_____________ test_R31_start_over_clears_the_error_flags[service] _____________
+
+open_app = <function open_app.<locals>.factory at 0x00000294802C4880>
+seed = None
+bad_field = <function opened_rate_field.<locals>.field_of at 0x00000294809A6F00>
+bad_text = '31', bad_id = 'svcErr'
+prepare = <function open_charges_first at 0x00000294809A5F30>
+field_of = <function opened_rate_field.<locals>.field_of at 0x00000294809A6FB0>
+error_id = 'svcErr'
+
+    @pytest.mark.parametrize("seed, bad_field, bad_text, bad_id, prepare, field_of, error_id", START_OVER_CASES)
+    def test_R31_start_over_clears_the_error_flags(open_app, seed, bad_field, bad_text, bad_id, prepare, field_of, error_id):
+        # [v1.1.0] qa.md: the error is made on screen by typing and leaving the field, then Start new bill, then the rule is
+        # seen to start again (R10 a): typing "abc" shows nothing until the field is left.
+        page = open_app(seed=seed).page
+        support.replace_text(page, bad_field(page), bad_text)
+        page.keyboard.press("Tab")
+        assert error_marks(page) == error_shown(bad_id)
+        start_over(page)
+        if prepare:
+            prepare(page)
+        assert error_marks(page) == NO_ERROR_MARKS
+        field = field_of(page)
+        support.replace_text(page, field, "abc")
+>       assert error_marks(page) == NO_ERROR_MARKS
+E       AssertionError: assert {'shown': ['s...: 1, 'bad': 1} == {'shown': [],...: 0, 'bad': 0}
+E         
+E         Differing items:
+E         {'invalid': 1} != {'invalid': 0}
+E         {'shown': ['svcErr']} != {'shown': []}
+E         {'bad': 1} != {'bad': 0}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3389: AssertionError
+_______________ test_R31_start_over_clears_the_error_flags[sst] _______________
+
+open_app = <function open_app.<locals>.factory at 0x00000294FFCD0CA0>
+seed = None
+bad_field = <function opened_rate_field.<locals>.field_of at 0x00000294809A7060>
+bad_text = '25', bad_id = 'sstErr'
+prepare = <function open_charges_first at 0x00000294809A5F30>
+field_of = <function opened_rate_field.<locals>.field_of at 0x00000294809A7110>
+error_id = 'sstErr'
+
+    @pytest.mark.parametrize("seed, bad_field, bad_text, bad_id, prepare, field_of, error_id", START_OVER_CASES)
+    def test_R31_start_over_clears_the_error_flags(open_app, seed, bad_field, bad_text, bad_id, prepare, field_of, error_id):
+        # [v1.1.0] qa.md: the error is made on screen by typing and leaving the field, then Start new bill, then the rule is
+        # seen to start again (R10 a): typing "abc" shows nothing until the field is left.
+        page = open_app(seed=seed).page
+        support.replace_text(page, bad_field(page), bad_text)
+        page.keyboard.press("Tab")
+        assert error_marks(page) == error_shown(bad_id)
+        start_over(page)
+        if prepare:
+            prepare(page)
+        assert error_marks(page) == NO_ERROR_MARKS
+        field = field_of(page)
+        support.replace_text(page, field, "abc")
+>       assert error_marks(page) == NO_ERROR_MARKS
+E       AssertionError: assert {'shown': ['s...: 1, 'bad': 1} == {'shown': [],...: 0, 'bad': 0}
+E         
+E         Differing items:
+E         {'invalid': 1} != {'invalid': 0}
+E         {'shown': ['sstErr']} != {'shown': []}
+E         {'bad': 1} != {'bad': 0}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:3389: AssertionError
+___________ test_R48_start_new_bill_opens_people_and_folds_charges ____________
+
+open_app = <function open_app.<locals>.factory at 0x00000294FFA10EB0>
+
+    def test_R48_start_new_bill_opens_people_and_folds_charges(open_app):
+        # R48 (1) with R31, the open state is reset as at load. The RE seed opens Charges at load (R10 b), so the fold shows.
+        page = open_app(seed=seeds.RE).page
+        start_over(page)
+>       assert section_state(page) == [OPEN, FOLDED]
+E       AssertionError: assert [['false', 'f...rue', 'true']] == [['true', 'tr...se', 'false']]
+E         
+E         At index 0 diff: ['false', 'false'] != ['true', 'true']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4998: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000294FEB20D50>
+target = 'Start new bill', viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+        assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+        if target == "Start new bill":
+>           assert bill_empty_screen(page) == BILL_EMPTY and stored(page) == json.loads(NEW_BILL_DRAFT)
+E           AssertionError: assert ({'sections': ...tal': '', ...} == {'sections': ...tal': '', ...}
+E             
+E             Omitting 5 identical items, use -vv to show
+E             Differing items:
+E             {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+E             Use -v to get more diff)
+
+tests\browser\test_app.py:3720: AssertionError
+_ test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x00000294FEBA5C70>
+target = 'Start new bill', viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("target, viewport, gesture", DOUBLE_CLOSE_CASES)
+    def test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page(
+            open_app, target, viewport, gesture):
+        # The body recorder proves the cancel, so no row passes only because the layout put something harmless under the
+        # second press (spec R57 (b)). For a touch row it also checks that the two taps were one double tap.
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        before = snapshot(page)
+        open_dialog(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        point = (20, 20) if target == "backdrop" else centre_of(page.get_by_role("button", name=target, exact=True))
+        closing(page, lambda: gesture_at(page, gesture, point))
+        assert dialog_is_open(page) is False and focused(page) == "New bill"
+        assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+        if target == "Start new bill":
+>           assert bill_empty_screen(page) == BILL_EMPTY and stored(page) == json.loads(NEW_BILL_DRAFT)
+E           AssertionError: assert ({'sections': ...tal': '', ...} == {'sections': ...tal': '', ...}
+E             
+E             Omitting 5 identical items, use -vv to show
+E             Differing items:
+E             {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+E             Use -v to get more diff)
+
+tests\browser\test_app.py:3720: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R31_start_over - AssertionError: asser...
+FAILED tests\browser\test_app.py::test_R31_start_over_clears_the_error_flags[subtotal]
+FAILED tests\browser\test_app.py::test_R31_start_over_clears_the_error_flags[item-price]
+FAILED tests\browser\test_app.py::test_R31_start_over_clears_the_error_flags[service]
+FAILED tests\browser\test_app.py::test_R31_start_over_clears_the_error_flags[sst]
+FAILED tests\browser\test_app.py::test_R48_start_new_bill_opens_people_and_folds_charges
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-mouse-double]
+FAILED tests\browser\test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page[start-new-bill-390x844-touch-double]
+8 failed, 19 passed in 20.53s

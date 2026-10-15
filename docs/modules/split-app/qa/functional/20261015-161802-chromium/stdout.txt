@@ -1,0 +1,37 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R29_the_dialog_opens_with_the_safe_choice_focused
+server STARTED pid 20696 port 1758 root {workspace}\examples\split
+Fserver STOPPED pid 20696 port 1758, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+___________ test_R29_the_dialog_opens_with_the_safe_choice_focused ____________
+
+open_app = <function open_app.<locals>.factory at 0x00000192981F75E0>
+
+    def test_R29_the_dialog_opens_with_the_safe_choice_focused(open_app):
+        # [v1.1.0] qa.md over K1. The 1.0 test also read the .app height as exactly 844, which WebKit lays out at 843.984375
+        # (spec R59 (1)). The scenario reads no height, so that line went with the rewrite (task A16).
+        page = open_app(seed=seeds.S1).page
+        # The page itself can scroll, so a wheel that leaves window.scrollY where it was shows the scroll was held.
+        assert page.evaluate("document.scrollingElement.scrollHeight - innerHeight") > 0
+        new_bill_button(page).click()
+        assert page.evaluate(NEW_DIALOG_JS) == NEW_DIALOG
+        assert page.get_by_role("dialog", name="Start a new bill?").count() == 1
+        assert focused(page) == "Cancel"
+        page.keyboard.press("Tab")
+        assert focused(page) == "Start new bill"
+        page.keyboard.press("Tab")
+        assert focused(page) == "Cancel"
+        page.keyboard.press("Shift+Tab")
+        page.keyboard.press("Shift+Tab")
+        assert focused(page) == "Cancel"
+        box = page.locator("dialog#newDlg").bounding_box()
+        over_the_scrim = (box["x"] + box["width"] / 2, box["y"] / 2)  # above the dialog's box
+>       assert scrolled_by_wheel(page, over_the_scrim, 400) == 0
+E       AssertionError: assert 106 == 0
+E        +  where 106 = scrolled_by_wheel(<Page url='http://127.0.0.1:1758/'>, (195.0, 152.5), 400)
+
+tests\browser\test_app.py:3243: AssertionError
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R29_the_dialog_opens_with_the_safe_choice_focused
+1 failed in 2.35s

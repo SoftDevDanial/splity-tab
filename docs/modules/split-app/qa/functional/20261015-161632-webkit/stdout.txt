@@ -1,0 +1,240 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R29_the_dialog_opens_with_the_safe_choice_focused tests/browser/test_app.py::test_R30_a_click_inside_the_dialog_box_keeps_it_open tests/browser/test_app.py::test_R30_leaving_the_dialog_without_starting_over tests/browser/test_app.py::test_R31_start_over tests/browser/test_app.py::test_R31_start_over_clears_the_copy_status_and_the_spare_choice tests/browser/test_app.py::test_R31_start_over_clears_the_error_flags tests/browser/test_app.py::test_R30_the_second_press_of_a_double_activation_that_closed_the_dialog_never_reaches_the_page tests/browser/test_app.py::test_R30_a_single_click_closes_as_before_and_the_next_double_click_is_not_held_back tests/browser/test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open tests/browser/test_app.py::test_R30_after_a_double_click_on_new_bill_one_deliberate_click_still_closes_it tests/browser/test_app.py::test_R29_the_keyboard_and_the_next_press_are_not_held_back tests/browser/test_app.py::test_R48_start_new_bill_opens_people_and_folds_charges tests/browser/test_app.py::test_R48_which_section_is_open_on_load
+server STARTED pid 12724 port 28485 root {workspace}\examples\split
+F.........................FFFFFFFFF...F........server STOPPED pid 12724 port 28485, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+___________ test_R29_the_dialog_opens_with_the_safe_choice_focused ____________
+
+open_app = <function open_app.<locals>.factory at 0x0000028FAC4C7060>
+
+    def test_R29_the_dialog_opens_with_the_safe_choice_focused(open_app):
+        # [v1.1.0] qa.md over K1. The 1.0 test also read the .app height as exactly 844, which WebKit lays out at 843.984375
+        # (spec R59 (1)). The scenario reads no height, so that line went with the rewrite (task A16).
+        page = open_app(seed=seeds.S1).page
+        # The page itself can scroll, so a wheel that leaves window.scrollY where it was shows the scroll was held.
+        assert page.evaluate("document.scrollingElement.scrollHeight - innerHeight") > 0
+        new_bill_button(page).click()
+        assert page.evaluate(NEW_DIALOG_JS) == NEW_DIALOG
+        assert page.get_by_role("dialog", name="Start a new bill?").count() == 1
+>       assert focused(page) == "Cancel"
+E       AssertionError: assert 'Start new bill' == 'Cancel'
+E         
+E         - Cancel
+E         + Start new bill
+
+tests\browser\test_app.py:3233: AssertionError
+_ test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x780-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000028FA9F4E140>
+viewport = (360, 780), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+        # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(new_bill_button(page)))
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4063: AssertionError
+_ test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x780-mouse-triple] _
+
+open_app = <function open_app.<locals>.factory at 0x0000028FAD978250>
+viewport = (360, 780), gesture = 'mouse-triple'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+        # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(new_bill_button(page)))
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4063: AssertionError
+_ test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x780-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000028FAD8CE610>
+viewport = (360, 780), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+        # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(new_bill_button(page)))
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4063: AssertionError
+_ test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000028FAC76CBF0>
+viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+        # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(new_bill_button(page)))
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4063: AssertionError
+_ test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-triple] _
+
+open_app = <function open_app.<locals>.factory at 0x0000028FAC125E80>
+viewport = (390, 844), gesture = 'mouse-triple'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+        # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(new_bill_button(page)))
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4063: AssertionError
+_ test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000028FA9CDFD70>
+viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+        # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(new_bill_button(page)))
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4063: AssertionError
+_ test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000028FAAFE6B90>
+viewport = (1280, 800), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+        # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(new_bill_button(page)))
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4063: AssertionError
+_ test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-triple] _
+
+open_app = <function open_app.<locals>.factory at 0x0000028FABF70BF0>
+viewport = (1280, 800), gesture = 'mouse-triple'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+        # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(new_bill_button(page)))
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4063: AssertionError
+_ test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000028FA9FC5430>
+viewport = (1280, 800), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "mouse-triple", "touch-double"])
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open(open_app, viewport, gesture):
+        # [v1.1.0] qa.md over K1 at 360 x 780, 390 x 844 and 1280 x 800, proven with the body recorder (task A16).
+        page = open_app(seed=seeds.S1, viewport=viewport, touch=gesture == "touch-double").page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(new_bill_button(page)))
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel" and stored_text(page) == seeds.S1
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4063: AssertionError
+_________ test_R29_the_keyboard_and_the_next_press_are_not_held_back __________
+
+open_app = <function open_app.<locals>.factory at 0x0000028FAC60ACF0>
+
+    def test_R29_the_keyboard_and_the_next_press_are_not_held_back(open_app):
+        # [v1.1.0] qa.md over K1 with the body recorder, the v1.1.0 form of the 1.0 tests
+        # test_R29_opening_by_keyboard_and_opening_again_straight_away_is_not_held_back and
+        # test_R29_the_guard_of_opening_ends_at_the_next_press. A key press activates with click count 0, which no guard holds
+        # back, and the guard that a click on New bill arms is gone by the next press.
+        page = open_app(seed=seeds.S1).page
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        tab_until(page, new_bill_button(page))
+        page.keyboard.press("Enter")
+>       assert dialog_is_open(page) is True and focused(page) == "Cancel"
+E       AssertionError: assert (True is True and 'Start new bill' == 'Cancel'
+E        +  where True = dialog_is_open(<Page url='http://127.0.0.1:28485/'>)
+E         
+E         - Cancel
+E         + Start new bill)
+
+tests\browser\test_app.py:4087: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R29_the_dialog_opens_with_the_safe_choice_focused
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x780-mouse-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x780-mouse-triple]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[360x780-touch-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-mouse-triple]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[390x844-touch-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-double]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-mouse-triple]
+FAILED tests\browser\test_app.py::test_R29_a_repeat_press_on_new_bill_leaves_the_dialog_open[1280x800-touch-double]
+FAILED tests\browser\test_app.py::test_R29_the_keyboard_and_the_next_press_are_not_held_back
+11 failed, 36 passed in 35.24s
