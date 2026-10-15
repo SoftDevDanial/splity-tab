@@ -19,6 +19,8 @@ Changed 2026-10-15 in execute, planner touch before A18 (ledger S4 row 4, S5 row
 
 Changed 2026-10-16 in execute, planner pass for H-10 and the step 5 wording (ledger H-10, S7 rows 39 to 43). New scenarios for R62 sit at the end of the Gherkin block under "Plain names" (H-10, ruled USER 2026-10-16 00:07, option (1), task A22), with the seeds G8 to G10. Scenarios are added for three tests the step 5 solver round wrote without one (R20 seven to eleven people, CR-S5-7. R41 the guard follows `support.py`, CR-S5-6. R58 one folder per run, CR-S5-14). How to run names the live gate's one-server pair. Lines the finders measured as untrue or open to two readings are corrected with the old text struck, "The strip reads" (QA-S5-2), `browser_version` (QA-S5-3), R60's line box (A18, K1-56) and the checklist rows K1-01, K1-02, K1-10, K1-40, K1-44 (O-1), K1-54, W1-02 (O-2), BR-02 and ST-10 (fidelity O-4, A18). Each change carries its own dated line.
 
+Changed 2026-10-16 in execute, planner touch after the step 5 re-check (ledger S7 rows 45 and 46, code review CR-R1 and CR-R6, ORCH under the owner's word on minor calls). Two scenarios are added. The outline "A repeat press on Dismiss note acts as one press at every width" (R27, R7, task A23) sits at the end of the Gherkin block under "Dismiss note arms the repeat guard", and the `@R62 @node` outline "plainNameField puts the caret where the text went in" (CR-R6) sits at the end of "Plain names". The first fails on today's tree on its asserted property in both engines, apart from its single click rows, which are its control. The second passes on today's tree and gets its RED from stubs of the helper. "Dismissing the note" is unchanged and carries a pointer line. Each change carries its own dated line.
+
 ## How to run
 - **Functional suite.** `python -m pytest tests/browser -q` runs Chromium (the default, as in 1.0). `python -m pytest tests/browser -q --engine webkit` runs WebKit. Test functions are named `test_R<n>_<what>`, so a grep maps each one to its tag. `split-core`'s unit tests and this module's Node tests (`tests/draft.test.js`, `tests/errors.test.js`) run with `node --test "tests/**/*.test.js"`.
 - **Fidelity gate.** `python tests/browser/fidelity/run.py`, Chromium only. It has no engine option (R58).
@@ -884,6 +886,7 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
     When I click "Dismiss note"
     Then the note is no longer in the DOM and #newBill has focus
     And opening the New bill dialog and pressing Start new bill never brings a note back
+    # [Added 2026-10-16 in execute, code review CR-R1, ORCH, ledger S7 row 46] The repeat press of a double click on Dismiss note is the outline "A repeat press on Dismiss note acts as one press at every width" at the end of this block (task A23).
 
   @R28 @both
   Scenario Outline: The app works without storage
@@ -2160,6 +2163,53 @@ Feature: Split app, served and driven like a person would, in Chromium and in We
       | K1 with i4 renamed 40 letters + U+202E        | ok, i4's name is the 40 letters                                           |
       | B19, and K2 with Aisyah renamed "Ai" U+202E U+000D "syah" | { ok: false }, LF and CR are still rejected (D8 (a))          |
       | B18, B20                                      | { ok: false }, still too long after the rebuild                           |
+
+  @R62 @R33 @node
+  Scenario Outline: plainNameField puts the caret where the text went in
+    # Added 2026-10-16 in execute, code review CR-R6 (ledger S7 row 46, ORCH). The helper of spec R62 (1) in src/ui/dom.js, the one both name fields call.
+    # The browser scenarios above cannot put a removed character after the caret, because a key or insert_text puts the new text before the caret and the old text is plain. A drop that selects the dropped text can. Code review CR-R6 measured mutant UC2 (the caret is selectionStart less every removed unit) passing all 12 R62 browser ids in Chromium (qa/code-review/20261016-020001/pytest-UC2-chromium.txt).
+    # The test lives under tests/ (the file name is the builder's choice, in a file of its own or beside the other Node cases) and runs under node --test with the rest, no browser. Importing src/ui/dom.js touches no DOM at load.
+    Given a stand-in input object { value, selectionStart, setSelectionRange } with the value <value> and the selectionStart <p>, whose setSelectionRange records its arguments
+    When plainNameField is called with it
+    Then it returns "<plain>", the object's value is "<plain>", and setSelectionRange was called once with (<caret>, <caret>)
+    Examples:
+      | value                                | p | plain   | caret | case                                                                       |
+      | "Be" U+202E "n"                      | 2 | Ben     | 2     | a removed character after the caret only, none before it                   |
+      | "Ben" U+202E                         | 3 | Ben     | 3     | the same at the end of the text                                            |
+      | U+202E "Be" U+202E "n"               | 3 | Ben     | 2     | one removed character before the caret and one after it                    |
+      | U+2028 U+2029 "Be" U+0000 "n" U+200E | 4 | Ben     | 2     | two removed characters before the caret and two after it                   |
+      | "Be" U+202E "x" U+2067 "n"           | 5 | Bexn    | 3     | what an insert at the caret leaves, the caret after the "x"                |
+      | U+202E U+2067                        | 1 | (empty) | 0     | a name made only of removed characters, the plain text is the empty string |
+    # Passes before any change, since the shipped line is the spec's formula. Its RED is three stubs of plainNameField put in and taken out with the Edit tool, each seen failing on its asserted property. The caret of selectionStart less every removed unit (UC2, fails the first, second, third, fourth and sixth rows), the caret at the end of the plain text (UC1, fails the first, third, fourth and fifth rows) and no setSelectionRange call (UC3, fails every row). `git diff --quiet src/` after each, `grep -rn STUB src/` empty before the commit.
+
+  # ---------- Dismiss note arms the repeat guard (v1.1.0, code review CR-R1, added 2026-10-16 in execute) ----------
+  # Ruled ORCH 2026-10-16 under the owner's word on minor calls (ledger S7 row 46). Spec R27, R7 and task A23.
+  # Once the note is gone, the People header row (#peopleBtn, task A4) lies under the pointer below 1024 px, so before A23 the repeat press of a double click on Dismiss note folded People. From 1024 px a header lies there and the repeat press moved focus to the page.
+  # Measured on 6cddc66 by code review CR-R1 (qa/code-review/20261016-020001/, pytest-PROBE-chromium.txt and pytest-PROBE-webkit.txt, page.mouse.click and page.mouse.dblclick at the centre of #dismissNote on the B1 seed). A click left People open and focus on #newBill. A double click at 390 x 844 and 360 x 780 left People folded, the second press under #peopleBtn, and focus on #peopleBtn in Chromium and on body in WebKit. A double click at 1280 x 800 left focus on body in both engines, the second press under header.top. The stored text was unchanged in every case. The triple click and the touch double tap were not probed.
+  @R27 @R7 @both
+  Scenario Outline: A repeat press on Dismiss note acts as one press at every width
+    Given the B1 seed at <size>, the stored text noted, and a body recorder (a has_touch context for the tap row)
+    When I <gesture> at the centre of "Dismiss note"
+    Then the note is no longer in the DOM and #newBill has focus
+    And below 1024 px #peopleBtn has aria-expanded "true", #peopleBlk has data-open "true" and #chargesBtn has aria-expanded "false", as after one click
+    And the stored text is the one noted
+    And only press 1 and click 1 reached the page
+    Examples:
+      | size       | gesture                    |
+      | 390 x 844  | single click (the control) |
+      | 390 x 844  | mouse double click         |
+      | 390 x 844  | mouse triple click         |
+      | 390 x 844  | touch double tap           |
+      | 360 x 780  | single click (the control) |
+      | 360 x 780  | mouse double click         |
+      | 360 x 780  | mouse triple click         |
+      | 360 x 780  | touch double tap           |
+      | 1280 x 800 | single click (the control) |
+      | 1280 x 800 | mouse double click         |
+      | 1280 x 800 | mouse triple click         |
+      | 1280 x 800 | touch double tap           |
+    # The single click rows pass on today's tree by design. They are the control that fixes the end state the other rows must equal. The double click rows fail on today's tree on the asserted property, People folded below 1024 px, focus not on #newBill, and a second press and click that reached the page. The triple click and touch rows are measured by the RED run of task A23, and one that passes on today's tree is reported to the orchestrator.
+    # The touch double tap is proven by the recorder as "A body recorder" says (Phrases), so a second tap more than 500 ms after the first or more than 22 px from it fails the case and names the gap. A tap less than 500 ms after the Dismiss tap and within 22 px of it is its repeat by spec R57 (b), the accepted residual, so no row taps People straight after.
 ```
 
 ## FE element checklist

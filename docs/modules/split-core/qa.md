@@ -42,6 +42,8 @@
 
 Changed 2026-10-16 in execute, planner pass for H-10 and the step 5 wording. Three `@R35` scenarios for `plainName` sit at the end of the Gherkin block under "Names" (H-10, ruled USER 2026-10-16 00:07, option (1), task C7). The `@R21 @R8` scenario for the trap bill of code review CR-S5-1 (test `042c359`) sits after the R8 trap rows.
 
+Changed 2026-10-16 in execute, planner touch after the step 5 re-check (ledger S7 row 45, ORCH). One line of the `@R35 @R24` scenario "plainName and summaryText read one class" is reworded, with the old text struck in place and a dated line under it. It said `plainName` gives "AB" exactly when Chen's row reads "A B", which is false by its letter at U+0020. No scenario is added or removed.
+
 ## Named example bills
 Used by the scenarios. Rates are `serviceText` / `sstText`. People are listed in order with their ids.
 
@@ -896,7 +898,8 @@ Feature: split-core money, maths, state rules and summary text
     Given every code point from U+0000 to U+10FFFF except the surrogates U+D800 to U+DFFF
     When plainName is called on "A" + c + "B" for each code point c, and summaryText on the S2 result with Chen's name set to "A" + c + "B"
     Then plainName gives "AB" for exactly 79 code points and "A" + c + "B" for every other
-    And for every code point, plainName gives "AB" exactly when Chen's row of summaryText reads "A B RM 38.86"
+    And for every code point, ~~plainName gives "AB" exactly when Chen's row of summaryText reads "A B RM 38.86"~~ the whole of Chen's row of summaryText reads "A B RM 38.86" when plainName gave "AB", and reads "A" + c + "B" followed by " RM 38.86" when plainName kept the text
+    # [Changed 2026-10-16 in execute, ledger S7 row 45, ORCH, planner wording.] The struck line is false by its letter at U+0020, where a typed space also reads "A B" in the row and plainName keeps it. So the scenario compares the whole row, as the built test does (tests/bill.test.js, the @R35 @R24 test).
     And plainName(plainName(t)) equals plainName(t) for each of these texts, and no call throws
 
   @R35 @R25
