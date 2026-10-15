@@ -968,7 +968,7 @@ DESCRIBED_FIELDS = [(seeds.S1, "Char kuey teow price in RM", "13.505"), (seeds.S
 @pytest.mark.chromium_only(reason="Needs a CDP session (Accessibility.getPartialAXTree) to read the computed description, "
                                   "which Playwright gives in Chromium only.")
 def test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported(open_app, evidence_folder):
-    # CG-P6, ruled by the owner (USER, 2026-10-13): built to the golden, the description is measured and reported to the
+    # CG-P6, ruled by the owner (USER, 2026-10-13). Built to the golden, the description is measured and reported to the
     # owner. So the lines name what was read and the test asserts only that the four exist (QA-S5-1).
     lines = []
     for seed, name, bad in DESCRIBED_FIELDS:
@@ -1579,7 +1579,7 @@ ROW_EDGES_JS = """(root) => [...document.querySelectorAll(root + ' > ul.r-splits
 
 
 def in_two_columns(edges, rows):
-    """Whether the splits rows at `edges` (ROW_EDGES_JS) stand in two columns with `rows` in the first: those share one
+    """Whether the splits rows at `edges` (ROW_EDGES_JS) stand in two columns with `rows` in the first. Those share one
     left edge, the rest share another further right, and the first of the second column is level with row 1 (PD-17)."""
     def level(a, b):
         return abs(a - b) <= 0.5
@@ -5178,7 +5178,7 @@ READS_ONLY = {"STAND_IN_JS", "TWO_FRAMES_JS", "OPEN_DIALOGS_JS", "PICKED_JS", "S
               "COLD_BOOT_JS", "RECEIPT_JS", "READS_AT_JS", "ACTIVE_LABEL_JS"}
 READ_EXPRESSIONS = {"window.testClipboardText", "window.testClipboardWrites", "window.testCspViolations",
                     "Array.isArray(window.testCspViolations)", "localStorage.getItem('split.draft')"}
-# What a page script of the gate may call: reads of the page, of the stand-in's records and of the draft's text, the
+# A page script of the gate may call reads of the page, of the stand-in's records and of the draft's text, the
 # methods that shape what was read, and the helpers the script declares itself (const name = (...) =>). The scan reads
 # the text, it does not parse it, so it catches a plain write (localStorage.clear(), an assignment, ++ or --) and not
 # one hidden on purpose.
@@ -5290,7 +5290,8 @@ def read_argument(call):
 
 
 def string_value(node, strings):
-    """The text of a string expression: a literal, a name in `strings`, or an f-string of those. None for anything else."""
+    """The text of a string expression (a literal, a name in `strings`, or an f-string of those), None for anything
+    else."""
     if isinstance(node, ast.Constant) and isinstance(node.value, str):
         return node.value
     if isinstance(node, ast.Name):
@@ -5313,7 +5314,7 @@ def module_strings(tree):
 
 
 def gate_helpers(tree, helper_tree):
-    """The functions of support.py the gate runs: those it calls as support.<name>, and those these call in turn."""
+    """The functions of support.py the gate runs, those it calls as support.<name> and those these call in turn."""
     functions = {node.name: node for node in helper_tree.body if isinstance(node, ast.FunctionDef)}
     names = [call.func.attr for call in ast.walk(tree) if isinstance(call, ast.Call)
              and isinstance(call.func, ast.Attribute) and is_name(call.func.value, "support")]
@@ -5429,7 +5430,7 @@ def test_R41_a_planted_copy_of_the_gate_script_is_reported(tmp_path, fault):
 
 
 # Each planted copy is the real support.py with one write in a helper the gate runs, and the one line the guard
-# reports (code review CR-S5-6: the gate reads the cold boot through COLD_BOOT_JS and types through replace_text).
+# reports (code review CR-S5-6, the gate reads the cold boot through COLD_BOOT_JS and types through replace_text).
 PLANTED_HELPER_FAULTS = {
     "cold-boot-js-clears-the-storage": ["COLD_BOOT_JS calls clear(), which is not a read"],
     "replace-text-fills-the-field": [".fill is used"],
@@ -5501,7 +5502,7 @@ def test_R58_the_engine_option_and_the_one_launch_place(request, pytestconfig):
 
 def test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make(tmp_path, monkeypatch):
     # Two runs of one engine in the same second get the same <stamp>-<engine> name. The second must not write into the
-    # first one's folder (constitution, Gates and evidence, each run writes its own capture; code review CR-S5-14).
+    # first one's folder (constitution, Gates and evidence, each run writes its own capture, and code review CR-S5-14).
     import conftest
     moment = types.SimpleNamespace(strftime=lambda pattern: "20261015-235959")
     monkeypatch.setattr(conftest, "datetime", types.SimpleNamespace(datetime=types.SimpleNamespace(now=lambda: moment)))
@@ -5809,8 +5810,8 @@ def test_R48_start_new_bill_opens_people_and_folds_charges(open_app):
 
 
 # ---------------------------------------------------------------- Task A22: names stay plain (R62, R4, R5, R11, R26, R33)
-# The class of core R35 written out, because Python's re has no \p{...}: the C0 and C1 controls (Cc, 65), LS, PS and
-# the 12 bidi controls (qa.md, Plain names, "Python's equivalent list of the 79 code points").
+# The class of core R35 written out, because Python's re has no \p{...}. It is the C0 and C1 controls (Cc, 65), LS, PS
+# and the 12 bidi controls (qa.md, Plain names, "Python's equivalent list of the 79 code points").
 NAME_CLASS = frozenset([*range(0x00, 0x20), *range(0x7F, 0xA0), 0x2028, 0x2029, 0x061C, 0x200E, 0x200F,
                         *range(0x202A, 0x202F), *range(0x2066, 0x206A)])
 assert len(NAME_CLASS) == 79
@@ -5834,7 +5835,7 @@ PEOPLE_SUMMARY_JS = "() => document.querySelector('#peopleSum .sec-txt')?.textCo
 
 
 def insert(page, text):
-    """qa.md "insert T": page.keyboard.insert_text(T) on the focused field, one input event with the text, which is how
+    """qa.md "insert T", page.keyboard.insert_text(T) on the focused field. One input event with the text, which is how
     a paste or a drop arrives. Returns the characters of T the tool did not put into the field, spelled (RECORD_INPUT_JS
     must be on the page)."""
     page.evaluate("() => { window.testInputValues = []; }")
@@ -5853,7 +5854,7 @@ PLAIN_INSERTS = [("\u202E", "Ben", 3), ("\u202Ex", "Benx", 4), ("a\u2028b", "Ben
 
 @pytest.mark.parametrize("text, value, caret", PLAIN_INSERTS, ids=[spelled(text) for text, _, _ in PLAIN_INSERTS])
 def test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once(open_app, text, value, caret):
-    # qa.md "Copy summary on the card" at 390 x 844: the card is not displayed below 1024 px, so the one Copy summary
+    # qa.md "Copy summary on the card" at 390 x 844. The card is not displayed below 1024 px, so the one Copy summary
     # shown there (the strip's) is pressed, whose text R22 proves equal to the card's (BUILD.md, task A22).
     page = open_app(seed=seeds.S2).page
     open_people_first(page)
@@ -5925,7 +5926,7 @@ def test_R62_characters_outside_the_class_stay_in_a_name(open_app):
     assert values == people_names(page)[1:3] == ["Ben" + kept, "Chen" + emoji]
 
 
-# A test-side spy on "Person 2 name" alone: every call of the value setter of HTMLInputElement.prototype and of
+# A test-side spy on "Person 2 name" alone. Every call of the value setter of HTMLInputElement.prototype and of
 # setSelectionRange on that element adds 1 (qa.md, "Typing that brings no character of the class writes nothing").
 FIELD_WRITES_SPY_JS = """(el) => { window.testFieldWrites = 0; const proto = HTMLInputElement.prototype;
   const value = Object.getOwnPropertyDescriptor(proto, 'value'), select = proto.setSelectionRange;
@@ -6023,9 +6024,9 @@ def test_R62_a_saved_name_with_bidi_controls_loads_plain_and_the_people_line_rea
 
 
 # ---------------------------------------------------------------- v1.1.0 task A23: Dismiss note arms the repeat guard (R27, R7, R57)
-# Once the note is gone the rows move up, so the rest of a double press lands on the People header row below 1024 px and
-# on the top bar from 1024 px. Before A23 it folded People or moved focus to the page (code review CR-R1). Each test reads
-# the whole end state at once, so one run names every property that broke.
+# Once the note is gone the rows move up, so the rest of a double press lands on the People header row below 1024 px
+# and on the top bar from 1024 px. Before A23 it folded People or moved focus to the page (code review CR-R1). Each test
+# reads the whole end state at once, so one run names every property that broke.
 def after_dismiss(page, viewport, noted):
     """What a press on Dismiss note left. The notes, the id of the focused element, the section rows below 1024 px (R48)
     and whether the stored text is still `noted`."""
@@ -6041,7 +6042,8 @@ def one_dismiss(viewport):
 @pytest.mark.parametrize("gesture", GESTURES)
 @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
 def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
-    # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must leave.
+    # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+    # leave.
     page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
     noted = stored_text(page)
     page.evaluate(RECORD_BODY_CLICKS_JS)

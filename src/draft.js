@@ -21,9 +21,10 @@ const isObject = (value) => typeof value === "object" && value !== null && !Arra
 const isString = (value) => typeof value === "string";
 
 /**
- * D8: the name the bill gets, or null to reject the draft. A line break rejects it before anything is removed, as
- * since 1.0 (the text input strips LF and CR, so the app never saved one). Every other character of the class goes
- * through core's plainName, and the count of at most `max` grapheme clusters is of what is left.
+ * D8. The name the bill gets, or null to reject the draft. A line feed or a carriage return rejects it before anything
+ * is removed, as since 1.0 (the text input strips both, so the app never saved one). Every other character of the
+ * class, VT, FF, NEL, U+2028 and U+2029 among them, goes through core's plainName, so the draft loads without it, and
+ * the count of at most `max` grapheme clusters is of what is left.
  */
 function readName(name, max) {
   if (!isString(name) || /[\r\n]/.test(name)) return null;

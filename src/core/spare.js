@@ -9,7 +9,8 @@ import { computeResult } from "./result.js";
 // Pick again stops here (R31, ruled CG-P3): on a bill where no order can change the rows a loop would never end.
 const MAX_DRAWS = 64;
 
-// The Bill fields as newBill lists them, the one list (bill.js), read here because billWith stays private.
+// The Bill fields as newBill lists them, the one list core's copies read (bill.js), read here because billWith stays
+// private.
 const BILL_FIELDS = Object.keys(newBill());
 
 /**

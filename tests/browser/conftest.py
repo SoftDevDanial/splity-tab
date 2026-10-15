@@ -28,8 +28,10 @@ _evidence = {"dir": None, "engine": rig.DEFAULT_ENGINE, "browser_version": None,
 
 
 def evidence_dir():
-    """The run's evidence folder, <stamp>-<engine> (R58), made on first use (a failure screenshot, or SPLIT_EVIDENCE=1).
-    Never exist_ok: a second run of the engine in the same second stops with FileExistsError rather than write into the
+    """The run's evidence folder, <stamp>-<engine> (R58), made on first use, by a failure screenshot, by
+    SPLIT_EVIDENCE=1 or by a scenario that writes a record through evidence_folder (accessible-description.txt in
+    Chromium, for example), so a passing run makes it too.
+    Never exist_ok. A second run of the engine in the same second stops with FileExistsError rather than write into the
     first run's folder, as the live gate does."""
     if _evidence["dir"] is None:
         stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -220,7 +222,8 @@ def open_app(server, browser, request):
 
 @pytest.fixture
 def evidence_folder():
-    """The run's evidence folder, for a scenario that records what it measured as information (R45 in WebKit)."""
+    """The run's evidence folder, for a scenario that records what it measured as information, such as R9's
+    accessible-description.txt in Chromium, R45's icon-colour.txt in WebKit and R50's record in both engines."""
     return evidence_dir()
 
 

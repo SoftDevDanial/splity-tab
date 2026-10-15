@@ -435,7 +435,7 @@ for (const [text, plain] of PLAIN_ROWS) {
   });
 }
 
-// The proof that the names on screen and the copied summary cannot drift apart (spec R35 point 2): for every code
+// The proof that the names on screen and the copied summary cannot drift apart (spec R35 point 2). For every code
 // point, plainName deletes it exactly when summaryText replaces it in a row name with a space, and both keep every
 // other one as typed. The row is compared whole, because a typed U+0020 also reads "A B". 79 is written by hand
 // (65 in Cc, LS, PS and 12 in Bidi_Control), because a count read from either class would agree with a wrong class.

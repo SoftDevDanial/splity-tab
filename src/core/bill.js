@@ -24,9 +24,9 @@ export const LIMITS = Object.freeze({
   serviceMaxPercent: 30, sstMaxPercent: 20,
 });
 
-// The Bill fields in Bill order. newBill is the one place that lists them, so a new field is added there once and
-// every copy takes it: billWith here and withSpare in spare.js, which reads the same keys because the Contracts
-// keep billWith private.
+// The Bill fields in Bill order. newBill is the one list that core's copies read (billWith here, and withSpare in
+// spare.js, which reads the same keys because the Contracts keep billWith private). The Bill typedef above and
+// split-app's decoder (decode in draft.js, D12) list the fields too, so a new field goes in all three.
 const BILL_FIELDS = Object.keys(newBill());
 
 /** The bill with `changes` applied, built from BILL_FIELDS only, so no action can forget a field when copying. */
@@ -199,12 +199,12 @@ export function sparePeople(bill) {
   return everyone.filter((id) => onAnItem.has(id));
 }
 
-// The characters no name keeps (R35) and the summary prints as a space (R24): the C0 and C1 controls, the line and
-// paragraph separators and the bidi controls. Some reader ends a line or the whole text at a control or a separator
-// (NUL ends a C-string clipboard, FS to RS end a line for Python), and a bidi control reverses how the rest of its line
-// reads. Space separators such as NBSP are not in it. Written once, so the names on screen and the copied summary
-// cannot disagree. Read only through String.prototype.replace, which starts at 0 on every call, so the g flag carries
-// no state from one caller to the next.
+// The characters no name keeps (R35) and the summary prints as a space (R24), which are the C0 and C1 controls, the
+// line and paragraph separators and the bidi controls. Some reader ends a line or the whole text at a control or a
+// separator (NUL ends a C-string clipboard, FS to RS end a line for Python), and a bidi control reverses how the rest
+// of its line reads. Space separators such as NBSP are not in it. Written once, so the names on screen and the copied
+// summary cannot disagree. Read only through String.prototype.replace, which starts at 0 on every call, so the g flag
+// carries no state from one caller to the next.
 export const NAME_CONTROLS = /[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/gu;
 
 /**

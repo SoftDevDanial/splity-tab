@@ -223,7 +223,7 @@ test("@R25 the core files do import each other (the import scan is not blind)", 
   assert.ok(all.includes("./money.js") && all.includes("./allocate.js") && all.includes("./bill.js"));
 });
 
-// R35 point 2: the class that names lose and the class the summary prints as a space are one definition, so the
+// R35 point 2. The class that names lose and the class the summary prints as a space are one definition, so the
 // screen and the copied summary cannot disagree. A text scan of every file under a folder, so it sees a second
 // class only when that class names Bidi_Control (a class written with the property's short alias would pass).
 const SRC_DIR = resolve(import.meta.dirname, "../src");
@@ -243,7 +243,7 @@ function oneClassProblems(dir) {
 
 test("@R35 @R25 the class is written once, in core/bill.js, and summary.js reads it from there", () => {
   assert.deepEqual(oneClassProblems(SRC_DIR), []);
-  // The scan has teeth: summary.js back on a class of its own, scanned in a temporary folder beside the real bill.js.
+  // The scan has teeth, shown on summary.js back on a class of its own in a temporary folder beside the real bill.js.
   const planted = mkdtempSync(join(tmpdir(), "split-r35-"));
   try {
     mkdirSync(join(planted, "core"));

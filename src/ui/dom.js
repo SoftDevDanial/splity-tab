@@ -65,10 +65,10 @@ const GUARDED = ["mousedown", "click", "keydown"];
 const isRepeat = (event) => (event.type === "keydown" ? event.repeat : isRepeatClick(event));
 
 /**
- * Arms a guard against the rest of a double click, triple click or double tap. Every click that moves the layout under
- * the pointer calls it, and each caller says why: the next press of that gesture would land on whatever is drawn there
- * next (the row that took a removed row's place, a control pushed down, the backdrop of a dialog that just opened, or
- * what lay under a dialog that just closed).
+ * Arms a guard against the rest of a double click, triple click or double tap. Every click that adds or removes a row,
+ * dismisses the note, or opens or closes a dialog calls it before it changes the page, and each caller says why. Such a
+ * click can redraw what lies under the pointer, so the next press of the same gesture would land on whatever is drawn
+ * there next. Add item draws nothing under its pointer and calls it too, so the rule stays one rule.
  * The guard cancels the repeat presses and clicks at the document, in the capture phase, before any control sees them,
  * so a cancelled press also keeps focus where the app put it. It also cancels a held key's repeats (a keydown with
  * `repeat` true, R57 (a)), so a held Enter cannot press the control the click moved focus to. It is gone at the first
@@ -117,10 +117,11 @@ export function setValue(input, text) {
 }
 
 /**
- * R62 (1), for the `input` listener of a person or item name field: the field's text without core's NAME_CONTROLS
- * class, however it came in (a key, a paste, a drop, autofill). Only when that removed something does it write the
- * field, the plain text and then a collapsed caret where the text went in less what was removed before it. That is
- * the one write into the field being typed in that R33 allows, so ordinary typing and IME composition stay untouched.
+ * R62 (1), for the `input` listener of a person or item name field. It gives the field's text without core's
+ * NAME_CONTROLS class, however it came in (a key, a paste, a drop, autofill). Only when that removed something does it
+ * write the field, the plain text and then a collapsed caret where the text went in less what was removed before it.
+ * That is the one write into the field being typed in that R33 allows, so ordinary typing and IME composition stay
+ * untouched.
  * @param {HTMLInputElement} input the name field, as the input event left it
  * @returns {string} the text for setPersonName or setItemName
  */
