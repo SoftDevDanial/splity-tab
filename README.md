@@ -136,7 +136,7 @@ Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no
 | Unit tests | `node --test "tests/**/*.test.js"` | none |
 | Browser tests | `python -m pytest tests/browser -q` | a failure screenshot in `docs/modules/split-app/qa/functional/<ts>/` |
 | Looks right (fidelity gate) | `python tests/browser/fidelity/run.py` | `docs/modules/split-app/qa/fidelity/<ts>/` |
-| Works right (live gate) | `python tests/browser/live_e2e.py` | `docs/modules/split-app/qa/live-e2e/<ts>/` |
+| Works right (live gate) | `python tests/browser/live_e2e.py --engine <chromium or webkit>`, counted per engine as a `--control seeded` run that stops red at step 1 and then a green run against one server (`--base-url`, see `CLAUDE.md`) | `docs/modules/split-app/qa/live-e2e/<ts>-<engine>/` and `<ts>-<engine>-control/` |
 
 Node 24, Python with pytest and Playwright, headless Chromium. Each browser command starts and stops its own
 local server and prints its PID and port. A bare `node --test tests/` fails on Node 24, so keep the quoted
