@@ -1,6 +1,4 @@
 """Helpers shared by the browser tests: the R3 DOM walk, static scans of the shipped files, page shortcuts."""
-import re
-
 import rig
 
 ROOT = rig.ROOT
