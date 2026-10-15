@@ -1054,6 +1054,8 @@ Built by the frontend developer role from `spec.md` (task A8, R11 to R14, R56, t
 
 **How to view.** Serve as above and open `http://127.0.0.1:<port>/`. Pick By item, the Items heading shows "Add item" on the right and no frame yet. Add item puts a row in the frame with the cursor in "Item 1", an amber bar on its left until someone is tapped. Type a name and the price field, Remove and the toggle group take it as their name. Type 13.505 in a price and leave it, the price turns red and "Enter an amount like 12.50" shows under the name and price, ending under the price. At 1280 x 800 with four items the frame scrolls inside itself with a fade at the bottom, and scrolled to the end the fade moves to the top.
 
+**Why a Remove still tests its own repeat press** [Added 2026-10-15 by the dev solver of the step 5 round, CR-S5-8, moved here from the JSDoc of `isRepeatClick` in `src/ui/dom.js`, which now points here]. In 1.0 the error line a price field shows when it is left put a chip's repeat press on its item's Remove. Since v1.1.0 (this task) the error sits under the item's row and moves the toggles down, and the Remove's own `isRepeatClick` test stays as the backstop for a layout move that no click armed (RG-CR-08).
+
 ## v1.1.0 task A9, the receipt renderer and the card (2026-10-15)
 Built by the frontend developer role from `spec.md` (task A9, R16 to R21, the receipt part of the DOM contract and "The receipt is written once (PD-20)", the Copy table's receipt rows) and `qa.md` (the `@R16` to `@R21` scenarios, the card lines of `@R4`, `@R5` and `@R13` that A5 and A8 left for A9, checklist rows of the card in K1, K2, BU, BT, W1, RE and BE), resumed from `docs/progress/handoff/handoff-2026-10-15-execute-split-A9.md`.
 

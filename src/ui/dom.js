@@ -50,9 +50,8 @@ export function watchPointerClicks() {
 /**
  * True for the second and later press of a double click, triple click or double tap: the mousedown or click `event`
  * by the one rule `isRepeatPress` (R57 (b)). A key press (count 0) and a mouse click of its own (count 1) never are.
- * A Remove button tests it itself, whether or not a guard is armed (R7, RG-CR-08), for a layout move that no click armed.
- * In 1.0 the error line a price field shows when it is left put a chip's repeat press on its item's Remove. Since v1.1.0
- * the error sits under the item's row and moves the toggles down, and the test stays as the backstop (task A8).
+ * A Remove button tests it itself, whether or not a guard is armed (R7, RG-CR-08), for a layout move that no click
+ * armed, such as a price's error line (BUILD.md, task A8).
  */
 export function isRepeatClick(event) {
   // The window listener records a click before anyone judges it, so a click must not be compared with itself.
@@ -65,20 +64,16 @@ const GUARDED = ["mousedown", "click", "keydown"];
 const isRepeat = (event) => (event.type === "keydown" ? event.repeat : isRepeatClick(event));
 
 /**
- * A click that moves the layout under the pointer arms this guard, because the rest of its double click, triple
- * click or double tap would land on whatever is drawn there next: the row or control that took a removed row's place,
- * the person row that pushed "Add person" down (below 1024 px it sits under the list), the backdrop of the dialog that
- * had just opened (it shut again), or whatever was under a dialog that has closed.
- * The armers are the click on every Remove, on Add person and on Add item (nothing slides under that one, it arms so
- * the rule stays one rule), and the clicks that open and close the New bill dialog and the Splits sheet. The guard
- * protects only what arms it, and no click can arm it for a layout move that is not a click (the error line of a price
- * field, RG-CR-08). So a Remove also
- * ignores a repeat press itself (`isRepeatClick`), and the guard covers everything else, Add person included, which has no
- * count test. "Dismiss note" moves the rows and arms nothing, its repeat press lands on a heading or a div (BUILD.md, call 18).
- * The guard cancels the repeat presses and clicks at the document, in the capture phase, before any control sees
- * them. A cancelled press also keeps focus where the app put it. It also cancels a held key's repeats (a keydown with
- * `repeat` true, R57 (a)), so a held Enter cannot press the control that the click moved focus to. It is gone at the
- * first press that is not a repeat, so a press of its own is never held back. Nothing is scheduled.
+ * Arms a guard against the rest of a double click, triple click or double tap. Every click that moves the layout under
+ * the pointer calls it, and each caller says why: the next press of that gesture would land on whatever is drawn there
+ * next (the row that took a removed row's place, a control pushed down, the backdrop of a dialog that just opened, or
+ * what lay under a dialog that just closed).
+ * The guard cancels the repeat presses and clicks at the document, in the capture phase, before any control sees them,
+ * so a cancelled press also keeps focus where the app put it. It also cancels a held key's repeats (a keydown with
+ * `repeat` true, R57 (a)), so a held Enter cannot press the control the click moved focus to. It is gone at the first
+ * press that is not a repeat, so a press of its own is never held back. Nothing is scheduled.
+ * No click can arm it for a layout move that is not a click (RG-CR-08), so a Remove also tests `isRepeatClick` itself.
+ * "Dismiss note" moves the rows and arms nothing, its repeat press lands on a heading or a div (BUILD.md, call 18).
  */
 export function swallowRepeatClicks() {
   const guard = (event) => {
