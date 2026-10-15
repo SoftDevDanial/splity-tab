@@ -1,0 +1,12 @@
+Security solver, task C7, 2026-10-16. Stub 2 ("also deletes \p{Cf}"), the first run. SUPERSEDED as a RED record by
+20261016-010548-red, kept as history.
+
+The stub, in src/core/bill.js with the Edit tool, reads as follows.
+
+export function plainName(text) { return text.replace(/[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}\p{Cf}]/gu, ""); } // STUB C7 red 2, also deletes Cf
+
+Result. 393 tests, 389 pass, 4 fail (the U+200B row, the emoji row, "plainName and summaryText read one class", "the
+class is written once"). This run showed a fault in the new test "plainName and summaryText read one class". Its list
+of wrong code points began with U+0020, which the stub keeps and the summary prints as typed. The test equated "the row
+reads A B RM 38.86" with "plainName deleted it", and a typed space also reads "A B". The test was corrected (whole row
+against "A B" when deleted, "A" + the code point + "B" when kept), and stubs 1 and 2 were run again on it.

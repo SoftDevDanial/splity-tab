@@ -1,0 +1,10 @@
+Security solver, task A22 RED B in WebKit 26.5, 2026-10-16. Not a suite run, the R62 scenarios only.
+
+The same stub as RED B in Chromium (20261016-011715-chromium/red.txt), a person name helper in src/ui/people.js that
+also deletes \p{Cf}, still in place for this run and taken out with the Edit tool right after it (git diff --quiet src/
+exit 0).
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -k R62 --engine webkit
+Result. 12 selected, 3 failed, 9 passed, the same three as in Chromium.
+- "Characters outside the class stay in a name" FAILED on its asserted property, the same values as in Chromium,
+  ['BenAB\xa0C', 'Chen' + the emoji without joiners] against ['BenA​B\xa0C﻿', 'Chen' + the emoji as inserted].
+- "An item name loses the class too" and the G8 load still fail (no stub in items.js or the decoder).

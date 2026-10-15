@@ -1,0 +1,23 @@
+Security solver, task C7 RED 1 of 3 (the run on the corrected test), 2026-10-16. split-core qa.md How to run,
+"RED first for a new or changed case".
+
+Tree. HEAD 8402cca plus the new tests (tests/bill.test.js, the 11 rows of "plainName deletes the class and keeps
+everything else" and the corrected "plainName and summaryText read one class", tests/hygiene.test.js, "The class is
+written once" and the runtime trap workload calling plainName and reading NAME_CONTROLS). src/core/summary.js
+unchanged (its own CONTROLS literal). src/core/bill.js holds this stub at the end of the file, Edit tool.
+
+export function plainName(text) { return text; } // STUB C7 red 1, returns its input
+
+Stub 1 of spec task C7, "a throwaway stub plainName that returns its input".
+
+Command. node --test --test-reporter=tap --test-reporter-destination=<this folder>/node-test.txt "tests/**/*.test.js"
+Result. 393 tests, 384 pass, 9 fail. Every failure is an AssertionError on the asserted property, none an import error.
+- The 7 removal rows of the R35 outline (Ben RLO, Be RLO x RLI n, A LS B PS C, the NUL row, the TAB row, x ESC DEL NEL
+  U+009F y, the ten bidi controls). Each "Expected values to be strictly equal", the input came back.
+- "@R35 @R24 plainName and summaryText read one class". Exactly the 79 members of the class are listed as wrong
+  (U+0000 to U+001F, U+007F to U+009F, U+061C, U+200E, U+200F, U+2028, U+2029, U+202A to U+202E, U+2066 to U+2069).
+- "@R35 @R25 the class is written once" gives ["Bidi_Control on 1 lines (core/summary.js)", "core/summary.js does not
+  import NAME_CONTROLS from ./bill.js"], not [].
+Passing under this stub, as expected for a stub that returns its input. The four kept rows (U+200B row, the emoji row,
+the Arabic row, the empty text), covered by RED 2 and RED 3. Every 1.0 and v1.1.0 case passes (384 = the 380 of the
+step 5 solver round's proof run plus the 4 kept rows).

@@ -1,0 +1,24 @@
+Security solver, task C7 GREEN and the DRY safety record, 2026-10-16 (constitution, Engineering principles (1) DRY
+and (8) DRY safety, behaviour verified on the extraction).
+
+Change. src/core/bill.js gains the exported NAME_CONTROLS (/[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/gu) and plainName
+(text.replace(NAME_CONTROLS, ""), R35). src/core/summary.js drops its own CONTROLS literal and imports NAME_CONTROLS
+from ./bill.js, its one code line now reads row.name.replace(NAME_CONTROLS, " "). The class comment moved from
+summary.js to bill.js (one home), and summary.js's JSDoc names NAME_CONTROLS.
+
+Before. 20261016-010829-dry-before/node-test.txt. bill.js with the real NAME_CONTROLS and plainName, summary.js still
+on its own literal. 393 tests, 392 pass, 1 fail, the one expected, "@R35 @R25 the class is written once" (Bidi_Control
+on 2 lines, core/bill.js and core/summary.js, and summary.js does not import NAME_CONTROLS).
+After. This folder, node-test.txt. summary.js on the shared class. 393 tests, 393 pass, 0 fail.
+Compared by test name and outcome. The 30 R24 test lines are the same names with the same outcome (ok) in both runs.
+Across all 393 names the only difference is "the class is written once", not ok before and ok after.
+
+The one-line scan has teeth. The same test writes a planted copy of summary.js, back on a class literal of its own in
+place of the import, beside the real bill.js in a temporary folder made by mkdtempSync under the OS temp folder and
+removed in its finally block. The scan reports "Bidi_Control on 2 lines (core/bill.js, core/summary.js)" and
+"core/summary.js does not import NAME_CONTROLS from ./bill.js" for it, asserted exactly, in this run.
+
+Count. 380 at the step 5 solver round's proof run (split-core/qa/unit/20261015-234943/), plus 13 new. 11 rows of
+"plainName deletes the class and keeps everything else", "plainName and summaryText read one class" (tests/bill.test.js),
+"the class is written once" (tests/hygiene.test.js). The runtime trap test is the same id, its workload now also reads
+NAME_CONTROLS and calls plainName, and it passes (no banned access, every export run).

@@ -1,0 +1,14 @@
+engine webkit, browser version 26.5
+PASSED   call     test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202E] (0.88s)
+PASSED   call     test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+202Ex] (0.74s)
+PASSED   call     test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[aU+2028b] (0.74s)
+PASSED   call     test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0000] (0.76s)
+PASSED   call     test_app.py::test_R62_a_control_or_bidi_character_put_into_a_persons_name_is_removed_at_once[U+0009Lee] (0.76s)
+PASSED   call     test_app.py::test_R62_a_removal_in_the_middle_of_a_name_keeps_the_caret_where_the_text_went_in (0.63s)
+PASSED   call     test_app.py::test_R62_each_kind_of_character_in_the_class_is_removed_from_a_name_field (3.36s)
+PASSED   call     test_app.py::test_R62_characters_outside_the_class_stay_in_a_name (0.76s)
+FAILED   call     test_app.py::test_R62_typing_that_brings_no_character_of_the_class_writes_nothing_into_the_field (0.63s)
+FAILED   call     test_app.py::test_R62_an_item_name_loses_the_class_too (0.53s)
+PASSED   call     test_app.py::test_R62_a_name_made_only_of_removed_characters_falls_back_to_its_position (0.67s)
+FAILED   call     test_app.py::test_R62_a_saved_name_with_bidi_controls_loads_plain_and_the_people_line_reads_left_to_right (0.41s)
+exit status 1

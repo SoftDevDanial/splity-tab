@@ -1,0 +1,23 @@
+Security solver, task C7 RED 3 of 3, 2026-10-16. split-core qa.md How to run, "RED first for a new or changed case".
+
+Why a third stub. The two stubs spec task C7 names leave two new cases green in both runs. The rows "the Arabic name
+U+0639 U+0644 U+064A, a space and Lina stays the same text" and "the empty text gives the empty text" hold no
+character that either stub changes (no member of the class, no Cf). The method of qa.md asks that every new case is
+seen failing on its own assertion in at least one run, and lets a further stub cover the cases the first ones pass,
+so this stub is added for those two. It is a plausible wrong plainName, one that normalises names (NFKC, lower case,
+both ruled out by the core non-goals) and gives an empty result a fallback (R17 is the fallback, not plainName).
+
+Tree. As RED 1 and RED 2 (HEAD 8402cca plus the corrected new tests, src/core/summary.js unchanged). src/core/bill.js
+holds this stub in place of stub 1, Edit tool.
+
+export function plainName(text) { return text.replace(/[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/gu, "").normalize("NFKC").toLowerCase() || "Person"; } // STUB C7 red 3, normalises and falls back
+
+Command. node --test --test-reporter=tap --test-reporter-destination=<this folder>/node-test.txt "tests/**/*.test.js"
+Result. 393 tests, 382 pass, 11 fail, each an AssertionError on the asserted property. Among them the two this stub is
+for, the Arabic row ('علي lina' against 'علي Lina') and the empty text ('Person' !== ''). The others are the removal
+rows but "x ESC DEL NEL U+009F y" (lower case keeps "xy"), the U+200B row (NFKC turns U+00A0 and U+3000 into spaces),
+"plainName and summaryText read one class" and "the class is written once".
+
+Every new case is red in at least one of RED 1 (20261016-010625-red), RED 2 (20261016-010548-red) and RED 3 (this).
+The 7 removal rows in RED 1, the U+200B and emoji rows in RED 2, the Arabic and empty rows here, the two one-class
+tests in all three.

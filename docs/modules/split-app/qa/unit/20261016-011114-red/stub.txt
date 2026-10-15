@@ -1,0 +1,19 @@
+Security solver, task A22 Node RED 2 of 2, 2026-10-16. The second stub of the method (split-core qa.md How to run),
+for the two rows that src/draft.js as it stands already passes.
+
+The stub decoder removes the class from every name before anything else, so LF and CR go with it (both are Cc), and
+it counts nothing. Three edits to src/draft.js with the Edit tool, taken out again the same way after the run
+(git diff --quiet src/ exit 0, grep -rn STUB src/ empty). They read as follows.
+
+function nameFits(name) { return isString(name); } // STUB A22 red 2, no line break check, no count
+const stubPlain = (name) => name.replace(/[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/gu, ""); // STUB A22 red 2, removes first
+readPerson returns { id: raw.id, name: stubPlain(raw.name) } and readItem { id: raw.id, name: stubPlain(raw.name), ... }
+
+Command. node --test --test-reporter=tap --test-reporter-destination=<this folder>/node-test.txt "tests/**/*.test.js"
+Result. 400 tests, 396 pass, 4 fail, each an AssertionError on the asserted property.
+- "@R62 @R61 decodeDraft of B19, and K2 with Aisyah renamed Ai U+202E U+000D syah". B19 decodes as "Aisyah" in place
+  of { ok: false } (and so does the CR row).
+- "@R62 @R61 decodeDraft of B18 and B20". B18's 21 letters decode in place of { ok: false } (and B20's 41).
+- Also red, as a stub like this must make them. The 1.0 case "@R26 D8 counts grapheme clusters and refuses line
+  breaks", and split-core's "@R35 @R25 the class is written once", which sees the stub's own class literal under src/.
+The five ok rows pass under this stub (it removes the class too). Every new case of the outline is red in RED 1 or here.

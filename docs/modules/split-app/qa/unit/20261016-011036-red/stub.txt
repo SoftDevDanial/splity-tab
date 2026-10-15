@@ -1,0 +1,17 @@
+Security solver, task A22 Node RED 1 of 2, 2026-10-16. split-core qa.md How to run, "RED first for a new or changed
+case", as split-app qa.md Controls applies it to tests/draft.test.js.
+
+Tree. Commit abfbe3e (task C7) plus the new cases in tests/draft.test.js, the outline "@R62 @R61 The decoder rebuilds
+names without the class" (seeds G8, G9, the two G10 drafts, K1 with i4 renamed 40 letters and U+202E, then B19 with K2
+renamed "Ai" U+202E U+000D "syah", then B18 with B20). The stub is src/draft.js as it stands (git diff --quiet src/
+exit 0 before the run), as spec task A22 step 1 says. Its D8 (nameFits) keeps every character but LF and CR and counts
+the stored name.
+
+Command. node --test --test-reporter=tap --test-reporter-destination=<this folder>/node-test.txt "tests/**/*.test.js"
+Result. 400 tests, 395 pass, 5 fail, each an AssertionError on the asserted property.
+- G8 is decoded, but p2 "Ben" U+202E, p3 "Chen" U+2067 and p4 "A" U+2028 "B" are kept as stored (p5 U+202E too).
+- G9 gives { ok: false }, the stored name is 21 grapheme clusters, the decoded one would be 20.
+- G10, the K1 draft, i5 keeps its U+200F. G10, the S1_V1 draft, Ben keeps his U+0000.
+- K1 with i4 renamed 40 letters and U+202E gives { ok: false }, 41 clusters as stored.
+Passing on this file, as it must. The two rows that expect { ok: false } (B19 and the CR row, B18 and B20), which the
+decoder already refuses. RED 2 (20261016-011114-red) covers them with a stub decoder.

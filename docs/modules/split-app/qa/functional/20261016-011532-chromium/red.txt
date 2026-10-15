@@ -1,0 +1,22 @@
+Security solver, task A22 RED A in Chromium 149.0.7827.55, 2026-10-16. Not a suite run, the R62 scenarios only.
+
+Tree. Commit abfbe3e (task C7 built, plainName exists in core, no app code calls it), plus the new tests of qa.md
+"Plain names" in tests/browser/test_app.py (12 ids) and the G8 seed in tests/browser/seeds.py. git diff --quiet src/
+exit 0 before the run, so the app is today's.
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -k R62
+Result. 12 selected, 10 failed, 2 passed (pytest.txt, junit.xml, one screenshot per failure). Each failure is on the
+asserted property, and the test-side input recorder saw every character the tool inserted (U+0000 included), so none
+failed on an insert.
+- The outline "A control or bidi character put into a person's name is removed at once", all 5 rows. The field kept
+  the character, for example [True, 'Ben‮', 4, 4] against [True, 'Ben', 3, 3], 'Ben\x00' and 'Ben\tLee'.
+- "A removal in the middle of a name keeps the caret", 'Be‮x⁧n' at 5 against 'Bexn' at 3.
+- "Each kind of character in the class is removed", all 22 code points kept (the first message is for U+0001, the
+  field 'AB\x01C' at 4).
+- "An item name loses the class too", 'Char kuey teow‮x' at 16 against 'Char kuey teowx' at 15.
+- "A name made only of removed characters falls back to its position", the field and the draft hold '‮', not ''.
+- "A saved name with bidi controls loads plain and the People line reads left to right" (G8). The five fields hold the
+  stored characters, the summary text holds them ("Aisyah, Ben" U+202E ", Chen" U+2067 ", A" U+2028 "B, " U+202E) and
+  is not one of the R48 summaries of the plain labels, and "left to right" is False (the character boxes after the
+  RLO run backwards, SEC-S5-1). "one band" holds in Chromium, as the security finder measured.
+Passing on today's tree, as qa.md says they do. "Characters outside the class stay in a name" and "Typing that brings
+no character of the class writes nothing into the field". Their RED comes from the stubs of RED B and RED C.

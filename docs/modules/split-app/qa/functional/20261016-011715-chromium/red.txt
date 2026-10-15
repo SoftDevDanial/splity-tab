@@ -1,0 +1,18 @@
+Security solver, task A22 RED B in Chromium 149.0.7827.55, 2026-10-16. Not a suite run, the R62 scenarios only.
+
+For "Characters outside the class stay in a name", which passes on today's tree (RED A). Spec task A22 step 1, its
+RED is "a helper that also deletes \p{Cf}". The stub, put into src/ui/people.js with the Edit tool on the tree of
+RED A (commit abfbe3e plus the new tests) and taken out the same way after RED B in WebKit (git diff --quiet src/
+exit 0 after it). It reads as follows.
+
+input.addEventListener("input", () => { const cut = (t) => t.replace(/[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}\p{Cf}]/gu, ""); const text = cut(input.value); if (text !== input.value) { const at = cut(input.value.slice(0, input.selectionStart)).length; input.value = text; input.setSelectionRange(at, at); } onName(id, text); }); // STUB A22 red B, also deletes Cf
+
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -k R62
+Result. 12 selected, 3 failed, 9 passed.
+- "Characters outside the class stay in a name" FAILED on its asserted property. The person fields hold
+  ['BenAB\xa0C', 'Chen' + the three emoji without their joiners] against ['BenA​B\xa0C﻿', 'Chen' + the emoji
+  with U+200D twice]. The stub deleted U+200B, U+FEFF and both joiners.
+- Still failing, as they must with a stub in people.js only. "An item name loses the class too" (items.js has no
+  stub) and the G8 load (the decoder has no stub).
+- The 9 that pass are the person field cases the stub's removal satisfies, "Typing that brings no character of the
+  class writes nothing" among them (this stub writes only when something was removed).

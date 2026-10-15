@@ -1,0 +1,12 @@
+Security solver, task A22 RED A in WebKit 26.5, 2026-10-16. Not a suite run, the R62 scenarios only.
+
+Tree. As the Chromium RED A (20261016-011532-chromium), commit abfbe3e plus the new tests and the G8 seed,
+git diff --quiet src/ exit 0 before the run.
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -k R62 --engine webkit
+Result. 12 selected, 10 failed, 2 passed (pytest.txt, junit.xml, one screenshot per failure), the same 10 as in
+Chromium, each on the asserted property with the same values (the field kept every inserted character, U+0000
+included, the recorder saw each one go in).
+The G8 scenario differs from Chromium in one property. "one band" is False here as well as "left to right", because
+WebKit breaks the People summary at the U+2028 of "A" U+2028 "B" (SEC-S5-3), while Chromium draws one line.
+Passing on today's tree, as in Chromium. "Characters outside the class stay in a name" and "Typing that brings no
+character of the class writes nothing into the field" (RED B and RED C give them their RED).

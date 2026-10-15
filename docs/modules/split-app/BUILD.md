@@ -2062,3 +2062,56 @@ Findings from `findings/qa.md` (QA-S5-1) and `findings/code-review.md` (CR-S5-6,
 
 Each server was started by the solver and stopped by exact PID, and its port then refused a connection (curl exit 7). The two suite runs stopped their own servers. The RED and GREEN runs of single findings (named in each finding's solver line) are not suite runs, each says so in its `red.txt` or `green.txt`.
 
+## v1.1.0 task A22, names stay plain (2026-10-16, security solver)
+Built from `spec.md` (task A22, R62 whole, the R5, R11, R26 and R33 changes, D8 as changed 2026-10-16, the two Gesture to action rows, the threat row of SEC-S5-1 and the H-10 non-goals), `qa.md` (section "Plain names", seeds G8 to G10, B18 to B20) and ledger H-10 (USER 2026-10-16 00:07, option (1)), right after core task C7 (`split-core/BUILD.md`, task C7) in one build.
+
+**Commit.** `4a19b4d` (`fix(split-app): SEC-S5-1 and SEC-S5-3, names stay plain ...`). The proofs and these records are in the docs commit above it.
+
+**Phase skills (design row of `docs/phase-skills.md`).** Read from disk before any `src/ui/` edit, `frontend-design` (`frontend-design/8f814f49002f/skills/frontend-design/SKILL.md`, all 71 lines) and `taste-skill` (`taste-skill/1.0.0/skills/taste-skill/SKILL.md`, lines 1 to 982 in full, the appendices of install commands, sources and the glass approximation by their headings). Design read (taste-skill 0.B), a behaviour fix inside the approved phone first bill splitter, redesign that preserves (11.A), with no visible output of its own. What transferred.
+- The brief's own words win (frontend-design) and nothing changes silently (taste-skill 11.F). The helper does what R62 (1) says. No field name, order, label, placeholder or `maxlength` changed (11.C, 11.F, form fields).
+- Existing accessibility wins kept (taste-skill 11.C) and visible keyboard focus as a floor (frontend-design, "Restraint and self-critique"). The field keeps focus and is not replaced, and the caret lands where the text went in (R33), proved in both engines.
+- Words appear only to help (frontend-design, writing) and no message for a removal (the R62 non-goal). No text was added to the page, so the copy self-audit (taste-skill 4.9) has nothing to read.
+- The em dash ban (taste-skill 9.G), applied to the comments, the tests and these records.
+- Not transferred, because A22 draws nothing and the goldens and the locked stack decide them. The dials, palette, type, layout, motion, icons, images, dark mode, the block library and the pre-flight items on heroes, CTAs and sections. Error states (4.5) are ruled out by R62, which shows nothing.
+
+**What changed** (by symbol).
+- `src/ui/dom.js`. New `plainNameField(input)`, the one helper of R62 (1). It returns `plainName` of the field's `value` (core R35) and, only when that removed something, writes the plain text into `value` and then `setSelectionRange(c, c)` with c the length of `plainName` of the text before `selectionStart`, which is p minus k of R62 (1). It imports `plainName` from `src/core/bill.js`.
+- `src/ui/people.js` and `src/ui/items.js`. The existing `input` listeners of the person name field (`createPeople`) and the item name field (`createItems`) pass `plainNameField(input)` to `onName` in place of the raw value. No listener added, the price field unchanged.
+- `src/draft.js`. `readName(name, max)` replaces `nameFits` (D8 as changed). A name that is not a string or holds LF or CR is rejected first, then the name becomes `plainName(name)`, then the grapheme count is of that. `readPerson` and `readItem` build the decoded person and item with that name.
+- `tests/draft.test.js`. The outline "The decoder rebuilds names without the class" (`NAME_CLASS`, `asciiJson`, `rebuilt`, `named`, `G8`, `G9`, `G10_K1`, `G10_S1_V1`, `K1_LONG_ITEM`, `READABLE_PLAIN`, `STILL_UNREADABLE`), 7 cases.
+- `tests/browser/seeds.py`. `G8`, written with JSON escapes (`ensure_ascii`), kept out of `ODD_READABLE` (whose key set an R1 test pins).
+- `tests/browser/test_app.py`. `NAME_CLASS` (the 79 code points written out), `class_free`, `spelled`, `RECORD_INPUT_JS`, `FIELD_STATE_JS`, `PEOPLE_SUMMARY_JS`, `insert`, `people_names`, `PLAIN_INSERTS`, `EVERY_KIND`, `FIELD_WRITES_SPY_JS`, `ITEM_NAMES_JS`, `CHARACTER_BOXES_JS`, `people_summaries`, and the 8 scenarios of "Plain names" as 12 ids, all `test_R62_...`.
+
+**Comments written.** `dom.js`, the JSDoc of `plainNameField` (what it returns, when it writes, why that is the one write R33 allows). `draft.js`, the module header line on rebuilt names and the JSDoc of `readName` (why LF and CR still reject first, what is counted), in place of the `nameFits` line. In the tests, why a recorder sees each insert, why the spy watches one element, why the class is written out in Python, and the note on the Copy summary below.
+
+**Readings made, for the orchestrator (ORCH, reversible).**
+- "Copy summary on the card" in the R62 outline and the G8 scenario, at 390 x 844. The card sits in `section.stage`, which `system.css` hides below 1024 px, so no real gesture can press its Copy summary there. The tests press the one Copy summary shown at that width, the strip's (`copy_summary`, as the 1.0 test of R5 does), whose text R22 proves equal to the card's, and they read the splits rows from the card's DOM as written. A qa.md wording item for the planner.
+- "When I click Person 2 name" on the K2 seed at 390 x 844. A restored bill folds People below 1024 px (R48), so the tests open People first, the phrase of qa.md for that step.
+- "A character the tool cannot insert fails the case with its code point". The tests carry a test-side recorder of each input event's value (window, capture phase), so an insert that put nothing in fails with "not inserted" and the code point. Every character went in, U+0000 included, in both engines.
+
+**Not done.** The fidelity gate, not re-run as task A22 says (no markup, class, text or style of a golden state changes). The suite's R3 walk passes.
+
+**RED first** (each run its own folder, its `red.txt` or `stub.txt` says what tree and what failed).
+| Run | Folder | Result |
+|---|---|---|
+| Node RED 1, `src/draft.js` as it stands (the stub of the method) | `qa/unit/20261016-011036-red/` | 400 tests, 5 fail, the 5 ok rows of the decoder outline, each on its assertion |
+| Node RED 2, a stub decoder that removes the class first and counts nothing | `qa/unit/20261016-011114-red/` | the 2 reject rows fail (B19 and the CR row decode as "Aisyah", B18's 21 letters decode) |
+| Browser RED A, today's tree, Chromium and WebKit | `qa/functional/20261016-011532-chromium/`, `20261016-011609-webkit/` | 10 of 12 fail on the asserted property in each engine, the G8 load "left to right" False in both and "one band" False in WebKit. The 2 that pass are the two qa.md says pass |
+| Browser RED B, a person name helper that also deletes `\p{Cf}` | `qa/functional/20261016-011715-chromium/`, `20261016-011723-webkit/` | "Characters outside the class stay in a name" fails in both (U+200B, U+FEFF and the joiners gone) |
+| Browser RED C, a helper that writes value and caret on every input event | `qa/functional/20261016-011821-chromium/`, `20261016-011829-webkit/` | "Typing that brings no character of the class writes nothing" fails in both (`testFieldWrites` 10, not 0) |
+
+Each stub went in and came out with the Edit tool, `git diff --quiet src/` exit 0 after each, `grep -rn STUB src/` empty before the commit. GREEN before the commit, Node `qa/unit/20261016-012010-green/` (400 of 400), browser `qa/functional/20261016-012022-chromium/` and `20261016-012029-webkit/` (12 of 12 each).
+
+**Proof on the committed tree (`4a19b4d`), one run after the other, nothing under `src/` uncommitted.**
+| Run | Result | By id against the step 5 solver round's run |
+|---|---|---|
+| Node, `split-core/qa/unit/20261016-012221/node-test.txt` | 400 of 400 | `20261015-234943/`, its 380 ids with the same outcome, 20 new (13 of C7, 7 of A22) passed, 0 missing, 0 changed |
+| Chromium 149.0.7827.55, `qa/functional/20261016-012252-chromium/` | 728 passed, 0 failed, 0 skipped, 212.6 s | `20261015-234948-chromium/`, its 716 ids all passed again, 12 new (the R62 ids) passed, 0 missing, 0 changed. The R33 IME test (`chromium_only`) passed, the R3 walk and R37 cases unchanged |
+| WebKit 26.5, `qa/functional/20261016-012652-webkit/` (in the background, bounded at 20 minutes) | 725 passed, 3 skipped, 0 failed, 420.1 s | `20261015-235448-webkit/`, its 716 ids with the same outcome (713 passed, the 3 counted skips of `skips.txt`), 12 new passed, 0 missing, 0 changed |
+| Live gate Chromium, one server (pid 22916, port 3583) | control `qa/live-e2e/20261016-013454-chromium-control/` red at step 1 on its property (the K2 bill where `bill-empty` is due), green `20261016-013505-chromium/` 9 of 9, `"control": null`, 0 console errors, 0 page errors, 0 CSP violations, 90 requests and none outside the rule, 3 stand-in writes | the same figures as the solver round's `20261016-000355-chromium-control/` and `20261016-000357-chromium/` |
+| Live gate WebKit, one server (pid 19880, port 59319) | control `qa/live-e2e/20261016-013553-webkit-control/` red at step 1 on its property, green `20261016-013555-webkit/` 9 of 9, the same figures | the same as `20261016-000424-webkit-control/` and `20261016-000426-webkit/` |
+
+Each gate server was started by the solver and stopped by exact PID with `taskkill`, after which its port refused a connection (`connect_ex` 10061). The two suite runs stopped their own servers. `git hash-object --no-filters src/system.css` is `bf30ddadb8c756dc5d462243c642c218597ae0ac`, and `git diff --stat 8402cca -- docs/design index.html src/system.css` is empty. Credential gate exit 0 before each commit.
+
+**For the README reconcile.** `src/ui/dom.js` exports `plainNameField(input)`, which both name fields call on every `input` event, so a name never holds a control, separator or bidi character (R62). `decodeDraft` rebuilds every stored name the same way (D8, `readName`) after refusing LF and CR, and counts the length of the rebuilt name. The README's security paragraph ("names within their length") does not say this, and no README line is false.
+

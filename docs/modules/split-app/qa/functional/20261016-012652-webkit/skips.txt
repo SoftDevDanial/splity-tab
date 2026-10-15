@@ -1,0 +1,5 @@
+engine webkit, browser version 26.5
+test_app.py::test_R33_ime_composition_survives_a_render | Needs a CDP session (Input.imeSetComposition, Input.insertText), which Playwright gives in Chromium only.
+test_app.py::test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported | Needs a CDP session (Accessibility.getPartialAXTree) to read the computed description, which Playwright gives in Chromium only.
+test_app.py::test_R40_an_after_load_script_presses_nothing_without_the_clipboard_stand_in | The after-load scripts serve the fidelity gate, which runs in Chromium only (ledger S5 row 2).
+count 3

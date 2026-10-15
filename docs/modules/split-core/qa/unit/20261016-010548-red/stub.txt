@@ -1,0 +1,29 @@
+Security solver, task C7 RED 2 of 3, 2026-10-16. split-core qa.md How to run, "RED first for a new or changed case".
+
+Tree. As RED 1 (HEAD 8402cca plus the new tests, src/core/summary.js unchanged), with the test "plainName and
+summaryText read one class" corrected first (see below). src/core/bill.js holds this stub in place of stub 1, Edit tool.
+
+export function plainName(text) { return text.replace(/[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}\p{Cf}]/gu, ""); } // STUB C7 red 2, also deletes Cf
+
+Stub 2 of spec task C7, "a second stub that also deletes \p{Cf}".
+
+Command. node --test --test-reporter=tap --test-reporter-destination=<this folder>/node-test.txt "tests/**/*.test.js"
+Result. 393 tests, 389 pass, 4 fail, each an AssertionError on the asserted property.
+- "@R35 plainName of A U+200B B U+00A0 C U+FEFF U+00AD U+3000 is the same text". U+200B, U+FEFF and U+00AD were
+  deleted (all three are Cf).
+- "@R35 plainName of the emoji U+1F468 U+200D U+1F469 U+200D U+1F467 is the same text". The two joiners were deleted.
+- "@R35 @R24 plainName and summaryText read one class". 158 code points where plainName deletes a character that the
+  summary prints as typed (U+00AD, U+0600 to U+0605, U+200B to U+200D, U+2060 and the rest of Cf outside the class).
+- "@R35 @R25 the class is written once" gives ["Bidi_Control on 2 lines (core/bill.js, core/summary.js)", "core/summary.js
+  does not import NAME_CONTROLS from ./bill.js"], the stub's own literal is the second line.
+Passing under this stub. The 7 removal rows (the stub deletes the class too), and two kept rows that hold no Cf
+character, the Arabic row and the empty text. Neither of the two stubs C7 names can fail those two, so RED 3 adds a
+third stub for them (its own folder).
+
+The correction, found in the first run of this stub (20261016-010445-red, kept as history). The test compared "the
+row reads A B RM 38.86" with "plainName deleted the code point". For U+0020 the row reads "A B RM 38.86" because the
+user typed a space, which plainName rightly keeps, so the test would have failed on correct code. It now compares the
+whole row with "A B RM 38.86" when the code point is deleted and "A" + the code point + "B RM 38.86" when it is kept,
+the oracle the R24 test in tests/summary.test.js uses, and checks on 8 code points that the row swapped into the one S2
+result equals the bill with Chen renamed worked out whole. RED 1 was run again on the corrected test
+(20261016-010406-red is the run on the first form).

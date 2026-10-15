@@ -1,0 +1,25 @@
+Security solver, task C7 RED 1 of 3, 2026-10-16. split-core qa.md How to run, "RED first for a new or changed case".
+SUPERSEDED as the RED 1 record by 20261016-010625-red, kept as history. This run used the first form of the test
+"plainName and summaryText read one class", whose fault at U+0020 the first stub 2 run showed (20261016-010445-red,
+stub.txt). Its list of wrong code points here holds U+0020 besides the 79 members. Everything else below stands.
+
+Tree. HEAD 8402cca plus the new tests (tests/bill.test.js, the 11 rows of "plainName deletes the class and keeps
+everything else" and "plainName and summaryText read one class", tests/hygiene.test.js, "The class is written once"
+and the runtime trap workload calling plainName and reading NAME_CONTROLS). src/core/summary.js unchanged (its own
+CONTROLS literal). src/core/bill.js holds this stub, appended at the end of the file with the Edit tool.
+
+export function plainName(text) { return text; } // STUB C7 red 1, returns its input
+
+Stub 1 of spec task C7, "a throwaway stub plainName that returns its input".
+
+Command. node --test --test-reporter=tap --test-reporter-destination=<this folder>/node-test.txt "tests/**/*.test.js"
+Result. 393 tests, 384 pass, 9 fail. Every failure is an AssertionError on the asserted property, none an import error.
+- 7 removal rows of the R35 outline (Ben+RLO, Be RLO x RLI n, A LS B PS C, NUL row, TAB row, ESC DEL NEL U+009F row,
+  the ten bidi controls). Each "Expected values to be strictly equal", the input came back.
+- "@R35 @R24 plainName and summaryText read one class". The list of code points where plainName and the summary
+  disagree is the 79 members of the class, not [].
+- "@R35 @R25 the class is written once" gives ["Bidi_Control on 1 lines (core/summary.js)", "core/summary.js does not
+  import NAME_CONTROLS from ./bill.js"], not [].
+Passing under this stub, as expected for a stub that returns its input. The four "kept" rows (U+200B row, the emoji
+row, the Arabic row, the empty text). Stub 2 and stub 3 cover them (their own -red folders).
+Every 1.0 and v1.1.0 case passes (384 = the 380 of the step 5 solver round's proof run, plus the 4 kept rows).

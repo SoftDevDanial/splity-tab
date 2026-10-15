@@ -1,0 +1,7 @@
+Security solver, task A22 GREEN in WebKit 26.5, 2026-10-16. Not a suite run, the R62 scenarios only.
+
+Tree. As the Chromium GREEN (20261016-012022-chromium/green.txt), the files that became commit 4a19b4d.
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -k R62 --engine webkit
+Result. 12 selected, 12 passed. The ten that were red in RED A (20261016-011609-webkit), among them the G8 load with
+"one band" now True (SEC-S5-3), and the two whose RED came from stubs (RED B 20261016-011723-webkit, RED C
+20261016-011829-webkit). The full suite on the committed tree is the proof run of BUILD.md, task A22.

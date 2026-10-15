@@ -1,0 +1,9 @@
+Security solver, task A22 GREEN in Chromium 149.0.7827.55, 2026-10-16. Not a suite run, the R62 scenarios only.
+
+Tree. Commit abfbe3e plus the A22 build in the working tree (src/draft.js readName, src/ui/dom.js plainNameField,
+src/ui/people.js and src/ui/items.js calling it) and the new tests, the same files that became commit 4a19b4d.
+grep -rn STUB src/ empty.
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -k R62
+Result. 12 selected, 12 passed. The ten that were red in RED A (20261016-011532-chromium) and the two whose RED came
+from stubs (RED B 20261016-011715-chromium, RED C 20261016-011821-chromium). The full suite on the committed tree is
+the proof run of BUILD.md, task A22.

@@ -1,0 +1,10 @@
+Security solver, task A22 RED C in WebKit 26.5, 2026-10-16. Not a suite run, the R62 scenarios only.
+
+The same stub as RED C in Chromium (20261016-011821-chromium/red.txt), a person name helper in src/ui/people.js that
+writes the value and the caret on every input event, still in place for this run and taken out with the Edit tool
+right after it (git diff --quiet src/ exit 0, grep -rn STUB src/ empty).
+Command. SPLIT_EVIDENCE=1 python -m pytest tests/browser -q -k R62 --engine webkit
+Result. 12 selected, 3 failed, 9 passed, the same three as in Chromium.
+- "Typing that brings no character of the class writes nothing into the field" FAILED on its asserted property,
+  window.testFieldWrites 10 against 0, as in Chromium.
+- "An item name loses the class too" and the G8 load still fail (no stub there).
