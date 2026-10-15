@@ -55,6 +55,15 @@ T12 = dump({"version": 2, "bill": {
     "subtotalText": "100.00", "items": [], "serviceText": "10", "sstText": "6", "spare": {"rule": "top"}, "nextId": 13,
 }})  # [T12]
 T12W = changed(T12, lambda d: [person.update(name="W" * 20) for person in d["bill"]["people"]])  # [T12W] no one name fits at 360
+T12I = changed(T12, lambda d: d["bill"].update(mode="item", nextId=14, items=[
+    {"id": "i13", "name": "Tea", "priceText": "12.00", "who": [f"p{n}" for n in range(1, 13)]}]))  # [T12I] by item, twelve people
+# [I2] core qa example I2. Aisyah had nothing, so she is listed with RM 0.00 and "0.00 + 0.00" (spec R21).
+I2 = dump({"version": 2, "bill": {
+    "mode": "item", "people": [{"id": "p1", "name": "Aisyah"}, {"id": "p2", "name": "Ben"}, {"id": "p3", "name": "Chen"}],
+    "subtotalText": "", "items": [{"id": "i4", "name": "X", "priceText": "10.00", "who": ["p2"]},
+                                  {"id": "i5", "name": "Y", "priceText": "5.01", "who": ["p2", "p3"]}],
+    "serviceText": "10", "sstText": "6", "spare": {"rule": "top"}, "nextId": 6,
+}})
 
 _TWELVE = ["Aisyah", "Ben", "Chen", "Devi", "Farid", "Grace", "Hafiz", "Indra", "Jia Hui", "Kumar", "Lina", "Mei Ling"]
 S8 = dump({"version": 2, "bill": {

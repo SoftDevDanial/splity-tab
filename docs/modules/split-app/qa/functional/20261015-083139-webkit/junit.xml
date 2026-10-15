@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="8" time="5.737" timestamp="2026-10-15T08:31:39.046148+08:00" hostname="{host}"><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K2-service-emptied]" time="1.760"><failure message="AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K1-sst-25]" time="0.657"><failure message="AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K2-subtotal-emptied]" time="0.508"><failure message="AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[cold-boot]" time="0.217"><failure message="AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[by-item]" time="0.364"><failure message="AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[by-item-add-item]" time="0.468"><failure message="AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K1-one-price-abc]" time="0.503"><failure message="AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K1-every-price-abc]" time="0.925"><failure message="AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}&#10;  Use -v to get more diff">E   AssertionError: assert {'blocks': ['...he splits.']]} == {'blocks': ['...he splits.']]}
+      
+      Omitting 2 identical items, use -vv to show
+      Differing items:
+      {'total': [['span.r-label', '', 'Total'], ['p', '', 'STUB']]} != {'total': [['span.r-label', '', 'Total']]}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

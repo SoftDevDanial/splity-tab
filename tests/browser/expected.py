@@ -16,6 +16,16 @@ BLOCKED_CARD = {
     "prices": "Total Give every item a price to see the splits.",
 }
 
+# What the v1.1.0 card holds for the S1 (K1) and S2 (K2) bills (spec R19 to R21): the bill lines, each splits row as its
+# name, amount and working with the hidden words left out (None in even mode), and the proof as its amount and working.
+S1_LINES = [["Subtotal", "RM 59.40"], ["Service 10%", "RM 5.94"], ["SST 6%", "RM 3.92"]]
+S1_SPLITS = [["Aisyah", "RM 29.04", "24.90 + 4.14"], ["Ben", "RM 15.74", "13.50 + 2.24"], ["Chen", "RM 24.48", "21.00 + 3.48"]]
+S1_PROOF = ["RM 69.26", "59.40 + 9.86"]
+S2_LINES = [["Subtotal", "RM 100.00"], ["Service 10%", "RM 10.00"], ["SST 6%", "RM 6.60"]]
+S2_SPLITS = [["Aisyah", "RM 38.87", None], ["Ben", "RM 38.87", None], ["Chen", "RM 38.86", None]]
+S2_PROOF = ["RM 116.60", None]
+
+# The 1.0 panel's forms below stay for the 1.0 live gate (live_e2e.py) until task A20 rewrites it.
 # S1: Aisyah, Ben and Chen, By item, four items and who had them.
 S1_ITEMS = [("Nasi lemak ayam", "15.90", ["Aisyah"]), ("Char kuey teow", "13.50", ["Ben"]),
             ("Mee goreng mamak", "12.00", ["Chen"]), ("Satay, 10 sticks", "18.00", ["Aisyah", "Chen"])]

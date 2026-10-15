@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="41" skipped="0" tests="52" time="17.481" timestamp="2026-10-15T08:28:12.815653+08:00" hostname="{host}"><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[bill-unassigned-1280]" time="1.758"><failure message="assert &quot;body&gt;div.app[1]&gt;main.layout[1]&gt;section.stage[0]&gt;article.card.glass[0]&gt;div.rbody[1]: children app=['section.tape-section', 'section.tape-section'] golden=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-msg']&quot; is None&#10; +  where &quot;body&gt;div.app[1]&gt;main.layout[1]&gt;section.stage[0]&gt;article.card.glass[0]&gt;div.rbody[1]: children app=['section.tape-section', 'section.tape-section'] golden=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-msg']&quot; = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})&#10; +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:4812/'&gt;)&#10; +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000001C5B4FDF060&gt;, 'bill-unassigned', (1280, 800))">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B4FDF320&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001C5B4FDF060&gt;
+golden = 'bill-unassigned', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R3_PAIRS)
+    def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+E       assert "body&gt;div.app[1]&gt;main.layout[1]&gt;section.stage[0]&gt;article.card.glass[0]&gt;div.rbody[1]: children app=['section.tape-section', 'section.tape-section'] golden=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-msg']" is None
+E        +  where "body&gt;div.app[1]&gt;main.layout[1]&gt;section.stage[0]&gt;article.card.glass[0]&gt;div.rbody[1]: children app=['section.tape-section', 'section.tape-section'] golden=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-msg']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+E        +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:4812/'&gt;)
+E        +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000001C5B4FDF060&gt;, 'bill-unassigned', (1280, 800))
+
+tests\browser\test_app.py:280: AssertionError</failure></testcase><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[cold-boot]" time="0.162" /><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[K1]" time="0.242"><failure message="AssertionError: assert [] == ['RM 29.04', ...', 'RM 69.26']&#10;  &#10;  Right contains 4 more items, first extra item: 'RM 29.04'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B2DF4460&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001C5B4B0BB60&gt;
+state = 'K1', golden = 'bill-items'
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 390, clicks = (), proof = 'card-K1'
+
+    @pytest.mark.parametrize("state, golden, seed, width, clicks, proof", [
+        pytest.param(*row[:6], id=row[0], marks=[pytest.mark.xfail(strict=True, reason=f"task {row[6]}")] if row[6] else [])
+        for row in POLICY_STATES])
+    def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app, plain_context, state, golden, seed, width, clicks, proof):
+        session = open_app(seed=seed, viewport=VIEWPORTS[width])
+        page = session.page
+        click_after_load(page, clicks)
+        body_background = "getComputedStyle(document.body).backgroundColor"
+        assert page.evaluate(body_background) == open_golden(plain_context, golden, VIEWPORTS[width]).evaluate(body_background)
+        shows, expected = POLICY_PROOFS[proof]
+        found = shows(page)
+        if proof == "spare-place":
+            assert found[0] == expected[0] and abs(found[1] - expected[1]) &lt;= 0.5, found
+        else:
+&gt;           assert found == expected
+E           AssertionError: assert [] == ['RM 29.04', ...', 'RM 69.26']
+E             
+E             Right contains 4 more items, first extra item: 'RM 29.04'
+E             Use -v to get more diff
+
+tests\browser\test_app.py:363: AssertionError</failure></testcase><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[K1-new-bill]" time="0.285" /><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[K1-sheet-P1]" time="0.221"><failure message="AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page&#10;assert 0 == 1&#10; +  where 0 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:4812/'&gt; selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'&gt;.count">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B49EB7F0&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001C5B49EB5E0&gt;
+state = 'K1-sheet-P1', golden = 'spare-sen'
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 390
+clicks = ('#splitsBtn', '#splitsDlg .r-spare-acts button[aria-haspopup=dialog]')
+proof = 'sheet-padding'
+
+    @pytest.mark.parametrize("state, golden, seed, width, clicks, proof", [
+        pytest.param(*row[:6], id=row[0], marks=[pytest.mark.xfail(strict=True, reason=f"task {row[6]}")] if row[6] else [])
+        for row in POLICY_STATES])
+    def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app, plain_context, state, golden, seed, width, clicks, proof):
+        session = open_app(seed=seed, viewport=VIEWPORTS[width])
+        page = session.page
+&gt;       click_after_load(page, clicks)
+
+tests\browser\test_app.py:355: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = &lt;Page url='http://127.0.0.1:4812/'&gt;
+selectors = ('#splitsBtn', '#splitsDlg .r-spare-acts button[aria-haspopup=dialog]')
+
+    def click_after_load(page, selectors):
+        """The clicks that reach a golden's state. A control the page does not hold yet fails at once, not after a wait."""
+        for selector in selectors:
+            control = page.locator(selector)
+&gt;           assert control.count() == 1, f"after-load control {selector} is not on the page"
+E           AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E           assert 0 == 1
+E            +  where 0 = count()
+E            +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:4812/'&gt; selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'&gt;.count
+
+tests\browser\test_app.py:271: AssertionError</failure></testcase><testcase classname="test_app" name="test_R38_strict_policy_blocks_nothing_the_app_needs[K2-P1-desktop]" time="0.206"><failure message="AssertionError: after-load control #spareBtn is not on the page&#10;assert 0 == 1&#10; +  where 0 = count()&#10; +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:4812/'&gt; selector='#spareBtn'&gt;.count">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B4A2E350&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001C5B49EAFB0&gt;
+state = 'K2-P1-desktop', golden = 'bill-even'
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+width = 1280, clicks = ('#spareBtn',), proof = 'spare-place'
+
+    @pytest.mark.parametrize("state, golden, seed, width, clicks, proof", [
+        pytest.param(*row[:6], id=row[0], marks=[pytest.mark.xfail(strict=True, reason=f"task {row[6]}")] if row[6] else [])
+        for row in POLICY_STATES])
+    def test_R38_strict_policy_blocks_nothing_the_app_needs(open_app, plain_context, state, golden, seed, width, clicks, proof):
+        session = open_app(seed=seed, viewport=VIEWPORTS[width])
+        page = session.page
+&gt;       click_after_load(page, clicks)
+
+tests\browser\test_app.py:355: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = &lt;Page url='http://127.0.0.1:4812/'&gt;, selectors = ('#spareBtn',)
+
+    def click_after_load(page, selectors):
+        """The clicks that reach a golden's state. A control the page does not hold yet fails at once, not after a wait."""
+        for selector in selectors:
+            control = page.locator(selector)
+&gt;           assert control.count() == 1, f"after-load control {selector} is not on the page"
+E           AssertionError: after-load control #spareBtn is not on the page
+E           assert 0 == 1
+E            +  where 0 = count()
+E            +    where count = &lt;Locator frame=&lt;Frame name= url='http://127.0.0.1:4812/'&gt; selector='#spareBtn'&gt;.count
+
+tests\browser\test_app.py:271: AssertionError</failure></testcase><testcase classname="test_app" name="test_R4_a_blank_name_falls_back_to_its_position_everywhere_but_the_field" time="0.276"><failure message="AssertionError: None&#10;assert (None)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B482D640&gt;
+
+    def test_R4_a_blank_name_falls_back_to_its_position_everywhere_but_the_field(open_app):
+        # [v1.1.0] K1, and the People summary shows the fallback too, as does the card's second splits row (task A9).
+        page = open_app(seed=seeds.S1).page
+        open_people_first(page)
+        support.replace_text(page, person_field(page, 2), "")
+        rows = person_rows(page)
+        assert rows is not None, "no ul.people#peopleList"
+        assert rows[1] == person_row(2, "", "Person 2")
+        for name, _, _ in S1_ITEMS:
+            assert who_group(page, name).get_by_role("button").all_inner_texts() == ["Aisyah", "Person 2", "Chen"]
+        splits, _ = card_rows(page)
+&gt;       assert splits and splits[1][0] == "Person 2", splits
+E       AssertionError: None
+E       assert (None)
+
+tests\browser\test_app.py:583: AssertionError</failure></testcase><testcase classname="test_app" name="test_R5_renaming_a_person_updates_every_place_on_each_keystroke" time="0.234"><failure message="AssertionError: assert {'toggles': [...h, Ben, Chen'} == {'toggles': [...h, Ben, Chen'}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'card': None} != {'card': 'Chen'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B3AB4250&gt;
+
+    def test_R5_renaming_a_person_updates_every_place_on_each_keystroke(open_app):
+        # [v1.1.0] K1. The toggles, the card's third splits row (task A9), the Remove name and the People summary here. The
+        # sheet, the copy and the pills are the next test's.
+        page = open_app(seed=seeds.S1).page
+        open_people_first(page)
+    
+        def every_place_reads(label):
+            assert page.evaluate(RENAME_READS_JS) == {"toggles": [label] * 4, "card": label, "remove": f"Remove {label}",
+                                                      "summary": f"Aisyah, Ben, {label}"}
+    
+&gt;       rename_chen_to_chen_wei(page, every_place_reads)
+
+tests\browser\test_app.py:622: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\browser\test_app.py:609: in rename_chen_to_chen_wei
+    watch(typed.strip())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+label = 'Chen'
+
+    def every_place_reads(label):
+&gt;       assert page.evaluate(RENAME_READS_JS) == {"toggles": [label] * 4, "card": label, "remove": f"Remove {label}",
+                                                  "summary": f"Aisyah, Ben, {label}"}
+E       AssertionError: assert {'toggles': [...h, Ben, Chen'} == {'toggles': [...h, Ben, Chen'}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'card': None} != {'card': 'Chen'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:619: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip" time="0.248"><failure message="AssertionError: assert None == '1 item still needs a person. Tap who had it to see the splits.'&#10; +  where None = &lt;function reads at 0x000001C5B1DCA8D0&gt;(&lt;Page url='http://127.0.0.1:4812/'&gt;, '#rbody div.r-msg')&#10; +    where &lt;function reads at 0x000001C5B1DCA8D0&gt; = support.reads">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B3B47C10&gt;
+
+    @pytest.mark.xfail(strict=True, reason="task A11")
+    def test_R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip(open_app):
+        # The rest of qa.md "Remove a person and they leave every item". The needs marker is built by task A8, the card's
+        # div.r-msg by A9 and the strip's message by A11.
+        page = open_app(seed=seeds.S1).page
+        open_people_first(page)
+        remove_button(page, "Chen").click()
+        marked = page.evaluate("() =&gt; [...document.querySelectorAll('li.item.needs')].map((li) =&gt; li.querySelector('input').value)")
+        assert marked == ["Mee goreng mamak"]
+        message = "1 item still needs a person. Tap who had it to see the splits."
+&gt;       assert support.reads(page, "#rbody div.r-msg") == message
+E       AssertionError: assert None == '1 item still needs a person. Tap who had it to see the splits.'
+E        +  where None = &lt;function reads at 0x000001C5B1DCA8D0&gt;(&lt;Page url='http://127.0.0.1:4812/'&gt;, '#rbody div.r-msg')
+E        +    where &lt;function reads at 0x000001C5B1DCA8D0&gt; = support.reads
+
+tests\browser\test_app.py:1066: AssertionError</failure></testcase><testcase classname="test_app" name="test_R13_tapping_a_person_on_an_item" time="0.274"><failure message="AssertionError: assert [None, None] == [[['Aisyah', ...9.40 + 9.86']]&#10;  &#10;  At index 0 diff: None != [['Aisyah', 'RM 25.54', '21.90 + 3.64'], ['Ben', 'RM 22.74', '19.50 + 3.24'], ['Chen', 'RM 20.98', '18.00 + 2.98']]&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B448CE00&gt;
+
+    def test_R13_tapping_a_person_on_an_item(open_app):
+        # [v1.1.0] qa.md on K1 at 1280 x 800, each toggle the check icon and then the name, and the card's rows with their
+        # working (task A9). Its spare line is task A13's.
+        page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280]).page
+        toggle(page, "Satay, 10 sticks", "Ben").click()
+        rows = item_rows(page)
+        assert rows is not None and rows[3]["taps"] == item_row(4, "", "", "Satay, 10 sticks", THREE)["taps"]
+&gt;       assert card_rows(page) == [[["Aisyah", "RM 25.54", "21.90 + 3.64"], ["Ben", "RM 22.74", "19.50 + 3.24"],
+                                    ["Chen", "RM 20.98", "18.00 + 2.98"]], S1_PROOF]
+E       AssertionError: assert [None, None] == [[['Aisyah', ...9.40 + 9.86']]
+E         
+E         At index 0 diff: None != [['Aisyah', 'RM 25.54', '21.90 + 3.64'], ['Ben', 'RM 22.74', '19.50 + 3.24'], ['Chen', 'RM 20.98', '18.00 + 2.98']]
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1195: AssertionError</failure></testcase><testcase classname="test_app" name="test_R9_a_subtotal_drives_the_even_split" time="0.135"><failure message="AssertionError: assert [None, None] == [[['Person 1'...16.60', None]]&#10;  &#10;  At index 0 diff: None != [['Person 1', 'RM 58.30', None], ['Person 2', 'RM 58.30', None]]&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B44022A0&gt;
+
+    def test_R9_a_subtotal_drives_the_even_split(open_app):
+        # [v1.1.0] The splits line of qa.md "The subtotal field drives the even split" (task A9). The field and the absent
+        # spare line are test_R9_the_subtotal_field_drives_the_even_split.
+        page = open_app().page
+        subtotal_field(page).fill("100.00")
+&gt;       assert card_rows(page) == [[["Person 1", "RM 58.30", None], ["Person 2", "RM 58.30", None]], ["RM 116.60", None]]
+E       AssertionError: assert [None, None] == [[['Person 1'...16.60', None]]
+E         
+E         At index 0 diff: None != [['Person 1', 'RM 58.30', None], ['Person 2', 'RM 58.30', None]]
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1452: AssertionError</failure></testcase><testcase classname="test_app" name="test_R16_the_receipt_follows_every_keystroke_and_stays_quiet" time="0.246"><failure message="AssertionError: assert [None, None] == ['RM 5.83', [...', 'RM 1.94']]&#10;  &#10;  At index 0 diff: None != 'RM 5.83'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B4135D20&gt;
+
+    def test_R16_the_receipt_follows_every_keystroke_and_stays_quiet(open_app):
+        # [v1.1.0] qa.md on K2 at 1280 x 800, the card and the strip. The sheet's line is the next test's (task A12).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        support.replace_text(page, subtotal_field(page), "5")
+&gt;       assert card_figures(page) == ["RM 5.83", ["RM 1.95", "RM 1.94", "RM 1.94"]]
+E       AssertionError: assert [None, None] == ['RM 5.83', [...', 'RM 1.94']]
+E         
+E         At index 0 diff: None != 'RM 5.83'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1465: AssertionError</failure></testcase><testcase classname="test_app" name="test_R16_the_sheet_holds_one_live_element" time="0.224"><failure message="AssertionError: assert [] == ['p.status']&#10;  &#10;  Right contains one more item: 'p.status'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B4378510&gt;
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    def test_R16_the_sheet_holds_one_live_element(open_app):
+        # The sheet's line of qa.md "The receipt follows every keystroke and stays quiet". The sheet is task A12's (R50).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        page.set_viewport_size({"width": 390, "height": 844})
+        page.locator("#splitsBtn").click()
+&gt;       assert page.evaluate(LIVE_JS, "#splitsDlg") == ["p.status"]
+E       AssertionError: assert [] == ['p.status']
+E         
+E         Right contains one more item: 'p.status'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1477: AssertionError</failure></testcase><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K2-service-emptied]" time="0.216" /><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K1-sst-25]" time="0.216" /><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K2-subtotal-emptied]" time="0.185" /><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[cold-boot]" time="0.096" /><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[by-item]" time="0.146" /><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[by-item-add-item]" time="0.170" /><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K1-one-price-abc]" time="0.185" /><testcase classname="test_app" name="test_R17_when_the_splits_cannot_be_worked_out[K1-every-price-abc]" time="0.297" /><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K2-service-emptied]" time="0.245"><failure message="AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}&#10;  &#10;  Differing items:&#10;  {'copy': [True, False]} != {'copy': [True, True]}&#10;  {'message': None} != {'message': ['Check the charges to see the splits.', []]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B41DCF60&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+setup = &lt;function &lt;lambda&gt; at 0x000001C5B4FD77F0&gt;
+message = 'Check the charges to see the splits.'
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    @pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+    def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
+        # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
+        # the sheet A12's (R50), so the mark names the later one.
+        page = open_app(seed=seed).page
+        setup(page)
+&gt;       assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
+E       AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}
+E         
+E         Differing items:
+E         {'copy': [True, False]} != {'copy': [True, True]}
+E         {'message': None} != {'message': ['Check the charges to see the splits.', []]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1514: AssertionError</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K1-sst-25]" time="0.246"><failure message="AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}&#10;  &#10;  Differing items:&#10;  {'copy': [True, False]} != {'copy': [True, True]}&#10;  {'message': None} != {'message': ['Check the charges to see the splits.', []]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B4918CA0&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+setup = &lt;function &lt;lambda&gt; at 0x000001C5B4FD78A0&gt;
+message = 'Check the charges to see the splits.'
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    @pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+    def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
+        # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
+        # the sheet A12's (R50), so the mark names the later one.
+        page = open_app(seed=seed).page
+        setup(page)
+&gt;       assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
+E       AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}
+E         
+E         Differing items:
+E         {'copy': [True, False]} != {'copy': [True, True]}
+E         {'message': None} != {'message': ['Check the charges to see the splits.', []]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1514: AssertionError</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K2-subtotal-emptied]" time="0.206"><failure message="AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}&#10;  &#10;  Differing items:&#10;  {'copy': [True, False]} != {'copy': [True, True]}&#10;  {'message': None} != {'message': ['Enter the subtotal to see the splits.', []]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B35DCF60&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+setup = &lt;function &lt;lambda&gt; at 0x000001C5B4FD7950&gt;
+message = 'Enter the subtotal to see the splits.'
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    @pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+    def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
+        # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
+        # the sheet A12's (R50), so the mark names the later one.
+        page = open_app(seed=seed).page
+        setup(page)
+&gt;       assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
+E       AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}
+E         
+E         Differing items:
+E         {'copy': [True, False]} != {'copy': [True, True]}
+E         {'message': None} != {'message': ['Enter the subtotal to see the splits.', []]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1514: AssertionError</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[cold-boot]" time="0.127"><failure message="AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}&#10;  &#10;  Differing items:&#10;  {'copy': [True, False]} != {'copy': [True, True]}&#10;  {'message': None} != {'message': ['Enter the subtotal to see the splits.', []]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B3CEA400&gt;
+seed = None, setup = &lt;function &lt;lambda&gt; at 0x000001C5B4FD7A00&gt;
+message = 'Enter the subtotal to see the splits.'
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    @pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+    def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
+        # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
+        # the sheet A12's (R50), so the mark names the later one.
+        page = open_app(seed=seed).page
+        setup(page)
+&gt;       assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
+E       AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}
+E         
+E         Differing items:
+E         {'copy': [True, False]} != {'copy': [True, True]}
+E         {'message': None} != {'message': ['Enter the subtotal to see the splits.', []]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1514: AssertionError</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[by-item]" time="0.179"><failure message="AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}&#10;  &#10;  Differing items:&#10;  {'copy': [True, False]} != {'copy': [True, True]}&#10;  {'message': None} != {'message': ['Add each item and tap who had it to see the splits.', []]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B3D3D0C0&gt;
+seed = None, setup = &lt;function &lt;lambda&gt; at 0x000001C5B4FD7AB0&gt;
+message = 'Add each item and tap who had it to see the splits.'
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    @pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+    def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
+        # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
+        # the sheet A12's (R50), so the mark names the later one.
+        page = open_app(seed=seed).page
+        setup(page)
+&gt;       assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
+E       AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}
+E         
+E         Differing items:
+E         {'copy': [True, False]} != {'copy': [True, True]}
+E         {'message': None} != {'message': ['Add each item and tap who had it to see the splits.', []]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1514: AssertionError</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[by-item-add-item]" time="0.213"><failure message="AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}&#10;  &#10;  Differing items:&#10;  {'copy': [True, False]} != {'copy': [True, True]}&#10;  {'message': None} != {'message': ['Add each item and tap who had it to see the splits.', []]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B3D3E1F0&gt;
+seed = None, setup = &lt;function &lt;lambda&gt; at 0x000001C5B4FD7B60&gt;
+message = 'Add each item and tap who had it to see the splits.'
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    @pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+    def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
+        # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
+        # the sheet A12's (R50), so the mark names the later one.
+        page = open_app(seed=seed).page
+        setup(page)
+&gt;       assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
+E       AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}
+E         
+E         Differing items:
+E         {'copy': [True, False]} != {'copy': [True, True]}
+E         {'message': None} != {'message': ['Add each item and tap who had it to see the splits.', []]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1514: AssertionError</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K1-one-price-abc]" time="0.211"><failure message="AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}&#10;  &#10;  Differing items:&#10;  {'copy': [True, False]} != {'copy': [True, True]}&#10;  {'message': None} != {'message': ['Give every item a price to see the splits.', []]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B459BA00&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+setup = &lt;function &lt;lambda&gt; at 0x000001C5B4FD7C10&gt;
+message = 'Give every item a price to see the splits.'
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    @pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+    def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
+        # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
+        # the sheet A12's (R50), so the mark names the later one.
+        page = open_app(seed=seed).page
+        setup(page)
+&gt;       assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
+E       AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}
+E         
+E         Differing items:
+E         {'copy': [True, False]} != {'copy': [True, True]}
+E         {'message': None} != {'message': ['Give every item a price to see the splits.', []]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1514: AssertionError</failure></testcase><testcase classname="test_app" name="test_R17_the_strip_and_the_sheet_say_why_too[K1-every-price-abc]" time="0.328"><failure message="AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}&#10;  &#10;  Differing items:&#10;  {'copy': [True, False]} != {'copy': [True, True]}&#10;  {'message': None} != {'message': ['Add each item and tap who had it to see the splits.', []]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B3220720&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+setup = &lt;function &lt;lambda&gt; at 0x000001C5B4FD7CC0&gt;
+message = 'Add each item and tap who had it to see the splits.'
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    @pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+    def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
+        # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
+        # the sheet A12's (R50), so the mark names the later one.
+        page = open_app(seed=seed).page
+        setup(page)
+&gt;       assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
+E       AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}
+E         
+E         Differing items:
+E         {'copy': [True, False]} != {'copy': [True, True]}
+E         {'message': None} != {'message': ['Add each item and tap who had it to see the splits.', []]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1514: AssertionError</failure></testcase><testcase classname="test_app" name="test_R18_items_that_still_need_a_person" time="0.209"><failure message="AssertionError: assert ['section.tap...tape-section'] == ['div.r-total..., 'div.r-msg']&#10;  &#10;  At index 0 diff: 'section.tape-section' != 'div.r-total'&#10;  Right contains 2 more items, first extra item: 'div.r-rule'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B67050C0&gt;
+
+    def test_R18_items_that_still_need_a_person(open_app):
+        # [v1.1.0] qa.md on K1, the card's lines. The needs marker is test_R18_every_item_with_nobody_carries_the_needs_marker
+        # (task A8) and the strip's line the next test's (task A11).
+        page = open_app(seed=seeds.S1).page
+        toggle(page, "Mee goreng mamak", "Chen").click()
+        found = receipt(page)
+&gt;       assert found["blocks"] == ["div.r-total", "dl.r-lines", "div.r-rule", "div.r-msg"]
+E       AssertionError: assert ['section.tap...tape-section'] == ['div.r-total..., 'div.r-msg']
+E         
+E         At index 0 diff: 'section.tape-section' != 'div.r-total'
+E         Right contains 2 more items, first extra item: 'div.r-rule'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1527: AssertionError</failure></testcase><testcase classname="test_app" name="test_R18_the_strip_says_items_still_need_a_person" time="0.212"><failure message="AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}&#10;  &#10;  Differing items:&#10;  {'copy': [True, False]} != {'copy': [True, True]}&#10;  {'message': None} != {'message': ['1 item still needs a person. Tap who had it to see the splits.', ['#i-warning-circle']]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B6725430&gt;
+
+    @pytest.mark.xfail(strict=True, reason="task A11")
+    def test_R18_the_strip_says_items_still_need_a_person(open_app):
+        # The strip's line of qa.md "Items that still need a person". The strip is task A11's (R49).
+        page = open_app(seed=seeds.S1).page
+        toggle(page, "Mee goreng mamak", "Chen").click()
+&gt;       assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [ONE_NEEDS, ["#i-warning-circle"]], "copy": [True, True]}
+E       AssertionError: assert {'message': N...[True, False]} == {'message': [... [True, True]}
+E         
+E         Differing items:
+E         {'copy': [True, False]} != {'copy': [True, True]}
+E         {'message': None} != {'message': ['1 item still needs a person. Tap who had it to see the splits.', ['#i-warning-circle']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1542: AssertionError</failure></testcase><testcase classname="test_app" name="test_R7_the_item_left_with_nobody_needs_a_person_on_the_card" time="0.243"><failure message="AssertionError: assert None == ['div.r-msg', ['svg.ic', '#i-warning-circle'], ['p', '1 item still needs a person. Tap who had it to see the splits.']]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B32B5F30&gt;
+
+    def test_R7_the_item_left_with_nobody_needs_a_person_on_the_card(open_app):
+        # [v1.1.0] The card's line of qa.md "Remove a person and they leave every item". The strip's line is
+        # test_R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip (task A11).
+        page = open_app(seed=seeds.S1).page
+        open_people_first(page)
+        remove_button(page, "Chen").click()
+&gt;       assert receipt(page)["note"] == ["div.r-msg", ["svg.ic", "#i-warning-circle"], ["p", ONE_NEEDS]]
+E       AssertionError: assert None == ['div.r-msg', ['svg.ic', '#i-warning-circle'], ['p', '1 item still needs a person. Tap who had it to see the splits.']]
+
+tests\browser\test_app.py:1551: AssertionError</failure></testcase><testcase classname="test_app" name="test_R19_total_and_bill_lines[K2]" time="0.212"><failure message="AssertionError: assert None == [['span.r-label', '', 'Total'], ['p.r-amount', 'rTotal', 'RM 116.60']]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B356F740&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}'
+figure = '116.60'
+lines = [['Subtotal', 'RM 100.00'], ['Service 10%', 'RM 10.00'], ['SST 6%', 'RM 6.60']]
+
+    @pytest.mark.parametrize("seed, figure, lines", [(seeds.S2, "116.60", S2_LINES), (seeds.S1, "69.26", S1_LINES)],
+                             ids=["K2", "K1"])
+    def test_R19_total_and_bill_lines(open_app, seed, figure, lines):
+        # [v1.1.0] qa.md "Total and bill lines" at 1280 x 800. The Total figure has its span.cur and the lines no working.
+        found = receipt(open_app(seed=seed, viewport=VIEWPORTS[1280]).page)
+&gt;       assert found["total"] == [["span.r-label", "", "Total"], ["p.r-amount", "rTotal", f"RM {figure}"]]
+E       AssertionError: assert None == [['span.r-label', '', 'Total'], ['p.r-amount', 'rTotal', 'RM 116.60']]
+
+tests\browser\test_app.py:1559: AssertionError</failure></testcase><testcase classname="test_app" name="test_R19_total_and_bill_lines[K1]" time="0.214"><failure message="AssertionError: assert None == [['span.r-label', '', 'Total'], ['p.r-amount', 'rTotal', 'RM 69.26']]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B353E560&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+figure = '69.26'
+lines = [['Subtotal', 'RM 59.40'], ['Service 10%', 'RM 5.94'], ['SST 6%', 'RM 3.92']]
+
+    @pytest.mark.parametrize("seed, figure, lines", [(seeds.S2, "116.60", S2_LINES), (seeds.S1, "69.26", S1_LINES)],
+                             ids=["K2", "K1"])
+    def test_R19_total_and_bill_lines(open_app, seed, figure, lines):
+        # [v1.1.0] qa.md "Total and bill lines" at 1280 x 800. The Total figure has its span.cur and the lines no working.
+        found = receipt(open_app(seed=seed, viewport=VIEWPORTS[1280]).page)
+&gt;       assert found["total"] == [["span.r-label", "", "Total"], ["p.r-amount", "rTotal", f"RM {figure}"]]
+E       AssertionError: assert None == [['span.r-label', '', 'Total'], ['p.r-amount', 'rTotal', 'RM 69.26']]
+
+tests\browser\test_app.py:1559: AssertionError</failure></testcase><testcase classname="test_app" name="test_R19_a_charge_of_zero_is_allowed_and_still_shown" time="0.242"><failure message="AssertionError: assert [] == [['Service 0%...', 'RM 6.00']]&#10;  &#10;  Right contains 2 more items, first extra item: ['Service 0%', 'RM 0.00']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B3739C70&gt;
+
+    def test_R19_a_charge_of_zero_is_allowed_and_still_shown(open_app):
+        # [v1.1.0] qa.md "A charge of 0 is allowed and still shown" (R15, R19) on K2 at 1280 x 800. Its spare line is task A13's.
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        support.replace_text(page, rate_field(page, "Service charge"), "0")
+        assert shown_errors(page) == []
+&gt;       assert receipt(page)["lines"][1:] == [["Service 0%", "RM 0.00"], ["SST 6%", "RM 6.00"]]
+E       AssertionError: assert [] == [['Service 0%...', 'RM 6.00']]
+E         
+E         Right contains 2 more items, first extra item: ['Service 0%', 'RM 0.00']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1569: AssertionError</failure></testcase><testcase classname="test_app" name="test_R20_the_even_split_from_a_cold_boot" time="0.340"><failure message="AssertionError: assert None == [['h2', 'splitsH', None, 'Splits']]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B6AC85C0&gt;
+
+    def test_R20_the_even_split_from_a_cold_boot(open_app):
+        # [v1.1.0] qa.md key flow 1, the card's lines. Its spare line and chip are task A13's, the strip's Total A11's and the
+        # sheet's line test_R20_the_sheet_lists_the_splits_as_the_card_does (task A12).
+        page = open_app().page
+        support.replace_text(page, person_field(page, 1), "Aisyah")
+        support.replace_text(page, person_field(page, 2), "Ben")
+        page.get_by_role("button", name="Add person").click()
+        type_into(page, person_field(page, 3), "Chen")
+        type_into(page, subtotal_field(page), "100.00")
+        found = receipt(page)
+&gt;       assert found["head"] == [["h2", "splitsH", None, "Splits"]]
+E       AssertionError: assert None == [['h2', 'splitsH', None, 'Splits']]
+
+tests\browser\test_app.py:1583: AssertionError</failure></testcase><testcase classname="test_app" name="test_R20_the_sheet_lists_the_splits_as_the_card_does" time="0.208"><failure message="AssertionError: the sheet holds no div.rbody&#10;assert None is not None">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B6ACBC10&gt;
+
+    @pytest.mark.xfail(strict=True, reason="task A12")
+    def test_R20_the_sheet_lists_the_splits_as_the_card_does(open_app):
+        # The sheet's lines of qa.md key flow 1 (its bill is K2) and of "More than six people list in two columns on the
+        # desktop". The sheet is task A12's (R50), and in it only the heading carries an id (PD-20).
+        page = open_app(seed=seeds.S2).page
+        page.locator("#splitsBtn").click()
+        found = receipt(page, "#splitsDlg .rbody")
+&gt;       assert found is not None, "the sheet holds no div.rbody"
+E       AssertionError: the sheet holds no div.rbody
+E       assert None is not None
+
+tests\browser\test_app.py:1597: AssertionError</failure></testcase><testcase classname="test_app" name="test_R20_more_than_six_people_list_in_two_columns_on_the_desktop" time="0.204"><failure message="AssertionError: None&#10;assert (None)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B6C1F1C0&gt;
+
+    def test_R20_more_than_six_people_list_in_two_columns_on_the_desktop(open_app):
+        # [v1.1.0] qa.md on T12 at 1280 x 800 (PD-17). The sheet's line is test_R20_the_sheet_lists_the_splits_as_the_card_does.
+        page = open_app(seed=seeds.T12, viewport=VIEWPORTS[1280]).page
+        found = receipt(page)["list"]
+&gt;       assert found and [found["cls"], found["rowsVar"], len(found["rows"])] == ["r-splits many", "6", 12], found
+E       AssertionError: None
+E       assert (None)
+
+tests\browser\test_app.py:1615: AssertionError</failure></testcase><testcase classname="test_app" name="test_R21_the_by_item_split_from_gestures" time="0.606"><failure message="AssertionError: assert None == [['h2', 'splitsH', None, 'Splits'], ['span', '', 'true', 'items + charges']]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B6D061F0&gt;
+
+    def test_R21_the_by_item_split_from_gestures(open_app):
+        # [v1.1.0] qa.md key flow 2, the card's lines. Its spare line is task A13's.
+        page = open_app().page
+        build_s2(page)
+        build_items_after_switch(page)
+&gt;       assert receipt(page)["head"] == [["h2", "splitsH", None, "Splits"], ["span", "", "true", "items + charges"]]
+E       AssertionError: assert None == [['h2', 'splitsH', None, 'Splits'], ['span', '', 'true', 'items + charges']]
+
+tests\browser\test_app.py:1632: AssertionError</failure></testcase><testcase classname="test_app" name="test_R21_someone_who_had_nothing_is_still_listed" time="0.213"><failure message="AssertionError: assert [None, None] == [[['Aisyah', ...5.01 + 2.49']]&#10;  &#10;  At index 0 diff: None != [['Aisyah', 'RM 0.00', '0.00 + 0.00'], ['Ben', 'RM 14.59', '12.51 + 2.08'], ['Chen', 'RM 2.91', '2.50 + 0.41']]&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B6E7EA30&gt;
+
+    def test_R21_someone_who_had_nothing_is_still_listed(open_app):
+        # [v1.1.0] qa.md on the I2 seed at 1280 x 800. Its spare line is task A13's.
+        page = open_app(seed=seeds.I2, viewport=VIEWPORTS[1280]).page
+&gt;       assert card_rows(page) == [[["Aisyah", "RM 0.00", "0.00 + 0.00"], ["Ben", "RM 14.59", "12.51 + 2.08"],
+                                    ["Chen", "RM 2.91", "2.50 + 0.41"]], ["RM 17.50", "15.01 + 2.49"]]
+E       AssertionError: assert [None, None] == [[['Aisyah', ...5.01 + 2.49']]
+E         
+E         At index 0 diff: None != [['Aisyah', 'RM 0.00', '0.00 + 0.00'], ['Ben', 'RM 14.59', '12.51 + 2.08'], ['Chen', 'RM 2.91', '2.50 + 0.41']]
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1647: AssertionError</failure></testcase><testcase classname="test_app" name="test_R8_the_receipt_follows_each_mode" time="0.305"><failure message="AssertionError: assert None == 'RM 5.83'">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B70A80F0&gt;
+
+    def test_R8_the_receipt_follows_each_mode(open_app):
+        page = open_app().page
+        support.replace_text(page, subtotal_field(page), "100.00")
+        switch_to(page, "By item")
+        add_item_named(page, "Tea", "5.00", ["Person 1"])
+&gt;       assert card_figures(page)[0] == "RM 5.83"
+E       AssertionError: assert None == 'RM 5.83'
+
+tests\browser\test_app.py:1656: AssertionError</failure></testcase><testcase classname="test_app" name="test_R26_come_back_later" time="0.635"><failure message="AssertionError: assert [None, None] == [[['Aisyah', ...9.40 + 9.86']]&#10;  &#10;  At index 0 diff: None != [['Aisyah', 'RM 29.04', '24.90 + 4.14'], ['Ben', 'RM 15.74', '13.50 + 2.24'], ['Chen', 'RM 24.48', '21.00 + 3.48']]&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B6FFFED0&gt;
+
+    def test_R26_come_back_later(open_app):
+        session = open_app()
+        page = session.page
+        build_s2(page)
+        build_items_after_switch(page)
+        before = snapshot(page)
+        page.close()
+        again = session.new_page()
+        session.open("/", page=again)
+        assert snapshot(again) == before and split_state(again) == ITEM_SHOWN
+        assert section_state(again) == [FOLDED, FOLDED]  # R26, sections fold by R48 on a reload (task A4)
+&gt;       assert card_rows(again) == [S1_SPLITS, S1_PROOF]  # the card's rows since task A9
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert [None, None] == [[['Aisyah', ...9.40 + 9.86']]
+E         
+E         At index 0 diff: None != [['Aisyah', 'RM 29.04', '24.90 + 4.14'], ['Ben', 'RM 15.74', '13.50 + 2.24'], ['Chen', 'RM 24.48', '21.00 + 3.48']]
+E         Use -v to get more diff
+
+tests\browser\test_app.py:1894: AssertionError</failure></testcase><testcase classname="test_app" name="test_R26_come_back_later" time="0.003"><error message="failed on teardown with &quot;playwright._impl._errors.TargetClosedError: Page.screenshot: Target page, context or browser has been closed&quot;">server = &lt;rig.StaticServer object at 0x000001C5B502FE00&gt;
+browser = &lt;Browser type=&lt;BrowserType name=chromium executable_path={home}\AppData\Local\ms-playwright\chromium-1228\chrome-win64\chrome.exe&gt; version=149.0.7827.55&gt;
+request = &lt;SubRequest 'open_app' for &lt;Function test_R26_come_back_later&gt;&gt;
+
+    @pytest.fixture
+    def open_app(server, browser, request):
+        """open_app(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+        path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark") -&gt; Session
+    
+        The defaults are the default context of qa.md How to run (task A3). A scenario that names "no-preference" or a
+        light colour scheme passes it. Every context also gets csp/listener.js, so a policy violation fails the scenario
+        in either engine (R38)."""
+        sessions = []
+    
+        def factory(seed=None, clipboard="recorder", viewport=(390, 844), reduced_motion="reduce", init_scripts=(),
+                    path="/", goto=True, base_server=None, prefix="", allow_problems=False, touch=False, color_scheme="dark"):
+            target = base_server or server
+            options = {"viewport": {"width": viewport[0], "height": viewport[1]},
+                       "device_scale_factor": 1, "color_scheme": color_scheme, "reduced_motion": reduced_motion}
+            if touch:  # page.touchscreen.tap needs a context that has touch (RD-3)
+                options["has_touch"] = True
+            if seed is not None:
+                options["storage_state"] = rig.storage_state(target.base, seed)
+            context = rig.new_context(browser, clipboard=clipboard, init_scripts=(CSP_LISTENER, *init_scripts), **options)
+            session = Session(context, target.base, prefix)
+            session.allow_problems = allow_problems
+            sessions.append(session)
+            if goto:
+                session.open(path)
+            return session
+    
+        yield factory
+        failed = getattr(request.node, "rep_call", None) is not None and request.node.rep_call.failed
+        leftovers = []
+        for number, session in enumerate(sessions, start=1):
+            if failed:
+                name = re.sub(r"[^A-Za-z0-9_.-]+", "_", request.node.nodeid)
+&gt;               session.page.screenshot(path=str(evidence_dir() / f"{name}-{number}.png"))
+
+tests\browser\conftest.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\sync_api\_generated.py:10754: in screenshot
+    self._sync(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py:828: in screenshot
+    encoded_binary = await self._channel.send(
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000001C5B2EDD7F0&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000001C5B6FFEF00&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TargetClosedError: Page.screenshot: Target page, context or browser has been closed
+
+{home}\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py:563: TargetClosedError</error></testcase><testcase classname="test_app" name="test_R8_both_sets_of_input_survive_a_reload" time="0.285"><failure message="AssertionError: assert ('true' == 'true'&#10;  &#10;    true and None == 'RM 5.83')">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B301CA90&gt;
+
+    def test_R8_both_sets_of_input_survive_a_reload(open_app):
+        page = open_app().page
+        subtotal_field(page).fill("100.00")
+        switch_to(page, "By item")
+        add_item_named(page, "Tea", "5.00", ["Person 1"])
+        page.reload()
+        assert split_state(page) == ITEM_SHOWN and item_name(page, 1).input_value() == "Tea"
+&gt;       assert toggle(page, "Tea", "Person 1").get_attribute("aria-pressed") == "true" and card_figures(page)[0] == "RM 5.83"
+E       AssertionError: assert ('true' == 'true'
+E         
+E           true and None == 'RM 5.83')
+
+tests\browser\test_app.py:1907: AssertionError</failure></testcase><testcase classname="test_app" name="test_R28_the_app_works_without_storage[D-b]" time="0.227"><failure message="AssertionError: assert (None == 'RM 116.60')">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B6FA12D0&gt;
+driver = '// Storage driver D-b (qa.md How to run, research A3). The window.localStorage getter throws a test-made\n// Security...throw new DOMException("test security", "SecurityError");\n      return real.get.call(window);\n    },\n  });\n})();\n'
+
+    @pytest.mark.parametrize("driver", STORAGE_DRIVERS.values(), ids=STORAGE_DRIVERS.keys())
+    def test_R28_the_app_works_without_storage(open_app, driver):
+        # 1.0's "no message about storage shows" is retired by R46 and R47. No page error, console error or CSP violation is
+        # checked at teardown.
+        page = open_app(init_scripts=[driver]).page
+        add_a_person_after_a_subtotal(page)
+        total, splits = card_figures(page)
+&gt;       assert total == "RM 116.60" and len(splits or []) == 3  # the card holds three splits rows (task A9)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert (None == 'RM 116.60')
+
+tests\browser\test_app.py:2021: AssertionError</failure></testcase><testcase classname="test_app" name="test_R28_the_app_works_without_storage[D-c]" time="0.229"><failure message="AssertionError: assert (None == 'RM 116.60')">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B6FA22A0&gt;
+driver = '// Storage driver D-c (qa.md How to run, research A3). Storage.prototype.getItem throws, so the boot read of\n// the ...age.prototype.getItem = function getItem() {\n    throw new DOMException("test read", "SecurityError");\n  };\n})();\n'
+
+    @pytest.mark.parametrize("driver", STORAGE_DRIVERS.values(), ids=STORAGE_DRIVERS.keys())
+    def test_R28_the_app_works_without_storage(open_app, driver):
+        # 1.0's "no message about storage shows" is retired by R46 and R47. No page error, console error or CSP violation is
+        # checked at teardown.
+        page = open_app(init_scripts=[driver]).page
+        add_a_person_after_a_subtotal(page)
+        total, splits = card_figures(page)
+&gt;       assert total == "RM 116.60" and len(splits or []) == 3  # the card holds three splits rows (task A9)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert (None == 'RM 116.60')
+
+tests\browser\test_app.py:2021: AssertionError</failure></testcase><testcase classname="test_app" name="test_R28_the_app_works_without_storage[D-a]" time="0.209"><failure message="AssertionError: assert (None == 'RM 116.60')">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B64C2820&gt;
+driver = '// Storage driver D-a (qa.md How to run, research A3). Storage.prototype.setItem throws a test-made\n// QuotaExceeded...hrow new DOMException("test quota", "QuotaExceededError");\n    return original.call(this, key, value);\n  };\n})();\n'
+
+    @pytest.mark.parametrize("driver", STORAGE_DRIVERS.values(), ids=STORAGE_DRIVERS.keys())
+    def test_R28_the_app_works_without_storage(open_app, driver):
+        # 1.0's "no message about storage shows" is retired by R46 and R47. No page error, console error or CSP violation is
+        # checked at teardown.
+        page = open_app(init_scripts=[driver]).page
+        add_a_person_after_a_subtotal(page)
+        total, splits = card_figures(page)
+&gt;       assert total == "RM 116.60" and len(splits or []) == 3  # the card holds three splits rows (task A9)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert (None == 'RM 116.60')
+
+tests\browser\test_app.py:2021: AssertionError</failure></testcase><testcase classname="test_app" name="test_R46_a_real_full_storage_shows_the_warning_and_room_again_clears_it" time="0.260"><failure message="AssertionError: assert ([{'cls': 'not...s tab.', ...}] == [{'cls': 'not...ns': [], ...}]&#10;  &#10;  Use -v to get more diff and None)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B4D23AB0&gt;
+
+    def test_R46_a_real_full_storage_shows_the_warning_and_room_again_clears_it(open_app):
+        page = open_app(seed=seeds.S1).page
+        open_people_first(page)
+        assert page.evaluate(FILL_STORAGE_JS) &gt;= 1
+        type_at_end(page, person_field(page, 3), " Wei")
+        # The engine throws its own error through the app's own save. The card's third splits row reads "Chen Wei" (task A9).
+        rows, _ = card_rows(page)
+&gt;       assert notes(page) == [WARNING] and rows and rows[2][0] == "Chen Wei"
+E       AssertionError: assert ([{'cls': 'not...s tab.', ...}] == [{'cls': 'not...ns': [], ...}]
+E         
+E         Use -v to get more diff and None)
+
+tests\browser\test_app.py:2176: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[cancel]" time="0.472"><failure message="AssertionError: assert ([] == [['Subtotal',...', 'RM 6.60']]&#10;  &#10;  Right contains 3 more items, first extra item: ['Subtotal', 'RM 100.00']&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B4401380&gt;
+close = 'cancel'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop-corner", "backdrop-over-a-field"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)  # so a field is drawn under the backdrop (R48)
+        first_name = person_field(page, 1).bounding_box()
+        open_dialog(page)
+        if close == "cancel":
+            page.get_by_role("button", name="Cancel").click()
+        elif close == "escape":
+            page.keyboard.press("Escape")
+        elif close == "backdrop-corner":
+            page.mouse.click(10, 10)
+        else:
+            page.mouse.click(first_name["x"] + first_name["width"] / 2, first_name["y"] + first_name["height"] / 2)
+        assert page.locator("dialog#newDlg").evaluate("(d) =&gt; d.open") is False
+        assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+        assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page)
+&gt;       assert receipt(page)["lines"] == S2_LINES and card_rows(page) == [S2_SPLITS, S2_PROOF]  # the card since task A9
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert ([] == [['Subtotal',...', 'RM 6.60']]
+E         
+E         Right contains 3 more items, first extra item: ['Subtotal', 'RM 100.00']
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:2304: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[escape]" time="0.428"><failure message="AssertionError: assert ([] == [['Subtotal',...', 'RM 6.60']]&#10;  &#10;  Right contains 3 more items, first extra item: ['Subtotal', 'RM 100.00']&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B3CBE4B0&gt;
+close = 'escape'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop-corner", "backdrop-over-a-field"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)  # so a field is drawn under the backdrop (R48)
+        first_name = person_field(page, 1).bounding_box()
+        open_dialog(page)
+        if close == "cancel":
+            page.get_by_role("button", name="Cancel").click()
+        elif close == "escape":
+            page.keyboard.press("Escape")
+        elif close == "backdrop-corner":
+            page.mouse.click(10, 10)
+        else:
+            page.mouse.click(first_name["x"] + first_name["width"] / 2, first_name["y"] + first_name["height"] / 2)
+        assert page.locator("dialog#newDlg").evaluate("(d) =&gt; d.open") is False
+        assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+        assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page)
+&gt;       assert receipt(page)["lines"] == S2_LINES and card_rows(page) == [S2_SPLITS, S2_PROOF]  # the card since task A9
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert ([] == [['Subtotal',...', 'RM 6.60']]
+E         
+E         Right contains 3 more items, first extra item: ['Subtotal', 'RM 100.00']
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:2304: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[backdrop-corner]" time="0.423"><failure message="AssertionError: assert ([] == [['Subtotal',...', 'RM 6.60']]&#10;  &#10;  Right contains 3 more items, first extra item: ['Subtotal', 'RM 100.00']&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B32137F0&gt;
+close = 'backdrop-corner'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop-corner", "backdrop-over-a-field"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)  # so a field is drawn under the backdrop (R48)
+        first_name = person_field(page, 1).bounding_box()
+        open_dialog(page)
+        if close == "cancel":
+            page.get_by_role("button", name="Cancel").click()
+        elif close == "escape":
+            page.keyboard.press("Escape")
+        elif close == "backdrop-corner":
+            page.mouse.click(10, 10)
+        else:
+            page.mouse.click(first_name["x"] + first_name["width"] / 2, first_name["y"] + first_name["height"] / 2)
+        assert page.locator("dialog#newDlg").evaluate("(d) =&gt; d.open") is False
+        assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+        assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page)
+&gt;       assert receipt(page)["lines"] == S2_LINES and card_rows(page) == [S2_SPLITS, S2_PROOF]  # the card since task A9
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert ([] == [['Subtotal',...', 'RM 6.60']]
+E         
+E         Right contains 3 more items, first extra item: ['Subtotal', 'RM 100.00']
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:2304: AssertionError</failure></testcase><testcase classname="test_app" name="test_R30_leaving_the_dialog_without_starting_over[backdrop-over-a-field]" time="0.489"><failure message="AssertionError: assert ([] == [['Subtotal',...', 'RM 6.60']]&#10;  &#10;  Right contains 3 more items, first extra item: ['Subtotal', 'RM 100.00']&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001C5B4915380&gt;
+close = 'backdrop-over-a-field'
+
+    @pytest.mark.parametrize("close", ["cancel", "escape", "backdrop-corner", "backdrop-over-a-field"])
+    def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
+        page = open_app(seed=seeds.S2).page
+        open_people_first(page)  # so a field is drawn under the backdrop (R48)
+        first_name = person_field(page, 1).bounding_box()
+        open_dialog(page)
+        if close == "cancel":
+            page.get_by_role("button", name="Cancel").click()
+        elif close == "escape":
+            page.keyboard.press("Escape")
+        elif close == "backdrop-corner":
+            page.mouse.click(10, 10)
+        else:
+            page.mouse.click(first_name["x"] + first_name["width"] / 2, first_name["y"] + first_name["height"] / 2)
+        assert page.locator("dialog#newDlg").evaluate("(d) =&gt; d.open") is False
+        assert focused(page) == "New bill" and stored_text(page) == seeds.S2
+        assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page)
+&gt;       assert receipt(page)["lines"] == S2_LINES and card_rows(page) == [S2_SPLITS, S2_PROOF]  # the card since task A9
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert ([] == [['Subtotal',...', 'RM 6.60']]
+E         
+E         Right contains 3 more items, first extra item: ['Subtotal', 'RM 100.00']
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:2304: AssertionError</failure></testcase></testsuite></testsuites>

@@ -17,9 +17,8 @@ import { createItems } from "./ui/items.js";
 import { createCharges } from "./ui/charges.js";
 import { createPeopleSection, createChargesSection } from "./ui/sections.js";
 import { icon } from "./ui/icons.js";
-import { createPanel, hasShares } from "./ui/panel.js";
-import { blockedReceipt } from "./ui/receipt.js";
-import { reconcileChildren, watchPointerClicks } from "./ui/dom.js";
+import { CARD_IDS, createReceipt, hasSplits } from "./ui/receipt.js";
+import { watchPointerClicks } from "./ui/dom.js";
 
 watchPointerClicks(); // R57 (b): every repeat check reads what these window listeners record from the first press on
 
@@ -55,18 +54,18 @@ function save() {
 }
 
 /**
- * R24: the copy status lives only while the shares table does. This is the one place that writes
- * `view.status`, so the three ways it can go stale (a bill change that removes the table, a clipboard answer
- * that arrives after that, Start new bill) cannot bring it back with the table.
+ * R24: the copy status lives only while the splits do. This is the one place that writes
+ * `view.status`, so the three ways it can go stale (a bill change that removes the splits, a clipboard answer
+ * that arrives after that, Start new bill) cannot bring it back with the splits.
  */
 function setStatus(next) {
-  view.status = hasShares(computeResult(bill)) ? next : null;
+  view.status = hasSplits(computeResult(bill)) ? next : null;
 }
 
 /** R22, R23: copy the summary of the bill as it is now. Any refusal is shown as a failure, nothing else changes. */
 async function copySummary() {
   const result = computeResult(bill);
-  if (!hasShares(result)) return;
+  if (!hasSplits(result)) return;
   let outcome = "ok";
   try {
     await navigator.clipboard.writeText(summaryText(result));
@@ -146,8 +145,7 @@ const newBillButton = document.getElementById("newBill");
 newBillButton.prepend(icon("plus"));
 document.getElementById("splitsBtn").append(icon("caret", "caret-up"));
 document.getElementById("stripCopy").prepend(icon("copy"));
-const receipt = document.getElementById("rbody");
-const panel = createPanel(receipt, { onCopy: copySummary });
+const card = createReceipt(document.getElementById("rbody"), { ids: CARD_IDS, onCopy: copySummary });
 createDialog(document.getElementById("newDlg"), newBillButton, {
   onConfirm() {
     // The view state is reset with the bill (R31): a stale error flag, copy status or open state must not outlive it.
@@ -196,8 +194,7 @@ function render() {
   subtotal.update(bill, errors);
   items.update(bill, errors);
   charges.update(bill, errors);
-  if (result.kind === "blocked") reconcileChildren(receipt, blockedReceipt(result.reason));
-  else panel.update(result, view.status);
+  card.update(result, view.status);
   notes.update(view);
   items.markFrame(); // last, so it measures the frame with every block above it in its new state (R56)
 }

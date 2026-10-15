@@ -21,8 +21,8 @@ from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 import rig
 import seeds
 import support
-from expected import (BLOCKED_CARD, EVEN_MESSAGE, S1_CHECK, S1_COPY, S1_ITEMS, S1_ROWS, S1_SUMMARY, S2_CHECK, S2_COPY,
-                      S2_ROWS, S2_SUMMARY)
+from expected import (BLOCKED_CARD, EVEN_MESSAGE, S1_COPY, S1_ITEMS, S1_LINES, S1_PROOF, S1_SPLITS, S2_CHECK, S2_COPY,
+                      S2_LINES, S2_PROOF, S2_SPLITS)
 from support import (CSP, GOLDEN_DIR, ROOT, card_text, dom_walk, first_diff, golden_walk, open_golden,
                      panel_text, person_field, walk_entries)
 
@@ -254,7 +254,7 @@ R3_STATES = {
     "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: "A16", 360: "A16", 1280: "A16"}),
     "bill-empty": (None, {}, {390: "A11", 360: "A11", 1280: None}),
     "rate-error": (seeds.RE, {}, {390: "A11", 360: "A11", 1280: None}),
-    "bill-unassigned": (seeds.S5, {}, {390: "A11", 360: "A11", 1280: "A9"}),
+    "bill-unassigned": (seeds.S5, {}, {390: "A11", 360: "A11", 1280: None}),
     "bill-unreadable": (seeds.UNREADABLE["B1"], {}, {390: "A11", 360: "A11", 1280: None}),
     "bill-twelve": (seeds.T12, {}, {390: "A11", 360: "A11", 1280: "A13"}),
     "bill-large": (seeds.W1, {}, {390: "A11", 360: "A11", 1280: "A13"}),
@@ -329,7 +329,7 @@ K1_SPLITS = ["RM 29.04", "RM 15.74", "RM 24.48", "RM 69.26"]
 # (state, golden of that state, seed, width, the clicks after load, the proof the module ran, the task that completes it)
 POLICY_STATES = [
     ("cold-boot", "bill-empty", None, 390, (), "card-blocked", None),
-    ("K1", "bill-items", seeds.S1, 390, (), "card-K1", "A9"),
+    ("K1", "bill-items", seeds.S1, 390, (), "card-K1", None),
     ("K1-new-bill", "new-bill-dialog", seeds.S1, 390, ("#newBill",), "dialog-open", None),
     ("K1-sheet-P1", "spare-sen", seeds.S1, 390, ("#splitsBtn", SHEET_SPARE_CHIP), "sheet-padding", "A13"),
     ("K2-P1-desktop", "bill-even", seeds.S2, 1280, ("#spareBtn",), "spare-place", "A13"),
@@ -570,8 +570,7 @@ def test_R4_person_rows_carry_their_names_and_labels(open_app):
 
 
 def test_R4_a_blank_name_falls_back_to_its_position_everywhere_but_the_field(open_app):
-    # [v1.1.0] K1, and the People summary shows the fallback too. The card's splits row is task A9's (until then the 1.0
-    # form, test_R5_a_blank_name_reads_as_its_position_in_the_shares_row).
+    # [v1.1.0] K1, and the People summary shows the fallback too, as does the card's second splits row (task A9).
     page = open_app(seed=seeds.S1).page
     open_people_first(page)
     support.replace_text(page, person_field(page, 2), "")
@@ -580,6 +579,8 @@ def test_R4_a_blank_name_falls_back_to_its_position_everywhere_but_the_field(ope
     assert rows[1] == person_row(2, "", "Person 2")
     for name, _, _ in S1_ITEMS:
         assert who_group(page, name).get_by_role("button").all_inner_texts() == ["Aisyah", "Person 2", "Chen"]
+    splits, _ = card_rows(page)
+    assert splits and splits[1][0] == "Person 2", splits
     page.locator("#peopleBtn").click()
     assert visible_text(page, "#peopleSum") == "Aisyah, Person 2, Chen"
     open_people_first(page)
@@ -590,6 +591,7 @@ def test_R4_a_blank_name_falls_back_to_its_position_everywhere_but_the_field(ope
 # After each key of a rename of the third person: their toggle in every item, their Remove name, the People summary.
 RENAME_READS_JS = """() => ({
   toggles: [...document.querySelectorAll('li.item')].map((item) => item.querySelectorAll('button.tap')[2]?.textContent.trim() ?? null),
+  card: document.querySelector('#rbody > ul.r-splits > li:nth-child(3) > span.nm')?.textContent ?? null,
   remove: document.querySelectorAll('ul.people#peopleList > li')[2]?.querySelector('button')?.getAttribute('aria-label') ?? null,
   summary: document.querySelector('#peopleSum span.sec-txt')?.textContent ?? null,
 })"""
@@ -608,14 +610,13 @@ def rename_chen_to_chen_wei(page, watch=None):
 
 
 def test_R5_renaming_a_person_updates_every_place_on_each_keystroke(open_app):
-    # [v1.1.0] K1. The toggles, the Remove name and the People summary here. The card's splits row is task A9's (until
-    # then the 1.0 form, test_R5_a_person_label_follows_the_name_into_every_toggle and the shares table tests), and the
+    # [v1.1.0] K1. The toggles, the card's third splits row (task A9), the Remove name and the People summary here. The
     # sheet, the copy and the pills are the next test's.
     page = open_app(seed=seeds.S1).page
     open_people_first(page)
 
     def every_place_reads(label):
-        assert page.evaluate(RENAME_READS_JS) == {"toggles": [label] * 4, "remove": f"Remove {label}",
+        assert page.evaluate(RENAME_READS_JS) == {"toggles": [label] * 4, "card": label, "remove": f"Remove {label}",
                                                   "summary": f"Aisyah, Ben, {label}"}
 
     rename_chen_to_chen_wei(page, every_place_reads)
@@ -1185,14 +1186,16 @@ def toggle_states(page, number):
 
 
 def test_R13_tapping_a_person_on_an_item(open_app):
-    # [v1.1.0] qa.md on K1 at 1280 x 800, each toggle the check icon and then the name. The card's rows with their working
-    # are task A9's (until then the 1.0 form, test_R13_tapping_a_person_changes_the_shares) and the spare line A13's.
+    # [v1.1.0] qa.md on K1 at 1280 x 800, each toggle the check icon and then the name, and the card's rows with their
+    # working (task A9). Its spare line is task A13's.
     page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280]).page
     toggle(page, "Satay, 10 sticks", "Ben").click()
     rows = item_rows(page)
     assert rows is not None and rows[3]["taps"] == item_row(4, "", "", "Satay, 10 sticks", THREE)["taps"]
+    assert card_rows(page) == [[["Aisyah", "RM 25.54", "21.90 + 3.64"], ["Ben", "RM 22.74", "19.50 + 3.24"],
+                                ["Chen", "RM 20.98", "18.00 + 2.98"]], S1_PROOF]
     toggle(page, "Satay, 10 sticks", "Ben").click()
-    assert item_rows(page) == K1_ROWS
+    assert item_rows(page) == K1_ROWS and card_rows(page) == [S1_SPLITS, S1_PROOF]
 
 
 # A field_error read of p.err#ie2 that also says whether it is the last child of its div.item-row (R14).
@@ -1353,21 +1356,81 @@ def test_R15_a_rate_error_names_the_hint_first_and_then_its_error(open_app):
     assert page.evaluate(in_cell) == "svc"
 
 
-# ---------------------------------------------------------------- Task 7: the bill panel (R3, R16 to R21)
-COPY_BUTTON = "button.copy"
+# ---------------------------------------------------------------- v1.1.0 task A9: the receipt and the card (R16 to R21)
+# The receipt of one div.rbody in one evaluate (the card's #rbody, or the sheet's from task A12), so a part the tree does
+# not draw reads as null or empty and fails on its assertion at once, never on a wait. A row and the proof give their
+# span.wk without its span.sr children (qa.md, before the scenarios), and null where there is none.
+RECEIPT_JS = """(root) => {
+  const rbody = document.querySelector(root);
+  if (!rbody) return null;
+  const label = (el) => el.localName + [...el.classList].map((name) => '.' + name).join('');
+  const part = (selector) => rbody.querySelector(':scope > ' + selector);
+  const child = (el, selector) => el.querySelector(':scope > ' + selector);
+  const working = (el) => el && [...el.childNodes].filter((node) => !(node instanceof Element && node.matches('span.sr')))
+    .map((node) => node.textContent).join('');
+  const icon = (svg) => svg && [label(svg), svg.querySelector('use')?.getAttribute('href') ?? null];
+  const total = part('div.r-total'), amount = part('div.r-total > p.r-amount'), head = part('div.r-head');
+  const note = part('div.r-empty') ?? part('div.r-msg'), list = part('ul.r-splits'), check = part('div.r-check');
+  const copy = part('button.r-copy'), status = part('p.status');
+  return {
+    blocks: [...rbody.children].map(label),
+    total: total && [...total.children].map((el) => [label(el), el.id, el.textContent]),
+    amount: amount && [...amount.childNodes].map((node) => node instanceof Element ? `${label(node)} ${node.textContent}` : node.textContent),
+    lines: [...rbody.querySelectorAll(':scope > dl.r-lines > div')].map((row) => [...row.children].map((el) => el.textContent)),
+    rule: part('div.r-rule')?.getAttribute('aria-hidden') ?? null,
+    note: note && [label(note), ...[...note.children].map((el) => el.localName === 'svg' ? icon(el) : [label(el), el.textContent])],
+    head: head && [...head.children].map((el) => [label(el), el.id, el.getAttribute('aria-hidden'), el.textContent]),
+    list: list && { id: list.id, cls: list.className, labelledBy: list.getAttribute('aria-labelledby'),
+      rowsVar: list.style.getPropertyValue('--rows'), rows: [...list.children].map((li) =>
+        [child(li, 'span.nm')?.textContent ?? null, child(li, 'span.amt')?.textContent ?? null, working(child(li, 'span.wk'))]) },
+    proof: check && { parts: [...check.children].map(label), seal: icon(child(check, 'svg')), id: child(check, 'span.amt')?.id ?? null,
+      amount: child(check, 'span.amt')?.textContent ?? null, working: working(child(check, 'span.wk')) },
+    copy: copy && [copy.id, copy.className, copy.textContent, icon(child(copy, 'svg'))],
+    status: status && [status.id, status.className, status.getAttribute('role'), status.textContent],
+  };
+}"""
+CARD_COPY = ["copyBtn", "btn btn-primary btn-block r-copy", "Copy summary", ["svg.ic", "#i-copy"]]
+ONE_NEEDS = "1 item still needs a person. Tap who had it to see the splits."
+TWO_NEED = "2 items still need a person. Tap who had each one to see the splits."
+
+
+def receipt(page, root="#rbody"):
+    """The receipt of the div.rbody at `root` (RECEIPT_JS), or None when the page has none."""
+    return page.evaluate(RECEIPT_JS, root)
+
+
+def card_figures(page):
+    """The card's #rTotal and its splits (qa.md, "the splits are"), the figures the receipt follows on every change."""
+    found = receipt(page)
+    total = next((text for _, element_id, text in found["total"] or [] if element_id == "rTotal"), None)
+    return [total, found["list"] and [row[1] for row in found["list"]["rows"]]]
+
+
+def card_rows(page):
+    """The card's splits rows and its proof, each as RECEIPT_JS gives them (None for a part the card does not hold)."""
+    found = receipt(page)
+    proof = found["proof"]
+    return [found["list"] and found["list"]["rows"], proof and [proof["amount"], proof["working"]]]
+
+
+def blocked_card(message):
+    """The parts a blocked receipt holds (spec R17): the bare Total, then the mark and the message, nothing else."""
+    return {"blocks": ["div.r-total", "div.r-empty"], "total": [["span.r-label", "", "Total"]],
+            "note": ["div.r-empty", ["svg.ic", "#i-mark"], ["p", message]]}
+
+
+# The strip's message and Copy summary (spec R17, R18, R49), null for a part the strip does not hold.
+STRIP_MESSAGE_JS = """() => { const message = document.querySelector('#stripInfo > p.s-msg#stripMsg'), copy = document.querySelector('#stripCopy');
+  return { message: message && [message.textContent, [...message.querySelectorAll('svg use')].map((use) => use.getAttribute('href'))],
+           copy: copy && [copy.checkVisibility(), copy.disabled] }; }"""
 
 
 def table_cells(page, part):
-    """Cell texts of table.shares thead, tbody or tfoot, one list per row."""
+    """Cell texts of the 1.0 table.shares thead, tbody or tfoot, one list per row. Read only by tests marked for a later
+    task (A10, A18), which rewrite them to the receipt."""
     return page.evaluate(
         "(part) => [...document.querySelectorAll(`table.shares ${part} tr`)].map((tr) => [...tr.children].map((c) => c.textContent.trim()))",
         part)
-
-
-def summary_rows(page):
-    return page.evaluate(
-        "() => [...document.querySelectorAll('dl.sum .row')].map((r) => [r.querySelector('dt').textContent.trim(),"
-        " r.querySelector('.amt').textContent.trim(), (r.querySelector('.work') || { textContent: '' }).textContent.trim()])")
 
 
 def build_s2(page):
@@ -1382,129 +1445,194 @@ def build_s5(page):
 
 
 def test_R9_a_subtotal_drives_the_even_split(open_app):
+    # [v1.1.0] The splits line of qa.md "The subtotal field drives the even split" (task A9). The field and the absent
+    # spare line are test_R9_the_subtotal_field_drives_the_even_split.
     page = open_app().page
     subtotal_field(page).fill("100.00")
-    assert summary_rows(page) == S2_SUMMARY
-    assert table_cells(page, "tbody") == [["Person 1", "RM 58.30"], ["Person 2", "RM 58.30"]]
+    assert card_rows(page) == [[["Person 1", "RM 58.30", None], ["Person 2", "RM 58.30", None]], ["RM 116.60", None]]
 
 
-@pytest.mark.xfail(strict=True, reason="task A9")
-def test_R16_the_panel_follows_every_keystroke_and_stays_quiet(open_app):
-    page = open_app().page
-    build_s2(page)
+# Every element under `root` that is live, an aria-live attribute or a status, alert or log role, named by its id, a note
+# of #notes by its place, and anything else by its tag and class (spec R16).
+LIVE_JS = """(root) => [...document.querySelector(root).querySelectorAll('[aria-live], [role=status], [role=alert], [role=log]')]
+  .map((el) => el.id ? `#${el.id}` : el.parentElement.id === 'notes' ? '#notes > div.note' : `${el.localName}.${el.className}`)"""
+
+
+def test_R16_the_receipt_follows_every_keystroke_and_stays_quiet(open_app):
+    # [v1.1.0] qa.md on K2 at 1280 x 800, the card and the strip. The sheet's line is the next test's (task A12).
+    page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
     support.replace_text(page, subtotal_field(page), "5")
-    assert summary_rows(page)[3][1] == "RM 5.83" and [r[1] for r in table_cells(page, "tbody")] == ["RM 1.95", "RM 1.94", "RM 1.94"]
+    assert card_figures(page) == ["RM 5.83", ["RM 1.95", "RM 1.94", "RM 1.94"]]
     page.keyboard.type("0")
-    assert summary_rows(page)[3][1] == "RM 58.30" and [r[1] for r in table_cells(page, "tbody")] == ["RM 19.44", "RM 19.43", "RM 19.43"]
-    assert live_elements_in_tape(page) == ["p.status[role=status]"]
+    assert card_figures(page) == ["RM 58.30", ["RM 19.44", "RM 19.43", "RM 19.43"]]
+    assert page.evaluate(LIVE_JS, "body") == ["#cardStatus", "#stripStatus"]
 
 
-def live_elements_in_tape(page):
-    """Every element of div.tape (itself included) that is live: an aria-live attribute or a status, alert or log role."""
-    return page.evaluate("""() => [...document.querySelectorAll('div.tape, div.tape *')]
-        .filter((e) => e.hasAttribute('aria-live') || ['status', 'alert', 'log'].includes(e.getAttribute('role')))
-        .map((e) => `${e.tagName.toLowerCase()}.${e.className}[role=${e.getAttribute('role')}]`)""")
+@pytest.mark.xfail(strict=True, reason="task A12")
+def test_R16_the_sheet_holds_one_live_element(open_app):
+    # The sheet's line of qa.md "The receipt follows every keystroke and stays quiet". The sheet is task A12's (R50).
+    page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.locator("#splitsBtn").click()
+    assert page.evaluate(LIVE_JS, "#splitsDlg") == ["p.status"]
 
 
-@pytest.mark.xfail(strict=True, reason="task A9")
-def test_R16_the_status_is_the_only_live_element_and_only_while_the_table_is(open_app):
-    # RD-2 (qa.md, 2026-10-09): p.status[role=status] is the one live element in the tape. The tape and its
-    # sections carry no aria-live and no role, and a blocked or unassigned panel has no live element at all.
-    page = open_app().page
-    assert live_elements_in_tape(page) == []  # S3: only the Shares message
-    build_s2(page)
-    assert live_elements_in_tape(page) == ["p.status[role=status]"]
-    assert page.locator("div.tape [aria-live], div.tape section[role], div.tape[role], div.tape[aria-live]").count() == 0
-    support.replace_text(page, subtotal_field(page), "")
-    assert live_elements_in_tape(page) == []
-    unassigned = open_app().page
-    build_s5(unassigned)
-    assert live_elements_in_tape(unassigned) == []
-
-
-BLOCKED_CASES = [
-    pytest.param(lambda page: (build_s2(page), support.replace_text(page, opened_rate_field("Service charge")(page), "")),
-                 "Check the charges to see the shares.", id="rate-empty"),
-    pytest.param(lambda page: (build_s1(page), support.replace_text(page, opened_rate_field("SST")(page), "25")),
-                 "Check the charges to see the shares.", id="rate-too-high"),
-    pytest.param(lambda page: (build_s2(page), support.replace_text(page, subtotal_field(page), "")),
-                 "Enter the subtotal to see the shares.", id="subtotal-empty"),
-    pytest.param(lambda page: switch_to(page, "By item"), "Add an item to see the shares.", id="no-items"),
-    pytest.param(lambda page: (switch_to(page, "By item"), page.get_by_role("button", name="Add item").click()),
-                 "Add an item to see the shares.", id="item-unpriced"),
-    pytest.param(lambda page: (build_s1(page), support.replace_text(page, item_price(page, 1), "abc")),
-                 "Give every item a price to see the shares.", id="item-bad-price"),
+BLOCKED_CASES = [  # qa.md "When the splits cannot be worked out": the seed, the steps after load, the message
+    pytest.param(seeds.S2, lambda page: support.replace_text(page, opened_rate_field("Service charge")(page), ""),
+                 "Check the charges to see the splits.", id="K2-service-emptied"),
+    pytest.param(seeds.S1, lambda page: support.replace_text(page, opened_rate_field("SST")(page), "25"),
+                 "Check the charges to see the splits.", id="K1-sst-25"),
+    pytest.param(seeds.S2, lambda page: support.replace_text(page, subtotal_field(page), ""),
+                 "Enter the subtotal to see the splits.", id="K2-subtotal-emptied"),
+    pytest.param(None, lambda page: None, "Enter the subtotal to see the splits.", id="cold-boot"),
+    pytest.param(None, lambda page: switch_to(page, "By item"), "Add each item and tap who had it to see the splits.", id="by-item"),
+    pytest.param(None, lambda page: (switch_to(page, "By item"), page.get_by_role("button", name="Add item", exact=True).click()),
+                 "Add each item and tap who had it to see the splits.", id="by-item-add-item"),
+    pytest.param(seeds.S1, lambda page: support.replace_text(page, item_price(page, 1), "abc"),
+                 "Give every item a price to see the splits.", id="K1-one-price-abc"),
+    pytest.param(seeds.S1, lambda page: [support.replace_text(page, item_price(page, n), "abc") for n in range(1, 5)],
+                 "Add each item and tap who had it to see the splits.", id="K1-every-price-abc"),
 ]
 
 
-@pytest.mark.xfail(strict=True, reason="task A9")
-@pytest.mark.parametrize("setup, message", BLOCKED_CASES)
-def test_R17_when_the_shares_cannot_be_worked_out(open_app, setup, message):
-    page = open_app().page
+@pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+def test_R17_when_the_splits_cannot_be_worked_out(open_app, seed, setup, message):
+    # [v1.1.0] The card's lines of the qa.md outline. The strip's and the sheet's are the next test's (tasks A11, A12).
+    page = open_app(seed=seed).page
     setup(page)
-    assert panel_text(page) == f"Shares\n{message}"
-    assert page.locator("div.tape section").count() == 1 and page.locator("div.tape table, h2#h-summary, p.status").count() == 0
-    assert page.locator(COPY_BUTTON).count() == 0
+    found = receipt(page)
+    assert {key: found[key] for key in ("blocks", "total", "note")} == blocked_card(message)
 
 
-@pytest.mark.xfail(strict=True, reason="task A9")
+@pytest.mark.xfail(strict=True, reason="task A12")
+@pytest.mark.parametrize("seed, setup, message", BLOCKED_CASES)
+def test_R17_the_strip_and_the_sheet_say_why_too(open_app, seed, setup, message):
+    # The strip's and the sheet's lines of qa.md "When the splits cannot be worked out". The strip is task A11's (R49) and
+    # the sheet A12's (R50), so the mark names the later one.
+    page = open_app(seed=seed).page
+    setup(page)
+    assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [message, []], "copy": [True, True]}
+    page.locator("#splitsBtn").click()
+    found = receipt(page, "#splitsDlg .rbody")
+    assert found is not None, "the sheet holds no div.rbody"
+    assert {key: found[key] for key in ("blocks", "total", "note")} == blocked_card(message)
+
+
 def test_R18_items_that_still_need_a_person(open_app):
-    page = open_app().page
-    build_s1(page)
+    # [v1.1.0] qa.md on K1, the card's lines. The needs marker is test_R18_every_item_with_nobody_carries_the_needs_marker
+    # (task A8) and the strip's line the next test's (task A11).
+    page = open_app(seed=seeds.S1).page
     toggle(page, "Mee goreng mamak", "Chen").click()
-    assert [row[1] for row in summary_rows(page)] == ["RM 59.40", "RM 5.94", "RM 3.92", "RM 69.26"]
-    assert panel_text(page).splitlines()[-2:] == ["Shares", "1 item still needs a person. Tap who had it to see the shares."]
-    assert page.locator("div.tape table, p.status").count() == 0 and page.locator(COPY_BUTTON).count() == 0
+    found = receipt(page)
+    assert found["blocks"] == ["div.r-total", "dl.r-lines", "div.r-rule", "div.r-msg"]
+    assert found["total"] == [["span.r-label", "", "Total"], ["p.r-amount", "rTotal", "RM 69.26"]] and found["lines"] == S1_LINES
+    assert found["note"] == ["div.r-msg", ["svg.ic", "#i-warning-circle"], ["p", ONE_NEEDS]]
     toggle(page, "Char kuey teow", "Ben").click()
-    assert panel_text(page).splitlines()[-1] == "2 items still need a person. Tap who had each one to see the shares."
+    assert receipt(page)["note"] == ["div.r-msg", ["svg.ic", "#i-warning-circle"], ["p", TWO_NEED]]
     toggle(page, "Mee goreng mamak", "Chen").click()
     toggle(page, "Char kuey teow", "Ben").click()
-    assert table_cells(page, "tbody") == S1_ROWS and table_cells(page, "tfoot") == S1_CHECK
-    assert page.locator(COPY_BUTTON).count() == 1
+    assert card_rows(page) == [S1_SPLITS, S1_PROOF] and receipt(page)["copy"] == CARD_COPY
 
 
-@pytest.mark.xfail(strict=True, reason="task A9")
-def test_R7_removing_a_person_can_leave_an_item_without_anyone(open_app):
-    page = open_app().page
-    build_s1(page)
+@pytest.mark.xfail(strict=True, reason="task A11")
+def test_R18_the_strip_says_items_still_need_a_person(open_app):
+    # The strip's line of qa.md "Items that still need a person". The strip is task A11's (R49).
+    page = open_app(seed=seeds.S1).page
+    toggle(page, "Mee goreng mamak", "Chen").click()
+    assert page.evaluate(STRIP_MESSAGE_JS) == {"message": [ONE_NEEDS, ["#i-warning-circle"]], "copy": [True, True]}
+
+
+def test_R7_the_item_left_with_nobody_needs_a_person_on_the_card(open_app):
+    # [v1.1.0] The card's line of qa.md "Remove a person and they leave every item". The strip's line is
+    # test_R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip (task A11).
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
     remove_button(page, "Chen").click()
-    assert panel_text(page).splitlines()[-1] == "1 item still needs a person. Tap who had it to see the shares."
+    assert receipt(page)["note"] == ["div.r-msg", ["svg.ic", "#i-warning-circle"], ["p", ONE_NEEDS]]
 
 
-@pytest.mark.parametrize("build, expected", [(build_s2, S2_SUMMARY), (build_s1, S1_SUMMARY)], ids=["S2", "S1"])
-def test_R19_the_bill_summary_shows_its_working(open_app, build, expected):
-    page = open_app().page
-    build(page)
-    assert summary_rows(page) == expected
-    assert page.locator("dl.sum .row.total .amt > span.final").inner_text() == expected[3][1]
+@pytest.mark.parametrize("seed, figure, lines", [(seeds.S2, "116.60", S2_LINES), (seeds.S1, "69.26", S1_LINES)],
+                         ids=["K2", "K1"])
+def test_R19_total_and_bill_lines(open_app, seed, figure, lines):
+    # [v1.1.0] qa.md "Total and bill lines" at 1280 x 800. The Total figure has its span.cur and the lines no working.
+    found = receipt(open_app(seed=seed, viewport=VIEWPORTS[1280]).page)
+    assert found["total"] == [["span.r-label", "", "Total"], ["p.r-amount", "rTotal", f"RM {figure}"]]
+    assert found["amount"] == ["span.cur RM ", figure]
+    assert found["blocks"][1:3] == ["dl.r-lines", "div.r-rule"] and found["lines"] == lines and found["rule"] == "true"
 
 
 def test_R19_a_charge_of_zero_is_allowed_and_still_shown(open_app):
-    page = open_app().page
-    build_s2(page)
-    open_charges_first(page)
+    # [v1.1.0] qa.md "A charge of 0 is allowed and still shown" (R15, R19) on K2 at 1280 x 800. Its spare line is task A13's.
+    page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
     support.replace_text(page, rate_field(page, "Service charge"), "0")
     assert shown_errors(page) == []
-    rows = summary_rows(page)
-    assert rows[1] == ["+Service charge", "RM 0.00", "0% of RM 100.00"] and rows[2] == ["+SST", "RM 6.00", "6% of RM 100.00"]
-    assert [row[1] for row in table_cells(page, "tbody")] == ["RM 35.34", "RM 35.33", "RM 35.33"]
+    assert receipt(page)["lines"][1:] == [["Service 0%", "RM 0.00"], ["SST 6%", "RM 6.00"]]
+    assert card_figures(page)[1] == ["RM 35.34", "RM 35.33", "RM 35.33"]
 
 
 def test_R20_the_even_split_from_a_cold_boot(open_app):
+    # [v1.1.0] qa.md key flow 1, the card's lines. Its spare line and chip are task A13's, the strip's Total A11's and the
+    # sheet's line test_R20_the_sheet_lists_the_splits_as_the_card_does (task A12).
     page = open_app().page
-    three_people(page)
-    support.replace_text(page, subtotal_field(page), "100.00")
-    assert [cell for row in table_cells(page, "thead") for cell in row] == ["Person", "Share"]
-    assert page.locator("table.shares thead").get_attribute("class") == "sr-only"
-    assert table_cells(page, "tbody") == S2_ROWS and table_cells(page, "tfoot") == S2_CHECK
+    support.replace_text(page, person_field(page, 1), "Aisyah")
+    support.replace_text(page, person_field(page, 2), "Ben")
+    page.get_by_role("button", name="Add person").click()
+    type_into(page, person_field(page, 3), "Chen")
+    type_into(page, subtotal_field(page), "100.00")
+    found = receipt(page)
+    assert found["head"] == [["h2", "splitsH", None, "Splits"]]
+    assert found["list"] == {"id": "splits", "cls": "r-splits", "labelledBy": "splitsH", "rowsVar": "", "rows": S2_SPLITS}
+    assert found["proof"] == {"parts": ["svg.seal", "span.lbl-proof", "span.amt"], "seal": ["svg.seal", "#i-seal-check"],
+                              "id": "addsUp", "amount": "RM 116.60", "working": None}
+    assert support.reads(page, "#rbody > div.r-check") == "Adds up to RM 116.60"
+
+
+@pytest.mark.xfail(strict=True, reason="task A12")
+def test_R20_the_sheet_lists_the_splits_as_the_card_does(open_app):
+    # The sheet's lines of qa.md key flow 1 (its bill is K2) and of "More than six people list in two columns on the
+    # desktop". The sheet is task A12's (R50), and in it only the heading carries an id (PD-20).
+    page = open_app(seed=seeds.S2).page
+    page.locator("#splitsBtn").click()
+    found = receipt(page, "#splitsDlg .rbody")
+    assert found is not None, "the sheet holds no div.rbody"
+    assert found["head"] == [["h2", "sheetSplitsH", None, "Splits"]]
+    assert found["list"] == {"id": "", "cls": "r-splits", "labelledBy": "sheetSplitsH", "rowsVar": "", "rows": S2_SPLITS}
+    twelve = open_app(seed=seeds.T12).page
+    twelve.locator("#splitsBtn").click()
+    lefts = [left for left, _ in twelve.evaluate(ROW_EDGES_JS, "#splitsDlg .rbody")]
+    assert len(lefts) == 12 and max(lefts) - min(lefts) <= 0.5, lefts
+
+
+# The left and top edge of each splits row under `root`, in list order.
+ROW_EDGES_JS = """(root) => [...document.querySelectorAll(root + ' > ul.r-splits > li')].map((li) => {
+  const box = li.getBoundingClientRect(); return [box.left, box.top]; })"""
+
+
+def test_R20_more_than_six_people_list_in_two_columns_on_the_desktop(open_app):
+    # [v1.1.0] qa.md on T12 at 1280 x 800 (PD-17). The sheet's line is test_R20_the_sheet_lists_the_splits_as_the_card_does.
+    page = open_app(seed=seeds.T12, viewport=VIEWPORTS[1280]).page
+    found = receipt(page)["list"]
+    assert found and [found["cls"], found["rowsVar"], len(found["rows"])] == ["r-splits many", "6", 12], found
+    edges = page.evaluate(ROW_EDGES_JS, "#rbody")
+
+    def level(a, b):
+        return abs(a - b) <= 0.5
+
+    assert all(level(left, edges[0][0]) for left, _ in edges[:6]) and all(level(left, edges[6][0]) for left, _ in edges[6:])
+    assert edges[6][0] > edges[0][0] + 0.5 and level(edges[6][1], edges[0][1]), edges
+    for seed in (seeds.S2, seeds.T12I):
+        assert receipt(open_app(seed=seed, viewport=VIEWPORTS[1280]).page)["list"]["cls"] == "r-splits"
 
 
 def test_R21_the_by_item_split_from_gestures(open_app):
+    # [v1.1.0] qa.md key flow 2, the card's lines. Its spare line is task A13's.
     page = open_app().page
     build_s2(page)
     build_items_after_switch(page)
-    assert table_cells(page, "thead") == [["Person", "Items", "+Charges", "=Share"]]
-    assert table_cells(page, "tbody") == S1_ROWS and table_cells(page, "tfoot") == S1_CHECK
+    assert receipt(page)["head"] == [["h2", "splitsH", None, "Splits"], ["span", "", "true", "items + charges"]]
+    assert card_rows(page) == [S1_SPLITS, S1_PROOF]
+    working = page.evaluate("() => [...document.querySelectorAll('#splits > li > span.wk')].map((wk) => wk.textContent)")
+    assert working == ["Items 24.90 + charges 4.14", "Items 13.50 + charges 2.24", "Items 21.00 + charges 3.48"]
 
 
 def build_items_after_switch(page):
@@ -1514,44 +1642,20 @@ def build_items_after_switch(page):
 
 
 def test_R21_someone_who_had_nothing_is_still_listed(open_app):
-    page = open_app().page
-    three_people(page)
-    switch_to(page, "By item")
-    add_item_named(page, "Tea", "10.00", ["Ben"])
-    add_item_named(page, "Cake", "5.01", ["Ben", "Chen"])
-    assert table_cells(page, "tbody") == [["Aisyah", "RM 0.00", "RM 0.00", "RM 0.00"],
-                                          ["Ben", "RM 12.51", "RM 2.08", "RM 14.59"],
-                                          ["Chen", "RM 2.50", "RM 0.41", "RM 2.91"]]
-    assert table_cells(page, "tfoot") == [["Adds up to", "RM 15.01", "RM 2.49", "RM 17.50"]]
+    # [v1.1.0] qa.md on the I2 seed at 1280 x 800. Its spare line is task A13's.
+    page = open_app(seed=seeds.I2, viewport=VIEWPORTS[1280]).page
+    assert card_rows(page) == [[["Aisyah", "RM 0.00", "0.00 + 0.00"], ["Ben", "RM 14.59", "12.51 + 2.08"],
+                                ["Chen", "RM 2.91", "2.50 + 0.41"]], ["RM 17.50", "15.01 + 2.49"]]
 
 
-def test_R13_tapping_a_person_changes_the_shares(open_app):
-    page = open_app().page
-    build_s1(page)
-    toggle(page, "Satay, 10 sticks", "Ben").click()
-    assert table_cells(page, "tbody") == [["Aisyah", "RM 21.90", "RM 3.64", "RM 25.54"],
-                                          ["Ben", "RM 19.50", "RM 3.24", "RM 22.74"],
-                                          ["Chen", "RM 18.00", "RM 2.98", "RM 20.98"]]
-    assert table_cells(page, "tfoot") == S1_CHECK
-    toggle(page, "Satay, 10 sticks", "Ben").click()
-    assert table_cells(page, "tbody") == S1_ROWS
-
-
-def test_R5_a_blank_name_reads_as_its_position_in_the_shares_row(open_app):
-    page = open_app().page
-    build_s1(page)
-    support.replace_text(page, person_field(page, 2), "")
-    assert table_cells(page, "tbody")[1][0] == "Person 2"
-
-
-def test_R8_the_panel_follows_each_mode(open_app):
+def test_R8_the_receipt_follows_each_mode(open_app):
     page = open_app().page
     support.replace_text(page, subtotal_field(page), "100.00")
     switch_to(page, "By item")
     add_item_named(page, "Tea", "5.00", ["Person 1"])
-    assert summary_rows(page)[3][1] == "RM 5.83"
+    assert card_figures(page)[0] == "RM 5.83"
     switch_to(page, "Even")
-    assert summary_rows(page)[3][1] == "RM 116.60"
+    assert card_figures(page)[0] == "RM 116.60"
 
 
 # ---------------------------------------------------------------- Task 8: copy summary (R22 to R24, R5, R42)
@@ -1787,10 +1891,10 @@ def test_R26_come_back_later(open_app):
     session.open("/", page=again)
     assert snapshot(again) == before and split_state(again) == ITEM_SHOWN
     assert section_state(again) == [FOLDED, FOLDED]  # R26, sections fold by R48 on a reload (task A4)
-    assert table_cells(again, "tbody") == S1_ROWS and table_cells(again, "tfoot") == S1_CHECK
+    assert card_rows(again) == [S1_SPLITS, S1_PROOF]  # the card's rows since task A9
     switch_to(again, "Even")
     assert subtotal_field(again).input_value() == "100.00"
-    assert summary_rows(again)[3][1] == "RM 116.60"
+    assert card_figures(again)[0] == "RM 116.60"
 
 
 def test_R8_both_sets_of_input_survive_a_reload(open_app):
@@ -1800,9 +1904,9 @@ def test_R8_both_sets_of_input_survive_a_reload(open_app):
     add_item_named(page, "Tea", "5.00", ["Person 1"])
     page.reload()
     assert split_state(page) == ITEM_SHOWN and item_name(page, 1).input_value() == "Tea"
-    assert toggle(page, "Tea", "Person 1").get_attribute("aria-pressed") == "true" and summary_rows(page)[3][1] == "RM 5.83"
+    assert toggle(page, "Tea", "Person 1").get_attribute("aria-pressed") == "true" and card_figures(page)[0] == "RM 5.83"
     switch_to(page, "Even")
-    assert subtotal_field(page).input_value() == "100.00" and summary_rows(page)[3][1] == "RM 116.60"
+    assert subtotal_field(page).input_value() == "100.00" and card_figures(page)[0] == "RM 116.60"
 
 
 @pytest.mark.parametrize("name", ["G1", "G2", "G3"])
@@ -1909,11 +2013,12 @@ def add_a_person_after_a_subtotal(page):
 
 @pytest.mark.parametrize("driver", STORAGE_DRIVERS.values(), ids=STORAGE_DRIVERS.keys())
 def test_R28_the_app_works_without_storage(open_app, driver):
-    # 1.0's "no message about storage shows" is retired by R46 and R47. The card is read through the 1.0 panel until
-    # task A9 replaces it (R19, R20). No page error, console error or CSP violation is checked at teardown.
+    # 1.0's "no message about storage shows" is retired by R46 and R47. No page error, console error or CSP violation is
+    # checked at teardown.
     page = open_app(init_scripts=[driver]).page
     add_a_person_after_a_subtotal(page)
-    assert summary_rows(page)[3][1] == "RM 116.60" and len(table_cells(page, "tbody")) == 3
+    total, splits = card_figures(page)
+    assert total == "RM 116.60" and len(splits or []) == 3  # the card holds three splits rows (task A9)
 
 
 @pytest.mark.xfail(strict=True, reason="task A11")
@@ -2066,8 +2171,9 @@ def test_R46_a_real_full_storage_shows_the_warning_and_room_again_clears_it(open
     open_people_first(page)
     assert page.evaluate(FILL_STORAGE_JS) >= 1
     type_at_end(page, person_field(page, 3), " Wei")
-    # The engine throws its own error through the app's own save. The card is read through the 1.0 panel until task A9.
-    assert notes(page) == [WARNING] and table_cells(page, "tbody")[2][0] == "Chen Wei"
+    # The engine throws its own error through the app's own save. The card's third splits row reads "Chen Wei" (task A9).
+    rows, _ = card_rows(page)
+    assert notes(page) == [WARNING] and rows and rows[2][0] == "Chen Wei"
     page.evaluate(EMPTY_STORAGE_JS)
     type_at_end(page, person_field(page, 3), "x")
     assert notes(page) == [] and stored(page)["bill"]["people"][2]["name"] == "Chen Weix"
@@ -2194,7 +2300,8 @@ def test_R30_leaving_the_dialog_without_starting_over(open_app, close):
         page.mouse.click(first_name["x"] + first_name["width"] / 2, first_name["y"] + first_name["height"] / 2)
     assert page.locator("dialog#newDlg").evaluate("(d) => d.open") is False
     assert focused(page) == "New bill" and stored_text(page) == seeds.S2
-    assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page) and summary_rows(page) == S2_SUMMARY
+    assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page)
+    assert receipt(page)["lines"] == S2_LINES and card_rows(page) == [S2_SPLITS, S2_PROOF]  # the card since task A9
 
 
 def test_R31_start_over(open_app):

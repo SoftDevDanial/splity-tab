@@ -2,8 +2,8 @@
 // are pure. `typedInto`, `leftField` and `forgetPrice` update the flags object they are given and return nothing.
 // Only text that is not empty and fails its parser may show an error (ruling 1). The error appears when
 // the field is left, a restored field shows it at once, and while typing it goes as soon as the text is
-// valid or empty and stays gone until the field is next left. The bill panel does not use these flags: it
-// always follows the current text.
+// valid or empty and stays gone until the field is next left. The receipt does not use these flags: it
+// always follows the current text (R10, R16).
 import { LIMITS } from "./core/bill.js";
 import { parseAmount, parseRate } from "./core/money.js";
 

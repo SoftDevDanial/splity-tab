@@ -1,0 +1,10 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R17_when_the_splits_cannot_be_worked_out[K2-service-emptied] (0.24s)
+FAILED   call     test_app.py::test_R17_when_the_splits_cannot_be_worked_out[K1-sst-25] (0.22s)
+FAILED   call     test_app.py::test_R17_when_the_splits_cannot_be_worked_out[K2-subtotal-emptied] (0.19s)
+FAILED   call     test_app.py::test_R17_when_the_splits_cannot_be_worked_out[cold-boot] (0.09s)
+FAILED   call     test_app.py::test_R17_when_the_splits_cannot_be_worked_out[by-item] (0.14s)
+FAILED   call     test_app.py::test_R17_when_the_splits_cannot_be_worked_out[by-item-add-item] (0.17s)
+FAILED   call     test_app.py::test_R17_when_the_splits_cannot_be_worked_out[K1-one-price-abc] (0.18s)
+FAILED   call     test_app.py::test_R17_when_the_splits_cannot_be_worked_out[K1-every-price-abc] (0.27s)
+exit status 1

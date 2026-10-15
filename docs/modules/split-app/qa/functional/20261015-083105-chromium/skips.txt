@@ -1,0 +1,16 @@
+engine chromium, browser version 149.0.7827.55
+test_app.py::test_R38_strict_policy_blocks_nothing_the_app_needs[K1-sheet-P1] | xfail task A13
+test_app.py::test_R38_strict_policy_blocks_nothing_the_app_needs[K2-P1-desktop] | xfail task A13
+test_app.py::test_R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip | xfail task A11
+test_app.py::test_R16_the_sheet_holds_one_live_element | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K2-service-emptied] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K1-sst-25] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K2-subtotal-emptied] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[cold-boot] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[by-item] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[by-item-add-item] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K1-one-price-abc] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K1-every-price-abc] | xfail task A12
+test_app.py::test_R18_the_strip_says_items_still_need_a_person | xfail task A11
+test_app.py::test_R20_the_sheet_lists_the_splits_as_the_card_does | xfail task A12
+count 14
