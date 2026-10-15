@@ -1,0 +1,5 @@
+engine chromium, browser version 149.0.7827.55
+PASSED   call     test_app.py::test_R45_the_tab_icon_colour_follows_the_colour_scheme (0.23s)
+PASSED   call     test_app.py::test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported (0.51s)
+PASSED   call     test_app.py::test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make (0.00s)
+exit status 0

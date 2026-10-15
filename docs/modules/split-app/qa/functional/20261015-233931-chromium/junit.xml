@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="9" time="0.967" timestamp="2026-10-15T23:39:31.463823+08:00" hostname="{host}"><testcase classname="test_app" name="test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields" time="0.011" /><testcase classname="test_app" name="test_R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else" time="0.000" /><testcase classname="test_app" name="test_R41_the_gate_uses_real_gestures_and_reads_only" time="0.019" /><testcase classname="test_app" name="test_R41_a_planted_copy_of_the_gate_script_is_reported[storage-state-without-a-condition]" time="0.040" /><testcase classname="test_app" name="test_R41_a_planted_copy_of_the_gate_script_is_reported[else-branch-is-the-k2-state]" time="0.036" /><testcase classname="test_app" name="test_R41_a_planted_copy_of_the_gate_script_is_reported[bypass-csp-false]" time="0.035" /><testcase classname="test_app" name="test_R41_a_planted_copy_of_the_gate_script_is_reported[page-screenshot-in-the-step-helper]" time="0.039" /><testcase classname="test_app" name="test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[cold-boot-js-clears-the-storage]" time="0.030"><failure message="AssertionError: assert [] == ['COLD_BOOT_J...s not a read']&#10;  &#10;  Right contains one more item: 'COLD_BOOT_JS calls clear(), which is not a read'&#10;  Use -v to get more diff">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-106/test_R41_a_planted_copy_of_a_h0')
+fault = 'cold-boot-js-clears-the-storage'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_HELPER_FAULTS))
+    def test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported(tmp_path, fault):
+        # The gate's Rules ("page.evaluate only reads", "Only real gestures change the app") hold for what it runs from
+        # support.py too, so the guard follows the helpers the gate calls (code review CR-S5-6).
+        source, tree = gate_script(SUPPORT_SCRIPT)
+        planted = tmp_path / "support.py"
+        planted.write_text(planted_helper_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+&gt;       assert live_gate_problems(LIVE_SCRIPT, helpers=planted) == PLANTED_HELPER_FAULTS[fault]
+E       AssertionError: assert [] == ['COLD_BOOT_J...s not a read']
+E         
+E         Right contains one more item: 'COLD_BOOT_JS calls clear(), which is not a read'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5330: AssertionError</failure></testcase><testcase classname="test_app" name="test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[replace-text-fills-the-field]" time="0.031"><failure message="AssertionError: assert [] == ['.fill is used']&#10;  &#10;  Right contains one more item: '.fill is used'&#10;  Use -v to get more diff">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-106/test_R41_a_planted_copy_of_a_h1')
+fault = 'replace-text-fills-the-field'
+
+    @pytest.mark.parametrize("fault", list(PLANTED_HELPER_FAULTS))
+    def test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported(tmp_path, fault):
+        # The gate's Rules ("page.evaluate only reads", "Only real gestures change the app") hold for what it runs from
+        # support.py too, so the guard follows the helpers the gate calls (code review CR-S5-6).
+        source, tree = gate_script(SUPPORT_SCRIPT)
+        planted = tmp_path / "support.py"
+        planted.write_text(planted_helper_copy(source, tree, fault), encoding="utf-8")
+        assert planted.read_text(encoding="utf-8") != source
+&gt;       assert live_gate_problems(LIVE_SCRIPT, helpers=planted) == PLANTED_HELPER_FAULTS[fault]
+E       AssertionError: assert [] == ['.fill is used']
+E         
+E         Right contains one more item: '.fill is used'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:5330: AssertionError</failure></testcase></testsuite></testsuites>

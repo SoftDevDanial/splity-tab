@@ -1,0 +1,20 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. CR-S5-2, the Bill field list written once (constitution,
+Engineering principles (1) DRY and (8) DRY safety, behaviour verified on the extraction).
+
+Change. src/core/bill.js gains the private BILL_FIELDS = Object.keys(newBill()), and billWith builds the copy from it
+(Object.fromEntries over BILL_FIELDS, changes[field] ?? bill[field]). src/core/spare.js imports newBill (an export the
+Contracts already list) and withSpare builds its copy from the same keys. newBill is the one place that lists the
+eight fields. No export added, no Contracts change, no spread of a parsed bill.
+
+Before. node-test-before-042c359.txt, the tests and src of commit 042c359 (HEAD before the change, extracted by
+git archive into a scratch folder), node --test "tests/**/*.test.js": 380 tests, 380 pass, 0 fail.
+After. node-test-after.txt, the working tree with the change: 380 tests, 380 pass, 0 fail.
+The two runs hold the same 380 test names, every one ok in both (compared by name after the run).
+
+The tests still guard the new form. mutation-summary.json, written by a scratch runner (mutate_dry.mjs, the code
+reviewer's method on copies of src/ and the Node tests in the session scratch folder, never in the project):
+  Y1 withSpare spreads the bill ({ ...bill, spare })      KILLED, 5 failures, the parsed-bill cases (K16 of the review: 5)
+  Y2 withSpare drops nextId from the copy                 KILLED, 7 failures (K01 of the review: 7)
+  Y3 billWith spreads the bill and the changes            KILLED, 13 failures
+Key order. The R16 parsed-bill cases assert Object.keys(next) equals the eight keys in order, so a copy in another
+order would fail them. main.js openAsAtLoad compares JSON text and relies on that order.

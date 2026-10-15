@@ -1,0 +1,14 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. RED run of CR-S5-14 (constitution, Gates and evidence), not
+a suite run.
+
+Command: SPLIT_EVIDENCE=1 python -B -m pytest tests/browser -q -p no:cacheprovider -k "evidence_folder_it_did_not_make"
+Result: 1 failed. pytest.txt and junit.xml beside this file.
+
+Test. test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make freezes conftest's clock at one second, points
+EVIDENCE_ROOT at the test's tmp_path, and calls conftest.evidence_dir() as the first call of two runs. It asserts the
+second does not get the first one's folder (it may stop with FileExistsError instead). Both monkeypatches are undone at
+teardown, so this run's own folder (this one) was kept.
+
+On the conftest of that moment (mkdir(parents=True, exist_ok=True)), as printed:
+  AssertionError: assert (True and ... and WindowsPath('.../20261015-235959-chromium') != WindowsPath('.../20261015-235959-chromium'))
+The second run was handed the first run's folder.

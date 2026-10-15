@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.696" timestamp="2026-10-15T23:42:37.037937+08:00" hostname="{host}"><testcase classname="test_app" name="test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported" time="2.172"><failure message="AssertionError: assert [['Char kuey ...rror hidden']] == [['Char kuey ...error shown']]&#10;  &#10;  At index 1 diff: ['Char kuey teow price in RM', 'error hidden'] != ['Char kuey teow price in RM', 'error shown']&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025AB9B164B0&gt;
+evidence_folder = WindowsPath('{workspace}/examples/split/docs/modules/split-app/qa/functional/20261015-234237-chromium')
+
+    @pytest.mark.chromium_only(reason="Needs a CDP session (Accessibility.getPartialAXTree) to read the computed description, "
+                                      "which Playwright gives in Chromium only.")
+    def test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported(open_app, evidence_folder):
+        # CG-P6, ruled by the owner (USER, 2026-10-13): built to the golden, the description is measured and reported to the
+        # owner. So the lines name what was read and the test asserts only that the four exist (QA-S5-1).
+        lines = []
+        for seed, name, bad in DESCRIBED_FIELDS:
+            page = open_app(seed=seed).page
+            selector, field = f'input[aria-label="{name}"]', page.get_by_role("textbox", name=name, exact=True)
+            for when in ("as loaded", f"after {bad!r} and Tab"):
+                if when != "as loaded":
+                    support.replace_text(page, field, bad)
+                state = "error shown" if field.get_attribute("aria-invalid") == "true" else "error hidden"
+                lines.append(f"{name} | {state} | description {accessible_description(page, selector)!r} | {when} | "
+                             f"aria-describedby {field.get_attribute('aria-describedby')!r}")
+        record = evidence_folder / "accessible-description.txt"
+        record.write_text("".join(f"{line}\n" for line in lines), encoding="utf-8")
+        written = [line.split(" | ")[:2] for line in record.read_text(encoding="utf-8").splitlines()]
+&gt;       assert written == [[name, state] for _, name, _ in DESCRIBED_FIELDS for state in ("error hidden", "error shown")]
+E       AssertionError: assert [['Char kuey ...rror hidden']] == [['Char kuey ...error shown']]
+E         
+E         At index 1 diff: ['Char kuey teow price in RM', 'error hidden'] != ['Char kuey teow price in RM', 'error shown']
+E         Use -v to get more diff
+
+tests\browser\test_app.py:989: AssertionError</failure></testcase></testsuite></testsuites>

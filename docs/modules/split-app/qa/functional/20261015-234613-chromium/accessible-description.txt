@@ -1,0 +1,4 @@
+Char kuey teow price in RM | error hidden | description 'Enter an amount like 12.50' | as loaded | aria-describedby 'ie2'
+Char kuey teow price in RM | error shown | description 'Enter an amount like 12.50' | after '13.505' and Tab | aria-describedby 'ie2'
+Subtotal in RM | error hidden | description 'Enter an amount like 12.50' | as loaded | aria-describedby 'evenErr'
+Subtotal in RM | error shown | description 'Enter an amount like 12.50' | after '0' and Tab | aria-describedby 'evenErr'

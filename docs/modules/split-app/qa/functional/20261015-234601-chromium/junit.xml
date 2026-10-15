@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.621" timestamp="2026-10-15T23:46:01.614321+08:00" hostname="{host}"><testcase classname="test_app" name="test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make" time="0.005"><failure message="AssertionError: assert (True and WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0') == WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0') and WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0/20261015-235959-chromium') != WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0/20261015-235959-chromium'))&#10; +  where True = is_dir()&#10; +    where is_dir = WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0/20261015-235959-chromium').is_dir&#10; +  and   WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0') = WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0/20261015-235959-chromium').parent">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000014B122616E0&gt;
+
+    def test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make(tmp_path, monkeypatch):
+        # Two runs of one engine in the same second get the same &lt;stamp&gt;-&lt;engine&gt; name. The second must not write into the
+        # first one's folder (constitution, Gates and evidence, each run writes its own capture; code review CR-S5-14).
+        import conftest
+        moment = types.SimpleNamespace(strftime=lambda pattern: "20261015-235959")
+        monkeypatch.setattr(conftest, "datetime", types.SimpleNamespace(datetime=types.SimpleNamespace(now=lambda: moment)))
+        monkeypatch.setattr(conftest, "EVIDENCE_ROOT", tmp_path)
+        monkeypatch.setitem(conftest._evidence, "dir", None)
+        first = conftest.evidence_dir()
+        monkeypatch.setitem(conftest._evidence, "dir", None)  # the second run's first call, in the same second
+        try:
+            second = conftest.evidence_dir()
+        except FileExistsError:
+            second = None
+&gt;       assert first.is_dir() and first.parent == tmp_path and second != first
+E       AssertionError: assert (True and WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0') == WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0') and WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0/20261015-235959-chromium') != WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0/20261015-235959-chromium'))
+E        +  where True = is_dir()
+E        +    where is_dir = WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0/20261015-235959-chromium').is_dir
+E        +  and   WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0') = WindowsPath('{temp}/pytest-of-{user}/pytest-109/test_R58_a_run_never_writes_in0/20261015-235959-chromium').parent
+
+tests\browser\test_app.py:5519: AssertionError</failure></testcase></testsuite></testsuites>

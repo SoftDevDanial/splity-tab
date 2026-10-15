@@ -1,0 +1,25 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. RED of the new R20 cases for CR-S5-7, headless Chromium
+149.0.7827.55.
+
+Test. tests/browser/test_app.py, test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop, 5 cases (7, 8, 9,
+10 and 11 people, T12 cut to its first n people, even mode, 1280 x 800). Each asserts #splits is "r-splits many" with
+--rows equal to ceil(n / 2) and n rows, and that the rows stand in two columns with ceil(n / 2) in the first
+(in_two_columns, the T12 test's column check moved into one helper both tests call).
+
+Broken form. The code reviewer's mutant U4 (splitsAndProof in src/ui/receipt.js sets --rows to Math.floor(rows / 2)),
+applied by the reviewer's own runner to a scratch copy of index.html, src/, tests/ and docs/design/, never to the
+project:
+  python -B docs/modules/split-app/qa/code-review/20261015-212541/mutate_app.py <project> <scratch>/red-U4 U4
+The runner ran pytest -k "R20 or R38" in the copy, through the copy's own conftest and server (pid 27900, port 41460,
+logged STOPPED, port free again True). Its pytest.txt stays in the session scratch folder. As printed:
+  FAILED test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[7-people]
+      ['r-splits many', '3', 7] == ['r-splits many', '4', 7]    At index 1 diff: '3' != '4'
+  FAILED test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[9-people]
+      ['r-splits many', '4', 9] == ['r-splits many', '5', 9]    At index 1 diff: '4' != '5'
+  FAILED test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[11-people]
+      ['r-splits many', '5', 11] == ['r-splits many', '6', 11]  At index 1 diff: '5' != '6'
+  The 8 and 10 people cases and every other R20 and R38 test passed, as a floor equals the ceiling for an even count.
+  app-mutation-summary-U4.json: "killed": true.
+
+Before these cases U4 passed all 10 R20 and R38 tests (code-review/20261015-212541/app-mutation-run.txt). On the
+project's code all 8 R20 tests pass: qa/functional/20261015-234502-chromium/ (green.txt there).

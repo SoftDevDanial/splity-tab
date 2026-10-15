@@ -1,0 +1,27 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. RED of the new Node test for CR-S5-1 (R21 (4), R8).
+
+Test. tests/result.test.js, "@R21 @R8 a by-item bill whose charges division is an R8 trap row gets the exact charges".
+It builds the code reviewer's 38 item trap bill through buildBill (Person 1 on 5 items worth 496,760.84, Person 2 on
+33 items worth 3,228,945.46, rates 10 and 6), so the charges division is the R8 trap row 61846725 over
+[49676084, 322894546], and asserts the exact charges column [8246230, 53600495].
+
+Broken form. The reviewer's mutant K02 (floorParts as Math.floor((amount * weight) / total)), applied by the reviewer's
+own runner to a scratch copy of src/ and the Node tests, never to the project:
+  node docs/modules/split-core/qa/code-review/20261015-212541/mutate.mjs <project> <scratch>/red-K02 K02
+  -> "K02 KILLED   pass 379 fail 1 floorParts in float, BigInt path bypassed"
+Then, in that scratch copy, node --test --test-reporter=tap --test-reporter-destination=<this folder>/node-test-K02.txt
+"tests/**/*.test.js", exit 1, written here as node-test-K02.txt (380 tests, 379 pass, 1 fail).
+
+The one failing test is the new one, on the charges column, as printed:
+  not ok 304 - @R21 @R8 a by-item bill whose charges division is an R8 trap row gets the exact charges
+    Expected values to be strictly deep-equal:
+    + actual - expected
+      [
+    +   8246231,
+    +   53600494
+    -   8246230,
+    -   53600495
+      ]
+
+Before the test existed K02 passed all 379 tests (split-core/qa/code-review/20261015-212541/mutation-summary.json).
+On the project's code the same test passes (380 of 380, the proof run of this round).

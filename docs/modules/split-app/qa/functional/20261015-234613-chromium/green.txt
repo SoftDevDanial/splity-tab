@@ -1,0 +1,8 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. GREEN run of CR-S5-14, not a suite run. RED is
+../20261015-234601-chromium/red.txt.
+
+Command: SPLIT_EVIDENCE=1 python -B -m pytest tests/browser -q -p no:cacheprovider
+  -k "evidence_folder_it_did_not_make or R45_the_tab_icon_colour or accessible_description"
+Result: 3 passed. conftest.evidence_dir makes the folder with mkdir(parents=True), never exist_ok, so the second call
+in the same second stops with FileExistsError. The two other tests use the evidence folder of this run (the
+accessible description writes accessible-description.txt here) and still pass.

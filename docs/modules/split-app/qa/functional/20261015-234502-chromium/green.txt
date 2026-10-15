@@ -1,0 +1,7 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. GREEN run of CR-S5-7 (R20), not a suite run. RED is
+../../solver-step5/20261015-234515-red-CR-S5-7/red.txt (the reviewer's mutant U4 on a scratch copy).
+
+Command, from the project root: SPLIT_EVIDENCE=1 python -B -m pytest tests/browser -q -p no:cacheprovider -k "R20"
+Result: 8 passed, 707 deselected. The 5 new cases of test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop
+(7 to 11 people, --rows 4, 4, 5, 5, 6, two columns) and the 3 R20 tests that were there, the T12 one included with its
+column check now in in_two_columns.

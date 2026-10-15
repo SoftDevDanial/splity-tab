@@ -50,6 +50,7 @@ None.
 - **Evidence (run).** In a scratch copy, `support.py` gained `localStorage.clear();` inside `COLD_BOOT_JS` and `locator.fill("")` inside `replace_text`, with `live_e2e.py` and `test_app.py` unchanged. `test_R41_the_gate_uses_real_gestures_and_reads_only` and the four `test_R41_a_planted_copy_of_the_gate_script_is_reported` cases all passed, 5 of 5 (`planted-support-guard-run.txt`).
 - **Fix.** Make the guard follow the helpers. For each `support.<name>(` call in the gate's syntax tree, parse that function in `support.py`, check its `evaluate` arguments against the read-only list (adding `COLD_BOOT_JS`, `RECEIPT_JS`, `READS_JS` and the `active_label` expression by name) and its attributes against `BANNED_ATTRIBUTES`, and add a fifth planted copy that plants a write in a helper. qa.md's `@R41 @static` scenario names only `tests/browser/live_e2e.py`, so it needs one line for the helpers.
 - **Route.** Planner (the qa.md line), Dev Solver (the guard and its planted copy).
+- **Solver, 2026-10-15 (dev solver, step 5 round). RESOLVED in `8b7b7d4`, the qa.md line is still the planner's.** `live_gate_problems(path, helpers=SUPPORT_SCRIPT)` follows the support.py functions the gate runs (`gate_helpers`, today `active_label`, `card_text`, `cold_boot_state`, `person_field`, `reads`, `receipt`, `replace_text`), applies `BANNED_KEYWORDS`, `BANNED_ATTRIBUTES` and the read-only list to them too (`COLD_BOOT_JS`, `RECEIPT_JS`, `READS_AT_JS`, `ACTIVE_LABEL_JS` added), and checks the text of every page script the gate runs (`page_script_writes`: a call not on `READ_CALLS`, an assignment, `++` or `--`), so a write inside a listed script is caught too. `support.reads` and `support.active_label` now evaluate the named `READS_AT_JS` and `ACTIVE_LABEL_JS` (same text, checked). New `test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported`, two planted copies of support.py, `localStorage.clear()` in `COLD_BOOT_JS` and `locator.fill("")` in `replace_text`. RED on the guard that read live_e2e.py only: `qa/functional/20261015-233931-chromium/` (red.txt, `[] == [...]` for both). GREEN `qa/functional/20261015-234036-chromium/`, 9 of 9 R41 tests, and the reviewer's own combined copy now reports `.fill is used` and `COLD_BOOT_JS calls clear(), which is not a read` (green.txt). Limit stated in the code: a text scan, not a parser. Full proof set in `BUILD.md`, "v1.1.0 step 5 solver round".
 
 ### CR-S5-7. R20's `--rows` is tested only at 12 people, so a floor in place of the ceiling breaks the desktop list for 7, 9 and 11 people and passes   (test gap, R20, PD-17)
 - **Symbol.** `splitsAndProof` in `src/ui/receipt.js` (`list.style.setProperty("--rows", String(Math.ceil(result.rows.length / 2)))`) and the R20 and R38 tests that read `--rows`.
@@ -58,6 +59,7 @@ None.
 - **Evidence (run).** Mutant U4 (floor in place of ceil) passed all 10 tests of `-k "R20 or R38"` (`app-mutation-run.txt`). `probe_rows.py` on a 7-person even bill at 1280 x 800 gives `--rows` "4" and 2 columns on the project and `--rows` "3" and 3 columns on the U4 copy (`probe-rows-output.txt`).
 - **Fix.** Add a case with 7 people (or 9 or 11) in even mode at 1280 x 800 that asserts `--rows` "4" and two distinct column positions, and its row in qa.md beside the T12 line.
 - **Route.** Dev Solver (the test), planner (the qa.md row).
+- **Solver, 2026-10-15 (dev solver, step 5 round). RESOLVED in `d728076`, the qa.md row is still the planner's.** New `test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop`, 7 to 11 people (T12 cut to its first n), even mode, 1280 x 800, asserting `--rows` ceil(n / 2) and two columns with that many rows in the first. The T12 test's column check moved into `in_two_columns`, which both call. RED on U4 by the reviewer's `mutate_app.py` in scratch: `qa/solver-step5/20261015-234515-red-CR-S5-7/red.txt` (7, 9 and 11 people fail on `--rows` 3, 4, 5 against 4, 5, 6, 8 and 10 pass). GREEN `qa/functional/20261015-234502-chromium/`, 8 of 8 R20 tests.
 
 ### CR-S5-8. `swallowRepeatClicks`' comment lists who arms the guard, and the list has lost P1   (doc rot, comment rule)
 - **Symbol.** The JSDoc of `swallowRepeatClicks` in `src/ui/dom.js` ("the clicks that open and close the New bill dialog and the Splits sheet"), and the JSDoc of `isRepeatClick` in the same file.
@@ -66,6 +68,7 @@ None.
 - **Evidence.** From reading, and `grep -rn "swallowRepeatClicks()" src`.
 - **Fix.** Replace the list of armers with the rule and the why ("every click that moves the layout under the pointer arms it, see the callers of swallowRepeatClicks"), keep the two lines on why it runs at the document in the capture phase, and move the 1.0 history out of `isRepeatClick`'s JSDoc.
 - **Route.** Dev Solver.
+- **Solver, 2026-10-15 (dev solver, step 5 round). RESOLVED in `4462b4c`, comments only.** The `swallowRepeatClicks` JSDoc gives the rule and the why ("Every click that moves the layout under the pointer calls it, and each caller says why"), each of the ten callers already carrying its own why, and keeps the capture-phase, held-key, first-press, RG-CR-08 and "Dismiss note" lines. 16 lines became 11. The 1.0 history paragraph of `isRepeatClick` moved to `BUILD.md`, task A8 ("Why a Remove still tests its own repeat press"), with the pointer "(BUILD.md, task A8)" left in the JSDoc. `git diff` showed only comment lines changed. Proof: the full suites of the round (BUILD.md).
 
 ## INFO
 
@@ -73,6 +76,7 @@ None.
 - **Symbol.** `if (!open) revealing?.cancel();` in `createSection`'s `setOpen` (`src/ui/sections.js`).
 - **What.** Mutant U3 removes the line and all 26 R48 tests pass (`app-mutation-run.txt`). The only fold test folds after the reveal has ended. Below 1024 px the CSS hides a folded body, so a reveal that keeps running for its last few ms draws nothing either way.
 - **Suggestion.** Either a test that folds within 200 ms of opening under `no-preference` and asserts no running animation on `#peopleBody`, or drop the line as speculative. Dev Solver's choice.
+- **Solver, 2026-10-15 (dev solver, step 5 round). STILL-OPEN, not started.** The round stopped at its context limit before this INFO item. Nothing was changed. The resume point is in `docs/progress/handoff/handoff-2026-10-15-execute-split-step5-solver.md`.
 
 ### CR-S5-10. R52's sheet scroll goes up when the sheet is already scrolled past its Splits heading   (R52, spec silent, inherited from g2)
 - **Symbol.** `makeRoom` in `src/ui/sheet.js`, `scroll.scrollTop += Math.min(overlap, headBelowTop)`.
@@ -82,10 +86,12 @@ None.
 ### CR-S5-11. `import re` in `tests/browser/support.py` is unused   (dead code)
 - **Symbol.** The first import of `tests/browser/support.py`.
 - **What.** No `re.` in the file. A20 noted it and left it. Delete it.
+- **Solver, 2026-10-15 (dev solver, step 5 round). RESOLVED in `2ad022a`.** Removed. No name `re` in the file's syntax tree and nothing imports it from `support`. Proof: the full suites of the round.
 
 ### CR-S5-12. The xfail plumbing outlived the last xfail   (dead code, test side)
 - **Symbol.** `R3_STATES` (every per-width task is `None`) with `R3_PAIRS`' conditional `xfail`, and `POLICY_STATES` (its seventh column is `None` in every row) in `tests/browser/test_app.py`.
 - **What.** No xfail is left in the suite (the step 5 handoff), so the task columns and the conditional marks can go, which makes the two tables plain lists of cases.
+- **Solver, 2026-10-15 (dev solver, step 5 round). RESOLVED in `c51d847`.** `R3_STATES` holds each row's widths (`EVERY_WIDTH` or 390 and 360, the same order), `R3_PAIRS` and the R38 policy parametrize carry no mark, and `POLICY_STATES` lost its always-None column. `--collect-only` gave the same ids for the R3, R35, R55 and R38 policy tests before and after (one digest), 716 collected, and no `xfail` is left in `test_app.py`. Proof: the full suites of the round.
 
 ### CR-S5-13. A second copy attempt with the same outcome is not announced again   (R24, spec silent)
 - **Symbol.** `showCopyStatus` in `src/ui/copy-status.js` (`if (paragraph.textContent !== shown.text)`).
@@ -94,6 +100,7 @@ None.
 ### CR-S5-14. The suite's evidence folder may be shared by two runs of one engine in the same second   (constitution, Gates and evidence)
 - **Symbol.** `evidence_dir` in `tests/browser/conftest.py` (`mkdir(parents=True, exist_ok=True)`).
 - **What.** The live gate makes its folder without `exist_ok` so that a run can never write into another run's folder. The suite does not. Low risk, since a run takes minutes, but the rule is "each run writes its own capture". Drop `exist_ok` or add a suffix on collision.
+- **Solver, 2026-10-15 (dev solver, step 5 round). RESOLVED in `6ffecf7`.** `evidence_dir` makes the folder with `mkdir(parents=True)`, so a second run of the engine in the same second stops with `FileExistsError`, as the live gate does. New `test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make` (a frozen clock and a tmp_path root, asserting the second run does not get the first one's folder). RED on `exist_ok=True`: `qa/functional/20261015-234601-chromium/red.txt`. GREEN `qa/functional/20261015-234613-chromium/`.
 
 ## Checked and found sound (for the record, no finding)
 - The repeat rule. `isRepeatPress`, `isRepeatClick` and the self-compare of a click. Mutant U1 killed by 14 touch double-tap cases. R01 and R02 killed by the `@R57 @node` table.

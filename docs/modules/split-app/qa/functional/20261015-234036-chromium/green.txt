@@ -1,0 +1,25 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. GREEN run of CR-S5-6 (R41), not a suite run. RED is
+../20261015-233931-chromium/red.txt.
+
+Command, from the project root: SPLIT_EVIDENCE=1 python -B -m pytest tests/browser -q -p no:cacheprovider -k "R41"
+Result: 9 passed, 700 deselected (the 4 planted gate copies, the 2 planted helper copies, and the 3 other R41 tests).
+
+The fix. live_gate_problems follows the support.py functions the gate runs (gate_helpers: the support.<name> calls of
+live_e2e.py and what those call in turn, today active_label, card_text, cold_boot_state, person_field, reads, receipt,
+replace_text). BANNED_KEYWORDS and BANNED_ATTRIBUTES are checked over the gate and those functions. Every evaluate and
+wait_for_function argument of either must be on the read-only list (COLD_BOOT_JS, RECEIPT_JS, READS_AT_JS and
+ACTIVE_LABEL_JS added), and page_script_writes checks the text of each: a call that is not on READ_CALLS or a helper the
+script declares, an assignment that is not a const declaration, ++ or --. On the real scripts it reports nothing.
+
+The code reviewer's own planted copy (their scratch folder split-cr-step5/planted-support/, both edits at once, read
+only), through the new guard with its own live_e2e.py, as printed:
+  .fill is used
+  document.activeElement.getAttribute('aria-label') || document.activeElement.id || document.activeElement.textContent.trim() is not on the read-only list
+  f'(selector) => {{ const el = document.querySelector(selector); return el ? ({READS_JS})(el) : null; }}' is not on the read-only list
+  COLD_BOOT_JS calls clear(), which is not a read
+The first and last lines are the two planted writes. The middle two are that copy's unnamed scripts, which this round
+named READS_AT_JS and ACTIVE_LABEL_JS in support.py (the same text, checked by calling the old and new helpers with a
+recording stand-in page).
+
+Limit, stated in the code. The text check is a scan, not a JavaScript parser. It catches a plain write and not one
+hidden on purpose (for example a method reached through .call).

@@ -1,0 +1,19 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. RED run of QA-S5-1 (R9, R11, CG-P6), not a suite run.
+
+Command, from the project root: SPLIT_EVIDENCE=1 python -B -m pytest tests/browser -q -p no:cacheprovider -k "accessible_description"
+Result: 1 failed. pytest.txt, junit.xml, the two failure screenshots and the stub's accessible-description.txt beside this file.
+
+Test. test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported (chromium_only). It reads the
+computed description of "Char kuey teow price in RM" (K1 seed) and of Subtotal (K2 seed) through CDP
+Accessibility.getPartialAXTree, as loaded and after "13.505" and "0" are typed and the field is left, writes the four
+lines to accessible-description.txt in the run's evidence folder, and asserts the four lines exist, each naming the
+field and the error state read from the page (aria-invalid).
+
+Broken form. A stub put in with the Edit tool and taken out the same way, never committed: the page.keyboard.press("Tab")
+after the invalid text was removed, so the field is never left and its error never shows.
+
+Failure, as printed:
+  AssertionError: assert [['Char kuey ...rror hidden']] == [['Char kuey ...error shown']]
+  At index 1 diff: ['Char kuey teow price in RM', 'error hidden'] != ['Char kuey teow price in RM', 'error shown']
+The stub's own record says "error hidden" on all four lines (accessible-description.txt here), so a run that does not
+reach the error state cannot pass.

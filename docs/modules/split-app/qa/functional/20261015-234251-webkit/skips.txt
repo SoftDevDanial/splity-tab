@@ -1,0 +1,3 @@
+engine webkit, browser version None
+test_app.py::test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported | Needs a CDP session (Accessibility.getPartialAXTree) to read the computed description, which Playwright gives in Chromium only.
+count 1

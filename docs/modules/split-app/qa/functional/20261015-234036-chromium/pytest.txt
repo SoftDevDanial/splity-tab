@@ -1,0 +1,11 @@
+engine chromium, browser version None
+PASSED   call     test_app.py::test_R41_the_step_log_puts_gesture_and_assertion_in_their_own_fields (0.01s)
+PASSED   call     test_app.py::test_R41_the_gate_installs_the_clipboard_recorder_and_the_csp_listener_and_nothing_else (0.00s)
+PASSED   call     test_app.py::test_R41_the_gate_uses_real_gestures_and_reads_only (0.02s)
+PASSED   call     test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[storage-state-without-a-condition] (0.04s)
+PASSED   call     test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[else-branch-is-the-k2-state] (0.05s)
+PASSED   call     test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[bypass-csp-false] (0.04s)
+PASSED   call     test_app.py::test_R41_a_planted_copy_of_the_gate_script_is_reported[page-screenshot-in-the-step-helper] (0.04s)
+PASSED   call     test_app.py::test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[cold-boot-js-clears-the-storage] (0.03s)
+PASSED   call     test_app.py::test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported[replace-text-fills-the-field] (0.03s)
+exit status 0

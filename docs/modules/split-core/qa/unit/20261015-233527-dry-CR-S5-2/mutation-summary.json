@@ -1,0 +1,72 @@
+[
+  {
+    "id": "Y1",
+    "file": "src/core/spare.js",
+    "what": "withSpare spreads the bill (as K16)",
+    "edit": {
+      "from": "return Object.fromEntries(BILL_FIELDS.map((field) => [field, field === \"spare\" ? spare : bill[field]]));",
+      "to": "return { ...bill, spare };"
+    },
+    "tests": 380,
+    "pass": 375,
+    "fail": 5,
+    "killed": true,
+    "failing": [
+      "@R16 chooseSpareRule one on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule random on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule top on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSparePerson on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 pickAgain on a parsed bill builds the bill and the spare choice from known fields"
+    ]
+  },
+  {
+    "id": "Y2",
+    "file": "src/core/spare.js",
+    "what": "withSpare drops nextId (as K01)",
+    "edit": {
+      "from": "return Object.fromEntries(BILL_FIELDS.map((field) => [field, field === \"spare\" ? spare : bill[field]]));",
+      "to": "return Object.fromEntries(BILL_FIELDS.filter((field) => field !== \"nextId\").map((field) => [field, field === \"spare\" ? spare : bill[field]]));"
+    },
+    "tests": 380,
+    "pass": 373,
+    "fail": 7,
+    "killed": true,
+    "failing": [
+      "@R16 no action mutates a deep-frozen bill and changes return new objects",
+      "@R16 @R31 pickAgain and the spare choices leave a deep-frozen bill alone and return a new bill",
+      "@R16 chooseSpareRule one on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule random on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSpareRule top on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 chooseSparePerson on a parsed bill builds the bill and the spare choice from known fields",
+      "@R16 pickAgain on a parsed bill builds the bill and the spare choice from known fields"
+    ]
+  },
+  {
+    "id": "Y3",
+    "file": "src/core/bill.js",
+    "what": "billWith spreads the bill and the changes",
+    "edit": {
+      "from": "return Object.fromEntries(BILL_FIELDS.map((field) => [field, changes[field] ?? bill[field]]));",
+      "to": "return { ...bill, ...changes };"
+    },
+    "tests": 380,
+    "pass": 367,
+    "fail": 13,
+    "killed": true,
+    "failing": [
+      "@R16 setMode on a parsed bill builds only known fields",
+      "@R16 setSubtotalText on a parsed bill builds only known fields",
+      "@R16 setServiceText on a parsed bill builds only known fields",
+      "@R16 setSstText on a parsed bill builds only known fields",
+      "@R16 addPerson on a parsed bill builds only known fields",
+      "@R16 addItem on a parsed bill builds only known fields",
+      "@R16 removeItem on a parsed bill builds only known fields",
+      "@R16 setPersonName on a parsed bill builds only known fields",
+      "@R16 setPersonName (person with a __proto__ key) on a parsed bill builds only known fields",
+      "@R16 removePerson on a parsed bill builds only known fields",
+      "@R16 setItemName on a parsed bill builds only known fields",
+      "@R16 setItemPriceText on a parsed bill builds only known fields",
+      "@R16 toggleItemPerson on a parsed bill builds only known fields"
+    ]
+  }
+]

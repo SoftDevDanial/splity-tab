@@ -1,0 +1,16 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. GREEN run of QA-S5-1 (R9, R11, CG-P6), not a suite run.
+RED is ../20261015-234237-chromium/red.txt.
+
+Command, from the project root: SPLIT_EVIDENCE=1 python -B -m pytest tests/browser -q -p no:cacheprovider -k "accessible_description"
+Result: 1 passed. accessible-description.txt beside this file holds the four lines:
+  Char kuey teow price in RM | error hidden | description 'Enter an amount like 12.50' | as loaded | aria-describedby 'ie2'
+  Char kuey teow price in RM | error shown | description 'Enter an amount like 12.50' | after '13.505' and Tab | aria-describedby 'ie2'
+  Subtotal in RM | error hidden | description 'Enter an amount like 12.50' | as loaded | aria-describedby 'evenErr'
+  Subtotal in RM | error shown | description 'Enter an amount like 12.50' | after '0' and Tab | aria-describedby 'evenErr'
+They equal the QA finder's own CDP measurement (qa/accessible-description/20261015-205800/accessible-description.txt).
+For the owner (CG-P6, the orchestrator reports it): in Chromium the hint text is the computed description with the
+error hidden, because aria-describedby names the hidden error paragraph at all times, as the goldens do.
+
+WebKit. The same command with --engine webkit wrote ../20261015-234251-webkit/ (1 skipped, 709 deselected). Its
+skips.txt lists the test with its reason "Needs a CDP session (Accessibility.getPartialAXTree) to read the computed
+description, which Playwright gives in Chromium only." and count 1.

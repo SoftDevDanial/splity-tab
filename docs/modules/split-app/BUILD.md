@@ -2035,3 +2035,30 @@ From each `summary.json` as it stands.
 **Process note.** Every file was written with the Edit or Write tools. The runners are in the session scratch folder `split-a20/` (`run_pytest.py`, `run_gate_pair.py`, the two probes, `r41.txt`, `r41-and-meta.txt`).
 
 **For the README reconcile.** No app change. The live gate is `python tests/browser/live_e2e.py [--engine webkit]`, and per engine its control `--control seeded` and then the green run against one server through `--base-url http://127.0.0.1:<port>/` (CLAUDE.md). Nine steps, captures are screencast frames, about 2 s a run. The tests are in `tests/browser/test_app.py` under "v1.1.0 task A20". `COLD_BOOT` now lives in `expected.py`, `cold_boot_state` and `receipt` in `support.py`.
+
+## v1.1.0 step 5 solver round (2026-10-15, dev solver)
+Findings from `findings/qa.md` (QA-S5-1) and `findings/code-review.md` (CR-S5-6, 7, 8, 11, 12, 14), routed by the orchestrator (ORCH). The split-core items CR-S5-1 and CR-S5-2 are in `split-core/BUILD.md`, same round. Not taken, as routed: CR-S5-3 and CR-S5-5 (README, the orchestrator's), CR-S5-4, CR-S5-10, CR-S5-13 and the qa.md wording lines (the planner's), SEC-S5-1 (the owner's, H-10). CR-S5-9 is not started (context limit), see the handoff.
+
+**Commits, one per finding.** `0094f40` QA-S5-1, `8b7b7d4` CR-S5-6, `d728076` CR-S5-7, `4462b4c` CR-S5-8 (comments and the A8 note above), `2ad022a` CR-S5-11, `c51d847` CR-S5-12, `6ffecf7` CR-S5-14. Every RED and GREEN capture is named in the finding's solver line.
+
+**What changed, by symbol (for the README reconcile).**
+- `src/ui/dom.js`, comments only. The JSDoc of `swallowRepeatClicks` gives the rule and the why (every click that moves the layout under the pointer calls it, each caller says why) and no longer lists the armers. The JSDoc of `isRepeatClick` points to task A8 above for its 1.0 history.
+- `tests/browser/test_app.py`. `test_R9_the_accessible_description_of_the_amount_fields_is_measured_and_reported` with `accessible_description` and `DESCRIBED_FIELDS` (chromium_only, writes `accessible-description.txt`). The R41 guard: `SUPPORT_SCRIPT`, `gate_helpers`, `module_strings`, `string_value`, `page_script_writes`, `READ_CALLS` and the `JS_*` patterns, `live_gate_problems(path, helpers=SUPPORT_SCRIPT)`, `READS_ONLY` with four more names, `PLANTED_HELPER_FAULTS`, `planted_helper_copy`, `test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported`. R20: `in_two_columns` and `test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop`. `test_R58_a_run_never_writes_into_an_evidence_folder_it_did_not_make`. `R3_STATES` holds widths (`EVERY_WIDTH`), `POLICY_STATES` has six columns, no xfail plumbing.
+- `tests/browser/support.py`. `READS_AT_JS` and `ACTIVE_LABEL_JS` named (same text), `import re` gone.
+- `tests/browser/conftest.py`. `evidence_dir` without `exist_ok`.
+
+**Comments written or changed.** `dom.js`, the two JSDocs above. `support.py`, the comment above `READS_AT_JS` and the line beside `ACTIVE_LABEL_JS` (why they are named). `conftest.py`, the docstring of `evidence_dir` (why never `exist_ok`). `test_app.py`, the comments of the new tests and helpers, the `READS_ONLY` comment (it now names the helpers and the text check), the `READ_CALLS` comment (what the scan catches and what it cannot), and the `R3_STATES` and `POLICY_STATES` column comments.
+
+**Design row.** Loaded before the `src/ui/` edit, from `docs/phase-skills.md`: frontend-design `SKILL.md` in full, taste-skill `SKILL.md` lines 1 to 508 in full, the headings of the rest and its em dash rule (9.G). For a comment edit they change nothing visual. Their copy rules (plain words, no em or en dash) were applied to the comments.
+
+**Proof on the committed tree (`4462b4c`), one run after the other, no `src/` file newer than the first.**
+| Run | Result | By id against the QA finder's run |
+|---|---|---|
+| Node, `split-core/qa/unit/20261015-234943/node-test.txt` | 380 of 380 | 379 before, plus the CR-S5-1 case |
+| Chromium 149.0.7827.55, `qa/functional/20261015-234948-chromium/` | 716 passed, 0 failed, 0 skipped, 284.5 s | `20261015-204624-chromium/`: its 707 ids all present and passed, 9 new ids (5 R20, 2 R41, 1 R58, 1 R9) passed, 0 different |
+| WebKit 26.5, `qa/functional/20261015-235448-webkit/` (in the background, bounded at 20 minutes) | 713 passed, 3 skipped, 0 failed, 514.5 s | `20261015-205019-webkit/`: its 707 ids all present with the same outcome (705 passed, 2 skipped), 9 new ids, 8 passed and the R9 test a counted skip with its reason (`skips.txt`, count 3) |
+| Live gate Chromium, one server (pid 27532, port 53811) | control `20261016-000355-chromium-control/` red at step 1 on its property, green `20261016-000357-chromium/` 9 of 9, `"control": null`, 0 console errors, 0 page errors, 0 CSP violations, 90 requests and none outside the rule, 3 stand-in writes | the same figures as the QA finder's `20261015-205837-chromium-control/` and `20261015-205844-chromium/` |
+| Live gate WebKit, one server (pid 7888, port 31877) | control `20261016-000424-webkit-control/` red at step 1 on its property, green `20261016-000426-webkit/` 9 of 9, the same figures | the same as `20261015-205925-webkit-control/` and `20261015-205931-webkit/` |
+
+Each server was started by the solver and stopped by exact PID, and its port then refused a connection (curl exit 7). The two suite runs stopped their own servers. The RED and GREEN runs of single findings (named in each finding's solver line) are not suite runs, each says so in its `red.txt` or `green.txt`.
+

@@ -1,0 +1,19 @@
+Dev solver, step 5 solver round of v1.1.0, 2026-10-15. RED run of CR-S5-6 (R41), not a suite run.
+
+Command, from the project root: SPLIT_EVIDENCE=1 python -B -m pytest tests/browser -q -p no:cacheprovider -k "R41"
+Result: 2 failed, 7 passed, 700 deselected. pytest.txt and junit.xml beside this file.
+
+Tree. The new test test_R41_a_planted_copy_of_a_helper_the_gate_runs_is_reported with its two planted copies of
+support.py, and live_gate_problems(path, helpers=SUPPORT_SCRIPT) with the A20 body, which reads only the gate script and
+ignores helpers. That is the guard as the code review found it, plus the parameter the new test passes.
+
+The two planted copies, cut from support.py's own syntax tree (the code reviewer's edits of
+split-app/qa/code-review/20261015-212541/planted-support-guard-run.txt):
+  cold-boot-js-clears-the-storage   COLD_BOOT_JS = """() => { localStorage.clear();  ...
+  replace-text-fills-the-field      locator.fill("") as the first statement of replace_text
+
+Failures, as printed:
+  [cold-boot-js-clears-the-storage] assert [] == ['COLD_BOOT_JS calls clear(), which is not a read']
+  [replace-text-fills-the-field]    assert [] == ['.fill is used']
+The guard reports nothing for a write in a helper the gate runs, which is the gap the finding names. The 7 other R41
+tests passed.

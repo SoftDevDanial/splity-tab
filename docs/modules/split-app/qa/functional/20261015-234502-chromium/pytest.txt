@@ -1,0 +1,10 @@
+engine chromium, browser version 149.0.7827.55
+PASSED   call     test_app.py::test_R20_the_even_split_from_a_cold_boot (0.37s)
+PASSED   call     test_app.py::test_R20_the_sheet_lists_the_splits_as_the_card_does (0.45s)
+PASSED   call     test_app.py::test_R20_more_than_six_people_list_in_two_columns_on_the_desktop (0.50s)
+PASSED   call     test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[7-people] (0.18s)
+PASSED   call     test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[8-people] (0.18s)
+PASSED   call     test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[9-people] (0.16s)
+PASSED   call     test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[10-people] (0.15s)
+PASSED   call     test_app.py::test_R20_seven_to_eleven_people_list_in_two_columns_on_the_desktop[11-people] (0.16s)
+exit status 0
