@@ -6022,4 +6022,51 @@ def test_R62_a_saved_name_with_bidi_controls_loads_plain_and_the_people_line_rea
     assert page.evaluate("window.testClipboardText").split("\n")[2:-1] == [f"{name} {amount}" for name, amount, _ in rows]
 
 
+# ---------------------------------------------------------------- v1.1.0 task A23: Dismiss note arms the repeat guard (R27, R7, R57)
+# Once the note is gone the rows move up, so the rest of a double press lands on the People header row below 1024 px and
+# on the top bar from 1024 px. Before A23 it folded People or moved focus to the page (code review CR-R1). Each test reads
+# the whole end state at once, so one run names every property that broke.
+def after_dismiss(page, viewport, noted):
+    """What a press on Dismiss note left. The notes, the id of the focused element, the section rows below 1024 px (R48)
+    and whether the stored text is still `noted`."""
+    return {"notes": notes(page), "focus": page.evaluate("document.activeElement.id"),
+            "sections": section_state(page) if viewport[0] < 1024 else None, "stored": stored_text(page) == noted}
+
+
+def one_dismiss(viewport):
+    """after_dismiss as one click leaves it (R27, rule 12). Below 1024 px People stays open and Charges folded."""
+    return {"notes": [], "focus": "newBill", "sections": [OPEN, FOLDED] if viewport[0] < 1024 else None, "stored": True}
+
+
+@pytest.mark.parametrize("gesture", GESTURES)
+@pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+    # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must leave.
+    page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+    noted = stored_text(page)
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+    found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+    assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+    assert_only_press_1_and_click_1_reached_the_page(page, GESTURE_PRESSES[gesture], tapped=gesture == "touch-double")
+
+
+# The targets of the clicks the window half of the body recorder kept, in order. It sees each click before the guard can
+# cancel it, the clicks a held Enter makes included.
+CLICK_TARGETS_JS = "() => window.testGesture.filter((event) => event.type === 'click').map((event) => event.target.id)"
+
+
+@pytest.mark.parametrize("viewport", [(390, 844), (1280, 800)], ids=["390x844", "1280x800"])
+def test_R27_a_held_enter_on_dismiss_note_reaches_nothing(open_app, viewport):
+    # The click count is the proof. Repeats that reached New bill could open and close M1 and end where one press does.
+    page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport).page
+    noted = stored_text(page)
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    tab_until(page, page.get_by_role("button", name="Dismiss note", exact=True))
+    hold(page, "Enter")
+    found = {**after_dismiss(page, viewport, noted), "clicks": page.evaluate(CLICK_TARGETS_JS),
+             "dialog open": dialog_is_open(page)}
+    assert found == {**one_dismiss(viewport), "clicks": ["dismissNote"], "dialog open": False}
+
+
 # ===== END OF TESTS (new tests go above this line) =====

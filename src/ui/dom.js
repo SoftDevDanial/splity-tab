@@ -74,7 +74,6 @@ const isRepeat = (event) => (event.type === "keydown" ? event.repeat : isRepeatC
  * `repeat` true, R57 (a)), so a held Enter cannot press the control the click moved focus to. It is gone at the first
  * press that is not a repeat, so a press of its own is never held back. Nothing is scheduled.
  * No click can arm it for a layout move that is not a click (RG-CR-08), so a Remove also tests `isRepeatClick` itself.
- * "Dismiss note" moves the rows and arms nothing, its repeat press lands on a heading or a div (BUILD.md, call 18).
  */
 export function swallowRepeatClicks() {
   const guard = (event) => {
