@@ -1,0 +1,6 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R34_focus_after_adding_or_removing_an_item[K1-add-item] (0.60s)
+FAILED   call     test_app.py::test_R34_focus_after_adding_or_removing_an_item[K1-remove-Char-kuey-teow] (0.60s)
+FAILED   call     test_app.py::test_R34_focus_after_adding_or_removing_an_item[K1-remove-Satay] (0.60s)
+PASSED   call     test_app.py::test_R34_focus_after_adding_or_removing_an_item[cold-boot-remove-the-only-item] (0.55s)
+exit status 1

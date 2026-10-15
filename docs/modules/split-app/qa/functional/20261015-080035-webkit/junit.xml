@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="4" time="3.785" timestamp="2026-10-15T08:00:35.585979+08:00" hostname="{host}"><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_an_item[K1-add-item]" time="1.604"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Item 5 name'&#10;  &#10;  - Item 5 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Item 5 name'
+      
+      - Item 5 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_an_item[K1-remove-Char-kuey-teow]" time="0.629"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Item 2 name'&#10;  &#10;  - Item 2 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Item 2 name'
+      
+      - Item 2 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_an_item[K1-remove-Satay]" time="0.626"><failure message="AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Item 3 name'&#10;  &#10;  - Item 3 name&#10;  + Splity Tab&#10;  +     &#10;  +     &#10;  +     New bill&#10;  +   ...&#10;  &#10;  ...Full output truncated (35 lines hidden), use '-vv' to show">E   AssertionError: assert 'Splity Tab\n...n      Cancel' == 'Item 3 name'
+      
+      - Item 3 name
+      + Splity Tab
+      +     
+      +     
+      +     New bill
+      +   ...
+      
+      ...Full output truncated (35 lines hidden), use '-vv' to show</failure></testcase><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_an_item[cold-boot-remove-the-only-item]" time="0.579" /></testsuite></testsuites>

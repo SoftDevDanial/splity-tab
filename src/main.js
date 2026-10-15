@@ -172,13 +172,17 @@ function toggleSection(key) {
 }
 const peopleSection = createPeopleSection(people.content, () => toggleSection("people"));
 const chargesSection = createChargesSection(charges.content, () => toggleSection("charges"));
-document.getElementById("work").append(peopleSection.el, chargesSection.el, mode.el, items.el);
+document.getElementById("work").append(peopleSection.el, chargesSection.el, mode.el);
 
-// R8, the Subtotal block is in the DOM in even mode only. It is put back only when it is missing, because moving the
-// block that holds the focused field drops its focus (R33).
-function placeSubtotal() {
-  if (bill.mode !== "even") subtotal.el.remove();
-  else if (!subtotal.el.isConnected) mode.el.after(subtotal.el);
+// R8, the Subtotal block is in the DOM in even mode only and the Items block in by-item mode only, each after the Split
+// block. A block is put back only when it is missing, because moving the block that holds the focused field drops its
+// focus (R33).
+const MODE_BLOCKS = [[subtotal.el, "even"], [items.el, "item"]];
+function placeModeBlocks() {
+  for (const [block, blockMode] of MODE_BLOCKS) {
+    if (bill.mode !== blockMode) block.remove();
+    else if (!block.isConnected) mode.el.after(block);
+  }
 }
 
 function render() {
@@ -188,13 +192,14 @@ function render() {
   chargesSection.update(bill, view.open.charges);
   people.update(bill);
   mode.update(bill);
-  placeSubtotal();
+  placeModeBlocks();
   subtotal.update(bill, errors);
   items.update(bill, errors);
   charges.update(bill, errors);
   if (result.kind === "blocked") reconcileChildren(receipt, blockedReceipt(result.reason));
   else panel.update(result, view.status);
   notes.update(view);
+  items.markFrame(); // last, so it measures the frame with every block above it in its new state (R56)
 }
 
 render();

@@ -23,7 +23,7 @@ import seeds
 import support
 from expected import (BLOCKED_CARD, EVEN_MESSAGE, S1_CHECK, S1_COPY, S1_ITEMS, S1_ROWS, S1_SUMMARY, S2_CHECK, S2_COPY,
                       S2_ROWS, S2_SUMMARY)
-from support import (CSP, GOLDEN_DIR, GOLDEN_V1_DIR, ROOT, card_text, dom_walk, first_diff, golden_walk, open_golden,
+from support import (CSP, GOLDEN_DIR, ROOT, card_text, dom_walk, first_diff, golden_walk, open_golden,
                      panel_text, person_field, walk_entries)
 
 
@@ -253,7 +253,7 @@ R3_STATES = {
     "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, {390: "A13", 360: "A13"}),
     "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: "A16", 360: "A16", 1280: "A16"}),
     "bill-empty": (None, {}, {390: "A11", 360: "A11", 1280: None}),
-    "rate-error": (seeds.RE, {}, {390: "A11", 360: "A11", 1280: "A8"}),
+    "rate-error": (seeds.RE, {}, {390: "A11", 360: "A11", 1280: None}),
     "bill-unassigned": (seeds.S5, {}, {390: "A11", 360: "A11", 1280: "A9"}),
     "bill-unreadable": (seeds.UNREADABLE["B1"], {}, {390: "A11", 360: "A11", 1280: None}),
     "bill-twelve": (seeds.T12, {}, {390: "A11", 360: "A11", 1280: "A13"}),
@@ -745,7 +745,7 @@ def test_R42_duplicate_names_are_accepted_and_act_on_their_own_row(open_app):
     person_field(page, 1).fill("Ben")
     person_field(page, 2).fill("Ben")
     add_person_named(page, "Chen")
-    assert page.locator("p.error, div.note").count() == 0
+    assert shown_errors(page) == [] and page.locator("div.note").count() == 0  # the 1.0 p.error is gone since task A8
     assert [f.input_value() for f in page.locator("li.person input").all()] == ["Ben", "Ben", "Chen"]
     assert remove_button(page, "Ben").count() == 2
     remove_button(page, "Ben").nth(1).click()
@@ -762,12 +762,13 @@ def switch_to(page, label):
     page.get_by_text(label, exact=True).click()
 
 
-# Which Split radio is checked and how many Subtotal blocks the page holds (R8, the block of the other mode is absent
-# from the DOM), read in one evaluate so a radio that is not there gives null instead of a wait.
+# Which Split radio is checked and how many Subtotal and Items blocks the page holds (R8, the block of the other mode is
+# absent from the DOM), read in one evaluate so a radio that is not there gives null instead of a wait.
 SPLIT_STATE_JS = """() => ({ even: document.querySelector('#modeEven')?.checked ?? null,
-  item: document.querySelector('#modeItem')?.checked ?? null, evenBlocks: document.querySelectorAll('#evenBlock').length })"""
-EVEN_SHOWN = {"even": True, "item": False, "evenBlocks": 1}
-ITEM_SHOWN = {"even": False, "item": True, "evenBlocks": 0}
+  item: document.querySelector('#modeItem')?.checked ?? null, evenBlocks: document.querySelectorAll('#evenBlock').length,
+  itemsBlocks: document.querySelectorAll('#itemsBlock').length })"""
+EVEN_SHOWN = {"even": True, "item": False, "evenBlocks": 1, "itemsBlocks": 0}
+ITEM_SHOWN = {"even": False, "item": True, "evenBlocks": 0, "itemsBlocks": 1}
 
 
 def split_state(page):
@@ -785,7 +786,6 @@ def test_R8_switching_modes_keeps_the_subtotal(open_app):
 
 
 def test_R8_arrow_keys_move_between_the_modes(open_app):
-    # qa.md's "#itemsBlock is in the DOM" waits for task A8, which gives the Items block its id.
     page = open_app().page
     for _ in range(12):
         page.keyboard.press("Tab")
@@ -883,12 +883,11 @@ def error_state(message, described, shown):
             "describedBy": described, "bad": shown}
 
 
-SHOWN_ERRORS_JS = "() => [...document.querySelectorAll('p.err:not([hidden]), p.error')].map((p) => p.id)"
+SHOWN_ERRORS_JS = "() => [...document.querySelectorAll('p.err:not([hidden])')].map((p) => p.id)"
 
 
 def shown_errors(page):
-    """The ids of every inline error that shows, in the v1.1.0 markup (p.err without hidden) or in the 1.0 markup that
-    the prices keep until task A8 (p.error, in the DOM only while it shows)."""
+    """The ids of every inline error that shows (p.err without hidden, R10)."""
     return page.evaluate(SHOWN_ERRORS_JS)
 
 
@@ -896,24 +895,20 @@ def invalid_fields(page):
     return page.locator("[aria-invalid=true]").count()
 
 
-# The 1.0 row, the item price in the 1.0 markup (p.error added and removed, aria-invalid removed). Task A8 moves it to
-# the v1.1.0 outline below, and this test and the next one go with it.
-ERROR_CASES = [
-    pytest.param(lambda page: build_s1(page), lambda page: item_price(page, 2), "13.505", AMOUNT_MESSAGE, "price-error-i5", "13.50", id="item-price"),
-]
-# The v1.1.0 rows of qa.md "An inline error waits for the field to be left" (task A6 the rates, rule 13, task A7 the
-# Subtotal, which names its error at all times, CG-P6).
+# The rows of qa.md "An inline error waits for the field to be left" (task A6 the rates, rule 13, task A7 the Subtotal and
+# task A8 the price, which name their error at all times, CG-P6). The seed is the row's setup, None for a cold boot.
 RATE_ERROR_CASES = [
-    pytest.param(subtotal_field, "0", AMOUNT_MESSAGE, "evenErr", "evenErr", "evenErr", "12.50", id="subtotal"),
-    pytest.param(opened_rate_field("Service charge"), "31", SERVICE_MESSAGE, "svcErr", "chargeHint", "chargeHint svcErr", "10", id="service"),
-    pytest.param(opened_rate_field("SST"), "20.01", SST_MESSAGE, "sstErr", "chargeHint", "chargeHint sstErr", "6", id="sst"),
+    pytest.param(None, subtotal_field, "0", AMOUNT_MESSAGE, "evenErr", "evenErr", "evenErr", "12.50", id="subtotal"),
+    pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", AMOUNT_MESSAGE, "ie2", "ie2", "ie2", "13.50", id="item-price"),
+    pytest.param(None, opened_rate_field("Service charge"), "31", SERVICE_MESSAGE, "svcErr", "chargeHint", "chargeHint svcErr", "10", id="service"),
+    pytest.param(None, opened_rate_field("SST"), "20.01", SST_MESSAGE, "sstErr", "chargeHint", "chargeHint sstErr", "6", id="sst"),
 ]
 
 
-@pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
-def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, field_of, bad, message, error_id, described,
+@pytest.mark.parametrize("seed, field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, seed, field_of, bad, message, error_id, described,
                                                             shown_described, good):
-    page = open_app().page
+    page = open_app(seed=seed).page
     field = field_of(page)
     support.replace_text(page, field, bad)
     assert field_error(field, error_id) == error_state(message, described, shown=False)
@@ -925,11 +920,11 @@ def test_R10_an_inline_error_waits_for_the_field_to_be_left(open_app, field_of, 
     assert field.input_value() == good
 
 
-@pytest.mark.parametrize("field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
+@pytest.mark.parametrize("seed, field_of, bad, message, error_id, described, shown_described, good", RATE_ERROR_CASES)
 def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again(
-        open_app, field_of, bad, message, error_id, described, shown_described, good):
+        open_app, seed, field_of, bad, message, error_id, described, shown_described, good):
     # WR-03 / K1: (c) says the error goes at valid text and "does not come back until the field next loses focus".
-    page = open_app().page
+    page = open_app(seed=seed).page
     field = field_of(page)
     support.replace_text(page, field, bad)
     page.keyboard.press("Tab")
@@ -938,42 +933,6 @@ def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again(
     assert field_error(field, error_id) == error_state(message, described, shown=False)
     page.keyboard.press("Tab")
     assert field_error(field, error_id) == error_state(message, shown_described, shown=True)
-
-
-@pytest.mark.parametrize("setup, field_of, bad, message, error_id, good", ERROR_CASES)
-def test_R10_an_inline_error_waits_for_the_field_to_be_left_in_the_1_0_markup(open_app, setup, field_of, bad, message, error_id, good):
-    page = open_app().page
-    setup(page)
-    field = field_of(page)
-    support.replace_text(page, field, bad)
-    assert page.locator(f"#{error_id}").count() == 0
-    page.keyboard.press("Tab")
-    assert page.locator(f"p.error#{error_id}").inner_text() == message
-    assert field.get_attribute("aria-invalid") == "true"
-    assert field.get_attribute("aria-describedby").split()[0] == error_id
-    support.replace_text(page, field, "")
-    page.keyboard.type(good[0])
-    assert page.locator(f"#{error_id}").count() == 0 and field.get_attribute("aria-invalid") is None
-    page.keyboard.type(good[1:])
-    assert field.input_value() == good
-
-
-@pytest.mark.parametrize("setup, field_of, bad, message, error_id, good", ERROR_CASES)
-def test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again_in_the_1_0_markup(
-        open_app, setup, field_of, bad, message, error_id, good):
-    # WR-03 / K1: (c) says the error goes at valid text and "does not come back until the field next loses focus".
-    page = open_app().page
-    setup(page)
-    field = field_of(page)
-    support.replace_text(page, field, bad)
-    page.keyboard.press("Tab")
-    assert page.locator(f"p.error#{error_id}").count() == 1
-    support.replace_text(page, field, good[0])  # one valid character over the whole text, typed in the field
-    assert page.locator(f"#{error_id}").count() == 0
-    page.keyboard.type("x")  # bad again, and the field still has focus
-    assert page.locator(f"#{error_id}").count() == 0 and field.get_attribute("aria-invalid") is None
-    page.keyboard.press("Tab")
-    assert page.locator(f"p.error#{error_id}").inner_text() == message and field.get_attribute("aria-invalid") == "true"
 
 
 def leave_subtotal_and_service_charge_empty(page):
@@ -1026,7 +985,9 @@ def item_name(page, number):
 
 
 def item_price(page, number):
-    return page.get_by_label(f"Item {number} price in RM", exact=True)
+    """The price field of the item at 1-based `number`, found by its place, because since task A8 it is named by its
+    item ("Char kuey teow price in RM", R11). The tests that check the name read it."""
+    return page.locator("li.item").nth(number - 1).locator(".field.money input")
 
 
 def who_group(page, item_label):
@@ -1055,9 +1016,10 @@ def build_s1(page):
 
 
 def test_R5_renaming_an_item_updates_its_accessible_names(open_app):
-    page = open_app().page
-    build_s1(page)
+    # [v1.1.0] K1, and the price field's name follows the item name (R11, task A8).
+    page = open_app(seed=seeds.S1).page
     support.replace_text(page, item_name(page, 4), "Satay")
+    assert item_price(page, 4).get_attribute("aria-label") == "Satay price in RM"
     assert remove_button(page, "Satay").count() == 1 and who_group(page, "Satay").count() == 1
 
 
@@ -1092,8 +1054,8 @@ def test_R7_removing_a_person_takes_them_off_every_item(open_app, plain_context)
 
 @pytest.mark.xfail(strict=True, reason="task A11")
 def test_R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip(open_app):
-    # The rest of qa.md "Remove a person and they leave every item". The needs marker is task A8's, the card's div.r-msg
-    # A9's and the strip's message A11's.
+    # The rest of qa.md "Remove a person and they leave every item". The needs marker is built by task A8, the card's
+    # div.r-msg by A9 and the strip's message by A11.
     page = open_app(seed=seeds.S1).page
     open_people_first(page)
     remove_button(page, "Chen").click()
@@ -1109,48 +1071,113 @@ def test_R8_switching_modes_keeps_both_sets_of_input(open_app):
     support.replace_text(page, subtotal_field(page), "100.00")
     switch_to(page, "By item")
     add_item_named(page, "Tea", "5.00", ["Person 1"])
-    assert page.locator("ol.items").is_visible() and split_state(page) == ITEM_SHOWN  # #itemsBlock is task A8's
+    # qa.md's strip lines ("Total RM 116.60", "Total RM 5.83") are task A11's (BUILD.md, A7 judgment call 1).
+    assert split_state(page) == ITEM_SHOWN  # #evenBlock is not in the DOM and #itemsBlock is
     switch_to(page, "Even")
     assert split_state(page) == EVEN_SHOWN and subtotal_field(page).input_value() == "100.00"
-    assert not page.locator("ol.items").is_visible()
     switch_to(page, "By item")
     assert item_name(page, 1).input_value() == "Tea" and item_price(page, 1).input_value() == "5.00"
     assert toggle(page, "Tea", "Person 1").get_attribute("aria-pressed") == "true"
 
 
+# v1.1.0 task A8. The Items block (R11 to R14), read in one pass, so a part that is not built yet fails on the assertion
+# that names it and never on a wait. An icon reads as "class href", a part as "tag#id.class".
+ITEMS_JS = """() => {
+  const tag = (el) => `${el.localName}${el.id ? '#' + el.id : ''}${[...el.classList].map((c) => '.' + c).join('')}`;
+  const icons = (node) => [...node.querySelectorAll('svg')].map((svg) => `${svg.getAttribute('class')} ${svg.querySelector('use')?.getAttribute('href')}`);
+  const get = (el, names) => names.map((name) => el.getAttribute(name));
+  const block = document.querySelector('div.blk.items-blk#itemsBlock'), add = document.querySelector('#addItem');
+  const list = document.querySelector('div.frame-wrap#frameWrap > ul.frame#itemList');
+  return {
+    block: block && { children: [...block.children].map(tag), heading: block.querySelector('h2#itemsH')?.textContent ?? null,
+      head: [...(block.querySelector(':scope > div.blk-head')?.children ?? [])].map(tag) },
+    add: add && [add.className, add.disabled, add.textContent.trim(), ...icons(add)],
+    list: list && { labelledBy: list.getAttribute('aria-labelledby'), rows: [...list.children].map((li) => {
+      const cells = [...(li.querySelector(':scope > div.item-row')?.children ?? [])], taps = li.querySelector(':scope > div.taps');
+      const name = cells[0]?.querySelector('input'), price = cells[1]?.querySelector('input'), unit = cells[1]?.querySelector('span.unit');
+      return { li: li.className, cells: cells.map(tag),
+        name: name && [name.value, ...get(name, ['type', 'maxlength', 'autocomplete', 'aria-label', 'placeholder'])],
+        price: price && [price.value, unit && [unit.getAttribute('aria-hidden'), unit.textContent],
+          ...get(price, ['type', 'inputmode', 'autocomplete', 'placeholder', 'aria-label', 'aria-invalid', 'aria-describedby'])],
+        remove: cells[2] ? [cells[2].getAttribute('aria-label'), ...icons(cells[2])] : null,
+        err: cells[3] ? [cells[3].hidden, cells[3].textContent, ...icons(cells[3])] : null,
+        taps: taps && [taps.getAttribute('role'), taps.getAttribute('aria-label'), [...taps.children].map((b) =>
+          [b.className, b.getAttribute('aria-pressed'), ...icons(b), b.querySelector(':scope > span')?.textContent ?? null])] };
+    }) },
+  };
+}"""
+ITEMS_BLOCK = {"children": ["div.blk-head", "div#frameWrap.frame-wrap"], "heading": "Items",
+               "head": ["h2#itemsH.blk-h", "button#addItem.btn.btn-ghost"]}
+THREE = ("Aisyah", "Ben", "Chen")
+
+
+def items_shown(page):
+    """{ block, add, list } of the Items block as ITEMS_JS reads them, each None when the page has no such part."""
+    return page.evaluate(ITEMS_JS)
+
+
+def item_rows(page):
+    """The rows of ul.frame#itemList, or None when the page has no such list."""
+    shown = items_shown(page)["list"]
+    return shown and shown["rows"]
+
+
+def add_item_shown(disabled=False):
+    """#addItem as spec R12 writes it."""
+    return ["btn btn-ghost", disabled, "Add item", "ic #i-plus"]
+
+
+def item_row(number, name, price, label, pressed, people=THREE, error=False):
+    """A row as spec R11, R13, R14 and R18 write it, at 1-based `number`, named for `label`, with one toggle per person
+    of `people` and those in `pressed` on. An item that nobody had carries the needs marker."""
+    bad = ".is-bad" if error else ""
+    return {"li": "item" if pressed else "item needs",
+            "cells": ["div.field", f"div.field.money{bad}", "button.icon-btn", f"p#ie{number}.err"],
+            "name": [name, "text", "40", "off", f"Item {number} name", f"Item {number}"],
+            "price": [price, ["true", "RM"], "text", "decimal", "off", "0.00", f"{label} price in RM", str(error).lower(), f"ie{number}"],
+            "remove": [f"Remove {label}", "ic #i-x"],
+            "err": [not error, AMOUNT_MESSAGE, "ic #i-warning-circle"],
+            "taps": ["group", f"Who had {label}", [["tap", str(person in pressed).lower(), "ic #i-check", person] for person in people]]}
+
+
+K1_ROWS = [item_row(number, name, price, name, pressed) for number, (name, price, pressed) in enumerate(S1_ITEMS, start=1)]
+
+
 def test_R11_item_rows_carry_their_names_and_labels(open_app):
-    page = open_app().page
-    build_s1(page)
-    for number, (name, price, _) in enumerate(S1_ITEMS, start=1):
-        field = item_name(page, number)
-        assert field.input_value() == name
-        assert [field.get_attribute(a) for a in ("placeholder", "maxlength", "autocomplete", "type")] == [
-            f"Item {number}", "40", "off", "text"]
-        money = item_price(page, number)
-        assert money.input_value() == price
-        assert [money.get_attribute(a) for a in ("inputmode", "autocomplete", "type")] == ["decimal", "off", "text"]
-        wrapper = page.locator(f'span.field.money:has(input[aria-label="Item {number} price in RM"])')
-        assert wrapper.locator(".unit").inner_text() == "RM"
-        assert remove_button(page, name).is_enabled()
+    # [v1.1.0] qa.md on K1. The price is named by its item and names its error paragraph, the last child of the row.
+    page = open_app(seed=seeds.S1).page
+    assert items_shown(page)["list"] == {"labelledBy": "itemsH", "rows": K1_ROWS}
 
 
-@pytest.mark.xfail(strict=True, reason="task A8")
 def test_R12_add_an_item_remove_one_and_reach_the_limit(open_app, plain_context):
+    # [v1.1.0] The heading row with #addItem, the no-prices card, and the disabled look compared with #addPerson of
+    # bill-twelve.html. The 1.0 form compared it with a states.html specimen (B1). The strip line is the next test's.
     page = open_app().page
     switch_to(page, "By item")
-    add = page.get_by_role("button", name="Add item")
+    shown = items_shown(page)
+    assert (shown["block"], shown["add"]) == (ITEMS_BLOCK, add_item_shown()), "no Items block as spec R12 writes it"
+    add = page.locator("#addItem")
     add.click()
-    assert page.locator("li.item").count() == 1
-    assert item_name(page, 1).input_value() == "" and item_name(page, 1).get_attribute("placeholder") == "Item 1"
-    assert item_price(page, 1).input_value() == "" and toggle_states(page, 1) == ["false", "false"]
-    assert panel_text(page) == "Shares\nAdd an item to see the shares."
+    assert item_rows(page) == [item_row(1, "", "", "Item 1", [], people=("Person 1", "Person 2"))]
+    assert card_text(page) == BLOCKED_CARD["no-prices"]
     for _ in range(49):
         add.click()
-    assert page.locator("li.item").count() == 50 and add.is_disabled()
-    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator('section[aria-labelledby="spec-s8a"] button[disabled]')
-    assert support.specimen_props(add, ["cursor"]) == support.specimen_props(specimen, ["cursor"])
-    page.locator("li.item").nth(1).get_by_role("button", name="Remove Item 2").click()
-    assert page.locator("li.item").count() == 49 and add.is_enabled()
+    assert len(item_rows(page)) == 50 and items_shown(page)["add"] == add_item_shown(disabled=True)
+    page.set_viewport_size({"width": 1280, "height": 800})
+    golden = open_golden(plain_context, "bill-twelve", VIEWPORTS[1280]).locator("#addPerson")
+    assert support.specimen_props(add, GOLDEN_LOOK) == support.specimen_props(golden, GOLDEN_LOOK)
+    assert add.evaluate("(el) => getComputedStyle(el).cursor") == "not-allowed"
+    remove_button(page, "Item 2").click()
+    assert len(item_rows(page)) == 49 and items_shown(page)["add"] == add_item_shown()
+
+
+@pytest.mark.xfail(strict=True, reason="task A11")
+def test_R12_a_new_item_leaves_the_strip_reading_add_each_item(open_app):
+    # The strip line of qa.md "Add an item, remove one, and reach the limit". The strip's message is task A11's (R49).
+    page = open_app().page
+    switch_to(page, "By item")
+    page.get_by_role("button", name="Add item", exact=True).click()
+    assert visible_text(page, "#stripInfo") == "Add each item and tap who had it to see the splits."
 
 
 def toggle_states(page, number):
@@ -1158,47 +1185,117 @@ def toggle_states(page, number):
 
 
 def test_R13_tapping_a_person_on_an_item(open_app):
-    page = open_app().page
-    build_s1(page)
-    assert [toggle_states(page, n) for n in (1, 2, 3, 4)] == [
-        ["true", "false", "false"], ["false", "true", "false"], ["false", "false", "true"], ["true", "false", "true"]]
-    ben = toggle(page, "Satay, 10 sticks", "Ben")
-    ben.click()
-    assert ben.get_attribute("aria-pressed") == "true"
-    ben.click()
-    assert ben.get_attribute("aria-pressed") == "false"
+    # [v1.1.0] qa.md on K1 at 1280 x 800, each toggle the check icon and then the name. The card's rows with their working
+    # are task A9's (until then the 1.0 form, test_R13_tapping_a_person_changes_the_shares) and the spare line A13's.
+    page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280]).page
+    toggle(page, "Satay, 10 sticks", "Ben").click()
+    rows = item_rows(page)
+    assert rows is not None and rows[3]["taps"] == item_row(4, "", "", "Satay, 10 sticks", THREE)["taps"]
+    toggle(page, "Satay, 10 sticks", "Ben").click()
+    assert item_rows(page) == K1_ROWS
 
 
-@pytest.mark.xfail(strict=True, reason="task A8")
-def test_R14_a_price_error_sits_in_the_item_line(open_app, plain_context):
-    page = open_app().page
-    build_s1(page)
-    support.replace_text(page, item_price(page, 2), "13.505")
+# A field_error read of p.err#ie2 that also says whether it is the last child of its div.item-row (R14).
+LAST_IN_ROW_JS = """() => { const p = document.querySelector('p.err#ie2');
+  return p ? p === p.parentElement.lastElementChild && p.parentElement.matches('div.item-row') : null; }"""
+
+
+def test_R14_a_price_error_sits_in_the_item_row(open_app, plain_context):
+    # [v1.1.0] qa.md, compared with the price piece of states.html (S2 on an amount). The 1.0 form read the 1.0 states.html
+    # (B1). "Right aligned" is the golden's justify-self end, so the paragraph ends where the price field ends
+    # (BUILD.md, A8, F-A8-1). Its text-align is compared with the piece's like every other property.
+    page = open_app(seed=seeds.S1).page
+    price = item_price(page, 2)
+    support.replace_text(page, price, "13.505")
     page.keyboard.press("Tab")
-    error = page.locator("p.error#price-error-i5")
-    assert error.evaluate("(e) => e === e.parentElement.lastElementChild && e.parentElement.className") == "item-line"
-    assert item_price(page, 2).get_attribute("aria-describedby") == "price-error-i5"
-    specimen = support.open_golden(plain_context, "states", folder=GOLDEN_V1_DIR).locator("#s4-price-error")
-    extra = ["textAlign", "marginTop"]
-    assert support.specimen_props(error, extra) == support.specimen_props(specimen, extra)
-    assert error.evaluate("(e) => getComputedStyle(e).textAlign") == "right"
+    assert field_error(price, "ie2") == error_state(AMOUNT_MESSAGE, "ie2", shown=True)
+    assert page.evaluate(LAST_IN_ROW_JS) is True
+    piece = open_golden(plain_context, "states").locator('section[aria-labelledby="c-s2-price"]')
+    look = [*GOLDEN_LOOK, "textAlign", "justifySelf"]
+    assert support.specimen_props(page.locator("p.err#ie2"), look) == support.specimen_props(piece.locator("p.err#ie2"), look)
+    wrapper = "li.item div.field.money.is-bad"
+    assert support.specimen_props(page.locator(wrapper), GOLDEN_LOOK) == support.specimen_props(piece.locator(wrapper), GOLDEN_LOOK)
+    ends = [page.locator(selector).evaluate("(el) => el.getBoundingClientRect().right") for selector in ("p.err#ie2", wrapper)]
+    assert abs(ends[0] - ends[1]) <= 0.5, ends
 
 
-@pytest.mark.parametrize("action, target", [
-    ("Add item", "Item 5 name"), ("Remove Char kuey teow", "Item 2 name"), ("Remove Satay, 10 sticks", "Item 3 name")])
-def test_R34_focus_after_adding_or_removing_an_item(open_app, action, target):
-    page = open_app().page
-    build_s1(page)
+@pytest.mark.parametrize("seed, action, target, value", [
+    pytest.param(seeds.S1, "Add item", "Item 5 name", "", id="K1-add-item"),
+    pytest.param(seeds.S1, "Remove Char kuey teow", "Item 2 name", "Mee goreng mamak", id="K1-remove-Char-kuey-teow"),
+    pytest.param(seeds.S1, "Remove Satay, 10 sticks", "Item 3 name", "Mee goreng mamak", id="K1-remove-Satay"),
+    pytest.param(None, "Remove Item 1", "addItem", "", id="cold-boot-remove-the-only-item"),
+])
+def test_R34_focus_after_adding_or_removing_an_item(open_app, seed, action, target, value):
+    # [v1.1.0] The item rows of qa.md "Focus after adding or removing", with People opened first. The last row adds its one
+    # item after "By item". "Add item" is #addItem, which support.active_label reads by its id.
+    page = open_app(seed=seed).page
+    open_people_first(page)
+    if seed is None:
+        switch_to(page, "By item")
+        page.get_by_role("button", name="Add item", exact=True).click()
     page.get_by_role("button", name=action, exact=True).click()
     assert support.active_label(page) == target
+    assert page.evaluate("document.activeElement.value") == value
 
 
-def test_R34_removing_the_last_item_focuses_add_item(open_app):
-    page = open_app().page
-    switch_to(page, "By item")
-    page.get_by_role("button", name="Add item").click()
-    page.get_by_role("button", name="Remove Item 1").click()
-    assert support.active_label(page) == "Add item"
+NEEDS_JS = "() => [...document.querySelectorAll('li.item.needs')].map((li) => li.querySelector('input').value)"
+
+
+def test_R18_every_item_with_nobody_carries_the_needs_marker(open_app):
+    # The marker lines of qa.md "Items that still need a person" (spec R18, built by task A8). The card's and the strip's
+    # messages are tasks A9 and A11 (until then the 1.0 form, test_R18_items_that_still_need_a_person).
+    page = open_app(seed=seeds.S1).page
+    assert page.evaluate(NEEDS_JS) == []
+    toggle(page, "Mee goreng mamak", "Chen").click()
+    assert page.evaluate(NEEDS_JS) == ["Mee goreng mamak"]
+    toggle(page, "Char kuey teow", "Ben").click()
+    assert page.evaluate(NEEDS_JS) == ["Char kuey teow", "Mee goreng mamak"]
+    toggle(page, "Mee goreng mamak", "Chen").click()
+    toggle(page, "Char kuey teow", "Ben").click()
+    assert page.evaluate(NEEDS_JS) == []
+
+
+# v1.1.0 task A8. The marks of the item frame (R56), [data-up, data-down] of #frameWrap, each "" while set and None
+# while not, or None for a page with no frame.
+FRAME_MARKS_JS = "() => { const w = document.querySelector('div.frame-wrap#frameWrap'); return w && [w.getAttribute('data-up'), w.getAttribute('data-down')]; }"
+DOWN_ONLY, UP_ONLY, NEITHER = [None, ""], ["", None], [None, None]
+
+
+@pytest.mark.parametrize("seed, width, marks", [
+    pytest.param(seeds.S1, 1280, DOWN_ONLY, id="K1-1280"),
+    pytest.param(seeds.S1, 390, NEITHER, id="K1-390"),
+    pytest.param(seeds.W1, 360, DOWN_ONLY, id="W1-360"),
+    pytest.param(seeds.W1, 390, NEITHER, id="W1-390"),
+])
+def test_R56_the_item_frame_marks_what_lies_above_and_below(open_app, seed, width, marks):
+    page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+    assert page.evaluate(FRAME_MARKS_JS) == marks
+
+
+def frame_marks_once(page, expected, timeout_ms=2000):
+    """The marks once they read `expected`, or what they read after `timeout_ms`. A wheel scroll may be animated, so the
+    wait is bounded, and marks that never come fail on what they read then, not on a timeout."""
+    try:
+        page.wait_for_function(f"(expected) => JSON.stringify(({FRAME_MARKS_JS})()) === JSON.stringify(expected)",
+                               arg=expected, timeout=timeout_ms)
+    except PlaywrightTimeoutError:
+        pass
+    return page.evaluate(FRAME_MARKS_JS)
+
+
+def test_R56_scrolling_the_frame_moves_the_marks(open_app):
+    page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280]).page
+    middle = page.evaluate("() => { const r = document.querySelector('#frameWrap')?.getBoundingClientRect();"
+                           " return r ? [r.x + r.width / 2, r.y + r.height / 2] : null; }")
+    assert middle is not None, "no #frameWrap"
+    page.mouse.move(*middle)
+    page.mouse.wheel(0, 2000)
+    assert frame_marks_once(page, UP_ONLY) == UP_ONLY
+    page.mouse.wheel(0, -2000)
+    assert frame_marks_once(page, DOWN_ONLY) == DOWN_ONLY
+    remove_button(page, "Nasi lemak ayam").click()
+    remove_button(page, "Char kuey teow").click()
+    assert frame_marks_once(page, NEITHER) == NEITHER
 
 
 @pytest.mark.parametrize("field_of, text", [(lambda page: item_name(page, 1), "Nasi"), (lambda page: item_price(page, 1), "15.90")])
@@ -2172,23 +2269,27 @@ RECORD_CLICKS_JS = """() => {
   document.addEventListener('click', (event) => { const hit = event.target.closest('button') || event.target;
     window.testClicks.push(hit.id || hit.tagName.toLowerCase()); }, true);
 }"""
-PRESS_CASES = [  # (seed, field, bad text, the control pressed under it, error id, the click's target, the error's text)
-    # This row keeps the 1.0 markup until task A8 moves it to the v1.1.0 outline below.
-    pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", lambda page: toggle(page, "Char kuey teow", "Aisyah"),
-                 "price-error-i5", "button", AMOUNT_MESSAGE, id="item-price"),
-]
-# The v1.1.0 rows. Since task A4 nothing sits under the Subtotal, and its target is the Charges header row above it,
-# which the error does not move. It runs below 1024 px, where that row shows, with the mouse and with a touch tap (task A7).
-# The rows on p.hint#chargeHint are pressed with the mouse only. Their touch tap is the @per_engine scenario
-# (test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate), since WebKit sends no mouse event and no click to text
-# that is not a control (spec R59 (3), task A6).
-RATE_PRESS_CASES = [  # (field, bad text, error id, the error's text, aria-describedby hidden and shown, the target, how)
-    pytest.param(subtotal_field, "0", "evenErr", AMOUNT_MESSAGE, "evenErr", "evenErr", "chargesBtn", "mouse", id="subtotal-mouse"),
-    pytest.param(subtotal_field, "0", "evenErr", AMOUNT_MESSAGE, "evenErr", "evenErr", "chargesBtn", "touch", id="subtotal-touch"),
-    pytest.param(opened_rate_field("Service charge"), "31", "svcErr", SERVICE_MESSAGE, "chargeHint", "chargeHint svcErr",
-                 "chargeHint", "mouse", id="service-mouse"),
-    pytest.param(opened_rate_field("SST"), "25", "sstErr", SST_MESSAGE, "chargeHint", "chargeHint sstErr", "chargeHint", "mouse",
-                 id="sst-mouse"),
+# The rows of qa.md "A press below an invalid field lands on the control it started on". Since task A4 nothing sits under
+# the Subtotal, and its target is the Charges header row above it, which the error does not move. It runs below 1024 px,
+# where that row shows, with the mouse and with a touch tap (task A7). The price's target is a toggle of its own item,
+# which its error moves down a line (task A8). The rows on p.hint#chargeHint are pressed with the mouse only. Their touch
+# tap is the @per_engine scenario (test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate), since WebKit sends no
+# mouse event and no click to text that is not a control (spec R59 (3), task A6).
+AISYAH_ON_CHAR_KUEY_TEOW = lambda page: toggle(page, "Char kuey teow", "Aisyah")  # noqa: E731
+RATE_PRESS_CASES = [  # (seed, field, bad text, error id, the error's text, aria-describedby hidden and shown, the target and
+    # what RECORD_CLICKS_JS records of its click, how)
+    pytest.param(None, subtotal_field, "0", "evenErr", AMOUNT_MESSAGE, "evenErr", "evenErr",
+                 lambda page: page.locator("#chargesBtn"), "chargesBtn", "mouse", id="subtotal-mouse"),
+    pytest.param(None, subtotal_field, "0", "evenErr", AMOUNT_MESSAGE, "evenErr", "evenErr",
+                 lambda page: page.locator("#chargesBtn"), "chargesBtn", "touch", id="subtotal-touch"),
+    pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", "ie2", AMOUNT_MESSAGE, "ie2", "ie2",
+                 AISYAH_ON_CHAR_KUEY_TEOW, "button", "mouse", id="item-price-mouse"),
+    pytest.param(seeds.S1, lambda page: item_price(page, 2), "13.505", "ie2", AMOUNT_MESSAGE, "ie2", "ie2",
+                 AISYAH_ON_CHAR_KUEY_TEOW, "button", "touch", id="item-price-touch"),
+    pytest.param(None, opened_rate_field("Service charge"), "31", "svcErr", SERVICE_MESSAGE, "chargeHint", "chargeHint svcErr",
+                 lambda page: page.locator("#chargeHint"), "chargeHint", "mouse", id="service-mouse"),
+    pytest.param(None, opened_rate_field("SST"), "25", "sstErr", SST_MESSAGE, "chargeHint", "chargeHint sstErr",
+                 lambda page: page.locator("#chargeHint"), "chargeHint", "mouse", id="sst-mouse"),
 ]
 
 
@@ -2207,31 +2308,18 @@ def press(page, how, point):
         page.mouse.click(*point)
 
 
-@pytest.mark.parametrize("field_of, bad, error_id, message, described, shown_described, target, how", RATE_PRESS_CASES)
+@pytest.mark.parametrize("seed, field_of, bad, error_id, message, described, shown_described, target_of, recorded, how",
+                         RATE_PRESS_CASES)
 def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on(
-        open_app, field_of, bad, error_id, message, described, shown_described, target, how):
-    page = open_app(touch=how == "touch").page
+        open_app, seed, field_of, bad, error_id, message, described, shown_described, target_of, recorded, how):
+    page = open_app(seed=seed, touch=how == "touch").page
     field = field_of(page)
     support.replace_text(page, field, bad)
     assert field_error(field, error_id) == error_state(message, described, shown=False)  # not showing yet (CG-3)
     page.evaluate(RECORD_CLICKS_JS)
-    press(page, how, centre_of(page.locator(f"#{target}")))
-    assert page.evaluate("window.testClicks") == [target]
+    press(page, how, centre_of(target_of(page)))
+    assert page.evaluate("window.testClicks") == [recorded]
     assert field_error(field, error_id) == error_state(message, shown_described, shown=True)
-
-
-@pytest.mark.parametrize("how", ["mouse", "touch"])
-@pytest.mark.parametrize("seed, field_of, bad, below_of, error_id, lands_on, message", PRESS_CASES)
-def test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on_in_the_1_0_markup(
-        open_app, how, seed, field_of, bad, below_of, error_id, lands_on, message):
-    page = open_app(seed=seed, touch=how == "touch").page
-    support.replace_text(page, field_of(page), bad)
-    assert page.locator(f"#{error_id}").count() == 0  # CG-3: no error while the field still has focus
-    page.evaluate(RECORD_CLICKS_JS)
-    press(page, how, centre_of(below_of(page)))
-    assert page.evaluate("window.testClicks") == [lands_on]
-    assert page.locator(f"p.error#{error_id}").inner_text() == message
-    assert field_of(page).get_attribute("aria-invalid") == "true"
 
 
 # qa.md "A touch tap on the charges hint below an invalid rate" (@per_engine, spec R59 (3), the A0 measurement tap_on_hint).
@@ -2270,50 +2358,57 @@ def test_R10_a_touch_tap_on_the_charges_hint_below_an_invalid_rate(open_app, eng
 
 @pytest.mark.parametrize("how", ["mouse", "touch"])
 def test_R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error(open_app, how):
+    # [v1.1.0] The price named by its item and its error p.err#ie2 (task A8).
     page = open_app(seed=seeds.S1, touch=how == "touch").page
-    support.replace_text(page, item_price(page, 2), "13.505")  # invalid, and its error is not flagged yet
-    aisyah = toggle(page, "Char kuey teow", "Aisyah")
-    assert aisyah.get_attribute("aria-pressed") == "false" and page.locator("p.error").count() == 0
+    price = item_price(page, 2)
+    support.replace_text(page, price, "13.505")  # invalid, and its error is not flagged yet
+    aisyah = AISYAH_ON_CHAR_KUEY_TEOW(page)
+    assert field_error(price, "ie2") == PRICE_HIDDEN and aisyah.get_attribute("aria-pressed") == "false"
     press(page, how, centre_of(aisyah))
     assert aisyah.get_attribute("aria-pressed") == "true"
     assert sorted(stored(page)["bill"]["items"][1]["who"]) == ["p1", "p2"]
-    assert page.locator("p.error#price-error-i5").inner_text() == "Enter an amount like 12.50"
-    assert item_price(page, 2).get_attribute("aria-describedby") == "price-error-i5"
+    assert field_error(price, "ie2") == PRICE_SHOWN
+
+
+PRICE_HIDDEN, PRICE_SHOWN = error_state(AMOUNT_MESSAGE, "ie2", shown=False), error_state(AMOUNT_MESSAGE, "ie2", shown=True)
 
 
 def test_R10_the_error_waits_for_the_mouse_button_to_come_up(open_app):
+    # [v1.1.0] qa.md "The error waits for the release, and only a press holds it back", the price lines (task A8).
     page = open_app(seed=seeds.S1).page
-    support.replace_text(page, item_price(page, 2), "13.505")
-    x, y = centre_of(toggle(page, "Char kuey teow", "Aisyah"))
+    price = item_price(page, 2)
+    support.replace_text(page, price, "13.505")
+    x, y = centre_of(AISYAH_ON_CHAR_KUEY_TEOW(page))
     page.mouse.move(x, y)
     page.mouse.down()
-    assert support.active_label(page) != "Item 2 price in RM"  # the field has been left ...
-    assert page.locator("p.error").count() == 0  # ... and its error waits for the release
+    assert not has_focus(price)  # the field has been left ...
+    assert field_error(price, "ie2") == PRICE_HIDDEN  # ... and its error waits for the release
     page.mouse.up()
-    assert page.locator("p.error#price-error-i5").count() == 1
-    assert toggle(page, "Char kuey teow", "Aisyah").get_attribute("aria-pressed") == "true"
+    assert field_error(price, "ie2") == PRICE_SHOWN
+    assert AISYAH_ON_CHAR_KUEY_TEOW(page).get_attribute("aria-pressed") == "true"
 
 
 @pytest.mark.parametrize("how", ["mouse", "touch", "held"])
 def test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press(open_app, how):
     page = open_app(seed=seeds.S1, touch=how == "touch").page
+    price = item_price(page, 2)
     if how == "held":
         # A press that has not reported its end (the button is still down, as when its mouseup went to another window).
         # The key press that moves focus ends it, so the error must not wait for a release that may never come (WR-03).
-        support.replace_text(page, item_price(page, 2), "13.505")
-        x, y = centre_of(item_price(page, 2))
+        support.replace_text(page, price, "13.505")
+        x, y = centre_of(price)
         page.mouse.move(x, y)
         page.mouse.down()
     else:
-        press(page, how, centre_of(item_price(page, 2)))  # a finished press must not hold the next blur back
-        assert support.active_label(page) == "Item 2 price in RM"
+        press(page, how, centre_of(price))  # a finished press must not hold the next blur back
+        assert has_focus(price)
         page.keyboard.press("Control+A")
         page.keyboard.type("13.505")
     page.keyboard.press("Tab")
-    assert page.locator("p.error#price-error-i5").count() == 1  # for "held", before the button comes up
+    assert field_error(price, "ie2") == PRICE_SHOWN  # for "held", before the button comes up
     if how == "held":
         page.mouse.up()
-        assert page.locator("p.error#price-error-i5").count() == 1
+        assert field_error(price, "ie2") == PRICE_SHOWN
 
 
 SST_HIDDEN, SST_SHOWN = error_state(SST_MESSAGE, "chargeHint", shown=False), error_state(SST_MESSAGE, "chargeHint sstErr", shown=True)
@@ -2589,8 +2684,8 @@ def test_R7_two_separate_clicks_and_a_key_press_still_remove_a_row_each(open_app
 # check the rows, the draft and the focus.
 SIZES = [(360, 640), (390, 844), (1280, 800)]
 SIZE_IDS = [f"{w}x{h}" for w, h in SIZES]
-# The v1.1.0 sizes of these outlines (qa.md). The R6 and R7 rows use them since task A5, R12 moves with task A8 and R29
-# with task A16, and SIZES goes with the last of them.
+# The v1.1.0 sizes of these outlines (qa.md). The R6 and R7 rows use them since task A5 and R12 since task A8. R29 moves
+# with task A16, and SIZES goes with it.
 V11_SIZES = [(360, 780), (390, 844), (1280, 800)]
 V11_SIZE_IDS = [f"{w}x{h}" for w, h in V11_SIZES]
 GESTURES = ["single", "mouse-double", "mouse-triple", "touch-double"]  # "single" is the control: what one click does
@@ -2599,7 +2694,7 @@ LAST_ROW_CASES = [  # (seed, the remove button, the row selector, where focus go
     pytest.param(seeds.S2, "Remove Chen", "li.person", "Person 2 name", id="S2-person-3-of-3"),
     pytest.param(seeds.S8, "Remove Mei Ling", "li.person", "Person 11 name", id="S8-person-12-of-12"),
     pytest.param(seeds.S1, "Remove Satay, 10 sticks", "li.item", "Item 3 name", id="S1-item-4-of-4"),
-    pytest.param(ONE_ITEM, "Remove Satay, 10 sticks", "li.item", "Add item", id="S1-only-item"),
+    pytest.param(ONE_ITEM, "Remove Satay, 10 sticks", "li.item", "addItem", id="S1-only-item"),  # #addItem since task A8
 ]
 
 
@@ -2761,7 +2856,7 @@ def test_R6_a_repeat_press_on_add_person_adds_one_person_and_keeps_it(open_app, 
 
 @pytest.mark.parametrize("place", PRESS_PLACES)
 @pytest.mark.parametrize("gesture", REPEAT_GESTURES)
-@pytest.mark.parametrize("viewport", SIZES, ids=SIZE_IDS)
+@pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
 @pytest.mark.parametrize("items", [1, 4])
 def test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page(open_app, items, viewport, gesture, place):
     # No Remove button slides under "Add item", so the bill cannot tell a guard from none. What the guard does is cancel the
@@ -2777,51 +2872,57 @@ def test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page
 
 
 # ---------------------------------------------------------------- Regression RG-CR-08: the repeat press on a chip under a price error (R7, R12)
-# An amount that is not a number shows its error when its field is left, and the error line pushes everything under it down
-# by one line. A blur caused by a press waits for the mouseup (RD-3), so the click on the chip that was pressed is not lost,
-# but the repeat press of a double click, triple click or double tap lands on what was one line higher: for a chip at the
-# right end of the first chip row that is its own item's Remove button. No click armed the guard (the pressed control was a
-# chip), so the Remove has to ignore a repeat press itself. The point is found, not assumed: a scout page makes the price bad,
-# leaves the field by Tab (the error shows at once) and asks, for every 4 px point of every chip as laid out before the
-# error, what is under it afterwards. The press goes to the first such point on a second page whose price field still has
-# focus, so the press itself causes the blur.
-EIGHT_PEOPLE = seeds.changed(seeds.S1, lambda d: d["bill"].update(nextId=20, people=[
-    {"id": f"p{n}", "name": name}
-    for n, name in enumerate(["Aisyah", "Ben", "Chen", "Devi", "Farid", "Grace", "Hafiz", "Indra"], start=1)]))
-CHIP_BOXES_JS = """() => {
-  window.testChips = [...document.querySelectorAll('.who button')];
-  return window.testChips.map((node, index) => { const r = node.getBoundingClientRect(); return { index, x: r.x, y: r.y, w: r.width, h: r.height }; });
-}"""
-OVER_ITS_OWN_REMOVE_JS = """(boxes) => {
-  const found = [];
-  for (const b of boxes) {
-    const item = window.testChips[b.index].closest('li.item');
-    for (let x = b.x + 2; x < b.x + b.w - 1; x += 4) for (let y = b.y + 2; y < b.y + b.h - 1; y += 4) {
-      const under = document.elementFromPoint(x, y);
-      const button = under && under.closest('button');
-      if (button && /^Remove/.test(button.getAttribute('aria-label') || '') && button.closest('li.item') === item) found.push([x, y]);
+# An amount that is not a number shows its error when its field is left. A blur caused by a press waits for the mouseup
+# (RD-3), so the click on the toggle that was pressed is not lost, and the repeat press of a double click, triple click or
+# double tap lands where the error has moved things. In 1.0 the error line pushed the chips up under their own item's
+# Remove. In v1.1.0 the error is the last child of the item row (R14), so the toggles move down and no Remove moves
+# (qa.md, task A8). The scout proves it: it makes the price bad, leaves the field by Tab (the error shows at once) and
+# asks, for every 4 px point of every toggle of item 1 as laid out before the error, what is under it afterwards. A later
+# layout that puts a Remove under such a point fails here and names it. The press goes to a point of "Aisyah" that stays
+# on her toggle, on a second page whose price field still has focus, so the press itself causes the blur.
+# Before the error, every 4 px point of the box of each toggle of item 1, with whether it hits that toggle (a pill's
+# rounded corners do not). The toggles are kept in window.testToggles for the reading after the error.
+TOGGLE_POINTS_JS = """() => {
+  window.testToggles = [...document.querySelectorAll('li.item:first-child div.taps > button.tap')];
+  return window.testToggles.flatMap((node, index) => { const r = node.getBoundingClientRect(), points = [];
+    for (let x = r.x + 2; x < r.right - 1; x += 4) for (let y = r.y + 2; y < r.bottom - 1; y += 4) {
+      points.push({ index, name: node.textContent.trim(), x, y, on: document.elementFromPoint(x, y)?.closest('button') === node });
     }
+    return points; });
+}"""
+# The same points once the error shows: those over any Remove, and those of "Aisyah" on her toggle before and after.
+UNDER_TOGGLES_JS = """(points) => {
+  const overRemove = [], stillAisyah = [];
+  for (const p of points) {
+    const button = document.elementFromPoint(p.x, p.y)?.closest('button');
+    if (button && /^Remove /.test(button.getAttribute('aria-label') || '')) overRemove.push([p.x, p.y]);
+    if (p.name === 'Aisyah' && p.on && button === window.testToggles[p.index]) stillAisyah.push([p.x, p.y]);
   }
-  return found;
+  return { overRemove, stillAisyah };
 }"""
 
 
 @pytest.mark.parametrize("gesture", REPEAT_GESTURES)
 @pytest.mark.parametrize("width", [375, 390])
 def test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item(open_app, width, gesture):
-    scout = open_app(seed=EIGHT_PEOPLE, viewport=(width, 3000)).page  # tall: the whole bill is in view, so the scout's points are the second page's
-    boxes = scout.evaluate(CHIP_BOXES_JS)
-    price = scout.get_by_role("textbox", name="Item 1 price in RM", exact=True)
-    price.fill("abc")
-    price.press("Tab")
+    # [v1.1.0] qa.md on K1-8 (task A8). Aisyah starts on i4, so an even number of toggles leaves her on.
+    scout = open_app(seed=seeds.K1_8, viewport=(width, 3000)).page  # tall: the whole bill is in view, so the scout's points are the second page's
+    points = scout.evaluate(TOGGLE_POINTS_JS)
+    support.replace_text(scout, item_price(scout, 1), "abc")
+    scout.keyboard.press("Tab")
     settle(scout)
-    landings = scout.evaluate(OVER_ITS_OWN_REMOVE_JS, boxes)
-    assert landings, "no chip point lies over its own Remove once the error shows: this test no longer probes anything"
-    page = open_app(seed=EIGHT_PEOPLE, viewport=(width, 3000), touch=gesture == "touch-double").page
-    before = [item["id"] for item in stored(page)["bill"]["items"]]
-    page.get_by_role("textbox", name="Item 1 price in RM", exact=True).fill("abc")  # focus stays: the press below blurs it
-    gesture_at(page, gesture, landings[0])
-    assert [item["id"] for item in stored(page)["bill"]["items"]] == before  # no item went
+    under = scout.evaluate(UNDER_TOGGLES_JS, points)
+    assert under["overRemove"] == [], f"toggle points over a Remove once the error shows: {under['overRemove'][:3]}"
+    assert under["stillAisyah"], "no point of the Aisyah toggle stays on it once the error shows"
+    page = open_app(seed=seeds.K1_8, viewport=(width, 3000), touch=gesture == "touch-double").page
+    item_price(page, 1).fill("abc")  # focus stays: the press below leaves the field
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    gesture_at(page, gesture, under["stillAisyah"][0])
+    presses = GESTURE_PRESSES[gesture]
+    assert len(seen_by_the_page(page)["clicks"]) == presses  # one click per press reached the page
+    items = stored(page)["bill"]["items"]
+    assert ("p1" in items[0]["who"]) == (presses % 2 == 0)  # and each one toggled Aisyah
+    assert [item["id"] for item in items] == ["i4", "i5", "i6", "i7"] and shown_errors(page) == ["ie1"]
 
 
 # ---------------------------------------------------------------- Security I-1: the repeat press on New bill (R29, R30)
@@ -3698,7 +3799,7 @@ def test_R48_only_the_header_row_and_start_new_bill_open_or_fold_a_section(open_
     page = open_app(seed=seeds.S1).page
     open_people_first(page)
     assert section_state(page) == [OPEN, FOLDED]
-    type_into(page, item_price(page, 1), "abc")  # "Nasi lemak ayam price in RM" once task A8 names the price by its item (R11)
+    type_into(page, item_price(page, 1), "abc")  # "Nasi lemak ayam price in RM" (R11)
     page.keyboard.press("Tab")
     switch_to(page, "Even")
     switch_to(page, "By item")

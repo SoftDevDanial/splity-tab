@@ -5,9 +5,6 @@ import rig
 
 ROOT = rig.ROOT
 GOLDEN_DIR = ROOT / "docs" / "design"
-# The 1.0 goldens that 1.0 tests still read, byte copies from tag v1.0.0, because the v1.1.0 finalize replaced
-# them in GOLDEN_DIR. Test data only. Gone after task A8 rewrites the last reader (spec, "The 1.0 golden fixtures").
-GOLDEN_V1_DIR = ROOT / "tests" / "fixtures" / "design-v1.0.0"
 
 CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; "
        "base-uri 'none'; form-action 'none'")
@@ -103,18 +100,18 @@ def card_text(page):
     return reads(page, "#rbody")
 
 
-def open_golden(plain_context, name, viewport=(390, 844), folder=GOLDEN_DIR):
-    """A page on one golden, opened read-only as a file from `folder` (GOLDEN_V1_DIR for a 1.0 golden), in the
-    default context of qa.md How to run, so the app and the golden it is compared with share one context (task A3)."""
+def open_golden(plain_context, name, viewport=(390, 844)):
+    """A page on one golden of GOLDEN_DIR, opened read-only as a file, in the default context of qa.md How to run, so
+    the app and the golden it is compared with share one context (task A3)."""
     context = plain_context(viewport={"width": viewport[0], "height": viewport[1]}, color_scheme="dark",
                             reduced_motion="reduce")
     page = context.new_page()
-    page.goto((folder / f"{name}.html").as_uri())
+    page.goto((GOLDEN_DIR / f"{name}.html").as_uri())
     return page
 
 
-def golden_walk(plain_context, name, viewport=(390, 844), selector=None, folder=GOLDEN_DIR):
-    return dom_walk(open_golden(plain_context, name, viewport, folder), selector)
+def golden_walk(plain_context, name, viewport=(390, 844), selector=None):
+    return dom_walk(open_golden(plain_context, name, viewport), selector)
 
 
 # "Equal to the specimen" (qa.md, phrases): these computed properties, never width, height or position.

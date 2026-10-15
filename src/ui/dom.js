@@ -18,11 +18,6 @@ export function el(tag, attrs = {}, ...children) {
   return node;
 }
 
-/** A `section.block` named by its heading `h2.block-title#id`. `title` is text or a node (the Subtotal label). */
-export function block(id, title, ...children) {
-  return el("section", { class: "block", "aria-labelledby": id }, el("h2", { class: "block-title", id }, title), ...children);
-}
-
 /** Sets an attribute to a string, or removes it for `null`. Writes only when the value differs. */
 export function setAttr(node, name, value) {
   if (value === null) {
@@ -55,8 +50,9 @@ export function watchPointerClicks() {
 /**
  * True for the second and later press of a double click, triple click or double tap: the mousedown or click `event`
  * by the one rule `isRepeatPress` (R57 (b)). A key press (count 0) and a mouse click of its own (count 1) never are.
- * A Remove button tests it itself, whether or not a guard is armed (RG-CR-08): the error line a price field shows when
- * it is left pushes the chips down, and the repeat press of a double click on a chip then lands on that item's Remove.
+ * A Remove button tests it itself, whether or not a guard is armed (R7, RG-CR-08), for a layout move that no click armed.
+ * In 1.0 the error line a price field shows when it is left put a chip's repeat press on its item's Remove. Since v1.1.0
+ * the error sits under the item's row and moves the toggles down, and the test stays as the backstop (task A8).
  */
 export function isRepeatClick(event) {
   // The window listener records a click before anyone judges it, so a click must not be compared with itself.

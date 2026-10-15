@@ -47,6 +47,9 @@ RND = changed(S2, lambda d: d["bill"].update(spare={"rule": "random", "order": [
 RE = with_bill(S1, serviceText="35")  # [RE]
 W1 = changed(S1, lambda d: (d["bill"]["items"].append({"id": "i8", "name": "", "priceText": "964.50", "who": ["p1"]}),
                             d["bill"].update(nextId=9)))  # [W1]
+K1_8 = changed(S1, lambda d: (d["bill"]["people"].extend(
+    {"id": f"p{n}", "name": name} for n, name in enumerate(["Devi", "Farid", "Grace", "Hafiz", "Indra"], start=8)),
+    d["bill"].update(nextId=13)))  # [K1-8]
 T12 = dump({"version": 2, "bill": {
     "mode": "even", "people": [{"id": f"p{n}", "name": name} for n, name in enumerate(["Aisyah", "Ben", "Chen"] + [""] * 9, start=1)],
     "subtotalText": "100.00", "items": [], "serviceText": "10", "sstText": "6", "spare": {"rule": "top"}, "nextId": 13,

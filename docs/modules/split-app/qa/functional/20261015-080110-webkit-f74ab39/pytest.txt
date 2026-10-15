@@ -1,0 +1,8 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-double] (0.55s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-triple] (0.50s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-touch-double] (0.51s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-double] (0.53s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-triple] (0.49s)
+FAILED   call     test_app.py::test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-touch-double] (0.57s)
+exit status 1

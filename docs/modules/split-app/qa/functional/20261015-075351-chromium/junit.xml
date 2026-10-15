@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="47" skipped="0" tests="87" time="23.703" timestamp="2026-10-15T07:53:51.314949+08:00" hostname="{host}"><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[rate-error-1280]" time="1.819"><failure message="assert &quot;body&gt;div.app[1]&gt;main.layout[1]&gt;section.work[1]&gt;section.block[3]: tag app='section' golden='div'&quot; is None&#10; +  where &quot;body&gt;div.app[1]&gt;main.layout[1]&gt;section.work[1]&gt;section.block[3]: tag app='section' golden='div'&quot; = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})&#10; +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:1497/'&gt;)&#10; +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000002CF110E4E00&gt;, 'rate-error', (1280, 800))">E   assert "body&gt;div.app[1]&gt;main.layout[1]&gt;section.work[1]&gt;section.block[3]: tag app='section' golden='div'" is None
+     +  where "body&gt;div.app[1]&gt;main.layout[1]&gt;section.work[1]&gt;section.block[3]: tag app='section' golden='div'" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+     +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:1497/'&gt;)
+     +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000002CF110E4E00&gt;, 'rate-error', (1280, 800))</failure></testcase><testcase classname="test_app" name="test_R42_duplicate_names_are_accepted_and_act_on_their_own_row" time="0.211" /><testcase classname="test_app" name="test_R8_switching_modes_keeps_the_subtotal" time="0.218"><failure message="AssertionError: assert {'even': Fals...emsBlocks': 0} == {'even': Fals...emsBlocks': 1}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'itemsBlocks': 0} != {'itemsBlocks': 1}&#10;  Use -v to get more diff">E   AssertionError: assert {'even': Fals...emsBlocks': 0} == {'even': Fals...emsBlocks': 1}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'itemsBlocks': 0} != {'itemsBlocks': 1}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R8_arrow_keys_move_between_the_modes" time="0.163"><failure message="AssertionError: assert ({'even': Fals...emsBlocks': 0} == {'even': Fals...emsBlocks': 1}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'itemsBlocks': 0} != {'itemsBlocks': 1}&#10;  Use -v to get more diff)">E   AssertionError: assert ({'even': Fals...emsBlocks': 0} == {'even': Fals...emsBlocks': 1}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'itemsBlocks': 0} != {'itemsBlocks': 1}
+      Use -v to get more diff)</failure></testcase><testcase classname="test_app" name="test_R10_an_inline_error_waits_for_the_field_to_be_left[item-price]" time="0.234"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'describedBy': None} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff">E   AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+      
+      Differing items:
+      {'invalid': None} != {'invalid': 'false'}
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': False}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': True}
+      {'describedBy': None} != {'describedBy': 'ie2'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R10_a_cleared_error_does_not_come_back_until_the_field_is_left_again[item-price]" time="0.279"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'describedBy': None} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff">E   AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+      
+      Differing items:
+      {'invalid': None} != {'invalid': 'false'}
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': False}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': True}
+      {'describedBy': None} != {'describedBy': 'ie2'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R5_renaming_an_item_updates_its_accessible_names" time="0.217"><failure message="AssertionError: assert 'Item 4 price in RM' == 'Satay price in RM'&#10;  &#10;  - Satay price in RM&#10;  + Item 4 price in RM">E   AssertionError: assert 'Item 4 price in RM' == 'Satay price in RM'
+      
+      - Satay price in RM
+      + Item 4 price in RM</failure></testcase><testcase classname="test_app" name="test_R8_switching_modes_keeps_both_sets_of_input" time="0.298"><failure message="AssertionError: assert {'even': Fals...emsBlocks': 0} == {'even': Fals...emsBlocks': 1}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'itemsBlocks': 0} != {'itemsBlocks': 1}&#10;  Use -v to get more diff">E   AssertionError: assert {'even': Fals...emsBlocks': 0} == {'even': Fals...emsBlocks': 1}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'itemsBlocks': 0} != {'itemsBlocks': 1}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R11_item_rows_carry_their_names_and_labels" time="0.166"><failure message="AssertionError: assert None == {'labelledBy': 'itemsH', 'rows': [{'li': 'item', 'cells': ['div.field', 'div.field.money', 'button.icon-btn', 'p#ie1.e...40', 'off', 'Item 4 name', 'Item 4'], 'price': ['18.00', ['true', 'RM'], 'text', 'decimal', 'off', '0.00', ...], ...}]}">E   AssertionError: assert None == {'labelledBy': 'itemsH', 'rows': [{'li': 'item', 'cells': ['div.field', 'div.field.money', 'button.icon-btn', 'p#ie1.e...40', 'off', 'Item 4 name', 'Item 4'], 'price': ['18.00', ['true', 'RM'], 'text', 'decimal', 'off', '0.00', ...], ...}]}</failure></testcase><testcase classname="test_app" name="test_R12_add_an_item_remove_one_and_reach_the_limit" time="0.177"><failure message="AssertionError: no Items block as spec R12 writes it&#10;assert (None, None) == ({'children':...'ic #i-plus'])&#10;  &#10;  At index 0 diff: None != {'children': ['div.blk-head', 'div#frameWrap.frame-wrap'], 'heading': 'Items', 'head': ['h2#itemsH.blk-h', 'button#addItem.btn.btn-ghost']}&#10;  Use -v to get more diff">E   AssertionError: no Items block as spec R12 writes it
+    assert (None, None) == ({'children':...'ic #i-plus'])
+      
+      At index 0 diff: None != {'children': ['div.blk-head', 'div#frameWrap.frame-wrap'], 'heading': 'Items', 'head': ['h2#itemsH.blk-h', 'button#addItem.btn.btn-ghost']}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R12_a_new_item_leaves_the_strip_reading_add_each_item" time="0.199"><failure message="AssertionError: assert '' == 'Add each ite...e the splits.'&#10;  &#10;  - Add each item and tap who had it to see the splits.">E   AssertionError: assert '' == 'Add each ite...e the splits.'
+      
+      - Add each item and tap who had it to see the splits.</failure></testcase><testcase classname="test_app" name="test_R13_tapping_a_person_on_an_item" time="0.260"><failure message="assert (None is not None)">E   assert (None is not None)</failure></testcase><testcase classname="test_app" name="test_R14_a_price_error_sits_in_the_item_row" time="0.237"><failure message="AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': True}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': False}&#10;  {'describedBy': 'price-error-i5'} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff">E   AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': True}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': False}
+      {'describedBy': 'price-error-i5'} != {'describedBy': 'ie2'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_an_item[K1-add-item]" time="0.228" /><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_an_item[K1-remove-Char-kuey-teow]" time="0.231" /><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_an_item[K1-remove-Satay]" time="0.216" /><testcase classname="test_app" name="test_R34_focus_after_adding_or_removing_an_item[cold-boot-remove-the-only-item]" time="0.222"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R18_every_item_with_nobody_carries_the_needs_marker" time="0.232"><failure message="AssertionError: assert [] == ['Mee goreng mamak']&#10;  &#10;  Right contains one more item: 'Mee goreng mamak'&#10;  Use -v to get more diff">E   AssertionError: assert [] == ['Mee goreng mamak']
+      
+      Right contains one more item: 'Mee goreng mamak'
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R56_the_item_frame_marks_what_lies_above_and_below[K1-1280]" time="0.221"><failure message="assert None == [None, '']&#10; +  where None = evaluate(&quot;() =&gt; { const w = document.querySelector('div.frame-wrap#frameWrap'); return w &amp;&amp; [w.getAttribute('data-up'), w.getAttribute('data-down')]; }&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:1497/'&gt;.evaluate">E   assert None == [None, '']
+     +  where None = evaluate("() =&gt; { const w = document.querySelector('div.frame-wrap#frameWrap'); return w &amp;&amp; [w.getAttribute('data-up'), w.getAttribute('data-down')]; }")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:1497/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R56_the_item_frame_marks_what_lies_above_and_below[K1-390]" time="0.159"><failure message="assert None == [None, None]&#10; +  where None = evaluate(&quot;() =&gt; { const w = document.querySelector('div.frame-wrap#frameWrap'); return w &amp;&amp; [w.getAttribute('data-up'), w.getAttribute('data-down')]; }&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:1497/'&gt;.evaluate">E   assert None == [None, None]
+     +  where None = evaluate("() =&gt; { const w = document.querySelector('div.frame-wrap#frameWrap'); return w &amp;&amp; [w.getAttribute('data-up'), w.getAttribute('data-down')]; }")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:1497/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R56_the_item_frame_marks_what_lies_above_and_below[W1-360]" time="0.178"><failure message="assert None == [None, '']&#10; +  where None = evaluate(&quot;() =&gt; { const w = document.querySelector('div.frame-wrap#frameWrap'); return w &amp;&amp; [w.getAttribute('data-up'), w.getAttribute('data-down')]; }&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:1497/'&gt;.evaluate">E   assert None == [None, '']
+     +  where None = evaluate("() =&gt; { const w = document.querySelector('div.frame-wrap#frameWrap'); return w &amp;&amp; [w.getAttribute('data-up'), w.getAttribute('data-down')]; }")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:1497/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R56_the_item_frame_marks_what_lies_above_and_below[W1-390]" time="0.167"><failure message="assert None == [None, None]&#10; +  where None = evaluate(&quot;() =&gt; { const w = document.querySelector('div.frame-wrap#frameWrap'); return w &amp;&amp; [w.getAttribute('data-up'), w.getAttribute('data-down')]; }&quot;)&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:1497/'&gt;.evaluate">E   assert None == [None, None]
+     +  where None = evaluate("() =&gt; { const w = document.querySelector('div.frame-wrap#frameWrap'); return w &amp;&amp; [w.getAttribute('data-up'), w.getAttribute('data-down')]; }")
+     +    where evaluate = &lt;Page url='http://127.0.0.1:1497/'&gt;.evaluate</failure></testcase><testcase classname="test_app" name="test_R56_scrolling_the_frame_moves_the_marks" time="0.206"><failure message="AssertionError: no #frameWrap&#10;assert None is not None">E   AssertionError: no #frameWrap
+    assert None is not None</failure></testcase><testcase classname="test_app" name="test_R8_both_sets_of_input_survive_a_reload" time="0.255"><failure message="AssertionError: assert ({'even': Fals...emsBlocks': 0} == {'even': Fals...emsBlocks': 1}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'itemsBlocks': 0} != {'itemsBlocks': 1}&#10;  Use -v to get more diff)">E   AssertionError: assert ({'even': Fals...emsBlocks': 0} == {'even': Fals...emsBlocks': 1}
+      
+      Omitting 3 identical items, use -vv to show
+      Differing items:
+      {'itemsBlocks': 0} != {'itemsBlocks': 1}
+      Use -v to get more diff)</failure></testcase><testcase classname="test_app" name="test_R31_start_over_clears_the_error_flags[item-price]" time="0.169"><failure message="AssertionError: assert 0 == 1&#10; +  where 0 = len([])&#10; +    where [] = shown_errors(&lt;Page url='http://127.0.0.1:1497/'&gt;)">E   AssertionError: assert 0 == 1
+     +  where 0 = len([])
+     +    where [] = shown_errors(&lt;Page url='http://127.0.0.1:1497/'&gt;)</failure></testcase><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[item-price-mouse]" time="0.231"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'describedBy': None} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff">E   AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+      
+      Differing items:
+      {'invalid': None} != {'invalid': 'false'}
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': False}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': True}
+      {'describedBy': None} != {'describedBy': 'ie2'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R10_a_press_below_an_invalid_field_lands_on_the_control_it_started_on[item-price-touch]" time="0.214"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'describedBy': None} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff">E   AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+      
+      Differing items:
+      {'invalid': None} != {'invalid': 'false'}
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': False}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': True}
+      {'describedBy': None} != {'describedBy': 'ie2'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error[mouse]" time="0.216"><failure message="AssertionError: assert ({'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'describedBy': None} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff)">E   AssertionError: assert ({'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+      
+      Differing items:
+      {'invalid': None} != {'invalid': 'false'}
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': False}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': True}
+      {'describedBy': None} != {'describedBy': 'ie2'}
+      Use -v to get more diff)</failure></testcase><testcase classname="test_app" name="test_R13_a_tap_below_an_invalid_price_toggles_that_person_and_then_shows_the_error[touch]" time="0.230"><failure message="AssertionError: assert ({'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'describedBy': None} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff)">E   AssertionError: assert ({'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+      
+      Differing items:
+      {'invalid': None} != {'invalid': 'false'}
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': False}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': True}
+      {'describedBy': None} != {'describedBy': 'ie2'}
+      Use -v to get more diff)</failure></testcase><testcase classname="test_app" name="test_R10_the_error_waits_for_the_mouse_button_to_come_up" time="0.281"><failure message="AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}&#10;  &#10;  Differing items:&#10;  {'invalid': None} != {'invalid': 'false'}&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': False}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': True}&#10;  {'describedBy': None} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff">E   AssertionError: assert {'hidden': No...d': None, ...} == {'hidden': Tr... 'false', ...}
+      
+      Differing items:
+      {'invalid': None} != {'invalid': 'false'}
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': False}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': True}
+      {'describedBy': None} != {'describedBy': 'ie2'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[mouse]" time="0.232"><failure message="AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': True}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': False}&#10;  {'describedBy': 'price-error-i5'} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff">E   AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': True}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': False}
+      {'describedBy': 'price-error-i5'} != {'describedBy': 'ie2'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[touch]" time="0.248"><failure message="AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': True}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': False}&#10;  {'describedBy': 'price-error-i5'} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff">E   AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': True}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': False}
+      {'describedBy': 'price-error-i5'} != {'describedBy': 'ie2'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R10_a_keyboard_blur_shows_the_error_at_once_even_after_a_press[held]" time="0.267"><failure message="AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'text': None} != {'text': 'Enter an amount like 12.50'}&#10;  {'bad': None} != {'bad': True}&#10;  {'icon': None} != {'icon': '#i-warning-circle'}&#10;  {'hidden': None} != {'hidden': False}&#10;  {'describedBy': 'price-error-i5'} != {'describedBy': 'ie2'}&#10;  Use -v to get more diff">E   AssertionError: assert {'hidden': No...: 'true', ...} == {'hidden': Fa...: 'true', ...}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'text': None} != {'text': 'Enter an amount like 12.50'}
+      {'bad': None} != {'bad': True}
+      {'icon': None} != {'icon': '#i-warning-circle'}
+      {'hidden': None} != {'hidden': False}
+      {'describedBy': 'price-error-i5'} != {'describedBy': 'ie2'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x780-single]" time="0.244"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x780-mouse-double]" time="0.264"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x780-mouse-triple]" time="0.232"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-360x780-touch-double]" time="0.299"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-single]" time="0.233"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-mouse-double]" time="0.280"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-mouse-triple]" time="0.232"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-390x844-touch-double]" time="0.298"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-single]" time="0.265"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-mouse-double]" time="0.298"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-mouse-triple]" time="0.265"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_the_last_remove_removes_that_row_and_adds_nothing[S1-only-item-1280x800-touch-double]" time="0.332"><failure message="AssertionError: assert 'Add item' == 'addItem'&#10;  &#10;  - addItem&#10;  + Add item">E   AssertionError: assert 'Add item' == 'addItem'
+      
+      - addItem
+      + Add item</failure></testcase><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x780-mouse-double-right-edge]" time="0.249" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x780-mouse-double-centre]" time="0.249" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x780-mouse-triple-right-edge]" time="0.218" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x780-mouse-triple-centre]" time="0.214" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x780-touch-double-right-edge]" time="0.287" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-360x780-touch-double-centre]" time="0.296" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-double-right-edge]" time="0.273" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-double-centre]" time="0.260" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-triple-right-edge]" time="0.220" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-mouse-triple-centre]" time="0.230" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-touch-double-right-edge]" time="0.284" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-390x844-touch-double-centre]" time="0.282" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-double-right-edge]" time="0.268" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-double-centre]" time="0.281" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-triple-right-edge]" time="0.235" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-mouse-triple-centre]" time="0.234" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-touch-double-right-edge]" time="0.315" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[1-1280x800-touch-double-centre]" time="0.315" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x780-mouse-double-right-edge]" time="0.249" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x780-mouse-double-centre]" time="0.284" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x780-mouse-triple-right-edge]" time="0.265" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x780-mouse-triple-centre]" time="0.232" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x780-touch-double-right-edge]" time="0.303" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-360x780-touch-double-centre]" time="0.279" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-double-right-edge]" time="0.250" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-double-centre]" time="0.250" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-triple-right-edge]" time="0.215" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-mouse-triple-centre]" time="0.216" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-touch-double-right-edge]" time="0.303" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-390x844-touch-double-centre]" time="0.315" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-double-right-edge]" time="0.265" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-double-centre]" time="0.267" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-triple-right-edge]" time="0.233" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-mouse-triple-centre]" time="0.232" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-touch-double-right-edge]" time="0.300" /><testcase classname="test_app" name="test_R12_a_repeat_press_on_add_item_adds_one_item_and_never_reaches_the_page[4-1280x800-touch-double-centre]" time="0.298" /><testcase classname="test_app" name="test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-double]" time="0.265"><failure message="AssertionError: no point of the Aisyah toggle stays on it once the error shows&#10;assert []">E   AssertionError: no point of the Aisyah toggle stays on it once the error shows
+    assert []</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-mouse-triple]" time="0.265"><failure message="AssertionError: no point of the Aisyah toggle stays on it once the error shows&#10;assert []">E   AssertionError: no point of the Aisyah toggle stays on it once the error shows
+    assert []</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[375-touch-double]" time="0.281"><failure message="AssertionError: no point of the Aisyah toggle stays on it once the error shows&#10;assert []">E   AssertionError: no point of the Aisyah toggle stays on it once the error shows
+    assert []</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-double]" time="0.248"><failure message="AssertionError: no point of the Aisyah toggle stays on it once the error shows&#10;assert []">E   AssertionError: no point of the Aisyah toggle stays on it once the error shows
+    assert []</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-mouse-triple]" time="0.266"><failure message="AssertionError: no point of the Aisyah toggle stays on it once the error shows&#10;assert []">E   AssertionError: no point of the Aisyah toggle stays on it once the error shows
+    assert []</failure></testcase><testcase classname="test_app" name="test_R7_a_repeat_press_on_a_chip_under_a_pending_price_error_never_removes_the_item[390-touch-double]" time="0.316"><failure message="AssertionError: no point of the Aisyah toggle stays on it once the error shows&#10;assert []">E   AssertionError: no point of the Aisyah toggle stays on it once the error shows
+    assert []</failure></testcase></testsuite></testsuites>
