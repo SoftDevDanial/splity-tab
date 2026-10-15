@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="7" skipped="0" tests="7" time="4.156" timestamp="2026-10-15T14:02:29.548188+08:00" hostname="{host}"><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-close]" time="1.866"><failure message="AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'newBill'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-escape]" time="0.310"><failure message="AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'newBill'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-backdrop]" time="0.282"><failure message="AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'newBill'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-close]" time="0.317"><failure message="assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'button'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">E   assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-backdrop]" time="0.314"><failure message="assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'button'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">E   assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-close]" time="0.310"><failure message="assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'button'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">E   assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-backdrop]" time="0.360"><failure message="assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'button'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">E   assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

@@ -2,9 +2,10 @@
 // each block under src/ui/ to show it. No money is computed here (split-core owns that).
 import {
   newBill, addPerson, removePerson, setPersonName, setMode, setSubtotalText,
-  addItem, removeItem, setItemName, setItemPriceText, toggleItemPerson, setServiceText, setSstText,
+  addItem, removeItem, setItemName, setItemPriceText, toggleItemPerson, setServiceText, setSstText, personLabel,
 } from "./core/bill.js";
 import { computeResult } from "./core/result.js";
+import { chooseSpareRule } from "./core/spare.js";
 import { summaryText } from "./core/summary.js";
 import { getStorage, loadDraft, saveDraft } from "./draft.js";
 import { flagsFor, newErrorFlags, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
@@ -20,6 +21,8 @@ import { icon } from "./ui/icons.js";
 import { CARD_IDS, createReceipt, hasSplits } from "./ui/receipt.js";
 import { createStrip } from "./ui/strip.js";
 import { createSheet } from "./ui/sheet.js";
+import { createSpareChoice } from "./ui/spare-choice.js";
+import { DESKTOP } from "./ui/media.js";
 import { watchPointerClicks } from "./ui/dom.js";
 
 watchPointerClicks(); // R57 (b): every repeat check reads what these window listeners record from the first press on
@@ -145,8 +148,25 @@ const charges = createCharges({ onInput: (kind, text) => amountTyped(kind, text)
 const newBillButton = document.getElementById("newBill");
 newBillButton.prepend(icon("plus"));
 const strip = createStrip(document.getElementById("strip"), { onCopy: copySummary });
-const card = createReceipt(document.getElementById("rbody"), { ids: CARD_IDS, onCopy: copySummary });
-const sheet = createSheet(document.getElementById("splitsDlg"), document.getElementById("splitsBtn"), { onCopy: copySummary });
+
+/** The label of the bill's person `id`, for the chip of a One person choice (R51). */
+function personName(id) {
+  const index = bill.people.findIndex((person) => person.id === id);
+  return personLabel(bill.people[index], index);
+}
+const receiptHandlers = { onCopy: copySummary, onSpare: () => spareChoice.open(), personName };
+const card = createReceipt(document.getElementById("rbody"), { ...receiptHandlers, ids: CARD_IDS });
+const splitsButton = document.getElementById("splitsBtn");
+const sheet = createSheet(document.getElementById("splitsDlg"), splitsButton, receiptHandlers);
+// P1 (R52). Math.random goes to chooseSpareRule and to nothing else here (PD-19). The chip shown is the card's from
+// 1024 px and the sheet's below it, so it is asked for when needed, never kept (PD-23).
+const spareChoice = createSpareChoice(document.getElementById("spareDlg"), {
+  onRule: (value) => commit(chooseSpareRule(bill, value, Math.random)),
+  card: document.getElementById("card"),
+  shownChip: () => (DESKTOP.matches ? card.spareChip() : sheet.spareChip()),
+  splits: splitsButton,
+  makeRoom: (height) => sheet.makeRoom(height),
+});
 createDialog(document.getElementById("newDlg"), newBillButton, {
   onConfirm() {
     // The view state is reset with the bill (R31): a stale error flag or open state must not outlive it. The copy
@@ -198,6 +218,7 @@ function render() {
   card.update(result, view.status);
   strip.update(result, view.status);
   sheet.update(result, view.status); // R50, an open sheet follows the bill and the status
+  spareChoice.update(bill, result); // after the receipts, so an open P1 measures them in their new state (R52)
   notes.update(view);
   items.markFrame(); // last, so it measures the frame with every block above it in its new state (R56)
 }

@@ -1,0 +1,8 @@
+engine chromium, browser version 149.0.7827.55
+PASSED   call     test_app.py::test_R38_strict_policy_blocks_nothing_the_app_needs[K1-sheet-P1] (0.36s)
+PASSED   call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-390] (0.30s)
+PASSED   call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-360] (0.29s)
+SKIPPED  call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] (0.26s)
+SKIPPED  call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] (0.25s)
+FAILED   call     test_app.py::test_R52_the_sheet_scrolls_so_the_splits_stay_in_view_above_p1 (0.27s)
+exit status 1

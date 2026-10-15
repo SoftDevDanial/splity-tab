@@ -1,0 +1,31 @@
+server STARTED pid 4056 port 43040 root {workspace}\examples\split
+...F.......x.FFxxF..........server STOPPED pid 4056 port 43040, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert '' == '271px'
+      
+      - 271px
+{workspace}\examples\split\tests\browser\test_app.py:362: AssertionError: assert '' == '271px'
+E   AssertionError: assert '' == '271px'
+      
+      - 271px
+{workspace}\examples\split\tests\browser\test_app.py:2359: AssertionError: assert '' == '271px'
+E   AssertionError: assert '' == '271px'
+      
+      - 271px
+{workspace}\examples\split\tests\browser\test_app.py:2359: AssertionError: assert '' == '271px'
+E   AssertionError: {'scrollTop': 135, 'areaTop': 119.53125, 'headTop': 186.703125, 'lastRowBottom': 638.703125, ...}
+    assert (638.703125 <= (589 + 0.5) or False)
+{workspace}\examples\split\tests\browser\test_app.py:2381: AssertionError: {'scrollTop': 135, 'areaTop': 119.53125, 'headTop': 186.703125, 'lastRowBottom': 638.703125, ...}
+engine webkit, browser version 26.5, skipped 3
+  skipped: test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R38_strict_policy_blocks_nothing_the_app_needs[K1-sheet-P1]
+FAILED tests\browser\test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-390]
+FAILED tests\browser\test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-360]
+FAILED tests\browser\test_app.py::test_R52_the_sheet_scrolls_so_the_splits_stay_in_view_above_p1
+4 failed, 21 passed, 589 deselected, 3 xfailed in 18.62s
+
+--- stderr ---

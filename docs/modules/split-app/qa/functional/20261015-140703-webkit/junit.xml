@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="2.985" timestamp="2026-10-15T14:07:03.960328+08:00" hostname="{host}"><testcase classname="test_app" name="test_R52_a_choice_applies_at_once_and_p1_stays_open" time="1.878" /><testcase classname="test_app" name="test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio" time="0.706"><failure message="AssertionError: assert {'checked': '...ocus': 'body'} == {'checked': '...: 'radio one'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'body'} != {'focus': 'radio one'}&#10;  Use -v to get more diff">E   AssertionError: assert {'checked': '...ocus': 'body'} == {'checked': '...: 'radio one'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'body'} != {'focus': 'radio one'}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

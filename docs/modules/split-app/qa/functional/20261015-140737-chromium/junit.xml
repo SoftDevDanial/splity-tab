@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.408" timestamp="2026-10-15T14:07:37.497006+08:00" hostname="{host}"><testcase classname="test_app" name="test_R25_leaving_a_field_copying_folding_and_the_sheet_do_not_save" time="2.023"><failure message="AssertionError: assert (2 == 0)&#10; +  where 2 = evaluate('window.testSetItemCalls')&#10; +    where evaluate = &lt;Page url='http://127.0.0.1:25930/'&gt;.evaluate">E   AssertionError: assert (2 == 0)
+     +  where 2 = evaluate('window.testSetItemCalls')
+     +    where evaluate = &lt;Page url='http://127.0.0.1:25930/'&gt;.evaluate</failure></testcase></testsuite></testsuites>

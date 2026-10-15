@@ -1,0 +1,260 @@
+{
+ "390": {
+  "walk_first_diff": {
+   "body": null,
+   "#splitsDlg": null
+  },
+  "walk_first_diff_without_the_goldens_spare_line": {
+   "body": "body>dialog.sheet-dlg[2]>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy'] golden=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'button.btn.btn-block.btn-primary.r-copy']",
+   "#splitsDlg": "dialog.sheet-dlg>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy'] golden=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'button.btn.btn-block.btn-primary.r-copy']"
+  },
+  "differences": {},
+  "p2": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "sheet": [
+     0,
+     184.81,
+     390,
+     659.19
+    ],
+    "top": [
+     1,
+     188.81,
+     388,
+     48
+    ],
+    "grab": [
+     177,
+     198.81,
+     36,
+     4
+    ],
+    "close": [
+     337,
+     191.81,
+     44,
+     44
+    ],
+    "rbody": [
+     21,
+     236.81,
+     348,
+     587.19
+    ],
+    "rbodySides": [
+     21,
+     21
+    ],
+    "scrolls": false,
+    "expanded": "true",
+    "focusOnSheet": true,
+    "outline": [
+     "none",
+     "3px"
+    ],
+    "spare": [
+     21,
+     712,
+     348,
+     44
+    ],
+    "spareMarginTop": "16px",
+    "strip": [
+     0,
+     733,
+     390,
+     111
+    ],
+    "stripShown": true
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "sheet": [
+     0,
+     184.81,
+     390,
+     659.19
+    ],
+    "top": [
+     1,
+     188.81,
+     388,
+     48
+    ],
+    "grab": [
+     177,
+     198.81,
+     36,
+     4
+    ],
+    "close": [
+     337,
+     191.81,
+     44,
+     44
+    ],
+    "rbody": [
+     21,
+     236.81,
+     348,
+     587.19
+    ],
+    "rbodySides": [
+     21,
+     21
+    ],
+    "scrolls": false,
+    "expanded": "true",
+    "focusOnSheet": false,
+    "outline": [
+     "none",
+     "3px"
+    ],
+    "spare": [
+     21,
+     712,
+     348,
+     44
+    ],
+    "spareMarginTop": "16px",
+    "strip": [
+     0,
+     733,
+     390,
+     111
+    ],
+    "stripShown": true
+   }
+  }
+ },
+ "360": {
+  "walk_first_diff": {
+   "body": null,
+   "#splitsDlg": null
+  },
+  "walk_first_diff_without_the_goldens_spare_line": {
+   "body": "body>dialog.sheet-dlg[2]>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy'] golden=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'button.btn.btn-block.btn-primary.r-copy']",
+   "#splitsDlg": "dialog.sheet-dlg>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy'] golden=['div.r-total', 'dl.r-lines', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'button.btn.btn-block.btn-primary.r-copy']"
+  },
+  "differences": {},
+  "p2": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "sheet": [
+     0,
+     124.45,
+     360,
+     655.55
+    ],
+    "top": [
+     1,
+     128.45,
+     358,
+     48
+    ],
+    "grab": [
+     162,
+     138.45,
+     36,
+     4
+    ],
+    "close": [
+     307,
+     131.45,
+     44,
+     44
+    ],
+    "rbody": [
+     21,
+     176.45,
+     318,
+     583.55
+    ],
+    "rbodySides": [
+     21,
+     21
+    ],
+    "scrolls": false,
+    "expanded": "true",
+    "focusOnSheet": true,
+    "outline": [
+     "none",
+     "3px"
+    ],
+    "spare": [
+     21,
+     648,
+     318,
+     44
+    ],
+    "spareMarginTop": "16px",
+    "strip": [
+     0,
+     669,
+     360,
+     111
+    ],
+    "stripShown": true
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.72)",
+    "sheet": [
+     0,
+     124.45,
+     360,
+     655.55
+    ],
+    "top": [
+     1,
+     128.45,
+     358,
+     48
+    ],
+    "grab": [
+     162,
+     138.45,
+     36,
+     4
+    ],
+    "close": [
+     307,
+     131.45,
+     44,
+     44
+    ],
+    "rbody": [
+     21,
+     176.45,
+     318,
+     583.55
+    ],
+    "rbodySides": [
+     21,
+     21
+    ],
+    "scrolls": false,
+    "expanded": "true",
+    "focusOnSheet": false,
+    "outline": [
+     "none",
+     "3px"
+    ],
+    "spare": [
+     21,
+     648,
+     318,
+     44
+    ],
+    "spareMarginTop": "16px",
+    "strip": [
+     0,
+     669,
+     360,
+     111
+    ],
+    "stripShown": true
+   }
+  }
+ }
+}

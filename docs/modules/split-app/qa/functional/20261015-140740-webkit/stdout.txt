@@ -1,0 +1,14 @@
+server STARTED pid 9508 port 42643 root {workspace}\examples\split
+Fserver STOPPED pid 9508 port 42643, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert (2 == 0)
+     +  where 2 = evaluate('window.testSetItemCalls')
+     +    where evaluate = <Page url='http://127.0.0.1:42643/'>.evaluate
+{workspace}\examples\split\tests\browser\test_app.py:2523: AssertionError: assert (2 == 0)
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R25_leaving_a_field_copying_folding_and_the_sheet_do_not_save
+1 failed, 616 deselected in 2.53s
+
+--- stderr ---

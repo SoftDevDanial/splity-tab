@@ -1,0 +1,7 @@
+server STARTED pid 2096 port 18879 root {workspace}\examples\split
+.server STOPPED pid 2096 port 18879, exited True, port free again True
+                                                                         [100%]
+engine chromium, browser version 149.0.7827.55, skipped 0
+1 passed, 616 deselected in 2.23s
+
+--- stderr ---

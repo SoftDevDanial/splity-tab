@@ -1,0 +1,44 @@
+server STARTED pid 8340 port 40367 root {workspace}\examples\split
+F.......FF...FF.server STOPPED pid 8340 port 40367, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert (['version', 'bill'] == ['version', 'bill']
+      
+      Use -v to get more diff and 2 == 2 and False)
+     +  where False = <function <lambda> at 0x00000224BDFEB060>({'mode': 'even', 'people': [{'id': 'p1', 'name': 'A'}, {'id': 'p2', 'name': 'Person 2'}], 'subtotalText': '', 'items': [], ...})
+{workspace}\examples\split\tests\browser\test_app.py:2508: AssertionError: assert (['version', 'bill'] == ['version', 'bill']
+E   AssertionError: assert (['version', 'bill'] == ['version', 'bill']
+      
+      Use -v to get more diff and 2 == 2 and False)
+     +  where False = <function <lambda> at 0x00000224BDFEBB60>({'mode': 'even', 'people': [{'id': 'p1', 'name': 'Person 1'}, {'id': 'p2', 'name': 'Person 2'}, {'id': 'p3', 'name': ''}], 'subtotalText': '100.00', 'items': [], ...})
+{workspace}\examples\split\tests\browser\test_app.py:2508: AssertionError: assert (['version', 'bill'] == ['version', 'bill']
+E   assert ('extra' not in '{"version":..."nextId":4}}'
+      
+      'extra' is contained here:
+        e":"top","extra":1},"nextId":4}}
+      ?           +++++)
+{workspace}\examples\split\tests\browser\test_app.py:2629: assert ('extra' not in '{"version":..."nextId":4}}'
+E   AssertionError: assert (2 == 2 and {'rule': 'top', 'extra': 1} == {'rule': 'top'}
+      
+      Omitting 1 identical items, use -vv to show
+      Left contains 1 more item:
+      {'extra': 1}
+      Use -v to get more diff)
+{workspace}\examples\split\tests\browser\test_app.py:2632: AssertionError: assert (2 == 2 and {'rule': 'top', 'extra': 1} == {'rule': 'top'}
+E   AssertionError: assert (2 == 2 and {'rule': 'top', 'extra': 1} == {'rule': 'top'}
+      
+      Omitting 1 identical items, use -vv to show
+      Left contains 1 more item:
+      {'extra': 1}
+      Use -v to get more diff)
+{workspace}\examples\split\tests\browser\test_app.py:2632: AssertionError: assert (2 == 2 and {'rule': 'top', 'extra': 1} == {'rule': 'top'}
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R25_every_change_is_saved[name] - Asse...
+FAILED tests\browser\test_app.py::test_R25_every_change_is_saved[spare] - Ass...
+FAILED tests\browser\test_app.py::test_R26_odd_but_readable_drafts_load[G1]
+FAILED tests\browser\test_app.py::test_R26_odd_but_readable_drafts_load[G5]
+FAILED tests\browser\test_app.py::test_R26_odd_but_readable_drafts_load[G6]
+5 failed, 11 passed, 601 deselected in 5.54s
+
+--- stderr ---

@@ -141,3 +141,13 @@ ODD_READABLE = {
     # json.dumps writes "__proto__" as an ordinary key; the page's JSON.parse makes it an own property.
     "G3": changed(S2, lambda d: d["bill"].update({"__proto__": {"polluted": True}})),
 }
+# [S2_V1] and [S1_V1], drafts saved by 1.0: version 1 and no spare key.
+S2_V1 = changed(S2, lambda d: (d.update(version=1), d["bill"].pop("spare")))
+S1_V1 = changed(S1, lambda d: (d.update(version=1), d["bill"].pop("spare")))
+ODD_READABLE.update({
+    # Ben is on no item, so his One person choice falls back to Top of the list and stays stored (CG-P7).
+    "G4": changed(S1, lambda d: (d["bill"].update(spare={"rule": "one", "personId": "p2"}), d["bill"]["items"][1].update(who=["p1"]))),
+    "G5": changed(S2_V1, lambda d: d["bill"].update(spare={"rule": "random", "order": ["p1"]})),
+    "G6": with_bill(S2, spare={"rule": "top", "extra": 1}),
+    "G7": S1_V1,
+})

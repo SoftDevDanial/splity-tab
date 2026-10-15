@@ -68,7 +68,9 @@ def test_R1_seeds_parse_and_differ_as_documented():
     assert s5["bill"]["items"][2]["who"] == [] and s5["bill"]["items"][0]["who"] == ["p1"]
     assert len(s8["bill"]["people"]) == 12 and s8["bill"]["nextId"] == 13
     assert len(seeds.UNREADABLE) == 32 and len(set(seeds.UNREADABLE.values())) == 32  # qa.md B1 to B32 (v1.1.0)
-    assert set(seeds.ODD_READABLE) == {"G1", "G2", "G3"}
+    assert set(seeds.ODD_READABLE) == {"G1", "G2", "G3", "G4", "G5", "G6", "G7"}
+    assert seeds.S2_V1 == ('{"version":1,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},'
+                           '{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","nextId":4}}')
     assert seeds.dump(json.loads(seeds.S2)) == seeds.S2 and seeds.dump(json.loads(seeds.S1)) == seeds.S1
 
 
@@ -242,20 +244,20 @@ SPARE_OPENERS = {"phone": ("#splitsBtn", SHEET_SPARE_CHIP), "desktop": ("#spareB
 # qa.md, "The rendered markup matches its golden": golden -> (seed, the clicks after load below and from 1024 px,
 # and per width the task that completes the state, the reason of its xfail until that task removes it).
 R3_STATES = {
-    "bill-items": (seeds.S1, {}, {390: None, 360: None, 1280: "A13"}),
+    "bill-items": (seeds.S1, {}, {390: None, 360: None, 1280: None}),
     "bill-items-open": (seeds.S1, {"phone": ("#peopleBtn", "#chargesBtn")}, {390: None, 360: None}),
-    "bill-even": (seeds.S2, {}, {390: None, 360: None, 1280: "A13"}),
-    "spare-sen": (seeds.S1, SPARE_OPENERS, {390: "A13", 360: "A13", 1280: "A13"}),
+    "bill-even": (seeds.S2, {}, {390: None, 360: None, 1280: None}),
+    "spare-sen": (seeds.S1, SPARE_OPENERS, {390: None, 360: None, 1280: None}),
     "spare-sen-one": (seeds.ONE, SPARE_OPENERS, {390: "A14", 360: "A14", 1280: "A14"}),
     "spare-sen-random": (seeds.RND, SPARE_OPENERS, {390: "A15", 360: "A15", 1280: "A15"}),
-    "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, {390: "A13", 360: "A13"}),
-    "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: None, 360: None, 1280: "A16"}),
+    "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, {390: None, 360: None}),
+    "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: None, 360: None, 1280: None}),
     "bill-empty": (None, {}, {390: None, 360: None, 1280: None}),
     "rate-error": (seeds.RE, {}, {390: None, 360: None, 1280: None}),
     "bill-unassigned": (seeds.S5, {}, {390: None, 360: None, 1280: None}),
     "bill-unreadable": (seeds.UNREADABLE["B1"], {}, {390: None, 360: None, 1280: None}),
-    "bill-twelve": (seeds.T12, {}, {390: None, 360: None, 1280: "A13"}),
-    "bill-large": (seeds.W1, {}, {390: None, 360: None, 1280: "A13"}),
+    "bill-twelve": (seeds.T12, {}, {390: None, 360: None, 1280: None}),
+    "bill-large": (seeds.W1, {}, {390: None, 360: None, 1280: None}),
 }
 R3_PAIRS = [pytest.param(golden, width, id=f"{golden}-{width}",
                          marks=() if task is None else pytest.mark.xfail(strict=True, reason=f"task {task}"))
@@ -328,8 +330,8 @@ POLICY_STATES = [
     ("cold-boot", "bill-empty", None, 390, (), "card-blocked", None),
     ("K1", "bill-items", seeds.S1, 390, (), "card-K1", None),
     ("K1-new-bill", "new-bill-dialog", seeds.S1, 390, ("#newBill",), "dialog-open", None),
-    ("K1-sheet-P1", "spare-sen", seeds.S1, 390, ("#splitsBtn", SHEET_SPARE_CHIP), "sheet-padding", "A13"),
-    ("K2-P1-desktop", "bill-even", seeds.S2, 1280, ("#spareBtn",), "spare-place", "A13"),
+    ("K1-sheet-P1", "spare-sen", seeds.S1, 390, ("#splitsBtn", SHEET_SPARE_CHIP), "sheet-padding", None),
+    ("K2-P1-desktop", "bill-even", seeds.S2, 1280, ("#spareBtn",), "spare-place", None),
 ]
 POLICY_PROOFS = {  # proof -> (what the page shows, what it must show)
     "card-blocked": (card_text, BLOCKED_CARD["subtotal"]),
@@ -1184,13 +1186,14 @@ def toggle_states(page, number):
 
 def test_R13_tapping_a_person_on_an_item(open_app):
     # [v1.1.0] qa.md on K1 at 1280 x 800, each toggle the check icon and then the name, and the card's rows with their
-    # working (task A9). Its spare line is task A13's.
+    # working (task A9), and the spare line (task A13).
     page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280]).page
     toggle(page, "Satay, 10 sticks", "Ben").click()
     rows = item_rows(page)
     assert rows is not None and rows[3]["taps"] == item_row(4, "", "", "Satay, 10 sticks", THREE)["taps"]
     assert card_rows(page) == [[["Aisyah", "RM 25.54", "21.90 + 3.64"], ["Ben", "RM 22.74", "19.50 + 3.24"],
                                 ["Chen", "RM 20.98", "18.00 + 2.98"]], S1_PROOF]
+    assert support.reads(page, "#spareLine") == "2 sen left over"
     toggle(page, "Satay, 10 sticks", "Ben").click()
     assert item_rows(page) == K1_ROWS and card_rows(page) == [S1_SPLITS, S1_PROOF]
 
@@ -1555,17 +1558,18 @@ def test_R19_total_and_bill_lines(open_app, seed, figure, lines):
 
 
 def test_R19_a_charge_of_zero_is_allowed_and_still_shown(open_app):
-    # [v1.1.0] qa.md "A charge of 0 is allowed and still shown" (R15, R19) on K2 at 1280 x 800. Its spare line is task A13's.
+    # [v1.1.0] qa.md "A charge of 0 is allowed and still shown" (R15, R19) on K2 at 1280 x 800, with the spare line (task A13).
     page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
     support.replace_text(page, rate_field(page, "Service charge"), "0")
     assert shown_errors(page) == []
     assert receipt(page)["lines"][1:] == [["Service 0%", "RM 0.00"], ["SST 6%", "RM 6.00"]]
     assert card_figures(page)[1] == ["RM 35.34", "RM 35.33", "RM 35.33"]
+    assert support.reads(page, "#spareLine") == "1 sen left over"
 
 
 def test_R20_the_even_split_from_a_cold_boot(open_app):
-    # [v1.1.0] qa.md key flow 1, the card's and the strip's lines. Its spare line and chip are task A13's and the sheet's
-    # line test_R20_the_sheet_lists_the_splits_as_the_card_does (task A12).
+    # [v1.1.0] qa.md key flow 1, the card's and the strip's lines with the spare line and chip (task A13). The sheet's
+    # line is test_R20_the_sheet_lists_the_splits_as_the_card_does (task A12).
     page = open_app().page
     support.replace_text(page, person_field(page, 1), "Aisyah")
     support.replace_text(page, person_field(page, 2), "Ben")
@@ -1578,6 +1582,7 @@ def test_R20_the_even_split_from_a_cold_boot(open_app):
     assert found["proof"] == {"parts": ["svg.seal", "span.lbl-proof", "span.amt"], "seal": ["svg.seal", "#i-seal-check"],
                               "id": "addsUp", "amount": "RM 116.60", "working": None}
     assert support.reads(page, "#rbody > div.r-check") == "Adds up to RM 116.60"
+    assert [support.reads(page, "#spareLine"), support.reads(page, "#spareBtn")] == ["2 sen left over", "Top of the list"]
     assert visible_text(page, "#stripInfo") == "Total RM 116.60"  # the strip reads (task A11, R49)
 
 
@@ -1618,12 +1623,13 @@ def test_R20_more_than_six_people_list_in_two_columns_on_the_desktop(open_app):
 
 
 def test_R21_the_by_item_split_from_gestures(open_app):
-    # [v1.1.0] qa.md key flow 2, the card's lines. Its spare line is task A13's.
+    # [v1.1.0] qa.md key flow 2, the card's lines with the spare line (task A13).
     page = open_app().page
     build_s2(page)
     build_items_after_switch(page)
     assert receipt(page)["head"] == [["h2", "splitsH", None, "Splits"], ["span", "", "true", "items + charges"]]
     assert card_rows(page) == [S1_SPLITS, S1_PROOF]
+    assert support.reads(page, "#spareLine") == "1 sen left over"
     working = page.evaluate("() => [...document.querySelectorAll('#splits > li > span.wk')].map((wk) => wk.textContent)")
     assert working == ["Items 24.90 + charges 4.14", "Items 13.50 + charges 2.24", "Items 21.00 + charges 3.48"]
 
@@ -1635,10 +1641,11 @@ def build_items_after_switch(page):
 
 
 def test_R21_someone_who_had_nothing_is_still_listed(open_app):
-    # [v1.1.0] qa.md on the I2 seed at 1280 x 800. Its spare line is task A13's.
+    # [v1.1.0] qa.md on the I2 seed at 1280 x 800, with the spare line (task A13).
     page = open_app(seed=seeds.I2, viewport=VIEWPORTS[1280]).page
     assert card_rows(page) == [[["Aisyah", "RM 0.00", "0.00 + 0.00"], ["Ben", "RM 14.59", "12.51 + 2.08"],
                                 ["Chen", "RM 2.91", "2.50 + 0.41"]], ["RM 17.50", "15.01 + 2.49"]]
+    assert support.reads(page, "#spareLine") == "2 sen left over"
 
 
 def test_R8_the_receipt_follows_each_mode(open_app):
@@ -1767,8 +1774,9 @@ EMPTY_TOP_BAR_POINT_JS = """() => { const bar = document.querySelector('header.t
     if (hit === bar || hit?.id === 'notes') return [x, y];
   }
   return null; }"""
-# qa.md "Press Escape" while a dialog is open: a close listener goes on the open dialog before the key press.
-WATCH_DIALOG_CLOSE_JS = """() => { const open = document.querySelector('dialog[open]'); if (!open) return false;
+# qa.md "Press Escape" while a dialog is open: a close listener goes on the open dialog before the key press. With P1
+# over the Splits sheet both are open, and Escape closes the one on top, the last open one in tree order (task A13).
+WATCH_DIALOG_CLOSE_JS = """() => { const open = [...document.querySelectorAll('dialog[open]')].pop(); if (!open) return false;
   window.testDialogClosed = false; open.addEventListener('close', () => { window.testDialogClosed = true; }, { once: true });
   return true; }"""
 
@@ -2114,9 +2122,8 @@ def test_R50_the_sheet_closes_itself_when_the_window_reaches_1024_px(open_app, r
     assert [target for target in focusins if target != "splitsBtn"] == [], focusins
 
 
-@pytest.mark.xfail(strict=True, reason="task A13")
 def test_R50_the_sheet_follows_the_bill_while_it_is_open(open_app):
-    # qa.md on K2 at 390 x 844. The spare chip and P1 are task A13's (R51, R52), so the chip's count fails first until then.
+    # qa.md on K2 at 390 x 844. The chip's count is asserted before its click, so a sheet with no chip fails at once.
     page = open_app(seed=seeds.S2).page
     open_sheet(page)
     chip = page.locator(SHEET_SPARE_CHIP)
@@ -2125,6 +2132,327 @@ def test_R50_the_sheet_follows_the_bill_while_it_is_open(open_app):
     page.locator("#spareDlg label.choice", has_text="One person").click()
     assert page.evaluate("() => document.querySelector('#spareDlg').open") is True
     assert [row[1] for row in receipt(page, "#splitsDlg .rbody")["list"]["rows"]] == ["RM 38.88", "RM 38.86", "RM 38.86"]
+
+
+# ---------------------------------------------------------------- v1.1.0 task A13: the spare line, the chips and P1 (R51, R52)
+# The spare line of the div.rbody at `root` in one evaluate (spec R51), null when it has none: the block before it, its
+# children, its p, and each chip of div.r-spare-acts with its own text and icons in order.
+SPARE_LINE_JS = """(root) => {
+  const spare = document.querySelector(root)?.querySelector(':scope > div.r-spare');
+  if (!spare) return null;
+  const line = spare.querySelector(':scope > p'), acts = spare.querySelector(':scope > div.r-spare-acts');
+  const parts = (el) => [...el.childNodes].map((node) => node instanceof Element
+    ? `${node.localName}.${node.getAttribute('class')} ${node.querySelector('use')?.getAttribute('href')}` : node.textContent);
+  return { after: spare.previousElementSibling?.className ?? null, children: [...spare.children].map((el) => el.localName),
+    line: line && [line.id, line.textContent],
+    chips: acts && [...acts.children].map((el) => [el.localName, el.id, el.className, el.getAttribute('type'),
+      el.getAttribute('aria-haspopup'), el.getAttribute('aria-label'), parts(el)]) };
+}"""
+PICK_AGAIN_CHIP = ["button", "pickAgain", "chip-btn", "button", None, None, ["svg.ic #i-shuffle", "Pick again"]]
+
+
+def spare_line(page, root="#rbody"):
+    return page.evaluate(SPARE_LINE_JS, root)
+
+
+def spare_chip(text, element_id="spareBtn"):
+    """The spare chip as SPARE_LINE_JS reads it (spec R51), the chip text and then the caret."""
+    return ["button", element_id, "chip-btn", "button", "dialog", f"Spare sen: {text}. Change", [text, "svg.ic #i-caret"]]
+
+
+def card_spare(count, *chips):
+    return {"after": "r-check", "children": ["p", "div"], "line": ["spareLine", f"{count} sen left over"], "chips": list(chips)}
+
+
+def spare_chips(page):
+    """The ids of the card's spare chips in order, or None when the card has no spare line."""
+    found = spare_line(page)
+    return found and [chip[1] for chip in found["chips"] or []]
+
+
+@pytest.mark.parametrize("seed, count, chips", [
+    (seeds.S2, 2, [spare_chip("Top of the list")]),
+    (seeds.ONE, 2, [spare_chip("One person, Ben")]),
+    (seeds.RND, 2, [PICK_AGAIN_CHIP, spare_chip("At random")]),
+    (seeds.S1, 1, [spare_chip("Top of the list")]),
+    (seeds.T12, 8, [spare_chip("Top of the list")]),
+], ids=["K2", "ONE", "RND", "K1", "T12"])
+def test_R51_the_spare_sen_line_and_chip(open_app, seed, count, chips):
+    # qa.md at 1280 x 800. The chip names the rule in effect (CG-P7). A click on Pick again is R54's (task A15).
+    page = open_app(seed=seed, viewport=VIEWPORTS[1280]).page
+    assert spare_line(page) == card_spare(count, *chips)
+
+
+def test_R51_no_spare_sen_no_line(open_app):
+    # qa.md from a cold boot at 390 x 844. RM 30.00 shared by three with no charges leaves no spare sen.
+    page = open_app().page
+    page.get_by_role("button", name="Add person").click()
+    type_into(page, subtotal_field(page), "30.00")
+    open_charges_first(page)
+    support.replace_text(page, rate_field(page, "Service charge"), "0")
+    support.replace_text(page, rate_field(page, "SST"), "0")
+    assert card_figures(page)[1] == ["RM 10.00"] * 3 and spare_line(page) is None
+    open_sheet(page)
+    assert receipt(page, "#splitsDlg .rbody") is not None and spare_line(page, "#splitsDlg .rbody") is None
+
+
+# P1 in one evaluate (spec R52), a part it does not hold reading as null: open and modal, its name and description by
+# the ids it points at, the parts of div.in, the head, the count, each choice, the checked rule, the pickers of R53 and
+# R54, where focus is, the CSSOM left and bottom, and its box [left, top, right, bottom, width, height].
+P1_JS = """() => {
+  const dialog = document.querySelector('#spareDlg'), inner = dialog.querySelector(':scope > div.in');
+  const label = (el) => el.localName + [...el.classList].map((name) => '.' + name).join('');
+  const kids = (el) => el ? [...el.children].map(label) : null;
+  const head = inner?.querySelector(':scope > div.pop-head'), sub = inner?.querySelector(':scope > p.pop-sub');
+  const active = document.activeElement, box = dialog.getBoundingClientRect();
+  return {
+    open: dialog.open, modal: dialog.matches(':modal'),
+    named: document.getElementById(dialog.getAttribute('aria-labelledby'))?.textContent ?? null,
+    described: document.getElementById(dialog.getAttribute('aria-describedby'))?.textContent ?? null,
+    parts: kids(inner),
+    head: head && [...head.children].map((el) => [label(el), el.id, el.getAttribute('type'), el.getAttribute('aria-label'),
+      el.textContent, el.querySelector('use')?.getAttribute('href') ?? null]),
+    sub: sub && [sub.id, sub.textContent],
+    choices: [...(inner?.querySelectorAll(':scope > div.choices > label.choice') ?? [])].map((choice) => {
+      const input = choice.querySelector(':scope > input');
+      return [kids(choice), input?.type, input?.name, input?.value,
+        choice.querySelector(':scope > span.dot')?.getAttribute('aria-hidden') ?? null, choice.textContent];
+    }),
+    checked: dialog.querySelector('input[name=spareRule]:checked')?.value ?? null,
+    pickers: [...dialog.querySelectorAll('#pickWrap, #randWrap')].map((el) => el.id),
+    focus: dialog.contains(active) && active.name === 'spareRule' ? 'radio ' + active.value
+      : active.matches('#splitsDlg .r-spare-acts button[aria-haspopup]') ? "the sheet's spare chip" : active.id || active.localName,
+    style: [dialog.style.getPropertyValue('left'), dialog.style.getPropertyValue('bottom')],
+    box: [box.left, box.top, box.right, box.bottom, box.width, box.height],
+  };
+}"""
+
+
+def p1_choice(value, text):
+    return [["input", "span.dot", "span"], "radio", "spareRule", value, "true", text]
+
+
+P1_K1 = {
+    "open": True, "modal": True, "named": "Spare sen", "described": "1 sen left over",
+    "parts": ["div.pop-head", "p.pop-sub", "div.choices"],
+    "head": [["h2", "spareTitle", None, None, "Spare sen", None], ["button.icon-btn", "", "button", "Close", "", "#i-x"]],
+    "sub": ["spareSub", "1 sen left over"],
+    "choices": [p1_choice("top", "Top of the list"), p1_choice("one", "One person"), p1_choice("random", "At random")],
+    "checked": "top", "pickers": [], "focus": "radio top",
+}
+
+
+def p1_state(page, keys=None):
+    """P1_JS, or only its `keys`."""
+    found = page.evaluate(P1_JS)
+    return found if keys is None else {key: found[key] for key in keys}
+
+
+def open_p1(page, opener):
+    """Open P1 from the card's chip ("desktop") or from Splits and the sheet's chip ("phone"), and check that it opened,
+    so a later step fails on this assertion and never waits for a part."""
+    click_after_load(page, SPARE_OPENERS[opener])
+    assert page.evaluate("() => document.querySelector('#spareDlg').open"), "P1 did not open"
+
+
+def choose(page, text):
+    page.locator("#spareDlg label.choice", has_text=text).click()
+
+
+def near(found, expected):
+    return abs(found - expected) <= 0.5
+
+
+SHEET_PADDING_JS = "() => document.querySelector('#sheetScroll')?.style.getPropertyValue('padding-bottom') ?? null"
+
+
+@pytest.mark.parametrize("size, opener", [((1280, 800), "desktop"), ((390, 844), "phone")], ids=["1280-card-chip", "390-sheet-chip"])
+def test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule(open_app, size, opener):
+    # qa.md on K1. Closed, P1 is the empty dialog of index.html. "Is named" and "described by" are read through the ids
+    # its aria-labelledby and aria-describedby point at.
+    page = open_app(seed=seeds.S1, viewport=size).page
+    assert p1_state(page, ("open", "parts")) == {"open": False, "parts": None}
+    open_p1(page, opener)
+    assert p1_state(page, P1_K1) == P1_K1
+    assert page.get_by_role("dialog", name="Spare sen", exact=True).count() == 1
+
+
+def test_R52_a_choice_applies_at_once_and_p1_stays_open(open_app):
+    # qa.md on K2 at 1280 x 800. Its #pickWrap lines are R53's (task A14).
+    page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+    open_p1(page, "desktop")
+    choose(page, "One person")
+    assert p1_state(page, ("open", "checked")) == {"open": True, "checked": "one"}
+    assert card_figures(page)[1] == ["RM 38.88", "RM 38.86", "RM 38.86"]
+    assert spare_line(page)["chips"] == [spare_chip("One person, Aisyah")]
+    assert stored(page)["bill"]["spare"] == {"rule": "one", "personId": "p1"}
+    choose(page, "Top of the list")
+    assert p1_state(page, ("open", "checked")) == {"open": True, "checked": "top"}
+    assert card_figures(page)[1] == ["RM 38.87", "RM 38.87", "RM 38.86"]
+
+
+def test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio(open_app):
+    # qa.md on K2 at 1280 x 800. An arrow key fires change, which applies the rule and renders P1 again, so the render
+    # must keep the focused radio. Its #pickWrap and #randWrap lines are R53's and R54's (tasks A14, A15).
+    page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+    open_p1(page, "desktop")
+    assert p1_state(page, ("focus",)) == {"focus": "radio top"}
+    page.keyboard.press("ArrowDown")
+    assert p1_state(page, ("checked", "focus")) == {"checked": "one", "focus": "radio one"}
+    assert card_figures(page)[1] == ["RM 38.88", "RM 38.86", "RM 38.86"]
+    assert spare_line(page)["chips"] == [spare_chip("One person, Aisyah")]
+    page.keyboard.press("ArrowDown")
+    assert p1_state(page, ("checked", "focus")) == {"checked": "random", "focus": "radio random"}
+    assert sorted(card_figures(page)[1]) == ["RM 38.86", "RM 38.87", "RM 38.87"]
+    assert spare_line(page)["chips"] == [PICK_AGAIN_CHIP, spare_chip("At random")]
+    spare = stored(page)["bill"]["spare"]
+    assert spare["rule"] == "random" and sorted(spare["order"]) == ["p1", "p2", "p3"], spare
+    page.keyboard.press("ArrowUp")
+    page.keyboard.press("ArrowUp")
+    assert p1_state(page, ("checked", "focus")) == {"checked": "top", "focus": "radio top"}
+    assert card_figures(page)[1] == ["RM 38.87", "RM 38.87", "RM 38.86"]
+    assert spare_line(page)["chips"] == [spare_chip("Top of the list")]
+
+
+# The card, the card's chip and the viewport, for P1's desktop place (spec R52).
+PLACE_JS = """() => { const card = document.querySelector('#card').getBoundingClientRect();
+  const chip = document.querySelector('#spareBtn')?.getBoundingClientRect();
+  return { cardRight: card.right, chipBottom: chip ? chip.bottom : null, width: innerWidth,
+    height: document.documentElement.clientHeight }; }"""
+
+
+@pytest.mark.parametrize("seed, size, place", [
+    pytest.param(seeds.S1, (1280, 800), {"left": 574, "bottom": 632.8, "width": 340}, id="K1-1280"),
+    pytest.param(seeds.S2, (1280, 800), {"left": 574, "bottom": 560.8}, id="K2-1280"),
+    pytest.param(seeds.ONE, (1280, 800), {"bottom": 560.8, "height": 310}, id="ONE-1280",
+                 marks=pytest.mark.xfail(strict=True, reason="task A14")),
+    pytest.param(seeds.S1, (1024, 768), {}, id="K1-1024x768"),
+])
+def test_R52_p1_sits_beside_the_card_on_the_desktop(open_app, seed, size, place):
+    # qa.md. Its left is the card's right edge plus 16 and its bottom is level with #spareBtn's bottom, set through the
+    # CSSOM (R38). The ONE row is 310 px tall with the picker of R53 (task A14).
+    page = open_app(seed=seed, viewport=size).page
+    open_p1(page, "desktop")
+    left, top, right, bottom, width, height = p1_state(page, ("box",))["box"]
+    around = page.evaluate(PLACE_JS)
+    assert near(left, around["cardRight"] + 16) and near(bottom, around["chipBottom"]), (left, bottom, around)
+    assert left >= 0 and top >= 0 and right <= around["width"] and bottom <= around["height"], (left, top, right, bottom)
+    for key, value in {"left": left, "bottom": bottom, "width": width, "height": height}.items():
+        assert key not in place or near(value, place[key]), (key, value)
+    style = p1_state(page, ("style",))["style"]
+    assert all(value.endswith("px") for value in style), style
+    assert near(float(style[0][:-2]), left) and near(around["height"] - float(style[1][:-2]), bottom), style
+
+
+@pytest.mark.parametrize("seed, size, height, pad", [
+    pytest.param(seeds.S1, (390, 844), 255, "271px", id="K1-390"),
+    pytest.param(seeds.S1, (360, 780), 255, "271px", id="K1-360"),
+    pytest.param(seeds.ONE, (390, 844), 309, "325px", id="ONE-390", marks=pytest.mark.xfail(strict=True, reason="task A14")),
+    pytest.param(seeds.RND, (390, 844), 309, "325px", id="RND-390", marks=pytest.mark.xfail(strict=True, reason="task A15")),
+])
+def test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room(open_app, seed, size, height, pad):
+    # qa.md. The ONE and RND rows are 309 px tall with the picker of R53 and Pick again of R54 (tasks A14, A15).
+    page = open_app(seed=seed, viewport=size).page
+    open_p1(page, "phone")
+    found = p1_state(page, ("box", "style"))
+    assert near(found["box"][3], size[1]) and near(found["box"][5], height) and found["style"] == ["", ""], found
+    assert page.evaluate(SHEET_PADDING_JS) == pad
+    press_escape(page)
+    assert page.evaluate(SHEET_PADDING_JS) == "" and sheet_state(page, ("open",)) == {"open": True}
+
+
+# The sheet's scroll area, its Splits heading, its last splits row and P1's top edge (spec R52, g2's rule).
+SPLITS_IN_VIEW_JS = """() => { const scroll = document.querySelector('#sheetScroll');
+  const rows = scroll.querySelectorAll('ul.r-splits > li');
+  return { scrollTop: scroll.scrollTop, areaTop: scroll.getBoundingClientRect().top,
+    headTop: scroll.querySelector('#sheetSplitsH').getBoundingClientRect().top,
+    lastRowBottom: rows[rows.length - 1].getBoundingClientRect().bottom,
+    p1Top: document.querySelector('#spareDlg').getBoundingClientRect().top }; }"""
+
+
+def test_R52_the_sheet_scrolls_so_the_splits_stay_in_view_above_p1(open_app):
+    # qa.md on T12 at 390 x 844.
+    page = open_app(seed=seeds.T12).page
+    open_p1(page, "phone")
+    choose(page, "One person")
+    found = page.evaluate(SPLITS_IN_VIEW_JS)
+    assert found["scrollTop"] > 0, found
+    head_at_top = near(found["headTop"], found["areaTop"])
+    assert found["lastRowBottom"] <= found["p1Top"] + 0.5 or head_at_top, found
+    assert found["headTop"] >= found["areaTop"] - 0.5, found  # it never scrolls further than the heading
+
+
+@pytest.mark.parametrize("size, opener, close", [
+    ((1280, 800), "desktop", "close"), ((1280, 800), "desktop", "escape"), ((1280, 800), "desktop", (200, 60)),
+    ((390, 844), "phone", (359, 622)), ((390, 844), "phone", (195, 30)),
+    ((360, 780), "phone", (329, 558)), ((360, 780), "phone", (180, 30)),
+], ids=["1280-close", "1280-escape", "1280-backdrop", "390-close", "390-backdrop", "360-close", "360-backdrop"])
+def test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment(open_app, size, opener, close):
+    # qa.md on K1. The points are docs/design/LINKS.json's, Close in P1's corner and the backdrop above it. Below 1024 px
+    # the Splits sheet stays open after P1 closes.
+    page = open_app(seed=seeds.S1, viewport=size).page
+    open_p1(page, opener)
+    if close == "close":
+        button = page.locator("#spareDlg button[aria-label=Close]")
+        assert button.count() == 1, "P1 holds no Close"
+        button.click()
+    elif close == "escape":
+        press_escape(page)
+    else:
+        page.mouse.click(*close)
+    shown_chip = "spareBtn" if opener == "desktop" else "the sheet's spare chip"
+    assert p1_state(page, ("open", "focus")) == {"open": False, "focus": shown_chip}
+    assert sheet_state(page, ("open",)) == {"open": opener == "phone"}
+
+
+def test_R52_a_repeat_click_on_the_desktop_chip_leaves_p1_open(open_app):
+    # qa.md on K1 at 1280 x 800 with a body recorder (PD-21). P1's light backdrop lies under the second click.
+    page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280]).page
+    chip = page.locator("#spareBtn")
+    assert chip.count() == 1, "the card holds no spare chip"
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    gesture_at(page, "mouse-double", centre_of(chip))
+    assert p1_state(page, ("open", "focus")) == {"open": True, "focus": "radio top"}
+    assert_only_press_1_and_click_1_reached_the_page(page, 2)
+
+
+def wait_for_the_sheet_to_close(page):
+    """The sheet closes itself in the media query's change event once the width reaches 1024 px (R50). At most 2 s."""
+    try:
+        page.wait_for_function("() => !document.querySelector('#splitsDlg').open", timeout=2000)
+    except PlaywrightTimeoutError:
+        pass  # gave up after 2 s, and the assertion after it names the sheet that is still open
+    settle(page)
+
+
+def test_R52_p1_follows_the_width_when_it_crosses_1024_px(open_app):
+    # qa.md on K1 (PD-23).
+    page = open_app(seed=seeds.S1).page
+    open_p1(page, "phone")
+    page.set_viewport_size({"width": 1280, "height": 800})
+    wait_for_the_sheet_to_close(page)
+    found = p1_state(page, ("open", "box"))
+    assert sheet_state(page, ("open",)) == {"open": False} and found["open"] is True
+    assert near(found["box"][0], 574) and near(found["box"][3], 632.8), found
+    press_escape(page)
+    assert p1_state(page, ("focus",)) == {"focus": "spareBtn"}
+
+
+def test_R52_p1_opened_on_the_desktop_and_closed_below_1024_px(open_app):
+    # qa.md on K1, CG-P8 (ruled by the owner, focus to Splits). No spare chip is shown below 1024 px while the Splits
+    # sheet is closed. The style is read once a change of the media query can have run, at most 2 s.
+    page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280]).page
+    open_p1(page, "desktop")
+    page.set_viewport_size({"width": 900, "height": 800})
+    try:
+        page.wait_for_function("() => document.querySelector('#spareDlg').style.getPropertyValue('left') === ''", timeout=2000)
+    except PlaywrightTimeoutError:
+        pass  # gave up after 2 s, and the assertion below names the style that is still there
+    found = p1_state(page, ("open", "style", "box"))
+    assert found["open"] is True and found["style"] == ["", ""], found
+    assert near(found["box"][3], 800) and near(found["box"][4], 560), found  # a bottom sheet, 560 px wide at most
+    press_escape(page)
+    assert p1_state(page, ("focus",)) == {"focus": "splitsBtn"}
 
 
 # ---------------------------------------------------------------- Task 9: the draft (R25 to R28, with R3, R8, R10, R24, R26, R42)
@@ -2154,7 +2482,7 @@ def snapshot(page):
 
 
 @pytest.mark.parametrize("change, check", [
-    (lambda page: person_field(page, 1).fill("A"), lambda bill: bill["people"][0]["name"] == "A"),
+    (lambda page: person_field(page, 1).fill("A"), lambda bill: bill["people"][0]["name"] == "A" and bill["spare"] == {"rule": "top"}),
     (lambda page: page.get_by_role("button", name="Add person").click(), lambda bill: len(bill["people"]) == 3 and bill["nextId"] == 4),
     (lambda page: subtotal_field(page).fill("1"), lambda bill: bill["subtotalText"] == "1"),
     (lambda page: switch_to(page, "By item"), lambda bill: bill["mode"] == "item"),
@@ -2167,7 +2495,11 @@ def snapshot(page):
     (lambda page: (switch_to(page, "By item"), page.get_by_role("button", name="Add item").click(),
                    page.get_by_role("button", name="Remove Item 1").click()),
      lambda bill: bill["items"] == [] and bill["nextId"] == 4),
-], ids=["name", "add-person", "subtotal", "mode", "add-item", "sst", "remove-person", "remove-item"])
+    # [v1.1.0] A spare choice is a change too (task A13, R52).
+    (lambda page: (page.get_by_role("button", name="Add person").click(), subtotal_field(page).fill("100.00"),
+                   click_after_load(page, ("#splitsBtn", SHEET_SPARE_CHIP)), choose(page, "One person")),
+     lambda bill: bill["spare"] == {"rule": "one", "personId": "p1"}),
+], ids=["name", "add-person", "subtotal", "mode", "add-item", "sst", "remove-person", "remove-item", "spare"])
 def test_R25_every_change_is_saved(open_app, change, check):
     page = open_app().page
     assert stored(page) is None
@@ -2176,13 +2508,19 @@ def test_R25_every_change_is_saved(open_app, change, check):
     assert list(draft) == ["version", "bill"] and draft["version"] == 2 and check(draft["bill"])
 
 
-def test_R25_leaving_a_field_or_copying_does_not_save(open_app):
-    page = open_app(seed=seeds.S2).page
-    assert stored_text(page) == seeds.S2
+def test_R25_leaving_a_field_copying_folding_and_the_sheet_do_not_save(open_app):
+    # [v1.1.0] qa.md on K2 at 390 x 844 with the write counter, which proves that nothing was written at all (task A13).
+    page = open_app(seed=seeds.S2, init_scripts=[support.storage_driver("count-set")]).page
+    noted = stored_text(page)
+    assert noted == seeds.S2
     subtotal_field(page).click()
     page.keyboard.press("Tab")
-    copy_summary(page)
-    assert stored_text(page) == seeds.S2
+    click_copy(page, "#stripCopy")
+    page.locator("#peopleBtn").click()
+    page.locator("#peopleBtn").click()
+    open_sheet(page)
+    press_escape(page)
+    assert page.evaluate("window.testSetItemCalls") == 0 and stored_text(page) == noted
 
 
 def test_R25_a_cold_boot_and_a_reload_write_nothing(open_app):
@@ -2238,6 +2576,7 @@ def test_R26_come_back_later(open_app):
     assert snapshot(again) == before and split_state(again) == ITEM_SHOWN
     assert section_state(again) == [FOLDED, FOLDED]  # R26, sections fold by R48 on a reload (task A4)
     assert card_rows(again) == [S1_SPLITS, S1_PROOF]  # the card's rows since task A9
+    assert [support.reads(again, "#spareLine"), support.reads(again, "#spareBtn")] == ["1 sen left over", "Top of the list"]
     switch_to(again, "Even")
     assert subtotal_field(again).input_value() == "100.00"
     assert card_figures(again)[0] == "RM 116.60"
@@ -2255,21 +2594,45 @@ def test_R8_both_sets_of_input_survive_a_reload(open_app):
     assert subtotal_field(page).input_value() == "100.00" and card_figures(page)[0] == "RM 116.60"
 
 
-@pytest.mark.parametrize("name", ["G1", "G2", "G3"])
+def test_R26_a_drawn_order_comes_back_after_a_reload(open_app):
+    # [v1.1.0] qa.md on RND (task A13).
+    page = open_app(seed=seeds.RND).page
+    for _ in ("load", "reload"):
+        assert [row[:2] for row in receipt(page)["list"]["rows"]] == [["Aisyah", "RM 38.86"], ["Ben", "RM 38.87"], ["Chen", "RM 38.87"]]
+        assert spare_chips(page) == ["pickAgain", "spareBtn"] and support.reads(page, "#spareBtn") == "At random"
+        page.reload()
+    assert stored(page)["bill"]["spare"] == {"rule": "random", "order": ["p2", "p3", "p1"]}
+
+
+@pytest.mark.parametrize("name", ["G1", "G2", "G3", "G4", "G5", "G6", "G7"])
 def test_R26_odd_but_readable_drafts_load(open_app, name):
+    # [v1.1.0] G4 to G7 carry the spare choice and drafts saved by 1.0 (task A13). The chip names the rule in effect
+    # (CG-P7), and one edit is enough for the next save to write version 2 (R61).
     seed = seeds.ODD_READABLE[name]
     page = open_app(seed=seed).page
     assert page.locator("div.note").count() == 0
     if name == "G2":
         assert person_field(page, 1).input_value() == seeds.FLAGS_20
+    elif name == "G4":
+        assert card_figures(page)[1] == ["RM 44.78", "RM 0.00", "RM 24.48"]
     else:
-        assert snapshot(page) == snapshot(open_app(seed=seeds.S2).page)
+        assert snapshot(page) == snapshot(open_app(seed=seeds.S1 if name == "G7" else seeds.S2).page)
+    if name in ("G4", "G5", "G7"):
+        assert support.reads(page, "#spareBtn") == "Top of the list"
+    if name == "G7":
+        assert section_state(page) == [FOLDED, FOLDED]
     if name == "G3":
         assert page.evaluate("({}).polluted") is None
     if name == "G1":
         subtotal_field(page).fill("100.0")
         text = stored_text(page)
         assert "extra" not in text and "colour" not in text and json.loads(text)["bill"]["subtotalText"] == "100.0"
+    if name in ("G5", "G6"):
+        subtotal_field(page).fill("100.0")
+        assert stored(page)["version"] == 2 and stored(page)["bill"]["spare"] == {"rule": "top"}
+    if name == "G7":
+        toggle(page, "Satay, 10 sticks", "Ben").click()
+        assert stored(page)["version"] == 2
 
 
 # ---------------------------------------------------------------- Task A3: the notes and the save warning (R27, R28, R46, R47)
@@ -2451,8 +2814,9 @@ def test_R47_a_storage_object_that_comes_back_clears_the_warning_without_a_reloa
     assert notes(page) == [] and stored(page)["bill"]["people"][0]["name"] == "A"  # SW6
 
 
-@pytest.mark.xfail(strict=True, reason="task A15")
 def test_R47_a_change_that_writes_nothing_leaves_the_warning(open_app):
+    # Since task A13 the card shows #pickAgain (R51), and until task A15 wires it (R54) its click does nothing, so this
+    # passes without a draw. A15 shows its teeth with a stub that saves an unchanged bill (BUILD.md, A13).
     page = open_app(seed=seeds.PA0, viewport=(1280, 800), init_scripts=[D_A]).page
     support.replace_text(page, person_field(page, 1), "A")
     assert notes(page) == [WARNING]

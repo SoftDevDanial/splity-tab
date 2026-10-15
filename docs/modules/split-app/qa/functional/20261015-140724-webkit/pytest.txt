@@ -1,0 +1,8 @@
+engine webkit, browser version 26.5
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[K2] (0.42s)
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[ONE] (0.38s)
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[RND] (0.39s)
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[K1] (0.34s)
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[T12] (0.31s)
+FAILED   call     test_app.py::test_R51_no_spare_sen_no_line (0.89s)
+exit status 1

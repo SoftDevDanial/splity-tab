@@ -1,0 +1,4 @@
+engine chromium, browser version 149.0.7827.55
+PASSED   call     test_app.py::test_R52_a_choice_applies_at_once_and_p1_stays_open (0.34s)
+FAILED   call     test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio (0.22s)
+exit status 1

@@ -1,0 +1,18 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R25_every_change_is_saved[name] (0.17s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[add-person] (0.15s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[subtotal] (0.13s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[mode] (0.15s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[add-item] (0.18s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[sst] (0.17s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[remove-person] (0.20s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[remove-item] (0.22s)
+FAILED   call     test_app.py::test_R25_every_change_is_saved[spare] (0.29s)
+FAILED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G1] (0.31s)
+PASSED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G2] (0.18s)
+PASSED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G3] (0.30s)
+PASSED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G4] (0.18s)
+FAILED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G5] (0.33s)
+FAILED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G6] (0.33s)
+PASSED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G7] (0.37s)
+exit status 1

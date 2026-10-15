@@ -1,0 +1,65 @@
+server STARTED pid 21484 port 38549 root {workspace}\examples\split
+FFFFFFFserver STOPPED pid 21484 port 38549, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+E   assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+E   assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+E   assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+E   assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: assert {'open': Fals...us': 'button'} == {'open': Fals...s spare chip"}
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-close]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-escape]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-backdrop]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-close]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-backdrop]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-close]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-backdrop]
+7 failed, 610 deselected in 4.18s
+
+--- stderr ---

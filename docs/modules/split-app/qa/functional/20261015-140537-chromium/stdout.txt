@@ -1,0 +1,19 @@
+server STARTED pid 1744 port 45714 root {workspace}\examples\split
+......x...xx..........Fserver STOPPED pid 1744 port 45714, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert {'focus': 'body'} == {'focus': 'splitsBtn'}
+      
+      Differing items:
+      {'focus': 'body'} != {'focus': 'splitsBtn'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2455: AssertionError: assert {'focus': 'body'} == {'focus': 'splitsBtn'}
+engine chromium, browser version 149.0.7827.55, skipped 3
+  skipped: test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R52_p1_opened_on_the_desktop_and_closed_below_1024_px
+1 failed, 19 passed, 594 deselected, 3 xfailed in 8.05s
+
+--- stderr ---

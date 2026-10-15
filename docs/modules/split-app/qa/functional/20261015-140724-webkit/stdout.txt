@@ -1,0 +1,15 @@
+server STARTED pid 1724 port 25744 root {workspace}\examples\split
+.....Fserver STOPPED pid 1724 port 25744, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert (['RM 10.00', ...', 'RM 10.00'] == ['RM 10.00', ...', 'RM 10.00']
+      
+      Use -v to get more diff and {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '0 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]} is None)
+     +  where {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '0 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]} = spare_line(<Page url='http://127.0.0.1:25744/'>)
+{workspace}\examples\split\tests\browser\test_app.py:2194: AssertionError: assert (['RM 10.00', ...', 'RM 10.00'] == ['RM 10.00', ...', 'RM 10.00']
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R51_no_spare_sen_no_line - AssertionEr...
+1 failed, 5 passed, 611 deselected in 4.35s
+
+--- stderr ---

@@ -1,0 +1,8 @@
+engine chromium, browser version 149.0.7827.55
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[K2] (0.17s)
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[ONE] (0.17s)
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[RND] (0.15s)
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[K1] (0.16s)
+PASSED   call     test_app.py::test_R51_the_spare_sen_line_and_chip[T12] (0.15s)
+FAILED   call     test_app.py::test_R51_no_spare_sen_no_line (0.31s)
+exit status 1

@@ -1,0 +1,6 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-390] (0.30s)
+FAILED   call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-360] (0.29s)
+SKIPPED  call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] (0.25s)
+SKIPPED  call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] (0.24s)
+exit status 1

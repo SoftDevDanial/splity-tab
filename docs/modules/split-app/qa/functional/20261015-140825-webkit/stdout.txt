@@ -1,0 +1,21 @@
+server STARTED pid 7684 port 46022 root {workspace}\examples\split
+FFxxserver STOPPED pid 7684 port 46022, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert ('271px' == ''
+      
+      + 271px)
+{workspace}\examples\split\tests\browser\test_app.py:2361: AssertionError: assert ('271px' == ''
+E   AssertionError: assert ('271px' == ''
+      
+      + 271px)
+{workspace}\examples\split\tests\browser\test_app.py:2361: AssertionError: assert ('271px' == ''
+engine webkit, browser version 26.5, skipped 2
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-390]
+FAILED tests\browser\test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-360]
+2 failed, 613 deselected, 2 xfailed in 4.26s
+
+--- stderr ---

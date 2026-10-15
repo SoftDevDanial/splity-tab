@@ -1,0 +1,12 @@
+engine chromium, browser version 149.0.7827.55
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-390] | xfail task A14
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-360] | xfail task A14
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280] | xfail task A14
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-390] | xfail task A15
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-360] | xfail task A15
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280] | xfail task A15
+test_app.py::test_R3_rendered_markup_matches_its_golden[new-bill-dialog-1280] | xfail task A16
+test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] | xfail task A14
+test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] | xfail task A14
+test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+count 10

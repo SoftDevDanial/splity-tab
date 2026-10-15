@@ -1,0 +1,24 @@
+server STARTED pid 25536 port 45008 root {workspace}\examples\split
+......x...xx.........FFserver STOPPED pid 25536 port 45008, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: {'open': True, 'box': [0, 0, 340, 256, 340, 256]}
+    assert (False)
+     +  where False = near(0, 574)
+{workspace}\examples\split\tests\browser\test_app.py:2436: AssertionError: {'open': True, 'box': [0, 0, 340, 256, 340, 256]}
+E   AssertionError: {'open': True, 'style': ['574px', '167.203125px'], 'box': [574, 377.796875, 1134, 632.796875, 560, 255]}
+    assert (True is True and ['574px', '167.203125px'] == ['', '']
+      
+      At index 0 diff: '574px' != ''
+      Use -v to get more diff)
+{workspace}\examples\split\tests\browser\test_app.py:2452: AssertionError: {'open': True, 'style': ['574px', '167.203125px'], 'box': [574, 377.796875, 1134, 632.796875, 560, 255]}
+engine webkit, browser version 26.5, skipped 3
+  skipped: test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R52_p1_follows_the_width_when_it_crosses_1024_px
+FAILED tests\browser\test_app.py::test_R52_p1_opened_on_the_desktop_and_closed_below_1024_px
+2 failed, 18 passed, 594 deselected, 3 xfailed in 17.35s
+
+--- stderr ---

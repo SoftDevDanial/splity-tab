@@ -1,0 +1,298 @@
+.server STARTED pid 3612 port 29487 root {workspace}\examples\split
+..F....FFFFxxxxxxFF..x..............F..F...FFFFFFFFFFFFF.FFFFFFxFFFxxFFF [ 66%]
+FFFFFFFF........F.......FEF...FF.F...server STOPPED pid 3612 port 29487, exited True, port free again True
+                                                                         [100%]
+=================================== ERRORS ====================================
+________________ ERROR at teardown of test_R26_come_back_later ________________
+E   playwright._impl._errors.TargetClosedError: Page.screenshot: Target page, context or browser has been closed
+================================== FAILURES ===================================
+E   assert "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+     +  where "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+     +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(<Page url='http://127.0.0.1:29487/'>)
+     +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(<function plain_context.<locals>.factory at 0x0000020BE1094EB0>, 'bill-items', (1280, 800))
+{workspace}\examples\split\tests\browser\test_app.py:280: assert "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+E   assert "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+     +  where "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+     +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(<Page url='http://127.0.0.1:29487/'>)
+     +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(<function plain_context.<locals>.factory at 0x0000020BDF866C40>, 'bill-even', (1280, 800))
+{workspace}\examples\split\tests\browser\test_app.py:280: assert "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   assert "body>dialog.sheet-dlg[2]>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+     +  where "body>dialog.sheet-dlg[2]>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+     +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(<Page url='http://127.0.0.1:29487/'>)
+     +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(<function plain_context.<locals>.factory at 0x0000020BDF907110>, 'splits-sheet', (390, 844))
+{workspace}\examples\split\tests\browser\test_app.py:280: assert "body>dialog.sheet-dlg[2]>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+E   assert "body>dialog.sheet-dlg[2]>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+     +  where "body>dialog.sheet-dlg[2]>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+     +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(<Page url='http://127.0.0.1:29487/'>)
+     +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(<function plain_context.<locals>.factory at 0x0000020BDF8FC7D0>, 'splits-sheet', (360, 780))
+{workspace}\examples\split\tests\browser\test_app.py:280: assert "body>dialog.sheet-dlg[2]>div.dense.glass.sheet[0]>div.sheet-scroll[2]>div.rbody[0]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+E   assert "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....iv.r-rule', 'div.r-head', 'ul.many.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+     +  where "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....iv.r-rule', 'div.r-head', 'ul.many.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+     +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(<Page url='http://127.0.0.1:29487/'>)
+     +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(<function plain_context.<locals>.factory at 0x0000020BE2642610>, 'bill-twelve', (1280, 800))
+{workspace}\examples\split\tests\browser\test_app.py:280: assert "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....iv.r-rule', 'div.r-head', 'ul.many.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+E   assert "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+     +  where "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+     +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(<Page url='http://127.0.0.1:29487/'>)
+     +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(<function plain_context.<locals>.factory at 0x0000020BE2C70B40>, 'bill-large', (1280, 800))
+{workspace}\examples\split\tests\browser\test_app.py:280: assert "body>div.app[1]>main.layout[1]>section.stage[0]>article.card.glass[0]>div.rbody[1]: children app=['div.r-total', 'dl....', 'div.r-rule', 'div.r-head', 'ul.r-splits', 'div.r-check', 'div.r-spare', 'button.btn.btn-block.btn-primary.r-copy']" is None
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: assert None == '2 sen left over'
+     +  where None = <function reads at 0x0000020BE15764B0>(<Page url='http://127.0.0.1:29487/'>, '#spareLine')
+     +    where <function reads at 0x0000020BE15764B0> = support.reads
+{workspace}\examples\split\tests\browser\test_app.py:1196: AssertionError: assert None == '2 sen left over'
+E   AssertionError: assert None == '1 sen left over'
+     +  where None = <function reads at 0x0000020BE15764B0>(<Page url='http://127.0.0.1:29487/'>, '#spareLine')
+     +    where <function reads at 0x0000020BE15764B0> = support.reads
+{workspace}\examples\split\tests\browser\test_app.py:1567: AssertionError: assert None == '1 sen left over'
+E   AssertionError: assert [None, None] == ['2 sen left ... of the list']
+      
+      At index 0 diff: None != '2 sen left over'
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:1585: AssertionError: assert [None, None] == ['2 sen left ... of the list']
+E   AssertionError: assert None == '1 sen left over'
+     +  where None = <function reads at 0x0000020BE15764B0>(<Page url='http://127.0.0.1:29487/'>, '#spareLine')
+     +    where <function reads at 0x0000020BE15764B0> = support.reads
+{workspace}\examples\split\tests\browser\test_app.py:1632: AssertionError: assert None == '1 sen left over'
+E   AssertionError: assert None == '2 sen left over'
+     +  where None = <function reads at 0x0000020BE15764B0>(<Page url='http://127.0.0.1:29487/'>, '#spareLine')
+     +    where <function reads at 0x0000020BE15764B0> = support.reads
+{workspace}\examples\split\tests\browser\test_app.py:1648: AssertionError: assert None == '2 sen left over'
+E   AssertionError: the sheet holds no spare chip
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:2130: AssertionError: the sheet holds no spare chip
+E   AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '2 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]}
+     +  where None = spare_line(<Page url='http://127.0.0.1:29487/'>)
+     +  and   {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '2 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]} = card_spare(2, *[['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]])
+{workspace}\examples\split\tests\browser\test_app.py:2183: AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '2 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]}
+E   AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '2 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: One person, Ben. Change', ...]]}
+     +  where None = spare_line(<Page url='http://127.0.0.1:29487/'>)
+     +  and   {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '2 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: One person, Ben. Change', ...]]} = card_spare(2, *[['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: One person, Ben. Change', ...]])
+{workspace}\examples\split\tests\browser\test_app.py:2183: AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '2 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: One person, Ben. Change', ...]]}
+E   AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '2 sen left over'], 'chips': [['button', 'pickAga...utton', None, None, ...], ['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: At random. Change', ...]]}
+     +  where None = spare_line(<Page url='http://127.0.0.1:29487/'>)
+     +  and   {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '2 sen left over'], 'chips': [['button', 'pickAga...utton', None, None, ...], ['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: At random. Change', ...]]} = card_spare(2, *[['button', 'pickAgain', 'chip-btn', 'button', None, None, ...], ['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: At random. Change', ...]])
+{workspace}\examples\split\tests\browser\test_app.py:2183: AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '2 sen left over'], 'chips': [['button', 'pickAga...utton', None, None, ...], ['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: At random. Change', ...]]}
+E   AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '1 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]}
+     +  where None = spare_line(<Page url='http://127.0.0.1:29487/'>)
+     +  and   {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '1 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]} = card_spare(1, *[['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]])
+{workspace}\examples\split\tests\browser\test_app.py:2183: AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '1 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]}
+E   AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '8 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]}
+     +  where None = spare_line(<Page url='http://127.0.0.1:29487/'>)
+     +  and   {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '8 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]} = card_spare(8, *[['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]])
+{workspace}\examples\split\tests\browser\test_app.py:2183: AssertionError: assert None == {'after': 'r-check', 'children': ['p', 'div'], 'line': ['spareLine', '8 sen left over'], 'chips': [['button', 'spareBtn', 'chip-btn', 'button', 'dialog', 'Spare sen: Top of the list. Change', ...]]}
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: the card holds no spare chip
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:2411: AssertionError: the card holds no spare chip
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: after-load control #spareBtn is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#spareBtn'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #spareBtn is not on the page
+E   AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+    assert 0 == 1
+     +  where 0 = count()
+     +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:29487/'> selector='#splitsDlg .r-spare-acts button[aria-haspopup=dialog]'>.count
+{workspace}\examples\split\tests\browser\test_app.py:271: AssertionError: after-load control #splitsDlg .r-spare-acts button[aria-haspopup=dialog] is not on the page
+E   AssertionError: assert [None, None] == ['1 sen left ... of the list']
+      
+      At index 0 diff: None != '1 sen left over'
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2578: AssertionError: assert [None, None] == ['1 sen left ... of the list']
+E   AssertionError: assert (None == ['pickAgain', 'spareBtn'])
+     +  where None = spare_chips(<Page url='http://127.0.0.1:29487/'>)
+{workspace}\examples\split\tests\browser\test_app.py:2601: AssertionError: assert (None == ['pickAgain', 'spareBtn'])
+E   AssertionError: assert None == 'Top of the list'
+     +  where None = <function reads at 0x0000020BE15764B0>(<Page url='http://127.0.0.1:29487/'>, '#spareBtn')
+     +    where <function reads at 0x0000020BE15764B0> = support.reads
+{workspace}\examples\split\tests\browser\test_app.py:2620: AssertionError: assert None == 'Top of the list'
+E   AssertionError: assert None == 'Top of the list'
+     +  where None = <function reads at 0x0000020BE15764B0>(<Page url='http://127.0.0.1:29487/'>, '#spareBtn')
+     +    where <function reads at 0x0000020BE15764B0> = support.reads
+{workspace}\examples\split\tests\browser\test_app.py:2620: AssertionError: assert None == 'Top of the list'
+E   AssertionError: assert None == 'Top of the list'
+     +  where None = <function reads at 0x0000020BE15764B0>(<Page url='http://127.0.0.1:29487/'>, '#spareBtn')
+     +    where <function reads at 0x0000020BE15764B0> = support.reads
+{workspace}\examples\split\tests\browser\test_app.py:2620: AssertionError: assert None == 'Top of the list'
+engine chromium, browser version 149.0.7827.55, skipped 10
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-390] | xfail task A14
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-360] | xfail task A14
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280] | xfail task A14
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-390] | xfail task A15
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-360] | xfail task A15
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280] | xfail task A15
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[new-bill-dialog-1280] | xfail task A16
+  skipped: test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[bill-items-1280]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[bill-even-1280]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-390]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-360]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-1280]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[splits-sheet-390]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[splits-sheet-360]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[bill-twelve-1280]
+FAILED tests\browser\test_app.py::test_R3_rendered_markup_matches_its_golden[bill-large-1280]
+FAILED tests\browser\test_app.py::test_R38_strict_policy_blocks_nothing_the_app_needs[K1-sheet-P1]
+FAILED tests\browser\test_app.py::test_R38_strict_policy_blocks_nothing_the_app_needs[K2-P1-desktop]
+FAILED tests\browser\test_app.py::test_R13_tapping_a_person_on_an_item - Asse...
+FAILED tests\browser\test_app.py::test_R19_a_charge_of_zero_is_allowed_and_still_shown
+FAILED tests\browser\test_app.py::test_R20_the_even_split_from_a_cold_boot - ...
+FAILED tests\browser\test_app.py::test_R21_the_by_item_split_from_gestures - ...
+FAILED tests\browser\test_app.py::test_R21_someone_who_had_nothing_is_still_listed
+FAILED tests\browser\test_app.py::test_R50_the_sheet_follows_the_bill_while_it_is_open
+FAILED tests\browser\test_app.py::test_R51_the_spare_sen_line_and_chip[K2] - ...
+FAILED tests\browser\test_app.py::test_R51_the_spare_sen_line_and_chip[ONE]
+FAILED tests\browser\test_app.py::test_R51_the_spare_sen_line_and_chip[RND]
+FAILED tests\browser\test_app.py::test_R51_the_spare_sen_line_and_chip[K1] - ...
+FAILED tests\browser\test_app.py::test_R51_the_spare_sen_line_and_chip[T12]
+FAILED tests\browser\test_app.py::test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule[1280-card-chip]
+FAILED tests\browser\test_app.py::test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule[390-sheet-chip]
+FAILED tests\browser\test_app.py::test_R52_a_choice_applies_at_once_and_p1_stays_open
+FAILED tests\browser\test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio
+FAILED tests\browser\test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[K1-1280]
+FAILED tests\browser\test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[K2-1280]
+FAILED tests\browser\test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[K1-1024x768]
+FAILED tests\browser\test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-390]
+FAILED tests\browser\test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-360]
+FAILED tests\browser\test_app.py::test_R52_the_sheet_scrolls_so_the_splits_stay_in_view_above_p1
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-close]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-escape]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-backdrop]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-close]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-backdrop]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-close]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-backdrop]
+FAILED tests\browser\test_app.py::test_R52_a_repeat_click_on_the_desktop_chip_leaves_p1_open
+FAILED tests\browser\test_app.py::test_R52_p1_follows_the_width_when_it_crosses_1024_px
+FAILED tests\browser\test_app.py::test_R52_p1_opened_on_the_desktop_and_closed_below_1024_px
+FAILED tests\browser\test_app.py::test_R25_every_change_is_saved[spare] - Ass...
+FAILED tests\browser\test_app.py::test_R26_come_back_later - AssertionError: ...
+FAILED tests\browser\test_app.py::test_R26_a_drawn_order_comes_back_after_a_reload
+FAILED tests\browser\test_app.py::test_R26_odd_but_readable_drafts_load[G4]
+FAILED tests\browser\test_app.py::test_R26_odd_but_readable_drafts_load[G5]
+FAILED tests\browser\test_app.py::test_R26_odd_but_readable_drafts_load[G7]
+ERROR tests\browser\test_app.py::test_R26_come_back_later - playwright._impl....
+48 failed, 51 passed, 508 deselected, 10 xfailed, 1 error in 30.99s
+
+--- stderr ---

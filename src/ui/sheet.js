@@ -1,32 +1,36 @@
 // The Splits sheet (R50, PD-18, PD-20, PD-21), the receipt lifted from the strip below 1024 px. index.html holds the empty
 // dialog.sheet-dlg#splitsDlg, and Splits in the strip opens it.
-// createSheet(dialog, opener, { onCopy }) takes the dialog and Splits and returns { update(result, copyStatus) }. Call
-// update at every render with what computeResult gives and the copy status (null, "ok" or "fail"). The sheet keeps the
-// latest pair, fills itself from it when Splits is clicked and follows it while open. Closed, the dialog is empty, so its
-// receipt (the card's renderer with SHEET_IDS) exists only while it is open.
+// createSheet(dialog, opener, receiptHandlers) takes the dialog, Splits and the handlers createReceipt takes besides the
+// ids, and returns { update(result, copyStatus), spareChip(), makeRoom(height) }. Call update at every render with what
+// computeResult gives and the copy status (null, "ok" or "fail"). The sheet keeps the latest pair, fills itself from it
+// when Splits is clicked and follows it while open. Closed, the dialog is empty, so its receipt (the card's renderer with
+// SHEET_IDS) exists only while it is open. spareChip() gives its spare chip while one is shown, otherwise null, and
+// makeRoom serves P1 (R52).
 import { closeOnBackdropClick, el, setAttr, swallowRepeatClicks } from "./dom.js";
 import { icon } from "./icons.js";
+import { DESKTOP } from "./media.js";
 import { createReceipt, SHEET_IDS } from "./receipt.js";
 
-const DESKTOP = window.matchMedia("(min-width: 1024px)");
+const ROOM_UNDER_SPLITS = 16; // px between the last split and P1 (spare-sen.md, 271 px of room for a P1 255 px tall)
+const ROOM_ABOVE_P1 = 12; // px g2's scroll keeps between the splits and P1's top edge (R52, g2's rule)
 
-export function createSheet(dialog, opener, { onCopy }) {
+export function createSheet(dialog, opener, receiptHandlers) {
   opener.append(icon("caret", "caret-up"));
   let latest = null; // [result, copyStatus] of the last render
-  let shown = null; // { sheet, receipt } while open
+  let shown = null; // { sheet, scroll, receipt } while open
 
   function fill() {
     const rbody = el("div", { class: "rbody" });
-    const receipt = createReceipt(rbody, { ids: SHEET_IDS, onCopy });
+    const receipt = createReceipt(rbody, { ...receiptHandlers, ids: SHEET_IDS });
     receipt.update(...latest);
     const close = el("button", { type: "button", class: "icon-btn", "aria-label": "Close" }, icon("x"));
     close.addEventListener("click", closeByClick);
+    const scroll = el("div", { class: "sheet-scroll", id: "sheetScroll" }, rbody);
     const sheet = el("div", { class: "glass dense sheet", tabindex: "-1" },
       el("div", { class: "foil", "aria-hidden": "true" }),
-      el("div", { class: "sheet-top" }, el("span", { class: "grab", "aria-hidden": "true" }), close),
-      el("div", { class: "sheet-scroll", id: "sheetScroll" }, rbody));
+      el("div", { class: "sheet-top" }, el("span", { class: "grab", "aria-hidden": "true" }), close), scroll);
     dialog.append(sheet);
-    return { sheet, receipt };
+    return { sheet, scroll, receipt };
   }
 
   // Opening arms the guard because the sheet rises under the pointer, with its Copy summary where the second tap of a
@@ -72,5 +76,24 @@ export function createSheet(dialog, opener, { onCopy }) {
     shown?.receipt.update(result, copyStatus);
   }
 
-  return { update };
+  /**
+   * R52 while P1 is open over the sheet. Pads the scroll area's bottom by P1's `height` in px and 16, and when the last
+   * split would sit under P1 scrolls by the overlap, never further than putting the Splits heading at the top of the
+   * scroll area (g2's rule, so the splits stay in view). makeRoom(null) clears the padding. Does nothing while closed.
+   */
+  function makeRoom(height) {
+    if (shown === null) return;
+    const { scroll } = shown;
+    if (height === null) {
+      scroll.style.removeProperty("padding-bottom");
+      return;
+    }
+    scroll.style.setProperty("padding-bottom", `${height + ROOM_UNDER_SPLITS}px`);
+    const list = scroll.querySelector("ul.r-splits"), head = scroll.querySelector("div.r-head");
+    const overlap = list.getBoundingClientRect().bottom - (innerHeight - height - ROOM_ABOVE_P1);
+    const headBelowTop = head.getBoundingClientRect().top - scroll.getBoundingClientRect().top;
+    if (overlap > 0) scroll.scrollTop += Math.min(overlap, headBelowTop);
+  }
+
+  return { update, spareChip: () => shown?.receipt.spareChip() ?? null, makeRoom };
 }

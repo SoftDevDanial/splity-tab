@@ -1,0 +1,49 @@
+server STARTED pid 2264 port 54476 root {workspace}\examples\split
+...xxxxxx......FF.F..x...xx........F..................server STOPPED pid 2264 port 54476, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert {'open': True...ft over', ...} == {'open': True...ft over', ...}
+      
+      Omitting 10 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': 'radio top'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2276: AssertionError: assert {'open': True...ft over', ...} == {'open': True...ft over', ...}
+E   AssertionError: assert {'open': True...ft over', ...} == {'open': True...ft over', ...}
+      
+      Omitting 10 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': 'radio top'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2276: AssertionError: assert {'open': True...ft over', ...} == {'open': True...ft over', ...}
+E   AssertionError: assert {'focus': 'button'} == {'focus': 'radio top'}
+      
+      Differing items:
+      {'focus': 'button'} != {'focus': 'radio top'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2299: AssertionError: assert {'focus': 'button'} == {'focus': 'radio top'}
+E   AssertionError: assert {'open': True...us': 'button'} == {'open': True...: 'radio top'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'button'} != {'focus': 'radio top'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2415: AssertionError: assert {'open': True...us': 'button'} == {'open': True...: 'radio top'}
+engine webkit, browser version 26.5, skipped 9
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-390] | xfail task A14
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-360] | xfail task A14
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280] | xfail task A14
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-390] | xfail task A15
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-360] | xfail task A15
+  skipped: test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280] | xfail task A15
+  skipped: test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule[1280-card-chip]
+FAILED tests\browser\test_app.py::test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule[390-sheet-chip]
+FAILED tests\browser\test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio
+FAILED tests\browser\test_app.py::test_R52_a_repeat_click_on_the_desktop_chip_leaves_p1_open
+4 failed, 41 passed, 563 deselected, 9 xfailed in 34.93s
+
+--- stderr ---

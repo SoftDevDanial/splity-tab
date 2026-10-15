@@ -1,0 +1,82 @@
+server STARTED pid 13808 port 37843 root {workspace}\examples\split
+......x...xx.FFFFFFF.FFserver STOPPED pid 13808 port 37843, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+E   assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+E   assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+E   assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+E   assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2404: assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+E   AssertionError: assert {'focus': 'newBill'} == {'focus': 'spareBtn'}
+      
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2438: AssertionError: assert {'focus': 'newBill'} == {'focus': 'spareBtn'}
+E   AssertionError: assert {'focus': 'newBill'} == {'focus': 'splitsBtn'}
+      
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'splitsBtn'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2455: AssertionError: assert {'focus': 'newBill'} == {'focus': 'splitsBtn'}
+engine webkit, browser version 26.5, skipped 3
+  skipped: test_app.py::test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390] | xfail task A14
+  skipped: test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] | xfail task A15
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-close]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-escape]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-backdrop]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-close]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-backdrop]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-close]
+FAILED tests\browser\test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-backdrop]
+FAILED tests\browser\test_app.py::test_R52_p1_follows_the_width_when_it_crosses_1024_px
+FAILED tests\browser\test_app.py::test_R52_p1_opened_on_the_desktop_and_closed_below_1024_px
+9 failed, 11 passed, 594 deselected, 3 xfailed in 16.16s
+
+--- stderr ---

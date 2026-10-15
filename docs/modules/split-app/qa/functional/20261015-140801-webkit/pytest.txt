@@ -1,0 +1,18 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R25_every_change_is_saved[name] (0.30s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[add-person] (0.38s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[subtotal] (0.26s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[mode] (0.31s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[add-item] (0.48s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[sst] (0.44s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[remove-person] (0.47s)
+PASSED   call     test_app.py::test_R25_every_change_is_saved[remove-item] (0.64s)
+FAILED   call     test_app.py::test_R25_every_change_is_saved[spare] (0.71s)
+FAILED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G1] (0.70s)
+PASSED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G2] (0.42s)
+PASSED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G3] (0.69s)
+PASSED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G4] (0.42s)
+FAILED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G5] (0.71s)
+FAILED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G6] (0.69s)
+PASSED   call     test_app.py::test_R26_odd_but_readable_drafts_load[G7] (0.87s)
+exit status 1

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="9" skipped="3" tests="23" time="16.130" timestamp="2026-10-15T14:01:58.527674+08:00" hostname="{host}"><testcase classname="test_app" name="test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule[1280-card-chip]" time="1.601" /><testcase classname="test_app" name="test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule[390-sheet-chip]" time="0.638" /><testcase classname="test_app" name="test_R52_a_choice_applies_at_once_and_p1_stays_open" time="0.763" /><testcase classname="test_app" name="test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio" time="0.581" /><testcase classname="test_app" name="test_R52_p1_sits_beside_the_card_on_the_desktop[K1-1280]" time="0.526" /><testcase classname="test_app" name="test_R52_p1_sits_beside_the_card_on_the_desktop[K2-1280]" time="0.559" /><testcase classname="test_app" name="test_R52_p1_sits_beside_the_card_on_the_desktop[ONE-1280]" time="0.508"><skipped type="pytest.xfail" message="task A14" /></testcase><testcase classname="test_app" name="test_R52_p1_sits_beside_the_card_on_the_desktop[K1-1024x768]" time="0.553" /><testcase classname="test_app" name="test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-390]" time="0.655" /><testcase classname="test_app" name="test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[K1-360]" time="0.644" /><testcase classname="test_app" name="test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[ONE-390]" time="0.571"><skipped type="pytest.xfail" message="task A14" /></testcase><testcase classname="test_app" name="test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390]" time="0.618"><skipped type="pytest.xfail" message="task A15" /></testcase><testcase classname="test_app" name="test_R52_the_sheet_scrolls_so_the_splits_stay_in_view_above_p1" time="0.762" /><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-close]" time="0.793"><failure message="AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'newBill'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-escape]" time="0.706"><failure message="AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'newBill'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-backdrop]" time="0.605"><failure message="AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'newBill'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">E   AssertionError: assert {'open': Fals...s': 'newBill'} == {'open': Fals...': 'spareBtn'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-close]" time="0.661"><failure message="assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'div'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">E   assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-backdrop]" time="0.672"><failure message="assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'div'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">E   assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-close]" time="0.598"><failure message="assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'div'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">E   assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-backdrop]" time="0.672"><failure message="assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'div'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">E   assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_a_repeat_click_on_the_desktop_chip_leaves_p1_open" time="0.634" /><testcase classname="test_app" name="test_R52_p1_follows_the_width_when_it_crosses_1024_px" time="0.733"><failure message="AssertionError: assert {'focus': 'newBill'} == {'focus': 'spareBtn'}&#10;  &#10;  Differing items:&#10;  {'focus': 'newBill'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">E   AssertionError: assert {'focus': 'newBill'} == {'focus': 'spareBtn'}
+      
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'spareBtn'}
+      Use -v to get more diff</failure></testcase><testcase classname="test_app" name="test_R52_p1_opened_on_the_desktop_and_closed_below_1024_px" time="0.667"><failure message="AssertionError: assert {'focus': 'newBill'} == {'focus': 'splitsBtn'}&#10;  &#10;  Differing items:&#10;  {'focus': 'newBill'} != {'focus': 'splitsBtn'}&#10;  Use -v to get more diff">E   AssertionError: assert {'focus': 'newBill'} == {'focus': 'splitsBtn'}
+      
+      Differing items:
+      {'focus': 'newBill'} != {'focus': 'splitsBtn'}
+      Use -v to get more diff</failure></testcase></testsuite></testsuites>

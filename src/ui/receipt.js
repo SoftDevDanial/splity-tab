@@ -1,15 +1,19 @@
-// The receipt (C2, C3, C5, R16 to R21): what computeResult(bill) gives, drawn into a div.rbody. One renderer serves the
-// card's #rbody and the Splits sheet's (PD-20), which is why the ids are a parameter.
-// createReceipt(rbody, { ids, onCopy }) fills `rbody` and returns { update(result, copyStatus) }. `ids` names the parts
-// that carry an id (CARD_IDS on the card, SHEET_IDS in the sheet), `copyStatus` is null, "ok" or "fail".
+// The receipt (C2, C3, C5, C9, R16 to R21, R51): what computeResult(bill) gives, drawn into a div.rbody. One renderer
+// serves the card's #rbody and the Splits sheet's (PD-20), which is why the ids are a parameter.
+// createReceipt(rbody, { ids, onCopy, onSpare, personName }) fills `rbody` and returns { update(result, copyStatus),
+// spareChip() }. `ids` names the parts that carry an id (CARD_IDS on the card, SHEET_IDS in the sheet), `copyStatus` is
+// null, "ok" or "fail". onSpare() runs on a click of the spare chip, personName(id) gives the label of a person of the
+// bill. spareChip() gives the spare chip while the receipt shows one, otherwise null.
 // Every figure comes from split-core, formatted by split-core. Text only, and quiet: the status paragraph is the one live
 // element in it (R16).
 import { formatAmount, formatMoney, formatRate } from "../core/money.js";
 import { showCopyStatus } from "./copy-status.js";
-import { el, reconcileChildren } from "./dom.js";
+import { el, reconcileChildren, setAttr, setText } from "./dom.js";
 import { icon, seal } from "./icons.js";
+import { RULE_NAMES } from "./spare-choice.js";
 
-export const CARD_IDS = { total: "rTotal", head: "splitsH", list: "splits", proof: "addsUp", copy: "copyBtn", status: "cardStatus" };
+export const CARD_IDS = { total: "rTotal", head: "splitsH", list: "splits", proof: "addsUp", spareLine: "spareLine",
+  pickAgain: "pickAgain", spareBtn: "spareBtn", copy: "copyBtn", status: "cardStatus" };
 // PD-20. The card stays in the DOM while the sheet is open, so in the sheet only the heading has an id, for its list.
 export const SHEET_IDS = { head: "sheetSplitsH" };
 
@@ -71,12 +75,39 @@ function splitsAndProof(result, ids) {
   ];
 }
 
-export function createReceipt(rbody, { ids, onCopy }) {
-  // Copy summary and its status paragraph are made once and kept, so the button keeps keyboard focus when the figures
-  // change and the live paragraph is the same node for as long as there are splits. Everything else is drawn anew.
+/**
+ * R51: the spare sen line, `div.r-spare` with the count and its chips, Pick again first under At random. Made once and
+ * kept, so a chip keeps keyboard focus while the figures change behind P1. show(spare) draws `result.spare` and returns
+ * the line. The chip names the rule in effect, not the stored one (CG-P7).
+ */
+function createSpareLine(ids, { onSpare, personName }) {
+  const count = el("p", withId({}, ids.spareLine));
+  const pickAgain = el("button", withId({ type: "button", class: "chip-btn" }, ids.pickAgain), icon("shuffle"), "Pick again");
+  const chipText = document.createTextNode("");
+  const chip = el("button", withId({ type: "button", class: "chip-btn", "aria-haspopup": "dialog" }, ids.spareBtn), chipText, icon("caret"));
+  chip.addEventListener("click", onSpare);
+  const acts = el("div", { class: "r-spare-acts" });
+  const line = el("div", { class: "r-spare" }, count, acts);
+
+  function show({ count: spareCount, rule, personId }) {
+    const text = rule === "one" ? `${RULE_NAMES.one}, ${personName(personId)}` : RULE_NAMES[rule];
+    setText(count, `${spareCount} sen left over`);
+    if (chipText.data !== text) chipText.data = text;
+    setAttr(chip, "aria-label", `Spare sen: ${text}. Change`);
+    reconcileChildren(acts, rule === "random" ? [pickAgain, chip] : [chip]);
+    return line;
+  }
+
+  return { chip, show };
+}
+
+export function createReceipt(rbody, { ids, onCopy, onSpare, personName }) {
+  // Copy summary, its status paragraph and the spare line are made once and kept, so a button keeps keyboard focus when
+  // the figures change and the live paragraph is the same node for as long as there are splits. The rest is drawn anew.
   const copy = el("button", withId({ type: "button", class: "btn btn-primary btn-block r-copy" }, ids.copy), icon("copy"), "Copy summary");
   copy.addEventListener("click", onCopy);
   const status = el("p", withId({ class: "status", role: "status" }, ids.status));
+  const spare = createSpareLine(ids, { onSpare, personName });
 
   function update(result, copyStatus) {
     if (result.kind === "blocked") {
@@ -87,9 +118,10 @@ export function createReceipt(rbody, { ids, onCopy }) {
         el("div", { class: "r-msg" }, icon("warning-circle"), el("p", {}, unassignedMessage(result.count)))]);
     } else {
       showCopyStatus(status, copyStatus);
-      reconcileChildren(rbody, [...totalAndLines(result.charges, ids), ...splitsAndProof(result, ids), copy, status]);
+      const spareLine = result.spare.count > 0 ? [spare.show(result.spare)] : [];
+      reconcileChildren(rbody, [...totalAndLines(result.charges, ids), ...splitsAndProof(result, ids), ...spareLine, copy, status]);
     }
   }
 
-  return { update };
+  return { update, spareChip: () => (spare.chip.isConnected ? spare.chip : null) };
 }

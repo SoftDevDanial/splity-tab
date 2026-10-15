@@ -1,0 +1,116 @@
+{
+ "390": {
+  "walk_first_diff": {
+   "body": null,
+   "#spareDlg": null
+  },
+  "differences": {
+   "#spareDlg": {},
+   "#splitsDlg": {}
+  },
+  "p1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "271px",
+    "sheetScrollTop": 0,
+    "focus": "spareRule top"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "271px",
+    "sheetScrollTop": 0,
+    "focus": "body"
+   },
+   "box": [
+    [
+     0,
+     589,
+     390,
+     255
+    ],
+    [
+     0,
+     589,
+     390,
+     255
+    ]
+   ]
+  }
+ },
+ "360": {
+  "walk_first_diff": {
+   "body": null,
+   "#spareDlg": null
+  },
+  "differences": {
+   "#spareDlg": {},
+   "#splitsDlg": {}
+  },
+  "p1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "271px",
+    "sheetScrollTop": 0,
+    "focus": "spareRule top"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "271px",
+    "sheetScrollTop": 0,
+    "focus": "body"
+   },
+   "box": [
+    [
+     0,
+     525,
+     360,
+     255
+    ],
+    [
+     0,
+     525,
+     360,
+     255
+    ]
+   ]
+  }
+ },
+ "1280": {
+  "walk_first_diff": {
+   "body": null,
+   "#spareDlg": null
+  },
+  "differences": {
+   "#spareDlg": {},
+   "#card": {}
+  },
+  "p1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": null,
+    "sheetScrollTop": null,
+    "focus": "spareRule top"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "20px",
+    "sheetScrollTop": 0,
+    "focus": "body"
+   },
+   "box": [
+    [
+     574,
+     376.8,
+     340,
+     256
+    ],
+    [
+     574,
+     376.81,
+     340,
+     256
+    ]
+   ]
+  }
+ }
+}

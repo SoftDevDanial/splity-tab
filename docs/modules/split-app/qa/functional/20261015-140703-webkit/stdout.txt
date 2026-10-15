@@ -1,0 +1,17 @@
+server STARTED pid 13308 port 5343 root {workspace}\examples\split
+.Fserver STOPPED pid 13308 port 5343, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert {'checked': '...ocus': 'body'} == {'checked': '...: 'radio one'}
+      
+      Omitting 1 identical items, use -vv to show
+      Differing items:
+      {'focus': 'body'} != {'focus': 'radio one'}
+      Use -v to get more diff
+{workspace}\examples\split\tests\browser\test_app.py:2301: AssertionError: assert {'checked': '...ocus': 'body'} == {'checked': '...: 'radio one'}
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio
+1 failed, 1 passed, 615 deselected in 3.01s
+
+--- stderr ---

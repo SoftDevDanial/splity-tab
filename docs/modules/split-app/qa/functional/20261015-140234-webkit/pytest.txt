@@ -1,0 +1,9 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-close] (0.66s)
+FAILED   call     test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-escape] (0.56s)
+FAILED   call     test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[1280-backdrop] (0.52s)
+FAILED   call     test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-close] (0.61s)
+FAILED   call     test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[390-backdrop] (0.60s)
+FAILED   call     test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-close] (0.62s)
+FAILED   call     test_app.py::test_R52_closing_p1_returns_focus_to_the_chip_shown_at_that_moment[360-backdrop] (0.62s)
+exit status 1
