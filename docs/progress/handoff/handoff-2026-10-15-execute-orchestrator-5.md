@@ -16,7 +16,7 @@ The 5 hour usage window reached 75 percent at 16:14 (80 percent at 16:45, resets
 - A comment-only or record-only pass may run on Sonnet (ORCH, Streaks S1 rows 19 and 20).
 - The next sdlc release (2.7.0) is planned by another session. Do NOT install it until both apps seal v1.1.0 (memory STATUS). This run stays on sdlc 2.6.0.
 
-## Split (`examples/split`), HEAD `9bdb9ee`
+## Split (`examples/split`), HEAD `9bdb9ee` (records commits on top since, see "Uncommitted")
 - Done this session. A15 `afea90a` and `dce28e9` (ledger S7 row 31), A16 `3c3d9b0` and `9bdb9ee` (S7 row 32, tests only, no `src/` change). Chromium 623 tests 0 failures 21 xfail, WebKit 1 failure, F-A11-1 only (H-08), Node 379. README reconciled through A15 (A16 changed no behaviour). Process rows 65 and 66.
 - Owner rulings 16:20. H-07 USER "1" keep as built (nothing to build). H-08 USER "ok", option (1).
 - NEXT 1, the planner touch before A18. Its list, Q-A3-1, the held Enter line (S5 row 10), F-A4-1, Q-A6-1, F-A8-1, F-A10-1, F-A12-1, F-A13-1, Q-A14-1, F-A15-1 (no `@R54` scenario presses Pick again in the Splits sheet), F-A16-1 (R59 (2) should name M1's click closes, or `createDialog` focuses New bill on its click path, a ruling may be needed if it changes behaviour), and H-08's `focusin` spec row with a task for its build (below 1024 px a focused control whose bottom is under the strip scrolls clear with `scrollIntoView({ block: "nearest" })`, the R49 test stays in both engines). Ledger rows give each item's text (S5, S7, Needs the human H-08).
@@ -24,7 +24,7 @@ The 5 hour usage window reached 75 percent at 16:14 (80 percent at 16:45, resets
 - Owed at Split's README reconcile before review, the header block (Versions row still says 1.0.0 waits for the seal, the mermaid marks UAT and the seal as next). Streaks' reconcile is the pattern (its S1 row 18).
 - Off-scope row 20 (new), tracked paths up to 211 characters pass Windows' 260 limit under this checkout, A16 staged with `core.longpaths`. Deferred to publish prep with Streaks off-scope row 20.
 
-## Streaks (`examples/streaks`), HEAD `4304d61`
+## Streaks (`examples/streaks`), HEAD `4304d61` (records commits on top since, see "Uncommitted")
 - Done this session. QA re-check PASS both modules (S1 row 19). README reconciled by the orchestrator (S1 row 18, WR-09 and WR-03, header block kept at 1.0 until the seal, ORCH). Targeted pass `a61cfc0` (S1 row 20, WR-12 and WR-04). Planner touch `4304d61` (S1 row 21, app qa.md live scenarios 169 to 175). Step 5 closed for both modules. Process rows 62 to 64.
 - Owner rulings 16:20. H-04 USER "1" accept. H-05 USER option (1), simple: `dismissNote` in `src/view.js` focuses `#nh`, and when it is disabled focus goes to `firstControl()` (CG-14's fallback, same file).
 - NEXT 1, a planner line for H-05 (R17 dated change, one qa scenario, a task before task 28, the R# to task map gains it). Small, Sonnet is enough.
@@ -33,6 +33,8 @@ The 5 hour usage window reached 75 percent at 16:14 (80 percent at 16:45, resets
 
 ## Uncommitted in both repos (the orchestrator's records, not staged by any agent)
 `CLAUDE.md`, `README.md`, `docs/progress/*`, `docs/v1.1.0/CHANGE-LEDGER.md`, the Streaks findings files (verdicts and solver lines), one line of Streaks `docs/modules/app/BUILD.md` (the targeted pass's own correction), and untracked run folders and handoffs. No commit was asked for this session.
+
+Updated 2026-10-15 17:00. The owner asked why nothing was committed and said "go". Committed, each staged by exact path with the credential gate clean on the staged set. Split `024a6dc` (records) and `040026a` (eight 2026-10-14 run folders), Streaks `634b682` (records, the step 5 verdicts, the 2026-10-11 explain walkthrough) and `5b3b8d1` (step 5 evidence), then one small commit per repo for this note and the ledger lines. Both working trees clean after. The section above is no longer true. Orchestrator slip, one `git add ... 2>/dev/null` in Streaks, no file written.
 
 ## User test brief (things the owner can try now)
 - Split, P1 At random. Choosing At random shows Pick again under it. Pick again in P1, on the card's chip and in the phone's Splits sheet draws again and the draw survives a reload. On a bill where every order gives the same splits, Pick again changes nothing.
