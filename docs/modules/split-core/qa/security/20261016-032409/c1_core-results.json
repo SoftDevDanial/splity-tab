@@ -1,0 +1,152 @@
+{
+ "integrity": {
+  "chooseTop": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "chooseOne": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "chooseSame": {
+   "sameReference": true,
+   "keys": "input returned",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  },
+  "choosePerson": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "pickAgain": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "addPerson": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "removePerson": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "known",
+   "spareProto": true
+  },
+  "setMode": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  },
+  "addItem": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  },
+  "toggle": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  },
+  "setPersonName": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  },
+  "setItemName": {
+   "sameReference": false,
+   "keys": "known",
+   "proto": true,
+   "spare": "rule,order,__proto__,extra",
+   "spareProto": true
+  }
+ },
+ "integrity_note": "chooseSame returns the input (rule already random), so its keys are the parsed object's, by design (R29 same reference)",
+ "pickAgain_no_change": {
+  "sameReference": true,
+  "draws": 64,
+  "ms": 1
+ },
+ "pickAgain_constant_source": {
+  "sameReference": false,
+  "draws": 11,
+  "ms": 0
+ },
+ "pickAgain_max_bill_constant_source": {
+  "draws": 11,
+  "ms": 1
+ },
+ "precision": {
+  "bills": 40000,
+  "compared_top": 40000,
+  "mismatches_vs_bigint": 0,
+  "sum_failures_all_rules": 0,
+  "top_bills_with_products_past_2_53": 950,
+  "firstFails": []
+ },
+ "plainName": {
+  "listed": 79,
+  "deleted": 79,
+  "wrong_code_points": [],
+  "summary_rows_wrong": [],
+  "s2_ben_share": 3887,
+  "sweepMs": 1928,
+  "flags": "gu",
+  "source": "[\\p{Cc}\\p{Zl}\\p{Zp}\\p{Bidi_Control}]",
+  "frozen": false,
+  "idempotent": true,
+  "lone_surrogates_joined_into_one_emoji": true,
+  "long_4_5M_rlo": {
+   "ms": 26,
+   "result": "x"
+  },
+  "after_lastIndex_set_to_2": {
+   "plain": "AB",
+   "summary_row": " B en RM 38.87",
+   "lastIndexAfterReplace": 0
+  },
+  "test_twice_on_rlo": {
+   "first": true,
+   "second": false,
+   "lastIndexAfter": 0
+  },
+  "empty_name_label": "Person 2"
+ },
+ "bill_fields": {
+  "newBill_keys": "mode,people,subtotalText,items,serviceText,sstText,spare,nextId",
+  "equals_known": true,
+  "new_outputs": 11,
+  "with_known_keys": 11,
+  "own_proto_copied": false,
+  "constructor_copied": false,
+  "extra_copied": false
+ },
+ "pollution": {
+  "objectProtoUnchanged": true,
+  "polluted": null
+ }
+}

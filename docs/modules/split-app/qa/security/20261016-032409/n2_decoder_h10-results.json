@@ -1,0 +1,3122 @@
+{
+ "summary": {
+  "node": "v24.11.1",
+  "cases": 173,
+  "pass": 173,
+  "fail": []
+ },
+ "rows": [
+  {
+   "name": "person name A U+0000 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0000 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0001 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0001 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0002 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0002 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0003 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0003 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0004 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0004 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0005 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0005 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0006 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0006 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0007 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0007 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0008 B",
+   "chars": 226,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0008 B",
+   "chars": 253,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0009 B",
+   "chars": 226,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0009 B",
+   "chars": 253,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+000a B",
+   "chars": 226,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "item name A U+000a B",
+   "chars": 253,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "person name A U+000b B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+000b B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+000c B",
+   "chars": 226,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+000c B",
+   "chars": 253,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+000d B",
+   "chars": 226,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "item name A U+000d B",
+   "chars": 253,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "person name A U+000e B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+000e B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+000f B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+000f B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0010 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0010 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0011 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0011 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0012 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0012 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0013 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0013 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0014 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0014 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0015 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0015 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0016 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0016 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0017 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0017 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0018 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0018 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0019 B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0019 B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+001a B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+001a B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+001b B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+001b B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+001c B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+001c B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+001d B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+001d B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+001e B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+001e B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+001f B",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+001f B",
+   "chars": 257,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+007f B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+007f B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0080 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0080 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0081 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0081 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0082 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0082 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0083 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0083 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0084 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0084 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0085 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0085 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0086 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0086 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0087 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0087 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0088 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0088 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0089 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0089 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+008a B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+008a B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+008b B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+008b B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+008c B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+008c B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+008d B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+008d B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+008e B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+008e B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+008f B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+008f B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0090 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0090 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0091 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0091 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0092 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0092 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0093 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0093 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0094 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0094 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0095 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0095 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0096 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0096 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0097 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0097 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0098 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0098 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+0099 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+0099 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+009a B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+009a B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+009b B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+009b B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+009c B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+009c B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+009d B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+009d B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+009e B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+009e B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+009f B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+009f B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+2028 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+2028 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+2029 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+2029 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+061c B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+061c B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+200e B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+200e B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+200f B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+200f B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+202a B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+202a B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+202b B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+202b B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+202c B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+202c B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+202d B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+202d B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+202e B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+202e B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+2066 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+2066 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+2067 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+2067 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+2068 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+2068 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "person name A U+2069 B",
+   "chars": 225,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "AB",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "item name A U+2069 B",
+   "chars": 252,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "AB"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "name only class characters becomes empty",
+   "chars": 231,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "Person 1",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "20 letters and 1000 RLO",
+   "chars": 1242,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "xxxxxxxxxxxxxxxxxxxx",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "21 letters and one RLO",
+   "chars": 244,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "RLO then LF, LF rejects first",
+   "chars": 225,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "CR inside class characters",
+   "chars": 236,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "a NUL acute and 18 x, 21 clusters before, 19 after",
+   "chars": 248,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "aU+301xxxxxxxxxxxxxxxxxx",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "lone surrogates around NUL join into one emoji",
+   "chars": 240,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "U+1f600",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "markup name ending in RLO",
+   "chars": 239,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "<svg onload=f()>",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "two names equal after removal",
+   "chars": 227,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "Ben",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "LS at both ends, the label trims nothing left",
+   "chars": 222,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "Ben",
+    "B",
+    "C"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "version 1 draft with class characters",
+   "chars": 208,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "4.5M NUL person name",
+   "chars": 27000222,
+   "expected": "A",
+   "got": "A",
+   "ms": 37,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "Person 1",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "x and 4.5M NUL person name",
+   "chars": 27000223,
+   "expected": "A",
+   "got": "A",
+   "ms": 37,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [],
+   "labels": [
+    "x",
+    "Ben",
+    "Chen"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "4.5M RLO item name",
+   "chars": 4500249,
+   "expected": "A",
+   "got": "A",
+   "ms": 39,
+   "pass": true,
+   "names_as_oracle": true,
+   "class_in_names": false,
+   "summary_rows_are_labels": true,
+   "item_labels": [
+    "Item 1"
+   ],
+   "labels": [
+    "Aisyah",
+    "Ben"
+   ],
+   "round_trip_same_names": true
+  },
+  {
+   "name": "4.5M x person name (unchanged, D8 rejects)",
+   "chars": 4500222,
+   "expected": "R",
+   "got": "R",
+   "ms": 529,
+   "pass": true
+  }
+ ]
+}

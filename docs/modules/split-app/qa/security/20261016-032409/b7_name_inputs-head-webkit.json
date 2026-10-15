@@ -1,0 +1,861 @@
+{
+ "facts": {
+  "engine": "webkit",
+  "started": "2026-10-16T03:31:10",
+  "root": "{workspace}\\examples\\split",
+  "server_pid": 8584,
+  "port": 47077,
+  "browser_version": "26.5",
+  "ended": "2026-10-16T03:31:17",
+  "server_log": [
+   "server STARTED pid 8584 port 47077 root {workspace}\\examples\\split",
+   "server STOPPED pid 8584 port 47077, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "case": "type RLO after Ben",
+   "route": "type",
+   "text": [
+    "x",
+    "U+202E",
+    "y"
+   ],
+   "value_before": "Ben",
+   "caret_before": 3,
+   "field_now": [
+    "INPUT",
+    "Benxy",
+    5,
+    5
+   ],
+   "last_input_raw": "Benxy",
+   "value_expected": "Benxy",
+   "caret_expected": 5,
+   "field": [
+    "INPUT",
+    "Benxy",
+    5,
+    5
+   ],
+   "saved_people": [
+    "Aisyah",
+    "Benxy",
+    "Chen"
+   ],
+   "saved_items": [],
+   "inputs_seen": [
+    [
+     "insertText",
+     "Benx",
+     4
+    ],
+    [
+     "insertText",
+     "Benx\u202e",
+     5
+    ],
+    [
+     "insertText",
+     "Benxy",
+     5
+    ]
+   ],
+   "structure": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "people_line": {
+    "text": "Aisyah, Benxy, Chen",
+    "left_to_right": true,
+    "steps_backwards": 0,
+    "first_backwards": [],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 19
+   },
+   "copy_strip": {
+    "lines": 6,
+    "last": "Adds up to RM 116.60",
+    "class_chars": [],
+    "rows": [
+     "Aisyah RM 38.87",
+     "Benxy RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "screen_rows": [
+     "Aisyah RM 38.87",
+     "Benxy RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "matches_screen": true
+   },
+   "class_chars_anywhere": [],
+   "pass": true,
+   "field_as_contracted": true
+  },
+  {
+   "case": "insert RLO after Ben",
+   "route": "insert",
+   "text": [
+    "U+202E",
+    " ",
+    "a",
+    "n",
+    "d",
+    " ",
+    "3",
+    " ",
+    "m",
+    "o",
+    "r",
+    "e"
+   ],
+   "value_before": "Ben",
+   "caret_before": 3,
+   "field_now": [
+    "INPUT",
+    "Ben and 3 more",
+    14,
+    14
+   ],
+   "last_input_raw": "BenU+202E and 3 more",
+   "value_expected": "Ben and 3 more",
+   "caret_expected": 14,
+   "field": [
+    "INPUT",
+    "Ben and 3 more",
+    14,
+    14
+   ],
+   "saved_people": [
+    "Aisyah",
+    "Ben and 3 more",
+    "Chen"
+   ],
+   "saved_items": [],
+   "inputs_seen": [
+    [
+     "insertText",
+     "Ben\u202e and 3 more",
+     15
+    ]
+   ],
+   "structure": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "people_line": {
+    "text": "Aisyah, Ben and 3 more, Chen",
+    "left_to_right": true,
+    "steps_backwards": 0,
+    "first_backwards": [],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 28
+   },
+   "copy_strip": {
+    "lines": 6,
+    "last": "Adds up to RM 116.60",
+    "class_chars": [],
+    "rows": [
+     "Aisyah RM 38.87",
+     "Ben and 3 more RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "screen_rows": [
+     "Aisyah RM 38.87",
+     "Ben and 3 more RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "matches_screen": true
+   },
+   "class_chars_anywhere": [],
+   "pass": true,
+   "field_as_contracted": true
+  },
+  {
+   "case": "insert mid-name, caret check",
+   "route": "insert",
+   "text": [
+    "U+202E",
+    "x",
+    "U+2067"
+   ],
+   "value_before": "Ben",
+   "caret_before": 2,
+   "field_now": [
+    "INPUT",
+    "Bexn",
+    3,
+    3
+   ],
+   "last_input_raw": "BeU+202ExU+2067n",
+   "value_expected": "Bexn",
+   "caret_expected": 3,
+   "field": [
+    "INPUT",
+    "Bexn",
+    3,
+    3
+   ],
+   "saved_people": [
+    "Aisyah",
+    "Bexn",
+    "Chen"
+   ],
+   "saved_items": [],
+   "inputs_seen": [
+    [
+     "insertText",
+     "Be\u202ex\u2067n",
+     5
+    ]
+   ],
+   "structure": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "people_line": {
+    "text": "Aisyah, Bexn, Chen",
+    "left_to_right": true,
+    "steps_backwards": 0,
+    "first_backwards": [],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 18
+   },
+   "copy_strip": {
+    "lines": 6,
+    "last": "Adds up to RM 116.60",
+    "class_chars": [],
+    "rows": [
+     "Aisyah RM 38.87",
+     "Bexn RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "screen_rows": [
+     "Aisyah RM 38.87",
+     "Bexn RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "matches_screen": true
+   },
+   "class_chars_anywhere": [],
+   "pass": true,
+   "field_as_contracted": true
+  },
+  {
+   "case": "paste-model LS, NUL, NEL, ESC",
+   "route": "paste-model",
+   "text": [
+    "a",
+    "U+2028",
+    "b",
+    "U+0000",
+    "U+0085",
+    "c",
+    "U+001B",
+    "[",
+    "3",
+    "1",
+    "m"
+   ],
+   "value_before": "Ben",
+   "caret_before": 3,
+   "field_now": [
+    "INPUT",
+    "Benabc[31m",
+    10,
+    10
+   ],
+   "last_input_raw": "BenaU+2028bU+0000U+0085cU+001B[31m",
+   "value_expected": "Benabc[31m",
+   "caret_expected": 10,
+   "field": [
+    "INPUT",
+    "Benabc[31m",
+    10,
+    10
+   ],
+   "saved_people": [
+    "Aisyah",
+    "Benabc[31m",
+    "Chen"
+   ],
+   "saved_items": [],
+   "inputs_seen": [
+    [
+     "insertFromPaste",
+     "Bena\u2028b\u0000\u0085c\u001b[31m",
+     14
+    ]
+   ],
+   "structure": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "people_line": {
+    "text": "Aisyah, Benabc[31m, Chen",
+    "left_to_right": true,
+    "steps_backwards": 0,
+    "first_backwards": [],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 24
+   },
+   "copy_strip": {
+    "lines": 6,
+    "last": "Adds up to RM 116.60",
+    "class_chars": [],
+    "rows": [
+     "Aisyah RM 38.87",
+     "Benabc[31m RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "screen_rows": [
+     "Aisyah RM 38.87",
+     "Benabc[31m RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "matches_screen": true
+   },
+   "class_chars_anywhere": [],
+   "pass": true,
+   "field_as_contracted": true
+  },
+  {
+   "case": "drop-model RLI without PDI",
+   "route": "drop-model",
+   "text": [
+    "U+2067",
+    "Z",
+    "e",
+    "d"
+   ],
+   "value_before": "Aisyah",
+   "caret_before": 6,
+   "field_now": [
+    "INPUT",
+    "AisyahZed",
+    9,
+    9
+   ],
+   "last_input_raw": "AisyahU+2067Zed",
+   "value_expected": "AisyahZed",
+   "caret_expected": 9,
+   "field": [
+    "INPUT",
+    "AisyahZed",
+    9,
+    9
+   ],
+   "saved_people": [
+    "AisyahZed",
+    "Ben",
+    "Chen"
+   ],
+   "saved_items": [],
+   "inputs_seen": [
+    [
+     "insertFromDrop",
+     "Aisyah\u2067Zed",
+     10
+    ]
+   ],
+   "structure": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "people_line": {
+    "text": "AisyahZed, Ben, Chen",
+    "left_to_right": true,
+    "steps_backwards": 0,
+    "first_backwards": [],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 20
+   },
+   "copy_strip": {
+    "lines": 6,
+    "last": "Adds up to RM 116.60",
+    "class_chars": [],
+    "rows": [
+     "AisyahZed RM 38.87",
+     "Ben RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "screen_rows": [
+     "AisyahZed RM 38.87",
+     "Ben RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "matches_screen": true
+   },
+   "class_chars_anywhere": [],
+   "pass": true,
+   "field_as_contracted": true
+  },
+  {
+   "case": "paste-model only class characters into an emptied field",
+   "route": "paste-model",
+   "text": [
+    "U+202E",
+    "U+2067",
+    "U+0000",
+    "U+2028"
+   ],
+   "value_before": "Ben",
+   "caret_before": 0,
+   "field_now": [
+    "INPUT",
+    "",
+    0,
+    0
+   ],
+   "last_input_raw": "U+202EU+2067U+0000U+2028",
+   "value_expected": "",
+   "caret_expected": 0,
+   "field": [
+    "INPUT",
+    "",
+    0,
+    0
+   ],
+   "saved_people": [
+    "Aisyah",
+    "",
+    "Chen"
+   ],
+   "saved_items": [],
+   "inputs_seen": [
+    [
+     "deleteContentBackward",
+     "",
+     0
+    ],
+    [
+     "insertFromPaste",
+     "\u202e\u2067\u0000\u2028",
+     4
+    ]
+   ],
+   "structure": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "people_line": {
+    "text": "Aisyah, Person 2, Chen",
+    "left_to_right": true,
+    "steps_backwards": 0,
+    "first_backwards": [],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 22
+   },
+   "copy_strip": {
+    "lines": 6,
+    "last": "Adds up to RM 116.60",
+    "class_chars": [],
+    "rows": [
+     "Aisyah RM 38.87",
+     "Person 2 RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "screen_rows": [
+     "Aisyah RM 38.87",
+     "Person 2 RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "matches_screen": true
+   },
+   "class_chars_anywhere": [],
+   "pass": true,
+   "field_as_contracted": true
+  },
+  {
+   "case": "insert markup and RLO into an item name",
+   "route": "insert",
+   "text": [
+    "<",
+    "i",
+    "m",
+    "g",
+    " ",
+    "s",
+    "r",
+    "c",
+    "=",
+    "x",
+    " ",
+    "o",
+    "n",
+    "e",
+    "r",
+    "r",
+    "o",
+    "r",
+    "=",
+    "a",
+    "l",
+    "e",
+    "r",
+    "t",
+    "(",
+    "1",
+    ")",
+    ">",
+    "U+202E"
+   ],
+   "value_before": "Nasi",
+   "caret_before": 0,
+   "field_now": [
+    "INPUT",
+    "<img src=x onerror=alert(1)>",
+    28,
+    28
+   ],
+   "last_input_raw": "<img src=x onerror=alert(1)>U+202E",
+   "value_expected": "<img src=x onerror=alert(1)>",
+   "caret_expected": 28,
+   "field": [
+    "INPUT",
+    "<img src=x onerror=alert(1)>",
+    28,
+    28
+   ],
+   "saved_people": [
+    "Aisyah",
+    "Ben",
+    "Chen"
+   ],
+   "saved_items": [
+    "<img src=x onerror=alert(1)>",
+    "Teh"
+   ],
+   "inputs_seen": [
+    [
+     "insertText",
+     "<img src=x onerror=alert(1)>\u202e",
+     29
+    ]
+   ],
+   "structure": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "people_line": {
+    "text": "Aisyah, Ben, Chen",
+    "left_to_right": true,
+    "steps_backwards": 0,
+    "first_backwards": [],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 17
+   },
+   "copy_strip": {
+    "lines": 6,
+    "last": "Adds up to RM 44.77",
+    "class_chars": [],
+    "rows": [
+     "Aisyah RM 29.04",
+     "Ben RM 7.87",
+     "Chen RM 7.86"
+    ],
+    "screen_rows": [
+     "Aisyah RM 29.04",
+     "Ben RM 7.87",
+     "Chen RM 7.86"
+    ],
+    "matches_screen": true
+   },
+   "class_chars_anywhere": [],
+   "pass": true,
+   "field_as_contracted": true
+  },
+  {
+   "case": "insert 30 letters with controls at maxlength",
+   "route": "insert",
+   "text": [
+    "a",
+    "b",
+    "U+202E",
+    "a",
+    "b",
+    "U+202E",
+    "a",
+    "b",
+    "U+202E",
+    "a",
+    "b",
+    "U+202E",
+    "a",
+    "b",
+    "U+202E",
+    "a",
+    "b",
+    "U+202E",
+    "a",
+    "b",
+    "U+202E",
+    "a",
+    "b",
+    "U+202E",
+    "a",
+    "b",
+    "U+202E",
+    "a",
+    "b",
+    "U+202E"
+   ],
+   "value_before": "Chen",
+   "caret_before": 0,
+   "field_now": [
+    "INPUT",
+    "ababababababab",
+    14,
+    14
+   ],
+   "last_input_raw": "abU+202EabU+202EabU+202EabU+202EabU+202EabU+202Eab",
+   "value_expected": "ababababababab",
+   "caret_expected": 14,
+   "field": [
+    "INPUT",
+    "ababababababab",
+    14,
+    14
+   ],
+   "saved_people": [
+    "Aisyah",
+    "Ben",
+    "ababababababab"
+   ],
+   "saved_items": [],
+   "inputs_seen": [
+    [
+     "insertText",
+     "ab\u202eab\u202eab\u202eab\u202eab\u202eab\u202eab",
+     20
+    ]
+   ],
+   "structure": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "people_line": {
+    "text": "Aisyah, Ben, ababababababab",
+    "left_to_right": true,
+    "steps_backwards": 0,
+    "first_backwards": [],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 27
+   },
+   "copy_strip": {
+    "lines": 6,
+    "last": "Adds up to RM 116.60",
+    "class_chars": [],
+    "rows": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "ababababababab RM 38.86"
+    ],
+    "screen_rows": [
+     "Aisyah RM 38.87",
+     "Ben RM 38.87",
+     "ababababababab RM 38.86"
+    ],
+    "matches_screen": true
+   },
+   "class_chars_anywhere": [],
+   "pass": true,
+   "field_as_contracted": true
+  },
+  {
+   "case": "undo and redo after a removal",
+   "route": "undo",
+   "steps": [
+    [
+     "after insert",
+     [
+      "INPUT",
+      "BenQZ",
+      5,
+      5
+     ]
+    ],
+    [
+     "Control+Z",
+     [
+      "INPUT",
+      "BenQZ",
+      5,
+      5
+     ],
+     "BenQZ"
+    ],
+    [
+     "Control+Z",
+     [
+      "INPUT",
+      "BenQZ",
+      5,
+      5
+     ],
+     "BenQZ"
+    ],
+    [
+     "Control+Z",
+     [
+      "INPUT",
+      "BenQZ",
+      5,
+      5
+     ],
+     "BenQZ"
+    ],
+    [
+     "Control+Y",
+     [
+      "INPUT",
+      "BenQZ",
+      5,
+      5
+     ],
+     "BenQZ"
+    ],
+    [
+     "Control+Shift+Z",
+     [
+      "INPUT",
+      "BenQZ",
+      5,
+      5
+     ],
+     "BenQZ"
+    ],
+    [
+     "Control+Y",
+     [
+      "INPUT",
+      "BenQZ",
+      5,
+      5
+     ],
+     "BenQZ"
+    ]
+   ],
+   "any_class_in_field_or_save": [],
+   "field": [
+    "INPUT",
+    "BenQZ",
+    5,
+    5
+   ],
+   "saved_people": [
+    "Aisyah",
+    "BenQZ",
+    "Chen"
+   ],
+   "saved_items": [],
+   "inputs_seen": [
+    [
+     "insertText",
+     "BenQ",
+     4
+    ],
+    [
+     "insertText",
+     "BenQ\u202eZ",
+     6
+    ],
+    [
+     "historyUndo",
+     "BenQZ",
+     5
+    ],
+    [
+     "historyRedo",
+     "BenQZ",
+     5
+    ]
+   ],
+   "structure": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "people_line": {
+    "text": "Aisyah, BenQZ, Chen",
+    "left_to_right": true,
+    "steps_backwards": 0,
+    "first_backwards": [],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 19
+   },
+   "copy_strip": {
+    "lines": 6,
+    "last": "Adds up to RM 116.60",
+    "class_chars": [],
+    "rows": [
+     "Aisyah RM 38.87",
+     "BenQZ RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "screen_rows": [
+     "Aisyah RM 38.87",
+     "BenQZ RM 38.87",
+     "Chen RM 38.86"
+    ],
+    "matches_screen": true
+   },
+   "class_chars_anywhere": [],
+   "pass": true
+  }
+ ]
+}

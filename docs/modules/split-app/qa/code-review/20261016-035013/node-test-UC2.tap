@@ -1,0 +1,264 @@
+TAP version 13
+# Subtest: @R62 @R33 plainNameField of "BeU+202En" with the caret at 2, a removed character after the caret only, none before it
+not ok 1 - @R62 @R33 plainNameField of "BeU+202En" with the caret at 2, a removed character after the caret only, none before it
+  ---
+  duration_ms: 1.6156
+  type: 'test'
+  location: '{temp}\\claude\\{project-id}\\2398866f-bd86-44e4-b91f-3d2709393151\\scratchpad\\split-reg-cr\\m3\\tests\\dom.test.js:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        calls: [
+          [
+    +       1,
+    +       1
+    -       2,
+    -       2
+          ]
+        ],
+        returned: 'Ben',
+        value: 'Ben'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    returned: 'Ben'
+    value: 'Ben'
+    calls:
+      0:
+        0: 2
+        1: 2
+  actual:
+    returned: 'Ben'
+    value: 'Ben'
+    calls:
+      0:
+        0: 1
+        1: 1
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///{temp}/claude/{project-id}/2398866f-bd86-44e4-b91f-3d2709393151/scratchpad/split-reg-cr/m3/tests/dom.test.js:35:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1106:25)
+    Test.start (node:internal/test_runner/test:1003:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+  ...
+# Subtest: @R62 @R33 plainNameField of "BenU+202E" with the caret at 3, the same at the end of the text
+not ok 2 - @R62 @R33 plainNameField of "BenU+202E" with the caret at 3, the same at the end of the text
+  ---
+  duration_ms: 0.2655
+  type: 'test'
+  location: '{temp}\\claude\\{project-id}\\2398866f-bd86-44e4-b91f-3d2709393151\\scratchpad\\split-reg-cr\\m3\\tests\\dom.test.js:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        calls: [
+          [
+    +       2,
+    +       2
+    -       3,
+    -       3
+          ]
+        ],
+        returned: 'Ben',
+        value: 'Ben'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    returned: 'Ben'
+    value: 'Ben'
+    calls:
+      0:
+        0: 3
+        1: 3
+  actual:
+    returned: 'Ben'
+    value: 'Ben'
+    calls:
+      0:
+        0: 2
+        1: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///{temp}/claude/{project-id}/2398866f-bd86-44e4-b91f-3d2709393151/scratchpad/split-reg-cr/m3/tests/dom.test.js:35:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1106:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+    Test.postRun (node:internal/test_runner/test:1235:19)
+    Test.run (node:internal/test_runner/test:1163:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+  ...
+# Subtest: @R62 @R33 plainNameField of "U+202EBeU+202En" with the caret at 3, one removed character before the caret and one after it
+not ok 3 - @R62 @R33 plainNameField of "U+202EBeU+202En" with the caret at 3, one removed character before the caret and one after it
+  ---
+  duration_ms: 0.166
+  type: 'test'
+  location: '{temp}\\claude\\{project-id}\\2398866f-bd86-44e4-b91f-3d2709393151\\scratchpad\\split-reg-cr\\m3\\tests\\dom.test.js:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        calls: [
+          [
+    +       1,
+    +       1
+    -       2,
+    -       2
+          ]
+        ],
+        returned: 'Ben',
+        value: 'Ben'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    returned: 'Ben'
+    value: 'Ben'
+    calls:
+      0:
+        0: 2
+        1: 2
+  actual:
+    returned: 'Ben'
+    value: 'Ben'
+    calls:
+      0:
+        0: 1
+        1: 1
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///{temp}/claude/{project-id}/2398866f-bd86-44e4-b91f-3d2709393151/scratchpad/split-reg-cr/m3/tests/dom.test.js:35:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1106:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+    Test.postRun (node:internal/test_runner/test:1235:19)
+    Test.run (node:internal/test_runner/test:1163:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: @R62 @R33 plainNameField of "U+2028U+2029BeU+0000nU+200E" with the caret at 4, two removed characters before the caret and two after it
+not ok 4 - @R62 @R33 plainNameField of "U+2028U+2029BeU+0000nU+200E" with the caret at 4, two removed characters before the caret and two after it
+  ---
+  duration_ms: 0.1317
+  type: 'test'
+  location: '{temp}\\claude\\{project-id}\\2398866f-bd86-44e4-b91f-3d2709393151\\scratchpad\\split-reg-cr\\m3\\tests\\dom.test.js:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        calls: [
+          [
+    +       0,
+    +       0
+    -       2,
+    -       2
+          ]
+        ],
+        returned: 'Ben',
+        value: 'Ben'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    returned: 'Ben'
+    value: 'Ben'
+    calls:
+      0:
+        0: 2
+        1: 2
+  actual:
+    returned: 'Ben'
+    value: 'Ben'
+    calls:
+      0:
+        0: 0
+        1: 0
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///{temp}/claude/{project-id}/2398866f-bd86-44e4-b91f-3d2709393151/scratchpad/split-reg-cr/m3/tests/dom.test.js:35:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1106:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+    Test.postRun (node:internal/test_runner/test:1235:19)
+    Test.run (node:internal/test_runner/test:1163:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: @R62 @R33 plainNameField of "BeU+202ExU+2067n" with the caret at 5, what an insert at the caret leaves, the caret after the x
+ok 5 - @R62 @R33 plainNameField of "BeU+202ExU+2067n" with the caret at 5, what an insert at the caret leaves, the caret after the x
+  ---
+  duration_ms: 0.1104
+  type: 'test'
+  ...
+# Subtest: @R62 @R33 plainNameField of "U+202EU+2067" with the caret at 1, a name made only of removed characters, the plain text is empty
+not ok 6 - @R62 @R33 plainNameField of "U+202EU+2067" with the caret at 1, a name made only of removed characters, the plain text is empty
+  ---
+  duration_ms: 0.1435
+  type: 'test'
+  location: '{temp}\\claude\\{project-id}\\2398866f-bd86-44e4-b91f-3d2709393151\\scratchpad\\split-reg-cr\\m3\\tests\\dom.test.js:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        calls: [
+          [
+    +       -1,
+    +       -1
+    -       0,
+    -       0
+          ]
+        ],
+        returned: '',
+        value: ''
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    returned: ''
+    value: ''
+    calls:
+      0:
+        0: 0
+        1: 0
+  actual:
+    returned: ''
+    value: ''
+    calls:
+      0:
+        0: -1
+        1: -1
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///{temp}/claude/{project-id}/2398866f-bd86-44e4-b91f-3d2709393151/scratchpad/split-reg-cr/m3/tests/dom.test.js:35:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1106:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+    Test.postRun (node:internal/test_runner/test:1235:19)
+    Test.run (node:internal/test_runner/test:1163:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 1
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 58.4209

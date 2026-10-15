@@ -1,0 +1,81 @@
+{
+ "facts": {
+  "engine": "chromium",
+  "started": "2026-10-16T03:42:01",
+  "root": "{workspace}\\examples\\split",
+  "server_pid": 25780,
+  "port": 58875,
+  "browser_version": "149.0.7827.55",
+  "ended": "2026-10-16T03:42:04",
+  "server_log": [
+   "server STARTED pid 25780 port 58875 root {workspace}\\examples\\split",
+   "server STOPPED pid 25780 port 58875, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "path": "boot at 390",
+   "first": {
+    "text": "<svg onload=f()>, Ben and 3 more",
+    "which": 3,
+    "chars": 32,
+    "drawn": 32,
+    "box": [
+     270,
+     270,
+     "hidden",
+     "ellipsis",
+     "block"
+    ]
+   },
+   "after_500_ms": {
+    "text": "<svg onload=f()>, Ben and 3 more",
+    "which": 3,
+    "chars": 32,
+    "drawn": 32,
+    "box": [
+     270,
+     270,
+     "hidden",
+     "ellipsis",
+     "block"
+    ]
+   },
+   "console": [],
+   "page_errors": [],
+   "whole": true
+  },
+  {
+   "path": "1280 then 390",
+   "first": {
+    "text": "<svg onload=f()>, Ben, Adds up to RM 0.00, AAdds up to, Tom",
+    "which": 0,
+    "chars": 59,
+    "drawn": 59,
+    "box": [
+     386,
+     270,
+     "hidden",
+     "ellipsis",
+     "block"
+    ]
+   },
+   "after_500_ms": {
+    "text": "<svg onload=f()>, Ben and 3 more",
+    "which": 3,
+    "chars": 32,
+    "drawn": 32,
+    "box": [
+     270,
+     270,
+     "hidden",
+     "ellipsis",
+     "block"
+    ]
+   },
+   "console": [],
+   "page_errors": [],
+   "whole": true
+  }
+ ]
+}

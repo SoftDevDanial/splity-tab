@@ -1,0 +1,31 @@
+{
+ "facts": {
+  "engine": "chromium",
+  "started": "2026-10-16T03:35:52",
+  "root": "{workspace}\\examples\\split",
+  "server_pid": 6476,
+  "port": 40254,
+  "browser_version": "149.0.7827.55",
+  "ended": "2026-10-16T03:35:54",
+  "server_log": [
+   "server STARTED pid 6476 port 40254 root {workspace}\\examples\\split",
+   "server STOPPED pid 6476 port 40254, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "driver": "real quota, tight fill",
+   "filler_keys": 18,
+   "warning_at_boot": false,
+   "warning_after_typing": true,
+   "stored_draft_after_failed_write": null,
+   "warning_after_storage_back": false,
+   "stored_service_text": "1012",
+   "service_on_screen": "1012",
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "off_rule_requests": []
+  }
+ ]
+}

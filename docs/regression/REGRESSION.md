@@ -1,82 +1,48 @@
-# Regression, v1.0.0
+# Regression, v1.1.0
 
 | | |
 |---|---|
 | Project | Split |
-| Mode | full, under the ORCH economy ruling of 2026-10-09 (CHANGE-LEDGER row 51), corrected on 2026-10-10 (the fidelity finder gap) |
-| Opened | 2026-10-09, at the tail of execute |
-| Closed | 2026-10-10 14:30 |
-| Run by | the orchestrator, with finder and solver agents |
+| Mode | full, with the step 5 re-check's QA and security halves folded in (CHANGE-LEDGER S7 row 46, ORCH) |
+| Opened | 2026-10-16 03:25, at the tail of execute (both modules closed 03:20, row 49) |
+| Closed | 2026-10-16 04:25 |
+| Run by | the orchestrator, with finder agents. No solver round was needed |
+| Code judged | `b0992b4` (HEAD `64b882c`, nothing under `src/`, `tests/` or `index.html` changed after it) |
 | Verdict | **PASS** |
 
+The regression of v1.0.0 (PASS 2026-10-10 14:30) is in git history (tag `v1.0.0`).
+
 ## Scope per module
-`--full` asks for every finder on every module. The economy ruling keeps a finder's verdict when the code it judged has not
-changed since, and re-runs every finder whose code no agent has seen. The QA finder and the cold boot ran on everything.
 
-| Module | Last green | Code since its finders ran | What re-ran | Why the rest stands |
-|---|---|---|---|---|
-| split-core | `329679e` | none, `src/core/` unchanged | QA finder (179 items), unit suite, cold boot. The app's code review re-read the seam | Code review and security were given on this exact code |
-| split-app | `22ac9af` | `61c3cd3..22ac9af` (the repeat-press guard), then the regression's own fixes | Code review on the delta, two solver rounds, a scoped re-check. QA finder (162 items). **Fidelity finder** (the gap below). Cold boot | Security: see the ruling below |
-
-**The fidelity finder gap.** The 2026-10-09 ruling let "the solver's fidelity run" stand as the fidelity result. That run was
-the harness pixel gate alone. No fidelity finder had ever judged split-app, so the FE element checklist half of R40 had no
-verdict. The regression QA finder reported R40 as untested, the orchestrator traced why, and a fidelity finder ran on
-2026-10-10. Recorded in the ledger as an orchestrator gap, not a limit.
-
-**Security on the regression's fixes.** The fixes after `22ac9af` (`e30b015`, `4a36354`, and a comment in `src/errors.js`)
-change only which clicks an Add or a Remove acts on. They add no input, storage, rendering or network path, so the security
-verdict on `22ac9af` stands (ORCH ruling, ledger).
+| Module | QA and boot | Fidelity | Code review | Security | Why |
+|---|---|---|---|---|---|
+| split-core | every scenario, Node | n/a (logic) | the fix pass `6b9b093..HEAD`, its earlier delta reviewed at the step 5 re-check | `798f17f..HEAD` | `--full`, with the code review economy of the 1.0 ruling (code already reviewed at the re-check is not reviewed twice) |
+| split-app | every scenario, Chromium and WebKit, the cold boot both engines | the pixel gate rerun on the final tree, 40 pairs. The FE checklist half stands from step 5 (row 42), no markup or CSS changed since | the fix pass `6b9b093..HEAD` | `798f17f..HEAD` | the same |
+| whole codebase | | | one consistency sweep | | `--full` |
 
 ## Finder verdicts
-| Finder | Model | Verdict | Report |
-|---|---|---|---|
-| Code review, split-app delta | sonnet | RG-CR-01 BLOCKER (a regression: a double click on the right edge of Add person added and removed a person), 3 WARNING, 3 INFO. Solved. Re-check found RG-CR-08 BLOCKER (a second regression: a double press on a chip under a pending price error removed the item). Solved. Closed under the stop rule, status pass | `docs/modules/split-app/findings/regression-code-review.md` |
-| QA, both modules | haiku | PASS, 340 of 341 items, R40 checklist half untested (then covered by the fidelity finder). Five everyday flows by hand at 390 x 844, 73 of 73 checks | `docs/modules/split-app/findings/regression-qa.md` |
-| Fidelity, split-app | sonnet | 1-to-1, clean, 0 findings. 10 of 10 pairs at 0 px, 157 of 157 checklist rows, 2,242,912 property comparisons across 35 page pairs | `docs/modules/split-app/findings/fidelity.md` |
-| Security, both modules | | stands, clean (SEC-04 accepted for v1.0, fixed in v1.1.0) | `docs/modules/*/findings/security.md` |
 
-## Solver rounds
-1. **Round 1** (`17ac1ed`, `e30b015`, `f0ca022`, `38686c0`). Add person and Add item arm the repeat-press guard (RG-CR-01, 108 new test rows), the guard's lifetime tests record presses as well as clicks (RG-CR-02), docs. Browser 312 to 421.
-2. **Scoped re-check.** RG-CR-01, 02 and 04 hold. New RG-CR-08 BLOCKER. Ruled a fix, not an accepted limit, because it deleted typed data through a gesture that worked before.
-3. **Round 2** (`4a36354`, `059f560`). A Remove ignores a repeat press itself as well as arming the guard. The re-check's own probe went from 96 of 96 affected layouts removing the item to 0. 6 new test rows. Browser 421 to 427.
-
-Code review then closed for v1.0.0 under the stop rule.
-
-## Cold boot
-Evidence `docs/regression/20261010-142445/` (a copy of the official run `docs/modules/split-app/qa/live-e2e/20261010-142445/`).
-The shipped `index.html` on a plain static server, no seed, real `localStorage`, real clicks and keys, Chromium 149, 390 x 844,
-the clipboard recorder in place of the system clipboard.
-
-| # | Gesture | What it proves | Result |
-|---|---|---|---|
-| 1 | open with empty storage | the empty bill (two people, Even, empty Subtotal, 10 and 6 percent), nothing stored | PASS |
-| 2 | name Aisyah and Ben, Add person, Chen, Subtotal 100.00 | RM 100.00, 10.00, 6.60, 116.60, shares 38.87, 38.87, 38.86, Adds up to 116.60 | PASS |
-| 3 | Copy summary | "Summary copied" and the exact even-split summary | PASS |
-| 4 | By item, four items typed with prices, tap who had each, Copy summary | shares 29.04, 15.74, 24.48, Adds up to 69.26, the exact by-item summary | PASS |
-| 5 | close the page, open it again, click Even | the bill as left, then the even split | PASS |
-| 6 | New bill, Start new bill, reload | a modal dialog with Cancel focused, then the empty bill, still empty after a reload | PASS |
-| 7 | read the logs of steps 1 to 6 | 0 console errors, 0 page errors, no CSP violation, only same-origin GETs | PASS |
-
-Server pid 13236 on port 32635, stopped by the gate, port free after.
-
-## Suites on the final tree
-| Suite | Command | Result |
+| Finder | Verdict | Record |
 |---|---|---|
-| Unit | `node --test "tests/**/*.test.js"` | 275 pass, 0 fail (QA finder, 2026-10-10) |
-| Browser | `python -m pytest tests/browser -q -p no:cacheprovider` | 427 passed in 109.87 s (QA finder, 2026-10-10) |
+| QA (Sonnet) | split-core PASS 73 of 73 scenarios, Node 406 of 406. split-app PASS 181 scenarios, Chromium 742 passed, WebKit 739 passed and 3 counted skips, by id 0 differences from the fix pass proofs | both `findings/qa.md`, section "v1.1.0 regression --full, 2026-10-16", ledger row 50 |
+| Fidelity pixel gate (Chromium) | 40 of 40 pairs at 0 px, control-self 0 px and control-noseed 56.08 percent, both CONTROL PASS | `docs/modules/split-app/qa/fidelity/20261016-033155/run.log` |
+| Security (Opus) | split-app PASS, split-core PASS. SEC-S5-1 and SEC-S5-3 resolved and confirmed against a `798f17f` control in both engines. Every threat row holds. SEC-R1 INFO accepted (an IME composition holding a bidi control is cut short, the name stays plain) | both `findings/security.md`, ledger row 51 |
+| Code review (Opus) | split-core CLEAN. split-app 0 BLOCKER, RG-CR-1 WARNING and RG-CR-2 INFO fixed in the README, RG-CR-3 to RG-CR-5 INFO deferred to the v1.2.0 plan | both `findings/code-review.md`, ledger row 52 |
+| Consistency sweep (Opus) | 0 BLOCKER. CS-1 WARNING accepted as a residual (a name input bringing only control characters saves the same text and clears the copy status), CS-7 fixed in the README, CS-2 to CS-6 deferred, CS-8 to the publish prep | `docs/regression/20261016-032500/consistency.md`, ledger row 52 |
 
-No code changed after those runs (`git diff 9420055 HEAD -- src tests index.html` is empty).
+## Cold boot, the live gate
 
-## Accepted for v1.0, unchanged by this run
-- On a big bill the by-item table is wider than a 360 px phone (H-02). Fixed in v1.1.0.
-- Holding Enter on Remove of the only item adds one blank item (SEC-04). Fixed in v1.1.0.
-- The rest are in the README, Known limits.
+The shipped `index.html` served by `python -m http.server` with no seed, driven by real gestures, one server per engine, the control first.
 
-## Close
-- CHANGE-LEDGER. A "re-verified, no regression" row in each of C1 to C8, with its proof, plus this run's row.
-- README. Reconciled after both solver rounds.
-- Process ledger. Reconciled 2026-10-10 (`docs/progress/process-ledger.md`).
-- Credential gate. Full sweep from the project root, exit 0.
+| Engine | Control (must stop red at step 1) | Green run |
+|---|---|---|
+| Chromium 149 | `docs/modules/split-app/qa/live-e2e/20261016-033455-chromium-control/`, red at step 1 | `20261016-033459-chromium/`, 9 of 9 steps, 0 console, page or CSP errors |
+| WebKit 26.5 | `20261016-033526-webkit-control/`, red at step 1 | `20261016-033527-webkit/`, 9 of 9 steps, 0 console, page or CSP errors |
 
-## Verdict
-**PASS.** Every in-scope finder is green or stands on unchanged code, both suites pass, and the app works live from a cold boot.
+Server PIDs and ports are in `docs/regression/20261016-032500/cold-boot.md`.
+
+## Closing checks
+- Credential gate, whole tree, exit 0 with both controls (security finder 03:52, the orchestrator at the close).
+- Process ledger rows 82 and 83 (and the code reviewer's foreground runs) reconciled, nothing alive but the Streaks UAT server PID 11048 on 8741 (Streaks process row 77).
+- CHANGE LEDGER S7 rows 50 to 53.
+- Open for the owner's UAT, QA-S5-4 (WebKit glass and the focus ring on Splits after the sheet closes) and the iPhone VoiceOver price case of H-09.

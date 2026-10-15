@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="3" time="3.770" timestamp="2026-10-16T04:12:02.409032+08:00" hostname="{host}"><testcase classname="test_zz_probe_cs" name="test_probe_a_class_only_input_and_the_commit[person-RLO]" time="1.858"><system-out>--------------------------------- Captured Out ---------------------------------
+
+</system-out></testcase><testcase classname="test_zz_probe_cs" name="test_probe_a_class_only_input_and_the_commit[person-x]" time="0.797"><system-out>--------------------------------- Captured Out ---------------------------------
+
+</system-out></testcase><testcase classname="test_zz_probe_cs" name="test_probe_a_class_only_input_and_the_commit[item-LS]" time="0.706"><system-out>--------------------------------- Captured Out ---------------------------------
+
+</system-out></testcase></testsuite></testsuites>

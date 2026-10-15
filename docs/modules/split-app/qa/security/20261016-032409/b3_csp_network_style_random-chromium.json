@@ -1,0 +1,603 @@
+{
+ "facts": {
+  "engine": "chromium",
+  "started": "2026-10-16T03:35:06",
+  "root": "{workspace}\\examples\\split",
+  "server_pid": 19880,
+  "port": 19771,
+  "browser_version": "149.0.7827.55",
+  "ended": "2026-10-16T03:35:09",
+  "server_log": [
+   "server STARTED pid 19880 port 19771 root {workspace}\\examples\\split",
+   "server STOPPED pid 19880 port 19771, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "A": {
+    "stand_in": {
+     "writes": 0,
+     "hasClipboard": true,
+     "native": false
+    },
+    "strip_total": "RM 116.60",
+    "styles_p1_over_sheet": [
+     "html. => --strip-h: 111px;",
+     "#sheetScroll => padding-bottom: 271px;"
+    ],
+    "styles_p1_random": [
+     "html. => --strip-h: 111px;",
+     "#sheetScroll => padding-bottom: 325px;"
+    ],
+    "styles_end_a": [
+     "html. => --strip-h: 108px;"
+    ],
+    "flow": "completed",
+    "csp": [],
+    "random_calls": [
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at chooseSpareRule (http://127.0.0.1:19771/src/core/spare.js:49:74) |     at onRule (http://127.0.0.1:19771/src/main.js:167:29) |     at HTMLDialogElement.<anonymous> (http://127.0.0.1:19771/src/ui/spare-choice.js:145:44)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at chooseSpareRule (http://127.0.0.1:19771/src/core/spare.js:49:74) |     at onRule (http://127.0.0.1:19771/src/main.js:167:29) |     at HTMLDialogElement.<anonymous> (http://127.0.0.1:19771/src/ui/spare-choice.js:145:44)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)"
+    ],
+    "clipboard_writes": 2,
+    "clipboard_refused": 0,
+    "console": [],
+    "page_errors": [],
+    "dialogs": [],
+    "requests": [
+     [
+      "GET",
+      "http://127.0.0.1:19771/",
+      "document"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/system.css",
+      "stylesheet"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/main.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/bill.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/result.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/spare.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/summary.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/draft.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/errors.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/dialog.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/note.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/people.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/mode.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/subtotal.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/items.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/charges.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/sections.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/icons.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/receipt.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/strip.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/sheet.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/spare-choice.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/media.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/dom.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/money.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/allocate.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/field-error.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/field-leave.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/copy-status.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/repeat.js",
+      "script"
+     ]
+    ],
+    "off_rule_requests": []
+   },
+   "B": {
+    "styles_p1_desktop": [
+     "html. => --strip-h: 0px;",
+     "#spareDlg => left: 574px; bottom: 239.203px;"
+    ],
+    "styles_p1_after_narrowing": [
+     "html. => --strip-h: 111px;",
+     "#spareDlg => "
+    ],
+    "styles_end_b": [
+     "html. => --strip-h: 0px;",
+     "#spareDlg => "
+    ],
+    "flow": "completed",
+    "csp": [],
+    "random_calls": [
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)",
+     "    at drawOrder (http://127.0.0.1:19771/src/core/spare.js:28:26) |     at pickAgain (http://127.0.0.1:19771/src/core/spare.js:82:64) |     at HTMLButtonElement.onPickAgain (http://127.0.0.1:19771/src/main.js:159:34)"
+    ],
+    "clipboard_writes": 1,
+    "clipboard_refused": 0,
+    "console": [],
+    "page_errors": [],
+    "dialogs": [],
+    "requests": [
+     [
+      "GET",
+      "http://127.0.0.1:19771/",
+      "document"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/system.css",
+      "stylesheet"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/main.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/bill.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/result.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/spare.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/summary.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/draft.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/errors.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/dialog.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/note.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/people.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/mode.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/subtotal.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/items.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/charges.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/sections.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/icons.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/receipt.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/strip.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/sheet.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/spare-choice.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/media.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/dom.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/money.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/allocate.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/field-error.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/field-leave.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/copy-status.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/repeat.js",
+      "script"
+     ]
+    ],
+    "off_rule_requests": []
+   },
+   "C": {
+    "styles_many": [
+     "html. => --strip-h: 0px;",
+     "#splits => --rows: 6;"
+    ],
+    "flow": "completed",
+    "csp": [],
+    "random_calls": [],
+    "clipboard_writes": 0,
+    "clipboard_refused": 0,
+    "console": [
+     "error: Executing inline script violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-+k6oa1FzkzvtB3DwcDwdXRDtF8A5gQiJBPuKOdHZ6Ck='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked.",
+     "error: Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-NerDAUWfwD31YdZHveMrq0GLjsNFMwxLpZl0dPUeCcw='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to eve",
+     "error: Connecting to 'http://127.0.0.1:19771/' violates the following Content Security Policy directive: \"default-src 'none'\". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked.",
+     "error: Fetch API cannot load http://127.0.0.1:19771/. Refused to connect because it violates the document's Content Security Policy.",
+     "error: Loading the image 'http://127.0.0.1:9/x.png' violates the following Content Security Policy directive: \"img-src 'self'\". The action has been blocked."
+    ],
+    "page_errors": [],
+    "dialogs": [],
+    "requests": [
+     [
+      "GET",
+      "http://127.0.0.1:19771/",
+      "document"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/system.css",
+      "stylesheet"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/main.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/bill.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/result.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/spare.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/summary.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/draft.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/errors.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/dialog.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/note.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/people.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/mode.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/subtotal.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/items.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/charges.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/sections.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/icons.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/receipt.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/strip.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/sheet.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/spare-choice.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/media.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/dom.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/money.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/core/allocate.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/field-error.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/field-leave.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/copy-status.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:19771/src/ui/repeat.js",
+      "script"
+     ],
+     [
+      "GET",
+      "http://127.0.0.1:9/x.png",
+      "image"
+     ]
+    ],
+    "off_rule_requests": [],
+    "positive_controls": {
+     "inlineRan": null,
+     "fetched": "rejected",
+     "added": [
+      "script-src-elem",
+      "style-src-attr",
+      "connect-src",
+      "img-src"
+     ]
+    },
+    "off_rule_requests_after_controls": [
+     [
+      "GET",
+      "http://127.0.0.1:9/x.png",
+      "image"
+     ]
+    ]
+   },
+   "style_lines_distinct": [
+    "#sheetScroll => padding-bottom: 271px;",
+    "#sheetScroll => padding-bottom: 325px;",
+    "#spareDlg => ",
+    "#spareDlg => left: 574px; bottom: 239.203px;",
+    "#splits => --rows: 6;",
+    "html. => --strip-h: 0px;",
+    "html. => --strip-h: 108px;",
+    "html. => --strip-h: 111px;"
+   ],
+   "style_props_outside_r38": [],
+   "random_calls_total": 18,
+   "random_calls_outside_spare_js": [],
+   "pass": false
+  }
+ ]
+}

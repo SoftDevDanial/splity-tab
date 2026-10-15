@@ -1,0 +1,603 @@
+{
+ "facts": {
+  "engine": "webkit",
+  "started": "2026-10-16T03:42:54",
+  "root": "{temp}/claude/{project-id}/2398866f-bd86-44e4-b91f-3d2709393151/scratchpad/split-reg-sec/ctl-798f17f",
+  "server_pid": 10292,
+  "port": 56521,
+  "browser_version": "26.5",
+  "ended": "2026-10-16T03:42:57",
+  "server_log": [
+   "server STARTED pid 10292 port 56521 root {temp}\\claude\\{project-id}\\2398866f-bd86-44e4-b91f-3d2709393151\\scratchpad\\split-reg-sec\\ctl-798f17f",
+   "server STOPPED pid 10292 port 56521, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "case": "v2 hostile names",
+   "seeded": true,
+   "stand_in": {
+    "writes": 0,
+    "hasClipboard": true,
+    "native": false
+   },
+   "stored_at_boot_unchanged": true,
+   "structure_restored": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "texts_restored": {
+    "values": [
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067"
+    ],
+    "itemValues": [
+     "<img src=x onerror=alert(1)>",
+     "</li><li>Teh\u202e",
+     "Kopi"
+    ],
+    "toggles": [
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067",
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067",
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067"
+    ],
+    "rows": [
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067"
+    ],
+    "removes": [
+     "Remove <svg onload=f()>",
+     "Remove Ben\u202e",
+     "Remove Adds up to RM 0.00\u0000",
+     "Remove A\u2028Adds up to",
+     "Remove Tom\u2067"
+    ],
+    "itemAria": [
+     "Item 1 name",
+     "<img src=x onerror=alert(1)> price in RM",
+     "Remove <img src=x onerror=alert(1)>",
+     "Who had <img src=x onerror=alert(1)>",
+     "Item 2 name",
+     "</li><li>Teh\u202e price in RM",
+     "Remove </li><li>Teh\u202e",
+     "Who had </li><li>Teh\u202e",
+     "Item 3 name",
+     "Kopi price in RM",
+     "Remove Kopi",
+     "Who had Kopi"
+    ],
+    "chip": "One person, <svg onload=f()>",
+    "chipAria": "Spare sen: One person, <svg onload=f()>. Change",
+    "peopleLine": "<svg onload=f()>, Ben\u202e, Adds up to RM 0.00\u0000, A\u2028Adds up to, Tom\u2067"
+   },
+   "want_values": [
+    "<svg onload=f()>",
+    "Ben",
+    "Adds up to RM 0.00",
+    "AAdds up to",
+    "Tom"
+   ],
+   "want_labels": [
+    "<svg onload=f()>",
+    "Ben",
+    "Adds up to RM 0.00",
+    "AAdds up to",
+    "Tom"
+   ],
+   "pills": [
+    "<svg onload=f()>",
+    "Ben\u202e",
+    "Adds up to RM 0.00\u0000",
+    "A\u2028Adds up to",
+    "Tom\u2067"
+   ],
+   "structure_p1": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "copy_card": {
+    "lines": 8,
+    "last": "Adds up to RM 53.03",
+    "class_chars": [],
+    "rows": [
+     "<svg onload=f()> RM 16.16",
+     "Ben  RM 16.17",
+     "Adds up to RM 0.00  RM 6.90",
+     "A Adds up to RM 6.90",
+     "Tom  RM 6.90"
+    ],
+    "screen_rows": [
+     "<svg onload=f()> RM 16.16",
+     "Ben\u202e RM 16.17",
+     "Adds up to RM 0.00\u0000 RM 6.90",
+     "A\u2028Adds up to RM 6.90",
+     "Tom\u2067 RM 6.90"
+    ],
+    "matches_screen": false
+   },
+   "settled": true,
+   "people_line": {
+    "text": "<svg onload=f()>, Ben\u202e and 3 more",
+    "visible": true,
+    "left_to_right": false,
+    "steps_backwards": 10,
+    "first_backwards": [
+     [
+      " ",
+      "a",
+      340.13,
+      332.13
+     ],
+     [
+      "a",
+      "n",
+      332.13,
+      324.13
+     ],
+     [
+      "n",
+      "d",
+      324.13,
+      316.13
+     ],
+     [
+      "d",
+      " ",
+      316.13,
+      312.13
+     ],
+     [
+      " ",
+      "3",
+      312.13,
+      305.13
+     ],
+     [
+      "3",
+      " ",
+      305.13,
+      301.13
+     ]
+    ],
+    "one_band": true,
+    "tops": [
+     81.5
+    ],
+    "boxes": 32
+   },
+   "people_line_boxes": {
+    "text": "<svg onload=f()>, Ben\u202e and 3 more",
+    "boxes": [
+     [
+      "<",
+      129.13,
+      81.5,
+      140.13,
+      100.5
+     ],
+     [
+      "s",
+      139.13,
+      81.5,
+      146.13,
+      100.5
+     ],
+     [
+      "v",
+      145.13,
+      81.5,
+      152.13,
+      100.5
+     ],
+     [
+      "g",
+      151.13,
+      81.5,
+      161.13,
+      100.5
+     ],
+     [
+      " ",
+      160.13,
+      81.5,
+      164.13,
+      100.5
+     ],
+     [
+      "o",
+      163.13,
+      81.5,
+      173.13,
+      100.5
+     ],
+     [
+      "n",
+      172.13,
+      81.5,
+      180.13,
+      100.5
+     ],
+     [
+      "l",
+      179.13,
+      81.5,
+      184.13,
+      100.5
+     ],
+     [
+      "o",
+      183.13,
+      81.5,
+      192.13,
+      100.5
+     ],
+     [
+      "a",
+      191.13,
+      81.5,
+      199.13,
+      100.5
+     ],
+     [
+      "d",
+      198.13,
+      81.5,
+      207.13,
+      100.5
+     ],
+     [
+      "=",
+      206.13,
+      81.5,
+      217.13,
+      100.5
+     ],
+     [
+      "f",
+      216.13,
+      81.5,
+      221.13,
+      100.5
+     ],
+     [
+      "(",
+      220.13,
+      81.5,
+      226.13,
+      100.5
+     ],
+     [
+      ")",
+      225.13,
+      81.5,
+      230.13,
+      100.5
+     ],
+     [
+      ">",
+      229.13,
+      81.5,
+      239.13,
+      100.5
+     ],
+     [
+      ",",
+      238.13,
+      81.5,
+      242.13,
+      100.5
+     ],
+     [
+      " ",
+      241.13,
+      81.5,
+      246.13,
+      100.5
+     ],
+     [
+      "B",
+      245.13,
+      81.5,
+      254.13,
+      100.5
+     ],
+     [
+      "e",
+      253.13,
+      81.5,
+      262.13,
+      100.5
+     ],
+     [
+      "n",
+      261.13,
+      81.5,
+      269.2,
+      100.5
+     ],
+     [
+      " ",
+      340.13,
+      81.5,
+      344,
+      100.5
+     ],
+     [
+      "a",
+      332.13,
+      81.5,
+      341.13,
+      100.5
+     ],
+     [
+      "n",
+      324.13,
+      81.5,
+      333.13,
+      100.5
+     ],
+     [
+      "d",
+      316.13,
+      81.5,
+      325.13,
+      100.5
+     ],
+     [
+      " ",
+      312.13,
+      81.5,
+      317.13,
+      100.5
+     ],
+     [
+      "3",
+      305.13,
+      81.5,
+      313.13,
+      100.5
+     ],
+     [
+      " ",
+      301.13,
+      81.5,
+      306.13,
+      100.5
+     ],
+     [
+      "m",
+      289.13,
+      81.5,
+      302.13,
+      100.5
+     ],
+     [
+      "o",
+      281.13,
+      81.5,
+      290.13,
+      100.5
+     ],
+     [
+      "r",
+      276.13,
+      81.5,
+      282.13,
+      100.5
+     ],
+     [
+      "e",
+      269.13,
+      81.5,
+      277.13,
+      100.5
+     ]
+    ],
+    "visible": true
+   },
+   "structure_sheet": {
+    "foreign": [],
+    "svgs": [],
+    "handlers": 0,
+    "odd_use_hrefs": [],
+    "pwned": null
+   },
+   "copy_sheet": {
+    "lines": 8,
+    "last": "Adds up to RM 53.03",
+    "class_chars": [],
+    "rows": [
+     "<svg onload=f()> RM 16.16",
+     "Ben  RM 16.17",
+     "Adds up to RM 0.00  RM 6.90",
+     "A Adds up to RM 6.90",
+     "Tom  RM 6.90"
+    ],
+    "screen_rows": [
+     "<svg onload=f()> RM 16.16",
+     "Ben\u202e RM 16.17",
+     "Adds up to RM 0.00\u0000 RM 6.90",
+     "A\u2028Adds up to RM 6.90",
+     "Tom\u2067 RM 6.90"
+    ],
+    "matches_screen": false
+   },
+   "copy_strip": {
+    "lines": 8,
+    "last": "Adds up to RM 53.03",
+    "class_chars": [],
+    "rows": [
+     "<svg onload=f()> RM 16.16",
+     "Ben  RM 16.17",
+     "Adds up to RM 0.00  RM 6.90",
+     "A Adds up to RM 6.90",
+     "Tom  RM 6.90"
+    ],
+    "screen_rows": [
+     "<svg onload=f()> RM 16.16",
+     "Ben\u202e RM 16.17",
+     "Adds up to RM 0.00\u0000 RM 6.90",
+     "A\u2028Adds up to RM 6.90",
+     "Tom\u2067 RM 6.90"
+    ],
+    "matches_screen": false
+   },
+   "saved_after_change": {
+    "people": [
+     "<svg onload=f()>",
+     "Ben\u202e",
+     "Adds up to RM 0.00\u0000",
+     "A\u2028Adds up to",
+     "Tom\u2067"
+    ],
+    "items": [
+     "<img src=x onerror=alert(1)>",
+     "</li><li>Teh\u202e",
+     "Kopi"
+    ]
+   },
+   "clipboard_refused": 0,
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "dialogs": [],
+   "failed": [],
+   "off_rule_requests": [],
+   "class_chars_on_screen": [
+    "U+0000",
+    "U+2028",
+    "U+202E",
+    "U+2067"
+   ],
+   "pass_plain": false,
+   "pass_people_line": false,
+   "pass_copy_matches_screen": false,
+   "pass_text_stays_text": true,
+   "pass_boot_writes_nothing": true,
+   "pass_quiet": true
+  },
+  {
+   "case": "v1 draft, sixth name only class characters",
+   "seeded": true,
+   "note_shown": false,
+   "texts": {
+    "values": [
+     "Aisyah\u2066",
+     "\u0085Ben",
+     "Chen\u2029Lee",
+     "Dan\u001b[31m",
+     "\u202dEve\u202c",
+     "\u202e\u2066\u0000\u009f"
+    ],
+    "itemValues": [],
+    "toggles": [],
+    "rows": [
+     "Aisyah\u2066",
+     "\u0085Ben",
+     "Chen\u2029Lee",
+     "Dan\u001b[31m",
+     "\u202dEve\u202c",
+     "\u202e\u2066\u0000\u009f"
+    ],
+    "removes": [
+     "Remove Aisyah\u2066",
+     "Remove \u0085Ben",
+     "Remove Chen\u2029Lee",
+     "Remove Dan\u001b[31m",
+     "Remove \u202dEve\u202c",
+     "Remove \u202e\u2066\u0000\u009f"
+    ],
+    "itemAria": [],
+    "chip": "Top of the list",
+    "chipAria": "Spare sen: Top of the list. Change",
+    "peopleLine": "Aisyah\u2066, \u0085Ben, Chen\u2029Lee, Dan\u001b[31m, \u202dEve\u202c, \u202e\u2066\u0000\u009f"
+   },
+   "want_values": [
+    "Aisyah",
+    "Ben",
+    "ChenLee",
+    "Dan[31m",
+    "Eve",
+    ""
+   ],
+   "want_labels": [
+    "Aisyah",
+    "Ben",
+    "ChenLee",
+    "Dan[31m",
+    "Eve",
+    "Person 6"
+   ],
+   "people_line": {
+    "text": "Aisyah\u2066, \u0085Ben, Chen\u2029Lee, Dan\u001b[31m, \u202dEve\u202c, \u202e\u2066\u0000\u009f",
+    "left_to_right": false,
+    "steps_backwards": 1,
+    "first_backwards": [
+     [
+      "n",
+      "L",
+      335.13,
+      206.13
+     ]
+    ],
+    "one_band": false,
+    "tops": [
+     71.5,
+     91.5
+    ],
+    "boxes": 39
+   },
+   "copy_strip": {
+    "lines": 9,
+    "last": "Adds up to RM 116.60",
+    "class_chars": [],
+    "rows": [
+     "Aisyah  RM 19.44",
+     " Ben RM 19.44",
+     "Chen Lee RM 19.43",
+     "Dan [31m RM 19.43",
+     " Eve  RM 19.43",
+     "     RM 19.43"
+    ],
+    "screen_rows": [
+     "Aisyah\u2066 RM 19.44",
+     "\u0085Ben RM 19.44",
+     "Chen\u2029Lee RM 19.43",
+     "Dan\u001b[31m RM 19.43",
+     "\u202dEve\u202c RM 19.43",
+     "\u202e\u2066\u0000\u009f RM 19.43"
+    ],
+    "matches_screen": false
+   },
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "off_rule_requests": [],
+   "pass": false
+  }
+ ]
+}

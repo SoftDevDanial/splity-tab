@@ -1,0 +1,517 @@
+{
+ "facts": {
+  "engine": "webkit",
+  "started": "2026-10-16T03:33:20",
+  "root": "{workspace}\\examples\\split",
+  "server_pid": 11544,
+  "port": 22742,
+  "browser_version": "26.5",
+  "tag": "head",
+  "ended": "2026-10-16T03:33:30",
+  "server_log": [
+   "server STARTED pid 11544 port 22742 root {workspace}\\examples\\split",
+   "server STOPPED pid 11544 port 22742, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "case": "held Enter on Remove of the only item (SEC-04)",
+   "size": [
+    390,
+    844
+   ],
+   "gesture": "held Enter",
+   "before": {
+    "items": [
+     [
+      "i7",
+      "Nasi lemak ayam"
+     ]
+    ],
+    "nextId": 8,
+    "people": 3,
+    "spare": null,
+    "raw": "{\"version\": 1, \"bill\": {\"mode\": \"item\", \"people\": [{\"id\": \"p1\", \"name\": \"Aisyah\"}, {\"id\": \"p2\", \"name\": \"Ben\"}, {\"id\": \"p3\", \"name\": \"Chen\"}], \"subtotalText\": \"\", \"items\": [{\"id\": \"i7\", \"name\": \"Nasi lemak ayam\", \"priceText\": \"24.90\", \"who\": [\"p1\"]}], \"serviceText\": \"10\", \"sstText\": \"6\", \"nextId\": 8}}"
+   },
+   "sections_before": [
+    "false",
+    "false"
+   ],
+   "focus_before": "button Remove Nasi lemak ayam",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "clicks_reached": [
+    "Remove Nasi lemak ayam:0"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 8,
+    "people": 3,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"item\",\"people\":[{\"id\":\"p1\",\"name\":\"Aisyah\"},{\"id\":\"p2\",\"name\":\"Ben\"},{\"id\":\"p3\",\"name\":\"Chen\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":8}}"
+   },
+   "sections_after": [
+    "false",
+    "false"
+   ],
+   "focus_after": "button#addItem Add item",
+   "note_present": false,
+   "dialogs_open": [],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "held Enter on New bill",
+   "size": [
+    390,
+    844
+   ],
+   "gesture": "held Enter",
+   "before": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null,
+    "raw": "{\"version\": 1, \"bill\": {\"mode\": \"even\", \"people\": [{\"id\": \"p1\", \"name\": \"Aisyah\"}, {\"id\": \"p2\", \"name\": \"Ben\"}, {\"id\": \"p3\", \"name\": \"Chen\"}], \"subtotalText\": \"100.00\", \"items\": [], \"serviceText\": \"10\", \"sstText\": \"6\", \"nextId\": 4}}"
+   },
+   "sections_before": [
+    "false",
+    "false"
+   ],
+   "focus_before": "button#newBill New bill",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "clicks_reached": [
+    "newBill:0"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null,
+    "raw": "{\"version\": 1, \"bill\": {\"mode\": \"even\", \"people\": [{\"id\": \"p1\", \"name\": \"Aisyah\"}, {\"id\": \"p2\", \"name\": \"Ben\"}, {\"id\": \"p3\", \"name\": \"Chen\"}], \"subtotalText\": \"100.00\", \"items\": [], \"serviceText\": \"10\", \"sstText\": \"6\", \"nextId\": 4}}"
+   },
+   "sections_after": [
+    "false",
+    "false"
+   ],
+   "focus_after": "button Cancel",
+   "note_present": false,
+   "dialogs_open": [
+    "newDlg"
+   ],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "held Enter on Splits (R50)",
+   "size": [
+    390,
+    844
+   ],
+   "gesture": "held Enter",
+   "before": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null,
+    "raw": "{\"version\": 1, \"bill\": {\"mode\": \"even\", \"people\": [{\"id\": \"p1\", \"name\": \"Aisyah\"}, {\"id\": \"p2\", \"name\": \"Ben\"}, {\"id\": \"p3\", \"name\": \"Chen\"}], \"subtotalText\": \"100.00\", \"items\": [], \"serviceText\": \"10\", \"sstText\": \"6\", \"nextId\": 4}}"
+   },
+   "sections_before": [
+    "false",
+    "false"
+   ],
+   "focus_before": "button#splitsBtn Splits",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "clicks_reached": [
+    "splitsBtn:0"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null,
+    "raw": "{\"version\": 1, \"bill\": {\"mode\": \"even\", \"people\": [{\"id\": \"p1\", \"name\": \"Aisyah\"}, {\"id\": \"p2\", \"name\": \"Ben\"}, {\"id\": \"p3\", \"name\": \"Chen\"}], \"subtotalText\": \"100.00\", \"items\": [], \"serviceText\": \"10\", \"sstText\": \"6\", \"nextId\": 4}}"
+   },
+   "sections_after": [
+    "false",
+    "false"
+   ],
+   "focus_after": "div TotalRM 116.60SubtotalRM 100.0",
+   "note_present": false,
+   "dialogs_open": [
+    "splitsDlg"
+   ],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "held Enter on the spare chip (R52)",
+   "size": [
+    1280,
+    800
+   ],
+   "gesture": "held Enter",
+   "before": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null,
+    "raw": "{\"version\": 1, \"bill\": {\"mode\": \"even\", \"people\": [{\"id\": \"p1\", \"name\": \"Aisyah\"}, {\"id\": \"p2\", \"name\": \"Ben\"}, {\"id\": \"p3\", \"name\": \"Chen\"}], \"subtotalText\": \"100.00\", \"items\": [], \"serviceText\": \"10\", \"sstText\": \"6\", \"nextId\": 4}}"
+   },
+   "sections_before": [
+    "false",
+    "false"
+   ],
+   "focus_before": "button#spareBtn Spare sen: Top of the list. Change",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "clicks_reached": [
+    "spareBtn:0"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 4,
+    "people": 3,
+    "spare": null,
+    "raw": "{\"version\": 1, \"bill\": {\"mode\": \"even\", \"people\": [{\"id\": \"p1\", \"name\": \"Aisyah\"}, {\"id\": \"p2\", \"name\": \"Ben\"}, {\"id\": \"p3\", \"name\": \"Chen\"}], \"subtotalText\": \"100.00\", \"items\": [], \"serviceText\": \"10\", \"sstText\": \"6\", \"nextId\": 4}}"
+   },
+   "sections_after": [
+    "false",
+    "false"
+   ],
+   "focus_after": "input ",
+   "note_present": false,
+   "dialogs_open": [
+    "spareDlg"
+   ],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "held Enter on Dismiss note (A23)",
+   "size": [
+    390,
+    844
+   ],
+   "gesture": "held Enter",
+   "before": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_before": [
+    "true",
+    "false"
+   ],
+   "focus_before": "button#dismissNote Dismiss note",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "clicks_reached": [
+    "dismissNote:0"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_after": [
+    "true",
+    "false"
+   ],
+   "focus_after": "button#newBill New bill",
+   "note_present": false,
+   "dialogs_open": [],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "double click on Dismiss note (A23)",
+   "size": [
+    390,
+    844
+   ],
+   "gesture": "double click",
+   "before": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_before": [
+    "true",
+    "false"
+   ],
+   "keys": [],
+   "clicks_reached": [
+    "dismissNote:1"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_after": [
+    "true",
+    "false"
+   ],
+   "focus_after": "button#newBill New bill",
+   "note_present": false,
+   "dialogs_open": [],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 0,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "triple click on Dismiss note (A23)",
+   "size": [
+    390,
+    844
+   ],
+   "gesture": "triple click",
+   "before": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_before": [
+    "true",
+    "false"
+   ],
+   "keys": [],
+   "clicks_reached": [
+    "dismissNote:1"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_after": [
+    "true",
+    "false"
+   ],
+   "focus_after": "button#newBill New bill",
+   "note_present": false,
+   "dialogs_open": [],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 0,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "held Enter on Dismiss note (A23)",
+   "size": [
+    1280,
+    800
+   ],
+   "gesture": "held Enter",
+   "before": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_before": [
+    "true",
+    "false"
+   ],
+   "focus_before": "button#dismissNote Dismiss note",
+   "keys": [
+    "Enter:first",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat",
+    "Enter:repeat"
+   ],
+   "clicks_reached": [
+    "dismissNote:0"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_after": [
+    "true",
+    "false"
+   ],
+   "focus_after": "button#newBill New bill",
+   "note_present": false,
+   "dialogs_open": [],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 4,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "double click on Dismiss note (A23)",
+   "size": [
+    1280,
+    800
+   ],
+   "gesture": "double click",
+   "before": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_before": [
+    "true",
+    "false"
+   ],
+   "keys": [],
+   "clicks_reached": [
+    "dismissNote:1"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_after": [
+    "true",
+    "false"
+   ],
+   "focus_after": "button#newBill New bill",
+   "note_present": false,
+   "dialogs_open": [],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 0,
+   "verdict": "HOLDS"
+  },
+  {
+   "case": "triple click on Dismiss note (A23)",
+   "size": [
+    1280,
+    800
+   ],
+   "gesture": "triple click",
+   "before": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_before": [
+    "true",
+    "false"
+   ],
+   "keys": [],
+   "clicks_reached": [
+    "dismissNote:1"
+   ],
+   "after": {
+    "items": [],
+    "nextId": 3,
+    "people": 2,
+    "spare": {
+     "rule": "top"
+    },
+    "raw": "{\"version\":2,\"bill\":{\"mode\":\"even\",\"people\":[{\"id\":\"p1\",\"name\":\"Person 1\"},{\"id\":\"p2\",\"name\":\"Person 2\"}],\"subtotalText\":\"\",\"items\":[],\"serviceText\":\"10\",\"sstText\":\"6\",\"spare\":{\"rule\":\"top\"},\"nextId\":3}}"
+   },
+   "sections_after": [
+    "true",
+    "false"
+   ],
+   "focus_after": "button#newBill New bill",
+   "note_present": false,
+   "dialogs_open": [],
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "repeats_seen": 0,
+   "verdict": "HOLDS"
+  }
+ ]
+}

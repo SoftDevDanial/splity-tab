@@ -1,0 +1,22 @@
+Code-review finder (read-only), v1.1.0 regression --full, 2026-10-16. Module split-core.
+HEAD 64b882c. Scope 6b9b093..HEAD (the fix pass of ledger S7 row 48, records 50d8646, close 64b882c).
+git diff --stat b0992b4..HEAD -- src tests index.html is empty (run), so the code under review is b0992b4.
+
+Files in this folder
+1. node-test-HEAD.tap
+   node --test --test-reporter=dot --test-reporter-destination=stdout --test-reporter=tap
+   --test-reporter-destination=<this folder>/node-test-HEAD.tap "tests/**/*.test.js", run from the project root on the
+   project tree at HEAD. Its summary lines read tests 406, pass 406, fail 0, skipped 0, todo 0.
+2. run-notes.txt (this file).
+
+What was read, not run
+- The core part of the delta is comments only. bill.js (the BILL_FIELDS and NAME_CONTROLS comments), spare.js (the
+  BILL_FIELDS comment), tests/bill.test.js and tests/hygiene.test.js (one comment line each). A filter of the -U0 diff
+  that drops comment and docstring lines leaves no code line in these files.
+- NAME_CONTROLS is still read only through String.prototype.replace under src/ (bill.js plainName, summary.js), grep.
+- The decode symbol the new BILL_FIELDS comment cites exists in src/draft.js (function decode), and the Bill typedef
+  is in bill.js above it, grep.
+- No em or en dash in the added lines of 6b9b093..HEAD under src/, tests/, README.md or the app spec (grep count 0).
+
+Scratch copies used by the app part of this review live in the session scratchpad
+(split-reg-cr/base, m1, m2, m3), never under src/.

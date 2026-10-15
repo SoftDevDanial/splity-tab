@@ -1,0 +1,65 @@
+{
+ "facts": {
+  "engine": "chromium",
+  "started": "2026-10-16T03:35:50",
+  "root": "{workspace}\\examples\\split",
+  "server_pid": 23748,
+  "port": 16003,
+  "browser_version": "149.0.7827.55",
+  "ended": "2026-10-16T03:35:52",
+  "server_log": [
+   "server STARTED pid 23748 port 16003 root {workspace}\\examples\\split",
+   "server STOPPED pid 23748 port 16003, exited True, port free again True"
+  ]
+ },
+ "rows": [
+  {
+   "driver": "fail-get",
+   "warning_at_boot": true,
+   "warning_after_typing": true,
+   "warning_after_storage_back": false,
+   "stored_service_text": "1012",
+   "service_on_screen": "1012",
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "off_rule_requests": []
+  },
+  {
+   "driver": "fail-set",
+   "warning_at_boot": false,
+   "warning_after_typing": true,
+   "warning_after_storage_back": false,
+   "stored_service_text": "1012",
+   "service_on_screen": "1012",
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "off_rule_requests": []
+  },
+  {
+   "driver": "fail-getitem",
+   "warning_at_boot": true,
+   "warning_after_typing": false,
+   "warning_after_storage_back": false,
+   "service_on_screen": "1012",
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "off_rule_requests": []
+  },
+  {
+   "driver": "real-quota",
+   "fill": "full after 4 MiB-sized keys",
+   "warning_at_boot": false,
+   "warning_after_typing": false,
+   "warning_after_storage_back": false,
+   "stored_service_text": "1012",
+   "service_on_screen": "1012",
+   "csp": [],
+   "console": [],
+   "page_errors": [],
+   "off_rule_requests": []
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+Code-review finder (read-only), v1.1.0 regression --full, 2026-10-16. Module split-app.
+HEAD 64b882c. Scope 6b9b093..HEAD (1f1eb97 A23, d989d32 CR-R6, 62cf3c5 CR-R3, b0992b4 comments, records 50d8646,
+close 64b882c). git diff --stat b0992b4..HEAD -- src tests index.html is empty (run).
+
+Scratch copies (session scratchpad, split-reg-cr/), each a copy of src/, index.html and tests/ at HEAD. Nothing was
+written under the project's src/ or tests/ (git diff --quiet -- src exit 0 after the mutants were made).
+- base. Unmutated.
+- m1. Mutant M1, src/ui/note.js dismiss listener back to dismiss.addEventListener("click", onDismiss) (no guard).
+- m2. Mutant M2, the order swapped, () => { onDismiss(); swallowRepeatClicks(); }.
+- m3. Mutant UC2 in src/ui/dom.js plainNameField, const caret = input.selectionStart - (typed.length - plain.length).
+
+Files in this folder
+1. junit-BASE-chromium.xml, junit-BASE-webkit.xml
+   python -m pytest tests/browser -q -p no:cacheprovider -k "R27_a_repeat_press_on_dismiss or R27_a_held_enter or
+   R27_dismissing" on base, Chromium 149.0.7827.55 and WebKit 26.5. tests 15, failures 0, skipped 0 in each.
+2. junit-M1-chromium.xml. The same 15 ids on m1 in Chromium. tests 15, failures 11. Every double click, triple click
+   and touch double tap row at 390, 360 and 1280 fails, and both held Enter rows fail (the last traceback the console printed, a held Enter row, read
+   "dialog open True, focus '', clicks ['dismissNote', 'newBill']"). The three single click rows and
+   test_R27_dismissing_the_note pass. M1 is killed.
+3. junit-M2-chromium.xml. The same 15 ids on m2 in Chromium. tests 15, failures 0. M2 survives. It is an equivalent
+   mutant, since both calls run in the one click listener before any later event, so no gesture can tell the orders
+   apart.
+4. node-test-UC2.tap. node --test tests/dom.test.js on m3. pass 1, fail 5 (rows 1, 2, 3, 4 and 6 not ok, row 5 agrees,
+   as the solver's BUILD.md record says). UC2 is killed.
+5. check_escapes.py, run with python -I from the project root. Its output, as printed, follows.
+     scan: 75 text files under src/ and tests/ at HEAD, 0 literal characters of the class or of Cf
+     tests/browser/seeds.py: 398 str constants before, 398 after, equal True
+     tests/browser/seeds.py: control against 4a19b4d~1 reports a difference True
+     tests/browser/test_app.py: 4927 str constants before, 4927 after, equal True
+     tests/browser/test_app.py: control against 4a19b4d~1 reports a difference True
+   (before and after are 62cf3c5~1 and 62cf3c5.)
+6. exports_census.py, the census of src exports used by the consistency sweep (its output is in
+   docs/regression/20261016-032500/consistency.md, CS evidence).
+
+Measured counts, collect only on base (python -B -m pytest tests/browser -q -p no:cacheprovider --collect-only),
+742 tests collected in Chromium and 742 in WebKit. The passing counts of the README line are read from the proof
+captures qa/functional/20261016-030148-chromium/pytest.txt (742 PASSED call lines, 0 SKIPPED, 0 FAILED) and
+20261016-030547-webkit/pytest.txt (739 PASSED, 3 SKIPPED, 0 FAILED), and the Node count 406 is measured
+(split-core/qa/code-review/20261016-035013/node-test-HEAD.tap).
+
+Evidence folder contents read for RG-CR-1 (ls, 2026-10-16)
+- qa/functional/20261016-030148-chromium/ R50-sheet-closed-at-1024.txt accessible-description.txt junit.xml pytest.txt skips.txt
+- qa/functional/20261016-030547-webkit/ R50-sheet-closed-at-1024.txt icon-colour.txt junit.xml pytest.txt skips.txt
+- qa/functional/20261016-025245-chromium/ green.txt junit.xml pytest.txt skips.txt (12 R62 ids, no R9 record)
+- qa/functional/20261016-025252-webkit/ green.txt junit.xml pytest.txt skips.txt
+
+One process slip of this review. The M1 run command carried a 2>&1 into a pipe (a banned redirection). It wrote no
+file, the output only printed. Every later command was run without it.

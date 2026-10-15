@@ -1,0 +1,561 @@
+{
+ "head": {
+  "R37 markup sinks": [],
+  "R38 style writes": [
+   {
+    "file": "src/system.css",
+    "match": "<style",
+    "line": "Every golden inlines this file verbatim as its first <style>, so the build copies one stylesheet."
+   },
+   {
+    "file": "src/icon.svg",
+    "match": "<style",
+    "line": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><style>.fi{fill:#A3AAFF}@media (prefers-color-scheme:light){.fi{fill:#1E2140}}</style><path class='f"
+   }
+  ],
+  "R38 allowed style calls": [
+   {
+    "file": "src/ui/receipt.js",
+    "match": "style.setProperty(",
+    "line": "if (many) list.style.setProperty(\"--rows\", String(Math.ceil(result.rows.length / 2)));"
+   },
+   {
+    "file": "src/ui/sheet.js",
+    "match": "style.removeProperty(",
+    "line": "scroll.style.removeProperty(\"padding-bottom\");"
+   },
+   {
+    "file": "src/ui/sheet.js",
+    "match": "style.setProperty(",
+    "line": "scroll.style.setProperty(\"padding-bottom\", `${height + ROOM_UNDER_SPLITS}px`);"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.setProperty(",
+    "line": "dialog.style.setProperty(\"left\", `${card.getBoundingClientRect().right + GAP_TO_CARD}px`);"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.setProperty(",
+    "line": "dialog.style.setProperty(\"bottom\", `${document.documentElement.clientHeight - chip.getBoundingClientRect().bottom}px`);"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.removeProperty(",
+    "line": "dialog.style.removeProperty(\"left\");"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.removeProperty(",
+    "line": "dialog.style.removeProperty(\"bottom\");"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.removeProperty(",
+    "line": "dialog.style.removeProperty(\"left\");"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.removeProperty(",
+    "line": "dialog.style.removeProperty(\"bottom\");"
+   },
+   {
+    "file": "src/ui/strip.js",
+    "match": "style.setProperty(",
+    "line": "document.documentElement.style.setProperty(\"--strip-h\", height);"
+   }
+  ],
+  "R39 network": [
+   {
+    "file": "src/core/result.js",
+    "match": "import(",
+    "line": "* @param {import(\"./bill.js\").Bill} bill"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @param {import(\"./bill.js\").Bill} bill"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @returns {import(\"./bill.js\").Bill}"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @param {import(\"./bill.js\").Bill} bill"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @returns {import(\"./bill.js\").Bill}"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @param {import(\"./bill.js\").Bill} bill"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @returns {import(\"./bill.js\").Bill}"
+   },
+   {
+    "file": "src/core/summary.js",
+    "match": "import(",
+    "line": "* @param {import(\"./result.js\").Result} result an `even` or `item` result"
+   }
+  ],
+  "storage other than localStorage": [],
+  "localStorage": [
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "// The saved bill (C7, R25 to R28, R61): one draft in localStorage under DRAFT_KEY, written as version 2."
+   },
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "// localStorage is untrusted input (another page of the same origin can write it), so decodeDraft is an"
+   },
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "// Only the storage object passed in is touched, except getStorage, which reads window.localStorage. No function here throws."
+   },
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "/** R28: reading window.localStorage can throw (blocked cookies, a sandboxed frame). Then there is no storage. */"
+   },
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "return window.localStorage;"
+   }
+  ],
+  "messaging and navigation": [],
+  "timers": [],
+  "NAME_CONTROLS uses": [
+   {
+    "file": "src/core/bill.js",
+    "match": "NAME_CONTROLS = /[\\p{Cc}\\p{Zl}\\p{Zp}\\p{Bidi_Control}]/gu",
+    "line": "export const NAME_CONTROLS = /[\\p{Cc}\\p{Zl}\\p{Zp}\\p{Bidi_Control}]/gu;"
+   },
+   {
+    "file": "src/core/bill.js",
+    "match": "NAME_CONTROLS deleted and every other one kept in order (R35). split-app calls i",
+    "line": "* A name with every character of NAME_CONTROLS deleted and every other one kept in order (R35). split-app calls it at"
+   },
+   {
+    "file": "src/core/bill.js",
+    "match": "NAME_CONTROLS, \"\")",
+    "line": "return text.replace(NAME_CONTROLS, \"\");"
+   },
+   {
+    "file": "src/core/summary.js",
+    "match": "NAME_CONTROLS } from \"./bill.js\"",
+    "line": "import { NAME_CONTROLS } from \"./bill.js\";"
+   },
+   {
+    "file": "src/core/summary.js",
+    "match": "NAME_CONTROLS` matches prints as one",
+    "line": "* One line per person and nothing else. Each character of a name that `NAME_CONTROLS` matches prints as one"
+   },
+   {
+    "file": "src/core/summary.js",
+    "match": "NAME_CONTROLS, \" \")} ${formatMoney(row.share)}`),",
+    "line": "...result.rows.map((row) => `${row.name.replace(NAME_CONTROLS, \" \")} ${formatMoney(row.share)}`),"
+   },
+   {
+    "file": "src/ui/dom.js",
+    "match": "NAME_CONTROLS class, however it came in (a key, a paste, a drop, autofill). Only",
+    "line": "* NAME_CONTROLS class, however it came in (a key, a paste, a drop, autofill). Only when that removed something does it"
+   }
+  ],
+  "regex statefulness on a shared class": [],
+  "input value or selection writes": [
+   {
+    "file": "src/ui/dom.js",
+    "match": ".value = ",
+    "line": "if (input.value !== text) input.value = text;"
+   },
+   {
+    "file": "src/ui/dom.js",
+    "match": ".value = ",
+    "line": "input.value = plain;"
+   },
+   {
+    "file": "src/ui/dom.js",
+    "match": "setSelectionRange",
+    "line": "input.setSelectionRange(caret, caret);"
+   }
+  ],
+  "scheme strings": [
+   {
+    "file": "src/ui/icons.js",
+    "match": "http://",
+    "line": "const node = document.createElementNS(\"http://www.w3.org/2000/svg\", tag);"
+   },
+   {
+    "file": "src/icon.svg",
+    "match": "http://",
+    "line": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><style>.fi{fill:#A3AAFF}@media (prefers-color-scheme:light){.fi{fill:#1E2140}}</style><path class='f"
+   }
+  ],
+  "clipboard": [
+   {
+    "file": "src/core/bill.js",
+    "match": "clipboard",
+    "line": "// separator (NUL ends a C-string clipboard, FS to RS end a line for Python), and a bidi control reverses how the rest"
+   },
+   {
+    "file": "src/main.js",
+    "match": "clipboard",
+    "line": "* R22, R23: copy the summary of the bill as it is now, then show how it went in every status line. A missing clipboard"
+   },
+   {
+    "file": "src/main.js",
+    "match": "clipboard",
+    "line": "await navigator.clipboard.writeText(summaryText(result));"
+   },
+   {
+    "file": "src/ui/copy-status.js",
+    "match": "clipboard",
+    "line": "fail: { icon: \"warning-circle\", text: \"Could not copy. Your browser blocked the clipboard.\", className: \"status is-fail\" },"
+   }
+  ]
+ },
+ "control_951f277": {
+  "R37 markup sinks": [],
+  "R38 style writes": [
+   {
+    "file": "src/system.css",
+    "match": "<style",
+    "line": "Every golden inlines this file verbatim as its first <style>, so the build copies one stylesheet."
+   },
+   {
+    "file": "src/icon.svg",
+    "match": "<style",
+    "line": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><style>.fi{fill:#A3AAFF}@media (prefers-color-scheme:light){.fi{fill:#1E2140}}</style><path class='f"
+   }
+  ],
+  "R38 allowed style calls": [
+   {
+    "file": "src/ui/receipt.js",
+    "match": "style.setProperty(",
+    "line": "if (many) list.style.setProperty(\"--rows\", String(Math.ceil(result.rows.length / 2)));"
+   },
+   {
+    "file": "src/ui/sheet.js",
+    "match": "style.removeProperty(",
+    "line": "scroll.style.removeProperty(\"padding-bottom\");"
+   },
+   {
+    "file": "src/ui/sheet.js",
+    "match": "style.setProperty(",
+    "line": "scroll.style.setProperty(\"padding-bottom\", `${height + ROOM_UNDER_SPLITS}px`);"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.setProperty(",
+    "line": "dialog.style.setProperty(\"left\", `${card.getBoundingClientRect().right + GAP_TO_CARD}px`);"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.setProperty(",
+    "line": "dialog.style.setProperty(\"bottom\", `${document.documentElement.clientHeight - chip.getBoundingClientRect().bottom}px`);"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.removeProperty(",
+    "line": "dialog.style.removeProperty(\"left\");"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.removeProperty(",
+    "line": "dialog.style.removeProperty(\"bottom\");"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.removeProperty(",
+    "line": "dialog.style.removeProperty(\"left\");"
+   },
+   {
+    "file": "src/ui/spare-choice.js",
+    "match": "style.removeProperty(",
+    "line": "dialog.style.removeProperty(\"bottom\");"
+   },
+   {
+    "file": "src/ui/strip.js",
+    "match": "style.setProperty(",
+    "line": "document.documentElement.style.setProperty(\"--strip-h\", height);"
+   }
+  ],
+  "R39 network": [
+   {
+    "file": "src/core/result.js",
+    "match": "import(",
+    "line": "* @param {import(\"./bill.js\").Bill} bill"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @param {import(\"./bill.js\").Bill} bill"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @returns {import(\"./bill.js\").Bill}"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @param {import(\"./bill.js\").Bill} bill"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @returns {import(\"./bill.js\").Bill}"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @param {import(\"./bill.js\").Bill} bill"
+   },
+   {
+    "file": "src/core/spare.js",
+    "match": "import(",
+    "line": "* @returns {import(\"./bill.js\").Bill}"
+   },
+   {
+    "file": "src/core/summary.js",
+    "match": "import(",
+    "line": "* @param {import(\"./result.js\").Result} result an `even` or `item` result"
+   }
+  ],
+  "storage other than localStorage": [],
+  "localStorage": [
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "// The saved bill (C7, R25 to R28, R61): one draft in localStorage under DRAFT_KEY, written as version 2."
+   },
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "// localStorage is untrusted input (another page of the same origin can write it), so decodeDraft is an"
+   },
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "// Only the storage object passed in is touched, except getStorage, which reads window.localStorage. No function here throws."
+   },
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "/** R28: reading window.localStorage can throw (blocked cookies, a sandboxed frame). Then there is no storage. */"
+   },
+   {
+    "file": "src/draft.js",
+    "match": "localStorage",
+    "line": "return window.localStorage;"
+   }
+  ],
+  "messaging and navigation": [],
+  "timers": [],
+  "NAME_CONTROLS uses": [],
+  "regex statefulness on a shared class": [],
+  "input value or selection writes": [
+   {
+    "file": "src/ui/dom.js",
+    "match": ".value = ",
+    "line": "if (input.value !== text) input.value = text;"
+   }
+  ],
+  "scheme strings": [
+   {
+    "file": "src/ui/icons.js",
+    "match": "http://",
+    "line": "const node = document.createElementNS(\"http://www.w3.org/2000/svg\", tag);"
+   },
+   {
+    "file": "src/icon.svg",
+    "match": "http://",
+    "line": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><style>.fi{fill:#A3AAFF}@media (prefers-color-scheme:light){.fi{fill:#1E2140}}</style><path class='f"
+   }
+  ],
+  "clipboard": [
+   {
+    "file": "src/core/summary.js",
+    "match": "clipboard",
+    "line": "// a control or a line separator (NUL ends a C-string clipboard, FS to RS end a line for Python), and a bidi"
+   },
+   {
+    "file": "src/draft.js",
+    "match": "clipboard",
+    "line": "/** D8: at most `max` grapheme clusters, and no line break (a name is one line in the clipboard text). */"
+   },
+   {
+    "file": "src/main.js",
+    "match": "clipboard",
+    "line": "* R22, R23: copy the summary of the bill as it is now, then show how it went in every status line. A missing clipboard"
+   },
+   {
+    "file": "src/main.js",
+    "match": "clipboard",
+    "line": "await navigator.clipboard.writeText(summaryText(result));"
+   },
+   {
+    "file": "src/ui/copy-status.js",
+    "match": "clipboard",
+    "line": "fail: { icon: \"warning-circle\", text: \"Could not copy. Your browser blocked the clipboard.\", className: \"status is-fail\" },"
+   }
+  ]
+ },
+ "delta": {
+  "R37 markup sinks": {
+   "head": 0,
+   "control": 0,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "R38 style writes": {
+   "head": 2,
+   "control": 2,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "R38 allowed style calls": {
+   "head": 10,
+   "control": 10,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "R39 network": {
+   "head": 8,
+   "control": 8,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "storage other than localStorage": {
+   "head": 0,
+   "control": 0,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "localStorage": {
+   "head": 5,
+   "control": 5,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "messaging and navigation": {
+   "head": 0,
+   "control": 0,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "timers": {
+   "head": 0,
+   "control": 0,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "NAME_CONTROLS uses": {
+   "head": 7,
+   "control": 0,
+   "new_in_head": [
+    {
+     "file": "src/core/bill.js",
+     "match": "NAME_CONTROLS = /[\\p{Cc}\\p{Zl}\\p{Zp}\\p{Bidi_Control}]/gu",
+     "line": "export const NAME_CONTROLS = /[\\p{Cc}\\p{Zl}\\p{Zp}\\p{Bidi_Control}]/gu;"
+    },
+    {
+     "file": "src/core/bill.js",
+     "match": "NAME_CONTROLS deleted and every other one kept in order (R35). split-app calls i",
+     "line": "* A name with every character of NAME_CONTROLS deleted and every other one kept in order (R35). split-app calls it at"
+    },
+    {
+     "file": "src/core/bill.js",
+     "match": "NAME_CONTROLS, \"\")",
+     "line": "return text.replace(NAME_CONTROLS, \"\");"
+    },
+    {
+     "file": "src/core/summary.js",
+     "match": "NAME_CONTROLS } from \"./bill.js\"",
+     "line": "import { NAME_CONTROLS } from \"./bill.js\";"
+    },
+    {
+     "file": "src/core/summary.js",
+     "match": "NAME_CONTROLS` matches prints as one",
+     "line": "* One line per person and nothing else. Each character of a name that `NAME_CONTROLS` matches prints as one"
+    },
+    {
+     "file": "src/core/summary.js",
+     "match": "NAME_CONTROLS, \" \")} ${formatMoney(row.share)}`),",
+     "line": "...result.rows.map((row) => `${row.name.replace(NAME_CONTROLS, \" \")} ${formatMoney(row.share)}`),"
+    },
+    {
+     "file": "src/ui/dom.js",
+     "match": "NAME_CONTROLS class, however it came in (a key, a paste, a drop, autofill). Only",
+     "line": "* NAME_CONTROLS class, however it came in (a key, a paste, a drop, autofill). Only when that removed something does it"
+    }
+   ],
+   "gone_from_head": []
+  },
+  "regex statefulness on a shared class": {
+   "head": 0,
+   "control": 0,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "input value or selection writes": {
+   "head": 3,
+   "control": 1,
+   "new_in_head": [
+    {
+     "file": "src/ui/dom.js",
+     "match": ".value = ",
+     "line": "input.value = plain;"
+    },
+    {
+     "file": "src/ui/dom.js",
+     "match": "setSelectionRange",
+     "line": "input.setSelectionRange(caret, caret);"
+    }
+   ],
+   "gone_from_head": []
+  },
+  "scheme strings": {
+   "head": 2,
+   "control": 2,
+   "new_in_head": [],
+   "gone_from_head": []
+  },
+  "clipboard": {
+   "head": 4,
+   "control": 5,
+   "new_in_head": [
+    {
+     "file": "src/core/bill.js",
+     "match": "clipboard",
+     "line": "// separator (NUL ends a C-string clipboard, FS to RS end a line for Python), and a bidi control reverses how the rest"
+    }
+   ],
+   "gone_from_head": [
+    {
+     "file": "src/core/summary.js",
+     "match": "clipboard",
+     "line": "// a control or a line separator (NUL ends a C-string clipboard, FS to RS end a line for Python), and a bidi"
+    },
+    {
+     "file": "src/draft.js",
+     "match": "clipboard",
+     "line": "/** D8: at most `max` grapheme clusters, and no line break (a name is one line in the clipboard text). */"
+    }
+   ]
+  }
+ }
+}

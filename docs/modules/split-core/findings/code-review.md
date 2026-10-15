@@ -8,6 +8,7 @@ head: d58f4ce
 scope: "git diff v1.0.0..HEAD -- src/core (bill.js, money.js, result.js, spare.js new) and the Node tests of v1.1.0 tasks C1 to C6 (bill, money, result, spare, invariants, hygiene, summary, support/bills.js, support/rng.js), judged against spec.md v1.1.0 (R1 to R34, Contracts, Non-goals, threat model), qa.md, constitution.md and README.md"
 evidence: docs/modules/split-core/qa/code-review/20261015-212541/
 recheck: { date: 2026-10-16, head: 6cddc66, status: issues_found, counts: { blocker: 0, warning: 1, info: 3 }, evidence: docs/modules/split-core/qa/code-review/20261016-020001/ }
+regression: { date: 2026-10-16, head: 64b882c, scope: "6b9b093..HEAD", status: clean, counts: { blocker: 0, warning: 0, info: 0 }, evidence: docs/modules/split-core/qa/code-review/20261016-035013/ }
 ---
 # Code review: split-core (v1.1.0, step 5)
 
@@ -129,3 +130,21 @@ None.
 
 ## Not done (re-check)
 Nothing in scope was left out. No browser run was needed for this module.
+
+## v1.1.0 regression --full, 2026-10-16
+
+Role. Code-review finder (read-only), deliverable 1 of the `sdlc:regression --full` code review. HEAD `64b882c`, `git status` clean for `src/`, `tests/` and `index.html`, and `git diff --stat b0992b4..HEAD -- src tests index.html` is empty (run), so the code judged is the last green code `b0992b4`. Scope `6b9b093..HEAD` for this module, the core half of the fix pass (`b0992b4`, comments in `src/core/bill.js`, `src/core/spare.js`, `tests/bill.test.js` and `tests/hygiene.test.js`), its records (`50d8646`) and the close (`64b882c`), with the README's split-core bullets as reconciled in `6cddc66`, `6b9b093` and `64b882c`. Judged against `spec.md` (R35, R24, the Contracts, Non-goals), `constitution.md` and the house writing rule. Evidence `docs/modules/split-core/qa/code-review/20261016-035013/` (`run-notes.txt` says what each file is). The cross-module sweep of the same run is `docs/regression/20261016-032500/consistency.md`.
+
+**Verdict. CLEAN. 0 BLOCKER, 0 WARNING, 0 INFO for the delta.** Every core change in the range is a comment line (read on the diff, and a filter of the `-U0` diff that drops comment and docstring lines leaves no code line). No em or en dash was added (grep, 0). Node 406 of 406 on the project tree at HEAD (measured, `node-test-HEAD.tap`). One cross-module finding of the sweep touches this module's `setPersonName` and `setItemName` (CS-1 there, routed to the planner first), and it is not in this delta.
+
+### The step 5 re-check, per finding (on HEAD)
+- **CR-R1. HOLDS.** Read on the diff of `b0992b4`. The five lines are written without a colon in prose, the `BILL_FIELDS` comment, the first sentence of the `NAME_CONTROLS` comment, the comment above "@R35 @R24 plainName and summaryText read one class, 79 code points, for every code point" in `tests/bill.test.js`, and in `tests/hygiene.test.js` the comment above `SRC_DIR` and the "scan has teeth" line. `\p{Bidi_Control}` is still on one line under `src/` (grep), so `oneClassProblems` still passes (part of the 406).
+- **CR-R2. HOLDS.** Read. The `BILL_FIELDS` comment in `bill.js` now says `newBill` is the one list core's copies read and that the Bill typedef and split-app's decoder list the fields too. Both symbols it cites exist (`function decode` in `src/draft.js`, the Bill typedef above it in `bill.js`, grep). The drift it warns of is caught today by the decoder round trip of `newBill()` in `tests/draft.test.js` (read). The `spare.js` comment says "the one list core's copies read", the same claim in its second home.
+- **CR-R3.** Accepted as a residual (ledger S7 row 46), unchanged. `NAME_CONTROLS` is still read only through `String.prototype.replace` under `src/`, in `plainName` and `summaryText` (grep).
+- **CR-R4 (README). CLOSED.** The actions bullet now says "Every copy of a bill takes its fields from `BILL_FIELDS`, the keys of `newBill()`, so `bill.js` and `spare.js` cannot drift apart". True by grep, the only copies of a bill under `src/` are `billWith` and `withSpare`, both built from `BILL_FIELDS`, with no spread and no `Object.assign`.
+
+### README, split-core bullets (fallback owner)
+True to the code. Every symbol named exists (the export census of the sweep). "`allocateByWeight` ... is the one place that uses `BigInt`" holds (the only `BigInt(` calls are in `allocate.js`, grep). "`allocateEvenly` is no longer called by the page" holds (no reader under `src/`, census). "No core action calls it, the app does" for `plainName` holds (its readers are `src/draft.js` and `src/ui/dom.js`).
+
+## Not done (regression --full)
+No core mutant was run, because no core code line changed in the range. The app half and the sweep are in their own files.

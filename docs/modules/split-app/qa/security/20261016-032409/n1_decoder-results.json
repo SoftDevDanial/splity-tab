@@ -1,0 +1,1046 @@
+{
+ "summary": {
+  "node": "v24.11.1",
+  "cases": 101,
+  "pass": 101,
+  "fail": [],
+  "pollution": {
+   "objectProtoUnchanged": true,
+   "arrayProtoUnchanged": true,
+   "polluted": null,
+   "adminOnPlainObject": null
+  }
+ },
+ "rows": [
+  {
+   "name": "base v2 S2",
+   "chars": 228,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 1
+  },
+  {
+   "name": "base v2 S1",
+   "chars": 343,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "item",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 143,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "base v1 S2 (D14 top)",
+   "chars": 205,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "v1 with hostile spare is ignored (D14)",
+   "chars": 245,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "v1 with spare null (D14)",
+   "chars": 218,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "v2 no spare",
+   "chars": 205,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "v2 spare null",
+   "chars": 218,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "v2 spare array",
+   "chars": 216,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "v2 spare string top",
+   "chars": 219,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "spare top with extra keys and own __proto__",
+   "chars": 308,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "spare one p2",
+   "chars": 244,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule,personId",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "spare one p2 with stray order",
+   "chars": 269,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule,personId",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "spare one unknown p9",
+   "chars": 244,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "spare one number 2",
+   "chars": 241,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "spare one missing personId",
+   "chars": 228,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "spare one personId __proto__",
+   "chars": 251,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "spare one personId array [p2]",
+   "chars": 246,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "spare one, person on no item, item mode (readable, R61)",
+   "chars": 300,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule,personId",
+   "result": "item",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 142,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "spare random ok",
+   "chars": 256,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule,order",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "spare random with stray personId",
+   "chars": 272,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule,order",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "spare random missing order",
+   "chars": 231,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "order drops an id",
+   "chars": 251,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "order repeats an id",
+   "chars": 256,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "order adds an id",
+   "chars": 261,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "order invents an id",
+   "chars": 256,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "order numbers",
+   "chars": 247,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "order array-like object",
+   "chars": 279,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "order holds __proto__",
+   "chars": 263,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "order nested arrays",
+   "chars": 262,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "order 1e6 entries",
+   "chars": 5000241,
+   "expected": "R",
+   "got": "R",
+   "ms": 28,
+   "pass": true
+  },
+  {
+   "name": "rule TOP",
+   "chars": 228,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "rule constructor",
+   "chars": 236,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "rule __proto__",
+   "chars": 234,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "rule toString",
+   "chars": 233,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "rule missing",
+   "chars": 216,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "version 3",
+   "chars": 228,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "version string 2",
+   "chars": 230,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "version 2.0 literal",
+   "chars": 230,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "version 1.5",
+   "chars": 230,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "version true",
+   "chars": 231,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "version only through own __proto__",
+   "chars": 242,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "mode only through own __proto__",
+   "chars": 242,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "mode unknown 'item '",
+   "chars": 229,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "mode toString",
+   "chars": 232,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "mode missing",
+   "chars": 214,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "people 1",
+   "chars": 172,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "people 0 in even mode",
+   "chars": 150,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "people 13",
+   "chars": 440,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "people object with length",
+   "chars": 212,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "duplicate person id",
+   "chars": 218,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "person with own __proto__ and extra key",
+   "chars": 268,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "person id 'p1 '",
+   "chars": 196,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "person id P1",
+   "chars": 195,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "person id 11 digits",
+   "chars": 205,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "person id number",
+   "chars": 192,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "person id p0 (regex allows 0)",
+   "chars": 218,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 139,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "name 21 ascii",
+   "chars": 238,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "name 20 family emoji (220 UTF-16 units)",
+   "chars": 437,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 358,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "name with CR",
+   "chars": 221,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "name with LF",
+   "chars": 221,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "name with LS (readable, summary prints a space)",
+   "chars": 234,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 154,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "name with NUL (readable)",
+   "chars": 241,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 156,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "name with RLO (readable)",
+   "chars": 221,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 141,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "name null",
+   "chars": 219,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "who not an array",
+   "chars": 271,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "who repeats",
+   "chars": 278,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "who unknown id",
+   "chars": 273,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "who number",
+   "chars": 270,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "who __proto__",
+   "chars": 280,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "who toString",
+   "chars": 279,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "who 1e6 x p1",
+   "chars": 5000268,
+   "expected": "R",
+   "got": "R",
+   "ms": 37,
+   "pass": true
+  },
+  {
+   "name": "item with own __proto__ and extra",
+   "chars": 376,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "item",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 143,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "item id duplicate",
+   "chars": 317,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "item priceText number",
+   "chars": 267,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "item priceText missing",
+   "chars": 253,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "item name 41",
+   "chars": 309,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "items 51",
+   "chars": 2613,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "items 50",
+   "chars": 2816,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "item",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 143,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "items object",
+   "chars": 222,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "nextId stale (= highest id)",
+   "chars": 228,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "nextId 4.5",
+   "chars": 230,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "nextId string",
+   "chars": 230,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "nextId 1e300",
+   "chars": 233,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "nextId 1000000000 (edge, SEC-03 residual)",
+   "chars": 237,
+   "expected": "A",
+   "got": "A",
+   "ms": 0,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "nextId 1000000001",
+   "chars": 237,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "nextId 0",
+   "chars": 228,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "nextId -1",
+   "chars": 229,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "subtotalText missing",
+   "chars": 204,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "serviceText number",
+   "chars": 226,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "top-level array",
+   "chars": 230,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "top-level null",
+   "chars": 4,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "empty text",
+   "chars": 0,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "truncated",
+   "chars": 223,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "trailing garbage",
+   "chars": 229,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "BOM prefixed",
+   "chars": 229,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "bill array",
+   "chars": 23,
+   "expected": "R",
+   "got": "R",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "name": "4.5M-char subtotalText",
+   "chars": 4500222,
+   "expected": "A",
+   "got": "A",
+   "ms": 2,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "blocked",
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 5
+  },
+  {
+   "name": "4.5M-char ascii name (D8 rejects)",
+   "chars": 4500217,
+   "expected": "R",
+   "got": "R",
+   "ms": 571,
+   "pass": true
+  },
+  {
+   "name": "4.5M combining marks, 1 grapheme name (D8 passes)",
+   "chars": 4500218,
+   "expected": "A",
+   "got": "A",
+   "ms": 21,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 4500139,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 54
+  },
+  {
+   "name": "unknown key with 100k nesting",
+   "chars": 200236,
+   "expected": "?",
+   "got": "A",
+   "ms": 6,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  },
+  {
+   "name": "unknown key with 1M nesting",
+   "chars": 2000236,
+   "expected": "?",
+   "got": "A",
+   "ms": 63,
+   "pass": true,
+   "shape": [],
+   "spare": "rule",
+   "result": "even",
+   "summaryLines": 6,
+   "summaryHasControl": false,
+   "summaryChars": 149,
+   "roundTrip": true,
+   "coreDraws": 2,
+   "coreMs": 0
+  }
+ ]
+}

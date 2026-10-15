@@ -1,0 +1,34 @@
+{
+  "mismatch_pixels": 0,
+  "total_pixels": 280800,
+  "mismatch_pct": 0.0,
+  "dimensions_match": true,
+  "golden_size": [
+    360,
+    780
+  ],
+  "candidate_size": [
+    360,
+    780
+  ],
+  "compared_size": [
+    360,
+    780
+  ],
+  "threshold": 0.01,
+  "golden": "./docs/design/bill-empty.html",
+  "candidate": "http://127.0.0.1:28423/",
+  "viewport": [
+    360,
+    780
+  ],
+  "dpr": 1.0,
+  "full_page": true,
+  "color_scheme": "dark",
+  "browser_args": [
+    "--disable-lcd-text"
+  ],
+  "fixed_time": "2026-10-13T09:00:00",
+  "candidate_init_script": null,
+  "candidate_after_load": null
+}

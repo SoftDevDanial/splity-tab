@@ -20,7 +20,7 @@
 <p align="center">
   <img src="docs/brand/screens/showcase.png" alt="Split at 1280 by 800 and on a 390 by 844 phone, splitting a four-item bill by item between Aisyah, Ben and Chen" width="880">
 </p>
-<p align="center"><sub>Real captures of the built app, taken by the pixel gate at 1280 x 800 and 390 x 844. Each one matches its approved design screen with 0 mismatched pixels.</sub></p>
+<p align="center"><sub>Real captures of the built 1.0.0 app, taken by the pixel gate at 1280 x 800 and 390 x 844. Each one matches its approved design screen with 0 mismatched pixels. The image, logo and badges change to 1.1.0 at its seal.</sub></p>
 
 ## What it does
 
@@ -121,7 +121,7 @@ Vanilla JavaScript ES modules and plain CSS. Zero dependencies, no framework, no
 - `src/main.js` boots the page, keeps the one bill, and routes every change to the bill through `commit`. The caller runs a core action (for example `commit(addPerson(bill))`), and `commit` takes the bill it returned, saves the draft and calls `render`. `render` reads the view state and never writes it. `commit` clears the copy status on every change to the bill, and `copySummary` drops a clipboard answer that arrives after the bill changed. `showCopyStatus` (`src/ui/copy-status.js`) draws the status into every status paragraph, the card's, the strip's and the Splits sheet's.
 - `src/draft.js` saves and loads the draft (`getStorage`, `loadDraft`, `saveDraft`, `encodeDraft`, `decodeDraft`).
 - `src/errors.js` holds the rules for when a field error shows, with their own unit tests. `newErrorFlags`, `flagsFor` and `visibleErrors` build or read the flags, and `typedInto`, `leftField` and `forgetPrice` update the flags they are given.
-- `src/ui/` builds the page in blocks, one `create...` factory each. Each file's header comment gives its factory's exact arguments and what it returns. Blocks write the DOM and report gestures. They never change the bill.
+- `src/ui/` builds the page in blocks, one `create...` factory each, and most files' header comment gives the factory's arguments and what it returns. Blocks write the DOM and report gestures. They never change the bill.
 - `createPeopleSection` and `createChargesSection` fold People and Charges into one row each below 1024 px. `main.js` keeps the open state.
 - `createNotes` shows the save warning while the latest save failed (`saveFailing`, from `saveDraft`), and the note about a draft it could not read.
 - `placeModeBlocks` keeps the Subtotal block in the DOM only in Even and the Items block only in By item (`MODE_BLOCKS`). A block is put back only when it is missing, because moving the block that holds the focused field would drop its focus.
@@ -148,8 +148,8 @@ added or changed.
 | What | Command | Evidence |
 |---|---|---|
 | Unit tests | `node --test "tests/**/*.test.js"` | none |
-| Browser tests, Chromium | `python -m pytest tests/browser -q` | `docs/modules/split-app/qa/functional/<ts>/` (a failure screenshot, and every run's `accessible-description.txt`) |
-| Browser tests, WebKit | `python -m pytest tests/browser -q --engine webkit` (tests marked `chromium_only` are skipped with a reason and counted) | the same |
+| Browser tests, Chromium | `python -m pytest tests/browser -q` | `docs/modules/split-app/qa/functional/<ts>-chromium/` (a failure screenshot, and the records some scenarios write, such as the R9 test's `accessible-description.txt`) |
+| Browser tests, WebKit | `python -m pytest tests/browser -q --engine webkit` (tests marked `chromium_only` are skipped with a reason and counted) | `docs/modules/split-app/qa/functional/<ts>-webkit/` (a failure screenshot, `skips.txt` and the records some scenarios write, such as `icon-colour.txt`) |
 | Looks right (fidelity gate) | `python tests/browser/fidelity/run.py` | `docs/modules/split-app/qa/fidelity/<ts>/` |
 | Works right (live gate) | `python tests/browser/live_e2e.py --engine <chromium or webkit>`, counted per engine as a `--control seeded` run that stops red at step 1 and then a green run against one server (`--base-url`, see `CLAUDE.md`) | `docs/modules/split-app/qa/live-e2e/<ts>-<engine>/` and `<ts>-<engine>-control/` |
 

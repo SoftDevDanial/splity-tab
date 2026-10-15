@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="11" skipped="0" tests="15" time="8.432" timestamp="2026-10-16T03:51:30.887350+08:00" hostname="{host}"><testcase classname="test_app" name="test_R27_dismissing_the_note" time="1.824" /><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-single]" time="0.228" /><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-mouse-double]" time="0.362"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD49E1CE00&gt;
+viewport = (360, 780), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+        # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+        # leave.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+        found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+&gt;       assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+E         {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+E         {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6052: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-mouse-triple]" time="0.261"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD4A1BDD20&gt;
+viewport = (360, 780), gesture = 'mouse-triple'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+        # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+        # leave.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+        found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+&gt;       assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+E         {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6052: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[360x780-touch-double]" time="0.315"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD467A2CF0&gt;
+viewport = (360, 780), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+        # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+        # leave.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+        found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+&gt;       assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+E         {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+E         {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6052: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-single]" time="0.221" /><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-mouse-double]" time="0.293"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD483EDE80&gt;
+viewport = (390, 844), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+        # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+        # leave.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+        found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+&gt;       assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+E         {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+E         {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6052: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-mouse-triple]" time="0.263"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD487A73D0&gt;
+viewport = (390, 844), gesture = 'mouse-triple'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+        # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+        # leave.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+        found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+&gt;       assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+E         {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6052: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[390x844-touch-double]" time="0.299"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': 'peopleBtn'} != {'focus': 'newBill'}&#10;  {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD496BF530&gt;
+viewport = (390, 844), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+        # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+        # leave.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+        found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+&gt;       assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+E         {'focus': 'peopleBtn'} != {'focus': 'newBill'}
+E         {'sections': [['false', 'false'], ['false', 'false']]} != {'sections': [['true', 'true'], ['false', 'false']]}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6052: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-single]" time="0.233" /><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-mouse-double]" time="0.328"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD48C4C510&gt;
+viewport = (1280, 800), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+        # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+        # leave.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+        found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+&gt;       assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+E         {'focus': ''} != {'focus': 'newBill'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6052: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-mouse-triple]" time="0.266"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD497FCD50&gt;
+viewport = (1280, 800), gesture = 'mouse-triple'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+        # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+        # leave.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+        found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+&gt;       assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'reached the page': {'presses': [1, 2, 3], 'clicks': [1, 2, 3]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+E         {'focus': ''} != {'focus': 'newBill'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6052: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width[1280x800-touch-double]" time="0.331"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD49752FB0&gt;
+viewport = (1280, 800), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", GESTURES)
+    @pytest.mark.parametrize("viewport", V11_SIZES, ids=V11_SIZE_IDS)
+    def test_R27_a_repeat_press_on_dismiss_note_acts_as_one_press_at_every_width(open_app, viewport, gesture):
+        # The "single" rows are the control. They pass without the guard and fix the end state every other gesture must
+        # leave.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.get_by_role("button", name="Dismiss note", exact=True)))
+        found = {**after_dismiss(page, viewport, noted), "reached the page": seen_by_the_page(page)}
+&gt;       assert found == {**one_dismiss(viewport), "reached the page": {"presses": [1], "clicks": [1]}}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'reached the page': {'presses': [1, 2], 'clicks': [1, 2]}} != {'reached the page': {'presses': [1], 'clicks': [1]}}
+E         {'focus': ''} != {'focus': 'newBill'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6052: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_held_enter_on_dismiss_note_reaches_nothing[390x844]" time="0.787"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'dialog open': True} != {'dialog open': False}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  {'clicks': ['dismissNote', 'newBill']} != {'clicks': ['dismissNote']}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD4939AFB0&gt;
+viewport = (390, 844)
+
+    @pytest.mark.parametrize("viewport", [(390, 844), (1280, 800)], ids=["390x844", "1280x800"])
+    def test_R27_a_held_enter_on_dismiss_note_reaches_nothing(open_app, viewport):
+        # The click count is the proof. Repeats that reached New bill could open and close M1 and end where one press does.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport).page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        tab_until(page, page.get_by_role("button", name="Dismiss note", exact=True))
+        hold(page, "Enter")
+        found = {**after_dismiss(page, viewport, noted), "clicks": page.evaluate(CLICK_TARGETS_JS),
+                 "dialog open": dialog_is_open(page)}
+&gt;       assert found == {**one_dismiss(viewport), "clicks": ["dismissNote"], "dialog open": False}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'dialog open': True} != {'dialog open': False}
+E         {'focus': ''} != {'focus': 'newBill'}
+E         {'clicks': ['dismissNote', 'newBill']} != {'clicks': ['dismissNote']}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6071: AssertionError</failure></testcase><testcase classname="test_app" name="test_R27_a_held_enter_on_dismiss_note_reaches_nothing[1280x800]" time="0.859"><failure message="AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}&#10;  &#10;  Omitting 3 identical items, use -vv to show&#10;  Differing items:&#10;  {'dialog open': True} != {'dialog open': False}&#10;  {'focus': ''} != {'focus': 'newBill'}&#10;  {'clicks': ['dismissNote', 'newBill']} != {'clicks': ['dismissNote']}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002DD48440E00&gt;
+viewport = (1280, 800)
+
+    @pytest.mark.parametrize("viewport", [(390, 844), (1280, 800)], ids=["390x844", "1280x800"])
+    def test_R27_a_held_enter_on_dismiss_note_reaches_nothing(open_app, viewport):
+        # The click count is the proof. Repeats that reached New bill could open and close M1 and end where one press does.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=viewport).page
+        noted = stored_text(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        tab_until(page, page.get_by_role("button", name="Dismiss note", exact=True))
+        hold(page, "Enter")
+        found = {**after_dismiss(page, viewport, noted), "clicks": page.evaluate(CLICK_TARGETS_JS),
+                 "dialog open": dialog_is_open(page)}
+&gt;       assert found == {**one_dismiss(viewport), "clicks": ["dismissNote"], "dialog open": False}
+E       AssertionError: assert {'notes': [],...d': True, ...} == {'notes': [],...d': True, ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'dialog open': True} != {'dialog open': False}
+E         {'focus': ''} != {'focus': 'newBill'}
+E         {'clicks': ['dismissNote', 'newBill']} != {'clicks': ['dismissNote']}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:6071: AssertionError</failure></testcase></testsuite></testsuites>
