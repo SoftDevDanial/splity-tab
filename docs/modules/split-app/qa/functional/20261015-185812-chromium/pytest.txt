@@ -1,0 +1,4 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R54_pick_again_in_the_splits_sheet_draws_again (0.27s)
+PASSED   call     test_app.py::test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again (0.49s)
+exit status 1

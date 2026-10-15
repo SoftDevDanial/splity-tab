@@ -1,0 +1,11 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R32_tab_order_follows_the_golden[K1-390] (0.35s)
+FAILED   call     test_app.py::test_R32_tab_order_follows_the_golden[bill-empty-390] (0.16s)
+FAILED   call     test_app.py::test_R32_tab_order_follows_the_golden[B1-390] (0.20s)
+FAILED   call     test_app.py::test_R32_tab_order_follows_the_golden[K1-1280] (0.40s)
+FAILED   call     test_app.py::test_R32_tab_order_follows_the_golden[K1-sheet-390] (0.25s)
+FAILED   call     test_app.py::test_R32_tab_order_follows_the_golden[RND-sheet-390] (0.22s)
+FAILED   call     test_app.py::test_R32_tab_order_follows_the_golden[K1-P1-1280] (0.21s)
+FAILED   call     test_app.py::test_R32_tab_order_follows_the_golden[ONE-P1-1280] (0.22s)
+FAILED   call     test_app.py::test_R32_tab_order_follows_the_golden[RND-P1-1280] (0.21s)
+exit status 1

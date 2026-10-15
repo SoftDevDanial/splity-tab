@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="14.675" timestamp="2026-10-15T18:54:45.267934+08:00" hostname="{host}"><testcase classname="test_app" name="test_R36_with_motion_allowed_nothing_loops" time="14.181"><failure message="AssertionError: no CSSAnimation right after load: [['CSSTransition', 'running', 'label#', 120], ['CSSTransition', 'running', 'label#', 120], ['CSSTransition', 'running', 'div#frameWrap.frame-wrap', 160], ['Animation', 'running', 'body#', 1000]] | running 3 s after load: [['Animation', 'running', 'body#', 1000]] | right after the click on #peopleBtn the animations besides CSS ones are [['Animation', 'running', 'body#', 1000], ['Animation', 'running', 'div#peopleBody.sec-body', 200]] | #peopleBody has a style attribute | running 1 s after the click on #peopleBtn: [['Animation', 'running', 'body#', 1000]] | the reveal is still in getAnimations() 1 s after the click | running 1 s after a toggle click: [['Animation', 'running', 'body#', 1000]] | running 1 s after the click on Splits: [['Animation', 'running', 'body#', 1000]] | running 1 s after the click on the sheet's spare chip: [['Animation', 'running', 'body#', 1000]] | running 1 s after Escape: [['Animation', 'running', 'body#', 1000]] | running 1 s after Escape again: [['Animation', 'running', 'body#', 1000]]&#10;assert not [&quot;no CSSAnimation right after load: [['CSSTransition', 'running', 'label#', 120], ['CSSTransition', 'running', 'label#...opleBtn: [['Animation', 'running', 'body#', 1000]]&quot;, 'the reveal is still in getAnimations() 1 s after the click', ...]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000012DA47A7690&gt;
+
+    def test_R36_with_motion_allowed_nothing_loops(open_app):
+        # qa.md on K1 under "no-preference" (spec R36 as worded 2026-10-15, F-A4-1, no animation is running). The resize to
+        # 390 shows the strip, which starts its foil sweep, so 3 s pass before the click on #peopleBtn.
+        page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280], reduced_motion="no-preference").page
+        problems = []
+    
+        def nothing_running(when):
+            found = [animation for animation in page.evaluate(ANIMATIONS_JS) if animation[1] == "running"]
+            if found:
+                problems.append(f"running {when}: {found}")
+    
+        at_load = page.evaluate(ANIMATIONS_JS)
+        if not any(kind == "CSSAnimation" for kind, *_ in at_load):
+            problems.append(f"no CSSAnimation right after load: {at_load}")
+        page.wait_for_timeout(3000)
+        nothing_running("3 s after load")
+        page.set_viewport_size({"width": 390, "height": 844})
+        page.wait_for_timeout(3000)
+        page.locator("#peopleBtn").click()
+        reveal = [animation for animation in page.evaluate(ANIMATIONS_JS) if animation[0] not in ("CSSAnimation", "CSSTransition")]
+        if [animation[2:] for animation in reveal] != [["div#peopleBody.sec-body", 200]]:
+            problems.append(f"right after the click on #peopleBtn the animations besides CSS ones are {reveal}")
+        if page.locator("#peopleBody").get_attribute("style") is not None:
+            problems.append("#peopleBody has a style attribute")
+        page.wait_for_timeout(1000)
+        nothing_running("1 s after the click on #peopleBtn")
+        if any(animation[0] not in ("CSSAnimation", "CSSTransition") for animation in page.evaluate(ANIMATIONS_JS)):
+            problems.append("the reveal is still in getAnimations() 1 s after the click")
+        for name, gesture in [("a toggle click", lambda: toggle(page, "Mee goreng mamak", "Ben").click()),
+                              ("the click on Splits", lambda: open_sheet(page)),
+                              ("the click on the sheet's spare chip", lambda: page.locator(SHEET_SPARE_CHIP).click()),
+                              ("Escape", lambda: press_escape(page)), ("Escape again", lambda: press_escape(page))]:
+            gesture()
+            page.wait_for_timeout(1000)
+            nothing_running(f"1 s after {name}")
+&gt;       assert not problems, " | ".join(problems)
+E       AssertionError: no CSSAnimation right after load: [['CSSTransition', 'running', 'label#', 120], ['CSSTransition', 'running', 'label#', 120], ['CSSTransition', 'running', 'div#frameWrap.frame-wrap', 160], ['Animation', 'running', 'body#', 1000]] | running 3 s after load: [['Animation', 'running', 'body#', 1000]] | right after the click on #peopleBtn the animations besides CSS ones are [['Animation', 'running', 'body#', 1000], ['Animation', 'running', 'div#peopleBody.sec-body', 200]] | #peopleBody has a style attribute | running 1 s after the click on #peopleBtn: [['Animation', 'running', 'body#', 1000]] | the reveal is still in getAnimations() 1 s after the click | running 1 s after a toggle click: [['Animation', 'running', 'body#', 1000]] | running 1 s after the click on Splits: [['Animation', 'running', 'body#', 1000]] | running 1 s after the click on the sheet's spare chip: [['Animation', 'running', 'body#', 1000]] | running 1 s after Escape: [['Animation', 'running', 'body#', 1000]] | running 1 s after Escape again: [['Animation', 'running', 'body#', 1000]]
+E       assert not ["no CSSAnimation right after load: [['CSSTransition', 'running', 'label#', 120], ['CSSTransition', 'running', 'label#...opleBtn: [['Animation', 'running', 'body#', 1000]]", 'the reveal is still in getAnimations() 1 s after the click', ...]
+
+tests\browser\test_app.py:4662: AssertionError</failure></testcase></testsuite></testsuites>

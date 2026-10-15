@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="7.323" timestamp="2026-10-15T18:47:56.341892+08:00" hostname="{host}"><testcase classname="test_app" name="test_R32_every_focused_control_shows_the_one_ring[390]" time="4.539"><failure message="assert [&quot;a name fiel...'none'}&quot;, ...] == []&#10;  &#10;  Left contains 8 more items, first extra item: &quot;a name field: app {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(255, 0, 0)', '2px'], 'edge...lden {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'none'}&quot;&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000023074767530&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x0000023074767270&gt;
+width = 390, golden = 'bill-items-open'
+
+    @pytest.mark.parametrize("width, golden", [(390, "bill-items-open"), (1280, "bill-items")], ids=["390", "1280"])
+    def test_R32_every_focused_control_shows_the_one_ring(open_app, plain_context, width, golden):
+        # qa.md on K1, below 1024 px with People and Charges opened by keyboard (Enter on each header row). Each ring is
+        # compared with the golden's on the same control focused by Tab, and with the numbers of system.md Focus.
+        page = open_app(seed=seeds.S1, viewport=VIEWPORTS[width]).page
+        if width &lt; 1024:
+            for header in ("#peopleBtn", "#chargesBtn"):
+                page.locator(header).focus()
+                page.keyboard.press("Enter")
+        golden_page = support.open_golden(plain_context, golden, VIEWPORTS[width])
+        problems = []
+        for what, (selector, expected) in (RING_TARGETS if width &lt; 1024 else DESKTOP_RING_TARGETS).items():
+            found, drawn = ring_by_tab(page, selector), ring_by_tab(golden_page, selector)
+            if not found["visible"] or found["ring"] != expected or [found["on"], found["ring"]] != [drawn["on"], drawn["ring"]]:
+                problems.append(f"{what}: app {found}, golden {drawn}")
+&gt;       assert problems == []
+E       assert ["a name fiel...'none'}", ...] == []
+E         
+E         Left contains 8 more items, first extra item: "a name field: app {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(255, 0, 0)', '2px'], 'edge...lden {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'none'}"
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4455: AssertionError</failure></testcase><testcase classname="test_app" name="test_R32_every_focused_control_shows_the_one_ring[1280]" time="1.673"><failure message="assert [&quot;a name fiel...ge': 'none'}&quot;] == []&#10;  &#10;  Left contains 6 more items, first extra item: &quot;a name field: app {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(255, 0, 0)', '2px'], 'edge...lden {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'none'}&quot;&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000023074560BF0&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x0000023074563AB0&gt;
+width = 1280, golden = 'bill-items'
+
+    @pytest.mark.parametrize("width, golden", [(390, "bill-items-open"), (1280, "bill-items")], ids=["390", "1280"])
+    def test_R32_every_focused_control_shows_the_one_ring(open_app, plain_context, width, golden):
+        # qa.md on K1, below 1024 px with People and Charges opened by keyboard (Enter on each header row). Each ring is
+        # compared with the golden's on the same control focused by Tab, and with the numbers of system.md Focus.
+        page = open_app(seed=seeds.S1, viewport=VIEWPORTS[width]).page
+        if width &lt; 1024:
+            for header in ("#peopleBtn", "#chargesBtn"):
+                page.locator(header).focus()
+                page.keyboard.press("Enter")
+        golden_page = support.open_golden(plain_context, golden, VIEWPORTS[width])
+        problems = []
+        for what, (selector, expected) in (RING_TARGETS if width &lt; 1024 else DESKTOP_RING_TARGETS).items():
+            found, drawn = ring_by_tab(page, selector), ring_by_tab(golden_page, selector)
+            if not found["visible"] or found["ring"] != expected or [found["on"], found["ring"]] != [drawn["on"], drawn["ring"]]:
+                problems.append(f"{what}: app {found}, golden {drawn}")
+&gt;       assert problems == []
+E       assert ["a name fiel...ge': 'none'}"] == []
+E         
+E         Left contains 6 more items, first extra item: "a name field: app {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(255, 0, 0)', '2px'], 'edge...lden {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'none'}"
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4455: AssertionError</failure></testcase><testcase classname="test_app" name="test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring" time="0.450"><failure message="AssertionError: ({'on': 'div.field.pct.is-bad', 'visible': True, 'ring': ['solid', '2px', 'rgb(255, 0, 0)', '2px'], 'edge': 'rgb(255, ...ble': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'rgb(255, 138, 143) 0px 0px 0px 1px inset'})&#10;assert (True and ['solid', '2p...0, 0)', '2px'] == ['solid', '2p... 255)', '2px']&#10;  &#10;  At index 2 diff: 'rgb(255, 0, 0)' != 'rgb(163, 170, 255)'&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x00000230739CCBF0&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x00000230739CFC10&gt;
+
+    def test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring(open_app, plain_context):
+        # qa.md, the RE line of "Every focused control shows the one ring", at 390 x 844, where Charges is open on load.
+        page = open_app(seed=seeds.RE).page
+        edge = page.locator("#svc").evaluate("(el) =&gt; getComputedStyle(el.closest('.field')).boxShadow")
+        found = ring_by_tab(page, "#svc")
+        drawn = ring_by_tab(support.open_golden(plain_context, "rate-error"), "#svc")
+        assert edge != "none" and found["edge"] == edge, (edge, found)
+&gt;       assert found["visible"] and found["ring"] == ring("2px") and found == drawn, (found, drawn)
+E       AssertionError: ({'on': 'div.field.pct.is-bad', 'visible': True, 'ring': ['solid', '2px', 'rgb(255, 0, 0)', '2px'], 'edge': 'rgb(255, ...ble': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'rgb(255, 138, 143) 0px 0px 0px 1px inset'})
+E       assert (True and ['solid', '2p...0, 0)', '2px'] == ['solid', '2p... 255)', '2px']
+E         
+E         At index 2 diff: 'rgb(255, 0, 0)' != 'rgb(163, 170, 255)'
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:4465: AssertionError</failure></testcase></testsuite></testsuites>

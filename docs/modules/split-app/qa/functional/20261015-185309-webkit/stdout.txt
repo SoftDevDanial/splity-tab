@@ -1,0 +1,45 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R36_reduced_motion_moves_nothing
+server STARTED pid 12720 port 56462 root {workspace}\examples\split
+Fserver STOPPED pid 12720 port 56462, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+____________________ test_R36_reduced_motion_moves_nothing ____________________
+
+open_app = <function open_app.<locals>.factory at 0x0000026D9750B950>
+
+    def test_R36_reduced_motion_moves_nothing(open_app):
+        # qa.md on K1 at 390 x 844 under "reduce", the default context. "Right after" is read as soon as the click returns.
+        page = open_app(seed=seeds.S1).page
+        problems = []
+    
+        def no_durations(target, selectors):
+            problems.extend(f"{selector} transition-duration {sorted(set(values))}"
+                            for selector, values in target.evaluate(DURATIONS_JS, selectors) if not values or set(values) != {"0s"})
+    
+        def no_animations(when):
+            found = page.evaluate(ANIMATIONS_JS)
+            if found:
+                problems.append(f"getAnimations() {when}: {found}")
+    
+        no_durations(page, TRANSITION_CLASSES)
+        no_animations("right after load")
+        toggle(page, "Mee goreng mamak", "Ben").click()
+        no_animations("right after a toggle click")
+        page.locator("#peopleBtn").click()
+        no_animations("right after #peopleBtn opened People")
+        open_sheet(page)
+        no_animations("right after Splits opened the sheet")
+        page.locator(SHEET_SPARE_CHIP).click()
+        no_animations("right after the chip opened P1")
+        over_one = open_app(seed=seeds.ONE).page
+        open_p1(over_one, "phone")
+        no_durations(over_one, [".choice", ".pill-face"])
+>       assert not problems, problems
+E       AssertionError: [".btn transition-duration ['0s', '1s']", "getAnimations() right after #peopleBtn opened People: [['Animation', 'runni...]]", "getAnimations() right after Splits opened the sheet: [['Animation', 'running', 'div#peopleBody.sec-body', 200]]"]
+E       assert not [".btn transition-duration ['0s', '1s']", "getAnimations() right after #peopleBtn opened People: [['Animation', 'runni...]]", "getAnimations() right after Splits opened the sheet: [['Animation', 'running', 'div#peopleBody.sec-body', 200]]"]
+
+tests\browser\test_app.py:4624: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R36_reduced_motion_moves_nothing - Ass...
+1 failed in 3.06s

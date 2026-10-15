@@ -1,0 +1,112 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page
+server STARTED pid 19892 port 20178 root {workspace}\examples\split
+FFFFserver STOPPED pid 19892 port 20178, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+_ test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000027A324DF8A0>
+point = 'close', gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("point", ["close", (195, 80)], ids=["close", "backdrop"])
+    def test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page(open_app, point, gesture):
+        # qa.md on K1 at 390 x 844 (PD-21, F-A12-1, task A18). The backdrop point is LINKS.json's. The body recorder proves
+        # the cancel whatever lies under the second press. It passes on the tree before A18, so its teeth come from a stub of
+        # the sheet's click close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        open_sheet(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#splitsDlg button[aria-label=Close]")) if point == "close" else point)
+>       assert sheet_state(page, SHEET_CLOSED) == SHEET_CLOSED
+E       AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...: 'splitsBtn'}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'body'} != {'focus': 'splitsBtn'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2150: AssertionError
+_ test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000027A3210F110>
+point = 'close', gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("point", ["close", (195, 80)], ids=["close", "backdrop"])
+    def test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page(open_app, point, gesture):
+        # qa.md on K1 at 390 x 844 (PD-21, F-A12-1, task A18). The backdrop point is LINKS.json's. The body recorder proves
+        # the cancel whatever lies under the second press. It passes on the tree before A18, so its teeth come from a stub of
+        # the sheet's click close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        open_sheet(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#splitsDlg button[aria-label=Close]")) if point == "close" else point)
+>       assert sheet_state(page, SHEET_CLOSED) == SHEET_CLOSED
+E       AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...: 'splitsBtn'}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'body'} != {'focus': 'splitsBtn'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2150: AssertionError
+_ test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-mouse-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000027A3282CB40>
+point = (195, 80), gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("point", ["close", (195, 80)], ids=["close", "backdrop"])
+    def test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page(open_app, point, gesture):
+        # qa.md on K1 at 390 x 844 (PD-21, F-A12-1, task A18). The backdrop point is LINKS.json's. The body recorder proves
+        # the cancel whatever lies under the second press. It passes on the tree before A18, so its teeth come from a stub of
+        # the sheet's click close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        open_sheet(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#splitsDlg button[aria-label=Close]")) if point == "close" else point)
+>       assert sheet_state(page, SHEET_CLOSED) == SHEET_CLOSED
+E       AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...: 'splitsBtn'}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'body'} != {'focus': 'splitsBtn'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2150: AssertionError
+_ test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-touch-double] _
+
+open_app = <function open_app.<locals>.factory at 0x0000027A3288F1C0>
+point = (195, 80), gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("point", ["close", (195, 80)], ids=["close", "backdrop"])
+    def test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page(open_app, point, gesture):
+        # qa.md on K1 at 390 x 844 (PD-21, F-A12-1, task A18). The backdrop point is LINKS.json's. The body recorder proves
+        # the cancel whatever lies under the second press. It passes on the tree before A18, so its teeth come from a stub of
+        # the sheet's click close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, touch=gesture == "touch-double").page
+        noted = stored_text(page)
+        open_sheet(page)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#splitsDlg button[aria-label=Close]")) if point == "close" else point)
+>       assert sheet_state(page, SHEET_CLOSED) == SHEET_CLOSED
+E       AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...: 'splitsBtn'}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'body'} != {'focus': 'splitsBtn'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2150: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-mouse-double]
+FAILED tests\browser\test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-touch-double]
+FAILED tests\browser\test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-mouse-double]
+FAILED tests\browser\test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-touch-double]
+4 failed in 4.62s

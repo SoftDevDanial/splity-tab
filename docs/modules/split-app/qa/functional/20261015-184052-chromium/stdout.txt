@@ -1,0 +1,114 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R32_tab_order_follows_the_golden tests/browser/test_app.py::test_R32_every_focused_control_shows_the_one_ring tests/browser/test_app.py::test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring tests/browser/test_app.py::test_R35_no_horizontal_overflow_in_any_golden_state tests/browser/test_app.py::test_R35_layout_problems_has_teeth tests/browser/test_app.py::test_R35_sizes_the_design_gives_at_360_by_780 tests/browser/test_app.py::test_R35_content_width_of_the_header_and_the_note_at_1280_by_800 tests/browser/test_app.py::test_R36_reduced_motion_moves_nothing tests/browser/test_app.py::test_R36_with_motion_allowed_nothing_loops tests/browser/test_app.py::test_R37_names_are_shown_as_text_and_never_as_markup tests/browser/test_app.py::test_R55_the_desktop_layout_at_1280_and_at_1024 tests/browser/test_app.py::test_R55_the_page_never_scrolls_at_1280_by_800 tests/browser/test_app.py::test_R60_large_bills_fit_a_360_px_phone tests/browser/test_app.py::test_R60_the_large_price_shows_whole tests/browser/test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page tests/browser/test_app.py::test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page tests/browser/test_app.py::test_R54_pick_again_in_the_splits_sheet_draws_again
+server STARTED pid 14120 port 55139 root {workspace}\examples\split
+......................................................F..F.............. [ 81%]
+..F.............server STOPPED pid 14120 port 55139, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+______ test_R35_content_width_of_the_header_and_the_note_at_1280_by_800 _______
+
+open_app = <function open_app.<locals>.factory at 0x000001FC53B38250>
+plain_context = <function plain_context.<locals>.factory at 0x000001FC53B38670>
+
+    def test_R35_content_width_of_the_header_and_the_note_at_1280_by_800(open_app, plain_context):
+        # The 1.0 widths of the header and the note at 1280 x 800 are FE element checklist rows since v1.1.0. K1-01, the top
+        # bar 64 px tall with 48 px sides. BR-02, the note centred in the top bar between the brand and New bill, 44 px tall
+        # with no padding at the top or the bottom, where the golden draws it.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=VIEWPORTS[1280]).page
+        golden = support.open_golden(plain_context, "bill-unreadable", VIEWPORTS[1280])
+        bar = page.locator("header.top").evaluate("""(el) => { const s = getComputedStyle(el);
+          return [el.getBoundingClientRect().height, s.paddingLeft, s.paddingRight]; }""")
+        assert abs(bar[0] - 64) <= 0.5 and bar[1:] == ["48px", "48px"], bar
+        note, brand, new_bill = box_of(page, "div.note"), box_of(page, "div.brand"), box_of(page, "#newBill")
+        padding = page.locator("div.note").evaluate("(el) => [getComputedStyle(el).paddingTop, getComputedStyle(el).paddingBottom]")
+>       assert close_to(note, box_of(golden, "div.note")) and abs(note[3] - 44) <= 0.5 and padding == ["0px", "0px"], (note, padding)
+E       AssertionError: ([405.09375, 8.5, 477.78125, 46], ['0px', '0px'])
+E       assert (True and 2 <= 0.5)
+E        +  where True = close_to([405.09375, 8.5, 477.78125, 46], [405.09375, 8.5, 477.78125, 46])
+E        +    where [405.09375, 8.5, 477.78125, 46] = box_of(<Page url='file:///{workspace}/examples/split/docs/design/bill-unreadable.html'>, 'div.note')
+E        +  and   2 = abs((46 - 44))
+
+tests\browser\test_app.py:4572: AssertionError
+____________ test_R37_names_are_shown_as_text_and_never_as_markup _____________
+
+open_app = <function open_app.<locals>.factory at 0x000001FC4FE438A0>
+
+    def test_R37_names_are_shown_as_text_and_never_as_markup(open_app):
+        # qa.md on K1 at 390 x 844 with People opened first. The card is not displayed below 1024 px but is in the DOM, so its
+        # first splits row is read there. CG-9 of 1.0 stands.
+        session = open_app(seed=seeds.S1)
+        page = session.page
+        dialogs = []
+        page.on("dialog", lambda dialog: (dialogs.append(dialog.message), dialog.dismiss()))
+        open_people_first(page)
+        svgs_before = len(page.evaluate(MARKUP_JS)["svgs"])
+        support.replace_text(page, person_field(page, 1), PERSON_PAYLOAD)
+        support.replace_text(page, item_name(page, 1), ITEM_PAYLOAD)
+        support.replace_text(page, item_name(page, 2), SCRIPT_PAYLOAD)
+        problems = []
+    
+        def expect(what, found, wanted):
+            if found != wanted:
+                problems.append(f"{what}: {found!r}, not {wanted!r}")
+    
+        expect("Person 1 name", person_field(page, 1).input_value(), PERSON_PAYLOAD)
+        expect("Item 1 name", item_name(page, 1).input_value(), ITEM_PAYLOAD)
+        expect("the payload lengths", [len(PERSON_PAYLOAD), len(ITEM_PAYLOAD)], [16, 28])
+        expect("that person's toggles", page.locator("button.tap").evaluate_all(
+            f"(taps) => taps.filter((tap) => tap.textContent === {json.dumps(PERSON_PAYLOAD)}).length"), 4)
+        expect("the card's first splits row", page.evaluate("document.querySelector('#splits li .nm')?.textContent ?? null"), PERSON_PAYLOAD)
+        expect("that person's Remove", remove_button(page, PERSON_PAYLOAD).count(), 1)
+        expect("item 1's Remove", page.get_by_role("button", name=f"Remove {ITEM_PAYLOAD}", exact=True).count(), 1)
+        expect("item 1's price", page.get_by_label(f"{ITEM_PAYLOAD} price in RM", exact=True).count(), 1)
+        expect("item 1's group", who_group(page, ITEM_PAYLOAD).count(), 1)
+        page.locator("#peopleBtn").click()  # folds People
+        summary = page.evaluate("document.querySelector('#peopleBlk span.sec-txt')?.textContent ?? ''")
+        if not summary.startswith(PERSON_PAYLOAD):
+            problems.append(f"the People summary reads {summary!r}")
+        found = page.evaluate(MARKUP_JS)
+        expect("img and script elements, onload and onerror attributes", [found["markup"], found["handlers"]], [0, 0])
+        expect("the number of svg elements", len(found["svgs"]), svgs_before)
+        if not set(found["svgs"]) <= SVG_CLASSES:
+            problems.append(f"svg classes {sorted(set(found['svgs']) - SVG_CLASSES)}")
+        expect("dialog events and page errors", [dialogs, session.page_errors], [[], []])
+        open_sheet(page)
+        page.locator(SHEET_SPARE_CHIP).click()
+        choose(page, "One person")
+        face = page.evaluate("""() => { const face = document.querySelector('#pickList label.pill span.pill-face');
+          return face && [face.querySelectorAll(':scope > svg.ic').length, face.children.length,
+                          [...face.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE).map((node) => node.data)]; }""")
+        expect("the first pill's face (svg.ic, children, text nodes)", face, [1, 1, [PERSON_PAYLOAD]])
+        press_escape(page)
+        press_escape(page)
+        click_copy(page, "#stripCopy")
+        expect("line 3 of the clipboard text", (page.evaluate("window.testClipboardText") or "").split("\n")[2:3], [f"{PERSON_PAYLOAD} RM 29.04"])
+>       assert problems == []
+E       assert ["svg classes... sec-caret']"] == []
+E         
+E         Left contains one more item: "svg classes ['ic caret-up', 'ic sec-caret']"
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4712: AssertionError
+____________________ test_R60_the_large_price_shows_whole _____________________
+
+open_app = <function open_app.<locals>.factory at 0x000001FC552A7950>
+
+    def test_R60_the_large_price_shows_whole(open_app):
+        # qa.md on W1 at 360 x 780. "One line box tall" is #stripTotal's height at most its line-height (30 px, K1-56).
+        page = open_app(seed=seeds.W1, viewport=VIEWPORTS[360]).page
+        price = page.get_by_label("Item 5 price in RM", exact=True)
+        assert price.input_value() == "964.50" and price.evaluate("(el) => el.scrollWidth <= el.clientWidth")
+        strip = page.evaluate(STRIP_TOTAL_JS)
+        reads = " ".join(page.locator("#stripInfo").inner_text().split())
+>       assert reads == "Total RM 1,193.87" and strip[2] <= strip[3] + 0.5, (reads, strip)
+E       AssertionError: ('Total RM 1,193.87', [133, 133, 33, 30])
+E       assert ('Total RM 1,193.87' == 'Total RM 1,193.87'
+E         
+E           Total RM 1,193.87 and 33 <= (30 + 0.5))
+
+tests\browser\test_app.py:4812: AssertionError
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R35_content_width_of_the_header_and_the_note_at_1280_by_800
+FAILED tests\browser\test_app.py::test_R37_names_are_shown_as_text_and_never_as_markup
+FAILED tests\browser\test_app.py::test_R60_the_large_price_shows_whole - Asse...
+3 failed, 85 passed in 37.15s

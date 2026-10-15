@@ -70,6 +70,11 @@ S8 = dump({"version": 2, "bill": {
     "mode": "even", "subtotalText": "", "items": [], "serviceText": "10", "sstText": "6", "spare": {"rule": "top"}, "nextId": 13,
     "people": [{"id": f"p{n}", "name": name} for n, name in enumerate(_TWELVE, start=1)],
 }})
+# [MAX-E] and [MAX-I], split-core qa's named bills at the money ceiling, people named as S8 (spec R60, task A18). Items
+# have blank names, item k (0-based) is had by person k mod 12.
+MAX_E = changed(S8, lambda d: d["bill"].update(subtotalText="99999.99", serviceText="30", sstText="20"))
+MAX_I = changed(S8, lambda d: d["bill"].update(mode="item", serviceText="30", sstText="20", nextId=63, items=[
+    {"id": f"i{13 + k}", "name": "", "priceText": "99999.99", "who": [f"p{k % 12 + 1}"]} for k in range(50)]))
 
 FLAGS_20 = "\U0001F1F2\U0001F1FE" * 20  # 20 grapheme clusters, 80 UTF-16 code units
 

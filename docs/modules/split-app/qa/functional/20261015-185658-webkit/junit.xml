@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.115" timestamp="2026-10-15T18:56:58.644581+08:00" hostname="{host}"><testcase classname="test_app" name="test_R60_the_large_price_shows_whole" time="1.638"><failure message="AssertionError: the price field holds ['964.50', [73, 16]] | the strip reads 'Total RM 1,193.87', #stripTotal [109, 20, False]&#10;assert not [&quot;the price field holds ['964.50', [73, 16]]&quot;, &quot;the strip reads 'Total RM 1,193.87', #stripTotal [109, 20, False]&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002A2F364B690&gt;
+
+    def test_R60_the_large_price_shows_whole(open_app):
+        # qa.md on W1 at 360 x 780. "One line box tall" is read from the boxes of #stripTotal's text (STRIP_TOTAL_JS).
+        page = open_app(seed=seeds.W1, viewport=VIEWPORTS[360]).page
+        price = page.get_by_label("Item 5 price in RM", exact=True)
+        found = [price.input_value(), price.evaluate("(el) =&gt; [el.scrollWidth, el.clientWidth]")]
+        strip, reads = page.evaluate(STRIP_TOTAL_JS), " ".join(page.locator("#stripInfo").inner_text().split())
+        problems = [] if found[0] == "964.50" and found[1][0] &lt;= found[1][1] else [f"the price field holds {found}"]
+        if reads != "Total RM 1,193.87" or strip[2] is not True:
+            problems.append(f"the strip reads {reads!r}, #stripTotal {strip}")
+&gt;       assert not problems, " | ".join(problems)
+E       AssertionError: the price field holds ['964.50', [73, 16]] | the strip reads 'Total RM 1,193.87', #stripTotal [109, 20, False]
+E       assert not ["the price field holds ['964.50', [73, 16]]", "the strip reads 'Total RM 1,193.87', #stripTotal [109, 20, False]"]
+
+tests\browser\test_app.py:4828: AssertionError</failure></testcase></testsuite></testsuites>

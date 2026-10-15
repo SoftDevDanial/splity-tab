@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="3.511" timestamp="2026-10-15T18:58:16.299461+08:00" hostname="{host}"><testcase classname="test_app" name="test_R54_pick_again_in_the_splits_sheet_draws_again" time="1.811"><failure message="AssertionError: ({'low': ['Aisyah'], 'proof': 'RM 116.60'}, {'low': ['Aisyah'], 'proof': 'RM 116.60'})&#10;assert (1 == 1 and ['Aisyah'] != ['Aisyah'])&#10; +  where 1 = len(['Aisyah'])">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000027B5EEDB690&gt;
+
+    def test_R54_pick_again_in_the_splits_sheet_draws_again(open_app):
+        # qa.md on RND at 390 x 844 (F-A15-1, task A18). The sheet's chip comes from the card's renderer (PD-20). Focus after
+        # a mouse click is each engine's own (R59), so the keyboard step Tabs until the chip has focus. It passes on the tree
+        # before A18, so its teeth come from a stub that leaves the sheet's chip without its click handler (BUILD.md, A18).
+        page = open_app(seed=seeds.RND).page
+        open_sheet(page)
+        chip = page.locator(SHEET_PICK_AGAIN)
+        assert chip.count() == 1, "the sheet holds no Pick again chip before its spare chip"
+        first, order = sheet_draw(page), stored(page)["bill"]["spare"]["order"]
+        chip.click()
+        second = sheet_draw(page)
+&gt;       assert len(second["low"]) == 1 and second["low"] != first["low"] and second["proof"] == "RM 116.60", (first, second)
+E       AssertionError: ({'low': ['Aisyah'], 'proof': 'RM 116.60'}, {'low': ['Aisyah'], 'proof': 'RM 116.60'})
+E       assert (1 == 1 and ['Aisyah'] != ['Aisyah'])
+E        +  where 1 = len(['Aisyah'])
+
+tests\browser\test_app.py:2763: AssertionError</failure></testcase><testcase classname="test_app" name="test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again" time="1.228" /></testsuite></testsuites>

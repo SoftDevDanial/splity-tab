@@ -2136,6 +2136,22 @@ def test_R50_a_repeat_press_on_splits_leaves_the_sheet_open_and_copies_nothing(o
     assert_only_press_1_and_click_1_reached_the_page(page, 2, tapped=gesture == "touch-double")
 
 
+@pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+@pytest.mark.parametrize("point", ["close", (195, 80)], ids=["close", "backdrop"])
+def test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page(open_app, point, gesture):
+    # qa.md on K1 at 390 x 844 (PD-21, F-A12-1, task A18). The backdrop point is LINKS.json's. The body recorder proves
+    # the cancel whatever lies under the second press. It passes on the tree before A18, so its teeth come from a stub of
+    # the sheet's click close (BUILD.md, A18).
+    page = open_app(seed=seeds.S1, touch=gesture == "touch-double").page
+    noted = stored_text(page)
+    open_sheet(page)
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    gesture_at(page, gesture, centre_of(page.locator("#splitsDlg button[aria-label=Close]")) if point == "close" else point)
+    assert sheet_state(page, SHEET_CLOSED) == SHEET_CLOSED
+    assert_only_press_1_and_click_1_reached_the_page(page, 2, tapped=gesture == "touch-double")
+    assert page.evaluate("window.testClipboardWrites") == 0 and stored_text(page) == noted
+
+
 FOCUSIN_RECORDER_JS = """() => { window.testFocusins = [];
   document.addEventListener('focusin', (event) => window.testFocusins.push(event.target.id || event.target.localName), true); }"""
 
@@ -2453,6 +2469,27 @@ def test_R52_a_repeat_click_on_the_desktop_chip_leaves_p1_open(open_app):
     assert_only_press_1_and_click_1_reached_the_page(page, 2)
 
 
+@pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+@pytest.mark.parametrize("size, opener, point, focus", [
+    ((1280, 800), "desktop", "close", "spareBtn"), ((1280, 800), "desktop", (200, 60), "spareBtn"),
+    ((390, 844), "phone", (359, 622), "the sheet's spare chip"), ((390, 844), "phone", (195, 30), "the sheet's spare chip"),
+], ids=["1280-close", "1280-backdrop", "390-close", "390-backdrop"])
+def test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page(open_app, size, opener, point, focus,
+                                                                                           gesture):
+    # qa.md on K1 (PD-21, F-A13-1, task A18). The points are LINKS.json's. Below 1024 px the second press would land on
+    # the Splits sheet, which stays open. It passes on the tree before A18, so its teeth come from a stub of P1's click
+    # close (BUILD.md, A18).
+    page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+    noted, before = stored_text(page), snapshot(page)
+    open_p1(page, opener)
+    page.evaluate(RECORD_BODY_CLICKS_JS)
+    gesture_at(page, gesture, centre_of(page.locator("#spareDlg button[aria-label=Close]")) if point == "close" else point)
+    assert p1_state(page, ("open", "focus")) == {"open": False, "focus": focus}
+    assert_only_press_1_and_click_1_reached_the_page(page, 2, tapped=gesture == "touch-double")
+    assert sheet_state(page, ("open",)) == {"open": opener == "phone"} and snapshot(page) == before
+    assert page.evaluate("window.testClipboardWrites") == 0 and stored_text(page) == noted
+
+
 def wait_for_the_sheet_to_close(page):
     """The sheet closes itself in the media query's change event once the width reaches 1024 px (R50). At most 2 s."""
     try:
@@ -2701,6 +2738,35 @@ def test_R54_pick_again_that_can_change_nothing_does_nothing(open_app):
     assert page.evaluate("window.testSetItemCalls") == 0 and stored_text(page) == noted
     assert page.evaluate("document.activeElement.id") == "pickAgain"
     assert session.problems() == []
+
+
+SHEET_PICK_AGAIN = "#splitsDlg div.r-spare-acts > button.chip-btn:has(+ button.chip-btn[aria-haspopup=dialog])"
+
+
+def sheet_draw(page):
+    """Who is on RM 38.86 in the sheet after a draw of K2 (spec R54), and the sheet's proof figure."""
+    found = receipt(page, "#splitsDlg .rbody")
+    return {"low": [row[0] for row in found["list"]["rows"] if row[1] == "RM 38.86"], "proof": found["proof"]["amount"]}
+
+
+def test_R54_pick_again_in_the_splits_sheet_draws_again(open_app):
+    # qa.md on RND at 390 x 844 (F-A15-1, task A18). The sheet's chip comes from the card's renderer (PD-20). Focus after
+    # a mouse click is each engine's own (R59), so the keyboard step Tabs until the chip has focus. It passes on the tree
+    # before A18, so its teeth come from a stub that leaves the sheet's chip without its click handler (BUILD.md, A18).
+    page = open_app(seed=seeds.RND).page
+    open_sheet(page)
+    chip = page.locator(SHEET_PICK_AGAIN)
+    assert chip.count() == 1, "the sheet holds no Pick again chip before its spare chip"
+    first, order = sheet_draw(page), stored(page)["bill"]["spare"]["order"]
+    chip.click()
+    second = sheet_draw(page)
+    assert len(second["low"]) == 1 and second["low"] != first["low"] and second["proof"] == "RM 116.60", (first, second)
+    assert stored(page)["bill"]["spare"]["order"] != order and sheet_state(page, ("open",)) == {"open": True}
+    tab_until(page, chip, limit=10)
+    page.keyboard.press("Enter")
+    third = sheet_draw(page)
+    assert len(third["low"]) == 1 and third["low"] != second["low"] and third["proof"] == "RM 116.60", (second, third)
+    assert has_focus(chip)
 
 
 # PD-19. A draw is a call of chooseSpareRule or pickAgain with no parentheses inside its argument list.
@@ -4266,69 +4332,137 @@ def test_R57_a_slow_second_tap_and_a_quick_tap_elsewhere_change_the_draft_as_two
     assert len(elsewhere["names"]) == 6
 
 
-# ---------------------------------------------------------------- Task 11: cross-cutting checks (R32, R33, R35, R36, R37, R39)
-INK = "rgb(20, 25, 23)"  # --ink, the colour of the focus ring
-RING = ["solid", "2px", INK, "2px"]
-MODE_DOUBLE_RING = "rgb(253, 254, 253) 0px 0px 0px 3px inset, rgb(20, 25, 23) 0px 0px 0px 5px inset"
-FOCUS_JS = """() => {
-  const el = document.activeElement;
-  const ring = (node) => { const s = getComputedStyle(node); return [s.outlineStyle, s.outlineWidth, s.outlineColor, s.outlineOffset]; };
-  const field = el.closest('.field'), mode = el.closest('fieldset.mode');  // li.field.person or span.field
-  return {
-    name: el.getAttribute('aria-label') || (el.labels && el.labels.length ? el.labels[0].textContent.trim() : '') || el.textContent.trim(),
-    visible: el.matches(':focus-visible'), kind: el.type || el.tagName.toLowerCase(), self: ring(el),
-    field: field && ring(field), mode: mode && ring(mode),
-    labelRing: mode ? getComputedStyle(el.labels[0]).boxShadow : null,
-    personRemove: el.tagName === 'BUTTON' && !!el.closest('li.person'),
-  };
-}"""
-TABBABLE_JS = """() => [...document.querySelectorAll('button, input')].filter((el) =>
-  !el.disabled && el.getClientRects().length > 0 && (el.type !== 'radio' || el.checked)).length"""
-S1_TAB_ORDER = ["New bill", "Person 1 name", "Remove Aisyah", "Person 2 name", "Remove Ben", "Person 3 name", "Remove Chen",
-                "Add person", "By item"]
-for _number, (_name, _price, _people) in enumerate(S1_ITEMS, start=1):
-    S1_TAB_ORDER += [f"Item {_number} name", f"Item {_number} price in RM", f"Remove {_name}", "Aisyah", "Ben", "Chen"]
-S1_TAB_ORDER += ["Add item", "Service charge in percent", "SST in percent", "Copy summary"]
-TAB_CASES = [
-    pytest.param(None, ["New bill", "Person 1 name", "Person 2 name", "Add person", "Even", "Subtotal in RM",
-                        "Service charge in percent", "SST in percent"], id="S3"),
-    pytest.param(seeds.S1, S1_TAB_ORDER, id="S1"),
-    pytest.param(seeds.UNREADABLE["B1"], ["New bill", "Dismiss note", "Person 1 name", "Person 2 name", "Add person", "Even",
-                                          "Subtotal in RM", "Service charge in percent", "SST in percent"], id="S7"),
+# ---------------------------------------------------------------- v1.1.0 task A18: cross-cutting checks in both engines
+# R32, R35, R36, R37, R55 and R60 in the v1.1.0 forms of qa.md. The 1.0 forms read the 1.0 markup and were marked for A18.
+# Tests that check several lines of one scenario gather what is wrong into one list and assert it empty, so one failing
+# run names every line that broke.
+
+# The accessible name of a control from the four sources the app's controls use, in accname's order, aria-labelledby,
+# aria-label, the input's own label, then its text. qa.md names every Tab stop by it (R32).
+ACCESSIBLE_NAME_JS = """(el) => { const text = (node) => (node ? node.textContent : '').replace(/\\s+/g, ' ').trim();
+  const by = el.getAttribute('aria-labelledby');
+  if (by) return by.split(/\\s+/).map((id) => text(document.getElementById(id))).join(' ');
+  if (el.hasAttribute('aria-label')) return el.getAttribute('aria-label');
+  if (el.labels && el.labels.length) return text(el.labels[0]);
+  return text(el); }"""
+FOCUSED_NAME_JS = "() => (" + ACCESSIBLE_NAME_JS + ")(document.activeElement)"
+# How many controls Tab can reach in `scope`, a dialog's selector, or in the page outside the dialogs when it is null.
+# Enabled, displayed, not taken out by a negative tabindex, and of a radio group the checked radio only.
+TABBABLE_COUNT_JS = """(scope) => [...(scope ? document.querySelector(scope) : document).querySelectorAll('button, input, [tabindex]')]
+  .filter((el) => el.tabIndex >= 0 && !el.disabled && el.checkVisibility() && (el.type !== 'radio' || el.checked)
+    && (scope || !el.closest('dialog'))).length"""
+K1_ITEM_STOPS = [stop for number, (name, _, _) in enumerate(S1_ITEMS, start=1)
+                 for stop in (f"Item {number} name", f"{name} price in RM", f"Remove {name}", "Aisyah", "Ben", "Chen")]
+EMPTY_STOPS = ["New bill", "People", "Add person", "Person 1 name", "Person 2 name", "Charges", "Even", "Subtotal in RM", "Splits"]
+TAB_SCOPES = {"page": None, "sheet": "#splitsDlg", "p1": "#spareDlg"}
+TAB_ORDER_CASES = [  # qa.md "Tab order follows the golden", the seed, the width, where Tab starts, the order of the names
+    pytest.param(seeds.S1, 390, "page", ["New bill", "People", "Charges", "By item", "Add item", *K1_ITEM_STOPS, "Splits",
+                                         "Copy summary"], id="K1-390"),
+    pytest.param(None, 390, "page", EMPTY_STOPS, id="bill-empty-390"),
+    pytest.param(seeds.UNREADABLE["B1"], 390, "page", ["Dismiss note", *EMPTY_STOPS], id="B1-390"),
+    pytest.param(seeds.S1, 1280, "page", ["New bill", "Spare sen: Top of the list. Change", "Copy summary", "Add person",
+                                          "Person 1 name", "Remove Aisyah", "Person 2 name", "Remove Ben", "Person 3 name",
+                                          "Remove Chen", "Service charge", "SST", "By item", "Add item", *K1_ITEM_STOPS],
+                 id="K1-1280"),
+    pytest.param(seeds.S1, 390, "sheet", ["Close", "Spare sen: Top of the list. Change", "Copy summary"], id="K1-sheet-390"),
+    pytest.param(seeds.RND, 390, "sheet", ["Close", "Pick again", "Spare sen: At random. Change", "Copy summary"],
+                 id="RND-sheet-390"),
+    pytest.param(seeds.S1, 1280, "p1", ["Close", "Top of the list"], id="K1-P1-1280"),
+    pytest.param(seeds.ONE, 1280, "p1", ["Close", "One person", "Ben"], id="ONE-P1-1280"),
+    pytest.param(seeds.RND, 1280, "p1", ["Close", "At random", "Pick again"], id="RND-P1-1280"),
 ]
 
 
-def ring_problem(stop):
-    """What is wrong with the ring of one Tab stop, or None (qa.md R32)."""
-    if not stop["visible"]:
-        return "not :focus-visible"
-    if stop["kind"] == "radio":  # drawn on fieldset.mode, plus the double ring inside the label
-        return None if stop["mode"] == RING and stop["labelRing"] == MODE_DOUBLE_RING else f"mode {stop['mode']} {stop['labelRing']}"
-    if stop["kind"] == "text":  # drawn on span.field, never on the input
-        return None if stop["field"] == RING and stop["self"][0] == "none" else f"field {stop['field']} input {stop['self']}"
-    expected = ["solid", "2px", INK, "-3px"] if stop["personRemove"] else RING  # inset on the person remove button
-    return None if stop["self"] == expected else f"control {stop['self']}"
-
-
-@pytest.mark.xfail(strict=True, reason="task A18")
-@pytest.mark.parametrize("seed, order", TAB_CASES)
-def test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring(open_app, seed, order):
-    page = open_app(seed=seed).page
-    assert page.evaluate(TABBABLE_JS) == len(order)  # nothing reachable is left out of the list, disabled ones are not in it
-    stops = []
-    for _ in order:
+@pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+    # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+    # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+    # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+    page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+    if start == "sheet":
+        open_sheet(page)
+    elif start == "p1":
+        open_p1(page, "desktop")
+        page.keyboard.press("Shift+Tab")
+    stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+    while len(stops) < len(order):
         page.keyboard.press("Tab")
-        stops.append(page.evaluate(FOCUS_JS))
-    assert [stop["name"] for stop in stops] == order
-    assert [(stop["name"], ring_problem(stop)) for stop in stops if ring_problem(stop)] == []
+        stops.append(page.evaluate(FOCUSED_NAME_JS))
+    assert stops == order
+    assert page.evaluate(TABBABLE_COUNT_JS, TAB_SCOPES[start]) == len(order)
 
 
-def test_R32_the_ring_check_has_teeth():
-    good = {"visible": True, "kind": "text", "self": ["none", "0px", INK, "0px"], "field": RING, "mode": None, "labelRing": None, "personRemove": False}
-    assert ring_problem(good) is None
-    assert ring_problem(dict(good, visible=False)) and ring_problem(dict(good, field=["none", "0px", INK, "0px"]))
-    assert ring_problem(dict(good, kind="button", self=RING, personRemove=True))  # needs -3px
-    assert ring_problem(dict(good, kind="radio", mode=RING, labelRing="none"))
+FOCUS_RING = "rgb(163, 170, 255)"  # --focus, system.md Focus
+# Where a focused control draws its ring (system.md Focus). An input on its div.field or li.field wrapper, a half of the
+# Split switch on its label, a header row as the border of its ::after (left and right -8px, 8 px wider than the row on
+# each side), anything else on itself. `edge` is the holder's box-shadow, the red edge of an error field.
+RING_JS = """(el) => {
+  const visible = el.matches(':focus-visible');
+  if (el.matches('.sec-btn')) {
+    const after = getComputedStyle(el, '::after');
+    return { on: 'button.sec-btn::after', visible, ring: [after.borderTopStyle, after.borderTopWidth, after.borderTopColor, after.left, after.right] };
+  }
+  const holder = el.localName === 'input' && el.closest('.field') ? el.closest('.field') : el.matches('.mode-sw input') ? el.nextElementSibling : el;
+  const s = getComputedStyle(holder);
+  return { on: holder.localName + [...holder.classList].map((name) => '.' + name).join(''), visible,
+           ring: [s.outlineStyle, s.outlineWidth, s.outlineColor, s.outlineOffset], edge: s.boxShadow };
+}"""
+
+
+def ring(offset, *more):
+    return ["solid", "2px", FOCUS_RING, offset, *more]
+
+
+# qa.md "Every focused control shows the one ring", each control, its selector in the app and in the golden, and its ring.
+# The header row and Splits are not displayed from 1024 px, and Copy summary is the card's there.
+RING_TARGETS = {
+    "a name field": ("input[aria-label='Person 1 name']", ring("2px")),
+    "a person's Remove": ("button[aria-label='Remove Aisyah']", ring("-3px")),
+    "the checked half of the Split switch": ("#modeItem", ring("-5px")),
+    "a header row": ("#peopleBtn", ["solid", "2px", FOCUS_RING, "-8px", "-8px"]),
+    "a toggle": ("div[aria-label='Who had Nasi lemak ayam'] button.tap", ring("2px")),
+    "an item's Remove": ("button[aria-label='Remove Nasi lemak ayam']", ring("2px")),
+    "Splits": ("#splitsBtn", ring("2px")),
+    "Copy summary": ("#stripCopy", ring("2px")),
+}
+DESKTOP_RING_TARGETS = {**{what: target for what, target in RING_TARGETS.items() if what not in ("a header row", "Splits")},
+                        "Copy summary": ("#copyBtn", ring("2px"))}
+
+
+def ring_by_tab(page, selector):
+    """RING_JS on the first match of `selector`, focused by Tab from New bill (so it is :focus-visible), at most 80 presses."""
+    control = page.locator(selector).first
+    page.locator("#newBill").focus()
+    tab_until(page, control, limit=80)
+    return control.evaluate(RING_JS)
+
+
+@pytest.mark.parametrize("width, golden", [(390, "bill-items-open"), (1280, "bill-items")], ids=["390", "1280"])
+def test_R32_every_focused_control_shows_the_one_ring(open_app, plain_context, width, golden):
+    # qa.md on K1, below 1024 px with People and Charges opened by keyboard (Enter on each header row). Each ring is
+    # compared with the golden's on the same control focused by Tab, and with the numbers of system.md Focus.
+    page = open_app(seed=seeds.S1, viewport=VIEWPORTS[width]).page
+    if width < 1024:
+        for header in ("#peopleBtn", "#chargesBtn"):
+            page.locator(header).focus()
+            page.keyboard.press("Enter")
+    golden_page = support.open_golden(plain_context, golden, VIEWPORTS[width])
+    problems = []
+    for what, (selector, expected) in (RING_TARGETS if width < 1024 else DESKTOP_RING_TARGETS).items():
+        found, drawn = ring_by_tab(page, selector), ring_by_tab(golden_page, selector)
+        if not found["visible"] or found["ring"] != expected or [found["on"], found["ring"]] != [drawn["on"], drawn["ring"]]:
+            problems.append(f"{what}: app {found}, golden {drawn}")
+    assert not problems, " | ".join(problems)
+
+
+def test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring(open_app, plain_context):
+    # qa.md, the RE line of "Every focused control shows the one ring", at 390 x 844, where Charges is open on load.
+    page = open_app(seed=seeds.RE).page
+    edge = page.locator("#svc").evaluate("(el) => getComputedStyle(el.closest('.field')).boxShadow")
+    found = ring_by_tab(page, "#svc")
+    drawn = ring_by_tab(support.open_golden(plain_context, "rate-error"), "#svc")
+    assert edge != "none" and found["edge"] == edge, (edge, found)
+    assert found["visible"] and found["ring"] == ring("2px") and found == drawn, (found, drawn)
 
 
 @pytest.mark.parametrize("seed, field_of, text", [
@@ -4340,126 +4474,358 @@ def test_R33_typing_in_an_amount_or_a_rate_keeps_focus_and_caret(open_app, seed,
     type_and_watch(page, field_of(page), text)
 
 
+# qa.md "No horizontal overflow in any golden state", the page's overflow, every displayed element whose right edge is past
+# the viewport's (the first 8 named), the People grid's columns where it is displayed, the tops of the blocks top bar,
+# People, Charges, Split, then Items or Subtotal (null when not displayed), and the strip's position with the gap under it.
 LAYOUT_JS = """() => {
-  const tape = document.querySelector('div.tape'), inputs = document.querySelector('div.inputs');
+  const shown = (el) => !!el && el.checkVisibility();
+  const name = (el) => el.localName + (el.id ? '#' + el.id : '') + [...el.classList].map((c) => '.' + c).join('');
+  const wide = [...document.body.querySelectorAll('*')].filter((el) => shown(el) && el.getBoundingClientRect().right > innerWidth + 0.5)
+    .map((el) => name(el) + ' ' + el.getBoundingClientRect().right);
+  const list = document.querySelector('#peopleList'), strip = document.querySelector('#strip');
   return {
-    overflow: document.documentElement.scrollWidth - window.innerWidth,
-    columns: getComputedStyle(document.querySelector('section[aria-labelledby=h-people] ul.cells')).gridTemplateColumns.split(' ').length,
-    tapeTop: tape.getBoundingClientRect().top, tapeLeft: tape.getBoundingClientRect().left, position: getComputedStyle(tape).position,
-    chargesBottom: document.querySelector('section[aria-labelledby=h-charges]').getBoundingClientRect().bottom,
-    inputsRight: inputs.getBoundingClientRect().right,
+    overflow: document.documentElement.scrollWidth - innerWidth, wide: wide.slice(0, 8), wideCount: wide.length,
+    columns: shown(list) ? getComputedStyle(list).gridTemplateColumns.split(' ').length : null,
+    tops: ['header.top', '#peopleBlk', '#chargesBlk', '#splitBlk', '#itemsBlock, #evenBlock'].map((selector) => {
+      const el = document.querySelector(selector); return shown(el) ? el.getBoundingClientRect().top : null; }),
+    strip: shown(strip) ? [getComputedStyle(strip).position, innerHeight - strip.getBoundingClientRect().bottom] : null,
   };
 }"""
-LAYOUT_CASES = [
-    pytest.param("S1", seeds.S1, (360, 780), 2, "after", id="S1-360"),
-    pytest.param("S2", seeds.S2, (360, 780), 2, "after", id="S2-360"),
-    pytest.param("S3", None, (360, 780), 2, "after", id="S3-360"),
-    pytest.param("S5", seeds.S5, (360, 780), 2, "after", id="S5-360"),
-    pytest.param("S1", seeds.S1, (390, 844), 2, "after", id="S1-390"),
-    pytest.param("S1", seeds.S1, (1280, 800), 3, "right", id="S1-1280"),
-    pytest.param("S3", None, (1280, 800), 3, "right", id="S3-1280"),
-    pytest.param("M1", seeds.S2, (360, 780), 2, "after", id="M1-360"),
-]
+R35_PAIRS = [pytest.param(golden, width, id=f"{golden}-{width}") for golden, (_, _, widths) in R3_STATES.items() for width in widths]
 
 
-@pytest.mark.xfail(strict=True, reason="task A18")
-@pytest.mark.parametrize("state, seed, viewport, columns, panel", LAYOUT_CASES)
-def test_R35_no_horizontal_overflow_and_the_layout_of_each_size(open_app, state, seed, viewport, columns, panel):
-    page = open_app(seed=seed, viewport=viewport).page
-    if state == "M1":
-        open_dialog(page)
-    found = page.evaluate(LAYOUT_JS)
-    assert found["overflow"] <= 0, found
-    assert found["columns"] == columns
-    if panel == "after":  # under 1024 px the panel sits after the Charges block
-        assert found["tapeTop"] >= found["chargesBottom"] - 0.5 and found["tapeLeft"] < found["inputsRight"]
-    else:  # from 1024 px it is in the right column and sticky
-        assert found["tapeLeft"] >= found["inputsRight"] - 0.5 and found["position"] == "sticky"
+def layout_problems(found, width):
+    """What breaks qa.md's lines of R35 in LAYOUT_JS's `found` at `width`, as one list of sentences."""
+    problems = [f"the page is {found['overflow']} px wider than the viewport"] if found["overflow"] > 0 else []
+    if found["wideCount"]:
+        problems.append(f"{found['wideCount']} displayed elements end past the viewport's right edge, {found['wide']}")
+    if found["columns"] is not None and found["columns"] != (3 if width >= 1024 else 2):
+        problems.append(f"People's list has {found['columns']} columns")
+    if width < 1024:
+        tops = found["tops"]
+        if None in tops or any(upper >= lower for upper, lower in zip(tops, tops[1:])):
+            problems.append(f"the tops of the top bar, People, Charges, Split and Items or Subtotal are {tops}")
+        if found["strip"] is None or found["strip"][0] != "fixed" or abs(found["strip"][1]) > 0.5:
+            problems.append(f"the strip is {found['strip']}, not fixed at the bottom of the viewport")
+    return problems
 
 
-@pytest.mark.xfail(strict=True, reason="task A18")
-def test_R35_sizes_the_design_gives_at_360_by_780(open_app):
-    page = open_app(seed=seeds.S2, clipboard="reject", viewport=(360, 780)).page
-    assert page.locator("#evenField").bounding_box()["width"] == 160  # S2-28, bill-even.md
-    copy_summary(page)
-    status = page.locator("p.status.status-failure")
-    box = status.bounding_box()
-    assert status.inner_text() == FAILED_COPY and status.evaluate("(e) => getComputedStyle(e).textAlign") == "center"
-    assert box["height"] == 40  # two 20 px lines (ST-14)
-    assert status.evaluate("(e) => e.scrollWidth <= e.clientWidth") and box["x"] + box["width"] <= 360
-    assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
-    dialog = open_dialog(page)
-    assert dialog.bounding_box()["width"] == 328 and page.locator("p.dialog-text").bounding_box()["height"] == 48  # M1-09
-    assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+@pytest.mark.parametrize("golden, width", R35_PAIRS)
+def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+    # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+    seed, after_load, _ = R3_STATES[golden]
+    page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+    click_after_load(page, after_load.get("desktop" if width >= 1024 else "phone", ()))
+    problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+    assert not problems, " | ".join(problems)
 
 
-@pytest.mark.xfail(strict=True, reason="task A18")
-def test_R35_content_width_of_the_header_and_the_note_at_1280_by_800(open_app):
-    page = open_app(seed=seeds.UNREADABLE["B1"], viewport=(1280, 800)).page
-    assert page.locator("div.note").bounding_box()["width"] == 1040  # ST-15
-    bar = page.locator("header.bar")
-    assert bar.bounding_box()["width"] == 1104
-    assert bar.evaluate("(e) => [getComputedStyle(e).paddingLeft, getComputedStyle(e).paddingRight]") == ["32px", "32px"]
+def test_R35_layout_problems_has_teeth():
+    good = {"overflow": 0, "wide": [], "wideCount": 0, "columns": 2, "tops": [0, 60, 120, 180, 240], "strip": ["fixed", 0]}
+    assert layout_problems(good, 390) == [] and layout_problems(dict(good, columns=3, strip=None, tops=[0, 64, 64, 64, None]), 1280) == []
+    for broken in ({"overflow": 1}, {"wideCount": 1, "wide": ["div 391"]}, {"columns": 1}, {"tops": [0, 120, 60, 180, 240]},
+                   {"tops": [0, 60, 120, 180, None]}, {"strip": ["static", 0]}, {"strip": ["fixed", 12]}):
+        assert layout_problems({**good, **broken}, 390), broken
 
 
-WATCH_TRANSITIONS_JS = """() => { window.testTransitions = [];
-  document.addEventListener('transitionrun', (event) => window.testTransitions.push(event.propertyName), true); }"""
+def box_of(page, selector):
+    return page.locator(selector).evaluate("(el) => { const b = el.getBoundingClientRect(); return [b.x, b.y, b.width, b.height]; }")
 
 
-@pytest.mark.parametrize("setting, duration", [
-    ("reduce", "0s"),
-    pytest.param("no-preference", "0.12s, 0.12s", marks=pytest.mark.xfail(strict=True, reason="task A18"))])
-def test_R36_motion_follows_the_users_setting(open_app, setting, duration):
-    page = open_app(seed=seeds.S1, reduced_motion=setting).page
-    for selector in (".btn", ".tap", ".icon-btn", ".mode-sw label"):
-        found = page.eval_on_selector_all(selector, "(els) => els.map((e) => getComputedStyle(e).transitionDuration)")
-        assert found and set(found) == {duration}, selector
-    assert page.evaluate("document.getAnimations().length") == 0  # nothing animates by itself
-    page.evaluate(WATCH_TRANSITIONS_JS)
+def close_to(found, expected):
+    """Every number of `found` within 0.5 px of `expected`'s (qa.md, a measured number matches within 0.5 px)."""
+    return len(found) == len(expected) and all(abs(a - b) <= 0.5 for a, b in zip(found, expected))
+
+
+def test_R35_sizes_the_design_gives_at_360_by_780(open_app, plain_context):
+    # The 1.0 sizes at 360 x 780 are FE element checklist rows since v1.1.0 (qa.md, the R35 outline's note). K2-06, the
+    # Subtotal field at most 240 px wide, as wide as the golden's. The refused copy status on the strip stays inside the
+    # viewport with nothing cut (the ST-08 line, whose 153 px strip is the R49 strip test's at 390). M1-02, the dialog
+    # 328 px wide with its top at 261.
+    page = open_app(seed=seeds.S2, clipboard="reject", viewport=VIEWPORTS[360]).page
+    golden = support.open_golden(plain_context, "bill-even", VIEWPORTS[360])
+    problems = []
+    field, drawn = box_of(page, "#evenField"), box_of(golden, "#evenField")
+    if not page.locator("#evenField").evaluate("(el) => el.matches('div.field.money.sub-field')") or field[2] > 240.5 \
+            or not close_to(field, drawn):
+        problems.append(f"the Subtotal field is {field}, the golden's {drawn}")
+    click_copy(page, "#stripCopy")
+    shape = page.locator("#stripStatus").evaluate("(el) => [el.className, el.textContent.trim().length > 0, el.scrollWidth <= el.clientWidth]")
+    x, _, width, _ = box_of(page, "#stripStatus")
+    overflow = page.evaluate(LAYOUT_JS)["overflow"]
+    if shape != ["status is-fail", True, True] or x < 0 or x + width > 360.5 or overflow > 0:
+        problems.append(f"the refused status is {shape} from x {x} to {x + width}, the page overflows by {overflow} px")
+    open_dialog(page)
+    dialog, overflow = box_of(page, "#newDlg"), page.evaluate(LAYOUT_JS)["overflow"]
+    if not close_to([dialog[2], dialog[1]], [328, 261]) or overflow > 0:
+        problems.append(f"the dialog is {dialog}, the page overflows by {overflow} px")
+    assert not problems, " | ".join(problems)
+
+
+def test_R35_content_width_of_the_header_and_the_note_at_1280_by_800(open_app, plain_context):
+    # The 1.0 widths of the header and the note at 1280 x 800 are FE element checklist rows since v1.1.0. K1-01, the top
+    # bar 64 px tall with 48 px sides. BR-02, the note centred in the top bar between the brand and New bill, 44 px tall
+    # with no padding at the top or the bottom, where the golden draws it. Its 44 px is the height inside its 1 px
+    # border (clientHeight), the golden's border box being 46.
+    page = open_app(seed=seeds.UNREADABLE["B1"], viewport=VIEWPORTS[1280]).page
+    golden = support.open_golden(plain_context, "bill-unreadable", VIEWPORTS[1280])
+    problems = []
+    bar = page.locator("header.top").evaluate("""(el) => { const s = getComputedStyle(el);
+      return [el.getBoundingClientRect().height, parseFloat(s.paddingLeft), parseFloat(s.paddingRight)]; }""")
+    if not close_to(bar, [64, 48, 48]):  # WebKit computes the sides as 48.000008px (spec R59 (1))
+        problems.append(f"the top bar's height and sides are {bar}")
+    note, brand, new_bill = box_of(page, "div.note"), box_of(page, "div.brand"), box_of(page, "#newBill")
+    inside = page.locator("div.note").evaluate("""(el) => { const s = getComputedStyle(el);
+      return [el.clientHeight, s.paddingTop, s.paddingBottom]; }""")
+    if not close_to(note, box_of(golden, "div.note")) or inside != [44, "0px", "0px"]:
+        problems.append(f"the note is {note} with {inside}, the golden's {box_of(golden, 'div.note')}")
+    if not brand[0] + brand[2] <= note[0] or not note[0] + note[2] <= new_bill[0]:
+        problems.append(f"the note {note} is not between the brand {brand} and New bill {new_bill}")
+    assert not problems, " | ".join(problems)
+
+
+TRANSITION_CLASSES = [".btn", ".chip-btn", ".tap", ".icon-btn", ".mode-sw label"]
+# Every value of the computed transition-duration of every element each selector matches, as [selector, values].
+DURATIONS_JS = """(selectors) => selectors.map((selector) => [selector, [...document.querySelectorAll(selector)]
+  .flatMap((el) => getComputedStyle(el).transitionDuration.split(', '))])"""
+# document.getAnimations() as [kind, playState, target as tag#id.classes, duration in ms].
+ANIMATIONS_JS = """() => document.getAnimations().map((a) => { const t = a.effect && a.effect.target;
+  return [a.constructor.name, a.playState, t ? t.localName + '#' + t.id + [...t.classList].map((c) => '.' + c).join('') : null,
+          a.effect ? a.effect.getTiming().duration : null]; })"""
+
+
+def test_R36_reduced_motion_moves_nothing(open_app):
+    # qa.md on K1 at 390 x 844 under "reduce", the default context. "Right after" is read as soon as the click returns.
+    page = open_app(seed=seeds.S1).page
+    problems = []
+
+    def no_durations(target, selectors):
+        problems.extend(f"{selector} transition-duration {sorted(set(values))}"
+                        for selector, values in target.evaluate(DURATIONS_JS, selectors) if not values or set(values) != {"0s"})
+
+    def no_animations(when):
+        found = page.evaluate(ANIMATIONS_JS)
+        if found:
+            problems.append(f"getAnimations() {when}: {found}")
+
+    no_durations(page, TRANSITION_CLASSES)
+    no_animations("right after load")
     toggle(page, "Mee goreng mamak", "Ben").click()
-    right_after = page.evaluate("() => document.getAnimations().map((a) => [a.constructor.name, a.transitionProperty])")
-    # The transitionrun events are sent with the next frame, so the list is read after two of them.
-    page.evaluate("() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)))")
-    started = page.evaluate("window.testTransitions")
-    if setting == "reduce":
-        assert right_after == [] and started == []
-    else:  # the colour change of the toggle runs, and it is the only thing that does
-        assert right_after and all(kind == "CSSTransition" and prop in ("background-color", "color") for kind, prop in right_after)
-        assert started and set(started) <= {"background-color", "color"}
-    page.wait_for_timeout(500)
-    assert page.evaluate("document.getAnimations().length") == 0
+    no_animations("right after a toggle click")
+    page.locator("#peopleBtn").click()
+    no_animations("right after #peopleBtn opened People")
+    open_sheet(page)
+    no_animations("right after Splits opened the sheet")
+    page.locator(SHEET_SPARE_CHIP).click()
+    no_animations("right after the chip opened P1")
+    over_one = open_app(seed=seeds.ONE).page
+    open_p1(over_one, "phone")
+    no_durations(over_one, [".choice", ".pill-face"])
+    assert not problems, " | ".join(problems)
+
+
+def test_R36_with_motion_allowed_nothing_loops(open_app):
+    # qa.md on K1 under "no-preference" (spec R36 as worded 2026-10-15, F-A4-1, no animation is running). The resize to
+    # 390 shows the strip, which starts its foil sweep, so 3 s pass before the click on #peopleBtn.
+    page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280], reduced_motion="no-preference").page
+    problems = []
+
+    def nothing_running(when):
+        found = [animation for animation in page.evaluate(ANIMATIONS_JS) if animation[1] == "running"]
+        if found:
+            problems.append(f"running {when}: {found}")
+
+    at_load = page.evaluate(ANIMATIONS_JS)
+    if not any(kind == "CSSAnimation" for kind, *_ in at_load):
+        problems.append(f"no CSSAnimation right after load: {at_load}")
+    page.wait_for_timeout(3000)
+    nothing_running("3 s after load")
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.wait_for_timeout(3000)
+    page.locator("#peopleBtn").click()
+    reveal = [animation for animation in page.evaluate(ANIMATIONS_JS) if animation[0] not in ("CSSAnimation", "CSSTransition")]
+    if [animation[2:] for animation in reveal] != [["div#peopleBody.sec-body", 200]]:
+        problems.append(f"right after the click on #peopleBtn the animations besides CSS ones are {reveal}")
+    if page.locator("#peopleBody").get_attribute("style") is not None:
+        problems.append("#peopleBody has a style attribute")
+    page.wait_for_timeout(1000)
+    nothing_running("1 s after the click on #peopleBtn")
+    if any(animation[0] not in ("CSSAnimation", "CSSTransition") for animation in page.evaluate(ANIMATIONS_JS)):
+        problems.append("the reveal is still in getAnimations() 1 s after the click")
+    for name, gesture in [("a toggle click", lambda: toggle(page, "Mee goreng mamak", "Ben").click()),
+                          ("the click on Splits", lambda: open_sheet(page)),
+                          ("the click on the sheet's spare chip", lambda: page.locator(SHEET_SPARE_CHIP).click()),
+                          ("Escape", lambda: press_escape(page)), ("Escape again", lambda: press_escape(page))]:
+        gesture()
+        page.wait_for_timeout(1000)
+        nothing_running(f"1 s after {name}")
+    assert not problems, " | ".join(problems)
 
 
 PERSON_PAYLOAD, ITEM_PAYLOAD, SCRIPT_PAYLOAD = "<svg onload=f()>", "<img src=x onerror=alert(1)>", '"><script>alert(2)</script>'
+# What markup a payload could have made, img and script elements under body, elements with an onload or onerror
+# attribute, and every svg under body, as its class, or as "other" when it is none of svg.sprite, .mark, .ic or .seal.
+MARKUP_JS = """() => ({ markup: document.body.querySelectorAll('img, script').length,
+  handlers: document.querySelectorAll('[onload], [onerror]').length,
+  svgs: [...document.body.querySelectorAll('svg')].map((svg) =>
+    svg.matches('svg.sprite, svg.mark, svg.ic, svg.seal') ? svg.getAttribute('class') : 'other') })"""
 
 
-@pytest.mark.xfail(strict=True, reason="task A18")
 def test_R37_names_are_shown_as_text_and_never_as_markup(open_app):
-    page = open_app(seed=seeds.S1).page
+    # qa.md on K1 at 390 x 844 with People opened first. The card is not displayed below 1024 px but is in the DOM, so its
+    # first splits row is read there. CG-9 of 1.0 stands.
+    session = open_app(seed=seeds.S1)
+    page = session.page
     dialogs = []
     page.on("dialog", lambda dialog: (dialogs.append(dialog.message), dialog.dismiss()))
-    svgs_before = page.locator("body svg").count()
+    open_people_first(page)
+    svgs_before = len(page.evaluate(MARKUP_JS)["svgs"])
     support.replace_text(page, person_field(page, 1), PERSON_PAYLOAD)
     support.replace_text(page, item_name(page, 1), ITEM_PAYLOAD)
     support.replace_text(page, item_name(page, 2), SCRIPT_PAYLOAD)
-    assert person_field(page, 1).input_value() == PERSON_PAYLOAD and len(PERSON_PAYLOAD) == 16  # nothing cut by maxlength 20
-    assert item_name(page, 1).input_value() == ITEM_PAYLOAD and len(ITEM_PAYLOAD) == 28
-    assert item_name(page, 2).input_value() == SCRIPT_PAYLOAD
-    assert page.get_by_role("button", name=PERSON_PAYLOAD, exact=True).count() == 4  # that person's toggle in every item
-    assert table_cells(page, "tbody")[0][0] == PERSON_PAYLOAD
-    assert remove_button(page, PERSON_PAYLOAD).count() == 1
-    assert page.get_by_role("button", name=f"Remove {ITEM_PAYLOAD}", exact=True).count() == 1
-    assert who_group(page, ITEM_PAYLOAD).count() == 1 and who_group(page, SCRIPT_PAYLOAD).count() == 1
-    found = page.evaluate("""() => ({
-      markup: document.body.querySelectorAll('img, script').length,
-      handlers: document.querySelectorAll('[onload], [onerror], [onclick]').length,
-      svgClasses: [...document.querySelectorAll('body svg')].map((svg) => svg.getAttribute('class')),
-    })""")
-    assert found["markup"] == 0 and found["handlers"] == 0
-    assert len(found["svgClasses"]) == svgs_before and set(found["svgClasses"]) == {"ph"}  # every svg is still an icon
-    copy_summary(page)
-    assert page.evaluate("window.testClipboardText").split("\n")[2] == f"{PERSON_PAYLOAD} RM 29.04"
-    assert dialogs == []  # no alert ran
+    problems = []
+
+    def expect(what, found, wanted):
+        if found != wanted:
+            problems.append(f"{what}: {found!r}, not {wanted!r}")
+
+    expect("Person 1 name", person_field(page, 1).input_value(), PERSON_PAYLOAD)
+    expect("Item 1 name", item_name(page, 1).input_value(), ITEM_PAYLOAD)
+    expect("the payload lengths", [len(PERSON_PAYLOAD), len(ITEM_PAYLOAD)], [16, 28])
+    expect("that person's toggles", page.locator("button.tap").evaluate_all(
+        f"(taps) => taps.filter((tap) => tap.textContent === {json.dumps(PERSON_PAYLOAD)}).length"), 4)
+    expect("the card's first splits row", page.evaluate("document.querySelector('#splits li .nm')?.textContent ?? null"), PERSON_PAYLOAD)
+    expect("that person's Remove", remove_button(page, PERSON_PAYLOAD).count(), 1)
+    expect("item 1's Remove", page.get_by_role("button", name=f"Remove {ITEM_PAYLOAD}", exact=True).count(), 1)
+    expect("item 1's price", page.get_by_label(f"{ITEM_PAYLOAD} price in RM", exact=True).count(), 1)
+    expect("item 1's group", who_group(page, ITEM_PAYLOAD).count(), 1)
+    page.locator("#peopleBtn").click()  # folds People
+    summary = page.evaluate("document.querySelector('#peopleBlk span.sec-txt')?.textContent ?? ''")
+    if not summary.startswith(PERSON_PAYLOAD):
+        problems.append(f"the People summary reads {summary!r}")
+    found = page.evaluate(MARKUP_JS)
+    expect("img and script elements, onload and onerror attributes", [found["markup"], found["handlers"]], [0, 0])
+    expect("the number of svg elements", len(found["svgs"]), svgs_before)
+    expect("svg elements that are none of svg.sprite, .mark, .ic or .seal", found["svgs"].count("other"), 0)
+    expect("dialog events and page errors", [dialogs, session.page_errors], [[], []])
+    open_sheet(page)
+    page.locator(SHEET_SPARE_CHIP).click()
+    choose(page, "One person")
+    face = page.evaluate("""() => { const face = document.querySelector('#pickList label.pill span.pill-face');
+      return face && [face.querySelectorAll(':scope > svg.ic').length, face.children.length,
+                      [...face.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE).map((node) => node.data)]; }""")
+    expect("the first pill's face (svg.ic, children, text nodes)", face, [1, 1, [PERSON_PAYLOAD]])
+    press_escape(page)
+    press_escape(page)
+    click_copy(page, "#stripCopy")
+    expect("line 3 of the clipboard text", (page.evaluate("window.testClipboardText") or "").split("\n")[2:3], [f"{PERSON_PAYLOAD} RM 29.04"])
+    assert not problems, " | ".join(problems)
+
+
+# qa.md "The desktop layout at 1280 and at 1024", the top bar's height, the two regions with their names and boxes, the
+# card and the chip, and whether the strip, the header rows, the bodies and the desktop headings are displayed.
+DESKTOP_JS = """() => {
+  const box = (selector) => { const el = document.querySelector(selector); if (!el) return null;
+    const b = el.getBoundingClientRect(); return [b.x, b.y, b.width, b.height]; };
+  const shown = (selector) => { const el = document.querySelector(selector); return !!el && el.checkVisibility(); };
+  return {
+    top: document.querySelector('header.top').getBoundingClientRect().height,
+    names: [document.querySelector('section.stage#stage')?.getAttribute('aria-label') ?? null,
+            document.querySelector('section.work#work')?.getAttribute('aria-label') ?? null],
+    stage: box('#stage'), work: box('#work'), card: box('#card'), chip: box('#spareBtn'),
+    shown: Object.fromEntries(['#stage', '#work', '#strip', '#peopleBtn', '#chargesBtn', '#peopleBody', '#chargesBody',
+                               'h2#peopleH', 'h2#chargesH'].map((selector) => [selector, shown(selector)])),
+  };
+}"""
+
+
+def test_R55_the_desktop_layout_at_1280_and_at_1024(open_app):
+    # qa.md on K1. "Side by side" is the stage's right edge at or left of the working's left edge, with their boxes
+    # sharing rows of the page.
+    page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280]).page
+    found = page.evaluate(DESKTOP_JS)
+    problems = []
+    stage, work = found["stage"], found["work"]
+    if abs(found["top"] - 64) > 0.5:
+        problems.append(f"header.top is {found['top']} px tall")
+    if found["names"] != ["Bill and splits", "Edit the bill"]:
+        problems.append(f"the regions are named {found['names']}")
+    if not (stage[0] + stage[2] <= work[0] + 0.5 and stage[1] < work[1] + work[3] and work[1] < stage[1] + stage[3]):
+        problems.append(f"the stage {stage} and the working {work} are not side by side")
+    if not close_to(found["card"], [98, 84, 460, 642]) or not close_to(found["chip"], [392, 589, 141, 44]):
+        problems.append(f"the card is {found['card']} and #spareBtn {found['chip']}")
+    shown = found["shown"]
+    wanted = {"#stage": True, "#work": True, "#strip": False, "#peopleBtn": False, "#chargesBtn": False, "#peopleBody": True,
+              "#chargesBody": True, "h2#peopleH": True, "h2#chargesH": True}
+    if shown != wanted:
+        problems.append(f"displayed {[s for s in wanted if shown[s] != wanted[s]]} the other way round, at 1280 x 800")
+    page.set_viewport_size({"width": 1024, "height": 768})
+    found = page.evaluate(DESKTOP_JS)
+    if not found["card"][0] + found["card"][2] < found["work"][0] or found["shown"]["#strip"]:
+        problems.append(f"at 1024 x 768 the card is {found['card']}, the working {found['work']}, the strip shown {found['shown']['#strip']}")
+    assert not problems, " | ".join(problems)
+
+
+R55_GOLDENS = [golden for golden, (_, _, widths) in R3_STATES.items() if 1280 in widths]
+
+
+@pytest.mark.parametrize("golden", R55_GOLDENS)
+def test_R55_the_page_never_scrolls_at_1280_by_800(open_app, golden):
+    # qa.md, each golden's state reached as in the R3 outline at 1280 x 800.
+    seed, after_load, _ = R3_STATES[golden]
+    page = open_app(seed=seed, viewport=VIEWPORTS[1280]).page
+    click_after_load(page, after_load.get("desktop", ()))
+    height = page.evaluate("[document.documentElement.scrollHeight, innerHeight]")
+    assert height[0] <= height[1], f"the page is {height[0]} px tall in a {height[1]} px viewport"
+
+
+# The money figures R60 names that are wider than their box, among those in `root`, and how many of each it holds.
+FIGURES_JS = """(root) => { const scope = document.querySelector(root), found = {}, wide = [];
+  for (const selector of ['.r-amount', '.amt', '.r-lines dd', '.wk']) {
+    const figures = [...scope.querySelectorAll(selector)];
+    found[selector] = figures.length;
+    wide.push(...figures.filter((el) => el.scrollWidth > el.clientWidth).map((el) => `${selector} ${el.textContent} ${el.scrollWidth} > ${el.clientWidth}`));
+  }
+  return { found, wide }; }"""
+# #stripTotal as [scrollWidth, clientWidth, whether its text sits on one line]. One line means every box of its text
+# shares one band across the strip (the "RM" at 14 px makes the line box 33 px, not the 30 px of its line-height).
+STRIP_TOTAL_JS = """() => { const fig = document.querySelector('#stripTotal'); if (!fig) return null;
+  const range = document.createRange(); range.selectNodeContents(fig);
+  const rects = [...range.getClientRects()].filter((rect) => rect.width > 0);
+  return [fig.scrollWidth, fig.clientWidth, rects.length > 0 && Math.max(...rects.map((r) => r.top)) < Math.min(...rects.map((r) => r.bottom))]; }"""
+
+
+@pytest.mark.parametrize("seed", [seeds.W1, seeds.MAX_E, seeds.MAX_I], ids=["W1", "MAX-E", "MAX-I"])
+def test_R60_large_bills_fit_a_360_px_phone(open_app, seed):
+    # qa.md at 360 x 780. The card is not displayed below 1024 px, so the figures are read on the strip and in the sheet.
+    # Even rows carry no .wk (K2-11), so a MAX-E sheet holds none. A failure on a MAX bill is a design finding for the
+    # owner, the CSS stays a byte copy (spec R60).
+    page = open_app(seed=seed, viewport=VIEWPORTS[360]).page
+    problems = []
+    overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
+    strip = page.evaluate(STRIP_TOTAL_JS)
+    if overflow > 0 or strip is None or strip[0] > strip[1]:
+        problems.append(f"before Splits the page overflows by {overflow} px and #stripTotal is {strip}")
+    open_sheet(page)
+    figures = page.evaluate(FIGURES_JS, "#splitsDlg .rbody")
+    if figures["wide"] or not all(figures["found"][selector] for selector in (".r-amount", ".amt", ".r-lines dd")):
+        problems.append(f"in the sheet {figures}")
+    overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
+    if overflow > 0:
+        problems.append(f"with the sheet open the page overflows by {overflow} px")
+    assert not problems, " | ".join(problems)
+
+
+def test_R60_the_large_price_shows_whole(open_app):
+    # qa.md on W1 at 360 x 780. "One line box tall" is read from the boxes of #stripTotal's text (STRIP_TOTAL_JS).
+    page = open_app(seed=seeds.W1, viewport=VIEWPORTS[360]).page
+    price = page.get_by_label("Item 5 price in RM", exact=True)
+    found = [price.input_value(), price.evaluate("(el) => [el.scrollWidth, el.clientWidth]")]
+    strip, reads = page.evaluate(STRIP_TOTAL_JS), " ".join(page.locator("#stripInfo").inner_text().split())
+    problems = [] if found[0] == "964.50" and found[1][0] <= found[1][1] else [f"the price field holds {found}"]
+    if reads != "Total RM 1,193.87" or strip[2] is not True:
+        problems.append(f"the strip reads {reads!r}, #stripTotal {strip}")
+    assert not problems, " | ".join(problems)
 
 
 BANNED_APIS = ["innerHTML", "outerHTML", "insertAdjacentHTML", "document.write", "eval(", "new Function(", "createContextualFragment", "DOMParser"]
@@ -4496,7 +4862,7 @@ def test_R37_no_banned_api_in_the_shipped_files():
     problems = []
     for name, text in scanned.items():
         problems += banned_api_problems(name, text)
-    assert problems == []
+    assert not problems, " | ".join(problems)
 
 
 def test_R37_the_banned_api_scan_has_teeth():

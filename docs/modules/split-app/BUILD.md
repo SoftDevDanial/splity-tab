@@ -367,6 +367,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 | A16 | `3c3d9b0` | `feat(split-app): the New bill dialog and Start new bill held as written, so the tests follow qa.md, ... (task A16, R29, R30, R31, R59)`, tests only, recorded by the A16 proof commit |
 | A16 proofs | `9bdb9ee` | `docs(split-app): the proof runs of A16 on the committed tree, Node 379 of 379, Chromium 602 passed and 21 xfailed, WebKit 600 passed with only F-A11-1 failing by id, ... (task A16, R29, R30, R31, R59)`, recorded by the A21 section |
 | A21 | `b8b332e` | `feat(split-app): below 1024 px a control focused in the page whose bottom edge is under the strip is scrolled clear of it with scrollIntoView nearest, ... (task A21, R49)`, recorded by the A21 proof commit |
+| A21 proofs | `d905f85` | `docs(split-app): the proof runs of A21 on the committed tree, Node 379 of 379, Chromium 603 passed and 21 xfailed, WebKit 602 passed with no failure by id ... (task A21, R49)`, recorded by the A18 section |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -1771,3 +1772,82 @@ Built by the frontend developer role from `spec.md` (task A21 and the Tasks prea
 **For the README reconcile** (symbols). The focus scroll (R49). `focusScroll` in `createStrip` (`src/ui/strip.js`) is the document's one `focusin` listener. Below 1024 px (`DESKTOP`), a control inside `div.app` and outside `#strip` whose bottom edge is under the strip's top gets `scrollIntoView({ block: "nearest" })`, which stops it 12 px above the strip through the root's `scroll-padding-bottom`, in both engines. Tests, `COUNT_SCROLL_INTO_VIEW_JS`, `FOCUSED_AGAINST_STRIP_JS` and `test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it` in `tests/browser/test_app.py`.
 
 **How to view.** Serve as above and open the page at 390 x 844 in Safari (or Playwright's WebKit) with a long bill, People and Charges open and By item chosen with four items. Focus New bill and press Tab through the items. Every focused field and toggle stops a little above the strip, never under it. From 1024 px wide there is no strip and Tab never scrolls the page.
+
+## v1.1.0 task A18, cross-cutting checks in both engines (2026-10-15)
+Built by the frontend developer role from `spec.md` (task A18 with its line of 2026-10-15 and the Tasks preamble, R32, R35 to R39, R50, R52, R54, R55, R59 with its four engine differences, R60), `qa.md` (every scenario tagged with those ids, the FE checklist rows the R35 note names, Phrases) and `docs/design/system.md` (Focus, Motion), on the tree of `a7cfe0e`, with `docs/progress/handoff/handoff-2026-10-15-execute-split-A18.md` and its section of 18:24.
+
+**Status. Tests only, committed with this section. The proof runs on the committed tree are not run yet.** The builder stopped at about 40 percent of its context, as the brief asks, after the RED record and the green check of the A18 tests. A fresh builder resumes from `docs/progress/handoff/handoff-2026-10-15-execute-split-A18b.md` (Node, Chromium and WebKit full suites on the committed tree, WebKit by id against A21's run, the proof docs commit, the A18 tick in `spec.md`, the A19 handoff).
+
+**Phase skills (design row of `docs/phase-skills.md`).** Not loaded. A18 changed no file under `src/` and no UI (markup, CSS, copy, motion or focus look). Every scenario already held on the tree of `a7cfe0e`, so only tests changed, which the brief names as not needing the row. The stubs below were put in and taken out and are not UI work that ships.
+
+**What changed** (cite by symbol). No file under `src/` or `index.html`.
+- `tests/browser/seeds.py`. New `MAX_E` and `MAX_I`, split-core qa's named bills at the money ceiling with S8's people (qa.md "Seed drafts" says `seeds.py` builds them, they were missing).
+- `tests/browser/test_app.py`, the 1.0 block "Task 11: cross-cutting checks" rewritten as "v1.1.0 task A18". New helpers `ACCESSIBLE_NAME_JS`, `FOCUSED_NAME_JS`, `TABBABLE_COUNT_JS`, `K1_ITEM_STOPS`, `EMPTY_STOPS`, `TAB_SCOPES`, `TAB_ORDER_CASES`, `FOCUS_RING`, `RING_JS`, `ring`, `RING_TARGETS`, `DESKTOP_RING_TARGETS`, `ring_by_tab`, `LAYOUT_JS`, `R35_PAIRS`, `layout_problems`, `box_of`, `close_to`, `TRANSITION_CLASSES`, `DURATIONS_JS`, `ANIMATIONS_JS`, `MARKUP_JS`, `DESKTOP_JS`, `R55_GOLDENS`, `FIGURES_JS`, `STRIP_TOTAL_JS`, `SHEET_PICK_AGAIN`, `sheet_draw`. Removed with the 1.0 tests that used them, `INK`, `RING`, `MODE_DOUBLE_RING`, `FOCUS_JS`, `TABBABLE_JS`, `S1_TAB_ORDER`, `TAB_CASES`, `ring_problem`, the 1.0 `LAYOUT_JS` and `LAYOUT_CASES`, `WATCH_TRANSITIONS_JS`.
+
+**Tests** (the 15 `task A18` xfails are gone, each rewritten to its v1.1.0 scenario, the 6 `task A19` xfails keep their marks).
+| Test | Cases | qa.md scenario | Replaces |
+|---|---|---|---|
+| `test_R32_tab_order_follows_the_golden` | 9 | "Tab order follows the golden", every row | `test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring` (3 xfails) |
+| `test_R32_every_focused_control_shows_the_one_ring` | 2 (390, 1280) | "Every focused control shows the one ring" | the ring half of the same 1.0 test |
+| `test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring` | 1 | the RE line of the same scenario | new |
+| `test_R35_no_horizontal_overflow_in_any_golden_state` | 40 | "No horizontal overflow in any golden state", every golden and width | `test_R35_no_horizontal_overflow_and_the_layout_of_each_size` (8 xfails) |
+| `test_R35_layout_problems_has_teeth` | 1 | the checker of the outline above, static | `test_R32_the_ring_check_has_teeth`, retired with its 1.0 helper `ring_problem` |
+| `test_R35_sizes_the_design_gives_at_360_by_780` | 1 | K2-06, the ST-08 line at 360, M1-02 (the rows the R35 note says replaced the 1.0 sizes) | its 1.0 form (xfail) |
+| `test_R35_content_width_of_the_header_and_the_note_at_1280_by_800` | 1 | K1-01 and BR-02 | its 1.0 form (xfail) |
+| `test_R36_reduced_motion_moves_nothing` | 1 | "Reduced motion moves nothing" | `test_R36_motion_follows_the_users_setting[reduce]` (passing 1.0 form) |
+| `test_R36_with_motion_allowed_nothing_loops` | 1 | "With motion allowed nothing loops", worded 2026-10-15 (F-A4-1) | `test_R36_motion_follows_the_users_setting[no-preference]` (xfail) |
+| `test_R37_names_are_shown_as_text_and_never_as_markup` | 1 | "Names are shown as text, never as markup" | its 1.0 form (xfail) |
+| `test_R55_the_desktop_layout_at_1280_and_at_1024` | 1 | "The desktop layout at 1280 and at 1024" | new |
+| `test_R55_the_page_never_scrolls_at_1280_by_800` | 12 | "The page never scrolls at 1280 x 800" | new |
+| `test_R60_large_bills_fit_a_360_px_phone` | 3 | "Large bills fit a 360 px phone" (W1, MAX-E, MAX-I) | new |
+| `test_R60_the_large_price_shows_whole` | 1 | "The large price shows whole" | new |
+| `test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page` | 4 | the `@R50` outline of 2026-10-15 (F-A12-1) | new |
+| `test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page` | 8 | the `@R52` outline of 2026-10-15 (F-A13-1) | new |
+| `test_R54_pick_again_in_the_splits_sheet_draws_again` | 1 | "Pick again in the Splits sheet draws again" (F-A15-1) | new |
+
+17 functions with 88 cases replace 7 functions with 17 cases, so the suite goes from 624 to 695 cases, and from 21 xfails to the 6 of A19. The other scenarios of A18's ids already had v1.1.0 tests, checked and unchanged. R37 "No HTML sink" (`test_R37_no_banned_api_in_the_shipped_files`), R38 the policy, the four CSSOM targets and "blocks nothing" (`test_R38_*`, every policy violation also fails every scenario through `open_app`), R39 the static scan, the icons and the request log (`test_R39_*`, every request also checked per scenario), R59 "Focus after a mouse click is the engine's own" (`test_R59_focus_after_a_mouse_click_is_the_engines_own`). The `@R59 @gate` A0 record is a gate check of A0's folder, not a pytest scenario.
+
+**The tests pass on the tree of `a7cfe0e`** (each folder listed on disk after its run, counts from its `junit.xml`).
+- First runs, `docs/modules/split-app/qa/functional/20261015-184052-chromium/` (85 passed, 3 failed) and `20261015-184217-webkit/` (87 passed, 1 failed). Every failure was the test's own and was fixed before any stub. BR-02's "44 px tall" is the note's height inside its 1 px border (`clientHeight`, the golden's border box is 46 px like the app's). "svg.ic" is a match of the selector, not a class string (the icons carry `ic caret-up`). `#stripTotal`'s line box is 33 px, not its 30 px line-height, because its 14 px "RM " sits on the same line, so "one line" is read from its text boxes. WebKit computes the top bar's 48 px sides as `48.000008px` (R59 (1)), compared within 0.5 px.
+- Then `20261015-184457-chromium/` and `20261015-184535-webkit/`, 88 of 88 passed in each. So every A18 scenario held before A18, and each gets its RED from a stub.
+- The final test file, `20261015-185856-chromium/` and `20261015-185933-webkit/`, 88 of 88 passed in each, with `git diff --quiet src/` exit 0 and `grep -rn STUB src/` exit 1 before each.
+
+**RED first, by stubs** put in and taken out with the Edit tool, each run in both engines in its own folder, all under `docs/modules/split-app/qa/functional/`. No commit holds a stub. After the last removal `git diff --quiet src/` exit 0 and `grep -rn STUB src/` exit 1.
+| Stub | Where | What it does | Tests run | Chromium | WebKit | Seen failing |
+|---|---|---|---|---|---|---|
+| S-A18-tab | `src/main.js` after `render()`, `el` in `src/ui/dom.js` | New bill and every Close get `tabIndex` -1 | the Tab outline, 9 rows | `20261015-184705-chromium/` | `20261015-184711-webkit/` | the order, every row (New bill or Close missing) |
+| S-A18-tab-extra | `src/main.js` | one more button at the end of `div.app` | the 4 page rows | `20261015-184735-chromium/` | `20261015-184739-webkit/` | the count line (32 against 31, 10 against 9, 11 against 10, 39 against 38), the order having held |
+| S-A18-ring | `src/main.js` | the root's `--focus` set to rgb(255, 0, 0) | both ring tests | `20261015-184756-chromium/` | `20261015-184804-webkit/` | every ring, 8 at 390, 6 at 1280, and the RE field's |
+| S-A18-edge | `src/main.js` | a `focusin` listener that drops `is-bad` from the focused field | the RE test | `20261015-184823-chromium/` | `20261015-184826-webkit/` | the red edge, `none` once focused |
+| S-A18-layout | `src/main.js` | 60 paragraphs of 300 unbroken letters appended to body | the R35 outline (40), the R55 page outline (12), the R60 outline (3) | `20261015-184842-chromium/` | `20261015-184902-webkit/` | the page 4094 px too wide (R35), 2240 px tall in 800 (R55), too wide before and with the sheet (R60), all 55 cases |
+| S-A18-grid-order | `src/main.js` | People's list in one column, Charges moved above People, the strip `static`, a 2000 px wide div | the R35 outline (40) | `20261015-185104-chromium/` (also `-184958-`) | `20261015-185119-webkit/` (also `-185013-`) | every line, the overflow, the element past the edge, the columns where the list shows, the block order and the strip below 1024 px. The earlier pair's messages were cut by pytest, so the tests now join the problems into one string |
+| S-A18-sizes | `src/main.js` | the Subtotal field 300 px with its `max-width`, the refused status 500 px, the dialog 200 px, the top bar's left padding 32 px, the note's top padding 4 px and a -1000 px left margin | the two R35 size tests | `20261015-185226-chromium/`, `-185244-` (1280 test) | `20261015-185229-webkit/`, `-185247-` | at 360 the field, the status and the dialog, at 1280 the top bar, the note's box and its place between the brand and New bill. A first try (`-185203-`, `-185206-`) left two lines holding (the field's CSS `max-width`, the note still between) |
+| S-A18-motion-reduce | `src/main.js`, `reveal` in `src/ui/sections.js` | `.btn` gets a 1 s transition, the reveal runs under reduce | R36 reduce | `20261015-185306-chromium/` | `20261015-185309-webkit/` | the durations line and `getAnimations()` after `#peopleBtn` and the next steps |
+| S-A18-motion-loop | `src/main.js` | the card loses class `card`, the strip's foil is removed, an endless animation on body, a `style` attribute on `#peopleBody` | R36 no-preference | `20261015-185430-chromium/` (also `-185340-`) | `20261015-185445-webkit/` (also `-185355-`) | all 11 lines, no CSSAnimation at load, running at 3 s, the reveal not alone, the style attribute, running 1 s after each of the 7 steps, the reveal line |
+| S-A18-markup | `setText` in `src/ui/dom.js` | `innerHTML` in place of `textContent` | R37 | `20261015-185520-chromium/` | `20261015-185523-webkit/` | 6 lines, the toggles (0 of 4), the People summary ("3 people"), 4 `onload` attributes, 41 svg against 37, 4 svg of no allowed class, the pill's text. The field values, the card's row and the clipboard held, as their text comes from `el` text nodes or the user's typing, not `setText` |
+| S-A18-desktop | `src/main.js` | the working moved before the stage, the stage named "Bill", the strip `display: block`, `#peopleBtn`'s `h2` without `sec-h`, the top bar 80 px | R55 layout | `20261015-185549-chromium/` | `20261015-185552-webkit/` | all 6 lines |
+| S-A18-figures | `src/main.js`, `update` in `createReceipt` | `#stripTotal` 20 px wide and wrapping, item 5's price input 10 px at most, the receipt's figures 8 px at most | both R60 tests | `20261015-185614-chromium/`, `-185655-` (price test) | `20261015-185618-webkit/`, `-185658-` | the strip total and the sheet's figures (the overflow lines are S-A18-layout's), the price and the one line. The first price try set `width` on a flex item and held |
+| S-A18-sheet-guard | `closeByClick` in `src/ui/sheet.js` | `swallowRepeatClicks()` left out (the stub the A18 line names) | the new R50 outline (4) | `20261015-185725-chromium/` | `20261015-185729-webkit/` | every row, focus not on Splits (Chromium `#modeItem` or `#peopleBtn`, WebKit body) |
+| S-A18-p1-guard | `closeByClick` in `src/ui/spare-choice.js` | the same for P1 | the new R52 outline (8) | `20261015-185746-chromium/` | `20261015-185753-webkit/` | every row, focus off the chip (at the 390 backdrop the second press also closed the sheet) |
+| S-A18-sheet-pick-again | `createSpareLine` in `src/ui/receipt.js` | the click listener only when `ids.pickAgain` is set, which the card's ids have and the sheet's do not | the new R54 test and the card's Pick again test | `20261015-185812-chromium/` | `20261015-185816-webkit/` | the sheet's draw unchanged (Aisyah still on RM 38.86), while the card's test passed beside it, the gap F-A15-1 named |
+
+A probe, read only, from the session scratch folder, a page of its own through `rig.new_context` (clipboard stand-in checked), showed that an input's `scrollWidth` grows past its `clientWidth` when its text does not fit, in both engines (45 against 6, 39 against 6), so R60's price line can fail. It wrote nothing.
+
+**Judgment calls.**
+1. A Tab stop's name is computed test-side by `ACCESSIBLE_NAME_JS` from the four sources the app's controls use, in accname's order. qa.md names stops by accessible name and no engine gives it to a page script.
+2. "Exactly this order" also counts the controls Tab can reach in the same scope (`TABBABLE_COUNT_JS`), so a control left out of the list fails. Its teeth were shown on the four page rows only.
+3. A ring is read where `system.css` draws it, the field wrapper, the Split half's label, the header row's `::after` border (left and right -8px), and compared with the golden's on the same control focused by Tab.
+4. The two R35 size tests are kept by name and rewritten to the checklist rows that took the 1.0 sizes' place, at the 1.0 tests' own widths, compared with the goldens where the goldens draw the state. The refused strip status at 360 is checked for staying inside the viewport, because ST-08's numbers are at 390 and already in the R49 strip test.
+5. Tests of many lines gather the problems and assert once with the joined list, so a stub run names every line it broke.
+6. `test_R32_the_ring_check_has_teeth` is retired with the 1.0 helper it tested, and `test_R35_layout_problems_has_teeth` is added for the new checker.
+7. The R36 1.0 test is split into the two scenarios it now covers.
+
+**Findings.** None that stopped an item. Two observations for the planner, wording only. BR-02 "44 px tall" is the note's inner height, its border box is 46 px in the golden and the app. K1-56 gives `#stripTotal` 24/30, and its line box is 33 px with the 14 px "RM", so "one line box tall" (R60) is not a 30 px height.
+
+**Deviations.** None. No app file changed, so the engineering principles bear on the tests only. The checkers are shared across their outlines (`layout_problems`, `ring_by_tab`, `close_to`), and the new R50 and R52 outlines reuse the R30 recorder helpers.
+
+**Non-goals honoured.** No file under `src/`, `index.html` or `docs/design/` changed (`src/system.css` blob `bf30dda`), no hook in the app, headless only, and the system clipboard never touched (every context had a stand-in).
+
+**Process note.** Every file was written with the Edit or Write tools. The runners live in the session scratch folder `split-a18/`.
+
+**For the README reconcile.** No app change. Tests of A18 in `tests/browser/test_app.py` under "v1.1.0 task A18", seeds `MAX_E` and `MAX_I` in `tests/browser/seeds.py`.

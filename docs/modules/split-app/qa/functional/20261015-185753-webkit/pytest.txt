@@ -1,0 +1,10 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-close-mouse-double] (0.75s)
+FAILED   call     test_app.py::test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-close-touch-double] (0.72s)
+FAILED   call     test_app.py::test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-backdrop-mouse-double] (0.59s)
+FAILED   call     test_app.py::test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-backdrop-touch-double] (0.59s)
+FAILED   call     test_app.py::test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-close-mouse-double] (0.72s)
+FAILED   call     test_app.py::test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-close-touch-double] (0.63s)
+FAILED   call     test_app.py::test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-backdrop-mouse-double] (0.66s)
+FAILED   call     test_app.py::test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-backdrop-touch-double] (0.71s)
+exit status 1

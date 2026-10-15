@@ -1,0 +1,130 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R32_tab_order_follows_the_golden[K1-390] tests/browser/test_app.py::test_R32_tab_order_follows_the_golden[bill-empty-390] tests/browser/test_app.py::test_R32_tab_order_follows_the_golden[B1-390] tests/browser/test_app.py::test_R32_tab_order_follows_the_golden[K1-1280]
+server STARTED pid 19864 port 32983 root {workspace}\examples\split
+FFFFserver STOPPED pid 19864 port 32983, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+________________ test_R32_tab_order_follows_the_golden[K1-390] ________________
+
+open_app = <function open_app.<locals>.factory at 0x000002D4196C73D0>
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 390, start = 'page'
+order = ['New bill', 'People', 'Charges', 'By item', 'Add item', 'Item 1 name', ...]
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+        assert stops == order
+>       assert page.evaluate(TABBABLE_COUNT_JS, TAB_SCOPES[start]) == len(order)
+E       assert 32 == 31
+E        +  where 32 = evaluate("(scope) => [...(scope ? document.querySelector(scope) : document).querySelectorAll('button, input, [tabindex]')]\n  ....sabled && el.checkVisibility() && (el.type !== 'radio' || el.checked)\n    && (scope || !el.closest('dialog'))).length", None)
+E        +    where evaluate = <Page url='http://127.0.0.1:32983/'>.evaluate
+E        +  and   31 = len(['New bill', 'People', 'Charges', 'By item', 'Add item', 'Item 1 name', ...])
+
+tests\browser\test_app.py:4392: AssertionError
+____________ test_R32_tab_order_follows_the_golden[bill-empty-390] ____________
+
+open_app = <function open_app.<locals>.factory at 0x000002D4192EF110>
+seed = None, width = 390, start = 'page'
+order = ['New bill', 'People', 'Add person', 'Person 1 name', 'Person 2 name', 'Charges', ...]
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+        assert stops == order
+>       assert page.evaluate(TABBABLE_COUNT_JS, TAB_SCOPES[start]) == len(order)
+E       assert 10 == 9
+E        +  where 10 = evaluate("(scope) => [...(scope ? document.querySelector(scope) : document).querySelectorAll('button, input, [tabindex]')]\n  ....sabled && el.checkVisibility() && (el.type !== 'radio' || el.checked)\n    && (scope || !el.closest('dialog'))).length", None)
+E        +    where evaluate = <Page url='http://127.0.0.1:32983/'>.evaluate
+E        +  and   9 = len(['New bill', 'People', 'Add person', 'Person 1 name', 'Person 2 name', 'Charges', ...])
+
+tests\browser\test_app.py:4392: AssertionError
+________________ test_R32_tab_order_follows_the_golden[B1-390] ________________
+
+open_app = <function open_app.<locals>.factory at 0x000002D4192C6610>
+seed = 'not json', width = 390, start = 'page'
+order = ['Dismiss note', 'New bill', 'People', 'Add person', 'Person 1 name', 'Person 2 name', ...]
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+        assert stops == order
+>       assert page.evaluate(TABBABLE_COUNT_JS, TAB_SCOPES[start]) == len(order)
+E       assert 11 == 10
+E        +  where 11 = evaluate("(scope) => [...(scope ? document.querySelector(scope) : document).querySelectorAll('button, input, [tabindex]')]\n  ....sabled && el.checkVisibility() && (el.type !== 'radio' || el.checked)\n    && (scope || !el.closest('dialog'))).length", None)
+E        +    where evaluate = <Page url='http://127.0.0.1:32983/'>.evaluate
+E        +  and   10 = len(['Dismiss note', 'New bill', 'People', 'Add person', 'Person 1 name', 'Person 2 name', ...])
+
+tests\browser\test_app.py:4392: AssertionError
+_______________ test_R32_tab_order_follows_the_golden[K1-1280] ________________
+
+open_app = <function open_app.<locals>.factory at 0x000002D41939DA60>
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 1280, start = 'page'
+order = ['New bill', 'Spare sen: Top of the list. Change', 'Copy summary', 'Add person', 'Person 1 name', 'Remove Aisyah', ...]
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+        assert stops == order
+>       assert page.evaluate(TABBABLE_COUNT_JS, TAB_SCOPES[start]) == len(order)
+E       assert 39 == 38
+E        +  where 39 = evaluate("(scope) => [...(scope ? document.querySelector(scope) : document).querySelectorAll('button, input, [tabindex]')]\n  ....sabled && el.checkVisibility() && (el.type !== 'radio' || el.checked)\n    && (scope || !el.closest('dialog'))).length", None)
+E        +    where evaluate = <Page url='http://127.0.0.1:32983/'>.evaluate
+E        +  and   38 = len(['New bill', 'Spare sen: Top of the list. Change', 'Copy summary', 'Add person', 'Person 1 name', 'Remove Aisyah', ...])
+
+tests\browser\test_app.py:4392: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[K1-390]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[bill-empty-390]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[B1-390]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[K1-1280]
+4 failed in 3.93s

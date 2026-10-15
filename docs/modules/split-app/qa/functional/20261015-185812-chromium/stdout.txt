@@ -1,0 +1,30 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R54_pick_again_in_the_splits_sheet_draws_again tests/browser/test_app.py::test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again
+server STARTED pid 18976 port 16875 root {workspace}\examples\split
+F.server STOPPED pid 18976 port 16875, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+_____________ test_R54_pick_again_in_the_splits_sheet_draws_again _____________
+
+open_app = <function open_app.<locals>.factory at 0x00000236115437F0>
+
+    def test_R54_pick_again_in_the_splits_sheet_draws_again(open_app):
+        # qa.md on RND at 390 x 844 (F-A15-1, task A18). The sheet's chip comes from the card's renderer (PD-20). Focus after
+        # a mouse click is each engine's own (R59), so the keyboard step Tabs until the chip has focus. It passes on the tree
+        # before A18, so its teeth come from a stub that leaves the sheet's chip without its click handler (BUILD.md, A18).
+        page = open_app(seed=seeds.RND).page
+        open_sheet(page)
+        chip = page.locator(SHEET_PICK_AGAIN)
+        assert chip.count() == 1, "the sheet holds no Pick again chip before its spare chip"
+        first, order = sheet_draw(page), stored(page)["bill"]["spare"]["order"]
+        chip.click()
+        second = sheet_draw(page)
+>       assert len(second["low"]) == 1 and second["low"] != first["low"] and second["proof"] == "RM 116.60", (first, second)
+E       AssertionError: ({'low': ['Aisyah'], 'proof': 'RM 116.60'}, {'low': ['Aisyah'], 'proof': 'RM 116.60'})
+E       assert (1 == 1 and ['Aisyah'] != ['Aisyah'])
+E        +  where 1 = len(['Aisyah'])
+
+tests\browser\test_app.py:2763: AssertionError
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R54_pick_again_in_the_splits_sheet_draws_again
+1 failed, 1 passed in 2.80s

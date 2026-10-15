@@ -1,0 +1,87 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R32_every_focused_control_shows_the_one_ring tests/browser/test_app.py::test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring
+server STARTED pid 9188 port 33185 root {workspace}\examples\split
+FFFserver STOPPED pid 9188 port 33185, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+___________ test_R32_every_focused_control_shows_the_one_ring[390] ____________
+
+open_app = <function open_app.<locals>.factory at 0x0000023074767530>
+plain_context = <function plain_context.<locals>.factory at 0x0000023074767270>
+width = 390, golden = 'bill-items-open'
+
+    @pytest.mark.parametrize("width, golden", [(390, "bill-items-open"), (1280, "bill-items")], ids=["390", "1280"])
+    def test_R32_every_focused_control_shows_the_one_ring(open_app, plain_context, width, golden):
+        # qa.md on K1, below 1024 px with People and Charges opened by keyboard (Enter on each header row). Each ring is
+        # compared with the golden's on the same control focused by Tab, and with the numbers of system.md Focus.
+        page = open_app(seed=seeds.S1, viewport=VIEWPORTS[width]).page
+        if width < 1024:
+            for header in ("#peopleBtn", "#chargesBtn"):
+                page.locator(header).focus()
+                page.keyboard.press("Enter")
+        golden_page = support.open_golden(plain_context, golden, VIEWPORTS[width])
+        problems = []
+        for what, (selector, expected) in (RING_TARGETS if width < 1024 else DESKTOP_RING_TARGETS).items():
+            found, drawn = ring_by_tab(page, selector), ring_by_tab(golden_page, selector)
+            if not found["visible"] or found["ring"] != expected or [found["on"], found["ring"]] != [drawn["on"], drawn["ring"]]:
+                problems.append(f"{what}: app {found}, golden {drawn}")
+>       assert problems == []
+E       assert ["a name fiel...'none'}", ...] == []
+E         
+E         Left contains 8 more items, first extra item: "a name field: app {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(255, 0, 0)', '2px'], 'edge...lden {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'none'}"
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4455: AssertionError
+___________ test_R32_every_focused_control_shows_the_one_ring[1280] ___________
+
+open_app = <function open_app.<locals>.factory at 0x0000023074560BF0>
+plain_context = <function plain_context.<locals>.factory at 0x0000023074563AB0>
+width = 1280, golden = 'bill-items'
+
+    @pytest.mark.parametrize("width, golden", [(390, "bill-items-open"), (1280, "bill-items")], ids=["390", "1280"])
+    def test_R32_every_focused_control_shows_the_one_ring(open_app, plain_context, width, golden):
+        # qa.md on K1, below 1024 px with People and Charges opened by keyboard (Enter on each header row). Each ring is
+        # compared with the golden's on the same control focused by Tab, and with the numbers of system.md Focus.
+        page = open_app(seed=seeds.S1, viewport=VIEWPORTS[width]).page
+        if width < 1024:
+            for header in ("#peopleBtn", "#chargesBtn"):
+                page.locator(header).focus()
+                page.keyboard.press("Enter")
+        golden_page = support.open_golden(plain_context, golden, VIEWPORTS[width])
+        problems = []
+        for what, (selector, expected) in (RING_TARGETS if width < 1024 else DESKTOP_RING_TARGETS).items():
+            found, drawn = ring_by_tab(page, selector), ring_by_tab(golden_page, selector)
+            if not found["visible"] or found["ring"] != expected or [found["on"], found["ring"]] != [drawn["on"], drawn["ring"]]:
+                problems.append(f"{what}: app {found}, golden {drawn}")
+>       assert problems == []
+E       assert ["a name fiel...ge': 'none'}"] == []
+E         
+E         Left contains 6 more items, first extra item: "a name field: app {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(255, 0, 0)', '2px'], 'edge...lden {'on': 'li.field.person', 'visible': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'none'}"
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4455: AssertionError
+________ test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring ________
+
+open_app = <function open_app.<locals>.factory at 0x00000230739CCBF0>
+plain_context = <function plain_context.<locals>.factory at 0x00000230739CFC10>
+
+    def test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring(open_app, plain_context):
+        # qa.md, the RE line of "Every focused control shows the one ring", at 390 x 844, where Charges is open on load.
+        page = open_app(seed=seeds.RE).page
+        edge = page.locator("#svc").evaluate("(el) => getComputedStyle(el.closest('.field')).boxShadow")
+        found = ring_by_tab(page, "#svc")
+        drawn = ring_by_tab(support.open_golden(plain_context, "rate-error"), "#svc")
+        assert edge != "none" and found["edge"] == edge, (edge, found)
+>       assert found["visible"] and found["ring"] == ring("2px") and found == drawn, (found, drawn)
+E       AssertionError: ({'on': 'div.field.pct.is-bad', 'visible': True, 'ring': ['solid', '2px', 'rgb(255, 0, 0)', '2px'], 'edge': 'rgb(255, ...ble': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'rgb(255, 138, 143) 0px 0px 0px 1px inset'})
+E       assert (True and ['solid', '2p...0, 0)', '2px'] == ['solid', '2p... 255)', '2px']
+E         
+E         At index 2 diff: 'rgb(255, 0, 0)' != 'rgb(163, 170, 255)'
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:4465: AssertionError
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R32_every_focused_control_shows_the_one_ring[390]
+FAILED tests\browser\test_app.py::test_R32_every_focused_control_shows_the_one_ring[1280]
+FAILED tests\browser\test_app.py::test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring
+3 failed in 7.34s

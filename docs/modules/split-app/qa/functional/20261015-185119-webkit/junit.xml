@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="40" skipped="0" tests="40" time="23.875" timestamp="2026-10-15T18:51:19.120476+08:00" hostname="{host}"><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-390]" time="1.542"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -217], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -217], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E04C70670&gt;
+golden = 'bill-items', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -217], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -217], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-360]" time="0.416"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -281], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -281], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E04920A90&gt;
+golden = 'bill-items', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -281], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -281], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-1280]" time="0.442"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E04920CA0&gt;
+golden = 'bill-items', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-open-390]" time="0.660"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 247, 65, 534, 613]', &quot;the strip is ['static', -581], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 247, 65, 534, 613]', &quot;the strip is ['static', -581], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E028A6400&gt;
+golden = 'bill-items-open', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 247, 65, 534, 613]', "the strip is ['static', -581], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 247, 65, 534, 613]', "the strip is ['static', -581], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-open-360]" time="0.660"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 247, 65, 534, 613]', &quot;the strip is ['static', -645], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 247, 65, 534, 613]', &quot;the strip is ['static', -645], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E04F88D50&gt;
+golden = 'bill-items-open', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 247, 65, 534, 613]', "the strip is ['static', -645], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 247, 65, 534, 613]', "the strip is ['static', -645], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-even-390]" time="0.388"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 252], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 252], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E04F63AB0&gt;
+golden = 'bill-even', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 252], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 252], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-even-360]" time="0.383"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 188], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 188], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E047F5FE0&gt;
+golden = 'bill-even', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 188], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 188], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-even-1280]" time="0.441"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E0477C460&gt;
+golden = 'bill-even', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-390]" time="0.651"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...ms or Subtotal are [-218, -101, -153, -48, 31]', &quot;the strip is ['static', 1], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...ms or Subtotal are [-218, -101, -153, -48, 31]', &quot;the strip is ['static', 1], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E047BF110&gt;
+golden = 'spare-sen', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...ms or Subtotal are [-218, -101, -153, -48, 31]', "the strip is ['static', 1], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...ms or Subtotal are [-218, -101, -153, -48, 31]', "the strip is ['static', 1], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-360]" time="0.653"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... or Subtotal are [-282, -165, -217, -112, -33]', &quot;the strip is ['static', 1], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... or Subtotal are [-282, -165, -217, -112, -33]', &quot;the strip is ['static', 1], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E02406560&gt;
+golden = 'spare-sen', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... or Subtotal are [-282, -165, -217, -112, -33]', "the strip is ['static', 1], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... or Subtotal are [-282, -165, -217, -112, -33]', "the strip is ['static', 1], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-1280]" time="0.575"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E043CD6F0&gt;
+golden = 'spare-sen', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-one-390]" time="0.645"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 252], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 252], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E03E7B480&gt;
+golden = 'spare-sen-one', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 252], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 252], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-one-360]" time="0.636"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 188], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 188], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E03E3E770&gt;
+golden = 'spare-sen-one', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 188], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 188], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-one-1280]" time="0.542"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E03AA56F0&gt;
+golden = 'spare-sen-one', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-random-390]" time="0.676"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 252], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 252], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E034A7B60&gt;
+golden = 'spare-sen-random', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 252], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 252], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-random-360]" time="0.661"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 188], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 188], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E0270AC40&gt;
+golden = 'spare-sen-random', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 188], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 188], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-random-1280]" time="0.572"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E026E0E00&gt;
+golden = 'spare-sen-random', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[splits-sheet-390]" time="0.542"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...ms or Subtotal are [-218, -101, -153, -48, 31]', &quot;the strip is ['static', 1], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...ms or Subtotal are [-218, -101, -153, -48, 31]', &quot;the strip is ['static', 1], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E03D43D70&gt;
+golden = 'splits-sheet', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...ms or Subtotal are [-218, -101, -153, -48, 31]', "the strip is ['static', 1], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...ms or Subtotal are [-218, -101, -153, -48, 31]', "the strip is ['static', 1], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[splits-sheet-360]" time="0.455"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... or Subtotal are [-282, -165, -217, -112, -33]', &quot;the strip is ['static', 1], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... or Subtotal are [-282, -165, -217, -112, -33]', &quot;the strip is ['static', 1], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E03743060&gt;
+golden = 'splits-sheet', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... or Subtotal are [-282, -165, -217, -112, -33]', "the strip is ['static', 1], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... or Subtotal are [-282, -165, -217, -112, -33]', "the strip is ['static', 1], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[new-bill-dialog-390]" time="0.518"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -217], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -217], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E04282610&gt;
+golden = 'new-bill-dialog', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -217], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -217], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[new-bill-dialog-360]" time="0.532"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -281], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -281], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E0424D640&gt;
+golden = 'new-bill-dialog', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -281], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -281], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[new-bill-dialog-1280]" time="0.589"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E0400F530&gt;
+golden = 'new-bill-dialog', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-empty-390]" time="0.238"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 117, 65, 350, 429]', &quot;the strip is ['static', 78], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 117, 65, 350, 429]', &quot;the strip is ['static', 78], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E0456A770&gt;
+golden = 'bill-empty', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 117, 65, 350, 429]', "the strip is ['static', 78], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 117, 65, 350, 429]', "the strip is ['static', 78], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-empty-360]" time="0.293"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 117, 65, 350, 429]', &quot;the strip is ['static', 14], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 117, 65, 350, 429]', &quot;the strip is ['static', 14], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E031056F0&gt;
+golden = 'bill-empty', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 117, 65, 350, 429]', "the strip is ['static', 14], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 117, 65, 350, 429]', "the strip is ['static', 14], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-empty-1280]" time="0.261"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E04470670&gt;
+golden = 'bill-empty', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[rate-error-390]" time="0.392"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 295, 65, 348, 427]', &quot;the strip is ['static', -389], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 295, 65, 348, 427]', &quot;the strip is ['static', -389], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E03F7AC40&gt;
+golden = 'rate-error', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 295, 65, 348, 427]', "the strip is ['static', -389], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 295, 65, 348, 427]', "the strip is ['static', -389], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[rate-error-360]" time="0.413"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 295, 65, 348, 427]', &quot;the strip is ['static', -453], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 295, 65, 348, 427]', &quot;the strip is ['static', -453], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E0460D6F0&gt;
+golden = 'rate-error', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 295, 65, 348, 427]', "the strip is ['static', -453], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 295, 65, 348, 427]', "the strip is ['static', -453], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[rate-error-1280]" time="0.408"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E046D6FB0&gt;
+golden = 'rate-error', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unassigned-390]" time="0.397"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -251], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -251], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E029DA610&gt;
+golden = 'bill-unassigned', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -251], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -251], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unassigned-360]" time="0.400"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -315], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -315], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E04121590&gt;
+golden = 'bill-unassigned', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -315], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -315], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unassigned-1280]" time="0.413"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E04197690&gt;
+golden = 'bill-unassigned', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unreadable-390]" time="0.430"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 195, 143, 428, 507]', &quot;the strip is ['static', 0], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 195, 143, 428, 507]', &quot;the strip is ['static', 0], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E02AAEB90&gt;
+golden = 'bill-unreadable', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 195, 143, 428, 507]', "the strip is ['static', 0], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']... Items or Subtotal are [0, 195, 143, 428, 507]', "the strip is ['static', 0], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unreadable-360]" time="0.413"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 195, 143, 428, 507]', &quot;the strip is ['static', -64], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 195, 143, 428, 507]', &quot;the strip is ['static', -64], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E032E94E0&gt;
+golden = 'bill-unreadable', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 195, 143, 428, 507]', "the strip is ['static', -64], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 195, 143, 428, 507]', "the strip is ['static', -64], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unreadable-1280]" time="0.406"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E032F3D70&gt;
+golden = 'bill-unreadable', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-twelve-390]" time="0.402"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 252], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 252], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E026CE4B0&gt;
+golden = 'bill-twelve', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 252], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 252], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-twelve-360]" time="0.400"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 188], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', 188], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E03820BF0&gt;
+golden = 'bill-twelve', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 188], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...Items or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', 188], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-twelve-1280]" time="0.442"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E0385FCC0&gt;
+golden = 'bill-twelve', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-large-390]" time="0.426"><failure message="AssertionError: ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -340], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1610 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -340], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E038E6400&gt;
+golden = 'bill-large', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -340], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1610 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -340], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-large-360]" time="0.381"><failure message="AssertionError: ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -371], not fixed at the bottom of the viewport&quot;]&#10;assert not ['the page is 1640 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', &quot;the strip is ['static', -371], not fixed at the bottom of the viewport&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E02FACB40&gt;
+golden = 'bill-large', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -371], not fixed at the bottom of the viewport"]
+E       assert not ['the page is 1640 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']...tems or Subtotal are [0, 117, 65, 170, 249]', "the strip is ['static', -371], not fixed at the bottom of the viewport"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-large-1280]" time="0.488"><failure message="AssertionError: ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]&#10;assert not ['the page is 720 px wider than the viewport', &quot;1 displayed elements end past the viewport's right edge, ['div 2000']&quot;, &quot;People's list has 1 columns&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000024E03B6B480&gt;
+golden = 'bill-large', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+        problems = layout_problems(page.evaluate(LAYOUT_JS), width)
+&gt;       assert not problems, problems
+E       AssertionError: ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+E       assert not ['the page is 720 px wider than the viewport', "1 displayed elements end past the viewport's right edge, ['div 2000']", "People's list has 1 columns"]
+
+tests\browser\test_app.py:4520: AssertionError</failure></testcase></testsuite></testsuites>

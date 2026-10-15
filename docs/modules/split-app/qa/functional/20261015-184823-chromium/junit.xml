@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.339" timestamp="2026-10-15T18:48:23.445073+08:00" hostname="{host}"><testcase classname="test_app" name="test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring" time="1.829"><failure message="AssertionError: ('rgb(255, 138, 143) 0px 0px 0px 1px inset', {'on': 'div.field.pct', 'visible': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'none'})&#10;assert ('rgb(255, 138, 143) 0px 0px 0px 1px inset' != 'none' and 'none' == 'rgb(255, 138...0px 1px inset'&#10;  &#10;  - rgb(255, 138, 143) 0px 0px 0px 1px inset&#10;  + none)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025FF99EB530&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x0000025FF99EB270&gt;
+
+    def test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring(open_app, plain_context):
+        # qa.md, the RE line of "Every focused control shows the one ring", at 390 x 844, where Charges is open on load.
+        page = open_app(seed=seeds.RE).page
+        edge = page.locator("#svc").evaluate("(el) =&gt; getComputedStyle(el.closest('.field')).boxShadow")
+        found = ring_by_tab(page, "#svc")
+        drawn = ring_by_tab(support.open_golden(plain_context, "rate-error"), "#svc")
+&gt;       assert edge != "none" and found["edge"] == edge, (edge, found)
+E       AssertionError: ('rgb(255, 138, 143) 0px 0px 0px 1px inset', {'on': 'div.field.pct', 'visible': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'none'})
+E       assert ('rgb(255, 138, 143) 0px 0px 0px 1px inset' != 'none' and 'none' == 'rgb(255, 138...0px 1px inset'
+E         
+E         - rgb(255, 138, 143) 0px 0px 0px 1px inset
+E         + none)
+
+tests\browser\test_app.py:4464: AssertionError</failure></testcase></testsuite></testsuites>

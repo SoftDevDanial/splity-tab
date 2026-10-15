@@ -1,0 +1,6 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-mouse-double] (0.33s)
+FAILED   call     test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-touch-double] (0.34s)
+FAILED   call     test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-mouse-double] (0.28s)
+FAILED   call     test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-touch-double] (0.31s)
+exit status 1

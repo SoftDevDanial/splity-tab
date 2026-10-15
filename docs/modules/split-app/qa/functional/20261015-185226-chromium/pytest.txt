@@ -1,0 +1,4 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R35_sizes_the_design_gives_at_360_by_780 (0.37s)
+FAILED   call     test_app.py::test_R35_content_width_of_the_header_and_the_note_at_1280_by_800 (0.26s)
+exit status 1

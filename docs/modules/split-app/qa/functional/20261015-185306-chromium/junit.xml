@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.640" timestamp="2026-10-15T18:53:06.604378+08:00" hostname="{host}"><testcase classname="test_app" name="test_R36_reduced_motion_moves_nothing" time="2.164"><failure message="AssertionError: [&quot;.btn transition-duration ['0s', '1s']&quot;, &quot;getAnimations() right after #peopleBtn opened People: [['Animation', 'runni..., 200]]&quot;, &quot;getAnimations() right after the chip opened P1: [['Animation', 'running', 'div#peopleBody.sec-body', 200]]&quot;]&#10;assert not [&quot;.btn transition-duration ['0s', '1s']&quot;, &quot;getAnimations() right after #peopleBtn opened People: [['Animation', 'runni..., 200]]&quot;, &quot;getAnimations() right after the chip opened P1: [['Animation', 'running', 'div#peopleBody.sec-body', 200]]&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025F04B57AB0&gt;
+
+    def test_R36_reduced_motion_moves_nothing(open_app):
+        # qa.md on K1 at 390 x 844 under "reduce", the default context. "Right after" is read as soon as the click returns.
+        page = open_app(seed=seeds.S1).page
+        problems = []
+    
+        def no_durations(target, selectors):
+            problems.extend(f"{selector} transition-duration {sorted(set(values))}"
+                            for selector, values in target.evaluate(DURATIONS_JS, selectors) if not values or set(values) != {"0s"})
+    
+        def no_animations(when):
+            found = page.evaluate(ANIMATIONS_JS)
+            if found:
+                problems.append(f"getAnimations() {when}: {found}")
+    
+        no_durations(page, TRANSITION_CLASSES)
+        no_animations("right after load")
+        toggle(page, "Mee goreng mamak", "Ben").click()
+        no_animations("right after a toggle click")
+        page.locator("#peopleBtn").click()
+        no_animations("right after #peopleBtn opened People")
+        open_sheet(page)
+        no_animations("right after Splits opened the sheet")
+        page.locator(SHEET_SPARE_CHIP).click()
+        no_animations("right after the chip opened P1")
+        over_one = open_app(seed=seeds.ONE).page
+        open_p1(over_one, "phone")
+        no_durations(over_one, [".choice", ".pill-face"])
+&gt;       assert not problems, problems
+E       AssertionError: [".btn transition-duration ['0s', '1s']", "getAnimations() right after #peopleBtn opened People: [['Animation', 'runni..., 200]]", "getAnimations() right after the chip opened P1: [['Animation', 'running', 'div#peopleBody.sec-body', 200]]"]
+E       assert not [".btn transition-duration ['0s', '1s']", "getAnimations() right after #peopleBtn opened People: [['Animation', 'runni..., 200]]", "getAnimations() right after the chip opened P1: [['Animation', 'running', 'div#peopleBody.sec-body', 200]]"]
+
+tests\browser\test_app.py:4624: AssertionError</failure></testcase></testsuite></testsuites>

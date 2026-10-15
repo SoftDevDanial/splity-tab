@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="8" time="8.007" timestamp="2026-10-15T18:57:53.183511+08:00" hostname="{host}"><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-close-mouse-double]" time="1.921"><failure message="AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'body'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002A9B2168460&gt;
+size = (1280, 800), opener = 'desktop', point = 'close', focus = 'spareBtn'
+gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("size, opener, point, focus", [
+        ((1280, 800), "desktop", "close", "spareBtn"), ((1280, 800), "desktop", (200, 60), "spareBtn"),
+        ((390, 844), "phone", (359, 622), "the sheet's spare chip"), ((390, 844), "phone", (195, 30), "the sheet's spare chip"),
+    ], ids=["1280-close", "1280-backdrop", "390-close", "390-backdrop"])
+    def test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page(open_app, size, opener, point, focus,
+                                                                                               gesture):
+        # qa.md on K1 (PD-21, F-A13-1, task A18). The points are LINKS.json's. Below 1024 px the second press would land on
+        # the Splits sheet, which stays open. It passes on the tree before A18, so its teeth come from a stub of P1's click
+        # close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+        noted, before = stored_text(page), snapshot(page)
+        open_p1(page, opener)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#spareDlg button[aria-label=Close]")) if point == "close" else point)
+&gt;       assert p1_state(page, ("open", "focus")) == {"open": False, "focus": focus}
+E       AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...': 'spareBtn'}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'body'} != {'focus': 'spareBtn'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2487: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-close-touch-double]" time="0.785"><failure message="AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'body'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002A9B446F3D0&gt;
+size = (1280, 800), opener = 'desktop', point = 'close', focus = 'spareBtn'
+gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("size, opener, point, focus", [
+        ((1280, 800), "desktop", "close", "spareBtn"), ((1280, 800), "desktop", (200, 60), "spareBtn"),
+        ((390, 844), "phone", (359, 622), "the sheet's spare chip"), ((390, 844), "phone", (195, 30), "the sheet's spare chip"),
+    ], ids=["1280-close", "1280-backdrop", "390-close", "390-backdrop"])
+    def test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page(open_app, size, opener, point, focus,
+                                                                                               gesture):
+        # qa.md on K1 (PD-21, F-A13-1, task A18). The points are LINKS.json's. Below 1024 px the second press would land on
+        # the Splits sheet, which stays open. It passes on the tree before A18, so its teeth come from a stub of P1's click
+        # close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+        noted, before = stored_text(page), snapshot(page)
+        open_p1(page, opener)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#spareDlg button[aria-label=Close]")) if point == "close" else point)
+&gt;       assert p1_state(page, ("open", "focus")) == {"open": False, "focus": focus}
+E       AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...': 'spareBtn'}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'body'} != {'focus': 'spareBtn'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2487: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-backdrop-mouse-double]" time="0.660"><failure message="AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'body'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002A9B45356F0&gt;
+size = (1280, 800), opener = 'desktop', point = (200, 60), focus = 'spareBtn'
+gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("size, opener, point, focus", [
+        ((1280, 800), "desktop", "close", "spareBtn"), ((1280, 800), "desktop", (200, 60), "spareBtn"),
+        ((390, 844), "phone", (359, 622), "the sheet's spare chip"), ((390, 844), "phone", (195, 30), "the sheet's spare chip"),
+    ], ids=["1280-close", "1280-backdrop", "390-close", "390-backdrop"])
+    def test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page(open_app, size, opener, point, focus,
+                                                                                               gesture):
+        # qa.md on K1 (PD-21, F-A13-1, task A18). The points are LINKS.json's. Below 1024 px the second press would land on
+        # the Splits sheet, which stays open. It passes on the tree before A18, so its teeth come from a stub of P1's click
+        # close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+        noted, before = stored_text(page), snapshot(page)
+        open_p1(page, opener)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#spareDlg button[aria-label=Close]")) if point == "close" else point)
+&gt;       assert p1_state(page, ("open", "focus")) == {"open": False, "focus": focus}
+E       AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...': 'spareBtn'}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'body'} != {'focus': 'spareBtn'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2487: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-backdrop-touch-double]" time="0.655"><failure message="AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...': 'spareBtn'}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'body'} != {'focus': 'spareBtn'}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002A9B4638930&gt;
+size = (1280, 800), opener = 'desktop', point = (200, 60), focus = 'spareBtn'
+gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("size, opener, point, focus", [
+        ((1280, 800), "desktop", "close", "spareBtn"), ((1280, 800), "desktop", (200, 60), "spareBtn"),
+        ((390, 844), "phone", (359, 622), "the sheet's spare chip"), ((390, 844), "phone", (195, 30), "the sheet's spare chip"),
+    ], ids=["1280-close", "1280-backdrop", "390-close", "390-backdrop"])
+    def test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page(open_app, size, opener, point, focus,
+                                                                                               gesture):
+        # qa.md on K1 (PD-21, F-A13-1, task A18). The points are LINKS.json's. Below 1024 px the second press would land on
+        # the Splits sheet, which stays open. It passes on the tree before A18, so its teeth come from a stub of P1's click
+        # close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+        noted, before = stored_text(page), snapshot(page)
+        open_p1(page, opener)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#spareDlg button[aria-label=Close]")) if point == "close" else point)
+&gt;       assert p1_state(page, ("open", "focus")) == {"open": False, "focus": focus}
+E       AssertionError: assert {'open': Fals...ocus': 'body'} == {'open': Fals...': 'spareBtn'}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'body'} != {'focus': 'spareBtn'}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2487: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-close-mouse-double]" time="0.768"><failure message="assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'div'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002A9B3FA4720&gt;
+size = (390, 844), opener = 'phone', point = (359, 622)
+focus = "the sheet's spare chip", gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("size, opener, point, focus", [
+        ((1280, 800), "desktop", "close", "spareBtn"), ((1280, 800), "desktop", (200, 60), "spareBtn"),
+        ((390, 844), "phone", (359, 622), "the sheet's spare chip"), ((390, 844), "phone", (195, 30), "the sheet's spare chip"),
+    ], ids=["1280-close", "1280-backdrop", "390-close", "390-backdrop"])
+    def test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page(open_app, size, opener, point, focus,
+                                                                                               gesture):
+        # qa.md on K1 (PD-21, F-A13-1, task A18). The points are LINKS.json's. Below 1024 px the second press would land on
+        # the Splits sheet, which stays open. It passes on the tree before A18, so its teeth come from a stub of P1's click
+        # close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+        noted, before = stored_text(page), snapshot(page)
+        open_p1(page, opener)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#spareDlg button[aria-label=Close]")) if point == "close" else point)
+&gt;       assert p1_state(page, ("open", "focus")) == {"open": False, "focus": focus}
+E       assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2487: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-close-touch-double]" time="0.681"><failure message="assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'div'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002A9B3D80A90&gt;
+size = (390, 844), opener = 'phone', point = (359, 622)
+focus = "the sheet's spare chip", gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("size, opener, point, focus", [
+        ((1280, 800), "desktop", "close", "spareBtn"), ((1280, 800), "desktop", (200, 60), "spareBtn"),
+        ((390, 844), "phone", (359, 622), "the sheet's spare chip"), ((390, 844), "phone", (195, 30), "the sheet's spare chip"),
+    ], ids=["1280-close", "1280-backdrop", "390-close", "390-backdrop"])
+    def test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page(open_app, size, opener, point, focus,
+                                                                                               gesture):
+        # qa.md on K1 (PD-21, F-A13-1, task A18). The points are LINKS.json's. Below 1024 px the second press would land on
+        # the Splits sheet, which stays open. It passes on the tree before A18, so its teeth come from a stub of P1's click
+        # close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+        noted, before = stored_text(page), snapshot(page)
+        open_p1(page, opener)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#spareDlg button[aria-label=Close]")) if point == "close" else point)
+&gt;       assert p1_state(page, ("open", "focus")) == {"open": False, "focus": focus}
+E       assert {'open': Fals...focus': 'div'} == {'open': Fals...s spare chip"}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'div'} != {'focus': "the sheet's spare chip"}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2487: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-backdrop-mouse-double]" time="0.691"><failure message="assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'splitsBtn'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002A9B3B00D50&gt;
+size = (390, 844), opener = 'phone', point = (195, 30)
+focus = "the sheet's spare chip", gesture = 'mouse-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("size, opener, point, focus", [
+        ((1280, 800), "desktop", "close", "spareBtn"), ((1280, 800), "desktop", (200, 60), "spareBtn"),
+        ((390, 844), "phone", (359, 622), "the sheet's spare chip"), ((390, 844), "phone", (195, 30), "the sheet's spare chip"),
+    ], ids=["1280-close", "1280-backdrop", "390-close", "390-backdrop"])
+    def test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page(open_app, size, opener, point, focus,
+                                                                                               gesture):
+        # qa.md on K1 (PD-21, F-A13-1, task A18). The points are LINKS.json's. Below 1024 px the second press would land on
+        # the Splits sheet, which stays open. It passes on the tree before A18, so its teeth come from a stub of P1's click
+        # close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+        noted, before = stored_text(page), snapshot(page)
+        open_p1(page, opener)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#spareDlg button[aria-label=Close]")) if point == "close" else point)
+&gt;       assert p1_state(page, ("open", "focus")) == {"open": False, "focus": focus}
+E       assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...s spare chip"}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'splitsBtn'} != {'focus': "the sheet's spare chip"}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2487: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-backdrop-touch-double]" time="0.771"><failure message="assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...s spare chip&quot;}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'focus': 'splitsBtn'} != {'focus': &quot;the sheet's spare chip&quot;}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002A9B3ACD010&gt;
+size = (390, 844), opener = 'phone', point = (195, 30)
+focus = "the sheet's spare chip", gesture = 'touch-double'
+
+    @pytest.mark.parametrize("gesture", ["mouse-double", "touch-double"])
+    @pytest.mark.parametrize("size, opener, point, focus", [
+        ((1280, 800), "desktop", "close", "spareBtn"), ((1280, 800), "desktop", (200, 60), "spareBtn"),
+        ((390, 844), "phone", (359, 622), "the sheet's spare chip"), ((390, 844), "phone", (195, 30), "the sheet's spare chip"),
+    ], ids=["1280-close", "1280-backdrop", "390-close", "390-backdrop"])
+    def test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page(open_app, size, opener, point, focus,
+                                                                                               gesture):
+        # qa.md on K1 (PD-21, F-A13-1, task A18). The points are LINKS.json's. Below 1024 px the second press would land on
+        # the Splits sheet, which stays open. It passes on the tree before A18, so its teeth come from a stub of P1's click
+        # close (BUILD.md, A18).
+        page = open_app(seed=seeds.S1, viewport=size, touch=gesture == "touch-double").page
+        noted, before = stored_text(page), snapshot(page)
+        open_p1(page, opener)
+        page.evaluate(RECORD_BODY_CLICKS_JS)
+        gesture_at(page, gesture, centre_of(page.locator("#spareDlg button[aria-label=Close]")) if point == "close" else point)
+&gt;       assert p1_state(page, ("open", "focus")) == {"open": False, "focus": focus}
+E       assert {'open': Fals...: 'splitsBtn'} == {'open': Fals...s spare chip"}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'focus': 'splitsBtn'} != {'focus': "the sheet's spare chip"}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2487: AssertionError</failure></testcase></testsuite></testsuites>

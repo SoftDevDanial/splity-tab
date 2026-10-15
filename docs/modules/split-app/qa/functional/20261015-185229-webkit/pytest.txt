@@ -1,0 +1,4 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R35_sizes_the_design_gives_at_360_by_780 (0.90s)
+FAILED   call     test_app.py::test_R35_content_width_of_the_header_and_the_note_at_1280_by_800 (0.55s)
+exit status 1

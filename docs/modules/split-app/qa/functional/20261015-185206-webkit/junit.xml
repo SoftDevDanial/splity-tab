@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="3.157" timestamp="2026-10-15T18:52:07.005848+08:00" hostname="{host}"><testcase classname="test_app" name="test_R35_sizes_the_design_gives_at_360_by_780" time="1.961"><failure message="AssertionError: [&quot;the refused status is ['status is-fail', True, True] from x 17 to 517, the page overflows by 0 px&quot;, 'the dialog is [80, 249, 200, 282], the page overflows by 0 px']&#10;assert not [&quot;the refused status is ['status is-fail', True, True] from x 17 to 517, the page overflows by 0 px&quot;, 'the dialog is [80, 249, 200, 282], the page overflows by 0 px']">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001B9B12CB950&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001B9B12CB690&gt;
+
+    def test_R35_sizes_the_design_gives_at_360_by_780(open_app, plain_context):
+        # The 1.0 sizes at 360 x 780 are FE element checklist rows since v1.1.0 (qa.md, the R35 outline's note). K2-06, the
+        # Subtotal field at most 240 px wide, as wide as the golden's. The refused copy status on the strip stays inside the
+        # viewport with nothing cut (the ST-08 line, whose 153 px strip is the R49 strip test's at 390). M1-02, the dialog
+        # 328 px wide with its top at 261.
+        page = open_app(seed=seeds.S2, clipboard="reject", viewport=VIEWPORTS[360]).page
+        golden = support.open_golden(plain_context, "bill-even", VIEWPORTS[360])
+        problems = []
+        field, drawn = box_of(page, "#evenField"), box_of(golden, "#evenField")
+        if not page.locator("#evenField").evaluate("(el) =&gt; el.matches('div.field.money.sub-field')") or field[2] &gt; 240.5 \
+                or not close_to(field, drawn):
+            problems.append(f"the Subtotal field is {field}, the golden's {drawn}")
+        click_copy(page, "#stripCopy")
+        shape = page.locator("#stripStatus").evaluate("(el) =&gt; [el.className, el.textContent.trim().length &gt; 0, el.scrollWidth &lt;= el.clientWidth]")
+        x, _, width, _ = box_of(page, "#stripStatus")
+        overflow = page.evaluate(LAYOUT_JS)["overflow"]
+        if shape != ["status is-fail", True, True] or x &lt; 0 or x + width &gt; 360.5 or overflow &gt; 0:
+            problems.append(f"the refused status is {shape} from x {x} to {x + width}, the page overflows by {overflow} px")
+        open_dialog(page)
+        dialog, overflow = box_of(page, "#newDlg"), page.evaluate(LAYOUT_JS)["overflow"]
+        if not close_to([dialog[2], dialog[1]], [328, 261]) or overflow &gt; 0:
+            problems.append(f"the dialog is {dialog}, the page overflows by {overflow} px")
+&gt;       assert not problems, problems
+E       AssertionError: ["the refused status is ['status is-fail', True, True] from x 17 to 517, the page overflows by 0 px", 'the dialog is [80, 249, 200, 282], the page overflows by 0 px']
+E       assert not ["the refused status is ['status is-fail', True, True] from x 17 to 517, the page overflows by 0 px", 'the dialog is [80, 249, 200, 282], the page overflows by 0 px']
+
+tests\browser\test_app.py:4562: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_content_width_of_the_header_and_the_note_at_1280_by_800" time="0.635"><failure message="AssertionError: [&quot;the top bar's height and sides are [64, 32, 48.000008]&quot;, &quot;the note is [130.09375, 6.5, 974.15625, 50] with [48, '4px', '0px'], the golden's [405.09375, 8.5, 477.78125, 46]&quot;]&#10;assert not [&quot;the top bar's height and sides are [64, 32, 48.000008]&quot;, &quot;the note is [130.09375, 6.5, 974.15625, 50] with [48, '4px', '0px'], the golden's [405.09375, 8.5, 477.78125, 46]&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001B9B1467060&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001B9B1466FB0&gt;
+
+    def test_R35_content_width_of_the_header_and_the_note_at_1280_by_800(open_app, plain_context):
+        # The 1.0 widths of the header and the note at 1280 x 800 are FE element checklist rows since v1.1.0. K1-01, the top
+        # bar 64 px tall with 48 px sides. BR-02, the note centred in the top bar between the brand and New bill, 44 px tall
+        # with no padding at the top or the bottom, where the golden draws it. Its 44 px is the height inside its 1 px
+        # border (clientHeight), the golden's border box being 46.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=VIEWPORTS[1280]).page
+        golden = support.open_golden(plain_context, "bill-unreadable", VIEWPORTS[1280])
+        problems = []
+        bar = page.locator("header.top").evaluate("""(el) =&gt; { const s = getComputedStyle(el);
+          return [el.getBoundingClientRect().height, parseFloat(s.paddingLeft), parseFloat(s.paddingRight)]; }""")
+        if not close_to(bar, [64, 48, 48]):  # WebKit computes the sides as 48.000008px (spec R59 (1))
+            problems.append(f"the top bar's height and sides are {bar}")
+        note, brand, new_bill = box_of(page, "div.note"), box_of(page, "div.brand"), box_of(page, "#newBill")
+        inside = page.locator("div.note").evaluate("""(el) =&gt; { const s = getComputedStyle(el);
+          return [el.clientHeight, s.paddingTop, s.paddingBottom]; }""")
+        if not close_to(note, box_of(golden, "div.note")) or inside != [44, "0px", "0px"]:
+            problems.append(f"the note is {note} with {inside}, the golden's {box_of(golden, 'div.note')}")
+        if not brand[0] + brand[2] &lt;= note[0] or not note[0] + note[2] &lt;= new_bill[0]:
+            problems.append(f"the note {note} is not between the brand {brand} and New bill {new_bill}")
+&gt;       assert not problems, problems
+E       AssertionError: ["the top bar's height and sides are [64, 32, 48.000008]", "the note is [130.09375, 6.5, 974.15625, 50] with [48, '4px', '0px'], the golden's [405.09375, 8.5, 477.78125, 46]"]
+E       assert not ["the top bar's height and sides are [64, 32, 48.000008]", "the note is [130.09375, 6.5, 974.15625, 50] with [48, '4px', '0px'], the golden's [405.09375, 8.5, 477.78125, 46]"]
+
+tests\browser\test_app.py:4584: AssertionError</failure></testcase></testsuite></testsuites>

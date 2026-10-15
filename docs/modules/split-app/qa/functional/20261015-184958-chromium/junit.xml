@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="40" skipped="0" tests="40" time="13.725" timestamp="2026-10-15T18:49:58.785898+08:00" hostname="{host}"><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-390]" time="1.650"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B949440F0&gt;
+golden = 'bill-items', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-360]" time="0.177"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B94E91B10&gt;
+golden = 'bill-items', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-1280]" time="0.230"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B94E464B0&gt;
+golden = 'bill-items', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-open-390]" time="0.252"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 5 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B94639D20&gt;
+golden = 'bill-items-open', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 5 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-open-360]" time="0.250"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 5 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B9275DC70&gt;
+golden = 'bill-items-open', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 5 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-even-390]" time="0.172"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B948059B0&gt;
+golden = 'bill-even', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-even-360]" time="0.164"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B948897A0&gt;
+golden = 'bill-even', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-even-1280]" time="0.204"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93E81C70&gt;
+golden = 'bill-even', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-390]" time="0.291"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B931B5C70&gt;
+golden = 'spare-sen', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-360]" time="0.302"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B931BDFE0&gt;
+golden = 'spare-sen', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-1280]" time="0.254"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B942B6140&gt;
+golden = 'spare-sen', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-one-390]" time="0.272"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B94185640&gt;
+golden = 'spare-sen-one', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-one-360]" time="0.288"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B94165FE0&gt;
+golden = 'spare-sen-one', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-one-1280]" time="0.251"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93A35F30&gt;
+golden = 'spare-sen-one', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-random-390]" time="0.259"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B932C1430&gt;
+golden = 'spare-sen-random', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-random-360]" time="0.284"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B9336DDD0&gt;
+golden = 'spare-sen-random', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-random-1280]" time="0.271"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B94071F30&gt;
+golden = 'spare-sen-random', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[splits-sheet-390]" time="0.266"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B937B54E0&gt;
+golden = 'splits-sheet', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[splits-sheet-360]" time="0.262"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93861E80&gt;
+golden = 'splits-sheet', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[new-bill-dialog-390]" time="0.255"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B925BAA30&gt;
+golden = 'new-bill-dialog', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[new-bill-dialog-360]" time="0.227"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B925D8510&gt;
+golden = 'new-bill-dialog', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[new-bill-dialog-1280]" time="0.244"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93F22CF0&gt;
+golden = 'new-bill-dialog', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-empty-390]" time="0.124"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 5 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B938B6C40&gt;
+golden = 'bill-empty', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 5 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-empty-360]" time="0.132"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 5 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93992FB0&gt;
+golden = 'bill-empty', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 5 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-empty-1280]" time="0.148"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93036F00&gt;
+golden = 'bill-empty', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[rate-error-390]" time="0.174"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93766E50&gt;
+golden = 'rate-error', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[rate-error-360]" time="0.158"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B94576DA0&gt;
+golden = 'rate-error', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[rate-error-1280]" time="0.206"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B9443ECF0&gt;
+golden = 'rate-error', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unassigned-390]" time="0.165"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B92DDAB90&gt;
+golden = 'bill-unassigned', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unassigned-360]" time="0.167"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B92E5AAE0&gt;
+golden = 'bill-unassigned', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unassigned-1280]" time="0.198"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B922E6A30&gt;
+golden = 'bill-unassigned', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unreadable-390]" time="0.177"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 5 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B94712DA0&gt;
+golden = 'bill-unreadable', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 5 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unreadable-360]" time="0.161"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 5 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B9352AE50&gt;
+golden = 'bill-unreadable', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 5 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unreadable-1280]" time="0.187"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B92EE2DA0&gt;
+golden = 'bill-unreadable', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-twelve-390]" time="0.169"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93C46CF0&gt;
+golden = 'bill-twelve', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-twelve-360]" time="0.178"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93C5EC40&gt;
+golden = 'bill-twelve', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-twelve-1280]" time="0.210"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93176B90&gt;
+golden = 'bill-twelve', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-large-390]" time="0.169"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B933AAAE0&gt;
+golden = 'bill-large', width = 390
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1610 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-large-360]" time="0.167"><failure message="AssertionError: assert ['the page is...the viewport'] == []&#10;  &#10;  Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B93D8D220&gt;
+golden = 'bill-large', width = 360
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       AssertionError: assert ['the page is...the viewport'] == []
+E         
+E         Left contains 4 more items, first extra item: 'the page is 1640 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-large-1280]" time="0.268"><failure message="assert ['the page is...as 1 columns&quot;] == []&#10;  &#10;  Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000025B94A1E820&gt;
+golden = 'bill-large', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R35_PAIRS)
+    def test_R35_no_horizontal_overflow_in_any_golden_state(open_app, golden, width):
+        # qa.md, each golden's state reached as in the R3 outline (R3_STATES) at each width of its row.
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert layout_problems(page.evaluate(LAYOUT_JS), width) == []
+E       assert ['the page is...as 1 columns"] == []
+E         
+E         Left contains 3 more items, first extra item: 'the page is 720 px wider than the viewport'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4519: AssertionError</failure></testcase></testsuite></testsuites>

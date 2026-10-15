@@ -1,0 +1,5 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R32_every_focused_control_shows_the_one_ring[390] (4.04s)
+FAILED   call     test_app.py::test_R32_every_focused_control_shows_the_one_ring[1280] (2.12s)
+FAILED   call     test_app.py::test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring (0.57s)
+exit status 1

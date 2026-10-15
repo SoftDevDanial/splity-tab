@@ -1,0 +1,66 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R37_names_are_shown_as_text_and_never_as_markup
+server STARTED pid 18660 port 30147 root {workspace}\examples\split
+Fserver STOPPED pid 18660 port 30147, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+____________ test_R37_names_are_shown_as_text_and_never_as_markup _____________
+
+open_app = <function open_app.<locals>.factory at 0x0000019DF36A3690>
+
+    def test_R37_names_are_shown_as_text_and_never_as_markup(open_app):
+        # qa.md on K1 at 390 x 844 with People opened first. The card is not displayed below 1024 px but is in the DOM, so its
+        # first splits row is read there. CG-9 of 1.0 stands.
+        session = open_app(seed=seeds.S1)
+        page = session.page
+        dialogs = []
+        page.on("dialog", lambda dialog: (dialogs.append(dialog.message), dialog.dismiss()))
+        open_people_first(page)
+        svgs_before = len(page.evaluate(MARKUP_JS)["svgs"])
+        support.replace_text(page, person_field(page, 1), PERSON_PAYLOAD)
+        support.replace_text(page, item_name(page, 1), ITEM_PAYLOAD)
+        support.replace_text(page, item_name(page, 2), SCRIPT_PAYLOAD)
+        problems = []
+    
+        def expect(what, found, wanted):
+            if found != wanted:
+                problems.append(f"{what}: {found!r}, not {wanted!r}")
+    
+        expect("Person 1 name", person_field(page, 1).input_value(), PERSON_PAYLOAD)
+        expect("Item 1 name", item_name(page, 1).input_value(), ITEM_PAYLOAD)
+        expect("the payload lengths", [len(PERSON_PAYLOAD), len(ITEM_PAYLOAD)], [16, 28])
+        expect("that person's toggles", page.locator("button.tap").evaluate_all(
+            f"(taps) => taps.filter((tap) => tap.textContent === {json.dumps(PERSON_PAYLOAD)}).length"), 4)
+        expect("the card's first splits row", page.evaluate("document.querySelector('#splits li .nm')?.textContent ?? null"), PERSON_PAYLOAD)
+        expect("that person's Remove", remove_button(page, PERSON_PAYLOAD).count(), 1)
+        expect("item 1's Remove", page.get_by_role("button", name=f"Remove {ITEM_PAYLOAD}", exact=True).count(), 1)
+        expect("item 1's price", page.get_by_label(f"{ITEM_PAYLOAD} price in RM", exact=True).count(), 1)
+        expect("item 1's group", who_group(page, ITEM_PAYLOAD).count(), 1)
+        page.locator("#peopleBtn").click()  # folds People
+        summary = page.evaluate("document.querySelector('#peopleBlk span.sec-txt')?.textContent ?? ''")
+        if not summary.startswith(PERSON_PAYLOAD):
+            problems.append(f"the People summary reads {summary!r}")
+        found = page.evaluate(MARKUP_JS)
+        expect("img and script elements, onload and onerror attributes", [found["markup"], found["handlers"]], [0, 0])
+        expect("the number of svg elements", len(found["svgs"]), svgs_before)
+        expect("svg elements that are none of svg.sprite, .mark, .ic or .seal", found["svgs"].count("other"), 0)
+        expect("dialog events and page errors", [dialogs, session.page_errors], [[], []])
+        open_sheet(page)
+        page.locator(SHEET_SPARE_CHIP).click()
+        choose(page, "One person")
+        face = page.evaluate("""() => { const face = document.querySelector('#pickList label.pill span.pill-face');
+          return face && [face.querySelectorAll(':scope > svg.ic').length, face.children.length,
+                          [...face.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE).map((node) => node.data)]; }""")
+        expect("the first pill's face (svg.ic, children, text nodes)", face, [1, 1, [PERSON_PAYLOAD]])
+        press_escape(page)
+        press_escape(page)
+        click_copy(page, "#stripCopy")
+        expect("line 3 of the clipboard text", (page.evaluate("window.testClipboardText") or "").split("\n")[2:3], [f"{PERSON_PAYLOAD} RM 29.04"])
+>       assert not problems, " | ".join(problems)
+E       AssertionError: that person's toggles: 0, not 4 | the People summary reads '3 people' | img and script elements, onload and onerror attributes: [0, 4], not [0, 0] | the number of svg elements: 41, not 37 | svg elements that are none of svg.sprite, .mark, .ic or .seal: 4, not 0 | the first pill's face (svg.ic, children, text nodes): [1, 1, ['']], not [1, 1, ['<svg onload=f()>']]
+E       assert not ["that person's toggles: 0, not 4", "the People summary reads '3 people'", 'img and script elements, onload and onerro...eal: 4, not 0', "the first pill's face (svg.ic, children, text nodes): [1, 1, ['']], not [1, 1, ['<svg onload=f()>']]"]
+
+tests\browser\test_app.py:4722: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R37_names_are_shown_as_text_and_never_as_markup
+1 failed in 3.43s

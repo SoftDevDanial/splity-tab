@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.120" timestamp="2026-10-15T18:55:52.246723+08:00" hostname="{host}"><testcase classname="test_app" name="test_R55_the_desktop_layout_at_1280_and_at_1024" time="1.638"><failure message="AssertionError: header.top is 80 px tall | the regions are named ['Bill', 'Edit the bill'] | the stage [672, 80, 560, 720] and the working [48, 80, 560, 720] are not side by side | the card is [722, 100, 460, 641.796875] and #spareBtn [1016.28125, 604.796875, 140.71875, 44] | displayed ['#strip', '#peopleBtn'] the other way round, at 1280 x 800 | at 1024 x 768 the card is [467.59375, 100, 460, 641.796875], the working [48, 80, 320, 688], the strip shown True&#10;assert not ['header.top is 80 px tall', &quot;the regions are named ['Bill', 'Edit the bill']&quot;, 'the stage [672, 80, 560, 720] and the...&quot;, 'at 1024 x 768 the card is [467.59375, 100, 460, 641.796875], the working [48, 80, 320, 688], the strip shown True']">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000018DD1203690&gt;
+
+    def test_R55_the_desktop_layout_at_1280_and_at_1024(open_app):
+        # qa.md on K1. "Side by side" is the stage's right edge at or left of the working's left edge, with their boxes
+        # sharing rows of the page.
+        page = open_app(seed=seeds.S1, viewport=VIEWPORTS[1280]).page
+        found = page.evaluate(DESKTOP_JS)
+        problems = []
+        stage, work = found["stage"], found["work"]
+        if abs(found["top"] - 64) &gt; 0.5:
+            problems.append(f"header.top is {found['top']} px tall")
+        if found["names"] != ["Bill and splits", "Edit the bill"]:
+            problems.append(f"the regions are named {found['names']}")
+        if not (stage[0] + stage[2] &lt;= work[0] + 0.5 and stage[1] &lt; work[1] + work[3] and work[1] &lt; stage[1] + stage[3]):
+            problems.append(f"the stage {stage} and the working {work} are not side by side")
+        if not close_to(found["card"], [98, 84, 460, 642]) or not close_to(found["chip"], [392, 589, 141, 44]):
+            problems.append(f"the card is {found['card']} and #spareBtn {found['chip']}")
+        shown = found["shown"]
+        wanted = {"#stage": True, "#work": True, "#strip": False, "#peopleBtn": False, "#chargesBtn": False, "#peopleBody": True,
+                  "#chargesBody": True, "h2#peopleH": True, "h2#chargesH": True}
+        if shown != wanted:
+            problems.append(f"displayed {[s for s in wanted if shown[s] != wanted[s]]} the other way round, at 1280 x 800")
+        page.set_viewport_size({"width": 1024, "height": 768})
+        found = page.evaluate(DESKTOP_JS)
+        if not found["card"][0] + found["card"][2] &lt; found["work"][0] or found["shown"]["#strip"]:
+            problems.append(f"at 1024 x 768 the card is {found['card']}, the working {found['work']}, the strip shown {found['shown']['#strip']}")
+&gt;       assert not problems, " | ".join(problems)
+E       AssertionError: header.top is 80 px tall | the regions are named ['Bill', 'Edit the bill'] | the stage [672, 80, 560, 720] and the working [48, 80, 560, 720] are not side by side | the card is [722, 100, 460, 641.796875] and #spareBtn [1016.28125, 604.796875, 140.71875, 44] | displayed ['#strip', '#peopleBtn'] the other way round, at 1280 x 800 | at 1024 x 768 the card is [467.59375, 100, 460, 641.796875], the working [48, 80, 320, 688], the strip shown True
+E       assert not ['header.top is 80 px tall', "the regions are named ['Bill', 'Edit the bill']", 'the stage [672, 80, 560, 720] and the...", 'at 1024 x 768 the card is [467.59375, 100, 460, 641.796875], the working [48, 80, 320, 688], the strip shown True']
+
+tests\browser\test_app.py:4766: AssertionError</failure></testcase></testsuite></testsuites>

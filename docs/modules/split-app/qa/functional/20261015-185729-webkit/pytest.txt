@@ -1,0 +1,6 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-mouse-double] (0.74s)
+FAILED   call     test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-touch-double] (0.70s)
+FAILED   call     test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-mouse-double] (0.59s)
+FAILED   call     test_app.py::test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-touch-double] (0.57s)
+exit status 1

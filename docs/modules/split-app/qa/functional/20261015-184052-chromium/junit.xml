@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="88" time="37.120" timestamp="2026-10-15T18:40:52.224959+08:00" hostname="{host}"><testcase classname="test_app" name="test_R32_tab_order_follows_the_golden[K1-390]" time="1.729" /><testcase classname="test_app" name="test_R32_tab_order_follows_the_golden[bill-empty-390]" time="0.152" /><testcase classname="test_app" name="test_R32_tab_order_follows_the_golden[B1-390]" time="0.192" /><testcase classname="test_app" name="test_R32_tab_order_follows_the_golden[K1-1280]" time="0.391" /><testcase classname="test_app" name="test_R32_tab_order_follows_the_golden[K1-sheet-390]" time="0.243" /><testcase classname="test_app" name="test_R32_tab_order_follows_the_golden[RND-sheet-390]" time="0.229" /><testcase classname="test_app" name="test_R32_tab_order_follows_the_golden[K1-P1-1280]" time="0.219" /><testcase classname="test_app" name="test_R32_tab_order_follows_the_golden[ONE-P1-1280]" time="0.221" /><testcase classname="test_app" name="test_R32_tab_order_follows_the_golden[RND-P1-1280]" time="0.217" /><testcase classname="test_app" name="test_R32_every_focused_control_shows_the_one_ring[390]" time="2.563" /><testcase classname="test_app" name="test_R32_every_focused_control_shows_the_one_ring[1280]" time="1.367" /><testcase classname="test_app" name="test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring" time="0.336" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-390]" time="0.148" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-360]" time="0.145" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-1280]" time="0.158" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-open-390]" time="0.228" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-items-open-360]" time="0.233" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-even-390]" time="0.148" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-even-360]" time="0.146" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-even-1280]" time="0.152" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-390]" time="0.251" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-360]" time="0.250" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-1280]" time="0.200" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-one-390]" time="0.248" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-one-360]" time="0.234" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-one-1280]" time="0.202" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-random-390]" time="0.213" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-random-360]" time="0.233" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[spare-sen-random-1280]" time="0.201" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[splits-sheet-390]" time="0.206" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[splits-sheet-360]" time="0.216" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[new-bill-dialog-390]" time="0.192" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[new-bill-dialog-360]" time="0.199" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[new-bill-dialog-1280]" time="0.200" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-empty-390]" time="0.110" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-empty-360]" time="0.100" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-empty-1280]" time="0.099" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[rate-error-390]" time="0.140" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[rate-error-360]" time="0.143" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[rate-error-1280]" time="0.137" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unassigned-390]" time="0.145" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unassigned-360]" time="0.149" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unassigned-1280]" time="0.170" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unreadable-390]" time="0.143" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unreadable-360]" time="0.138" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-unreadable-1280]" time="0.145" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-twelve-390]" time="0.142" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-twelve-360]" time="0.151" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-twelve-1280]" time="0.150" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-large-390]" time="0.147" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-large-360]" time="0.148" /><testcase classname="test_app" name="test_R35_no_horizontal_overflow_in_any_golden_state[bill-large-1280]" time="0.159" /><testcase classname="test_app" name="test_R35_layout_problems_has_teeth" time="0.000" /><testcase classname="test_app" name="test_R35_sizes_the_design_gives_at_360_by_780" time="0.338" /><testcase classname="test_app" name="test_R35_content_width_of_the_header_and_the_note_at_1280_by_800" time="0.361"><failure message="AssertionError: ([405.09375, 8.5, 477.78125, 46], ['0px', '0px'])&#10;assert (True and 2 &lt;= 0.5)&#10; +  where True = close_to([405.09375, 8.5, 477.78125, 46], [405.09375, 8.5, 477.78125, 46])&#10; +    where [405.09375, 8.5, 477.78125, 46] = box_of(&lt;Page url='file:///{workspace}/examples/split/docs/design/bill-unreadable.html'&gt;, 'div.note')&#10; +  and   2 = abs((46 - 44))">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001FC53B38250&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001FC53B38670&gt;
+
+    def test_R35_content_width_of_the_header_and_the_note_at_1280_by_800(open_app, plain_context):
+        # The 1.0 widths of the header and the note at 1280 x 800 are FE element checklist rows since v1.1.0. K1-01, the top
+        # bar 64 px tall with 48 px sides. BR-02, the note centred in the top bar between the brand and New bill, 44 px tall
+        # with no padding at the top or the bottom, where the golden draws it.
+        page = open_app(seed=seeds.UNREADABLE["B1"], viewport=VIEWPORTS[1280]).page
+        golden = support.open_golden(plain_context, "bill-unreadable", VIEWPORTS[1280])
+        bar = page.locator("header.top").evaluate("""(el) =&gt; { const s = getComputedStyle(el);
+          return [el.getBoundingClientRect().height, s.paddingLeft, s.paddingRight]; }""")
+        assert abs(bar[0] - 64) &lt;= 0.5 and bar[1:] == ["48px", "48px"], bar
+        note, brand, new_bill = box_of(page, "div.note"), box_of(page, "div.brand"), box_of(page, "#newBill")
+        padding = page.locator("div.note").evaluate("(el) =&gt; [getComputedStyle(el).paddingTop, getComputedStyle(el).paddingBottom]")
+&gt;       assert close_to(note, box_of(golden, "div.note")) and abs(note[3] - 44) &lt;= 0.5 and padding == ["0px", "0px"], (note, padding)
+E       AssertionError: ([405.09375, 8.5, 477.78125, 46], ['0px', '0px'])
+E       assert (True and 2 &lt;= 0.5)
+E        +  where True = close_to([405.09375, 8.5, 477.78125, 46], [405.09375, 8.5, 477.78125, 46])
+E        +    where [405.09375, 8.5, 477.78125, 46] = box_of(&lt;Page url='file:///{workspace}/examples/split/docs/design/bill-unreadable.html'&gt;, 'div.note')
+E        +  and   2 = abs((46 - 44))
+
+tests\browser\test_app.py:4572: AssertionError</failure></testcase><testcase classname="test_app" name="test_R36_reduced_motion_moves_nothing" time="0.552" /><testcase classname="test_app" name="test_R36_with_motion_allowed_nothing_loops" time="12.403" /><testcase classname="test_app" name="test_R37_names_are_shown_as_text_and_never_as_markup" time="0.704"><failure message="assert [&quot;svg classes... sec-caret']&quot;] == []&#10;  &#10;  Left contains one more item: &quot;svg classes ['ic caret-up', 'ic sec-caret']&quot;&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001FC4FE438A0&gt;
+
+    def test_R37_names_are_shown_as_text_and_never_as_markup(open_app):
+        # qa.md on K1 at 390 x 844 with People opened first. The card is not displayed below 1024 px but is in the DOM, so its
+        # first splits row is read there. CG-9 of 1.0 stands.
+        session = open_app(seed=seeds.S1)
+        page = session.page
+        dialogs = []
+        page.on("dialog", lambda dialog: (dialogs.append(dialog.message), dialog.dismiss()))
+        open_people_first(page)
+        svgs_before = len(page.evaluate(MARKUP_JS)["svgs"])
+        support.replace_text(page, person_field(page, 1), PERSON_PAYLOAD)
+        support.replace_text(page, item_name(page, 1), ITEM_PAYLOAD)
+        support.replace_text(page, item_name(page, 2), SCRIPT_PAYLOAD)
+        problems = []
+    
+        def expect(what, found, wanted):
+            if found != wanted:
+                problems.append(f"{what}: {found!r}, not {wanted!r}")
+    
+        expect("Person 1 name", person_field(page, 1).input_value(), PERSON_PAYLOAD)
+        expect("Item 1 name", item_name(page, 1).input_value(), ITEM_PAYLOAD)
+        expect("the payload lengths", [len(PERSON_PAYLOAD), len(ITEM_PAYLOAD)], [16, 28])
+        expect("that person's toggles", page.locator("button.tap").evaluate_all(
+            f"(taps) =&gt; taps.filter((tap) =&gt; tap.textContent === {json.dumps(PERSON_PAYLOAD)}).length"), 4)
+        expect("the card's first splits row", page.evaluate("document.querySelector('#splits li .nm')?.textContent ?? null"), PERSON_PAYLOAD)
+        expect("that person's Remove", remove_button(page, PERSON_PAYLOAD).count(), 1)
+        expect("item 1's Remove", page.get_by_role("button", name=f"Remove {ITEM_PAYLOAD}", exact=True).count(), 1)
+        expect("item 1's price", page.get_by_label(f"{ITEM_PAYLOAD} price in RM", exact=True).count(), 1)
+        expect("item 1's group", who_group(page, ITEM_PAYLOAD).count(), 1)
+        page.locator("#peopleBtn").click()  # folds People
+        summary = page.evaluate("document.querySelector('#peopleBlk span.sec-txt')?.textContent ?? ''")
+        if not summary.startswith(PERSON_PAYLOAD):
+            problems.append(f"the People summary reads {summary!r}")
+        found = page.evaluate(MARKUP_JS)
+        expect("img and script elements, onload and onerror attributes", [found["markup"], found["handlers"]], [0, 0])
+        expect("the number of svg elements", len(found["svgs"]), svgs_before)
+        if not set(found["svgs"]) &lt;= SVG_CLASSES:
+            problems.append(f"svg classes {sorted(set(found['svgs']) - SVG_CLASSES)}")
+        expect("dialog events and page errors", [dialogs, session.page_errors], [[], []])
+        open_sheet(page)
+        page.locator(SHEET_SPARE_CHIP).click()
+        choose(page, "One person")
+        face = page.evaluate("""() =&gt; { const face = document.querySelector('#pickList label.pill span.pill-face');
+          return face &amp;&amp; [face.querySelectorAll(':scope &gt; svg.ic').length, face.children.length,
+                          [...face.childNodes].filter((node) =&gt; node.nodeType === Node.TEXT_NODE).map((node) =&gt; node.data)]; }""")
+        expect("the first pill's face (svg.ic, children, text nodes)", face, [1, 1, [PERSON_PAYLOAD]])
+        press_escape(page)
+        press_escape(page)
+        click_copy(page, "#stripCopy")
+        expect("line 3 of the clipboard text", (page.evaluate("window.testClipboardText") or "").split("\n")[2:3], [f"{PERSON_PAYLOAD} RM 29.04"])
+&gt;       assert problems == []
+E       assert ["svg classes... sec-caret']"] == []
+E         
+E         Left contains one more item: "svg classes ['ic caret-up', 'ic sec-caret']"
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4712: AssertionError</failure></testcase><testcase classname="test_app" name="test_R55_the_desktop_layout_at_1280_and_at_1024" time="0.175" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[bill-items]" time="0.152" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[bill-even]" time="0.146" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[spare-sen]" time="0.199" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[spare-sen-one]" time="0.202" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[spare-sen-random]" time="0.198" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[new-bill-dialog]" time="0.200" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[bill-empty]" time="0.105" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[rate-error]" time="0.142" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[bill-unassigned]" time="0.149" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[bill-unreadable]" time="0.145" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[bill-twelve]" time="0.155" /><testcase classname="test_app" name="test_R55_the_page_never_scrolls_at_1280_by_800[bill-large]" time="0.154" /><testcase classname="test_app" name="test_R60_large_bills_fit_a_360_px_phone[W1]" time="0.208" /><testcase classname="test_app" name="test_R60_large_bills_fit_a_360_px_phone[MAX-E]" time="0.216" /><testcase classname="test_app" name="test_R60_large_bills_fit_a_360_px_phone[MAX-I]" time="0.242" /><testcase classname="test_app" name="test_R60_the_large_price_shows_whole" time="0.204"><failure message="AssertionError: ('Total RM 1,193.87', [133, 133, 33, 30])&#10;assert ('Total RM 1,193.87' == 'Total RM 1,193.87'&#10;  &#10;    Total RM 1,193.87 and 33 &lt;= (30 + 0.5))">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001FC552A7950&gt;
+
+    def test_R60_the_large_price_shows_whole(open_app):
+        # qa.md on W1 at 360 x 780. "One line box tall" is #stripTotal's height at most its line-height (30 px, K1-56).
+        page = open_app(seed=seeds.W1, viewport=VIEWPORTS[360]).page
+        price = page.get_by_label("Item 5 price in RM", exact=True)
+        assert price.input_value() == "964.50" and price.evaluate("(el) =&gt; el.scrollWidth &lt;= el.clientWidth")
+        strip = page.evaluate(STRIP_TOTAL_JS)
+        reads = " ".join(page.locator("#stripInfo").inner_text().split())
+&gt;       assert reads == "Total RM 1,193.87" and strip[2] &lt;= strip[3] + 0.5, (reads, strip)
+E       AssertionError: ('Total RM 1,193.87', [133, 133, 33, 30])
+E       assert ('Total RM 1,193.87' == 'Total RM 1,193.87'
+E         
+E           Total RM 1,193.87 and 33 &lt;= (30 + 0.5))
+
+tests\browser\test_app.py:4812: AssertionError</failure></testcase><testcase classname="test_app" name="test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-mouse-double]" time="0.315" /><testcase classname="test_app" name="test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[close-touch-double]" time="0.348" /><testcase classname="test_app" name="test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-mouse-double]" time="0.284" /><testcase classname="test_app" name="test_R50_the_second_press_of_a_double_activation_that_closed_the_sheet_never_reaches_the_page[backdrop-touch-double]" time="0.314" /><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-close-mouse-double]" time="0.339" /><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-close-touch-double]" time="0.369" /><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-backdrop-mouse-double]" time="0.299" /><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[1280-backdrop-touch-double]" time="0.313" /><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-close-mouse-double]" time="0.334" /><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-close-touch-double]" time="0.350" /><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-backdrop-mouse-double]" time="0.332" /><testcase classname="test_app" name="test_R52_the_second_press_of_a_double_activation_that_closed_p1_never_reaches_the_page[390-backdrop-touch-double]" time="0.368" /><testcase classname="test_app" name="test_R54_pick_again_in_the_splits_sheet_draws_again" time="0.324" /></testsuite></testsuites>

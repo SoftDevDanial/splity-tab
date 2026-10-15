@@ -1,0 +1,6 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R60_large_bills_fit_a_360_px_phone[W1] (0.23s)
+FAILED   call     test_app.py::test_R60_large_bills_fit_a_360_px_phone[MAX-E] (0.20s)
+FAILED   call     test_app.py::test_R60_large_bills_fit_a_360_px_phone[MAX-I] (0.23s)
+FAILED   call     test_app.py::test_R60_the_large_price_shows_whole (0.17s)
+exit status 1

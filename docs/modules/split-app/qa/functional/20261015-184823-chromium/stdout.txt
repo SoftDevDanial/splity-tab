@@ -1,0 +1,28 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring
+server STARTED pid 17992 port 10502 root {workspace}\examples\split
+Fserver STOPPED pid 17992 port 10502, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+________ test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring ________
+
+open_app = <function open_app.<locals>.factory at 0x0000025FF99EB530>
+plain_context = <function plain_context.<locals>.factory at 0x0000025FF99EB270>
+
+    def test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring(open_app, plain_context):
+        # qa.md, the RE line of "Every focused control shows the one ring", at 390 x 844, where Charges is open on load.
+        page = open_app(seed=seeds.RE).page
+        edge = page.locator("#svc").evaluate("(el) => getComputedStyle(el.closest('.field')).boxShadow")
+        found = ring_by_tab(page, "#svc")
+        drawn = ring_by_tab(support.open_golden(plain_context, "rate-error"), "#svc")
+>       assert edge != "none" and found["edge"] == edge, (edge, found)
+E       AssertionError: ('rgb(255, 138, 143) 0px 0px 0px 1px inset', {'on': 'div.field.pct', 'visible': True, 'ring': ['solid', '2px', 'rgb(163, 170, 255)', '2px'], 'edge': 'none'})
+E       assert ('rgb(255, 138, 143) 0px 0px 0px 1px inset' != 'none' and 'none' == 'rgb(255, 138...0px 1px inset'
+E         
+E         - rgb(255, 138, 143) 0px 0px 0px 1px inset
+E         + none)
+
+tests\browser\test_app.py:4464: AssertionError
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R32_an_error_field_keeps_its_red_edge_and_gains_the_ring
+1 failed in 2.36s

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="4" time="3.995" timestamp="2026-10-15T18:56:18.189984+08:00" hostname="{host}"><testcase classname="test_app" name="test_R60_large_bills_fit_a_360_px_phone[W1]" time="1.680"><failure message="AssertionError: before Splits the page overflows by 0 px and #stripTotal is [109, 20, False] | in the sheet {'found': {'.r-amount': 1, '.amt': 4, '.r-lines dd': 3, '.wk': 4}, 'wide': ['.r-amount RM 1,193.87 205 &gt; 8', '.amt RM 1,153.65 116 &gt; 8', '.amt RM 15.74 84 &gt; 8', '.amt RM 24.48 84 &gt; 8', '.amt RM 1,193.87 116 &gt; 8', '.r-lines dd RM 1,023.90 97 &gt; 8', '.r-lines dd RM 102.39 79 &gt; 8', '.r-lines dd RM 67.58 70 &gt; 8']}&#10;assert not ['before Splits the page overflows by 0 px and #stripTotal is [109, 20, False]', &quot;in the sheet {'found': {'.r-amount':... 1,193.87 116 &gt; 8', '.r-lines dd RM 1,023.90 97 &gt; 8', '.r-lines dd RM 102.39 79 &gt; 8', '.r-lines dd RM 67.58 70 &gt; 8']}&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002164C65F740&gt;
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...i8","name":"","priceText":"964.50","who":["p1"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":9}}'
+
+    @pytest.mark.parametrize("seed", [seeds.W1, seeds.MAX_E, seeds.MAX_I], ids=["W1", "MAX-E", "MAX-I"])
+    def test_R60_large_bills_fit_a_360_px_phone(open_app, seed):
+        # qa.md at 360 x 780. The card is not displayed below 1024 px, so the figures are read on the strip and in the sheet.
+        # Even rows carry no .wk (K2-11), so a MAX-E sheet holds none. A failure on a MAX bill is a design finding for the
+        # owner, the CSS stays a byte copy (spec R60).
+        page = open_app(seed=seed, viewport=VIEWPORTS[360]).page
+        problems = []
+        overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
+        strip = page.evaluate(STRIP_TOTAL_JS)
+        if overflow &gt; 0 or strip is None or strip[0] &gt; strip[1]:
+            problems.append(f"before Splits the page overflows by {overflow} px and #stripTotal is {strip}")
+        open_sheet(page)
+        figures = page.evaluate(FIGURES_JS, "#splitsDlg .rbody")
+        if figures["wide"] or not all(figures["found"][selector] for selector in (".r-amount", ".amt", ".r-lines dd")):
+            problems.append(f"in the sheet {figures}")
+        overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
+        if overflow &gt; 0:
+            problems.append(f"with the sheet open the page overflows by {overflow} px")
+&gt;       assert not problems, " | ".join(problems)
+E       AssertionError: before Splits the page overflows by 0 px and #stripTotal is [109, 20, False] | in the sheet {'found': {'.r-amount': 1, '.amt': 4, '.r-lines dd': 3, '.wk': 4}, 'wide': ['.r-amount RM 1,193.87 205 &gt; 8', '.amt RM 1,153.65 116 &gt; 8', '.amt RM 15.74 84 &gt; 8', '.amt RM 24.48 84 &gt; 8', '.amt RM 1,193.87 116 &gt; 8', '.r-lines dd RM 1,023.90 97 &gt; 8', '.r-lines dd RM 102.39 79 &gt; 8', '.r-lines dd RM 67.58 70 &gt; 8']}
+E       assert not ['before Splits the page overflows by 0 px and #stripTotal is [109, 20, False]', "in the sheet {'found': {'.r-amount':... 1,193.87 116 &gt; 8', '.r-lines dd RM 1,023.90 97 &gt; 8', '.r-lines dd RM 102.39 79 &gt; 8', '.r-lines dd RM 67.58 70 &gt; 8']}"]
+
+tests\browser\test_app.py:4816: AssertionError</failure></testcase><testcase classname="test_app" name="test_R60_large_bills_fit_a_360_px_phone[MAX-E]" time="0.551"><failure message="AssertionError: before Splits the page overflows by 0 px and #stripTotal is [136, 20, False] | in the sheet {'found': {'.r-amount': 1, '.amt': 13, '.r-lines dd': 3, '.wk': 0}, 'wide': ['.r-amount RM 155,999.99 249 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 12,999.99 127 &gt; 8', '.amt RM 155,999.99 137 &gt; 8', '.r-lines dd RM 99,999.99 105 &gt; 8', '.r-lines dd RM 30,000.00 105 &gt; 8', '.r-lines dd RM 26,000.00 105 &gt; 8']}&#10;assert not ['before Splits the page overflows by 0 px and #stripTotal is [136, 20, False]', &quot;in the sheet {'found': {'.r-amount':...37 &gt; 8', '.r-lines dd RM 99,999.99 105 &gt; 8', '.r-lines dd RM 30,000.00 105 &gt; 8', '.r-lines dd RM 26,000.00 105 &gt; 8']}&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002164C35BED0&gt;
+seed = '{"version":2,"bill":{"mode":"even","subtotalText":"99999.99","items":[],"serviceText":"30","sstText":"20","spare":{"r...,{"id":"p9","name":"Jia Hui"},{"id":"p10","name":"Kumar"},{"id":"p11","name":"Lina"},{"id":"p12","name":"Mei Ling"}]}}'
+
+    @pytest.mark.parametrize("seed", [seeds.W1, seeds.MAX_E, seeds.MAX_I], ids=["W1", "MAX-E", "MAX-I"])
+    def test_R60_large_bills_fit_a_360_px_phone(open_app, seed):
+        # qa.md at 360 x 780. The card is not displayed below 1024 px, so the figures are read on the strip and in the sheet.
+        # Even rows carry no .wk (K2-11), so a MAX-E sheet holds none. A failure on a MAX bill is a design finding for the
+        # owner, the CSS stays a byte copy (spec R60).
+        page = open_app(seed=seed, viewport=VIEWPORTS[360]).page
+        problems = []
+        overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
+        strip = page.evaluate(STRIP_TOTAL_JS)
+        if overflow &gt; 0 or strip is None or strip[0] &gt; strip[1]:
+            problems.append(f"before Splits the page overflows by {overflow} px and #stripTotal is {strip}")
+        open_sheet(page)
+        figures = page.evaluate(FIGURES_JS, "#splitsDlg .rbody")
+        if figures["wide"] or not all(figures["found"][selector] for selector in (".r-amount", ".amt", ".r-lines dd")):
+            problems.append(f"in the sheet {figures}")
+        overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
+        if overflow &gt; 0:
+            problems.append(f"with the sheet open the page overflows by {overflow} px")
+&gt;       assert not problems, " | ".join(problems)
+E       AssertionError: before Splits the page overflows by 0 px and #stripTotal is [136, 20, False] | in the sheet {'found': {'.r-amount': 1, '.amt': 13, '.r-lines dd': 3, '.wk': 0}, 'wide': ['.r-amount RM 155,999.99 249 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 13,000.00 127 &gt; 8', '.amt RM 12,999.99 127 &gt; 8', '.amt RM 155,999.99 137 &gt; 8', '.r-lines dd RM 99,999.99 105 &gt; 8', '.r-lines dd RM 30,000.00 105 &gt; 8', '.r-lines dd RM 26,000.00 105 &gt; 8']}
+E       assert not ['before Splits the page overflows by 0 px and #stripTotal is [136, 20, False]', "in the sheet {'found': {'.r-amount':...37 &gt; 8', '.r-lines dd RM 99,999.99 105 &gt; 8', '.r-lines dd RM 30,000.00 105 &gt; 8', '.r-lines dd RM 26,000.00 105 &gt; 8']}"]
+
+tests\browser\test_app.py:4816: AssertionError</failure></testcase><testcase classname="test_app" name="test_R60_large_bills_fit_a_360_px_phone[MAX-I]" time="0.640"><failure message="AssertionError: before Splits the page overflows by 0 px and #stripTotal is [163, 20, False] | in the sheet {'found': {'.r-amount': 1, '.amt': 13, '.r-lines dd': 3, '.wk': 13}, 'wide': ['.r-amount RM 7,799,999.22 293 &gt; 8', '.amt RM 779,999.93 137 &gt; 8', '.amt RM 779,999.93 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.93 137 &gt; 8', '.amt RM 623,999.93 137 &gt; 8', '.amt RM 623,999.93 137 &gt; 8', '.amt RM 623,999.93 137 &gt; 8', '.amt RM 7,799,999.22 158 &gt; 8', '.r-lines dd RM 4,999,999.50 132 &gt; 8', '.r-lines dd RM 1,499,999.85 132 &gt; 8', '.r-lines dd RM 1,299,999.87 132 &gt; 8']}&#10;assert not ['before Splits the page overflows by 0 px and #stripTotal is [163, 20, False]', &quot;in the sheet {'found': {'.r-amount':...'.r-lines dd RM 4,999,999.50 132 &gt; 8', '.r-lines dd RM 1,499,999.85 132 &gt; 8', '.r-lines dd RM 1,299,999.87 132 &gt; 8']}&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002164C26EB90&gt;
+seed = '{"version":2,"bill":{"mode":"item","subtotalText":"","items":[{"id":"i13","name":"","priceText":"99999.99","who":["p1...,{"id":"p9","name":"Jia Hui"},{"id":"p10","name":"Kumar"},{"id":"p11","name":"Lina"},{"id":"p12","name":"Mei Ling"}]}}'
+
+    @pytest.mark.parametrize("seed", [seeds.W1, seeds.MAX_E, seeds.MAX_I], ids=["W1", "MAX-E", "MAX-I"])
+    def test_R60_large_bills_fit_a_360_px_phone(open_app, seed):
+        # qa.md at 360 x 780. The card is not displayed below 1024 px, so the figures are read on the strip and in the sheet.
+        # Even rows carry no .wk (K2-11), so a MAX-E sheet holds none. A failure on a MAX bill is a design finding for the
+        # owner, the CSS stays a byte copy (spec R60).
+        page = open_app(seed=seed, viewport=VIEWPORTS[360]).page
+        problems = []
+        overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
+        strip = page.evaluate(STRIP_TOTAL_JS)
+        if overflow &gt; 0 or strip is None or strip[0] &gt; strip[1]:
+            problems.append(f"before Splits the page overflows by {overflow} px and #stripTotal is {strip}")
+        open_sheet(page)
+        figures = page.evaluate(FIGURES_JS, "#splitsDlg .rbody")
+        if figures["wide"] or not all(figures["found"][selector] for selector in (".r-amount", ".amt", ".r-lines dd")):
+            problems.append(f"in the sheet {figures}")
+        overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
+        if overflow &gt; 0:
+            problems.append(f"with the sheet open the page overflows by {overflow} px")
+&gt;       assert not problems, " | ".join(problems)
+E       AssertionError: before Splits the page overflows by 0 px and #stripTotal is [163, 20, False] | in the sheet {'found': {'.r-amount': 1, '.amt': 13, '.r-lines dd': 3, '.wk': 13}, 'wide': ['.r-amount RM 7,799,999.22 293 &gt; 8', '.amt RM 779,999.93 137 &gt; 8', '.amt RM 779,999.93 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.94 137 &gt; 8', '.amt RM 623,999.93 137 &gt; 8', '.amt RM 623,999.93 137 &gt; 8', '.amt RM 623,999.93 137 &gt; 8', '.amt RM 623,999.93 137 &gt; 8', '.amt RM 7,799,999.22 158 &gt; 8', '.r-lines dd RM 4,999,999.50 132 &gt; 8', '.r-lines dd RM 1,499,999.85 132 &gt; 8', '.r-lines dd RM 1,299,999.87 132 &gt; 8']}
+E       assert not ['before Splits the page overflows by 0 px and #stripTotal is [163, 20, False]', "in the sheet {'found': {'.r-amount':...'.r-lines dd RM 4,999,999.50 132 &gt; 8', '.r-lines dd RM 1,499,999.85 132 &gt; 8', '.r-lines dd RM 1,299,999.87 132 &gt; 8']}"]
+
+tests\browser\test_app.py:4816: AssertionError</failure></testcase><testcase classname="test_app" name="test_R60_the_large_price_shows_whole" time="0.404"><failure message="AssertionError: the strip reads 'Total RM 1,193.87', #stripTotal [109, 20, False]&#10;assert not [&quot;the strip reads 'Total RM 1,193.87', #stripTotal [109, 20, False]&quot;]">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002164A298CA0&gt;
+
+    def test_R60_the_large_price_shows_whole(open_app):
+        # qa.md on W1 at 360 x 780. "One line box tall" is read from the boxes of #stripTotal's text (STRIP_TOTAL_JS).
+        page = open_app(seed=seeds.W1, viewport=VIEWPORTS[360]).page
+        price = page.get_by_label("Item 5 price in RM", exact=True)
+        found = [price.input_value(), price.evaluate("(el) =&gt; [el.scrollWidth, el.clientWidth]")]
+        strip, reads = page.evaluate(STRIP_TOTAL_JS), " ".join(page.locator("#stripInfo").inner_text().split())
+        problems = [] if found[0] == "964.50" and found[1][0] &lt;= found[1][1] else [f"the price field holds {found}"]
+        if reads != "Total RM 1,193.87" or strip[2] is not True:
+            problems.append(f"the strip reads {reads!r}, #stripTotal {strip}")
+&gt;       assert not problems, " | ".join(problems)
+E       AssertionError: the strip reads 'Total RM 1,193.87', #stripTotal [109, 20, False]
+E       assert not ["the strip reads 'Total RM 1,193.87', #stripTotal [109, 20, False]"]
+
+tests\browser\test_app.py:4828: AssertionError</failure></testcase></testsuite></testsuites>

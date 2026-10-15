@@ -1,0 +1,3 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R36_with_motion_allowed_nothing_loops (12.44s)
+exit status 1

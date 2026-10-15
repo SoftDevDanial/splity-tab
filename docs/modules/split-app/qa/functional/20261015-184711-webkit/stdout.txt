@@ -1,0 +1,273 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R32_tab_order_follows_the_golden
+server STARTED pid 25576 port 1718 root {workspace}\examples\split
+FFFFFFFFFserver STOPPED pid 25576 port 1718, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+________________ test_R32_tab_order_follows_the_golden[K1-390] ________________
+
+open_app = <function open_app.<locals>.factory at 0x0000021717FDBAB0>
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 390, start = 'page'
+order = ['New bill', 'People', 'Charges', 'By item', 'Add item', 'Item 1 name', ...]
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+>       assert stops == order
+E       AssertionError: assert ['People', 'C...e in RM', ...] == ['New bill', ... 1 name', ...]
+E         
+E         At index 0 diff: 'People' != 'New bill'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4391: AssertionError
+____________ test_R32_tab_order_follows_the_golden[bill-empty-390] ____________
+
+open_app = <function open_app.<locals>.factory at 0x0000021717D36E50>
+seed = None, width = 390, start = 'page'
+order = ['New bill', 'People', 'Add person', 'Person 1 name', 'Person 2 name', 'Charges', ...]
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+>       assert stops == order
+E       AssertionError: assert ['People', 'A..., 'Even', ...] == ['New bill', ...Charges', ...]
+E         
+E         At index 0 diff: 'People' != 'New bill'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4391: AssertionError
+________________ test_R32_tab_order_follows_the_golden[B1-390] ________________
+
+open_app = <function open_app.<locals>.factory at 0x0000021717C6FAB0>
+seed = 'not json', width = 390, start = 'page'
+order = ['Dismiss note', 'New bill', 'People', 'Add person', 'Person 1 name', 'Person 2 name', ...]
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+>       assert stops == order
+E       AssertionError: assert ['Dismiss not...Charges', ...] == ['Dismiss not... 2 name', ...]
+E         
+E         At index 1 diff: 'People' != 'New bill'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4391: AssertionError
+_______________ test_R32_tab_order_follows_the_golden[K1-1280] ________________
+
+open_app = <function open_app.<locals>.factory at 0x0000021717334930>
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 1280, start = 'page'
+order = ['New bill', 'Spare sen: Top of the list. Change', 'Copy summary', 'Add person', 'Person 1 name', 'Remove Aisyah', ...]
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+>       assert stops == order
+E       AssertionError: assert ['Spare sen: ... 2 name', ...] == ['New bill', ... Aisyah', ...]
+E         
+E         At index 0 diff: 'Spare sen: Top of the list. Change' != 'New bill'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4391: AssertionError
+_____________ test_R32_tab_order_follows_the_golden[K1-sheet-390] _____________
+
+open_app = <function open_app.<locals>.factory at 0x0000021717306FB0>
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 390, start = 'sheet'
+order = ['Close', 'Spare sen: Top of the list. Change', 'Copy summary']
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+>       assert stops == order
+E       AssertionError: assert ['Spare sen: ... bill Cancel'] == ['Close', 'Sp...Copy summary']
+E         
+E         At index 0 diff: 'Spare sen: Top of the list. Change' != 'Close'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4391: AssertionError
+____________ test_R32_tab_order_follows_the_golden[RND-sheet-390] _____________
+
+open_app = <function open_app.<locals>.factory at 0x0000021716E93320>
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"random","order":["p2","p3","p1"]},"nextId":4}}'
+width = 390, start = 'sheet'
+order = ['Close', 'Pick again', 'Spare sen: At random. Change', 'Copy summary']
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+>       assert stops == order
+E       AssertionError: assert ['Pick again'... bill Cancel'] == ['Close', 'Pi...Copy summary']
+E         
+E         At index 0 diff: 'Pick again' != 'Close'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4391: AssertionError
+______________ test_R32_tab_order_follows_the_golden[K1-P1-1280] ______________
+
+open_app = <function open_app.<locals>.factory at 0x00000217165F8CA0>
+seed = '{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...0 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}'
+width = 1280, start = 'p1', order = ['Close', 'Top of the list']
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+>       assert stops == order
+E       AssertionError: assert ['Spare sen',... of the list'] == ['Close', 'Top of the list']
+E         
+E         At index 0 diff: 'Spare sen' != 'Close'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4391: AssertionError
+_____________ test_R32_tab_order_follows_the_golden[ONE-P1-1280] ______________
+
+open_app = <function open_app.<locals>.factory at 0x000002171659CCA0>
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"one","personId":"p2"},"nextId":4}}'
+width = 1280, start = 'p1', order = ['Close', 'One person', 'Ben']
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+>       assert stops == order
+E       AssertionError: assert ['Spare sen',...erson', 'Ben'] == ['Close', 'One person', 'Ben']
+E         
+E         At index 0 diff: 'Spare sen' != 'Close'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4391: AssertionError
+_____________ test_R32_tab_order_follows_the_golden[RND-P1-1280] ______________
+
+open_app = <function open_app.<locals>.factory at 0x0000021717B4D0C0>
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"random","order":["p2","p3","p1"]},"nextId":4}}'
+width = 1280, start = 'p1', order = ['Close', 'At random', 'Pick again']
+
+    @pytest.mark.parametrize("seed, width, start, order", TAB_ORDER_CASES)
+    def test_R32_tab_order_follows_the_golden(open_app, seed, width, start, order):
+        # qa.md. From the top of the page the first Tab leaves body. The sheet has focus on open, and P1 opens with focus on
+        # the checked choice, so its Close is reached by Shift+Tab. Neither wraps Tab (Non-goals), so the walk stops at the
+        # last name, and the count of controls Tab can reach in the same scope shows that none is left out.
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        if start == "sheet":
+            open_sheet(page)
+        elif start == "p1":
+            open_p1(page, "desktop")
+            page.keyboard.press("Shift+Tab")
+        stops = [page.evaluate(FOCUSED_NAME_JS)] if start == "p1" else []
+        while len(stops) < len(order):
+            page.keyboard.press("Tab")
+            stops.append(page.evaluate(FOCUSED_NAME_JS))
+>       assert stops == order
+E       AssertionError: assert ['Spare sen',... 'Pick again'] == ['Close', 'At... 'Pick again']
+E         
+E         At index 0 diff: 'Spare sen' != 'Close'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:4391: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[K1-390]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[bill-empty-390]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[B1-390]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[K1-1280]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[K1-sheet-390]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[RND-sheet-390]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[K1-P1-1280]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[ONE-P1-1280]
+FAILED tests\browser\test_app.py::test_R32_tab_order_follows_the_golden[RND-P1-1280]
+9 failed in 7.32s
