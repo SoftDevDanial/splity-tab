@@ -160,5 +160,5 @@ ODD_READABLE.update({
 # [G8] K2 with bidi and separator characters in four names (qa.md, R62, H-10), each one written as its JSON escape,
 # as a draft written by hand or by another page may hold it. Not in ODD_READABLE, its own scenario reads it.
 G8 = json.dumps(json.loads(changed(S2, lambda d: d["bill"].update(nextId=6, people=[
-    {"id": "p1", "name": "Aisyah"}, {"id": "p2", "name": "Ben‮"}, {"id": "p3", "name": "Chen⁧"},
-    {"id": "p4", "name": "A B"}, {"id": "p5", "name": "‮"}]))), separators=(",", ":"), ensure_ascii=True)
+    {"id": "p1", "name": "Aisyah"}, {"id": "p2", "name": "Ben\u202E"}, {"id": "p3", "name": "Chen\u2067"},
+    {"id": "p4", "name": "A\u2028B"}, {"id": "p5", "name": "\u202E"}]))), separators=(",", ":"), ensure_ascii=True)

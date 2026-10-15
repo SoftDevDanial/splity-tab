@@ -5847,7 +5847,7 @@ def people_names(page):
     return [person["name"] for person in stored(page)["bill"]["people"]]
 
 
-PLAIN_INSERTS = [("‮", "Ben", 3), ("‮x", "Benx", 4), ("a b", "Benab", 5), ("\u0000", "Ben", 3),
+PLAIN_INSERTS = [("\u202E", "Ben", 3), ("\u202Ex", "Benx", 4), ("a\u2028b", "Benab", 5), ("\u0000", "Ben", 3),
                  ("\u0009Lee", "BenLee", 6)]
 
 
@@ -5883,7 +5883,7 @@ def test_R62_a_removal_in_the_middle_of_a_name_keeps_the_caret_where_the_text_we
     field.click()
     page.keyboard.press("End")
     page.keyboard.press("ArrowLeft")  # the caret after "Be"
-    assert insert(page, "‮x⁧") == []
+    assert insert(page, "\u202Ex\u2067") == []
     assert page.evaluate(FIELD_STATE_JS, handle) == [True, "Bexn", 3, 3]
     page.keyboard.type("y")
     assert page.evaluate(FIELD_STATE_JS, handle)[:2] == [True, "Bexyn"] and people_names(page)[1] == "Bexyn"
@@ -5916,7 +5916,7 @@ def test_R62_characters_outside_the_class_stay_in_a_name(open_app):
     page = open_app(seed=seeds.S2).page
     open_people_first(page)
     page.evaluate(RECORD_INPUT_JS)
-    kept, emoji = "A​B C﻿", "\U0001F468‍\U0001F469‍\U0001F467"
+    kept, emoji = "A\u200BB\u00A0C\uFEFF", "\U0001F468\u200D\U0001F469\u200D\U0001F467"
     for number, text in ((2, kept), (3, emoji)):
         person_field(page, number).click()
         page.keyboard.press("End")
@@ -5962,7 +5962,7 @@ def test_R62_an_item_name_loses_the_class_too(open_app):
     handle = field.element_handle()
     field.click()
     page.keyboard.press("End")
-    assert insert(page, "‮x") == []
+    assert insert(page, "\u202Ex") == []
     value = "Char kuey teowx"
     assert page.evaluate(FIELD_STATE_JS, handle) == [True, value, 15, 15]
     assert stored(page)["bill"]["items"][1]["name"] == value
@@ -5976,7 +5976,7 @@ def test_R62_a_name_made_only_of_removed_characters_falls_back_to_its_position(o
     field = person_field(page, 2)
     field.click()
     page.keyboard.press("Control+A")
-    assert insert(page, "‮") == []
+    assert insert(page, "\u202E") == []
     assert [field.input_value(), field.get_attribute("placeholder"), people_names(page)[1]] == ["", "Person 2", ""]
     rows, _ = card_rows(page)
     assert [rows[1][0], person_rows(page)[1]["remove"][1]] == ["Person 2", "Remove Person 2"]
