@@ -366,6 +366,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 | A15 proofs | `dce28e9` | `docs(split-app): the proof runs of A15 on the committed tree, Node 379 of 379, Chromium 602 passed and 22 xfailed, WebKit 598 passed with the known three failures by id, and the A14 and A15 rows of the commit table (task A15, R54)`, recorded by the A16 section |
 | A16 | `3c3d9b0` | `feat(split-app): the New bill dialog and Start new bill held as written, so the tests follow qa.md, ... (task A16, R29, R30, R31, R59)`, tests only, recorded by the A16 proof commit |
 | A16 proofs | `9bdb9ee` | `docs(split-app): the proof runs of A16 on the committed tree, Node 379 of 379, Chromium 602 passed and 21 xfailed, WebKit 600 passed with only F-A11-1 failing by id, ... (task A16, R29, R30, R31, R59)`, recorded by the A21 section |
+| A21 | `b8b332e` | `feat(split-app): below 1024 px a control focused in the page whose bottom edge is under the strip is scrolled clear of it with scrollIntoView nearest, ... (task A21, R49)`, recorded by the A21 proof commit |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -1702,7 +1703,7 @@ Built by the frontend developer role from `spec.md` (task A16 with its R59 note,
 ## v1.1.0 task A21, the focus scroll clear of the strip (2026-10-15)
 Built by the frontend developer role from `spec.md` (task A21 and the Tasks preamble, R49 whole with "The focus scroll", the Gesture to action row on `focusin`, the non-goal on scroll calls), `qa.md` (the three `@R49` scenarios, the comment on the Tab scenario and the new scenario "The app scrolls a focused control only below 1024 px and only when the strip covers it") and `docs/v1.1.0/CHANGE-LEDGER.md` (H-08, S7 rows 27 and 33), on the tree of `9dfbac3`, with the "Where it stands", "Where things are" and "Traps worth knowing" of `docs/progress/handoff/handoff-2026-10-15-execute-split-A18.md`.
 
-**Status. Committed with this section.** The proof runs on the committed tree are recorded below by a second commit, which also records the hash of the first.
+**Status. Committed with this section (`b8b332e`).** The proof runs on the committed tree are recorded below by a second commit, which also records the hash of the first.
 
 **Phase skills (design row of `docs/phase-skills.md`).** Read from disk in full before any other work, `taste-skill` (`taste-skill/1.0.0/skills/taste-skill/SKILL.md`, all 1207 lines) and `frontend-design` (`frontend-design/c2bdb427efe8/skills/frontend-design/SKILL.md`). Design read (taste-skill 0.B), an execute fix of one behaviour of the approved phone layout, a scroll on focus behind the fixed bottom strip, with nothing drawn. The goldens, `src/system.css` and spec R49 fix every visual choice, so only the rules that bear on a scroll on focus transferred.
 - The brief's own words win (frontend-design) and nothing changes silently (taste-skill 11.F). The handler does what R49's "The focus scroll" and its Gesture to action row say and nothing else, no CSS and no other scroll.
@@ -1741,6 +1742,15 @@ Built by the frontend developer role from `spec.md` (task A21 and the Tasks prea
 **Proof before the commit** (each folder listed on disk after its run).
 - Probe, read only, from a script in the session scratch folder, the clipboard recorder in every context and checked before the first gesture. K1 at 390 x 844, both sections opened, New bill focused by script, Tab until Splits, reading at every stop the focused control's bottom edge, the strip's top, `window.scrollY` and the app's `scrollIntoView` calls. `docs/modules/split-app/qa/focus-scroll-probe/20261015-180501-webkit/result.json` (WebKit 26.5), 37 stops, none under the strip, 7 calls by the app, and every control it scrolled (the names of items 2, 3 and 4 and the first toggle of each of the four items) ends with its bottom edge at 721, the strip's top 733 less the 12 px of `scroll-padding-bottom`. Item 2 name ended at 791 in the RED run. `20261015-180503-chromium/result.json` (Chromium 149), 37 stops, none under the strip, 0 calls by the app, so each control was already clear when `focusin` reached the handler.
 - Chromium on the working tree, `docs/modules/split-app/qa/functional/20261015-180537-chromium/`, 603 passed, 21 xfailed, 0 failed, 209 s.
+
+**Proof on the committed tree** (`b8b332e`, `git diff --quiet HEAD -- src/ tests/ index.html` exit 0 before the first run, each folder listed on disk after its run, one job at a time, counts read from each run's `junit.xml`).
+- Node `docs/modules/split-app/qa/unit/20261015-181242/node-test.txt`, 379 of 379.
+- Chromium `docs/modules/split-app/qa/functional/20261015-181252-chromium/`, 624 tests, 603 passed, 21 xfailed, 0 failed, 0 skipped, 207 s.
+- WebKit `docs/modules/split-app/qa/functional/20261015-181625-webkit/`, 624 tests, 602 passed, 0 failed, 1 skipped (the IME test, `chromium_only`), 21 xfailed, 389 s, `skips.txt` count 22.
+- WebKit by id against the A16 proof run `20261015-163654-webkit/`. Failed before and passed now, 1, F-A11-1 `test_R49_no_control_the_user_tabs_to_is_left_under_the_strip`. Still failing 0, new failures among the 623 shared ids 0, no H-04 failure, no other change. Only in this run 1, the new scenario, passed. Only in A16's run 0.
+- Chromium by id against the A16 proof run `20261015-163320-chromium/`. No change among the 623 shared ids, and the new scenario passed.
+- No file under `src/` or `index.html` is newer than the first proof run (`find src index.html -newermt "2026-10-15 18:12:42"` lists nothing). `git hash-object --no-filters src/system.css` is `bf30ddadb8c756dc5d462243c642c218597ae0ac`, unchanged, and `git status --short docs/design/ src/ index.html tests/` is empty.
+- This WebKit run, with no failure, is A18's WebKit baseline by id (spec A18 line of 2026-10-15).
 
 **Judgment calls.**
 1. The listener lives in `createStrip`, as the A21 line suggests, because the strip owns its box and its height (`fit`). It reads `DESKTOP` from `media.js`, the one query the CSS and the sheet and P1 share.
