@@ -18,7 +18,7 @@ import { createCharges } from "./ui/charges.js";
 import { createPeopleSection, createChargesSection } from "./ui/sections.js";
 import { icon } from "./ui/icons.js";
 import { CARD_IDS, createReceipt, hasSplits } from "./ui/receipt.js";
-import { showCopyStatus } from "./ui/copy-status.js";
+import { createStrip } from "./ui/strip.js";
 import { watchPointerClicks } from "./ui/dom.js";
 
 watchPointerClicks(); // R57 (b): every repeat check reads what these window listeners record from the first press on
@@ -139,14 +139,12 @@ const items = createItems({
   },
 });
 const charges = createCharges({ onInput: (kind, text) => amountTyped(kind, text), onLeave: (kind, text) => amountLeft(kind, text) });
-// The shell's static buttons get their icons here, because every icon but the sprite and the mark is built at run time (R44).
+// New bill and Splits get their icons here (the strip's Copy summary in createStrip), because every icon but the sprite and
+// the mark is built at run time (R44).
 const newBillButton = document.getElementById("newBill");
 newBillButton.prepend(icon("plus"));
 document.getElementById("splitsBtn").append(icon("caret", "caret-up"));
-const stripCopy = document.getElementById("stripCopy");
-stripCopy.prepend(icon("copy"));
-stripCopy.addEventListener("click", copySummary);
-const stripStatus = document.getElementById("stripStatus");
+const strip = createStrip(document.getElementById("strip"), { onCopy: copySummary });
 const card = createReceipt(document.getElementById("rbody"), { ids: CARD_IDS, onCopy: copySummary });
 createDialog(document.getElementById("newDlg"), newBillButton, {
   onConfirm() {
@@ -197,7 +195,7 @@ function render() {
   items.update(bill, errors);
   charges.update(bill, errors);
   card.update(result, view.status);
-  showCopyStatus(stripStatus, view.status);
+  strip.update(result, view.status);
   notes.update(view);
   items.markFrame(); // last, so it measures the frame with every block above it in its new state (R56)
 }

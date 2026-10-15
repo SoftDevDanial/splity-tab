@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="2.799" timestamp="2026-10-15T12:35:29.404129+08:00" hostname="{host}"><testcase classname="test_app" name="test_R8_switching_modes_keeps_both_sets_of_input" time="1.827"><failure message="AssertionError: assert '' == 'Total RM 116.60'&#10;  &#10;  - Total RM 116.60">E   AssertionError: assert '' == 'Total RM 116.60'
+      
+      - Total RM 116.60</failure></testcase><testcase classname="test_app" name="test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early" time="0.209"><failure message="AssertionError: assert '' == 'Enter the su...e the splits.'&#10;  &#10;  - Enter the subtotal to see the splits.">E   AssertionError: assert '' == 'Enter the su...e the splits.'
+      
+      - Enter the subtotal to see the splits.</failure></testcase><testcase classname="test_app" name="test_R20_the_even_split_from_a_cold_boot" time="0.423"><failure message="AssertionError: assert '' == 'Total RM 116.60'&#10;  &#10;  - Total RM 116.60">E   AssertionError: assert '' == 'Total RM 116.60'
+      
+      - Total RM 116.60</failure></testcase></testsuite></testsuites>

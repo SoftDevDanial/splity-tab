@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.367" timestamp="2026-10-15T12:35:53.834153+08:00" hostname="{host}"><testcase classname="test_app" name="test_R8_switching_modes_keeps_both_sets_of_input" time="2.031"><failure message="AssertionError: assert '' == 'Total RM 5.83'&#10;  &#10;  - Total RM 5.83">E   AssertionError: assert '' == 'Total RM 5.83'
+      
+      - Total RM 5.83</failure></testcase></testsuite></testsuites>

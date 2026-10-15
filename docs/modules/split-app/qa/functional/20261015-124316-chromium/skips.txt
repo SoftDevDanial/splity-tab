@@ -1,0 +1,58 @@
+engine chromium, browser version 149.0.7827.55
+test_app.py::test_R3_rendered_markup_matches_its_golden[bill-items-1280] | xfail task A13
+test_app.py::test_R3_rendered_markup_matches_its_golden[bill-even-1280] | xfail task A13
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-390] | xfail task A13
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-360] | xfail task A13
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-1280] | xfail task A13
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-390] | xfail task A14
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-360] | xfail task A14
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280] | xfail task A14
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-390] | xfail task A15
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-360] | xfail task A15
+test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280] | xfail task A15
+test_app.py::test_R3_rendered_markup_matches_its_golden[splits-sheet-390] | xfail task A13
+test_app.py::test_R3_rendered_markup_matches_its_golden[splits-sheet-360] | xfail task A13
+test_app.py::test_R3_rendered_markup_matches_its_golden[new-bill-dialog-1280] | xfail task A16
+test_app.py::test_R3_rendered_markup_matches_its_golden[bill-twelve-1280] | xfail task A13
+test_app.py::test_R3_rendered_markup_matches_its_golden[bill-large-1280] | xfail task A13
+test_app.py::test_R3_the_walk_sees_every_rendered_element_and_flags_each_kind_of_change | xfail task A12
+test_app.py::test_R38_strict_policy_blocks_nothing_the_app_needs[K1-sheet-P1] | xfail task A13
+test_app.py::test_R38_strict_policy_blocks_nothing_the_app_needs[K2-P1-desktop] | xfail task A13
+test_app.py::test_R5_a_new_name_reaches_the_sheet_the_copy_and_the_pills | xfail task A14
+test_app.py::test_R16_the_sheet_holds_one_live_element | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K2-service-emptied] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K1-sst-25] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K2-subtotal-emptied] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[cold-boot] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[by-item] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[by-item-add-item] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K1-one-price-abc] | xfail task A12
+test_app.py::test_R17_the_strip_and_the_sheet_say_why_too[K1-every-price-abc] | xfail task A12
+test_app.py::test_R20_the_sheet_lists_the_splits_as_the_card_does | xfail task A12
+test_app.py::test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K2-390-sheet] | xfail task A12
+test_app.py::test_R22_copy_summary_puts_the_exact_text_on_the_clipboard[K1-390-sheet] | xfail task A12
+test_app.py::test_R24_the_sheet_shows_the_status_while_it_is_open | xfail task A12
+test_app.py::test_R47_a_change_that_writes_nothing_leaves_the_warning | xfail task A15
+test_app.py::test_R31_start_over_clears_the_copy_status | xfail task A16
+test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S3] | xfail task A18
+test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S1] | xfail task A18
+test_app.py::test_R32_tab_order_follows_the_golden_and_every_stop_shows_its_ring[S7] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-360] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S2-360] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-360] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S5-360] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-390] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S1-1280] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[S3-1280] | xfail task A18
+test_app.py::test_R35_no_horizontal_overflow_and_the_layout_of_each_size[M1-360] | xfail task A18
+test_app.py::test_R35_sizes_the_design_gives_at_360_by_780 | xfail task A18
+test_app.py::test_R35_content_width_of_the_header_and_the_note_at_1280_by_800 | xfail task A18
+test_app.py::test_R36_motion_follows_the_users_setting[no-preference-0.12s, 0.12s] | xfail task A18
+test_app.py::test_R37_names_are_shown_as_text_and_never_as_markup | xfail task A18
+test_app.py::test_R40_fidelity_seeds_match[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+test_app.py::test_R40_fidelity_seeds_match[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}] | xfail task A19
+test_app.py::test_R40_fidelity_seeds_match[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s1.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":["p3"]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s2.js-{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":4}}] | xfail task A19
+test_app.py::test_R40_a_seed_script_boots_the_app_through_its_own_load_path[seed-s5.js-{"version":2,"bill":{"mode":"item","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"Chen"}],"subtotalText":"","items":[{"id":"i4","name":"Nasi lemak ayam","priceText":"15.90","who":["p1"]},{"id":"i5","name":"Char kuey teow","priceText":"13.50","who":["p2"]},{"id":"i6","name":"Mee goreng mamak","priceText":"12.00","who":[]},{"id":"i7","name":"Satay, 10 sticks","priceText":"18.00","who":["p1","p3"]}],"serviceText":"10","sstText":"6","spare":{"rule":"top"},"nextId":8}}] | xfail task A19
+count 56

@@ -11,7 +11,8 @@ import { icon, seal } from "./icons.js";
 
 export const CARD_IDS = { total: "rTotal", head: "splitsH", list: "splits", proof: "addsUp", copy: "copyBtn", status: "cardStatus" };
 
-const BLOCKED_MESSAGE = {
+// R17 and R18's messages are also the strip's (R49), so they live here once.
+export const BLOCKED_MESSAGE = {
   rates: "Check the charges to see the splits.",
   subtotal: "Enter the subtotal to see the splits.",
   "no-prices": "Add each item and tap who had it to see the splits.",
@@ -24,7 +25,7 @@ const MOST_ROWS_IN_ONE_COLUMN = 6;
 /** True for an even or by-item result, the only ones with splits, Copy summary and a status (R17, R18, R22). */
 export const hasSplits = (result) => result.kind === "even" || result.kind === "item";
 
-function unassignedMessage(count) {
+export function unassignedMessage(count) {
   return count === 1
     ? "1 item still needs a person. Tap who had it to see the splits."
     : `${count} items still need a person. Tap who had each one to see the splits.`;

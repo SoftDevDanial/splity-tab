@@ -1,0 +1,5 @@
+engine webkit, browser version 26.5
+FAILED   call     test_app.py::test_R8_switching_modes_keeps_both_sets_of_input (0.90s)
+FAILED   call     test_app.py::test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early (0.41s)
+FAILED   call     test_app.py::test_R20_the_even_split_from_a_cold_boot (0.87s)
+exit status 1

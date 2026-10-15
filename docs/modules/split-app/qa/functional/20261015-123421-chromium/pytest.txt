@@ -1,0 +1,3 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R10_an_empty_rate_leaves_the_strip_reading_check_the_charges (0.28s)
+exit status 1

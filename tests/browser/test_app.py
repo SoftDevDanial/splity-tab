@@ -176,7 +176,6 @@ def test_R1_every_url_in_the_page_is_relative():
             assert "://" not in text
 
 
-@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R1_page_works_from_a_sub_path(open_app):
     # The target is a GitHub Pages project path (/split/), so the app must work one folder down. The only way to serve
     # it there is a server rooted at the parent folder, which also serves the sibling projects on 127.0.0.1 while this
@@ -224,7 +223,6 @@ def cold_boot_state(page):
     return {**page.evaluate(COLD_BOOT_JS), "card": card_text(page)}
 
 
-@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R2_cold_boot_is_a_new_bill_with_no_seed(open_app):
     page = open_app().page
     assert cold_boot_state(page) == COLD_BOOT
@@ -244,20 +242,20 @@ SPARE_OPENERS = {"phone": ("#splitsBtn", SHEET_SPARE_CHIP), "desktop": ("#spareB
 # qa.md, "The rendered markup matches its golden": golden -> (seed, the clicks after load below and from 1024 px,
 # and per width the task that completes the state, the reason of its xfail until that task removes it).
 R3_STATES = {
-    "bill-items": (seeds.S1, {}, {390: "A11", 360: "A11", 1280: "A13"}),
-    "bill-items-open": (seeds.S1, {"phone": ("#peopleBtn", "#chargesBtn")}, {390: "A11", 360: "A11"}),
-    "bill-even": (seeds.S2, {}, {390: "A11", 360: "A11", 1280: "A13"}),
+    "bill-items": (seeds.S1, {}, {390: None, 360: None, 1280: "A13"}),
+    "bill-items-open": (seeds.S1, {"phone": ("#peopleBtn", "#chargesBtn")}, {390: None, 360: None}),
+    "bill-even": (seeds.S2, {}, {390: None, 360: None, 1280: "A13"}),
     "spare-sen": (seeds.S1, SPARE_OPENERS, {390: "A13", 360: "A13", 1280: "A13"}),
     "spare-sen-one": (seeds.ONE, SPARE_OPENERS, {390: "A14", 360: "A14", 1280: "A14"}),
     "spare-sen-random": (seeds.RND, SPARE_OPENERS, {390: "A15", 360: "A15", 1280: "A15"}),
     "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, {390: "A13", 360: "A13"}),
-    "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: "A16", 360: "A16", 1280: "A16"}),
-    "bill-empty": (None, {}, {390: "A11", 360: "A11", 1280: None}),
-    "rate-error": (seeds.RE, {}, {390: "A11", 360: "A11", 1280: None}),
-    "bill-unassigned": (seeds.S5, {}, {390: "A11", 360: "A11", 1280: None}),
-    "bill-unreadable": (seeds.UNREADABLE["B1"], {}, {390: "A11", 360: "A11", 1280: None}),
-    "bill-twelve": (seeds.T12, {}, {390: "A11", 360: "A11", 1280: "A13"}),
-    "bill-large": (seeds.W1, {}, {390: "A11", 360: "A11", 1280: "A13"}),
+    "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: None, 360: None, 1280: "A16"}),
+    "bill-empty": (None, {}, {390: None, 360: None, 1280: None}),
+    "rate-error": (seeds.RE, {}, {390: None, 360: None, 1280: None}),
+    "bill-unassigned": (seeds.S5, {}, {390: None, 360: None, 1280: None}),
+    "bill-unreadable": (seeds.UNREADABLE["B1"], {}, {390: None, 360: None, 1280: None}),
+    "bill-twelve": (seeds.T12, {}, {390: None, 360: None, 1280: "A13"}),
+    "bill-large": (seeds.W1, {}, {390: None, 360: None, 1280: "A13"}),
 }
 R3_PAIRS = [pytest.param(golden, width, id=f"{golden}-{width}",
                          marks=() if task is None else pytest.mark.xfail(strict=True, reason=f"task {task}"))
@@ -954,20 +952,20 @@ def test_R10_an_empty_field_never_shows_an_error(open_app):
     assert charges_summary(page) == {"bad": True, "holds": ["#i-warning-circle", "span.sec-txt"], "text": "Check service charge"}
 
 
-@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R10_an_empty_rate_leaves_the_strip_reading_check_the_charges(open_app):
+    # The strip holds the message alone, with no "Total" before it as the card has (spec R17, R49).
     page = open_app().page
     leave_subtotal_and_service_charge_empty(page)
-    assert visible_text(page, "#stripInfo") == BLOCKED_CARD["rates"]
+    assert visible_text(page, "#stripInfo") == "Check the charges to see the splits."
 
 
 def test_R10_typing_bad_text_in_a_focused_field_shows_no_error_early(open_app):
     page = open_app().page
     subtotal_field(page).click()
     page.keyboard.type("abc")
-    # qa.md's strip line is task A11's (test_R2_cold_boot_is_a_new_bill_with_no_seed reads the strip text).
     assert field_error(subtotal_field(page), "evenErr") == error_state(AMOUNT_MESSAGE, "evenErr", shown=False)
     assert card_text(page) == BLOCKED_CARD["subtotal"]
+    assert visible_text(page, "#stripInfo") == "Enter the subtotal to see the splits."  # the strip reads (task A11, R49)
 
 
 def test_R10_an_error_survives_a_mode_switch(open_app):
@@ -1053,7 +1051,6 @@ def test_R7_removing_a_person_takes_them_off_every_item(open_app, plain_context)
         assert who_group(page, name).get_by_role("button").all_inner_texts() == ["Aisyah", "Ben"]
 
 
-@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R7_the_item_left_with_nobody_needs_a_person_on_the_card_and_the_strip(open_app):
     # The rest of qa.md "Remove a person and they leave every item". The needs marker is built by task A8, the card's
     # div.r-msg by A9 and the strip's message by A11.
@@ -1072,13 +1069,14 @@ def test_R8_switching_modes_keeps_both_sets_of_input(open_app):
     support.replace_text(page, subtotal_field(page), "100.00")
     switch_to(page, "By item")
     add_item_named(page, "Tea", "5.00", ["Person 1"])
-    # qa.md's strip lines ("Total RM 116.60", "Total RM 5.83") are task A11's (BUILD.md, A7 judgment call 1).
     assert split_state(page) == ITEM_SHOWN  # #evenBlock is not in the DOM and #itemsBlock is
     switch_to(page, "Even")
     assert split_state(page) == EVEN_SHOWN and subtotal_field(page).input_value() == "100.00"
+    assert visible_text(page, "#stripInfo") == "Total RM 116.60"  # the strip reads (task A11, R49)
     switch_to(page, "By item")
     assert item_name(page, 1).input_value() == "Tea" and item_price(page, 1).input_value() == "5.00"
     assert toggle(page, "Tea", "Person 1").get_attribute("aria-pressed") == "true"
+    assert visible_text(page, "#stripInfo") == "Total RM 5.83"
 
 
 # v1.1.0 task A8. The Items block (R11 to R14), read in one pass, so a part that is not built yet fails on the assertion
@@ -1172,7 +1170,6 @@ def test_R12_add_an_item_remove_one_and_reach_the_limit(open_app, plain_context)
     assert len(item_rows(page)) == 49 and items_shown(page)["add"] == add_item_shown()
 
 
-@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R12_a_new_item_leaves_the_strip_reading_add_each_item(open_app):
     # The strip line of qa.md "Add an item, remove one, and reach the limit". The strip's message is task A11's (R49).
     page = open_app().page
@@ -1534,7 +1531,6 @@ def test_R18_items_that_still_need_a_person(open_app):
     assert card_rows(page) == [S1_SPLITS, S1_PROOF] and receipt(page)["copy"] == CARD_COPY
 
 
-@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R18_the_strip_says_items_still_need_a_person(open_app):
     # The strip's line of qa.md "Items that still need a person". The strip is task A11's (R49).
     page = open_app(seed=seeds.S1).page
@@ -1571,8 +1567,8 @@ def test_R19_a_charge_of_zero_is_allowed_and_still_shown(open_app):
 
 
 def test_R20_the_even_split_from_a_cold_boot(open_app):
-    # [v1.1.0] qa.md key flow 1, the card's lines. Its spare line and chip are task A13's, the strip's Total A11's and the
-    # sheet's line test_R20_the_sheet_lists_the_splits_as_the_card_does (task A12).
+    # [v1.1.0] qa.md key flow 1, the card's and the strip's lines. Its spare line and chip are task A13's and the sheet's
+    # line test_R20_the_sheet_lists_the_splits_as_the_card_does (task A12).
     page = open_app().page
     support.replace_text(page, person_field(page, 1), "Aisyah")
     support.replace_text(page, person_field(page, 2), "Ben")
@@ -1585,6 +1581,7 @@ def test_R20_the_even_split_from_a_cold_boot(open_app):
     assert found["proof"] == {"parts": ["svg.seal", "span.lbl-proof", "span.amt"], "seal": ["svg.seal", "#i-seal-check"],
                               "id": "addsUp", "amount": "RM 116.60", "working": None}
     assert support.reads(page, "#rbody > div.r-check") == "Adds up to RM 116.60"
+    assert visible_text(page, "#stripInfo") == "Total RM 116.60"  # the strip reads (task A11, R49)
 
 
 @pytest.mark.xfail(strict=True, reason="task A12")
@@ -1749,7 +1746,6 @@ def test_R23_the_browser_blocks_the_clipboard(open_app):
     assert session.problems() == [] and stored_text(page) == seeds.S2
 
 
-@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R23_a_blocked_copy_grows_the_strip(open_app):
     # The strip line of qa.md "The browser blocks the clipboard". The strip's height and --strip-h are task A11's (R49).
     page = open_app(seed=seeds.S2, clipboard="reject").page
@@ -1904,6 +1900,109 @@ def test_R42_duplicate_names_through_the_whole_flow(open_app):
     assert [field.input_value() for field in page.locator("li.person input").all()] == ["Ben", "Chen"]
     assert receipt(page)["note"] == ["div.r-msg", ["svg.ic", "#i-warning-circle"], ["p", ONE_NEEDS]]
     assert [(person["id"], person["name"]) for person in stored(page)["bill"]["people"]] == [("p1", "Ben"), ("p3", "Chen")]
+
+
+# ---------------------------------------------------------------- v1.1.0 task A11: the strip (R49)
+# The strip in one evaluate, so a part that is not built fails on the assertion that names it, never on a wait. A node is
+# a text as its text, an svg as its class and the href of its use, and any other element as its tag and classes, its id
+# and its child nodes. The strip's place is whether it is displayed, its position, the gap from its bottom edge to the
+# viewport's and its height, both rounded to whole px (a measured number matches within 0.5 px, qa.md Phrases), and the
+# root's --strip-h. The status's place is "beside" the Total (to its right on the same line) or "under" it, with its
+# number of text lines, or null and 0 while it is not displayed.
+STRIP_JS = """() => {
+  const one = (selector) => document.querySelector(selector);
+  const strip = one('#strip'), info = one('#stripInfo'), status = one('#stripStatus'), copy = one('#stripCopy'), splits = one('#splitsBtn');
+  const part = (node) => node.nodeType === 3 ? node.textContent
+    : node.localName === 'svg' ? ['svg.' + node.getAttribute('class'), node.querySelector('use')?.getAttribute('href') ?? null]
+    : [node.localName + [...node.classList].map((name) => '.' + name).join(''), node.id || null, [...node.childNodes].map(part)];
+  const box = strip.getBoundingClientRect();
+  let place = null, lines = 0;
+  if (status.checkVisibility()) {
+    const s = status.getBoundingClientRect(), i = info.getBoundingClientRect();
+    place = s.left >= i.right - 0.5 && s.top < i.bottom && s.bottom > i.top ? 'beside' : s.top >= i.bottom - 0.5 ? 'under' : 'overlapping';
+    const range = document.createRange();
+    range.selectNode([...status.childNodes].find((node) => node.nodeType === 3));
+    lines = new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top))).size;
+  }
+  return {
+    strip: [strip.checkVisibility(), getComputedStyle(strip).position, Math.round(innerHeight - box.bottom), Math.round(box.height),
+            getComputedStyle(document.documentElement).getPropertyValue('--strip-h').trim()],
+    info: [...info.childNodes].map(part),
+    status: [status.className, [...status.childNodes].map(part), place, lines],
+    copy: [copy.checkVisibility(), copy.disabled],
+    splits: [splits.disabled, splits.getAttribute('aria-haspopup'), splits.getAttribute('aria-controls'), splits.getAttribute('aria-expanded')],
+  };
+}"""
+
+
+def strip_total(figure):
+    """#stripInfo of an even or by-item result (spec R49), the label "Total", then the figure with its span.cur."""
+    return [["span.s-label", None, ["Total"]], ["span.s-fig", "stripTotal", [["span.cur", None, ["RM "]], figure]]]
+
+
+def strip_message(text, icon=None):
+    """#stripInfo of a blocked or unassigned result (spec R17, R18), p.s-msg#stripMsg with the icon first if it has one."""
+    return [["p.s-msg", "stripMsg", ([["svg.ic", icon]] if icon else []) + [text]]]
+
+
+STRIP_NO_STATUS = ["status", [], None, 0]
+STRIP_CASES = [  # qa.md "The strip for each result": seed, clipboard script, click #stripCopy first, height, info, status, disabled
+    pytest.param(seeds.S1, "recorder", False, 111, strip_total("69.26"), STRIP_NO_STATUS, False, id="K1"),
+    pytest.param(seeds.S2, "recorder", False, 111, strip_total("116.60"), STRIP_NO_STATUS, False, id="K2"),
+    pytest.param(None, "recorder", False, 108, strip_message("Enter the subtotal to see the splits."), STRIP_NO_STATUS, True,
+                 id="cold-boot"),
+    pytest.param(seeds.RE, "recorder", False, 108, strip_message("Check the charges to see the splits."), STRIP_NO_STATUS, True,
+                 id="RE"),
+    pytest.param(seeds.S5, "recorder", False, 128, strip_message(ONE_NEEDS, "#i-warning-circle"), STRIP_NO_STATUS, True, id="BU"),
+    pytest.param(seeds.S2, "recorder", True, 111, strip_total("116.60"), ["status", COPIED[2], "beside", 1], False,
+                 id="K2-copied"),
+    pytest.param(seeds.S2, "reject", True, 153, strip_total("116.60"), ["status is-fail", COPY_REFUSED[2], "under", 2], False,
+                 id="K2-refused"),
+]
+
+
+@pytest.mark.parametrize("seed, clipboard, copy_first, height, info, status, disabled", STRIP_CASES)
+def test_R49_the_strip_for_each_result(open_app, seed, clipboard, copy_first, height, info, status, disabled):
+    # qa.md at 390 x 844. "Fixed at the bottom of the viewport" is position fixed with no gap under the strip.
+    page = open_app(seed=seed, clipboard=clipboard).page
+    if copy_first:
+        click_copy(page, "#stripCopy")
+    assert page.evaluate(STRIP_JS) == {"strip": [True, "fixed", 0, height, f"{height}px"], "info": info, "status": status,
+                                       "copy": [True, disabled], "splits": [False, "dialog", "splitsDlg", "false"]}
+
+
+# The focused control (its id, its name or its text, and whether it is a toggle), its bottom edge and the strip's top edge.
+FOCUS_OVER_STRIP_JS = """() => { const focused = document.activeElement, strip = document.querySelector('#strip');
+  return [focused.id || focused.getAttribute('aria-label') || focused.textContent.trim(), focused.matches('button.tap'),
+          focused.getBoundingClientRect().bottom, strip.getBoundingClientRect().top]; }"""
+LAST_TOGGLE_OVER_STRIP_JS = """() => { scrollTo(0, document.documentElement.scrollHeight);
+  return [[...document.querySelectorAll('button.tap')].at(-1).getBoundingClientRect().bottom,
+          document.querySelector('#strip').getBoundingClientRect().top]; }"""
+
+
+def test_R49_no_control_the_user_tabs_to_is_left_under_the_strip(open_app):
+    # qa.md on K1 at 390 x 844 with both sections opened first. Tab starts after New bill, the first control of the page,
+    # and stops at Splits, the strip's own first control. All 12 toggles must be among the stops, so a walk that skipped
+    # the bottom of the page cannot pass. It fails in WebKit, whose focus scroll leaves a control that is inside the
+    # viewport where it is, under the strip, and does not read scroll-padding-bottom (BUILD.md, A11, F-A11-1).
+    page = open_app(seed=seeds.S1).page
+    open_people_first(page)
+    open_charges_first(page)
+    new_bill_button(page).focus()
+    stops, under = [], []
+    for _ in range(80):
+        page.keyboard.press("Tab")
+        name, is_toggle, bottom, strip_top = page.evaluate(FOCUS_OVER_STRIP_JS)
+        if name == "splitsBtn":
+            break
+        stops.append([name, is_toggle])
+        if bottom > strip_top + 0.5:
+            under.append([name, bottom, strip_top])
+    else:
+        pytest.fail(f"Tab gave up after 80 presses without reaching Splits, the last stops were {stops[-3:]}")
+    assert under == [] and sum(is_toggle for _, is_toggle in stops) == 12, (under, stops)
+    toggle_bottom, strip_top = page.evaluate(LAST_TOGGLE_OVER_STRIP_JS)
+    assert toggle_bottom < strip_top, (toggle_bottom, strip_top)
 
 
 # ---------------------------------------------------------------- Task 9: the draft (R25 to R28, with R3, R8, R10, R24, R26, R42)
@@ -2146,7 +2245,6 @@ def test_R28_the_app_works_without_storage(open_app, driver):
     assert total == "RM 116.60" and len(splits or []) == 3  # the card holds three splits rows (task A9)
 
 
-@pytest.mark.xfail(strict=True, reason="task A11")
 @pytest.mark.parametrize("driver", STORAGE_DRIVERS.values(), ids=STORAGE_DRIVERS.keys())
 def test_R28_the_strip_follows_the_bill_without_storage(open_app, driver):
     page = open_app(init_scripts=[driver]).page
@@ -3246,7 +3344,6 @@ def test_R57_a_held_enter_on_the_only_items_remove_removes_that_item_only(open_a
     assert card_text(page) == BLOCKED_CARD["no-prices"]
 
 
-@pytest.mark.xfail(strict=True, reason="task A11")
 def test_R57_after_a_held_enter_on_the_only_remove_the_strip_reads_the_empty_message(open_app):
     # The strip half of the first scenario's last line. The strip's message is task A11's (R49).
     page, _ = hold_enter_on_the_only_remove(open_app)
