@@ -1,0 +1,3 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it (0.42s)
+exit status 1

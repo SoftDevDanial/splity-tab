@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.339" timestamp="2026-10-15T18:03:34.446887+08:00" hostname="{host}"><testcase classname="test_app" name="test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it" time="1.884"><failure message="AssertionError: #splitsBtn focused True, the app's calls 1&#10;assert (True and 1 == 0)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001EF8CDA3480&gt;
+
+    def test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it(open_app):
+        # qa.md, spec R49 "The focus scroll". It passes before task A21, so its teeth come from stubs of the handler
+        # (BUILD.md, A21). The control clear of the strip and the sheet are first checked to be where the scenario puts them.
+        page = open_app(seed=seeds.RND, viewport=(1280, 800)).page
+        page.evaluate(COUNT_SCROLL_INTO_VIEW_JS)
+        new_bill_button(page).focus()
+        tab_until(page, subtotal_field(page))
+        assert page.evaluate("window.testScrollIntoViewCalls") == 0, "the app scrolled from 1024 px"
+        page.set_viewport_size({"width": 390, "height": 844})
+        new_bill_button(page).focus()
+        page.keyboard.press("Tab")
+        focused, bottom, strip_top, calls = page.evaluate(FOCUSED_AGAINST_STRIP_JS, "#peopleBtn")
+        assert focused and bottom &lt; strip_top, (focused, bottom, strip_top)
+        assert calls == 0, "the app scrolled a control the strip does not cover"
+        for control in ("#splitsBtn", "#stripCopy"):
+            page.locator(control).focus()
+            focused, _, _, calls = page.evaluate(FOCUSED_AGAINST_STRIP_JS, control)
+&gt;           assert focused and calls == 0, f"{control} focused {focused}, the app's calls {calls}"
+E           AssertionError: #splitsBtn focused True, the app's calls 1
+E           assert (True and 1 == 0)
+
+tests\browser\test_app.py:2039: AssertionError</failure></testcase></testsuite></testsuites>

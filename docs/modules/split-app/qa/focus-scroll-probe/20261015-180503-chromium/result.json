@@ -1,0 +1,270 @@
+{
+ "engine": "chromium",
+ "steps": "K1 at 390 x 844, both sections opened, New bill focused by script, Tab until Splits",
+ "stops": [
+  {
+   "name": "peopleBtn",
+   "bottom": 117,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "addPerson",
+   "bottom": 277,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Person 1 name",
+   "bottom": 166,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Remove Aisyah",
+   "bottom": 166,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Person 2 name",
+   "bottom": 166,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Remove Ben",
+   "bottom": 166,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Person 3 name",
+   "bottom": 220,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Remove Chen",
+   "bottom": 220,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "chargesBtn",
+   "bottom": 350,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "svc",
+   "bottom": 427,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "sst",
+   "bottom": 427,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "modeItem",
+   "bottom": 495,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "addItem",
+   "bottom": 624,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Item 1 name",
+   "bottom": 690,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Nasi lemak ayam price in RM",
+   "bottom": 690,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Remove Nasi lemak ayam",
+   "bottom": 690,
+   "stripTop": 733,
+   "scrollY": 0,
+   "calls": 0
+  },
+  {
+   "name": "Aisyah",
+   "bottom": 721,
+   "stripTop": 733,
+   "scrollY": 22,
+   "calls": 0
+  },
+  {
+   "name": "Ben",
+   "bottom": 721,
+   "stripTop": 733,
+   "scrollY": 22,
+   "calls": 0
+  },
+  {
+   "name": "Chen",
+   "bottom": 721,
+   "stripTop": 733,
+   "scrollY": 22,
+   "calls": 0
+  },
+  {
+   "name": "Item 2 name",
+   "bottom": 397,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Char kuey teow price in RM",
+   "bottom": 397,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Remove Char kuey teow",
+   "bottom": 397,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Aisyah",
+   "bottom": 450,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Ben",
+   "bottom": 450,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Chen",
+   "bottom": 450,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Item 3 name",
+   "bottom": 520,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Mee goreng mamak price in RM",
+   "bottom": 520,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Remove Mee goreng mamak",
+   "bottom": 520,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Aisyah",
+   "bottom": 573,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Ben",
+   "bottom": 573,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Chen",
+   "bottom": 573,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Item 4 name",
+   "bottom": 643,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Satay, 10 sticks price in RM",
+   "bottom": 643,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Remove Satay, 10 sticks",
+   "bottom": 643,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Aisyah",
+   "bottom": 696,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Ben",
+   "bottom": 696,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  },
+  {
+   "name": "Chen",
+   "bottom": 696,
+   "stripTop": 733,
+   "scrollY": 416,
+   "calls": 0
+  }
+ ],
+ "browser version": "149.0.7827.55",
+ "under the strip": [],
+ "bottom edges after a scroll by the app": [],
+ "app calls": 0,
+ "stand-in clipboard writes": 0
+}

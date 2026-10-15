@@ -1,0 +1,27 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it
+server STARTED pid 25420 port 47256 root {workspace}\examples\split
+Fserver STOPPED pid 25420 port 47256, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+_ test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it _
+
+open_app = <function open_app.<locals>.factory at 0x000001E440E73480>
+
+    def test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it(open_app):
+        # qa.md, spec R49 "The focus scroll". It passes before task A21, so its teeth come from stubs of the handler
+        # (BUILD.md, A21). The control clear of the strip and the sheet are first checked to be where the scenario puts them.
+        page = open_app(seed=seeds.RND, viewport=(1280, 800)).page
+        page.evaluate(COUNT_SCROLL_INTO_VIEW_JS)
+        new_bill_button(page).focus()
+        tab_until(page, subtotal_field(page))
+>       assert page.evaluate("window.testScrollIntoViewCalls") == 0, "the app scrolled from 1024 px"
+E       AssertionError: the app scrolled from 1024 px
+E       assert 15 == 0
+E        +  where 15 = evaluate('window.testScrollIntoViewCalls')
+E        +    where evaluate = <Page url='http://127.0.0.1:47256/'>.evaluate
+
+tests\browser\test_app.py:2029: AssertionError
+engine chromium, browser version 149.0.7827.55, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it
+1 failed in 2.45s

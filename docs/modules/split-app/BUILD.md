@@ -365,6 +365,7 @@ Built by the frontend developer role from `spec.md` (task A0, "The 1.0 golden fi
 | A15 | `afea90a` | `feat(split-app): At random shows Pick again after its choice in P1, made once per open so a key press keeps focus on it, Pick again in P1 and on the card and sheet receipts draws again through pickAgain with Math.random and saves only when the splits change, and Math.random goes only to the two draws (task A15, R54)`, recorded by the A15 proof commit |
 | A15 proofs | `dce28e9` | `docs(split-app): the proof runs of A15 on the committed tree, Node 379 of 379, Chromium 602 passed and 22 xfailed, WebKit 598 passed with the known three failures by id, and the A14 and A15 rows of the commit table (task A15, R54)`, recorded by the A16 section |
 | A16 | `3c3d9b0` | `feat(split-app): the New bill dialog and Start new bill held as written, so the tests follow qa.md, ... (task A16, R29, R30, R31, R59)`, tests only, recorded by the A16 proof commit |
+| A16 proofs | `9bdb9ee` | `docs(split-app): the proof runs of A16 on the committed tree, Node 379 of 379, Chromium 602 passed and 21 xfailed, WebKit 600 passed with only F-A11-1 failing by id, ... (task A16, R29, R30, R31, R59)`, recorded by the A21 section |
 
 ## v1.1.0 task A1, draft version 2 (2026-10-14)
 Built by the frontend developer role from `spec.md` (task A1, R61, R25, R26, Persistence D3, D13, D14) and `qa.md` (the two `@R61 @node` scenarios).
@@ -1697,3 +1698,66 @@ Built by the frontend developer role from `spec.md` (task A16 with its R59 note,
 **For the README reconcile** (symbols). No app behaviour changed. The New bill dialog is `createDialog` in `src/ui/dialog.js` with Start new bill's reset in `src/main.js` (the `onConfirm` given to `createDialog`), as since 1.0 and A4. Tests, `closing`, `m1_closer`, `bill_empty_screen`, `error_marks` and `DOUBLE_CLOSE_CASES` in `tests/browser/test_app.py`, and the render check `docs/modules/split-app/qa/new-bill-render/render.py`.
 
 **How to view.** Serve as above and open the page at 390 x 844 with a bill. Click New bill. The dialog asks "Start a new bill?" over a dimmed page that does not scroll, with focus on Cancel, and Tab and Shift+Tab stay on its two buttons. Cancel, Escape or a click on the dim area close it with nothing changed and focus on New bill. Open it again and press Start new bill. The bill is two people, Person 1 and Person 2, Even, an empty Subtotal and rates 10 and 6, with People open and Charges folded, and focus on New bill.
+
+## v1.1.0 task A21, the focus scroll clear of the strip (2026-10-15)
+Built by the frontend developer role from `spec.md` (task A21 and the Tasks preamble, R49 whole with "The focus scroll", the Gesture to action row on `focusin`, the non-goal on scroll calls), `qa.md` (the three `@R49` scenarios, the comment on the Tab scenario and the new scenario "The app scrolls a focused control only below 1024 px and only when the strip covers it") and `docs/v1.1.0/CHANGE-LEDGER.md` (H-08, S7 rows 27 and 33), on the tree of `9dfbac3`, with the "Where it stands", "Where things are" and "Traps worth knowing" of `docs/progress/handoff/handoff-2026-10-15-execute-split-A18.md`.
+
+**Status. Committed with this section.** The proof runs on the committed tree are recorded below by a second commit, which also records the hash of the first.
+
+**Phase skills (design row of `docs/phase-skills.md`).** Read from disk in full before any other work, `taste-skill` (`taste-skill/1.0.0/skills/taste-skill/SKILL.md`, all 1207 lines) and `frontend-design` (`frontend-design/c2bdb427efe8/skills/frontend-design/SKILL.md`). Design read (taste-skill 0.B), an execute fix of one behaviour of the approved phone layout, a scroll on focus behind the fixed bottom strip, with nothing drawn. The goldens, `src/system.css` and spec R49 fix every visual choice, so only the rules that bear on a scroll on focus transferred.
+- The brief's own words win (frontend-design) and nothing changes silently (taste-skill 11.F). The handler does what R49's "The focus scroll" and its Gesture to action row say and nothing else, no CSS and no other scroll.
+- Visible keyboard focus as a floor (frontend-design, "Restraint and self-critique") and existing accessibility wins kept (taste-skill 11.C). This is the task's reason, a focused control must not end under the strip (WCAG 2.2 SC 2.4.11).
+- Motion motivated and reduced motion respected (taste-skill 5, 6.B). The call passes no `behavior` and `system.css` sets no `scroll-behavior`, so the scroll is instant and adds no motion (R36).
+- No scroll listener and no work on every scroll frame (taste-skill 5.D and 7, the ban on `window.addEventListener("scroll")`). The handler listens to `focusin` only and reads two boxes per focus.
+- Viewport stability (taste-skill 3.E, 6.D). The handler reads the strip's live box, so it follows the strip's height (108, 111, 128 or 153 px) and does nothing where no strip is shown.
+- Critique by evidence (frontend-design, review your own work). The probe under Proof records where every Tab stop ends in both engines.
+- Not transferred, because A21 draws nothing and adds no visible text, and the goldens and the locked stack decide them. The design read's page kind and dials, palette, type, layout, icons, images, dark mode, the copy self-audit, the block library and the pre-flight items on heroes, CTAs and sections.
+
+**What changed** (cite by symbol).
+- `src/ui/strip.js`. `createStrip` gains `focusScroll`, added once as the document's only `focusin` listener. Below 1024 px (`DESKTOP` from `src/ui/media.js` does not match), for an event target inside `div.app` (`app`, the strip's `.app` ancestor) and outside `#strip` whose `getBoundingClientRect().bottom` is greater than the strip's `getBoundingClientRect().top`, it calls `scrollIntoView({ block: "nearest" })` on that target. Nothing happens in any other case. The module header names it.
+- `tests/browser/test_app.py`. New `COUNT_SCROLL_INTO_VIEW_JS`, `FOCUSED_AGAINST_STRIP_JS` and `test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it`. The comment of `test_R49_no_control_the_user_tabs_to_is_left_under_the_strip` now says WebKit holds through the app's focus scroll. Its code is unchanged.
+
+**Comments written.** The module header line of `src/ui/strip.js`, the doc of `focusScroll` (what it does, its input, what it scrolls and what it leaves alone) and its two line note on code that looks wrong but is not (why the app scrolls when the browser already scrolls a focused control, WebKit). In the tests the comments on `COUNT_SCROLL_INTO_VIEW_JS` and `FOCUSED_AGAINST_STRIP_JS`, the new test's comment and the Tab test's corrected comment.
+
+**Tests.**
+- New 1, the new `@R49` scenario. `test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it`. RND at 1280 x 800, the counting wrapper added by `page.evaluate` before any gesture, New bill focused by script and Tab up to Subtotal in RM (`tab_until`), 0 calls. Then 390 x 844, New bill focused by script and one Tab, `#peopleBtn` has focus with its bottom edge above the strip's top, 0 calls. Then `#splitsBtn` and `#stripCopy` focused by script, each checked to have focus with 0 calls. Then a click on Splits, `div.sheet` has focus, its bottom edge is below the strip's top (the failure names both edges), 0 calls.
+- Kept, `test_R49_no_control_the_user_tabs_to_is_left_under_the_strip`, the proof the spec names, with its comment corrected.
+- Marks added 0, removed 0. 623 cases became 624.
+
+**RED first** (every folder listed on disk after its run, failing lines and messages read from each run's `junit.xml` and `stdout.txt`).
+- On the tree of `9dfbac3` with only the test file changed (`git diff --quiet src/` exit 0).
+  - WebKit `docs/modules/split-app/qa/functional/20261015-180103-webkit/`. The Tab test failed on its asserted property `under == []`, 6 stops whose bottom edge is below the strip's top at 733, among them a toggle at 743 and Item 2 name, Item 3 name and a price at 791 (F-A11-1, as in the A16 proof run). The new scenario passed.
+  - Chromium `20261015-180121-chromium/`, both passed. Chromium's own focus scroll clears the strip, and the app makes no call yet.
+  - Stub S-A21-zero, `fit` writing "0px" (A11's S-A11-zero), which defeats the clearing. Chromium `20261015-180132-chromium/`, the Tab test failed on `under == []` with 15 stops under the strip. After its removal `git diff --quiet src/` exit 0 and `grep -rn STUB src/` exit 1.
+- The build, then the built `src/ui/strip.js` staged (not committed), so that `git diff --quiet src/` compares the working tree with the build while the handler stubs go in and out. WebKit `20261015-180224-webkit/` and Chromium `20261015-180236-chromium/`, both tests passed in each.
+- The new scenario's teeth, stubs of `focusScroll` put in and taken out with the Edit tool, each run in both engines. No commit holds one, and after each removal `git diff --quiet src/` exit 0 and `grep -rn STUB src/` exit 1.
+  - S-A21-no-width, no width check. Chromium `20261015-180254-chromium/`, WebKit `20261015-180257-webkit/`. Failed in each on "the app scrolled from 1024 px", 15 calls (the strip is not displayed there, so its top reads 0 and every control's bottom is below it).
+  - S-A21-no-cover, no check of the strip's top. Chromium `20261015-180314-chromium/`, WebKit `20261015-180317-webkit/`. Failed in each on "the app scrolled a control the strip does not cover", 2 calls (New bill focused by script and the People row), after the line that checks the People row is clear of the strip had passed.
+  - S-A21-no-exclusion, the strip's own controls and the dialogs not left out. Chromium `20261015-180334-chromium/`, WebKit `20261015-180337-webkit/`. Failed in each on "#splitsBtn focused True, the app's calls 1".
+  - S-A21-dialogs, the strip left out but not the dialogs (one stub more than the three the task names, because S-A21-no-exclusion stops at the strip's line and never reaches the dialog's). Chromium `20261015-180354-chromium/`, WebKit `20261015-180357-webkit/`. Failed in each on "the app scrolled the sheet, which sits above the strip", 1 call, after the line that checks the sheet's bottom edge is below the strip's top had passed.
+
+**Stop condition (spec A21 (2)).** Not met. After the build the R49 Tab test passed in WebKit (`20261015-180224-webkit/`, and the full suite under Proof), so no other mechanism was tried.
+
+**Proof before the commit** (each folder listed on disk after its run).
+- Probe, read only, from a script in the session scratch folder, the clipboard recorder in every context and checked before the first gesture. K1 at 390 x 844, both sections opened, New bill focused by script, Tab until Splits, reading at every stop the focused control's bottom edge, the strip's top, `window.scrollY` and the app's `scrollIntoView` calls. `docs/modules/split-app/qa/focus-scroll-probe/20261015-180501-webkit/result.json` (WebKit 26.5), 37 stops, none under the strip, 7 calls by the app, and every control it scrolled (the names of items 2, 3 and 4 and the first toggle of each of the four items) ends with its bottom edge at 721, the strip's top 733 less the 12 px of `scroll-padding-bottom`. Item 2 name ended at 791 in the RED run. `20261015-180503-chromium/result.json` (Chromium 149), 37 stops, none under the strip, 0 calls by the app, so each control was already clear when `focusin` reached the handler.
+- Chromium on the working tree, `docs/modules/split-app/qa/functional/20261015-180537-chromium/`, 603 passed, 21 xfailed, 0 failed, 209 s.
+
+**Judgment calls.**
+1. The listener lives in `createStrip`, as the A21 line suggests, because the strip owns its box and its height (`fit`). It reads `DESKTOP` from `media.js`, the one query the CSS and the sheet and P1 share.
+2. "Inside `div.app`" is `strip.closest(".app").contains(target)`, so the page is found from the strip's own place in `index.html` and no second selector names it. The three dialogs are siblings of `div.app` in `body`, which is what leaves them out.
+3. The compare is strict, `bottom > top`, as R49 says "below the strip's top edge". A control whose bottom edge is exactly at the strip's top is clear.
+4. The handler acts on every `focusin` below 1024 px, a Tab, a focus the app moves by script (R34, R59) or a click, because R49 names the event and not the gesture.
+5. A fourth stub, S-A21-dialogs, beyond the three the task names, so that every line of the scenario is seen failing.
+6. The built file was staged before the handler stubs, so `git diff --quiet src/` checks each removal against the build and not against `9dfbac3`. Staging is not a commit.
+7. The new test goes one step past `qa.md`'s words for teeth. Splits and Copy summary are checked after each focus and not only after both, and each is checked to hold focus.
+8. The probe script stays in the session scratch folder (the brief's rule for probes), so its folder holds only `result.json`, whose `steps` field says what it did.
+
+**Deviations.** None. The engineering principles hold. One listener with one job in the module that owns the strip's box (cohesion, single responsibility), the desktop width read from the one shared query (DRY), and no seam or option beyond what R49 names (KISS).
+
+**Non-goals honoured.** No CSS change (`src/system.css` blob `bf30dda` unchanged), no scroll call besides R49's and R52's, no scroll from 1024 px, for a control clear of the strip, inside a dialog or for the strip's own controls, no `behavior`, no timer, no read of the engine or the user agent, no hook in the app, nothing under `docs/design/`, and the system clipboard never touched (every context had a stand-in).
+
+**Process note.** Three read-only commands broke the brief's shell rules, one `ls` with `2>/dev/null` and two pipes after `git show` and `git status` into `grep`, `head` and `wc`. No file was written by a shell.
+
+**For the README reconcile** (symbols). The focus scroll (R49). `focusScroll` in `createStrip` (`src/ui/strip.js`) is the document's one `focusin` listener. Below 1024 px (`DESKTOP`), a control inside `div.app` and outside `#strip` whose bottom edge is under the strip's top gets `scrollIntoView({ block: "nearest" })`, which stops it 12 px above the strip through the root's `scroll-padding-bottom`, in both engines. Tests, `COUNT_SCROLL_INTO_VIEW_JS`, `FOCUSED_AGAINST_STRIP_JS` and `test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it` in `tests/browser/test_app.py`.
+
+**How to view.** Serve as above and open the page at 390 x 844 in Safari (or Playwright's WebKit) with a long bill, People and Charges open and By item chosen with four items. Focus New bill and press Tab through the items. Every focused field and toggle stops a little above the strip, never under it. From 1024 px wide there is no strip and Tab never scrolls the page.

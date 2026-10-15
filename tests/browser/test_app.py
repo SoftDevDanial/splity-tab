@@ -1987,8 +1987,9 @@ LAST_TOGGLE_OVER_STRIP_JS = """() => { scrollTo(0, document.documentElement.scro
 def test_R49_no_control_the_user_tabs_to_is_left_under_the_strip(open_app):
     # qa.md on K1 at 390 x 844 with both sections opened first. Tab starts after New bill, the first control of the page,
     # and stops at Splits, the strip's own first control. All 12 toggles must be among the stops, so a walk that skipped
-    # the bottom of the page cannot pass. It fails in WebKit, whose focus scroll leaves a control that is inside the
-    # viewport where it is, under the strip, and does not read scroll-padding-bottom (BUILD.md, A11, F-A11-1).
+    # the bottom of the page cannot pass. WebKit's own focus scroll leaves a control that is inside the viewport where it
+    # is, under the strip, and does not read scroll-padding-bottom, so in WebKit it holds through the app's focus scroll
+    # (spec R49, task A21, F-A11-1).
     page = open_app(seed=seeds.S1).page
     open_people_first(page)
     open_charges_first(page)
@@ -2007,6 +2008,41 @@ def test_R49_no_control_the_user_tabs_to_is_left_under_the_strip(open_app):
     assert under == [] and sum(is_toggle for _, is_toggle in stops) == 12, (under, stops)
     toggle_bottom, strip_top = page.evaluate(LAST_TOGGLE_OVER_STRIP_JS)
     assert toggle_bottom < strip_top, (toggle_bottom, strip_top)
+
+
+# The app's scrollIntoView calls (R49, the focus scroll), counted by a wrapper the test adds before any gesture. The
+# browser's own focus scroll never calls the script method, so the count is the app's alone.
+COUNT_SCROLL_INTO_VIEW_JS = """() => { window.testScrollIntoViewCalls = 0; const original = Element.prototype.scrollIntoView;
+  Element.prototype.scrollIntoView = function (...options) { window.testScrollIntoViewCalls += 1; return original.apply(this, options); }; }"""
+# Whether the focused element is the one `selector` names, its bottom edge, the strip's top edge and the app's calls so far.
+FOCUSED_AGAINST_STRIP_JS = """(selector) => { const focused = document.activeElement;
+  return [focused === document.querySelector(selector), focused.getBoundingClientRect().bottom,
+          document.querySelector('#strip').getBoundingClientRect().top, window.testScrollIntoViewCalls]; }"""
+
+
+def test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it(open_app):
+    # qa.md, spec R49 "The focus scroll". It passes before task A21, so its teeth come from stubs of the handler
+    # (BUILD.md, A21). The control clear of the strip and the sheet are first checked to be where the scenario puts them.
+    page = open_app(seed=seeds.RND, viewport=(1280, 800)).page
+    page.evaluate(COUNT_SCROLL_INTO_VIEW_JS)
+    new_bill_button(page).focus()
+    tab_until(page, subtotal_field(page))
+    assert page.evaluate("window.testScrollIntoViewCalls") == 0, "the app scrolled from 1024 px"
+    page.set_viewport_size({"width": 390, "height": 844})
+    new_bill_button(page).focus()
+    page.keyboard.press("Tab")
+    focused, bottom, strip_top, calls = page.evaluate(FOCUSED_AGAINST_STRIP_JS, "#peopleBtn")
+    assert focused and bottom < strip_top, (focused, bottom, strip_top)
+    assert calls == 0, "the app scrolled a control the strip does not cover"
+    for control in ("#splitsBtn", "#stripCopy"):
+        page.locator(control).focus()
+        focused, _, _, calls = page.evaluate(FOCUSED_AGAINST_STRIP_JS, control)
+        assert focused and calls == 0, f"{control} focused {focused}, the app's calls {calls}"
+    page.locator("#splitsBtn").click()
+    focused, bottom, strip_top, calls = page.evaluate(FOCUSED_AGAINST_STRIP_JS, "#splitsDlg > div.sheet")
+    assert focused, "div.sheet does not have focus"
+    assert bottom > strip_top, f"the sheet's bottom edge {bottom} is not below the strip's top edge {strip_top}"
+    assert calls == 0, "the app scrolled the sheet, which sits above the strip"
 
 
 # ---------------------------------------------------------------- v1.1.0 task A12: the Splits sheet (R50)

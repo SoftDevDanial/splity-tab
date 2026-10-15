@@ -1,0 +1,3 @@
+engine chromium, browser version 149.0.7827.55
+FAILED   call     test_app.py::test_R49_no_control_the_user_tabs_to_is_left_under_the_strip (0.50s)
+exit status 1

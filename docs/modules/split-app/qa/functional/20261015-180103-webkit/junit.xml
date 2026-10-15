@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="3.301" timestamp="2026-10-15T18:01:03.999251+08:00" hostname="{host}"><testcase classname="test_app" name="test_R49_no_control_the_user_tabs_to_is_left_under_the_strip" time="2.056"><failure message="AssertionError: ([['Aisyah', 743, 733], ['Item 2 name', 791, 733], ['Item 3 name', 791, 733], ['Mee goreng mamak price in RM', 791, 73...on', False], ['Person 1 name', False], ['Remove Aisyah', False], ['Person 2 name', False], ['Remove Ben', False], ...])&#10;assert ([['Aisyah', 7...e', 791, 733]] == []&#10;  &#10;  Left contains 6 more items, first extra item: ['Aisyah', 743, 733]&#10;  Use -v to get more diff)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002342BD23270&gt;
+
+    def test_R49_no_control_the_user_tabs_to_is_left_under_the_strip(open_app):
+        # qa.md on K1 at 390 x 844 with both sections opened first. Tab starts after New bill, the first control of the page,
+        # and stops at Splits, the strip's own first control. All 12 toggles must be among the stops, so a walk that skipped
+        # the bottom of the page cannot pass. It fails in WebKit, whose focus scroll leaves a control that is inside the
+        # viewport where it is, under the strip, and does not read scroll-padding-bottom (BUILD.md, A11, F-A11-1).
+        page = open_app(seed=seeds.S1).page
+        open_people_first(page)
+        open_charges_first(page)
+        new_bill_button(page).focus()
+        stops, under = [], []
+        for _ in range(80):
+            page.keyboard.press("Tab")
+            name, is_toggle, bottom, strip_top = page.evaluate(FOCUS_OVER_STRIP_JS)
+            if name == "splitsBtn":
+                break
+            stops.append([name, is_toggle])
+            if bottom &gt; strip_top + 0.5:
+                under.append([name, bottom, strip_top])
+        else:
+            pytest.fail(f"Tab gave up after 80 presses without reaching Splits, the last stops were {stops[-3:]}")
+&gt;       assert under == [] and sum(is_toggle for _, is_toggle in stops) == 12, (under, stops)
+E       AssertionError: ([['Aisyah', 743, 733], ['Item 2 name', 791, 733], ['Item 3 name', 791, 733], ['Mee goreng mamak price in RM', 791, 73...on', False], ['Person 1 name', False], ['Remove Aisyah', False], ['Person 2 name', False], ['Remove Ben', False], ...])
+E       assert ([['Aisyah', 7...e', 791, 733]] == []
+E         
+E         Left contains 6 more items, first extra item: ['Aisyah', 743, 733]
+E         Use -v to get more diff)
+
+tests\browser\test_app.py:2007: AssertionError</failure></testcase><testcase classname="test_app" name="test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it" time="0.781" /></testsuite></testsuites>

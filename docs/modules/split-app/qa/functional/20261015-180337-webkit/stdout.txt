@@ -1,0 +1,35 @@
+-m pytest -q --engine webkit tests/browser/test_app.py::test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it
+server STARTED pid 21240 port 35366 root {workspace}\examples\split
+Fserver STOPPED pid 21240 port 35366, exited True, port free again True
+                                                                         [100%]
+================================== FAILURES ===================================
+_ test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it _
+
+open_app = <function open_app.<locals>.factory at 0x00000235D3077270>
+
+    def test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it(open_app):
+        # qa.md, spec R49 "The focus scroll". It passes before task A21, so its teeth come from stubs of the handler
+        # (BUILD.md, A21). The control clear of the strip and the sheet are first checked to be where the scenario puts them.
+        page = open_app(seed=seeds.RND, viewport=(1280, 800)).page
+        page.evaluate(COUNT_SCROLL_INTO_VIEW_JS)
+        new_bill_button(page).focus()
+        tab_until(page, subtotal_field(page))
+        assert page.evaluate("window.testScrollIntoViewCalls") == 0, "the app scrolled from 1024 px"
+        page.set_viewport_size({"width": 390, "height": 844})
+        new_bill_button(page).focus()
+        page.keyboard.press("Tab")
+        focused, bottom, strip_top, calls = page.evaluate(FOCUSED_AGAINST_STRIP_JS, "#peopleBtn")
+        assert focused and bottom < strip_top, (focused, bottom, strip_top)
+        assert calls == 0, "the app scrolled a control the strip does not cover"
+        for control in ("#splitsBtn", "#stripCopy"):
+            page.locator(control).focus()
+            focused, _, _, calls = page.evaluate(FOCUSED_AGAINST_STRIP_JS, control)
+>           assert focused and calls == 0, f"{control} focused {focused}, the app's calls {calls}"
+E           AssertionError: #splitsBtn focused True, the app's calls 1
+E           assert (True and 1 == 0)
+
+tests\browser\test_app.py:2039: AssertionError
+engine webkit, browser version 26.5, skipped 0
+=========================== short test summary info ===========================
+FAILED tests\browser\test_app.py::test_R49_the_app_scrolls_a_focused_control_only_below_1024_px_and_only_when_the_strip_covers_it
+1 failed in 2.29s
