@@ -3,9 +3,11 @@ import assert from "node:assert/strict";
 import {
   LIMITS, newBill, addPerson, removePerson, setPersonName, setMode, setSubtotalText,
   setServiceText, setSstText, addItem, removeItem, setItemName, setItemPriceText,
-  toggleItemPerson, personLabel, itemLabel, sparePeople,
+  toggleItemPerson, personLabel, itemLabel, sparePeople, plainName,
 } from "../src/core/bill.js";
 import { chooseSpareRule, chooseSparePerson, pickAgain } from "../src/core/spare.js";
+import { computeResult } from "../src/core/result.js";
+import { summaryText } from "../src/core/summary.js";
 import { S1, S2, I2, I3, D2, MAX_E, MAX_I, deepFreeze, withSpare } from "./support/bills.js";
 import { scripted, constant } from "./support/rng.js";
 
@@ -406,4 +408,59 @@ test("@R11 @R12 the twelve-person bill refuses a thirteenth and still removes by
   assert.equal(MAX_E.people.length, 12);
   assert.equal(addPerson(MAX_E), MAX_E);
   assert.equal(removePerson(MAX_E, "p12").people.length, 11);
+});
+
+// ---- R35, a plain name (H-10). The rows of qa.md "plainName deletes the class and keeps everything else". ----
+// A title spells every code point outside printable ASCII as U+XXXX, so no bidi control reorders the runner's output.
+const spelled = (text) => [...text].map((char) => {
+  const cp = char.codePointAt(0);
+  return cp >= 0x20 && cp <= 0x7e ? char : `U+${cp.toString(16).toUpperCase().padStart(4, "0")}`;
+}).join("");
+const PLAIN_ROWS = [
+  ["Ben\u{202E}", "Ben"],
+  ["Be\u{202E}x\u{2067}n", "Bexn"],
+  ["A\u{2028}B\u{2029}C", "ABC"],
+  ["\u{0000}Adds up to RM 0.00", "Adds up to RM 0.00"],
+  ["Ann\u{0009}Lee", "AnnLee"],
+  ["x\u{001B}\u{007F}\u{0085}\u{009F}y", "xy"],
+  ["\u{061C}\u{200E}\u{200F}\u{202A}\u{202B}\u{202C}\u{202D}\u{2066}\u{2068}\u{2069}", ""],
+  ["A\u{200B}B\u{00A0}C\u{FEFF}\u{00AD}\u{3000}", "A\u{200B}B\u{00A0}C\u{FEFF}\u{00AD}\u{3000}"],
+  ["\u{1F468}\u{200D}\u{1F469}\u{200D}\u{1F467}", "\u{1F468}\u{200D}\u{1F469}\u{200D}\u{1F467}"],
+  ["\u{0639}\u{0644}\u{064A} Lina", "\u{0639}\u{0644}\u{064A} Lina"],
+  ["", ""],
+];
+for (const [text, plain] of PLAIN_ROWS) {
+  test(`@R35 plainName of "${spelled(text)}" is "${spelled(plain)}"`, () => {
+    assert.equal(plainName(text), plain);
+  });
+}
+
+// The proof that the names on screen and the copied summary cannot drift apart (spec R35 point 2): for every code
+// point, plainName deletes it exactly when summaryText replaces it in a row name with a space, and both keep every
+// other one as typed. The row is compared whole, because a typed U+0020 also reads "A B". 79 is written by hand
+// (65 in Cc, LS, PS and 12 in Bidi_Control), because a count read from either class would agree with a wrong class.
+test("@R35 @R24 plainName and summaryText read one class, 79 code points, for every code point", () => {
+  const s2Rows = computeResult(S2);
+  const chenRowAs = (name) => summaryText({ ...s2Rows, rows: s2Rows.rows.map((row, index) => (index === 2 ? { ...row, name } : row)) })
+    .split("\n")[4];
+  // The row is swapped into the one S2 result for speed. On these it equals the bill with Chen renamed, worked out whole.
+  for (const cp of [0x0000, 0x0020, 0x0041, 0x0085, 0x200b, 0x202e, 0x2069, 0x1f468]) {
+    const text = `A${String.fromCodePoint(cp)}B`;
+    assert.equal(chenRowAs(text), summaryText(computeResult(setPersonName(S2, "p3", text))).split("\n")[4]);
+  }
+  let removed = 0;
+  const wrong = [];
+  for (let cp = 0; cp <= 0x10ffff; cp += 1) {
+    if (cp >= 0xd800 && cp <= 0xdfff) continue;
+    const text = `A${String.fromCodePoint(cp)}B`;
+    const plain = plainName(text);
+    const deleted = plain === "AB";
+    if (deleted) removed += 1;
+    const row = chenRowAs(text);
+    if ((!deleted && plain !== text) || row !== `${deleted ? "A B" : text} RM 38.86` || plainName(plain) !== plain) {
+      wrong.push(spelled(String.fromCodePoint(cp)));
+    }
+  }
+  assert.deepEqual(wrong, []);
+  assert.equal(removed, 79);
 });

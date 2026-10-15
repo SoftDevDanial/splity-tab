@@ -198,3 +198,21 @@ export function sparePeople(bill) {
   const onAnItem = new Set(bill.items.flatMap((item) => item.who));
   return everyone.filter((id) => onAnItem.has(id));
 }
+
+// The characters no name keeps (R35) and the summary prints as a space (R24): the C0 and C1 controls, the line and
+// paragraph separators and the bidi controls. Some reader ends a line or the whole text at a control or a separator
+// (NUL ends a C-string clipboard, FS to RS end a line for Python), and a bidi control reverses how the rest of its line
+// reads. Space separators such as NBSP are not in it. Written once, so the names on screen and the copied summary
+// cannot disagree. Read only through String.prototype.replace, which starts at 0 on every call, so the g flag carries
+// no state from one caller to the next.
+export const NAME_CONTROLS = /[\p{Cc}\p{Zl}\p{Zp}\p{Bidi_Control}]/gu;
+
+/**
+ * A name with every character of NAME_CONTROLS deleted and every other one kept in order (R35). split-app calls it at
+ * its name inputs and in its draft decoder (app R62). No action here calls it, they store a name as given (R15).
+ * @param {string} text
+ * @returns {string} the text without the class, "" when it held nothing else
+ */
+export function plainName(text) {
+  return text.replace(NAME_CONTROLS, "");
+}

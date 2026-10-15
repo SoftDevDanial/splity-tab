@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { resolve, join } from "node:path";
 import module from "node:module";
 import { pathToFileURL } from "node:url";
@@ -222,6 +223,43 @@ test("@R25 the core files do import each other (the import scan is not blind)", 
   assert.ok(all.includes("./money.js") && all.includes("./allocate.js") && all.includes("./bill.js"));
 });
 
+// R35 point 2: the class that names lose and the class the summary prints as a space are one definition, so the
+// screen and the copied summary cannot disagree. A text scan of every file under a folder, so it sees a second
+// class only when that class names Bidi_Control (a class written with the property's short alias would pass).
+const SRC_DIR = resolve(import.meta.dirname, "../src");
+const IMPORTS_THE_CLASS = /\bimport\s*\{[^}]*\bNAME_CONTROLS\b[^}]*\}\s*from\s*["']\.\/bill\.js["']/;
+
+/** What breaks "the class is written once" in the source tree at `dir` (the layout of src/), as readable lines. */
+function oneClassProblems(dir) {
+  const files = readdirSync(dir, { recursive: true }).filter((name) => statSync(join(dir, name)).isFile());
+  const lines = files.flatMap((name) => readFileSync(join(dir, name), "utf8").split("\n")
+    .filter((line) => line.includes("Bidi_Control")).map(() => name.replaceAll("\\", "/"))).sort();
+  const problems = isDeepStrictEqual(lines, ["core/bill.js"]) ? [] : [`Bidi_Control on ${lines.length} lines (${lines.join(", ")})`];
+  if (!IMPORTS_THE_CLASS.test(readFileSync(join(dir, "core", "summary.js"), "utf8"))) {
+    problems.push("core/summary.js does not import NAME_CONTROLS from ./bill.js");
+  }
+  return problems;
+}
+
+test("@R35 @R25 the class is written once, in core/bill.js, and summary.js reads it from there", () => {
+  assert.deepEqual(oneClassProblems(SRC_DIR), []);
+  // The scan has teeth: summary.js back on a class of its own, scanned in a temporary folder beside the real bill.js.
+  const planted = mkdtempSync(join(tmpdir(), "split-r35-"));
+  try {
+    mkdirSync(join(planted, "core"));
+    writeFileSync(join(planted, "core", "bill.js"), readFileSync(join(SRC_DIR, "core", "bill.js"), "utf8"));
+    const summary = readFileSync(join(SRC_DIR, "core", "summary.js"), "utf8")
+      .replace(IMPORTS_THE_CLASS, "const NAME_CONTROLS = /[\\p{Cc}\\p{Zl}\\p{Zp}\\p{Bidi_Control}]/gu;");
+    writeFileSync(join(planted, "core", "summary.js"), summary);
+    assert.deepEqual(oneClassProblems(planted), [
+      "Bidi_Control on 2 lines (core/bill.js, core/summary.js)",
+      "core/summary.js does not import NAME_CONTROLS from ./bill.js",
+    ]);
+  } finally {
+    rmSync(planted, { recursive: true, force: true });
+  }
+});
+
 // ---- Runtime trap, the primary R25 guard ----
 // Every banned global and method is replaced by a recorder that still returns the real value, the core
 // is imported (so module evaluation is watched too) and every export runs. An access counts only when a
@@ -360,6 +398,8 @@ function runEveryExport({ money, allocate, bill, result, spare, summary }) {
   void money.AMOUNT_MIN_CENTS;
   void money.AMOUNT_MAX_CENTS;
   void bill.LIMITS;
+  void bill.NAME_CONTROLS;
+  bill.plainName(" A\u{2028}B\u{202E}\u{0000} ");
   let b = bill.newBill();
   for (let n = 0; n < 10; n += 1) b = bill.addPerson(b);
   b = bill.setPersonName(b, "p1", " A\u{2028}B\u{202E} ");
