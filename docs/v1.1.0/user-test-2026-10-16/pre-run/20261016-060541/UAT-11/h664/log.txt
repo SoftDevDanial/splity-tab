@@ -1,0 +1,105 @@
+UAT-11 On the phone, the field you type in never hides under the strip
+run final
+verdict PASS
+lines 55, match 45, no match 0, not drivable 10
+
+## lines
+step pre | not drivable | Tap Done above the keyboard (four times) | the bar above the iOS keyboard is not in a headless seat
+step 1 | match | People is open with Person 1 and Person 2 | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}]
+step 1 | match | Charges is folded | 
+step 1 | match | By item is chosen | 
+step 1 | match | Four rows, Item 1 to Item 4, each with a grey "0.00" and an amber bar | [{'name': '', 'namePh': 'Item 1', 'price': '', 'pricePh': '0.00', 'needs': True, 'bar': 'rgb(242, 192, 99)', 'err': None, 'errIcon': False, 'bad': False, 'toggles': [{'t': 'Person 1', 'p': False}, {'t': 'Person 2', 'p': False}]}, {'name': '', 'namePh': 'Item 2', 'price': '', 'pricePh': '0.00', 'needs': True, 'bar': 'rgb(242, 192, 99)', 'err': None, 'errIcon': False, 'bad': False, 'toggles': [{'t': 'Person 1', 'p': False}, {'t': 'Person 2', 'p': False}]}, {'name': '', 'namePh': 'Item 3', 'price': '', 'pricePh': '0.00', 'needs': True, 'bar': 'rgb(242, 192, 99)', 'err': None, 'errIcon': False, 'bad': False, 'toggles': [{'t': 'Person 1', 'p': False}, {'t': 'Person 2', 'p': False}]}, {'name': '', 'namePh': 'Item 4', 'price': '', 'pricePh': '0.00', 'needs': True, 'bar': 'rgb(242, 192, 99)', 'err': None, 'errIcon': False, 'bad': False, 'toggles': [{'t': 'Person 1', 'p': False}, {'t': 'Person 2', 'p': False}]}]
+step 1 | match | The strip reads "Add each item and tap who had it to see the splits." | Add each item and tap who had it to see the splits.
+step 2 | match | The cursor is in Item 1's price | {'tag': 'input', 'id': '', 'label': 'Item 1 price in RM', 'ph': '0.00', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+step 2 | not drivable | a number keyboard opens | no software keyboard in a headless seat
+step 2 | match | The field shows in full, not under the strip | {'bottom': 175, 'top': 131, 'stripTop': 556, 'clear': True, 'vh': 664}
+step 2 | not drivable | not under the keyboard | no software keyboard in a headless seat
+step 3 | match | The field reads 15.90 | 15.90
+step 4 | match | The cursor is in the Item 2 name field | Item 2 name
+step 4 | match | The field shows in full, not under the strip | {'bottom': 298, 'top': 254, 'stripTop': 556, 'clear': True, 'vh': 664}
+step 4 | not drivable | not under the keyboard | no software keyboard in a headless seat
+step 5 | match | The cursor is in the Item 2 price field | Item 2 price in RM
+step 5 | match | The field shows in full, not under the strip | {'bottom': 298, 'top': 254, 'stripTop': 556, 'clear': True, 'vh': 664}
+step 5 | not drivable | not under the keyboard | no software keyboard in a headless seat
+step 6 | match | The field reads 13.50 | 13.50
+step 7 | match | The cursor is in the Item 3 name field | Item 3 name
+step 7 | match | The field shows in full, not under the strip | {'bottom': 421, 'top': 377, 'stripTop': 556, 'clear': True, 'vh': 664}
+step 7 | not drivable | not under the keyboard | no software keyboard in a headless seat
+step 8 | match | The cursor is in the Item 3 price field | Item 3 price in RM
+step 8 | match | The field shows in full, not under the strip | {'bottom': 421, 'top': 377, 'stripTop': 556, 'clear': True, 'vh': 664}
+step 8 | not drivable | not under the keyboard | no software keyboard in a headless seat
+step 9 | match | The field reads 12.00 | 12.00
+step 10 | match | The cursor is in the Item 4 name field | Item 4 name
+step 10 | match | The field shows in full, not under the strip | {'bottom': 544, 'top': 500, 'stripTop': 556, 'clear': True, 'vh': 664}
+step 10 | not drivable | not under the keyboard | no software keyboard in a headless seat
+step 11 | match | The cursor is in the Item 4 price field | Item 4 price in RM
+step 11 | match | The field shows in full, not under the strip | {'bottom': 544, 'top': 500, 'stripTop': 556, 'clear': True, 'vh': 664}
+step 11 | not drivable | not under the keyboard | no software keyboard in a headless seat
+step 12 | match | The field reads 18.00 | 18.00
+step 13 | not drivable | The keyboard closes | the bar above the iOS keyboard is not in a headless seat
+step 13 | match | The strip shows a warning circle and "4 items still need a person. Tap who had each one to see the splits." | 4 items still need a person. Tap who had each one to see the splits.
+step 13 | match | Copy summary in the strip is faint | 1
+step 14 | match | Item 1's amber bar is gone | False
+step 14 | match | The strip reads "3 items still need a person. Tap who had each one to see the splits." | 3 items still need a person. Tap who had each one to see the splits.
+step 15 | match | The strip reads "2 items still need a person. Tap who had each one to see the splits." | 2 items still need a person. Tap who had each one to see the splits.
+step 16 | match | The strip reads "1 item still needs a person. Tap who had it to see the splits." | 1 item still needs a person. Tap who had it to see the splits.
+step 17 | match | No amber bar is left | [False, False, False, False]
+step 17 | match | The strip reads "Total RM 69.26" | Total RM 69.26
+step 17 | match | Copy summary in the strip is bright | 1
+step 18 | match | Total RM 69.26 | RM 69.26
+step 18 | match | Subtotal RM 59.40 | ['Subtotal', 'RM 59.40']
+step 18 | match | Service 10% RM 5.94 | ['Service 10%', 'RM 5.94']
+step 18 | match | SST 6% RM 3.92 | ['SST 6%', 'RM 3.92']
+step 18 | match | The heading "Splits" with "items + charges" | Splits / items + charges
+step 18 | match | Person 1 RM 39.53 | RM 39.53
+step 18 | match | Under Person 1 33.90 + 5.63 | 33.90 + 5.63
+step 18 | match | Person 2 RM 29.73 | RM 29.73
+step 18 | match | Under Person 2 25.50 + 4.23 | 25.50 + 4.23
+step 18 | match | Adds up to RM 69.26 | {'label': 'Adds up to', 'amt': 'RM 69.26', 'wk': '59.40 + 9.86', 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 18 | match | Under Adds up to 59.40 + 9.86 | 59.40 + 9.86
+step 18 | match | "1 sen left over" with "Top of the list" | {'count': '1 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 19 | match | The sheet goes down | 
+
+## events
+06:06:51 tap New bill at 316,30
+06:06:52 tap Start new bill at 195,344
+06:06:53 tap By item at 304,332
+06:06:54 tap Add item (1) at 313,418
+06:06:54 Done above the keyboard: not drivable, nothing pressed
+06:06:54 tap Add item (2) at 313,418
+06:06:55 Done above the keyboard: not drivable, nothing pressed
+06:06:55 tap Add item (3) at 313,333
+06:06:55 Done above the keyboard: not drivable, nothing pressed
+06:06:56 tap Add item (4) at 313,210
+06:06:56 Done above the keyboard: not drivable, nothing pressed
+06:06:57 tap Item 1 price field at 276,153
+06:06:57 typed 15.90
+06:06:58 down-arrow stand-in: Tab pressed 4 time(s), focus now Item 2 name
+06:06:58 down-arrow stand-in: Tab pressed 1 time(s), focus now Item 2 price in RM
+06:06:58 typed 13.50
+06:06:59 down-arrow stand-in: Tab pressed 4 time(s), focus now Item 3 name
+06:06:59 down-arrow stand-in: Tab pressed 1 time(s), focus now Item 3 price in RM
+06:06:59 typed 12.00
+06:06:59 down-arrow stand-in: Tab pressed 4 time(s), focus now Item 4 name
+06:07:00 down-arrow stand-in: Tab pressed 1 time(s), focus now Item 4 price in RM
+06:07:00 typed 18.00
+06:07:00 tap Person 1 under Item 1 at 70,198
+06:07:01 tap Person 2 under Item 2 at 166,321
+06:07:02 tap Person 2 under Item 3 at 166,444
+06:07:03 swipe stand-in inside the item frame (scrollIntoView nearest)
+06:07:03 scrolled the item frame 31 px to reach Person 1 under Item 4
+06:07:03 tap Person 1 under Item 4 at 70,502
+06:07:04 tap Splits at 93,630
+06:07:04 sheet lines below the visible edge: {'below': [], 'scrollH': 553, 'clientH': 553, 'visibleBottom': 664}
+06:07:05 tap Close on the sheet at 359,88
+
+## screenshots
+s01.png
+s02.png
+s04.png
+s05.png
+s07.png
+s08.png
+s10.png
+s11.png
+s18.png

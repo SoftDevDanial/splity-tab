@@ -1,0 +1,29 @@
+UAT-07 The name on the tab, and the logo in the header and on the tab
+run final
+verdict BLOCKED (SEAT)
+lines 13, match 4, no match 0, not drivable 9
+
+## lines
+step 1 | match | A mark sits left of "Splity Tab" | True
+step 1 | match | It is an indigo receipt outline with two bars inside and a torn bottom edge | colour rgb(232, 235, 242) (judged on s01-header-4x.png)
+step 1 | match | It holds no letter and no D | no text element in the mark, judged on s01-header-4x.png
+step 1 | match | The header reads "Splity Tab", without "Danial's" | Splity Tab
+step 2 | not drivable | A card under the tab shows the name "Danial's Splity Tab" | no tab strip or hover card in a headless seat. The page title reads "Danial's Splity Tab"
+step 3 | not drivable | It is the same mark as the header | no tab strip in a headless seat. The tab icon is src/icon.svg, see icon-file-dark.png (the file, not the tab)
+step 3 | not drivable | It is light indigo on the dark tab | no tab strip in a headless seat
+step 4 | not drivable | Windows and Chrome turn light | Windows settings are not drivable
+step 4 | not drivable | The app's page stays dark, it has one dark look | Windows settings are not drivable
+step 5 | not drivable | The tab icon is now dark navy | no tab strip in a headless seat, see icon-file-light.png (the file, not the tab)
+step 5 | not drivable | The mark is easy to see on the light tab | no tab strip in a headless seat
+step 6 | not drivable | Windows and Chrome turn dark | Windows settings are not drivable
+step 7 | not drivable | The tab icon is light indigo again | no tab strip in a headless seat
+
+## events
+06:06:23 header {'left': True, 'color': 'rgb(232, 235, 242)', 'fill': 'rgb(163, 170, 255)', 'text': 0, 'word': 'Splity Tab', 'title': "Danial's Splity Tab", 'icon': 'src/icon.svg'}
+06:06:24 render-only captures: the header at 4x in its own context, and src/icon.svg opened as a page in dark and light (not the tab)
+
+## screenshots
+s01-header.png
+s01-header-4x.png
+icon-file-dark.png
+icon-file-light.png

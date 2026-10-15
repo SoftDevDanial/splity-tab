@@ -1,0 +1,104 @@
+UAT-09 Every screen on your iPhone, and the white ring after a tap
+run final
+verdict FAIL
+lines 65, match 59, no match 1, not drivable 5
+
+## lines
+step pre | not drivable | Use a normal tab, Block All Cookies off | Safari settings are not drivable. A fresh WebKit context with nothing saved stands in
+step 1 | match | The mark and "Splity Tab" sit at the top left | Splity Tab
+step 1 | match | New bill sits at the top right | 
+step 1 | match | The "People" row is open, its caret up | true matrix(-1, 0, 0, -1, 0, 0)
+step 1 | match | Two fields, "Person 1" and "Person 2", each with a faint x | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}]
+step 1 | match | Add person under them | 
+step 1 | match | A "Charges" row reads "Service 10%, SST 6%" with a caret | Service 10%, SST 6%
+step 1 | match | "Split" with Even chosen and By item beside it | 
+step 1 | match | "Subtotal" with "RM" and a grey "0.00" | RM 0.00, above the strip True
+step 1 | match | The strip at the bottom reads "Enter the subtotal to see the splits." | Enter the subtotal to see the splits.
+step 1 | match | Splits with an up caret sits in the strip | 
+step 1 | match | Copy summary in the strip is faint | 1
+step 2 | match | A third field shows "Person 3" in grey, with the cursor in it | {'tag': 'input', 'id': '', 'label': 'Person 3 name', 'ph': 'Person 3', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+step 2 | not drivable | The keyboard opens | no software keyboard in a headless seat, focus is in a text field (Person 3 name)
+step 2 | match | All three x are now bright | [False, False, False]
+step 3 | not drivable | The keyboard closes | the bar above the iOS keyboard is not in a headless seat
+step 4 | not drivable | A number keyboard opens | no software keyboard in a headless seat, focus is in the Subtotal, inputmode decimal
+step 5 | match | The field reads 100 | 100
+step 6 | not drivable | The keyboard closes | the bar above the iOS keyboard is not in a headless seat
+step 6 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+step 6 | match | Copy summary in the strip is bright | 1
+step 7 | match | It opens, "Service charge" with 10 and % | {'open': 'true', 'svc': '10', 'sst': '6', 'labels': ['Service charge', 'SST'], 'units': ['%', '%'], 'hint': 'Set a charge to 0 if your bill already includes it.', 'caret': 'matrix(-1, 0, 0, -1, 0, 0)', 'shown': True}
+step 7 | match | "SST" with 6 and % | {'open': 'true', 'svc': '10', 'sst': '6', 'labels': ['Service charge', 'SST'], 'units': ['%', '%'], 'hint': 'Set a charge to 0 if your bill already includes it.', 'caret': 'matrix(-1, 0, 0, -1, 0, 0)', 'shown': True}
+step 7 | match | "Set a charge to 0 if your bill already includes it." | Set a charge to 0 if your bill already includes it.
+step 7 | match | Its caret turns up | matrix(-1, 0, 0, -1, 0, 0)
+step 8 | match | It folds and reads "Service 10%, SST 6%" | Service 10%, SST 6%
+step 9 | match | A sheet rises over the dimmed page | rgba(4, 6, 10, 0.72)
+step 9 | match | A grab bar at its top centre and a Close x at its top right | 
+step 9 | match | Total RM 116.60 | RM 116.60
+step 9 | match | Subtotal RM 100.00 | ['Subtotal', 'RM 100.00']
+step 9 | match | Service 10% RM 10.00 | ['Service 10%', 'RM 10.00']
+step 9 | match | SST 6% RM 6.60 | ['SST 6%', 'RM 6.60']
+step 9 | match | The heading "Splits" | Splits / None
+step 9 | match | Person 1 RM 38.87 | RM 38.87
+step 9 | match | Person 2 RM 38.87 | RM 38.87
+step 9 | match | Person 3 RM 38.86 | RM 38.86
+step 9 | match | Adds up to RM 116.60 | {'label': 'Adds up to', 'amt': 'RM 116.60', 'wk': None, 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 9 | match | "2 sen left over" with the chip "Top of the list" | {'count': '2 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 9 | match | Copy summary at the bottom of the sheet | {'text': 'Copy summary', 'disabled': False, 'bg': 'rgb(80, 89, 218)', 'under': True}, below the visible edge []
+step 9 | match | The page behind shows faintly through the sheet's glass | backdrop-filter blur(24px) saturate(1.4) (judged on s09.png)
+step 9 | match | No ring is drawn round the sheet | sheet focused True, outline none
+step 10 | match | The Spare sen panel rises from the bottom over the sheet | {'l': 0, 't': 589, 'r': 390, 'b': 844}
+step 10 | match | A Close x at its top right | {'dr': 9, 'dt': 11}
+step 10 | match | It reads "2 sen left over" | 2 sen left over
+step 10 | match | Three choices, "Top of the list", "One person", "At random" | ['Top of the list', 'One person', 'At random']
+step 10 | match | Top of the list is chosen | ['Top of the list']
+step 10 | match | A thin white ring is drawn round Top of the list, see the note | {'tag': 'input', 'id': '', 'text': 'Top of the list', 'fv': True, 'outline': 'solid 2px rgb(163, 170, 255)', 'isText': False} (see s10-ring.png)
+step 11 | match | Three pills, "Person 1", "Person 2", "Person 3" | ['Person 1', 'Person 2', 'Person 3']
+step 11 | match | Person 1 is ticked | ['Person 1']
+step 12 | match | The panel goes down | 
+step 12 | match | Person 1 RM 38.88 | RM 38.88
+step 12 | match | Person 2 RM 38.86 | RM 38.86
+step 12 | match | Person 3 RM 38.86 | RM 38.86
+step 12 | match | Adds up to RM 116.60 | {'label': 'Adds up to', 'amt': 'RM 116.60', 'wk': None, 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 12 | match | The chip reads "One person, Person 1" | {'count': '2 sen left over', 'chips': ['One person, Person 1'], 'chipRight': True}
+step 13 | match | The sheet goes down | 
+step 13 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+step 13 | NO MATCH | A thin white ring is drawn round Splits, see the note | {'tag': 'button', 'id': 'splitsBtn', 'text': 'Splits', 'fv': False, 'outline': 'none 3px rgb(232, 235, 242)', 'isText': False} (see s13-ring.png)
+step 14 | match | A dialog reads "Start a new bill?" | Start a new bill?
+step 14 | match | Under it "This clears the people, items and amounts." | This clears the people, items and amounts.
+step 14 | match | A red Start new bill across the dialog, with Cancel under it | {'open': True, 'title': 'Start a new bill?', 'body': 'This clears the people, items and amounts.', 'start': 'Start new bill', 'bg': 'rgb(196, 49, 60)', 'across': True, 'cancelUnder': True, 'cancel': 'Cancel'}
+step 14 | match | A thin white ring is drawn round Cancel, see the note | {'tag': 'button', 'id': '', 'text': 'Cancel', 'fv': True, 'outline': 'solid 2px rgb(163, 170, 255)', 'isText': False} (see s14-ring.png)
+step 15 | match | The dialog closes | 
+step 15 | match | The three people are still there | 3
+step 15 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+
+## events
+06:07:26 step 1 {'brand': True, 'word': 'Splity Tab', 'nb': True, 'pOpen': 'true', 'pCaret': 'matrix(-1, 0, 0, -1, 0, 0)', 'cOpen': 'false', 'cSum': 'Service 10%, SST 6%', 'cCaret': 'none', 'addBelow': True, 'even': True, 'byItemBeside': True, 'subUnit': 'RM', 'subPh': '0.00', 'subVal': '', 'subVisible': True}
+06:07:26 tap Add person at 86,201
+06:07:27 tap Subtotal field at 149,503
+06:07:27 focus after tap on Subtotal {'tag': 'input', 'id': 'evenSub', 'label': 'Subtotal in RM', 'ph': '0.00', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+06:07:27 typed 100
+06:07:28 tap Charges row at 195,324
+06:07:29 tap Charges row at 195,324
+06:07:29 tap Splits at 93,810
+06:07:30 sheet {'open': True, 'grabCentre': True, 'closeTR': True, 'blur': 'blur(24px) saturate(1.4)', 'bg': 'linear-gradient(155deg, rgba(200, 206, 255, 0.1) 0%, rgba(150, 158, 235, 0.04) 40%, rgba(8', 'sheetFocused': True, 'sheetOutline': 'none', 'backdrop': 'rgba(4, 6, 10, 0.72)'}
+06:07:30 sheet lines below the visible edge: {'below': [], 'scrollH': 535, 'clientH': 535, 'visibleBottom': 844}
+06:07:30 tap Top of the list chip in the sheet at 299,734
+06:07:31 tap One person at 195,750
+06:07:31 focus and ring after step 11: {'tag': 'dialog', 'id': 'spareDlg', 'text': 'Spare sen2 sen left overTop of', 'fv': False, 'outline': 'none 3px rgb(232, 235, 242)', 'isText': False}
+06:07:32 tap Close on the Spare sen panel at 359,568
+06:07:33 focus and ring after step 12: {'tag': 'button', 'id': '', 'text': 'One person, Person 1', 'fv': True, 'outline': 'solid 2px rgb(163, 170, 255)', 'isText': False}
+06:07:33 tap Close on the sheet at 359,286
+06:07:34 tap New bill at 316,30
+06:07:35 tap Cancel at 195,490
+
+## screenshots
+s01.png
+s02.png
+s07.png
+s09.png
+s10.png
+s10-ring.png
+s11.png
+s12.png
+s13-ring.png
+s14.png
+s14-ring.png

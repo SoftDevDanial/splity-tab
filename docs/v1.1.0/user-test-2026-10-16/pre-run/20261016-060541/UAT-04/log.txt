@@ -1,0 +1,96 @@
+UAT-04 A big bill fits a 360 px phone, and a price that does not fit its field
+run final
+verdict PASS
+lines 60, match 58, no match 0, not drivable 2
+
+## lines
+step pre | not drivable | F12, Ctrl+Shift+M, Responsive 360 x 780 in the device toolbar | no developer tools in a headless seat, the viewport was set to 360 x 780 instead
+step 1 | match | The top bar shows the mark, "Splity Tab" and New bill | {'mark': True, 'word': 'Splity Tab', 'nb': True}
+step 1 | match | People is one folded row reading "Aisyah, Ben, Chen" with a caret | ['false', 'Aisyah, Ben, Chen', True]
+step 1 | match | Charges is one folded row reading "Service 10%, SST 6%" | ['false', 'Service 10%, SST 6%']
+step 1 | match | Split has By item chosen | 
+step 1 | match | Items shows Add item and the four items | ['Nasi lemak ayam', 'Char kuey teow', 'Mee goreng mamak', 'Satay, 10 sticks'], row bottoms [445, 568, 691, 814], strip top 669
+step 1 | match | The strip at the bottom reads "Total RM 69.26" | Total RM 69.26
+step 1 | match | Splits and Copy summary sit in the strip | {'shown': True, 'info': 'Total RM 69.26', 'msgIcon': False, 'totalLines': 1, 'sameRow': True, 'figWhole': True, 'copyDisabled': False, 'copyOpacity': '1', 'splits': 'Splits', 'splitsCaret': True, 'status': '', 'top': 669}
+step 1 | match | Nothing scrolls sideways | {'scrollX': 0, 'docSW': 360, 'docCW': 360, 'bodySW': 360, 'wide': []}
+step 2 | match | A fifth row "Item 5" with an empty price, the cursor in its name | {'tag': 'input', 'id': '', 'label': 'Item 5 name', 'ph': 'Item 5', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+step 2 | match | An amber bar at its left | rgb(242, 192, 99)
+step 2 | match | The strip reads "Give every item a price to see the splits." | Give every item a price to see the splits.
+step 2 | match | Copy summary in the strip is faint | disabled True opacity 1
+step 3 | match | The cursor is in the Item 5 price field | {'tag': 'input', 'id': '', 'label': 'Item 5 price in RM', 'ph': '0.00', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+step 4 | match | The price field shows 964.50 whole | {'v': '964.50', 'sw': 76, 'cw': 76}
+step 4 | match | The strip shows a warning circle and "1 item still needs a person. Tap who had it to see the splits." | 1 item still needs a person. Tap who had it to see the splits.
+step 5 | match | Aisyah is ticked | [{'t': 'Aisyah', 'p': True}, {'t': 'Ben', 'p': False}, {'t': 'Chen', 'p': False}]
+step 5 | match | The strip reads "Total RM 1,193.87" on one line | Total RM 1,193.87 lines 1
+step 5 | match | Copy summary in the strip is bright | 1
+step 5 | match | Nothing scrolls sideways | {'scrollX': 0, 'docSW': 360, 'docCW': 360, 'bodySW': 360, 'wide': []}
+step 6 | match | The Splits sheet rises over the dimmed page | 
+step 6 | match | Total RM 1,193.87 | RM 1,193.87
+step 6 | match | Subtotal RM 1,023.90 | ['Subtotal', 'RM 1,023.90']
+step 6 | match | Service 10% RM 102.39 | ['Service 10%', 'RM 102.39']
+step 6 | match | SST 6% RM 67.58 | ['SST 6%', 'RM 67.58']
+step 6 | match | The heading "Splits" with "items + charges" | Splits / items + charges
+step 6 | match | Aisyah RM 1,153.65 | RM 1,153.65
+step 6 | match | Under Aisyah 989.40 + 164.25 | 989.40 + 164.25
+step 6 | match | Ben RM 15.74 | RM 15.74
+step 6 | match | Under Ben 13.50 + 2.24 | 13.50 + 2.24
+step 6 | match | Chen RM 24.48 | RM 24.48
+step 6 | match | Under Chen 21.00 + 3.48 | 21.00 + 3.48
+step 6 | match | Adds up to RM 1,193.87 | {'label': 'Adds up to', 'amt': 'RM 1,193.87', 'wk': '1,023.90 + 169.97', 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 6 | match | Under Adds up to 1,023.90 + 169.97 | 1,023.90 + 169.97
+step 6 | match | "1 sen left over" with "Top of the list" | {'count': '1 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 6 | match | Every figure shows whole, none cut at its edge | []
+step 7 | match | The sheet closes | 
+step 8 | match | The cursor is in it | {'tag': 'input', 'id': '', 'label': 'Item 5 price in RM', 'ph': '0.00', 'value': '964.50', 'text': '', 'fv': True, 'selStart': 3, 'selEnd': 3, 'type': 'text', 'rvalue': None}
+step 9 | match | The price is selected | {'tag': 'input', 'id': '', 'label': 'Item 5 price in RM', 'ph': '0.00', 'value': '964.50', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 6, 'type': 'text', 'rvalue': None}
+step 10 | match | The field takes the new price | 99999.99
+step 11 | match | The price field shows "99999.9", its last digit cut off | {'v': '99999.99', 'sw': 91, 'cw': 76, 'sl': 0, 'focused': False} (see s11-field.png)
+step 11 | match | The strip reads "Total RM 116,669.25" on one line | Total RM 116,669.25 lines 1
+step 11 | match | Nothing scrolls sideways | {'scrollX': 0, 'docSW': 360, 'docCW': 360, 'bodySW': 360, 'wide': []}
+step 12 | match | Total RM 116,669.25 | RM 116,669.25
+step 12 | match | Subtotal RM 100,059.39 | ['Subtotal', 'RM 100,059.39']
+step 12 | match | Service 10% RM 10,005.94 | ['Service 10%', 'RM 10,005.94']
+step 12 | match | SST 6% RM 6,603.92 | ['SST 6%', 'RM 6,603.92']
+step 12 | match | Aisyah RM 116,629.03 | RM 116,629.03
+step 12 | match | Under Aisyah 100,024.89 + 16,604.14 | 100,024.89 + 16,604.14
+step 12 | match | Ben RM 15.74 | RM 15.74
+step 12 | match | Under Ben 13.50 + 2.24 | 13.50 + 2.24
+step 12 | match | Chen RM 24.48 | RM 24.48
+step 12 | match | Under Chen 21.00 + 3.48 | 21.00 + 3.48
+step 12 | match | Adds up to RM 116,669.25 | {'label': 'Adds up to', 'amt': 'RM 116,669.25', 'wk': '100,059.39 + 16,609.86', 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 12 | match | Under Adds up to 100,059.39 + 16,609.86 | 100,059.39 + 16,609.86
+step 12 | match | "1 sen left over" with "Top of the list" | {'count': '1 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 12 | match | Every figure shows whole, none cut at its edge | []
+step 13 | match | The sheet closes | 
+step 14 | not drivable | The developer tools close | no developer tools in a headless seat
+step 14 | match | The desktop layout is back, with the card at the left | card {'l': 98, 't': 84, 'r': 558, 'b': 725.796875, 'w': 460, 'h': 641.796875}
+
+## events
+06:06:05 viewport set to 360 x 780 in the same context, a stand-in for Chrome's device toolbar (no toolbar touch mode, device scale 1)
+06:06:06 click Add item at 283,292
+06:06:06 key Tab
+06:06:07 typed 964.50
+06:06:07 scrolled the item frame 120 px to reach Aisyah under Item 5
+06:06:07 click Aisyah under Item 5 at 65,593
+06:06:07 click Splits in the strip at 86,746
+06:06:08 sheet lines below the visible edge: {'below': [], 'scrollH': 604, 'clientH': 604, 'bottom': 780}
+06:06:08 click Close x of the sheet at 329,153
+06:06:08 click Item 5 price field at 246,557
+06:06:09 key Ctrl+A
+06:06:09 typed 99999.99
+06:06:09 key Tab
+06:06:09 click Splits at 86,746
+06:06:10 sheet lines below the visible edge: {'below': [], 'scrollH': 604, 'clientH': 604, 'bottom': 780}
+06:06:10 click Close at 329,153
+06:06:11 viewport set back to 1280 x 800, the stand-in for closing the device toolbar and developer tools
+
+## screenshots
+s01.png
+s02.png
+s04.png
+s05.png
+s06.png
+s11-field.png
+s11.png
+s12.png
+s14.png

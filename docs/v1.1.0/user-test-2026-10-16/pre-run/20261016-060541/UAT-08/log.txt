@@ -1,0 +1,23 @@
+UAT-08 Several bills, written up for later
+run final
+verdict PASS
+lines 10, match 10, no match 0, not drivable 0
+
+## lines
+step 1 | match | The title reads "Future implementation: several bills" | # Future implementation: several bills
+step 1 | match | The status reads "not built. A design note for a later version." | **Status:** not built. A design note for a later version. · **Asked for:** 2026-10-10, by the owner at the v1.0.0 UAT
+step 2 | match | "Why this note exists" | ['Why this note exists', 'What the user would get', 'How it could work', 'What it would change', 'Not decided']
+step 2 | match | "What the user would get" | ['Why this note exists', 'What the user would get', 'How it could work', 'What it would change', 'Not decided']
+step 2 | match | "How it could work" | ['Why this note exists', 'What the user would get', 'How it could work', 'What it would change', 'Not decided']
+step 2 | match | "What it would change" | ['Why this note exists', 'What the user would get', 'How it could work', 'What it would change', 'Not decided']
+step 2 | match | "Not decided" | ['Why this note exists', 'What the user would get', 'How it could work', 'What it would change', 'Not decided']
+step 2 | match | (the headings in that order) | ['Why this note exists', 'What the user would get', 'How it could work', 'What it would change', 'Not decided']
+step 3 | match | Only New bill sits at the right | {'buttons': ['New bill'], 'lists': 0, 'notes': ''}
+step 3 | match | There is no list of bills and no second bill anywhere | {'buttons': ['New bill'], 'lists': 0, 'notes': ''}
+
+## events
+06:06:24 read docs/future/several-bills.md with a file reader in place of Notepad, 34 lines, first line '# Future implementation: several bills'
+06:06:24 second-level headings ['Why this note exists', 'What the user would get', 'How it could work', 'What it would change', 'Not decided']
+
+## screenshots
+s03.png

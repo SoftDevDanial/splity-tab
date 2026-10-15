@@ -1,0 +1,83 @@
+UAT-10 On the phone, a double tap acts once
+run final
+verdict PASS
+lines 50, match 42, no match 0, not drivable 8
+
+## lines
+step 1 | match | Exactly one new field shows "Person 4" in grey | [('Person 1', 'Person 1'), ('Person 2', 'Person 2'), ('', 'Person 3'), ('', 'Person 4')]
+step 1 | match | The cursor is in it | {'tag': 'input', 'id': '', 'label': 'Person 4 name', 'ph': 'Person 4', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+step 1 | not drivable | The keyboard opens | no software keyboard in a headless seat
+step 1 | match | Four fields in all | 4
+step 2 | not drivable | The keyboard closes | the bar above the iOS keyboard is not in a headless seat
+step 3 | match | Two more fields, "Person 5" and "Person 6" | ['Person 1', 'Person 2', 'Person 3', 'Person 4', 'Person 5', 'Person 6']
+step 3 | match | Six fields in all | 6
+step 4 | not drivable | The keyboard closes | the bar above the iOS keyboard is not in a headless seat
+step 5 | match | Person 6 is gone | 5
+step 5 | match | Five fields, Person 1 to Person 5 | ['Person 1', 'Person 2', 'Person 3', 'Person 4', 'Person 5']
+step 5 | match | No new empty field appeared | 5
+step 5 | match | The cursor is in Person 5 | {'tag': 'input', 'id': '', 'label': 'Person 5 name', 'ph': 'Person 5', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+step 6 | not drivable | The keyboard closes | the bar above the iOS keyboard is not in a headless seat
+step 7 | match | The sheet opens and stays open | 
+step 7 | match | Total RM 116.60 | RM 116.60
+step 7 | match | Subtotal RM 100.00 | ['Subtotal', 'RM 100.00']
+step 7 | match | Service 10% RM 10.00 | ['Service 10%', 'RM 10.00']
+step 7 | match | SST 6% RM 6.60 | ['SST 6%', 'RM 6.60']
+step 7 | match | Person 1 RM 23.32 | RM 23.32
+step 7 | match | Person 2 RM 23.32 | RM 23.32
+step 7 | match | Person 3 RM 23.32 | RM 23.32
+step 7 | match | Person 4 RM 23.32 | RM 23.32
+step 7 | match | Person 5 RM 23.32 | RM 23.32
+step 7 | match | Adds up to RM 116.60 | {'label': 'Adds up to', 'amt': 'RM 116.60', 'wk': None, 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 7 | match | No spare sen line | None
+step 7 | match | No "Summary copied" and no "Could not copy" line in the sheet | status {'text': '', 'icon': False, 'shown': False}, clipboard writes during the double tap 0
+step 8 | match | The sheet goes down | 
+step 9 | match | The dialog opens and stays open | 
+step 10 | match | The dialog closes | 
+step 10 | match | The five people are still there | 5
+step 10 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+step 10 | match | Charges is still folded | 
+step 10 | not drivable | The keyboard does not open | no software keyboard in a headless seat. Focus after the double tap is button#newBill New bill, not a text field: True
+step 11 | match | It opens with Service charge 10 and SST 6 | 
+step 12 | match | The cursor is after the 10 | {'tag': 'input', 'id': 'svc', 'label': None, 'ph': None, 'value': '10', 'text': '', 'fv': True, 'selStart': 2, 'selEnd': 2, 'type': 'text', 'rvalue': None}
+step 12 | not drivable | a number keyboard opens | no software keyboard in a headless seat, inputmode decimal
+step 13 | match | The field reads 105 | 105
+step 13 | match | No red error shows yet | False
+step 14 | match | The cursor stays in the Service charge field | {'tag': 'input', 'id': 'svc', 'label': None, 'ph': None, 'value': '105', 'text': '', 'fv': True, 'selStart': 3, 'selEnd': 3, 'type': 'text', 'rvalue': None}
+step 14 | match | No red error shows | False
+step 15 | not drivable | The keyboard closes | the bar above the iOS keyboard is not in a headless seat. Stand-in for leaving the field, one Tab
+step 15 | match | A red "Enter a rate from 0 to 30" with a warning circle shows under the field | {'shown': True, 'text': 'Enter a rate from 0 to 30', 'icon': True, 'bad': True, 'border': 'rgb(255, 138, 143)', 'under': True}
+step 15 | match | The field has a red edge | rgb(255, 138, 143)
+step 15 | match | The strip reads "Check the charges to see the splits." | Check the charges to see the splits.
+step 15 | match | Copy summary in the strip is faint | 1
+step 16 | match | The cursor is after the 105 | {'tag': 'input', 'id': 'svc', 'label': None, 'ph': None, 'value': '105', 'text': '', 'fv': True, 'selStart': 3, 'selEnd': 3, 'type': 'text', 'rvalue': None}
+step 17 | match | The field reads 10 | 10
+step 17 | match | The red error is gone | False
+step 18 | not drivable | The keyboard closes | the bar above the iOS keyboard is not in a headless seat
+step 18 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+
+## events
+06:06:40 start: people 3, subtotal 100, strip Total RM 116.60, people open true
+06:06:41 double tap Add person at 86,255, 7 ms for both
+06:06:41 tap Add person (first) at 86,255
+06:06:43 waited 1 s
+06:06:43 tap Add person where it now sits at 86,309
+06:06:44 double tap x in the Person 6 field at 351,252, 9 ms for both
+06:06:44 double tap Splits at 93,630, 9 ms for both
+06:06:45 sheet lines below the visible edge: {'below': [], 'scrollH': 547, 'clientH': 547, 'visibleBottom': 664}
+06:06:45 tap Close on the sheet at 359,94
+06:06:46 double tap New bill at 316,30, 7 ms for both
+06:06:47 double tap Cancel at 195,400, 8 ms for both
+06:06:48 tap Charges row at 195,378
+06:06:49 tap Service charge field just right of the 10 at 166,459 (text ends at 166, align right, field right 168)
+06:06:49 typed 5
+06:06:49 tap the charges hint text at 195,504
+06:06:50 events seen on window during the hint tap (passive listener): []
+06:06:50 Done stand-in: one Tab to leave the field, focus now {'tag': 'input', 'id': 'sst', 'label': None, 'ph': None, 'value': '6', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 1, 'type': 'text', 'rvalue': None}
+06:06:50 tap Service charge field just right of the 105 at 166,459 (text ends at 166, align right, field right 168)
+06:06:51 key Backspace once
+
+## screenshots
+s01.png
+s05.png
+s07.png
+s15.png

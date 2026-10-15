@@ -1,0 +1,48 @@
+UAT-14 With Block All Cookies on, the app warns that nothing is saved, and the Private limit
+run final
+verdict BLOCKED (SEAT)
+lines 30, match 14, no match 0, not drivable 16
+
+## lines
+step 1 | not drivable | The Block All Cookies switch is on | iOS Settings are not drivable. Stand-in, a page whose every localStorage access throws
+step 2 | match | The page loads again | 
+step 2 | match | A row under the top bar starts with an amber warning triangle | {'text': 'This bill is not being saved on this device. It will be lost when you close this tab.', 'under': True, 'top': 60, 'iconHref': '#i-warning', 'iconColor': 'rgb(232, 235, 242)', 'button': False}
+step 2 | match | It reads "This bill is not being saved on this device. It will be lost when you close this tab." | This bill is not being saved on this device. It will be lost when you close this tab.
+step 2 | match | It has no close button | 
+step 2 | match | People is open with Person 1 and Person 2 | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}]
+step 2 | match | Split is on Even with an empty Subtotal | 
+step 2 | match | The strip reads "Enter the subtotal to see the splits." | Enter the subtotal to see the splits.
+step 3 | not drivable | A number keyboard opens | no software keyboard in a headless seat, focus Subtotal in RM
+step 4 | match | The field reads 50 | 50
+step 5 | not drivable | (Done) the keyboard closes | the bar above the iOS keyboard is not in a headless seat
+step 5 | match | The strip reads "Total RM 58.30" | Total RM 58.30
+step 5 | match | The warning is still there | 
+step 6 | not drivable | The Block All Cookies switch is off | iOS Settings are not drivable. Stand-in, the page loads without the init script
+step 7 | match | No warning shows | 
+step 7 | match | Split is on By item with five items | 5
+step 7 | match | Item 1's price reads 13.505 with its red error | {'name': '', 'namePh': 'Item 1', 'price': '13.505', 'pricePh': '0.00', 'needs': False, 'bar': 'rgba(0, 0, 0, 0)', 'err': 'Enter an amount like 12.50', 'errIcon': True, 'bad': True, 'toggles': [{'t': 'Person 1', 'p': True}, {'t': 'Person 2', 'p': False}]}
+step 7 | match | The strip reads "Give every item a price to see the splits." | Give every item a price to see the splits.
+step 8 | not drivable | A new Private tab opens | Private Browsing and Safari's tab overview are not in a headless seat
+step 9 | not drivable | The app's first screen shows, Person 1 and Person 2 with an empty Subtotal | Private Browsing and Safari's tab overview are not in a headless seat
+step 9 | not drivable | No warning shows | Private Browsing and Safari's tab overview are not in a headless seat
+step 10 | not drivable | A number keyboard opens | Private Browsing and Safari's tab overview are not in a headless seat
+step 11 | not drivable | The field reads 100 | Private Browsing and Safari's tab overview are not in a headless seat
+step 12 | not drivable | The strip reads "Total RM 116.60" | Private Browsing and Safari's tab overview are not in a headless seat
+step 12 | not drivable | No warning shows | Private Browsing and Safari's tab overview are not in a headless seat
+step 13 | not drivable | The Private tab is gone | Private Browsing and Safari's tab overview are not in a headless seat
+step 14 | not drivable | The first screen shows again | Private Browsing and Safari's tab overview are not in a headless seat
+step 14 | not drivable | The Subtotal is empty | Private Browsing and Safari's tab overview are not in a headless seat
+step 14 | not drivable | No warning showed at any point in the Private tabs | Private Browsing and Safari's tab overview are not in a headless seat
+step 15 | not drivable | The app shows its five items | Private Browsing and Safari's tab overview are not in a headless seat
+
+## events
+06:08:11 start: 5 items, Item 1 price '13.505' error 'Enter an amount like 12.50'
+06:08:12 stand-in: the app page closed and opened again with an init script that makes every localStorage access throw (address bar Go)
+06:08:12 tap Subtotal field at 149,527
+06:08:13 typed 50
+06:08:14 stand-in: the app page opened again without the init script (address bar Go with the block lifted)
+
+## screenshots
+s02.png
+s05.png
+s07.png

@@ -1,0 +1,1923 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UAT sheet</title>
+<!--
+  sdlc UAT test sheet, template (since sdlc 2.2.0). Layout approved by the owner on 2026-10-10.
+
+  The sdlc:uat orchestrator copies this file to ./docs/v<version>/user-test-<date>/TEST-SHEET.html and
+  replaces the JSON inside <script id="sheet-data"> with the sitting's content. TEST-CASES.md stays the
+  record. This page shows the same cases and collects the human's marks, verdicts and notes.
+
+  Rules for the data
+  - No value may contain the text "</script". Write a "<" in any value as the JSON escape for it
+    (backslash, u, 003c), so nothing can close the script tag. No value needs HTML. The page escapes all text.
+  - Mini markup in text fields. *Control* names a control, `typed text` is what to type, [Key] is a key,
+    "on-screen copy" is text the screen shows, {RM 24.90} is a figure the human checks.
+  - Each string in a step's "see" list is ONE checkable line. Every figure on screen gets a line.
+  - user.verdict stays null until the human's own results arrive. Never fill it on their behalf.
+  - retest holds the human's earlier verdict when a fixed case comes back. It is never overwritten.
+
+  No network, no web fonts, no external files. Marks are kept in this browser only (localStorage) and are
+  sent nowhere. The Copy button touches the clipboard only when the human presses it.
+-->
+<style>
+  :root {
+    --rail: #111821;
+    --rail-2: #1b2430;
+    --rail-fg: #e7edf4;
+    --rail-muted: #9aa7b6;
+    --desk: #e6eaef;
+    --paper: #ffffff;
+    --ink: #141c26;
+    --ink-2: #465363;
+    --ink-3: #6b7684;
+    --rule: #d3dae3;
+    --rule-strong: #8f9bab;
+    --tint: #f3f6f9;
+    --accent: #0b5fc4;
+    --pass: #0f7a3c;  --pass-bg: #e5f4ea;  --pass-dot: #3fb36b;
+    --note: #1d4ed8;  --note-bg: #e8eefc;
+    --fail: #b42318;  --fail-bg: #fde9e7;  --fail-dot: #f0645a;
+    --block: #8a5300; --block-bg: #fdf1d8; --block-dot: #e2a93b;
+    --state: #4a5768; --state-bg: #eef1f5;
+    --retest: #6b3fa0; --retest-bg: #f1eafb; --retest-dot: #b48cf0;
+    --limit: #3d4a5c; --limit-bg: #eef1f5;
+    --sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+    --rail-w: 300px;
+    --sheet-pad-y: 40px;
+    --sheet-pad-x: 44px;
+    --r: 14px;
+    --fs-num: 104px;
+    --fs-title: 26px;
+    --fs-label: 12px;
+    --mk: 34px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--desk); color: var(--ink); font: 16px/1.55 var(--sans); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  button { font: inherit; }
+  a { color: var(--accent); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); }
+
+  /* Rail */
+  .rail { background: var(--rail); color: var(--rail-fg); padding: 24px 14px; position: sticky; top: 0; align-self: start; height: 100dvh; overflow: auto; }
+  .kicker { font-size: var(--fs-label); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .rail .kicker { color: var(--rail-muted); padding: 0 10px; }
+  .rail-title { font-size: 24px; font-weight: 780; padding: 2px 10px 0; letter-spacing: -.01em; overflow-wrap: anywhere; }
+  .rail-meta { color: var(--rail-muted); font-size: 14px; padding: 0 10px 16px; }
+  .caselist { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .rail-sep { height: 1px; background: #2a3442; margin: 8px 10px; list-style: none; }
+  .ci { position: relative; width: 100%; display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; text-align: left; color: inherit; background: transparent; border: 0; border-radius: 10px; padding: 10px; min-height: 56px; cursor: pointer; }
+  .ci:hover { background: var(--rail-2); }
+  .ci[aria-current="true"] { background: var(--rail-2); box-shadow: inset 3px 0 0 #7fb2ff; }
+  .ci-num { font-size: 26px; font-weight: 800; letter-spacing: -.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+  .ci.doc .ci-num { font-size: 20px; color: var(--rail-muted); }
+  .ci-title { display: block; font-size: 14px; line-height: 1.3; }
+  .ci-v { display: flex; gap: 6px; margin-top: 6px; align-items: center; font-size: 12px; color: var(--rail-muted); }
+  .dot { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font: 800 11px/1 var(--sans); color: #0d1218; }
+  .d-pass { background: var(--pass-dot); }
+  .d-fail { background: var(--fail-dot); }
+  .d-block { background: var(--block-dot); }
+  .d-retest { background: var(--retest-dot); }
+  .d-none { background: transparent; color: var(--rail-muted); box-shadow: inset 0 0 0 1.5px #5b6878; }
+  .rail-foot { margin-top: 18px; padding: 14px 10px 0; border-top: 1px solid #2a3442; color: var(--rail-muted); font-size: 13px; display: grid; gap: 6px; }
+  .rail-foot kbd { font-family: var(--mono); border: 1px solid #3a4655; border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; color: var(--rail-fg); }
+  .rail-foot b { color: var(--rail-fg); }
+  .results-btn { min-height: 44px; border-radius: 10px; border: 1px solid #7fb2ff; background: transparent; color: #cfe2ff; font-weight: 700; cursor: pointer; margin-bottom: 8px; }
+  .results-btn:hover { background: #17263a; }
+
+  /* Main and sheets */
+  .main { padding: 24px 32px 56px; min-width: 0; }
+  .sheet { max-width: 1000px; margin: 0 auto 20px; background: var(--paper); border-radius: var(--r); padding: var(--sheet-pad-y) var(--sheet-pad-x); box-shadow: 0 1px 2px rgba(20, 28, 38, .06), 0 10px 28px rgba(20, 28, 38, .07); }
+
+  /* Verdict guide */
+  .guide-head { display: flex; align-items: center; gap: 12px; }
+  .guide-head h2 { margin: 0; font-size: 18px; font-weight: 720; }
+  .guide-toggle { margin-left: auto; min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; color: var(--accent); font-weight: 650; cursor: pointer; }
+  .guide-body { margin-top: 14px; }
+  .guide-body[hidden] { display: none; }
+  .guide-intro { margin: 0 0 14px; color: var(--ink-2); }
+  .legend { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .lg { border: 1px solid var(--rule); border-radius: 10px; padding: 14px; display: grid; gap: 8px; align-content: start; }
+  .lg p { margin: 0; font-size: 15px; }
+  .lg .ex { font-size: 14px; color: var(--ink-2); border-top: 1px dashed var(--rule); padding-top: 8px; }
+  .lg .ex b { color: var(--ink); font-weight: 650; }
+  .states { margin-top: 12px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px; }
+  .st { border-radius: 10px; background: var(--tint); padding: 12px 14px; font-size: 14px; display: grid; gap: 8px; align-content: start; }
+  .st h3 { margin: 0; font-size: var(--fs-label); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .st p { margin: 0; display: flex; gap: 10px; align-items: flex-start; }
+  .st p > :first-child { flex: none; }
+  .mk-demo { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; color: #fff; }
+  .mk-demo svg { width: 13px; height: 13px; fill: currentColor; }
+  .mk-demo.ok { background: var(--pass); }
+  .mk-demo.no { background: var(--fail); }
+  .before { margin-top: 18px; }
+
+  /* Verdict chips. Words and colour only, the tick and cross belong to the line marks. */
+  .vchip { display: inline-flex; align-items: center; gap: 6px; font: 700 12px/1 var(--sans); letter-spacing: .06em; padding: 6px 9px; border-radius: 999px; border: 1.5px solid currentColor; white-space: nowrap; }
+  .v-pass { color: var(--pass); background: var(--pass-bg); }
+  .v-note { color: var(--note); background: var(--note-bg); }
+  .v-fail { color: var(--fail); background: var(--fail-bg); }
+  .v-block { color: var(--block); background: var(--block-bg); border-style: dashed; }
+  .v-state { color: var(--state); background: var(--state-bg); border-style: dotted; }
+  .v-retest { color: var(--retest); background: var(--retest-bg); }
+  .vchip.off { color: #8a95a3; background: transparent; border-color: #c9d1db; border-style: solid; }
+
+  /* Case */
+  .case-head { display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: end; padding-bottom: 20px; border-bottom: 3px solid var(--ink); }
+  .case-num { display: grid; line-height: .82; }
+  .case-num .kicker { color: var(--ink-2); padding-left: 4px; }
+  .case-num .digits { font-size: var(--fs-num); font-weight: 820; letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+  .case-head h1 { font-size: var(--fs-title); line-height: 1.2; margin: 0 0 12px; font-weight: 700; letter-spacing: -.01em; max-width: 30ch; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .chip { font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--tint); border: 1px solid var(--rule); color: var(--ink); }
+  .c-nav { display: flex; gap: 8px; }
+  .navbtn { min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--rule); background: #fff; color: var(--ink); cursor: pointer; font-weight: 600; }
+  .navbtn:disabled { color: #8b96a5; cursor: default; }
+
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  .kv { margin-top: 12px; }
+  .kv th { width: 180px; text-align: left; vertical-align: top; padding: 12px 16px 12px 0; font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); line-height: 1.9; }
+  .kv td { padding: 12px 0; vertical-align: top; }
+  .kv tr + tr { border-top: 1px solid var(--rule); }
+
+  .progress { position: sticky; top: 0; z-index: 2; display: flex; gap: 14px; align-items: center; margin: 24px calc(var(--sheet-pad-x) * -1) 0; padding: 12px var(--sheet-pad-x); background: rgba(255, 255, 255, .96); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: 14px; font-weight: 650; }
+  .progress .ct-no { color: var(--fail); }
+  .bar { flex: 1; height: 8px; border-radius: 99px; background: #e3e8ee; overflow: hidden; display: flex; }
+  .bar span { display: block; height: 100%; transition: width .2s ease; }
+  .bar .b-ok { background: var(--pass); }
+  .bar .b-no { background: var(--fail); }
+
+  .steps { margin-top: 8px; }
+  .steps thead th { text-align: left; font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); padding: 14px 12px 10px; border-bottom: 2px solid var(--ink); }
+  .steps thead th:first-child { width: 56px; padding-left: 0; }
+  .steps thead th.c-do { width: 40%; }
+  .steps tbody td { padding: 14px 12px; vertical-align: top; border-bottom: 1px solid var(--rule); }
+  .steps tbody td.n { padding-left: 0; }
+  .num { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--ink); font-weight: 750; font-size: 14px; font-variant-numeric: tabular-nums; }
+  tr.step.is-done .num { background: var(--ink); color: #fff; }
+  tr.step.has-no .num { background: var(--fail); border-color: var(--fail); color: #fff; }
+  .see-label { display: none; }
+
+  .lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .line { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; padding: 3px 6px 3px 3px; border-radius: 8px; }
+  .line .txt { padding-top: 5px; }
+  .line.m-no { background: var(--fail-bg); }
+  .line.m-ok .txt { color: var(--ink-2); }
+  .mks { display: inline-flex; gap: 4px; }
+  .mk { display: inline-grid; place-items: center; width: var(--mk); height: var(--mk); border-radius: 8px; border: 1.5px solid var(--rule); background: #fff; color: var(--ink-3); cursor: pointer; padding: 0; }
+  .mk svg { width: 15px; height: 15px; fill: currentColor; }
+  .mk:hover { border-color: var(--rule-strong); }
+  .mk.ok[aria-pressed="true"] { background: var(--pass); border-color: var(--pass); color: #fff; }
+  .mk.no[aria-pressed="true"] { background: var(--fail); border-color: var(--fail); color: #fff; }
+
+  .fig { font-weight: 680; white-space: nowrap; }
+  .ui { background: var(--tint); border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; }
+  .ctl { font-weight: 680; border: 1px solid var(--rule-strong); border-radius: 5px; padding: 0 5px; background: #fff; white-space: nowrap; }
+  kbd { font-family: var(--mono); font-size: .88em; }
+  kbd.typed { background: #e9eef5; border-radius: 4px; padding: 1px 6px; }
+  kbd.key { border: 1px solid var(--rule-strong); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: #fff; }
+
+  .mini { margin-top: 8px; width: auto; border: 1px solid var(--rule); border-radius: 8px; border-collapse: separate; border-spacing: 0; overflow: hidden; }
+  .mini th, .mini td { padding: 5px 10px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; vertical-align: middle; }
+  .mini th { font-size: 12px; color: var(--ink-2); font-weight: 650; }
+  .mini td.nm, .mini th.nm { text-align: left; font-weight: 650; }
+  .mini td.mkc, .mini th.mkc { padding: 4px 4px 4px 6px; text-align: left; }
+  .mini tr:last-child td { border-bottom: 0; }
+  .mini tr.total td { border-top: 2px solid var(--ink); font-weight: 700; }
+  .mini tr.m-no td { background: var(--fail-bg); }
+  .mini td.combo { display: none; }
+
+  tr.noterow td { padding: 0; border-bottom: 0; }
+  .note { display: grid; grid-template-columns: 132px 1fr; gap: 14px; margin: 12px 0 0; padding: 14px 16px; border-radius: 10px; border-left: 4px solid currentColor; }
+  .note .tag { font: 750 12px/1.6 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+  .note p { margin: 0; color: var(--ink); }
+  .k-note { color: var(--note); background: var(--note-bg); }
+  .k-ask { color: var(--block); background: var(--block-bg); }
+  .k-limit { color: var(--limit); background: var(--limit-bg); }
+
+  /* Verdict table */
+  .verdicts { margin-top: 36px; }
+  .verdicts th, .verdicts td { padding: 14px 12px; vertical-align: top; border-bottom: 1px solid var(--rule); text-align: left; }
+  .verdicts tbody th { padding-left: 0; font-size: 14px; }
+  .verdicts tbody th small { display: block; font-weight: 500; color: var(--ink-2); }
+  .verdicts thead th { color: var(--ink-2); font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 0 12px 10px; border-bottom: 2px solid var(--ink); }
+  .verdicts thead th.c-who { width: 150px; padding-left: 0; }
+  .verdicts thead th.c-v { width: 330px; }
+  .ballot { display: flex; gap: 6px; flex-wrap: wrap; border: 0; margin: 0; padding: 0; }
+  .bopt { position: relative; display: inline-flex; }
+  .bopt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+  .bopt .vchip { min-height: 40px; padding: 0 14px; font-size: 13px; }
+  .bopt input:focus-visible + .vchip { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .bopt input:not(:checked) + .vchip { color: #6b7684; background: #fff; border-color: #c9d1db; border-style: solid; }
+  .bopt input:not(:checked):hover + .vchip { border-color: var(--rule-strong); }
+  .words { margin: 0; }
+  .muted { color: var(--ink-2); }
+  .note-field { width: 100%; min-height: 84px; font: 15px/1.5 var(--sans); color: var(--ink); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; resize: vertical; }
+  .note-hint { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); }
+  .no-list { margin: 6px 0 0; padding-left: 18px; color: var(--fail); }
+  .no-list li span { color: var(--ink); }
+  .case-foot { display: flex; justify-content: flex-end; margin-top: 16px; }
+  .primary { min-height: 44px; padding: 0 18px; border-radius: 10px; border: 0; background: var(--ink); color: #fff; font-weight: 700; cursor: pointer; }
+
+  /* Handover views */
+  .view-h { margin: 0 0 6px; font-size: var(--fs-title); line-height: 1.2; letter-spacing: -.01em; }
+  .view-intro { margin: 0 0 8px; color: var(--ink-2); }
+  .decision { border-top: 1px solid var(--rule); padding: 18px 0 6px; }
+  .decision h3 { margin: 0 0 10px; font-size: 18px; }
+  .decision table th { width: 180px; text-align: left; vertical-align: top; padding: 8px 16px 8px 0; font-size: var(--fs-label); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); line-height: 1.9; }
+  .decision table td { padding: 8px 0; vertical-align: top; }
+  .resid { margin: 0; padding-left: 20px; }
+
+  /* Results dialog */
+  .scrim { position: fixed; inset: 0; background: rgba(13, 18, 24, .55); display: grid; place-items: center; padding: 16px; z-index: 10; }
+  .scrim[hidden] { display: none; }
+  .dialog { width: min(640px, 100%); background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 20px 60px rgba(13, 18, 24, .35); display: grid; gap: 12px; }
+  .dialog h2 { margin: 0; font-size: 20px; }
+  .dialog p { margin: 0; color: var(--ink-2); }
+  .dialog textarea { width: 100%; min-height: 220px; font: 13px/1.5 var(--mono); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; resize: vertical; color: var(--ink); }
+  .dialog .row { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+  .ghost { min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--rule); background: #fff; color: var(--ink); font-weight: 650; cursor: pointer; }
+  .ghost.danger { color: var(--fail); margin-right: auto; }
+  #rd-status { min-height: 1.5em; color: var(--pass); font-weight: 650; }
+
+  @media (max-width: 1100px) {
+    :root { --rail-w: 250px; --sheet-pad-x: 32px; }
+    .legend { grid-template-columns: 1fr 1fr; }
+    .case-head { grid-template-columns: auto 1fr; }
+    .c-nav { grid-column: 1 / -1; }
+  }
+  @media (max-width: 760px) {
+    :root { --sheet-pad-y: 22px; --sheet-pad-x: 16px; --fs-num: 72px; --fs-title: 21px; --mk: 40px; }
+    .app { grid-template-columns: minmax(0, 1fr); }
+    .rail { position: static; height: auto; padding: 14px 0 10px; min-width: 0; }
+    .rail .kicker, .rail-title, .rail-meta { padding-left: 16px; padding-right: 16px; }
+    .rail-meta { padding-bottom: 10px; }
+    .caselist { display: flex; overflow-x: auto; gap: 6px; padding: 0 16px 6px; }
+    .caselist li { flex: none; }
+    .rail-sep { width: 1px; height: auto; margin: 6px 2px; }
+    .ci { grid-template-columns: auto; width: auto; min-width: 64px; gap: 4px; justify-items: center; padding: 8px 10px; }
+    .ci-title { display: none; }
+    .ci-v { margin-top: 0; }
+    .ci[aria-current="true"] { box-shadow: inset 0 -3px 0 #7fb2ff; }
+    .rail-foot { display: none; }
+    .main { padding: 0 0 40px; }
+    .sheet { border-radius: 0; margin-bottom: 10px; }
+    .legend, .states { grid-template-columns: 1fr; }
+    .case-head { gap: 16px; }
+    .navbtn { flex: 1; }
+    .kv th, .kv td, .decision table th, .decision table td { display: block; width: auto; padding: 0; }
+    .kv th, .decision table th { padding-top: 12px; }
+    .kv td, .decision table td { padding-bottom: 12px; }
+    .steps, .steps tbody { display: block; }
+    .steps thead { display: none; }
+    .steps tbody tr.step { display: grid; grid-template-columns: 44px minmax(0, 1fr); border-bottom: 1px solid var(--rule); padding: 12px 0; }
+    .steps tbody td { border: 0; padding: 0; }
+    .steps tbody td.do { padding-bottom: 8px; }
+    .steps tbody td.see { grid-column: 1 / -1; padding: 10px; background: var(--tint); border-radius: 8px; }
+    .see-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 6px; }
+    .mini { width: 100%; font-size: 13px; }
+    .mini thead { display: none; }
+    .mini td.fg { display: none; }
+    .mini td.combo { display: table-cell; text-align: left; white-space: normal; font-size: 14px; }
+    .mini td.combo .cp { display: flex; justify-content: space-between; gap: 8px; }
+    .mini td.combo .cp-h { color: var(--ink-2); font-size: 13px; }
+    .mini td.nm { white-space: normal; width: 4.6em; padding-right: 6px; line-height: 1.25; }
+    .mini th, .mini td { padding: 5px 6px; }
+    tr.noterow { display: block; }
+    tr.noterow td { display: block; }
+    .note { grid-template-columns: 1fr; gap: 4px; }
+    .verdicts table, .verdicts tbody, .verdicts tr, .verdicts th, .verdicts td { display: block; width: auto !important; }
+    .verdicts thead { display: none; }
+    .verdicts tbody th { border-bottom: 0; padding-bottom: 4px; }
+    .verdicts tbody td { border-bottom: 0; padding-top: 6px; padding-left: 0; }
+    .verdicts tbody tr { border-bottom: 1px solid var(--rule); }
+    .case-foot .primary { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+</style>
+</head>
+<body>
+
+<script type="application/json" id="sheet-data">
+{
+  "app": "Danial's Splity Tab",
+  "version": "1.1.0",
+  "date": "2026-10-16",
+  "sitting": 1,
+  "sittings": 2,
+  "minutes": 120,
+  "url": "http://127.0.0.1:8742/",
+  "start": "Nothing saved for this address in Chrome. The top bar shows the mark and \"Splity Tab\" at the left and *New bill* at the right. On the left a glass card reads \"Total\", a faint receipt mark and \"Enter the subtotal to see the splits.\" On the right, People holds two fields, \"Person 1\" and \"Person 2\", each with a faint x, and *Add person* at its top right. Charges shows Service charge 10 % and SST 6 % with the hint \"Set a charge to 0 if your bill already includes it.\" Split has Even chosen, and Subtotal is an empty field with a grey \"0.00\".",
+  "facts": [
+    ["Sittings", "Sitting 1 is UAT-01 to UAT-08 at your desk, in Chrome, about 60 minutes. Sitting 2 is UAT-09 to UAT-15 on your iPhone in Safari, about 60 minutes. The orchestrator gives you the address for your iPhone when you start that sitting."],
+    ["Order", "Work the cases in order. Each one starts where the last one ended."],
+    ["Browser and window", "Use Chrome for sitting 1, since UAT-06 uses Chrome's own settings. Keep the window maximised. The desktop layout needs at least 1024 px of width. It was designed at 1280 x 800, so on a shorter window the page itself may scroll a little, which is not a fault."],
+    ["360 px checks", "UAT-04 checks a 360 px phone width. Chrome will not make a window narrower than about 500 px, so that case uses Chrome's device toolbar ([F12], then [Ctrl+Shift+M]) and tells you each setting. Use only that toolbar, never the Console."],
+    ["Money figures", "Every money figure here was worked out from the app's rules, not read from the app. Service charge is a share of the subtotal, SST a share of subtotal plus service, each rounded half up to the sen, and each split is in whole sen with the spare sen given by the rule you chose. Where a design file or the review's captures hold the same bill, the figures agree."],
+    ["Clipboard", "UAT-01 pastes the copied summary into Notepad. It is the only case that uses your clipboard. On the iPhone, Safari treats this PC's Wi-Fi address as not secure, so Copy summary cannot work there and no iPhone case presses it."],
+    ["Status OPEN", "Every scope still reads OPEN in the ledger. SHIPPED is written at the seal, so OPEN here means built and reviewed, waiting for your verdict."],
+    ["Tester", "The automated UAT pre-run agent runs every case before you. Its rows are empty until it has run. A green tester row proves the script can be run, not that the feature works."]
+  ],
+  "guide": {
+    "PASS": { "ref": "UAT-01, step 4.", "text": "The card read Aisyah {RM 38.86}, Ben {RM 38.88} and Chen {RM 38.86}, exactly as listed." },
+    "FAIL": { "ref": "UAT-04, step 6.", "text": "Aisyah's {RM 1,153.65} in the Splits sheet was cut at its right edge, where the sheet says every figure shows whole." },
+    "BLOCKED": { "ref": "UAT-06, step 2.", "text": "Chrome's page had no Add beside “Not allowed to save data on your device”, so the address could not be blocked." },
+    "NOTE": { "ref": "UAT-09.", "text": "“Pass, but I want no white ring after a tap” becomes your ruling on open item A1 (H-11)." }
+  },
+  "cases": [
+    {
+      "id": "UAT-01",
+      "title": "Choose who takes the spare sen, on an even bill",
+      "scope": "S1 The user decides who takes the spare sen",
+      "status": "OPEN, built · sitting 1",
+      "problem": "At the 1.0 test you asked that when a bill cannot be split evenly, the summary shows the extras and lets you decide who pays them, \"1 person pay the extras\" or at random. 1.1.0 shows the spare sen on the receipt with a chip that opens the Spare sen choice. Top of the list is the 1.0 rule and stays the default. One person gives every spare sen to the person you pick. At random gives each spare sen to a different person, kept until you press Pick again. The copied summary follows the choice. The By item side is UAT-03.",
+      "before": "The starting state above. Click the *Person 1* field, press [Ctrl+A] and type `Aisyah`. Click the *Person 2* field, press [Ctrl+A] and type `Ben`. Click *Add person* and type `Chen`. Click the *Subtotal* field and type `100`.",
+      "steps": [
+        { "do": "Look at the receipt card on the left.", "see": [
+          "The Total reads {RM 116.60}",
+          "Subtotal {RM 100.00}",
+          "Service 10% {RM 10.00}",
+          "SST 6% {RM 6.60}",
+          "The heading \"Splits\"",
+          "Aisyah {RM 38.87}",
+          "Ben {RM 38.87}",
+          "Chen {RM 38.86}",
+          "Adds up to {RM 116.60}",
+          "\"2 sen left over\"",
+          "A chip \"Top of the list\" at the right of that line",
+          "*Copy summary* under it"
+        ] },
+        { "do": "Click the *Top of the list* chip.", "see": [
+          "A panel \"Spare sen\" opens just right of the card, its bottom level with the chip",
+          "A *Close* x sits at its top right",
+          "Under the title it reads \"2 sen left over\"",
+          "Three choices, \"Top of the list\", \"One person\", \"At random\"",
+          "Top of the list is chosen",
+          "The card stays in view, a little dimmed"
+        ] },
+        { "do": "Click *One person*.", "see": [
+          "One person is chosen",
+          "Under it three pills, \"Aisyah\", \"Ben\", \"Chen\"",
+          "Aisyah is ticked at once",
+          "On the card Aisyah reads {RM 38.88}",
+          "Ben reads {RM 38.86}",
+          "Chen reads {RM 38.86}",
+          "Adds up to reads {RM 116.60}",
+          "The chip reads \"One person, Aisyah\""
+        ] },
+        { "do": "Click the *Ben* pill.", "see": [
+          "Ben is ticked and Aisyah is not",
+          "Aisyah reads {RM 38.86}",
+          "Ben reads {RM 38.88}",
+          "Chen reads {RM 38.86}",
+          "Adds up to reads {RM 116.60}",
+          "The chip reads \"One person, Ben\""
+        ] },
+        { "do": "Click *Close*, the x at the top right of the panel.", "see": [
+          "The panel closes",
+          "The card still shows the splits of step 4"
+        ] },
+        { "do": "Click *Copy summary* on the card.", "see": [
+          "\"Summary copied\" with a check shows under the button"
+        ] },
+        { "do": "Open Notepad and press [Ctrl+V].", "see": [
+          "Six lines appear",
+          "\"Bill split\"",
+          "\"Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\"",
+          "\"Aisyah RM 38.86\"",
+          "\"Ben RM 38.88\"",
+          "\"Chen RM 38.86\"",
+          "\"Adds up to RM 116.60\""
+        ] },
+        { "do": "Go back to Chrome and click the *One person, Ben* chip.", "see": [
+          "The panel opens with One person chosen",
+          "Ben is ticked"
+        ] },
+        { "do": "Click *At random*.", "see": [
+          "At random is chosen",
+          "The pills are gone",
+          "A *Pick again* button sits under At random",
+          "Two of the three splits read {RM 38.87} and one reads {RM 38.86}",
+          "Adds up to reads {RM 116.60}",
+          "The card's spare line shows two chips, \"Pick again\" and \"At random\"",
+          "\"Summary copied\" is gone from under Copy summary"
+        ] },
+        { "do": "Click *Pick again* in the panel.", "see": [
+          "A different person now reads {RM 38.86}",
+          "The other two read {RM 38.87}",
+          "Adds up to reads {RM 116.60}"
+        ] },
+        { "do": "Press [Esc].", "see": [
+          "The panel closes",
+          "The card shows the splits of step 10"
+        ] },
+        { "do": "Press [F5].", "see": [
+          "The page loads again",
+          "Aisyah, Ben and Chen are in People and the Subtotal reads 100",
+          "The card shows the same splits as in step 11",
+          "The spare line still shows \"Pick again\" and \"At random\""
+        ] },
+        { "do": "Click *Pick again* on the card, left of the At random chip.", "see": [
+          "A different person now reads {RM 38.86}",
+          "The other two read {RM 38.87}",
+          "Adds up to reads {RM 116.60}"
+        ] },
+        { "do": "Click the *At random* chip.", "see": [
+          "The panel opens with At random chosen and Pick again under it"
+        ] },
+        { "do": "Click *Top of the list*.", "see": [
+          "Top of the list is chosen",
+          "Pick again is gone from the panel",
+          "Aisyah reads {RM 38.87}",
+          "Ben reads {RM 38.87}",
+          "Chen reads {RM 38.86}",
+          "The chip reads \"Top of the list\" and Pick again is gone from the card"
+        ] },
+        { "do": "Press [Esc].", "see": [
+          "The panel closes"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "At random is a real draw, so who reads {RM 38.86} in steps 9 to 13 cannot be listed. Write it down after each step. Pick again always changes it, and two spare sen always go to two different people. Close Notepad without saving after step 7. The choice is saved with the bill, which is why step 12 keeps the draw." } ],
+      "tester": { "verdict": "PASS", "note": "Every line matched in headless Chromium at 1280 x 800. The copied summary was read from a clipboard stand-in's one write in place of Notepad and was the six lines exactly. The draws went to Chen at step 9, Ben at step 10, Ben again after the reload at step 12 and Aisyah at step 13. A headless browser does not act on F5, so step 12 used the browser's own reload. Only you can check the paste into the real Notepad and the F5 key." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-02",
+      "title": "The new look, on the bill with items",
+      "scope": "S7 A livelier look, chosen from five directions",
+      "status": "OPEN, built · sitting 1",
+      "problem": "You said both designs were \"so dull\" and asked for five directions. You picked Night Console's colours on Glass Receipt's layout, with no glow, the items scrolling inside their own frame, People and Charges folding on a phone and \"Splits\" in place of \"Shares\". This case looks at the desktop. The phone layout shows in UAT-04 and UAT-09.",
+      "before": "UAT-01 done. Click *By item* in the Split row. Click *Add item*, type `Nasi lemak ayam`, press [Tab], type `15.90` and click *Aisyah* under it. Click *Add item*, type `Char kuey teow`, press [Tab], type `13.50` and click *Ben*. Click *Add item*, type `Mee goreng mamak`, press [Tab], type `12.00` and click *Chen*. Click *Add item*, type `Satay, 10 sticks`, press [Tab], type `18.00`, then click *Aisyah* and *Chen*. Scroll the item list when a row's buttons are below its edge. Then point at the item list and scroll it back up to the top, so Nasi lemak ayam shows first.",
+      "steps": [
+        { "do": "Look at the receipt card on the left.", "see": [
+          "The Total reads {RM 69.26}",
+          "Subtotal {RM 59.40}",
+          "Service 10% {RM 5.94}",
+          "SST 6% {RM 3.92}",
+          "\"Splits\", with \"items + charges\" at the right",
+          "Aisyah {RM 29.04}",
+          "Under it {24.90 + 4.14}",
+          "Ben {RM 15.74}",
+          "Under it {13.50 + 2.24}",
+          "Chen {RM 24.48}",
+          "Under it {21.00 + 3.48}",
+          "Adds up to {RM 69.26} in indigo, with a seal at its left",
+          "Under it {59.40 + 9.86}",
+          "\"1 sen left over\"",
+          "The chip \"Top of the list\"",
+          "*Copy summary* is a solid indigo button"
+        ] },
+        { "do": "Look at the page as a whole.", "see": [
+          "The page is dark slate with no bright glow behind the card",
+          "The card is glass with a thin indigo line along its top edge",
+          "The card is at the left, and People, Charges, Split and Items run down the right",
+          "By item has an indigo edge and Even has none",
+          "Aisyah under Nasi lemak ayam has a check and an indigo edge"
+        ] },
+        { "do": "Point at the item list and scroll down with the mouse wheel.", "see": [
+          "Only the item list moves, inside its rounded frame",
+          "The card stays where it is",
+          "\"Satay, 10 sticks\" shows in full with Aisyah and Chen ticked"
+        ] },
+        { "do": "Under \"Mee goreng mamak\", click *Chen*.", "see": [
+          "Chen is no longer ticked",
+          "An amber bar shows at the left of Mee goreng mamak",
+          "The card still reads Total {RM 69.26}",
+          "Subtotal {RM 59.40}",
+          "Service 10% {RM 5.94}",
+          "SST 6% {RM 3.92}",
+          "Under them a warning circle and \"1 item still needs a person. Tap who had it to see the splits.\"",
+          "No splits and no Copy summary show"
+        ] },
+        { "do": "Click *Chen* again.", "see": [
+          "Chen is ticked",
+          "The amber bar is gone",
+          "The card shows the splits of step 1 again"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "On a very tall screen all four items may fit, then the list in step 3 does not move. Say so in your note." } ],
+      "tester": { "verdict": "BLOCKED", "note": "Blocked by the script, not the app. Every line matched except step 2 line 5 and step 3 line 1, and every figure was exact. The Before you start left the item list scrolled to its end, so at step 2 Aisyah under Nasi lemak ayam was out of view and at step 3 the wheel down moved nothing. With the list wheeled back to the top, Aisyah showed a check and an indigo edge, and a wheel down then moved only the list while the page and the card stayed still. The script was repaired after the run with the tester's own words and seen working in its extra capture. It was not run again. Headless Chromium at 1280 x 800." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-03",
+      "title": "By item, only people on an item can take the spare sen",
+      "scope": "S1 The user decides who takes the spare sen, by item",
+      "status": "OPEN, built · sitting 1",
+      "problem": "For By item you ruled \"Yes, every spare sen\". One person takes every spare sen of the bill, and only people on at least one item can be chosen, so someone who had nothing never pays a sen of other people's food. Someone on no item is listed at {RM 0.00}.",
+      "before": "UAT-02 done. The card shows the splits of its step 1, with \"1 sen left over\" and Top of the list.",
+      "steps": [
+        { "do": "Click *Add person*, at the top right of People.", "see": [
+          "A fourth field shows \"Person 4\" in grey, with the cursor in it",
+          "Each item has a fourth button \"Person 4\", not ticked",
+          "The card lists \"Person 4\" with {RM 0.00}",
+          "Under it {0.00 + 0.00}"
+        ] },
+        { "do": "Type `Dan`.", "see": [
+          "The field reads Dan",
+          "The card row reads Dan {RM 0.00}",
+          "Each item's fourth button reads Dan",
+          "Aisyah still reads {RM 29.04}"
+        ] },
+        { "do": "Click the *Top of the list* chip on the card.", "see": [
+          "The Spare sen panel opens",
+          "Under the title it reads \"1 sen left over\"",
+          "Top of the list is chosen"
+        ] },
+        { "do": "Click *One person*.", "see": [
+          "Three pills, \"Aisyah\", \"Ben\", \"Chen\"",
+          "There is no pill for Dan",
+          "Aisyah is ticked",
+          "The chip reads \"One person, Aisyah\""
+        ] },
+        { "do": "Click the *Ben* pill.", "see": [
+          "Aisyah reads {RM 29.03}",
+          "Under it {24.90 + 4.13}",
+          "Ben reads {RM 15.75}",
+          "Under it {13.50 + 2.25}",
+          "Chen reads {RM 24.48}",
+          "Under it {21.00 + 3.48}",
+          "Dan reads {RM 0.00}",
+          "Under it {0.00 + 0.00}",
+          "Adds up to reads {RM 69.26}",
+          "Under it {59.40 + 9.86}",
+          "The chip reads \"One person, Ben\""
+        ] },
+        { "do": "Press [Esc].", "see": [
+          "The panel closes"
+        ] },
+        { "do": "Under \"Char kuey teow\", click *Dan*.", "see": [
+          "Dan is ticked beside Ben",
+          "Aisyah reads {RM 29.03}",
+          "Under it {24.90 + 4.13}",
+          "Ben reads {RM 7.88}",
+          "Under it {6.75 + 1.13}",
+          "Chen reads {RM 24.48}",
+          "Under it {21.00 + 3.48}",
+          "Dan reads {RM 7.87}",
+          "Under it {6.75 + 1.12}",
+          "Adds up to reads {RM 69.26}",
+          "Under it {59.40 + 9.86}"
+        ] },
+        { "do": "Click the *One person, Ben* chip.", "see": [
+          "The panel opens with One person chosen",
+          "Four pills, \"Aisyah\", \"Ben\", \"Chen\", \"Dan\"",
+          "Ben is ticked"
+        ] },
+        { "do": "Click *Top of the list*.", "see": [
+          "The pills are gone",
+          "Aisyah reads {RM 29.04}",
+          "Under it {24.90 + 4.14}",
+          "Ben reads {RM 7.87}",
+          "Under it {6.75 + 1.12}",
+          "Chen reads {RM 24.48}",
+          "Under it {21.00 + 3.48}",
+          "Dan reads {RM 7.87}",
+          "Under it {6.75 + 1.12}",
+          "Adds up to reads {RM 69.26}",
+          "Under it {59.40 + 9.86}",
+          "The chip reads \"Top of the list\""
+        ] },
+        { "do": "Press [Esc].", "see": [
+          "The panel closes"
+        ] },
+        { "do": "In Dan's field, click the *x* at its right.", "see": [
+          "Dan's field is gone",
+          "Dan is gone from every item and from the card",
+          "Aisyah reads {RM 29.04}",
+          "Ben reads {RM 15.74}",
+          "Under it {13.50 + 2.24}",
+          "Chen reads {RM 24.48}",
+          "Adds up to reads {RM 69.26}"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "The item list may need a scroll up to bring Char kuey teow into view at step 7. Once Dan shares an item he may take the spare sen, as step 8 shows." } ],
+      "tester": { "verdict": "PASS", "note": "Every line matched in headless Chromium at 1280 x 800. Dan had no pill until he shared Char kuey teow. Step 7 needed the item list scrolled up 120 px to reach Dan under Char kuey teow, as the case note says. Nothing here was out of its reach." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-04",
+      "title": "A big bill fits a 360 px phone, and a price that does not fit its field",
+      "scope": "S2 The by-item table fits a 360 px phone (H-02)",
+      "status": "OPEN, built · sitting 1",
+      "problem": "In 1.0 the by-item table scrolled sideways on a small phone once the bill grew. You ruled \"Fix the v1.0 limits\". The splits now never scroll sideways, at any bill size. This case also holds open item A2 (H-12), which only your eyes can rule on.",
+      "before": "UAT-03 done. Press [F12], then [Ctrl+Shift+M]. In the toolbar above the page set Dimensions to Responsive, type `360` in the width box and `780` in the height box. The pointer may show as a grey circle there, which is the toolbar's touch mode. Click as usual.",
+      "steps": [
+        { "do": "Look at the page in the 360 px frame. Scroll the page to see all four items.", "see": [
+          "The top bar shows the mark, \"Splity Tab\" and *New bill*",
+          "People is one folded row reading \"Aisyah, Ben, Chen\" with a caret",
+          "Charges is one folded row reading \"Service 10%, SST 6%\"",
+          "Split has By item chosen",
+          "Items shows *Add item* and the four items",
+          "The strip at the bottom reads \"Total RM 69.26\"",
+          "*Splits* and *Copy summary* sit in the strip",
+          "Nothing scrolls sideways"
+        ] },
+        { "do": "Click *Add item*.", "see": [
+          "A fifth row \"Item 5\" with an empty price, the cursor in its name",
+          "An amber bar at its left",
+          "The strip reads \"Give every item a price to see the splits.\"",
+          "Copy summary in the strip is faint"
+        ] },
+        { "do": "Press [Tab].", "see": [
+          "The cursor is in the Item 5 price field"
+        ] },
+        { "do": "Type `964.50`.", "see": [
+          "The price field shows {964.50} whole",
+          "The strip shows a warning circle and \"1 item still needs a person. Tap who had it to see the splits.\""
+        ] },
+        { "do": "Scroll the item list until Item 5's buttons show, then click *Aisyah* under Item 5.", "see": [
+          "Aisyah is ticked",
+          "The strip reads \"Total RM 1,193.87\" on one line",
+          "Copy summary in the strip is bright",
+          "Nothing scrolls sideways"
+        ] },
+        { "do": "Click *Splits* in the strip.", "see": [
+          "The Splits sheet rises over the dimmed page",
+          "Total {RM 1,193.87}",
+          "Subtotal {RM 1,023.90}",
+          "Service 10% {RM 102.39}",
+          "SST 6% {RM 67.58}",
+          "\"Splits\" with \"items + charges\"",
+          "Aisyah {RM 1,153.65}",
+          "Under it {989.40 + 164.25}",
+          "Ben {RM 15.74}",
+          "Under it {13.50 + 2.24}",
+          "Chen {RM 24.48}",
+          "Under it {21.00 + 3.48}",
+          "Adds up to {RM 1,193.87}",
+          "Under it {1,023.90 + 169.97}",
+          "\"1 sen left over\" with \"Top of the list\"",
+          "Every figure shows whole, none cut at its edge"
+        ] },
+        { "do": "Click *Close*, the x at the top right of the sheet.", "see": [
+          "The sheet closes"
+        ] },
+        { "do": "Click the *Item 5* price field.", "see": [
+          "The cursor is in it"
+        ] },
+        { "do": "Press [Ctrl+A].", "see": [
+          "The price is selected"
+        ] },
+        { "do": "Type `99999.99`.", "see": [
+          "The field takes the new price"
+        ] },
+        { "do": "Press [Tab].", "see": [
+          "The price field shows \"99999.9\", its last digit cut off",
+          "The strip reads \"Total RM 116,669.25\" on one line",
+          "Nothing scrolls sideways"
+        ] },
+        { "do": "Click *Splits*.", "see": [
+          "Total {RM 116,669.25}",
+          "Subtotal {RM 100,059.39}",
+          "Service 10% {RM 10,005.94}",
+          "SST 6% {RM 6,603.92}",
+          "Aisyah {RM 116,629.03}",
+          "Under it {100,024.89 + 16,604.14}",
+          "Ben {RM 15.74}",
+          "Under it {13.50 + 2.24}",
+          "Chen {RM 24.48}",
+          "Under it {21.00 + 3.48}",
+          "Adds up to {RM 116,669.25}",
+          "Under it {100,059.39 + 16,609.86}",
+          "\"1 sen left over\" with \"Top of the list\"",
+          "Every figure shows whole, none cut at its edge"
+        ] },
+        { "do": "Click *Close*.", "see": [
+          "The sheet closes"
+        ] },
+        { "do": "Press [Ctrl+Shift+M], then [F12].", "see": [
+          "The developer tools close",
+          "The desktop layout is back, with the card at the left"
+        ] }
+      ],
+      "notes": [ { "kind": "ask", "text": "Open item A2 (H-12). Step 11 shows a price of 99999.99 as \"99999.9\" at 360 px until the field is focused. The splits and the strip show every figure whole, so no promise is broken, and the field's width is the approved design's. Option 1, keep it and add a line to the README's limits. Option 2, a design change in v1.2.0, a wider price field or a smaller font at 360 px. We recommend option 1, a five-figure price for one dish is rare. Write your choice in your note." } ],
+      "tester": { "verdict": "PASS", "note": "Every line it could drive matched in headless Chromium. It has no Chrome device toolbar or developer tools, so only you can check the toolbar settings in the Before you start and step 14. A 360 x 780 window stood in for the device toolbar and was set back to 1280 x 800 at step 14. The strip read Total RM 1,193.87 and later RM 116,669.25 on one line, the Splits sheet showed every figure whole and the page stayed 360 px wide. Step 11 showed 99999.9 with the last digit cut (text 91 px in a 76 px field), which is your ruling on A2. Steps 1 and 5 needed scrolls, now written into them." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-05",
+      "title": "Holding Enter on an item's x removes that item and nothing else",
+      "scope": "S3 Holding Enter on Remove adds no blank item (SEC-04)",
+      "status": "OPEN, built · sitting 1",
+      "problem": "In 1.0, holding Enter on the x of the last item removed it, and the key's repeats then pressed Add item, so a blank item appeared. You agreed to fix it. The repeats of a held key are now ignored after a press that changes the layout. Step 12 holds Enter on New bill, which the same guard covers.",
+      "before": "UAT-04 done, the desktop layout.",
+      "steps": [
+        { "do": "Click *New bill*, at the top right.", "see": [
+          "A dialog in the middle reads \"Start a new bill?\"",
+          "Under it \"This clears the people, items and amounts.\"",
+          "A red *Start new bill* with *Cancel* at its right",
+          "The page behind is dimmed"
+        ] },
+        { "do": "Click *Start new bill*.", "see": [
+          "The dialog closes",
+          "People holds \"Person 1\" and \"Person 2\"",
+          "Split is back on Even with an empty Subtotal",
+          "The card reads \"Total\" and \"Enter the subtotal to see the splits.\""
+        ] },
+        { "do": "Click *By item*.", "see": [
+          "The Subtotal field is gone",
+          "Items shows *Add item* and no item rows",
+          "The card reads \"Add each item and tap who had it to see the splits.\""
+        ] },
+        { "do": "Click *Add item*.", "see": [
+          "A row \"Item 1\" with an empty price, the cursor in its name",
+          "An amber bar at its left",
+          "Buttons \"Person 1\" and \"Person 2\" under it, not ticked"
+        ] },
+        { "do": "Type `Teh tarik`.", "see": [
+          "The name reads Teh tarik"
+        ] },
+        { "do": "Press [Tab].", "see": [
+          "The cursor is in Teh tarik's price field"
+        ] },
+        { "do": "Type `3.50`.", "see": [
+          "The card reads Total {RM 4.08}",
+          "Subtotal {RM 3.50}",
+          "Service 10% {RM 0.35}",
+          "SST 6% {RM 0.23}",
+          "A warning circle and \"1 item still needs a person. Tap who had it to see the splits.\""
+        ] },
+        { "do": "Press [Tab].", "see": [
+          "A focus ring is round the x at the right of Teh tarik"
+        ] },
+        { "do": "Hold [Enter] down for about two seconds, then let go.", "see": [
+          "Teh tarik is gone",
+          "No item rows show, and no blank \"Item 1\" row appeared",
+          "A focus ring is on *Add item*",
+          "The card reads \"Add each item and tap who had it to see the splits.\""
+        ] },
+        { "do": "Click *New bill*.", "see": [
+          "The dialog opens"
+        ] },
+        { "do": "Click *Cancel*.", "see": [
+          "The dialog closes",
+          "Items still shows no rows"
+        ] },
+        { "do": "Hold [Enter] down for about two seconds, then let go.", "see": [
+          "The dialog opens and stays open",
+          "A focus ring is on Cancel"
+        ] },
+        { "do": "Press [Esc].", "see": [
+          "The dialog closes",
+          "Split is still By item with no item rows"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "After Cancel the app puts focus on New bill, which is why Enter in step 12 opens the dialog. Before the fix the held key would then have pressed the dialog's buttons too." } ],
+      "tester": { "verdict": "PASS", "note": "Every line matched in headless Chromium at 1280 x 800. A held Enter (one press, then 33 repeats over 2 s) removed Teh tarik only and left a focus ring on Add item. A held Enter on New bill opened the dialog, the dialog never closed while the key was held, and the ring sat on Cancel. Only you can check a held key on your own keyboard." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-06",
+      "title": "When the browser will not save, the app says so",
+      "scope": "S4 A bill that cannot be saved says so",
+      "status": "OPEN, built · sitting 1",
+      "problem": "In 1.0, when the browser blocked or filled its storage, the bill was lost with no message. Now a warning shows while saving fails, also from the first screen when the browser blocks storage outright, and it goes once saving works. Here you block storage for this address in Chrome. A private window and Safari's 7-day clean-up cannot show the warning, because the browser reports every save as working. That is a known limit in the README, and UAT-14 looks at it on your iPhone.",
+      "before": "UAT-05 done. Click *Add item*, type `Teh tarik`, press [Tab], type `3.50` and click *Person 1* under it. The card reads Total {RM 4.08} and Person 1 {RM 4.08}.",
+      "steps": [
+        { "do": "Open a new Chrome tab, type `chrome://settings/content/siteData` in the address bar and press [Enter].", "see": [
+          "The settings page \"On-device site data\" opens"
+        ] },
+        { "do": "Under \"Customized behaviors\", click *Add* beside \"Not allowed to save data on your device\".", "see": [
+          "A small box \"Add a site\" opens with a \"Site\" field"
+        ] },
+        { "do": "Type `http://127.0.0.1:8742` and click *Add*.", "see": [
+          "\"http://127.0.0.1:8742\" is listed under \"Not allowed to save data on your device\""
+        ] },
+        { "do": "Click the app's tab and press [F5].", "see": [
+          "A note sits in the top bar between \"Splity Tab\" and New bill",
+          "It starts with an amber warning triangle",
+          "It reads \"This bill is not being saved on this device. It will be lost when you close this tab.\"",
+          "It has no close button",
+          "People holds \"Person 1\" and \"Person 2\"",
+          "Split is on Even with an empty Subtotal",
+          "The card reads \"Enter the subtotal to see the splits.\""
+        ] },
+        { "do": "Click the *Subtotal* field and type `50`.", "see": [
+          "The Total reads {RM 58.30}",
+          "Subtotal {RM 50.00}",
+          "Service 10% {RM 5.00}",
+          "SST 6% {RM 3.30}",
+          "Person 1 {RM 29.15}",
+          "Person 2 {RM 29.15}",
+          "Adds up to {RM 58.30}",
+          "The warning is still there"
+        ] },
+        { "do": "Go back to the settings tab, click the three dots beside \"http://127.0.0.1:8742\" and click *Remove*.", "see": [
+          "\"http://127.0.0.1:8742\" is no longer listed"
+        ] },
+        { "do": "Click the app's tab and press [F5].", "see": [
+          "No warning shows",
+          "Split is on By item",
+          "Teh tarik at 3.50 with Person 1 ticked",
+          "The Total reads {RM 4.08}",
+          "Subtotal {RM 3.50}",
+          "Service 10% {RM 0.35}",
+          "SST 6% {RM 0.23}",
+          "Person 1 {RM 4.08}",
+          "Under it {3.50 + 0.58}",
+          "Person 2 {RM 0.00}",
+          "Under it {0.00 + 0.00}",
+          "Adds up to {RM 4.08}",
+          "Under it {3.50 + 0.58}"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "Reload at step 7 before you change anything. Once the block is gone, a change in the page that was still open saves that page's bill over the one saved before. If Teh tarik does not come back at step 7, Chrome dropped the saved data when you blocked it. Mark that line with a cross and say so in your note. Chrome may spell \"Customized behaviors\" the British way." } ],
+      "tester": { "verdict": "PASS", "note": "Every line it could drive matched. It cannot open Chrome's settings page, so only you can check steps 1, 2, 3 and 6. A storage stand-in, a page whose every localStorage access throws, took the place of the block. The warning sat in the top bar between Splity Tab and New bill, with the amber triangle, the exact text and no close button, over a new bill at RM 58.30 and RM 29.15 each. With the block lifted, Teh tarik came back at RM 4.08 with 3.50 + 0.58. It could not see whether Chrome keeps the saved bill during a block." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-07",
+      "title": "The name on the tab, and the logo in the header and on the tab",
+      "scope": "S6 The logo in the app, with S8 A name that is free to use",
+      "status": "OPEN, built · sitting 1",
+      "problem": "At the 1.0 seal you asked \"Wheres the logo. I dont see it being used for both\". The mark you approved, the receipt with a torn foot, now shows in the header and as the tab icon, light indigo on a dark tab and dark navy on a light one. \"SplitIO\" was taken, and you ruled \"Danial's Splity Tab\", with no Danial and no D in the logo. The full name is the page title and the header shows Splity Tab. The README header still shows 1.0 until the seal, see open item A6. A home-screen icon is not built in 1.1.0.",
+      "before": "UAT-06 done, Chrome on the app's tab. Windows is in dark mode (Settings, Personalization, Colors, Choose your mode, Dark). Chrome follows Windows, which is its default.",
+      "steps": [
+        { "do": "Look at the header.", "see": [
+          "A mark sits left of \"Splity Tab\"",
+          "It is an indigo receipt outline with two bars inside and a torn bottom edge",
+          "It holds no letter and no D",
+          "The header reads \"Splity Tab\", without \"Danial's\""
+        ] },
+        { "do": "Point at the app's tab and wait a moment.", "see": [
+          "A card under the tab shows the name \"Danial's Splity Tab\""
+        ] },
+        { "do": "Look at the icon on the app's tab.", "see": [
+          "It is the same mark as the header",
+          "It is light indigo on the dark tab"
+        ] },
+        { "do": "Switch Windows to light mode (Settings, Personalization, Colors, Choose your mode, Light).", "see": [
+          "Windows and Chrome turn light",
+          "The app's page stays dark, it has one dark look"
+        ] },
+        { "do": "Click the app's tab and press [F5].", "see": [
+          "The tab icon is now dark navy",
+          "The mark is easy to see on the light tab"
+        ] },
+        { "do": "Switch Windows back to dark mode.", "see": [
+          "Windows and Chrome turn dark"
+        ] },
+        { "do": "Press [F5].", "see": [
+          "The tab icon is light indigo again"
+        ] }
+      ],
+      "notes": [],
+      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Step 1 matched, the mark left of Splity Tab, an indigo receipt outline with bars inside and a torn foot, no letter, and the header without Danial's. Steps 2 to 7 need the tab strip, the tab hover card and Windows light and dark mode, so only you can check them. The page title reads Danial's Splity Tab. Two captures render the file src/icon.svg in dark (light indigo) and in light (dark navy), which shows the file and not the tab." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-08",
+      "title": "Several bills, written up for later",
+      "scope": "S9 Several bills, written up as a future implementation (document only)",
+      "status": "OPEN, written · sitting 1",
+      "problem": "At the 1.0 test you said several bills could be \"future implementation\" and asked for it \"as a doc only so that we can showcase it\". The note is written and nothing of it is built. This case is a read of the note.",
+      "before": "UAT-07 done. The note is the file several-bills.md at {workspace}\\examples\\split\\docs\\future\\several-bills.md.",
+      "steps": [
+        { "do": "Open several-bills.md in Notepad (right-click it, Open with, Notepad).", "see": [
+          "The title reads \"Future implementation: several bills\"",
+          "The status reads \"not built. A design note for a later version.\""
+        ] },
+        { "do": "Read down the headings.", "see": [
+          "\"Why this note exists\"",
+          "\"What the user would get\"",
+          "\"How it could work\"",
+          "\"What it would change\"",
+          "\"Not decided\""
+        ] },
+        { "do": "Close Notepad and look at the app's top bar.", "see": [
+          "Only *New bill* sits at the right",
+          "There is no list of bills and no second bill anywhere"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "The note leaves two calls to you for when it is picked up, whether a finished bill is marked as paid and how the list sorts." } ],
+      "tester": { "verdict": "PASS", "note": "Every line matched. The note was read with a file reader in place of Notepad. The title, the status and the five headings in order match, and only New bill sits in the top bar. Only you can check how it opens in Notepad itself." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-09",
+      "title": "Every screen on your iPhone, and the white ring after a tap",
+      "scope": "S5 Tested in Safari's engine too, with S7 on your iPhone",
+      "status": "OPEN, built · sitting 2",
+      "problem": "Every iPhone browser runs Safari's engine, and 1.0 was tested only in Chrome's. The automated runs now cover Safari's engine too, but not a real iPhone, its touch, its keyboard or its settings. Your ruling for S5 asked for cases on your own iPhone, UAT-09 to UAT-15. This one walks the phone layout and the Splits sheet's glass. It also holds open item A1 (H-11), which only your eyes can rule on.",
+      "before": "Sitting 2 starts here, on your iPhone in Safari. The orchestrator gives you the address for your iPhone when you start this sitting. Use a normal tab, never a Private one. Block All Cookies (Settings, Apps, Safari) is off. Nothing is saved for that address on the iPhone, so the app opens on its first screen.",
+      "steps": [
+        { "do": "Open the address in Safari.", "see": [
+          "The mark and \"Splity Tab\" sit at the top left",
+          "*New bill* sits at the top right",
+          "The \"People\" row is open, its caret up",
+          "Two fields, \"Person 1\" and \"Person 2\", each with a faint x",
+          "*Add person* under them",
+          "A \"Charges\" row reads \"Service 10%, SST 6%\" with a caret",
+          "\"Split\" with Even chosen and By item beside it",
+          "\"Subtotal\" with \"RM\" and a grey \"0.00\"",
+          "The strip at the bottom reads \"Enter the subtotal to see the splits.\"",
+          "*Splits* with an up caret sits in the strip",
+          "*Copy summary* in the strip is faint"
+        ] },
+        { "do": "Tap *Add person*.", "see": [
+          "A third field shows \"Person 3\" in grey, with the cursor in it",
+          "The keyboard opens",
+          "All three x are now bright"
+        ] },
+        { "do": "Tap *Done* (or the check mark) at the right of the bar above the keyboard.", "see": [
+          "The keyboard closes"
+        ] },
+        { "do": "Tap the *Subtotal* field.", "see": [
+          "A number keyboard opens"
+        ] },
+        { "do": "Type `100`.", "see": [
+          "The field reads 100"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes",
+          "The strip reads \"Total RM 116.60\"",
+          "Copy summary in the strip is bright"
+        ] },
+        { "do": "Tap the *Charges* row.", "see": [
+          "It opens, \"Service charge\" with 10 and %",
+          "\"SST\" with 6 and %",
+          "\"Set a charge to 0 if your bill already includes it.\"",
+          "Its caret turns up"
+        ] },
+        { "do": "Tap the *Charges* row again.", "see": [
+          "It folds and reads \"Service 10%, SST 6%\""
+        ] },
+        { "do": "Tap *Splits*.", "see": [
+          "A sheet rises over the dimmed page",
+          "A grab bar at its top centre and a *Close* x at its top right",
+          "Total {RM 116.60}",
+          "Subtotal {RM 100.00}",
+          "Service 10% {RM 10.00}",
+          "SST 6% {RM 6.60}",
+          "The heading \"Splits\"",
+          "Person 1 {RM 38.87}",
+          "Person 2 {RM 38.87}",
+          "Person 3 {RM 38.86}",
+          "Adds up to {RM 116.60}",
+          "\"2 sen left over\" with the chip \"Top of the list\"",
+          "*Copy summary* at the bottom of the sheet",
+          "The page behind shows faintly through the sheet's glass",
+          "No ring is drawn round the sheet"
+        ] },
+        { "do": "Tap the *Top of the list* chip.", "see": [
+          "The Spare sen panel rises from the bottom over the sheet",
+          "A *Close* x at its top right",
+          "It reads \"2 sen left over\"",
+          "Three choices, \"Top of the list\", \"One person\", \"At random\"",
+          "Top of the list is chosen",
+          "A thin light ring is drawn round Top of the list, see the note"
+        ] },
+        { "do": "Tap *One person*.", "see": [
+          "Three pills, \"Person 1\", \"Person 2\", \"Person 3\"",
+          "Person 1 is ticked"
+        ] },
+        { "do": "Tap *Close* on the Spare sen panel.", "see": [
+          "The panel goes down",
+          "Person 1 reads {RM 38.88}",
+          "Person 2 reads {RM 38.86}",
+          "Person 3 reads {RM 38.86}",
+          "Adds up to reads {RM 116.60}",
+          "The chip reads \"One person, Person 1\"",
+          "A thin light ring is drawn round the One person, Person 1 chip, see the note"
+        ] },
+        { "do": "Tap *Close* on the sheet.", "see": [
+          "The sheet goes down",
+          "The strip reads \"Total RM 116.60\"",
+          "Splits has focus. Note whether a ring is drawn round it"
+        ] },
+        { "do": "Tap *New bill*.", "see": [
+          "A dialog reads \"Start a new bill?\"",
+          "Under it \"This clears the people, items and amounts.\"",
+          "A red *Start new bill* across the dialog, with *Cancel* under it",
+          "A thin light ring is drawn round Cancel, see the note"
+        ] },
+        { "do": "Tap *Cancel*.", "see": [
+          "The dialog closes",
+          "The three people are still there",
+          "The strip reads \"Total RM 116.60\""
+        ] }
+      ],
+      "notes": [ { "kind": "ask", "text": "Open item A1 (H-11). In Safari's engine a tap that opens a popup or closes the Spare sen panel draws a thin light ring, the keyboard ring, on the control the app focuses, Top of the list in step 10, the spare sen chip in step 12 and Cancel in step 14. The design and Chrome draw none. A keyboard user gets the same ring on purpose. Option 1, keep it, a line in the test notes, nothing to build. Option 2, remove it, which goes back to the plan or the design because it changes how focus is set. We recommend option 1, it is Safari's own rule and it helps a keyboard user. If you see a ring anywhere else, say where. Write your choice in your note. If Safari zooms in on a tap, pinch the page back to its normal size." } ],
+      "tester": { "verdict": "FAIL", "note": "Failed on step 13 line 3 only, a fault in the script. It expected a ring round Splits and none was drawn (not focus-visible) at either height, because the case's order does not draw one. At step 12 a ring was drawn round the One person, Person 1 chip, which the script did not list. A probe shows the ring on Splits comes only when the sheet is closed straight after it opens, not after the Spare sen panel has been used as in this case. The rings at steps 10 and 14 were drawn and were light indigo, rgb(163, 170, 255), not white. Everything else it could drive matched at 390 x 664 and 390 x 844, every figure exact. Step 12 and step 13 line 3 were repaired after the run with the tester's words, and the ring-order probe confirms the new wording. They were not run again. It ran Safari's engine on Windows, not an iPhone, so only you can check the keyboard, the Done key and Safari's settings." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-10",
+      "title": "On the phone, a double tap acts once",
+      "scope": "S5 Tested in Safari's engine too, with the double tap rule (H-04) on your iPhone",
+      "status": "OPEN, built · sitting 2",
+      "problem": "Safari's engine counts the second tap of a quick double tap as a new tap, so in testing it acted twice, a second person added or the next row removed. You ruled \"Time + place\". A tap less than half a second after the last one and within about a finger's width of it does nothing. A slower tap acts. This case also records what your iPhone does with a tap on the charges hint, which Safari's engine on Windows answers differently from Chrome's.",
+      "before": "UAT-09 done. Three people, Subtotal 100, the strip reads Total {RM 116.60}, People open.",
+      "steps": [
+        { "do": "Double-tap *Add person* quickly.", "see": [
+          "Exactly one new field shows \"Person 4\" in grey",
+          "The cursor is in it and the keyboard opens",
+          "Four fields in all"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes"
+        ] },
+        { "do": "Tap *Add person* once, wait about one second, then tap *Add person* again where it now sits.", "see": [
+          "Two more fields, \"Person 5\" and \"Person 6\"",
+          "Six fields in all"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes"
+        ] },
+        { "do": "Double-tap the *x* in the Person 6 field quickly.", "see": [
+          "Person 6 is gone",
+          "Five fields, Person 1 to Person 5",
+          "No new empty field appeared",
+          "The cursor is in Person 5"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes"
+        ] },
+        { "do": "Double-tap *Splits* quickly.", "see": [
+          "The sheet opens and stays open",
+          "Total {RM 116.60}",
+          "Subtotal {RM 100.00}",
+          "Service 10% {RM 10.00}",
+          "SST 6% {RM 6.60}",
+          "Person 1 {RM 23.32}",
+          "Person 2 {RM 23.32}",
+          "Person 3 {RM 23.32}",
+          "Person 4 {RM 23.32}",
+          "Person 5 {RM 23.32}",
+          "Adds up to {RM 116.60}",
+          "No spare sen line",
+          "No \"Summary copied\" and no \"Could not copy\" line in the sheet"
+        ] },
+        { "do": "Tap *Close* on the sheet.", "see": [
+          "The sheet goes down"
+        ] },
+        { "do": "Double-tap *New bill* quickly.", "see": [
+          "The dialog opens and stays open"
+        ] },
+        { "do": "Double-tap *Cancel* quickly.", "see": [
+          "The dialog closes",
+          "The five people are still there",
+          "The strip reads \"Total RM 116.60\"",
+          "Charges is still folded",
+          "The keyboard does not open"
+        ] },
+        { "do": "Tap the *Charges* row.", "see": [
+          "It opens with Service charge 10 and SST 6"
+        ] },
+        { "do": "Tap the *Service charge* field just right of the 10.", "see": [
+          "The cursor is after the 10 and a number keyboard opens"
+        ] },
+        { "do": "Type `5`.", "see": [
+          "The field reads 105",
+          "No red error shows yet"
+        ] },
+        { "do": "Tap the hint text \"Set a charge to 0 if your bill already includes it.\"", "see": [
+          "The cursor stays in the Service charge field",
+          "No red error shows"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes",
+          "A red \"Enter a rate from 0 to 30\" with a warning circle shows under the field",
+          "The field has a red edge",
+          "The strip reads \"Check the charges to see the splits.\"",
+          "Copy summary in the strip is faint"
+        ] },
+        { "do": "Tap the *Service charge* field just right of the 105.", "see": [
+          "The cursor is after the 105"
+        ] },
+        { "do": "Tap the delete key once.", "see": [
+          "The field reads 10",
+          "The red error is gone"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes",
+          "The strip reads \"Total RM 116.60\""
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "If Safari zooms in on a double tap, pinch the page back to its normal size before the next step. The zoom is Safari's own. Step 14 lists what Safari's engine does on Windows. Chrome's engine leaves the field and shows the error at that tap. Both are by design. If your iPhone shows the error at step 14, cross those two lines and say so in your note, it is a record, not a fault. If the keyboard does not open after a press on Add person or an x, cross that line and tap the next step's Done only when the keyboard is up." } ],
+      "tester": { "verdict": "PASS", "note": "Every line it could drive matched at 390 x 664 and 390 x 844. Each double tap acted once, one Person 4, one removal with the cursor in Person 5, the sheet and the dialog stayed open, and Cancel closed once with nothing behind it pressed and no copy. A slower second tap acted. The tap on the hint reached no mousedown or click, focus stayed in Service charge and no error showed, which is the WebKit result the case lists. Leaving the field showed Enter a rate from 0 to 30 with a red edge, with one Tab in place of Done. It has no iOS keyboard, so only you can check the keyboard lines and how real fingers land. It ran Safari's engine on Windows, not an iPhone." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-11",
+      "title": "On the phone, the field you type in never hides under the strip",
+      "scope": "S5 Tested in Safari's engine too, with S7 and H-08 on your iPhone",
+      "status": "OPEN, built · sitting 2",
+      "problem": "On a phone the strip sits fixed at the bottom. In Safari's engine, moving to the next field could leave it under the strip, partly or wholly hidden. You agreed to the fix, the app scrolls a focused field clear of the strip. Here you move down a list of prices with the arrows above the keyboard.",
+      "before": "UAT-10 done. Tap *New bill*, then *Start new bill*. Tap *By item*. Then four times, tap *Add item* and tap *Done* above the keyboard.",
+      "steps": [
+        { "do": "Look at the screen.", "see": [
+          "People is open with Person 1 and Person 2",
+          "Charges is folded",
+          "By item is chosen",
+          "Four rows, Item 1 to Item 4, each with a grey \"0.00\" and an amber bar",
+          "The strip reads \"Add each item and tap who had it to see the splits.\""
+        ] },
+        { "do": "Tap the *Item 1* price field.", "see": [
+          "The cursor is in Item 1's price and a number keyboard opens",
+          "The field shows in full, not under the strip and not under the keyboard"
+        ] },
+        { "do": "Type `15.90`.", "see": [
+          "The field reads 15.90"
+        ] },
+        { "do": "Tap the down arrow on the bar above the keyboard.", "see": [
+          "The cursor is in the Item 2 name field",
+          "The field shows in full, not under the strip and not under the keyboard"
+        ] },
+        { "do": "Tap the down arrow.", "see": [
+          "The cursor is in Item 2's price",
+          "The field shows in full, not under the strip and not under the keyboard"
+        ] },
+        { "do": "Type `13.50`.", "see": [
+          "The field reads 13.50"
+        ] },
+        { "do": "Tap the down arrow.", "see": [
+          "The cursor is in the Item 3 name field",
+          "The field shows in full, not under the strip and not under the keyboard"
+        ] },
+        { "do": "Tap the down arrow.", "see": [
+          "The cursor is in Item 3's price",
+          "The field shows in full, not under the strip and not under the keyboard"
+        ] },
+        { "do": "Type `12.00`.", "see": [
+          "The field reads 12.00"
+        ] },
+        { "do": "Tap the down arrow.", "see": [
+          "The cursor is in the Item 4 name field",
+          "The field shows in full, not under the strip and not under the keyboard"
+        ] },
+        { "do": "Tap the down arrow.", "see": [
+          "The cursor is in Item 4's price",
+          "The field shows in full, not under the strip and not under the keyboard"
+        ] },
+        { "do": "Type `18.00`.", "see": [
+          "The field reads 18.00"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes",
+          "The strip shows a warning circle and \"4 items still need a person. Tap who had each one to see the splits.\"",
+          "Copy summary in the strip is faint"
+        ] },
+        { "do": "Under Item 1, tap *Person 1*.", "see": [
+          "Item 1's amber bar is gone",
+          "The strip reads \"3 items still need a person. Tap who had each one to see the splits.\""
+        ] },
+        { "do": "Under Item 2, tap *Person 2*.", "see": [
+          "The strip reads \"2 items still need a person. Tap who had each one to see the splits.\""
+        ] },
+        { "do": "Under Item 3, tap *Person 2*.", "see": [
+          "The strip reads \"1 item still needs a person. Tap who had it to see the splits.\""
+        ] },
+        { "do": "Under Item 4, scroll until its buttons show, then tap *Person 1*.", "see": [
+          "No amber bar is left",
+          "The strip reads \"Total RM 69.26\"",
+          "Copy summary in the strip is bright"
+        ] },
+        { "do": "Tap *Splits*.", "see": [
+          "Total {RM 69.26}",
+          "Subtotal {RM 59.40}",
+          "Service 10% {RM 5.94}",
+          "SST 6% {RM 3.92}",
+          "\"Splits\" with \"items + charges\"",
+          "Person 1 {RM 39.53}",
+          "Under it {33.90 + 5.63}",
+          "Person 2 {RM 29.73}",
+          "Under it {25.50 + 4.23}",
+          "Adds up to {RM 69.26}",
+          "Under it {59.40 + 9.86}",
+          "\"1 sen left over\" with \"Top of the list\""
+        ] },
+        { "do": "Tap *Close* on the sheet.", "see": [
+          "The sheet goes down"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "The arrows on the bar above the keyboard move to the next text field and skip the buttons. A field can sit close above the strip, it only has to show in full." } ],
+      "tester": { "verdict": "PASS", "note": "Every line it could drive matched at 390 x 664 and 390 x 844. Moving down the fields, with Tab until the next text field in place of the keyboard's down arrow, left every focused field in full above the strip, the lowest one 12 px clear of it. The strip messages and the sheet figures were exact. Step 17 needed a scroll to reach Person 1 under Item 4, now written into the step. It has no on-screen keyboard, so only you can check the keyboard lines and the real arrows above the keyboard. It ran Safari's engine on Windows, not an iPhone." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-12",
+      "title": "On the phone, a big bill never scrolls sideways",
+      "scope": "S5 Tested in Safari's engine too, with S2 on your iPhone",
+      "status": "OPEN, built · sitting 2",
+      "problem": "The 360 px check of UAT-04, on your own iPhone. A four-figure price and then a six-figure Total must fit with nothing scrolling sideways. The price field at 99999.99 is open item A2 (H-12), which you rule in UAT-04. Here you only look at it on your phone.",
+      "before": "UAT-11 done. Four items, the strip reads Total {RM 69.26}.",
+      "steps": [
+        { "do": "Tap *Add item*.", "see": [
+          "A row \"Item 5\" with a grey \"0.00\" and an amber bar",
+          "The cursor is in its name and the keyboard opens"
+        ] },
+        { "do": "Tap the down arrow above the keyboard.", "see": [
+          "The cursor is in Item 5's price",
+          "The field shows in full, not under the strip and not under the keyboard"
+        ] },
+        { "do": "Type `964.50`.", "see": [
+          "The field reads 964.50"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes",
+          "Item 5's price shows {964.50} whole",
+          "The strip shows a warning circle and \"1 item still needs a person. Tap who had it to see the splits.\""
+        ] },
+        { "do": "Under Item 5, scroll until its buttons show, then tap *Person 1*.", "see": [
+          "The amber bar is gone",
+          "The strip reads \"Total RM 1,193.87\" on one line"
+        ] },
+        { "do": "Swipe left across the middle of the page.", "see": [
+          "Nothing moves sideways"
+        ] },
+        { "do": "Tap *Splits*.", "see": [
+          "Total {RM 1,193.87}",
+          "Subtotal {RM 1,023.90}",
+          "Service 10% {RM 102.39}",
+          "SST 6% {RM 67.58}",
+          "Person 1 {RM 1,164.14}",
+          "Under it {998.40 + 165.74}",
+          "Person 2 {RM 29.73}",
+          "Under it {25.50 + 4.23}",
+          "Adds up to {RM 1,193.87}",
+          "Under it {1,023.90 + 169.97}",
+          "\"1 sen left over\" with \"Top of the list\"",
+          "Every figure shows whole, none cut at its edge"
+        ] },
+        { "do": "Tap *Close* on the sheet.", "see": [
+          "The sheet goes down"
+        ] },
+        { "do": "Tap the *Item 5* price field.", "see": [
+          "The cursor is in it and a number keyboard opens"
+        ] },
+        { "do": "Hold the delete key until the field is empty.", "see": [
+          "The field shows a grey \"0.00\""
+        ] },
+        { "do": "Type `99999.99`.", "see": [
+          "The field takes the new price"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes",
+          "The strip reads \"Total RM 116,669.25\" on one line"
+        ] },
+        { "do": "Tap *Splits*.", "see": [
+          "Total {RM 116,669.25}",
+          "Subtotal {RM 100,059.39}",
+          "Service 10% {RM 10,005.94}",
+          "SST 6% {RM 6,603.92}",
+          "Person 1 {RM 116,639.52}",
+          "Under it {100,033.89 + 16,605.63}",
+          "Person 2 {RM 29.73}",
+          "Under it {25.50 + 4.23}",
+          "Adds up to {RM 116,669.25}",
+          "Under it {100,059.39 + 16,609.86}",
+          "\"1 sen left over\" with \"Top of the list\"",
+          "Every figure shows whole, none cut at its edge"
+        ] },
+        { "do": "Tap *Close* on the sheet.", "see": [
+          "The sheet goes down"
+        ] },
+        { "do": "Swipe left across the middle of the page.", "see": [
+          "Nothing moves sideways"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "Look at Item 5's price field after step 12 and say in your note whether it shows 99999.99 whole or cut, as at 360 px in UAT-04. It adds to your ruling on open item A2." } ],
+      "tester": { "verdict": "PASS", "note": "Every line it could drive matched at 390 x 664 and 390 x 844. The strip read RM 1,193.87 and RM 116,669.25 on one line and every sheet figure was whole and exact. It has no touch swipe, so at the two swipe lines it measured instead, and the page was 390 px wide in a 390 px viewport with nothing past its edge. For the A2 note, Item 5's 99999.99 shows cut after leaving the field (text 92 px in a 76 px field). Step 5 needed a scroll to reach Person 1 under Item 5, now written into the step. Only you can check the swipes and the keyboard lines on a real iPhone." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-13",
+      "title": "VoiceOver on a price field, before and after its error",
+      "scope": "S5 Tested in Safari's engine too, with S7 and H-09 on your iPhone",
+      "status": "OPEN, built · sitting 2",
+      "problem": "You ruled \"Build to the golden\" for the amount fields, so each price field points a screen reader at its error text at all times. Measured in Chrome's engine, a screen reader then reads \"Enter an amount like 12.50\" as a hint even before any error shows. You kept it as built and asked for an iPhone VoiceOver case. The last steps also check that closing the New bill dialog takes VoiceOver straight back to New bill.",
+      "before": "UAT-12 done. VoiceOver is off. With VoiceOver on, one tap reads an item and a double tap anywhere presses it. You turn it on in Settings, Accessibility, VoiceOver.",
+      "steps": [
+        { "do": "Scroll up to Item 1 and tap its price field.", "see": [
+          "The cursor is in it and a number keyboard opens"
+        ] },
+        { "do": "Hold the delete key until the field is empty.", "see": [
+          "The field shows a grey \"0.00\""
+        ] },
+        { "do": "Type `13.505`.", "see": [
+          "The field reads 13.505"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The keyboard closes",
+          "A red \"Enter an amount like 12.50\" with a warning circle shows under Item 1",
+          "Item 1's price field has a red edge",
+          "The strip reads \"Give every item a price to see the splits.\""
+        ] },
+        { "do": "Turn on VoiceOver in Settings, Accessibility, VoiceOver, and go back to Safari.", "see": [
+          "VoiceOver speaks as you move",
+          "Safari shows the app"
+        ] },
+        { "do": "Tap the *Item 1* price field once.", "see": [
+          "A frame is drawn round the field",
+          "VoiceOver reads \"Item 1 price in RM\"",
+          "It reads the value 13.505",
+          "It says it is a text field",
+          "It says the value is invalid",
+          "It reads \"Enter an amount like 12.50\""
+        ] },
+        { "do": "Tap the *Item 2* price field once.", "see": [
+          "VoiceOver reads \"Item 2 price in RM\"",
+          "It reads the value 13.50",
+          "It says it is a text field",
+          "It reads \"Enter an amount like 12.50\", though no error shows there"
+        ] },
+        { "do": "Tap *New bill* once.", "see": [
+          "VoiceOver reads \"New bill\" and that it is a button"
+        ] },
+        { "do": "Double-tap anywhere on the screen.", "see": [
+          "The dialog opens",
+          "VoiceOver reads \"Cancel\""
+        ] },
+        { "do": "Double-tap anywhere on the screen.", "see": [
+          "The dialog closes",
+          "VoiceOver reads \"New bill\" next",
+          "It reads nothing else between Cancel and New bill"
+        ] },
+        { "do": "Turn off VoiceOver.", "see": [
+          "VoiceOver is silent"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "VoiceOver's order and wording vary a little. What matters is that the hint is read before any error shows, that an invalid value is called invalid, and that focus lands on Cancel and then on New bill. If VoiceOver reads the hint only after a pause, that is its setting Speak Hints." } ],
+      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Steps 1 to 4 matched, 13.505, the red Enter an amount like 12.50 with its circle, the red edge and the strip message. Steps 5 to 11 need VoiceOver, so only you can check them. In their place it read the markup behind them, the label Item 1 price in RM, aria-invalid true, described by the error text, and Item 2 described by the same text while it is hidden. That is not what VoiceOver says. Plain taps put focus on Cancel and then back on New bill. At 390 x 664 Item 1's field was above the screen and needed a scroll, now written into step 1." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-14",
+      "title": "With Block All Cookies on, the app warns that nothing is saved, and the Private limit",
+      "scope": "S5 Tested in Safari's engine too, with S4 on your iPhone",
+      "status": "OPEN, built · sitting 2",
+      "problem": "The save warning of UAT-06, in Safari on your iPhone, with the setting that blocks storage there. Then the known limit. A Private tab reports every save as working and drops the bill when it closes, so no page can warn. The README says so.",
+      "before": "UAT-13 done, VoiceOver off. Five items, Item 1's price at 13.505 with its red error.",
+      "steps": [
+        { "do": "Open the Settings app, then Apps, then Safari, and turn on *Block All Cookies*.", "see": [
+          "The Block All Cookies switch is on"
+        ] },
+        { "do": "Go back to Safari, tap the address bar and tap *Go* on the keyboard.", "see": [
+          "The page loads again",
+          "A row under the top bar starts with an amber warning triangle",
+          "It reads \"This bill is not being saved on this device. It will be lost when you close this tab.\"",
+          "It has no close button",
+          "People is open with Person 1 and Person 2",
+          "Split is on Even with an empty Subtotal",
+          "The strip reads \"Enter the subtotal to see the splits.\""
+        ] },
+        { "do": "Tap the *Subtotal* field.", "see": [
+          "A number keyboard opens"
+        ] },
+        { "do": "Type `50`.", "see": [
+          "The field reads 50"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The strip reads \"Total RM 58.30\"",
+          "The warning is still there"
+        ] },
+        { "do": "In Settings, Apps, Safari, turn off *Block All Cookies*.", "see": [
+          "The Block All Cookies switch is off"
+        ] },
+        { "do": "Go back to Safari, tap the address bar and tap *Go*.", "see": [
+          "No warning shows",
+          "Split is on By item with five items",
+          "Item 1's price reads 13.505 with its red error",
+          "The strip reads \"Give every item a price to see the splits.\""
+        ] },
+        { "do": "Tap the tabs button, choose *Private* and tap *+* for a new Private tab.", "see": [
+          "A new Private tab opens"
+        ] },
+        { "do": "Type the app's address and tap *Go*.", "see": [
+          "The app's first screen shows, Person 1 and Person 2 with an empty Subtotal",
+          "No warning shows"
+        ] },
+        { "do": "Tap the *Subtotal* field.", "see": [
+          "A number keyboard opens"
+        ] },
+        { "do": "Type `100`.", "see": [
+          "The field reads 100"
+        ] },
+        { "do": "Tap *Done* above the keyboard.", "see": [
+          "The strip reads \"Total RM 116.60\"",
+          "No warning shows"
+        ] },
+        { "do": "Tap the tabs button and close this Private tab with its x.", "see": [
+          "The Private tab is gone"
+        ] },
+        { "do": "Tap *+* for a new Private tab, type the app's address and tap *Go*.", "see": [
+          "The first screen shows again",
+          "The Subtotal is empty",
+          "No warning showed at any point in the Private tabs"
+        ] },
+        { "do": "Tap the tabs button, go back to your normal tabs and tap the app's tab.", "see": [
+          "The app shows its five items"
+        ] }
+      ],
+      "notes": [ { "kind": "limit", "text": "If iOS asks you to confirm at step 1, confirm the block. Reload at step 7 before you change anything, as in UAT-06. If the five items do not come back at step 7, Safari dropped the saved data when you blocked it. Mark that line with a cross and say so in your note. If Private Browsing is locked, unlock it with Face ID." } ],
+      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Steps 2 to 7 matched with a storage stand-in in place of Block All Cookies at steps 1 and 6, a page whose every localStorage access throws. The warning row sat under the top bar with the triangle and the exact text, no close button, over a new bill at RM 58.30. With the block lifted the five items came back, Item 1 at 13.505 with its red error. Steps 8 to 15 need Private Browsing and the tab overview, and steps 1 and 6 need iOS Settings, so only you can check them. It could not see what Safari's own setting does to the saved bill." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    },
+    {
+      "id": "UAT-15",
+      "title": "The tab icon in Safari, in light and dark",
+      "scope": "S5 Tested in Safari's engine too, with S6 on your iPhone",
+      "status": "OPEN, built · sitting 2",
+      "problem": "The tab icon of UAT-07, in Safari on your iPhone. Safari 26 ignores the light and dark switch inside an icon, a Safari bug you accepted for 1.1.0, so the mark is expected in one colour in both modes. A home-screen icon is not built in 1.1.0.",
+      "before": "UAT-14 done, Safari on the app in a normal tab. The iPhone is in dark mode (Settings, Display and Brightness, Dark).",
+      "steps": [
+        { "do": "Tap the tabs button at the bottom of Safari.", "see": [
+          "The tab overview opens",
+          "The app's tab shows the mark beside \"Danial's Splity Tab\""
+        ] },
+        { "do": "Open Settings, then Display and Brightness, and choose *Light*.", "see": [
+          "The iPhone turns light"
+        ] },
+        { "do": "Go back to Safari's tab overview.", "see": [
+          "The mark is the same colour as at step 1",
+          "The mark is easy to see on the light tab"
+        ] },
+        { "do": "Tap the app's tab.", "see": [
+          "The app shows again, still dark"
+        ] },
+        { "do": "Switch the iPhone back to the mode you use.", "see": [
+          "The iPhone is in your usual mode"
+        ] }
+      ],
+      "notes": [ { "kind": "note", "text": "Say in your note which colour the mark is, light indigo or dark navy." } ],
+      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Every step needs Safari's tab overview or iOS settings, so the whole case is yours alone. The page title does read Danial's Splity Tab." },
+      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "retest": null,
+      "next": ""
+    }
+  ],
+  "open": [
+    { "id": "A1", "title": "The white ring after a tap in Safari (H-11)", "what": "In Safari's engine a tap that opens the New bill dialog or the Spare sen panel, or closes the Spare sen panel, draws a thin light ring, the keyboard focus ring, on the control the app focuses, Cancel, the chosen spare sen choice and the spare sen chip. The design and Chrome draw none. You see it in UAT-09.", "why": "It is a visible difference from the approved design on your iPhone, and removing it changes how focus is set or changes the design.", "options": "(1) Keep it. A line in the test notes and the ledger, nothing to build. (2) Remove it. Back to the plan or the design, for example telling Safari the focus did not come from a keyboard.", "recommendation": "(1). It is Safari's own rule, the ring helps someone who uses a keyboard, and Streaks has the same item, so one ruling can cover both apps.", "ruling": "" },
+    { "id": "A2", "title": "A price of 99999.99 does not fit its field at 360 px until focused (H-12)", "what": "At 360 px a price of 99999.99 shows as \"99999.9\" in its field until the field has focus. The splits, the strip and the sheet show every figure whole, and 964.50 fits as promised. The field width is the approved design's. You see it in UAT-04, and on your iPhone in UAT-12.", "why": "A wider field changes the approved design, which only the design phase can do.", "options": "(1) Keep it, with a line in the README's limits. (2) A design change in v1.2.0, a wider price field or a smaller font at 360 px.", "recommendation": "(1) for 1.1.0. A five-figure price for one dish is rare, and the value shows whole everywhere it is added up.", "ruling": "" },
+    { "id": "A3", "title": "How your iPhone reaches the app for sitting 2", "what": "Sitting 2 needs the app on your iPhone. The app runs on this PC at 127.0.0.1, an address only this PC can open.", "why": "The first option opens a port on your home network for the length of the sitting, so it is your call.", "options": "(1) The orchestrator serves the app on this PC's Wi-Fi address for sitting 2 only. Windows asks once whether to let Python through its firewall, and you answer that prompt. The server stops when the sitting ends. Over that address Safari treats the page as not secure, so Copy summary says \"Could not copy. Your browser blocked the clipboard.\" there, and no case presses it. (2) The iPhone cases wait for the published page after the seal.", "recommendation": "(1). The iPhone cases are the only check on a real phone, and they should inform the seal, not follow it.", "ruling": "" },
+    { "id": "A4", "title": "A stray file outside the project", "what": "An empty file, {temp}\\ref_a13, made by an orchestrator slip on 15 October. It is logged in out-of-project-artifacts.md at {workspace}\\examples\\split\\docs\\progress\\out-of-project-artifacts.md.", "why": "Agents never delete outside the project. You delete it by hand.", "options": "(1) Delete it. (2) Leave it.", "recommendation": "(1). It is 0 bytes and nothing uses it.", "ruling": "" },
+    { "id": "A5", "title": "Long paths and local paths before the repository goes public", "what": "Some failure screenshots in the history have paths long enough that a clone into a deep Windows folder fails on them, and the records hold local D:/ paths and your Windows user folder. The published page never serves them, but a public repository shows them. The same check is open for Streaks.", "why": "It is your choice for publish prep, after the seals.", "options": "(1) Shorter evidence names and scrubbed paths before the repository goes public. (2) Leave the failure screenshots out of the published history. (3) Publish them as they are.", "recommendation": "No strong recommendation, it is a preference call. Scrubbing hides your user folder name. Keeping them keeps the records exactly as they happened.", "ruling": "" },
+    { "id": "A6", "title": "Smaller calls we made for you", "what": "(a) The planned QA and security re-check after the fixes was folded into the full regression, one run each instead of two. (b) A name field that receives only invisible control characters saves the same bill and clears \"Summary copied\". Accepted for 1.1.0, the fix goes to v1.2.0. (c) A Chinese or Japanese input method that holds a direction mark is cut short when the mark is removed. The name stays plain. Accepted, to v1.2.0. (d) Comments, test tidy-ups and qa wording wait for the v1.2.0 plan's doc and test pass, no behaviour changes. (e) The README header, lockup and badges stay at 1.0 until the seal, so the pictures show exactly what you seal. (f) The scope statuses move to SHIPPED at the seal. (g) Item names are kept plain too, not only person names. (h) Dismiss note now ignores the second press of a double click, so it no longer folds People on a phone. (i) Above six people the desktop card lists the splits in two columns. (j) A bad or blank rate or price blocks the receipt with its message and never counts as 0. (k) After a click on Cancel the focus reaches New bill a moment later, not at once. (l) The build's untracked leftovers are archived at publish prep, never deleted.", "why": "Each one is ours and reversible.", "options": "Accept all, or name the ones you want changed.", "recommendation": "Accept all. None changes what you see in normal use.", "ruling": "" }
+  ],
+  "solved": [
+    { "title": "The by-item table on a small phone", "problem": "In 1.0 the by-item table scrolled sideways on a 360 px phone once the bill grew.", "did": "The new look moved the splits into a receipt that wraps each split's working under its name, so every figure fits at 360 px, up to a six-figure Total.", "why": "Shrinking the 1.0 table's text would have hit the readable floor before a large bill fitted. The one figure that still does not fit is a 99999.99 price inside its own field, open item A2." },
+    { "title": "Holding Enter on an item's x", "problem": "Holding Enter on the last item's x removed it, then the key's repeats pressed Add item and a blank item appeared.", "did": "After a press that changes the layout, the repeats of a held key are ignored until a fresh press.", "why": "A delay after each press would also slow a deliberate second press. Ignoring only the key's own repeats changes nothing for normal typing." },
+    { "title": "A double tap acts once", "problem": "Safari's engine counts the second tap of a double tap as a new tap, so it acted twice, a second person added or the next row removed.", "did": "Your ruling, \"Time + place\". A tap less than half a second after the last one and within about a finger's width of it does nothing. A mouse click and a key press work as in 1.0.", "why": "Time only would drop a quick tap somewhere else. Place only would drop a slow second tap on the same spot. The cost you accepted is that two deliberate fast taps on one spot count once." },
+    { "title": "The field under the phone strip", "problem": "In Safari's engine, moving to the next field could leave it under the strip at the bottom, one field wholly hidden.", "did": "Below the desktop width, when a focused field's bottom is under the strip, the app scrolls it just clear of the strip.", "why": "Accepting it as a Safari difference would break the rule that a focused control is always visible, and Safari on the iPhone is why its engine was added." },
+    { "title": "What a screen reader reads on a price field", "problem": "Built to the design, every price field points a screen reader at its error text, so \"Enter an amount like 12.50\" is read as a hint even before any error shows.", "did": "You kept it as built after a drawing of both states. UAT-13 checks it with VoiceOver.", "why": "Naming the error only while it shows would reopen the approved design for a hint that is correct before any error too." },
+    { "title": "Names stay plain", "problem": "An invisible direction mark pasted into a name made the People line run backwards on screen, while the copied summary stayed right.", "did": "Your ruling, option 1. Control and direction characters are removed from every name as it is typed or pasted and when a saved bill is read. Item names too.", "why": "Wrapping each name in invisible marks would keep the characters and put more invisible text in the page. Accepting it would leave the screen and the summary disagreeing." },
+    { "title": "A double press on Dismiss note", "problem": "On a phone, once the \"could not be read\" note was dismissed, the People row moved under the pointer, so the second press of a double click folded People.", "did": "Dismiss note now ignores the repeat press, as Add person and every x already did.", "why": "Leaving it as a known limit would break the rule that one double press acts once. No case here reaches it, because no real gesture makes a saved bill unreadable. The review drove it." },
+    { "title": "A save that fails now says so", "problem": "In 1.0, if the browser blocked or filled its storage, the bill was lost with no message.", "did": "A warning shows while saving fails, decided by the latest save, and from the first screen when the browser refuses storage outright, as you chose. It goes after the next save that works and cannot be dismissed.", "why": "A test write or a timer would add writes and delays for nothing the latest save does not already show. A private window and Safari's 7-day clean-up report every save as working, so the README states that limit instead of claiming a detector." },
+    { "title": "The spare sen choices", "problem": "The spare sen rule needed answers the request did not give, who can take them by item, what Pick again does when no draw changes anything, and what the chip says when the chosen person leaves.", "did": "Your answers. One person takes every spare sen, and by item only people on an item can be chosen. Pick again tries up to 64 draws, then leaves the splits. When the chosen person cannot take them, the chip names Top of the list, the rule in use. The copied summary shows a thousands comma, as on screen.", "why": "A person on no item paying a sen of other people's food felt wrong. An endless draw could hang. Hiding the fallback would make the chip lie about who pays." },
+    { "title": "The amber bar on a new item, and a late copy answer", "problem": "A new blank item shows the amber \"needs a person\" bar at once, and a copy whose answer came after a change showed nothing.", "did": "You kept both as built.", "why": "The bar tells you from the first moment what is missing. \"Summary copied\" after a change would claim figures the screen no longer shows." },
+    { "title": "The tab icon as its own file, and Safari's engine in every run", "problem": "The design carried the tab icon inside the page in a form the app's security rules block, and 1.0 was tested only in Chrome's engine.", "did": "The icon ships as its own small file, byte for byte the design's. Every behaviour test and the cold-start check now run in Safari's engine too. The pixel match stays in Chrome's, as you chose.", "why": "Loosening the security rules for one icon would weaken them for everything. Pixel matching in both engines was the other option. The white ring of A1 is what only a look in Safari could catch." },
+    { "title": "The old green page during the build", "problem": "You saw the 1.0 green and white page in the app's browser pane mid-build and stopped everything.", "did": "We checked the new design files against the archive, all equal, and showed you renders. The page you saw was a planned test of the unchanged 1.0 app.", "why": "That baseline proved the old checks before anything changed. We now warn you before such a run." }
+  ],
+  "residuals": [
+    "A private window and Safari's 7-day clean-up lose the bill with no warning. The browser reports nothing the page could show. The README says so, and UAT-14 shows it.",
+    "Safari shows the tab icon in one colour in both modes. Safari's bug, accepted for 1.1.0, seen in UAT-15.",
+    "No home-screen icon in 1.1.0. It needs a filled tile, against your no-tile ruling. Deferred to a later logo round.",
+    "Two open tabs share one bill and the last save wins. Another page on the same github.io address can read the saved bill.",
+    "Two deliberate taps on one spot less than half a second apart count once.",
+    "A name field that receives only control characters clears \"Summary copied\" (A6 b). An input method holding a direction mark is cut short (A6 c).",
+    "Two right-to-left names next to each other in the People line can show in right-to-left order. The app is English only.",
+    "Dismiss note is NOT RUN as a case. No real gesture makes a saved bill unreadable, so the note cannot be reached without a console. The review and the regression drove it.",
+    "Clearing the save warning without a reload is NOT RUN as a case. In the open page it would save that page's bill over the saved one. The review drove it with a stand-in.",
+    "Firefox and Safari on a Mac are NOT RUN. The app reaching the desktop width with the Splits sheet open is NOT RUN as a case, the automated runs cover it."
+  ]
+}
+</script>
+
+<div class="app">
+  <aside class="rail" aria-label="Cases">
+    <div class="kicker" id="rail-kicker"></div>
+    <div class="rail-title" id="rail-title"></div>
+    <div class="rail-meta" id="rail-meta"></div>
+    <ol class="caselist" id="caselist"></ol>
+    <div class="rail-foot">
+      <button class="results-btn" type="button" data-results>Results for the chat</button>
+      <span><kbd>[</kbd> <kbd>]</kbd> previous and next case</span>
+      <span><b>T</b> tester · <b>U</b> user</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <section class="sheet guide" aria-labelledby="guide-h">
+      <div class="guide-head">
+        <h2 id="guide-h">Verdict guide</h2>
+        <button class="guide-toggle" id="guide-toggle" type="button" aria-expanded="true" aria-controls="guide-body">Hide</button>
+      </div>
+      <div class="guide-body" id="guide-body">
+        <p class="guide-intro">Every case gets one verdict, including the ones you could not do. The tester's verdict is already there so you can compare. If it says PASS and you find FAIL, that is one of the most useful things you can tell us.</p>
+        <div class="legend" id="legend"></div>
+        <div class="states">
+          <div class="st">
+            <h3>Mark each line as you check it</h3>
+            <p><span class="mk-demo ok" id="demo-ok"></span><span>It matches the sheet.</span></p>
+            <p><span class="mk-demo no" id="demo-no"></span><span>It does not match. A case can still PASS with a cross when you decide the difference does not matter, and the cross stays on record.</span></p>
+          </div>
+          <div class="st">
+            <h3>Set by the sheet, not by you</h3>
+            <p><span class="vchip v-state">NOT RUN</span><span>No verdict yet. It comes back at the next sitting.</span></p>
+            <p><span class="vchip v-retest">RETEST</span><span>It failed, we fixed it, and it is handed back. Your first verdict stays beside the new one.</span></p>
+          </div>
+        </div>
+        <table class="kv before" id="before"></table>
+      </div>
+    </section>
+
+    <article class="sheet case" id="case"></article>
+  </main>
+</div>
+
+<div class="scrim" id="results" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="rd-t">
+    <h2 id="rd-t">Your results, ready for the chat</h2>
+    <p>Paste this into the chat. It holds every verdict, every note and every line you marked with a cross.</p>
+    <textarea id="rd-text" readonly aria-label="Your results"></textarea>
+    <p id="rd-status" role="status"></p>
+    <div class="row">
+      <button class="ghost danger" type="button" id="rd-clear">Clear my marks</button>
+      <button class="ghost" type="button" id="rd-close">Close</button>
+      <button class="primary" type="button" id="rd-copy">Copy results</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const DATA = JSON.parse(document.getElementById("sheet-data").textContent);
+  const CASES = DATA.cases || [];
+  document.title = `UAT ${DATA.app} ${DATA.version}, sitting ${DATA.sitting} of ${DATA.sittings}`;
+
+  const ICON = {
+    check: "M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z",
+    x: "M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
+  };
+  const svg = (name) => `<svg viewBox='0 0 256 256' aria-hidden='true' focusable='false'><path d='${ICON[name]}'/></svg>`;
+  document.getElementById("demo-ok").innerHTML = svg("check");
+  document.getElementById("demo-no").innerHTML = svg("x");
+
+  const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  // Mini markup. *Control*, `typed text`, [Key], "on-screen copy", {figure}.
+  function rich(s) {
+    let h = esc(s);
+    h = h.replace(/`([^`]+)`/g, "<kbd class='typed'>$1</kbd>");
+    h = h.replace(/\[([A-Za-z0-9+ ]+)\]/g, "<kbd class='key'>$1</kbd>");
+    h = h.replace(/\*([^*]+)\*/g, "<b class='ctl'>$1</b>");
+    h = h.replace(/"([^"]+)"/g, "<span class='ui'>“$1”</span>");
+    h = h.replace(/\{([^{}]+)\}/g, "<span class='fig'>$1</span>");
+    return h;
+  }
+  const figs = (s) => esc(s).replace(/\{([^{}]+)\}/g, "<span class='fig'>$1</span>");
+  // A guide example is { ref, text }. The ref (the case or step it cites) is set in bold.
+  const guideText = (g) => `<b>${esc(g.ref)}</b> ${figs(g.text)}`;
+  const plain = (s) => String(s ?? "").replace(/[*`\[\]{}]/g, "");
+
+  const VERDICTS = ["PASS", "FAIL", "BLOCKED"];
+  const VKEY = { "PASS": "pass", "FAIL": "fail", "BLOCKED": "block", "NOTE": "note", "NOT RUN": "state", "RETEST": "retest" };
+  const chip = (v, off) => `<span class='vchip v-${VKEY[v] || "state"}${off ? " off" : ""}'>${esc(v)}</span>`;
+
+  // Rail head
+  document.getElementById("rail-kicker").textContent = `UAT · sitting ${DATA.sitting} of ${DATA.sittings}`;
+  document.getElementById("rail-title").textContent = `${DATA.app} ${DATA.version}`;
+  document.getElementById("rail-meta").textContent = `${CASES.length} case${CASES.length === 1 ? "" : "s"} · about ${DATA.minutes} minutes`;
+
+  // Guide
+  const MEANING = {
+    PASS: "Every line you checked matches the sheet, or a cross you marked does not matter to you.",
+    FAIL: "A line does not match and it matters. Mark that line with a cross and say in the note what you saw.",
+    BLOCKED: "You could not run it. Say why in the note. The control was not where the sheet said, the start could not be reached, or the result was not something you could see.",
+    NOTE: "Any verdict can carry a note. A wish for a change, what you saw, or why you stopped. A note on a PASS becomes a finding for a later version."
+  };
+  const guide = DATA.guide || {};
+  document.getElementById("legend").innerHTML = ["PASS", "FAIL", "BLOCKED", "NOTE"].map((v) =>
+    `<div class='lg'><div>${chip(v)}</div><p>${esc(MEANING[v])}</p>${guide[v] ? `<p class='ex'>${guideText(guide[v])}</p>` : ""}</div>`).join("");
+  const beforeRows = [["App address", `<a href='${esc(DATA.url)}'>${esc(DATA.url)}</a> started for you. Go to exactly this address.`], ["Starting state", rich(DATA.start)]]
+    .concat((DATA.facts || []).map(([k, v]) => [esc(k), rich(v)]));
+  document.getElementById("before").innerHTML = "<tbody>" + beforeRows.map(([k, v]) => `<tr><th scope='row'>${k}</th><td>${v}</td></tr>`).join("") + "</tbody>";
+
+  const guideToggle = document.getElementById("guide-toggle");
+  const guideBody = document.getElementById("guide-body");
+  guideToggle.addEventListener("click", () => {
+    const open = guideToggle.getAttribute("aria-expanded") === "true";
+    guideToggle.setAttribute("aria-expanded", String(!open));
+    guideToggle.textContent = open ? "Show" : "Hide";
+    guideBody.hidden = open;
+  });
+
+  // Every checkable line of a case, in order. Keys are step-line or step-tRow.
+  function checkables(c) {
+    const out = [];
+    c.steps.forEach((st, si) => {
+      (st.see || []).forEach((l, li) => out.push({ key: `${si}-${li}`, si, text: plain(l) }));
+      if (st.table) st.table.rows.forEach((r, ri) => out.push({ key: `${si}-t${ri}`, si, text: r.map(plain).join(" · ") }));
+    });
+    return out;
+  }
+
+  // State. Starts from what the orchestrator recorded, then the drafts kept in this browser.
+  const KEY = `sdlc-uat:${DATA.app}:${DATA.version}:${DATA.date}:${DATA.sitting}`;
+  const byId = Object.fromEntries(CASES.map((c) => [c.id, c]));
+  let drafts = {};
+  try { drafts = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { drafts = {}; }
+  const state = {};
+  function initState() {
+    CASES.forEach((c) => {
+      const u = c.user || {};
+      const d = drafts[c.id] || {};
+      state[c.id] = { marks: { ...(u.marks || {}), ...(d.marks || {}) }, verdict: d.verdict !== undefined ? d.verdict : (u.verdict || null), note: d.note !== undefined ? d.note : (u.note || "") };
+    });
+  }
+  initState();
+  function save(id) {
+    drafts[id] = state[id];
+    try { localStorage.setItem(KEY, JSON.stringify(drafts)); } catch (e) { /* the sheet still works, the draft is not kept */ }
+  }
+
+  const order = CASES.map((c) => c.id);
+  let current = order[0] || "open";
+
+  function userStatus(id) {
+    const s = state[id], c = byId[id];
+    if (s.verdict) return s.verdict;
+    return c.retest ? "RETEST" : "NOT RUN";
+  }
+  function dot(letter, v, who) {
+    const k = { PASS: "pass", FAIL: "fail", BLOCKED: "block", RETEST: "retest" }[v] || "none";
+    return `<span class='dot d-${k}' aria-hidden='true'>${letter}</span><span class='sr'>${who} ${esc(v)}. </span>`;
+  }
+  function renderList() {
+    const cur = (id) => (id === current ? " aria-current='true'" : "");
+    const items = CASES.map((c) => {
+      const tv = (c.tester && c.tester.verdict) || "NOT RUN";
+      return `<li><button type='button' class='ci' data-id='${esc(c.id)}'${cur(c.id)}>
+        <span class='ci-num'>${esc(c.id.split("-")[1] || c.id)}</span>
+        <span class='ci-body'><span class='ci-title'>${esc(c.title)}</span>
+        <span class='ci-v'>${dot("T", tv, "Tester")}${dot("U", userStatus(c.id), "User")}</span></span></button></li>`;
+    });
+    const docs = [];
+    if ((DATA.open || []).length) docs.push(`<li><button type='button' class='ci doc' data-id='open'${cur("open")}><span class='ci-num'>(a)</span><span class='ci-body'><span class='ci-title'>Needs your decision · ${DATA.open.length}</span></span></button></li>`);
+    if ((DATA.solved || []).length || (DATA.residuals || []).length) docs.push(`<li><button type='button' class='ci doc' data-id='solved'${cur("solved")}><span class='ci-num'>(b)</span><span class='ci-body'><span class='ci-title'>Solved, in plain language</span></span></button></li>`);
+    document.getElementById("caselist").innerHTML = items.join("") + (docs.length ? "<li class='rail-sep' aria-hidden='true'></li>" + docs.join("") : "");
+  }
+
+  function markButtons(key, m, label) {
+    return `<span class='mks' role='group' aria-label='${esc(label)}'>
+      <button type='button' class='mk ok' data-k='${key}' data-m='ok' aria-pressed='${m === "ok"}' aria-label='Matches'>${svg("check")}</button>
+      <button type='button' class='mk no' data-k='${key}' data-m='no' aria-pressed='${m === "no"}' aria-label='Does not match'>${svg("x")}</button></span>`;
+  }
+
+  function seeCell(st, si, s) {
+    const lines = (st.see || []).map((l, li) => {
+      const key = `${si}-${li}`, m = s.marks[key];
+      return `<li class='line${m ? " m-" + m : ""}'>${markButtons(key, m, `Step ${si + 1}, line ${li + 1}`)}<span class='txt'>${rich(l)}</span></li>`;
+    }).join("");
+    let tbl = "";
+    if (st.table) {
+      const t = st.table;
+      tbl = `<table class='mini'><thead><tr><th class='mkc'><span class='sr'>Mark</span></th><th class='nm'><span class='sr'>Name</span></th>${t.head.map((h) => `<th scope='col'>${esc(h)}</th>`).join("")}</tr></thead><tbody>` +
+        t.rows.map((r, ri) => {
+          const key = `${si}-t${ri}`, m = s.marks[key];
+          const total = t.totalRow && ri === t.rows.length - 1 ? " total" : "";
+          const combo = r.slice(1).map((v, i) => `<span class='cp'><span class='cp-h'>${esc(t.head[i])}</span> ${figs(v)}</span>`).join("");
+          return `<tr class='${m ? "m-" + m : ""}${total}'><td class='mkc'>${markButtons(key, m, `Step ${si + 1}, ${plain(r[0])} row`)}</td><td class='nm'>${figs(r[0])}</td>` +
+            r.slice(1).map((v) => `<td class='fg'>${figs(v)}</td>`).join("") + `<td class='combo'>${combo}</td></tr>`;
+        }).join("") + "</tbody></table>";
+    }
+    return `<span class='see-label'>You should see</span><ul class='lines'>${lines}</ul>${tbl}`;
+  }
+  const NOTE_TAG = { note: "Note", ask: "Rule on this", limit: "Known limit" };
+
+  function counts(c) {
+    const all = checkables(c), s = state[c.id];
+    const ok = all.filter((x) => s.marks[x.key] === "ok").length;
+    const noList = all.filter((x) => s.marks[x.key] === "no");
+    return { all, ok, no: noList.length, noList, open: all.length - ok - noList.length };
+  }
+
+  function renderCase() {
+    const c = byId[current], s = state[current];
+    const idx = order.indexOf(current);
+    const ct = counts(c);
+    const stepOpen = (si) => ct.all.some((x) => x.si === si && !s.marks[x.key]);
+    const stepNo = (si) => ct.all.some((x) => x.si === si && s.marks[x.key] === "no");
+
+    const steps = c.steps.map((st, si) => {
+      const cls = ["step", !stepOpen(si) ? "is-done" : "", stepNo(si) ? "has-no" : ""].join(" ").replace(/\s+/g, " ").trim();
+      return `<tr class='${cls}'><td class='n'><span class='num'>${si + 1}</span></td><td class='do'>${rich(st.do)}</td><td class='see'>${seeCell(st, si, s)}</td></tr>`;
+    }).join("");
+    const notes = (c.notes || []).map((n) =>
+      `<tr class='noterow'><td colspan='3'><div class='note k-${esc(n.kind)}'><span class='tag'>${NOTE_TAG[n.kind] || "Note"}</span><p>${rich(n.text)}</p></div></td></tr>`).join("");
+    const ballot = VERDICTS.map((v) =>
+      `<label class='bopt'><input type='radio' name='verdict' value='${v}' ${s.verdict === v ? "checked" : ""}>${chip(v)}</label>`).join("");
+    const tv = c.tester && c.tester.verdict;
+    const testerCell = tv ? VERDICTS.map((v) => chip(v, v !== tv)).join("") : chip("NOT RUN");
+    const total = ct.all.length || 1;
+    const pctOk = Math.round((ct.ok / total) * 100), pctNo = Math.round((ct.no / total) * 100);
+    const noItems = ct.noList.map((x) => `<li><span>Step ${x.si + 1}. ${esc(x.text)}</span></li>`).join("");
+    const retestRow = c.retest ? `<tr><th scope='row'>You, first run<small>${esc(c.retest.date)}</small></th><td>${chip(c.retest.verdict)}</td><td><p class='words'>${figs(c.retest.note)}</p></td></tr>` : "";
+    const statusChip = s.verdict ? "" : (c.retest ? chip("RETEST") : chip("NOT RUN"));
+
+    document.getElementById("case").innerHTML = `
+      <header class='case-head'>
+        <div class='case-num' aria-hidden='true'><span class='kicker'>UAT</span><span class='digits'>${esc(c.id.split("-")[1] || c.id)}</span></div>
+        <div><h1><span class='sr'>${esc(c.id)}. </span>${esc(c.title)}</h1>
+          <div class='chips'><span class='chip'>${esc(c.scope)}</span><span class='chip'>${esc(c.status)}</span><span class='chip'>${c.steps.length} steps · ${ct.all.length} lines to check</span>${statusChip}</div></div>
+        <div class='c-nav'>
+          <button type='button' class='navbtn' data-go='-1' ${idx <= 0 ? "disabled" : ""}>Previous case</button>
+          <button type='button' class='navbtn' data-go='1' ${idx === order.length - 1 ? "disabled" : ""}>Next case</button>
+        </div>
+      </header>
+      <table class='kv'><tbody>
+        <tr><th scope='row'>Scope</th><td>${esc(c.scope)} · ${esc(c.status)}</td></tr>
+        <tr><th scope='row'>The problem</th><td>${rich(c.problem)}</td></tr>
+        <tr><th scope='row'>Before you start</th><td>${rich(c.before)}</td></tr>
+      </tbody></table>
+      <div class='progress' role='status'>
+        <span>${ct.ok + ct.no} of ${ct.all.length} lines checked${ct.no ? ` · <span class='ct-no'>${ct.no} not matching</span>` : ""}</span>
+        <div class='bar' aria-hidden='true'><span class='b-ok' style='width:${pctOk}%'></span><span class='b-no' style='width:${pctNo}%'></span></div>
+      </div>
+      <table class='steps'>
+        <thead><tr><th scope='col'>Step</th><th scope='col' class='c-do'>Do this</th><th scope='col'>You should see, mark each line</th></tr></thead>
+        <tbody>${steps}${notes}</tbody></table>
+      <div class='verdicts'><table>
+        <thead><tr><th scope='col' class='c-who'>Who</th><th scope='col' class='c-v'>Verdict</th><th scope='col'>Note</th></tr></thead>
+        <tbody>
+          <tr><th scope='row'>Tester<small>an AI agent, before you</small></th><td><div class='ballot' role='img' aria-label='Tester verdict ${esc(tv || "NOT RUN")}'>${testerCell}</div></td><td><p class='words'>${figs(c.tester && c.tester.note)}</p></td></tr>
+          ${retestRow}
+          <tr><th scope='row'>You<small>${esc((c.user && c.user.date) || "your verdict")}</small></th><td><fieldset class='ballot'><legend class='sr'>Your verdict</legend>${ballot}</fieldset></td>
+            <td><textarea class='note-field' id='note' aria-label='Your note'>${esc(s.note)}</textarea><p class='note-hint'>Your words, recorded exactly as you write them.</p></td></tr>
+          <tr><th scope='row'>Your marks</th><td colspan='2'>${ct.ok} matching · ${ct.no} not matching · ${ct.open} not marked yet${ct.no ? `<ul class='no-list'>${noItems}</ul>` : ""}</td></tr>
+          <tr><th scope='row'>Next step<small>written by the AI agent, agreed with you</small></th><td colspan='2'>${c.next ? figs(c.next) : "<span class='muted'>Agreed with you after your verdict.</span>"}</td></tr>
+        </tbody></table></div>
+      <div class='case-foot'><button type='button' class='primary' data-results>Results for the chat</button></div>`;
+  }
+
+  function renderOpen() {
+    const items = (DATA.open || []).map((o) => `<section class='decision'><h3>${esc(o.id)}. ${esc(o.title)}</h3><table><tbody>
+      <tr><th scope='row'>What it is</th><td>${rich(o.what)}</td></tr>
+      <tr><th scope='row'>Why it needs you</th><td>${rich(o.why)}</td></tr>
+      <tr><th scope='row'>Options</th><td>${rich(o.options)}</td></tr>
+      <tr><th scope='row'>Recommendation</th><td>${rich(o.recommendation)}</td></tr>
+      <tr><th scope='row'>Your ruling</th><td>${o.ruling ? `“${esc(o.ruling)}”` : "<span class='muted'>Not given yet. Write it in the chat.</span>"}</td></tr>
+    </tbody></table></section>`).join("");
+    document.getElementById("case").innerHTML = `<h1 class='view-h'>(a) Needs your decision</h1>
+      <p class='view-intro'>Every fork we could not settle ourselves. Each one is a decision you make. Deferrals are listed too, because a deferral is a decision we made on your behalf and you can overturn it.</p>${items}`;
+  }
+  function renderSolved() {
+    const items = (DATA.solved || []).map((o) => `<section class='decision'><h3>${esc(o.title)}</h3><table><tbody>
+      <tr><th scope='row'>The problem</th><td>${rich(o.problem)}</td></tr>
+      <tr><th scope='row'>What I did</th><td>${rich(o.did)}</td></tr>
+      <tr><th scope='row'>Why this and not the others</th><td>${rich(o.why)}</td></tr>
+    </tbody></table></section>`).join("");
+    const resid = (DATA.residuals || []).length ? `<section class='decision'><h3>Residuals you should know about, that are not cases</h3><ul class='resid'>${DATA.residuals.map((r) => `<li>${rich(r)}</li>`).join("")}</ul></section>` : "";
+    document.getElementById("case").innerHTML = `<h1 class='view-h'>(b) Solved, in plain language</h1>
+      <p class='view-intro'>Three beats each. The third one says why this and not the others, so any call is cheap to overturn.</p>${items}${resid}`;
+  }
+
+  function render() {
+    renderList();
+    if (current === "open") renderOpen();
+    else if (current === "solved") renderSolved();
+    else renderCase();
+  }
+
+  function go(delta) {
+    const i = order.indexOf(current) + delta;
+    if (i < 0 || i >= order.length) return;
+    current = order[i];
+    render();
+    document.getElementById("case").scrollIntoView({ block: "start" });
+  }
+
+  document.getElementById("caselist").addEventListener("click", (e) => {
+    const b = e.target.closest(".ci");
+    if (!b) return;
+    current = b.dataset.id;
+    render();
+  });
+
+  const caseEl = document.getElementById("case");
+  caseEl.addEventListener("click", (e) => {
+    const nav = e.target.closest("[data-go]");
+    if (nav) { go(Number(nav.dataset.go)); return; }
+    const mk = e.target.closest(".mk");
+    if (!mk || !state[current]) return;
+    const s = state[current], k = mk.dataset.k, m = mk.dataset.m;
+    if (s.marks[k] === m) delete s.marks[k]; else s.marks[k] = m;
+    save(current);
+    const sel = `.mk[data-k='${k}'][data-m='${m}']`;
+    renderCase();
+    const again = caseEl.querySelector(sel);
+    if (again) again.focus({ preventScroll: true });
+  });
+  caseEl.addEventListener("change", (e) => {
+    if (e.target.name === "verdict") { state[current].verdict = e.target.value; save(current); renderList(); }
+  });
+  caseEl.addEventListener("input", (e) => {
+    if (e.target.id === "note") { state[current].note = e.target.value; save(current); }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!document.getElementById("results").hidden) return;
+    if (e.target.matches("textarea, input[type=text]")) return;
+    if (!byId[current]) return;
+    if (e.key === "]") go(1);
+    if (e.key === "[") go(-1);
+  });
+
+  // Results for the chat
+  const scrim = document.getElementById("results");
+  const rdText = document.getElementById("rd-text");
+  const rdStatus = document.getElementById("rd-status");
+  let opener = null;
+  function resultsText() {
+    const lines = [`UAT results · ${DATA.app} ${DATA.version} · sitting ${DATA.sitting} of ${DATA.sittings} · ${DATA.date}`, ""];
+    CASES.forEach((c) => {
+      const s = state[c.id], ct = counts(c);
+      lines.push(`${c.id} ${s.verdict || userStatus(c.id)}. ${ct.ok} matching, ${ct.no} not matching, ${ct.open} not marked.`);
+      ct.noList.forEach((x) => lines.push(`  ✗ step ${x.si + 1}. ${x.text}`));
+      if (s.note.trim()) lines.push(`  Note "${s.note.trim()}"`);
+    });
+    return lines.join("\n");
+  }
+  function openResults(from) {
+    opener = from;
+    rdText.value = resultsText();
+    rdStatus.textContent = "";
+    scrim.hidden = false;
+    rdText.focus();
+  }
+  function closeResults() {
+    scrim.hidden = true;
+    if (opener) opener.focus();
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-results]");
+    if (b) openResults(b);
+  });
+  document.getElementById("rd-close").addEventListener("click", closeResults);
+  scrim.addEventListener("click", (e) => { if (e.target === scrim) closeResults(); });
+  scrim.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { e.preventDefault(); closeResults(); }
+    if (e.key === "Tab") {
+      const f = [...scrim.querySelectorAll("textarea, button")];
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  document.getElementById("rd-clear").addEventListener("click", () => {
+    if (!window.confirm("Clear every mark, verdict and note you set in this browser for this sheet?")) return;
+    drafts = {};
+    try { localStorage.removeItem(KEY); } catch (e) { /* nothing kept */ }
+    initState();
+    render();
+    rdText.value = resultsText();
+    rdStatus.style.color = "var(--ink-2)";
+    rdStatus.textContent = "Cleared. The sheet shows what was recorded before.";
+  });
+  // Copies only when the human presses the button.
+  document.getElementById("rd-copy").addEventListener("click", () => {
+    const done = () => { rdStatus.style.color = "var(--pass)"; rdStatus.textContent = "Results copied. Paste them into the chat."; };
+    const fail = () => { rdStatus.style.color = "var(--fail)"; rdStatus.textContent = "Could not copy. Select the text and press Ctrl+C."; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(rdText.value).then(done, fail);
+    else fail();
+  });
+
+  render();
+</script>
+</body>
+</html>

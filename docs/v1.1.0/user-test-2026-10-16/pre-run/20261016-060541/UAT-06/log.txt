@@ -1,0 +1,51 @@
+UAT-06 When the browser will not save, the app says so
+run final
+verdict PASS
+lines 32, match 28, no match 0, not drivable 4
+
+## lines
+step 1 | not drivable | The settings page "On-device site data" opens | a Chrome settings page cannot be opened in a headless seat. Stand-in, a page whose every localStorage access throws
+step 2 | not drivable | A small box "Add a site" opens with a "Site" field | Chrome settings page, not drivable
+step 3 | not drivable | "http://127.0.0.1:8742" is listed under "Not allowed to save data on your device" | Chrome settings page, not drivable
+step 4 | match | A note sits in the top bar between "Splity Tab" and New bill | {'text': 'This bill is not being saved on this device. It will be lost when you close this tab.', 'between': True, 'firstIcon': 'svg', 'iconHref': '#i-warning', 'iconColor': 'rgb(232, 235, 242)', 'button': False, 'inTopBar': True, 'top': 9.5, 'headerBottom': 64}
+step 4 | match | It starts with an amber warning triangle | #i-warning rgb(232, 235, 242)
+step 4 | match | It reads "This bill is not being saved on this device. It will be lost when you close this tab." | This bill is not being saved on this device. It will be lost when you close this tab.
+step 4 | match | It has no close button | 
+step 4 | match | People holds "Person 1" and "Person 2" | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}]
+step 4 | match | Split is on Even with an empty Subtotal | 
+step 4 | match | The card reads "Enter the subtotal to see the splits." | Enter the subtotal to see the splits.
+step 5 | match | Total RM 58.30 | RM 58.30
+step 5 | match | Subtotal RM 50.00 | ['Subtotal', 'RM 50.00']
+step 5 | match | Service 10% RM 5.00 | ['Service 10%', 'RM 5.00']
+step 5 | match | SST 6% RM 3.30 | ['SST 6%', 'RM 3.30']
+step 5 | match | Person 1 RM 29.15 | RM 29.15
+step 5 | match | Person 2 RM 29.15 | RM 29.15
+step 5 | match | Adds up to RM 58.30 | {'label': 'Adds up to', 'amt': 'RM 58.30', 'wk': None, 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 5 | match | The warning is still there | 
+step 6 | not drivable | "http://127.0.0.1:8742" is no longer listed | Chrome settings page, not drivable. Stand-in, the block is lifted by loading the page without the init script
+step 7 | match | No warning shows | 
+step 7 | match | Split is on By item | 
+step 7 | match | Teh tarik at 3.50 with Person 1 ticked | [{'name': 'Teh tarik', 'namePh': 'Item 1', 'price': '3.50', 'pricePh': '0.00', 'needs': False, 'bar': 'rgba(0, 0, 0, 0)', 'err': None, 'errIcon': False, 'bad': False, 'toggles': [{'t': 'Person 1', 'p': True}, {'t': 'Person 2', 'p': False}]}]
+step 7 | match | Total RM 4.08 | RM 4.08
+step 7 | match | Subtotal RM 3.50 | ['Subtotal', 'RM 3.50']
+step 7 | match | Service 10% RM 0.35 | ['Service 10%', 'RM 0.35']
+step 7 | match | SST 6% RM 0.23 | ['SST 6%', 'RM 0.23']
+step 7 | match | Person 1 RM 4.08 | RM 4.08
+step 7 | match | Under Person 1 3.50 + 0.58 | 3.50 + 0.58
+step 7 | match | Person 2 RM 0.00 | RM 0.00
+step 7 | match | Under Person 2 0.00 + 0.00 | 0.00 + 0.00
+step 7 | match | Adds up to RM 4.08 | {'label': 'Adds up to', 'amt': 'RM 4.08', 'wk': '3.50 + 0.58', 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 7 | match | Under Adds up to 3.50 + 0.58 | 3.50 + 0.58
+
+## events
+06:06:20 click Add item at 1165,453
+06:06:21 click Person 1 under Teh tarik at 737,572
+06:06:21 precondition card: total RM 4.08, rows [('Person 1', 'RM 4.08'), ('Person 2', 'RM 0.00')]
+06:06:21 stand-in: the app page closed and opened again with an init script that makes every localStorage access throw
+06:06:22 click Subtotal field at 811,484
+06:06:23 stand-in: the app page opened again without the init script, a reload with the block lifted
+
+## screenshots
+s04.png
+s05.png
+s07.png

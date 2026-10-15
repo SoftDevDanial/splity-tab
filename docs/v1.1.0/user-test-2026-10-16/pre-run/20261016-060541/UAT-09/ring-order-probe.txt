@@ -1,0 +1,32 @@
+WebKit 26.5, Playwright devices['iPhone 13'], 2026-10-16 06:09:32
+order: open, close sheet
+    tap Add person at 86,201
+    tap Subtotal at 149,503
+    tap Splits at 93,630
+  after the sheet opens: TotalRM 116.60SubtotalRM focus-visible=true
+    tap sheet Close at 359,106
+  after the sheet closes: splitsBtn focus-visible=true
+order: open, chip, close panel, close sheet
+    tap Add person at 86,201
+    tap Subtotal at 149,503
+    tap Splits at 93,630
+  after the sheet opens: TotalRM 116.60SubtotalRM focus-visible=true
+    tap chip at 299,554
+  after the chip: INPUT focus-visible=true
+    tap panel Close at 359,442
+  after the panel closes: Top of the list focus-visible=true
+    tap sheet Close at 359,106
+  after the sheet closes: splitsBtn focus-visible=false
+order: open, chip, One person, close panel, close sheet (the UAT-09 order)
+    tap Add person at 86,201
+    tap Subtotal at 149,503
+    tap Splits at 93,630
+  after the sheet opens: TotalRM 116.60SubtotalRM focus-visible=true
+    tap chip at 299,554
+  after the chip: INPUT focus-visible=true
+    tap One person at 195,570
+  after One person: spareDlg focus-visible=false
+    tap panel Close at 359,388
+  after the panel closes: One person, Person 1 focus-visible=true
+    tap sheet Close at 359,106
+  after the sheet closes: splitsBtn focus-visible=false

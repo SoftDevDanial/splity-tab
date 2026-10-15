@@ -1,0 +1,180 @@
+[
+ {
+  "case": "UAT-01",
+  "verdict": "PASS",
+  "cause": null,
+  "bad": [],
+  "nd": [],
+  "note": "Draws seen. Step 9 RM 38.86 ['Chen'], step 10 ['Ben'], step 12 after reload ['Ben'], step 13 ['Aisyah'].",
+  "n": 79
+ },
+ {
+  "case": "UAT-02",
+  "verdict": "FAIL",
+  "cause": null,
+  "bad": [
+   {
+    "step": 2,
+    "line": "Aisyah under Nasi lemak ayam has a check and an indigo edge",
+    "status": "NO MATCH",
+    "seen": "{'p': 'true', 'tick': 'block', 'border': 'rgb(124, 133, 247)', 'inView': False, 'top': 350, 'frameTop': 484, 'listScrollTop': 200} (on screen in the item frame: False)"
+   },
+   {
+    "step": 3,
+    "line": "Only the item list moves, inside its rounded frame",
+    "status": "NO MATCH",
+    "seen": "list scrollTop 200 to 200, page scrollY 0 to 0"
+   }
+  ],
+  "nd": [],
+  "note": "",
+  "n": 35
+ },
+ {
+  "case": "UAT-03",
+  "verdict": "PASS",
+  "cause": null,
+  "bad": [],
+  "nd": [],
+  "note": "",
+  "n": 61
+ },
+ {
+  "case": "UAT-04",
+  "verdict": "PASS",
+  "cause": null,
+  "bad": [],
+  "nd": [
+   {
+    "step": "pre",
+    "line": "F12, Ctrl+Shift+M, Responsive 360 x 780 in the device toolbar",
+    "status": "not drivable",
+    "seen": "no developer tools in a headless seat, the viewport was set to 360 x 780 instead"
+   },
+   {
+    "step": 14,
+    "line": "The developer tools close",
+    "status": "not drivable",
+    "seen": "no developer tools in a headless seat"
+   }
+  ],
+  "note": "",
+  "n": 60
+ },
+ {
+  "case": "UAT-05",
+  "verdict": "PASS",
+  "cause": null,
+  "bad": [],
+  "nd": [],
+  "note": "",
+  "n": 33
+ },
+ {
+  "case": "UAT-06",
+  "verdict": "PASS",
+  "cause": null,
+  "bad": [],
+  "nd": [
+   {
+    "step": 1,
+    "line": "The settings page \"On-device site data\" opens",
+    "status": "not drivable",
+    "seen": "a Chrome settings page cannot be opened in a headless seat. Stand-in, a page whose every localStorage access throws"
+   },
+   {
+    "step": 2,
+    "line": "A small box \"Add a site\" opens with a \"Site\" field",
+    "status": "not drivable",
+    "seen": "Chrome settings page, not drivable"
+   },
+   {
+    "step": 3,
+    "line": "\"http://127.0.0.1:8742\" is listed under \"Not allowed to save data on your device\"",
+    "status": "not drivable",
+    "seen": "Chrome settings page, not drivable"
+   },
+   {
+    "step": 6,
+    "line": "\"http://127.0.0.1:8742\" is no longer listed",
+    "status": "not drivable",
+    "seen": "Chrome settings page, not drivable. Stand-in, the block is lifted by loading the page without the init script"
+   }
+  ],
+  "note": "",
+  "n": 32
+ },
+ {
+  "case": "UAT-07",
+  "verdict": "BLOCKED",
+  "cause": "SEAT",
+  "bad": [],
+  "nd": [
+   {
+    "step": 2,
+    "line": "A card under the tab shows the name \"Danial's Splity Tab\"",
+    "status": "not drivable",
+    "seen": "no tab strip or hover card in a headless seat. The page title reads \"Danial's Splity Tab\""
+   },
+   {
+    "step": 3,
+    "line": "It is the same mark as the header",
+    "status": "not drivable",
+    "seen": "no tab strip in a headless seat. The tab icon is src/icon.svg, see icon-file-dark.png (the file, not the tab)"
+   },
+   {
+    "step": 3,
+    "line": "It is light indigo on the dark tab",
+    "status": "not drivable",
+    "seen": "no tab strip in a headless seat"
+   },
+   {
+    "step": 4,
+    "line": "Windows and Chrome turn light",
+    "status": "not drivable",
+    "seen": "Windows settings are not drivable"
+   },
+   {
+    "step": 4,
+    "line": "The app's page stays dark, it has one dark look",
+    "status": "not drivable",
+    "seen": "Windows settings are not drivable"
+   },
+   {
+    "step": 5,
+    "line": "The tab icon is now dark navy",
+    "status": "not drivable",
+    "seen": "no tab strip in a headless seat, see icon-file-light.png (the file, not the tab)"
+   },
+   {
+    "step": 5,
+    "line": "The mark is easy to see on the light tab",
+    "status": "not drivable",
+    "seen": "no tab strip in a headless seat"
+   },
+   {
+    "step": 6,
+    "line": "Windows and Chrome turn dark",
+    "status": "not drivable",
+    "seen": "Windows settings are not drivable"
+   },
+   {
+    "step": 7,
+    "line": "The tab icon is light indigo again",
+    "status": "not drivable",
+    "seen": "no tab strip in a headless seat"
+   }
+  ],
+  "note": "",
+  "n": 13
+ },
+ {
+  "case": "UAT-08",
+  "verdict": "PASS",
+  "cause": null,
+  "bad": [],
+  "nd": [],
+  "note": "",
+  "n": 10
+ }
+]

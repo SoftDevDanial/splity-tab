@@ -1,0 +1,126 @@
+UAT-01 Choose who takes the spare sen, on an even bill
+run final
+verdict PASS
+lines 79, match 79, no match 0, not drivable 0
+
+## lines
+step start | match | Top bar, the mark and "Splity Tab" at left, New bill at right | Splity Tab, New bill left 1116
+step start | match | Card reads "Total", a faint receipt mark and "Enter the subtotal to see the splits." | {'totalLabel': 'Total', 'total': None, 'lines': [], 'head': None, 'headExtra': None, 'rows': [], 'proof': None, 'spare': None, 'copy': None, 'status': None, 'empty': 'Enter the subtotal to see the splits.', 'emptyMark': True, 'msg': None, 'msgIcon': False}
+step start | match | People holds "Person 1" and "Person 2", each with a faint x | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}]
+step start | match | Add person at the top right of People | 
+step start | match | Charges Service charge 10 %, SST 6 % and the hint | 
+step start | match | Split Even chosen, Subtotal empty with a grey "0.00" | 
+step 1 | match | Total RM 116.60 | RM 116.60
+step 1 | match | Subtotal RM 100.00 | ['Subtotal', 'RM 100.00']
+step 1 | match | Service 10% RM 10.00 | ['Service 10%', 'RM 10.00']
+step 1 | match | SST 6% RM 6.60 | ['SST 6%', 'RM 6.60']
+step 1 | match | The heading "Splits" | Splits / None
+step 1 | match | Aisyah RM 38.87 | RM 38.87
+step 1 | match | Ben RM 38.87 | RM 38.87
+step 1 | match | Chen RM 38.86 | RM 38.86
+step 1 | match | Adds up to RM 116.60 | {'label': 'Adds up to', 'amt': 'RM 116.60', 'wk': None, 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 1 | match | "2 sen left over" | {'count': '2 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 1 | match | A chip "Top of the list" at the right of that line | {'count': '2 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 1 | match | Copy summary under it | {'text': 'Copy summary', 'disabled': False, 'bg': 'rgb(80, 89, 218)', 'under': True}
+step 2 | match | A panel "Spare sen" opens just right of the card, its bottom level with the chip | open True, gap to card 16.0 px, bottom 560.8 vs chip bottom 560.8
+step 2 | match | A Close x sits at its top right | {'dr': 9, 'dt': 11}
+step 2 | match | Under the title it reads "2 sen left over" | 2 sen left over
+step 2 | match | Three choices, "Top of the list", "One person", "At random" | ['Top of the list', 'One person', 'At random']
+step 2 | match | Top of the list is chosen | ['Top of the list']
+step 2 | match | The card stays in view, a little dimmed | card {'l': 98, 't': 84, 'r': 558, 'b': 653.796875, 'w': 460, 'h': 569.796875}, backdrop rgba(4, 6, 10, 0.4) (see s02.png)
+step 3 | match | One person is chosen | ['One person']
+step 3 | match | Under it three pills, "Aisyah", "Ben", "Chen" | ['Aisyah', 'Ben', 'Chen'] order ['Top of the list', 'One person', 'pickWrap', 'At random']
+step 3 | match | Aisyah is ticked at once | [{'t': 'Aisyah', 'c': True, 'tick': True}, {'t': 'Ben', 'c': False, 'tick': False}, {'t': 'Chen', 'c': False, 'tick': False}]
+step 3 | match | Aisyah RM 38.88 | RM 38.88
+step 3 | match | Ben RM 38.86 | RM 38.86
+step 3 | match | Chen RM 38.86 | RM 38.86
+step 3 | match | Adds up to RM 116.60 | {'label': 'Adds up to', 'amt': 'RM 116.60', 'wk': None, 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 3 | match | The chip reads "One person, Aisyah" | ['One person, Aisyah']
+step 4 | match | Ben is ticked and Aisyah is not | ['Ben']
+step 4 | match | Aisyah RM 38.86 | RM 38.86
+step 4 | match | Ben RM 38.88 | RM 38.88
+step 4 | match | Chen RM 38.86 | RM 38.86
+step 4 | match | Adds up to RM 116.60 | {'label': 'Adds up to', 'amt': 'RM 116.60', 'wk': None, 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 4 | match | The chip reads "One person, Ben" | ['One person, Ben']
+step 5 | match | The panel closes | False
+step 5 | match | Aisyah RM 38.86 | RM 38.86
+step 5 | match | Ben RM 38.88 | RM 38.88
+step 5 | match | Chen RM 38.86 | RM 38.86
+step 6 | match | "Summary copied" with a check shows under the button | {'text': 'Summary copied', 'icon': True, 'shown': True}
+step 7 | match | Six lines appear (read from the clipboard stand-in's record, not Notepad) | 6 lines, 1 write(s)
+step 7 | match | "Bill split" | Bill split
+step 7 | match | "Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)" | Total RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)
+step 7 | match | "Aisyah RM 38.86" | Aisyah RM 38.86
+step 7 | match | "Ben RM 38.88" | Ben RM 38.88
+step 7 | match | "Chen RM 38.86" | Chen RM 38.86
+step 7 | match | "Adds up to RM 116.60" | Adds up to RM 116.60
+step 8 | match | The panel opens with One person chosen | ['One person']
+step 8 | match | Ben is ticked | ['Ben']
+step 9 | match | At random is chosen | ['At random']
+step 9 | match | The pills are gone | []
+step 9 | match | A Pick again button sits under At random | Pick again order ['Top of the list', 'One person', 'At random', 'randWrap']
+step 9 | match | Two of the three splits read RM 38.87 and one reads RM 38.86 | {'Aisyah': 'RM 38.87', 'Ben': 'RM 38.87', 'Chen': 'RM 38.86'}
+step 9 | match | Adds up to reads RM 116.60 | RM 116.60
+step 9 | match | The card's spare line shows two chips, "Pick again" and "At random" | ['Pick again', 'At random']
+step 9 | match | "Summary copied" is gone from under Copy summary | {'text': '', 'icon': False, 'shown': False}
+step 10 | match | A different person now reads RM 38.86 | was ['Chen'], now ['Ben']
+step 10 | match | The other two read RM 38.87 | {'Aisyah': 'RM 38.87', 'Ben': 'RM 38.86', 'Chen': 'RM 38.87'}
+step 10 | match | Adds up to reads RM 116.60 | RM 116.60
+step 11 | match | The panel closes | 
+step 11 | match | The card shows the splits of step 10 | {'Aisyah': 'RM 38.87', 'Ben': 'RM 38.86', 'Chen': 'RM 38.87'}
+step 12 | match | The page loads again | 
+step 12 | match | Aisyah, Ben and Chen are in People and the Subtotal reads 100 | ['Aisyah', 'Ben', 'Chen'] 100
+step 12 | match | The card shows the same splits as in step 11 | {'Aisyah': 'RM 38.87', 'Ben': 'RM 38.86', 'Chen': 'RM 38.87'}
+step 12 | match | The spare line still shows "Pick again" and "At random" | ['Pick again', 'At random']
+step 13 | match | A different person now reads RM 38.86 (Pick again left of the At random chip) | was ['Ben'], now ['Aisyah'], left True
+step 13 | match | The other two read RM 38.87 | {'Aisyah': 'RM 38.86', 'Ben': 'RM 38.87', 'Chen': 'RM 38.87'}
+step 13 | match | Adds up to reads RM 116.60 | RM 116.60
+step 14 | match | The panel opens with At random chosen and Pick again under it | ['At random'] ['Top of the list', 'One person', 'At random', 'randWrap']
+step 15 | match | Top of the list is chosen | ['Top of the list']
+step 15 | match | Pick again is gone from the panel | None
+step 15 | match | Aisyah RM 38.87 | RM 38.87
+step 15 | match | Ben RM 38.87 | RM 38.87
+step 15 | match | Chen RM 38.86 | RM 38.86
+step 15 | match | The chip reads "Top of the list" and Pick again is gone from the card | ['Top of the list']
+step 16 | match | The panel closes | 
+
+## events
+06:05:47 click Person 1 field at 745,159
+06:05:47 click Person 2 field at 930,159
+06:05:47 click Add person at 1156,106
+06:05:48 click Subtotal field at 811,484
+06:05:48 click Top of the list chip at 463,539
+06:05:49 click One person at 744,466
+06:05:49 click Ben pill at 756,460
+06:05:49 click Close x of the panel at 883,284
+06:05:50 click Copy summary at 328,605
+06:05:51 clipboard stand-in writes: ["Bill split\nTotal RM 116.60 (subtotal RM 100.00, service 10% RM 10.00, SST 6% RM 6.60)\nAisyah RM 38.86\nBen RM 38.88\nChen RM 38.86\nAdds up to RM 116.60"]
+06:05:51 click One person, Ben chip at 453,539
+06:05:51 click At random at 744,516
+06:05:51 step 9 draw, RM 38.86 is ['Chen']
+06:05:51 click Pick again in the panel at 692,510
+06:05:52 step 10 draw, RM 38.86 is ['Ben']
+06:05:52 key Escape
+06:05:54 F5 key did not reload in headless Chromium (no browser frame), used the browser's reload, which is what F5 does
+06:05:54 card Pick again is left of the At random chip: True
+06:05:54 click Pick again on the card at 344,539
+06:05:55 step 13 draw, RM 38.86 is ['Aisyah']
+06:05:55 click At random chip at 472,539
+06:05:55 click Top of the list at 744,362
+06:05:56 key Escape
+
+## screenshots
+s00-start.png
+s01.png
+s02.png
+s03.png
+s04.png
+s06.png
+s09.png
+s10.png
+s12.png
+s14.png
+s15.png
+
+## note
+Draws seen. Step 9 RM 38.86 ['Chen'], step 10 ['Ben'], step 12 after reload ['Ben'], step 13 ['Aisyah'].

@@ -1,0 +1,68 @@
+UAT-02 The new look, on the bill with items
+run final
+verdict FAIL
+lines 35, match 33, no match 2, not drivable 0
+
+## lines
+step 1 | match | Total RM 69.26 | RM 69.26
+step 1 | match | Subtotal RM 59.40 | ['Subtotal', 'RM 59.40']
+step 1 | match | Service 10% RM 5.94 | ['Service 10%', 'RM 5.94']
+step 1 | match | SST 6% RM 3.92 | ['SST 6%', 'RM 3.92']
+step 1 | match | The heading "Splits" with "items + charges" | Splits / items + charges
+step 1 | match | Aisyah RM 29.04 | RM 29.04
+step 1 | match | Under Aisyah 24.90 + 4.14 | 24.90 + 4.14
+step 1 | match | Ben RM 15.74 | RM 15.74
+step 1 | match | Under Ben 13.50 + 2.24 | 13.50 + 2.24
+step 1 | match | Chen RM 24.48 | RM 24.48
+step 1 | match | Under Chen 21.00 + 3.48 | 21.00 + 3.48
+step 1 | match | Adds up to RM 69.26 in indigo, with a seal at its left | rgb(163, 170, 255) seal True
+step 1 | match | Under it 59.40 + 9.86 | 59.40 + 9.86
+step 1 | match | "1 sen left over" | {'count': '1 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 1 | match | The chip "Top of the list" | ['Top of the list']
+step 1 | match | Copy summary is a solid indigo button | rgb(80, 89, 218)
+step 2 | match | The page is dark slate with no bright glow behind the card | body rgb(21, 26, 35), see s02.png (judged on the capture)
+step 2 | match | The card is glass with a thin indigo line along its top edge | backdrop-filter blur(24px) saturate(1.4), top line 3 px linear-gradient(90deg, rgb(80, 89, 218) 0%, rgb(124, 133, 24
+step 2 | match | The card is at the left, and People, Charges, Split and Items run down the right | card right 558, work left 672, ['peopleBlk', 'chargesBlk', 'splitBlk', 'itemsBlock']
+step 2 | match | By item has an indigo edge and Even has none | By item rgb(232, 235, 242) rgb(232, 235, 242) rgb(232, 235, 242) rgb(110, 120, 145) / rgb(124, 133, 247) 0px 0px 0px 1px inset, Even rgb(167, 175, 191) / none (judged on s02.png)
+step 2 | NO MATCH | Aisyah under Nasi lemak ayam has a check and an indigo edge | {'p': 'true', 'tick': 'block', 'border': 'rgb(124, 133, 247)', 'inView': False, 'top': 350, 'frameTop': 484, 'listScrollTop': 200} (on screen in the item frame: False)
+step 3 | NO MATCH | Only the item list moves, inside its rounded frame | list scrollTop 200 to 200, page scrollY 0 to 0
+step 3 | match | The card stays where it is | card top 84 to 84
+step 3 | match | "Satay, 10 sticks" shows in full with Aisyah and Chen ticked | in full True, [{'t': 'Aisyah', 'p': True}, {'t': 'Ben', 'p': False}, {'t': 'Chen', 'p': True}]
+step 4 | match | Chen is no longer ticked | [{'t': 'Aisyah', 'p': False}, {'t': 'Ben', 'p': False}, {'t': 'Chen', 'p': False}]
+step 4 | match | An amber bar shows at the left of Mee goreng mamak | needs True bar rgb(242, 192, 99)
+step 4 | match | Total RM 69.26 | RM 69.26
+step 4 | match | Subtotal RM 59.40 | ['Subtotal', 'RM 59.40']
+step 4 | match | Service 10% RM 5.94 | ['Service 10%', 'RM 5.94']
+step 4 | match | SST 6% RM 3.92 | ['SST 6%', 'RM 3.92']
+step 4 | match | Under them a warning circle and "1 item still needs a person. Tap who had it to see the splits." | 1 item still needs a person. Tap who had it to see the splits.
+step 4 | match | No splits and no Copy summary show | 0 rows, copy None
+step 5 | match | Chen is ticked | [{'t': 'Aisyah', 'p': False}, {'t': 'Ben', 'p': False}, {'t': 'Chen', 'p': True}]
+step 5 | match | The amber bar is gone | False
+step 5 | match | The card shows the splits of step 1 again | [('Aisyah', 'RM 29.04', '24.90 + 4.14'), ('Ben', 'RM 15.74', '13.50 + 2.24'), ('Chen', 'RM 24.48', '21.00 + 3.48')]
+
+## events
+06:05:56 click By item at 1156,375
+06:05:56 click Add item at 1165,453
+06:05:56 click Aisyah under Nasi lemak ayam at 731,572
+06:05:57 click Add item at 1165,453
+06:05:57 click Ben under Char kuey teow at 806,695
+06:05:57 click Add item at 1165,453
+06:05:58 scrolled the item frame 120 px to reach Chen under Mee goreng mamak
+06:05:58 click Chen under Mee goreng mamak at 876,741
+06:05:58 click Add item at 1165,453
+06:05:58 click Aisyah under Satay, 10 sticks at 731,741
+06:05:58 click Chen under Satay, 10 sticks at 892,741
+06:05:59 look: {"body": "rgb(21, 26, 35)", "bodyImg": "none", "card": "blur(24px) saturate(1.4)", "cardBg": "linear-gradient(155deg, rgba(200, 206, 255, 0.1) 0%, rgba(150, 158, 235, 0.04) 40%, rgba(8, 10, 14, 0.34) 100%), none", "foil": "linear-gradient(90deg, rgb(80, 89, 218) 0%, rgb(124, 133, 247) 25%, rgb(201, 205, 255) 50%, rgb(124, 133, 247) 75%, rgb(80, 89, 218) 100%)", "foilH": 3, "evenBorder": "rgb(167, 175, 191) / none", "itemBorder": "rgb(232, 235, 242) rgb(232, 235, 242) rgb(232, 235, 242) rgb(110, 120, 145) / rgb(124, 133, 247) 0px 0px 0px 1px inset", "appBefore": "none"}
+06:05:59 mouse wheel 400 down over the item list at 952,630
+06:05:59 before {'y': 0, 'list': 200, 'card': 84, 'sh': 491, 'ch': 291} after {'y': 0, 'list': 200, 'card': 84}
+06:05:59 before the wheel the list was already at its bottom: scrollTop 200, client 291, scroll 491
+06:06:01 supporting, not a script step: wheel up 400 gave {'y': 0, 'list': 0, 'card': 84}, wheel down 400 again gave {'y': 0, 'list': 200, 'card': 84}
+06:06:01 click Chen under Mee goreng mamak at 884,618
+06:06:01 click Chen under Mee goreng mamak at 876,618
+
+## screenshots
+s01.png
+s02.png
+s03.png
+s03-extra-up.png
+s04.png

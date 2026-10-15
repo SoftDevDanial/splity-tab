@@ -1,0 +1,61 @@
+UAT-05 Holding Enter on an item's x removes that item and nothing else
+run final
+verdict PASS
+lines 33, match 33, no match 0, not drivable 0
+
+## lines
+step 1 | match | A dialog in the middle reads "Start a new bill?" | {'open': True, 'title': 'Start a new bill?', 'body': 'This clears the people, items and amounts.', 'cx': 640, 'cy': 400, 'start': 'Start new bill', 'startBg': 'rgb(196, 49, 60)', 'cancel': 'Cancel', 'cancelRight': True, 'sameRow': True, 'backdrop': 'rgba(4, 6, 10, 0.72)'}
+step 1 | match | Under it "This clears the people, items and amounts." | This clears the people, items and amounts.
+step 1 | match | A red Start new bill with Cancel at its right | start bg rgb(196, 49, 60), cancel right True
+step 1 | match | The page behind is dimmed | rgba(4, 6, 10, 0.72)
+step 2 | match | The dialog closes | 
+step 2 | match | People holds "Person 1" and "Person 2" | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeOpacity': '1', 'removeColor': 'rgb(95, 104, 120)'}]
+step 2 | match | Split is back on Even with an empty Subtotal | 
+step 2 | match | The card reads "Total" and "Enter the subtotal to see the splits." | Enter the subtotal to see the splits.
+step 3 | match | The Subtotal field is gone | 
+step 3 | match | Items shows Add item and no item rows | 0
+step 3 | match | The card reads "Add each item and tap who had it to see the splits." | Add each item and tap who had it to see the splits.
+step 4 | match | A row "Item 1" with an empty price, the cursor in its name | {'tag': 'input', 'id': '', 'label': 'Item 1 name', 'ph': 'Item 1', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+step 4 | match | An amber bar at its left | rgb(242, 192, 99)
+step 4 | match | Buttons "Person 1" and "Person 2" under it, not ticked | [{'t': 'Person 1', 'p': False}, {'t': 'Person 2', 'p': False}]
+step 5 | match | The name reads Teh tarik | Teh tarik
+step 6 | match | The cursor is in Teh tarik's price field | {'tag': 'input', 'id': '', 'label': 'Teh tarik price in RM', 'ph': '0.00', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+step 7 | match | Total RM 4.08 | RM 4.08
+step 7 | match | Subtotal RM 3.50 | ['Subtotal', 'RM 3.50']
+step 7 | match | Service 10% RM 0.35 | ['Service 10%', 'RM 0.35']
+step 7 | match | SST 6% RM 0.23 | ['SST 6%', 'RM 0.23']
+step 7 | match | A warning circle and "1 item still needs a person. Tap who had it to see the splits." | 1 item still needs a person. Tap who had it to see the splits.
+step 8 | match | A focus ring is round the x at the right of Teh tarik | {'tag': 'button', 'id': '', 'label': 'Remove Teh tarik', 'ph': None, 'value': '', 'text': '', 'fv': True, 'selStart': None, 'selEnd': None, 'type': 'button', 'rvalue': None} (see s08-ring.png)
+step 9 | match | Teh tarik is gone | 0
+step 9 | match | No item rows show, and no blank "Item 1" row appeared | []
+step 9 | match | A focus ring is on Add item | {'tag': 'button', 'id': 'addItem', 'label': None, 'ph': None, 'value': '', 'text': 'Add item', 'fv': True, 'selStart': None, 'selEnd': None, 'type': 'button', 'rvalue': None}
+step 9 | match | The card reads "Add each item and tap who had it to see the splits." | Add each item and tap who had it to see the splits.
+step 10 | match | The dialog opens | 
+step 11 | match | The dialog closes | 
+step 11 | match | Items still shows no rows | 0
+step 12 | match | The dialog opens and stays open | open True, closes while held 0
+step 12 | match | A focus ring is on Cancel | {'tag': 'button', 'id': '', 'label': None, 'ph': None, 'value': '', 'text': 'Cancel', 'fv': True, 'selStart': None, 'selEnd': None, 'type': 'button', 'rvalue': None}
+step 13 | match | The dialog closes | 
+step 13 | match | Split is still By item with no item rows | 
+
+## events
+06:06:11 click New bill at 1174,32
+06:06:12 click Start new bill at 648,440
+06:06:13 click By item at 1156,375
+06:06:13 click Add item at 1165,453
+06:06:13 typed Teh tarik
+06:06:13 key Tab
+06:06:14 typed 3.50
+06:06:14 key Tab
+06:06:16 held Enter 2.0 s, 1 press then 33 repeats
+06:06:16 click New bill at 1174,32
+06:06:17 click Cancel at 770,440
+06:06:18 focus after Cancel: {'tag': 'button', 'id': 'newBill', 'label': None, 'ph': None, 'value': '', 'text': 'New bill', 'fv': False, 'selStart': None, 'selEnd': None, 'type': 'button', 'rvalue': None}
+06:06:20 held Enter 2.0 s, 1 press then 33 repeats
+06:06:20 key Escape
+
+## screenshots
+s01.png
+s08-ring.png
+s09.png
+s12.png

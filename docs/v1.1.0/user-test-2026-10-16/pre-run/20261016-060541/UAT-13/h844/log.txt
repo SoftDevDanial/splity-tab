@@ -1,0 +1,50 @@
+UAT-13 VoiceOver on a price field, before and after its error
+run final
+verdict BLOCKED (SEAT)
+lines 27, match 6, no match 0, not drivable 21
+
+## lines
+step 1 | match | The cursor is in it | {'tag': 'input', 'id': '', 'label': 'Item 1 price in RM', 'ph': '0.00', 'value': '15.90', 'text': '', 'fv': True, 'selStart': 5, 'selEnd': 5, 'type': 'text', 'rvalue': None}
+step 1 | not drivable | a number keyboard opens | no software keyboard in a headless seat
+step 2 | match | The field shows a grey "0.00" | 
+step 3 | match | The field reads 13.505 | 13.505
+step 4 | not drivable | The keyboard closes | the bar above the iOS keyboard is not in a headless seat. Stand-in for leaving the field, one Tab
+step 4 | match | A red "Enter an amount like 12.50" with a warning circle shows under Item 1 | Enter an amount like 12.50
+step 4 | match | Item 1's price field has a red edge | True
+step 4 | match | The strip reads "Give every item a price to see the splits." | Give every item a price to see the splits.
+step 5 | not drivable | VoiceOver speaks as you move | VoiceOver is not in a headless seat, and iOS Settings are not drivable
+step 5 | not drivable | Safari shows the app | VoiceOver is not in a headless seat
+step 6 | not drivable | A frame is drawn round the field | VoiceOver is not in a headless seat
+step 6 | not drivable | VoiceOver reads "Item 1 price in RM" | VoiceOver is not in a headless seat
+step 6 | not drivable | It reads the value 13.505 | VoiceOver is not in a headless seat
+step 6 | not drivable | It says it is a text field | VoiceOver is not in a headless seat
+step 6 | not drivable | It says the value is invalid | VoiceOver is not in a headless seat
+step 6 | not drivable | It reads "Enter an amount like 12.50" | VoiceOver is not in a headless seat
+step 7 | not drivable | VoiceOver reads "Item 2 price in RM" | VoiceOver is not in a headless seat
+step 7 | not drivable | It reads the value 13.50 | VoiceOver is not in a headless seat
+step 7 | not drivable | It says it is a text field | VoiceOver is not in a headless seat
+step 7 | not drivable | It reads "Enter an amount like 12.50", though no error shows there | VoiceOver is not in a headless seat
+step 8 | not drivable | VoiceOver reads "New bill" and that it is a button | VoiceOver is not in a headless seat
+step 9 | not drivable | The dialog opens | VoiceOver is not in a headless seat, a VoiceOver double tap is not a gesture this seat can make
+step 9 | not drivable | VoiceOver reads "Cancel" | VoiceOver is not in a headless seat
+step 10 | not drivable | The dialog closes | VoiceOver is not in a headless seat
+step 10 | not drivable | VoiceOver reads "New bill" next | VoiceOver is not in a headless seat
+step 10 | not drivable | It reads nothing else between Cancel and New bill | VoiceOver is not in a headless seat
+step 11 | not drivable | VoiceOver is silent | VoiceOver is not in a headless seat
+
+## events
+06:08:07 tap Item 1 price field (at its right end) at 306,132
+06:08:09 held Backspace, 1 press then 4 repeats, value now ''
+06:08:09 typed 13.505
+06:08:09 Done stand-in: one Tab to leave the field, focus now {'tag': 'button', 'id': '', 'label': 'Remove Item 1', 'ph': None, 'value': '', 'text': '', 'fv': True, 'selStart': None, 'selEnd': None, 'type': 'button', 'rvalue': None}
+06:08:09 supporting, markup of the Item 1 and Item 2 price fields: [{"label": "Item 1 price in RM", "value": "13.505", "invalid": "true", "describedby": "ie1", "describedText": ["Enter an amount like 12.50"]}, {"label": "Item 2 price in RM", "value": "13.50", "invalid": "false", "describedby": "ie2", "describedText": ["Enter an amount like 12.50 (hidden)"]}]
+06:08:09 swipe stand-in: scrolled New bill (supporting, plain tap) into view (was: off screen)
+06:08:10 tap New bill (supporting, plain tap) at 316,30
+06:08:10 tap Cancel (supporting, plain tap) at 195,490
+06:08:11 supporting, not a script step: focus after the New bill tap Cancel, after the Cancel tap newBill
+
+## screenshots
+s04.png
+
+## note
+Markup behind the VoiceOver lines: Item 1 price label 'Item 1 price in RM', aria-invalid true, described by ['Enter an amount like 12.50']. Item 2 price label 'Item 2 price in RM', aria-invalid false, described by ['Enter an amount like 12.50 (hidden)']. Plain taps (not VoiceOver) put focus on Cancel when the dialog opened and on newBill after Cancel.

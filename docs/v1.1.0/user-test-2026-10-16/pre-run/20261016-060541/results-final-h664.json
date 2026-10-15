@@ -1,0 +1,542 @@
+[
+ {
+  "case": "UAT-09",
+  "verdict": "FAIL",
+  "cause": null,
+  "bad": [
+   {
+    "step": 13,
+    "line": "A thin white ring is drawn round Splits, see the note",
+    "status": "NO MATCH",
+    "seen": "{'tag': 'button', 'id': 'splitsBtn', 'text': 'Splits', 'fv': False, 'outline': 'none 3px rgb(232, 235, 242)', 'isText': False} (see s13-ring.png)"
+   }
+  ],
+  "nd": [
+   {
+    "step": "pre",
+    "line": "Use a normal tab, Block All Cookies off",
+    "status": "not drivable",
+    "seen": "Safari settings are not drivable. A fresh WebKit context with nothing saved stands in"
+   },
+   {
+    "step": 2,
+    "line": "The keyboard opens",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat, focus is in a text field (Person 3 name)"
+   },
+   {
+    "step": 3,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat"
+   },
+   {
+    "step": 4,
+    "line": "A number keyboard opens",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat, focus is in the Subtotal, inputmode decimal"
+   },
+   {
+    "step": 6,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat"
+   }
+  ],
+  "note": "",
+  "n": 65,
+  "sub": "h664",
+  "sheet9": {
+   "below": [],
+   "scrollH": 535,
+   "clientH": 535,
+   "visibleBottom": 664
+  }
+ },
+ {
+  "case": "UAT-10",
+  "verdict": "PASS",
+  "cause": null,
+  "bad": [],
+  "nd": [
+   {
+    "step": 1,
+    "line": "The keyboard opens",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 2,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat"
+   },
+   {
+    "step": 4,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat"
+   },
+   {
+    "step": 6,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat"
+   },
+   {
+    "step": 10,
+    "line": "The keyboard does not open",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat. Focus after the double tap is button#newBill New bill, not a text field: True"
+   },
+   {
+    "step": 12,
+    "line": "a number keyboard opens",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat, inputmode decimal"
+   },
+   {
+    "step": 15,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat. Stand-in for leaving the field, one Tab"
+   },
+   {
+    "step": 18,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat"
+   }
+  ],
+  "note": "",
+  "n": 50,
+  "sub": "h664",
+  "sheet7": {
+   "below": [],
+   "scrollH": 547,
+   "clientH": 547,
+   "visibleBottom": 664
+  }
+ },
+ {
+  "case": "UAT-11",
+  "verdict": "PASS",
+  "cause": null,
+  "bad": [],
+  "nd": [
+   {
+    "step": "pre",
+    "line": "Tap Done above the keyboard (four times)",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat"
+   },
+   {
+    "step": 2,
+    "line": "a number keyboard opens",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 2,
+    "line": "not under the keyboard",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 4,
+    "line": "not under the keyboard",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 5,
+    "line": "not under the keyboard",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 7,
+    "line": "not under the keyboard",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 8,
+    "line": "not under the keyboard",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 10,
+    "line": "not under the keyboard",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 11,
+    "line": "not under the keyboard",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 13,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat"
+   }
+  ],
+  "note": "",
+  "n": 55,
+  "sub": "h664"
+ },
+ {
+  "case": "UAT-12",
+  "verdict": "PASS",
+  "cause": null,
+  "bad": [],
+  "nd": [
+   {
+    "step": 1,
+    "line": "the keyboard opens",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 2,
+    "line": "not under the keyboard",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 4,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat. Stand-in for leaving the field, one Tab"
+   },
+   {
+    "step": 6,
+    "line": "Nothing moves sideways",
+    "status": "not drivable",
+    "seen": "no touch drag in this seat. Measured instead, page 390 px wide in a 390 px viewport, scrollX 0, elements past the right edge [], sideways scroll areas under the middle []"
+   },
+   {
+    "step": 9,
+    "line": "a number keyboard opens",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 12,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat. Stand-in for leaving the field, one Tab"
+   },
+   {
+    "step": 15,
+    "line": "Nothing moves sideways",
+    "status": "not drivable",
+    "seen": "no touch drag in this seat. Measured instead, page 390 px wide in a 390 px viewport, scrollX 0, elements past the right edge [], sideways scroll areas under the middle []"
+   }
+  ],
+  "note": "Item 5's price after leaving the field: cut, the text is wider than the field ({'v': '99999.99', 'sw': 92, 'cw': 76, 'focused': False}), see s12-field.png.",
+  "n": 46,
+  "sub": "h664"
+ },
+ {
+  "case": "UAT-13",
+  "verdict": "BLOCKED",
+  "cause": "SEAT",
+  "bad": [],
+  "nd": [
+   {
+    "step": 1,
+    "line": "a number keyboard opens",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat"
+   },
+   {
+    "step": 4,
+    "line": "The keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat. Stand-in for leaving the field, one Tab"
+   },
+   {
+    "step": 5,
+    "line": "VoiceOver speaks as you move",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat, and iOS Settings are not drivable"
+   },
+   {
+    "step": 5,
+    "line": "Safari shows the app",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 6,
+    "line": "A frame is drawn round the field",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 6,
+    "line": "VoiceOver reads \"Item 1 price in RM\"",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 6,
+    "line": "It reads the value 13.505",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 6,
+    "line": "It says it is a text field",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 6,
+    "line": "It says the value is invalid",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 6,
+    "line": "It reads \"Enter an amount like 12.50\"",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 7,
+    "line": "VoiceOver reads \"Item 2 price in RM\"",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 7,
+    "line": "It reads the value 13.50",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 7,
+    "line": "It says it is a text field",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 7,
+    "line": "It reads \"Enter an amount like 12.50\", though no error shows there",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 8,
+    "line": "VoiceOver reads \"New bill\" and that it is a button",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 9,
+    "line": "The dialog opens",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat, a VoiceOver double tap is not a gesture this seat can make"
+   },
+   {
+    "step": 9,
+    "line": "VoiceOver reads \"Cancel\"",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 10,
+    "line": "The dialog closes",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 10,
+    "line": "VoiceOver reads \"New bill\" next",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 10,
+    "line": "It reads nothing else between Cancel and New bill",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   },
+   {
+    "step": 11,
+    "line": "VoiceOver is silent",
+    "status": "not drivable",
+    "seen": "VoiceOver is not in a headless seat"
+   }
+  ],
+  "note": "Markup behind the VoiceOver lines: Item 1 price label 'Item 1 price in RM', aria-invalid true, described by ['Enter an amount like 12.50']. Item 2 price label 'Item 2 price in RM', aria-invalid false, described by ['Enter an amount like 12.50 (hidden)']. Plain taps (not VoiceOver) put focus on Cancel when the dialog opened and on newBill after Cancel.",
+  "n": 27,
+  "sub": "h664"
+ },
+ {
+  "case": "UAT-14",
+  "verdict": "BLOCKED",
+  "cause": "SEAT",
+  "bad": [],
+  "nd": [
+   {
+    "step": 1,
+    "line": "The Block All Cookies switch is on",
+    "status": "not drivable",
+    "seen": "iOS Settings are not drivable. Stand-in, a page whose every localStorage access throws"
+   },
+   {
+    "step": 3,
+    "line": "A number keyboard opens",
+    "status": "not drivable",
+    "seen": "no software keyboard in a headless seat, focus Subtotal in RM"
+   },
+   {
+    "step": 5,
+    "line": "(Done) the keyboard closes",
+    "status": "not drivable",
+    "seen": "the bar above the iOS keyboard is not in a headless seat"
+   },
+   {
+    "step": 6,
+    "line": "The Block All Cookies switch is off",
+    "status": "not drivable",
+    "seen": "iOS Settings are not drivable. Stand-in, the page loads without the init script"
+   },
+   {
+    "step": 8,
+    "line": "A new Private tab opens",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 9,
+    "line": "The app's first screen shows, Person 1 and Person 2 with an empty Subtotal",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 9,
+    "line": "No warning shows",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 10,
+    "line": "A number keyboard opens",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 11,
+    "line": "The field reads 100",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 12,
+    "line": "The strip reads \"Total RM 116.60\"",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 12,
+    "line": "No warning shows",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 13,
+    "line": "The Private tab is gone",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 14,
+    "line": "The first screen shows again",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 14,
+    "line": "The Subtotal is empty",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 14,
+    "line": "No warning showed at any point in the Private tabs",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   },
+   {
+    "step": 15,
+    "line": "The app shows its five items",
+    "status": "not drivable",
+    "seen": "Private Browsing and Safari's tab overview are not in a headless seat"
+   }
+  ],
+  "note": "",
+  "n": 30,
+  "sub": "h664"
+ },
+ {
+  "case": "UAT-15",
+  "verdict": "BLOCKED",
+  "cause": "SEAT",
+  "bad": [],
+  "nd": [
+   {
+    "step": 1,
+    "line": "The tab overview opens",
+    "status": "not drivable",
+    "seen": "Safari's tab overview is not in a headless seat"
+   },
+   {
+    "step": 1,
+    "line": "The app's tab shows the mark beside \"Danial's Splity Tab\"",
+    "status": "not drivable",
+    "seen": "Safari's tab overview is not in a headless seat. The page title reads \"Danial's Splity Tab\""
+   },
+   {
+    "step": 2,
+    "line": "The iPhone turns light",
+    "status": "not drivable",
+    "seen": "iOS Settings are not drivable"
+   },
+   {
+    "step": 3,
+    "line": "The mark is the same colour as at step 1",
+    "status": "not drivable",
+    "seen": "Safari's tab overview is not in a headless seat"
+   },
+   {
+    "step": 3,
+    "line": "The mark is easy to see on the light tab",
+    "status": "not drivable",
+    "seen": "Safari's tab overview is not in a headless seat"
+   },
+   {
+    "step": 4,
+    "line": "The app shows again, still dark",
+    "status": "not drivable",
+    "seen": "Safari's tab overview is not in a headless seat, the step comes after the overview"
+   },
+   {
+    "step": 5,
+    "line": "The iPhone is in your usual mode",
+    "status": "not drivable",
+    "seen": "iOS Settings are not drivable"
+   }
+  ],
+  "note": "",
+  "n": 7,
+  "sub": "h664"
+ }
+]

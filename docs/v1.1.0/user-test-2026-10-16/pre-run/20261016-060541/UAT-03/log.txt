@@ -1,0 +1,91 @@
+UAT-03 By item, only people on an item can take the spare sen
+run final
+verdict PASS
+lines 61, match 61, no match 0, not drivable 0
+
+## lines
+step 1 | match | A fourth field shows "Person 4" in grey, with the cursor in it | {'tag': 'input', 'id': '', 'label': 'Person 4 name', 'ph': 'Person 4', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text', 'rvalue': None}
+step 1 | match | Each item has a fourth button "Person 4", not ticked | [{'t': 'Person 4', 'p': False}, {'t': 'Person 4', 'p': False}, {'t': 'Person 4', 'p': False}, {'t': 'Person 4', 'p': False}]
+step 1 | match | The card lists "Person 4" with RM 0.00 | {'nm': 'Person 4', 'amt': 'RM 0.00', 'wk': '0.00 + 0.00'}
+step 1 | match | Under it 0.00 + 0.00 | {'nm': 'Person 4', 'amt': 'RM 0.00', 'wk': '0.00 + 0.00'}
+step 2 | match | The field reads Dan | {'value': 'Dan', 'ph': 'Person 4', 'removeDisabled': False, 'removeOpacity': '1', 'removeColor': 'rgb(167, 175, 191)'}
+step 2 | match | The card row reads Dan RM 0.00 | {'nm': 'Dan', 'amt': 'RM 0.00', 'wk': '0.00 + 0.00'}
+step 2 | match | Each item's fourth button reads Dan | [{'t': 'Dan', 'p': False}, {'t': 'Dan', 'p': False}, {'t': 'Dan', 'p': False}, {'t': 'Dan', 'p': False}]
+step 2 | match | Aisyah still reads RM 29.04 | {'nm': 'Aisyah', 'amt': 'RM 29.04', 'wk': '24.90 + 4.14'}
+step 3 | match | The Spare sen panel opens | Spare sen
+step 3 | match | Under the title it reads "1 sen left over" | 1 sen left over
+step 3 | match | Top of the list is chosen | ['Top of the list']
+step 4 | match | Three pills, "Aisyah", "Ben", "Chen" | ['Aisyah', 'Ben', 'Chen']
+step 4 | match | There is no pill for Dan | ['Aisyah', 'Ben', 'Chen']
+step 4 | match | Aisyah is ticked | ['Aisyah']
+step 4 | match | The chip reads "One person, Aisyah" | ['One person, Aisyah']
+step 5 | match | Aisyah RM 29.03 | RM 29.03
+step 5 | match | Under Aisyah 24.90 + 4.13 | 24.90 + 4.13
+step 5 | match | Ben RM 15.75 | RM 15.75
+step 5 | match | Under Ben 13.50 + 2.25 | 13.50 + 2.25
+step 5 | match | Chen RM 24.48 | RM 24.48
+step 5 | match | Under Chen 21.00 + 3.48 | 21.00 + 3.48
+step 5 | match | Dan RM 0.00 | RM 0.00
+step 5 | match | Under Dan 0.00 + 0.00 | 0.00 + 0.00
+step 5 | match | Adds up to RM 69.26 | {'label': 'Adds up to', 'amt': 'RM 69.26', 'wk': '59.40 + 9.86', 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 5 | match | Under Adds up to 59.40 + 9.86 | 59.40 + 9.86
+step 5 | match | The chip reads "One person, Ben" | ['One person, Ben']
+step 6 | match | The panel closes | 
+step 7 | match | Dan is ticked beside Ben | [{'t': 'Aisyah', 'p': False}, {'t': 'Ben', 'p': True}, {'t': 'Chen', 'p': False}, {'t': 'Dan', 'p': True}]
+step 7 | match | Aisyah RM 29.03 | RM 29.03
+step 7 | match | Under Aisyah 24.90 + 4.13 | 24.90 + 4.13
+step 7 | match | Ben RM 7.88 | RM 7.88
+step 7 | match | Under Ben 6.75 + 1.13 | 6.75 + 1.13
+step 7 | match | Chen RM 24.48 | RM 24.48
+step 7 | match | Under Chen 21.00 + 3.48 | 21.00 + 3.48
+step 7 | match | Dan RM 7.87 | RM 7.87
+step 7 | match | Under Dan 6.75 + 1.12 | 6.75 + 1.12
+step 7 | match | Adds up to RM 69.26 | {'label': 'Adds up to', 'amt': 'RM 69.26', 'wk': '59.40 + 9.86', 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 7 | match | Under Adds up to 59.40 + 9.86 | 59.40 + 9.86
+step 8 | match | The panel opens with One person chosen | ['One person']
+step 8 | match | Four pills, "Aisyah", "Ben", "Chen", "Dan" | ['Aisyah', 'Ben', 'Chen', 'Dan']
+step 8 | match | Ben is ticked | ['Ben']
+step 9 | match | The pills are gone | []
+step 9 | match | Aisyah RM 29.04 | RM 29.04
+step 9 | match | Under Aisyah 24.90 + 4.14 | 24.90 + 4.14
+step 9 | match | Ben RM 7.87 | RM 7.87
+step 9 | match | Under Ben 6.75 + 1.12 | 6.75 + 1.12
+step 9 | match | Chen RM 24.48 | RM 24.48
+step 9 | match | Under Chen 21.00 + 3.48 | 21.00 + 3.48
+step 9 | match | Dan RM 7.87 | RM 7.87
+step 9 | match | Under Dan 6.75 + 1.12 | 6.75 + 1.12
+step 9 | match | Adds up to RM 69.26 | {'label': 'Adds up to', 'amt': 'RM 69.26', 'wk': '59.40 + 9.86', 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+step 9 | match | Under Adds up to 59.40 + 9.86 | 59.40 + 9.86
+step 9 | match | The chip reads "Top of the list" | ['Top of the list']
+step 10 | match | The panel closes | 
+step 11 | match | Dan's field is gone | ['Aisyah', 'Ben', 'Chen']
+step 11 | match | Dan is gone from every item and from the card | ['Aisyah', 'Ben', 'Chen']
+step 11 | match | Aisyah RM 29.04 | RM 29.04
+step 11 | match | Ben RM 15.74 | RM 15.74
+step 11 | match | Under Ben 13.50 + 2.24 | 13.50 + 2.24
+step 11 | match | Chen RM 24.48 | RM 24.48
+step 11 | match | Adds up to RM 69.26 | {'label': 'Adds up to', 'amt': 'RM 69.26', 'wk': '59.40 + 9.86', 'seal': True, 'amtColor': 'rgb(163, 170, 255)', 'sealLeft': True}
+
+## events
+06:06:01 start: rows [('Aisyah', 'RM 29.04'), ('Ben', 'RM 15.74'), ('Chen', 'RM 24.48')], spare {'count': '1 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+06:06:01 click Add person at 1156,106
+06:06:02 typed Dan
+06:06:02 click Top of the list chip at 463,665
+06:06:02 click One person at 744,592
+06:06:03 click Ben pill at 756,586
+06:06:03 key Escape
+06:06:03 scrolled the item frame -120 px to reach Dan under Char kuey teow
+06:06:03 click Dan under Char kuey teow at 963,669
+06:06:04 click One person, Ben chip at 453,665
+06:06:04 click Top of the list at 744,436
+06:06:05 key Escape
+06:06:05 click x in Dan's field at 832,213
+
+## screenshots
+s01.png
+s03.png
+s04.png
+s05.png
+s07.png
+s08.png
+s11.png

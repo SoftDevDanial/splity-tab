@@ -1,0 +1,18 @@
+UAT-15 The tab icon in Safari, in light and dark
+run final
+verdict BLOCKED (SEAT)
+lines 7, match 0, no match 0, not drivable 7
+
+## lines
+step 1 | not drivable | The tab overview opens | Safari's tab overview is not in a headless seat
+step 1 | not drivable | The app's tab shows the mark beside "Danial's Splity Tab" | Safari's tab overview is not in a headless seat. The page title reads "Danial's Splity Tab"
+step 2 | not drivable | The iPhone turns light | iOS Settings are not drivable
+step 3 | not drivable | The mark is the same colour as at step 1 | Safari's tab overview is not in a headless seat
+step 3 | not drivable | The mark is easy to see on the light tab | Safari's tab overview is not in a headless seat
+step 4 | not drivable | The app shows again, still dark | Safari's tab overview is not in a headless seat, the step comes after the overview
+step 5 | not drivable | The iPhone is in your usual mode | iOS Settings are not drivable
+
+## events
+
+## screenshots
+app.png
