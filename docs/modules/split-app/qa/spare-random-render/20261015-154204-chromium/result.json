@@ -1,0 +1,308 @@
+{
+ "390": {
+  "walk_first_diff": {
+   "body": null,
+   "#spareDlg": null
+  },
+  "differences": {
+   "#spareDlg": {},
+   "#splitsDlg": {}
+  },
+  "p1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "325px",
+    "sheetScrollTop": 0,
+    "box": [
+     0,
+     535,
+     390,
+     309,
+     844
+    ],
+    "checked": "random",
+    "pickers": [
+     "randWrap"
+    ],
+    "randWrap": [
+     "40px",
+     [
+      "btn btn-ghost",
+      "Pick again",
+      44
+     ]
+    ],
+    "focus": "spareRule random"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "325px",
+    "sheetScrollTop": 0,
+    "box": [
+     0,
+     535,
+     390,
+     309,
+     844
+    ],
+    "checked": "random",
+    "pickers": [
+     "randWrap"
+    ],
+    "randWrap": [
+     "40px",
+     [
+      "btn btn-ghost",
+      "Pick again",
+      44
+     ]
+    ],
+    "focus": "body"
+   }
+  },
+  "chips": {
+   "app": {
+    "count": "2 sen left over",
+    "chips": [
+     "Pick again",
+     "At random"
+    ],
+    "underCount": false,
+    "gap": 8,
+    "spareChip": [
+     "At random",
+     "Spare sen: At random. Change"
+    ]
+   },
+   "golden": {
+    "count": "2 sen left over",
+    "chips": [
+     "Pick again",
+     "At random"
+    ],
+    "underCount": false,
+    "gap": 8,
+    "spareChip": [
+     "At random",
+     "Spare sen: At random. Change"
+    ]
+   }
+  },
+  "splits": {
+   "app": [
+    "AisyahRM 38.86",
+    "BenRM 38.87",
+    "ChenRM 38.87"
+   ],
+   "golden": [
+    "AisyahRM 38.86",
+    "BenRM 38.87",
+    "ChenRM 38.87"
+   ]
+  }
+ },
+ "360": {
+  "walk_first_diff": {
+   "body": null,
+   "#spareDlg": null
+  },
+  "differences": {
+   "#spareDlg": {},
+   "#splitsDlg": {}
+  },
+  "p1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "325px",
+    "sheetScrollTop": 0,
+    "box": [
+     0,
+     471,
+     360,
+     309,
+     780
+    ],
+    "checked": "random",
+    "pickers": [
+     "randWrap"
+    ],
+    "randWrap": [
+     "40px",
+     [
+      "btn btn-ghost",
+      "Pick again",
+      44
+     ]
+    ],
+    "focus": "spareRule random"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "325px",
+    "sheetScrollTop": 0,
+    "box": [
+     0,
+     471,
+     360,
+     309,
+     780
+    ],
+    "checked": "random",
+    "pickers": [
+     "randWrap"
+    ],
+    "randWrap": [
+     "40px",
+     [
+      "btn btn-ghost",
+      "Pick again",
+      44
+     ]
+    ],
+    "focus": "body"
+   }
+  },
+  "chips": {
+   "app": {
+    "count": "2 sen left over",
+    "chips": [
+     "Pick again",
+     "At random"
+    ],
+    "underCount": true,
+    "gap": 8,
+    "spareChip": [
+     "At random",
+     "Spare sen: At random. Change"
+    ]
+   },
+   "golden": {
+    "count": "2 sen left over",
+    "chips": [
+     "Pick again",
+     "At random"
+    ],
+    "underCount": true,
+    "gap": 8,
+    "spareChip": [
+     "At random",
+     "Spare sen: At random. Change"
+    ]
+   }
+  },
+  "splits": {
+   "app": [
+    "AisyahRM 38.86",
+    "BenRM 38.87",
+    "ChenRM 38.87"
+   ],
+   "golden": [
+    "AisyahRM 38.86",
+    "BenRM 38.87",
+    "ChenRM 38.87"
+   ]
+  }
+ },
+ "1280": {
+  "walk_first_diff": {
+   "body": null,
+   "#spareDlg": null
+  },
+  "differences": {
+   "#spareDlg": {},
+   "#card": {}
+  },
+  "p1": {
+   "app": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": null,
+    "sheetScrollTop": null,
+    "box": [
+     574,
+     250.8,
+     340,
+     310,
+     560.8
+    ],
+    "checked": "random",
+    "pickers": [
+     "randWrap"
+    ],
+    "randWrap": [
+     "40px",
+     [
+      "btn btn-ghost",
+      "Pick again",
+      44
+     ]
+    ],
+    "focus": "spareRule random"
+   },
+   "golden": {
+    "scrim": "rgba(4, 6, 10, 0.4)",
+    "sheetPadding": "20px",
+    "sheetScrollTop": 0,
+    "box": [
+     574,
+     250.81,
+     340,
+     310,
+     560.81
+    ],
+    "checked": "random",
+    "pickers": [
+     "randWrap"
+    ],
+    "randWrap": [
+     "40px",
+     [
+      "btn btn-ghost",
+      "Pick again",
+      44
+     ]
+    ],
+    "focus": "body"
+   }
+  },
+  "chips": {
+   "app": {
+    "count": "2 sen left over",
+    "chips": [
+     "Pick again",
+     "At random"
+    ],
+    "underCount": false,
+    "gap": 8,
+    "spareChip": [
+     "At random",
+     "Spare sen: At random. Change"
+    ]
+   },
+   "golden": {
+    "count": "2 sen left over",
+    "chips": [
+     "Pick again",
+     "At random"
+    ],
+    "underCount": false,
+    "gap": 8,
+    "spareChip": [
+     "At random",
+     "Spare sen: At random. Change"
+    ]
+   }
+  },
+  "splits": {
+   "app": [
+    "AisyahRM 38.86",
+    "BenRM 38.87",
+    "ChenRM 38.87"
+   ],
+   "golden": [
+    "AisyahRM 38.86",
+    "BenRM 38.87",
+    "ChenRM 38.87"
+   ]
+  }
+ }
+}

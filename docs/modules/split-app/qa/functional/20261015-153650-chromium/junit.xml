@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="7" skipped="0" tests="9" time="5.093" timestamp="2026-10-15T15:36:50.603254+08:00" hostname="{host}"><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-390]" time="1.837"><failure message="assert &quot;body&gt;dialog.pop[3]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']&quot; is None&#10; +  where &quot;body&gt;dialog.pop[3]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']&quot; = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})&#10; +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:33379/'&gt;)&#10; +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000001E5325D2B90&gt;, 'spare-sen-random', (390, 844))">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001E5325D2E50&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001E5325D2B90&gt;
+golden = 'spare-sen-random', width = 390
+
+    @pytest.mark.parametrize("golden, width", R3_PAIRS)
+    def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+E       assert "body&gt;dialog.pop[3]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']" is None
+E        +  where "body&gt;dialog.pop[3]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+E        +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:33379/'&gt;)
+E        +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000001E5325D2B90&gt;, 'spare-sen-random', (390, 844))
+
+tests\browser\test_app.py:280: AssertionError</failure></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-360]" time="0.393"><failure message="assert &quot;body&gt;dialog.pop[3]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']&quot; is None&#10; +  where &quot;body&gt;dialog.pop[3]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']&quot; = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})&#10; +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:33379/'&gt;)&#10; +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000001E53275AAE0&gt;, 'spare-sen-random', (360, 780))">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001E53275AE50&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001E53275AAE0&gt;
+golden = 'spare-sen-random', width = 360
+
+    @pytest.mark.parametrize("golden, width", R3_PAIRS)
+    def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+E       assert "body&gt;dialog.pop[3]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']" is None
+E        +  where "body&gt;dialog.pop[3]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+E        +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:33379/'&gt;)
+E        +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000001E53275AAE0&gt;, 'spare-sen-random', (360, 780))
+
+tests\browser\test_app.py:280: AssertionError</failure></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280]" time="0.385"><failure message="assert &quot;body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']&quot; is None&#10; +  where &quot;body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']&quot; = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})&#10; +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:33379/'&gt;)&#10; +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000001E531F7D6F0&gt;, 'spare-sen-random', (1280, 800))">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001E531F7DA60&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x000001E531F7D6F0&gt;
+golden = 'spare-sen-random', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R3_PAIRS)
+    def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+E       assert "body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']" is None
+E        +  where "body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice'] golden=['label.choice', 'label.choice', 'label.choice', 'div.pick']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+E        +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:33379/'&gt;)
+E        +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x000001E531F7D6F0&gt;, 'spare-sen-random', (1280, 800))
+
+tests\browser\test_app.py:280: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390]" time="0.314"><failure message="AssertionError: {'box': [0, 589, 390, 844, 390, 255], 'style': ['', '']}&#10;assert (True and False)&#10; +  where True = near(844, 844)&#10; +  and   False = near(255, 309)">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001E532055C70&gt;
+seed = '{"version":2,"bill":{"mode":"even","people":[{"id":"p1","name":"Aisyah"},{"id":"p2","name":"Ben"},{"id":"p3","name":"...":"100.00","items":[],"serviceText":"10","sstText":"6","spare":{"rule":"random","order":["p2","p3","p1"]},"nextId":4}}'
+size = (390, 844), height = 309, pad = '325px'
+
+    @pytest.mark.parametrize("seed, size, height, pad", [
+        pytest.param(seeds.S1, (390, 844), 255, "271px", id="K1-390"),
+        pytest.param(seeds.S1, (360, 780), 255, "271px", id="K1-360"),
+        pytest.param(seeds.ONE, (390, 844), 309, "325px", id="ONE-390"),
+        pytest.param(seeds.RND, (390, 844), 309, "325px", id="RND-390"),
+    ])
+    def test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room(open_app, seed, size, height, pad):
+        # qa.md. The ONE and RND rows are 309 px tall with the picker of R53 and Pick again of R54 (tasks A14, A15).
+        page = open_app(seed=seed, viewport=size).page
+        open_p1(page, "phone")
+        found = p1_state(page, ("box", "style"))
+&gt;       assert near(found["box"][3], size[1]) and near(found["box"][5], height) and found["style"] == ["", ""], found
+E       AssertionError: {'box': [0, 589, 390, 844, 390, 255], 'style': ['', '']}
+E       assert (True and False)
+E        +  where True = near(844, 844)
+E        +  and   False = near(255, 309)
+
+tests\browser\test_app.py:2357: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio" time="0.298"><failure message="AssertionError: assert {'checked': '...'pickers': []} == {'checked': '... ['randWrap']}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'pickers': []} != {'pickers': ['randWrap']}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001E531F1CF60&gt;
+
+    def test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio(open_app):
+        # qa.md on K2 at 1280 x 800. An arrow key fires change, which applies the rule and renders P1 again, so the render
+        # must keep the focused radio. Its #pickWrap lines are R53's (task A14), its #randWrap line R54's (task A15).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        assert p1_state(page, ("focus",)) == {"focus": "radio top"}
+        page.keyboard.press("ArrowDown")
+        assert p1_state(page, ("checked", "focus", "pickers")) == {"checked": "one", "focus": "radio one", "pickers": ["pickWrap"]}
+        assert picker(page, ("pills",)) == {"pills": k2_pills("Aisyah")}
+        assert card_figures(page)[1] == ["RM 38.88", "RM 38.86", "RM 38.86"]
+        assert spare_line(page)["chips"] == [spare_chip("One person, Aisyah")]
+        page.keyboard.press("ArrowDown")
+&gt;       assert p1_state(page, ("checked", "focus", "pickers")) == {"checked": "random", "focus": "radio random", "pickers": ["randWrap"]}
+E       AssertionError: assert {'checked': '...'pickers': []} == {'checked': '... ['randWrap']}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'pickers': []} != {'pickers': ['randWrap']}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2305: AssertionError</failure></testcase><testcase classname="test_app" name="test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again" time="0.303"><failure message="AssertionError: assert None == {'place': ['div.pick', 'choices', 'random'], 'parts': [['button.btn.btn-ghost', 'pickAgainSheet', 'button', ['svg.ic #i-shuffle', 'Pick again']]]}&#10; +  where None = rand_wrap(&lt;Page url='http://127.0.0.1:33379/'&gt;, ('place', 'parts'))">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000001E531EC4A90&gt;
+
+    def test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again(open_app):
+        # qa.md on K2 at 1280 x 800. Every draw is a real one (Math.random), so the test reads who is on RM 38.86 and never
+        # names them. Enter on #pickAgainSheet renders P1 again, so the render must keep the focused button (R54, R33).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        choose(page, "At random")
+&gt;       assert rand_wrap(page, ("place", "parts")) == RAND_WRAP
+E       AssertionError: assert None == {'place': ['div.pick', 'choices', 'random'], 'parts': [['button.btn.btn-ghost', 'pickAgainSheet', 'button', ['svg.ic #i-shuffle', 'Pick again']]]}
+E        +  where None = rand_wrap(&lt;Page url='http://127.0.0.1:33379/'&gt;, ('place', 'parts'))
+
+tests\browser\test_app.py:2620: AssertionError</failure></testcase><testcase classname="test_app" name="test_R54_pick_again_that_can_change_nothing_does_nothing" time="0.204" /><testcase classname="test_app" name="test_R54_math_random_goes_only_to_the_two_draws" time="0.010"><failure message="AssertionError: assert ['src/main.js...tside a draw'] == []&#10;  &#10;  Left contains one more item: 'src/main.js: Math.random 1 times outside a draw'&#10;  Use -v to get more diff">tmp_path = WindowsPath('{temp}/pytest-of-{user}/pytest-53/test_R54_math_random_goes_only0')
+
+    def test_R54_math_random_goes_only_to_the_two_draws(tmp_path):
+        # qa.md (PD-19). The scan is not blind, it finds Math.random given to both draws.
+        sources = {name: text for name, text in support.shipped_text().items() if name.startswith("src/")}
+&gt;       assert random_problems(sources) == []
+E       AssertionError: assert ['src/main.js...tside a draw'] == []
+E         
+E         Left contains one more item: 'src/main.js: Math.random 1 times outside a draw'
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2694: AssertionError</failure></testcase><testcase classname="test_app" name="test_R47_a_change_that_writes_nothing_leaves_the_warning" time="0.378" /></testsuite></testsuites>

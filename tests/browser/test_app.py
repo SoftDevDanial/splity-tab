@@ -249,7 +249,7 @@ R3_STATES = {
     "bill-even": (seeds.S2, {}, {390: None, 360: None, 1280: None}),
     "spare-sen": (seeds.S1, SPARE_OPENERS, {390: None, 360: None, 1280: None}),
     "spare-sen-one": (seeds.ONE, SPARE_OPENERS, {390: None, 360: None, 1280: None}),
-    "spare-sen-random": (seeds.RND, SPARE_OPENERS, {390: "A15", 360: "A15", 1280: "A15"}),
+    "spare-sen-random": (seeds.RND, SPARE_OPENERS, {390: None, 360: None, 1280: None}),
     "splits-sheet": (seeds.S1, {"phone": ("#splitsBtn",)}, {390: None, 360: None}),
     "new-bill-dialog": (seeds.S1, {"phone": ("#newBill",), "desktop": ("#newBill",)}, {390: None, 360: None, 1280: None}),
     "bill-empty": (None, {}, {390: None, 360: None, 1280: None}),
@@ -2292,8 +2292,7 @@ def test_R52_a_choice_applies_at_once_and_p1_stays_open(open_app):
 
 def test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio(open_app):
     # qa.md on K2 at 1280 x 800. An arrow key fires change, which applies the rule and renders P1 again, so the render
-    # must keep the focused radio. Its #pickWrap lines are R53's (task A14), its #randWrap line R54's (task A15), so the
-    # second step asserts only that #pickWrap is gone.
+    # must keep the focused radio. Its #pickWrap lines are R53's (task A14), its #randWrap line R54's (task A15).
     page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
     open_p1(page, "desktop")
     assert p1_state(page, ("focus",)) == {"focus": "radio top"}
@@ -2303,8 +2302,7 @@ def test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_ra
     assert card_figures(page)[1] == ["RM 38.88", "RM 38.86", "RM 38.86"]
     assert spare_line(page)["chips"] == [spare_chip("One person, Aisyah")]
     page.keyboard.press("ArrowDown")
-    assert p1_state(page, ("checked", "focus")) == {"checked": "random", "focus": "radio random"}
-    assert "pickWrap" not in p1_state(page, ("pickers",))["pickers"]
+    assert p1_state(page, ("checked", "focus", "pickers")) == {"checked": "random", "focus": "radio random", "pickers": ["randWrap"]}
     assert sorted(card_figures(page)[1]) == ["RM 38.86", "RM 38.87", "RM 38.87"]
     assert spare_line(page)["chips"] == [PICK_AGAIN_CHIP, spare_chip("At random")]
     spare = stored(page)["bill"]["spare"]
@@ -2349,7 +2347,7 @@ def test_R52_p1_sits_beside_the_card_on_the_desktop(open_app, seed, size, place)
     pytest.param(seeds.S1, (390, 844), 255, "271px", id="K1-390"),
     pytest.param(seeds.S1, (360, 780), 255, "271px", id="K1-360"),
     pytest.param(seeds.ONE, (390, 844), 309, "325px", id="ONE-390"),
-    pytest.param(seeds.RND, (390, 844), 309, "325px", id="RND-390", marks=pytest.mark.xfail(strict=True, reason="task A15")),
+    pytest.param(seeds.RND, (390, 844), 309, "325px", id="RND-390"),
 ])
 def test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room(open_app, seed, size, height, pad):
     # qa.md. The ONE and RND rows are 309 px tall with the picker of R53 and Pick again of R54 (tasks A14, A15).
@@ -2575,6 +2573,133 @@ def test_R53_removing_the_chosen_person_sets_the_rule_back_to_top_of_the_list(op
     assert stored(page)["bill"]["spare"] == {"rule": "top"}
     assert [row[:2] for row in card_rows(page)[0]] == [["Aisyah", "RM 38.87"], ["Chen", "RM 38.87"], ["Devi", "RM 38.86"]]
     assert spare_line(page)["chips"] == [spare_chip("Top of the list")]
+
+
+# ---------------------------------------------------------------- v1.1.0 task A15: At random and Pick again (R54)
+# #randWrap in one evaluate, null while P1 holds none. Where it sits (its tag and classes, its parent's class and the value
+# of the choice before it), its children as [tag and classes, id, type, nodes with an icon as "classes href"], and the
+# id of the control in it that has focus.
+RAND_WRAP_JS = """() => {
+  const wrap = document.querySelector('#spareDlg #randWrap');
+  if (!wrap) return null;
+  const label = (el) => el.localName + [...el.classList].map((name) => '.' + name).join('');
+  return {
+    place: [label(wrap), wrap.parentElement.className, wrap.previousElementSibling?.querySelector(':scope > input')?.value ?? null],
+    parts: [...wrap.children].map((el) => [label(el), el.id, el.getAttribute('type'), [...el.childNodes].map((node) =>
+      node instanceof Element ? `${label(node)} ${node.querySelector('use')?.getAttribute('href')}` : node.textContent)]),
+    focus: wrap.contains(document.activeElement) ? document.activeElement.id : null,
+  };
+}"""
+RAND_WRAP = {"place": ["div.pick", "choices", "random"],
+             "parts": [["button.btn.btn-ghost", "pickAgainSheet", "button", ["svg.ic #i-shuffle", "Pick again"]]]}
+
+
+def rand_wrap(page, keys):
+    """RAND_WRAP_JS with only its `keys`, or None when P1 holds no #randWrap."""
+    found = page.evaluate(RAND_WRAP_JS)
+    return found and {key: found[key] for key in keys}
+
+
+def cents(amount):
+    """A receipt figure in sen, "RM 38.87" -> 3887."""
+    return int(amount.removeprefix("RM ").replace(",", "").replace(".", ""))
+
+
+def k2_draw(page):
+    """The card's splits after a draw (spec R54) as [name, amount] rows, who is on RM 38.86, and their sum in sen."""
+    rows = [row[:2] for row in card_rows(page)[0]]
+    return {"rows": rows, "low": [name for name, amount in rows if amount == "RM 38.86"], "sum": sum(cents(amount) for _, amount in rows)}
+
+
+def test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again(open_app):
+    # qa.md on K2 at 1280 x 800. Every draw is a real one (Math.random), so the test reads who is on RM 38.86 and never
+    # names them. Enter on #pickAgainSheet renders P1 again, so the render must keep the focused button (R54, R33).
+    page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+    open_p1(page, "desktop")
+    choose(page, "At random")
+    assert rand_wrap(page, ("place", "parts")) == RAND_WRAP
+    assert p1_state(page, ("pickers",)) == {"pickers": ["randWrap"]}
+    first = k2_draw(page)
+    assert sorted(amount for _, amount in first["rows"]) == ["RM 38.86", "RM 38.87", "RM 38.87"] and first["sum"] == 11660, first
+    assert spare_line(page)["chips"] == [PICK_AGAIN_CHIP, spare_chip("At random")]
+    spare = stored(page)["bill"]["spare"]
+    assert set(spare) == {"rule", "order"} and spare["rule"] == "random" and sorted(spare["order"]) == ["p1", "p2", "p3"], spare
+    press_escape(page)
+    page.locator("#spareBtn").click()
+    assert p1_state(page, ("checked", "focus")) == {"checked": "random", "focus": "radio random"}
+    page.keyboard.press("Tab")
+    assert rand_wrap(page, ("focus",)) == {"focus": "pickAgainSheet"}
+    page.keyboard.press("Enter")
+    second = k2_draw(page)
+    assert len(second["low"]) == 1 and second["low"] != first["low"] and second["sum"] == 11660, (first, second)
+    assert stored(page)["bill"]["spare"]["order"] != spare["order"]
+    assert rand_wrap(page, ("focus",)) == {"focus": "pickAgainSheet"}
+    press_escape(page)
+    pick_again = page.locator("#pickAgain")
+    assert pick_again.count() == 1, "the card holds no Pick again"
+    pick_again.click()
+    third = k2_draw(page)
+    assert len(third["low"]) == 1 and third["low"] != second["low"] and third["sum"] == 11660, (second, third)
+    page.reload()
+    assert k2_draw(page) == third
+    click_copy(page, "#copyBtn")
+    lines = (page.evaluate("window.testClipboardText") or "").splitlines()
+    assert lines[2:5] == [f"{name} {amount}" for name, amount in third["rows"]], lines
+
+
+def test_R54_pick_again_that_can_change_nothing_does_nothing(open_app):
+    # qa.md on PA0 at 1280 x 800 with the write counter (CG-P3, ruled by the owner, at most 64 draws and then no change).
+    # From 1024 px the card's Pick again is the second Tab stop (R32), so the Tabs stop at 10.
+    session = open_app(seed=seeds.PA0, viewport=VIEWPORTS[1280], init_scripts=[support.storage_driver("count-set")])
+    page = session.page
+    noted = stored_text(page)
+    for _ in range(10):
+        if page.evaluate("document.activeElement.id") == "pickAgain":
+            break
+        page.keyboard.press("Tab")
+    assert page.evaluate("document.activeElement.id") == "pickAgain"  # otherwise gave up after 10 Tabs
+    page.keyboard.press("Enter")
+    assert [row[:2] for row in card_rows(page)[0]] == [["Aisyah", "RM 0.01"], ["Ben", "RM 0.01"], ["Chen", "RM 0.00"]]
+    assert page.evaluate("window.testSetItemCalls") == 0 and stored_text(page) == noted
+    assert page.evaluate("document.activeElement.id") == "pickAgain"
+    assert session.problems() == []
+
+
+# PD-19. A draw is a call of chooseSpareRule or pickAgain with no parentheses inside its argument list.
+DRAW_CALL = re.compile(r"\b(chooseSpareRule|pickAgain)\(([^()]*)\)")
+
+
+def draws_given_math_random(text):
+    """The name of every draw call in `text` that has Math.random as one of its arguments."""
+    return [call.group(1) for call in DRAW_CALL.finditer(text)
+            if "Math.random" in [argument.strip() for argument in call.group(2).split(",")]]
+
+
+def random_problems(sources):
+    """What the R54 scan finds in {name: text}. A Math.random anywhere but as an argument of a draw call, a comment
+    included, and any crypto.getRandomValues."""
+    found = []
+    for name, text in sources.items():
+        outside = text.count("Math.random") - len(draws_given_math_random(text))
+        if outside:
+            found.append(f"{name}: Math.random {outside} times outside a draw")
+        if "crypto.getRandomValues" in text:
+            found.append(f"{name}: crypto.getRandomValues")
+    return found
+
+
+def test_R54_math_random_goes_only_to_the_two_draws(tmp_path):
+    # qa.md (PD-19). The scan is not blind, it finds Math.random given to both draws.
+    sources = {name: text for name, text in support.shipped_text().items() if name.startswith("src/")}
+    assert random_problems(sources) == []
+    assert sorted(name for text in sources.values() for name in draws_given_math_random(text)) == ["chooseSpareRule", "pickAgain"]
+    main = sources["src/main.js"]
+    planted = {"math-random": main + "\nconst r = Math.random();\n",
+               "crypto": main + "\nconst bytes = crypto.getRandomValues(new Uint32Array(1));\n"}
+    for name, text in planted.items():
+        copy = tmp_path / f"{name}-main.js"
+        copy.write_text(text, encoding="utf-8")
+        assert random_problems(dict(sources, **{"src/main.js": copy.read_text(encoding="utf-8")})) != [], name
 
 
 # ---------------------------------------------------------------- Task 9: the draft (R25 to R28, with R3, R8, R10, R24, R26, R42)
@@ -2937,8 +3062,8 @@ def test_R47_a_storage_object_that_comes_back_clears_the_warning_without_a_reloa
 
 
 def test_R47_a_change_that_writes_nothing_leaves_the_warning(open_app):
-    # Since task A13 the card shows #pickAgain (R51), and until task A15 wires it (R54) its click does nothing, so this
-    # passes without a draw. A15 shows its teeth with a stub that saves an unchanged bill (BUILD.md, A13).
+    # qa.md SW4. Pick again on PA0 can change nothing (CG-P3), so it makes no save attempt and the warning stays. A stub
+    # that saves an unchanged bill fails it in both engines (BUILD.md, task A15).
     page = open_app(seed=seeds.PA0, viewport=(1280, 800), init_scripts=[D_A]).page
     support.replace_text(page, person_field(page, 1), "A")
     assert notes(page) == [WARNING]

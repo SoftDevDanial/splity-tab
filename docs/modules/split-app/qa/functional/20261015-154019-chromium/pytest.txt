@@ -1,0 +1,15 @@
+engine chromium, browser version 149.0.7827.55
+PASSED   call     test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-390] (0.38s)
+PASSED   call     test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-360] (0.33s)
+PASSED   call     test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280] (0.27s)
+PASSED   call     test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-1280] (0.28s)
+PASSED   call     test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280] (0.29s)
+PASSED   call     test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] (0.27s)
+PASSED   call     test_app.py::test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule[1280-card-chip] (0.19s)
+PASSED   call     test_app.py::test_R52_a_choice_applies_at_once_and_p1_stays_open (0.27s)
+PASSED   call     test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio (0.27s)
+FAILED   call     test_app.py::test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again (0.29s)
+PASSED   call     test_app.py::test_R54_pick_again_that_can_change_nothing_does_nothing (0.20s)
+PASSED   call     test_app.py::test_R54_math_random_goes_only_to_the_two_draws (0.04s)
+PASSED   call     test_app.py::test_R47_a_change_that_writes_nothing_leaves_the_warning (0.30s)
+exit status 1

@@ -1,0 +1,49 @@
+{
+ "count": 1,
+ "before": {
+  "rows": [
+   "AisyahRM 38.86",
+   "BenRM 38.87",
+   "ChenRM 38.87"
+  ],
+  "order": [
+   "p2",
+   "p3",
+   "p1"
+  ],
+  "chipText": "Pick again",
+  "chipFocused": false,
+  "sameChip": false
+ },
+ "after click": {
+  "rows": [
+   "AisyahRM 38.87",
+   "BenRM 38.87",
+   "ChenRM 38.86"
+  ],
+  "order": [
+   "p1",
+   "p2",
+   "p3"
+  ],
+  "chipText": "Pick again",
+  "chipFocused": true,
+  "sameChip": false
+ },
+ "after Enter": {
+  "rows": [
+   "AisyahRM 38.87",
+   "BenRM 38.86",
+   "ChenRM 38.87"
+  ],
+  "order": [
+   "p1",
+   "p3",
+   "p2"
+  ],
+  "chipText": "Pick again",
+  "chipFocused": true,
+  "sameChip": true
+ },
+ "stand-in clipboard writes": 0
+}

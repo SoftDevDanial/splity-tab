@@ -5,7 +5,7 @@ import {
   addItem, removeItem, setItemName, setItemPriceText, toggleItemPerson, setServiceText, setSstText, personLabel,
 } from "./core/bill.js";
 import { computeResult } from "./core/result.js";
-import { chooseSparePerson, chooseSpareRule } from "./core/spare.js";
+import { chooseSparePerson, chooseSpareRule, pickAgain } from "./core/spare.js";
 import { summaryText } from "./core/summary.js";
 import { getStorage, loadDraft, saveDraft } from "./draft.js";
 import { flagsFor, newErrorFlags, typedInto, leftField, forgetPrice, visibleErrors } from "./errors.js";
@@ -154,15 +154,19 @@ function personName(id) {
   const index = bill.people.findIndex((person) => person.id === id);
   return personLabel(bill.people[index], index);
 }
-const receiptHandlers = { onCopy: copySummary, onSpare: () => spareChoice.open(), personName };
+// Pick again on the card, in the sheet and in P1 (R54). Core gives back the same bill when no draw changes the splits
+// (CG-P3), and commit saves nothing then. The random source goes to the two draws and nowhere else (PD-19).
+const onPickAgain = () => commit(pickAgain(bill, Math.random));
+const receiptHandlers = { onCopy: copySummary, onSpare: () => spareChoice.open(), onPickAgain, personName };
 const card = createReceipt(document.getElementById("rbody"), { ...receiptHandlers, ids: CARD_IDS });
 const splitsButton = document.getElementById("splitsBtn");
 const sheet = createSheet(document.getElementById("splitsDlg"), splitsButton, receiptHandlers);
-// P1 (R52, R53). Math.random goes to chooseSpareRule and to nothing else here (PD-19). The chip shown is the card's from
-// 1024 px and the sheet's below it, so it is asked for when needed, never kept (PD-23).
+// P1 (R52 to R54). The chip shown is the card's from 1024 px and the sheet's below it, so it is asked for when needed,
+// never kept (PD-23).
 const spareChoice = createSpareChoice(document.getElementById("spareDlg"), {
   onRule: (value) => commit(chooseSpareRule(bill, value, Math.random)),
   onPerson: (id) => commit(chooseSparePerson(bill, id)),
+  onPickAgain,
   card: document.getElementById("card"),
   shownChip: () => (DESKTOP.matches ? card.spareChip() : sheet.spareChip()),
   splits: splitsButton,

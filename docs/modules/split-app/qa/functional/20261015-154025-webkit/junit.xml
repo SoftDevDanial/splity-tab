@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="13" time="9.854" timestamp="2026-10-15T15:40:25.805948+08:00" hostname="{host}"><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-390]" time="1.840" /><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-360]" time="0.836" /><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280]" time="0.653" /><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-1280]" time="0.664" /><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280]" time="0.641" /><testcase classname="test_app" name="test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390]" time="0.642" /><testcase classname="test_app" name="test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule[1280-card-chip]" time="0.571" /><testcase classname="test_app" name="test_R52_a_choice_applies_at_once_and_p1_stays_open" time="0.766" /><testcase classname="test_app" name="test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio" time="0.551" /><testcase classname="test_app" name="test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again" time="0.932"><failure message="AssertionError: ({'rows': [['Aisyah', 'RM 38.87'], ['Ben', 'RM 38.86'], ['Chen', 'RM 38.87']], 'low': ['Ben'], 'sum': 11660}, {'rows': [['Aisyah', 'RM 38.87'], ['Ben', 'RM 38.86'], ['Chen', 'RM 38.87']], 'low': ['Ben'], 'sum': 11660})&#10;assert (1 == 1 and ['Ben'] != ['Ben'])&#10; +  where 1 = len(['Ben'])">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x000002460B790930&gt;
+
+    def test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again(open_app):
+        # qa.md on K2 at 1280 x 800. Every draw is a real one (Math.random), so the test reads who is on RM 38.86 and never
+        # names them. Enter on #pickAgainSheet renders P1 again, so the render must keep the focused button (R54, R33).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        choose(page, "At random")
+        assert rand_wrap(page, ("place", "parts")) == RAND_WRAP
+        assert p1_state(page, ("pickers",)) == {"pickers": ["randWrap"]}
+        first = k2_draw(page)
+        assert sorted(amount for _, amount in first["rows"]) == ["RM 38.86", "RM 38.87", "RM 38.87"] and first["sum"] == 11660, first
+        assert spare_line(page)["chips"] == [PICK_AGAIN_CHIP, spare_chip("At random")]
+        spare = stored(page)["bill"]["spare"]
+        assert set(spare) == {"rule", "order"} and spare["rule"] == "random" and sorted(spare["order"]) == ["p1", "p2", "p3"], spare
+        press_escape(page)
+        page.locator("#spareBtn").click()
+        assert p1_state(page, ("checked", "focus")) == {"checked": "random", "focus": "radio random"}
+        page.keyboard.press("Tab")
+        assert rand_wrap(page, ("focus",)) == {"focus": "pickAgainSheet"}
+        page.keyboard.press("Enter")
+        second = k2_draw(page)
+&gt;       assert len(second["low"]) == 1 and second["low"] != first["low"] and second["sum"] == 11660, (first, second)
+E       AssertionError: ({'rows': [['Aisyah', 'RM 38.87'], ['Ben', 'RM 38.86'], ['Chen', 'RM 38.87']], 'low': ['Ben'], 'sum': 11660}, {'rows': [['Aisyah', 'RM 38.87'], ['Ben', 'RM 38.86'], ['Chen', 'RM 38.87']], 'low': ['Ben'], 'sum': 11660})
+E       assert (1 == 1 and ['Ben'] != ['Ben'])
+E        +  where 1 = len(['Ben'])
+
+tests\browser\test_app.py:2634: AssertionError</failure></testcase><testcase classname="test_app" name="test_R54_pick_again_that_can_change_nothing_does_nothing" time="0.420" /><testcase classname="test_app" name="test_R54_math_random_goes_only_to_the_two_draws" time="0.072" /><testcase classname="test_app" name="test_R47_a_change_that_writes_nothing_leaves_the_warning" time="0.786" /></testsuite></testsuites>

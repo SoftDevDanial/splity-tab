@@ -1,0 +1,6 @@
+-m pytest -q --engine chromium tests/browser/test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-390] tests/browser/test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-360] tests/browser/test_app.py::test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280] tests/browser/test_app.py::test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390] tests/browser/test_app.py::test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio tests/browser/test_app.py::test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again tests/browser/test_app.py::test_R54_pick_again_that_can_change_nothing_does_nothing tests/browser/test_app.py::test_R54_math_random_goes_only_to_the_two_draws tests/browser/test_app.py::test_R47_a_change_that_writes_nothing_leaves_the_warning
+server STARTED pid 13156 port 28423 root {workspace}\examples\split
+.........server STOPPED pid 13156 port 28423, exited True, port free again True
+                                                                         [100%]
+engine chromium, browser version 149.0.7827.55, skipped 0
+9 passed in 4.47s

@@ -1,13 +1,15 @@
-// P1, the spare sen choice (R52, R53, PD-21, PD-23, CG-P7, CG-P8). index.html holds the empty dialog.pop#spareDlg, and a
-// spare chip on the card or in the Splits sheet opens it.
-// createSpareChoice(dialog, { onRule, onPerson, card, shownChip, splits, makeRoom }) returns { open(), update(bill, result) }.
-//   onRule(value) applies a choice, "top", "one" or "random", and onPerson(id) the person a pill names. `card` is the
-//   card, P1 sits beside it from 1024 px. shownChip() gives the spare chip shown at that moment or null, and `splits` is
-//   Splits, where focus goes when no chip is shown. makeRoom(height) makes room in the Splits sheet under a P1 that tall,
-//   and makeRoom(null) gives it back.
+// P1, the spare sen choice (R52, R53, R54, PD-21, PD-23, CG-P7, CG-P8). index.html holds the empty dialog.pop#spareDlg,
+// and a spare chip on the card or in the Splits sheet opens it.
+// createSpareChoice(dialog, { onRule, onPerson, onPickAgain, card, shownChip, splits, makeRoom }) returns
+// { open(), update(bill, result) }.
+//   onRule(value) applies a choice, "top", "one" or "random", onPerson(id) the person a pill names, and onPickAgain()
+//   draws again. `card` is the card, P1 sits beside it from 1024 px. shownChip() gives the spare chip shown at that
+//   moment or null, and `splits` is Splits, where focus goes when no chip is shown. makeRoom(height) makes room in the
+//   Splits sheet under a P1 that tall, and makeRoom(null) gives it back.
 // Call update at every render with the bill and computeResult(bill). P1 fills itself from the latest pair when it
 // opens, follows it while open (rule 7) and is empty while closed, as the Splits sheet is. Its controls are kept while
-// it is open, so an arrow key on a radio or a pill, which applies the choice and renders, leaves focus where it was.
+// it is open, so an arrow key on a radio or a pill, or a key press on Pick again, which applies and renders, leaves
+// focus where it was.
 import { personLabel, sparePeople } from "../core/bill.js";
 import { closeOnBackdropClick, el, reconcileChildren, rowsFor, setChecked, setText, setValue, swallowRepeatClicks } from "./dom.js";
 import { icon } from "./icons.js";
@@ -17,9 +19,9 @@ import { DESKTOP } from "./media.js";
 export const RULE_NAMES = { top: "Top of the list", one: "One person", random: "At random" };
 const GAP_TO_CARD = 16; // px between the card's right edge and P1 (spare-sen.md, left 574 at 1280)
 
-export function createSpareChoice(dialog, { onRule, onPerson, card, shownChip, splits, makeRoom }) {
+export function createSpareChoice(dialog, { onRule, onPerson, onPickAgain, card, shownChip, splits, makeRoom }) {
   let latest = null; // [bill, result] of the last render
-  let shown = null; // { count, radios, choices, list, picker } while open
+  let shown = null; // { count, radios, choices, list, picker, randWrap } while open
 
   function fill() {
     const close = el("button", { type: "button", class: "icon-btn", "aria-label": "Close" }, icon("x"));
@@ -31,7 +33,14 @@ export function createSpareChoice(dialog, { onRule, onPerson, card, shownChip, s
     const list = el("div", { class: "choices" }, ...choices);
     dialog.append(el("div", { class: "in" }, el("div", { class: "pop-head" }, el("h2", { id: "spareTitle" }, "Spare sen"), close),
       count, list));
-    return { count, radios, choices, list, picker: createPicker() };
+    return { count, radios, choices, list, picker: createPicker(), randWrap: createRandWrap() };
+  }
+
+  /** R54's Pick again in P1, made once per open as the picker is, so the render its own press starts keeps its focus. */
+  function createRandWrap() {
+    const pickAgain = el("button", { type: "button", class: "btn btn-ghost", id: "pickAgainSheet" }, icon("shuffle"), "Pick again");
+    pickAgain.addEventListener("click", onPickAgain);
+    return el("div", { class: "pick", id: "randWrap" }, pickAgain);
   }
 
   /** R53's fieldset, empty until drawn. `pills` keeps one pill per person id for as long as P1 is open. */
@@ -66,14 +75,21 @@ export function createSpareChoice(dialog, { onRule, onPerson, card, shownChip, s
     reconcileChildren(pickList, current.map((pill) => pill.el));
   }
 
-  /** The count, the checked radio (the stored choice, CG-P7) and, while that is One person, the picker after it (R53). */
+  /** The three choices in order, with the picker after One person (R53) or Pick again after At random (R54) for `rule`. */
+  function choicesFor(rule) {
+    const [top, one, random] = shown.choices;
+    if (rule === "one") return [top, one, shown.picker.wrap, random];
+    if (rule === "random") return [top, one, random, shown.randWrap];
+    return shown.choices;
+  }
+
+  /** The count, the checked radio (the stored choice, CG-P7) and what follows it (`choicesFor`). */
   function draw() {
     const [bill, result] = latest;
     setText(shown.count, `${result.spare.count} sen left over`);
     for (const radio of shown.radios) setChecked(radio, radio.value === bill.spare.rule);
-    const [top, one, random] = shown.choices;
     if (bill.spare.rule === "one") drawPills(bill);
-    reconcileChildren(shown.list, bill.spare.rule === "one" ? [top, one, shown.picker.wrap, random] : shown.choices);
+    reconcileChildren(shown.list, choicesFor(bill.spare.rule));
   }
 
   /**

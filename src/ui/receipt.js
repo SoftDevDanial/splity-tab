@@ -1,9 +1,10 @@
-// The receipt (C2, C3, C5, C9, R16 to R21, R51): what computeResult(bill) gives, drawn into a div.rbody. One renderer
-// serves the card's #rbody and the Splits sheet's (PD-20), which is why the ids are a parameter.
-// createReceipt(rbody, { ids, onCopy, onSpare, personName }) fills `rbody` and returns { update(result, copyStatus),
-// spareChip() }. `ids` names the parts that carry an id (CARD_IDS on the card, SHEET_IDS in the sheet), `copyStatus` is
-// null, "ok" or "fail". onSpare() runs on a click of the spare chip, personName(id) gives the label of a person of the
-// bill. spareChip() gives the spare chip while the receipt shows one, otherwise null.
+// The receipt (C2, C3, C5, C9, R16 to R21, R51, R54): what computeResult(bill) gives, drawn into a div.rbody. One
+// renderer serves the card's #rbody and the Splits sheet's (PD-20), which is why the ids are a parameter.
+// createReceipt(rbody, { ids, onCopy, onSpare, onPickAgain, personName }) fills `rbody` and returns
+// { update(result, copyStatus), spareChip() }. `ids` names the parts that carry an id (CARD_IDS on the card, SHEET_IDS in
+// the sheet), `copyStatus` is null, "ok" or "fail". onSpare() runs on a click of the spare chip and onPickAgain() on a
+// click of Pick again, personName(id) gives the label of a person of the bill. spareChip() gives the spare chip while
+// the receipt shows one, otherwise null.
 // Every figure comes from split-core, formatted by split-core. Text only, and quiet: the status paragraph is the one live
 // element in it (R16).
 import { formatAmount, formatMoney, formatRate } from "../core/money.js";
@@ -77,12 +78,13 @@ function splitsAndProof(result, ids) {
 
 /**
  * R51: the spare sen line, `div.r-spare` with the count and its chips, Pick again first under At random. Made once and
- * kept, so a chip keeps keyboard focus while the figures change behind P1. show(spare) draws `result.spare` and returns
- * the line. The chip names the rule in effect, not the stored one (CG-P7).
+ * kept, so a chip keeps keyboard focus while the figures change, behind P1 or after its own press (R54). show(spare)
+ * draws `result.spare` and returns the line. The chip names the rule in effect, not the stored one (CG-P7).
  */
-function createSpareLine(ids, { onSpare, personName }) {
+function createSpareLine(ids, { onSpare, onPickAgain, personName }) {
   const count = el("p", withId({}, ids.spareLine));
   const pickAgain = el("button", withId({ type: "button", class: "chip-btn" }, ids.pickAgain), icon("shuffle"), "Pick again");
+  pickAgain.addEventListener("click", onPickAgain);
   const chipText = document.createTextNode("");
   const chip = el("button", withId({ type: "button", class: "chip-btn", "aria-haspopup": "dialog" }, ids.spareBtn), chipText, icon("caret"));
   chip.addEventListener("click", onSpare);
@@ -101,13 +103,13 @@ function createSpareLine(ids, { onSpare, personName }) {
   return { chip, show };
 }
 
-export function createReceipt(rbody, { ids, onCopy, onSpare, personName }) {
+export function createReceipt(rbody, { ids, onCopy, onSpare, onPickAgain, personName }) {
   // Copy summary, its status paragraph and the spare line are made once and kept, so a button keeps keyboard focus when
   // the figures change and the live paragraph is the same node for as long as there are splits. The rest is drawn anew.
   const copy = el("button", withId({ type: "button", class: "btn btn-primary btn-block r-copy" }, ids.copy), icon("copy"), "Copy summary");
   copy.addEventListener("click", onCopy);
   const status = el("p", withId({ class: "status", role: "status" }, ids.status));
-  const spare = createSpareLine(ids, { onSpare, personName });
+  const spare = createSpareLine(ids, { onSpare, onPickAgain, personName });
 
   function update(result, copyStatus) {
     if (result.kind === "blocked") {

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="13" time="10.587" timestamp="2026-10-15T15:40:56.495874+08:00" hostname="{host}"><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-390]" time="1.874" /><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-360]" time="0.753" /><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-random-1280]" time="0.636" /><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-1280]" time="0.833"><failure message="assert &quot;body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice', 'div.pick'] golden=['label.choice', 'label.choice', 'label.choice']&quot; is None&#10; +  where &quot;body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice', 'div.pick'] golden=['label.choice', 'label.choice', 'label.choice']&quot; = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})&#10; +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:59822/'&gt;)&#10; +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x0000021D7C721900&gt;, 'spare-sen', (1280, 800))">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000021D7C721170&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x0000021D7C721900&gt;
+golden = 'spare-sen', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R3_PAIRS)
+    def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+E       assert "body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice', 'div.pick'] golden=['label.choice', 'label.choice', 'label.choice']" is None
+E        +  where "body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'label.choice', 'div.pick'] golden=['label.choice', 'label.choice', 'label.choice']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+E        +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:59822/'&gt;)
+E        +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x0000021D7C721900&gt;, 'spare-sen', (1280, 800))
+
+tests\browser\test_app.py:280: AssertionError</failure></testcase><testcase classname="test_app" name="test_R3_rendered_markup_matches_its_golden[spare-sen-one-1280]" time="0.702"><failure message="assert &quot;body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice', 'div.pick'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']&quot; is None&#10; +  where &quot;body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice', 'div.pick'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']&quot; = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})&#10; +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:59822/'&gt;)&#10; +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x0000021D7A44BD70&gt;, 'spare-sen-one', (1280, 800))">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000021D7A78DDD0&gt;
+plain_context = &lt;function plain_context.&lt;locals&gt;.factory at 0x0000021D7A44BD70&gt;
+golden = 'spare-sen-one', width = 1280
+
+    @pytest.mark.parametrize("golden, width", R3_PAIRS)
+    def test_R3_rendered_markup_matches_its_golden(open_app, plain_context, golden, width):
+        seed, after_load, _ = R3_STATES[golden]
+        page = open_app(seed=seed, viewport=VIEWPORTS[width]).page
+        click_after_load(page, after_load.get("desktop" if width &gt;= 1024 else "phone", ()))
+&gt;       assert first_diff(dom_walk(page), golden_walk(plain_context, golden, VIEWPORTS[width])) is None
+E       assert "body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice', 'div.pick'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']" is None
+E        +  where "body&gt;dialog.pop[2]&gt;div.in[0]&gt;div.choices[2]: children app=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice', 'div.pick'] golden=['label.choice', 'label.choice', 'fieldset.pick', 'label.choice']" = first_diff({'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...}, {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...})
+E        +    where {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = dom_walk(&lt;Page url='http://127.0.0.1:59822/'&gt;)
+E        +    and   {'tag': 'body', 'cls': '', 'attrs': {}, 'text': '', ...} = golden_walk(&lt;function plain_context.&lt;locals&gt;.factory at 0x0000021D7A44BD70&gt;, 'spare-sen-one', (1280, 800))
+
+tests\browser\test_app.py:280: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_on_a_phone_p1_is_a_bottom_sheet_over_the_splits_sheet_and_the_sheet_makes_room[RND-390]" time="0.665" /><testcase classname="test_app" name="test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule[1280-card-chip]" time="0.615"><failure message="AssertionError: assert {'open': True...ft over', ...} == {'open': True...ft over', ...}&#10;  &#10;  Omitting 10 identical items, use -vv to show&#10;  Differing items:&#10;  {'pickers': ['randWrap']} != {'pickers': []}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000021D7A6C0CA0&gt;
+size = (1280, 800), opener = 'desktop'
+
+    @pytest.mark.parametrize("size, opener", [((1280, 800), "desktop"), ((390, 844), "phone")], ids=["1280-card-chip", "390-sheet-chip"])
+    def test_R52_p1_opens_from_either_chip_with_focus_on_the_chosen_rule(open_app, size, opener):
+        # qa.md on K1. Closed, P1 is the empty dialog of index.html. "Is named" and "described by" are read through the ids
+        # its aria-labelledby and aria-describedby point at.
+        page = open_app(seed=seeds.S1, viewport=size).page
+        assert p1_state(page, ("open", "parts")) == {"open": False, "parts": None}
+        open_p1(page, opener)
+&gt;       assert p1_state(page, P1_K1) == P1_K1
+E       AssertionError: assert {'open': True...ft over', ...} == {'open': True...ft over', ...}
+E         
+E         Omitting 10 identical items, use -vv to show
+E         Differing items:
+E         {'pickers': ['randWrap']} != {'pickers': []}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2275: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_a_choice_applies_at_once_and_p1_stays_open" time="0.704"><failure message="AssertionError: assert {'open': True..., 'randWrap']} == {'open': True... ['pickWrap']}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'pickers': ['pickWrap', 'randWrap']} != {'pickers': ['pickWrap']}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000021D7C461430&gt;
+
+    def test_R52_a_choice_applies_at_once_and_p1_stays_open(open_app):
+        # qa.md on K2 at 1280 x 800. Its #pickWrap lines are R53's (task A14).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        choose(page, "One person")
+&gt;       assert p1_state(page, ("open", "checked", "pickers")) == {"open": True, "checked": "one", "pickers": ["pickWrap"]}
+E       AssertionError: assert {'open': True..., 'randWrap']} == {'open': True... ['pickWrap']}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'pickers': ['pickWrap', 'randWrap']} != {'pickers': ['pickWrap']}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2284: AssertionError</failure></testcase><testcase classname="test_app" name="test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio" time="0.543"><failure message="AssertionError: assert {'checked': '..., 'randWrap']} == {'checked': '... ['pickWrap']}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Differing items:&#10;  {'pickers': ['pickWrap', 'randWrap']} != {'pickers': ['pickWrap']}&#10;  Use -v to get more diff">open_app = &lt;function open_app.&lt;locals&gt;.factory at 0x0000021D7C52D430&gt;
+
+    def test_R52_arrow_keys_move_between_the_three_choices_and_focus_stays_on_the_radio(open_app):
+        # qa.md on K2 at 1280 x 800. An arrow key fires change, which applies the rule and renders P1 again, so the render
+        # must keep the focused radio. Its #pickWrap lines are R53's (task A14), its #randWrap line R54's (task A15).
+        page = open_app(seed=seeds.S2, viewport=VIEWPORTS[1280]).page
+        open_p1(page, "desktop")
+        assert p1_state(page, ("focus",)) == {"focus": "radio top"}
+        page.keyboard.press("ArrowDown")
+&gt;       assert p1_state(page, ("checked", "focus", "pickers")) == {"checked": "one", "focus": "radio one", "pickers": ["pickWrap"]}
+E       AssertionError: assert {'checked': '..., 'randWrap']} == {'checked': '... ['pickWrap']}
+E         
+E         Omitting 2 identical items, use -vv to show
+E         Differing items:
+E         {'pickers': ['pickWrap', 'randWrap']} != {'pickers': ['pickWrap']}
+E         Use -v to get more diff
+
+tests\browser\test_app.py:2300: AssertionError</failure></testcase><testcase classname="test_app" name="test_R54_at_random_gives_the_spare_sen_to_different_people_and_pick_again_draws_again" time="1.201" /><testcase classname="test_app" name="test_R54_pick_again_that_can_change_nothing_does_nothing" time="0.422" /><testcase classname="test_app" name="test_R54_math_random_goes_only_to_the_two_draws" time="0.044" /><testcase classname="test_app" name="test_R47_a_change_that_writes_nothing_leaves_the_warning" time="0.844" /></testsuite></testsuites>
