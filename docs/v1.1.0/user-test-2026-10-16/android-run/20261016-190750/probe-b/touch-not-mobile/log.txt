@@ -1,0 +1,244 @@
+19:12:56 variant touch-not-mobile, chromium 149.0.7827.55, env {'vp': [360, 780], 'dpr': 1, 'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.55 Safari/537.36', 'touchPoints': 1, 'coarse': True}
+19:12:56 tap Person 1 field at 74,144, events ['pointerdown:touch:0:input', 'click:touch:1:input']
+19:12:57 Person 1 field: Ctrl+A then type 'Aisyah': before 'Person 1' sel 6-6, after Ctrl+A sel 0-8 of 8, after typing 'Aisyah'
+19:12:57 tap Person 2 field at 242,144, events ['pointerdown:touch:0:input', 'click:touch:1:input']
+19:12:58 Person 2 field: Ctrl+A then type 'Ben': before 'Person 2' sel 6-6, after Ctrl+A sel 0-8 of 8, after typing 'Ben'
+19:12:58 tap Add person at 86,201, events ['pointerdown:touch:0:button#addPerson', 'click:touch:1:button#addPerson']
+19:12:58 people now ['Aisyah', 'Ben', 'Chen']
+19:12:59 tap By item at 274,386, events ['pointerdown:touch:0:label', 'click:touch:1:label', 'click:touch:1:input#modeItem']
+19:13:00 tap Add item at 283,472, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:13:01 tap Aisyah under Nasi lemak ayam at 65,591, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:13:01 tap Add item at 283,472, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:13:03 touch swipe in the page from 180,450 to 180,369 (to reach Ben under Char kuey teow), page scrollY 31 to 97
+19:13:04 tap Ben under Char kuey teow at 140,617, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:13:04 tap Add item at 283,375, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:13:05 tap Chen under Mee goreng mamak at 210,613, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:13:06 tap Add item at 283,248, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:13:07 tap Aisyah under Satay, 10 sticks at 65,613, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:13:08 tap Chen under Satay, 10 sticks at 226,613, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:13:08 bill built, strip reads 'Total RM 69.26'
+19:13:08 tap Add item (step 2) at 283,125, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:13:10 touch swipe in the frame from 180,626 to 180,562 (to reach Aisyah under Item 5 (step 5)), frame scrollTop 0 to 49
+19:13:11 tap Aisyah under Item 5 (step 5) at 65,594, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:13:11 step 5 strip reads 'Total RM 1,193.87'
+19:13:12 tap Splits (step 6) at 86,746, events ['pointerdown:touch:0:button#splitsBtn', 'click:touch:1:button#splitsBtn']
+19:13:12 tap Close (step 7) at 329,153, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+19:13:13 tap Item 5 price field (step 8) at 246,557, events ['pointerdown:touch:0:input', 'click:touch:1:input']
+19:13:13 step 8: {'focused': True, 'active': 'Item 5 price in RM', 'value': '964.50', 'len': 6, 'selectionStart': 3, 'selectionEnd': 3, 'docSelection': '', 'docSelectionType': 'Caret', 'selColour': 'rgba(0, 0, 0, 0)', 'textAlign': 'right'}
+19:13:15 step 9 after Ctrl+A: {'focused': True, 'active': 'Item 5 price in RM', 'value': '964.50', 'len': 6, 'selectionStart': 0, 'selectionEnd': 6, 'docSelection': '964.50', 'docSelectionType': 'Range', 'selColour': 'rgba(0, 0, 0, 0)', 'textAlign': 'right'}
+19:13:15 step 9 paint: {'pixelsChangedVsBeforeA': 1090, 'pixelsChangedVsBeforeB': 1090, 'noiseBetweenTwoBeforeCaptures': 0, 'of': 6048, 'topColoursBefore': [((14, 18, 25), 3869), ((16, 20, 27), 646), ((163, 170, 255), 515), ((110, 120, 145), 220)], 'topColoursAfterCtrlA': [((14, 18, 25), 3189), ((2, 55, 163), 680), ((16, 20, 27), 646), ((163, 170, 255), 513)]}
+19:13:15 step 10 after typing: {'focused': True, 'active': 'Item 5 price in RM', 'value': '99999.99', 'len': 8, 'selectionStart': 8, 'selectionEnd': 8, 'docSelection': '', 'docSelectionType': 'Caret', 'selColour': 'rgba(0, 0, 0, 0)', 'textAlign': 'right'}
+19:13:16 step 11: strip 'Total RM 116,669.25', field {'v': '99999.99', 'sw': 91, 'cw': 76}
+
+## result
+{
+ "variant": "touch-not-mobile",
+ "env": {
+  "vp": [
+   360,
+   780
+  ],
+  "dpr": 1,
+  "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.55 Safari/537.36",
+  "touchPoints": 1,
+  "coarse": true
+ },
+ "build": {
+  "Person 1 to Aisyah": {
+   "before": {
+    "focused": true,
+    "active": "Person 1 name",
+    "value": "Person 1",
+    "len": 8,
+    "selectionStart": 6,
+    "selectionEnd": 6,
+    "docSelection": "",
+    "docSelectionType": "Caret",
+    "selColour": "rgba(0, 0, 0, 0)",
+    "textAlign": "start"
+   },
+   "afterCtrlA": {
+    "focused": true,
+    "active": "Person 1 name",
+    "value": "Person 1",
+    "len": 8,
+    "selectionStart": 0,
+    "selectionEnd": 8,
+    "docSelection": "Person 1",
+    "docSelectionType": "Range",
+    "selColour": "rgba(0, 0, 0, 0)",
+    "textAlign": "start"
+   },
+   "afterTyping": {
+    "focused": true,
+    "active": "Person 1 name",
+    "value": "Aisyah",
+    "len": 6,
+    "selectionStart": 6,
+    "selectionEnd": 6,
+    "docSelection": "",
+    "docSelectionType": "Caret",
+    "selColour": "rgba(0, 0, 0, 0)",
+    "textAlign": "start"
+   }
+  },
+  "Person 2 to Ben": {
+   "before": {
+    "focused": true,
+    "active": "Person 2 name",
+    "value": "Person 2",
+    "len": 8,
+    "selectionStart": 6,
+    "selectionEnd": 6,
+    "docSelection": "",
+    "docSelectionType": "Caret",
+    "selColour": "rgba(0, 0, 0, 0)",
+    "textAlign": "start"
+   },
+   "afterCtrlA": {
+    "focused": true,
+    "active": "Person 2 name",
+    "value": "Person 2",
+    "len": 8,
+    "selectionStart": 0,
+    "selectionEnd": 8,
+    "docSelection": "Person 2",
+    "docSelectionType": "Range",
+    "selColour": "rgba(0, 0, 0, 0)",
+    "textAlign": "start"
+   },
+   "afterTyping": {
+    "focused": true,
+    "active": "Person 2 name",
+    "value": "Ben",
+    "len": 3,
+    "selectionStart": 3,
+    "selectionEnd": 3,
+    "docSelection": "",
+    "docSelectionType": "Caret",
+    "selColour": "rgba(0, 0, 0, 0)",
+    "textAlign": "start"
+   }
+  }
+ },
+ "stripAfterBuild": "Total RM 69.26",
+ "step8": {
+  "focused": true,
+  "active": "Item 5 price in RM",
+  "value": "964.50",
+  "len": 6,
+  "selectionStart": 3,
+  "selectionEnd": 3,
+  "docSelection": "",
+  "docSelectionType": "Caret",
+  "selColour": "rgba(0, 0, 0, 0)",
+  "textAlign": "right"
+ },
+ "step9": {
+  "focused": true,
+  "active": "Item 5 price in RM",
+  "value": "964.50",
+  "len": 6,
+  "selectionStart": 0,
+  "selectionEnd": 6,
+  "docSelection": "964.50",
+  "docSelectionType": "Range",
+  "selColour": "rgba(0, 0, 0, 0)",
+  "textAlign": "right"
+ },
+ "paint9": {
+  "pixelsChangedVsBeforeA": 1090,
+  "pixelsChangedVsBeforeB": 1090,
+  "noiseBetweenTwoBeforeCaptures": 0,
+  "of": 6048,
+  "topColoursBefore": [
+   [
+    [
+     14,
+     18,
+     25
+    ],
+    3869
+   ],
+   [
+    [
+     16,
+     20,
+     27
+    ],
+    646
+   ],
+   [
+    [
+     163,
+     170,
+     255
+    ],
+    515
+   ],
+   [
+    [
+     110,
+     120,
+     145
+    ],
+    220
+   ]
+  ],
+  "topColoursAfterCtrlA": [
+   [
+    [
+     14,
+     18,
+     25
+    ],
+    3189
+   ],
+   [
+    [
+     2,
+     55,
+     163
+    ],
+    680
+   ],
+   [
+    [
+     16,
+     20,
+     27
+    ],
+    646
+   ],
+   [
+    [
+     163,
+     170,
+     255
+    ],
+    513
+   ]
+  ]
+ },
+ "step10": {
+  "focused": true,
+  "active": "Item 5 price in RM",
+  "value": "99999.99",
+  "len": 8,
+  "selectionStart": 8,
+  "selectionEnd": 8,
+  "docSelection": "",
+  "docSelectionType": "Caret",
+  "selColour": "rgba(0, 0, 0, 0)",
+  "textAlign": "right"
+ },
+ "step11": {
+  "strip": "Total RM 116,669.25",
+  "field": {
+   "v": "99999.99",
+   "sw": 91,
+   "cw": 76
+  }
+ },
+ "replacedWhole": true
+}

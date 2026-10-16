@@ -1,0 +1,92 @@
+UAT-12 On the phone, a big bill never scrolls sideways
+seat a360 (360 x 740 Android phone, Pixel 7 user agent, isMobile, hasTouch, DPR 3)
+run final
+verdict PASS
+entries 46, match 41, no match 0, not observable 0, iPhone only 5
+
+## lines
+step 1 | match | A row "Item 5" with a grey "0.00" and an amber bar | {'name': '', 'namePh': 'Item 5', 'price': '', 'pricePh': '0.00', 'needs': True, 'bar': 'rgb(242, 192, 99)', 'err': None, 'errIcon': False, 'errFill': None, 'bad': False, 'edge': 'rgb(110, 120, 145)', 'toggles': [{'t': 'Person 1', 'p': False}, {'t': 'Person 2', 'p': False}]}
+step 1 | match | The cursor is in its name and the keyboard opens [part: the cursor is in its name] | Item 5 name
+step 1 | iPhone only | The cursor is in its name and the keyboard opens [part: the keyboard opens] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 2 | match | The cursor is in Item 5's price | Item 5 price in RM
+step 2 | match | The field shows in full, not under the strip and not under the keyboard [part: in full, not under the strip] | {'top': 576, 'bottom': 620, 'stripTop': 632, 'vh': 740, 'frameTop': 76, 'frameBottom': 620, 'inViewport': True, 'clearOfStrip': True, 'inFrame': True, 'ok': True}
+step 2 | iPhone only | The field shows in full, not under the strip and not under the keyboard [part: not under the keyboard] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 3 | match | The field reads 964.50 | 964.50
+step 4 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: one Tab to leave the field
+step 4 | match | Item 5's price shows 964.50 whole | {'v': '964.50', 'textPx': 56.3, 'innerPx': 60, 'sw': 76, 'cw': 76, 'fieldPx': 76, 'focused': False, 'scrollLeft': 0}
+step 4 | match | The strip shows a warning circle and "1 item still needs a person. Tap who had it to see the splits." | 1 item still needs a person. Tap who had it to see the splits.
+step 5 | match | The amber bar is gone | False
+step 5 | match | The strip reads "Total RM 1,193.87" on one line | Total RM 1,193.87, lines 1, same row True, whole True
+step 6 | match | Nothing moves sideways | touch swipe 306,370 to 54,370 starting on li.item; moved nothing, block left edges changed none, page 360 px wide in a 360 px viewport, elements past the edges [], screen pixels changed 0 of 266400
+step 7 | match | Total RM 1,193.87 | RM 1,193.87
+step 7 | match | Subtotal RM 1,023.90 | ['Subtotal', 'RM 1,023.90']
+step 7 | match | Service 10% RM 102.39 | ['Service 10%', 'RM 102.39']
+step 7 | match | SST 6% RM 67.58 | ['SST 6%', 'RM 67.58']
+step 7 | match | Person 1 RM 1,164.14 | RM 1,164.14
+step 7 | match | Under it 998.40 + 165.74 | Person 1: 998.40 + 165.74
+step 7 | match | Person 2 RM 29.73 | RM 29.73
+step 7 | match | Under it 25.50 + 4.23 | Person 2: 25.50 + 4.23
+step 7 | match | Adds up to RM 1,193.87 | {'label': 'Adds up to', 'amt': 'RM 1,193.87', 'wk': '1,023.90 + 169.97', 'seal': True}
+step 7 | match | Under it 1,023.90 + 169.97 | Adds up to: 1,023.90 + 169.97
+step 7 | match | "1 sen left over" with "Top of the list" | {'count': '1 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 7 | match | Every figure shows whole, none cut at its edge | cut [], of 16 text boxes (judged also on s07.png)
+step 8 | match | The sheet goes down | 
+step 9 | match | The cursor is in it and a number keyboard opens [part: the cursor is in it] | {'tag': 'input', 'id': '', 'label': 'Item 5 price in RM', 'ph': '0.00', 'value': '964.50', 'text': '', 'fv': True, 'selStart': 6, 'selEnd': 6, 'type': 'text'}
+step 9 | iPhone only | The cursor is in it and a number keyboard opens [part: a number keyboard opens] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 10 | match | The field shows a grey "0.00" | ''
+step 11 | match | The field takes the new price | 99999.99
+step 12 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: one Tab to leave the field
+step 12 | match | The strip reads "Total RM 116,669.25" on one line | Total RM 116,669.25, lines 1, same row True, whole True
+step 13 | match | Total RM 116,669.25 | RM 116,669.25
+step 13 | match | Subtotal RM 100,059.39 | ['Subtotal', 'RM 100,059.39']
+step 13 | match | Service 10% RM 10,005.94 | ['Service 10%', 'RM 10,005.94']
+step 13 | match | SST 6% RM 6,603.92 | ['SST 6%', 'RM 6,603.92']
+step 13 | match | Person 1 RM 116,639.52 | RM 116,639.52
+step 13 | match | Under it 100,033.89 + 16,605.63 | Person 1: 100,033.89 + 16,605.63
+step 13 | match | Person 2 RM 29.73 | RM 29.73
+step 13 | match | Under it 25.50 + 4.23 | Person 2: 25.50 + 4.23
+step 13 | match | Adds up to RM 116,669.25 | {'label': 'Adds up to', 'amt': 'RM 116,669.25', 'wk': '100,059.39 + 16,609.86', 'seal': True}
+step 13 | match | Under it 100,059.39 + 16,609.86 | Adds up to: 100,059.39 + 16,609.86
+step 13 | match | "1 sen left over" with "Top of the list" | {'count': '1 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 13 | match | Every figure shows whole, none cut at its edge | cut [], of 16 text boxes (judged also on s13.png)
+step 14 | match | The sheet goes down | 
+step 15 | match | Nothing moves sideways | touch swipe 306,370 to 54,370 starting on li.item; moved nothing, block left edges changed none, page 360 px wide in a 360 px viewport, elements past the edges [], screen pixels changed 3 of 266400
+
+## events
+19:11:21 start: 4 items, strip Total RM 69.26
+19:11:22 tap Add item at 283,85, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:11:22 step 2 action: tap the down arrow, the iOS keyboard bar's down arrow. Android has no such bar. Stand-in: Tab until the next text field
+19:11:22 down-arrow stand-in: Tab pressed 1 time(s), focus now Item 5 price in RM
+19:11:22 typed 964.50
+19:11:23 Done stand-in: one Tab to leave the field, focus now {'tag': 'button', 'id': '', 'label': 'Remove Item 5', 'ph': None, 'value': '', 'text': '', 'fv': True, 'selStart': None, 'selEnd': None, 'type': 'button'}
+19:11:24 touch swipe in the frame from 180,582 to 180,503 (to reach Person 1 under Item 5), frame scrollTop 25 to 89
+19:11:24 tap Person 1 under Item 5 at 71,567, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:11:24 step 5 swipes (the step asks for a scroll): [('frame', 64)]
+19:11:26 swipe left: started on li.item; items and people before (5, 2), after (5, 2); before {'scrollX': 0, 'scrollY': 373, 'vvLeft': 0, 'vvPageLeft': 0, 'scale': 1, 'docSW': 360, 'docCW': 360, 'elementScrollLeft': 0, 'scrolled': [], 'lefts': {'top': 0, 'work': 0, 'strip': 0, 'list': 17, 'firstItem': 27}, 'wide': []} after {'scrollX': 0, 'scrollY': 373, 'vvLeft': 0, 'vvPageLeft': 0, 'scale': 1, 'docSW': 360, 'docCW': 360, 'elementScrollLeft': 0, 'scrolled': [], 'lefts': {'top': 0, 'work': 0, 'strip': 0, 'list': 17, 'firstItem': 27}, 'wide': []}
+19:11:27 tap Splits at 86,706, events ['pointerdown:touch:0:button#splitsBtn', 'click:touch:1:button#splitsBtn']
+19:11:28 sheet lines below the visible edge: {'below': [], 'scrollH': 550, 'clientH': 550, 'visibleBottom': 740}
+19:11:28 tap Close on the sheet at 329,167, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+19:11:29 tap Item 5 price field (at its right end) at 276,530, events ['pointerdown:touch:0:input', 'click:touch:1:input']
+19:11:30 held Backspace (stand-in for the on-screen delete key), 1 press then 5 repeats, value now ''
+19:11:30 typed 99999.99
+19:11:31 Done stand-in: one Tab to leave the field, focus now {'tag': 'button', 'id': '', 'label': 'Remove Item 5', 'ph': None, 'value': '', 'text': '', 'fv': True, 'selStart': None, 'selEnd': None, 'type': 'button'}
+19:11:31 tap Splits at 86,706, events ['pointerdown:touch:0:button#splitsBtn', 'click:touch:1:button#splitsBtn']
+19:11:31 sheet lines below the visible edge: {'below': [], 'scrollH': 550, 'clientH': 550, 'visibleBottom': 740}
+19:11:32 tap Close on the sheet at 329,167, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+19:11:34 swipe left: started on li.item; items and people before (5, 2), after (5, 2); before {'scrollX': 0, 'scrollY': 373, 'vvLeft': 0, 'vvPageLeft': 0, 'scale': 1, 'docSW': 360, 'docCW': 360, 'elementScrollLeft': 0, 'scrolled': [], 'lefts': {'top': 0, 'work': 0, 'strip': 0, 'list': 17, 'firstItem': 27}, 'wide': []} after {'scrollX': 0, 'scrollY': 373, 'vvLeft': 0, 'vvPageLeft': 0, 'scale': 1, 'docSW': 360, 'docCW': 360, 'elementScrollLeft': 0, 'scrolled': [], 'lefts': {'top': 0, 'work': 0, 'strip': 0, 'list': 17, 'firstItem': 27}, 'wide': []}
+
+## screenshots
+s02.png
+s04.png
+s05.png
+s06-before.png
+s06-after.png
+s07.png
+s12-field.png
+s12.png
+s13.png
+s15-before.png
+s15-after.png
+
+## notes
+A2 note (open item H-12): after leaving the field Item 5's price shows cut, the text is wider than the field, {'v': '99999.99', 'textPx': 75, 'innerPx': 60, 'sw': 91, 'cw': 76, 'fieldPx': 76, 'focused': False, 'scrollLeft': 0}; while focused it was {'v': '99999.99', 'textPx': 75, 'innerPx': 60, 'sw': 91, 'cw': 76, 'fieldPx': 76, 'focused': True, 'scrollLeft': 15}. See s12-field.png

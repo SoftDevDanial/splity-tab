@@ -1,0 +1,55 @@
+UAT-14 With Block All Cookies on, the app warns that nothing is saved, and the Private limit
+seat pixel7 (Playwright Pixel 7 descriptor as is, 412 x 839, DPR 2.625, isMobile, hasTouch, Android 14 Chrome 149 user agent)
+run final
+verdict PASS
+entries 29, match 23, no match 0, not observable 0, iPhone only 6
+
+## lines
+step 1 | iPhone only | The Block All Cookies switch is on | iOS Settings | stand-in: the app page is closed and opened again with an init script that makes every localStorage access throw
+step 2 | match | The page loads again | Danial's Splity Tab
+step 2 | match | A row under the top bar starts with an amber warning triangle | {'text': 'This bill is not being saved on this device. It will be lost when you close this tab.', 'under': True, 'top': 60, 'firstIsIcon': True, 'iconHref': '#i-warning', 'iconFill': 'rgb(242, 192, 99)', 'button': False}
+step 2 | match | It reads "This bill is not being saved on this device. It will be lost when you close this tab." | This bill is not being saved on this device. It will be lost when you close this tab.
+step 2 | match | It has no close button | 
+step 2 | match | People is open with Person 1 and Person 2 | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}]
+step 2 | match | Split is on Even with an empty Subtotal | 
+step 2 | match | The strip reads "Enter the subtotal to see the splits." | Enter the subtotal to see the splits.
+step 3 | iPhone only | A number keyboard opens | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen | stand-in: focus Subtotal in RM
+step 4 | match | The field reads 50 | 50
+step 5 | match | The strip reads "Total RM 58.30" | Total RM 58.30
+step 5 | match | The warning is still there | 
+step 6 | iPhone only | The Block All Cookies switch is off | iOS Settings | stand-in: the app page opened again without the storage block
+step 7 | match | No warning shows | 
+step 7 | match | Split is on By item with five items | 5
+step 7 | match | Item 1's price reads 13.505 with its red error | ('13.505', 'Enter an amount like 12.50', True)
+step 7 | match | The strip reads "Give every item a price to see the splits." | Give every item a price to see the splits.
+step 8 | iPhone only | A new Private tab opens | Safari's tab button and tab overview. Chrome's tab switcher on Android is not in a headless seat either | stand-in: a new incognito browser context in a second headless Chromium, with this seat's device profile
+step 9 | match | The app's first screen shows, Person 1 and Person 2 with an empty Subtotal | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}] | Android wording: in an incognito context, Chrome's private mode, not a Safari Private tab
+step 9 | match | No warning shows |  | Android wording: in the incognito context
+step 10 | iPhone only | A number keyboard opens | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 11 | match | The field reads 100 | 100
+step 12 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+step 12 | match | No warning shows | the incognito context accepted the save: draft stored True | Android wording: in the incognito context
+step 13 | iPhone only | The Private tab is gone | Safari's tab button and tab overview. Chrome's tab switcher on Android is not in a headless seat either | stand-in: the incognito context was closed
+step 14 | match | The first screen shows again | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}] | Android wording: a second incognito context
+step 14 | match | The Subtotal is empty | ''
+step 14 | match | No warning showed at any point in the Private tabs | [('step 9', None), ('step 12', None), ('step 14', None)] | Android wording: the incognito contexts
+step 15 | match | The app shows its five items | 5 | Android wording: the normal tab is the persistent Chromium profile's page, brought to the front
+
+## events
+19:09:02 start: 5 items, Item 1 price '13.505' error 'Enter an amount like 12.50'
+19:09:03 stand-in: the app page closed and opened again with the storage block (address bar Go)
+19:09:03 tap Subtotal field at 149,527, events ['pointerdown:touch:0:input#evenSub', 'click:touch:1:input#evenSub']
+19:09:03 typed 50
+19:09:03 step 5 action, Done above the keyboard: the iOS keyboard bar, nothing pressed
+19:09:04 stand-in: the app page opened again without the storage block (address bar Go with the block lifted)
+19:09:06 tap Subtotal field (incognito) at 149,449, events ['pointerdown:touch:0:input#evenSub', 'click:touch:1:input#evenSub']
+19:09:06 typed 100 (incognito)
+
+## screenshots
+s02.png
+s05.png
+s07.png
+s09-private.png
+s12-private.png
+s14-private.png
+s15.png

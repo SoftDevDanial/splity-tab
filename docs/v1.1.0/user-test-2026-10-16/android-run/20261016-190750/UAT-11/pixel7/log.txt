@@ -1,0 +1,111 @@
+UAT-11 On the phone, the field you type in never hides under the strip
+seat pixel7 (Playwright Pixel 7 descriptor as is, 412 x 839, DPR 2.625, isMobile, hasTouch, Android 14 Chrome 149 user agent)
+run final
+verdict PASS
+entries 54, match 45, no match 0, not observable 0, iPhone only 9
+
+## lines
+step 1 | match | People is open with Person 1 and Person 2 | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}]
+step 1 | match | Charges is folded | 
+step 1 | match | By item is chosen | 
+step 1 | match | Four rows, Item 1 to Item 4, each with a grey "0.00" and an amber bar | [('Item 1', '0.00', True, 'rgb(242, 192, 99)'), ('Item 2', '0.00', True, 'rgb(242, 192, 99)'), ('Item 3', '0.00', True, 'rgb(242, 192, 99)'), ('Item 4', '0.00', True, 'rgb(242, 192, 99)')]
+step 1 | match | The strip reads "Add each item and tap who had it to see the splits." | Add each item and tap who had it to see the splits.
+step 2 | match | The cursor is in Item 1's price and a number keyboard opens [part: the cursor is in Item 1's price] | Item 1 price in RM
+step 2 | iPhone only | The cursor is in Item 1's price and a number keyboard opens [part: a number keyboard opens] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 2 | match | The field shows in full, not under the strip and not under the keyboard [part: in full, not under the strip] | {'top': 228, 'bottom': 272, 'stripTop': 731, 'vh': 839, 'frameTop': 215, 'frameBottom': 706, 'inViewport': True, 'clearOfStrip': True, 'inFrame': True, 'ok': True}
+step 2 | iPhone only | The field shows in full, not under the strip and not under the keyboard [part: not under the keyboard] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 3 | match | The field reads 15.90 | 15.90
+step 4 | match | The cursor is in the Item 2 name field | Item 2 name
+step 4 | match | The field shows in full, not under the strip and not under the keyboard [part: in full, not under the strip] | {'top': 351, 'bottom': 395, 'stripTop': 731, 'vh': 839, 'frameTop': 215, 'frameBottom': 706, 'inViewport': True, 'clearOfStrip': True, 'inFrame': True, 'ok': True}
+step 4 | iPhone only | The field shows in full, not under the strip and not under the keyboard [part: not under the keyboard] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 5 | match | The cursor is in Item 2's price | Item 2 price in RM
+step 5 | match | The field shows in full, not under the strip and not under the keyboard [part: in full, not under the strip] | {'top': 351, 'bottom': 395, 'stripTop': 731, 'vh': 839, 'frameTop': 215, 'frameBottom': 706, 'inViewport': True, 'clearOfStrip': True, 'inFrame': True, 'ok': True}
+step 5 | iPhone only | The field shows in full, not under the strip and not under the keyboard [part: not under the keyboard] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 6 | match | The field reads 13.50 | 13.50
+step 7 | match | The cursor is in the Item 3 name field | Item 3 name
+step 7 | match | The field shows in full, not under the strip and not under the keyboard [part: in full, not under the strip] | {'top': 474, 'bottom': 518, 'stripTop': 731, 'vh': 839, 'frameTop': 215, 'frameBottom': 706, 'inViewport': True, 'clearOfStrip': True, 'inFrame': True, 'ok': True}
+step 7 | iPhone only | The field shows in full, not under the strip and not under the keyboard [part: not under the keyboard] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 8 | match | The cursor is in Item 3's price | Item 3 price in RM
+step 8 | match | The field shows in full, not under the strip and not under the keyboard [part: in full, not under the strip] | {'top': 474, 'bottom': 518, 'stripTop': 731, 'vh': 839, 'frameTop': 215, 'frameBottom': 706, 'inViewport': True, 'clearOfStrip': True, 'inFrame': True, 'ok': True}
+step 8 | iPhone only | The field shows in full, not under the strip and not under the keyboard [part: not under the keyboard] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 9 | match | The field reads 12.00 | 12.00
+step 10 | match | The cursor is in the Item 4 name field | Item 4 name
+step 10 | match | The field shows in full, not under the strip and not under the keyboard [part: in full, not under the strip] | {'top': 597, 'bottom': 641, 'stripTop': 731, 'vh': 839, 'frameTop': 215, 'frameBottom': 706, 'inViewport': True, 'clearOfStrip': True, 'inFrame': True, 'ok': True}
+step 10 | iPhone only | The field shows in full, not under the strip and not under the keyboard [part: not under the keyboard] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 11 | match | The cursor is in Item 4's price | Item 4 price in RM
+step 11 | match | The field shows in full, not under the strip and not under the keyboard [part: in full, not under the strip] | {'top': 597, 'bottom': 641, 'stripTop': 731, 'vh': 839, 'frameTop': 215, 'frameBottom': 706, 'inViewport': True, 'clearOfStrip': True, 'inFrame': True, 'ok': True}
+step 11 | iPhone only | The field shows in full, not under the strip and not under the keyboard [part: not under the keyboard] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 12 | match | The field reads 18.00 | 18.00
+step 13 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: nothing pressed
+step 13 | match | The strip shows a warning circle and "4 items still need a person. Tap who had each one to see the splits." | 4 items still need a person. Tap who had each one to see the splits., icon fill rgb(242, 192, 99)
+step 13 | match | Copy summary in the strip is faint | disabled True, colour rgb(95, 104, 120)
+step 14 | match | Item 1's amber bar is gone | needs False, bar rgba(0, 0, 0, 0)
+step 14 | match | The strip reads "3 items still need a person. Tap who had each one to see the splits." | 3 items still need a person. Tap who had each one to see the splits.
+step 15 | match | The strip reads "2 items still need a person. Tap who had each one to see the splits." | 2 items still need a person. Tap who had each one to see the splits.
+step 16 | match | The strip reads "1 item still needs a person. Tap who had it to see the splits." | 1 item still needs a person. Tap who had it to see the splits.
+step 17 | match | No amber bar is left | [False, False, False, False]
+step 17 | match | The strip reads "Total RM 69.26" | Total RM 69.26
+step 17 | match | Copy summary in the strip is bright | enabled, colour rgb(247, 248, 255)
+step 18 | match | Total RM 69.26 | RM 69.26
+step 18 | match | Subtotal RM 59.40 | ['Subtotal', 'RM 59.40']
+step 18 | match | Service 10% RM 5.94 | ['Service 10%', 'RM 5.94']
+step 18 | match | SST 6% RM 3.92 | ['SST 6%', 'RM 3.92']
+step 18 | match | "Splits" with "items + charges" | Splits / items + charges
+step 18 | match | Person 1 RM 39.53 | RM 39.53
+step 18 | match | Under it 33.90 + 5.63 | Person 1: 33.90 + 5.63
+step 18 | match | Person 2 RM 29.73 | RM 29.73
+step 18 | match | Under it 25.50 + 4.23 | Person 2: 25.50 + 4.23
+step 18 | match | Adds up to RM 69.26 | {'label': 'Adds up to', 'amt': 'RM 69.26', 'wk': '59.40 + 9.86', 'seal': True}
+step 18 | match | Under it 59.40 + 9.86 | Adds up to: 59.40 + 9.86
+step 18 | match | "1 sen left over" with "Top of the list" | {'count': '1 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 19 | match | The sheet goes down | 
+
+## events
+19:08:31 tap New bill at 338,30, events ['pointerdown:touch:0:button#newBill', 'click:touch:1:button#newBill']
+19:08:32 tap Start new bill at 206,432, events ['pointerdown:touch:0:button#startNew', 'click:touch:1:button#startNew']
+19:08:33 tap By item at 326,332, events ['pointerdown:touch:0:label', 'click:touch:1:label', 'click:touch:1:input#modeItem']
+19:08:34 tap Add item (1) at 335,418, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:08:34 Done above the keyboard: the iOS keyboard bar, nothing pressed
+19:08:35 tap Add item (2) at 335,418, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:08:35 Done above the keyboard: the iOS keyboard bar, nothing pressed
+19:08:35 tap Add item (3) at 335,418, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:08:35 Done above the keyboard: the iOS keyboard bar, nothing pressed
+19:08:36 tap Add item (4) at 335,385, events ['pointerdown:touch:0:button#addItem', 'click:touch:1:button#addItem']
+19:08:36 Done above the keyboard: the iOS keyboard bar, nothing pressed
+19:08:37 tap Item 1 price field at 298,250, events ['pointerdown:touch:0:input', 'click:touch:1:input']
+19:08:37 typed 15.90
+19:08:37 step 4 action: tap the down arrow, the iOS keyboard bar's down arrow. Android has no such bar. Stand-in: Tab until the next text field
+19:08:38 down-arrow stand-in: Tab pressed 4 time(s), focus now Item 2 name
+19:08:38 step 5 action: tap the down arrow, the iOS keyboard bar's down arrow. Android has no such bar. Stand-in: Tab until the next text field
+19:08:38 down-arrow stand-in: Tab pressed 1 time(s), focus now Item 2 price in RM
+19:08:38 typed 13.50
+19:08:38 step 7 action: tap the down arrow, the iOS keyboard bar's down arrow. Android has no such bar. Stand-in: Tab until the next text field
+19:08:38 down-arrow stand-in: Tab pressed 4 time(s), focus now Item 3 name
+19:08:39 step 8 action: tap the down arrow, the iOS keyboard bar's down arrow. Android has no such bar. Stand-in: Tab until the next text field
+19:08:39 down-arrow stand-in: Tab pressed 1 time(s), focus now Item 3 price in RM
+19:08:39 typed 12.00
+19:08:39 step 10 action: tap the down arrow, the iOS keyboard bar's down arrow. Android has no such bar. Stand-in: Tab until the next text field
+19:08:39 down-arrow stand-in: Tab pressed 4 time(s), focus now Item 4 name
+19:08:39 step 11 action: tap the down arrow, the iOS keyboard bar's down arrow. Android has no such bar. Stand-in: Tab until the next text field
+19:08:40 down-arrow stand-in: Tab pressed 1 time(s), focus now Item 4 price in RM
+19:08:40 typed 18.00
+19:08:40 tap Person 1 under Item 1 at 71,303, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:08:41 tap Person 2 under Item 2 at 168,426, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:08:42 tap Person 2 under Item 3 at 168,549, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:08:43 tap Person 1 under Item 4 at 71,672, events ['pointerdown:touch:0:span', 'click:touch:1:span']
+19:08:43 step 17 swipes (the step asks for a scroll): []
+19:08:44 tap Splits at 97,805, events ['pointerdown:touch:0:button#splitsBtn', 'click:touch:1:button#splitsBtn']
+19:08:44 sheet lines below the visible edge: {'below': [], 'scrollH': 556, 'clientH': 556, 'visibleBottom': 839}
+19:08:44 tap Close on the sheet at 381,260, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+
+## screenshots
+s01.png
+s02.png
+s04.png
+s05.png
+s07.png
+s08.png
+s10.png
+s11.png
+s17.png
+s18.png

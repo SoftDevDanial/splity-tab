@@ -76,9 +76,9 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | | Verdict | Note |
 |---|---|---|
 | **Tester** (an AI agent, before you) | PASS | Every line matched in headless Chromium at 1280 x 800. The copied summary was read from a clipboard stand-in's one write in place of Notepad and was the six lines exactly. The draws went to Chen at step 9, Ben at step 10, Ben again after the reload at step 12 and Aisyah at step 13. A headless browser does not act on F5, so step 12 used the browser's own reload. Only you can check the paste into the real Notepad and the F5 key. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **You** (2026-10-16) | PASS | - I dont want one person. I want person based ( i dont know what to name this ), but the logic is, i can either pick 1 or multiple peoples name to split the sen left over. Example, i can pick Aisyah and Ben. There should be a counter to show the sen left over when picking the names. Also, there will be cases where lets say theres 5 sen left over, but picked only 2 person. So theres still left over, there should be for this category to split randomly in between the 2 names or i can manually add per person the number of sen. Example, Aisyah i can put 3 and Ben as 2 which adds up to 5. There should be a warning or maybe even a prevention because we havent fully expedited the sen.    |
+| **Your marks** | | 71 matching, 0 not matching, 0 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | A future upgrade, written up in docs/future/spare-sen-chosen-people.md for a brainstorm in a later version (ledger off-scope row 23). Nothing changes in 1.1.0. |
 
 ---
 
@@ -104,9 +104,9 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | | Verdict | Note |
 |---|---|---|
 | **Tester** (an AI agent, before you) | BLOCKED | Blocked by the script, not the app. Every line matched except step 2 line 5 and step 3 line 1, and every figure was exact. The Before you start left the item list scrolled to its end, so at step 2 Aisyah under Nasi lemak ayam was out of view and at step 3 the wheel down moved nothing. With the list wheeled back to the top, Aisyah showed a check and an indigo edge, and a wheel down then moved only the list while the page and the card stayed still. The script was repaired after the run with the tester's own words and seen working in its extra capture. It was not run again. Headless Chromium at 1280 x 800. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **You** (2026-10-16) | PASS | |
+| **Your marks** | | 35 matching, 0 not matching, 0 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | None. Accepted. |
 
 ---
 
@@ -138,9 +138,9 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | | Verdict | Note |
 |---|---|---|
 | **Tester** (an AI agent, before you) | PASS | Every line matched in headless Chromium at 1280 x 800. Dan had no pill until he shared Char kuey teow. Step 7 needed the item list scrolled up 120 px to reach Dan under Char kuey teow, as the case note says. Nothing here was out of its reach. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **You** (2026-10-16) | PASS | |
+| **Your marks** | | 61 matching, 0 not matching, 0 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | None. Accepted. |
 
 ---
 
@@ -174,10 +174,10 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 
 | | Verdict | Note |
 |---|---|---|
-| **Tester** (an AI agent, before you) | PASS | Every line it could drive matched in headless Chromium. It has no Chrome device toolbar or developer tools, so only you can check the toolbar settings in the Before you start and step 14. A 360 x 780 window stood in for the device toolbar and was set back to 1280 x 800 at step 14. The strip read Total RM 1,193.87 and later RM 116,669.25 on one line, the Splits sheet showed every figure whole and the page stayed 360 px wide. Step 11 showed 99999.9 with the last digit cut (text 91 px in a 76 px field), which is your ruling on A2. Steps 1 and 5 needed scrolls, now written into them. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **Tester** (an AI agent, before you) | PASS | Every line it could drive matched in headless Chromium. It has no Chrome device toolbar or developer tools, so only you can check the toolbar settings in the Before you start and step 14. A 360 x 780 window stood in for the device toolbar and was set back to 1280 x 800 at step 14. The strip read Total RM 1,193.87 and later RM 116,669.25 on one line, the Splits sheet showed every figure whole and the page stayed 360 px wide. Step 11 showed 99999.9 with the last digit cut (text 91 px in a 76 px field), which is your ruling on A2. Steps 1 and 5 needed scrolls, now written into them. Probe P-B, 2026-10-16 19:17. Ctrl+A selects the whole price in every variant (selection 0 to 6 of 6) and typing replaces it. Under the device toolbar's phone mode the selection paints dim teal with the digits turning black (2.47 to 1 contrast), so it can look unselected (findings U1, android-run/20261016-190750/probe-b/). |
+| **You** (2026-10-16) | PASS | |
+| **Your marks** | | 58 matching, 1 not matching, 0 not marked.<br>✗ step 9. The price is selected |
+| **Next step** (written by the AI agent, agreed with you) | | Script wording, no product defect (findings U1). Ctrl+A does select the whole price. In the device toolbar's phone mode Chrome paints the selection as a dim teal block with dark digits, which reads as no highlight. A clearer selection colour is a design note for v1.2.0. H-12, kept as built, a README known limit (the owner, 2026-10-16). |
 
 ---
 
@@ -211,9 +211,9 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | | Verdict | Note |
 |---|---|---|
 | **Tester** (an AI agent, before you) | PASS | Every line matched in headless Chromium at 1280 x 800. A held Enter (one press, then 33 repeats over 2 s) removed Teh tarik only and left a focus ring on Add item. A held Enter on New bill opened the dialog, the dialog never closed while the key was held, and the ring sat on Cancel. Only you can check a held key on your own keyboard. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **You** (2026-10-16) | PASS | |
+| **Your marks** | | 33 matching, 0 not matching, 0 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | None. Accepted. |
 
 ---
 
@@ -241,9 +241,9 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | | Verdict | Note |
 |---|---|---|
 | **Tester** (an AI agent, before you) | PASS | Every line it could drive matched. It cannot open Chrome's settings page, so only you can check steps 1, 2, 3 and 6. A storage stand-in, a page whose every localStorage access throws, took the place of the block. The warning sat in the top bar between Splity Tab and New bill, with the amber triangle, the exact text and no close button, over a new bill at RM 58.30 and RM 29.15 each. With the block lifted, Teh tarik came back at RM 4.08 with 3.50 + 0.58. It could not see whether Chrome keeps the saved bill during a block. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **You** (2026-10-16) | PASS | |
+| **Your marks** | | 32 matching, 0 not matching, 0 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | None. Accepted. |
 
 ---
 
@@ -270,9 +270,9 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | | Verdict | Note |
 |---|---|---|
 | **Tester** (an AI agent, before you) | BLOCKED | Blocked by its seat, not the app. Step 1 matched, the mark left of Splity Tab, an indigo receipt outline with bars inside and a torn foot, no letter, and the header without Danial's. Steps 2 to 7 need the tab strip, the tab hover card and Windows light and dark mode, so only you can check them. The page title reads Danial's Splity Tab. Two captures render the file src/icon.svg in dark (light indigo) and in light (dark navy), which shows the file and not the tab. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **You** (2026-10-16) | PASS | |
+| **Your marks** | | 13 matching, 0 not matching, 0 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | None. Accepted. |
 
 ---
 
@@ -296,9 +296,9 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | | Verdict | Note |
 |---|---|---|
 | **Tester** (an AI agent, before you) | PASS | Every line matched. The note was read with a file reader in place of Notepad. The title, the status and the five headings in order match, and only New bill sits in the top bar. Only you can check how it opens in Notepad itself. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **You** (2026-10-16) | PASS | |
+| **Your marks** | | 9 matching, 0 not matching, 0 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | None. Accepted. |
 
 ---
 
@@ -322,7 +322,7 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | 6 | Tap **Done** above the keyboard. | The keyboard closes<br>The strip reads "Total RM 116.60"<br>Copy summary in the strip is bright |
 | 7 | Tap the **Charges** row. | It opens, "Service charge" with 10 and %<br>"SST" with 6 and %<br>"Set a charge to 0 if your bill already includes it."<br>Its caret turns up |
 | 8 | Tap the **Charges** row again. | It folds and reads "Service 10%, SST 6%" |
-| 9 | Tap **Splits**. | A sheet rises over the dimmed page<br>A grab bar at its top centre and a **Close** x at its top right<br>Total RM 116.60<br>Subtotal RM 100.00<br>Service 10% RM 10.00<br>SST 6% RM 6.60<br>The heading "Splits"<br>Person 1 RM 38.87<br>Person 2 RM 38.87<br>Person 3 RM 38.86<br>Adds up to RM 116.60<br>"2 sen left over" with the chip "Top of the list"<br>**Copy summary** at the bottom of the sheet<br>The page behind shows faintly through the sheet's glass<br>No ring is drawn round the sheet |
+| 9 | Tap **Splits**. | A sheet rises over the dimmed page<br>A grab bar at its top centre and a **Close** x at its top right<br>Total RM 116.60<br>Subtotal RM 100.00<br>Service 10% RM 10.00<br>SST 6% RM 6.60<br>The heading "Splits"<br>Person 1 RM 38.87<br>Person 2 RM 38.87<br>Person 3 RM 38.86<br>Adds up to RM 116.60<br>"2 sen left over" with the chip "Top of the list"<br>**Copy summary** at the bottom of the sheet<br>[struck 2026-10-16, script error, findings U2] The page behind shows faintly through the sheet's glass<br>No ring is drawn round the sheet |
 | 10 | Tap the **Top of the list** chip. | The Spare sen panel rises from the bottom over the sheet<br>A **Close** x at its top right<br>It reads "2 sen left over"<br>Three choices, "Top of the list", "One person", "At random"<br>Top of the list is chosen<br>A thin light ring is drawn round Top of the list, see the note |
 | 11 | Tap **One person**. | Three pills, "Person 1", "Person 2", "Person 3"<br>Person 1 is ticked |
 | 12 | Tap **Close** on the Spare sen panel. | The panel goes down<br>Person 1 reads RM 38.88<br>Person 2 reads RM 38.86<br>Person 3 reads RM 38.86<br>Adds up to reads RM 116.60<br>The chip reads "One person, Person 1"<br>A thin light ring is drawn round the One person, Person 1 chip, see the note |
@@ -333,10 +333,10 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 
 | | Verdict | Note |
 |---|---|---|
-| **Tester** (an AI agent, before you) | FAIL | Failed on step 13 line 3 only, a fault in the script. It expected a ring round Splits and none was drawn (not focus-visible) at either height, because the case's order does not draw one. At step 12 a ring was drawn round the One person, Person 1 chip, which the script did not list. A probe shows the ring on Splits comes only when the sheet is closed straight after it opens, not after the Spare sen panel has been used as in this case. The rings at steps 10 and 14 were drawn and were light indigo, rgb(163, 170, 255), not white. Everything else it could drive matched at 390 x 664 and 390 x 844, every figure exact. Step 12 and step 13 line 3 were repaired after the run with the tester's words, and the ring-order probe confirms the new wording. They were not run again. It ran Safari's engine on Windows, not an iPhone, so only you can check the keyboard, the Done key and Safari's settings. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **Tester** (an AI agent, before you) | FAIL | Failed on step 13 line 3 only, a fault in the script. It expected a ring round Splits and none was drawn (not focus-visible) at either height, because the case's order does not draw one. At step 12 a ring was drawn round the One person, Person 1 chip, which the script did not list. A probe shows the ring on Splits comes only when the sheet is closed straight after it opens, not after the Spare sen panel has been used as in this case. The rings at steps 10 and 14 were drawn and were light indigo, rgb(163, 170, 255), not white. Everything else it could drive matched at 390 x 664 and 390 x 844, every figure exact. Step 12 and step 13 line 3 were repaired after the run with the tester's words, and the ring-order probe confirms the new wording. They were not run again. It ran Safari's engine on Windows, not an iPhone, so only you can check the keyboard, the Done key and Safari's settings. Android layout run, 2026-10-16 19:17, the owner's ruling, evidence only, three Android seats (Pixel 7 at 412 x 839 and 412 x 664, and 360 x 740). BLOCKED by one script line. Step 9 'The page behind shows faintly through the sheet's glass' cannot be seen, the design's dense glass is 0.92 opaque, measured at 1 level of 255 (findings U2, the line is struck). 57 lines match, 7 iPhone only, the iOS keyboard and Safari's ring of A1 (android-run/20261016-190750/UAT-09/). |
+| **You** (2026-10-16) | BLOCKED | |
+| **Your marks** | | 0 matching, 0 not matching, 65 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only. |
 
 ---
 
@@ -374,10 +374,10 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 
 | | Verdict | Note |
 |---|---|---|
-| **Tester** (an AI agent, before you) | PASS | Every line it could drive matched at 390 x 664 and 390 x 844. Each double tap acted once, one Person 4, one removal with the cursor in Person 5, the sheet and the dialog stayed open, and Cancel closed once with nothing behind it pressed and no copy. A slower second tap acted. The tap on the hint reached no mousedown or click, focus stayed in Service charge and no error showed, which is the WebKit result the case lists. Leaving the field showed Enter a rate from 0 to 30 with a red edge, with one Tab in place of Done. It has no iOS keyboard, so only you can check the keyboard lines and how real fingers land. It ran Safari's engine on Windows, not an iPhone. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **Tester** (an AI agent, before you) | PASS | Every line it could drive matched at 390 x 664 and 390 x 844. Each double tap acted once, one Person 4, one removal with the cursor in Person 5, the sheet and the dialog stayed open, and Cancel closed once with nothing behind it pressed and no copy. A slower second tap acted. The tap on the hint reached no mousedown or click, focus stayed in Service charge and no error showed, which is the WebKit result the case lists. Leaving the field showed Enter a rate from 0 to 30 with a red edge, with one Tab in place of Done. It has no iOS keyboard, so only you can check the keyboard lines and how real fingers land. It ran Safari's engine on Windows, not an iPhone. Android layout run, 2026-10-16 19:17, evidence only. PASS. The two step 14 crosses are the ones the case note names for Chrome's engine. 8 iPhone-only lines not checked, the iOS keyboard (android-run/20261016-190750/UAT-10/). |
+| **You** (2026-10-16) | BLOCKED | |
+| **Your marks** | | 0 matching, 0 not matching, 48 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only. |
 
 ---
 
@@ -416,10 +416,10 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 
 | | Verdict | Note |
 |---|---|---|
-| **Tester** (an AI agent, before you) | PASS | Every line it could drive matched at 390 x 664 and 390 x 844. Moving down the fields, with Tab until the next text field in place of the keyboard's down arrow, left every focused field in full above the strip, the lowest one 12 px clear of it. The strip messages and the sheet figures were exact. Step 17 needed a scroll to reach Person 1 under Item 4, now written into the step. It has no on-screen keyboard, so only you can check the keyboard lines and the real arrows above the keyboard. It ran Safari's engine on Windows, not an iPhone. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **Tester** (an AI agent, before you) | PASS | Every line it could drive matched at 390 x 664 and 390 x 844. Moving down the fields, with Tab until the next text field in place of the keyboard's down arrow, left every focused field in full above the strip, the lowest one 12 px clear of it. The strip messages and the sheet figures were exact. Step 17 needed a scroll to reach Person 1 under Item 4, now written into the step. It has no on-screen keyboard, so only you can check the keyboard lines and the real arrows above the keyboard. It ran Safari's engine on Windows, not an iPhone. Android layout run, 2026-10-16 19:17, evidence only. PASS. Every focused field sat inside the item frame and above the strip. 9 iPhone-only lines not checked, the iOS keyboard (android-run/20261016-190750/UAT-11/). |
+| **You** (2026-10-16) | BLOCKED | |
+| **Your marks** | | 0 matching, 0 not matching, 46 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only. |
 
 ---
 
@@ -454,10 +454,10 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 
 | | Verdict | Note |
 |---|---|---|
-| **Tester** (an AI agent, before you) | PASS | Every line it could drive matched at 390 x 664 and 390 x 844. The strip read RM 1,193.87 and RM 116,669.25 on one line and every sheet figure was whole and exact. It has no touch swipe, so at the two swipe lines it measured instead, and the page was 390 px wide in a 390 px viewport with nothing past its edge. For the A2 note, Item 5's 99999.99 shows cut after leaving the field (text 92 px in a 76 px field). Step 5 needed a scroll to reach Person 1 under Item 5, now written into the step. Only you can check the swipes and the keyboard lines on a real iPhone. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **Tester** (an AI agent, before you) | PASS | Every line it could drive matched at 390 x 664 and 390 x 844. The strip read RM 1,193.87 and RM 116,669.25 on one line and every sheet figure was whole and exact. It has no touch swipe, so at the two swipe lines it measured instead, and the page was 390 px wide in a 390 px viewport with nothing past its edge. For the A2 note, Item 5's 99999.99 shows cut after leaving the field (text 92 px in a 76 px field). Step 5 needed a scroll to reach Person 1 under Item 5, now written into the step. Only you can check the swipes and the keyboard lines on a real iPhone. Android layout run, 2026-10-16 19:17, evidence only. PASS, nothing scrolled sideways. Item 5 showed 99999.9 cut in every seat, open item A2. 5 iPhone-only lines not checked, the iOS keyboard (android-run/20261016-190750/UAT-12/). |
+| **You** (2026-10-16) | BLOCKED | |
+| **Your marks** | | 0 matching, 0 not matching, 43 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only. |
 
 ---
 
@@ -488,10 +488,10 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 
 | | Verdict | Note |
 |---|---|---|
-| **Tester** (an AI agent, before you) | BLOCKED | Blocked by its seat, not the app. Steps 1 to 4 matched, 13.505, the red Enter an amount like 12.50 with its circle, the red edge and the strip message. Steps 5 to 11 need VoiceOver, so only you can check them. In their place it read the markup behind them, the label Item 1 price in RM, aria-invalid true, described by the error text, and Item 2 described by the same text while it is hidden. That is not what VoiceOver says. Plain taps put focus on Cancel and then back on New bill. At 390 x 664 Item 1's field was above the screen and needed a scroll, now written into step 1. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **Tester** (an AI agent, before you) | BLOCKED | Blocked by its seat, not the app. Steps 1 to 4 matched, 13.505, the red Enter an amount like 12.50 with its circle, the red edge and the strip message. Steps 5 to 11 need VoiceOver, so only you can check them. In their place it read the markup behind them, the label Item 1 price in RM, aria-invalid true, described by the error text, and Item 2 described by the same text while it is hidden. That is not what VoiceOver says. Plain taps put focus on Cancel and then back on New bill. At 390 x 664 Item 1's field was above the screen and needed a scroll, now written into step 1. Android layout run, 2026-10-16 19:17, evidence only. BLOCKED by seat. Steps 1 to 4 match. 21 iPhone-only lines, 19 of them VoiceOver. As a stand-in the accessibility tree reads Item 1 price as a textbox named 'Item 1 price in RM', value 13.505, invalid, described 'Enter an amount like 12.50' (android-run/20261016-190750/UAT-13/). |
+| **You** (2026-10-16) | BLOCKED | |
+| **Your marks** | | 0 matching, 0 not matching, 26 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only. |
 
 ---
 
@@ -526,10 +526,10 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 
 | | Verdict | Note |
 |---|---|---|
-| **Tester** (an AI agent, before you) | BLOCKED | Blocked by its seat, not the app. Steps 2 to 7 matched with a storage stand-in in place of Block All Cookies at steps 1 and 6, a page whose every localStorage access throws. The warning row sat under the top bar with the triangle and the exact text, no close button, over a new bill at RM 58.30. With the block lifted the five items came back, Item 1 at 13.505 with its red error. Steps 8 to 15 need Private Browsing and the tab overview, and steps 1 and 6 need iOS Settings, so only you can check them. It could not see what Safari's own setting does to the saved bill. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **Tester** (an AI agent, before you) | BLOCKED | Blocked by its seat, not the app. Steps 2 to 7 matched with a storage stand-in in place of Block All Cookies at steps 1 and 6, a page whose every localStorage access throws. The warning row sat under the top bar with the triangle and the exact text, no close button, over a new bill at RM 58.30. With the block lifted the five items came back, Item 1 at 13.505 with its red error. Steps 8 to 15 need Private Browsing and the tab overview, and steps 1 and 6 need iOS Settings, so only you can check them. It could not see what Safari's own setting does to the saved bill. Android layout run, 2026-10-16 19:17, evidence only. PASS, 23 lines match, a storage stand-in for Block All Cookies and incognito contexts for private tabs. 6 iPhone-only lines not checked (android-run/20261016-190750/UAT-14/). |
+| **You** (2026-10-16) | BLOCKED | |
+| **Your marks** | | 0 matching, 0 not matching, 29 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only. |
 
 ---
 
@@ -554,10 +554,10 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 
 | | Verdict | Note |
 |---|---|---|
-| **Tester** (an AI agent, before you) | BLOCKED | Blocked by its seat, not the app. Every step needs Safari's tab overview or iOS settings, so the whole case is yours alone. The page title does read Danial's Splity Tab. |
-| **You** | | |
-| **Your marks** | | |
-| **Next step** (written by the AI agent, agreed with you) | | |
+| **Tester** (an AI agent, before you) | BLOCKED | Blocked by its seat, not the app. Every step needs Safari's tab overview or iOS settings, so the whole case is yours alone. The page title does read Danial's Splity Tab. Android layout run, 2026-10-16 19:17, evidence only. BLOCKED by seat. All 7 lines need Safari's tab overview or iOS Settings (android-run/20261016-190750/UAT-15/). |
+| **You** (2026-10-16) | BLOCKED | |
+| **Your marks** | | 0 matching, 0 not matching, 7 not marked. |
+| **Next step** (written by the AI agent, agreed with you) | | Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only. |
 
 ---
 
@@ -565,21 +565,25 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 
 | case | sitting | scope | T tester | U user | crosses | next step |
 |---|---|---|---|---|---|---|
-| UAT-01 | 1 | S1 even | PASS | | | |
-| UAT-02 | 1 | S7 | BLOCKED (script, step 2 line 5 and step 3 line 1, reworded, not run again) | | | |
-| UAT-03 | 1 | S1 by item | PASS | | | |
-| UAT-04 | 1 | S2, holds A2 (H-12) | PASS | | | |
-| UAT-05 | 1 | S3 | PASS | | | |
-| UAT-06 | 1 | S4 | PASS | | | |
-| UAT-07 | 1 | S6 with S8 | BLOCKED (seat) | | | |
-| UAT-08 | 1 | S9 | PASS | | | |
-| UAT-09 | 2 | S5 with S7, holds A1 (H-11) | FAIL (step 13 line 3, reworded, not run again) | | | |
-| UAT-10 | 2 | S5 with H-04 | PASS | | | |
-| UAT-11 | 2 | S5 with S7 and H-08 | PASS | | | |
-| UAT-12 | 2 | S5 with S2 | PASS | | | |
-| UAT-13 | 2 | S5 with H-09 | BLOCKED (seat) | | | |
-| UAT-14 | 2 | S5 with S4 | BLOCKED (seat) | | | |
-| UAT-15 | 2 | S5 with S6 | BLOCKED (seat) | | | |
+| UAT-01 | 1 | S1 even | PASS | PASS | none | A future upgrade, docs/future/spare-sen-chosen-people.md, ledger off-scope row 23. Nothing changes in 1.1.0. |
+| UAT-02 | 1 | S7 | BLOCKED (script, step 2 line 5 and step 3 line 1, reworded, not run again) | PASS | none | None. Accepted. |
+| UAT-03 | 1 | S1 by item | PASS | PASS | none | None. Accepted. |
+| UAT-04 | 1 | S2, holds A2 (H-12) | PASS | PASS | step 9 | Script wording, no product defect (findings U1). H-12 kept as built, a README known limit. |
+| UAT-05 | 1 | S3 | PASS | PASS | none | None. Accepted. |
+| UAT-06 | 1 | S4 | PASS | PASS | none | None. Accepted. |
+| UAT-07 | 1 | S6 with S8 | BLOCKED (seat) | PASS | none | None. Accepted. |
+| UAT-08 | 1 | S9 | PASS | PASS | none | None. Accepted. |
+| UAT-09 | 2 | S5 with S7, holds A1 (H-11) | FAIL (step 13 line 3, reworded, not run again) | BLOCKED | none | Not run on an iPhone. Stays BLOCKED, the Android run is evidence only. |
+| UAT-10 | 2 | S5 with H-04 | PASS | BLOCKED | none | Not run on an iPhone. Stays BLOCKED, the Android run is evidence only. |
+| UAT-11 | 2 | S5 with S7 and H-08 | PASS | BLOCKED | none | Not run on an iPhone. Stays BLOCKED, the Android run is evidence only. |
+| UAT-12 | 2 | S5 with S2 | PASS | BLOCKED | none | Not run on an iPhone. Stays BLOCKED, the Android run is evidence only. |
+| UAT-13 | 2 | S5 with H-09 | BLOCKED (seat) | BLOCKED | none | Not run on an iPhone. Stays BLOCKED, the Android run is evidence only. |
+| UAT-14 | 2 | S5 with S4 | BLOCKED (seat) | BLOCKED | none | Not run on an iPhone. Stays BLOCKED, the Android run is evidence only. |
+| UAT-15 | 2 | S5 with S6 | BLOCKED (seat) | BLOCKED | none | Not run on an iPhone. Stays BLOCKED, the Android run is evidence only. |
+
+The owner's verdicts are from the results he pasted on 2026-10-16, sitting 1 (`OWNER-RESULTS-sitting-1.md`). The tester column shows the pre-run as it stood before his sitting, with the Android run described beside it in each case's tester row.
+
+**Android layout run** (2026-10-16 19:17, the owner's ruling, evidence only, three Android seats, Pixel 7 at 412 x 839 and 412 x 664, and 360 x 740, folder `android-run/20261016-190750/`). UAT-09 BLOCKED by one script line struck at step 9 (findings U2), 57 lines match, 7 iPhone only. UAT-10 PASS, 8 iPhone-only lines not checked. UAT-11 PASS, 9 iPhone-only lines not checked. UAT-12 PASS, 5 iPhone-only lines not checked, item 5 showed 99999.9 cut (A2). UAT-13 BLOCKED by seat, steps 1 to 4 match, 21 iPhone-only lines, 19 of them VoiceOver. UAT-14 PASS, 23 lines match, 6 iPhone-only lines not checked. UAT-15 BLOCKED by seat, all 7 lines need Safari's tab overview or iOS Settings. UAT-04 probe P-B, Ctrl+A selects the whole price (findings U1).
 
 ---
 
@@ -597,7 +601,7 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | **Why it needs you** | It is a visible difference from the approved design on your iPhone, and removing it changes how focus is set or changes the design. |
 | **Options** | (1) Keep it. A line in the test notes and the ledger, nothing to build. (2) Remove it. Back to the plan or the design, for example telling Safari the focus did not come from a keyboard. |
 | **Recommendation** | (1). It is Safari's own rule, the ring helps someone who uses a keyboard, and Streaks has the same item, so one ruling can cover both apps. |
-| **Your ruling** | |
+| **Your ruling** | "Safari is apple or iphone. So again same logic with 1." With his item 1, "Iphone test cases and even phones just remain as blocked or fail or as not run. Yes its not what the apps themselves do but data integrity saying its passed when its not tested is bad. So not run is better with note on why. But the release is still good to be released as it doesnt depend on iphone." Outcome (2026-10-16). Not verified on an iPhone, nothing built, the README says so. |
 
 ### A2. A price of 99999.99 does not fit its field at 360 px until focused (H-12)
 
@@ -607,7 +611,7 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | **Why it needs you** | A wider field changes the approved design, which only the design phase can do. |
 | **Options** | (1) Keep it, with a line in the README's limits. (2) A design change in v1.2.0, a wider price field or a smaller font at 360 px. |
 | **Recommendation** | (1) for 1.1.0. A five-figure price for one dish is rare, and the value shows whole everywhere it is added up. |
-| **Your ruling** | |
+| **Your ruling** | "H-12 is ok to keep." Outcome (2026-10-16). Option 1, kept, a line in the README's known limits. |
 
 ### A3. How your iPhone reaches the app for sitting 2
 
@@ -617,7 +621,7 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | **Why it needs you** | The first option opens a port on your home network for the length of the sitting, so it is your call. |
 | **Options** | (1) The orchestrator serves the app on this PC's Wi-Fi address for sitting 2 only. Windows asks once whether to let Python through its firewall, and you answer that prompt. The server stops when the sitting ends. Over that address Safari treats the page as not secure, so Copy summary says "Could not copy. Your browser blocked the clipboard." there, and no case presses it. (2) The iPhone cases wait for the published page after the seal. |
 | **Recommendation** | (1). The iPhone cases are the only check on a real phone, and they should inform the seal, not follow it. |
-| **Your ruling** | |
+| **Your ruling** | "For the safari problem, test it in a phone android layout instead by the testers. If all is green, then i conclude that its passed. Im lazy to test it out and want this to be finished as soon as possible." Outcome (2026-10-16). No iPhone sitting, the Android run is evidence only (see A1). |
 
 ### A4. A stray file outside the project
 
@@ -647,7 +651,7 @@ can PASS with a cross when you decide the difference does not matter. The cross 
 | **Why it needs you** | Each one is ours and reversible. |
 | **Options** | Accept all, or name the ones you want changed. |
 | **Recommendation** | Accept all. None changes what you see in normal use. |
-| **Your ruling** | |
+| **Your ruling** | "Lazy to check, i assume and trust your judgement. As long as this is recorded so that in the future we have references" Outcome (2026-10-16). All accepted, recorded in the ledger. On item (e) his words were "Yes but there are readme changes so make sure limitations and all that is properly recorded" |
 
 ---
 

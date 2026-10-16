@@ -1,0 +1,846 @@
+[
+ {
+  "variant": "touch-tap",
+  "env": {
+   "vp": [
+    360,
+    780
+   ],
+   "dpr": 1,
+   "ua": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Mobile Safari/537.36",
+   "touchPoints": 1,
+   "coarse": true
+  },
+  "build": {
+   "Person 1 to Aisyah": {
+    "before": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Person 1",
+     "len": 8,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterCtrlA": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Person 1",
+     "len": 8,
+     "selectionStart": 0,
+     "selectionEnd": 8,
+     "docSelection": "Person 1",
+     "docSelectionType": "Range",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterTyping": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Aisyah",
+     "len": 6,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    }
+   },
+   "Person 2 to Ben": {
+    "before": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Person 2",
+     "len": 8,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterCtrlA": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Person 2",
+     "len": 8,
+     "selectionStart": 0,
+     "selectionEnd": 8,
+     "docSelection": "Person 2",
+     "docSelectionType": "Range",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterTyping": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Ben",
+     "len": 3,
+     "selectionStart": 3,
+     "selectionEnd": 3,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    }
+   }
+  },
+  "stripAfterBuild": "Total RM 69.26",
+  "step8": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "964.50",
+   "len": 6,
+   "selectionStart": 3,
+   "selectionEnd": 3,
+   "docSelection": "",
+   "docSelectionType": "Caret",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "step9": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "964.50",
+   "len": 6,
+   "selectionStart": 0,
+   "selectionEnd": 6,
+   "docSelection": "964.50",
+   "docSelectionType": "Range",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "paint9": {
+   "pixelsChangedVsBeforeA": 1079,
+   "pixelsChangedVsBeforeB": 1079,
+   "noiseBetweenTwoBeforeCaptures": 0,
+   "of": 6048,
+   "topColoursBefore": [
+    [
+     [
+      14,
+      18,
+      25
+     ],
+     3869
+    ],
+    [
+     [
+      16,
+      20,
+      27
+     ],
+     646
+    ],
+    [
+     [
+      163,
+      170,
+      255
+     ],
+     515
+    ],
+    [
+     [
+      110,
+      120,
+      145
+     ],
+     220
+    ]
+   ],
+   "topColoursAfterCtrlA": [
+    [
+     [
+      14,
+      18,
+      25
+     ],
+     3189
+    ],
+    [
+     [
+      28,
+      82,
+      107
+     ],
+     680
+    ],
+    [
+     [
+      16,
+      20,
+      27
+     ],
+     641
+    ],
+    [
+     [
+      163,
+      170,
+      255
+     ],
+     513
+    ]
+   ]
+  },
+  "step10": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "99999.99",
+   "len": 8,
+   "selectionStart": 8,
+   "selectionEnd": 8,
+   "docSelection": "",
+   "docSelectionType": "Caret",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "step11": {
+   "strip": "Total RM 116,669.25",
+   "field": {
+    "v": "99999.99",
+    "sw": 91,
+    "cw": 76
+   }
+  },
+  "replacedWhole": true
+ },
+ {
+  "variant": "touch-mouse",
+  "env": {
+   "vp": [
+    360,
+    780
+   ],
+   "dpr": 1,
+   "ua": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Mobile Safari/537.36",
+   "touchPoints": 1,
+   "coarse": true
+  },
+  "build": {
+   "Person 1 to Aisyah": {
+    "before": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Person 1",
+     "len": 8,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterCtrlA": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Person 1",
+     "len": 8,
+     "selectionStart": 0,
+     "selectionEnd": 8,
+     "docSelection": "Person 1",
+     "docSelectionType": "Range",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterTyping": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Aisyah",
+     "len": 6,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    }
+   },
+   "Person 2 to Ben": {
+    "before": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Person 2",
+     "len": 8,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterCtrlA": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Person 2",
+     "len": 8,
+     "selectionStart": 0,
+     "selectionEnd": 8,
+     "docSelection": "Person 2",
+     "docSelectionType": "Range",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterTyping": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Ben",
+     "len": 3,
+     "selectionStart": 3,
+     "selectionEnd": 3,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    }
+   }
+  },
+  "stripAfterBuild": "Total RM 69.26",
+  "step8": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "964.50",
+   "len": 6,
+   "selectionStart": 3,
+   "selectionEnd": 3,
+   "docSelection": "",
+   "docSelectionType": "Caret",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "step9": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "964.50",
+   "len": 6,
+   "selectionStart": 0,
+   "selectionEnd": 6,
+   "docSelection": "964.50",
+   "docSelectionType": "Range",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "paint9": {
+   "pixelsChangedVsBeforeA": 1079,
+   "pixelsChangedVsBeforeB": 1079,
+   "noiseBetweenTwoBeforeCaptures": 0,
+   "of": 6048,
+   "topColoursBefore": [
+    [
+     [
+      14,
+      18,
+      25
+     ],
+     3869
+    ],
+    [
+     [
+      16,
+      20,
+      27
+     ],
+     646
+    ],
+    [
+     [
+      163,
+      170,
+      255
+     ],
+     515
+    ],
+    [
+     [
+      110,
+      120,
+      145
+     ],
+     220
+    ]
+   ],
+   "topColoursAfterCtrlA": [
+    [
+     [
+      14,
+      18,
+      25
+     ],
+     3189
+    ],
+    [
+     [
+      28,
+      82,
+      107
+     ],
+     680
+    ],
+    [
+     [
+      16,
+      20,
+      27
+     ],
+     641
+    ],
+    [
+     [
+      163,
+      170,
+      255
+     ],
+     513
+    ]
+   ]
+  },
+  "step10": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "99999.99",
+   "len": 8,
+   "selectionStart": 8,
+   "selectionEnd": 8,
+   "docSelection": "",
+   "docSelectionType": "Caret",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "step11": {
+   "strip": "Total RM 116,669.25",
+   "field": {
+    "v": "99999.99",
+    "sw": 91,
+    "cw": 76
+   }
+  },
+  "replacedWhole": true
+ },
+ {
+  "variant": "desktop",
+  "env": {
+   "vp": [
+    360,
+    780
+   ],
+   "dpr": 1,
+   "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.55 Safari/537.36",
+   "touchPoints": 0,
+   "coarse": false
+  },
+  "build": {
+   "Person 1 to Aisyah": {
+    "before": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Person 1",
+     "len": 8,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterCtrlA": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Person 1",
+     "len": 8,
+     "selectionStart": 0,
+     "selectionEnd": 8,
+     "docSelection": "Person 1",
+     "docSelectionType": "Range",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterTyping": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Aisyah",
+     "len": 6,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    }
+   },
+   "Person 2 to Ben": {
+    "before": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Person 2",
+     "len": 8,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterCtrlA": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Person 2",
+     "len": 8,
+     "selectionStart": 0,
+     "selectionEnd": 8,
+     "docSelection": "Person 2",
+     "docSelectionType": "Range",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterTyping": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Ben",
+     "len": 3,
+     "selectionStart": 3,
+     "selectionEnd": 3,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    }
+   }
+  },
+  "stripAfterBuild": "Total RM 69.26",
+  "step8": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "964.50",
+   "len": 6,
+   "selectionStart": 3,
+   "selectionEnd": 3,
+   "docSelection": "",
+   "docSelectionType": "Caret",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "step9": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "964.50",
+   "len": 6,
+   "selectionStart": 0,
+   "selectionEnd": 6,
+   "docSelection": "964.50",
+   "docSelectionType": "Range",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "paint9": {
+   "pixelsChangedVsBeforeA": 1090,
+   "pixelsChangedVsBeforeB": 1090,
+   "noiseBetweenTwoBeforeCaptures": 0,
+   "of": 6048,
+   "topColoursBefore": [
+    [
+     [
+      14,
+      18,
+      25
+     ],
+     3869
+    ],
+    [
+     [
+      16,
+      20,
+      27
+     ],
+     646
+    ],
+    [
+     [
+      163,
+      170,
+      255
+     ],
+     515
+    ],
+    [
+     [
+      110,
+      120,
+      145
+     ],
+     220
+    ]
+   ],
+   "topColoursAfterCtrlA": [
+    [
+     [
+      14,
+      18,
+      25
+     ],
+     3189
+    ],
+    [
+     [
+      2,
+      55,
+      163
+     ],
+     680
+    ],
+    [
+     [
+      16,
+      20,
+      27
+     ],
+     646
+    ],
+    [
+     [
+      163,
+      170,
+      255
+     ],
+     513
+    ]
+   ]
+  },
+  "step10": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "99999.99",
+   "len": 8,
+   "selectionStart": 8,
+   "selectionEnd": 8,
+   "docSelection": "",
+   "docSelectionType": "Caret",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "step11": {
+   "strip": "Total RM 116,669.25",
+   "field": {
+    "v": "99999.99",
+    "sw": 91,
+    "cw": 76
+   }
+  },
+  "replacedWhole": true
+ },
+ {
+  "variant": "touch-not-mobile",
+  "env": {
+   "vp": [
+    360,
+    780
+   ],
+   "dpr": 1,
+   "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.55 Safari/537.36",
+   "touchPoints": 1,
+   "coarse": true
+  },
+  "build": {
+   "Person 1 to Aisyah": {
+    "before": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Person 1",
+     "len": 8,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterCtrlA": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Person 1",
+     "len": 8,
+     "selectionStart": 0,
+     "selectionEnd": 8,
+     "docSelection": "Person 1",
+     "docSelectionType": "Range",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterTyping": {
+     "focused": true,
+     "active": "Person 1 name",
+     "value": "Aisyah",
+     "len": 6,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    }
+   },
+   "Person 2 to Ben": {
+    "before": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Person 2",
+     "len": 8,
+     "selectionStart": 6,
+     "selectionEnd": 6,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterCtrlA": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Person 2",
+     "len": 8,
+     "selectionStart": 0,
+     "selectionEnd": 8,
+     "docSelection": "Person 2",
+     "docSelectionType": "Range",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    },
+    "afterTyping": {
+     "focused": true,
+     "active": "Person 2 name",
+     "value": "Ben",
+     "len": 3,
+     "selectionStart": 3,
+     "selectionEnd": 3,
+     "docSelection": "",
+     "docSelectionType": "Caret",
+     "selColour": "rgba(0, 0, 0, 0)",
+     "textAlign": "start"
+    }
+   }
+  },
+  "stripAfterBuild": "Total RM 69.26",
+  "step8": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "964.50",
+   "len": 6,
+   "selectionStart": 3,
+   "selectionEnd": 3,
+   "docSelection": "",
+   "docSelectionType": "Caret",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "step9": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "964.50",
+   "len": 6,
+   "selectionStart": 0,
+   "selectionEnd": 6,
+   "docSelection": "964.50",
+   "docSelectionType": "Range",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "paint9": {
+   "pixelsChangedVsBeforeA": 1090,
+   "pixelsChangedVsBeforeB": 1090,
+   "noiseBetweenTwoBeforeCaptures": 0,
+   "of": 6048,
+   "topColoursBefore": [
+    [
+     [
+      14,
+      18,
+      25
+     ],
+     3869
+    ],
+    [
+     [
+      16,
+      20,
+      27
+     ],
+     646
+    ],
+    [
+     [
+      163,
+      170,
+      255
+     ],
+     515
+    ],
+    [
+     [
+      110,
+      120,
+      145
+     ],
+     220
+    ]
+   ],
+   "topColoursAfterCtrlA": [
+    [
+     [
+      14,
+      18,
+      25
+     ],
+     3189
+    ],
+    [
+     [
+      2,
+      55,
+      163
+     ],
+     680
+    ],
+    [
+     [
+      16,
+      20,
+      27
+     ],
+     646
+    ],
+    [
+     [
+      163,
+      170,
+      255
+     ],
+     513
+    ]
+   ]
+  },
+  "step10": {
+   "focused": true,
+   "active": "Item 5 price in RM",
+   "value": "99999.99",
+   "len": 8,
+   "selectionStart": 8,
+   "selectionEnd": 8,
+   "docSelection": "",
+   "docSelectionType": "Caret",
+   "selColour": "rgba(0, 0, 0, 0)",
+   "textAlign": "right"
+  },
+  "step11": {
+   "strip": "Total RM 116,669.25",
+   "field": {
+    "v": "99999.99",
+    "sw": 91,
+    "cw": 76
+   }
+  },
+  "replacedWhole": true
+ }
+]

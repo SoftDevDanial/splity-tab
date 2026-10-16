@@ -101,7 +101,10 @@ Each was found and accepted on purpose. The reasoning is in the ledgers, `docs/m
 | A name may hold invisible characters outside the removed class (U+200B, U+FEFF, U+00A0). They change only the look of the user's own text and reorder nothing | 1.0.0 | kept |
 | Two names in a right-to-left script (Arabic, Hebrew) next to each other in the People line can show in right-to-left order. The copied summary is unchanged | 1.1.0 | kept, the app is English only and isolating each name was not chosen |
 | A second tap more than 22 px from the first, or 500 ms or more after it, counts as a new press. Two deliberate taps on one spot less than 500 ms apart act once | 1.1.0 | kept, the owner's ruling for the repeat guard |
-| Only Chromium is tested | 1.0.0 | 1.1.0 tests Chromium and WebKit, Safari's engine. WebKit on Windows is not Safari on an iPhone, so touch, the on-screen keyboard and Safari's clean-up are checked in the owner's iPhone test. Firefox is not verified |
+| Only Chromium is tested | 1.0.0 | 1.1.0 tests Chromium and WebKit, Safari's engine. WebKit on Windows is not Safari on an iPhone, so touch, the on-screen keyboard and Safari's clean-up are checked in the owner's iPhone test. Firefox is not verified. [Corrected 2026-10-16, the owner's iPhone test did not run. No real iPhone or Android phone was used at the 1.1.0 UAT. Phone layouts were checked in emulation (WebKit at iPhone sizes, Chromium in Android seats), and the iPhone-only cases stay untested, by the owner's ruling] |
+| At 360 px a price of 99999.99 shows as "99999.9" in its field until the field has focus. The splits, the strip and the sheet show every figure whole | 1.1.0 | kept, the owner's ruling at the 1.1.0 UAT (H-12). The field width is the approved design's |
+| In Safari's engine a tap that opens the New bill dialog or the Spare sen panel draws the keyboard focus ring on the control that takes focus. The design and Chrome draw none | 1.1.0 | kept as built, not checked on a real iPhone (H-11) |
+| In a phone browser that paints selection Android-style, a selected price on the dark field shows as dim teal with dark digits, which can read as nothing selected. The app sets no selection colour | 1.1.0 | seen in emulation at the 1.1.0 UAT, a design note for the next version (`docs/future/bugs-found.md`) |
 
 <details>
 <summary><b>How it is built</b></summary>

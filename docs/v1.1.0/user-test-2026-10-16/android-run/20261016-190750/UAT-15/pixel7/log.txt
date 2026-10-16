@@ -1,0 +1,24 @@
+UAT-15 The tab icon in Safari, in light and dark
+seat pixel7 (Playwright Pixel 7 descriptor as is, 412 x 839, DPR 2.625, isMobile, hasTouch, Android 14 Chrome 149 user agent)
+run final
+verdict BLOCKED (seat, the case's own claims are iPhone only)
+entries 7, match 0, no match 0, not observable 0, iPhone only 7
+
+## lines
+step 1 | iPhone only | The tab overview opens | Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either
+step 1 | iPhone only | The app's tab shows the mark beside "Danial's Splity Tab" | Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either | stand-in: the page title reads "Danial's Splity Tab", the icon link is {'href': 'src/icon.svg', 'type': 'image/svg+xml'}
+step 2 | iPhone only | The iPhone turns light | iOS Settings, Display and Brightness
+step 3 | iPhone only | The mark is the same colour as at step 1 | Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either
+step 3 | iPhone only | The mark is easy to see on the light tab | Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either
+step 4 | iPhone only | The app shows again, still dark | Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either, the step comes after the overview
+step 5 | iPhone only | The iPhone is in your usual mode | iOS Settings, Display and Brightness
+
+## events
+
+## screenshots
+app.png
+icon-file-dark.png
+icon-file-light.png
+
+## notes
+Supporting, the icon file src/icon.svg drawn by Chromium in each colour scheme (the file, not a tab): most common ink colours {'dark': [((255, 255, 255), 38701), ((163, 170, 255), 25875), ((209, 212, 255), 438)], 'light': [((255, 255, 255), 38701), ((30, 33, 64), 25874), ((142, 143, 159), 438)]}

@@ -1,0 +1,128 @@
+UAT-09 Every screen on your iPhone, and the white ring after a tap
+seat pixel7-h664 (Pixel 7 descriptor with the viewport height set to 664, 412 x 664)
+run final
+verdict BLOCKED (script, an expected result that is not observable)
+entries 65, match 57, no match 0, not observable 1, iPhone only 7
+
+## lines
+step 1 | match | The mark and "Splity Tab" sit at the top left | Splity Tab
+step 1 | match | New bill sits at the top right | 
+step 1 | match | The "People" row is open, its caret up | true matrix(-1, 0, 0, -1, 0, 0)
+step 1 | match | Two fields, "Person 1" and "Person 2", each with a faint x | [{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}]
+step 1 | match | Add person under them | 
+step 1 | match | A "Charges" row reads "Service 10%, SST 6%" with a caret | Service 10%, SST 6%, caret none
+step 1 | match | "Split" with Even chosen and By item beside it | 
+step 1 | match | "Subtotal" with "RM" and a grey "0.00" | Subtotal RM 0.00, placeholder colour rgb(167, 175, 191)
+step 1 | match | The strip at the bottom reads "Enter the subtotal to see the splits." | Enter the subtotal to see the splits.
+step 1 | match | Splits with an up caret sits in the strip | matrix(-1, 0, 0, -1, 0, 0)
+step 1 | match | Copy summary in the strip is faint | disabled, colour rgb(95, 104, 120)
+step 2 | match | A third field shows "Person 3" in grey, with the cursor in it | {'tag': 'input', 'id': '', 'label': 'Person 3 name', 'ph': 'Person 3', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text'}
+step 2 | iPhone only | The keyboard opens | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen | stand-in: focus is in a text field (Person 3 name)
+step 2 | match | All three x are now bright | [(False, 'rgb(167, 175, 191)'), (False, 'rgb(167, 175, 191)'), (False, 'rgb(167, 175, 191)')]
+step 3 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: nothing pressed
+step 4 | iPhone only | A number keyboard opens | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen | stand-in: focus is in Subtotal in RM, inputmode decimal
+step 5 | match | The field reads 100 | 100
+step 6 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: nothing pressed
+step 6 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+step 6 | match | Copy summary in the strip is bright | enabled, colour rgb(247, 248, 255) on rgb(80, 89, 218)
+step 7 | match | It opens, "Service charge" with 10 and % | {'open': 'true', 'svc': '10', 'sst': '6', 'labels': ['Service charge', 'SST'], 'units': ['%', '%'], 'hint': 'Set a charge to 0 if your bill already includes it.', 'caret': 'matrix(-1, 0, 0, -1, 0, 0)', 'shown': True}
+step 7 | match | "SST" with 6 and % | ['Service charge', 'SST'] 6 ['%', '%']
+step 7 | match | "Set a charge to 0 if your bill already includes it." | Set a charge to 0 if your bill already includes it.
+step 7 | match | Its caret turns up | matrix(-1, 0, 0, -1, 0, 0)
+step 8 | match | It folds and reads "Service 10%, SST 6%" | Service 10%, SST 6%
+step 9 | match | A sheet rises over the dimmed page | open, bottom 664 of 664, backdrop rgba(4, 6, 10, 0.72)
+step 9 | match | A grab bar at its top centre and a Close x at its top right | 
+step 9 | match | Total RM 116.60 | RM 116.60
+step 9 | match | Subtotal RM 100.00 | ['Subtotal', 'RM 100.00']
+step 9 | match | Service 10% RM 10.00 | ['Service 10%', 'RM 10.00']
+step 9 | match | SST 6% RM 6.60 | ['SST 6%', 'RM 6.60']
+step 9 | match | The heading "Splits" | Splits
+step 9 | match | Person 1 RM 38.87 | RM 38.87
+step 9 | match | Person 2 RM 38.87 | RM 38.87
+step 9 | match | Person 3 RM 38.86 | RM 38.86
+step 9 | match | Adds up to RM 116.60 | {'label': 'Adds up to', 'amt': 'RM 116.60', 'wk': None, 'seal': True}
+step 9 | match | "2 sen left over" with the chip "Top of the list" | {'count': '2 sen left over', 'chips': ['Top of the list'], 'chipRight': True}
+step 9 | match | Copy summary at the bottom of the sheet | {'text': 'Copy summary', 'disabled': False, 'last': True}, below the visible edge []
+step 9 | NOT OBSERVABLE | The page behind shows faintly through the sheet's glass | backdrop-filter blur(24px) saturate(1.4), background colour rgba(27, 33, 43, 0.92); paint check: the two pages behind differ by up to 222 of 255 levels inside the sheet's rectangle, and through the sheet the same change moves no pixel by more than 1 (0 pixels by 2 or more); control, the same page twice, max 0
+step 9 | match | No ring is drawn round the sheet | sheet focused True, outline none
+step 10 | match | The Spare sen panel rises from the bottom over the sheet | {'l': 0, 't': 409, 'r': 412, 'b': 664}
+step 10 | match | A Close x at its top right | {'dr': 9, 'dt': 11}
+step 10 | match | It reads "2 sen left over" | 2 sen left over
+step 10 | match | Three choices, "Top of the list", "One person", "At random" | ['Top of the list', 'One person', 'At random']
+step 10 | match | Top of the list is chosen | ['Top of the list']
+step 10 | iPhone only | A thin light ring is drawn round Top of the list, see the note | Safari's light focus ring after a tap. Chrome on Android follows its own rule | stand-in: Android Chromium: focus on 'Top of the list', focus-visible False, outline none 3px rgb(232, 235, 242), ring-colour pixels round its dot {'ringPixels': 11, 'bandPixels': 4352, 'capture': 's10-ring.png'}
+step 11 | match | Three pills, "Person 1", "Person 2", "Person 3" | ['Person 1', 'Person 2', 'Person 3']
+step 11 | match | Person 1 is ticked | [{'t': 'Person 1', 'c': True, 'tick': True}, {'t': 'Person 2', 'c': False, 'tick': False}, {'t': 'Person 3', 'c': False, 'tick': False}]
+step 12 | match | The panel goes down | 
+step 12 | match | Person 1 reads RM 38.88 | RM 38.88
+step 12 | match | Person 2 reads RM 38.86 | RM 38.86
+step 12 | match | Person 3 reads RM 38.86 | RM 38.86
+step 12 | match | Adds up to reads RM 116.60 | {'label': 'Adds up to', 'amt': 'RM 116.60', 'wk': None, 'seal': True}
+step 12 | match | The chip reads "One person, Person 1" | {'count': '2 sen left over', 'chips': ['One person, Person 1'], 'chipRight': True}
+step 12 | iPhone only | A thin light ring is drawn round the One person, Person 1 chip, see the note | Safari's light focus ring after a tap. Chrome on Android follows its own rule | stand-in: Android Chromium: focus on 'One person, Person 1', focus-visible False, outline none 3px rgb(232, 235, 242), ring-colour pixels round the chip {'ringPixels': 0, 'bandPixels': 20608, 'capture': 's12-ring.png'}
+step 13 | match | The sheet goes down | 
+step 13 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+step 13 | match | Splits has focus. Note whether a ring is drawn round it | focus on button#splitsBtn; ring: focus-visible False, outline none 3px rgb(232, 235, 242), ring-colour pixels round Splits {'ringPixels': 0, 'bandPixels': 18208, 'capture': 's13-ring.png'}
+step 14 | match | A dialog reads "Start a new bill?" | Start a new bill?
+step 14 | match | Under it "This clears the people, items and amounts." | This clears the people, items and amounts.
+step 14 | match | A red Start new bill across the dialog, with Cancel under it | {'open': True, 'title': 'Start a new bill?', 'body': 'This clears the people, items and amounts.', 'start': 'Start new bill', 'bg': 'rgb(196, 49, 60)', 'across': True, 'cancelUnder': True, 'cancel': 'Cancel'}
+step 14 | iPhone only | A thin light ring is drawn round Cancel, see the note | Safari's light focus ring after a tap. Chrome on Android follows its own rule | stand-in: Android Chromium: focus on 'Cancel', focus-visible False, outline none 3px rgb(232, 235, 242), ring-colour pixels round Cancel {'ringPixels': 0, 'bandPixels': 32768, 'capture': 's14-ring.png'}
+step 15 | match | The dialog closes | 
+step 15 | match | The three people are still there | 3
+step 15 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+
+## events
+19:09:17 before you start: a new Chromium profile with nothing saved for the address stands in for a normal Safari tab with Block All Cookies off. Safari's settings are iPhone only
+19:09:17 step 1 action, Android wording: the address was opened in headless Chromium with this seat's profile, not in Safari
+19:09:17 step 1 {'brand': True, 'mark': True, 'markLeft': True, 'word': 'Splity Tab', 'nb': True, 'pOpen': 'true', 'pCaret': 'matrix(-1, 0, 0, -1, 0, 0)', 'cOpen': 'false', 'cSum': 'Service 10%, SST 6%', 'cCaret': 'none', 'cCaretShown': True, 'addBelow': True, 'even': True, 'byItemBeside': True, 'splitH': 'Split', 'subLabel': 'Subtotal', 'subUnit': 'RM', 'subPh': '0.00', 'subVal': '', 'phColour': 'rgb(167, 175, 191)'}
+19:09:18 tap Add person at 86,201, events ['pointerdown:touch:0:button#addPerson', 'click:touch:1:button#addPerson']
+19:09:18 tap Subtotal field at 149,503, events ['pointerdown:touch:0:input#evenSub', 'click:touch:1:input#evenSub']
+19:09:19 typed 100
+19:09:19 tap Charges row at 206,324, events ['pointerdown:touch:0:span#chargesSum', 'click:touch:1:span#chargesSum']
+19:09:20 tap Charges row at 206,324, events ['pointerdown:touch:0:button#chargesBtn', 'click:touch:1:button#chargesBtn']
+19:09:21 tap Splits at 97,630, events ['pointerdown:touch:0:button#splitsBtn', 'click:touch:1:button#splitsBtn']
+19:09:21 sheet {'open': True, 'bottom': 664, 'vh': 664, 'grabCentre': True, 'closeTR': True, 'blur': 'blur(24px) saturate(1.4)', 'bg': 'linear-gradient(155deg, rgba(200, 206, 255, 0.1) 0%, rgba(150, 158, 235, 0.04) 40%, rgba(8, 10, 14, 0.34) 100%), none', 'bgc': 'rgba(27, 33, 43, 0.92)', 'sheetFocused': True, 'sheetOutline': 'none', 'backdrop': 'rgba(4, 6, 10, 0.72)'}
+19:09:21 sheet lines below the visible edge: {'below': [], 'scrollH': 538, 'clientH': 538, 'visibleBottom': 664}
+19:09:23 glass check: tap Add person at 86,201, events ['pointerdown:touch:0:button#addPerson', 'click:touch:1:button#addPerson']
+19:09:24 glass check: tap Subtotal field at 149,503, events ['pointerdown:touch:0:input#evenSub', 'click:touch:1:input#evenSub']
+19:09:24 glass check: tap Splits at 97,630, events ['pointerdown:touch:0:button#splitsBtn', 'click:touch:1:button#splitsBtn']
+19:09:26 glass check: tap Close on the sheet at 381,103, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+19:09:27 glass check: tap Splits at 97,630, events ['pointerdown:touch:0:button#splitsBtn', 'click:touch:1:button#splitsBtn']
+19:09:28 glass check: tap Close on the sheet at 381,103, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+19:09:29 glass check: tap People row (fold) at 206,91, events ['pointerdown:touch:0:button#peopleBtn', 'click:touch:1:button#peopleBtn']
+19:09:30 glass check: tap Splits at 97,630, events ['pointerdown:touch:0:button#splitsBtn', 'click:touch:1:button#splitsBtn']
+19:09:31 glass check: tap Close on the sheet at 381,103, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+19:09:32 glass check: {'sheetRect': {'x': 0, 'y': 74, 'width': 412, 'height': 590}, 'control_same_page': {'max': 0, 'pixels>=2': 0, 'pixels>=5': 0, 'of': 1640772}, 'pages_behind_without_sheet': {'max': 222, 'pixels>=2': 533429, 'pixels>=5': 527895, 'of': 1640772}, 'through_the_sheet': {'max': 1, 'pixels>=2': 0, 'pixels>=5': 0, 'of': 1640772}}
+19:09:32 tap Top of the list chip in the sheet at 321,554, events ['pointerdown:touch:0:button', 'click:touch:1:button']
+19:09:33 tap One person at 206,570, events ['pointerdown:touch:0:label', 'click:touch:1:label', 'click:touch:1:input']
+19:09:33 focus and ring after step 11: {'tag': 'input', 'id': '', 'text': 'One person', 'fv': False, 'outline': 'none 3px rgb(232, 235, 242)'}
+19:09:34 tap Close on the Spare sen panel at 381,388, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+19:09:34 tap Close on the sheet at 381,103, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+19:09:35 tap New bill at 338,30, events ['pointerdown:touch:0:button#newBill', 'click:touch:1:button#newBill']
+19:09:36 tap Cancel at 206,400, events ['pointerdown:touch:0:button', 'click:touch:1:button']
+
+## screenshots
+s01.png
+s02.png
+s07.png
+glass-page-people-open.png
+glass-sheet-people-open.png
+glass-sheet-people-open-again.png
+glass-page-people-folded.png
+glass-sheet-people-folded.png
+glass-diff-control.png
+glass-diff-pages.png
+glass-diff-through-sheet.png
+s09.png
+s10-ring.png
+s10.png
+s11.png
+s12-ring.png
+s12.png
+s13-ring.png
+s14-ring.png
+s14.png
+
+## notes
+Step 13, the ring the line asks you to note: focus-visible False, ring-colour pixels 0 of 18208 in the band, see s13-ring.png
+Zoom: visualViewport.scale after the case 1, nothing to pinch back

@@ -1,0 +1,89 @@
+UAT-10 On the phone, a double tap acts once
+seat pixel7-h664 (Pixel 7 descriptor with the viewport height set to 664, 412 x 664)
+run final
+verdict PASS (two crosses at step 14 that the case note calls a record of Chrome's engine, not a fault)
+entries 50, match 40, no match 2, not observable 0, iPhone only 8
+
+## lines
+step 1 | match | Exactly one new field shows "Person 4" in grey | [('Person 1', 'Person 1'), ('Person 2', 'Person 2'), ('', 'Person 3'), ('', 'Person 4')]
+step 1 | match | The cursor is in it and the keyboard opens [part: the cursor is in it] | {'tag': 'input', 'id': '', 'label': 'Person 4 name', 'ph': 'Person 4', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text'}
+step 1 | iPhone only | The cursor is in it and the keyboard opens [part: the keyboard opens] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 1 | match | Four fields in all | 4
+step 2 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: nothing pressed
+step 3 | match | Two more fields, "Person 5" and "Person 6" | ['Person 1', 'Person 2', 'Person 3', 'Person 4', 'Person 5', 'Person 6']
+step 3 | match | Six fields in all | 6
+step 4 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: nothing pressed
+step 5 | match | Person 6 is gone | 5
+step 5 | match | Five fields, Person 1 to Person 5 | ['Person 1', 'Person 2', 'Person 3', 'Person 4', 'Person 5']
+step 5 | match | No new empty field appeared | 5
+step 5 | match | The cursor is in Person 5 | {'tag': 'input', 'id': '', 'label': 'Person 5 name', 'ph': 'Person 5', 'value': '', 'text': '', 'fv': True, 'selStart': 0, 'selEnd': 0, 'type': 'text'}
+step 6 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: nothing pressed
+step 7 | match | The sheet opens and stays open | 
+step 7 | match | Total RM 116.60 | RM 116.60
+step 7 | match | Subtotal RM 100.00 | ['Subtotal', 'RM 100.00']
+step 7 | match | Service 10% RM 10.00 | ['Service 10%', 'RM 10.00']
+step 7 | match | SST 6% RM 6.60 | ['SST 6%', 'RM 6.60']
+step 7 | match | Person 1 RM 23.32 | RM 23.32
+step 7 | match | Person 2 RM 23.32 | RM 23.32
+step 7 | match | Person 3 RM 23.32 | RM 23.32
+step 7 | match | Person 4 RM 23.32 | RM 23.32
+step 7 | match | Person 5 RM 23.32 | RM 23.32
+step 7 | match | Adds up to RM 116.60 | {'label': 'Adds up to', 'amt': 'RM 116.60', 'wk': None, 'seal': True}
+step 7 | match | No spare sen line | None
+step 7 | match | No "Summary copied" and no "Could not copy" line in the sheet | status {'text': '', 'shown': False}, clipboard stand-in writes during the double tap 0
+step 8 | match | The sheet goes down | 
+step 9 | match | The dialog opens and stays open | 
+step 10 | match | The dialog closes | 
+step 10 | match | The five people are still there | 5
+step 10 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+step 10 | match | Charges is still folded | 
+step 10 | iPhone only | The keyboard does not open | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen | stand-in: focus after the double tap is button#newBill 'New bill', a text field: False
+step 11 | match | It opens with Service charge 10 and SST 6 | 
+step 12 | match | The cursor is after the 10 and a number keyboard opens [part: the cursor is after the 10] | {'tag': 'input', 'id': 'svc', 'label': None, 'ph': None, 'value': '10', 'text': '', 'fv': True, 'selStart': 2, 'selEnd': 2, 'type': 'text'}
+step 12 | iPhone only | The cursor is after the 10 and a number keyboard opens [part: a number keyboard opens] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen | stand-in: inputmode decimal
+step 13 | match | The field reads 105 | 105
+step 13 | match | No red error shows yet | error visible False
+step 14 | NO MATCH | The cursor stays in the Service charge field | {'tag': 'body'}
+step 14 | NO MATCH | No red error shows | error visible True
+step 15 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: a Tab only if focus is still in the field
+step 15 | match | A red "Enter a rate from 0 to 30" with a warning circle shows under the field | {'shown': True, 'text': 'Enter a rate from 0 to 30', 'icon': True, 'iconFill': 'rgb(255, 138, 143)', 'colour': 'rgb(255, 138, 143)', 'bad': True, 'border': 'rgb(255, 138, 143)', 'under': True}
+step 15 | match | The field has a red edge | rgb(255, 138, 143)
+step 15 | match | The strip reads "Check the charges to see the splits." | Check the charges to see the splits.
+step 15 | match | Copy summary in the strip is faint | disabled True, colour rgb(95, 104, 120)
+step 16 | match | The cursor is after the 105 | {'tag': 'input', 'id': 'svc', 'label': None, 'ph': None, 'value': '105', 'text': '', 'fv': True, 'selStart': 3, 'selEnd': 3, 'type': 'text'}
+step 17 | match | The field reads 10 | 10
+step 17 | match | The red error is gone | error visible False
+step 18 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: nothing pressed
+step 18 | match | The strip reads "Total RM 116.60" | Total RM 116.60
+
+## events
+19:09:36 start: people 3, subtotal 100, strip Total RM 116.60, people open true
+19:09:37 double tap Add person at 86,255, 7 ms for both, events ['pointerdown:touch:0:20242', 'click:touch:1:20242', 'pointerdown:touch:0:20245', 'click:touch:2:20245'], zoom scale after 1
+19:09:38 tap Add person (first) at 86,255, events ['pointerdown:touch:0:button#addPerson', 'click:touch:1:button#addPerson']
+19:09:39 waited 1 s
+19:09:39 tap Add person where it now sits at 86,309, events ['pointerdown:touch:0:button#addPerson', 'click:touch:1:button#addPerson']
+19:09:40 double tap x in the Person 6 field at 373,252, 20 ms for both, events ['pointerdown:touch:0:23126', 'click:touch:1:23126', 'pointerdown:touch:0:23130', 'click:touch:2:23130'], zoom scale after 1
+19:09:41 double tap Splits at 97,630, 17 ms for both, events ['pointerdown:touch:0:23965', 'click:touch:1:23965', 'pointerdown:touch:0:23970', 'click:touch:2:23970'], zoom scale after 1
+19:09:41 sheet lines below the visible edge: {'below': [], 'scrollH': 550, 'clientH': 550, 'visibleBottom': 664}
+19:09:41 tap Close on the sheet at 381,91, events ['pointerdown:touch:0:use', 'click:touch:1:svg']
+19:09:42 double tap New bill at 338,30, 16 ms for both, events ['pointerdown:touch:0:25682', 'click:touch:1:25682', 'pointerdown:touch:0:25686', 'click:touch:2:25686'], zoom scale after 1
+19:09:43 double tap Cancel at 206,400, 16 ms for both, events ['pointerdown:touch:0:26515', 'click:touch:1:26516', 'pointerdown:touch:0:26519', 'click:touch:2:26519'], zoom scale after 1
+19:09:44 tap Charges row at 206,378, events ['pointerdown:touch:0:span#chargesSum', 'click:touch:1:span#chargesSum']
+19:09:45 tap Service charge field just right of the 10 at 175.8,459.0 (text ends at 176.8, text 18.8 px wide, align right, field right 178.8)
+19:09:45 typed 5
+19:09:46 tap the charges hint text at 206,504, events ['pointerdown:touch:0:p#chargeHint', 'click:touch:1:p#chargeHint']
+19:09:46 events seen on window during the hint tap (passive observer): ['pointerdown:touch:p#chargeHint', 'click:touch:p#chargeHint']
+19:09:46 Done stand-in: focus was already out of the field ({'tag': 'body'}), nothing pressed
+19:09:46 tap Service charge field just right of the 105 at 175.8,459.0 (text ends at 176.8, text 28.1 px wide, align right, field right 178.8)
+19:09:47 key Backspace once (stand-in for the on-screen delete key)
+
+## screenshots
+s01.png
+s05.png
+s07.png
+s14.png
+s15.png
+
+## notes
+Step 14: Chromium left the field at the tap on the hint and showed the error then. The case note names this as Chrome's engine, by design, and asks for the two lines to be crossed as a record, not a fault.
+Zoom: visualViewport.scale after the case 1, nothing to pinch back

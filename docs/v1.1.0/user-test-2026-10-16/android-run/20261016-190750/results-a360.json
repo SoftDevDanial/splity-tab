@@ -1,0 +1,844 @@
+{
+ "meta": {
+  "label": "final",
+  "seat": "a360",
+  "seat_desc": "360 x 740 Android phone, Pixel 7 user agent, isMobile, hasTouch, DPR 3",
+  "env": {
+   "vp": [
+    360,
+    740
+   ],
+   "dpr": 3,
+   "ua": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Mobile Safari/537.36",
+   "coarse": true,
+   "touch": 1,
+   "mobileWidth": true,
+   "stored": 0,
+   "clip": true,
+   "title": "Danial's Splity Tab"
+  },
+  "ring_calibration": {
+   "negative": {
+    "ringPixels": 0,
+    "bandPixels": 18612,
+    "capture": "ring-control-unfocused.png"
+   },
+   "positive": {
+    "ringPixels": 5459,
+    "bandPixels": 18612,
+    "capture": "ring-control-keyboard-focus.png"
+   },
+   "focus": "newBill true"
+  },
+  "clipboard_writes_last_page": {
+   "UAT-09": 0,
+   "UAT-10": 0,
+   "UAT-11": 0,
+   "UAT-12": 0,
+   "UAT-13": 0,
+   "UAT-14": 0
+  },
+  "seconds": 73.3
+ },
+ "results": [
+  {
+   "case": "UAT-09",
+   "seat": "a360",
+   "verdict": "BLOCKED",
+   "cause": "script, an expected result that is not observable",
+   "bad": [],
+   "iphone": [
+    {
+     "step": 2,
+     "line": "The keyboard opens",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": "focus is in a text field (Person 3 name)"
+    },
+    {
+     "step": 3,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "nothing pressed"
+    },
+    {
+     "step": 4,
+     "line": "A number keyboard opens",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": "focus is in Subtotal in RM, inputmode decimal"
+    },
+    {
+     "step": 6,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "nothing pressed"
+    },
+    {
+     "step": 10,
+     "line": "A thin light ring is drawn round Top of the list, see the note",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's light focus ring after a tap. Chrome on Android follows its own rule",
+     "standin": "Android Chromium: focus on 'Top of the list', focus-visible False, outline none 3px rgb(232, 235, 242), ring-colour pixels round its dot {'ringPixels': 0, 'bandPixels': 5688, 'capture': 's10-ring.png'}"
+    },
+    {
+     "step": 12,
+     "line": "A thin light ring is drawn round the One person, Person 1 chip, see the note",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's light focus ring after a tap. Chrome on Android follows its own rule",
+     "standin": "Android Chromium: focus on 'One person, Person 1', focus-visible False, outline none 3px rgb(232, 235, 242), ring-colour pixels round the chip {'ringPixels': 0, 'bandPixels': 26568, 'capture': 's12-ring.png'}"
+    },
+    {
+     "step": 14,
+     "line": "A thin light ring is drawn round Cancel, see the note",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's light focus ring after a tap. Chrome on Android follows its own rule",
+     "standin": "Android Chromium: focus on 'Cancel', focus-visible False, outline none 3px rgb(232, 235, 242), ring-colour pixels round Cancel {'ringPixels': 0, 'bandPixels': 36576, 'capture': 's14-ring.png'}"
+    }
+   ],
+   "unobservable": [
+    {
+     "step": 9,
+     "line": "The page behind shows faintly through the sheet's glass",
+     "part": null,
+     "status": "NOT OBSERVABLE",
+     "seen": "backdrop-filter blur(24px) saturate(1.4), background colour rgba(27, 33, 43, 0.92); paint check: the two pages behind differ by up to 222 of 255 levels inside the sheet's rectangle, and through the sheet the same change moves no pixel by more than 1 (0 pixels by 2 or more); control, the same page twice, max 0"
+    }
+   ],
+   "n": 65,
+   "match": 57,
+   "notes": [
+    "Step 13, the ring the line asks you to note: focus-visible False, ring-colour pixels 0 of 21024 in the band, see s13-ring.png",
+    "Zoom: visualViewport.scale after the case 1, nothing to pinch back"
+   ],
+   "android": [],
+   "blocked": null,
+   "glass": {
+    "sheetRect": {
+     "x": 0,
+     "y": 156,
+     "width": 360,
+     "height": 584
+    },
+    "control_same_page": {
+     "max": 0,
+     "pixels>=2": 0,
+     "pixels>=5": 0,
+     "of": 1850844
+    },
+    "pages_behind_without_sheet": {
+     "max": 222,
+     "pixels>=2": 514991,
+     "pixels>=5": 514685,
+     "of": 1850844
+    },
+    "through_the_sheet": {
+     "max": 1,
+     "pixels>=2": 0,
+     "pixels>=5": 0,
+     "of": 1850844
+    }
+   }
+  },
+  {
+   "case": "UAT-10",
+   "seat": "a360",
+   "verdict": "PASS",
+   "cause": "two crosses at step 14 that the case note calls a record of Chrome's engine, not a fault",
+   "bad": [
+    {
+     "step": 14,
+     "line": "The cursor stays in the Service charge field",
+     "part": null,
+     "status": "NO MATCH",
+     "seen": "{'tag': 'body'}",
+     "android": null
+    },
+    {
+     "step": 14,
+     "line": "No red error shows",
+     "part": null,
+     "status": "NO MATCH",
+     "seen": "error visible True",
+     "android": null
+    }
+   ],
+   "iphone": [
+    {
+     "step": 1,
+     "line": "The cursor is in it and the keyboard opens",
+     "part": "the keyboard opens",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 2,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "nothing pressed"
+    },
+    {
+     "step": 4,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "nothing pressed"
+    },
+    {
+     "step": 6,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "nothing pressed"
+    },
+    {
+     "step": 10,
+     "line": "The keyboard does not open",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": "focus after the double tap is button#newBill 'New bill', a text field: False"
+    },
+    {
+     "step": 12,
+     "line": "The cursor is after the 10 and a number keyboard opens",
+     "part": "a number keyboard opens",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": "inputmode decimal"
+    },
+    {
+     "step": 15,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "a Tab only if focus is still in the field"
+    },
+    {
+     "step": 18,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "nothing pressed"
+    }
+   ],
+   "unobservable": [],
+   "n": 50,
+   "match": 40,
+   "notes": [
+    "Step 14: Chromium left the field at the tap on the hint and showed the error then. The case note names this as Chrome's engine, by design, and asks for the two lines to be crossed as a record, not a fault.",
+    "Zoom: visualViewport.scale after the case 1, nothing to pinch back"
+   ],
+   "android": [],
+   "blocked": null
+  },
+  {
+   "case": "UAT-11",
+   "seat": "a360",
+   "verdict": "PASS",
+   "cause": null,
+   "bad": [],
+   "iphone": [
+    {
+     "step": 2,
+     "line": "The cursor is in Item 1's price and a number keyboard opens",
+     "part": "a number keyboard opens",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 2,
+     "line": "The field shows in full, not under the strip and not under the keyboard",
+     "part": "not under the keyboard",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 4,
+     "line": "The field shows in full, not under the strip and not under the keyboard",
+     "part": "not under the keyboard",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 5,
+     "line": "The field shows in full, not under the strip and not under the keyboard",
+     "part": "not under the keyboard",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 7,
+     "line": "The field shows in full, not under the strip and not under the keyboard",
+     "part": "not under the keyboard",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 8,
+     "line": "The field shows in full, not under the strip and not under the keyboard",
+     "part": "not under the keyboard",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 10,
+     "line": "The field shows in full, not under the strip and not under the keyboard",
+     "part": "not under the keyboard",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 11,
+     "line": "The field shows in full, not under the strip and not under the keyboard",
+     "part": "not under the keyboard",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 13,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "nothing pressed"
+    }
+   ],
+   "unobservable": [],
+   "n": 54,
+   "match": 45,
+   "notes": [],
+   "android": [],
+   "blocked": null
+  },
+  {
+   "case": "UAT-12",
+   "seat": "a360",
+   "verdict": "PASS",
+   "cause": null,
+   "bad": [],
+   "iphone": [
+    {
+     "step": 1,
+     "line": "The cursor is in its name and the keyboard opens",
+     "part": "the keyboard opens",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 2,
+     "line": "The field shows in full, not under the strip and not under the keyboard",
+     "part": "not under the keyboard",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 4,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "one Tab to leave the field"
+    },
+    {
+     "step": 9,
+     "line": "The cursor is in it and a number keyboard opens",
+     "part": "a number keyboard opens",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 12,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "one Tab to leave the field"
+    }
+   ],
+   "unobservable": [],
+   "n": 46,
+   "match": 41,
+   "notes": [
+    "A2 note (open item H-12): after leaving the field Item 5's price shows cut, the text is wider than the field, {'v': '99999.99', 'textPx': 75, 'innerPx': 60, 'sw': 91, 'cw': 76, 'fieldPx': 76, 'focused': False, 'scrollLeft': 0}; while focused it was {'v': '99999.99', 'textPx': 75, 'innerPx': 60, 'sw': 91, 'cw': 76, 'fieldPx': 76, 'focused': True, 'scrollLeft': 15}. See s12-field.png"
+   ],
+   "android": [],
+   "blocked": null,
+   "a2": {
+    "cut": true,
+    "after": {
+     "v": "99999.99",
+     "textPx": 75,
+     "innerPx": 60,
+     "sw": 91,
+     "cw": 76,
+     "fieldPx": 76,
+     "focused": false,
+     "scrollLeft": 0
+    },
+    "focused": {
+     "v": "99999.99",
+     "textPx": 75,
+     "innerPx": 60,
+     "sw": 91,
+     "cw": 76,
+     "fieldPx": 76,
+     "focused": true,
+     "scrollLeft": 15
+    }
+   }
+  },
+  {
+   "case": "UAT-13",
+   "seat": "a360",
+   "verdict": "BLOCKED",
+   "cause": "seat, the case's own claims are iPhone only",
+   "bad": [],
+   "iphone": [
+    {
+     "step": 1,
+     "line": "The cursor is in it and a number keyboard opens",
+     "part": "a number keyboard opens",
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 4,
+     "line": "The keyboard closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard",
+     "standin": "one Tab to leave the field"
+    },
+    {
+     "step": 5,
+     "line": "VoiceOver speaks as you move",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either, and iOS Settings are not drivable",
+     "standin": null
+    },
+    {
+     "step": 5,
+     "line": "Safari shows the app",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": null
+    },
+    {
+     "step": 6,
+     "line": "A frame is drawn round the field",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver's cursor frame. VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": null
+    },
+    {
+     "step": 6,
+     "line": "VoiceOver reads \"Item 1 price in RM\"",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads name 'Item 1 price in RM'"
+    },
+    {
+     "step": 6,
+     "line": "It reads the value 13.505",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads value '13.505'"
+    },
+    {
+     "step": 6,
+     "line": "It says it is a text field",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads role 'textbox'"
+    },
+    {
+     "step": 6,
+     "line": "It says the value is invalid",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads invalid 'true'"
+    },
+    {
+     "step": 6,
+     "line": "It reads \"Enter an amount like 12.50\"",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads description 'Enter an amount like 12.50'"
+    },
+    {
+     "step": 7,
+     "line": "VoiceOver reads \"Item 2 price in RM\"",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads name 'Item 2 price in RM'"
+    },
+    {
+     "step": 7,
+     "line": "It reads the value 13.50",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads value '13.50'"
+    },
+    {
+     "step": 7,
+     "line": "It says it is a text field",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads role 'textbox'"
+    },
+    {
+     "step": 7,
+     "line": "It reads \"Enter an amount like 12.50\", though no error shows there",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads description 'Enter an amount like 12.50', invalid 'false', the error paragraph is hidden on screen"
+    },
+    {
+     "step": 8,
+     "line": "VoiceOver reads \"New bill\" and that it is a button",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree reads role button, name 'New bill', value None, invalid 'false', description None, has popup 'dialog'"
+    },
+    {
+     "step": 9,
+     "line": "The dialog opens",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "a VoiceOver double tap. VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "a plain tap on New bill opened the dialog: True"
+    },
+    {
+     "step": 9,
+     "line": "VoiceOver reads \"Cancel\"",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree's focused node: role button, name 'Cancel', value None, invalid 'false', description None"
+    },
+    {
+     "step": 10,
+     "line": "The dialog closes",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "a VoiceOver double tap. VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "a plain tap on Cancel closed the dialog: True"
+    },
+    {
+     "step": 10,
+     "line": "VoiceOver reads \"New bill\" next",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "accessibility tree's focused node after Cancel: role button, name 'New bill', value None, invalid 'false', description None"
+    },
+    {
+     "step": 10,
+     "line": "It reads nothing else between Cancel and New bill",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": "focus moves seen after the Cancel tap: ['button#newBill New bill']"
+    },
+    {
+     "step": 11,
+     "line": "VoiceOver is silent",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "VoiceOver speech. Not in a headless seat, and TalkBack is not either",
+     "standin": null
+    }
+   ],
+   "unobservable": [],
+   "n": 27,
+   "match": 6,
+   "notes": [
+    "Accessibility tree stand-in (not VoiceOver, not TalkBack). Item 1 price: role textbox, name 'Item 1 price in RM', value '13.505', invalid 'true', description 'Enter an amount like 12.50'. Item 2 price: role textbox, name 'Item 2 price in RM', value '13.50', invalid 'false', description 'Enter an amount like 12.50'. New bill: role button, name 'New bill', value None, invalid 'false', description None. After a plain tap on New bill the focused node is role button, name 'Cancel', value None, invalid 'false', description None; after a plain tap on Cancel it is role button, name 'New bill', value None, invalid 'false', description None, focus moves ['button#newBill New bill']."
+   ],
+   "android": [],
+   "blocked": null,
+   "ax": {
+    "item1": {
+     "role": "textbox",
+     "name": "Item 1 price in RM",
+     "description": "Enter an amount like 12.50",
+     "value": "13.505",
+     "invalid": "true",
+     "focused": null,
+     "focusable": true,
+     "haspopup": null
+    },
+    "item2": {
+     "role": "textbox",
+     "name": "Item 2 price in RM",
+     "description": "Enter an amount like 12.50",
+     "value": "13.50",
+     "invalid": "false",
+     "focused": null,
+     "focusable": true,
+     "haspopup": null
+    },
+    "newBill": {
+     "role": "button",
+     "name": "New bill",
+     "description": null,
+     "value": null,
+     "invalid": "false",
+     "focused": null,
+     "focusable": true,
+     "haspopup": "dialog"
+    },
+    "afterOpen": {
+     "role": "button",
+     "name": "Cancel",
+     "description": null,
+     "value": null,
+     "invalid": "false",
+     "focused": true,
+     "focusable": true,
+     "haspopup": null
+    },
+    "afterCancel": {
+     "role": "button",
+     "name": "New bill",
+     "description": null,
+     "value": null,
+     "invalid": "false",
+     "focused": true,
+     "focusable": true,
+     "haspopup": "dialog"
+    },
+    "focusMoves": [
+     "button#newBill New bill"
+    ]
+   }
+  },
+  {
+   "case": "UAT-14",
+   "seat": "a360",
+   "verdict": "PASS",
+   "cause": null,
+   "bad": [],
+   "iphone": [
+    {
+     "step": 1,
+     "line": "The Block All Cookies switch is on",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "iOS Settings",
+     "standin": "the app page is closed and opened again with an init script that makes every localStorage access throw"
+    },
+    {
+     "step": 3,
+     "line": "A number keyboard opens",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": "focus Subtotal in RM"
+    },
+    {
+     "step": 6,
+     "line": "The Block All Cookies switch is off",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "iOS Settings",
+     "standin": "the app page opened again without the storage block"
+    },
+    {
+     "step": 8,
+     "line": "A new Private tab opens",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's tab button and tab overview. Chrome's tab switcher on Android is not in a headless seat either",
+     "standin": "a new incognito browser context in a second headless Chromium, with this seat's device profile"
+    },
+    {
+     "step": 10,
+     "line": "A number keyboard opens",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen",
+     "standin": null
+    },
+    {
+     "step": 13,
+     "line": "The Private tab is gone",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's tab button and tab overview. Chrome's tab switcher on Android is not in a headless seat either",
+     "standin": "the incognito context was closed"
+    }
+   ],
+   "unobservable": [],
+   "n": 29,
+   "match": 23,
+   "notes": [],
+   "android": [
+    {
+     "step": 9,
+     "line": "The app's first screen shows, Person 1 and Person 2 with an empty Subtotal",
+     "part": null,
+     "status": "match",
+     "seen": "[{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}]",
+     "android": "in an incognito context, Chrome's private mode, not a Safari Private tab"
+    },
+    {
+     "step": 9,
+     "line": "No warning shows",
+     "part": null,
+     "status": "match",
+     "seen": "",
+     "android": "in the incognito context"
+    },
+    {
+     "step": 12,
+     "line": "No warning shows",
+     "part": null,
+     "status": "match",
+     "seen": "the incognito context accepted the save: draft stored True",
+     "android": "in the incognito context"
+    },
+    {
+     "step": 14,
+     "line": "The first screen shows again",
+     "part": null,
+     "status": "match",
+     "seen": "[{'value': 'Person 1', 'ph': 'Person 1', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}, {'value': 'Person 2', 'ph': 'Person 2', 'removeDisabled': True, 'removeColor': 'rgb(95, 104, 120)'}]",
+     "android": "a second incognito context"
+    },
+    {
+     "step": 14,
+     "line": "No warning showed at any point in the Private tabs",
+     "part": null,
+     "status": "match",
+     "seen": "[('step 9', None), ('step 12', None), ('step 14', None)]",
+     "android": "the incognito contexts"
+    },
+    {
+     "step": 15,
+     "line": "The app shows its five items",
+     "part": null,
+     "status": "match",
+     "seen": "5",
+     "android": "the normal tab is the persistent Chromium profile's page, brought to the front"
+    }
+   ],
+   "blocked": null
+  },
+  {
+   "case": "UAT-15",
+   "seat": "a360",
+   "verdict": "BLOCKED",
+   "cause": "seat, the case's own claims are iPhone only",
+   "bad": [],
+   "iphone": [
+    {
+     "step": 1,
+     "line": "The tab overview opens",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either",
+     "standin": null
+    },
+    {
+     "step": 1,
+     "line": "The app's tab shows the mark beside \"Danial's Splity Tab\"",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either",
+     "standin": "the page title reads \"Danial's Splity Tab\", the icon link is {'href': 'src/icon.svg', 'type': 'image/svg+xml'}"
+    },
+    {
+     "step": 2,
+     "line": "The iPhone turns light",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "iOS Settings, Display and Brightness",
+     "standin": null
+    },
+    {
+     "step": 3,
+     "line": "The mark is the same colour as at step 1",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either",
+     "standin": null
+    },
+    {
+     "step": 3,
+     "line": "The mark is easy to see on the light tab",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either",
+     "standin": null
+    },
+    {
+     "step": 4,
+     "line": "The app shows again, still dark",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "Safari's tab overview. Chrome's tab switcher on Android is not in a headless seat either, the step comes after the overview",
+     "standin": null
+    },
+    {
+     "step": 5,
+     "line": "The iPhone is in your usual mode",
+     "part": null,
+     "status": "iPhone only",
+     "seen": "iOS Settings, Display and Brightness",
+     "standin": null
+    }
+   ],
+   "unobservable": [],
+   "n": 7,
+   "match": 0,
+   "notes": [
+    "Supporting, the icon file src/icon.svg drawn by Chromium in each colour scheme (the file, not a tab): most common ink colours {'dark': [((255, 255, 255), 38701), ((163, 170, 255), 25875), ((209, 212, 255), 438)], 'light': [((255, 255, 255), 38701), ((30, 33, 64), 25874), ((142, 143, 159), 438)]}"
+   ],
+   "android": [],
+   "blocked": null
+  }
+ ]
+}

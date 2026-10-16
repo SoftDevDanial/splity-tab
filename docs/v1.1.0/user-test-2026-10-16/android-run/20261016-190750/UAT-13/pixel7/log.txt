@@ -1,0 +1,54 @@
+UAT-13 VoiceOver on a price field, before and after its error
+seat pixel7 (Playwright Pixel 7 descriptor as is, 412 x 839, DPR 2.625, isMobile, hasTouch, Android 14 Chrome 149 user agent)
+run final
+verdict BLOCKED (seat, the case's own claims are iPhone only)
+entries 27, match 6, no match 0, not observable 0, iPhone only 21
+
+## lines
+step 1 | match | The cursor is in it and a number keyboard opens [part: the cursor is in it] | {'tag': 'input', 'id': '', 'label': 'Item 1 price in RM', 'ph': '0.00', 'value': '15.90', 'text': '', 'fv': True, 'selStart': 5, 'selEnd': 5, 'type': 'text'}
+step 1 | iPhone only | The cursor is in it and a number keyboard opens [part: a number keyboard opens] | the on-screen keyboard. Headless Chromium draws no on-screen keyboard, so neither the iPhone's nor Android's can be seen
+step 2 | match | The field shows a grey "0.00" | ''
+step 3 | match | The field reads 13.505 | 13.505
+step 4 | iPhone only | The keyboard closes | the iOS keyboard's Done bar. It does not exist on Android, and headless Chromium draws no keyboard | stand-in: one Tab to leave the field
+step 4 | match | A red "Enter an amount like 12.50" with a warning circle shows under Item 1 | Enter an amount like 12.50, icon True fill rgb(255, 138, 143)
+step 4 | match | Item 1's price field has a red edge | rgb(255, 138, 143)
+step 4 | match | The strip reads "Give every item a price to see the splits." | Give every item a price to see the splits.
+step 5 | iPhone only | VoiceOver speaks as you move | VoiceOver speech. Not in a headless seat, and TalkBack is not either, and iOS Settings are not drivable
+step 5 | iPhone only | Safari shows the app | VoiceOver speech. Not in a headless seat, and TalkBack is not either
+step 6 | iPhone only | A frame is drawn round the field | VoiceOver's cursor frame. VoiceOver speech. Not in a headless seat, and TalkBack is not either
+step 6 | iPhone only | VoiceOver reads "Item 1 price in RM" | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads name 'Item 1 price in RM'
+step 6 | iPhone only | It reads the value 13.505 | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads value '13.505'
+step 6 | iPhone only | It says it is a text field | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads role 'textbox'
+step 6 | iPhone only | It says the value is invalid | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads invalid 'true'
+step 6 | iPhone only | It reads "Enter an amount like 12.50" | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads description 'Enter an amount like 12.50'
+step 7 | iPhone only | VoiceOver reads "Item 2 price in RM" | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads name 'Item 2 price in RM'
+step 7 | iPhone only | It reads the value 13.50 | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads value '13.50'
+step 7 | iPhone only | It says it is a text field | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads role 'textbox'
+step 7 | iPhone only | It reads "Enter an amount like 12.50", though no error shows there | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads description 'Enter an amount like 12.50', invalid 'false', the error paragraph is hidden on screen
+step 8 | iPhone only | VoiceOver reads "New bill" and that it is a button | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree reads role button, name 'New bill', value None, invalid 'false', description None, has popup 'dialog'
+step 9 | iPhone only | The dialog opens | a VoiceOver double tap. VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: a plain tap on New bill opened the dialog: True
+step 9 | iPhone only | VoiceOver reads "Cancel" | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree's focused node: role button, name 'Cancel', value None, invalid 'false', description None
+step 10 | iPhone only | The dialog closes | a VoiceOver double tap. VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: a plain tap on Cancel closed the dialog: True
+step 10 | iPhone only | VoiceOver reads "New bill" next | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: accessibility tree's focused node after Cancel: role button, name 'New bill', value None, invalid 'false', description None
+step 10 | iPhone only | It reads nothing else between Cancel and New bill | VoiceOver speech. Not in a headless seat, and TalkBack is not either | stand-in: focus moves seen after the Cancel tap: ['button#newBill New bill']
+step 11 | iPhone only | VoiceOver is silent | VoiceOver speech. Not in a headless seat, and TalkBack is not either
+
+## events
+19:08:57 tap Item 1 price field (at its right end) at 328,127, events ['pointerdown:touch:0:input', 'click:touch:1:input']
+19:08:57 step 1 swipes (the step asks for a scroll up): []
+19:08:58 held Backspace (stand-in for the on-screen delete key), 1 press then 4 repeats, value now ''
+19:08:58 typed 13.505
+19:08:59 Done stand-in: one Tab to leave the field, focus now {'tag': 'button', 'id': '', 'label': 'Remove Item 1', 'ph': None, 'value': '', 'text': '', 'fv': True, 'selStart': None, 'selEnd': None, 'type': 'button'}
+19:08:59 accessibility tree, Item 1 price: {'role': 'textbox', 'name': 'Item 1 price in RM', 'description': 'Enter an amount like 12.50', 'value': '13.505', 'invalid': 'true', 'focused': None, 'focusable': True, 'haspopup': None}
+19:08:59 accessibility tree, Item 2 price: {'role': 'textbox', 'name': 'Item 2 price in RM', 'description': 'Enter an amount like 12.50', 'value': '13.50', 'invalid': 'false', 'focused': None, 'focusable': True, 'haspopup': None}
+19:08:59 accessibility tree, New bill: {'role': 'button', 'name': 'New bill', 'description': None, 'value': None, 'invalid': 'false', 'focused': None, 'focusable': True, 'haspopup': 'dialog'}
+19:08:59 Item 2 error paragraph hidden: True, shown on screen: False
+19:09:00 touch swipe in the page from 206,10 to 206,387 (to reach New bill (stand-in, a plain tap)), page scrollY 357 to 0
+19:09:00 tap New bill (stand-in, a plain tap) at 338,30, events ['pointerdown:touch:0:button#newBill', 'click:touch:1:button#newBill']
+19:09:01 tap Cancel (stand-in, a plain tap) at 206,488, events ['pointerdown:touch:0:button', 'click:touch:1:button']
+
+## screenshots
+s04.png
+
+## notes
+Accessibility tree stand-in (not VoiceOver, not TalkBack). Item 1 price: role textbox, name 'Item 1 price in RM', value '13.505', invalid 'true', description 'Enter an amount like 12.50'. Item 2 price: role textbox, name 'Item 2 price in RM', value '13.50', invalid 'false', description 'Enter an amount like 12.50'. New bill: role button, name 'New bill', value None, invalid 'false', description None. After a plain tap on New bill the focused node is role button, name 'Cancel', value None, invalid 'false', description None; after a plain tap on Cancel it is role button, name 'New bill', value None, invalid 'false', description None, focus moves ['button#newBill New bill'].

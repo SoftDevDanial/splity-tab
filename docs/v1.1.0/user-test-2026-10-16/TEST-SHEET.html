@@ -447,9 +447,9 @@
       ],
       "notes": [ { "kind": "note", "text": "At random is a real draw, so who reads {RM 38.86} in steps 9 to 13 cannot be listed. Write it down after each step. Pick again always changes it, and two spare sen always go to two different people. Close Notepad without saving after step 7. The choice is saved with the bill, which is why step 12 keeps the draw." } ],
       "tester": { "verdict": "PASS", "note": "Every line matched in headless Chromium at 1280 x 800. The copied summary was read from a clipboard stand-in's one write in place of Notepad and was the six lines exactly. The draws went to Chen at step 9, Ben at step 10, Ben again after the reload at step 12 and Aisyah at step 13. A headless browser does not act on F5, so step 12 used the browser's own reload. Only you can check the paste into the real Notepad and the F5 key." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "user": { "verdict": "PASS", "note": "- I dont want one person. I want person based ( i dont know what to name this ), but the logic is, i can either pick 1 or multiple peoples name to split the sen left over. Example, i can pick Aisyah and Ben. There should be a counter to show the sen left over when picking the names. Also, there will be cases where lets say theres 5 sen left over, but picked only 2 person. So theres still left over, there should be for this category to split randomly in between the 2 names or i can manually add per person the number of sen. Example, Aisyah i can put 3 and Ben as 2 which adds up to 5. There should be a warning or maybe even a prevention because we havent fully expedited the sen.   ", "date": "2026-10-16", "marks": {"0-0": "ok", "0-1": "ok", "0-2": "ok", "0-3": "ok", "0-4": "ok", "0-5": "ok", "0-6": "ok", "0-7": "ok", "0-8": "ok", "0-9": "ok", "0-10": "ok", "0-11": "ok", "1-0": "ok", "1-1": "ok", "1-2": "ok", "1-3": "ok", "1-4": "ok", "1-5": "ok", "2-0": "ok", "2-1": "ok", "2-2": "ok", "2-3": "ok", "2-4": "ok", "2-5": "ok", "2-6": "ok", "2-7": "ok", "3-0": "ok", "3-1": "ok", "3-2": "ok", "3-3": "ok", "3-4": "ok", "3-5": "ok", "4-0": "ok", "4-1": "ok", "5-0": "ok", "6-0": "ok", "6-1": "ok", "6-2": "ok", "6-3": "ok", "6-4": "ok", "6-5": "ok", "6-6": "ok", "7-0": "ok", "7-1": "ok", "8-0": "ok", "8-1": "ok", "8-2": "ok", "8-3": "ok", "8-4": "ok", "8-5": "ok", "8-6": "ok", "9-0": "ok", "9-1": "ok", "9-2": "ok", "10-0": "ok", "10-1": "ok", "11-0": "ok", "11-1": "ok", "11-2": "ok", "11-3": "ok", "12-0": "ok", "12-1": "ok", "12-2": "ok", "13-0": "ok", "14-0": "ok", "14-1": "ok", "14-2": "ok", "14-3": "ok", "14-4": "ok", "14-5": "ok", "15-0": "ok"} },
       "retest": null,
-      "next": ""
+      "next": "A future upgrade, written up in docs/future/spare-sen-chosen-people.md for a brainstorm in a later version (ledger off-scope row 23). Nothing changes in 1.1.0."
     },
     {
       "id": "UAT-02",
@@ -507,9 +507,9 @@
       ],
       "notes": [ { "kind": "note", "text": "On a very tall screen all four items may fit, then the list in step 3 does not move. Say so in your note." } ],
       "tester": { "verdict": "BLOCKED", "note": "Blocked by the script, not the app. Every line matched except step 2 line 5 and step 3 line 1, and every figure was exact. The Before you start left the item list scrolled to its end, so at step 2 Aisyah under Nasi lemak ayam was out of view and at step 3 the wheel down moved nothing. With the list wheeled back to the top, Aisyah showed a check and an indigo edge, and a wheel down then moved only the list while the page and the card stayed still. The script was repaired after the run with the tester's own words and seen working in its extra capture. It was not run again. Headless Chromium at 1280 x 800." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "user": { "verdict": "PASS", "note": "", "date": "2026-10-16", "marks": {"0-0": "ok", "0-1": "ok", "0-2": "ok", "0-3": "ok", "0-4": "ok", "0-5": "ok", "0-6": "ok", "0-7": "ok", "0-8": "ok", "0-9": "ok", "0-10": "ok", "0-11": "ok", "0-12": "ok", "0-13": "ok", "0-14": "ok", "0-15": "ok", "1-0": "ok", "1-1": "ok", "1-2": "ok", "1-3": "ok", "1-4": "ok", "2-0": "ok", "2-1": "ok", "2-2": "ok", "3-0": "ok", "3-1": "ok", "3-2": "ok", "3-3": "ok", "3-4": "ok", "3-5": "ok", "3-6": "ok", "3-7": "ok", "4-0": "ok", "4-1": "ok", "4-2": "ok"} },
       "retest": null,
-      "next": ""
+      "next": "None. Accepted."
     },
     {
       "id": "UAT-03",
@@ -605,9 +605,9 @@
       ],
       "notes": [ { "kind": "note", "text": "The item list may need a scroll up to bring Char kuey teow into view at step 7. Once Dan shares an item he may take the spare sen, as step 8 shows." } ],
       "tester": { "verdict": "PASS", "note": "Every line matched in headless Chromium at 1280 x 800. Dan had no pill until he shared Char kuey teow. Step 7 needed the item list scrolled up 120 px to reach Dan under Char kuey teow, as the case note says. Nothing here was out of its reach." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "user": { "verdict": "PASS", "note": "", "date": "2026-10-16", "marks": {"0-0": "ok", "0-1": "ok", "0-2": "ok", "0-3": "ok", "1-0": "ok", "1-1": "ok", "1-2": "ok", "1-3": "ok", "2-0": "ok", "2-1": "ok", "2-2": "ok", "3-0": "ok", "3-1": "ok", "3-2": "ok", "3-3": "ok", "4-0": "ok", "4-1": "ok", "4-2": "ok", "4-3": "ok", "4-4": "ok", "4-5": "ok", "4-6": "ok", "4-7": "ok", "4-8": "ok", "4-9": "ok", "4-10": "ok", "5-0": "ok", "6-0": "ok", "6-1": "ok", "6-2": "ok", "6-3": "ok", "6-4": "ok", "6-5": "ok", "6-6": "ok", "6-7": "ok", "6-8": "ok", "6-9": "ok", "6-10": "ok", "7-0": "ok", "7-1": "ok", "7-2": "ok", "8-0": "ok", "8-1": "ok", "8-2": "ok", "8-3": "ok", "8-4": "ok", "8-5": "ok", "8-6": "ok", "8-7": "ok", "8-8": "ok", "8-9": "ok", "8-10": "ok", "8-11": "ok", "9-0": "ok", "10-0": "ok", "10-1": "ok", "10-2": "ok", "10-3": "ok", "10-4": "ok", "10-5": "ok", "10-6": "ok"} },
       "retest": null,
-      "next": ""
+      "next": "None. Accepted."
     },
     {
       "id": "UAT-04",
@@ -706,10 +706,10 @@
         ] }
       ],
       "notes": [ { "kind": "ask", "text": "Open item A2 (H-12). Step 11 shows a price of 99999.99 as \"99999.9\" at 360 px until the field is focused. The splits and the strip show every figure whole, so no promise is broken, and the field's width is the approved design's. Option 1, keep it and add a line to the README's limits. Option 2, a design change in v1.2.0, a wider price field or a smaller font at 360 px. We recommend option 1, a five-figure price for one dish is rare. Write your choice in your note." } ],
-      "tester": { "verdict": "PASS", "note": "Every line it could drive matched in headless Chromium. It has no Chrome device toolbar or developer tools, so only you can check the toolbar settings in the Before you start and step 14. A 360 x 780 window stood in for the device toolbar and was set back to 1280 x 800 at step 14. The strip read Total RM 1,193.87 and later RM 116,669.25 on one line, the Splits sheet showed every figure whole and the page stayed 360 px wide. Step 11 showed 99999.9 with the last digit cut (text 91 px in a 76 px field), which is your ruling on A2. Steps 1 and 5 needed scrolls, now written into them." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "tester": { "verdict": "PASS", "note": "Every line it could drive matched in headless Chromium. It has no Chrome device toolbar or developer tools, so only you can check the toolbar settings in the Before you start and step 14. A 360 x 780 window stood in for the device toolbar and was set back to 1280 x 800 at step 14. The strip read Total RM 1,193.87 and later RM 116,669.25 on one line, the Splits sheet showed every figure whole and the page stayed 360 px wide. Step 11 showed 99999.9 with the last digit cut (text 91 px in a 76 px field), which is your ruling on A2. Steps 1 and 5 needed scrolls, now written into them. Probe P-B, 2026-10-16 19:17. Ctrl+A selects the whole price in every variant (selection 0 to 6 of 6) and typing replaces it. Under the device toolbar's phone mode the selection paints dim teal with the digits turning black (2.47 to 1 contrast), so it can look unselected (findings U1, android-run/20261016-190750/probe-b/)." },
+      "user": { "verdict": "PASS", "note": "", "date": "2026-10-16", "marks": {"0-0": "ok", "0-1": "ok", "0-2": "ok", "0-3": "ok", "0-4": "ok", "0-5": "ok", "0-6": "ok", "0-7": "ok", "1-0": "ok", "1-1": "ok", "1-2": "ok", "1-3": "ok", "2-0": "ok", "3-0": "ok", "3-1": "ok", "4-0": "ok", "4-1": "ok", "4-2": "ok", "4-3": "ok", "5-0": "ok", "5-1": "ok", "5-2": "ok", "5-3": "ok", "5-4": "ok", "5-5": "ok", "5-6": "ok", "5-7": "ok", "5-8": "ok", "5-9": "ok", "5-10": "ok", "5-11": "ok", "5-12": "ok", "5-13": "ok", "5-14": "ok", "5-15": "ok", "6-0": "ok", "7-0": "ok", "8-0": "no", "9-0": "ok", "10-0": "ok", "10-1": "ok", "10-2": "ok", "11-0": "ok", "11-1": "ok", "11-2": "ok", "11-3": "ok", "11-4": "ok", "11-5": "ok", "11-6": "ok", "11-7": "ok", "11-8": "ok", "11-9": "ok", "11-10": "ok", "11-11": "ok", "11-12": "ok", "11-13": "ok", "12-0": "ok", "13-0": "ok", "13-1": "ok"} },
       "retest": null,
-      "next": ""
+      "next": "Script wording, no product defect (findings U1). Ctrl+A does select the whole price. In the device toolbar's phone mode Chrome paints the selection as a dim teal block with dark digits, which reads as no highlight. A clearer selection colour is a design note for v1.2.0. H-12, kept as built, a README known limit (the owner, 2026-10-16)."
     },
     {
       "id": "UAT-05",
@@ -781,9 +781,9 @@
       ],
       "notes": [ { "kind": "note", "text": "After Cancel the app puts focus on New bill, which is why Enter in step 12 opens the dialog. Before the fix the held key would then have pressed the dialog's buttons too." } ],
       "tester": { "verdict": "PASS", "note": "Every line matched in headless Chromium at 1280 x 800. A held Enter (one press, then 33 repeats over 2 s) removed Teh tarik only and left a focus ring on Add item. A held Enter on New bill opened the dialog, the dialog never closed while the key was held, and the ring sat on Cancel. Only you can check a held key on your own keyboard." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "user": { "verdict": "PASS", "note": "", "date": "2026-10-16", "marks": {"0-0": "ok", "0-1": "ok", "0-2": "ok", "0-3": "ok", "1-0": "ok", "1-1": "ok", "1-2": "ok", "1-3": "ok", "2-0": "ok", "2-1": "ok", "2-2": "ok", "3-0": "ok", "3-1": "ok", "3-2": "ok", "4-0": "ok", "5-0": "ok", "6-0": "ok", "6-1": "ok", "6-2": "ok", "6-3": "ok", "6-4": "ok", "7-0": "ok", "8-0": "ok", "8-1": "ok", "8-2": "ok", "8-3": "ok", "9-0": "ok", "10-0": "ok", "10-1": "ok", "11-0": "ok", "11-1": "ok", "12-0": "ok", "12-1": "ok"} },
       "retest": null,
-      "next": ""
+      "next": "None. Accepted."
     },
     {
       "id": "UAT-06",
@@ -842,9 +842,9 @@
       ],
       "notes": [ { "kind": "note", "text": "Reload at step 7 before you change anything. Once the block is gone, a change in the page that was still open saves that page's bill over the one saved before. If Teh tarik does not come back at step 7, Chrome dropped the saved data when you blocked it. Mark that line with a cross and say so in your note. Chrome may spell \"Customized behaviors\" the British way." } ],
       "tester": { "verdict": "PASS", "note": "Every line it could drive matched. It cannot open Chrome's settings page, so only you can check steps 1, 2, 3 and 6. A storage stand-in, a page whose every localStorage access throws, took the place of the block. The warning sat in the top bar between Splity Tab and New bill, with the amber triangle, the exact text and no close button, over a new bill at RM 58.30 and RM 29.15 each. With the block lifted, Teh tarik came back at RM 4.08 with 3.50 + 0.58. It could not see whether Chrome keeps the saved bill during a block." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "user": { "verdict": "PASS", "note": "", "date": "2026-10-16", "marks": {"0-0": "ok", "1-0": "ok", "2-0": "ok", "3-0": "ok", "3-1": "ok", "3-2": "ok", "3-3": "ok", "3-4": "ok", "3-5": "ok", "3-6": "ok", "4-0": "ok", "4-1": "ok", "4-2": "ok", "4-3": "ok", "4-4": "ok", "4-5": "ok", "4-6": "ok", "4-7": "ok", "5-0": "ok", "6-0": "ok", "6-1": "ok", "6-2": "ok", "6-3": "ok", "6-4": "ok", "6-5": "ok", "6-6": "ok", "6-7": "ok", "6-8": "ok", "6-9": "ok", "6-10": "ok", "6-11": "ok", "6-12": "ok"} },
       "retest": null,
-      "next": ""
+      "next": "None. Accepted."
     },
     {
       "id": "UAT-07",
@@ -884,9 +884,9 @@
       ],
       "notes": [],
       "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Step 1 matched, the mark left of Splity Tab, an indigo receipt outline with bars inside and a torn foot, no letter, and the header without Danial's. Steps 2 to 7 need the tab strip, the tab hover card and Windows light and dark mode, so only you can check them. The page title reads Danial's Splity Tab. Two captures render the file src/icon.svg in dark (light indigo) and in light (dark navy), which shows the file and not the tab." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "user": { "verdict": "PASS", "note": "", "date": "2026-10-16", "marks": {"0-0": "ok", "0-1": "ok", "0-2": "ok", "0-3": "ok", "1-0": "ok", "2-0": "ok", "2-1": "ok", "3-0": "ok", "3-1": "ok", "4-0": "ok", "4-1": "ok", "5-0": "ok", "6-0": "ok"} },
       "retest": null,
-      "next": ""
+      "next": "None. Accepted."
     },
     {
       "id": "UAT-08",
@@ -914,9 +914,9 @@
       ],
       "notes": [ { "kind": "note", "text": "The note leaves two calls to you for when it is picked up, whether a finished bill is marked as paid and how the list sorts." } ],
       "tester": { "verdict": "PASS", "note": "Every line matched. The note was read with a file reader in place of Notepad. The title, the status and the five headings in order match, and only New bill sits in the top bar. Only you can check how it opens in Notepad itself." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "user": { "verdict": "PASS", "note": "", "date": "2026-10-16", "marks": {"0-0": "ok", "0-1": "ok", "1-0": "ok", "1-1": "ok", "1-2": "ok", "1-3": "ok", "1-4": "ok", "2-0": "ok", "2-1": "ok"} },
       "retest": null,
-      "next": ""
+      "next": "None. Accepted."
     },
     {
       "id": "UAT-09",
@@ -981,7 +981,7 @@
           "Adds up to {RM 116.60}",
           "\"2 sen left over\" with the chip \"Top of the list\"",
           "*Copy summary* at the bottom of the sheet",
-          "The page behind shows faintly through the sheet's glass",
+          "[struck 2026-10-16, script error, findings U2] The page behind shows faintly through the sheet's glass",
           "No ring is drawn round the sheet"
         ] },
         { "do": "Tap the *Top of the list* chip.", "see": [
@@ -1023,10 +1023,10 @@
         ] }
       ],
       "notes": [ { "kind": "ask", "text": "Open item A1 (H-11). In Safari's engine a tap that opens a popup or closes the Spare sen panel draws a thin light ring, the keyboard ring, on the control the app focuses, Top of the list in step 10, the spare sen chip in step 12 and Cancel in step 14. The design and Chrome draw none. A keyboard user gets the same ring on purpose. Option 1, keep it, a line in the test notes, nothing to build. Option 2, remove it, which goes back to the plan or the design because it changes how focus is set. We recommend option 1, it is Safari's own rule and it helps a keyboard user. If you see a ring anywhere else, say where. Write your choice in your note. If Safari zooms in on a tap, pinch the page back to its normal size." } ],
-      "tester": { "verdict": "FAIL", "note": "Failed on step 13 line 3 only, a fault in the script. It expected a ring round Splits and none was drawn (not focus-visible) at either height, because the case's order does not draw one. At step 12 a ring was drawn round the One person, Person 1 chip, which the script did not list. A probe shows the ring on Splits comes only when the sheet is closed straight after it opens, not after the Spare sen panel has been used as in this case. The rings at steps 10 and 14 were drawn and were light indigo, rgb(163, 170, 255), not white. Everything else it could drive matched at 390 x 664 and 390 x 844, every figure exact. Step 12 and step 13 line 3 were repaired after the run with the tester's words, and the ring-order probe confirms the new wording. They were not run again. It ran Safari's engine on Windows, not an iPhone, so only you can check the keyboard, the Done key and Safari's settings." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "tester": { "verdict": "FAIL", "note": "Failed on step 13 line 3 only, a fault in the script. It expected a ring round Splits and none was drawn (not focus-visible) at either height, because the case's order does not draw one. At step 12 a ring was drawn round the One person, Person 1 chip, which the script did not list. A probe shows the ring on Splits comes only when the sheet is closed straight after it opens, not after the Spare sen panel has been used as in this case. The rings at steps 10 and 14 were drawn and were light indigo, rgb(163, 170, 255), not white. Everything else it could drive matched at 390 x 664 and 390 x 844, every figure exact. Step 12 and step 13 line 3 were repaired after the run with the tester's words, and the ring-order probe confirms the new wording. They were not run again. It ran Safari's engine on Windows, not an iPhone, so only you can check the keyboard, the Done key and Safari's settings. Android layout run, 2026-10-16 19:17, the owner's ruling, evidence only, three Android seats (Pixel 7 at 412 x 839 and 412 x 664, and 360 x 740). BLOCKED by one script line. Step 9 'The page behind shows faintly through the sheet's glass' cannot be seen, the design's dense glass is 0.92 opaque, measured at 1 level of 255 (findings U2, the line is struck). 57 lines match, 7 iPhone only, the iOS keyboard and Safari's ring of A1 (android-run/20261016-190750/UAT-09/)." },
+      "user": { "verdict": "BLOCKED", "note": "", "date": "2026-10-16", "marks": {} },
       "retest": null,
-      "next": ""
+      "next": "Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only."
     },
     {
       "id": "UAT-10",
@@ -1122,10 +1122,10 @@
         ] }
       ],
       "notes": [ { "kind": "note", "text": "If Safari zooms in on a double tap, pinch the page back to its normal size before the next step. The zoom is Safari's own. Step 14 lists what Safari's engine does on Windows. Chrome's engine leaves the field and shows the error at that tap. Both are by design. If your iPhone shows the error at step 14, cross those two lines and say so in your note, it is a record, not a fault. If the keyboard does not open after a press on Add person or an x, cross that line and tap the next step's Done only when the keyboard is up." } ],
-      "tester": { "verdict": "PASS", "note": "Every line it could drive matched at 390 x 664 and 390 x 844. Each double tap acted once, one Person 4, one removal with the cursor in Person 5, the sheet and the dialog stayed open, and Cancel closed once with nothing behind it pressed and no copy. A slower second tap acted. The tap on the hint reached no mousedown or click, focus stayed in Service charge and no error showed, which is the WebKit result the case lists. Leaving the field showed Enter a rate from 0 to 30 with a red edge, with one Tab in place of Done. It has no iOS keyboard, so only you can check the keyboard lines and how real fingers land. It ran Safari's engine on Windows, not an iPhone." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "tester": { "verdict": "PASS", "note": "Every line it could drive matched at 390 x 664 and 390 x 844. Each double tap acted once, one Person 4, one removal with the cursor in Person 5, the sheet and the dialog stayed open, and Cancel closed once with nothing behind it pressed and no copy. A slower second tap acted. The tap on the hint reached no mousedown or click, focus stayed in Service charge and no error showed, which is the WebKit result the case lists. Leaving the field showed Enter a rate from 0 to 30 with a red edge, with one Tab in place of Done. It has no iOS keyboard, so only you can check the keyboard lines and how real fingers land. It ran Safari's engine on Windows, not an iPhone. Android layout run, 2026-10-16 19:17, evidence only. PASS. The two step 14 crosses are the ones the case note names for Chrome's engine. 8 iPhone-only lines not checked, the iOS keyboard (android-run/20261016-190750/UAT-10/)." },
+      "user": { "verdict": "BLOCKED", "note": "", "date": "2026-10-16", "marks": {} },
       "retest": null,
-      "next": ""
+      "next": "Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only."
     },
     {
       "id": "UAT-11",
@@ -1221,10 +1221,10 @@
         ] }
       ],
       "notes": [ { "kind": "note", "text": "The arrows on the bar above the keyboard move to the next text field and skip the buttons. A field can sit close above the strip, it only has to show in full." } ],
-      "tester": { "verdict": "PASS", "note": "Every line it could drive matched at 390 x 664 and 390 x 844. Moving down the fields, with Tab until the next text field in place of the keyboard's down arrow, left every focused field in full above the strip, the lowest one 12 px clear of it. The strip messages and the sheet figures were exact. Step 17 needed a scroll to reach Person 1 under Item 4, now written into the step. It has no on-screen keyboard, so only you can check the keyboard lines and the real arrows above the keyboard. It ran Safari's engine on Windows, not an iPhone." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "tester": { "verdict": "PASS", "note": "Every line it could drive matched at 390 x 664 and 390 x 844. Moving down the fields, with Tab until the next text field in place of the keyboard's down arrow, left every focused field in full above the strip, the lowest one 12 px clear of it. The strip messages and the sheet figures were exact. Step 17 needed a scroll to reach Person 1 under Item 4, now written into the step. It has no on-screen keyboard, so only you can check the keyboard lines and the real arrows above the keyboard. It ran Safari's engine on Windows, not an iPhone. Android layout run, 2026-10-16 19:17, evidence only. PASS. Every focused field sat inside the item frame and above the strip. 9 iPhone-only lines not checked, the iOS keyboard (android-run/20261016-190750/UAT-11/)." },
+      "user": { "verdict": "BLOCKED", "note": "", "date": "2026-10-16", "marks": {} },
       "retest": null,
-      "next": ""
+      "next": "Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only."
     },
     {
       "id": "UAT-12",
@@ -1309,10 +1309,10 @@
         ] }
       ],
       "notes": [ { "kind": "note", "text": "Look at Item 5's price field after step 12 and say in your note whether it shows 99999.99 whole or cut, as at 360 px in UAT-04. It adds to your ruling on open item A2." } ],
-      "tester": { "verdict": "PASS", "note": "Every line it could drive matched at 390 x 664 and 390 x 844. The strip read RM 1,193.87 and RM 116,669.25 on one line and every sheet figure was whole and exact. It has no touch swipe, so at the two swipe lines it measured instead, and the page was 390 px wide in a 390 px viewport with nothing past its edge. For the A2 note, Item 5's 99999.99 shows cut after leaving the field (text 92 px in a 76 px field). Step 5 needed a scroll to reach Person 1 under Item 5, now written into the step. Only you can check the swipes and the keyboard lines on a real iPhone." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "tester": { "verdict": "PASS", "note": "Every line it could drive matched at 390 x 664 and 390 x 844. The strip read RM 1,193.87 and RM 116,669.25 on one line and every sheet figure was whole and exact. It has no touch swipe, so at the two swipe lines it measured instead, and the page was 390 px wide in a 390 px viewport with nothing past its edge. For the A2 note, Item 5's 99999.99 shows cut after leaving the field (text 92 px in a 76 px field). Step 5 needed a scroll to reach Person 1 under Item 5, now written into the step. Only you can check the swipes and the keyboard lines on a real iPhone. Android layout run, 2026-10-16 19:17, evidence only. PASS, nothing scrolled sideways. Item 5 showed 99999.9 cut in every seat, open item A2. 5 iPhone-only lines not checked, the iOS keyboard (android-run/20261016-190750/UAT-12/)." },
+      "user": { "verdict": "BLOCKED", "note": "", "date": "2026-10-16", "marks": {} },
       "retest": null,
-      "next": ""
+      "next": "Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only."
     },
     {
       "id": "UAT-13",
@@ -1372,10 +1372,10 @@
         ] }
       ],
       "notes": [ { "kind": "note", "text": "VoiceOver's order and wording vary a little. What matters is that the hint is read before any error shows, that an invalid value is called invalid, and that focus lands on Cancel and then on New bill. If VoiceOver reads the hint only after a pause, that is its setting Speak Hints." } ],
-      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Steps 1 to 4 matched, 13.505, the red Enter an amount like 12.50 with its circle, the red edge and the strip message. Steps 5 to 11 need VoiceOver, so only you can check them. In their place it read the markup behind them, the label Item 1 price in RM, aria-invalid true, described by the error text, and Item 2 described by the same text while it is hidden. That is not what VoiceOver says. Plain taps put focus on Cancel and then back on New bill. At 390 x 664 Item 1's field was above the screen and needed a scroll, now written into step 1." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Steps 1 to 4 matched, 13.505, the red Enter an amount like 12.50 with its circle, the red edge and the strip message. Steps 5 to 11 need VoiceOver, so only you can check them. In their place it read the markup behind them, the label Item 1 price in RM, aria-invalid true, described by the error text, and Item 2 described by the same text while it is hidden. That is not what VoiceOver says. Plain taps put focus on Cancel and then back on New bill. At 390 x 664 Item 1's field was above the screen and needed a scroll, now written into step 1. Android layout run, 2026-10-16 19:17, evidence only. BLOCKED by seat. Steps 1 to 4 match. 21 iPhone-only lines, 19 of them VoiceOver. As a stand-in the accessibility tree reads Item 1 price as a textbox named 'Item 1 price in RM', value 13.505, invalid, described 'Enter an amount like 12.50' (android-run/20261016-190750/UAT-13/)." },
+      "user": { "verdict": "BLOCKED", "note": "", "date": "2026-10-16", "marks": {} },
       "retest": null,
-      "next": ""
+      "next": "Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only."
     },
     {
       "id": "UAT-14",
@@ -1446,10 +1446,10 @@
         ] }
       ],
       "notes": [ { "kind": "limit", "text": "If iOS asks you to confirm at step 1, confirm the block. Reload at step 7 before you change anything, as in UAT-06. If the five items do not come back at step 7, Safari dropped the saved data when you blocked it. Mark that line with a cross and say so in your note. If Private Browsing is locked, unlock it with Face ID." } ],
-      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Steps 2 to 7 matched with a storage stand-in in place of Block All Cookies at steps 1 and 6, a page whose every localStorage access throws. The warning row sat under the top bar with the triangle and the exact text, no close button, over a new bill at RM 58.30. With the block lifted the five items came back, Item 1 at 13.505 with its red error. Steps 8 to 15 need Private Browsing and the tab overview, and steps 1 and 6 need iOS Settings, so only you can check them. It could not see what Safari's own setting does to the saved bill." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Steps 2 to 7 matched with a storage stand-in in place of Block All Cookies at steps 1 and 6, a page whose every localStorage access throws. The warning row sat under the top bar with the triangle and the exact text, no close button, over a new bill at RM 58.30. With the block lifted the five items came back, Item 1 at 13.505 with its red error. Steps 8 to 15 need Private Browsing and the tab overview, and steps 1 and 6 need iOS Settings, so only you can check them. It could not see what Safari's own setting does to the saved bill. Android layout run, 2026-10-16 19:17, evidence only. PASS, 23 lines match, a storage stand-in for Block All Cookies and incognito contexts for private tabs. 6 iPhone-only lines not checked (android-run/20261016-190750/UAT-14/)." },
+      "user": { "verdict": "BLOCKED", "note": "", "date": "2026-10-16", "marks": {} },
       "retest": null,
-      "next": ""
+      "next": "Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only."
     },
     {
       "id": "UAT-15",
@@ -1478,19 +1478,19 @@
         ] }
       ],
       "notes": [ { "kind": "note", "text": "Say in your note which colour the mark is, light indigo or dark navy." } ],
-      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Every step needs Safari's tab overview or iOS settings, so the whole case is yours alone. The page title does read Danial's Splity Tab." },
-      "user": { "verdict": null, "note": "", "date": "", "marks": {} },
+      "tester": { "verdict": "BLOCKED", "note": "Blocked by its seat, not the app. Every step needs Safari's tab overview or iOS settings, so the whole case is yours alone. The page title does read Danial's Splity Tab. Android layout run, 2026-10-16 19:17, evidence only. BLOCKED by seat. All 7 lines need Safari's tab overview or iOS Settings (android-run/20261016-190750/UAT-15/)." },
+      "user": { "verdict": "BLOCKED", "note": "", "date": "2026-10-16", "marks": {} },
       "retest": null,
-      "next": ""
+      "next": "Not run on an iPhone. The owner's ruling of 2026-10-16, phone cases stay BLOCKED with the reason, an untested case is never counted as passed, and the release does not depend on the iPhone. The tester's Android layout run is recorded beside, as evidence only."
     }
   ],
   "open": [
-    { "id": "A1", "title": "The white ring after a tap in Safari (H-11)", "what": "In Safari's engine a tap that opens the New bill dialog or the Spare sen panel, or closes the Spare sen panel, draws a thin light ring, the keyboard focus ring, on the control the app focuses, Cancel, the chosen spare sen choice and the spare sen chip. The design and Chrome draw none. You see it in UAT-09.", "why": "It is a visible difference from the approved design on your iPhone, and removing it changes how focus is set or changes the design.", "options": "(1) Keep it. A line in the test notes and the ledger, nothing to build. (2) Remove it. Back to the plan or the design, for example telling Safari the focus did not come from a keyboard.", "recommendation": "(1). It is Safari's own rule, the ring helps someone who uses a keyboard, and Streaks has the same item, so one ruling can cover both apps.", "ruling": "" },
-    { "id": "A2", "title": "A price of 99999.99 does not fit its field at 360 px until focused (H-12)", "what": "At 360 px a price of 99999.99 shows as \"99999.9\" in its field until the field has focus. The splits, the strip and the sheet show every figure whole, and 964.50 fits as promised. The field width is the approved design's. You see it in UAT-04, and on your iPhone in UAT-12.", "why": "A wider field changes the approved design, which only the design phase can do.", "options": "(1) Keep it, with a line in the README's limits. (2) A design change in v1.2.0, a wider price field or a smaller font at 360 px.", "recommendation": "(1) for 1.1.0. A five-figure price for one dish is rare, and the value shows whole everywhere it is added up.", "ruling": "" },
-    { "id": "A3", "title": "How your iPhone reaches the app for sitting 2", "what": "Sitting 2 needs the app on your iPhone. The app runs on this PC at 127.0.0.1, an address only this PC can open.", "why": "The first option opens a port on your home network for the length of the sitting, so it is your call.", "options": "(1) The orchestrator serves the app on this PC's Wi-Fi address for sitting 2 only. Windows asks once whether to let Python through its firewall, and you answer that prompt. The server stops when the sitting ends. Over that address Safari treats the page as not secure, so Copy summary says \"Could not copy. Your browser blocked the clipboard.\" there, and no case presses it. (2) The iPhone cases wait for the published page after the seal.", "recommendation": "(1). The iPhone cases are the only check on a real phone, and they should inform the seal, not follow it.", "ruling": "" },
+    { "id": "A1", "title": "The white ring after a tap in Safari (H-11)", "what": "In Safari's engine a tap that opens the New bill dialog or the Spare sen panel, or closes the Spare sen panel, draws a thin light ring, the keyboard focus ring, on the control the app focuses, Cancel, the chosen spare sen choice and the spare sen chip. The design and Chrome draw none. You see it in UAT-09.", "why": "It is a visible difference from the approved design on your iPhone, and removing it changes how focus is set or changes the design.", "options": "(1) Keep it. A line in the test notes and the ledger, nothing to build. (2) Remove it. Back to the plan or the design, for example telling Safari the focus did not come from a keyboard.", "recommendation": "(1). It is Safari's own rule, the ring helps someone who uses a keyboard, and Streaks has the same item, so one ruling can cover both apps.", "ruling": "Safari is apple or iphone. So again same logic with 1.” With his item 1, “Iphone test cases and even phones just remain as blocked or fail or as not run. Yes its not what the apps themselves do but data integrity saying its passed when its not tested is bad. So not run is better with note on why. But the release is still good to be released as it doesnt depend on iphone.” Outcome (2026-10-16). Not verified on an iPhone, nothing built, the README says so." },
+    { "id": "A2", "title": "A price of 99999.99 does not fit its field at 360 px until focused (H-12)", "what": "At 360 px a price of 99999.99 shows as \"99999.9\" in its field until the field has focus. The splits, the strip and the sheet show every figure whole, and 964.50 fits as promised. The field width is the approved design's. You see it in UAT-04, and on your iPhone in UAT-12.", "why": "A wider field changes the approved design, which only the design phase can do.", "options": "(1) Keep it, with a line in the README's limits. (2) A design change in v1.2.0, a wider price field or a smaller font at 360 px.", "recommendation": "(1) for 1.1.0. A five-figure price for one dish is rare, and the value shows whole everywhere it is added up.", "ruling": "H-12 is ok to keep.” Outcome (2026-10-16). Option 1, kept, a line in the README's known limits." },
+    { "id": "A3", "title": "How your iPhone reaches the app for sitting 2", "what": "Sitting 2 needs the app on your iPhone. The app runs on this PC at 127.0.0.1, an address only this PC can open.", "why": "The first option opens a port on your home network for the length of the sitting, so it is your call.", "options": "(1) The orchestrator serves the app on this PC's Wi-Fi address for sitting 2 only. Windows asks once whether to let Python through its firewall, and you answer that prompt. The server stops when the sitting ends. Over that address Safari treats the page as not secure, so Copy summary says \"Could not copy. Your browser blocked the clipboard.\" there, and no case presses it. (2) The iPhone cases wait for the published page after the seal.", "recommendation": "(1). The iPhone cases are the only check on a real phone, and they should inform the seal, not follow it.", "ruling": "For the safari problem, test it in a phone android layout instead by the testers. If all is green, then i conclude that its passed. Im lazy to test it out and want this to be finished as soon as possible.” Outcome (2026-10-16). No iPhone sitting, the Android run is evidence only (see A1)." },
     { "id": "A4", "title": "A stray file outside the project", "what": "An empty file, {temp}\\ref_a13, made by an orchestrator slip on 15 October. It is logged in out-of-project-artifacts.md at {workspace}\\examples\\split\\docs\\progress\\out-of-project-artifacts.md.", "why": "Agents never delete outside the project. You delete it by hand.", "options": "(1) Delete it. (2) Leave it.", "recommendation": "(1). It is 0 bytes and nothing uses it.", "ruling": "" },
     { "id": "A5", "title": "Long paths and local paths before the repository goes public", "what": "Some failure screenshots in the history have paths long enough that a clone into a deep Windows folder fails on them, and the records hold local D:/ paths and your Windows user folder. The published page never serves them, but a public repository shows them. The same check is open for Streaks.", "why": "It is your choice for publish prep, after the seals.", "options": "(1) Shorter evidence names and scrubbed paths before the repository goes public. (2) Leave the failure screenshots out of the published history. (3) Publish them as they are.", "recommendation": "No strong recommendation, it is a preference call. Scrubbing hides your user folder name. Keeping them keeps the records exactly as they happened.", "ruling": "" },
-    { "id": "A6", "title": "Smaller calls we made for you", "what": "(a) The planned QA and security re-check after the fixes was folded into the full regression, one run each instead of two. (b) A name field that receives only invisible control characters saves the same bill and clears \"Summary copied\". Accepted for 1.1.0, the fix goes to v1.2.0. (c) A Chinese or Japanese input method that holds a direction mark is cut short when the mark is removed. The name stays plain. Accepted, to v1.2.0. (d) Comments, test tidy-ups and qa wording wait for the v1.2.0 plan's doc and test pass, no behaviour changes. (e) The README header, lockup and badges stay at 1.0 until the seal, so the pictures show exactly what you seal. (f) The scope statuses move to SHIPPED at the seal. (g) Item names are kept plain too, not only person names. (h) Dismiss note now ignores the second press of a double click, so it no longer folds People on a phone. (i) Above six people the desktop card lists the splits in two columns. (j) A bad or blank rate or price blocks the receipt with its message and never counts as 0. (k) After a click on Cancel the focus reaches New bill a moment later, not at once. (l) The build's untracked leftovers are archived at publish prep, never deleted.", "why": "Each one is ours and reversible.", "options": "Accept all, or name the ones you want changed.", "recommendation": "Accept all. None changes what you see in normal use.", "ruling": "" }
+    { "id": "A6", "title": "Smaller calls we made for you", "what": "(a) The planned QA and security re-check after the fixes was folded into the full regression, one run each instead of two. (b) A name field that receives only invisible control characters saves the same bill and clears \"Summary copied\". Accepted for 1.1.0, the fix goes to v1.2.0. (c) A Chinese or Japanese input method that holds a direction mark is cut short when the mark is removed. The name stays plain. Accepted, to v1.2.0. (d) Comments, test tidy-ups and qa wording wait for the v1.2.0 plan's doc and test pass, no behaviour changes. (e) The README header, lockup and badges stay at 1.0 until the seal, so the pictures show exactly what you seal. (f) The scope statuses move to SHIPPED at the seal. (g) Item names are kept plain too, not only person names. (h) Dismiss note now ignores the second press of a double click, so it no longer folds People on a phone. (i) Above six people the desktop card lists the splits in two columns. (j) A bad or blank rate or price blocks the receipt with its message and never counts as 0. (k) After a click on Cancel the focus reaches New bill a moment later, not at once. (l) The build's untracked leftovers are archived at publish prep, never deleted.", "why": "Each one is ours and reversible.", "options": "Accept all, or name the ones you want changed.", "recommendation": "Accept all. None changes what you see in normal use.", "ruling": "Lazy to check, i assume and trust your judgement. As long as this is recorded so that in the future we have references” Outcome (2026-10-16). All accepted, recorded in the ledger. On item (e) his words were “Yes but there are readme changes so make sure limitations and all that is properly recorded" }
   ],
   "solved": [
     { "title": "The by-item table on a small phone", "problem": "In 1.0 the by-item table scrolled sideways on a 360 px phone once the bill grew.", "did": "The new look moved the splits into a receipt that wraps each split's working under its name, so every figure fits at 360 px, up to a six-figure Total.", "why": "Shrinking the 1.0 table's text would have hit the readable floor before a large bill fitted. The one figure that still does not fit is a 99999.99 price inside its own field, open item A2." },
