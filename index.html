@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Danial's Splity Tab</title>
+<link rel="icon" type="image/svg+xml" href="src/icon.svg">
+<link rel="stylesheet" href="src/system.css">
+<script type="module" src="src/main.js"></script>
+</head>
+<body>
+
+<!-- Phosphor Icons (MIT), regular weight except check (bold). Never hand drawn. -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="seal-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7C85F7"/>
+      <stop offset=".5" stop-color="#C9CDFF"/>
+      <stop offset="1" stop-color="#A3AAFF"/>
+    </linearGradient>
+  </defs>
+  <symbol id="i-x" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 256 256"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 256 256"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></symbol>
+  <symbol id="i-caret" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 256 256"><path d="M237.66,178.34a8,8,0,0,1,0,11.32l-24,24a8,8,0,0,1-11.32-11.32L212.69,192H200.94a72.12,72.12,0,0,1-58.59-30.15l-41.72-58.4A56.1,56.1,0,0,0,55.06,80H32a8,8,0,0,1,0-16H55.06a72.12,72.12,0,0,1,58.59,30.15l41.72,58.4A56.1,56.1,0,0,0,200.94,176h11.75l-10.35-10.34a8,8,0,0,1,11.32-11.32ZM143,107a8,8,0,0,0,11.16-1.86l1.2-1.67A56.1,56.1,0,0,1,200.94,80h11.75L202.34,90.34a8,8,0,0,0,11.32,11.32l24-24a8,8,0,0,0,0-11.32l-24-24a8,8,0,0,0-11.32,11.32L212.69,64H200.94a72.12,72.12,0,0,0-58.59,30.15l-1.2,1.67A8,8,0,0,0,143,107Zm-30,42a8,8,0,0,0-11.16,1.86l-1.2,1.67A56.1,56.1,0,0,1,55.06,176H32a8,8,0,0,0,0,16H55.06a72.12,72.12,0,0,0,58.59-30.15l1.2-1.67A8,8,0,0,0,113,149Z"/></symbol>
+  <symbol id="i-warning" viewBox="0 0 256 256"><path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z"/></symbol>
+  <symbol id="i-warning-circle" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 28 28"><path fill-rule="evenodd" d="M2,21V4A3,3,0,0,1,5,1H23A3,3,0,0,1,26,4V24L21.5,26L16.5,22.5L12,26.5L9,22L6,25.5ZM4,20.24L5.97,22.46L8.51,19.5L9.74,19.5L12.39,23.48L16.35,19.96L21.72,23.71L24,22.7V4A1,1,0,0,0,23,3H5A1,1,0,0,0,4,4ZM8.5,7H13.5A1.5,1.5,0,0,1,13.5,10H8.5A1.5,1.5,0,0,1,8.5,7ZM18.5,7H19.5A1.5,1.5,0,0,1,19.5,10H18.5A1.5,1.5,0,0,1,18.5,7ZM8.5,12H19.5A1.5,1.5,0,0,1,19.5,15H8.5A1.5,1.5,0,0,1,8.5,12Z"/></symbol>
+  <symbol id="i-seal-check" viewBox="0 0 256 256"><path d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-11.55,39.29c-4.79,5-9.75,10.17-12.38,16.52-2.52,6.1-2.63,13.07-2.73,19.82-.1,7-.21,14.33-3.32,17.43s-10.39,3.22-17.43,3.32c-6.75.1-13.72.21-19.82,2.73-6.35,2.63-11.52,7.59-16.52,12.38S132,224,128,224s-9.15-4.92-14.11-9.69-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82-2.63-6.35-7.59-11.52-12.38-16.52S32,132,32,128s4.92-9.15,9.69-14.11,9.75-10.17,12.38-16.52c2.52-6.1,2.63-13.07,2.73-19.82.1-7,.21-14.33,3.32-17.43S70.51,56.9,77.55,56.8c6.75-.1,13.72-.21,19.82-2.73,6.35-2.63,11.52-7.59,16.52-12.38S124,32,128,32s9.15,4.92,14.11,9.69,10.17,9.75,16.52,12.38c6.1,2.52,13.07,2.63,19.82,2.73,7,.1,14.33.21,17.43,3.32s3.22,10.39,3.32,17.43c.1,6.75.21,13.72,2.73,19.82,2.63,6.35,7.59,11.52,12.38,16.52S224,124,224,128,219.08,137.15,214.31,142.11ZM173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34Z"/></symbol>
+</svg>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M2,21V4A3,3,0,0,1,5,1H23A3,3,0,0,1,26,4V24L21.5,26L16.5,22.5L12,26.5L9,22L6,25.5ZM4,20.24L5.97,22.46L8.51,19.5L9.74,19.5L12.39,23.48L16.35,19.96L21.72,23.71L24,22.7V4A1,1,0,0,0,23,3H5A1,1,0,0,0,4,4ZM8.5,7H13.5A1.5,1.5,0,0,1,13.5,10H8.5A1.5,1.5,0,0,1,8.5,7ZM18.5,7H19.5A1.5,1.5,0,0,1,19.5,10H18.5A1.5,1.5,0,0,1,18.5,7ZM8.5,12H19.5A1.5,1.5,0,0,1,19.5,15H8.5A1.5,1.5,0,0,1,8.5,12Z"/></svg>
+      <h1 class="word">Splity Tab</h1>
+    </div>
+    <div class="notes" id="notes"></div>
+    <button type="button" class="btn btn-ghost" id="newBill" aria-haspopup="dialog">New bill</button>
+  </header>
+
+  <main class="layout">
+    <section class="stage" id="stage" aria-label="Bill and splits">
+      <article class="glass card" id="card">
+        <div class="foil" aria-hidden="true"></div>
+        <div class="rbody" id="rbody"></div>
+      </article>
+    </section>
+    <section class="work" id="work" aria-label="Edit the bill"></section>
+  </main>
+
+  <div class="strip glass dense" id="strip">
+    <div class="foil" aria-hidden="true"></div>
+    <div class="strip-in">
+      <div class="strip-top">
+        <div class="strip-info" id="stripInfo"></div>
+        <p class="status" id="stripStatus" role="status"></p>
+      </div>
+      <div class="strip-acts">
+        <button type="button" class="btn btn-ghost" id="splitsBtn" aria-haspopup="dialog" aria-controls="splitsDlg" aria-expanded="false">Splits</button>
+        <button type="button" class="btn btn-primary" id="stripCopy">Copy summary</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<dialog class="sheet-dlg" id="splitsDlg" aria-label="Splits"></dialog>
+<dialog class="pop" id="spareDlg" aria-labelledby="spareTitle" aria-describedby="spareSub"></dialog>
+<dialog class="modal" id="newDlg" aria-labelledby="newTitle" aria-describedby="newBody">
+  <div class="in">
+    <h2 id="newTitle">Start a new bill?</h2>
+    <p id="newBody">This clears the people, items and amounts.</p>
+    <div class="acts">
+      <button type="button" class="btn btn-danger btn-lg" id="startNew">Start new bill</button>
+      <button type="button" class="btn btn-ghost btn-lg">Cancel</button>
+    </div>
+  </div>
+</dialog>
+
+</body>
+</html>
