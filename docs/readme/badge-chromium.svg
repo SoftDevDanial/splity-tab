@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="149" height="24" viewBox="0 0 149 24" role="img" aria-labelledby="t">
+<title id="t">Chromium 742 passed</title>
+<clipPath id="c"><rect width="149" height="24" rx="6"/></clipPath>
+<g clip-path="url(#c)">
+<rect width="68" height="24" fill="#2A3242"/>
+<rect x="68" width="81" height="24" fill="#272C55"/>
+</g>
+<rect x="0.5" y="0.5" width="148" height="23" rx="5.5" fill="none" stroke="#46516A"/>
+<text x="34.0" y="16" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, system-ui, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#B4BBCA">Chromium</text>
+<text x="108.5" y="16" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, system-ui, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#D3D6FF">742 passed</text>
+</svg>
