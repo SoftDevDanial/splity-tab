@@ -144,7 +144,7 @@ Each limit below was found in testing. Its status says whether it was fixed in 1
 
 ## How it was built
 
-Danial's Splity Tab was made with [sdlc](SHOWCASE_URL), a multi-agent pipeline for Claude Code. I designed the pipeline and every agent in it. Claude agents wrote and tested the code. I made or approved every product decision and tested each version myself before release. The [showcase](SHOWCASE_URL#splity-tab) shows what the checking agents caught, what they missed, and where my verdict differed from theirs. The records are in [`docs/`](docs/).
+Danial's Splity Tab was made with [sdlc](SHOWCASE_URL), a multi-agent pipeline for Claude Code. I designed the pipeline and every agent in it. Claude builder agents wrote the code from approved specs, separate checking agents tested and reviewed it without being allowed to fix anything, fixing agents repaired what they found, and only I can release a version. I made or approved every product decision and tested each version myself before release. The [showcase](SHOWCASE_URL#splity-tab) shows what the checking agents caught, what they missed, and where my verdict differed from theirs. The records are in [`docs/`](docs/).
 
 <!-- SISTER_REPO_URL is a placeholder. Replace it with the address of the Danial's Streaky Habit repository. -->
 Its sister app, [Danial's Streaky Habit](SISTER_REPO_URL), was made the same way.
