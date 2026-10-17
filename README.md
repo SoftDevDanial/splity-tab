@@ -11,9 +11,8 @@
 
 <p align="center"><sub>Recorded from the running app in headless Chromium at 1024 x 800. Every name, price and choice was entered with mouse and key events. The panel on the left is an overlay added for the recording. The white circle marks each click.</sub></p>
 
-<!-- LIVE_URL is a placeholder. Replace it with the GitHub Pages address of the publish copy, or remove the link until it exists. -->
 <p align="center">
-  <a href="LIVE_URL"><img src="docs/readme/button-live.svg" height="44" alt="Open the live app"></a>
+  <a href="https://softdevdanial.github.io/splity-tab/"><img src="docs/readme/button-live.svg" height="44" alt="Open the live app"></a>
   &nbsp;
   <a href="#run-it-on-your-machine"><img src="docs/readme/button-run.svg" height="44" alt="Run it on your machine"></a>
 </p>
@@ -146,8 +145,7 @@ Each limit below was found in testing. Its status says whether it was fixed in 1
 
 Danial's Splity Tab was made with [sdlc](SHOWCASE_URL), a multi-agent pipeline for Claude Code. I designed the pipeline and every agent in it. Claude builder agents wrote the code from approved specs, separate checking agents tested and reviewed it without being allowed to fix anything, fixing agents repaired what they found, and only I can release a version. I made or approved every product decision and tested each version myself before release. The [showcase](SHOWCASE_URL#splity-tab) shows what the checking agents caught, what they missed, and where my verdict differed from theirs. The records are in [`docs/`](docs/).
 
-<!-- SISTER_REPO_URL is a placeholder. Replace it with the address of the Danial's Streaky Habit repository. -->
-Its sister app, [Danial's Streaky Habit](SISTER_REPO_URL), was made the same way.
+Its sister app, [Danial's Streaky Habit](https://github.com/SoftDevDanial/streaky-habit), was made the same way.
 
 ## Run it on your machine
 
