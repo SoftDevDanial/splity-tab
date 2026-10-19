@@ -175,3 +175,5 @@ At 1.1.0, 406 unit tests passed, 742 browser tests passed in Chromium, and 739 p
 ## License
 
 MIT, see [`LICENSE`](LICENSE).
+
+The MIT licence covers the code and documents. It does not cover the names "Danial's Splity Tab" and "Splity Tab" or the app's logo in any form in this repository, such as [`docs/brand/`](docs/brand/) and `src/icon.svg`. They stay all rights reserved, so a copy or fork keeps the code but uses its own name and logo.

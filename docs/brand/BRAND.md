@@ -40,3 +40,6 @@ the spreadsheet formula "=Split", which is the same idea.
 - A pale equals sign on a solid square is close to another organisation's well-known mark at favicon size. The cut is the
   difference, which is one more reason it must never close.
 - The favicon goes into the app in v1.1.0, through the design phase. The v1.0 screens and goldens do not change.
+
+## Use of the name and logo
+The names "Danial's Splity Tab" and "Splity Tab" and the logo in every file here, and in `src/icon.svg`, are not covered by the MIT licence in `LICENSE`. They stay all rights reserved. A copy or fork of the code uses its own name and logo.
