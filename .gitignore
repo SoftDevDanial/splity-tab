@@ -12,3 +12,10 @@ __pycache__/
 node_modules/
 dist/
 build/
+
+# sdlc rulebook and Claude settings stay on this computer (owner, 2026-10-19)
+docs/constitution.md
+docs/phase-skills.md
+docs/.sdlc-init
+CLAUDE.md
+.claude/
