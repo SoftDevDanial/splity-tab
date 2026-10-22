@@ -4,10 +4,12 @@
 
 <p align="center">Split a restaurant bill among friends down to the last sen, with every step of the maths on screen.</p>
 
+<p align="center">
 <picture>
   <source media="(prefers-reduced-motion: reduce)" srcset="docs/readme/hero-still.png">
   <img src="docs/readme/hero.png" width="948" alt="A recording of Danial's Splity Tab on a desktop. It opens on the finished bill. Three people are named and an RM 100.00 subtotal is split evenly. Then “By item” is chosen and four dishes are entered with who had each. The shares come to RM 29.04, RM 15.74 and RM 24.48, adding up to the RM 69.26 total, and “Copy summary” is pressed.">
 </picture>
+</p>
 
 <p align="center"><sub>Recorded from the running app in headless Chromium at 1024 x 800. Every name, price and choice was entered with mouse and key events. The panel on the left is an overlay added for the recording. The white circle marks each click.</sub></p>
 
@@ -17,15 +19,15 @@
   <a href="#run-it-on-your-machine"><img src="docs/readme/button-run.svg" height="44" alt="Run it on your machine"></a>
 </p>
 
-<!-- SHOWCASE_URL is a placeholder. Replace it with the address of the showcase hub once it exists, keeping each #anchor. -->
-<p align="center"><sub>Made with sdlc, a multi-agent pipeline for Claude Code that I designed. <a href="SHOWCASE_URL#splity-tab">See how it was built</a>.</sub></p>
+<!-- The showcase hub is not built yet. Each mention of it below has no link and says (under construction), and the two test badges have no link. When the hub exists, link them to its page with the anchors #splity-tab and #splity-tab-tests, and remove the marks. -->
+<p align="center"><sub>Made with sdlc, a multi-agent pipeline for Claude Code that I designed. See how it was built in the showcase (under construction).</sub></p>
 
 <p align="center">
   <img src="docs/readme/badge-version.svg" alt="version 1.1.0">
   <img src="docs/readme/badge-dependencies.svg" alt="0 runtime dependencies">
   <img src="docs/readme/badge-network.svg" alt="no network calls">
-  <a href="SHOWCASE_URL#splity-tab-tests"><img src="docs/readme/badge-chromium.svg" alt="browser tests in Chromium, 742 passed"></a>
-  <a href="SHOWCASE_URL#splity-tab-tests"><img src="docs/readme/badge-webkit.svg" alt="browser tests in WebKit, 739 passed and 3 skipped"></a>
+  <img src="docs/readme/badge-chromium.svg" alt="browser tests in Chromium, 742 passed">
+  <img src="docs/readme/badge-webkit.svg" alt="browser tests in WebKit, 739 passed and 3 skipped">
 </p>
 
 ## What it does
@@ -118,7 +120,7 @@ Planned next are splitting the leftover sen among people you choose and keeping 
 <details>
 <summary><b>Every known limit, in full</b></summary>
 
-Each limit below was found in testing. Its status says whether it was fixed in 1.1.0, is by design, is an accepted low risk, is planned for the next version, or comes from the browser or the host. The [showcase](SHOWCASE_URL#splity-tab) explains each call, and the records are in [`docs/`](docs/).
+Each limit below was found in testing. Its status says whether it was fixed in 1.1.0, is by design, is an accepted low risk, is planned for the next version, or comes from the browser or the host. The showcase (under construction) explains each call, and the records are in [`docs/`](docs/).
 
 | Limit | Found in | Status |
 |---|---|---|
@@ -143,7 +145,11 @@ Each limit below was found in testing. Its status says whether it was fixed in 1
 
 ## How it was built
 
-Danial's Splity Tab was made with [sdlc](SHOWCASE_URL), a multi-agent pipeline for Claude Code. I designed the pipeline and every agent in it. Claude builder agents wrote the code from approved specs, separate checking agents tested and reviewed it without being allowed to fix anything, fixing agents repaired what they found, and only I can release a version. I made or approved every product decision and tested each version myself before release. The [showcase](SHOWCASE_URL#splity-tab) shows what the checking agents caught, what they missed, and where my verdict differed from theirs. The records are in [`docs/`](docs/).
+Danial's Splity Tab was made with sdlc, a multi-agent pipeline for Claude Code. I designed the pipeline, most of its agents and its release gates, and I wrote its orchestrator, phases and rules. Some parts build on open-source work. The researcher, planner and plan checker roles began as forks of [GSD](https://github.com/gsd-build/get-shit-done). GSD also gave the plan and execute phases their general shape and informed two fixing agents and the design fidelity check. The brainstorm's way of asking one question at a time is adapted from Matt Pocock's [grill-me](https://github.com/mattpocock/skills).
+
+Claude builder agents wrote the code from approved specs. Separate checking agents tested and reviewed it under instructions to report problems and never fix them, fixing agents repaired what they found, and only I can release a version. The agents commit under my name, so every commit shows me as its author.
+
+Version 1.0 was a delegated run from start to finish, to test the pipeline. The orchestrator made most of the product calls, the design direction among them, and the records mark each one as its own. In 1.1 I made the product decisions myself, such as which design direction to build on, how a quick double tap counts in Safari's engine and removing hidden control characters from names. The orchestrator's smaller calls in between are marked as its own. I tested each version myself before release. The showcase (under construction) shows what the checking agents caught, what they missed, and where my verdict differed from theirs. The records are in [`docs/`](docs/).
 
 Its sister app, [Danial's Streaky Habit](https://github.com/SoftDevDanial/streaky-habit), was made the same way.
 
@@ -166,7 +172,7 @@ python -m pytest tests/browser -q
 python -m pytest tests/browser -q --engine webkit
 ```
 
-The unit tests run on Node 24 (keep the glob in quotes, because a bare `node --test tests/` fails on Node 24). The browser tests need Python with pytest and Playwright. They run headless in Chromium and then WebKit, start and stop the local servers they need, and never touch the system clipboard. Screenshot comparison tests run with `python tests/browser/fidelity/run.py`. The other checks are explained in the [showcase](SHOWCASE_URL#splity-tab-tests).
+The unit tests run on Node 24 (keep the glob in quotes, because a bare `node --test tests/` fails on Node 24). The browser tests need Python with pytest and Playwright. They run headless in Chromium and then WebKit, start and stop the local servers they need, and never touch the system clipboard. Screenshot comparison tests run with `python tests/browser/fidelity/run.py`. The other checks are explained in the showcase (under construction).
 
 At 1.1.0, 406 unit tests passed, 742 browser tests passed in Chromium, and 739 passed in WebKit with 3 skipped. Each skipped test is marked Chromium only and gives its reason.
 

@@ -3,7 +3,8 @@
 How each version went from an idea to a reviewed build, phase by phase. The v1.0.0 part was written at its review on
 2026-10-10 and is kept as it was. The v1.1.0 part was written at its review on 2026-10-16 from
 `docs/progress/STATE-LOG.md`, `docs/v1.1.0/CHANGE-LEDGER.md`, the handoffs in `docs/progress/handoff/` and the
-findings files. The human test column and the seal are the owner's.
+findings files. Its UAT and seal rows and its heading were brought up to date on 2026-10-22, after the seal, from
+`docs/v1.1.0/SEAL.md` and its ledger. The human test column and the seal are the owner's.
 
 ## v1.0.0 (sealed 2026-10-10, tag `v1.0.0`)
 
@@ -53,7 +54,7 @@ Deviations from the brainstorm and the design, with their cause:
 No requirement was dropped and nothing was built that no spec asked for. Compliance review is skipped (personal direction).
 No out-of-project artifacts are logged (`docs/progress/out-of-project-artifacts.md` does not exist).
 
-## v1.1.0 (in review, not sealed)
+## v1.1.0 (sealed 2026-10-16, tag `v1.1.0`)
 
 Not delegated. The owner ran the design round with the orchestrator and ruled every product question himself
 (USER). Decisions the orchestrator took in between are ORCH and reversible. The ledger is the record of each one.
@@ -67,6 +68,8 @@ Not delegated. The owner ran the design round with the orchestrator and ruled ev
 | Execute | 2026-10-14 11:54 to 2026-10-16 03:20 | WebKit 26.5 installed. A0 ran the 1.0 suite in WebKit, 48 failures. Core C1 to C6, then app A1 to A21 one task per builder, each seen failing first and committed with its proof runs. The owner stopped the build once ("HOLD EVERYTHING") when the A0 baseline showed the 1.0 page in his pane, resolved by a check of the goldens. Step 5 finders on both modules, QA (one missing test), code review (14 items), security (SEC-S5-1, a bidi character in a name flips the People line), fidelity (one-to-one, 0 findings). One solver round. The H-10 build (C7, A22). The step 5 re-check found a double click on Dismiss note folding People (CR-R1), built as A23 with a fix pass. Both modules closed at `b0992b4`, Node 406, Chromium 742 and WebKit 742 with 0 failures | H-04, a double tap in WebKit counts as one press by time and place, 500 ms and 22 px (USER). H-05, the WebKit live gate captures by screencast frames (ORCH, his no preference). H-06 the amber bar on a new item, H-07 no status for a late clipboard answer (USER, keep). H-08, the focus scroll that keeps a Tab stop clear of the strip in WebKit (USER). H-09, keep the amount hint as built, a VoiceOver case at UAT (USER). H-10, remove control and bidi characters from names (USER). A23 and the minor calls of the night under his word on minor calls (ORCH) |
 | Regression | 2026-10-16 03:25 to 04:25 | `--full`, the step 5 re-check's QA and security folded in. QA PASS both modules (73 and 181 scenarios), pixel gate 40 of 40 at 0 px with both controls, cold boot 9 of 9 in Chromium and WebKit with red controls, security PASS both, code review 0 BLOCKER with the consistency sweep. No solver round | CS-1 (a name input of only removed characters saves the same text and clears the copy status) and SEC-R1 (an IME composition holding a bidi control is cut short) accepted as residuals, both to the v1.2.0 plan (ORCH). README fixes RG-CR-1, RG-CR-2, CS-7 |
 | Review | 2026-10-16 04:27 to 05:00 | The stakeholder drive on a cold boot with real gestures, Chromium at 1280 x 800, 390 x 844 and 360 x 780, WebKit at 390 x 844 and 360 x 780. 303 checks pass, 0 fail, 44 recorded as information. Every money figure worked out by the script from the brainstorm's rules. The app equals its golden to 0 px in WebKit at the first visit, K1 and W1 | Shippable to UAT. D1 (WebKit draws a focus ring after a tap that opens a popup or closes the sheet, an engine difference recorded in part), D2 (README header at 1.0 until the seal, ORCH) and O1 (a 99,999.99 price does not show whole at 360 px) go to the owner. Next `sdlc:uat` |
+| UAT | 2026-10-16 05:05 to 19:38 | 15 cases in two sittings. The tester's pre-run, then script repairs. The owner's desk sitting passed UAT-01 to UAT-08. The phone sitting, UAT-09 to UAT-15, was not run on an iPhone and stays BLOCKED. A tester run in Android layouts is kept as evidence only. Script, verdicts in his words and findings in `docs/v1.1.0/user-test-2026-10-16/` | Phone cases stay recorded as not run, with the reason, and the release does not depend on them. H-11 and H-12 kept as built. His UAT-01 note became `docs/future/spare-sen-chosen-people.md` (USER) |
+| Seal | 2026-10-16 19:50 | `docs/v1.1.0/SEAL.md`, tag `v1.1.0`, residuals listed as ruled | "seal both" (USER) |
 
 ### v1.1.0 review verdict (stakeholder seat, 2026-10-16)
 
